@@ -13,6 +13,8 @@ items:
   items:
     - name: C#
       href: /dotnet/api/overview/azure/ai.agents.persistent-readme
+    - name: Java
+      href: /java/api/overview/azure/ai-agents-persistent-readme
     - name: JavaScript
       href: /javascript/api/overview/azure/ai-projects-readme
     - name: Python
