@@ -147,8 +147,7 @@ This category contains the following entity:
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
 
    :::column-end:::
-:::row-end:::
-
+ :::row-end:::
 ---
 
 # [Preview API](#tab/preview-api)
@@ -184,7 +183,6 @@ This type contains the following entity:
 # [GA API](#tab/ga-api)
 
 The **LicensePlate** entity isn't available in the current GA version.
-
 ---
 
 # [Preview API](#tab/preview-api)
@@ -220,7 +218,6 @@ This type contains the following entity:
 # [GA API](#tab/ga-api)
 
 The **SortCode** entity isn't available in the current GA version.
-
 ---
 
 
@@ -490,7 +487,6 @@ The entity in this category can have the following subcategories:
    :::column-end:::
 
 :::row-end:::
-
 ---
 
 
