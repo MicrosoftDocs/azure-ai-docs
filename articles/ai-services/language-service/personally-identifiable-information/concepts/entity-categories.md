@@ -85,6 +85,7 @@ This category contains the following entity:
 
    :::column-end:::
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -148,6 +149,7 @@ This category contains the following entity:
 
    :::column-end:::
  :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -182,7 +184,10 @@ This type contains the following entity:
 
 # [GA API](#tab/ga-api)
 
+## Type: License Plate
+
 The **LicensePlate** entity isn't available in the current GA version.
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -217,7 +222,10 @@ This type contains the following entity:
 
 # [GA API](#tab/ga-api)
 
+## Type: Sort Code
+
 The **SortCode** entity isn't available in the current GA version.
+
 ---
 
 
@@ -282,6 +290,7 @@ This category contains the following entity:
    :::column-end:::
 
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -487,6 +496,7 @@ The entity in this category can have the following subcategories:
    :::column-end:::
 
 :::row-end:::
+
 ---
 
 
@@ -676,6 +686,7 @@ This category contains the following entity:
     :::column-end:::
 
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
