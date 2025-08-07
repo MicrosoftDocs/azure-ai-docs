@@ -50,7 +50,7 @@ For a complete list of supported languages, see [Language support: Document anal
 
 Document Intelligence v4.0: 2024-11-30 (GA) layout model supports the following file formats:
 
-|Model | PDF |Image </br>JPEG/JPG, PNG, BMP, TIFF, HEIF | Office </br> Word (DOCX), Excel (XLS), PowerPoint (PPTX), HTML|
+|Model | PDF |Image: </br>JPEG/JPG, PNG, BMP, TIFF, HEIF | Office: </br> Word (DOCX), Excel (XLS), PowerPoint (PPTX), HTML|
 |--------|:----:|:-----:|:---------------:|
 |Layout          | ✔  | ✔ | ✔  |
 
@@ -118,7 +118,7 @@ Run the sample layout document analysis within [Document Intelligence Studio](ht
 
 ### Pages
 
-The *pages* collection is a list of pages within the document. Each page is represented sequentially within the document and includes the orientation angle, which indicates if the page is rotated, and the width and height (dimensions in pixels). The page units in the model output are computed as shown in the following table.
+The `pages` collection is a list of pages within the document. Each page is represented sequentially within the document and includes the orientation angle, which indicates if the page is rotated, and the width and height (dimensions in pixels). The page units in the model output are computed as shown in the following table.
 
 | File format   | Computed page unit   | Total pages  |
 | --- | --- | --- |
@@ -218,7 +218,7 @@ It's best to use paragraph roles with unstructured documents to help understand 
 
 ### Text, lines, and words
 
-The document layout model in Document Intelligence extracts print and handwritten-style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines if detected along with the `spans` that point to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
+The document layout model in Document Intelligence extracts print and handwritten-style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines, if detected, along with the `spans` that point to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
 For Microsoft Word, Excel, PowerPoint, and HTML, the Document Intelligence v4.0 2024-11-30 (GA) layout model extracts all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
@@ -267,7 +267,7 @@ if page.lines:
 
 #### Handwritten style for text lines
 
-The response includes classifies whether each text line is in a handwritten style or not, along with a confidence score. For more information, see [Handwritten language support](../language-support/ocr.md). The following example shows an example JSON snippet.
+The response includes whether each text line is in a handwritten style or not, along with a confidence score. For more information, see [Handwritten language support](../language-support/ocr.md). The following example shows an example JSON snippet.
 
 ```json
 "styles": [
@@ -336,7 +336,7 @@ Here are a few factors to consider when you use the Document Intelligence bale e
 * Is the data that you want to extract presented as a table, and is the table structure meaningful?
 * Can the data fit in a two-dimensional grid if the data isn't in a table format?
 * Do your tables span multiple pages? If so, to avoid having to label all the pages, split the PDF into pages before you send it to Document Intelligence. After the analysis, post-process the pages to a single table.
-* If you're creating custom models, see [Tabular fields](../train/custom-labels.md#tabular-fields). Dynamic tables have a variable number of rows for each column. Fixed tables have a constant number of rows for each column.
+* See [Tabular fields](../train/custom-labels.md#tabular-fields), if you create custom models. Dynamic tables have a variable number of rows for each column. Fixed tables have a constant number of rows for each column.
 
 > [!NOTE]
 >
@@ -394,7 +394,9 @@ if result.tables:
 
 The layout API can output the extracted text in Markdown format. Use the `outputContentFormat=markdown` to specify the output format in Markdown. The Markdown content is output as part of the `content` section.
 
-For v4.0 2024-11-30 (GA), the representation of tables is changed to HTML tables to enable rendering of items like merged cells and multirow headers. Another related change is to use the Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. This update means that the content of selection-mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span. For a full definition of Markdown elements, see [Markdown putput format](../concept/markdown-elements.md).
+> [!NOTE]
+> 
+> For v4.0 2024-11-30 (GA), the representation of tables is changed to HTML tables to enable rendering of items like merged cells and multirow headers. Another related change is to use the Unicode checkbox characters ☒ and ☐ for selection marks instead of `:selected:` and `:unselected:`. This update means that the content of selection-mark fields contains `:selected:` even though their spans refer to Unicode characters in the top-level span. For a full definition of Markdown elements, see [Markdown putput format](../concept/markdown-elements.md).
 
 #### [Sample code](#tab/sample-code)
 
@@ -465,13 +467,12 @@ Figures (charts and images) in documents play a crucial role in complementing an
 
 - `boundingRegions`: The spatial locations of the figure on the document pages, including the page number and the polygon coordinates that outline the figure's boundary.
 - `spans`: The text spans related to the figure that specify their offsets and lengths within the document's text. This connection helps in associating the figure with its relevant textual context.
--`elements`: The identifiers for text elements or paragraphs within the document that are related to or describe the figure.
+- `elements`: The identifiers for text elements or paragraphs within the document that are related to or describe the figure.
 - `caption`: The description, if there is one.
 
 When `output=figures` is specified during the initial analyze operation, the service generates cropped images for all detected figures that can be accessed via `/analyeResults/{resultId}/figures/{figureId}`. The `FigureId` is the ID included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
-> [!NOTE]
-> For v4.0 2024-11-30 (GA), the bounding regions for figures and tables cover only the core content and exclude the associated caption and footnotes.
+For v4.0 2024-11-30 (GA), the bounding regions for figures and tables cover only the core content and exclude the associated caption and footnotes.
 
 #### [Sample code](#tab/sample-code)
 
@@ -519,7 +520,9 @@ if result.figures:
 
 ### Sections
 
-Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [retrieval-augmented generation (RAG)](../concept/retrieval-augmented-generation.md) in document-generative AI underscores the significance of hierarchical document structure analysis. The layout model supports sections and subsections in the output, which identifies the relationship of sections and objects within each section. The hierarchical structure is maintained in the `elements` of each section. You can use the [output response to Markdown format](#output-response-to-markdown-format) to easily get the sections and subsections in Markdown.
+Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [retrieval-augmented generation (RAG)](../concept/retrieval-augmented-generation.md) in document-generative AI underscores the significance of hierarchical document structure analysis.
+
+The layout model supports sections and subsections in the output, which identifies the relationship of sections and objects within each section. The hierarchical structure is maintained in the `elements` of each section. You can use the [output response to Markdown format](#output-response-to-markdown-format) to easily get the sections and subsections in Markdown.
 
 #### [Sample code](#tab/sample-code)
 
@@ -611,7 +614,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 Supported file formats:
 
-|Model | PDF |Image: </br>`JPEG/JPG`, `PNG`, `BMP`, `TIFF`, `HEIF` | Office: </br> Word (`DOCX`), Excel (`XLSX`), PowerPoint (`PPTX`), HTML|
+|Model | PDF |Image: </br>JPEG/JPG, PNG, BMP, TIFF, HEIF | Office: </br> Word (DOCX), Excel (XLSX), PowerPoint (PPTX), HTML|
 |--------|:----:|:-----:|:---------------:|
 |Read            | ✔    | ✔    | ✔  |
 |Layout          | ✔  | ✔ |   |
@@ -620,16 +623,16 @@ Supported file formats:
 |Custom extraction |  ✔  | ✔ |   |
 |Custom classification  |  ✔  | ✔ | ✔  |
 
-* For best results, provide one clear photo or high-quality scan per document.
-* For PDFs and TIFFs, up to 2,000 pages can be processed with a free-tier subscription. Only the first two pages are processed.
-* The file size for analyzing documents is 500 MB for the paid (S0) tier and 4 MB for the free (F0) tier.
-* Image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
-* If your PDFs are password locked, you must remove the lock before submission.
-* The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 pixel image. This dimension corresponds to about 8 point text at 150 dots per inch (DPI).
-* For custom model training, the maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
+* **Photos and scans**: For best results, provide one clear photo or high-quality scan per document.
+* **PDFs and TIFFs**: For PDFs and TIFFs, up to 2,000 pages can be processed with a free-tier subscription. Only the first two pages are processed.
+* **File size**: The file size for analyzing documents is 500 MB for the paid (S0) tier and 4 MB for the free (F0) tier.
+* **Image dimensions**: The image dimensions must be between 50 pixels x 50 pixels and 10,000 pixels x 10,000 pixels.
+* **Password locks**: If your PDFs are password-locked, you must remove the lock before submission.
+* **Text height**: The minimum height of the text to be extracted is 12 pixels for a 1024 x 768 pixel image. This dimension corresponds to about 8-point text at 150 dots per inch.
+* **Custom model training**: The maximum number of pages for training data is 500 for the custom template model and 50,000 for the custom neural model.
 
   * **Custom extraction model training**: The total size of training data is 50 MB for the template model and 1 GB for the neural model.
-  * **Custom classification model training**: The total size of training data is 1 GB  with a maximum of 10,000 pages. For 2024-11-30 (GA), the total size of training data is 2 GB with a maximum of 10,000 pages.
+  * **Custom classification model training**: The total size of training data is 1 GB with a maximum of 10,000 pages. For 2024-11-30 (GA), the total size of training data is 2 GB with a maximum of 10,000 pages.
 
 :::moniker-end
 
@@ -647,10 +650,10 @@ Supported file formats:
 
 ### Get started
 
-See how data, including text, tables, table headers, selection marks, and structure information, is extracted from documents by using Document Intelligence. You need the following resources:
+You can use Document Intelligence to extract data such as text, tables, table headers, selection marks, and structure information from documents. You need the following resources:
 
 * An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
-* A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
+* A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (F0) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 
 :::image type="content" source="../media/containers/keys-and-endpoint.png" alt-text="Screenshot that shows the keys and endpoint location in the Azure portal.":::
 
@@ -702,7 +705,7 @@ After you retrieve your key and endpoint, you can use the following development 
 
 1. In the **key** field, paste the key that you obtained from your Document Intelligence resource.
 
-1. In the **Source** field, select **URL** from the dropdown menu. You can use the sample document.
+1. In the **Source** field, select **URL** from the dropdown menu. You can use the sample document:
 
     * [Sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/layout-page-001.jpg).
 
@@ -720,7 +723,7 @@ After you retrieve your key and endpoint, you can use the following development 
 
 :::moniker range="doc-intel-2.1.0"
 
-Document Intelligence v2.1 supports the following tools, applications, and libraries:
+Document Intelligence v2.1 supports the following tools, applications, and libraries.
 
 | Feature | Resources |
 |----------|-------------------------|
@@ -732,7 +735,7 @@ Document Intelligence v2.1 supports the following tools, applications, and libra
 
 ## Extract data
 
-The layout model extracts structural elements from your documents. The following descriptions of these structural elements with guidance on how to extract them from your document input.
+The layout model extracts structural elements from your documents. The structural elements are described and then followed by guidance on how to extract them from your document input.
 
 * [Page](#page)
 * [Paragraph](#paragraph)
@@ -747,7 +750,7 @@ The layout model extracts structural elements from your documents. The following
 
 ## Extract data
 
-The layout model extracts structural elements from your documents. To follow are descriptions of these structural elements with guidance on how to extract them from your document input:
+The layout model extracts structural elements from your documents. The structural elements are described and then followed by guidance on how to extract them from your document input.
 
 * [Page](#page)
 * [Paragraph](#paragraph)
@@ -763,13 +766,13 @@ The layout model extracts structural elements from your documents. To follow are
 
 ### Page
 
-The pages collection is a list of pages within the document. Each page is represented sequentially within the document and includes the orientation angle indicating if the page is rotated and the width and height (dimensions in pixels). The page units in the model output are computed as shown:
+The `pages` collection is a list of pages within the document. Each page is represented sequentially within the document and includes the orientation angle that indicates if the page is rotated and the width and height (dimensions in pixels). The page units in the model output are computed as shown in the following table.
 
 | File format   | Computed page unit   | Total pages  |
 | --- | --- | --- |
-|Images (JPEG/JPG, PNG, BMP, HEIF) | Each image = 1 page unit. | Total images.  |
-|PDF | Each page in the PDF = 1 page unit. | Total pages in the PDF. |
-|TIFF | Each image in the TIFF = 1 page unit. | Total images in the TIFF. |
+|Images (JPEG/JPG, PNG, BMP, HEIF) | Each image = 1 page unit. | Total images  |
+|PDF | Each page in the PDF = 1 page unit. | Total pages in the PDF |
+|TIFF | Each image in the TIFF = 1 page unit. | Total images in the TIFF |
 |Word (DOCX)  | Up to 3,000 characters = 1 page unit. Embedded or linked images aren't supported. | Total pages of up to 3,000 characters each |
 |Excel (XLSX)  | Each worksheet = 1 page unit. Embedded or linked images aren't supported. | Total worksheets |
 |PowerPoint (PPTX) |  Each slide = 1 page unit. Embedded or linked images aren't supported. | Total slides |
@@ -856,16 +859,16 @@ The layout model extracts all identified blocks of text in the `paragraphs` coll
 
 #### Paragraph role
 
-The new machine-learning based page object detection extracts logical roles like titles, section headings, page headers, page footers, and more. The Document Intelligence Layout model assigns certain text blocks in the `paragraphs` collection with their specialized role or type predicted by the model. It's best to use paragraph roles with unstructured documents to help understand the layout of the extracted content for a richer semantic analysis. The following paragraph roles are supported:
+The new page object detection based on machine learning extracts logical roles like titles, section headings, page headers, page footers, and more. The Document Intelligence layout model assigns certain text blocks in the `paragraphs` collection with their specialized role or type predicted by the model. It's best to use paragraph roles with unstructured documents to help understand the layout of the extracted content for a richer semantic analysis. The following paragraph roles are supported.
 
 | Predicted role   | Description   | Supported file types |
 | --- | --- | --- |
-| `title`  | The main headings in the page | pdf, image, docx, pptx, xlsx, html |
-| `sectionHeading`  | One or more subheadings on the page  | pdf, image, docx, xlsx, html |
-| `footnote`  | Text near the bottom of the page  | pdf, image |
-| `pageHeader`  | Text near the top edge of the page  | pdf, image, docx |
-| `pageFooter`  | Text near the bottom edge of the page  | pdf, image, docx, pptx, html |
-| `pageNumber`  | Page number  | pdf, image |
+| `title`  | The main headings in the page | PDF, Image, DOCX, PPTX, XLSX, HTML |
+| `sectionHeading`  | One or more subheadings on the page  | PDF, Image, DOCX, XLSX, HTML |
+| `footnote`  | Text near the bottom of the page  | PDF, Image |
+| `pageHeader`  | Text near the top edge of the page  | PDF, Image, DOCX |
+| `pageFooter`  | Text near the bottom edge of the page  | PDF, Image, DOCX, PPTX, HTML |
+| `pageNumber`  | Page number  | PDF, Image |
 
 ```json
 {
@@ -889,9 +892,9 @@ The new machine-learning based page object detection extracts logical roles like
 
 ### Text, line, and word
 
-The document layout model in Document Intelligence extracts print and handwritten-style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines if detected along with the spans pointing to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
+The document layout model in Document Intelligence extracts print and handwritten-style text as lines and words. The `styles` collection includes any handwritten style for lines if detected along with the spans that point to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
-For Microsoft Word, Excel, PowerPoint, and HTML, Document Intelligence v4.0 2024-11-30 (GA) layout model extracts all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
+For Word, Excel, PowerPoint, and HTML, the Document Intelligence v4.0 2024-11-30 (GA) layout model extracts all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
 :::moniker-end
 
@@ -984,7 +987,7 @@ The response includes classifying whether each text line is of handwriting style
 }
 ```
 
-If you enable the [font/style addon capability](../concept-add-on-capabilities.md#font-property-extraction), you also get the font/style result as part of the `styles` object.
+If you enable the [font/style add-on capability](../concept-add-on-capabilities.md#font-property-extraction), you also get the font/style result as part of the `styles` object.
 
 ### Selection mark
 
@@ -1054,20 +1057,20 @@ for selection_mark in page.selection_marks:
 
 ### Table
 
-Extracting tables is a key requirement for processing documents that contain large volumes of data typically formatted as tables. The layout model extracts tables in the `pageResults` section of the JSON output. Extracted table information includes the number of columns and rows, row span, and column span. Each cell with its bounding polygon is output along with information whether the area is recognized as a `columnHeader` or not. The model supports extracting tables that are rotated. Each table cell contains the row and column index and bounding polygon coordinates. For the cell text, the model outputs the `span` information that contains the starting index (`offset`). The model also outputs the `length` within the top-level content that contains the full text from the document.
+Extracting tables is a key requirement for processing documents that contain large volumes of data typically formatted as tables. The layout model extracts tables in the `pageResults` section of the JSON output. Extracted table information includes the number of columns and rows, row span, and column span. Each cell with its bounding polygon is output along with information whether the area is recognized as `columnHeader` or not.
+
+The model supports extracting tables that are rotated. Each table cell contains the row and column index and bounding polygon coordinates. For the cell text, the model outputs the `span` information that contains the starting index (`offset`). The model also outputs the `length` within the top-level content that contains the full text from the document.
 
 Here are a few factors to consider when you use the Document Intelligence bale extraction capability:
 
 * Is the data that you want to extract presented as a table, and is the table structure meaningful?
 * Can the data fit in a two-dimensional grid if the data isn't in a table format?
 * Do your tables span multiple pages? If so, to avoid having to label all the pages, split the PDF into pages before you send it to Document Intelligence. After the analysis, post-process the pages to a single table.
-
-* If you're creating custom models, see [Tabular fields](../train/custom-labels.md#tabular-fields). Dynamic tables have a variable number of rows for each column. Fixed tables have a constant number of rows for each column.
+* See [Tabular fields](../train/custom-labels.md#tabular-fields) if you create custom models. Dynamic tables have a variable number of rows for each column. Fixed tables have a constant number of rows for each column.
 
 > [!NOTE]
 >
-> * Table analysis isn't supported if the input file is XLSX.
- > * Document Intelligence v4.0 2024-11-30 (GA) supports bounding regions for figures and tables that cover only the core content and excludes the associated caption and footnotes.
+> Table analysis isn't supported if the input file is XLSX. Document Intelligence v4.0 2024-11-30 (GA) supports bounding regions for figures and tables that cover only the core content and excludes the associated caption and footnotes.
 
 :::moniker-end
 
@@ -1185,11 +1188,11 @@ The layout model extracts annotations in documents, such as checks and crosses. 
 
 You can specify the order in which the text lines are output with the `readingOrder` query parameter. Use `natural` for a more human-friendly reading order output, as shown in the following example. This feature is supported only for Latin languages.
 
-:::image type="content" source="../media/layout-reading-order-example.png" alt-text="Screenshot of `layout` model reading order processing." lightbox="../../../ai-services/Computer-vision/Images/ocr-reading-order-example.png":::
+:::image type="content" source="../media/layout-reading-order-example.png" alt-text="Screenshot of the layout model reading order processing." lightbox="../../../ai-services/Computer-vision/Images/ocr-reading-order-example.png":::
 
 ### Select page number or range for text extraction
 
-For large multipage documents, use the `pages` query parameter to indicate specific page numbers or page ranges for text extraction. The following example shows a document with 10 pages, with text extracted for both cases, all pages (1-10) and selected pages (3-6).
+For large multipage documents, use the `pages` query parameter to indicate specific page numbers or page ranges for text extraction. The following example shows a document with 10 pages, with text extracted for both cases, all pages (1-10), and selected pages (3-6).
 
 :::image type="content" source="../media/layout-select-pages.png" alt-text="Screenshot that shows the layout model selected pages output.":::
 
@@ -1199,9 +1202,9 @@ The second step is to call the [Get Analyze Layout Result](https://westcentralus
 
 |Field| Type | Possible values |
 |:-----|:----:|:----|
-|status | string | `notStarted`: The analysis operation isn't started.</br></br>`running`: The analysis operation is in progress.</br></br>`failed`: The analysis operation failed.</br></br>`succeeded`: The analysis operation succeeded.|
+|**status** | string | `notStarted`: The analysis operation isn't started.</br></br>`running`: The analysis operation is in progress.</br></br>`failed`: The analysis operation failed.</br></br>`succeeded`: The analysis operation succeeded.|
 
-Call this operation iteratively until it returns the `succeeded` value. To avoid exceeding the requests per second (RPS) rate, use an interval of three to five seconds.
+Call this operation iteratively until it returns the `succeeded` value. To avoid exceeding the requests-per-second rate, use an interval of three to five seconds.
 
 When the **status** field has the `succeeded` value, the JSON response includes the extracted layout, text, tables, and selection marks. The extracted data includes extracted text lines and words, bounding boxes, text appearance with handwritten indication, tables, and selection marks with selected/unselected indicated.
 
@@ -1209,27 +1212,29 @@ When the **status** field has the `succeeded` value, the JSON response includes 
 
 The response includes classifying whether each text line is of a handwritten style or not, along with a confidence score. This feature is supported only for Latin languages. The following example shows the handwritten classification for the text in the image.
 
-:::image type="content" source="../media/layout-handwriting-classification.png" alt-text="Screenshot that shows the `layout` model handwriting classification process.":::
+:::image type="content" source="../media/layout-handwriting-classification.png" alt-text="Screenshot that shows the layout model handwriting classification process.":::
 
 ### Sample JSON output
 
 The response to the `Get Analyze Layout Result` operation is a structured representation of the document with all the information extracted.
-See here for a [sample document file](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/tree/master/curl/form-recognizer/sample-layout.pdf) and its structured output [sample layout output](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/tree/master/curl/form-recognizer/sample-layout-output.json).
+See a [sample document file](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/tree/master/curl/form-recognizer/sample-layout.pdf) and its structured output [sample layout output](https://github.com/Azure-Samples/cognitive-services-REST-api-samples/tree/master/curl/form-recognizer/sample-layout-output.json).
 
 The JSON output has two parts:
 
-* `readResults` node contains all of the recognized text and selection mark. The text presentation hierarchy is page, then line, and then individual words.
-* `pageResults` node contains the tables and cells extracted with their bounding boxes, confidence, and a reference to the lines and words in `readResults` field.
+* The `readResults` node contains all the recognized text and selection mark. The text presentation hierarchy is page, then line, and then individual words.
+* The `pageResults` node contains the tables and cells extracted with their bounding boxes, confidence, and a reference to the lines and words in the `readResults` field.
 
 ## Example output
 
 ### Text
 
-The layout API extracts text from documents and images with multiple text angles and colors. It accepts photos of documents, faxes, printed and/or handwritten (English only) text, and mixed modes. Text is extracted with information provided on lines, words, bounding boxes, confidence scores, and style (handwritten or other). All the text information is included in the `readResults` section of the JSON output.
+The layout API extracts text from documents and images with multiple text angles and colors. It accepts photos of documents, faxes, printed and/or handwritten (English-only) text, and mixed modes. Text is extracted with information provided on lines, words, bounding boxes, confidence scores, and style (handwritten or other). All the text information is included in the `readResults` section of the JSON output.
 
 ### Tables with headers
 
-Layout API extracts tables in the `pageResults` section of the JSON output. Documents can be scanned, photographed, or digitized. Tables can be complex with merged cells or columns, with or without borders, and with odd angles. Extracted table information includes the number of columns and rows, row span, and column span. Each cell with its bounding box is output along with whether the area is recognized as part of a header or not. The model predicted header cells can span multiple rows and aren't necessarily the first rows in a table. They also work with rotated tables. Each table cell also includes the full text with references to the individual words in the `readResults` section.
+The Layout API extracts tables in the `pageResults` section of the JSON output. You can scan, photograph, or digitize documents. Tables can be complex with merged cells or columns, with or without borders, and with odd angles. 
+
+Extracted table information includes the number of columns and rows, row span, and column span. Each cell with its bounding box is output along with whether the area is recognized as part of a header or not. The model-predicted header cells can span multiple rows and aren't necessarily the first rows in a table. They also work with rotated tables. Each table cell also includes the full text with references to the individual words in the `readResults` section.
 
 ![Illustration that shows a Tables example.](../media/layout-table-header-demo.gif)
 
@@ -1247,8 +1252,8 @@ The layout API also extracts selection marks from documents. Extracted selection
 
 :::moniker range="doc-intel-4.0.0 || doc-intel-3.1.0"
 
-* [Learn how to process your own forms and documents](../studio-overview.md) with the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio).
-* Finish a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true) and create a document processing app in the development language of your choice.
+* Learn how to [process your own forms and documents](../studio-overview.md) with the [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio).
+* Finish a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-3.1.0&preserve-view=true), and create a document processing app in the development language of your choice.
 
 :::moniker-end
 
@@ -1266,8 +1271,7 @@ The layout API also extracts selection marks from documents. Extracted selection
 
 :::moniker range="doc-intel-2.1.0"
 
-* [Learn how to process your own forms and documents](../quickstarts/try-sample-label-tool.md) with the [Document Intelligence Sample Labeling tool](https://fott-2-1.azurewebsites.net/).
-
-* Finish a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true) and create a document processing app in the development language of your choice.
+* Learn how to [process your own forms and documents](../quickstarts/try-sample-label-tool.md) with the [Document Intelligence Sample Labeling tool](https://fott-2-1.azurewebsites.net/).
+* Finish a [Document Intelligence quickstart](../quickstarts/get-started-sdks-rest-api.md?view=doc-intel-2.1.0&preserve-view=true), and create a document processing app in the development language of your choice.
 
 :::moniker-end
