@@ -17,13 +17,6 @@ items:
   items:
   - name: Create an AI Foundry resource
     href: multi-service-resource.md
-    displayName: applied, cognitive, form
-  - name: Create an AI Foundry resource using Bicep
-    href: create-account-bicep.md
-  - name: Create an AI Foundry resource using an ARM template
-    href: create-account-resource-manager-template.md
-  - name: Create an AI Foundry resource using Terraform
-    href: create-account-terraform.md
 - name: How-to
   items:
   - name: Plan and manage costs

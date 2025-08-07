@@ -519,6 +519,16 @@
       "source_path": "articles/machine-learning/how-to-package-models.md",
       "redirect_url": "/azure/machine-learning/concept-endpoints",
       "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-terraform.md",
+      "redirect_url": "/azure/ai-foundry/how-to/create-account-terraform",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-bicep.md",
+      "redirect_url": "/azure/ai-foundry/how-to/create-account-bicep",
+      "redirect_document_id": false
     }
   ]
 }

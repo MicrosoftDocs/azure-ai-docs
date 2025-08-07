@@ -9,6 +9,8 @@ items:
     href: ../../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context
   - name: Create using Bicep template
     href: ../../how-to/create-resource-template.md
+  - name: Create using an ARM template
+    href: ../../../ai-services/create-account-resource-manager-template.md?context=/azure/ai-foundry/context/context
   - name: Create using Terraform template
     href: ../../how-to/create-resource-terraform.md
   - name: Recover or purge deleted resources
