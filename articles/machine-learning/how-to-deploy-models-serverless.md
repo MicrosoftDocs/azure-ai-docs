@@ -118,13 +118,15 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
 
     # [Studio](#tab/azure-studio)
 
-    1. On the model's **Details** page, select **Use this model**. A **Deployment options** window opens up, giving you the choice between standard deployment and deployment using a managed compute.
-  
+    1. On the model's **Details** page, select **Use this model**. A **Deployment options** window opens up, giving you the choice between standard deployment (serverless API) and deployment using a managed compute.
+           
+        :::image type="content" source="media/how-to-deploy-models-serverless/purchase-options.png" alt-text="A screenshot depicting the dialog for choosing between standard deployments and managed compute." lightbox="media/how-to-deploy-models-serverless/purchase-options.png":::
+
         > [!NOTE]
         > For models that can be deployed only via standard deployment, the standard deployment wizard opens up right after you select **Use this model** from the model's details page.
 
-    1. Select **standard deployment with Azure AI Content Safety (preview)** to open the standard deployment wizard.
-
+    1. Select **Serverless API** to open the standard deployment wizard.
+  
         :::image type="content" source="media/how-to-deploy-models-serverless/deploy-pay-as-you-go.png" alt-text="A screenshot showing how to deploy a model with the standard deployment option." lightbox="media/how-to-deploy-models-serverless/deploy-pay-as-you-go.png":::
 
     1. If you see the note *You already have an Azure Marketplace subscription for this workspace*, you don't need to create the subscription since you already have one. You can proceed to [Deploy the model to a standard deployment](#deploy-the-model-to-a-standard-deployment).
@@ -257,7 +259,7 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
     # [Studio](#tab/azure-studio)
 
-    1. To deploy a Microsoft model that doesn't require subscribing to a model offering, select **Use this model** and then select **standard deployment with Azure AI Content Safety (preview)** to open the deployment wizard.
+    1. To deploy a Microsoft model that doesn't require subscribing to a model offering, select **Use this model** and then select **Serverless API** to open the deployment wizard.
 
     1. Alternatively, for a non-Microsoft model that requires a model subscription, if you've just subscribed your workspace to the model offer in the previous section, continue to select **Deploy**. Alternatively, select **Continue to deploy** (if your deployment wizard had the note *You already have an Azure Marketplace subscription for this workspace*). 
 
