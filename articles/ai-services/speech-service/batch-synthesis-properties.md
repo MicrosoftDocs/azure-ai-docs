@@ -5,7 +5,7 @@ description: Learn about the batch synthesis properties for text to speech.
 author: eric-urban
 ms.author: eur
 manager: nitinme
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom:

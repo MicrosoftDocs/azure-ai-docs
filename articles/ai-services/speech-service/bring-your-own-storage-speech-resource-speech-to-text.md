@@ -5,10 +5,10 @@ description: Learn how to use Bring your own storage (BYOS) Speech resource with
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 author: eric-urban
 ms.author: eur
-ms.reviewer: alexeyo
+ms.reviewer: jagoerge
 ---
 
 # Use the Bring your own storage (BYOS) Speech resource for speech to text
