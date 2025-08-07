@@ -37,12 +37,34 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [o3 limited access model application](https://aka.ms/oai/o3access)     |
 | `o3-mini` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
 |`o1` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
-| `o1-preview` | [Model availability](../concepts/models.md#global-standard-model-availability). |This model is only available for customers who were granted access as part of the original limited access release. We're currently not expanding access to `o1-preview`. |
 | `o1-mini` | [Model availability](../concepts/models.md#global-standard-model-availability). | No access request needed for Global Standard deployments.<br><br>Standard (regional) deployments are currently only available to select customers who were previously granted access as part of the `o1-preview` release.|
 
 ## API & feature support
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
+
+
+| **Feature**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:--------------------------:|:------:|:--------:|
+| **API Version** | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | 
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
+| **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 272,000 <br> Output: 100,000 | Input: 272,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | Input: 128,000  <br> Output: 65,536 |
+| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ |
+| Chat Completions API | ✅ | ✅ | ✅ |
+| Responses API | ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) <sup>4</sup> |  ✅ | ✅ | ✅ |
+| Streaming   | ✅ | ✅ | ✅|
+
+<sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`.
+<sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+<sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.
+<sup>4</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
 
 # [O-Series Reasoning Models](#tab/o-series)
 
