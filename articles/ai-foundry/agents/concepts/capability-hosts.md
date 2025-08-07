@@ -50,57 +50,14 @@ Capability hosts follow a hierarchy where more specific configurations override 
 2. **Account-level capability host** - Provides shared defaults for all projects under the account.
 3. **Project-level capability host** - Overrides account-level and service defaults for that specific project. 
 
-## Avoiding HTTP 409 (Conflict) errors
-
-### Understanding capability host constraints
+## Understanding capability host constraints
 
 When creating capability hosts, be aware of these important constraints to avoid conflicts:
 
-> [!IMPORTANT]
-> **One capability host per scope**: Each account and each project can only have one active capability host. Attempting to create a second capability host with a different name at the same scope will result in a 409 conflict.
+- **One capability host per scope**: Each account and each project can only have one active capability host. Attempting to create a second capability host with a different name at the same scope will result in a 409 conflict.
 
-### Best practices to prevent conflicts
+- **Configuration updates are not supported**: If you need to change configuration, you must delete the existing capability host and recreate it.
 
-#### 1. **Pre-request validation**
-Always check for existing capability hosts before attempting to create new ones:
-
-**For account-level capability hosts:**
-```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts?api-version=2025-06-01
-```
-
-#### 2. **Monitor long-running operations**
-Capability host operations are asynchronous. Always monitor operation status:
-
-```http
-GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/operationResults/{operationId}?api-version=2025-06-01
-```
-
-#### 4. **Handle idempotent requests correctly**
-The system supports idempotent create requests:
-- **Same name + same configuration** = Returns existing resource (success)
-- **Same name + different configuration** = Returns 400 Bad Request
-- **Different name** = Returns 409 Conflict
-
-### Configuration update limitations
-
-> [!WARNING]
-> Configuration updates are not supported. If you need to change configuration, you must delete the existing capability host and recreate it.
-
-**Error example:**
-```json
-{
-  "error": {
-    "code": "InvalidData",
-    "message": "Update of capability is not currently supported. Please delete and recreate with the new configuration."
-  }
-}
-```
-
-**Recommended approach for configuration changes:**
-1. Delete the existing capability host
-2. Wait for deletion to complete
-3. Create a new capability host with the desired configuration
 
 ## Recommended setup 
 
@@ -120,9 +77,7 @@ A capability host must be configured with the following three properties at eith
 |----------|---------|------------------------|-------------|
 | `aiServicesConnections` | Use your own model deployments | Azure OpenAI | When you want to use models from your existing Azure OpenAI resource instead of the built-in account level ones. |
 
-### Account capability host
-Create an account-level capability host that provides shared defaults:
-
+**Account capability host**
 ```http
 PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts/{name}?api-version=2025-06-01
 
@@ -148,18 +103,6 @@ PUT https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{
     "aiServicesConnections": ["my-azure-openai-connection"]  // Optional
   }
 }
-```
-
-### Example URLs from your environment:
-
-**Account-level capability host:**
-```
-https://management.azure.com/subscriptions/b17253fa-f327-42d6-9686-f3e553e24763/resourceGroups/howie-cap-1/providers/Microsoft.CognitiveServices/accounts/foundyav3b/capabilityHosts/caphostaccount?api-version=2025-06-01
-```
-
-**Project-level capability host:**
-```
-https://management.azure.com/subscriptions/b17253fa-f327-42d6-9686-f3e553e24763/resourceGroups/howie-cap-1/providers/Microsoft.CognitiveServices/accounts/foundyav3b/projects/projectav3b/capabilityHosts/caphostproj?api-version=2025-06-01
 ```
 
 ### Optional: account-level defaults with project overrides
@@ -202,13 +145,15 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 
 ## Troubleshooting
 
-### Common 409 conflict scenarios
+If you're experiencing issues when creating capability hosts, this section provides solutions to the most common problems and errors.
 
-#### 1. **Multiple capability hosts per scope**
+### HTTP 409 Conflict errors
 
-**What happens:** You try to create a capability host with a different name when one already exists at the same scope (account or project level).
+#### Problem: Multiple capability hosts per scope
 
-**Error example:**
+**Symptoms:** You receive a 409 Conflict error when trying to create a capability host, even though you believe the scope is empty.
+
+**Error message:**
 ```json
 {
   "error": {
@@ -218,16 +163,27 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 }
 ```
 
-**How to avoid:**
-- **Check existing capability hosts first** before creating new ones
-- **Use consistent naming** across all requests for the same scope
-- **Query existing resources** to understand current state
+**Root cause:** Each account and each project can only have one active capability host. You're trying to create a capability host with a different name when one already exists at the same scope.
 
-#### 2. **Concurrent operations** 
+**Solution:**
+1. **Check existing capability hosts** - Query the scope to see what already exists
+2. **Use consistent naming** - Ensure you're using the same name across all requests for the same scope
+3. **Review your requirements** - Determine if the existing capability host meets your needs
 
-**What happens:** You try to create a capability host while another operation (update, delete, modify) is in progress at the same scope.
+**Validation steps:**
+```http
+# For account-level capability hosts
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/capabilityHosts?api-version=2025-06-01
 
-**Error example:**
+# For project-level capability hosts  
+GET https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CognitiveServices/accounts/{accountName}/projects/{projectName}/capabilityHosts?api-version=2025-06-01
+```
+
+#### Problem: Concurrent operations in progress
+
+**Symptoms:** You receive a 409 Conflict error indicating that another operation is currently running.
+
+**Error message:**
 ```json
 {
   "error": {
@@ -237,14 +193,27 @@ DELETE https://management.azure.com/subscriptions/{subscriptionId}/resourceGroup
 }
 ```
 
-**How to avoid:**
-- **Monitor operation status** before making new requests
-- **Wait for operations to complete** before starting new ones
+**Root cause:** You're trying to create a capability host while another operation (update, delete, modify) is in progress at the same scope.
 
-### Error handling patterns
+**Solution:**
+1. **Wait for current operation to complete** - Check the status of ongoing operations
+2. **Monitor operation progress** - Use the operations API to track completion
+3. **Implement retry logic** - Add exponential backoff for temporary conflicts
 
-#### For Application Developers:
+**Operation monitoring:**
+```http
+GET https://management.azure.com/subscriptions/{subscriptionId}/providers/Microsoft.CognitiveServices/locations/{location}/operationResults/{operationId}?api-version=2025-06-01
+```
 
+### Best practices for conflict prevention
+
+#### 1. Pre-request validation
+Always verify the current state before making changes:
+- Query existing capability hosts in the target scope
+- Check for any ongoing operations
+- Understand the current configuration
+
+#### 2. Implement retry logic with exponential backoff
 ```csharp
 try 
 {
@@ -255,7 +224,7 @@ catch (HttpRequestException ex) when (ex.Message.Contains("409"))
 {
     if (ex.Message.Contains("existing Capability Host with name"))
     {
-        // Different name conflict - check if existing resource meets your needs
+        // Handle name conflict - check if existing resource is acceptable
         var existing = await GetExistingCapabilityHostAsync();
         if (IsAcceptable(existing))
         {
@@ -268,56 +237,25 @@ catch (HttpRequestException ex) when (ex.Message.Contains("409"))
     }
     else if (ex.Message.Contains("currently in non creating"))
     {
-        // Resource busy - implement retry
+        // Handle concurrent operation - implement retry with backoff
         await Task.Delay(TimeSpan.FromSeconds(30));
-        return await CreateCapabilityHostAsync(request); // Retry
+        return await CreateCapabilityHostAsync(request); // Retry once
     }
 }
 ```
 
-#### For CLI/PowerShell Users:
+#### 3. Understanding idempotent behavior
+The system supports idempotent create requests:
+- **Same name + same configuration** → Returns existing resource (200 OK)
+- **Same name + different configuration** → Returns 400 Bad Request  
+- **Different name** → Returns 409 Conflict
 
-```bash
-# Check for existing account-level capability hosts first
-az cognitiveservices account capability-host list \
-  --account-name myaccount \
-  --resource-group myrg
+#### 4. Configuration change workflow
+Since updates aren't supported, follow this sequence for configuration changes:
+1. Delete the existing capability host
+2. Wait for deletion to complete  
+3. Create a new capability host with the desired configuration
 
-# Check for existing project-level capability hosts
-az cognitiveservices account project capability-host list \
-  --account-name myaccount \
-  --project-name myproject \
-  --resource-group myrg
-
-# If none exist, create new one at account level
-az cognitiveservices account capability-host create \
-  --account-name myaccount \
-  --resource-group myrg \
-  --capability-host-name myhost \
-  --kind Agents
-
-# If creation fails with 409, check operation status
-az cognitiveservices account capability-host show \
-  --account-name myaccount \
-  --resource-group myrg \
-  --capability-host-name myhost
-```
-
-### Troubleshooting
-
-To minimize 409 conflicts when creating capability hosts:
-
-- **Check existing capability hosts** at both account and project levels before creating new ones
-- **Use consistent naming** within the same scope (account or project)
-- **Implement exponential backoff retry logic** for busy resources
-- **Monitor long-running operations** before making new requests
-- **Leverage idempotent behavior** for identical requests
-- **Don't attempt configuration updates** - delete and recreate instead
-- **Monitor operation status** using the operations API
-- **Handle error responses** appropriately based on conflict type
-- **Understand the scope** - account vs project level capability hosts serve different purposes
-
-Following these practices will significantly reduce 409 conflicts and provide a better experience for your users.
 
 ## Next steps
 - Learn more about the [Standard Agent Setup](standard-agent-setup.md) 
