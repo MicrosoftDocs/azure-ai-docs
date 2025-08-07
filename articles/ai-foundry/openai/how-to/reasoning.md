@@ -58,13 +58,24 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ |
 | `max_completion_tokens` <sup>2</sup> |  ✅ | ✅ | ✅ |
 | System Messages <sup>3</sup> | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) <sup>4</sup> |  ✅ | ✅ | ✅ |
+| [Reasoning summary](#reasoning-summary) <sup>4</sup> |  ✅ | - | - |
 | Streaming   | ✅ | ✅ | ✅|
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
 <sup>4</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
+
+### NEW GPT-5 reasoning features
+
+| Feature | Description |
+|----|----|
+|`reasoning_effort` | `minimal` is now supported with GPT-5 series reasoning models <br><br> **Options**: `minimal`, `low`, `medium`, `high`|
+|`verbosity` | A new parameter giving you more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
+| `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
+| **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
+| **custom tool type** | Enables raw text (non-json) outputs |
+| [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
 # [O-Series Reasoning Models](#tab/o-series)
 
@@ -305,7 +316,7 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 ## Reasoning effort
 
 > [!NOTE]
-> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `2024-12-01-preview` adds an additional new parameter `reasoning_effort` which can be set to `low`, `medium`, or `high` with the latest `o1` model. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
+> Reasoning models have `reasoning_tokens` as part of `completion_tokens_details` in the model response. These are hidden tokens that aren't returned as part of the message response content but are used by the model to help generate a final answer to your request. `reasoning_effort` can be set to `low`, `medium`, or `high` for all reasoning models except `o1-mini`. GPT-5 reasoning models support a new `reasoning_effort` setting of `minimal`. The higher the effort setting, the longer the model will spend processing the request, which will generally result in a larger number of `reasoning_tokens`.
 
 ## Developer messages
 
@@ -547,6 +558,65 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
   "store": true
 }
 ```
+
+## Python lark
+
+GPT-5 series reasoning models have the ability to call a new `custom_tool` called `lark_tool`. This tool is based on [Python lark](https://github.com/lark-parser/lark) and can be used for more flexible constraining of model output.
+
+### Chat Completions
+
+```json
+{
+  "messages": [
+    {
+      "role": "user",
+      "content": "Which one is larger, 42 or 0?"
+    }
+  ],
+  "tools": [
+    {
+      "type": "custom",
+      "name": "custom_tool",
+      "custom": {
+        "name": "lark_tool",
+        "format": {
+          "type": "grammar",
+          "grammar": {
+            "syntax": "lark",
+            "definition": "start: QUESTION NEWLINE ANSWER\nQUESTION: /[^\\n?]{1,200}\\?/\nNEWLINE: /\\n/\nANSWER: /[^\\n!]{1,200}!/"
+          }
+        }
+      }
+    }
+  ],
+  "tool_choice": "required",
+  "model": "gpt-5-2025-08-07"
+}
+```
+
+### Responses API
+
+```
+{
+  "model": "gpt-5-2025-08-07",
+  "input": "please calculate the area of a circle with radius equal to the number of 'r's in strawberry",
+  "tools": [
+    {
+      "type": "custom",
+      "name": "lark_tool",
+      "format": {
+        "type": "grammar",
+        "syntax": "lark",
+        "definition": "start: QUESTION NEWLINE ANSWER\nQUESTION: /[^\\n?]{1,200}\\?/\nNEWLINE: /\\n/\nANSWER: /[^\\n!]{1,200}!/"
+      }
+    }
+  ],
+  "tool_choice": "required"
+}
+```
+
+
+
 
 ## Markdown output
 
