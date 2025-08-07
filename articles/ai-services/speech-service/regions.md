@@ -107,19 +107,19 @@ The regions in these tables support most of the core features of the Speech serv
 | **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| brazilsouth        | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| brazilsouth        | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
 | canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| centralindia       | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| centralus          | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| centralindia       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| centralus          | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
 | eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
 | eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| eastus2            | ✅ | ✅ |  |  | ✅ | ✅ |  |  | ✅ | ✅ |  |
+| eastus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| japaneast          | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| japaneast          | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | japanwest          | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| koreacentral       | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |
+| koreacentral       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |  |  |
 | northeurope        | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | norwayeast         | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | qatarcentral       | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
@@ -133,9 +133,9 @@ The regions in these tables support most of the core features of the Speech serv
 | uksouth            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus             | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| westus             | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus3            | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+| westus3            | ✅ |  |  |  | ✅ |  | ✅ |  |  |  |  |
 
 # [Speech translation](#tab/speech-translation)
 

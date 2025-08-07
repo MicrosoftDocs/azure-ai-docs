@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 4/28/2025
-ms.reviewer: wellsi
+ms.reviewer: jagoerge
 ms.author: eur
 author: eric-urban
 ---
