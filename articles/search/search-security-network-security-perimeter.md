@@ -2,23 +2,22 @@
 title: Add a search service to a network security perimeter
 titleSuffix: Azure AI Search
 description: Add a search service to a network security perimeter for a secure connection
-author: MattGotteiner
-ms.author: magottei
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 08/07/2025
 ---
 
 # Add a search service to a network security perimeter
 
 > [!IMPORTANT]
-> Azure AI Search support for network security perimeter is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). It's available in [regions providing the feature](/azure/private-link/network-security-perimeter-concepts).
-> This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
+> Although network security perimeter is generally available, its implementation in Azure AI Search remains in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might be unsupported or have constrained capabilities.
 >
->  Review the [limitations and considerations](#limitations-and-considerations) section before you start.
+> This article and [What's new in Azure AI Search](whats-new.md) will announce when network security perimeter becomes generally available for Azure AI Search.
 
 This article explains how to join an Azure AI Search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. By joining a network security perimeter, you can:
 
