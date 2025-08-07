@@ -5,7 +5,7 @@ description: Learn about the model router feature in Azure OpenAI in Azure AI Fo
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/08/2025
+ms.date: 08/06/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -30,6 +30,7 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 |Model router version|Underlying models (version)|
 |---|---|
+| `2025-08-07` | GPT-4.1 (`2025-04-14`)</br>GPT-4.1-mini (`2025-04-14`)</br>GPT-4.1-nano (`2025-04-14`) </br>o4-mini (`2025-04-16`) </br> `gpt-5` (2025-08-07) <br> `gpt-5-mini` (2025-08-07)  <br> `gpt-5-nano` (2025-08-07)  |
 |`2025-05-19`|GPT-4.1 (`2025-04-14`)</br>GPT-4.1-mini (`2025-04-14`)</br>GPT-4.1-nano (`2025-04-14`) </br>o4-mini (`2025-04-16`) |
 
 
