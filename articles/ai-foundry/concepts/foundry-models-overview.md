@@ -2,7 +2,6 @@
 title: Explore Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: This article introduces Azure AI Foundry Models and the model catalog in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025

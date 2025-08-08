@@ -8,7 +8,6 @@ ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---

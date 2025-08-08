@@ -2,7 +2,6 @@
 title: Fine-tune models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article explains what fine-tuning is and under what circumstances you should consider doing it.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -26,10 +25,10 @@ Fine-tuning excels at customizing language models for specific applications and 
 - **Domain Specialization:** Adapt a language model for a specialized field like medicine, finance, or law – where domain specific knowledge and terminology is important. Teach the model to understand technical jargon and provide more accurate responses.
 - **Task Performance:** Optimize a model for a specific task like sentiment analysis, code generation, translation, or summarization. You can significantly improve the performance of a smaller model on a specific application, compared to a general purpose model.
 - **Style and Tone:** Teach the model to match your preferred communication style – for example, adapt the model for formal business writing, brand-specific voice, or technical writing.
-- **Instruction Following:** Improve the model’s ability to follow specific formatting requirements, multi-step instructions, or structured outputs. In multi-agent frameworks, teach the model to call the right agent for the right task.
+- **Instruction Following:** Improve the model's ability to follow specific formatting requirements, multi-step instructions, or structured outputs. In multi-agent frameworks, teach the model to call the right agent for the right task.
 - **Compliance and Safety:** Train a fine-tuned model to adhere to organizational policies, regulatory requirements, or other guidelines unique to your application.
 - **Language or Cultural Adaptation:** Tailor a language model for a specific language, dialect, or cultural context that may not be well represented in the training data.
-Fine-tuning is especially valuable when a general-purpose model doesn’t meet your specific requirements – but you want to avoid the cost and complexity of training a model from scratch.
+Fine-tuning is especially valuable when a general-purpose model doesn't meet your specific requirements – but you want to avoid the cost and complexity of training a model from scratch.
 
 ## Serverless or Managed Compute?
 Before picking a model, it's important to select the fine-tuning product that matches your needs. Azure's AI Foundry offers two primary modalities for fine tuning: serverless and managed compute.
