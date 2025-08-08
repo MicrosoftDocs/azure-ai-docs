@@ -2,7 +2,6 @@
 title: Deploy Azure AI Foundry Models to managed compute with pay-as-you-go billing 
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy protected models from partners and community on Azure AI Foundry managed compute and understand how pay-as-you-go surcharge billing works.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
@@ -10,6 +9,7 @@ ms.date: 06/24/2025
 ms.reviewer: tinaem
 reviewer: tinaem
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ---
 

@@ -2,7 +2,6 @@
 title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Azure AI Foundry Models"
 titleSuffix: Azure AI Foundry
 description: Learn about the reasoning capabilities of DeepSeek-R1 in Azure AI Foundry Models.
-manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: tutorial
 ms.date: 06/26/2025

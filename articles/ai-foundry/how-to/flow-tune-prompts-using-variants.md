@@ -2,7 +2,6 @@
 title: Tune prompts using variants
 titleSuffix: Azure AI Foundry
 description: Learn how to tune prompts using variants in Prompt flow with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023

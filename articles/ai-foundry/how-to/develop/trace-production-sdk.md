@@ -2,7 +2,6 @@
 title: Enable Tracing and Collect Feedback for a Flow Deployment
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to enable tracing and collect feedback for a flow deployment in the Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024

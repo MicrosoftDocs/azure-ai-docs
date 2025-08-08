@@ -31,7 +31,7 @@ After you create a knowledge agent, you can update its properties at any time. I
 
 + A [supported chat completion model](#supported-models) on Azure OpenAI.
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-howto-managed-identities-data-sources.md) for role-based access to the model.
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
 
 + Permissions on Azure AI Search. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article.
 
@@ -73,7 +73,7 @@ If you're using role-based authentication, on your Azure OpenAI resource, assign
 
 In Azure, you must have **Owner** or **User Access Administrator** permissions on the model provider to assign roles.
 
-1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
+1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
 1. On your model provider, such as Foundry Model, create a role assignment that gives the search service managed identity **Cognitive Services User** permissions. If you're testing locally, assign yourself to the same role. 
 

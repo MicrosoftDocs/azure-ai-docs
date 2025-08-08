@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -555,3 +555,166 @@ client.Administration.DeleteAgent(agent.Id);
 ```
     
 ::: zone-end
+
+:::zone pivot="java"
+
+## Code example
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.implementation.models.CreateAgentRequest;
+import com.azure.ai.agents.persistent.models.AzureFunctionBinding;
+import com.azure.ai.agents.persistent.models.AzureFunctionDefinition;
+import com.azure.ai.agents.persistent.models.AzureFunctionStorageQueue;
+import com.azure.ai.agents.persistent.models.AzureFunctionToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FunctionDefinition;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.HttpHeaderName;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.http.rest.RequestOptions;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class AgentExample {
+
+    public static void main(String[] args) {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+        String storageQueueUri = System.getenv("STORAGE_QUEUE_URI");
+        String azureFunctionName = System.getenv("AZURE_FUNCTION_NAME");
+
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+
+        FunctionDefinition fnDef = new FunctionDefinition(
+            azureFunctionName,
+            BinaryData.fromObject(
+                mapOf(
+                    "type", "object",
+                    "properties", mapOf(
+                        "location",
+                        mapOf("type", "string", "description", "The location to look up")
+                    ),
+                    "required", new String[]{"location"}
+                )
+            )
+        );
+        AzureFunctionDefinition azureFnDef = new AzureFunctionDefinition(
+            fnDef,
+            new AzureFunctionBinding(new AzureFunctionStorageQueue(storageQueueUri, "agent-input")),
+            new AzureFunctionBinding(new AzureFunctionStorageQueue(storageQueueUri, "agent-output"))
+        );
+        AzureFunctionToolDefinition azureFnTool = new AzureFunctionToolDefinition(azureFnDef);
+
+        String agentName = "azure_function_example";
+        RequestOptions requestOptions = new RequestOptions()
+            .setHeader(HttpHeaderName.fromString("x-ms-enable-preview"), "true");
+        CreateAgentRequest createAgentRequestObj = new CreateAgentRequest(modelName)
+            .setName(agentName)
+            .setInstructions("You are a helpful agent. Use the provided function any time "
+                + "you are asked with the weather of any location")
+            .setTools(Arrays.asList(azureFnTool));
+        BinaryData createAgentRequest = BinaryData.fromObject(createAgentRequestObj);
+        PersistentAgent agent = administrationClient.createAgentWithResponse(createAgentRequest, requestOptions)
+            .getValue().toObject(PersistentAgent.class);
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "What is the weather in Seattle, WA?");
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId())
+                .setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+
+    // Use "Map.of" if available
+    @SuppressWarnings("unchecked")
+    private static <T> Map<String, T> mapOf(Object... inputs) {
+        Map<String, T> map = new HashMap<>();
+        for (int i = 0; i < inputs.length; i += 2) {
+            String key = (String) inputs[i];
+            T value = (T) inputs[i + 1];
+            map.put(key, value);
+        }
+        return map;
+    }
+    
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+}
+```
+
+:::zone-end

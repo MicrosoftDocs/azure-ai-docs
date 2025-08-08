@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 07/11/2025
+ms.date: 08/07/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -70,6 +70,16 @@ The following section provides you with a quick guide to the default quotas and 
 
 > [!NOTE]
 > Quota limits are subject to change.
+
+## GPT-5 Series
+
+| Model       | Global Default<br>Tokens per minute (TPM)  | Global Enterprise and MCA-E <br>Tokens per minute (TPM)  | Data Zone Default <br>Tokens per minute (TPM)  | Data Zone Enterprise and MCA-E <br>Tokens per minute (TPM) |
+|-------------|----------------|-------------------|-------------------|----------------------|
+| gpt-5       | 1 M             | 10 M               | 300 K              | 3 M                   |
+| gpt-5-mini  | 1 M             | 10 M               | 300 K              | 3 M                   |
+| gpt-5-nano  | 5 M             | 150 M              | 2 M                | 50 M                  |
+| gpt-5-chat  | 1 M             | 5 M                | N/A              |    N/A                  |
+
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
 

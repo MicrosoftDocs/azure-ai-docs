@@ -7,7 +7,6 @@ ms.author: mopeakande
 ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.date: 05/19/2025
-manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---

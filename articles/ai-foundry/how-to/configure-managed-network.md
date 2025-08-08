@@ -2,7 +2,6 @@
 title: How to configure a managed network for a hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs. A managed network secures your computing resources.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: 
   - ignite-2023
@@ -637,7 +636,7 @@ To reduce the wait time and avoid potential timeout errors, we recommend manuall
 Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of hub creation.
 
 > [!NOTE]
-> To create an online deployment, you must manually provision the managed network, or create a compute instance first. Creating a compute instance automatically provision it. 
+> To deploy a model to managed compute, you must manually provision the managed network, or create a compute instance first. Creating a compute instance automatically provisions it. 
 
 # [Azure portal](#tab/portal)
 

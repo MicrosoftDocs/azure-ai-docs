@@ -7,10 +7,10 @@ brand: azure
 metadata:
   title: Azure AI Foundry documentation
   description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
-  author: eric-urban
-  ms.author: eur
-  manager: nitinme
-  ms.date: 7/4/2025
+  author: sdgilley
+  ms.author: sgilley
+  manager: mcleans
+  ms.date: 08/07/2025
   ms.service: azure-ai-foundry
   ms.topic: hub-page
   ms.custom:

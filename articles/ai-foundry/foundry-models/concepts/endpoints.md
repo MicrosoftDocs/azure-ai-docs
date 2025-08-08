@@ -3,7 +3,6 @@ title: Endpoints for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the Azure AI Foundry Models endpoint
 author: msakande
-manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025

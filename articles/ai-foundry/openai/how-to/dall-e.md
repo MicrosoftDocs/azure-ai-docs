@@ -108,7 +108,8 @@ The following is a sample request body. You specify a number of options, defined
 
 #### [GPT-image-1](#tab/gpt-image-1)
 
-The response from a successful image generation API call looks like the following example. The `b64_json` field contains the output image data. 
+
+The response from a successful image generation API call looks like the following example. The `b64_json` field contains the output image data.
 
 ```json
 { 
@@ -139,6 +140,7 @@ The response from a successful image generation API call looks like the followin
 } 
 ```
 ---
+
 
 ### API call rejection
 
@@ -316,8 +318,7 @@ The response from a successful image editing API call looks like the following e
     "created": 1698116662, 
     "data": [ 
         { 
-            "b64_json": "<base64 image data>",
-            "revised_prompt": "<prompt_that_was_used>" 
+            "b64_json": "<base64 image data>"
         }
     ]
 } 

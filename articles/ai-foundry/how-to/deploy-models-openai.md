@@ -2,7 +2,6 @@
 title: How to deploy Azure OpenAI models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy Azure OpenAI models with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -13,6 +12,7 @@ ms.topic: how-to
 ms.date: 05/19/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ---
 

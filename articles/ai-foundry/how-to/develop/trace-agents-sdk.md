@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: amibp
 ms.date: 07/29/2025
 ms.service: azure-ai-foundry
