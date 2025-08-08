@@ -116,16 +116,16 @@ An online deployment runs your user container with the endpoint identity, that i
 - For a UAI, you need to create the identity first, and then associate it with the endpoint when you create the endpoint. You're also responsible for assigning proper roles to the UAI as needed.
 
 > [!IMPORTANT]
-> If you configure your Container registry to use **[RBAC Registry + ABAC Repository Permissions](https://learn.microsoft.com/azure/container-registry/container-registry-rbac-abac-repository-permissions?tabs=azure-portal)** 
-
-> ![ABAC permission on container](https://learn.microsoft.com/azure/container-registry/media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-02-update-registry.png)
-
+> If you configure your Container registry to use **[RBAC Registry + ABAC Repository Permissions](/azure/container-registry/container-registry-rbac-abac-repository-permissions?tabs=azure-portal)** 
+>
+> ![Screenshot showing an ABAC permission on container.](/azure/container-registry/media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-02-update-registry.png)
+>
 >In this case  some existing role assignments aren't honored or will have different effects, because a different set of ACR built-in roles apply to ABAC-enabled registries.
-
+>
 > For example, the **AcrPull**, **AcrPush**, and **AcrDelete** roles aren't honored in an ABAC-enabled registry.
-Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to grant either registry-wide or repository-specific image permissions.
-
-> Ensure that the SAI or the UAI  of your endpoint has the **Container Registry Repository Contributor** role assigned on the Container registry 
+> Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to grant either registry-wide or repository-specific image permissions.
+>
+> Ensure that the SAI or the UAI of your endpoint has the **Container Registry Repository Contributor** role assigned on the Container registry.
 
 ### Automatic role assignment for endpoint identity
 
