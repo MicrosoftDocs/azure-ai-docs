@@ -83,5 +83,5 @@ Learn how to [connect your AI services hub](../../ai-services/connect-services-a
 ## Related content
 
 * See [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
-* See [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision).
+* See the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision).
 * Get started with the [Document Intelligence Studio quickstart](quickstarts/get-started-studio.md).

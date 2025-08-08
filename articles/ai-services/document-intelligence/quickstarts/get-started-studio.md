@@ -50,8 +50,8 @@ Document Intelligence Studio basic access requires the [Cognitive Services User]
 
 * Make sure that you have the Cognitive Services User role and not the Cognitive Services Contributor role when you set up Microsoft Entra ID authentication:
 
-   * ✔️ **Cognitive Services User**: You need this role for the Document Intelligence or Azure AI Foundry resource to enter the analyze page.
-   * ✔️ **Contributor**: You need this role to create a resource group, Document Intelligence service, or Azure AI Foundry resource.
+   * **Cognitive Services User**: You need this role for the Document Intelligence or Azure AI Foundry resource to enter the analyze page.
+   * **Contributor**: You need this role to create a resource group, Document Intelligence service, or Azure AI Foundry resource.
 * In Azure context, the Contributor role can perform actions only to control and manage the resource itself, including listing the access keys.
 * User accounts with a Contributor role can access the Document Intelligence service only by calling with access keys. When you set up access with Microsoft Entra ID, key access is disabled, and the Cognitive Services User role is required for an account to use the resources.
 
