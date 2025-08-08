@@ -61,17 +61,17 @@ Go to [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/
 
 * Microsoft Entra authentication: Access by resource (recommended)
 
-  * Select your existing subscription.
-  * Select an existing resource group within your subscription or create a new one.
-  * Select your existing Document Intelligence or Azure AI Foundry resource.
+  1. Select your existing subscription.
+  1. Select an existing resource group within your subscription or create a new one.
+  1. Select your existing Document Intelligence or Azure AI Foundry resource.
 
-    :::image type="content" source="../media/studio/configure-service-resource.png" lightbox="../media/studio/configure-service-resource.png" alt-text="Screenshot that shows configuring a service resource in Document Intelligence Studio.":::
+     :::image type="content" source="../media/studio/configure-service-resource.png" lightbox="../media/studio/configure-service-resource.png" alt-text="Screenshot that shows configuring a service resource in Document Intelligence Studio.":::
 
 * Local authentication: Access by API endpoint and key
 
-  * Retrieve your endpoint and key from the Azure portal.
-  * Go to the overview page for your resource, and on the left pane, select **Keys and Endpoint**.
-  * Enter values in the appropriate fields.
+  1. Retrieve your endpoint and key from the Azure portal.
+  1. Go to the overview page for your resource, and on the left pane, select **Keys and Endpoint**.
+  1. Enter values in the appropriate fields.
 
       :::image type="content" source="../media/studio/keys-and-endpoint.png" lightbox="../media/studio/keys-and-endpoint.png" alt-text="Screenshot that shows the Keys and Endpoint page in the Azure portal.":::
 

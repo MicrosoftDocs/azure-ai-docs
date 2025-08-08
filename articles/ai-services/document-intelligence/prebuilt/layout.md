@@ -95,7 +95,7 @@ After you retrieve your key and endpoint, use the following development options 
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio)
-* [Get started: Document Intelligence Studio](../quickstarts/get-started-studio.md#authentication-in-studio)
+* [Get started: Document Intelligence Studio](../quickstarts/get-started-studio.md#authentication-in-document-intelligence-studio)
 
 ---
 
@@ -681,7 +681,7 @@ After you retrieve your key and endpoint, you can use the following development 
 ### [Document Intelligence Studio](#tab/studio)
 
 * [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio)
-* [Get started: Document Intelligence Studio](../quickstarts/get-started-studio.md#authentication-in-studio)
+* [Get started: Document Intelligence Studio](../quickstarts/get-started-studio.md#authentication-in-document-intelligence-studio)
 
 ---
 

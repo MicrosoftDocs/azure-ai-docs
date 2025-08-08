@@ -24,7 +24,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 For information on subscription, resource, and authentication setup, see [Get started with Document Intelligence Studio](get-started-studio.md#prerequisites-for-new-users).
 
-## Custom project prerequisites
+## Prerequisites for new users
 
 In addition to an Azure account and the Document Intelligence or Azure AI Foundry resource, you need an Azure Blob Storage container and Azure role assignments.
 

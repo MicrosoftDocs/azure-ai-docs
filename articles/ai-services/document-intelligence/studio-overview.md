@@ -41,7 +41,7 @@ Document Intelligence Studio contains all the features released on or before Nov
 
 Document Intelligence Studio provides a visual experience for labeling, training, and validating custom models. For custom document field-extraction models, use Document Intelligence Studio for template and neural models. You can train and use custom classification models only on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out generally available versions of the models from version v3.0, v3.1, and v4.0.
 
-### When to use [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision)
+### When to use the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision)
 
 Start with Azure AI Foundry and try any of the prebuilt document models from the 2024-11-30 version, including general extraction models like read or layout.
 

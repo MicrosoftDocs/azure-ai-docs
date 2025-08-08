@@ -91,7 +91,7 @@ Latency is the amount of time it takes for an API server to handle and process a
 
 ### Add-on capability
 
-The following add-on capabilities are available for Document Intelligence. For all models except the business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. You can enable and disable these optional capabilities depending on the scenario of the document extraction. Seven add-on capabilities are available for the 2023-07-31 (GA) and later API version:
+The following add-on capabilities are available for Document Intelligence. For all models except the business card model, Document Intelligence now supports add-on capabilities to allow for more sophisticated analysis. You can enable and disable these optional capabilities depending on the scenario of the document extraction. The following add-on capabilities are available for the 2023-07-31 (GA) and later API version:
 
 * [`ocrHighResolution`](concept-add-on-capabilities.md#high-resolution-extraction)
 * [`formulas`](concept-add-on-capabilities.md#formula-extraction)

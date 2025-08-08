@@ -35,7 +35,7 @@ To get started:
 
 ## Create a resource
 
-1. Next, you need to fill out the **Create Form Recognizer** fields with the following values:
+1. Fill out the **Create Form Recognizer** fields with the following values:
 
     * **Subscription**: Select your current subscription.
     * **Resource group**: The [Azure resource group](/azure/cloud-adoption-framework/govern/resource-consistency/resource-access-management#what-is-an-azure-resource-group) that contains your resource. You can create a new group or add it to an existing group.
@@ -55,7 +55,7 @@ To get started:
 
 ## Get endpoint URL and keys
 
-1. After you receive the *deployment is complete* message, select **Go to resource**.
+1. After you receive the message, select **Go to resource**.
 
 1. Copy the key and endpoint values from your Document Intelligence resource. Paste the values in a convenient location, such as Notepad. You need the key and endpoint values to connect your application to the Document Intelligence API.
 
