@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/29/2025
+ms.date: 08/08/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -25,7 +25,13 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
-* Your playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**.
+* The latest preview version of the SDK:
+
+    ```console
+    pip install --pre azure-ai-projects
+    ```
+* The **contributor** role assigned to your AI Foundry project from within your Playwright workplace. 
+* Your playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URL should start with `https://` instead of `wss://` if presented. 
     
     <!--
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
