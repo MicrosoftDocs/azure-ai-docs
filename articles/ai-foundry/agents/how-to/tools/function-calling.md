@@ -29,14 +29,27 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ::: zone pivot="python"
 
+## Example agent code
 
-## Define a function for your agent to call
-Start by defining a function for your agent to call. When you create a function for an agent to call, you describe its structure with any required parameters in a docstring.
+> [!NOTE]
+> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
+
+Use the following code sample to create an agent and call the function.
 
 ```python
+import os, time
+from azure.identity import DefaultAzureCredential
+from azure.ai.projects import AIProjectClient
+from azure.ai.agents.models import FunctionTool
 import json
 import datetime
 from typing import Any, Callable, Set, Dict, List, Optional
+
+
+# Start by defining a function for your agent to call. 
+# When you create a function for an agent to call, you describe its structure 
+# with any required parameters in a docstring.
+
 
 def fetch_weather(location: str) -> str:
     """
@@ -52,20 +65,6 @@ def fetch_weather(location: str) -> str:
 
 # Define user functions
 user_functions = {fetch_weather}
-```
-
-## Example agent code
-
-> [!NOTE]
-> You can find a streaming example on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_streaming/sample_agents_stream_eventhandler_with_functions.py).
-
-Use the following code sample to create an agent and call the function.
-
-```python
-import os, time
-from azure.identity import DefaultAzureCredential
-from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import FunctionTool
 
 # Retrieve the project endpoint from environment variables
 project_endpoint = os.environ["PROJECT_ENDPOINT"]
