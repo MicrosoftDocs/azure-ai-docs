@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This article introduces concepts about Azure AI Foundry hubs for your Azure AI Foundry projects.
 ms.author: sgilley
 author: sdgilley
-manager: scottpolly
 ms.reviewer: deeikele
 ms.date: 04/28/2025
 ms.service: azure-ai-foundry

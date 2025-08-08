@@ -2,7 +2,6 @@
 title: How to troubleshoot your deployments and monitors in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -14,6 +13,7 @@ ms.date: 04/23/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ---
 

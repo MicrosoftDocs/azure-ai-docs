@@ -2,7 +2,6 @@
 title: How to use the Azure AI Foundry Models inference endpoints to consume models
 titleSuffix: Azure AI Foundry
 description: Learn how to use the Azure AI Foundry Models inference endpoint to consume models
-manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference

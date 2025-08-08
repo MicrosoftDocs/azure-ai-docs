@@ -51,7 +51,7 @@ Billing is based on the pricing of the model you use.
 
   - Provide this endpoint in the `Uri` parameter of your skill definition.
 
-- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-howto-managed-identities-data-sources.md) assigned to a role.
+- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-how-to-managed-identities.md) assigned to a role.
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 

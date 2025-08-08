@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 04/15/2025
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -44,9 +44,9 @@ You can find the template and code used here on [GitHub](https://github.com/Azur
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|
-|  | ✔️ |  | ✔️ | | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|
+|  | ✔️ | ✔️ | ✔️ | ✔️ | | ✔️ | 
 
 ### Create Azure resources for local and cloud dev-test
 

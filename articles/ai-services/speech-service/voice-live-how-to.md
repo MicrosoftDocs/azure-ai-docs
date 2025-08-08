@@ -181,7 +181,7 @@ Use phrase list for lightweight just-in-time customization on audio input. To co
 {
     "session": {
         "input_audio_transcription": {
-            "model": "azure-fast-transcription",
+            "model": "azure-speech",
             "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"]
         }
     }

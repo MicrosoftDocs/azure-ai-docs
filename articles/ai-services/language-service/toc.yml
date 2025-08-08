@@ -503,11 +503,11 @@ items:
         href: personally-identifiable-information/how-to/redact-conversation-pii.md
       - name: Redact PII from native documents
         href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name: Use containers
+      - name:  Adapt PII to your domain
         href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Adapt PII to your domain
+      - name: Use Docker containers
         items:
-          - name: Use Docker containers
+          - name: Install and run containers
             href: personally-identifiable-information/how-to/use-containers.md
           - name: Configure containers
             href: concepts/configure-containers.md

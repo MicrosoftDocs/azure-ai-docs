@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about the supported Azure resource types in Azure AI Foundry portal.
 reviewer: deeikele
 ms.reviewer: deeikele
-manager: scottpolly
 author: sgilley
 ms.author: sgilley
 ms.date: 07/22/2025

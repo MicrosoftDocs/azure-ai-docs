@@ -2,7 +2,6 @@
 title: Benchmark models in the model leaderboard of Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: In this article, you learn to compare benchmarks across models and datasets, using the model leaderboards (preview) and the benchmarks feature in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub

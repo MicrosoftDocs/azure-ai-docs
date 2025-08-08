@@ -2,17 +2,17 @@
 title: Manage and increase quotas for resources
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to manage and increase quotas for resources with Azure AI Foundry.
-manager: nitinme
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/06/2025
+ms.date: 08/08/2025
 ms.reviewer: siarora
 ms.author: mopeakande
 author: msakande 
+manager: nitinme
 zone_pivot_groups: project-type
 # Customer intent: As an Azure AI Foundry user, I want to know how to manage and increase quotas for resources with Azure AI Foundry.
 ---
