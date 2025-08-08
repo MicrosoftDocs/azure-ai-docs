@@ -91,9 +91,11 @@ When opening the support request to increase the total compute limit, provide th
 
     :::image type="content" source="../media/cost-management/quota-azure-portal-support.png" alt-text="Screenshot of the page to submit compute quota requests in Azure portal." lightbox="../media/cost-management/quota-azure-portal-support.png":::
 
-1. Select **Next**.
-1. On the **Additional details** page, provide the subscription ID, region, new limit (between 500 and 2500), and business justification to increase the total compute limits for the region. 
-1. Select **Create** to submit the support request ticket. 
+1. Select **Next** to see the **Recommended solution** page.
+1. After viewing the recommended solution, select **Return to support request**.
+1. Select **Next** to go to the **Additional details** page and provide the required information to help the support team resolve your issue.
+1. Select **Next** to review the support request ticket.
+1. Select **Create** to submit the ticket. 
 
 ::: zone-end
 
