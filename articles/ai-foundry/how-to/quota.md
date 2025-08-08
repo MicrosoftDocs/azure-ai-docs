@@ -83,11 +83,11 @@ Available resources include:
 
 When opening the support request to increase the total compute limit, provide the following information:
 1. Select **Technical** for the issue type. 
-1. Select the subscription that you want to increase the quota for. 
+1. Select the subscription for which you want to increase the quota. 
 1. Select **Machine Learning** as the service type. 
-1. Select the resource that you want to increase the quota for.
+1. Select the resource for which you want to increase the quota.
 1. In the **Summary** field, enter "Increase total compute limits" 
-1. Select **Compute instance** as the problem type and **Quota** as the problem subtype.
+1. Select **Compute instance** as the problem type and **Other features (Setup scripts, shutdown, Identity etc.)** as the problem subtype.
 
     :::image type="content" source="../media/cost-management/quota-azure-portal-support.png" alt-text="Screenshot of the page to submit compute quota requests in Azure portal." lightbox="../media/cost-management/quota-azure-portal-support.png":::
 
