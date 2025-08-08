@@ -92,7 +92,7 @@ On your Azure AI Search service:
 
 1. [Enable role-based access](search-security-enable-roles.md).
 
-1. [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+1. [Configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 1. [Assign the following roles](search-security-rbac.md) to yourself:
 
@@ -108,7 +108,7 @@ Azure Storage is both the data source for your documents and the destination for
 
 On your Azure Storage account:
 
-+ Assign **Storage Blob Data Contributor** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Storage Blob Data Contributor** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ---
 
@@ -122,7 +122,7 @@ Azure OpenAI provides LLMs for image verbalization and embedding models for text
 
 On your Azure OpenAI resource:
 
-+ Assign **Cognitive Services OpenAI User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Cognitive Services OpenAI User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ### [**Azure AI Foundry**](#tab/ai-foundry-perms)
 
@@ -133,7 +133,7 @@ The Azure AI Foundry model catalog provides LLMs for image verbalization and emb
 
 On your Azure AI Foundry project:
 
-+ Assign **Azure AI Project Manager** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Azure AI Project Manager** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ### [**Azure AI services**](#tab/ai-services-perms)
 
@@ -141,7 +141,7 @@ An Azure AI multi-service resource provides multiple Azure AI services, includin
 
 On your Azure AI multi-service resource:
 
-+ Assign **Cognitive Services User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ---
 

@@ -508,7 +508,7 @@ items:
       - name: Secure access to external data
         href: search-indexer-securing-resources.md
       - name: Configure a managed identity
-        href: search-howto-managed-identities-data-sources.md
+        href: search-how-to-managed-identities.md
       - name: Connect using a managed identity
         items:
         - name: Azure Storage

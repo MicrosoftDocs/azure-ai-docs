@@ -124,7 +124,7 @@ The original ebook is large, over 100 pages and 35 MB in size. We broke it up in
 
 1. Create a container and upload the PDFs from [earth_book_2019_text_pages](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth_book_2019_text_pages).
 
-1. Make sure your [Azure AI Search managed identity](search-howto-managed-identities-data-sources.md) has a [**Storage Blob Data Reader**](/azure/role-based-access-control/role-assignments-portal) role assignment on Azure Storage.
+1. Make sure your [Azure AI Search managed identity](search-how-to-managed-identities.md) has a [**Storage Blob Data Reader**](/azure/role-based-access-control/role-assignments-portal) role assignment on Azure Storage.
 
 1. Next, in Visual Studio Code, define an indexer data source that provides connection information during indexing.
 

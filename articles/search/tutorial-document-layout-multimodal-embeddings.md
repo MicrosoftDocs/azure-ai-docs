@@ -93,7 +93,7 @@ The same role assignment is also used for accessing the Document Intelligence La
 
 1. Search for **Cognitive Services User** and then select it.
 
-1. Choose **Managed identity** and then assign your [search service managed identity](search-howto-managed-identities-data-sources.md).
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
 
 ## Set up your REST file
 
