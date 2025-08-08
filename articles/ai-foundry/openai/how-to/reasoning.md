@@ -77,7 +77,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | **custom tool type** | Enables raw text (non-json) outputs |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
 
-For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model)
+For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model).
 
 # [O-Series Reasoning Models](#tab/o-series)
 

@@ -1,7 +1,7 @@
 ---
 title: Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
-description: Learn about the model capabilities that are available with Azure OpenAI.
+description: Learn about the model capabilities for models like GPT-5, GPT-5-mini, GPT-5-nano, and GPT-5-chat
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
@@ -58,7 +58,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | `gpt-5` (2025-08-07) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md).  | 272,000  | 128,000 | October 24, 2024 |
 | `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md).     | 272,000  | 128,000  | June 24, 2024 |
 | `gpt-5-nano` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md).     | 272,000 | 128,000 | May 31, 2024 |
-| `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). - Text only  | 128,000 | 16,384 | October 24, 2024 |
+| `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Text only  | 128,000 | 16,384 | October 24, 2024 |
 
 ## gpt-oss
 
@@ -73,7 +73,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
 | `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
-| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute only](../../how-to/deploy-models-managed.md) | 131,072 | 131,072 | May 31, 2024 |
+| `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../how-to/deploy-models-managed.md) and [Foundry Local](../../foundry-local/get-started#run-the-latest-openai-open-source-model) | 131,072 | 131,072 | May 31, 2024 |
 
 <sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires an [Azure AI Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry&pivots=fdp-project) to deploy the model.
 
