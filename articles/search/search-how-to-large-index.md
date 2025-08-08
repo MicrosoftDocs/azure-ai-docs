@@ -139,4 +139,4 @@ If you have a big data architecture and your data is on a Spark cluster, we reco
 + [Tips for better performance in Azure AI Search](search-performance-tips.md)
 + [Analyze performance in Azure AI Search](search-performance-analysis.md)
 + [Indexers in Azure AI Search](search-indexer-overview.md)
-+ [Monitor indexer status and results in Azure AI Search](search-howto-monitor-indexers.md)
++ [Monitor indexer status and results in Azure AI Search](search-monitor-indexers.md)

@@ -10,7 +10,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: concept-article
-ms.date: 07/25/2025
+ms.date: 08/08/2025
 ---
 
 # Monitor indexer status and results in Azure AI Search
@@ -19,16 +19,16 @@ You can monitor indexer processing in the Azure portal, or programmatically thro
 
 ## Monitor using Azure portal
 
-You can see the current status of all of your indexers in your search service Overview page. Portal pages refresh every few minutes, so you won't see evidence of a new indexer run right away. Select **Refresh** at the top of the page to immediately retrieve the most recent view.
+You can see the current status of all of your indexers in your search service portal page. Azure portal pages refresh every few minutes, so you don't see evidence of a new indexer run right away. Select **Refresh** at the top of the page to immediately retrieve the most recent view.
 
-   ![Indexers list](media/search-monitor-indexers/indexers-list.png "Indexers list")
+![Indexers list](media/search-monitor-indexers/indexers-list.png "Indexers list")
 
 | Status | Description |
 |--------|-------------|
-| **In Progress** | Indicates active execution. the Azure portal will report on partial information. As indexing progresses, you can watch the **Docs Succeeded** value grow in response. Indexers that process large volumes of data can take a long time to run. For example, indexers that handle millions of source documents can run for 24 hours, and then restart almost immediately to pick up where it left off. As such, the status for high-volume indexers might always say **In Progress** in the Azure portal. Even when an indexer is running, details are available about ongoing progress and previous runs. |
+| **In Progress** | Indicates active execution. the Azure portal reports on partial information. As indexing progresses, you can watch the **Docs Succeeded** value grow in response. Indexers that process large volumes of data can take a long time to run. For example, indexers that handle millions of source documents can run for 24 hours, and then restart almost immediately to pick up where it left off. As such, the status for high-volume indexers might always say **In Progress** in the Azure portal. Even when an indexer is running, details are available about ongoing progress and previous runs. |
 | **Success** | Indicates the run was successful. An indexer run can be successful even if individual documents have errors, if the number of errors is less than the indexer's **Max failed items** setting. |
-| **Failed** | The number of errors exceeded **Max failed items** and indexing has stopped. |
-| **Reset** | The indexer's internal change tracking state was reset. The indexer will run in full, refreshing all documents, and not just those with newer timestamps. |
+| **Failed** | The number of errors exceeded **Max failed items** and indexing stops. |
+| **Reset** | The indexer's internal change tracking state was reset. The indexer runs in full, refreshing all documents, and not just those with newer timestamps. |
 
 You can select on an indexer in the list to see more details about the indexer's current and recent runs.
 
@@ -40,7 +40,7 @@ The **Execution details** list shows up to 50 of the most recent execution resul
 
    ![Indexer execution details](media/search-monitor-indexers/indexer-execution.png "Indexer execution details")
 
-If there were document-specific problems during the run, they'll be listed in the Errors and Warnings fields.
+If there were document-specific problems during the run, they are listed in the Errors and Warnings fields.
 
    ![Indexer details with errors](media/search-monitor-indexers/indexer-execution-error.png "Indexer details with errors")
 
@@ -147,7 +147,7 @@ static void CheckIndexerStatus(SearchIndexerClient indexerClient, SearchIndexer 
 }
 ```
 
-The output in the console will look something like this:
+The output in the console looks something like this:
 
 ```output
 Indexer has run 18 times.

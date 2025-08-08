@@ -576,7 +576,7 @@ items:
     - name: Monitor queries
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
-      href: search-howto-monitor-indexers.md
+      href: search-monitor-indexers.md
     - name: Visualize resource logs
       href: search-monitor-logs-powerbi.md
     - name: Performance analysis

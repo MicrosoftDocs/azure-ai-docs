@@ -151,7 +151,7 @@ For more information, see [Create an indexer](search-howto-create-indexers.md)
 
 After the first indexer run, you can [rerun it on demand](search-howto-run-reset-indexers.md) or [set up a schedule](search-howto-schedule-indexers.md).
 
-You can monitor [indexer status in the Azure portal](search-howto-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
+You can monitor [indexer status in the Azure portal](search-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
 
 Indexers don't have dedicated processing resources. Based on this, indexers' status may show as idle before running (depending on other jobs in the queue) and run times may not be predictable. Other factors define indexer performance as well, such as document size, document complexity, image analysis, among others.
 
@@ -163,4 +163,4 @@ Now that you've been introduced to indexers, a next step is to review indexer pr
 + [Reset and run indexers](search-howto-run-reset-indexers.md)
 + [Schedule indexers](search-howto-schedule-indexers.md)
 + [Define field mappings](search-indexer-field-mappings.md)
-+ [Monitor indexer status](search-howto-monitor-indexers.md)
++ [Monitor indexer status](search-monitor-indexers.md)
