@@ -2,7 +2,6 @@
 title: What is Foundry Local?
 titleSuffix: Foundry Local
 description: Foundry Local is a trusted platform that empowers developers to drive innovation and shape the future with AI in a safe, secure, and responsible way on their devices.
-manager: scottpolly
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local

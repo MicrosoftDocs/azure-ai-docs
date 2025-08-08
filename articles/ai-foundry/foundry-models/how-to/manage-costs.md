@@ -7,7 +7,6 @@ ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025
-manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---

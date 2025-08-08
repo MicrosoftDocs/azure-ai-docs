@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
 ms.date: 07/31/2025
 ms.service: azure-ai-foundry

@@ -2,7 +2,6 @@
 title: Integrate Open Web UI with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to create a chat application using Foundry Local and Open Web UI
-manager: scottpolly
 keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local

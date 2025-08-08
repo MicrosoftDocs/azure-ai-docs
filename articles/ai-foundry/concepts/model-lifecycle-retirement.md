@@ -2,11 +2,11 @@
 title: Deprecation for Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the lifecycle stages, deprecation, and retirement for Azure AI Foundry Models.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 06/17/2025
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ms.reviewer: kritifaujdar
 reviewer: fkriti
