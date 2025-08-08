@@ -289,4 +289,4 @@ If you have [sensitivity labels set on documents](/microsoft-365/compliance/sens
 ## See also
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
-* [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
+* [Monitor indexer-based indexing](search-monitor-indexers.md)

@@ -330,6 +330,6 @@ Reset APIs are used to inform the scope of the next indexer run. For actual proc
 
 After you reset and rerun indexer jobs, you can monitor status from the search service, or obtain detailed information through resource logging.
 
-+ [Monitor search indexer status](search-howto-monitor-indexers.md)
++ [Monitor search indexer status](search-monitor-indexers.md)
 + [Collect and analyze log data](monitor-azure-cognitive-search.md)
 + [Schedule an indexer](search-howto-schedule-indexers.md)

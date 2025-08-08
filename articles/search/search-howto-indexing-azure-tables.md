@@ -308,7 +308,7 @@ Execution history contains up to 50 of the most recently completed executions, w
 
 ## Next steps
 
-Learn more about how to [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-howto-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
+Learn more about how to [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
 
 + [Tutorial: Index JSON blobs from Azure Storage](search-semi-structured-data.md)
 + [Tutorial: Index encrypted blobs in Azure Storage](search-howto-index-encrypted-blobs.md)
