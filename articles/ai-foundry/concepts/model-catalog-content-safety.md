@@ -7,7 +7,6 @@ ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 07/31/2025
 ms.author: mopeakande 
-manager: nitinme
 author: msakande
 ms.reviewer: ositanachi
 reviewer: ositanachi
