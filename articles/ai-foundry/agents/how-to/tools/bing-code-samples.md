@@ -163,28 +163,6 @@ print("Deleted agent")
  
 ::: zone pivot="csharp"
 
-* The endpoint for your project. This string is in the format:
-
-    `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
-    
-    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
-    
-    Set this endpoint in an environment variable named `ProjectEndpoint`.
-
-* The name of your model deployment.
-
-    [!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
-
-    Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
-
-* The connection ID for your Grounding with Bing Search resource. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
-    
-    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
-
-    Copy the ID, and save it to an environment variable named `BingConnectionId`. 
-
-    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
-
 ## Create a project client
 
 Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
