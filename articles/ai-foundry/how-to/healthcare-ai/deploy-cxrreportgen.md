@@ -3,12 +3,12 @@ title: How to deploy and use CXRReportGen healthcare AI model with Azure AI Foun
 titleSuffix: Azure AI Foundry
 description: Learn how to use CXRReportGen Healthcare AI Model with Azure AI Foundry.
 ms.service: azure-ai-foundry
-manager: scottpolly
 ms.topic: how-to
 ms.date: 04/24/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 #Customer intent: As a Data Scientist I want to learn how to use the CXRReportGen healthcare AI model to generate grounded findings.
 

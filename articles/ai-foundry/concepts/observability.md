@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn how Azure AI Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
 ms.date: 07/31/2025
 ms.service: azure-ai-foundry

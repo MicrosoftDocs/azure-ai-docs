@@ -22,9 +22,6 @@ ms.custom:
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
-> [!NOTE]
-> The REST API does not currently support **Global** training jobs. Inspecting Global training jobs via the API may return incorrect information.
-
 ### Supported models
 
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.

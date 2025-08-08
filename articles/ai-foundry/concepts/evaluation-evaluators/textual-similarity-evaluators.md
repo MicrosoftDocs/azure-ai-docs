@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about textual similarity evaluators for generative AI, including semantic similarity, F1 score, BLEU, GLEU, ROUGE, and METEOR metrics.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: changliu2
 ms.date: 07/31/2025
 ms.service: azure-ai-foundry

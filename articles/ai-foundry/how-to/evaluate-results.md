@@ -2,7 +2,6 @@
 title: View Evaluation Results in the Azure AI Foundry Portal
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to view evaluation results in the Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023

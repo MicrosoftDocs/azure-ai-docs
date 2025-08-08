@@ -2,7 +2,6 @@
 title: Foundry Local SDK Reference
 titleSuffix: Foundry Local
 description: Reference guide for the Foundry Local SDK.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025

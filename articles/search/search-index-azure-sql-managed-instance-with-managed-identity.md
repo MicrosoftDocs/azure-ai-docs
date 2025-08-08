@@ -27,7 +27,7 @@ Before learning more about this feature, we recommended that you understand what
 
 ## Prerequisites
 
-* [Create a managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+* [Create a managed identity](search-how-to-managed-identities.md) for your search service.
 
 * Microsoft Entra admin role on SQL Managed Instance:
 

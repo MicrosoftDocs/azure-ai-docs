@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Explore the available Azure AI Foundry Models and their capabilities.
 author: msakande
 ms.author: mopeakande
-manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 08/04/2025

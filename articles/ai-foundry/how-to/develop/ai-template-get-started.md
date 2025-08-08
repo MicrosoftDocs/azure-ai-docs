@@ -2,7 +2,6 @@
 title: How to get started with an AI template
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use an AI template to get started with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024

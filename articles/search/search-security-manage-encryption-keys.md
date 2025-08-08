@@ -18,7 +18,11 @@ ms.custom:
 
 Azure AI Search automatically encrypts data at rest with [Microsoft-managed keys](/azure/security/fundamentals/encryption-atrest#azure-encryption-at-rest-components). If you need another layer of encryption or the ability to revoke keys and shut down access to content, you can use keys that you create and manage in Azure Key Vault. This article explains how to set up customer-managed key (CMK) encryption.
 
-You can store keys using either Azure Key Vault or Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
+You can store keys using either:
+
++ Azure Key Vault
+
++ Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
 > [!IMPORTANT]
 > CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
@@ -36,6 +40,8 @@ Encryption is performed over the following content:
 + Sensitive content in indexers, data sources, skillsets, and vectorizers. Sensitive content refers to connection strings, descriptions, identities, keys, and user inputs. For example, skillsets have Azure AI services keys, and some skills accept user inputs, such as custom entities. In both cases, keys and user inputs are encrypted. Any references to external resources (such as Azure data sources or Azure OpenAI models) are also encrypted.
 
 If you require CMK across your search service, [set an enforcement policy](#set-up-a-policy-to-enforce-cmk-compliance).
+
+Although you can't add encryption to an existing object, once an object is configured for encryption, you can change all parts of its encryption definition, including switching to a different key vault or HMS storage as long as the resource is in the same tenant.
 
 ## Prerequisites
 
@@ -97,7 +103,7 @@ Enable the system-assigned managed identity for your search service. It's a two-
 
 ### [**User-managed identity**](#tab/managed-id-user)
 
-You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity).
+You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity).
 
 ### [**Register an app**](#tab/register-app)
 
