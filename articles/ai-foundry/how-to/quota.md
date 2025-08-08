@@ -79,15 +79,15 @@ To raise the limits for compute, you can [request a quota increase](#view-and-
 
 Available resources include:
 - Dedicated cores per region have a default limit of 24 to 300, depending on your subscription offer type. You can increase the number of dedicated cores per subscription for each VM family. Specialized VM families like NCv2, NCv3, or ND series start with a default of zero cores. GPUs also default to zero cores. 
-- Total compute limit per region has a default limit of 500 per region within a given subscription. The limit can be increased up to a maximum value of 2500 per region. This limit is shared between compute instances, and managed online endpoint deployments. A compute instance is considered a single-node cluster for quota purposes. In order to increase the total compute limit, [open an online customer support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV4Blade).
+- Total compute limit per region has a default limit of 500 per region within a given subscription. The limit can be increased up to a maximum value of 2500 per region. This limit is shared between compute instances, and managed online endpoint deployments. A compute instance is considered as a single-node cluster for quota purposes. In order to increase the total compute limit, [open an online customer support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV4Blade).
 
 When opening the support request to increase the total compute limit, provide the following information:
 1. Select **Technical** for the issue type. 
-1. Select the subscription that you want to increase the quota for. 
+1. Select the subscription for which you want to increase the quota. 
 1. Select **Machine Learning** as the service type. 
-1. Select the resource that you want to increase the quota for.
+1. Select the resource for which you want to increase the quota.
 1. In the **Summary** field, enter "Increase total compute limits" 
-1. Select **Compute instance** as the problem type and **Quota** as the problem subtype.
+1. Select **Compute instance** as the problem type and **Other features (Setup scripts, shutdown, Identity etc.)** as the problem subtype.
 
     :::image type="content" source="../media/cost-management/quota-azure-portal-support.png" alt-text="Screenshot of the page to submit compute quota requests in Azure portal." lightbox="../media/cost-management/quota-azure-portal-support.png":::
 
@@ -156,7 +156,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 1. When you select the **VM Quota** link, you can view the quota and usage for the virtual machine families in the selected Azure region. To request quota, select the VM family and then select **Request quota**.
 
     > [!TIP]
-    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : name (Hub)**, and then select **Management center** then **Quota** from the left menu.
+    > If you don't see the **VM quota** link, you were viewing a [!INCLUDE [fdp](../includes/fdp-project-name.md)] project when you selected **Management center**. Use the **All resources** link and then select a project where the **Type** contains **Parent resource : name (Hub)**. Finally, select **Management center** then **Quota** from the left menu.
 
     :::image type="content" source="../media/cost-management/vm-quota.png" alt-text="Screenshot of the VM quota page in Azure AI Foundry portal." lightbox="../media/cost-management/vm-quota.png":::
 
