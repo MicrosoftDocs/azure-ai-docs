@@ -162,6 +162,29 @@ print("Deleted agent")
 ::: zone-end
  
 ::: zone pivot="csharp"
+
+* The endpoint for your project. This string is in the format:
+
+    `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
+    
+    [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
+    
+    Set this endpoint in an environment variable named `ProjectEndpoint`.
+
+* The name of your model deployment.
+
+    [!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
+
+    Save the name of your model deployment name as an environment variable named `ModelDeploymentName`. 
+
+* The connection ID for your Grounding with Bing Search resource. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then selecting **Connected resources**. Then select your bing resource.
+    
+    :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Grounding with Bing Search resource name. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
+
+    Copy the ID, and save it to an environment variable named `BingConnectionId`. 
+
+    :::image type="content" source="../../media/tools/deep-research/bing-id.png" alt-text="A screenshot showing the Grounding with Bing Search ID. " lightbox="../../media/tools/deep-research/bing-id.png":::
+
 ## Create a project client
 
 Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
@@ -170,19 +193,10 @@ Create a client object, which will contain the project endpoint for connecting t
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
-using Microsoft.Extensions.Configuration;
-using System;
-using System.Threading;
 
-// Get Connection information from app configuration
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
-
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
-var bingConnectionId = configuration["BingConnectionId"];
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("BingConnectionId");
 
 // Create the Agent Client
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
@@ -193,18 +207,10 @@ PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCreden
 To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 ```csharp
-BingGroundingSearchConfiguration searchConfig = new BingGroundingSearchConfiguration(bingConnectionId)
-{ 
-    Count = 5,
-    Freshness = "Week"
-};
 
-// Create the BingGroundingToolDefinition object used when creating the agent
-BingGroundingToolDefinition bingGroundingTool = new BingGroundingToolDefinition(
+BingGroundingToolDefinition bingGroundingTool = new(
     new BingGroundingSearchToolParameters(
-        [
-            searchConfig
-        ]
+        [new BingGroundingSearchConfiguration(bingConnectionId)]
     )
 );
 
@@ -335,7 +341,6 @@ Clean up the resources from this sample.
 agentClient.Threads.DeleteThread(threadId: thread.Id);
 agentClient.Administration.DeleteAgent(agentId: agent.Id);
 ```
-
 ::: zone-end
 
 ::: zone pivot="javascript"
