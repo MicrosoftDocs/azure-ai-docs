@@ -25,7 +25,7 @@ Azure uses quotas and limits to prevent budget overruns due to fraud, and to hon
 
 | Limit name | Limit value |
 |--|--|
-| Azure AI Foundry resources per region per Azure subscription | 30 |
+| Azure AI Foundry resources per region per Azure subscription | 100 |
 | Max projects per resource | 250 |
 | Max deployments per resource | 32 | 
 
