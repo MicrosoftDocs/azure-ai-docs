@@ -207,7 +207,7 @@
         },
         {
             "source_path_from_root": "/articles/search/search-performance-optimization.md",
-            "redirect_url": "/azure/search/search-reliability",
+            "redirect_url": "/azure/reliability/reliability-ai-search",
             "redirect_document_id": true
         },
         {

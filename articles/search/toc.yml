@@ -189,7 +189,7 @@ items:
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
     - name: Reliability and recovery
-      href: search-reliability.md
+      href: /azure/reliability/reliability-ai-search
     - name: Multi-region deployment
       href: search-multi-region.md
     - name: Multi-tenancy

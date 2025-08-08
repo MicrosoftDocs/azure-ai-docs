@@ -6,7 +6,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 07/11/2025
+ms.date: 08/08/2025
 ---
 
 # Multi-region deployments in Azure AI Search
@@ -15,7 +15,7 @@ Although Azure AI Search is a single-region service, you can achieve higher avai
 
 This article describes the components of a multi-region solution, which relies on your custom script or code to handle failover if a service becomes unavailable.
 
-For more information about the reliability features of Azure AI Search, including intra-regional resiliency via availability zones, see [Reliability in Azure AI Search](search-reliability.md).
+For more information about the reliability features of Azure AI Search, including intra-regional resiliency via availability zones, see [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search).
 
 ## Why use multiple regions?
 
@@ -33,7 +33,7 @@ Azure AI Search doesn't provide an automated method of index replication across 
 
 The following diagram illustrates a geo-distributed set of search services:
 
-:::image type="content" source="media/search-reliability/geo-redundancy.png" alt-text="Diagram that shows a cross-tab view of services by region." border="true" lightbox="media/search-reliability/geo-redundancy.png":::
+:::image type="content" source="media/search-multi-region/geo-redundancy.png" alt-text="Diagram that shows a cross-tab view of services by region." border="true" lightbox="media/search-multi-region/geo-redundancy.png":::
 
 > [!TIP]
 > For a complete implementation, see the [Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) on GitHub. The sample deploys a fully configured, multi-region search solution that can be modified to your regions and indexing strategies.
@@ -55,7 +55,7 @@ If you have an indexer on one search service, you can create a second indexer on
 
 The following diagram illustrates this architecture:
 
-:::image type="content" source="media/search-reliability/scale-indexers.png" alt-text="Diagram of a single data source with distributed indexer and service combinations." border="true" lightbox="media/search-reliability/scale-indexers.png":::
+:::image type="content" source="media/search-multi-region/scale-indexers.png" alt-text="Diagram of a single data source with distributed indexer and service combinations." border="true" lightbox="media/search-multi-region/scale-indexers.png":::
 
 ---
 
@@ -99,7 +99,7 @@ Traffic Manager doesn't provide an endpoint for a direct connection to Azure AI 
 
 The following diagram illustrates search apps connecting through Traffic Manager:
 
-:::image type="content" source="media/search-reliability/azure-function-search-traffic-mgr.png" alt-text="Diagram of search apps connecting through Azure Traffic Manager." border="true" lightbox="media/search-reliability/azure-function-search-traffic-mgr.png":::
+:::image type="content" source="media/search-multi-region/azure-function-search-traffic-mgr.png" alt-text="Diagram of search apps connecting through Azure Traffic Manager." border="true" lightbox="media/search-multi-region/azure-function-search-traffic-mgr.png":::
 
 > [!TIP]
 > Azure AI Search provides a [multi-region Bicep sample](https://github.com/Azure-Samples/azure-search-multiple-regions) that uses Traffic Manager for request redirection when the primary endpoint fails. This solution is useful for routing to a search-enabled client that only calls a search service in the same region.
@@ -118,5 +118,5 @@ As you evaluate these load-balancing options, consider the following points:
 
 ## Related content
 
-+ [Reliability in Azure AI Search](search-reliability.md)
++ [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search)
 + [Design reliable Azure applications](/azure/architecture/framework/resiliency/app-design)
