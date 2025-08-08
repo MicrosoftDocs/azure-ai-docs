@@ -522,12 +522,12 @@
     },
     {
       "source_path": "articles/ai-services/create-account-terraform.md",
-      "redirect_url": "/azure/ai-foundry/how-to/create-account-terraform",
+      "redirect_url": "/azure/ai-foundry/how-to/create-resource-terraform",
       "redirect_document_id": false
     },
     {
       "source_path": "articles/ai-services/create-account-bicep.md",
-      "redirect_url": "/azure/ai-foundry/how-to/create-account-bicep",
+      "redirect_url": "/azure/ai-foundry/how-to/create-resource-template",
       "redirect_document_id": false
     }
   ]
