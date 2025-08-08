@@ -103,7 +103,7 @@ With API key authentication, you can authenticate your OpenAPI spec using variou
 
 To set up authenticating with Managed Identity:
 
-1. Enable the Azure AI Service of your agent has `system assigned managed identity` enabled.
+1. Ensure that your Azure AI Foundry resource has system assigned managed identity enabled.
 
     :::image type="content" source="../../media\tools\managed-identity-portal.png" alt-text="A screenshot showing the managed identity selector in the Azure portal." lightbox="../../media\tools\managed-identity-portal.png":::
 
