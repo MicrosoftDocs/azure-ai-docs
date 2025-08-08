@@ -25,10 +25,12 @@ Use this article to find step-by-step instructions and code samples for using th
 
     Save this endpoint to an environment variable named `PROJECT_ENDPOINT`.
 
-* The latest preview version of the SDK:
+* The following packages:
 
     ```console
     pip install --pre azure-ai-projects
+    pip install azure-ai-agents==1.2.0b1
+    pip install azure-identity
     ```
 * The **contributor** role assigned to your AI Foundry project from within your Playwright workplace. 
 * Your playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URL should start with `https://` instead of `wss://` if presented. 
