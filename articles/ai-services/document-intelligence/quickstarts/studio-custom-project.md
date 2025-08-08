@@ -22,7 +22,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 ## Prerequisites
 
-For information on subscription, resource, and authentication setup, see [Get started with Document Intelligence Studio](get-started-studio.md#prerequisites-for-new-users).
+For information on subscription, resource, and authentication setup, see [Get started with Document Intelligence Studio](get-started-studio.md#prerequisites).
 
 ## Prerequisites for new users
 

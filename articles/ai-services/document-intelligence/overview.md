@@ -122,13 +122,13 @@ You can use prebuilt models to add intelligent document processing to your apps 
      [US tax W-2](#us-tax-w-2-model) | Extract taxable compensation details.
     :::column-end:::
     :::column span="":::
-     [US tax 1098](#us-tax-1098-and-variations-forms) | Extract `1098` variation details.
+     [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details.
     :::column-end:::
     :::column span="":::
-     [US tax 1099](#us-tax-1099-and-variations-forms) | Extract `1099` variation details.
+     [US tax 1099](#us-tax-1099-and-variations-forms) | Extract 1099 variation details.
     :::column-end:::
     :::column span="":::
-     [US tax 1040](#us-tax-1040-and-variations-forms) |  Extract `1040` variation details.
+     [US tax 1040](#us-tax-1040-and-variations-forms) |  Extract 1040 variation details.
     :::column-end:::
  :::row-end:::
 
@@ -197,7 +197,7 @@ You can use prebuilt models to add intelligent document processing to your apps 
     [US tax W-2](#us-tax-w-2-model) | Extract taxable </br>compensation details.
    :::column-end:::
    :::column span="":::
-    [US tax 1098](#us-tax-1098-and-variations-forms) | Extract `1098` variation details.
+    [US tax 1098](#us-tax-1098-and-variations-forms) | Extract 1098 variation details.
    :::column-end:::
 :::row-end:::
 
@@ -411,7 +411,7 @@ Use Document Intelligence to automate document processing in applications and wo
 
 | Model ID | Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
-|[prebuilt-mortgage.us.1003](concept-mortgage-documents.md)|&#9679; Extract key information from `1003` loan applications. </br>&#9679; [Extract data and fields](concept-mortgage-documents.md#field-extraction-1003-uniform-residential-loan-application-urla).| Fannie Mae and Freddie Mac documentation requirements| &#9679; [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=mortgage.us.1003&formType=mortgage.us.1003)</br>&#9679; [REST API](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [C# SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [Python SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [Java SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [JavaScript](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
+|[prebuilt-mortgage.us.1003](concept-mortgage-documents.md)|&#9679; Extract key information from 1003 loan applications. </br>&#9679; [Extract data and fields](concept-mortgage-documents.md#field-extraction-1003-uniform-residential-loan-application-urla).| Fannie Mae and Freddie Mac documentation requirements| &#9679; [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio/prebuilt?formCategory=mortgage.us.1003&formType=mortgage.us.1003)</br>&#9679; [REST API](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true&pivots=programming-language-rest-api#analyze-document-post-request)</br>&#9679; [C# SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [Python SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [Java SDK](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)</br>&#9679; [JavaScript](quickstarts/get-started-sdks-rest-api.md?view=doc-intel-4.0.0&preserve-view=true#prebuilt-model)|
 
 > [!div class="nextstepaction"]
 > [Return to model types](#prebuilt-models)
@@ -542,8 +542,8 @@ Use Document Intelligence to automate document processing in applications and wo
 :::image type="content" source="media/overview/analyze-custom-neural.png" alt-text="Screenshot that shows Custom Neural model analysis by using Document Intelligence Studio.":::
 
   > [!NOTE]
-  > To train a custom neural model, set the ```buildMode``` property to ```neural```.
-  > For more information, *see* [Training a neural model](train/custom-neural.md#training-a-model)
+  > To train a custom neural model, set the `buildMode` property to `neural`.
+  > For more information, see [Training a neural model](train/custom-neural.md#training-a-model)
 
 | About | Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
