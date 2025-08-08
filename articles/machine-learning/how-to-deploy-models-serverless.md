@@ -89,9 +89,9 @@ This article uses a Meta Llama model deployment for illustration. However, you c
 
 1. Sign in to [Azure Machine Learning studio](https://ml.azure.com)
 
-1. For models offered through the Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
+1. For models offered through Azure Marketplace, ensure that your account has the **Azure AI Developer** role permissions on the resource group, or that you meet the [permissions required to subscribe to model offerings](#permissions-required-to-subscribe-to-model-offerings).
 
-    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through the Azure Marketplace. For such models, you're required to subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](concept-model-catalog.md#pay-for-model-usage-in-standard-deployment).
+    Models that are offered by non-Microsoft providers (for example, Llama and Mistral models) are billed through Azure Marketplace. For such models, you're required to subscribe your workspace to the particular model offering. Models that are offered by Microsoft (for example, Phi-3 models) don't have this requirement, as billing is done differently. For details about billing for serverless deployment of models in the model catalog, see [Billing for standard deployments](concept-model-catalog.md#pay-for-model-usage-in-standard-deployment).
 
 1. Go to your workspace. To use the standard deployment offering, your workspace must belong to one of the [regions that are supported for serverless deployment](concept-endpoint-serverless-availability.md) for the particular model you want to deploy.
 
@@ -100,7 +100,7 @@ This article uses a Meta Llama model deployment for illustration. However, you c
     1. If you're deploying the model using Azure CLI, Python SDK, or ARM, copy the **Model ID**.
 
     > [!IMPORTANT]
-    > Do not include the version when copying the **Model ID**. Standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-bria/models/Bria-2.3-Fast/versions/1`, copy `azureml://registries/azureml-bria/models/Bria-2.3-Fast`.
+    > Don't include the version when copying the **Model ID**. Standard deployments always deploy the model's latest version available. For example, for the model ID `azureml://registries/azureml-bria/models/Bria-2.3-Fast/versions/1`, copy `azureml://registries/azureml-bria/models/Bria-2.3-Fast`.
 
     :::image type="content" source="media/how-to-deploy-models-serverless/model-card.png" alt-text="A screenshot showing a model's details page." lightbox="media/how-to-deploy-models-serverless/model-card.png":::
 
@@ -108,10 +108,10 @@ The next section covers the steps for subscribing your workspace to a model offe
 
 ## Subscribe your workspace to the model offering
 
-Standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployments directly](#deploy-the-model-to-a-standard-deployment) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the workspace, you have to subscribe your workspace for the particular model offering from the Azure Marketplace. Each workspace has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
+Standard deployments can deploy both Microsoft and non-Microsoft offered models. For Microsoft models (such as Phi-3 models), you don't need to create an Azure Marketplace subscription and you can [deploy them to standard deployments directly](#deploy-the-model-to-a-standard-deployment) to consume their predictions. For non-Microsoft models, you need to create the subscription first. If it's your first time deploying the model in the workspace, you have to subscribe your workspace for the particular model offering from Azure Marketplace. Each workspace has its own subscription to the particular Azure Marketplace offering of the model, which allows you to control and monitor spending.
 
 > [!NOTE]
-> Models offered through the Azure Marketplace are available for deployment to standard deployments in specific regions. Check [Region availability for models in standard deployments](concept-endpoint-serverless-availability.md) to verify which models and regions are available. If the one you need is not listed, you can deploy to a workspace in a supported region and then [consume standard deployments from a different workspace](how-to-connect-models-serverless.md).
+> Models offered through Azure Marketplace are available for deployment to standard deployments in specific regions. Check [Region availability for models in standard deployments](concept-endpoint-serverless-availability.md) to verify which models and regions are available. If the one you need isn't listed, you can deploy to a workspace in a supported region and then [consume standard deployments from a different workspace](how-to-connect-models-serverless.md).
 
 1. Create the model's marketplace subscription. When you create a subscription, you accept the terms and conditions associated with the model offer. Remember you don't need to perform this step for Microsoft offered models (like Phi-3).
 
@@ -260,7 +260,7 @@ In this section, you create an endpoint with the name **Bria-2.3-Fast**.
 
     1. To deploy a Microsoft model that doesn't require subscribing to a model offering, select **Use this model** and then select **Serverless API** to open the deployment wizard.
 
-    1. Alternatively, for a non-Microsoft model that requires a model subscription, if you've just subscribed your workspace to the model offer in the previous section, continue to select **Deploy**. Alternatively, select **Continue to deploy** (if your deployment wizard had the note *You already have an Azure Marketplace subscription for this workspace*). 
+    1. Alternatively, for a non-Microsoft model that requires a model subscription, if you've subscribed your workspace to the model offer in the previous section, continue to select **Deploy**. Alternatively, select **Continue to deploy** (if your deployment wizard had the note *You already have an Azure Marketplace subscription for this workspace*). 
 
         :::image type="content" source="media/how-to-deploy-models-serverless/deploy-pay-as-you-go-subscribed-workspace.png" alt-text="A screenshot showing a workspace that is already subscribed to the offering." lightbox="media/how-to-deploy-models-serverless/deploy-pay-as-you-go-subscribed-workspace.png":::
 
@@ -520,11 +520,11 @@ You can find the pricing information on the __Pricing and terms__ tab of the dep
 
 #### Cost for non-Microsoft models
 
-Non-Microsoft models deployed as standard deployments are offered through the Azure Marketplace and integrated with Azure AI Foundry for use. You can find the Azure Marketplace pricing when deploying or fine-tuning these models.
+Non-Microsoft models deployed as standard deployments are offered through Azure Marketplace and integrated with Azure AI Foundry for use. You can find Azure Marketplace pricing when deploying or fine-tuning these models.
 
-Each time a workspace subscribes to a given offer from the Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
+Each time a workspace subscribes to a given offer from Azure Marketplace, a new resource is created to track the costs associated with its consumption. The same resource is used to track costs associated with inference and fine-tuning; however, multiple meters are available to track each scenario independently.
 
-For more information on how to track costs, see [Monitor costs for models offered through the Azure Marketplace](/azure/ai-studio/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
+For more information on how to track costs, see [Monitor costs for models offered through Azure Marketplace](/azure/ai-studio/how-to/costs-plan-manage#monitor-costs-for-models-offered-through-the-azure-marketplace).
 
 :::image type="content" source="media/how-to-deploy-models-serverless/costs-model-as-service-cost-details.png" alt-text="A screenshot showing different resources corresponding to different model offers and their associated meters." lightbox="media/how-to-deploy-models-serverless/costs-model-as-service-cost-details.png":::
 
@@ -533,7 +533,7 @@ For more information on how to track costs, see [Monitor costs for models offere
 
 Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure Machine Learning. To perform the steps in this article, your user account must be assigned the __Owner__, __Contributor__, or __Azure AI Developer__ role for the Azure subscription. Alternatively, your account can be assigned a custom role that has the following permissions:
 
-- On the Azure subscription—to subscribe the workspace to the Azure Marketplace offering, once for each workspace, per offering:
+- On the Azure subscription—to subscribe the workspace to Azure Marketplace offering, once for each workspace, per offering:
   - `Microsoft.MarketplaceOrdering/agreements/offers/plans/read`
   - `Microsoft.MarketplaceOrdering/agreements/offers/plans/sign/action`
   - `Microsoft.MarketplaceOrdering/offerTypes/publishers/offers/plans/agreements/read`
