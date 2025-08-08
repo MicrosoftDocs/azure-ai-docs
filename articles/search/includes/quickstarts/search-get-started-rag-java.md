@@ -20,7 +20,6 @@ ms.date: 07/31/2025
 - [Java 21 (LTS)](/java/openjdk/install).
 - [Maven](https://maven.apache.org/download.cgi).
 
-
 ## Configure access
 
 Requests to the search endpoint must be authenticated and authorized. You can use API keys or roles for this task. Keys are easier to start with, but roles are more secure. This quickstart assumes roles.
@@ -335,23 +334,24 @@ Create a query script that uses the Azure AI Search index and the chat model to 
                     .toList();
         }
     
-        private static String queryOpenAI(OpenAIClient openAIClient, List<SearchResult> sources) {
+        private static String queryOpenAI(OpenAIClient openAIClient,
+            String userQuery, List<SearchResult> sources) {
             String deploymentModel = System.getenv("AZURE_DEPLOYMENT_MODEL");
-
+    
             String sourcesText = sources.stream()
                     .map(source -> source.getDocument(Object.class).toString())
                     .collect(java.util.stream.Collectors.joining("\n"));
-
+    
             var messages = List.of(
                     new ChatRequestSystemMessage("""
                         You are an assistant that recommends hotels based on 
                         search results."""),
                     new ChatRequestUserMessage("""
-                        Can you recommend a few hotels that offer 
-                        complimentary breakfast? Here are the search results:
-                        %s""".formatted(sourcesText))
+                        Can you recommend a few hotels that offer %s?
+                        Here are the search results:
+                        %s""".formatted(userQuery, sourcesText))
             );
-
+    
             var chatOptions = new ChatCompletionsOptions(messages);
             ChatCompletions response = openAIClient.getChatCompletions(deploymentModel, chatOptions);
     
@@ -362,10 +362,12 @@ Create a query script that uses the Azure AI Search index and the chat model to 
             SearchClient searchClient = getSearchClient();
             OpenAIClient openAIClient = getOpenAIClient();
     
-            List<SearchResult> sources = searchDocuments(searchClient);
+            String userQuery = "complimentary breakfast";
+            List<SearchResult> sources = searchDocuments(searchClient, userQuery);
             String response = queryOpenAI(openAIClient, userQuery, sources);
     
             System.out.println(response);
+            System.exit(0);
         }
     }
     ```
@@ -485,25 +487,26 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
                     .toList();
         }
     
-        private static String queryOpenAI(OpenAIClient openAIClient, List<SearchResult> sources) {
+        private static String queryOpenAI(OpenAIClient openAIClient,
+            String userQuery, List<SearchResult> sources) {
             String deploymentModel = System.getenv("AZURE_DEPLOYMENT_MODEL");
-
+    
             String sourcesText = sources.stream()
                     .map(source -> source.getDocument(Object.class).toString())
                     .collect(java.util.stream.Collectors.joining("\n"));
-
+    
             var messages = List.of(
                     new ChatRequestSystemMessage("""
                         You are an assistant that recommends hotels based on 
                         search results."""),
                     new ChatRequestUserMessage("""
-                        Can you recommend a few hotels that offer 
-                        complimentary breakfast? Tell me their description, 
-                        address, tags, and the rate for one room that sleeps 
-                        4 people. Here are the search results:
-                        %s""".formatted(sourcesText))
+                        Can you recommend a few hotels that offer %s?
+                        Tell me their description, address, tags,
+                        and the rate for one room that sleeps 4 people.
+                        Here are the search results:
+                        %s""".formatted(userQuery, sourcesText))
             );
-
+    
             var chatOptions = new ChatCompletionsOptions(messages);
             ChatCompletions response = openAIClient.getChatCompletions(
                 deploymentModel, chatOptions);
@@ -515,10 +518,12 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
             SearchClient searchClient = getSearchClient();
             OpenAIClient openAIClient = getOpenAIClient();
     
-            List<SearchResult> sources = searchDocuments(searchClient);
+            String userQuery = "complimentary breakfast";
+            List<SearchResult> sources = searchDocuments(searchClient, userQuery);
             String response = queryOpenAI(openAIClient, userQuery, sources);
     
             System.out.println(response);
+            System.exit(0);
         }
     }
     ```
