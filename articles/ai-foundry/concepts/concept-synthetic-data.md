@@ -8,6 +8,7 @@ ms.date: 07/25/2025
 ms.reviewer: vkann
 reviewer: anshirga
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ms.custom: references_regions
 ---
