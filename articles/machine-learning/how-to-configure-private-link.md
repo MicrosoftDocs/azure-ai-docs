@@ -310,7 +310,14 @@ You can also enable public network access by using a YAML file. For more informa
 
 You can use IP network rules to allow access to your workspace and endpoint from specific public internet IP address ranges by creating IP network rules. Each Azure Machine Learning workspace supports up to 200 rules. These rules grant access to specific internet-based services and on-premises networks and block general internet traffic.
 
+[!IMPORTANT]
+
+> * Before creating a compute instance in an Azure Machine Learning workspace with a selected IP address, ensure that your workspace has network isolation configured using a [workspace-managed virtual network (VNet)](how-to-managed-network.md) OR [Add a private endpoint to your workspace in your own Virtual Network](how-to-configure-private-link.md#add-a-private-endpoint-to-a-workspace).
+
+ > * Configuring only the selected IP without enabling a managed VNet or a Private endpoint for the workspace can lead to failures while provisioning the compute instance
+
 > [!WARNING]
+
 > * Enable your endpoint's [public network access flag](concept-secure-online-endpoint.md#secure-inbound-scoring-requests) if you want to allow access to your endpoint from specific public internet IP address ranges.
 > * You can only use IPv4 addresses.
 > * To use this feature with Azure Machine Learning managed virtual network, see [Azure Machine Learning managed virtual network](how-to-managed-network.md#scenario-enable-access-from-selected-ip-addresses).
