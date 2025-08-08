@@ -5,7 +5,6 @@ description: Indexers that index from Azure Storage can pick up new and changed 
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/24/2025

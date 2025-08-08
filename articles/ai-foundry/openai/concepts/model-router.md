@@ -5,7 +5,7 @@ description: Learn about the model router feature in Azure OpenAI in Azure AI Fo
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/08/2025
+ms.date: 08/06/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -28,10 +28,13 @@ If you select **Auto-update** at the deployment step (see [Manage models](/azure
 
 ## Underlying models
 
-|Model router version|Underlying models (version)|
-|---|---|
-|`2025-05-19`|GPT-4.1 (`2025-04-14`)</br>GPT-4.1-mini (`2025-04-14`)</br>GPT-4.1-nano (`2025-04-14`) </br>o4-mini (`2025-04-16`) |
+> [!NOTE]
+> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
 
+|Model router version|Underlying models| Model version
+|:---:|:---|:----:|
+| `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
+|`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
 
 ## Limitations
 

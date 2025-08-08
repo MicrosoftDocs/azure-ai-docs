@@ -2,7 +2,6 @@
 title: 'Tutorial: Verbalize images using generative AI'
 titleSuffix: Azure AI Search
 description: Learn how to extract, index, and search multimodal content using the Document Extraction skill for chunking and GenAI Prompt skill for image verbalizations.
-
 manager: arjagann
 author: mdonovan
 ms.author: mdonovan
@@ -73,7 +72,7 @@ The following instructions apply to Azure Storage which provides the sample data
         }
         ```
 
-   1. For connections made using a user-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity The connection string is similar to the following example:
+   1. For connections made using a user-assigned managed identity, get a connection string that contains a ResourceId, with no account key or password. The ResourceId must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name. Provide an identity using the syntax shown in the following example. Set userAssignedIdentity to the user-assigned managed identity. The connection string is similar to the following example:
 
       ```json
       "credentials" : { 
@@ -97,7 +96,7 @@ This tutorial assumes you have an existing Azure OpenAI resource through which t
 
 1. Search for **Cognitive Services OpenAI User** and then select it.
 
-1. Choose **Managed identity** and then assign your [search service managed identity](search-howto-managed-identities-data-sources.md).
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
 
 For more information, see [Role-based access control for Azure OpenAI in Azure AI Foundry Models](/azure/ai-foundry/openai/how-to/role-based-access-control).
 

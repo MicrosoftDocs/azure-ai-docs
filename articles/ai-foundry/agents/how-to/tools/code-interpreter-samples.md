@@ -66,7 +66,7 @@ project_client = AIProjectClient(
 The sample uploads a data file for analysis:
 
 ```python
-file = project_client.agents.upload_file_and_poll(
+file = project_client.agents.files.upload_and_poll(
     file_path="nifty_500_quarterly_results.csv", 
     purpose=FilePurpose.AGENTS
 )
@@ -122,7 +122,7 @@ messages = project_client.agents.messages.list(thread_id=thread.id)
 for image_content in messages.image_contents:
     file_id = image_content.image_file.file_id
     file_name = f"{file_id}_image_file.png"
-    project_client.agents.save_file(file_id=file_id, file_name=file_name)
+    project_client.agents.files.save(file_id=file_id, file_name=file_name)
 
 # Process file path annotations
 for file_path_annotation in messages.file_path_annotations:
@@ -136,7 +136,7 @@ for file_path_annotation in messages.file_path_annotations:
 After completing the interaction, the code properly cleans up resources:
 
 ```python
-project_client.agents.delete_file(file.id)
+project_client.agents.files.delete(file.id)
 project_client.agents.delete_agent(agent.id)
 ```
 
@@ -146,112 +146,161 @@ This ensures proper resource management and prevents unnecessary resource consum
 
 :::zone pivot="csharp" 
 
-## Create a client and agent
+## Create a project client
 
-First, set up the configuration using `appsettings.json`, create a `PersistentAgentsClient`, and then create a `PersistentAgent` with the Code Interpreter tool enabled.
+Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
 
 ```csharp
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
-using Microsoft.Extensions.Configuration;
-using System.Diagnostics;
 
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+var projectEndpoint = System.Environment.GetEnvironmentVariable("BingConnectionId");
 
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
+// Create the Agent Client
+PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
+```
 
-PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
+## Create an Agent with the Grounding with Bing search tool enabled
 
-PersistentAgent agent = client.Administration.CreateAgent(
+To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+
+```csharp
+
+BingGroundingToolDefinition bingGroundingTool = new(
+    new BingGroundingSearchToolParameters(
+        [new BingGroundingSearchConfiguration(bingConnectionId)]
+    )
+);
+
+// Create the Agent
+PersistentAgent agent = agentClient.Administration.CreateAgent(
     model: modelDeploymentName,
-    name: "My Friendly Test Agent",
-    instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
-    tools: [new CodeInterpreterToolDefinition()]
+    name: "my-agent",
+    instructions: "Use the bing grounding tool to answer questions.",
+    tools: [bingGroundingTool]
 );
 ```
 
-## Create a thread and add a message
-
-Next, create a `PersistentAgentThread` for the conversation and add the initial user message.
+## Create a thread and run
 
 ```csharp
-PersistentAgentThread thread = client.Threads.CreateThread();
+PersistentAgentThread thread = agentClient.Threads.CreateThread();
 
-client.Messages.CreateMessage(
+// Create message and run the agent
+PersistentThreadMessage message = agentClient.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
-    "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
+    "How does wikipedia explain Euler's Identity?");
+ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
+
 ```
 
-## Create and monitor a run
+## Wait for the agent to complete and print the output
 
-Then, create a `ThreadRun` for the thread and agent. Poll the run's status until it completes or requires action.
+First, wait for the agent to complete the run by polling its status. Observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
 
 ```csharp
-ThreadRun run = client.Runs.CreateRun(
-    thread.Id,
-    agent.Id,
-    additionalInstructions: "Please address the user as Jane Doe. The user has a premium account.");
-
+// Wait for the agent to finish running
 do
 {
     Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = client.Runs.GetRun(thread.Id, run.Id);
+    run = agentClient.Runs.GetRun(thread.Id, run.Id);
 }
 while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress
-    || run.Status == RunStatus.RequiresAction);
+    || run.Status == RunStatus.InProgress);
+
+// Confirm that the run completed successfully
+if (run.Status != RunStatus.Completed)
+{
+    throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
+}
 ```
 
-## Process the results and handle files
-
-Once the run is finished, retrieve all messages from the thread. Iterate through the messages to display text content and handle any generated image files by saving them locally and opening them.
+Then, retrieve and process the messages from the completed run.
 
 ```csharp
-Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
+// Retrieve all messages from the agent client
+Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
     threadId: thread.Id,
-    order: ListSortOrder.Ascending);
+    order: ListSortOrder.Ascending
+);
 
+// Process messages in order
 foreach (PersistentThreadMessage threadMessage in messages)
 {
-    foreach (MessageContent content in threadMessage.ContentItems)
+    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
+    foreach (MessageContent contentItem in threadMessage.ContentItems)
     {
-        switch (content)
+        if (contentItem is MessageTextContent textItem)
         {
-            case MessageTextContent textItem:
-                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
-                break;
-            case MessageImageFileContent imageFileContent:
-                Console.WriteLine($"[{threadMessage.Role}]: Image content file ID = {imageFileContent.FileId}");
-                BinaryData imageContent = client.Files.GetFileContent(imageFileContent.FileId);
-                string tempFilePath = Path.Combine(AppContext.BaseDirectory, $"{Guid.NewGuid()}.png");
-                File.WriteAllBytes(tempFilePath, imageContent.ToArray());
-                client.Files.DeleteFile(imageFileContent.FileId);
+            string response = textItem.Text;
 
-                ProcessStartInfo psi = new()
+            // If we have Text URL citation annotations, reformat the response to show title & URL for citations
+            if (textItem.Annotations != null)
+            {
+                foreach (MessageTextAnnotation annotation in textItem.Annotations)
                 {
-                    FileName = tempFilePath,
-                    UseShellExecute = true
-                };
-                Process.Start(psi);
-                break;
+                    if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
+                    {
+                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})");
+                    }
+                }
+            }
+            Console.Write($"Agent response: {response}");
+        }
+        else if (contentItem is MessageImageFileContent imageFileItem)
+        {
+            Console.Write($"<image from ID: {imageFileItem.FileId}");
+        }
+        Console.WriteLine();
+    }
+}
+
+```
+
+## Optionally output the run steps used by the agent
+
+```csharp
+// Retrieve the run steps used by the agent and print those to the console
+Console.WriteLine("Run Steps used by Agent:");
+Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
+
+foreach (var step in runSteps)
+{
+    Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
+
+    if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
+    {
+        Console.WriteLine($"   Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
+    }
+    else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
+    {
+        // We know this agent only has the Bing Grounding tool, so we can cast it directly
+        foreach (RunStepBingGroundingToolCall toolCall in toolCallDetails.ToolCalls)
+        {
+            Console.WriteLine($"   Tool Call Details: {toolCall.GetType()}");
+
+            foreach (var result in toolCall.BingGrounding)
+            {
+                Console.WriteLine($"      {result.Key}: {result.Value}");
+            }
         }
     }
 }
+
 ```
 
 ## Clean up resources
 
-Finally, delete the thread and the agent to clean up the resources created in this sample.
+Clean up the resources from this sample.
 
 ```csharp
-    client.Threads.DeleteThread(threadId: thread.Id);
-    client.Administration.DeleteAgent(agentId: agent.Id);
+// Delete thread and agent
+agentClient.Threads.DeleteThread(threadId: thread.Id);
+agentClient.Administration.DeleteAgent(agentId: agent.Id);
 ```
 
 :::zone-end
@@ -515,4 +564,151 @@ curl --request GET \
   -H "Authorization: Bearer $AGENT_TOKEN"
 ```
 
+:::zone-end
+
+
+:::zone pivot="java" 
+
+## Download an example file
+
+Files can be uploaded and then referenced by agents or messages. Once it's uploaded it can be added to the tool utility for referencing. You can find a downloadable example file on [GitHub](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/ai/ai-agents/data/syntheticCompanyQuarterlyResults.csv).
+
+## Code example 
+
+```java
+package com.example.agents;
+
+import com.azure.ai.agents.persistent.FilesClient;
+import com.azure.ai.agents.persistent.MessagesClient;
+import com.azure.ai.agents.persistent.PersistentAgentsAdministrationClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClient;
+import com.azure.ai.agents.persistent.PersistentAgentsClientBuilder;
+import com.azure.ai.agents.persistent.RunsClient;
+import com.azure.ai.agents.persistent.ThreadsClient;
+import com.azure.ai.agents.persistent.models.CodeInterpreterToolDefinition;
+import com.azure.ai.agents.persistent.models.CreateAgentOptions;
+import com.azure.ai.agents.persistent.models.CreateRunOptions;
+import com.azure.ai.agents.persistent.models.FileDetails;
+import com.azure.ai.agents.persistent.models.FileInfo;
+import com.azure.ai.agents.persistent.models.FilePurpose;
+import com.azure.ai.agents.persistent.models.MessageAttachment;
+import com.azure.ai.agents.persistent.models.MessageImageFileContent;
+import com.azure.ai.agents.persistent.models.MessageRole;
+import com.azure.ai.agents.persistent.models.MessageTextContent;
+import com.azure.ai.agents.persistent.models.PersistentAgent;
+import com.azure.ai.agents.persistent.models.PersistentAgentThread;
+import com.azure.ai.agents.persistent.models.RunStatus;
+import com.azure.ai.agents.persistent.models.ThreadMessage;
+import com.azure.ai.agents.persistent.models.ThreadRun;
+import com.azure.ai.agents.persistent.models.UploadFileRequest;
+import com.azure.ai.agents.persistent.models.MessageContent;
+import com.azure.core.http.rest.PagedIterable;
+import com.azure.core.util.BinaryData;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+
+import java.net.URL;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.net.URISyntaxException;
+import java.nio.file.Path;
+import java.util.Arrays;
+
+public class AgentExample {
+
+    public static void main(String[] args) throws FileNotFoundException, URISyntaxException {
+
+        // variables for authenticating requests to the agent service 
+        String projectEndpoint = System.getenv("PROJECT_ENDPOINT");
+        String modelName = System.getenv("MODEL_DEPLOYMENT_NAME");
+
+        PersistentAgentsClientBuilder clientBuilder = new PersistentAgentsClientBuilder().endpoint(projectEndpoint)
+            .credential(new DefaultAzureCredentialBuilder().build());
+        PersistentAgentsClient agentsClient = clientBuilder.buildClient();
+        PersistentAgentsAdministrationClient administrationClient = agentsClient.getPersistentAgentsAdministrationClient();
+        ThreadsClient threadsClient = agentsClient.getThreadsClient();
+        MessagesClient messagesClient = agentsClient.getMessagesClient();
+        RunsClient runsClient = agentsClient.getRunsClient();
+        FilesClient filesClient = agentsClient.getFilesClient();
+
+        Path myFile = getFile("syntheticCompanyQuarterlyResults.csv");
+
+        String agentName = "code_interpreter_file_attachment_example";
+        CodeInterpreterToolDefinition ciTool = new CodeInterpreterToolDefinition();
+        CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName).setName(agentName).setInstructions("You are a helpful agent").setTools(Arrays.asList(ciTool));
+        PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
+
+        FileInfo uploadedFile = filesClient.uploadFile(new UploadFileRequest(
+            new FileDetails(BinaryData.fromFile(myFile))
+            .setFilename("sample.csv"), FilePurpose.AGENTS));
+
+        MessageAttachment messageAttachment = new MessageAttachment(Arrays.asList(BinaryData.fromObject(ciTool))).setFileId(uploadedFile.getId());
+
+        PersistentAgentThread thread = threadsClient.createThread();
+        ThreadMessage createdMessage = messagesClient.createMessage(
+            thread.getId(),
+            MessageRole.USER,
+            "Could you analyze the uploaded CSV file for me?",
+            Arrays.asList(messageAttachment),
+            null);
+
+        try {
+            //run agent
+            CreateRunOptions createRunOptions = new CreateRunOptions(thread.getId(), agent.getId()).setAdditionalInstructions("");
+            ThreadRun threadRun = runsClient.createRun(createRunOptions);
+
+            waitForRunCompletion(thread.getId(), threadRun, runsClient);
+            printRunMessages(messagesClient, thread.getId());
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        } finally {
+            //cleanup
+            threadsClient.deleteThread(thread.getId());
+            administrationClient.deleteAgent(agent.getId());
+        }
+    }
+    // A helper function to print messages from the agent
+    public static void printRunMessages(MessagesClient messagesClient, String threadId) {
+
+        PagedIterable<ThreadMessage> runMessages = messagesClient.listMessages(threadId);
+        for (ThreadMessage message : runMessages) {
+            System.out.print(String.format("%1$s - %2$s : ", message.getCreatedAt(), message.getRole()));
+            for (MessageContent contentItem : message.getContent()) {
+                if (contentItem instanceof MessageTextContent) {
+                    System.out.print((((MessageTextContent) contentItem).getText().getValue()));
+                } else if (contentItem instanceof MessageImageFileContent) {
+                    String imageFileId = (((MessageImageFileContent) contentItem).getImageFile().getFileId());
+                    System.out.print("Image from ID: " + imageFileId);
+                }
+                System.out.println();
+            }
+        }
+    }
+
+    // a helper function to wait until a run has completed running
+    public static void waitForRunCompletion(String threadId, ThreadRun threadRun, RunsClient runsClient)
+        throws InterruptedException {
+
+        do {
+            Thread.sleep(500);
+            threadRun = runsClient.getRun(threadId, threadRun.getId());
+        }
+        while (
+            threadRun.getStatus() == RunStatus.QUEUED
+                || threadRun.getStatus() == RunStatus.IN_PROGRESS
+                || threadRun.getStatus() == RunStatus.REQUIRES_ACTION);
+
+        if (threadRun.getStatus() == RunStatus.FAILED) {
+            System.out.println(threadRun.getLastError().getMessage());
+        }
+    }
+    private static Path getFile(String fileName) throws FileNotFoundException, URISyntaxException {
+        URL resource = AgentExample.class.getClassLoader().getResource(fileName);
+        if (resource == null) {
+            throw new FileNotFoundException("File not found");
+        }
+        File file = new File(resource.toURI());
+        return file.toPath();
+    }
+}
+```
 :::zone-end

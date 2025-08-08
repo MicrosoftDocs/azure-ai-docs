@@ -109,13 +109,13 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "kind": "Acoustic",
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23/files"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "properties": {
     "textNormalizationKind": "Default",
@@ -169,7 +169,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content
   "displayName": "My Acoustic Dataset",
   "description": "My Acoustic Dataset Description",
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "contentUrl": "https://contoso.com/mydatasetlocation",
   "locale": "en-US",
@@ -180,13 +180,13 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "kind": "Acoustic",
   "links": {
     "files": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/datasets/23b6554d-21f9-4df1-89cb-f84510ac8d23/files"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "properties": {
     "textNormalizationKind": "Default",
