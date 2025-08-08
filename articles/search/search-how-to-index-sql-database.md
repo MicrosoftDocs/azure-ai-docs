@@ -130,7 +130,7 @@ In this step, specify the data source, index, and indexer.
    1. Provide a name for the data source object on Azure AI Search.
    1. Use the dropdowns to select the subscription, account type, server, database, table or view, schema, and table name.
    1. For change tracking we recommend **SQL Integrated Change Tracking Policy**.
-   1. For authentication, we recommend connecting with a [managed identity](search-howto-managed-identities-data-sources.md). Your search service must have **SQL Server Contributor** or **SQL DB Contributor** role membership on the database.
+   1. For authentication, we recommend connecting with a [managed identity](search-how-to-managed-identities.md). Your search service must have **SQL Server Contributor** or **SQL DB Contributor** role membership on the database.
    1. Select **Create** to create the data source.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::

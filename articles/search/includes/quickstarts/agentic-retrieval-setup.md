@@ -27,7 +27,7 @@ To configure the recommended role-based access:
 
 For agentic retrieval, Azure AI Search also needs access to your Azure OpenAI Foundry resource.
 
-1. [Create a system-assigned managed identity](../../search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) on your Azure AI Search service. Here's how to do it using the Azure CLI:
+1. [Create a system-assigned managed identity](../../search-how-to-managed-identities.md#create-a-system-managed-identity) on your Azure AI Search service. Here's how to do it using the Azure CLI:
 
    ```azurecli
    az search service update --name YOUR-SEARCH-SERVICE-NAME --resource-group YOUR-RESOURCE-GROUP-NAME --identity-type SystemAssigned

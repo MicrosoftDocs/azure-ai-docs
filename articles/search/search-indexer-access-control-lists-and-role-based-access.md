@@ -35,7 +35,7 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
 
 + [Microsoft Entra ID authentication and authorization](/entra/identity/authentication/overview-authentication). Services and apps must be in the same tenant. Users can be in different tenants as long as all of the tenants are Microsoft Entra ID. Role assignments are used for each authenticated connection.
 
-+ Azure AI Search, any region, but you must have a billable tier (basic and higher) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-howto-managed-identities-data-sources.md).
++ Azure AI Search, any region, but you must have a billable tier (basic and higher) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-how-to-managed-identities.md).
 
 + ADLS Gen2 blobs in a hierarchical namespace, with user permissions granted through ACLs or roles.
 
@@ -126,7 +126,7 @@ Over time, as any new ACL assignments are added or modified, repeat the above st
 Recall that the search service must have:
 
 + [Role-based access enabled](search-security-enable-roles.md)
-+ [Managed identity configured](search-howto-managed-identities-data-sources.md)
++ [Managed identity configured](search-how-to-managed-identities.md)
 
 ### Authorization
 

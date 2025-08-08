@@ -21,7 +21,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 ## Prerequisites
 
-* [Create a managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+* [Create a managed identity](search-how-to-managed-identities.md) for your search service.
 
 ## Supported approaches for managed identity authentication
 
@@ -55,7 +55,7 @@ This section outlines the steps to configure connecting to Azure Cosmos DB for N
 
 1. Select **Managed identity** and then select **Members**.
 
-1. Filter by system-assigned managed identities or user-assigned managed identities. You should see the managed identity that you previously created for your search service. If you don't have one, see [Configure search to use a managed identity](search-howto-managed-identities-data-sources.md). If you already set one up but it's not available, give it a few minutes.
+1. Filter by system-assigned managed identities or user-assigned managed identities. You should see the managed identity that you previously created for your search service. If you don't have one, see [Configure search to use a managed identity](search-how-to-managed-identities.md). If you already set one up but it's not available, give it a few minutes.
 
 1. Select the identity and save the role assignment.
 
@@ -90,7 +90,7 @@ For more information, see [Use data plane role-based access control with Azure C
 
 Once you have configured **both** control plane and data plane role assignments on the Azure Cosmos DB for NoSQL account, you can set up a connection to it that operates under that role.
 
-Indexers use a data source object for connections to an external data source. This section explains how to specify a system-assigned managed identity or a user-assigned managed identity on a data source connection string. You can find more [connection string examples](search-howto-managed-identities-data-sources.md#connection-string-examples) in the managed identity article.
+Indexers use a data source object for connections to an external data source. This section explains how to specify a system-assigned managed identity or a user-assigned managed identity on a data source connection string. You can find more [connection string examples](search-how-to-managed-identities.md#connection-string-examples) in the managed identity article.
 
 > [!TIP]
 > You can create a data source connection to Cosmos DB in the Azure portal, specifying either a system or user-assigned managed identity, and then view the JSON definition to see how the connection string is formulated.

@@ -75,7 +75,7 @@ Free search services support role-based connections to Azure AI Search. However,
 
 To configure the recommended role-based access:
 
-1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 1. [Assign the following roles](search-security-rbac.md) to yourself:
 

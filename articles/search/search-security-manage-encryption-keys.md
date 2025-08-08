@@ -103,7 +103,7 @@ Enable the system-assigned managed identity for your search service. It's a two-
 
 ### [**User-managed identity**](#tab/managed-id-user)
 
-You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-user-assigned-managed-identity).
+You can use the Azure portal or Search Management REST APIs to create a user-assigned managed identity and assign the identity to your search service. For more information, see [Create a user-assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity).
 
 ### [**Register an app**](#tab/register-app)
 

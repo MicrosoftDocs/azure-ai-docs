@@ -46,7 +46,7 @@ To attach an Azure AI multi-service resource, you must provide connection inform
 
 Using the Azure portal or newer preview REST APIs and beta SDK packages, you can attach an Azure AI services multi-service resource using a managed identity and permissions. The advantage of this approach is that billing is keyless and has no dependency on regions.
 
-1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
+1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
 1. On your Azure AI services multi-service resource, [assign the identity](/azure/role-based-access-control/role-assignments-portal) to the **Cognitive Services User** role.
 
