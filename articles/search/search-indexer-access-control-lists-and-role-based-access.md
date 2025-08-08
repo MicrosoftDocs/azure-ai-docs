@@ -148,7 +148,7 @@ This section supplements  [**Index data from ADLS  Gen2**](search-howto-index-az
 
   + For`rbacScope`, configure the [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   
-  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity), you must also specify the `identity` property.
+  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
 
 <!-- Question/Comment: check this example -->
 JSON example with system managed identity:
