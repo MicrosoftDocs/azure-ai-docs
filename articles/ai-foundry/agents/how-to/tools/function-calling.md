@@ -154,8 +154,8 @@ IConfigurationRoot configuration = new ConfigurationBuilder()
     .Build();
 
 // Read necessary configuration values (Project Endpoint and Model Deployment Name)
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
+var projectEndpoint = configuration["PROJECT_ENDPOINT"];
+var modelDeploymentName = configuration["MODEL_DEPLOYMENT_NAME"];
 // Initialize the client to interact with the Azure AI Agents Persistent Client using default credentials
 PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
 
@@ -495,11 +495,12 @@ class FunctionToolExecutor {
 // Create a client and agent
 
 const projectEndpoint = process.env["PROJECT_ENDPOINT"];
+const modelName = process.env["MODEL_DEPLOYMENT_NAME"];
 
 const client = new AgentsClient(projectEndpoint, new DefaultAzureCredential());
 const functionToolExecutor = new FunctionToolExecutor();
   const functionTools = functionToolExecutor.getFunctionDefinitions();
-  const agent = await client.createAgent("gpt-4o", {
+  const agent = await client.createAgent(modelName, {
     name: "my-agent",
     instructions:
       "You are a weather bot. Use the provided functions to help answer questions. Customize your responses to the user's preferences as much as possible and use friendly nicknames for cities whenever possible.",
