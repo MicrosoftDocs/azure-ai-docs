@@ -19,6 +19,8 @@ ms.date: 08/07/2025
 >
 > This article and [What's new in Azure AI Search](whats-new.md) will announce when network security perimeter becomes generally available for Azure AI Search.
 
+A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, [Azure Storage](/azure/storage/common/storage-network-security-perimeter), and [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter).
+
 This article explains how to join an Azure AI Search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. By joining a network security perimeter, you can:
 
 * Log all access to your search service in context with other Azure resources in the same perimeter.
