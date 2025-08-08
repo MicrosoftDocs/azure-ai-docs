@@ -356,10 +356,13 @@
       },
       "manager": {
         "articles/search/**/*.md": "nitinme",
-        "articles/ai-studio/**/*.md": "scottpolly",
+        "articles/ai-foundry/**/*.md": "mcleans ",
+        "articles/ai-foundry/openai/*.md": "nitinme ",
+        "articles/ai-foundry/agents/**/*.md": "nitinme ",
+        "articles/ai-foundry/foundry-models/**/*.md": "nitinme ",
         "articles/ai-services/**/*.md": "nitinme",
-        "articles/genomics/**/*.md": "scottpolly",
-        "articles/genomics/**/*.yml": "scottpolly"
+        "articles/machine-learning/**/*.md": "mcleans ",
+        "articles/opendatasets/**/*.yml": "mcleans "
       },
       "ms.author": {
         "articles/ai-studio/**/*.md": "sgilley",

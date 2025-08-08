@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 7/28/2025
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -36,9 +36,9 @@ You can have indexes without a specified search type. By default, the Azure AI S
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Setup
 

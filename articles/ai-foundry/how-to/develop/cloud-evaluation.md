@@ -2,7 +2,6 @@
 title: Cloud Evaluation with the Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate a generative AI application in the cloud.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions

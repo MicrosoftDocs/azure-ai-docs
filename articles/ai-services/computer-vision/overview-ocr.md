@@ -17,7 +17,7 @@ ms.custom: devx-track-csharp
 # OCR - Optical Character Recognition
 
 > [!WARNING]
-> We don't recommend using this service, including the Azure AI Vision legacy [OCR API in v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) and [RecognizeText API in v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1).
+> We don't recommend using this service, including the Azure AI Vision legacy [OCR API in v3.2](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2&preserve-view=true) and [RecognizeText API in v2.1](/rest/api/computervision/recognize-printed-text/recognize-printed-text?view=rest-computervision-v2.1&preserve-view=true).
 
 [!INCLUDE [read-editions](includes/read-editions.md)]
 

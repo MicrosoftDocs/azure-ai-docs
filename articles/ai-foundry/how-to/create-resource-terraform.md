@@ -5,7 +5,6 @@ ms.topic: how-to
 ms.date: 07/22/2025
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-foundry
-manager: scottpolly 
 ms.reviewer: deeikele 
 ms.author: sgilley
 author: sdgilley

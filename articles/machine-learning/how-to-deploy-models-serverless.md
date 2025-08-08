@@ -2,7 +2,6 @@
 title: Deploy models as standard deployments
 titleSuffix: Azure Machine Learning
 description: Learn to deploy models as standard deployments, using Azure Machine Learning.
-manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to

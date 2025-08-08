@@ -94,7 +94,7 @@ This tutorial assumes you have an existing Azure AI multiservice account through
 
 1. Search for **Cognitive Services User** and then select it.
 
-1. Choose **Managed identity** and then assign your [search service managed identity](search-howto-managed-identities-data-sources.md).
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
 
 ## Set up your REST file
 

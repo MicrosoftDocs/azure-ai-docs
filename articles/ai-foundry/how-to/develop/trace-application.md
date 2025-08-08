@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: amibp
 ms.date: 05/19/2025
 ms.service: azure-ai-foundry
