@@ -8,6 +8,7 @@ ms.date: 04/14/2025
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ms.custom: references_regions
 zone_pivot_groups: azure-ai-model-fine-tune

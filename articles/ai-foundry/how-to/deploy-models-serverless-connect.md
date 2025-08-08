@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 05/19/2025
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf

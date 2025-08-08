@@ -11,6 +11,7 @@ ms.topic: how-to
 ms.date: 05/06/2025
 ms.reviewer: siarora
 ms.author: mopeakande
+manager: nitinme
 author: msakande 
 zone_pivot_groups: project-type
 # Customer intent: As an Azure AI Foundry user, I want to know how to manage and increase quotas for resources with Azure AI Foundry.

@@ -8,6 +8,7 @@ ms.date: 04/25/2025
 ms.reviewer: vkann
 reviewer: kvijaykannan
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ms.custom: 
   - references_regions

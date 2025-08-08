@@ -8,6 +8,7 @@ ms.date: 04/24/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 #Customer intent: As a Data Scientist I want to learn how to use the MedImageParse and MedImageParse 3D healthcare AI models to segment medical images.
 

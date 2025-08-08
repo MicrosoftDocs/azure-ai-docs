@@ -12,6 +12,7 @@ ms.topic: how-to
 ms.date: 05/19/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ---
 
