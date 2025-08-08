@@ -26,9 +26,9 @@ Requests to the search endpoint must be authenticated and authorized. You can us
 
 You're setting up two clients, so you need permissions on both resources.
 
-Azure AI Search is receiving the query request from your local system. Assign yourself the **Search Index Data Reader** role assignment if the hotels sample index already exists. If it doesn't exist, assign yourself **Search Service Contributor** and **Search Index Data Contributor** roles so that you can create and query the index.
+Azure AI Search receives the query request from your local system. Assign yourself the **Search Index Data Reader** role assignment if the hotels sample index already exists. If it doesn't exist, assign yourself **Search Service Contributor** and **Search Index Data Contributor** roles so that you can create and query the index.
 
-Azure OpenAI is receiving the query and the search results from your local system. Assign yourself the **Cognitive Services OpenAI User** role on Azure OpenAI.
+Azure OpenAI receives the query and the search results from your local system. Assign yourself the **Cognitive Services OpenAI User** role on Azure OpenAI.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -36,13 +36,13 @@ Azure OpenAI is receiving the query and the search results from your local syste
 
     1. In the Azure portal, find your Azure AI Search service.
 
-    1. On the left menu, select **Settings** > **Keys**, and then select either **Role-based access control** or **Both**.
+    1. On the left menu, select **Settings** > **Keys**, then select either **Role-based access control** or **Both**.
 
 1. Assign roles:
 
     1. On the left menu, select **Access control (IAM)**.
 
-    1. On Azure AI Search, select these roles to create, load, and query a search index, and then assign them to your Microsoft Entra ID user identity:
+    1. On Azure AI Search, select these roles to create, load, and query a search index, then assign them to your Microsoft Entra ID user identity:
 
        - **Search Index Data Contributor**
        - **Search Service Contributor**
@@ -55,7 +55,7 @@ It can take several minutes for permissions to take effect.
 
 ## Create an index
 
-A search index provides grounding data for the chat model. We recommend the hotels-sample-index, which can be created in minutes and runs on any search service tier. This index is created using built-in sample data.
+A search index provides grounding data for the chat model. We recommend the **hotels-sample-index**, which you can create in minutes and runs on any search service tier. This index uses built-in sample data.
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
@@ -71,7 +71,7 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. Select **Edit JSON**. 
 
-1. Scroll to the end of the index, where you can find placeholders for constructs that can be added to an index.
+1. Scroll to the end of the index, where you find placeholders for constructs that you can add to an index.
 
    ```json
    "analyzers": [],
@@ -116,7 +116,7 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. Run the following query in [Search Explorer](../../search-explorer.md) to test your index: `complimentary breakfast`.
 
-   Output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](../../search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
+   The output should look similar to the following example. Results that are returned directly from the search engine consist of fields and their verbatim values, along with metadata like a search score and a semantic ranking score and caption if you use semantic ranker. We used a [select statement](../../search-query-odata-select.md) to return just the HotelName, Description, and Tags fields.
 
    ```
    {
@@ -180,7 +180,7 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 ## Get service endpoints
 
-In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Search. Get the service endpoints so that you can provide them as variables in your code.
+In the following sections, you set up API calls to Azure OpenAI and Azure AI Search. Get the service endpoints so that you can provide them as variables in your code.
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
@@ -205,7 +205,7 @@ export AZURE_DEPLOYMENT_MODEL=<YOUR DEPLOYMENT NAME>
 
 ## Sign in to Azure
 
-You're using Microsoft Entra ID and role assignments for the connection. Make sure you're logged in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
+You're using Microsoft Entra ID and role assignments for the connection. Make sure you're signed in to the same tenant and subscription as Azure AI Search and Azure OpenAI. You can use the Azure CLI on the command line to show current properties, change properties, and to sign in. For more information, see [Connect without keys](../../search-get-started-rbac.md). 
 
 Run each of the following commands in sequence.
 
@@ -217,7 +217,7 @@ az account set --subscription <PUT YOUR SUBSCRIPTION ID HERE>
 az login --tenant <PUT YOUR TENANT ID HERE>
 ```
 
-You should now be logged in to Azure from your local device.
+You're now signed in to Azure from your local device.
 
 ## Set up the Java project
 
@@ -372,10 +372,10 @@ Create a query script that uses the Azure AI Search index and the chat model to 
     }
     ```
 
-    The preceding code does the following:
-    - Loads environment variables using `System.getenv`.
-    - Configures Azure AI Search and Azure OpenAI clients using role-based authentication.
-    - Queries Azure AI Search for hotels with complimentary breakfast using semantic search.
+    The preceding code does the following steps:
+    - Loads environment variables by using `System.getenv`.
+    - Configures Azure AI Search and Azure OpenAI clients by using role-based authentication.
+    - Queries Azure AI Search for hotels with complimentary breakfast by using semantic search.
     - Sends the search results to Azure OpenAI as context for a chat completion.
     - Prints the model's response.
 
@@ -408,7 +408,7 @@ Create a query script that uses the Azure AI Search index and the chat model to 
 
 ## Troubleshooting
 
-If you get a **Forbidden** error message, check Azure AI Search configuration to make sure role-based access is enabled.
+If you get a **Forbidden** error message, check your Azure AI Search configuration to make sure you enable role-based access.
 
 If you get an **Authorization failed** error message, wait a few minutes and try again. It can take several minutes for role assignments to become operational.
 
@@ -577,7 +577,7 @@ Tell me their description, address, tags, and the rate for one room that sleeps 
 
 ## Troubleshooting errors
 
-To debug Azure SDK errors, you can enable logging by adding the following dependency to your `pom.xml`:
+To debug Azure SDK errors, enable logging by adding the following dependency to your `pom.xml`:
 
 ```xml
 <dependency>
@@ -594,16 +594,16 @@ mvn compile exec:java -Dexec.mainClass="com.example.rag.Query" \
     -Dorg.slf4j.simpleLogger.defaultLogLevel=debug
 ```
 
-This will enable detailed logging for the Azure SDK, which can help identify [issues with authentication](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Troubleshooting), network connectivity, or other problems.
+This configuration enables detailed logging for the Azure SDK, which can help you identify [issues with authentication](https://github.com/Azure/azure-sdk-for-java/wiki/Azure-Identity-Troubleshooting), network connectivity, or other problems.
 
-Rerun the query script. You should now get informational statements from the SDKs in the output that provide more detail about any issues.
+Rerun the query script. You should now see informational statements from the SDKs in the output that provide more detail about any issues.
 
-If you see output messages related to ManagedIdentityCredential and token acquisition failures, it could be that you have multiple tenants, and your Azure sign-in is using a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties" or run `az login tenant list`.
+If you see output messages related to `ManagedIdentityCredential` and token acquisition failures, it might be that you have multiple tenants, and your Azure sign-in uses a tenant that doesn't have your search service. To get your tenant ID, search the Azure portal for "tenant properties" or run `az login tenant list`.
 
-Once you have your tenant ID, run `az login --tenant <YOUR-TENANT-ID>` at a command prompt, and then rerun the script.
+After you get your tenant ID, run `az login --tenant <YOUR-TENANT-ID>` at a command prompt, then rerun the script.
 
 ## Clean up
 
-When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+When you're working in your own subscription, it's a good idea at the end of a project to check if you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
 You can find and manage resources in the Azure portal by using the **All resources** or **Resource groups** link in the leftmost pane.
