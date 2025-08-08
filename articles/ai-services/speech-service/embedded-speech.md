@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-set-thirteen
 ---

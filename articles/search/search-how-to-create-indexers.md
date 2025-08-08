@@ -2,11 +2,9 @@
 title: Create an indexer
 titleSuffix: Azure AI Search
 description: Configure an indexer to automate data import and indexing from Azure data sources into a search index in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/17/2025
@@ -229,7 +227,7 @@ There are several ways to run an indexer:
 
 Scheduled execution is usually implemented when you have a need for incremental indexing so that you can pick up the latest changes. As such, scheduling has a dependency on change detection.
 
-Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. In terms of Azure roles, indexers don't have separate identities; a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-howto-managed-identities-data-sources.md) of a search service. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection. For more information about secure connections, see [Security in Azure AI Search](search-security-overview.md).
+Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. In terms of Azure roles, indexers don't have separate identities; a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection. For more information about secure connections, see [Security in Azure AI Search](search-security-overview.md).
 
 ## Check results
 

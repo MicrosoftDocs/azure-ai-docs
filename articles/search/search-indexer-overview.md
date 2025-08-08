@@ -2,7 +2,6 @@
 title: Indexer overview
 titleSuffix: Azure AI Search
 description: Crawl Azure SQL Database, SQL Managed Instance, Azure Cosmos DB, or Azure storage to extract searchable data and populate an Azure AI Search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -68,7 +67,7 @@ Azure Cosmos DB for Cassandra is not supported.
 
 Indexers accept flattened row sets, such as a table or view, or items in a container or folder. In most cases, it creates one search document per row, record, or item.
 
-Indexer connections to remote data sources can be made using standard Internet connections (public) or encrypted private connections when you use a shared private link. You can also set up connections to authenticate using a managed identity. For more information about secure connections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) and [Connect to a data source using a managed identity](search-howto-managed-identities-data-sources.md).
+Indexer connections to remote data sources can be made using standard Internet connections (public) or encrypted private connections when you use a shared private link. You can also set up connections to authenticate using a managed identity. For more information about secure connections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) and [Connect to a data source using a managed identity](search-how-to-managed-identities.md).
 
 ## Stages of indexing
 

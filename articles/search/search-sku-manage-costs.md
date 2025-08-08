@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/10/2025
+ms.date: 08/01/2025
 ---
 
 # Plan and manage costs of an Azure AI Search service
@@ -138,7 +138,7 @@ Search runs as a continuous service. Dedicated resources are always operational 
 
 **Can I change the billing rate (tier) of an existing search service?**
 
-Existing services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+Existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Related content
 

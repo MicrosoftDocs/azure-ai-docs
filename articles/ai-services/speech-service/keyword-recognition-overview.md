@@ -7,8 +7,8 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.reviewer: hasshah
+ms.date: 08/07/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn about keyword recognition and how to use it with the Speech service.
 ---
 

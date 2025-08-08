@@ -116,7 +116,7 @@ To get the project ID for a custom speech project in [Speech Studio](https://aka
 1. Inspect the URL in your browser. The project ID is part of the URL. For example, the project ID is `00001111-aaaa-2222-bbbb-3333cccc4444` in the following URL:
 
     ```https
-    https://speech.microsoft.com/portal/<Your-Resource-ID>/customspeech/00001111-aaaa-2222-bbbb-3333cccc4444
+    https://speech.microsoft.com/portal/<Your-Resource-ID>/customspeech/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
     ```
 
 ::: zone-end

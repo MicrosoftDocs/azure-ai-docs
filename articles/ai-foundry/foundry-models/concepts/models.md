@@ -7,7 +7,7 @@ ms.author: mopeakande
 manager: scottpolly
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 07/11/2025
+ms.date: 08/04/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
@@ -36,7 +36,7 @@ Models sold directly by Azure include all Azure OpenAI models and specific, sele
 
 ### Azure OpenAI
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../../ai-services/openai/concepts/models.md). These models include:
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../openai/concepts/models.md). These models include:
 
 - State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
 - Models that can understand and generate natural language and code
@@ -44,20 +44,32 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 
 | Models | Description |
 |--|--|
-| [GPT-4.1 series](../../../ai-services/openai/concepts/models.md#gpt-41-series) | Latest model release from Azure OpenAI |
-| [model-router](../../../ai-services/openai/concepts/models.md#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
-| [computer-use-preview](../../../ai-services/openai/concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
-| [GPT-4.5 Preview](../../../ai-services/openai/concepts/models.md#gpt-45-preview) |The latest GPT model that excels at diverse text and image tasks.  |
-| [o-series models](../../../ai-services/openai/concepts/models.md#o-series-models) |[Reasoning models](../../../ai-services/openai/how-to/reasoning.md) with advanced problem-solving and increased focus and capability.  |
-| [GPT-4o & GPT-4o mini & GPT-4 Turbo](../../../ai-services/openai/concepts/models.md#gpt-4o-and-gpt-4-turbo) | The latest most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4](../../../ai-services/openai/concepts/models.md#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
-| [GPT-3.5](../../../ai-services/openai/concepts/models.md#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
-| [Embeddings](../../../ai-services/openai/concepts/models.md#embeddings-models) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
-| [Image generation](../../../ai-services/openai/concepts/models.md#image-generation-models) | A series of models that can generate original images from natural language. |
-| [Audio](../../../ai-services/openai/concepts/models.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low-latency, "speech in, speech out" conversational interactions or audio generation. |
+| [gpt-oss](../../openai/concepts/models.md#gpt-oss) | Open-weight reasoning models |
+| [codex-mini](../../openai/concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
+| [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | The latest model release from Azure OpenAI. |
+| [model-router](../../openai/concepts/models.md#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
+| [computer-use-preview](../../openai/concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
+| [o-series models](../../openai/concepts/models.md#o-series-models) |[Reasoning models](../../openai/how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
+| [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models.md#gpt-4o-and-gpt-4-turbo) | The latest, most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [GPT-4](../../openai/concepts/models.md#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
+| [GPT-3.5](../../openai/concepts/models.md#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
+| [Embeddings](../../openai/concepts/models.md#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
+| [Image generation](../../openai/concepts/models.md#image-generation-models) | A series of models that can generate original images from natural language. |
+| [Audio](../../openai/concepts/models.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=aoai).
 
+### Black Forest Labs models sold directly by Azure
+
+The Black Forest Labs collection of image generation models include FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation. 
+
+| Model  | Type | Capabilities | Project type |
+| ------ | ---- | ------------ | ------------ |
+| [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text and image (5000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Foundry, Hub-based |
+| [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text (5000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
+
+
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Black+Forest+Labs).
 
 ### DeepSeek models sold directly by Azure
 

@@ -5,7 +5,6 @@ description: Set up an Azure blob indexer to automate indexing of blob content f
 author: gmndrg
 ms.author: gimondra
 manager: vinodva
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
@@ -39,7 +38,7 @@ This article uses the REST APIs to illustrate each step.
 
 + Blobs providing text content and metadata. If blobs contain binary content or unstructured text, consider adding [AI enrichment](cognitive-search-concept-intro.md) for image and natural language processing. Blob content can’t exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
-+ A supported network configuration and data access. At a minimum, you need read permissions in Azure Storage. A storage connection string that includes an access key gives you read access to storage content. If instead you're using Microsoft Entra logins and roles, make sure the [search service's managed identity](search-howto-managed-identities-data-sources.md) has **Storage Blob Data Reader** permissions.
++ A supported network configuration and data access. At a minimum, you need read permissions in Azure Storage. A storage connection string that includes an access key gives you read access to storage content. If instead you're using Microsoft Entra logins and roles, make sure the [search service's managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 
   By default, both search and storage accept requests from public IP addresses. If network security isn't an immediate concern, you can index blob data using just the connection string and read permissions. When you're ready to add network protections, see [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md) for guidance about data access.
 
@@ -156,7 +155,7 @@ Indexers can connect to a blob container using the following connections.
 | Managed identity connection string |
 |------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;" }`|
-|This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-howto-managed-identities-data-sources.md).|
+|This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-how-to-managed-identities.md).|
 
 | Storage account shared access signature** (SAS) connection string |
 |-------------------------------------------------------------------|

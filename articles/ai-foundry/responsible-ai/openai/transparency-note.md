@@ -37,6 +37,8 @@ Azure OpenAI provides customers with a fully managed AI service that lets develo
 | GPT-4o </br>GPT-4o-mini | ✅ | ✅ | ✅ |
 | GPT-4.1</br>GPT-4.1-mini</br>GPT-4.1-nano | ✅ | ✅ |  |
 | GPT-4.5 | ✅ | ✅ |  |
+| GPT-5 | ✅ | ✅ |  |
+| GPT-oss-120b | ✅ |  |  |
 | o1 series | ✅ | ✅ |  |
 | o3/o3-pro | ✅ | ✅| | 
 | o3-mini |✅  |  |  |
@@ -50,7 +52,7 @@ Select the tabs to see content for the relevant model type.
 
 #### [Text, code, and fine-tuned models](#tab/text)
 
-As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **o-series reasoning models** can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
+As part of the fully managed Azure OpenAI Service, the **GPT-3** models analyze and generate natural language, Codex models analyze and generate code and plain text code commentary, and **GPT-4** and **reasoning models** (including o-series models and GPT-5) can understand and generate natural language and code. These models use an autoregressive architecture, meaning they use data from prior observations to predict the most probable next word. This process is then repeated by appending the newly generated content to the original text to produce the complete generated response. Because the response is conditioned on the input text, these models can be applied to various tasks simply by changing the input text.
 
 The GPT-3 series of models are pretrained on a wide body of publicly available free text data. This data is sourced from a combination of web crawling (specifically, a filtered version of [Common Crawl](https://commoncrawl.org/the-data/), which includes a broad range of text from the internet and comprises 60 percent of the weighted pretraining dataset) and higher-quality datasets, including an expanded version of the WebText dataset, two internet-based books corpora and English-language Wikipedia. The GPT-4 base model was trained using publicly available data (such as internet data) and data that was licensed by OpenAI. The model was fine-tuned using reinforcement learning with human feedback (RLHF).
 
@@ -140,7 +142,7 @@ You can learn more about training and modeling techniques for the Whisper model 
 
 #### [Text, code, and fine-tuned models](#tab/text)
 
-The o-series reasoning models, GPT-4, GPT-3, and Codex models, and Azure OpenAI evaluation use natural language instructions and examples in the prompt to identify the task. The model then completes the task by predicting the most probable next text. This technique is known as "in-context" learning. These models are not retrained during this step but instead give predictions based on the context you include in the prompt.
+The reasoning models, GPT-4, GPT-3, Codex models, and Azure OpenAI evaluation use natural language instructions and examples in the prompt to identify the task. The model then completes the task by predicting the most probable next text. This technique is known as "in-context" learning. These models are not retrained during this step but instead give predictions based on the context you include in the prompt.
 
 There are three main approaches for in-context learning. These approaches vary based on the amount of task-specific data that is given to the model:
 
@@ -150,7 +152,7 @@ There are three main approaches for in-context learning. These approaches vary b
 Convert the questions to a command: 
 Q: Ask Constance if we need some bread 
 A: send-msg `find constance` Do we need some bread? 
-Q: Send a message to Greg to figure out if things areready for Wednesday. 
+Q: Send a message to Greg to figure out if things are ready for Wednesday. 
 A: send-msg `find greg` Is everything ready forWednesday? 
 Q: Ask Ilya if we're still having our meeting thisevening 
 A: send-msg `find ilya` Are we still having a meetingthis evening? 
@@ -183,9 +185,9 @@ Q: Ask Constance if we need some bread
 A:
 ```
 
-**Chain-of-thought** : Azure OpenAI's o-series reasoning models have new advanced reasoning capabilities using chain-of-thought (CoT) techniques. CoT techniques generate intermediate reasoning steps before providing a response, enabling them to address more complex challenges through step-by-step problem solving. o1 demonstrates improvements in benchmarks for reasoning-heavy domains such as research, strategy, science, coding and math, among others. These models have safety improvements from advanced reasoning capabilities, with the ability to reason through and apply safety rules more effectively. This results in better performance alongside safety benchmarks such as generating illicit advice, choosing stereotyped responses, and succumbing to known jailbreaks. 
+**Chain-of-thought** : Azure OpenAI's reasoning models have advanced reasoning capabilities using chain-of-thought (CoT) techniques. CoT techniques generate intermediate reasoning steps before providing a response, enabling them to address more complex challenges through step-by-step problem solving. o1 demonstrates improvements in benchmarks for reasoning-heavy domains such as research, strategy, science, coding and math, among others. These models have safety improvements from advanced reasoning capabilities, with the ability to reason through and apply safety rules more effectively. This results in better performance alongside safety benchmarks such as generating illicit advice, choosing stereotyped responses, and succumbing to known jailbreaks. 
 
-For greater detail on this family of models’ capabilities, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [Deep Research System Card](https://openai.com/index/deep-research-system-card/).
+For greater detail on this family of models’ capabilities, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), [Deep Research System Card](https://openai.com/index/deep-research-system-card/), and and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/).
 
 **Azure OpenAI Evaluation** 
 
@@ -306,7 +308,7 @@ For greater detail on 4o model's capabilities, see the [OpenAI 4o System Card](h
 #### [Text, code, and fine-tuned models](#tab/text)
 
 ### Intended uses
-The o-series, GPT-4, GPT-3, and Codex models, and Azure OpenAI evaluation can be used in multiple scenarios. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported for models with appropriate mitigations:
+Text models can be used in multiple scenarios. The following list isn't comprehensive, but it illustrates the diversity of tasks that can be supported for models with appropriate mitigations:
 
 - **Chat and conversation interaction** : Users can interact with a conversational agent that responds with responses drawn from trusted documents such as internal company documentation or tech support documentation. Conversations must be limited to answering scoped questions.
 - **Chat and conversation creation** : Users can create a conversational agent that responds with responses drawn from trusted documents such as internal company documentation or tech support documentation. Conversations must be limited to answering scoped questions.
@@ -332,16 +334,16 @@ As with base models, the use case prohibitions outlined in the [Azure OpenAI Cod
 
 Fine tuning alone is not recommended for scenarios where you want to extend your model to include out-of-domain information, where explainability or grounding are important, or where the underlying data are updated frequently.
 
-#### o-series use cases
+#### Reasoning model use cases
 
-The advanced reasoning capabilities of the o-series reasoning models may be best suited for reasoning-heavy uses in science, coding, math, and similar fields. Specific use cases could include:  
+The advanced reasoning capabilities of the reasoning models may be best suited for reasoning-heavy uses in science, coding, math, and similar fields. Specific use cases could include:  
 
 - **Complex code generation, analysis and optimization**: Algorithm generation and advanced coding tasks to help developers execute multi-step workflows, better understanding the steps taken in code development.  
 - **Advanced problem solving**: Comprehensive brainstorming sessions, strategy development and breaking down multifaceted issues.  
 - **Complex document comparison**: Analyzing contracts, case files, or legal documents to discern subtle differences in document contents.  
 - **Instruction following and workflow management**: Handling workflows that require shorter context. 
 
-For greater detail on intended uses, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/).
+For greater detail on intended uses, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/).
 
 #### Deep research use cases
 
@@ -554,15 +556,16 @@ When customers fine-tune Azure OpenAI models, it can improve model performance a
 
 To help mitigate the risks associated with advanced fine-tuned models, we have implemented additional [evaluation steps](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=azure-openai%2Cturbo%2Cpython-new&pivots=programming-language-studio#safety-evaluation-gpt-4-gpt-4o-and-gpt-4o-mini-fine-tuning---public-preview) to help detect and prevent harmful content in the training and outputs of fine-tuned models. The fine-tuned model evaluation filters are set to predefined thresholds and cannot be modified by customers; they aren't tied to any custom content filtering configuration you may have created.
 
-### o-series limitations
+### Reasoning model limitations
 
-- o-series reasoning models are best suited for use cases that involve heavy reasoning and may not perform well on some natural language tasks such as personal or creative writing when compared to earlier AOAI models. 
+- Reasoning models are best suited for use cases that involve heavy reasoning and may not perform well on some natural language tasks such as personal or creative writing when compared to earlier AOAI models. 
 - The new reasoning capabilities may increase certain types of risks, requiring refined methods and approaches towards risk management protocols and evaluating and monitoring system behavior. For example, o1's CoT reasoning capabilities have demonstrated improvements in persuasiveness, and simple in-context scheming.  
 - Users may experience that the reasoning family of models takes more time to reason through responses and should account for the additional time and latency in developing applications.
+- **Psychological influences**: If prompted and in certain circumstances, GPT-5 Reasoning in Azure OpenAI may produce outputs that suggest emotions, thoughts, or physical presence. The model could offer advice without full context, which may be unsuitable for some users. The model might express affection, impersonate others, or encourage ongoing interaction—potentially leading to users forming social relationships with AI. Developers using GPT-5 should implement safeguards and disclose risks for users of their applications. For example, users should be notified that they are interacting with an AI system and be informed of such psychological risks.
 
-For greater detail on these limitations, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/). 
+For greater detail on these limitations, see the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/). 
 
-### 4o limitations
+### GPT-4o limitations
 
 - The `gpt-4o-realtime-preview` audio translation capabilities may output non-English languages in a non-native accent. This may limit the effectiveness of language performance in audio outputs. Language supportability is in line with existing gpt-4o model versions.  
 - Users may experience that `gpt-4o-realtime-preview` is less robust in noisy environments and should account for noise sensitivity when developing applications.
@@ -570,7 +573,7 @@ For greater detail on these limitations, see the [OpenAI o1 System Card](https:/
 For more best practices, see the [OpenAI 4o System Card](https://openai.com/index/gpt-4o-system-card/). 
 
 
-### 4.1 limitations
+### GPT-4.1 limitations
 
 - The 4.1-series models introduce the ability to create inference requests with up to 1M context tokens, including images. Due to the extended length, there may be differences in system behavior and risks when compared to other models.
 - Users should thoroughly evaluate and test their applications and use cases that leverage this longer context capability and should account for this additional effort when developing applications.
@@ -614,8 +617,8 @@ Azure OpenAI service can support a wide range of applications like search, class
 - **Configure parameters to improve accuracy or groundedness of responses**. Augmenting prompts with data retrieved from trusted sources – such as by using the Azure OpenAI "on your data" feature – can reduce, but not completely eliminate, the likelihood of generating inaccurate responses or false information. Steps you can take to further improve the accuracy of responses include carefully selecting the trusted and relevant data source and configuring custom parameters such as “strictness”, “limit responses to data content” and “number of retrieved documents to be considered” as appropriate to your use cases or scenarios. Learn more about configuring these settings for [Azure OpenAI on Your Data](/azure/ai-foundry/openai/concepts/use-your-data). 
 - **Limit the length, structure, and rate of inputs and outputs.**  Restricting the length or structure of inputs and outputs can increase the likelihood that the application will stay on task and mitigate, at least in part, any potentially unfair, unreliable, or offensive behavior. Other options to reduce the risk of misuse include (i) restricting the source of inputs (for example, limiting inputs to a particular domain or to authenticated users rather than being open to anyone on the internet) and (ii) implementing usage rate limits. 
 - **Encourage human review of outputs prior to publication or dissemination.** With generative AI, there is potential for generating content that might be offensive or not related to the task at hand, even with mitigations in place. To ensure that the generated output meets the task of the user, consider building ways to remind users to review their outputs for quality prior to sharing widely. This practice can reduce many different harms, including offensive material, disinformation, and more. 
-- **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and o-series reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It's important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
-- o-series reasoning models have safeguards to prevent output of raw CoT. Attempting to extract the raw CoT, for example, by circumventing these safeguards, violates the Acceptable Use Policy for Online Services and may result in access to the service being limited. For greater detail on best practices, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), and [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/).
+- **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It's important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
+- **Avoid triggering mandatory safeguards.** Azure Direct Models may have safeguards to prevent security exploits including output of raw CoT and biosecurity content. Use of a model in a manner that creates a security exploit or evades or attempts to evade a protection on the model, including by circumventing these safeguards, violates the Acceptable Use Policy for Online Services and may result in suspension. For greater detail on best practices, visit the [OpenAI o1 System Card](https://cdn.openai.com/o1-system-card-20241205.pdf), [o3-mini System Card](https://openai.com/index/o3-mini-system-card/), [o3/o4-mini System Card](https://openai.com/index/o3-o4-mini-system-card/), and [GPT-5 System Card](https://openai.com/index/gpt-5-system-card/).
 
 #### Best practices and recommendations for fine tuning
 
@@ -631,7 +634,7 @@ To mitigate the risks and limitations of fine-tuning models on Azure OpenAI, we 
 - **Configure parameters to improve accuracy or groundedness of responses**. Augmenting prompts with data retrieved from trusted sources – such as by using the Azure OpenAI "on your data" feature – can reduce, but not completely eliminate, the likelihood of generating inaccurate responses or false information. Steps you can take to further improve the accuracy of responses include carefully selecting the trusted and relevant data source and configuring custom parameters such as “strictness”, “limit responses to data content” and “number of retrieved documents to be considered” as appropriate to your use cases or scenarios. Learn more about configuring these settings for [Azure OpenAI on Your Data](/azure/ai-foundry/openai/concepts/use-your-data). 
 - **Limit the length, structure, and rate of inputs and outputs.**  Restricting the length or structure of inputs and outputs can increase the likelihood that the application will stay on task and mitigate, at least in part, any potentially unfair, unreliable, or offensive behavior. Other options to reduce the risk of misuse include (i) restricting the source of inputs (for example, limiting inputs to a particular domain or to authenticated users rather than being open to anyone on the internet) and (ii) implementing usage rate limits. 
 - **Encourage human review of outputs prior to publication or dissemination.** With generative AI, there is potential for generating content that might be offensive or not related to the task at hand, even with mitigations in place. To ensure that the generated output meets the task of the user, consider building ways to remind users to review their outputs for quality prior to sharing widely. This practice can reduce many different harms, including offensive material, disinformation, and more. 
-- **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and o-series reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It's important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
+- **Implement additional scenario-specific mitigations.**  Refer to the mitigations outlined in [Evaluating and integrating Azure OpenAI for your use](#evaluating-and-integrating-azure-openai-natural-language-and-vision-models-for-your-use) including content moderation strategies. These recommendations do not represent every mitigation required for your application. Newer models such as GPT-4o and reasoning models may provide responses in sensitive scenarios and are more likely to attempt to reduce potentially harmful outputs in their responses rather than refuse to respond altogether. It's important to understand this behavior when evaluating and integrating content moderation for your use case; adjustments to filtering severity may be needed depending on your use case.
 
 
 #### [Speech models](#tab/speech)
@@ -694,4 +697,4 @@ The OpenAI Whisper model is also available within Azure AI Speech services, enha
 
 - [Limited access to Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/limited-access) 
 - [Code of Conduct for the Azure OpenAI Service | Microsoft Learn](/legal/ai-code-of-conduct?context=%2Fazure%2Fcognitive-services%2Fopenai%2Fcontext%2Fcontext) 
-- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy) 
+- [Data, privacy, and security for Azure OpenAI Service - Azure AI services | Microsoft Learn](/azure/ai-foundry/responsible-ai/openai/data-privacy)

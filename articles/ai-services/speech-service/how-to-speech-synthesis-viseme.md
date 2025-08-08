@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: yulili
 ms.custom: references_regions, devx-track-extended-java, devx-track-js, devx-track-python
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
