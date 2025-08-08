@@ -51,7 +51,7 @@ To configure role-based access:
 
 ## Configure a managed identity
 
-If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure your search service to use a managed identity](search-howto-managed-identities-data-sources.md). You can then assign roles on other Azure services that authorize your search service to access data and operations.
+If you plan to use indexers for automated indexing, applied AI, or integrated vectorization, you should [configure your search service to use a managed identity](search-how-to-managed-identities.md). You can then assign roles on other Azure services that authorize your search service to access data and operations.
 
 For integrated vectorization, your search service identity needs the following roles:
 

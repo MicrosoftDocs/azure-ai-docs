@@ -32,7 +32,7 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 
 + Blobs containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
-+ Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Storage Blob Data Reader** permissions.
++ Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 
 + Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
@@ -130,7 +130,7 @@ Indexers can connect to a blob container using the following connections.
 | Managed identity connection string |
 |------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;" }`|
-|This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-howto-managed-identities-data-sources.md).|
+|This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-how-to-managed-identities.md).|
 
 | Storage account shared access signature** (SAS) connection string |
 |-------------------------------------------------------------------|

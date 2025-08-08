@@ -101,7 +101,7 @@ You also need a role assignment for accessing the Document Intelligence Layout m
 
 1. Search for **Cognitive Services User** and then select it.
 
-1. Choose **Managed identity** and then assign your [search service managed identity](search-howto-managed-identities-data-sources.md).
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
 
 ### Assign roles in Azure OpenAI
 
@@ -113,7 +113,7 @@ You also need a role assignment for accessing the Document Intelligence Layout m
 
 1. Search for **Cognitive Services OpenAI User** and then select it.
 
-1. Choose **Managed identity** and then assign your [search service managed identity](search-howto-managed-identities-data-sources.md).
+1. Choose **Managed identity** and then assign your [search service managed identity](search-how-to-managed-identities.md).
 
 For more information, see [Role-based access control for Azure OpenAI in Azure AI Foundry Models](/azure/ai-foundry/openai/how-to/role-based-access-control).
 

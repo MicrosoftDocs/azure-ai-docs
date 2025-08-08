@@ -38,7 +38,7 @@ If you don't have an Azure subscription, create a [free account](https://azure.m
 
   We use Azure OpenAI in this tutorial. Other providers are listed so that you know your options for integrated vectorization.
 
-- Azure AI Search, Basic tier or higher provides a [managed identity](search-howto-managed-identities-data-sources.md) used in role assignments.
+- Azure AI Search, Basic tier or higher provides a [managed identity](search-how-to-managed-identities.md) used in role assignments.
 
 ## Review models supporting built-in vectorization
 
@@ -116,7 +116,7 @@ Assign yourself and the search service identity permissions on Azure OpenAI. The
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. Configure Azure AI Search to [use a system-managed identity](search-howto-managed-identities-data-sources.md).
+1. Configure Azure AI Search to [use a system-managed identity](search-how-to-managed-identities.md).
 
 1. Find your Azure OpenAI resource.
 

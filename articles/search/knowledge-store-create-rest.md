@@ -54,7 +54,7 @@ The skillset in this example uses Azure AI Services for enrichments. Because the
   ```
 
 > [!NOTE]
-> See [Connect using a managed identity](search-howto-managed-identities-data-sources.md) if you don't want to provide sensitive data on the connection string. 
+> See [Connect using a managed identity](search-how-to-managed-identities.md) if you don't want to provide sensitive data on the connection string. 
 
 ## Copy a key and URL
 
