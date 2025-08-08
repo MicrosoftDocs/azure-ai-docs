@@ -16,7 +16,7 @@ ms.custom:
 
 # Configure a search service to connect using a managed identity
 
-You can use Microsoft Entra ID security principals and role assignments for outbound connections from Azure AI Search to resources providing data, applied AI, or vectorization during indexing or queries.
+You can use Microsoft Entra ID security principals and role assignments for outbound connections from Azure AI Search to other Azure resources providing data, applied AI, or vectorization during indexing or queries.
 
 To use roles on an outbound connection, first configure your search service to use either a [system-assigned or user-assigned managed identity](/azure/active-directory/managed-identities-azure-resources/overview) as the security principal for your search service in a Microsoft Entra tenant. Once you have a managed identity, you can assign roles for authorized access. Managed identities and role assignments eliminate the need for passing secrets and credentials in a connection string or code.
 
@@ -26,7 +26,7 @@ To use roles on an outbound connection, first configure your search service to u
 
 + An Azure resource that accepts incoming requests from a Microsoft Entra security principal that has a valid role assignment.
 
-+ You must be subscription owner or administrator to create a managed identity.
++ To create a managed identity, you must be an Owner or User Access Administrator roles. To assign roles, you must be an Owner, User Access Administrator, Role-based Access Control Administrator, or a member of a custom role with Microsoft.Authorization/roleAssignments/write permissions.
 
 ## Supported scenarios
 
@@ -35,16 +35,15 @@ You can use managed identities for these scenarios.
 | Scenario | System  | User-assigned |
 |----------|-------------------------|---------------------------------|
 | [Connect to indexer data sources](search-indexer-overview.md) <sup>1</sup>| Yes | Yes <sup>2</sup>  |
-| Connect to embedding and chat completion models in Azure OpenAI, Azure AI Foundry, and Azure Functions via skills/vectorizers <sup>23</sup> | Yes | Yes |
+| Connect to embedding and chat completion models in Azure OpenAI, Azure AI Foundry, and Azure Functions via skills/vectorizers <sup>3</sup> | Yes | Yes |
 | [Connect to Azure Key Vault for customer-managed keys](search-security-manage-encryption-keys.md) | Yes | Yes |
 | [Connect to Debug sessions (hosted in Azure Storage)](cognitive-search-debug-session.md)	<sup>1</sup> | Yes | No |
 | [Connect to an enrichment cache (hosted in Azure Storage)](enrichment-cache-how-to-configure.md) <sup>1,</sup> <sup>4</sup> | Yes | Yes <sup>2</sup>|
 | [Connect to a Knowledge Store (hosted in Azure Storage)](knowledge-store-create-rest.md) <sup>1</sup>| Yes | Yes <sup>2</sup>|
 
-<sup>1</sup> For connectivity between search and storage, your network security configuration imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to storage via the trusted service exception or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
+<sup>1</sup> For connectivity between search and storage, network security imposes constraints on which type of managed identity you can use. Only a system managed identity can be used for a same-region connection to Azure Storage, and that connection must be via the *trusted service exception* or resource instance rule. See [Access to a network-protected storage account](search-indexer-securing-resources.md#access-to-a-network-protected-storage-account) for details.
 
-<sup>2</sup> User-assigned managed identities can be used in data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a  connection string. Be sure to switch to a preview API if you set 
-[SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the `identity` in a data source connection.
+<sup>2</sup> User-assigned managed identities can be used in data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a  connection string. Be sure to switch to a preview API if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the `identity` in a data source connection.
 
 <sup>3</sup> Connections to Azure OpenAI,  Azure AI Foundry, and Azure Functions via skills/vectorizers include: [Custom skill](cognitive-search-custom-skill-interface.md), [Custom vectorizer](vector-search-vectorizer-custom-web-api.md), [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure OpenAI vectorizer](vector-search-how-to-configure-vectorizer.md), [AML skill](cognitive-search-aml-skill.md) and [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md).
 
@@ -52,9 +51,11 @@ You can use managed identities for these scenarios.
 
 ## Create a system managed identity
 
-You can have one system-assigned managed identity for each service. It's unique to your search service and bound to the service for its lifetime. 
+A system-assigned managed identity is a Microsoft Entra ID security principal that's automatically created and linked to an Azure resource, such as an Azure AI Search service.
 
-When you enable a system-assigned managed identity, Microsoft Entra ID creates a security principal for your search service that can be used to authenticate to other Azure resources. You can then use this identity in role assignments for authorized access to data and operations.
+You can have one system-assigned managed identity for each search service. It's unique to your search service and bound to the service for its lifetime. 
+
+When you enable a system-assigned managed identity, Microsoft Entra ID creates a security principal for your search service that's used to authenticate to other Azure resources. You can then use this identity in role assignments for authorized access to data and operations.
 
 ### [**Azure portal**](#tab/portal-sys)
 
@@ -122,9 +123,11 @@ The response includes a confirmation and an object identifier for the system-ass
 
 ## Create a user-assigned managed identity
 
-A user-assigned managed identity is an Azure resource that can be scoped to subscriptions, resource groups, or resource types. You can create multiple user-assigned managed identities for more granularity in role assignments. For example, you might want separate identities for different applications and scenarios.
+A user-assigned managed identity is an Azure resource that can be scoped to subscriptions, resource groups, or resource types. 
 
-The steps are as follows:
+You can create multiple user-assigned managed identities for more granularity in role assignments. For example, you might want separate identities for different applications and scenarios. As an independently created and managed resource, it's not bound to the service itself.
+
+The steps for setting up a user-assigned managed identity are as follows:
 
 + In your Azure subscription, create a user-assigned managed identity.
 
@@ -219,25 +222,18 @@ The following steps illustrate the role assignment workflow. This example is for
 
 ## Connection string examples
 
-A system managed identity is indicated when a connection string is the unique resource ID of a Microsoft Entra ID-aware service or application. A user-assigned managed identity is specified through an `identity` property.
-
-Once a managed identity is defined for the search service and given a role assignment, outbound connections can be modified to use the unique resource ID of the other Azure resource. 
-
-You can use generally available REST API versions and Azure SDK packages for connections using a system-assigned managed identity.
-
-User-assigned managed identities can also be used in indexer data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a data source connection string. Be sure to switch to a preview version if you set 
-[SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the identity in a data source connection.
+Recall from the scenarios description that you can use managed identities in connection strings to other Azure resources. This section provides examples. You can use generally available REST API versions and Azure SDK packages for connections using a system-assigned managed identity.
 
 > [!TIP]
 > You can create most of these objects in the Azure portal, specifying either a system or user-assigned managed identity, and then view the JSON definition to get the connection string.
 
 Here are some examples of connection strings for various scenarios.
 
-[**Blob data source (system):**](search-howto-managed-identities-storage.md)
+[**Blob data source (system managed identity):**](search-howto-managed-identities-storage.md)
 
 An indexer data source includes a `credentials` property that determines how the connection is made to the data source. The following example shows a connection string specifying the unique resource ID of a storage account. 
 
-Microsoft Entra ID authenticates the request using the system managed identity of the search service. Notice that the connection string doesn't include a container. In a data source definition, a container name is specified in the `container` property (not shown), not the connection string.
+A system managed identity is indicated when a connection string is the unique resource ID of a Microsoft Entra ID-aware service or application. A user-assigned managed identity is specified through an `identity` property.
 
 ```json
 "credentials": {
@@ -245,9 +241,11 @@ Microsoft Entra ID authenticates the request using the system managed identity o
     }
 ```
 
-[**Blob data source (user):**](search-howto-managed-identities-storage.md)
+[**Blob data source (user managed identity):**](search-howto-managed-identities-storage.md)
 
-A search request to Azure Storage can also be made under a user-assigned managed identity. The search service user identity is specified in the `identity `property.
+User-assigned managed identities can also be used in indexer data source connection strings. However, only the newer preview REST APIs and preview packages support a user-assigned managed identity in a data source connection string. Be sure to switch to a preview version if you set [SearchIndexerDataUserAssignedIdentity](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true#searchindexerdatauserassignedidentity) as the identity in a data source connection.
+
+A search service user identity is specified in the `identity `property.
 
 ```json
 "credentials": {
@@ -309,6 +307,10 @@ A [custom skill](cognitive-search-custom-skill-web-api.md) targets the endpoint 
   "outputs": [ ...]
 }
 ```
+
+## Connection examples for models
+
+For connections made using managed identities, this section shows examples of connection information used by a search service to connect to a model on another resource. A connection through a system managed identity is transparent; the identity and roles are in place, and the connection succeeds if they are properly configured. In contrast, a user managed identity requires extra connection properties.
 
 [**Azure OpenAI embedding skill**](cognitive-search-skill-azure-openai-embedding.md) and [**Azure OpenAI vectorizer:**](vector-search-how-to-configure-vectorizer.md)
 

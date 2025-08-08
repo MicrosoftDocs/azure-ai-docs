@@ -2,7 +2,6 @@
 title: How to generate embeddings with Azure AI Foundry Models service
 titleSuffix: Azure AI Foundry
 description: Learn how to generate embeddings with Azure AI Foundry Models
-manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference

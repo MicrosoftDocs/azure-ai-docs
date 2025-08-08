@@ -3,12 +3,12 @@ title: MedImageParse and MedImageParse 3D healthcare AI models with Azure AI Fou
 titleSuffix: Azure AI Foundry
 description: Learn how to use MedImageParse and MedImageParse 3D Healthcare AI models with Azure AI Foundry.
 ms.service: azure-ai-foundry
-manager: scottpolly
 ms.topic: how-to
 ms.date: 04/24/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 #Customer intent: As a Data Scientist I want to learn how to use the MedImageParse and MedImageParse 3D healthcare AI models to segment medical images.
 
