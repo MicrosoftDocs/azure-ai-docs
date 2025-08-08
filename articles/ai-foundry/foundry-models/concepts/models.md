@@ -97,6 +97,16 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi). There are also several Microsoft models available [from partners and community](#microsoft).
 
+### Mistral models sold directly by Azure
+
+Mistral AI offers...
+
+| Model | Type | Capabilities | Project type 
+| ------ | ---- | ------------ | ------------ |
+| [mistral-document-ai-2505]() | embeddings | - **Input:** image, text ( tokens) <br /> - **Output:** text () <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:**  | Foundry |
+
+See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).  There are also several Mistral models available [from partners and community](#mistral-ai).
+
 
 ### xAI models sold directly by Azure
 
@@ -108,18 +118,6 @@ xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise 
 | [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai)<sup>1</sup> | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text | Foundry, Hub-based |
 
 See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xai).
-
-### Mistral models sold directly by Azure
-
-Mistral AI offers...
-
-Mistral AI also offers models under [Azure models from partners and community](#mistral-ai). 
-
-
-| Model | Type | Capabilities | Project type 
-| ------ | ---- | ------------ | ------------ |
-| [mistral-document-ai-2505]() | embeddings | - **Input:** image, text ( tokens) <br /> - **Output:** text () <br /> - **Languages:** en <br />  - **Tool calling:**  <br /> - **Response formats:**  | Foundry |
-
 
 
 ## Models from partners and community
