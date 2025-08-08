@@ -2,7 +2,6 @@
 title: Create and Configure your Storage Account for Evaluations
 titleSuffix: Azure AI Foundry
 description:  Learn how to create and configure your storage account for Azure AI Foundry evaluations.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 06/30/2025

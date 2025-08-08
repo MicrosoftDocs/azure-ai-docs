@@ -2,7 +2,6 @@
 title: Azure AI Foundry Rollout Across My Organization
 titleSuffix: Azure AI Foundry
 description: Learn how to plan the rollout of Azure AI Foundry across your organization, including environment setup, data isolation, and governance.
-manager: scottpolly
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article

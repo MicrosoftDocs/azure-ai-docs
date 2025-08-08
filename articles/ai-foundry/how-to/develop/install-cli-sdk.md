@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Instructions for installing the Azure AI Foundry SDK and the Azure CLI
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: dantaylo
 ms.date: 04/22/2025
 ms.service: azure-ai-foundry

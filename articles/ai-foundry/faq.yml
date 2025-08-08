@@ -3,7 +3,6 @@ metadata:
   title: Azure AI Foundry frequently asked questions
   titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Azure AI services.
-  manager: scottpolly
   ms.service: azure-ai-foundry
   ms.custom:
     - build-2024

@@ -2,7 +2,6 @@
 title: Azure AI Foundry feature availability across clouds regions
 titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 07/30/2025

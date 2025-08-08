@@ -2,7 +2,6 @@
 title: View AI red teaming results in Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to view the results of the AI red teaming agent's scan of a Generative AI application in Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
