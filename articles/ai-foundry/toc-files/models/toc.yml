@@ -113,6 +113,7 @@ items:
     displayName: global, Global, globalstandard, global-standard, Global-Standard, standard, provisioned 
   - name: Azure OpenAI Models
     href: ../../openai/concepts/models.md
+    displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
   - name: Model retirements
     href: ../../openai/concepts/model-retirements.md
   - name: What's new
@@ -167,6 +168,7 @@ items:
       - name: Responses API
         href: ../../openai/how-to/responses.md
       - name: Reasoning models
+        displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
         href: ../../openai/how-to/reasoning.md
       - name: Chat completions API
         href: ../../openai/how-to/chatgpt.md
@@ -180,6 +182,7 @@ items:
           href: ../../openai/how-to/model-router.md
         - name: Model router concepts
           href: ../../openai/concepts/model-router.md
+          displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini
       - name: Function calling
         href: ../../openai/how-to/function-calling.md
       - name: Predicted outputs
