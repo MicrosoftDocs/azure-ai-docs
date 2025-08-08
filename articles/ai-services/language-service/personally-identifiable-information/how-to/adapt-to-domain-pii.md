@@ -11,7 +11,7 @@ ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
-# Adapting Personally Identifying Information (PII) to your domain
+# Adapt Personally Identifying Information (PII) to your domain
 
 ## Overview
 
