@@ -10,12 +10,16 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 08/01/2025
+ms.date: 08/08/2025
 ---
 
 # Security in Azure AI Search
 
-This article describes the security features in Azure AI Search that protect data and operations.
+Azure AI Search provides comprehensive security controls across network access, authentication, authorization, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains: **network traffic patterns** (inbound client requests, outbound service connections, and internal Microsoft-managed traffic), **access control mechanisms** (Microsoft Entra ID with role-based access control or API key authentication), and **data protection** (encryption in transit via TLS 1.2/1.3, encryption at rest with optional customer-managed keys for double encryption).
+
+A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. For enterprise scenarios requiring granular permissions, you can implement document-level access controls and leverage network security perimeters to create logical boundaries around your Azure PaaS resources. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
+
+This article details the implementation options for each security layer to help you design appropriate security architectures for development and production environments.
 
 ## Data flow (network traffic patterns)
 
@@ -110,6 +114,19 @@ The private endpoint uses an IP address from the virtual network address space f
 :::image type="content" source="media/search-security-overview/inbound-private-link-azure-cog-search.png" alt-text="sample architecture diagram for private endpoint access":::
 
 While this solution is the most secure, using more services is an added cost so be sure you have a clear understanding of the benefits before diving in. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/). For more information about how these components work together, [watch this video](#watch-this-video). Coverage of the private endpoint option starts at 5:48 into the video. For instructions on how to set up the endpoint, see [Create a Private Endpoint for Azure AI Search](service-create-private-endpoint.md).
+
+### Network security perimeter
+
+A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, Azure Storage, and Azure OpenAI. Inbound client connections and service-to-service connections occur within the boundary, which simplifies and strengthens your defenses against unauthorized access.
+
+It's common in Azure AI Search solutions to use multiple Azure resources. The following resources can all be joined to an [existing network security perimeter](/azure/private-link/create-network-security-perimeter-portal):
+
++ [Azure AI Search](search-security-network-security-perimeter.md)
++ [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter)
++ [Azure Storage](/azure/storage/common/storage-network-security-perimeter)
++ [Azure Monitor](/azure/azure-monitor/fundamentals/network-security-perimeter)
+
+For a complete list of eligible services, see [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources).
 
 ## Authentication
 
