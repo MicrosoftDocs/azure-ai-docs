@@ -144,7 +144,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 1. To request quota from the quota view, expand any of the groupings listed in the deployment column until you see the model deployments and their associated information.
 
-    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal, with one of the groupings expanded.." lightbox="../media/cost-management/model-quota.png":::
+    :::image type="content" source="../media/cost-management/model-quota.png" alt-text="Screenshot of the Model quota page in Azure AI Foundry portal, with one of the groupings expanded." lightbox="../media/cost-management/model-quota.png":::
  
     - Use the **Show all quota** toggle to display all quota or only the currently allocated quota.
     - Use the **Group by** dropdown to group the list by **Quota type, Region & Model**, or **Quota type, Model & Region**, or **None**. The **None** option displays a flat list of model deployments, rather than a nested list.
