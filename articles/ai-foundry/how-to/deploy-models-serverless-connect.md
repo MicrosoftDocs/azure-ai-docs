@@ -2,7 +2,6 @@
 title: Consume serverless APIs from a different project or hub
 titleSuffix: Azure AI Foundry
 description: Learn how to consume serverless APIs from a different project or hub.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 05/19/2025

@@ -2,7 +2,6 @@
 title: Use the chat playground in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Use this article to learn how to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024

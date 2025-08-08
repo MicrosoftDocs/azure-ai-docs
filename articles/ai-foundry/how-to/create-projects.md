@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: deeikele
 ms.date: 07/03/2025
 ms.service: azure-ai-foundry

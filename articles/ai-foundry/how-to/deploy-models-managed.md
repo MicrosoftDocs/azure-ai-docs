@@ -2,7 +2,6 @@
 title: How to deploy and inference a managed compute deployment with code
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy and inference a managed compute deployment with code.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024

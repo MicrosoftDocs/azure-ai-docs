@@ -2,7 +2,6 @@
 title: Continuously Evaluate your AI agents
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to continuously evaluate AI agents.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 07/31/2025

@@ -2,7 +2,6 @@
 title: Deployment options for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about deployment options for Azure AI Foundry Models.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 06/30/2025

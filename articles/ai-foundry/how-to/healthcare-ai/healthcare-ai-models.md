@@ -3,7 +3,6 @@ title: Foundation models for healthcare in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn about AI models that are applicable to the health and life science industry.
 ms.service: azure-ai-foundry
-manager: scottpolly
 ms.topic: concept-article
 ms.date: 04/24/2025
 ms.reviewer: itarapov

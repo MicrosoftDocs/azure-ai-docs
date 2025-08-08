@@ -2,7 +2,6 @@
 title: Python tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Python tool for flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: 
   - ignite-2023

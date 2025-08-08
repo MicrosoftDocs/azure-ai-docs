@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
 ms.date: 07/16/2025
 ms.service: azure-ai-foundry

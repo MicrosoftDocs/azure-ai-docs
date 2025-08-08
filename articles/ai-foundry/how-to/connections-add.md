@@ -3,7 +3,6 @@
 title: Add a new connection to your project
 titleSuffix: Azure AI Foundry
 description: Learn how to add a new connection to your hub based or Foundry project.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023

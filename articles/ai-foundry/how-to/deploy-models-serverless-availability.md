@@ -2,7 +2,6 @@
 title: Region availability for models in serverless APIs
 titleSuffix: Azure AI Foundry
 description: Learn about the regions where each model is available for deployment in serverless APIs via Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 07/24/2025

@@ -2,7 +2,6 @@
 title: Azure AI Foundry Playgrounds
 titleSuffix: Azure AI Foundry
 description: Learn to use Azure AI Foundry playgrounds for exploration, experimentation, and iteration with different models.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 06/09/2025

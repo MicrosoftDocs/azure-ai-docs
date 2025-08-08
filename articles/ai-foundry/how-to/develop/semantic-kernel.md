@@ -8,7 +8,6 @@ ms.reviewer: taochen
 ms.date: 02/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
-manager: scottpolly
 ---
 
 # Develop applications with Semantic Kernel and Azure AI Foundry
