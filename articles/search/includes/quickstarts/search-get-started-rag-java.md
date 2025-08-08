@@ -1,10 +1,10 @@
 ---
 manager: nitinme
-author: haileytap
-ms.author: haileytapia
+author: KarlErickson
+ms.author: karler
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/31/2025
+ms.date: 08/08/2025
 ---
 ## Prerequisites
 
