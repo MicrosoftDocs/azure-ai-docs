@@ -156,7 +156,7 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
 
     ```python
     model_id="azureml://registries/azureml-bria/models/Bria-2.3-Fast"
-    subscription_name="Meta-Llama-3-8B-Instruct"
+    subscription_name="Bria-2.3-Fast""
 
     marketplace_subscription = MarketplaceSubscription(
         model_id=model_id,
@@ -184,7 +184,7 @@ Standard deployments can deploy both Microsoft and non-Microsoft offered models.
                 "type": "String"
             },
             "subscription_name": {
-                "defaultValue": "Meta-Llama-3-8B-Instruct",
+                "defaultValue": "Bria-2.3-Fast",
                 "type": "String"
             },
             "model_id": {
@@ -483,7 +483,7 @@ To delete the associated model subscription:
 
 ```azurecli
 az ml marketplace-subscription delete \
-    --name "Meta-Llama-3-8B-Instruct"
+    --name "bria-2.3-Fast"
 ```
 
 # [Python SDK](#tab/python)
