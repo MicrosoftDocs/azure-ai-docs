@@ -25,7 +25,7 @@ Some other scenarios where this API can be used are:
 * A browser extension that allows users to ask a question over the content being currently displayed on the browser page.
 * A health bot that takes queries from users and provides answers based on the medical content that the bot identifies as most relevant to the user query.
 
-Here is an example of a sample request:
+Here's an example of a sample request:
 
 ## Sample request
 
@@ -141,7 +141,7 @@ Language code|Language
 `be`|Belarusian
 `bg`|Bulgarian
 `bn`|Bengali
-`ca`|Catalan, Valencian
+`ca`|Catalan
 `ckb`|Central Kurdish
 `cs`|Czech
 `cy`|Welsh
