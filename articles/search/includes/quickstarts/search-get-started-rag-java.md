@@ -259,17 +259,17 @@ Set up a Maven project with the required dependencies.
            <dependency>
                <groupId>com.azure</groupId>
                <artifactId>azure-search-documents</artifactId>
-               <version>11.6.4</version>
-           </dependency>
-           <dependency>
-               <groupId>com.azure</groupId>
-               <artifactId>azure-ai-openai</artifactId>
-               <version>1.0.0-beta.8</version>
+               <version>11.7.8</version>
            </dependency>
            <dependency>
                <groupId>com.azure</groupId>
                <artifactId>azure-identity</artifactId>
-               <version>1.11.4</version>
+               <version>1.16.3</version>
+           </dependency>
+           <dependency>
+               <groupId>com.azure</groupId>
+               <artifactId>azure-ai-openai</artifactId>
+               <version>1.0.0-beta.16</version>
            </dependency>
        </dependencies>
    </project>
