@@ -231,7 +231,7 @@ Indexers are one of the few subsystems that make overt outbound calls to other A
 
 ## Check results
 
-[Monitor indexer status](search-howto-monitor-indexers.md) to check for status. Successful execution can still include warning and notifications. Be sure to check both successful and failed status notifications for details about the job.
+[Monitor indexer status](search-monitor-indexers.md) to check for status. Successful execution can still include warning and notifications. Be sure to check both successful and failed status notifications for details about the job.
 
 For content verification, [run queries](search-query-create.md) on the populated index that return entire documents or selected fields.
 
