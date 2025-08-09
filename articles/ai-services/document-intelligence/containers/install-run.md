@@ -283,7 +283,7 @@ services:
     container_name: azure-cognitive-service-read
     image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
     environment:
-      - EULA=accept
+        - EULA=accept
         - billing={FORM_RECOGNIZER_ENDPOINT_URI}
         - apiKey={FORM_RECOGNIZER_KEY}
 ```
@@ -671,7 +671,7 @@ services:
     container_name: azure-cognitive-service-read
     image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
     environment:
-      - EULA=accept
+        - EULA=accept
         - billing={FORM_RECOGNIZER_ENDPOINT_URI}
         - apiKey={FORM_RECOGNIZER_KEY}
 ```
