@@ -34,8 +34,6 @@ There are three options for voice live language processing:
 1. Single language configuration
 1. Multilingual configuration using up to 10 defined languages
 
-Custom speech models can be used with ´´´Single language configuration´´´ or ´´´Multilingual configuration using up to 10 defined languages´´´´.
-
 The current multi-lingual model supports the following languages:
 - Chinese (China) [zh-CN]
 - English (Australia) [en-AU]
