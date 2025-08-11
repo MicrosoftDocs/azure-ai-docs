@@ -26,7 +26,7 @@ In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed f
 
 + Combining the best results into a unified response that your LLM can use to generate answers with your proprietary content.
 
-This high-performance pipeline delivers fast, comprehensive answers to complex questions.
+This high-performance pipeline helps you return comprehensive answers to complex questions quickly.
 
 Programmatically, agentic retrieval is supported through a new [Knowledge Agents object](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) in the 2025-05-01-preview data plane REST API and in Azure SDK preview packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
@@ -84,9 +84,8 @@ Agentic retrieval has these components:
 | Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. Queries are keyword, vector, and hybrid. Results are merged and ranked. |
 | Semantic ranker | Azure AI Search | Provides L2 reranking, promoting the most relevant matches. Semantic ranker is required for agentic retrieval. |
 
-Your solution should include a tool or app that drives the pipeline. An agentic retrieval pipeline concludes with the response object that provides grounding data. Your solution should take it from there, handling the response by passing it to an LLM to generate an answer, which you render inline in the user conversation. For more information about this step, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
+Your solution should include a tool or app that drives the pipeline. An agentic retrieval pipeline concludes with the response object that provides grounding data. Your solution should take it from there, handling the response by passing it to an LLM to generate an answer, which you render inline in the user conversation. For more information about this step, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md). -->
 
-<!-- Insert multiquery pipeline diagram here -->
 Agentic retrieval has these processes:
 
 + Requests for agentic retrieval are initiated by calls to a knowledge agent on Azure AI Search.
@@ -96,7 +95,7 @@ Agentic retrieval has these processes:
 + Results are ranked and merged.
 + Knowledge agent responses are formulated and returned as a three-part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
 
-Your search index determines query execution and any optimizations that occur during query execution. This includes your semantic configuration, as well as optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters). -->
+Your search index determines query execution and any optimizations that occur during query execution. This includes your semantic configuration, as well as optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters).
 
 ## Architecture and workflow
 
