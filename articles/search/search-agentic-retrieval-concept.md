@@ -18,13 +18,15 @@ ms.custom:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's characterized by:
+In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It works by:
 
-+ Using a large language model (LLM) to break down a complex query into smaller subqueries. You can specify whether to include contextual chat history as a subquery.
++ Using a large language model (LLM) to break down complex queries into smaller, focused subqueries. You can include chat history for additional context.
 
-+ Running the subqueries run in parallel, each one searching for the most relevant content in your index. 
++ Running multiple subqueries simultaneously to search your index. Each subquery is semantically reranked to find the most relevant matches.
 
-+ Combining the results into a long unified string that's sent back to your LLM for response generation, using your proprietary content to formulate the answer.
++ Combining the best results into a unified response that your LLM can use to generate answers with your proprietary content.
+
+This high-performance pipeline delivers fast, comprehensive answers to complex questions.
 
 Programmatically, agentic retrieval is supported through a new Knowledge Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
@@ -59,6 +61,12 @@ Agentic retrieval invokes the entire query processing pipeline multiple times fo
 Agentic retrieval is designed for a conversational search experience that includes an LLM. An important part of agentic retrieval is how the LLM breaks down an initial query into subqueries, which are more effective at locating the best matches in your index.
 
 :::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
+
+The workflow includes:
+
+*Query planning* where the search engine calls an LLM (a chat completion model) that you provide. The output is one or more subqueries. This step is mostly internal. You can review the subqueries that are generated, but query planning isn't intended to be customizable or configurable.
+
+*
 
 Agentic retrieval has these components:
 
