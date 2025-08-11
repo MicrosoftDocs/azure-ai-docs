@@ -8,7 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 08/01/2025
+ms.date: 08/08/2025
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal
@@ -76,7 +76,7 @@ The date you created your service partially determines its [upgrade eligibility]
 
 You can't undo a service upgrade. Before you proceed, make sure that you want to permanently increase the [storage limit](#higher-storage-limits) and [vector index size](#higher-vector-limits) of your search service. We recommend that you test this operation in a nonproduction environment.
 
-The availability of your search service during an upgrade depends on how many replicas you've provisioned. With two or more replicas, your service remains available while one replica is updated. For more information, see [Reliability in Azure AI Search](search-reliability.md).
+The availability of your search service during an upgrade depends on how many replicas you've provisioned. With two or more replicas, your service remains available while one replica is updated. For more information, see [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search).
 
 To upgrade your service:
 
