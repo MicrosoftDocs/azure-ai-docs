@@ -99,8 +99,6 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 ### Mistral models sold directly by Azure
 
-Mistral AI offers...
-
 | Model | Type | Capabilities | Project type 
 | ------ | ---- | ------------ | ------------ |
 | [mistral-document-ai-2505]() | embeddings | - **Input:** image or PDF pages ( 30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  | Foundry |
