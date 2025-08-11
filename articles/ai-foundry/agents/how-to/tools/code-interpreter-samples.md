@@ -5,7 +5,7 @@ description: Find code samples to enable code interpreter for Azure AI Agents.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 06/30/2025
+ms.date: 08/11/2025
 ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.custom:
@@ -146,161 +146,112 @@ This ensures proper resource management and prevents unnecessary resource consum
 
 :::zone pivot="csharp" 
 
-## Create a project client
+## Create a client and agent
 
-Create a client object, which will contain the project endpoint for connecting to your AI project and other resources.
+First, set up the configuration using `appsettings.json`, create a `PersistentAgentsClient`, and then create a `PersistentAgent` with the Code Interpreter tool enabled.
 
 ```csharp
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 
-var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
-var projectEndpoint = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
-var projectEndpoint = System.Environment.GetEnvironmentVariable("BingConnectionId");
+IConfigurationRoot configuration = new ConfigurationBuilder()
+    .SetBasePath(AppContext.BaseDirectory)
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .Build();
 
-// Create the Agent Client
-PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());
-```
+var projectEndpoint = configuration["ProjectEndpoint"];
+var modelDeploymentName = configuration["ModelDeploymentName"];
 
-## Create an Agent with the Grounding with Bing search tool enabled
+PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
 
-To make the Grounding with Bing search tool available to your agent, use a connection to initialize the tool and attach it to the agent. You can find your connection in the **connected resources** section of your project in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-
-```csharp
-
-BingGroundingToolDefinition bingGroundingTool = new(
-    new BingGroundingSearchToolParameters(
-        [new BingGroundingSearchConfiguration(bingConnectionId)]
-    )
-);
-
-// Create the Agent
-PersistentAgent agent = agentClient.Administration.CreateAgent(
+PersistentAgent agent = client.Administration.CreateAgent(
     model: modelDeploymentName,
-    name: "my-agent",
-    instructions: "Use the bing grounding tool to answer questions.",
-    tools: [bingGroundingTool]
+    name: "My Friendly Test Agent",
+    instructions: "You politely help with math questions. Use the code interpreter tool when asked to visualize numbers.",
+    tools: [new CodeInterpreterToolDefinition()]
 );
 ```
 
-## Create a thread and run
+## Create a thread and add a message
+
+Next, create a `PersistentAgentThread` for the conversation and add the initial user message.
 
 ```csharp
-PersistentAgentThread thread = agentClient.Threads.CreateThread();
+PersistentAgentThread thread = client.Threads.CreateThread();
 
-// Create message and run the agent
-PersistentThreadMessage message = agentClient.Messages.CreateMessage(
+client.Messages.CreateMessage(
     thread.Id,
     MessageRole.User,
-    "How does wikipedia explain Euler's Identity?");
-ThreadRun run = agentClient.Runs.CreateRun(thread, agent);
-
+    "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
 ```
 
-## Wait for the agent to complete and print the output
+## Create and monitor a run
 
-First, wait for the agent to complete the run by polling its status. Observe that the model uses the Grounding with Bing Search tool to provide a response to the user's question.
+Then, create a `ThreadRun` for the thread and agent. Poll the run's status until it completes or requires action.
 
 ```csharp
-// Wait for the agent to finish running
+ThreadRun run = client.Runs.CreateRun(
+    thread.Id,
+    agent.Id,
+    additionalInstructions: "Please address the user as Jane Doe. The user has a premium account.");
+
 do
 {
     Thread.Sleep(TimeSpan.FromMilliseconds(500));
-    run = agentClient.Runs.GetRun(thread.Id, run.Id);
+    run = client.Runs.GetRun(thread.Id, run.Id);
 }
 while (run.Status == RunStatus.Queued
-    || run.Status == RunStatus.InProgress);
-
-// Confirm that the run completed successfully
-if (run.Status != RunStatus.Completed)
-{
-    throw new Exception("Run did not complete successfully, error: " + run.LastError?.Message);
-}
+    || run.Status == RunStatus.InProgress
+    || run.Status == RunStatus.RequiresAction);
 ```
 
-Then, retrieve and process the messages from the completed run.
+## Process the results and handle files
+
+Once the run is finished, retrieve all messages from the thread. Iterate through the messages to display text content and handle any generated image files by saving them locally and opening them.
 
 ```csharp
-// Retrieve all messages from the agent client
-Pageable<PersistentThreadMessage> messages = agentClient.Messages.GetMessages(
+Pageable<PersistentThreadMessage> messages = client.Messages.GetMessages(
     threadId: thread.Id,
-    order: ListSortOrder.Ascending
-);
+    order: ListSortOrder.Ascending);
 
-// Process messages in order
 foreach (PersistentThreadMessage threadMessage in messages)
 {
-    Console.Write($"{threadMessage.CreatedAt:yyyy-MM-dd HH:mm:ss} - {threadMessage.Role,10}: ");
-    foreach (MessageContent contentItem in threadMessage.ContentItems)
+    foreach (MessageContent content in threadMessage.ContentItems)
     {
-        if (contentItem is MessageTextContent textItem)
+        switch (content)
         {
-            string response = textItem.Text;
+            case MessageTextContent textItem:
+                Console.WriteLine($"[{threadMessage.Role}]: {textItem.Text}");
+                break;
+            case MessageImageFileContent imageFileContent:
+                Console.WriteLine($"[{threadMessage.Role}]: Image content file ID = {imageFileContent.FileId}");
+                BinaryData imageContent = client.Files.GetFileContent(imageFileContent.FileId);
+                string tempFilePath = Path.Combine(AppContext.BaseDirectory, $"{Guid.NewGuid()}.png");
+                File.WriteAllBytes(tempFilePath, imageContent.ToArray());
+                client.Files.DeleteFile(imageFileContent.FileId);
 
-            // If we have Text URL citation annotations, reformat the response to show title & URL for citations
-            if (textItem.Annotations != null)
-            {
-                foreach (MessageTextAnnotation annotation in textItem.Annotations)
+                ProcessStartInfo psi = new()
                 {
-                    if (annotation is MessageTextUriCitationAnnotation urlAnnotation)
-                    {
-                        response = response.Replace(urlAnnotation.Text, $" [{urlAnnotation.UriCitation.Title}]({urlAnnotation.UriCitation.Uri})");
-                    }
-                }
-            }
-            Console.Write($"Agent response: {response}");
-        }
-        else if (contentItem is MessageImageFileContent imageFileItem)
-        {
-            Console.Write($"<image from ID: {imageFileItem.FileId}");
-        }
-        Console.WriteLine();
-    }
-}
-
-```
-
-## Optionally output the run steps used by the agent
-
-```csharp
-// Retrieve the run steps used by the agent and print those to the console
-Console.WriteLine("Run Steps used by Agent:");
-Pageable<RunStep> runSteps = agentClient.Runs.GetRunSteps(run);
-
-foreach (var step in runSteps)
-{
-    Console.WriteLine($"Step ID: {step.Id}, Total Tokens: {step.Usage.TotalTokens}, Status: {step.Status}, Type: {step.Type}");
-
-    if (step.StepDetails is RunStepMessageCreationDetails messageCreationDetails)
-    {
-        Console.WriteLine($"   Message Creation Id: {messageCreationDetails.MessageCreation.MessageId}");
-    }
-    else if (step.StepDetails is RunStepToolCallDetails toolCallDetails)
-    {
-        // We know this agent only has the Bing Grounding tool, so we can cast it directly
-        foreach (RunStepBingGroundingToolCall toolCall in toolCallDetails.ToolCalls)
-        {
-            Console.WriteLine($"   Tool Call Details: {toolCall.GetType()}");
-
-            foreach (var result in toolCall.BingGrounding)
-            {
-                Console.WriteLine($"      {result.Key}: {result.Value}");
-            }
+                    FileName = tempFilePath,
+                    UseShellExecute = true
+                };
+                Process.Start(psi);
+                break;
         }
     }
 }
-
 ```
 
 ## Clean up resources
 
-Clean up the resources from this sample.
+Finally, delete the thread and the agent to clean up the resources created in this sample.
 
 ```csharp
-// Delete thread and agent
-agentClient.Threads.DeleteThread(threadId: thread.Id);
-agentClient.Administration.DeleteAgent(agentId: agent.Id);
+    client.Threads.DeleteThread(threadId: thread.Id);
+    client.Administration.DeleteAgent(agentId: agent.Id);
 ```
 
 :::zone-end
@@ -565,7 +516,6 @@ curl --request GET \
 ```
 
 :::zone-end
-
 
 :::zone pivot="java" 
 

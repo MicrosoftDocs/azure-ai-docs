@@ -78,11 +78,11 @@ A Table (`uri_table`) data source type points to a *table* on a storage resource
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-These steps explain how to add an existing file, folder, or table data resource from Azure Storage to your hub based project workspace in the Azure AI Foundry portal:
+These steps explain how to add an existing file, folder, or table data resource from Azure Storage to your hub-based project workspace in the Azure AI Foundry portal:
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
-1. Select the hub based project where you want to add the data.
+1. Select the hub-based project where you want to add the data.
 
 1. From the collapsible **My assets** menu on the left, select **Data + indexes**, then select **New data** as shown in this screenshot:
 
@@ -99,7 +99,7 @@ These steps explain how to add an existing file, folder, or table data resource 
 
 ## Manage data
 
-After you add data to your hub based project, you can you can delete, archive, restore, tag, archive, and preview the data in the Azure AI Foundry.
+After you add data to your hub-based project, you can you can delete, archive, restore, tag, archive, and preview the data in the Azure AI Foundry.
 
 ### Delete data
 

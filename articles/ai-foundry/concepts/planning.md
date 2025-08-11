@@ -5,7 +5,7 @@ description: Learn how to plan the rollout of Azure AI Foundry across your organ
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article
-ms.date: 06/25/2025
+ms.date: 08/11/2025
 ms.author: sgilley
 ms.reviewer: deeikele
 ---
