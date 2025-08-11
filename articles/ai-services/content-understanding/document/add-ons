@@ -5,7 +5,7 @@ description: Learn about Azure AI Content Understanding's value add-ons to impro
 author: PatrickFarley 
 ms.author: additi
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 08/11/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -13,123 +13,99 @@ ms.custom:
 ---
 
 
-# Reliable extracted outputs with grounding, confidence scoring, and in-context learning in Azure AI Content Understanding
+# Document analysis with confidence, grounding and in-context learning
 
-## Azure AI Content Understanding: How it helps extract the key details from documents
+Intelligent document processing, whether for unstructured documents like contracts and statements of work, or structured documents like invoices and insurance forms, is done for critical information for downstream application or automation workflows. Extracting this data reliably, at scale, requires more capabilities than just text extraction. Intelligent document processing requires information like what was extracted, why it was extracted, and how reliably it was extracted.
 
-Intelligent document processing—be it unstructured documents like contracts,  statements of work, or structured documents like invoices, and insurance forms— need to be processed for critical information for downstream application or automation workflows.
-However, extracting this data reliably, at scale, is challenging. You need more capabilities than just text extraction to be able to reliably scale your application on basis of **what was extracted**, **why it was extracted**, and **how reliably it was extracted**.
+Most enterprises faces the following challenges when handling a variety of documents at scale:
+- Need to **validate the sources** of extracted data for true reference. For example, if the model pulls out a payment term or contract clause, you must know exactly where in the document it came from.
+- Need to **automate workflows**, but only when the extraction is meeting an accuracy threshold that is critical for the business application. You need to know how accurate the model is in its predictions.
+- Need a way to **correct the model without retraining  from scratch** (ideally by providing a few examples) when it gets something wrong or encounters a new format.
 
-Most enterprises faces the following challenges when handling any variety of documents at scale:
+To address these enterprise needs, Azure AI Content Understanding supports the following features.
 
-- Need to **validate the sources** of extracted data for true reference —for example, if the model pulls out a payment term or contract clause, you must know exactly **where in the document** it came from.
-- Need to **automate workflows** but only when the extraction is accurately meeting a threshold that is critical for the business application—so you need to know how **accurate the model is** in its predictions.
-- And when the model gets something wrong or encounters a new format, a way to **correct it without retraining a model from scratch**—ideally by providing a few **examples**.
+| Feature | Purpose | Value |
+|--------|---------|-------|
+| **Grounding** | Links each output to original document content reference | Ensures traceability, compliance, and user trust |
+| **Confidence scoring** | Shows how certain the model is about its output| Drives automation with quality controls |
+| **In-context learning** | Teaches the model new patterns and corrections to handle edge cases without retraining | Rapidly adapts to new formats or edge cases |
 
-To address these enterprise needs, Azure AI Content Understanding supports three powerful features:
+Learn more about these features below.
 
-- **Grounding**: Anchors every output extracted to the original document
-- **Confidence scoring**: Quantifies the model’s certainty in each prediction through confidence scores
-- **In-context learning**: Enables to teach the model new patterns using examples and correcting the predicted outputs for incorrect values
+## Grounding
 
-Let's now deep dive into each of these features:
----
-
-## Grounding: Trace every result to its source
-
-Grounding ensures that every extracted field, answer, or classification has a reference to its original location in the document. This includes page number followed by coordinates as part of **source**. 
+Grounding ensures that every extracted field, answer, or classification has a reference to its original location in the document. This includes a page number and spatial coordinates. 
 
 ### Why grounding matters
 
-In enterprise workflows, accuracy is not enough—you also need **explainability**. When a model extracts a customer name or a termination clause, your team must be able to validate where that information came from. Grounding supports:
-
-- To maintain clear traceability and localization of extracted data for any legal and regulatory audits 
-- Internal compliance checks and ensuring transparency.
-- Efficient Human-in-the-loop validation
+In enterprise workflows, it’s important to know not just what information was extracted, but also where it came from in the document. Grounding provides this traceability, allowing teams to verify the source of extracted data.
+- Maintain clear traceability and localization of extracted data for any legal and regulatory audits .
+- Ensure transparency with internal compliance checks.
+- Use efficient human-in-the-loop validation
 
 ### Example
 
 You ask Azure AI Content Understanding to extract the *termination clause* from a contract. The model returns:
 
-- **Extracted text**: “Either party may terminate this agreement with 60 days’ notice.”
+- **Extracted text**: "Either party may terminate this agreement with 60 days’ notice."
 - **Source**:
   - Page: 3
   - Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
 
-With this grounding data, your legal team can **verify the extraction** by jumping directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output. 
+With this grounding data, your legal team can verify the extraction by going directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output. 
 
----
+## Confidence scoring
 
-## Confidence scoring: Automate with control
+Every extraction or classification result comes with a confidence score between 0 and 1, indicating how certain the model is about the result. This gives you a tunable control point to automate high-confidence results and flag lower-confidence outputs for review.
 
-Every extraction or classification comes with a **confidence score** between 0 and 1, indicating how certain the model is about the result. This gives you a tunable control point to automate high-confidence results and flag lower-confidence outputs for review.
+### Why confidence score matters
 
-### Why confidence scores matters
-
-Confidence scores let you design intelligent workflows, such as:
-
-- Auto-approving extractions when confidence is above a defined threshold to intelligently automate document processing tasks 
-- optimizing resource allocation by reducing operational costs and involving human in the loop review for critical aspects.
-- Rejecting or flagging extractions below a certain threshold for manual intervention and enhancing decision-making accuracy. 
+Confidence score let you design intelligent workflows, such as:
+- Auto-approving extractions when confidence is above a defined threshold to intelligently automate document processing tasks.
+- Optimizing resource allocation by reducing operational costs and using human-in-the-loop review for critical aspects.
+- Rejecting or flagging extractions below a certain threshold for manual intervention, enhancing decision-making accuracy.
 
 ### Example
 
 You're processing scanned utility bills to extract billing address and amount due. For one document:
 
-- **Billing address**: “1234 Market St, San Francisco, CA” → Confidence: 0.96
-- **Amount due**: “$128.74” → Confidence: 0.52
+- **Billing address**: "1234 Market St, San Francisco, CA" → Confidence: 0.96
+- **Amount due**: "$128.74" → Confidence: 0.52
 
-In this case, your automation pipeline can post the billing address directly to your downstream application, while routing the amount due to a human for verification. By using confidence scores, you reduce manual effort while maintaining accuracy.
+In this case, your automation pipeline can post the billing address directly to your downstream application while routing the amount due to a human for verification. By using confidence scores, you reduce manual effort while maintaining accuracy.
 
----
 
-## In-context learning: Teach the model by giving examples
+## In-context learning
 
-In-context learning allows you to guide the model’s behavior by providing **examples** in your prompt or API call—without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
+In-context learning allows you to guide the model’s behavior without the need for retraining or fine-tuning by providing examples in your prompt or API call. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
 
 ### Why in-context learning matters
 
-To manage diverse layouts changes, across different versions, templates, languages or regions, it is optimal to help the model learn by adding examples 
+To manage diverse layout changes across different versions, templates, languages, or regions, help the model learn by adding examples.
 
-In-context learning is critcal as it helps: 
-
-- Add corrections for model's prediction.
+In-context learning helps: 
+- Add corrections for the model's prediction.
 - Rapidly onboard new templates without labeling data.
-- Adding samples only when dealing with lower confidence score or incomplete extraction. 
+- Add samples only when dealing with lower confidence scores or incomplete extraction.
 
 ### Example
 
-You start receiving invoices from a new vendor that uses the label “Invoice Total” instead of “Amount Due.” The model keeps missing the correct value. Instead of retraining, you can add an example of different invoice vendor:
-The model will now refer to this pattern to correctly extract the value in future similar types of documents, even though it wasn’t part of the original training data.
+You start receiving invoices from a new vendor that uses the label "Invoice Total" instead of "Amount Due." The model keeps missing the correct value. Instead of retraining, you can add an example of the different invoice vendor. The model will now refer to this pattern to correctly extract the value in future similar types of documents, even though it wasn’t part of the original training data.
 
----
 
-## Bringing it all together: A complete workflow
+## A complete workflow
 
-For building an intelligent document automation pipeline, these capabilities will help you reliably extract and scale the application. For example: If you to process procurement contracts. You want to extract:
-
+For building an intelligent document automation pipeline, these capabilities will help you reliably extract and scale the application. For example: If you want to process procurement contracts, you'll extract:
 - Vendor name
 - Start and end dates
 - Cancellation clause
 
 To ensure quality and trust:
+- **Grounding** gives your legal team full traceability to every field.
+- **Confidence scores** helps you automate, as human review is needed only when threshold is low.
+- **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few examples.
 
-1. **Grounding** gives your legal team full traceability to every field.
-2. **Confidence scores** helps you automate as human review is needed only when threshold is low.
-3. **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few examples.
+This end-to-end solution is accurate, explainable, and adaptable, which is critical for enterprise-scale document understanding.
 
-This end-to-end solution is **accurate, explainable, and adaptable**—critical capabilities for enterprise-scale document understanding.
-
----
-
-## Summary
-
-| Feature | Purpose | Value |
-|--------|---------|-------|
-| **Grounding** | Links each output to original document content reference | Ensures traceability, compliance, and user trust |
-| **Confidence score** | Shows how accurate the model is about its output| Drives automation with quality controls |
-| **In-context learning** | Teaches model new patterns and correction to handle edge cases without retraining | Rapidly adapts to new formats or edge cases |
-
----
 
 By using grounding, confidence scoring, and in-context learning together, Azure AI Content Understanding empowers enterprises to build robust, transparent, and intelligent document processing solution.
