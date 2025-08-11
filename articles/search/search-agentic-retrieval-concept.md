@@ -201,33 +201,3 @@ Token Usage: Token usage in query planning and ranking involves AOAI input token
 •Roadmap: Potential features include Multiple Index Search, Iterative Search, Filtered Search, Query Planning Customization, Federation, Answer Generation, and Authority Checking.
 
 •Features under each model: Comparison of features under traditional search model: BYOM Query planning and Reranking are listed, with a section for answers left blank -->
-
-<!-- ## Architecture and components
-
-Agentic retrieval is designed for a conversational search experience that includes an LLM. An important part of agentic retrieval is how the LLM breaks down an initial query into subqueries, which are more effective at locating the best matches in your index.
-
-:::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
-
-The workflow includes:
-
-*Query planning* where the search engine calls an LLM (a chat completion model) that you provide. The output is one or more subqueries. This step is mostly internal. You can review the subqueries that are generated, but query planning isn't intended to be customizable or configurable.
-
-*Query execution* is a parallel process, with L1 ranking for vector and keyword search, and L2 semantic reranking of the L1 results. In agentic retrieval, semantic ranker is a required component.
-
-*Merged results* refers to the output, which is a unified string of all results that you can pass directly to an LLM.
-
-Notice that the architecture requires an LLM for query planning. Only supported LLMs can be used for this step. At the end of the pipeline, you can pass the merged results to any model, tool, or agent. 
-
-### Components
-
-Agentic retrieval has these components:
-
-| Component | Resource | Usage |
-|-----------|----------|-------|
-| LLM (gpt-4o and gpt-4.1 series) | Azure OpenAI | An LLM has two functions. First, it formulates subqueries for the query plan and sends it back to the knowledge agent. Second, after the query executes, the LLM receives grounding data from the query response and uses it for answer formulation. |
-| Search index | Azure AI Search | Contains plain text and vector content, a semantic configuration, and other elements as needed. |
-| Knowledge agent | Azure AI Search | Connects to your LLM, providing parameters and inputs to build a query plan. |
-| Retrieval engine | Azure AI Search | Executes on the LLM-generated query plan and other parameters, returning a rich response that includes content and query plan metadata. Queries are keyword, vector, and hybrid. Results are merged and ranked. |
-| Semantic ranker | Azure AI Search | Provides L2 reranking, promoting the most relevant matches. Semantic ranker is required for agentic retrieval. |
-
-Your solution should include a tool or app that drives the pipeline. An agentic retrieval pipeline concludes with the response object that provides grounding data. Your solution should take it from there, handling the response by passing it to an LLM to generate an answer, which you render inline in the user conversation. For more information about this step, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md). -->
