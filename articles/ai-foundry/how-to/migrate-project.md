@@ -24,7 +24,7 @@ Azure AI Foundry is transitioning to a unified platform-as-a-service, replacing 
 > [!IMPORTANT]
 > New generative AI and model-centric features are available only through the AI Foundry resource and its Foundry projects. Currently, some capabilities still require a hub next to your Foundry resource.  For a comparison of capabilities, see [What type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 
-## New Foundry projects overview
+## <a name="overview"></a> New Foundry projects overview
 
 Foundry projects are designed to unify and simplify the composition of developer workflows, and the management of core building blocks of AI applications:
 
