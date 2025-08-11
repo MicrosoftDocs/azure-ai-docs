@@ -43,26 +43,29 @@ We provide SDKs in different languages to simplify development on frontend appli
 
 ### Download SDK for frontend application
 
-Follow instructions in the [azure-ai-vision-sdk](https://github.com/Azure-Samples/azure-ai-vision-sdk) GitHub repository to integrate the UI and the code into your native mobile application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications:
-- For Swift iOS, follow the instructions in the [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
-- For Kotlin/Java Android, follow the instructions in the [Android sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme) 
-- For JavaScript Web, follow the instructions in the [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
+Follow the instructions in the readme documents of one of the frontend SDKs to integrate the UI and the code into your frontend application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications.
+
+> [!IMPORTANT]
+> Each frontend SDK requires an additional gated assets to be compiled.
+
+For Swift iOS:
+- Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
+- API reference: [AzureAIVisionFaceUI Reference](https://azure.github.io/azure-sdk-for-ios/AzureAIVisionFaceUI/index.html)
+- Sample: [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
+
+For Kotlin/Java Android:
+- Artifacts: Maven Central: [com.azure:azure-ai-vision-face-ui](https://central.sonatype.com/artifact/com.azure/azure-ai-vision-face-ui/overview)
+- API reference: [azure-ai-vision-face-ui Reference](https://azure.github.io/azure-sdk-for-android/azure-ai-vision-face-ui/index.html) 
+- Sample: [Android sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme)  
+
+For JavaScript Web:
+- Artifacts: [@azure/ai-vision-face-ui - npm](https://www.npmjs.com/package/@azure/ai-vision-face-ui?activeTab=readme)
+- API reference: [AzureAIVisionFaceUI Reference](https://orange-forest-0ea70d510.5.azurestaticapps.net/)
+- Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 
 Once you've added the code into your application, the SDK handles starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
 
 You can monitor the [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) of the SDK repo for new SDK version updates.
-
-### Download Azure AI Face client library for app server
-
-The app server/orchestrator is responsible for controlling the lifecycle of a liveness session. The app server has to create a session before performing liveness detection, and then it can query the result and delete the session when the liveness check is finished. We offer a library in various languages for easily implementing your app server. Follow these steps to install the package you want:
-- For C#, follow the instructions in the [dotnet readme](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/face/Azure.AI.Vision.Face/README.md)
-- For Java, follow the instructions in the [Java readme](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/face/azure-ai-vision-face/README.md)
-- For Python, follow the instructions in the [Python readme](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/face/azure-ai-vision-face/README.md)
-- For JavaScript, follow the instructions in the [JavaScript readme](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/face/ai-vision-face-rest/README.md)
-
-> [!IMPORTANT]
-> To create environment variables for your Azure Face service key and endpoint, see the [quickstart](../quickstarts-sdk/identity-client-library.md)
-
 
 ## Perform liveness detection
 
@@ -77,41 +80,62 @@ The high-level steps involved in liveness orchestration are illustrated below:
     #### [C#](#tab/csharp)
     ```csharp
     var endpoint = new Uri(System.Environment.GetEnvironmentVariable("FACE_ENDPOINT"));
-    var credential = new AzureKeyCredential(System.Environment.GetEnvironmentVariable("FACE_APIKEY"));
+    var key = new AzureKeyCredential(System.Environment.GetEnvironmentVariable("FACE_APIKEY"));
 
-    var sessionClient = new FaceSessionClient(endpoint, credential);
-
-    var createContent = new CreateLivenessSessionContent(LivenessOperationMode.Passive)
+    var body = JsonSerializer.Serialize(new
     {
-        DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-        EnableSessionImage = true,
-    };
+        livenessOperationMode = "PassiveActive",
+        deviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        enableSessionImage = true
+    });
 
-    var createResponse = await sessionClient.CreateLivenessSessionAsync(createContent);
-    var sessionId = createResponse.Value.SessionId;
-    Console.WriteLine($"Session created.");
-    Console.WriteLine($"Session id: {sessionId}");
-    Console.WriteLine($"Auth token: {createResponse.Value.AuthToken}");
+    using var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
+
+    var response = await client.PostAsync(
+        $"{endpoint}/face/v1.2/detectLiveness-sessions",
+        new StringContent(body, Encoding.UTF8, "application/json"));
+
+    response.EnsureSuccessStatusCode();
+
+    using var doc  = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    var root       = doc.RootElement;
+
+    Console.WriteLine("Session created");
+    Console.WriteLine($"sessionId : {root.GetProperty("sessionId").GetString()}");
+    Console.WriteLine($"authToken : {root.GetProperty("authToken").GetString()}");
     ```
 
     #### [Java](#tab/java)
     ```java
     String endpoint = System.getenv("FACE_ENDPOINT");
-    String accountKey = System.getenv("FACE_APIKEY");
+    String key = System.getenv("FACE_APIKEY");
 
-    FaceSessionClient sessionClient = new FaceSessionClientBuilder()
-        .endpoint(endpoint)
-        .credential(new AzureKeyCredential(accountKey))
-        .buildClient();
+    String body = """
+    {
+        "livenessOperationMode": "PassiveActive",
+        "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        "enableSessionImage": true,
+        "authTokenTimeToLiveInSeconds": 60
+    }
+    """;
 
-    CreateLivenessSessionContent parameters = new CreateLivenessSessionContent(LivenessOperationMode.PASSIVE)
-        .setDeviceCorrelationId("723d6d03-ef33-40a8-9682-23a1feb7bccd")
-        .setEnableSessionImage(true);
+    HttpRequest req = HttpRequest.newBuilder()
+            .uri(URI.create(endpoint + "/face/v1.2/detectLiveness-sessions"))
+            .header("Content-Type", "application/json")
+            .header("Ocp-Apim-Subscription-Key", key)
+            .POST(HttpRequest.BodyPublishers.ofString(body))
+            .build();
 
-    CreateLivenessSessionResult creationResult = sessionClient.createLivenessSession(parameters);
-    System.out.println("Session created.");
-    System.out.println("Session id: " + creationResult.getSessionId());
-    System.out.println("Auth token: " + creationResult.getAuthToken());
+    HttpResponse<String> res = HttpClient.newHttpClient()
+            .send(req, HttpResponse.BodyHandlers.ofString());
+
+    resCodeCheck(res);
+
+    JsonNode json = new ObjectMapper().readTree(res.body());
+    System.out.println("Session created");
+    System.out.println("sessionId : " + json.get("sessionId").asText());
+    System.out.println("authToken : " + json.get("authToken").asText());
     ```
 
     #### [Python](#tab/python)
@@ -119,18 +143,26 @@ The high-level steps involved in liveness orchestration are illustrated below:
     endpoint = os.environ["FACE_ENDPOINT"]
     key = os.environ["FACE_APIKEY"]
 
-    face_session_client = FaceSessionClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+    url  = f"{endpoint}/face/v1.2/detectLiveness-sessions"
+    body = {
+        "livenessOperationMode": "Passive",
+        "deviceCorrelationId":  "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        "enableSessionImage":   True,
+        "authTokenTimeToLiveInSeconds": 60
+    }
 
-    created_session = await face_session_client.create_liveness_session(
-        CreateLivenessSessionContent(
-            liveness_operation_mode=LivenessOperationMode.PASSIVE,
-            device_correlation_id="723d6d03-ef33-40a8-9682-23a1feb7bccd",
-            enable_session_image=True,
-        )
-    )
-    print("Session created.")
-    print(f"Session id: {created_session.session_id}")
-    print(f"Auth token: {created_session.auth_token}")
+    headers = {
+        "Ocp-Apim-Subscription-Key": key,
+        "Content-Type": "application/json"
+    }
+
+    res = requests.post(url, headers=headers, data=json.dumps(body))
+    res.raise_for_status()
+
+    data = res.json()
+    print("Session created")
+    print("sessionId :", data["sessionId"])
+    print("authToken :", data["authToken"])
     ```
 
     #### [JavaScript](#tab/javascript)
@@ -138,24 +170,34 @@ The high-level steps involved in liveness orchestration are illustrated below:
     const endpoint = process.env['FACE_ENDPOINT'];
     const apikey = process.env['FACE_APIKEY'];
 
-    const credential = new AzureKeyCredential(apikey);
-    const client = createFaceClient(endpoint, credential);
+    const url  = `${endpoint}/face/v1.2/detectLiveness-sessions`;
+    const body = {
+        livenessOperationMode: "Passive",
+        deviceCorrelationId:  "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        enableSessionImage:   true,
+        authTokenTimeToLiveInSeconds: 60
+    };
 
-    const createLivenessSessionResponse = await client.path('/detectLiveness-sessions').post({
-        body: {
-            livenessOperationMode: 'Passive',
-            deviceCorrelationId: '723d6d03-ef33-40a8-9682-23a1feb7bccd',
-            enableSessionImage: true,
-        },
+    const headers = {
+    "Ocp-Apim-Subscription-Key": key,
+    "Content-Type": "application/json"
+    };
+
+    async function createLivenessSession() {
+    const res = await fetch(url, {
+        method: "POST",
+        headers,
+        body: JSON.stringify(body)
     });
 
-    if (isUnexpected(createLivenessSessionResponse)) {
-        throw new Error(createLivenessSessionResponse.body.error.message);
+    if (!res.ok) {
+        throw new Error(`${res.status} ${await res.text()}`);
     }
 
-    console.log('Session created.');
-    console.log(`Session ID: ${createLivenessSessionResponse.body.sessionId}`);
-    console.log(`Auth token: ${createLivenessSessionResponse.body.authToken}`);
+    const data = await res.json();
+    console.log("Session created");
+    console.log("sessionId :", data.sessionId);
+    console.log("authToken :", data.authToken);
     ```
 
     #### [REST API (Windows)](#tab/cmd)
