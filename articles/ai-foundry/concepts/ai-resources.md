@@ -5,7 +5,7 @@ description: This article introduces concepts about Azure AI Foundry hubs for yo
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 04/28/2025
+ms.date: 08/11/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -36,7 +36,7 @@ Hubs group one or more projects together with common settings including data acc
 
 ## Create a hub-based project
 
-To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project). Hub-projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
+To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project). Hub-based projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
 
 ## Project concepts
 
@@ -61,7 +61,7 @@ Projects also have specific settings that only hold for that project:
 
 ## Share configurations across projects using hub
 
-A hub shares configurations for a group of projects. As a team lead, consider creating a hub for use cases that share the same security configurations or business domain to avoid repetitive setup and let developers create their own project against the pre-configured environment.
+A hub shares configurations for a group of projects. All projects in the hub share the same security configurations or business domain.
 
 Shared configurations managed on the hub include:
 * **Security** including public network access, customer-managed key encryption, and identity controls. Security settings configured on the hub automatically pass down to each project. A managed virtual network is shared between all projects that share the same hub.
