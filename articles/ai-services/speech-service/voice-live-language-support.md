@@ -7,7 +7,7 @@ author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 8/8/2025
+ms.date: 8/11/2025
 ms.custom: languages
 # Customer intent: As a developer, I want to learn about which languages are supported by the voice live API and how to configure them.
 ---
@@ -51,7 +51,7 @@ The current multi-lingual model supports the following languages:
 - Spanish (Mexico) [es-MX]
 - Spanish (Spain) [es-ES]
 
-To use **Automatic multilingual configuration using multilingual model** no additional configuration is required. If you do add the `language` string to the session`session.update` message, make sure to leave it empty.
+To use **Automatic multilingual configuration using multilingual model** no additional configuration is required. If you do add the `language` string to the session`session.update` message, you can leave it empty or set it to a reduced list of supported languages supported by the multilingual model to improve recognition quality. 
 
 ```json
 {
@@ -64,7 +64,7 @@ To use **Automatic multilingual configuration using multilingual model** no addi
 ```
 
 > [!NOTE]
-> The multilingual model will also generate results for unsupported languages. In these cases transcription quality will be low. Ensure to configure defined languages, if you are setting up application with languages unsupported by the multilingual model.
+> The multilingual model will also generate results for unsupported languages, if no language is defined. In these cases transcription quality will be low. Ensure to configure defined languages, if you are setting up application with languages unsupported by the multilingual model.
 
 To configure a single or multiple languages not supported by the multimodal model you must add them to the `language` string in the session`session.update` message. A maximum of 10 languages are supported.
 
@@ -204,10 +204,6 @@ The supported language is tied to the voice used. To configure specific Azure te
 For more details see how to configure [Audio output through Azure text to speech](./voice-live-how-to.md#audio-output-through-azure-text-to-speech).
 
 In case of *Multilingual Voices* the language output can optionally be controlled by setting specific SSML tags. You can learn more about this in the [Customize voice and sound with SSML](./speech-synthesis-markup-voice.md#lang-examples) how to.
-
-### OpenAI supported languages
-
-***INPUT NEEDED QINYING!!!***
 
 ## Related content
 
