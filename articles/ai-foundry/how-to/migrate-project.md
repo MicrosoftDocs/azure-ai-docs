@@ -1,5 +1,5 @@
 ---
-title: Migrate From Hub based to Foundry Projects
+title: Migrate From Hub-based to Foundry Projects
 description: Learn how to migrate from existing hub-based projects to new Azure AI Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features.
 author: sdgilley
 ms.topic: how-to
@@ -9,7 +9,7 @@ ms.reviewer: deeikele
 ---
 
 
-# Migrate from hub based to Foundry projects
+# Migrate from hub-based to Foundry projects
 
 This guide helps existing customers with [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s migrate to the new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s to access the latest platform capabilities.
 
@@ -53,7 +53,7 @@ New capabilities include:
 
 You'll create new [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]s in the AI Foundry models resource from your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. This process allows the new projects to access work originally done in the [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
-:::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub based to Foundry project types.":::
+:::image type="content" source="../media/migrate-project/upgrade.svg" alt-text="Screenshot shows the upgrade path from hub-based to Foundry project types.":::
 
 What can you take forward to the new project type?
 
@@ -204,7 +204,7 @@ Any code agents build using the preview of Agent service require the following u
 
 See the [SDK migration guide](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-projects/AGENTS_MIGRATION_GUIDE.md) on how to update your existing code.
 
-## (Optional) Clean up hub based projects
+## (Optional) Clean up hub-based projects
 
 If you no longer require access to your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]s, delete them from your Azure subscription.
 

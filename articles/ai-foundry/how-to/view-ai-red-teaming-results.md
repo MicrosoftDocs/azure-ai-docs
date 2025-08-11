@@ -20,7 +20,7 @@ After your automated scan is finished running [locally](./develop/run-scans-ai-r
 
 ## View report of each scan
 
-In your Azure AI Foundry project or hub based project, navigate to the **Evaluations** page and select the **AI red teaming** tab to view the comprehensive report with a detailed drill-down of each scan.
+In your Azure AI Foundry project or hub-based project, navigate to the **Evaluations** page and select the **AI red teaming** tab to view the comprehensive report with a detailed drill-down of each scan.
 
 :::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team.png" alt-text="Screenshot of AI Red Teaming tab in Azure AI Foundry project page." lightbox="../media/evaluations/red-teaming-agent/ai-red-team.png":::
 

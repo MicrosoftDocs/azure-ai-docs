@@ -20,7 +20,7 @@ Welcome! This article highlights key changes and updates in Azure AI Foundry doc
 - [Deep Research tool (preview)](../ai-foundry/agents/how-to/tools/deep-research.md)
 - [How to create and configure your storage account for use in Azure AI Foundry Projects](../ai-foundry/how-to/evaluations-storage-account.md)
 - [How to use the Deep Research tool](../ai-foundry/agents/how-to/tools/deep-research-samples.md)
-- [Migrate from hub based to Foundry projects](../ai-foundry/how-to/migrate-project.md)
+- [Migrate from hub-based to Foundry projects](../ai-foundry/how-to/migrate-project.md)
 - [Serverless API inference examples for Foundry Models](../ai-foundry/concepts/models-inference-examples.md)
 - [Use Terraform to create Azure AI Foundry resource](../ai-foundry/how-to/create-resource-terraform.md)
 
