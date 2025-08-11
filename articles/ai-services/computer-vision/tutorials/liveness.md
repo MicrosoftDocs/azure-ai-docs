@@ -34,19 +34,19 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
     - You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- Access to the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the SDK. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
+- Access to the gated artifacts required for the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
 ## Prepare SDKs
 
-We provide SDKs in different languages to simplify development on frontend applications and app servers:
+We provide SDKs in different languages to simplify development on frontend applications:
 
 ### Download SDK for frontend application
 
 Follow the instructions in the readme documents of one of the frontend SDKs to integrate the UI and the code into your frontend application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications.
 
 > [!IMPORTANT]
-> Each frontend SDK requires an additional gated assets to be compiled.
+> Each frontend SDK requires will require access to a gated asset to be compiled. Instructions on how to set this up will be mentioned in the references below.
 
 For Swift iOS:
 - Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
