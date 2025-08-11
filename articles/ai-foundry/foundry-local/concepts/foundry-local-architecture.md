@@ -134,7 +134,7 @@ The AI Toolkit for Visual Studio Code provides a user-friendly interface for dev
  
 **Connect Foundry Local model to AI Toolkit:**
   1. **Add model in AI Toolkit**: Open AI Toolkit from the activity bar of Visual Studio Code. In the 'My Models' panel, click the 'Add model for remote interface' button and then select 'Add a custom model' from the dropdown menu.
-  2. **Enter the chat compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions` where PORT is replaced with the port number of your Foundry Local service endpoint. You can see the port of your locally runnig service using the CLI command `foundry service status`. Foundry Local dynamically assigns a port, so it might not always the same.
+  2. **Enter the chat compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions` where PORT is replaced with the port number of your Foundry Local service endpoint. You can see the port of your locally running service using the CLI command `foundry service status`. Foundry Local dynamically assigns a port, so it might not always the same.
   3. **Provide model name**: Enter the exact model name you which to use from Foundry Local, for example `phi-3.5-mini`. You can list all previously downloaded and locally cached models using the CLI command `foundry cache list` or use `foundry model list` to see all available models for local use. You’ll also be asked to enter a display name, which is only for your own local use, so to avoid confusion it’s recommended to enter the same name as the exact model name.
   4. **Authentication**: If your local setup doesn't require authentication *(which is the default for a Foundry Local setup)*, you can leave the authentication headers field blank and press Enter.
 
