@@ -122,10 +122,22 @@ Foundry Local supports integration with various SDKs in most languages, such as 
 
 The AI Toolkit for Visual Studio Code provides a user-friendly interface for developers to interact with Foundry Local. It allows users to run models, manage the local cache, and visualize results directly within the IDE.
 
-- **Features**:
+**Features**:
   - Model management: Download, load, and run models from within the IDE.
   - Interactive console: Send requests and view responses in real-time.
   - Visualization tools: Graphical representation of model performance and results.
+
+**Prerequisites:**
+  - You have installed [Foundry Local](../get-started.md) and have a model service running.
+  - You have installed the [AI Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension.
+ 
+**Connect Foundry Local model to AI Toolkit:**
+  1. **Add model in AI Toolkit**: Open AI Toolkit from the activity bar of Visual Studio Code. In the 'My Models' panel, click the 'Add model for remote interface' button and then select 'Add a custom model' from the dropdown menu.
+  2. **Enter the chat compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions` where PORT is replaced with the port number of your Foundry Local service endpoint. You can see the port of your locally running service using the CLI command `foundry service status`. Foundry Local dynamically assigns a port, so it might not always the same.
+  3. **Provide model name**: Enter the exact model name you which to use from Foundry Local, for example `phi-3.5-mini`. You can list all previously downloaded and locally cached models using the CLI command `foundry cache list` or use `foundry model list` to see all available models for local use. You’ll also be asked to enter a display name, which is only for your own local use, so to avoid confusion it’s recommended to enter the same name as the exact model name.
+  4. **Authentication**: If your local setup doesn't require authentication *(which is the default for a Foundry Local setup)*, you can leave the authentication headers field blank and press Enter.
+
+After completing these steps, your Foundry Local model will appear in the 'My Models' list in AI Toolkit and is ready to be used by right-clicking on your model and select 'Load in Playground'.
 
 ## Next Steps
 
