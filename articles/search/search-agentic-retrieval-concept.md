@@ -45,10 +45,10 @@ Query expansion and parallel execution, plus the retrieval response, are the key
 Agentic retrieval adds latency to query processing, but it makes up for it by adding these capabilities:
 
 + Reads in chat history as an input to the retrieval pipeline.
-+ Rewrites an original query into multiple subqueries using synonym maps (optional) and LLM-generated paraphrasing.
 + Deconstructs a complex query that contains multiple "asks" into component parts. For example: "find me a hotel near the beach, with airport transportation, and that's within walking distance of vegetarian restaurants."
++ Rewrites an original query into multiple subqueries using synonym maps (optional) and LLM-generated paraphrasing.
 + Corrects spelling mistakes.
-+ Executes all subqueries simultaneously.
++ Executes all subqueries simultaneously. 
 + Outputs a unified result as a single string. Alternatively, you can extract parts of the response for your solution. Metadata about query execution and reference data is included in the response.
 
 Agentic retrieval invokes the entire query processing pipeline multiple times for each subquery, but it does so in parallel, preserving the efficiency and performance necessary for a reasonable user experience.
