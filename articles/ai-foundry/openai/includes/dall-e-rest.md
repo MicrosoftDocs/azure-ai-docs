@@ -128,9 +128,10 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 
     Wait a few moments to get the response.
 
+<!--
 #### [Black Forest Labs](#tab/bfl)
 tbd
-
+-->
 
 #### [DALL-E](#tab/dall-e-3)
 
