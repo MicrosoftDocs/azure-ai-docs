@@ -28,7 +28,7 @@ In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed f
 
 This high-performance pipeline delivers fast, comprehensive answers to complex questions.
 
-Programmatically, agentic retrieval is supported through a new Knowledge Agents object in the 2025-05-01-preview data plane REST API and in Azure SDK prerelease packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a new [Knowledge Agents object](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) in the 2025-05-01-preview data plane REST API and in Azure SDK preview packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -56,7 +56,7 @@ Agentic retrieval invokes the entire query processing pipeline multiple times fo
 > [!NOTE]
 > Including an LLM in query planning adds latency to a query pipeline. You can mitigate the effects by using faster models, such as gpt-4o-mini, and summarizing the message threads. Nonetheless, you should expect longer query times with this pipeline.
 
-## Architecture and components
+<!-- ## Architecture and components
 
 Agentic retrieval is designed for a conversational search experience that includes an LLM. An important part of agentic retrieval is how the LLM breaks down an initial query into subqueries, which are more effective at locating the best matches in your index.
 
@@ -66,7 +66,13 @@ The workflow includes:
 
 *Query planning* where the search engine calls an LLM (a chat completion model) that you provide. The output is one or more subqueries. This step is mostly internal. You can review the subqueries that are generated, but query planning isn't intended to be customizable or configurable.
 
-*
+*Query execution* is a parallel process, with L1 ranking for vector and keyword search, and L2 semantic reranking of the L1 results. In agentic retrieval, semantic ranker is a required component.
+
+*Merged results* refers to the output, which is a unified string of all results that you can pass directly to an LLM.
+
+Notice that the architecture requires an LLM for query planning. Only supported LLMs can be used for this step. At the end of the pipeline, you can pass the merged results to any model, tool, or agent. 
+
+### Components
 
 Agentic retrieval has these components:
 
@@ -90,7 +96,39 @@ Agentic retrieval has these processes:
 + Results are ranked and merged.
 + Knowledge agent responses are formulated and returned as a three-part response consisting of a unified result (a long string), a reference array, and an activities array that enumerates all operations.
 
-Your search index determines query execution and any optimizations that occur during query execution. This includes your semantic configuration, as well as optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters).
+Your search index determines query execution and any optimizations that occur during query execution. This includes your semantic configuration, as well as optional scoring profiles, synonym maps, analyzers, and normalizers (if you add filters). -->
+
+## Architecture and workflow
+
+Agentic retrieval is designed for conversational search experiences that use an LLM to intelligently break down complex queries. The system coordinates multiple Azure services to deliver comprehensive search results.
+
+:::image type="content" source="media/agentic-retrieval/agentic-retrieval-architecture.png" alt-text="Diagram of agentic retrieval workflow using an example query." lightbox="media/agentic-retrieval/agentic-retrieval-architecture.png" :::
+
+### How it works
+
+The agentic retrieval process follows three main phases:
+
+1. **Query planning**: A knowledge agent sends your query and conversation history to an LLM (gpt-4o or gpt-4.1 series), which analyzes the context and breaks down complex questions into focused subqueries. This step is automated and not customizable. The number of subqueries depends on what the LLM decides and whether the `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50-document batch sent to semantic ranker.
+
+2. **Query execution**: All subqueries run simultaneously against your search index, using keyword, vector, and hybrid search. Each subquery undergoes semantic reranking to find the most relevant matches. References are extracted and retained for citation purposes.
+
+3. **Result synthesis**: The system merges and ranks all results, then returns a unified response containing grounding data, source references, and execution metadata.
+
+### Required components
+
+| Component | Service | Role |
+|-----------|---------|------|
+| **LLM** | Azure OpenAI | Creates subqueries from conversation context and later uses grounding data for answer generation |
+| **Knowledge agent** | Azure AI Search | Orchestrates the pipeline, connecting to your LLM and managing query parameters |
+| **Search index** | Azure AI Search | Stores your searchable content (text and vectors) with semantic configuration |
+| **Semantic ranker** | Azure AI Search | Required component that reranks results for relevance (L2 reranking) |
+
+### Integration requirements
+
+Your application drives the pipeline by calling the knowledge agent and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
+
+> [!NOTE]
+> Only gpt-4o and gpt-4.1 series models are supported for query planning. You can use any model for final answer generation.
 
 ## How to get started
 
