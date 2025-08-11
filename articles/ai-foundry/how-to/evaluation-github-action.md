@@ -48,7 +48,7 @@ The input of ai-agent-evals includes:
 
 - `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
-# [Hub based project](#tab/hub-project)
+# [Hub-based project](#tab/hub-project)
 
 - `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
 
@@ -140,7 +140,7 @@ jobs:
 
 ```
 
-# [Hub based project](#tab/hub-project)
+# [Hub-based project](#tab/hub-project)
 
 ```YAML
 name: "AI Agent Evaluation"
