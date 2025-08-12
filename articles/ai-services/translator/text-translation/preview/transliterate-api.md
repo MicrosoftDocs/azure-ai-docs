@@ -103,23 +103,6 @@ The following limitations apply:
 
 ## Response body
 
-A successful response is a JSON array with one result for each element in the input array. A result object includes the following properties:
-
-* `text`: A string that results from converting the input string to the output script.
-
-* `script`: A string specifying the script used in the output.
-
-An example JSON response is:
-
-```json
-[
-    {"text":"konnnichiha","script":"Latn"},
-    {"text":"sayounara","script":"Latn"}
-]
-```
-
-## Response body
-
 A successful response is a JSON array with one result for each string in the input array. A result object includes the following properties:
 
 * `detectedLanguage`: An object describing the detected language through the following properties:
@@ -139,6 +122,15 @@ A successful response is a JSON array with one result for each string in the inp
   * `transliteration`: An object giving the translated text in the script specified by the `toScript` parameter.
 
     * `script`: A string specifying the target script.
+
+       An example JSON response is:
+
+       ```json
+       [
+           {"text":"konnnichiha","script":"Latn"},
+           {"text":"sayounara","script":"Latn"}
+       ]
+       ```
 
     * `text`: A string giving the translated text in the target script.
 
