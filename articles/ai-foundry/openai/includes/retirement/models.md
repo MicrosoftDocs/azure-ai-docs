@@ -16,7 +16,6 @@ ms.custom: references_regions, build-2025
 
 | Model                     | Version			| Lifecycle<br>Status	| Retirement date                    | Replacement model                    |
 | --------------------------|------------------	|:----------------------|------------------------------------|--------------------------------------|
-| `o1-preview`              | 2024-09-12		| Preview               | July 28, 2025                      | `o1`                                 |
 | `computer-use-preview`    | 2025-03-11		| Preview               | No earlier than October 10, 2025   |                                      |
 | `o1-mini`                 | 2024-09-12		| Generally Available   | No earlier than October 27, 2025   |                                      |
 | `gpt-5-chat`              | 2025-08-07		| Preview               | No earlier than November 15, 2025  |                                      |
