@@ -17,11 +17,11 @@ A glossary is a list of terms with definitions that you create for the Document 
 
 * **No translation**. For example, you can restrict Document translation from translating product name brands by using a glossary with the same source and target text.
 
-* **Specified translations for ambiguous words**. Choose a specific translation for poly&#8203;semantic words.
+* **Specify translations for ambiguous words**. Choose a specific translation for poly&#8203;semantic words.
   
-*  **Explicitly specify the source and target languages for each glossary term**. Also include any relevant localization requirements.
+*  **Explicitly identify the source and target languages for each glossary term**. Also include any relevant localization requirements.
 
-*  **Conduct regular reviews of the glossary to verify term accuracy and relevance**. Update entries as necessary.
+*  **Conduct regular reviews of the glossary to verify term accuracy and relevance**. Consistently update entries as necessary.
 
 *  **Provide precise and comprehensive definitions for each term**. Pay particular attention to technical or specialized vocabulary.
 
