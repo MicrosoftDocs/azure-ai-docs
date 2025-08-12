@@ -24,7 +24,7 @@ Text translation documentation contains the following article types:
 
 ### [Latest preview version](#tab/linux)
 
-By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [configure Azure resources](../how-to/create-translator-resource.md).
+With the latest preview release, you now can optionally select either the standard neural machine (NMT) translation or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [configure Azure resources](../how-to/create-translator-resource.md).
 
 * [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
 

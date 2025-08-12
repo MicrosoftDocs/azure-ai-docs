@@ -70,7 +70,7 @@ Request parameters passed with the request are as follows:
 | **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
 | **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
 | **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
-| **targets.script** | string | False | Specify the script of the translated text. |
+| **targets.script** | string | False | Specify the script of the transliterated text. |
 | **targets.allowFallback** | string | False | If the desired model doesn't support a particular pair of source and target languages, an alternative approach may be employed. In such cases, the service may default to utilizing a general system as a substitute. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **targets.referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation. |
 | **targets.referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored. |
