@@ -59,7 +59,7 @@ An example flow would be:
 
     1. Create a new **Serverless Model** connection, and enter the following information.
 
-        * **Target URI**: The Playwright workspace region endpoint, for example `wss://{region}.api.playwright.microsoft.com/playwrightworkspaces/{workspaceId}/browsers`. The URL should start with `wss://` instead of `https://` if presented.
+        * **Target URI**: The Playwright workspace region endpoint, for example `wss://{region}.api.playwright.microsoft.com/playwrightworkspaces/{workspaceId}/browsers`. The URI should start with `wss://` instead of `https://` if presented.
 
         For more information on getting this value, see the [PlayWright documentation](https://aka.ms/pww/docs/configure-service-endpoint)
 
