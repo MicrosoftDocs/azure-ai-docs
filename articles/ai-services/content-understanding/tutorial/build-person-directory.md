@@ -162,7 +162,7 @@ After creating your person directory and adding face images with optional person
 
 These capabilities enable robust face recognition and similarity matching for various applications.
 
-:::image type="content" source="../media/face/person-directory-search.png" alt-text="Diagram illustrating the processes of search in a person directory.":::
+:::image type="content" source="../media/face/person-directory-search.png" lightbox="../media/face/person-directory-search.png" alt-text="Diagram illustrating the processes of search in a person directory.":::
 
 ### Identify a person
 
