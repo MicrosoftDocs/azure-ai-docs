@@ -39,9 +39,11 @@ At a high level you can break down working with functions into three steps:
 * `gpt-4o` (`2024-08-06`)
 * `gpt-4o` (`2024-11-20`)
 * `gpt-4o-mini` (`2024-07-18`)
-* `gpt-4.5-preview` (`2025-02-27`)
 * `gpt-4.1` (`2025-04-14`)
 * `gpt-4.1-mini` (`2025-04-14`)
+* `gpt-5` (`2025-08-07`)
+* `gpt-5-mini` (`2025-08-07`)
+* `gpt-5-nano` (`2025-08-07`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
@@ -55,10 +57,6 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 * `gpt-4.1-nano` (`2025-04-14`)
 * `o3-mini` (`2025-01-31`)
 * `o1` (`2024-12-17`)
-* `gpt-4` (`0613`)
-* `gpt-4-32k` (`0613`)
-* `gpt-35-turbo-16k` (`0613`)
-* `gpt-35-turbo` (`0613`)
 
 > [!NOTE]
 > The `tool_choice` parameter is now supported with `o3-mini` and `o1`. For more information on what parameters are supported with the o-series models see, the [reasoning models guide](./reasoning.md).

@@ -23,6 +23,12 @@ In this quickstart, you send queries to a chat completion model for a conversati
 
 ::: zone-end
 
+::: zone pivot="java"
+
+[!INCLUDE [Java quickstart](includes/quickstarts/search-get-started-rag-java.md)]
+
+::: zone-end
+
 ::: zone pivot="javascript"
 
 [!INCLUDE [JavaScript quickstart](includes/quickstarts/search-get-started-rag-javascript.md)]

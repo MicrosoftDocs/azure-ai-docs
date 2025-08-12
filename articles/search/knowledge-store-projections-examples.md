@@ -2,7 +2,6 @@
 title: Define projections
 titleSuffix: Azure AI Search
 description: Learn how to define table, object, and file projections in a knowledge store by reviewing syntax and examples.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -42,7 +41,7 @@ Recall that projections are defined under the `knowledgeStore` property of a ski
 If you need more background before getting started, review [this check list](knowledge-store-projection-overview.md#checklist-for-getting-started) for tips and workflow.
 
 > [!TIP]
-> When developing projections, [enable enrichment caching (preview)](search-howto-incremental-index.md) so that you can reuse existing enrichments while editing projection definitions. Enrichment caching is a preview feature, so be sure to use the preview REST API on the indexer request. Without caching, simple edits to a projection will result in a full reprocess of enriched content. By caching the enrichments, you can iterate over projections without incurring any skillset processing charges.
+> When developing projections, [enable enrichment caching (preview)](enrichment-cache-how-to-configure.md) so that you can reuse existing enrichments while editing projection definitions. Enrichment caching is a preview feature, so be sure to use the preview REST API on the indexer request. Without caching, simple edits to a projection will result in a full reprocess of enriched content. By caching the enrichments, you can iterate over projections without incurring any skillset processing charges.
 
 ## Requirements
 
@@ -270,7 +269,7 @@ You can process projections by following these steps:
 
 1. [Run the indexer](/rest/api/searchservice/indexers/run) to put the skillset into execution. 
 
-1. [Monitor indexer execution](search-howto-monitor-indexers.md) to check progress and catch any errors.
+1. [Monitor indexer execution](search-monitor-indexers.md) to check progress and catch any errors.
 
 1. Use Azure portal to verify object creation in Azure Storage.
 

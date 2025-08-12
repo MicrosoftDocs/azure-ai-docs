@@ -16,6 +16,7 @@ ms.custom:
 
 Images often contain useful information that's relevant in search scenarios. You can [vectorize images](search-get-started-portal-image-search.md) to represent visual content in your search index. Or, you can use [AI enrichment and skillsets](cognitive-search-concept-intro.md) to create and extract searchable *text* from images, including:
 
+ + [GenAI Prompt](cognitive-search-skill-genai-prompt.md) to pass a prompt to a chat completion skill, requesting a description of image content.
 + [OCR](cognitive-search-skill-ocr.md) for optical character recognition of text and digits
 + [Image Analysis](cognitive-search-skill-image-analysis.md) that describes images through visual features
 + [Custom skills](#passing-images-to-custom-skills) to invoke any external image processing that you want to provide
@@ -45,7 +46,7 @@ Images are either standalone binary files or embedded in documents, such as PDF,
 
 Azure Blob Storage is the most frequently used storage for image processing in Azure AI Search. There are three main tasks related to retrieving images from a blob container:
 
-+ Enable access to content in the container. If you're using a full access connection string that includes a key, the key gives you permission to the content. Alternatively, you can [authenticate using Microsoft Entra ID](search-howto-managed-identities-data-sources.md) or [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md).
++ Enable access to content in the container. If you're using a full access connection string that includes a key, the key gives you permission to the content. Alternatively, you can [authenticate using a managed identity](search-how-to-managed-identities.md) or [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md).
 
 + [Create a data source](search-howto-indexing-azure-blob-storage.md) of type *azureblob* that connects to the blob container storing your files.
 

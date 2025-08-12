@@ -2,7 +2,6 @@
 title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to generate chat completions with Azure AI Foundry Models
-manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
@@ -58,3 +57,4 @@ zone_pivot_groups: azure-ai-inference-samples
 * [Use image embeddings models](../../model-inference/how-to/use-image-embeddings.md)
 * [Use reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
 * [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md)
+* [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)

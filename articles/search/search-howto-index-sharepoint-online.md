@@ -4,7 +4,6 @@ titleSuffix: Azure AI Search
 description: Set up a SharePoint Online indexer to automate indexing of document library content in Azure AI Search.
 author: gmndrg
 ms.author: gimondra
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/17/2025
@@ -86,7 +85,7 @@ To set up the SharePoint Online indexer, use a preview REST API. This section pr
 
 ### Step 1 (Optional): Enable system assigned managed identity
 
-Enable a [system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) to automatically detect the tenant in which the search service is provisioned. 
+Enable a [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) to automatically detect the tenant in which the search service is provisioned. 
 
 Perform this step if the SharePoint site is in the same tenant as the search service. Skip this step if the SharePoint site is in a different tenant. The identity isn't used for indexing, just tenant detection. You can also skip this step if you want to put the tenant ID in the [connection string](#connection-string-format).
 

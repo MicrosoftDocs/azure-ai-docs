@@ -3,11 +3,11 @@
 title: How to configure a private link for an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 05/06/2025
+ms.date: 07/31/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -47,8 +47,6 @@ You get several hub default resources in your resource group. You need to config
 
     > [!IMPORTANT]
     > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
-
-* Disable network policies for private endpoints before adding the private endpoint.
 
 :::zone pivot="fdp-project"
 

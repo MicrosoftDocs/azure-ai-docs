@@ -24,7 +24,7 @@ The deep research tool is a **code-only release** and available for use using th
 
 |Azure AI foundry portal  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
-|  | ✔️ |  |  |  | ✔️  | ✔️ |
+|  | ✔️ | ✔️ | ✔️ |  | ✔️  | ✔️ |
 
 > [!NOTE]
 > Once the agent is running, some elements of the agent and thread runs can show up in the Azure AI Foundry user interface.

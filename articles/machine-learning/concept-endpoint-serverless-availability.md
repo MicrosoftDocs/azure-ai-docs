@@ -2,7 +2,6 @@
 title: Region availability for models in Standard deployments
 titleSuffix: Azure Machine Learning
 description: Learn about the regions where each model is available for deployment in standard deployments.
-manager: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to

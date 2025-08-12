@@ -2,7 +2,6 @@
 title: Feature descriptions
 titleSuffix: Azure AI Search
 description: Explore the feature categories of Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -49,7 +48,7 @@ The following table summarizes features by category. There's feature parity in a
 |-------------------|----------|
 |AI processing during indexing | [**AI enrichment**](cognitive-search-concept-intro.md) refers to embedded image and natural language processing in an indexer pipeline that extracts text and information from content that can't otherwise be indexed for full text search. AI processing is achieved by adding and combining skills in a skillset, which is then attached to an indexer. AI can be either [built-in skills](cognitive-search-predefined-skills.md) from Microsoft, such as text translation or Optical Character Recognition (OCR), or [custom skills](cognitive-search-create-custom-skill-example.md) that you provide. |
 | Storing enriched content for analysis and consumption in non-search scenarios | [**Knowledge store**](knowledge-store-concept-intro.md) is persistent storage of enriched content, intended for non-search scenarios like knowledge mining and data science processing. A knowledge store is defined in a skillset, but created in Azure Storage as objects or tabular rowsets.|
-| Cached enrichments | [**Enrichment caching (preview)**](cognitive-search-incremental-indexing-conceptual.md) refers to cached enrichments that can be reused during skillset execution. Caching is particularly valuable in skillsets that include OCR and image analysis, which are expensive to process. |
+| Cached enrichments | [**Enrichment caching (preview)**](enrichment-cache-how-to-configure.md) refers to cached enrichments that can be reused during skillset execution. Caching is particularly valuable in skillsets that include OCR and image analysis, which are expensive to process. |
 
 ## Full text and other query forms
 
@@ -68,7 +67,7 @@ The following table summarizes features by category. There's feature parity in a
 | Data encryption | [**Microsoft-managed encryption-at-rest**](search-security-overview.md#encryption) is built into the internal storage layer and is irrevocable. <br/><br/>[**Customer-managed encryption keys**](search-security-manage-encryption-keys.md) that you create and manage in Azure Key Vault can be used for supplemental encryption of indexes and synonym maps. For services created after August 1 2020, CMK encryption extends to data on temporary disks, for full double encryption of indexed content.|
 | Endpoint protection | [**IP rules for inbound firewall support**](service-configure-firewall.md) allows you to set up IP ranges over which the search service will accept requests.<br/><br/>[**Create a private endpoint**](service-create-private-endpoint.md) using Azure Private Link to force all requests through a virtual network. |
 | Inbound access | [**Role-based access control**](search-security-rbac.md) assigns roles to users and groups in Microsoft Entra ID for controlled access to search content and operations. You can also use [**key-based authentication**](search-security-api-keys.md) if you don't want to use role assignments.|
-| Outbound security (indexers) | [**Data access through private endpoints**](search-indexer-howto-access-private.md) allows an indexer to connect to Azure resources that are protected through Azure Private Link.<br/><br/>[**Data access using a trusted identity**](search-howto-managed-identities-data-sources.md) means that connection strings to external data sources can omit user names and passwords. When an indexer connects to the data source, the resource allows the connection if the search service was previously registered as a trusted service. |
+| Outbound security (indexers) | [**Data access through private endpoints**](search-indexer-howto-access-private.md) allows an indexer to connect to Azure resources that are protected through Azure Private Link.<br/><br/>[**Data access using a trusted identity**](search-how-to-managed-identities.md) means that connection strings to external data sources can omit user names and passwords. When an indexer connects to the data source, the resource allows the connection if the search service was previously registered as a trusted service. |
 
 ## Portal features
 

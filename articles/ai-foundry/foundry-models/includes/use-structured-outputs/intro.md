@@ -1,5 +1,4 @@
 ---
-manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: include
 ms.date: 05/29/2025

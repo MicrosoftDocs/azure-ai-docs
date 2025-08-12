@@ -44,9 +44,9 @@ A successful privacy approach empowers individuals with information, and provide
 * Don't share any data without explicit consent from affected stakeholders or data owners, and minimize the data that is shared.
 
 ## Next steps
-* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
-* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-characteristics-and-limitations)
-* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-guidance-for-integration)
+* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
+* [Characteristics and limitations](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-characteristics-and-limitations)
+* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-guidance-for-integration)
 * [QuickStart your Image Analysis use case development](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library)
-* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security)
+* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security)
 

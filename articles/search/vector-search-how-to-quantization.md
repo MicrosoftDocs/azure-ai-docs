@@ -2,7 +2,6 @@
 title: Compress vectors using quantization
 titleSuffix: Azure AI Search
 description: Configure built-in scalar or quantization for compressing vectors on disk and in memory.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search

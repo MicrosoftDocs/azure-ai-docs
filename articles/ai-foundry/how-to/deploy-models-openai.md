@@ -2,7 +2,6 @@
 title: How to deploy Azure OpenAI models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy Azure OpenAI models with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -13,6 +12,7 @@ ms.topic: how-to
 ms.date: 05/19/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ---
 
@@ -78,7 +78,7 @@ For more examples of how to consume the deployed model in your application, see 
 
 ## Regional availability and quota limits of a model
 
-For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-services/openai/quotas-limits).
+For Azure OpenAI models, the default quota for models varies by model and region. Certain models might only be available in some regions. For more information on availability and quota limits, see [Azure OpenAI quotas and limits](/azure/ai-foundry/openai/quotas-limits).
 
 ## Quota for deploying and inferencing a model
 

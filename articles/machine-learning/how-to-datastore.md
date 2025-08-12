@@ -36,8 +36,9 @@ In this article, you learn how to connect to Azure data storage services with Az
 ```python
 from azure.ai.ml.entities import AzureBlobDatastore
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureBlobDatastore(
     name="",
@@ -55,8 +56,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureBlobDatastore
 from azure.ai.ml.entities import AccountKeyConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureBlobDatastore(
     name="blob_protocol_example",
@@ -78,8 +80,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureBlobDatastore
 from azure.ai.ml.entities import SasTokenConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureBlobDatastore(
     name="blob_sas_example",
@@ -163,8 +166,9 @@ az ml datastore create --file my_blob_datastore.yml
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen2Datastore
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen2Datastore(
     name="",
@@ -183,8 +187,9 @@ from azure.ai.ml.entities import AzureDataLakeGen2Datastore
 from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen2Datastore(
     name="adls_gen2_example",
@@ -252,8 +257,9 @@ az ml datastore create --file my_adls_datastore.yml
 from azure.ai.ml.entities import AzureFileDatastore
 from azure.ai.ml.entities import AccountKeyConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureFileDatastore(
     name="file_example",
@@ -274,8 +280,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureFileDatastore
 from azure.ai.ml.entities import SasTokenConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureFileDatastore(
     name="file_sas_example",
@@ -340,8 +347,9 @@ az ml datastore create --file my_files_datastore.yml
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen1Datastore(
     name="",
@@ -358,8 +366,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
 from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen1Datastore(
     name="adls_gen1_example",
@@ -445,8 +454,9 @@ You will then find "Endpoint", "Workspace GUID" and "Artifact GUID" in "URL" and
 ```python
 from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = OneLakeDatastore(
     name="onelake_example_id",
@@ -465,11 +475,13 @@ ml_client.create_or_update(store)
 # [Python SDK: Service principal](#tab/sdk-onelake-sp)
 
 ```python
-from azure.ai.ml.entities import AzureDataLakeGen1Datastore, ServicePrincipalConfiguration
-from azure.ai.ml import MLClient
-from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
 
-ml_client = MLClient.from_config()
+from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
+from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
+from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
+
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = OneLakeDatastore(
     name="onelake_example_sp",

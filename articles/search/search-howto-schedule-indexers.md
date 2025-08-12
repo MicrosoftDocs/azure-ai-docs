@@ -138,6 +138,6 @@ If an indexer is set to a certain schedule but repeatedly fails on the same docu
 
 For indexers that run on a schedule, you can monitor operations by retrieving status from the search service, or obtain detailed information by enabling resource logging.
 
-+ [Monitor search indexer status](search-howto-monitor-indexers.md)
++ [Monitor search indexer status](search-monitor-indexers.md)
 + [Collect and analyze log data](monitor-azure-cognitive-search.md)
 + [Index large data sets](search-howto-large-index.md)

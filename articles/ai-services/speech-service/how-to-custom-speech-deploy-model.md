@@ -26,6 +26,9 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 
 ## Add a deployment endpoint
 
+> [!TIP]
+> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+
 ::: zone pivot="ai-foundry-portal"
 
 1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -80,9 +83,11 @@ Select the endpoint link to view information specific to it, such as the endpoin
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To create an endpoint and deploy a model, use the `spx csr endpoint create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` property to the ID of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can run the `spx csr project list` command to get available projects.
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `model` property to the ID of the model that you want deployed to the endpoint. 
 - Set the required `language` property. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
 - Set the required `name` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
@@ -93,6 +98,9 @@ Here's an example Speech CLI command to create an endpoint and deploy a model:
 ```azurecli-interactive
 spx csr endpoint create --api-version v3.2 --project YourProjectId --model YourModelId --name "My Endpoint" --description "My Endpoint Description" --language "en-US"
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 You should receive a response body in the following format:
 
@@ -140,7 +148,7 @@ spx help csr endpoint
 
 To create an endpoint and deploy a model, use the [Endpoints_Create](/rest/api/speechtotext/endpoints/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `model` property to the URI of the model that you want deployed to the endpoint. 
 - Set the required `locale` property. The endpoint locale must match the locale of the model. The locale can't be changed later.
 - Set the required `displayName` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -225,6 +233,8 @@ To use a new model and redeploy the custom endpoint:
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To redeploy the custom endpoint with a new model, use the `spx csr model update` command. Construct the request parameters according to the following instructions:
 
 - Set the required `endpoint` property to the ID of the endpoint that you want deployed.
@@ -235,6 +245,9 @@ Here's an example Speech CLI command that redeploys the custom endpoint with a n
 ```azurecli-interactive
 spx csr endpoint update --api-version v3.2 --endpoint YourEndpointId --model YourModelId
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 You should receive a response body in the following format:
 
@@ -351,6 +364,8 @@ To download the endpoint logs:
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To get logs for an endpoint, use the `spx csr endpoint list` command. Construct the request parameters according to the following instructions:
 
 - Set the required `endpoint` property to the ID of the endpoint that you want to get logs.
@@ -360,6 +375,9 @@ Here's an example Speech CLI command that gets logs for an endpoint:
 ```azurecli-interactive
 spx csr endpoint list --api-version v3.2 --endpoint YourEndpointId
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 The locations of each log file with more details are returned in the response body.
 

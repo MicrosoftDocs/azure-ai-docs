@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 07/25/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -197,7 +197,7 @@ The following example shows how to use the REST API to create a model deployment
 
 
 ```bash
-curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -231,7 +231,7 @@ The only limitations are that the new region must also support fine-tuning and w
 Below is an example of deploying a model that was fine-tuned in one subscription/region to another.
 
 ```bash
-curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -272,7 +272,7 @@ curl -X PUT "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceG
 }'
 ```
 
-### Deploy a model with Azure CLI
+## [CLI](#tab/cli)
 
 The following example shows how to use the Azure CLI to deploy your customized model. With the Azure CLI, you must specify a name for the deployment of your customized model. For more information about how to use the Azure CLI to deploy customized models, see [`az cognitiveservices account deployment`](/cli/azure/cognitiveservices/account/deployment).
 
@@ -297,6 +297,7 @@ az cognitiveservices account deployment create
     --sku-capacity "1" 
     --sku-name "Standard"
 ```
+
 ---
 
 [!INCLUDE [Fine-tuning deletion](../includes/fine-tune.md)]
@@ -343,6 +344,11 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completion
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure services support this too?"}]}'
 ```
+
+## [CLI](#tab/cli)
+
+Azure CLI is only for control plane operations such as resource creation and [model deployment](/cli/azure/cognitiveservices/account/deployment). For inference operations, use the [REST API](/azure/ai-foundry/openai/reference-preview-latest), or the [language based SDKs](../supported-languages.md).
+
 ---
 
 ### Prompt caching
@@ -401,7 +407,7 @@ To delete a deployment, use the [Deployments - Delete REST API](/rest/api/aiserv
 Below is the REST API example to delete a deployment:
 
 ```bash
-curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>"
 ```
 
