@@ -28,9 +28,8 @@ Use this article to find step-by-step instructions and code samples for using th
 * The following packages:
 
     ```console
-    pip install --pre azure-ai-projects
-    pip install azure-ai-agents==1.2.0b1
-    pip install azure-identity
+    pip install azure-ai-agents --pre
+    pip install azure-ai-projects azure-identity
     ```
 * The **contributor** role assigned to your AI Foundry project from within your Playwright workplace. 
 * Your playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
@@ -48,87 +47,105 @@ Use this article to find step-by-step instructions and code samples for using th
 
 ```python
 import os
-from azure.identity import DefaultAzureCredential
-from azure.ai.agents import AgentsClient
-from azure.ai.agents.models import MessageRole
 from azure.ai.projects import AIProjectClient
-
-project_endpoint = os.environ["PROJECT_ENDPOINT"]  # Ensure the PROJECT_ENDPOINT environment variable is set
-
-project_client = AIProjectClient(
-    endpoint=project_endpoint,
-    credential=DefaultAzureCredential()
+from azure.ai.agents.models import (
+    MessageRole,
+    RunStepToolCallDetails,
+    BrowserAutomationTool,
+    RunStepBrowserAutomationToolCall,
 )
+from azure.identity import DefaultAzureCredential
 
-playwright_connection = project_client.connections.get(
-    name=os.environ["PLAYWRIGHT_CONNECTION_NAME"]
-)
-print(playwright_connection.id)
+project_client = AIProjectClient(endpoint=os.environ["PROJECT_ENDPOINT"], credential=DefaultAzureCredential())
+
+connection_id = os.environ["AZURE_PLAYWRIGHT_CONNECTION_ID"]
+
+# Initialize Browser Automation tool and add the connection id
+browser_automation = BrowserAutomationTool(connection_id=connection_id)
 
 with project_client:
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"], 
-        name="my-agent", 
-        instructions="use the tool to respond", 
-        tools=[{
-            "type": "browser_automation",
-            "browser_automation": {
-            "connection": {
-                "id": playwright_connection.id,
-            }
-        }
-        }],
+
+    agents_client = project_client.agents
+
+    # Create a new Agent that has the Browser Automation tool attached.
+    # Note: To add Browser Automation tool to an existing Agent with an `agent_id`, do the following:
+    # agent = agents_client.update_agent(agent_id, tools=browser_automation.definitions)
+    agent = agents_client.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent",
+        instructions="""
+            You are an Agent helping with browser automation tasks. 
+            You can answer questions, provide information, and assist with various tasks 
+            related to web browsing using the Browser Automation tool available to you.
+            """,
+        tools=browser_automation.definitions,
     )
+
 
     print(f"Created agent, ID: {agent.id}")
 
-    thread = project_client.agents.threads.create()
-    print(f"Created thread and run, ID: {thread.id}")
+    # Create thread for communication
+    thread = agents_client.threads.create()
+    print(f"Created thread, ID: {thread.id}")
 
     # Create message to thread
-    message = project_client.agents.messages.create(
-        thread_id=thread.id, 
-        role="user", 
-        content="something you want the tool to perform")
-    print(f"Created message: {message['id']}")
+    message = agents_client.messages.create(
+        thread_id=thread.id,
+        role=MessageRole.USER,
+        content="""
+            Your goal is to report the percent of Microsoft year-to-date stock price change.
+            To do that, go to the website finance.yahoo.com.
+            At the top of the page, you will find a search bar.
+            Enter the value 'MSFT', to get information about the Microsoft stock price.
+            At the top of the resulting page you will see a default chart of Microsoft stock price.
+            Click on 'YTD' at the top of that chart, and report the percent value that shows up just below it.
+            """,
+    )
+    print(f"Created message, ID: {message.id}")
 
-    # Create and process an Agent run in thread with tools
-    run = project_client.agents.runs.create_and_process(
-        thread_id=thread.id, 
-        agent_id=agent.id,
-        )
-    print(f"Run created, ID: {run.id}")
+    # Create and process agent run in thread with tools
+    print(f"Waiting for Agent run to complete. Please wait...")
+    run = agents_client.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
     print(f"Run finished with status: {run.status}")
 
     if run.status == "failed":
         print(f"Run failed: {run.last_error}")
 
-    run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
+    # Fetch run steps to get the details of the agent run
+    run_steps = agents_client.run_steps.list(thread_id=thread.id, run_id=run.id)
     for step in run_steps:
-        print(step)
-        print(f"Step {step['id']} status: {step['status']}")
+        print(f"Step {step.id} status: {step.status}")
 
-        # Check if there are tool calls in the step details
-        step_details = step.get("step_details", {})
-        tool_calls = step_details.get("tool_calls", [])
-
-        if tool_calls:
+        if isinstance(step.step_details, RunStepToolCallDetails):
             print("  Tool calls:")
+            tool_calls = step.step_details.tool_calls
+
             for call in tool_calls:
-                print(f"    Tool Call ID: {call.get('id')}")
-                print(f"    Type: {call.get('type')}")
+                print(f"    Tool call ID: {call.id}")
+                print(f"    Tool call type: {call.type}")
 
-                function_details = call.get("function", {})
-                if function_details:
-                    print(f"    Function name: {function_details.get('name')}")
-        print()  # add an extra newline between steps
+                if isinstance(call, RunStepBrowserAutomationToolCall):
+                    print(f"    Browser automation input: {call.browser_automation.input}")
+                    print(f"    Browser automation output: {call.browser_automation.output}")
 
-    # Delete the Agent when done
-    project_client.agents.delete_agent(agent.id)
+                    print("    Steps:")
+                    for tool_step in call.browser_automation.steps:
+                        print(f"      Last step result: {tool_step.last_step_result}")
+                        print(f"      Current state: {tool_step.current_state}")
+                        print(f"      Next step: {tool_step.next_step}")
+                        print()  # add an extra newline between tool steps
+
+                print()  # add an extra newline between tool calls
+
+        print()  # add an extra newline between run steps
+
+    # Optional: Delete the agent once the run is finished.
+    # Comment out this line if you plan to reuse the agent later.
+    agents_client.delete_agent(agent.id)
     print("Deleted agent")
 
-    # Fetch and log all messages
-    response_message = project_client.agents.messages.get_last_message_by_role(thread_id=thread.id, role=MessageRole.AGENT)
+    # Print the Agent's response message with optional citation
+    response_message = agents_client.messages.get_last_message_by_role(thread_id=thread.id, role=MessageRole.AGENT)
     if response_message:
         for text_message in response_message.text_messages:
             print(f"Agent response: {text_message.text.value}")
