@@ -6,7 +6,7 @@ ms.author: mopeakande
 manager: nitinme
 author: msakande 
 ms.reviewer: obiume
-ms.date: 08/11/2025
+ms.date: 08/12/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -18,8 +18,6 @@ ms.custom:
 ---
 
 # Plan and manage costs for Azure AI Foundry
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 This article describes how to plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs.
 
@@ -149,13 +147,13 @@ You can also view resource group costs directly from the Azure portal. To do so:
 
 For more information, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
 
-### Monitor costs for models offered through Azure Marketplace
+### Monitor costs for models offered through the Azure Marketplace
 
 Serverless API deployments are offered through Azure Marketplace. The model publishers might apply different costs depending on the offering. Each project in Azure AI Foundry portal has its own subscription with the offering, which allows you to monitor the costs and the consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
 1. Sign in to [Azure portal](https://portal.azure.com).
 
-1. Select the portal menu icon to open left pane.
+1. Select the portal menu icon to open the left pane.
 
     :::image type="content" source="../media/cost-management/project-costs/portal-menu-icon.png" alt-text="Screenshot of the portal menu icon." lightbox="../media/cost-management/project-costs/portal-menu-icon.png":::
 
