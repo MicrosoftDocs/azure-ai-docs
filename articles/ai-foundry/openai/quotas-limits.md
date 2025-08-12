@@ -230,7 +230,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 ### gpt-4o audio
 
-The rate limits for each `gpt-4o` audio model deployment are 100,000 tokens per minute and 1,000 requests per minute. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100,000 tokens per minute and 1,000 requests per minute.
+During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
