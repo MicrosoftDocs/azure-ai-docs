@@ -37,7 +37,7 @@ Use this article to find step-by-step instructions and code samples for using th
     <!--
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
     -->
-    Save this name to an environment variable named `PLAYWRIGHT_CONNECTION_NAME`.
+    Save this name to an environment variable named `AZURE_PLAYWRIGHT_CONNECTION_NAME`.
 
 * [!INCLUDE [model-name-portal](../../includes/model-name-portal.md)]
 
