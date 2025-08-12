@@ -21,7 +21,7 @@ ms.custom: references_regions, build-2025
 | `o1-mini`                 | 2024-09-12		| Generally Available   | No earlier than October 27, 2025   |                                      |
 | `gpt-5-chat`              | 2025-08-07		| Preview               | No earlier than November 15, 2025  |                                      |
 | `model-router`            | 2025-05-19		| Preview               | No earlier than November 30, 2025  |                                      |
-| `model-router`            | 2025-08-07        | Preview               | No earliet than November 30, 2025  |                                      |
+| `model-router`            | 2025-08-07        | Preview               | No earlier than November 30, 2025  |                                      |
 | `o3-mini`                 | 2025-01-31		| Generally Available   | No earlier than February 1, 2026   |                                      |
 | `gpt-35-turbo`            | 1106				| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1-mini` version: `2025-04-14` |
 | `gpt-35-turbo`            | 0125				| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1-mini` version: `2025-04-14` |
