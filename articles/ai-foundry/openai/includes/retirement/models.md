@@ -37,7 +37,7 @@ ms.custom: references_regions, build-2025
 | `o4-mini`                 | 2025-04-16		| Generally Available   | No earlier than April 11, 2026     |                                      |
 | `o3`                      | 2025-04-16		| Generally Available   | No earlier than April 11, 2026     |                                      |
 | `o3-pro`                  | 2025-06-10        | Generally Available   | No earlier than June 18, 2026      |                                      |
-| `codex-mini`              | 2025-05-16        | Generally Available   | No earlier than June 19th          |                                      |
+| `codex-mini`              | 2025-05-16        | Generally Available   | No earlier than June 19, 2026      |                                      |
 | `o3-deep-research`        | 2025-06-26        | Generally Available   | No earlier than June 26, 2026      |                                      |
 | `o1`                      | 2024-12-17		| Generally Available   | No earlier than July 15, 2026      |                                      |
 | `gpt-5`                   | 2025-08-07		| Generally Available   | No earlier than August 7, 2026     |                                      |
