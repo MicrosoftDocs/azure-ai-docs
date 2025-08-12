@@ -18,13 +18,13 @@ ms.custom: languages
 
 ## Introduction
 
-The voice live API supports multiple languages and configuration options. In this document you will which languages are supported by the voice live API and how to configure them.
+The voice live API supports multiple languages and configuration options. In this document, you learn which languages the voice live API supports and how to configure them.
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used voice live speech input is processed either by one of the multimodal models (e.g. `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
-### azure speech to text supported languages
+### Azure speech to text supported languages
 
 Azure speech to text is used for all configuration where a non-multimodal model is being used and for speech input transcriptions with `phi4-mm-realtime`.
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
@@ -51,7 +51,7 @@ The current multi-lingual model supports the following languages:
 - Spanish (Mexico) [es-MX]
 - Spanish (Spain) [es-ES]
 
-To use **Automatic multilingual configuration using multilingual model** no additional configuration is required. If you do add the `language` string to the session`session.update` message, make sure to leave it empty.
+To use **Automatic multilingual configuration using multilingual model** no extra configuration is required. If you do add the `language` string to the session`session.update` message, make sure to leave it empty.
 
 ```json
 {
@@ -64,9 +64,9 @@ To use **Automatic multilingual configuration using multilingual model** no addi
 ```
 
 > [!NOTE]
-> The multilingual model will also generate results for unsupported languages, if no language is defined. In these cases transcription quality will be low. Ensure to configure defined languages, if you are setting up application with languages unsupported by the multilingual model.
+> The multilingual model generates results for unsupported languages, if no language is defined. In these cases transcription, quality is low. Ensure to configure defined languages, if you're setting up application with languages unsupported by the multilingual model.
 
-To configure a single or multiple languages not supported by the multimodal model you must add them to the `language` string in the session`session.update` message. A maximum of 10 languages are supported.
+To configure a single or multiple languages not supported by the multimodal model, you must add them to the `language` string in the session`session.update` message. A maximum of 10 languages are supported.
 
 ```json
 {
@@ -80,7 +80,7 @@ To configure a single or multiple languages not supported by the multimodal mode
 
 ### gpt-4o-realtime-preview and gpt-4o-mini-realtime-preview supported languages
 
-While the underlying model was trained on 98 languages, OpenAI only lists the languages that exceeded <50% word error rate (WER) which is an industry standard benchmark for speech to text model accuracy. The model will return results for languages not listed below but the quality will be low.
+While the underlying model was trained on 98 languages, OpenAI only lists the languages that exceeded <50% word error rate (WER) which is an industry standard benchmark for speech to text model accuracy. The model returns results for languages not listed but the quality will be low.
 
 The following languages are supported by `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview`:
 - Afrikaans
@@ -141,7 +141,7 @@ The following languages are supported by `gpt-4o-realtime-preview` and `gpt-4o-m
 - Vietnamese
 - Welsh
 
-Multimodal models do not require a language configuration for the general processing. If you configure input audio transcription you can provide the transcription models with a language hint to improve transcription quality. In this case you need to add the `language`string to the session`session.update` message.
+Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription, you can provide the transcription models with a language hint to improve transcription quality. In this case you need to add the `language`string to the session`session.update` message.
 
 ```json
 {
@@ -154,7 +154,7 @@ Multimodal models do not require a language configuration for the general proces
 ```
 
 > [!NOTE]
-> Multimodal gpt models only support the following transcription models: `whisper-1`, `gpt-4o-transcribe` and `gpt-4o-mini-transcribe`.
+> Multimodal gpt models only support the following transcription models: `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe`.
 
 ### phi4-mm-realtime supported languages
 
@@ -168,7 +168,7 @@ The following languages are supported by `phi4-mm-realtime`:
 - Portuguese
 - Spanish
 
-Multimodal models do not require a language configuration for the general processing. If you configure input audio transcription for `phi4-mm-realtime` you need to use the same configuration as for all non-mulitmodal model configuration where azure-speech is used for transcription as described above.
+Multimodal models don't require a language configuration for the general processing. If you configure input audio transcription for `phi4-mm-realtime` you need to use the same configuration as for all non-mulitmodal model configuration where `azure-speech` is used for transcription as described.
 
 > [!NOTE]
 > Multimodal phi models only support the following transcription models: `azure-speech`.
@@ -177,7 +177,7 @@ Multimodal models do not require a language configuration for the general proces
 
 Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview` or by `azure text to speech` voices.
 
-### azure text to speech supported languages
+### Azure text to speech supported languages
 
 Azure text to speech is used by default for all configuration where a non-multimodal OpenAI model is being used and can be configured in all configurations manually.
 It supports all voices documented on the [Language and voice support for the Speech service - Text to speech](./language-support.md?tabs=tts) tab.
@@ -187,7 +187,7 @@ The following types of voices are supported:
 1. Multilingual voices
 1. Custom voices
 
-The supported language is tied to the voice used. To configure specific Azure text to speech voices you need to add the `voice` configuration to the session`session.update` message.
+The supported language is tied to the voice used. To configure specific Azure text to speech voices, you need to add the `voice` configuration to the session`session.update` message.
 
 ```json
 {
@@ -201,9 +201,9 @@ The supported language is tied to the voice used. To configure specific Azure te
 }
 ```
 
-For more details see how to configure [Audio output through Azure text to speech](./voice-live-how-to.md#audio-output-through-azure-text-to-speech).
+For more information, see how to configure [Audio output through Azure text to speech](./voice-live-how-to.md#audio-output-through-azure-text-to-speech).
 
-In case of *Multilingual Voices* the language output can optionally be controlled by setting specific SSML tags. You can learn more about this in the [Customize voice and sound with SSML](./speech-synthesis-markup-voice.md#lang-examples) how to.
+If *Multilingual Voices* are used, the language output can optionally be controlled by setting specific SSML tags. You can learn more about SSML tags in the [Customize voice and sound with SSML](./speech-synthesis-markup-voice.md#lang-examples) how to.
 
 ## Related content
 
