@@ -5,7 +5,7 @@ description: Learn about the model capabilities for models like GPT-5, GPT-5-min
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 08/06/2025
+ms.date: 08/12/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -128,6 +128,9 @@ az cognitiveservices account deployment create \
 ## model-router
 
 A model that intelligently selects from a set of underlying chat models to respond to a given prompt.
+
+> [!NOTE]
+> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
 
 ### Region availability
 

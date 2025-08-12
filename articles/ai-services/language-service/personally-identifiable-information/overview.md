@@ -20,7 +20,7 @@ Azure AI Language Personally Identifiable Information (PII) detection is a featu
 
 ## What's new
 
-The 2025-05-15-preview introduces several new entities:
+The 2025-08-01-preview introduces several new entities:
 
 * [**DateOfBirth**](concepts/entity-categories.md#category-datetime) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
 * [**LicensePlate**](concepts/entity-categories.md#type-license-plate-) with English language support.
