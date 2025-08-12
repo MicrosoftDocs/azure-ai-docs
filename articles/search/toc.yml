@@ -52,6 +52,12 @@ items:
       href: search-query-overview.md
   - name: Relevance
     href: search-relevance-overview.md
+  - name: Reliability
+    items:
+      - name: Reliability in Azure AI Search
+        href: /azure/reliability/reliability-ai-search?toc=/azure/search/toc.json&bc=/azure/search/breadcrumb/toc.json
+      - name: Multi-region deployment
+        href: search-multi-region.md
   - name: Security
     href: search-security-overview.md
 - name: Quickstarts
@@ -188,8 +194,6 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Reliability and recovery
-      href: search-reliability.md
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
@@ -576,7 +580,7 @@ items:
     - name: Monitor queries
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
-      href: search-howto-monitor-indexers.md
+      href: search-monitor-indexers.md
     - name: Visualize resource logs
       href: search-monitor-logs-powerbi.md
     - name: Performance analysis

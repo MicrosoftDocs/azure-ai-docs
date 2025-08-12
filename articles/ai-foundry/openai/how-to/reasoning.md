@@ -62,7 +62,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | Streaming   | ✅ | ✅ | ✅|
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
-<sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+<sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
 <sup>4</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
 
@@ -98,7 +98,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 | [Reasoning summary](#reasoning-summary) <sup>3</sup> |  ✅ | - | ✅ | ✅ | -  | -  | - |
 | Streaming <sup>4</sup>  | ✅ | - | ✅ | ✅| ✅ | - | - |
 
-<sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter. <br><br>
+<sup>1</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API.<br><br>
 <sup>2</sup> The latest o<sup>&#42;</sup> series model support system messages to make migration easier. When you use a system message with `o4-mini`, `o3`, `o3-mini`, and `o1` it will be treated as a developer message. You should not use both a developer message and a system message in the same API request.
 <sup>3</sup> Access to the chain-of-thought reasoning summary is limited access only for `o3` & `o4-mini`.
 <sup>4</sup> Streaming for `o3` is limited access only.
@@ -461,10 +461,13 @@ client = AzureOpenAI(
 
 response = client.responses.create(
     input="Tell me about the curious case of neural text degeneration",
-    model="o4-mini", # replace with model deployment name
+    model="gpt-5", # replace with model deployment name
     reasoning={
         "effort": "medium",
-        "summary": "detailed" # auto, concise, or detailed (currently only supported with o4-mini and o3)
+        "summary": "auto" # auto, concise, or detailed 
+    }
+    text={
+        "verbosity": "low" # New with GPT-5 models
     }
 )
 
@@ -478,9 +481,10 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
  -d '{
-     "model": "o4-mini",
+     "model": "gpt-5",
      "input": "Tell me about the curious case of neural text degeneration",
-     "reasoning": {"summary": "detailed"}
+     "reasoning": {"summary": "auto"},
+     "text": {"verbosity": "low"}
     }'
 ```
 
@@ -488,37 +492,30 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
 
 ```output
 {
-  "id": "resp_68007e26b2cc8190b83361014f3a78c50ae9b88522c3ad24",
-  "created_at": 1744862758.0,
+  "id": "resp_689a0a3090808190b418acf12b5cc40e0fc1c31bc69d8719",
+  "created_at": 1754925616.0,
   "error": null,
   "incomplete_details": null,
   "instructions": null,
   "metadata": {},
-  "model": "o4-mini",
+  "model": "gpt-5",
   "object": "response",
   "output": [
     {
-      "id": "rs_68007e2773bc8190b5b8089949bfe13a0ae9b88522c3ad24",
-      "summary": [
-        {
-          "text": "**Summarizing neural text degeneration**\n\nThe user's asking about \"The Curious Case of Neural Text Degeneration,\" a paper by Ari Holtzman et al. from 2020. It explains how certain decoding strategies produce repetitive and dull text. In contrast, methods like nucleus sampling yield more coherent and diverse outputs. The authors introduce metrics like surprisal and distinct-n for evaluation and suggest that maximum likelihood decoding often favors generic continuations, leading to loops and repetitive patterns in longer texts. They promote sampling from truncated distributions for improved text quality.",
-          "type": "summary_text"
-        },
-        {
-          "text": "**Explaining nucleus sampling**\n\nThe authors propose nucleus sampling, which captures a specified mass of the predictive distribution, improving metrics such as coherence and diversity. They identify a \"sudden drop\" phenomenon in token probabilities, where a few tokens dominate, leading to a long tail. By truncating this at a cumulative probability threshold, they aim to enhance text quality compared to top-k sampling. Their evaluations include human assessments, showing better results in terms of BLEU scores and distinct-n measures. Overall, they highlight how decoding strategies influence quality and recommend adaptive techniques for improved outcomes.",
-          "type": "summary_text"
-        }
-      ],
+      "id": "rs_689a0a329298819095d90c34dc9b80db0fc1c31bc69d8719",
+      "summary": [],
       "type": "reasoning",
+      "encrypted_content": null,
       "status": null
     },
     {
-      "id": "msg_68007e35c44881908cb4651b8e9972300ae9b88522c3ad24",
+      "id": "msg_689a0a33009881909fe0fcf57cba30200fc1c31bc69d8719",
       "content": [
         {
           "annotations": [],
-          "text": "Researchers first became aware that neural language models, when used to generate long stretches of text with standard “maximum‐likelihood” decoding (greedy search, beam search, etc.), often produce bland, repetitive or looping output. The 2020 paper “The Curious Case of Neural Text Degeneration” (Holtzman et al.) analyzes this failure mode and proposes a simple fix—nucleus (top‑p) sampling—that dramatically improves output quality.\n\n1. The Problem: Degeneration  \n   • With greedy or beam search, models tend to pick very high‑probability tokens over and over, leading to loops (“the the the…”) or generic, dull continuations.  \n   • Even sampling with a fixed top‑k (e.g. always sample from the 40 most likely tokens) can be suboptimal: if the model’s probability mass is skewed, k may be too small (overly repetitive) or too large (introducing incoherence).\n\n2. Why It Happens: Distributional Peakedness  \n   • At each time step the model’s predicted next‐token distribution often has one or two very high‑probability tokens, then a long tail of low‑probability tokens.  \n   • Maximum‐likelihood decoding zeroes in on the peak, collapsing diversity.  \n   • Uniform sampling over a large k allows low‑probability “wild” tokens, harming coherence.\n\n3. The Fix: Nucleus (Top‑p) Sampling  \n   • Rather than fixing k, dynamically truncate the distribution to the smallest set of tokens whose cumulative probability ≥ p (e.g. p=0.9).  \n   • Then renormalize and sample from that “nucleus.”  \n   • This keeps only the “plausible” mass and discards the improbable tail, adapting to each context.\n\n4. Empirical Findings  \n   • Automatic metrics (distinct‑n, repetition rates) and human evaluations show nucleus sampling yields more diverse, coherent, on‑topic text than greedy/beam or fixed top‑k.  \n   • It also outperforms simple temperature scaling (raising logits to 1/T) because it adapts to changes in the distribution’s shape.\n\n5. Takeaways for Practitioners  \n   • Don’t default to beam search for open-ended generation—its high likelihood doesn’t mean high quality.  \n   • Use nucleus sampling (p between 0.8 and 0.95) for a balance of diversity and coherence.  \n   • Monitor repetition and distinct‑n scores if you need automatic sanity checks.\n\nIn short, “neural text degeneration” is the tendency of likelihood‐maximizing decoders to produce dull or looping text. By recognizing that the shape of the model’s probability distribution varies wildly from step to step, nucleus sampling provides an elegant, adaptive way to maintain both coherence and diversity in generated text.",
-          "type": "output_text"
+          "text": "Neural text degeneration refers to the ways language models produce low-quality, repetitive, or vacuous text, especially when generating long outputs. It’s “curious” because models trained to imitate fluent text can still spiral into unnatural patterns. Key aspects:\n\n- Repetition and loops: The model repeats phrases or sentences (“I’m sorry, but...”), often due to high-confidence tokens reinforcing themselves.\n- Loss of specificity: Vague, generic, agreeable text that avoids concrete details.\n- Drift and contradiction: The output gradually departs from context or contradicts itself over long spans.\n- Exposure bias: During training, models see gold-standard prefixes; at inference, they must condition on their own imperfect outputs, compounding errors.\n- Likelihood vs. quality mismatch: Maximizing token-level likelihood doesn’t align with human preferences for diversity, coherence, or factuality.\n- Token over-optimization: Frequent, safe tokens get overused; certain phrases become attractors.\n- Entropy collapse: With greedy or low-temperature decoding, the distribution narrows too much, causing repetitive, low-entropy text.\n- Length and beam search issues: Larger beams or long generations can favor bland, repetitive sequences (the “likelihood trap”).\n\nCommon mitigations:\n\n- Decoding strategies:\n  - Top-k, nucleus (top-p), or temperature sampling to keep sufficient entropy.\n  - Typical sampling and locally typical sampling to avoid dull but high-probability tokens.\n  - Repetition penalties, presence/frequency penalties, no-repeat n-grams.\n  - Contrastive decoding (and variants like DoLa) to filter generic continuations.\n  - Min/max length, stop sequences, and beam search with diversity/penalties.\n\n- Training and alignment:\n  - RLHF/DPO to better match human preferences for non-repetitive, helpful text.\n  - Supervised fine-tuning on high-quality, diverse data; instruction tuning.\n  - Debiasing objectives (unlikelihood training) to penalize repetition and banned patterns.\n  - Mixture-of-denoisers or latent planning to improve long-range coherence.\n\n- Architectural and planning aids:\n  - Retrieval-augmented generation to ground outputs.\n  - Tool use and structured prompting to constrain drift.\n  - Memory and planning modules, hierarchical decoding, or sentence-level control.\n\n- Prompting tips:\n  - Ask for concise answers, set token limits, and specify structure.\n  - Provide concrete constraints or content to reduce generic filler.\n  - Use “say nothing if uncertain” style instructions to avoid vacuity.\n\nRepresentative papers/terms to search:\n- Holtzman et al., “The Curious Case of Neural Text Degeneration” (2020): nucleus sampling.\n- Welleck et al., “Neural Text Degeneration with Unlikelihood Training.”\n- Li et al., “A Contrastive Framework for Decoding.”\n- Su et al., “DoLa: Decoding by Contrasting Layers.”\n- Meister et al., “Typical Decoding.”\n- Ouyang et al., “Training language models to follow instructions with human feedback.”\n\nIn short, degeneration arises from a mismatch between next-token likelihood and human preferences plus decoding choices; careful decoding, training objectives, and grounding help prevent it.",
+          "type": "output_text",
+          "logprobs": null
         }
       ],
       "role": "assistant",
@@ -531,32 +528,40 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
   "tool_choice": "auto",
   "tools": [],
   "top_p": 1.0,
+  "background": false,
   "max_output_tokens": null,
+  "max_tool_calls": null,
   "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_key": null,
   "reasoning": {
-    "effort": "medium",
+    "effort": "minimal",
     "generate_summary": null,
     "summary": "detailed"
   },
+  "safety_identifier": null,
+  "service_tier": "default",
   "status": "completed",
   "text": {
     "format": {
       "type": "text"
     }
   },
+  "top_logprobs": null,
   "truncation": "disabled",
   "usage": {
     "input_tokens": 16,
-    "output_tokens": 974,
-    "output_tokens_details": {
-      "reasoning_tokens": 384
-    },
-    "total_tokens": 990,
     "input_tokens_details": {
       "cached_tokens": 0
-    }
+    },
+    "output_tokens": 657,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 673
   },
   "user": null,
+  "content_filters": null,
   "store": true
 }
 ```
@@ -564,6 +569,152 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
 ## Python lark
 
 GPT-5 series reasoning models have the ability to call a new `custom_tool` called `lark_tool`. This tool is based on [Python lark](https://github.com/lark-parser/lark) and can be used for more flexible constraining of model output.
+
+### Responses API
+
+```json
+{
+  "model": "gpt-5-2025-08-07",
+  "input": "please calculate the area of a circle with radius equal to the number of 'r's in strawberry",
+  "tools": [
+    {
+      "type": "custom",
+      "name": "lark_tool",
+      "format": {
+        "type": "grammar",
+        "syntax": "lark",
+        "definition": "start: QUESTION NEWLINE ANSWER\nQUESTION: /[^\\n?]{1,200}\\?/\nNEWLINE: /\\n/\nANSWER: /[^\\n!]{1,200}!/"
+      }
+    }
+  ],
+  "tool_choice": "required"
+}
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME-HERE.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+response = client.responses.create(  
+    model="gpt-5",  # replace with your model deployment name  
+    tools=[  
+        {  
+            "type": "custom",
+            "name": "lark_tool",
+            "format": {
+                "type": "grammar",
+                "syntax": "lark",
+                "definition": "start: QUESTION NEWLINE ANSWER\nQUESTION: /[^\\n?]{1,200}\\?/\nNEWLINE: /\\n/\nANSWER: /[^\\n!]{1,200}!/"
+            }
+        }  
+    ],  
+    input=[{"role": "user", "content": "Please calculate the area of a circle with radius equal to the number of 'r's in strawberry"}],  
+)  
+
+print(response.model_dump_json(indent=2))  
+  
+```
+
+**Output**:
+
+```json
+{
+  "id": "resp_689a0cf927408190b8875915747667ad01c936c6ffb9d0d3",
+  "created_at": 1754926332.0,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "metadata": {},
+  "model": "gpt-5",
+  "object": "response",
+  "output": [
+    {
+      "id": "rs_689a0cfd1c888190a2a67057f471b5cc01c936c6ffb9d0d3",
+      "summary": [],
+      "type": "reasoning",
+      "encrypted_content": null,
+      "status": null
+    },
+    {
+      "id": "msg_689a0d00e60c81908964e5e9b2d6eeb501c936c6ffb9d0d3",
+      "content": [
+        {
+          "annotations": [],
+          "text": "“strawberry” has 3 r’s, so the radius is 3.\nArea = πr² = π × 3² = 9π ≈ 28.27 square units.",
+          "type": "output_text",
+          "logprobs": null
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1.0,
+  "tool_choice": "auto",
+  "tools": [
+    {
+      "name": "lark_tool",
+      "parameters": null,
+      "strict": null,
+      "type": "custom",
+      "description": null,
+      "format": {
+        "type": "grammar",
+        "definition": "start: QUESTION NEWLINE ANSWER\nQUESTION: /[^\\n?]{1,200}\\?/\nNEWLINE: /\\n/\nANSWER: /[^\\n!]{1,200}!/",
+        "syntax": "lark"
+      }
+    }
+  ],
+  "top_p": 1.0,
+  "background": false,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_key": null,
+  "reasoning": {
+    "effort": "medium",
+    "generate_summary": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": {
+    "format": {
+      "type": "text"
+    }
+  },
+  "top_logprobs": null,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 139,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 240,
+    "output_tokens_details": {
+      "reasoning_tokens": 192
+    },
+    "total_tokens": 379
+  },
+  "user": null,
+  "content_filters": null,
+  "store": true
+}
+```
 
 ### Chat Completions
 
@@ -595,30 +746,6 @@ GPT-5 series reasoning models have the ability to call a new `custom_tool` calle
   "model": "gpt-5-2025-08-07"
 }
 ```
-
-### Responses API
-
-```
-{
-  "model": "gpt-5-2025-08-07",
-  "input": "please calculate the area of a circle with radius equal to the number of 'r's in strawberry",
-  "tools": [
-    {
-      "type": "custom",
-      "name": "lark_tool",
-      "format": {
-        "type": "grammar",
-        "syntax": "lark",
-        "definition": "start: QUESTION NEWLINE ANSWER\nQUESTION: /[^\\n?]{1,200}\\?/\nNEWLINE: /\\n/\nANSWER: /[^\\n!]{1,200}!/"
-      }
-    }
-  ],
-  "tool_choice": "required"
-}
-```
-
-
-
 
 ## Markdown output
 

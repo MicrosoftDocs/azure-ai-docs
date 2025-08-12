@@ -6,6 +6,11 @@
             "redirect_document_id": true
         },
         {
+            "source_path_from_root": "/articles/search/search-howto-monitor-indexers.md",
+            "redirect_url": "/azure/search/search-monitor-indexers",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/cognitive-search-incremental-indexing-conceptual.md",
             "redirect_url": "/azure/search/enrichment-cache-how-to-manage",
             "redirect_document_id": true
@@ -212,8 +217,8 @@
         },
         {
             "source_path_from_root": "/articles/search/search-performance-optimization.md",
-            "redirect_url": "/azure/search/search-reliability",
-            "redirect_document_id": true
+            "redirect_url": "/azure/reliability/reliability-ai-search",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/cognitive-search-quickstart-ocr.md",
@@ -449,6 +454,11 @@
         {
             "source_path_from_root": "/articles/search/search-get-started-powershell.md",
             "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-reliability.md",
+            "redirect_url": "/azure/reliability/reliability-ai-search",
             "redirect_document_id": false
         }
     ]

@@ -420,7 +420,7 @@ By default, an indexer runs automatically when you create it. You can change thi
 
 ## Check indexer status
  
-Learn multiple approaches to [monitor the indexer status and execution history here](search-howto-monitor-indexers.md).
+Learn multiple approaches to [monitor the indexer status and execution history here](search-monitor-indexers.md).
 
 ## Handle errors
  

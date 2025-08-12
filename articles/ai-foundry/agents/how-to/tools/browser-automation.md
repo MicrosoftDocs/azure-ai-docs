@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/28/2025
+ms.date: 08/12/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -59,7 +59,7 @@ An example flow would be:
 
     1. Create a new **Serverless Model** connection, and enter the following information.
 
-        * **Target URI**: The Playwright workspace region endpoint, for example `wss://{region}.api.playwright.microsoft.com/playwrightworkspaces/{workspaceId}/browsers`.
+        * **Target URI**: The Playwright workspace region endpoint, for example `wss://{region}.api.playwright.microsoft.com/playwrightworkspaces/{workspaceId}/browsers`. The URI should start with `wss://` instead of `https://` if presented.
 
         For more information on getting this value, see the [PlayWright documentation](https://aka.ms/pww/docs/configure-service-endpoint)
 

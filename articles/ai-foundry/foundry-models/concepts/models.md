@@ -6,7 +6,7 @@ author: msakande
 ms.author: mopeakande
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 08/04/2025
+ms.date: 08/08/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
@@ -43,6 +43,7 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 
 | Models | Description |
 |--|--|
+| [`GPT-5 series`](../../openai/concepts/models.md#gpt-5) | **NEW** `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` |
 | [gpt-oss](../../openai/concepts/models.md#gpt-oss) | Open-weight reasoning models |
 | [codex-mini](../../openai/concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
 | [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | The latest model release from Azure OpenAI. |

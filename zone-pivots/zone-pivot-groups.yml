@@ -320,6 +320,8 @@ groups:
   pivots:
   - id: csharp
     title: C#
+  - id: java
+    title: Java
   - id: javascript
     title: JavaScript
   - id: python

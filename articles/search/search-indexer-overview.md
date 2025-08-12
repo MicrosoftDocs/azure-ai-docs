@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 04/18/2025
+ms.date: 06/23/2025
 ---
 
 # Indexers in Azure AI Search
@@ -32,7 +32,7 @@ You can use an indexer as the sole means for data ingestion, or in combination w
 |----------|---------|
 | Single data source | This pattern is the simplest: one data source is the sole content provider for a search index. Most supported data sources provide some form of change detection so that subsequent indexer runs pick up the difference when content is added or updated in the source. |
 | Multiple data sources | An indexer specification can have only one data source, but the search index itself can accept content from multiple sources, where each indexer job brings new content from a different data provider. Each source can contribute its share of full documents, or populate selected fields in each document. For a closer look at this scenario, see [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md). |
-| Multiple indexers | Multiple data sources are typically paired with multiple indexers if you need to vary run time parameters, the schedule, or field mappings. </br></br>[Cross-region scale out of Azure AI Search](search-reliability.md#data-sync) is a variation of this scenario. You might have copies of the same search index in different regions. To synchronize search index content, you could have multiple indexers pulling from the same data source, where each indexer targets a different search index in each region.</br></br>[Parallel indexing](search-howto-large-index.md#parallel-indexing) of very large data sets also requires a multi-indexer strategy, where each indexer targets a subset of the data. |
+| Multiple indexers | Multiple data sources are typically paired with multiple indexers if you need to vary run time parameters, the schedule, or field mappings. </br></br>[Cross-region scale out of Azure AI Search](search-multi-region.md#data-synchronization) is a variation of this scenario. You might have copies of the same search index in different regions. To synchronize search index content, you could have multiple indexers pulling from the same data source, where each indexer targets a different search index in each region.</br></br>[Parallel indexing](search-howto-large-index.md#parallel-indexing) of very large data sets also requires a multi-indexer strategy, where each indexer targets a subset of the data. |
 | Content transformation | Indexers drive [skillset execution and AI enrichment](cognitive-search-concept-intro.md). Content transforms are defined in a [skillset](cognitive-search-working-with-skillsets.md) that you attach to the indexer. You can use skills to [incorporate data chunking and vectorization](vector-search-integrated-vectorization.md).|
 
  You should plan on creating one indexer for every target index and data source combination. You can have multiple indexers writing into the same index, and you can reuse the same data source for multiple indexers. However, an indexer can only consume one data source at a time, and can only write to a single index. As the following graphic illustrates, one data source provides input to one indexer, which then populates a single index:  
@@ -151,7 +151,7 @@ For more information, see [Create an indexer](search-howto-create-indexers.md)
 
 After the first indexer run, you can [rerun it on demand](search-howto-run-reset-indexers.md) or [set up a schedule](search-howto-schedule-indexers.md).
 
-You can monitor [indexer status in the Azure portal](search-howto-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
+You can monitor [indexer status in the Azure portal](search-monitor-indexers.md) or through [Get Indexer Status API](/rest/api/searchservice/indexers/get-status). You should also [run queries on the index](search-query-create.md) to verify the result is what you expected.
 
 Indexers don't have dedicated processing resources. Based on this, indexers' status may show as idle before running (depending on other jobs in the queue) and run times may not be predictable. Other factors define indexer performance as well, such as document size, document complexity, image analysis, among others.
 
@@ -163,4 +163,4 @@ Now that you've been introduced to indexers, a next step is to review indexer pr
 + [Reset and run indexers](search-howto-run-reset-indexers.md)
 + [Schedule indexers](search-howto-schedule-indexers.md)
 + [Define field mappings](search-indexer-field-mappings.md)
-+ [Monitor indexer status](search-howto-monitor-indexers.md)
++ [Monitor indexer status](search-monitor-indexers.md)

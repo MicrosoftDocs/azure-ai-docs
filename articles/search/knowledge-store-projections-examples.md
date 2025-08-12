@@ -269,7 +269,7 @@ You can process projections by following these steps:
 
 1. [Run the indexer](/rest/api/searchservice/indexers/run) to put the skillset into execution. 
 
-1. [Monitor indexer execution](search-howto-monitor-indexers.md) to check progress and catch any errors.
+1. [Monitor indexer execution](search-monitor-indexers.md) to check progress and catch any errors.
 
 1. Use Azure portal to verify object creation in Azure Storage.
 

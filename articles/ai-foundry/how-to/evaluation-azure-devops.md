@@ -105,7 +105,7 @@ agent-ids: "<your-ai-agent-ids>
 
 ```
 
-# [Hub based project](#tab/hub-project)
+# [Hub-based project](#tab/hub-project)
 
 ```yaml
 
