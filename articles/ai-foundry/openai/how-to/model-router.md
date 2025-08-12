@@ -4,7 +4,7 @@ description: Learn how to use the model router in Azure OpenAI to select the bes
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 04/17/2025
+ms.date: 08/12/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -19,6 +19,9 @@ Model router for Azure AI Foundry is a deployable AI chat model that is trained 
 You can access model router through the Completions API just as you would use a single base model like GPT-4. The steps are the same as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 ## Deploy a model router model
+
+> [!NOTE]
+> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
 
 Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
 
