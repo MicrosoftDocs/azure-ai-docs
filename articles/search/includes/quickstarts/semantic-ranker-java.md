@@ -16,8 +16,8 @@ In this quickstart, you use an IDE and the [**Azure AI Search Java SDK**](https:
 
 The quickstart assumes the following is available on your computer:
 - [Visual Studio Code](https://code.visualstudio.com/) with Java extensions or IntelliJ IDEA
-- [Java 21](https://adoptium.net/) or later
-- [Maven](https://maven.apache.org/) for dependency management
+- [Java 21 (LTS)](/java/openjdk/install).
+- [Maven](https://maven.apache.org/download.cgi).
 
 > [!TIP]
 > You can [download the source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-semantic-ranking) to start with a finished project or follow these steps to create your own.
