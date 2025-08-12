@@ -28,11 +28,12 @@ Use this article to find step-by-step instructions and code samples for using th
 * The following packages:
 
     ```console
-    pip install azure-ai-agents --pre
-    pip install azure-ai-projects azure-identity
+    pip install --pre azure-ai-agents>=1.2.0b2
+    pip install azure-ai-projects
+    pip install azure-identity
     ```
 * The **contributor** role assigned to your AI Foundry project from within your Playwright workplace. 
-* Your playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
+* Your Playwright connection ID. You can find it in the Azure AI Foundry portal by selecting **Management center** from the left navigation menu. Then select **Connected resources**. The URI should start with `wss://` instead of `https://` if presented. 
     
     <!--
     :::image type="content" source="../../media/tools/deep-research/bing-resource-name.png" alt-text="A screenshot showing the Playwright connection. " lightbox="../../media/tools/deep-research/bing-resource-name.png":::
