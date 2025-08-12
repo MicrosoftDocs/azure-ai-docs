@@ -120,7 +120,7 @@ An online deployment runs your user container with the endpoint identity, that i
 >
 > ![Screenshot showing an ABAC permission on container.](/azure/container-registry/media/container-registry-rbac-abac-repository-permissions/rbac-abac-repository-permissions-02-update-registry.png)
 >
->In this case  some existing role assignments aren't honored or will have different effects, because a different set of ACR built-in roles apply to ABAC-enabled registries.
+>In this case, some existing role assignments aren't honored or will have different effects, because a different set of ACR built-in roles apply to ABAC-enabled registries.
 >
 > For example, the **AcrPull**, **AcrPush**, and **AcrDelete** roles aren't honored in an ABAC-enabled registry.
 > Instead, in ABAC-enabled registries, use the `Container Registry Repository Reader`, `Container Registry Repository Writer`, and `Container Registry Repository Contributor` roles to grant either registry-wide or repository-specific image permissions.
