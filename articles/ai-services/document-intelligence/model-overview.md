@@ -99,8 +99,8 @@ The following add-on capabilities are available for Document Intelligence. For a
 * [`barcodes`](concept-add-on-capabilities.md#barcode-property-extraction)
 * [`languages`](concept-add-on-capabilities.md#language-detection)
 * [`keyValuePairs`](concept-add-on-capabilities.md#`value-pairs)
-* [`queryFields`](concept-add-on-capabilities.md#query-fields) Not available with the US tax models
-* [`searchablePDF`](prebuilt/read.md#searchable-pdf) Available only for the read model
+* [`queryFields`](concept-add-on-capabilities.md#query-fields) (not available with the US tax models)
+* [`searchablePDF`](prebuilt/read.md#searchable-pdf) (available only for the read model)
 
 |Add-on capability| Add-on/Free|2024-11-30 (GA)|[2023-07-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-2023-07-31&preserve-view=true&tabs=HTTP)|[2022-08-31 (GA)](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)|[v2.1 (GA)](/rest/api/aiservices/analyzer?view=rest-aiservices-v2.1&preserve-view=true)|
 |----------------|-----------|---|--|---|---|
@@ -117,7 +117,7 @@ The following add-on capabilities are available for Document Intelligence. For a
 
 [!INCLUDE [model analysis features](includes/model-analysis-features.md)]
 
-Add-on*: Query fields are priced differently than the other add-on features. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
+Query fields are priced differently from the other add-on features. For more information, see [Pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/).
 
 ::: moniker range=">=doc-intel-3.0.0"
 
@@ -163,7 +163,7 @@ This sample document was processed by using [Document Intelligence Studio](https
 
 :::image type="icon" source="media/studio/layout.png":::
 
-The layout analysis model analyzes and extracts text, tables, selection marks, and other structure elements like titles, section headings, page headers, page footers, and more.
+The layout analysis model analyzes and extracts text, tables, selection marks, and other structure elements like titles, section headings, page headers, and page footers.
 
 This sample document was processed by using [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio/layout).
 
