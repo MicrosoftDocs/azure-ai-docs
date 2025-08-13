@@ -30,7 +30,7 @@ In addition to an Azure account and the Document Intelligence or Azure AI Foundr
 
 ### Azure Blob Storage container
 
-You need a standard performance [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You can create containers to store and organize your training documents within your storage account. If you don't know how to create an Azure Storage account with a container, follow these quickstarts:
+You need a standard performance [Azure Blob Storage account](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM). You can create containers to store and organize your training documents within your storage account. If you don't know how to create an Azure storage account with a container, follow these quickstarts:
 
    * [Create a storage account](/azure/storage/common/storage-account-create): When you create your storage account, in the **Instance details** > **Performance** field, select **Standard** performance.
    * [Create a container](/azure/storage/blobs/storage-quickstart-blobs-portal#create-a-container): When you create your container, on the **New Container** pane, set the **Public access level** field to **Container** (anonymous read access for containers and blobs).
@@ -51,7 +51,7 @@ For custom projects, the following role assignments are required for different s
 
 ### Configure CORS
 
-[Cross-origin resource sharing)](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) must be configured on your Azure storage account for it to be accessible from Document Intelligence Studio. To configure CORS in the Azure portal, you need access to the CORS tab of your storage account.
+[Cross-origin resource sharing](/rest/api/storageservices/cross-origin-resource-sharing--cors--support-for-the-azure-storage-services) must be configured on your Azure storage account for it to be accessible from Document Intelligence Studio. To configure CORS in the Azure portal, you need access to the CORS tab of your storage account.
 
 1. Select the CORS tab for the storage account.
 
@@ -77,7 +77,7 @@ CORS should now be configured to use the storage account from Document Intellige
 
 ### Sample documents set
 
-1. Sign in to the [Azure portal](https://portal.azure.com), and go to your storage account and select **Data storage** > **Containers**.
+1. Sign in to the [Azure portal](https://portal.azure.com). Go to your storage account and select **Data storage** > **Containers**.
 
    :::image border="true" type="content" source="../media/sas-tokens/data-storage-menu.png" alt-text="Screenshot that shows the Data storage menu in the Azure portal.":::
 
