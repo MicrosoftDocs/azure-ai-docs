@@ -71,7 +71,7 @@ project_client = AIProjectClient(
 
 code_interpreter = CodeInterpreterTool()
 with project_client:
-    # Create an agent with the Bing Grounding tool
+    # Create an agent with the Code Interpreter tool
     agent = project_client.agents.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],  # Model deployment name
         name="my-agent",  # Name of the agent
