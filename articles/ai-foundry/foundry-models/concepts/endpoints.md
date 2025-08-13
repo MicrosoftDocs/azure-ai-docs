@@ -1,9 +1,8 @@
----
+﻿---
 title: Endpoints for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the Azure AI Foundry Models endpoint
 author: msakande
-manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025
@@ -50,7 +49,7 @@ The **Azure AI inference endpoint** allows customers to use a single endpoint wi
 
 The **Azure OpenAI API** exposes the full capabilities of OpenAI models and supports more features like assistants, threads, files, and batch inference. Non-OpenAI models may also be exposed in this route.
 
-To learn more about how to apply the **Azure OpenAI endpoint** see [Azure OpenAI in Azure AI Foundry Models documentation](../../../ai-services/openai/overview.md).
+To learn more about how to apply the **Azure OpenAI endpoint** see [Azure OpenAI in Azure AI Foundry Models documentation](../../openai/overview.md).
 
 ## Using Azure AI inference endpoint
 

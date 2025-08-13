@@ -1,8 +1,7 @@
----
+﻿---
 title: Troubleshoot guidance for prompt flow
 titleSuffix: Azure AI Foundry
 description: This article addresses frequently asked questions about prompt flow usage.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
@@ -43,7 +42,7 @@ The **Trace** section includes each request and response to the LLM tool. You ca
 
 ### How do I fix a 429 error from Azure OpenAI?
 
-You might encounter a 429 error from Azure OpenAI. This error means that you reached the rate limit of Azure OpenAI. You can check the error message in the output section of the LLM node. To learn more about the rate limit, see [Azure OpenAI rate limit](../../ai-services/openai/quotas-limits.md).
+You might encounter a 429 error from Azure OpenAI. This error means that you reached the rate limit of Azure OpenAI. You can check the error message in the output section of the LLM node. To learn more about the rate limit, see [Azure OpenAI rate limit](../openai/quotas-limits.md).
 
 :::image type="content" source="../media/prompt-flow/429-rate-limit.png" alt-text="Screenshot that shows a 429 rate limit error from Azure OpenAI." lightbox = "../media/prompt-flow/429-rate-limit.png":::
 

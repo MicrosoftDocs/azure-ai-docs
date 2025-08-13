@@ -19,7 +19,7 @@ Azure AI Foundry Agent Service supports persistent threads, runs, and messages, 
 
 When you use an Agent, there are a series of steps that are involved.
 
-- **Creating an agent:** You create an agent to start sending messages and recieving responses.
+- **Creating an agent:** You create an agent to start sending messages and receiving responses.
 - **Creating a thread:** You create a thread once and append messages to it as users reply. This ensures that the conversation history is maintained and managed automatically.
 - **Sending messages:** Messages can be sent by both the agent and the user. These messages can include text, images, and other files, providing a rich interaction experience.
 - **Running the agent:** When a run is initiated, the agent processes the messages in the thread and performs tasks based on its configuration. It may append new messages to the thread as part of its response.
@@ -34,11 +34,11 @@ A custom AI that uses AI models in conjunction with tools.
 
 ## Threads
 
-Threads are conversation sessions between an agent and a user. They store messages and automatically handle truncation to fit content into a model’s context. When you create a thread, you can append new messages to it as users respond.
+Threads are conversation sessions between an agent and a user. They store messages and automatically handle truncation to fit content into a model’s context. When you create a thread, you can append new messages (maximum of 100,000 per thread) to it as users respond.
 
 ## Messages
 
-Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow.
+Messages are the individual pieces of communication within a thread. They can be created by either the agent or the user and can include text, or other files. Messages are stored as a list within the thread, allowing for a structured and organized conversation flow. You can attach up to 100,000 messages to a single thread.
 
 ## Runs
 

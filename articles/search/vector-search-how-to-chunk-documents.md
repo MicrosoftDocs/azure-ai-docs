@@ -2,10 +2,10 @@
 title: Chunk documents in vector search
 titleSuffix: Azure AI Search
 description: Learn strategies for chunking PDFs, HTML files, and other large documents for vectors and search indexing and query workloads.
-
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual

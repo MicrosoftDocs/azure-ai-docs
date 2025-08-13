@@ -5,6 +5,7 @@ description: Learn how Azure AI Search enables multi-vector field support for be
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: conceptual
 ms.date: 05/07/2025
 ---

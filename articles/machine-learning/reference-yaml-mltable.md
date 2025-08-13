@@ -8,8 +8,8 @@ ms.subservice: mldata
 ms.topic: reference
 ms.custom: cliv2
 
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 02/14/2024
 ms.reviewer: xunwan
 ---

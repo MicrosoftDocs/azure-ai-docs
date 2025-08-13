@@ -2,8 +2,8 @@
 title: Track experiments and models with MLflow
 titleSuffix: Azure Machine Learning
 description:  Learn how to use MLflow to log metrics and artifacts from machine learning experiments and runs in Azure Machine Learning workspaces.
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: cacrest
 ms.service: azure-machine-learning
 ms.subservice: mlops

@@ -7,7 +7,7 @@ ms.author: aahi
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: quickstart
-ms.date: 05/27/2025
+ms.date: 07/11/2025
 ms.custom:
   - azure-ai-agents
   - build-2025
@@ -39,6 +39,12 @@ Azure AI Foundry Agent Service allows you to create AI agents tailored to your n
 ::: zone pivot="programming-language-typescript"
 
 [!INCLUDE [quickstart-typescript](includes/quickstart-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-java"
+
+[!INCLUDE [quickstart-java](includes/quickstart-java.md)]
 
 ::: zone-end
 

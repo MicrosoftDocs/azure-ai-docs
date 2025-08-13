@@ -6,6 +6,7 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
@@ -75,7 +76,7 @@ If you get *Error detecting index schema from data source*, the indexer that pow
 
 | Security feature | Solution |
 |--------------------|----------|
-| Resource requires Azure roles, or its access keys are disabled | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-howto-managed-identities-data-sources.md) |
+| Resource requires Azure roles, or its access keys are disabled | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-how-to-managed-identities.md) |
 | Resource is behind an IP firewall | [Create an inbound rule for Search and for the Azure portal](search-indexer-howto-access-ip-restricted.md) |
 | Resource requires a private endpoint connection | [Connect over a private endpoint](search-indexer-howto-access-private.md) |
 
@@ -194,4 +195,4 @@ If you used a free service, remember that you're limited to three indexes, index
 You can create skillsets using the Azure portal, .NET SDK, or REST API. To further your knowledge, try the REST API by using a REST client and more sample data:
 
 > [!div class="nextstepaction"]
-> [Tutorial: Use skillsets to generate searchable content in Azure AI Search](cognitive-search-tutorial-blob.md)
+> [Tutorial: Use skillsets to generate searchable content in Azure AI Search](tutorial-skillset.md)

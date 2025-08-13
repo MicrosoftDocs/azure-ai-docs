@@ -2,12 +2,11 @@
 title: Benchmark models in the model leaderboard of Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: In this article, you learn to compare benchmarks across models and datasets, using the model leaderboards (preview) and the benchmarks feature in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 07/31/2025
 ms.reviewer: changliu2
 reviewer: changliu2
 ms.author: lagayhar  
@@ -22,7 +21,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 - [Quality, safety, cost, and performance leaderboards](#access-model-leaderboards) to quickly identify the model leaders along a single criterion (quality, cost, or throughput);
 - [Trade-off charts](#compare-models-in-the-trade-off-charts) to see how models perform on one metric versus another, such as quality versus cost, among different selection criteria;
-- [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the best leaderboards that suite your scenario.
+- [Leaderboards by scenario](#view-leaderboards-by-scenario) to find the best leaderboards that suit your scenario.
 
 ## Prerequisites
 

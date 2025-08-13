@@ -2,11 +2,9 @@
 title: Search index overview
 titleSuffix: Azure AI Search
 description: Explains what is a search index in Azure AI Search and describes content, construction, physical expression, and the index schema.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
@@ -16,7 +14,7 @@ ms.date: 06/20/2025
 
 # Search indexes in Azure AI Search
 
-In Azure AI Search, a *search index* is your searchable content, available to the search engine for indexing, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema and saved to the search service, with data import following as a second step. This content exists within your search service, apart from your primary data stores, which is necessary for the millisecond response times expected in modern search applications. Except for indexer-driven indexing scenarios, the search service never connects to or queries your source data.
+In Azure AI Search, a *search index* is your searchable content, available to the search engine for indexing, agentic search, full-text search, vector search, hybrid search, and filtered queries. An index is defined by a schema and saved to the search service, with data ingestion following as a second step. Indexed content exists within your search service, apart from your primary external data stores, which is necessary for the millisecond response times expected in modern search applications. Except for indexer-driven indexing scenarios, the search service never connects to or queries your external source data.
 
 This article covers the key concepts for creating and managing a search index, including:
 
@@ -178,8 +176,8 @@ All indexing and query requests target an index. Endpoints are usually one of th
 
 1. Try other clients for programmatic access. We recommend the quickstarts for first steps:
 
-   + [Quickstart: REST](search-get-started-rest.md)
-   + [Quickstart: Azure SDKs](search-get-started-text.md)
+   + [Quickstart: REST](search-get-started-text.md)
+   + [Quickstart: Full-text search](search-get-started-text.md)
    + [Quickstart: RAG (using Visual Studio Code and a Jupyter notebook)](search-get-started-rag.md)
 
 ## Next steps

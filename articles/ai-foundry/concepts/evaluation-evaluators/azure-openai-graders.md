@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 05/19/2025
+ms.date: 07/16/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -31,8 +30,8 @@ from dotenv import load_dotenv
 load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
-    azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    azure_endpoint=os.environ.get("AZURE_ENDPOINT"),
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
@@ -47,7 +46,7 @@ model_config = AzureOpenAIModelConfiguration(
 
 Here's an example `data.jsonl` that is used in the following code snippets:
 
-```json
+```jsonl
 [
     {
         "query": "What is the importance of choosing the right provider in getting the most value out of your health insurance plan?",
@@ -193,7 +192,7 @@ sim_grader_evaluation = evaluate(
         "similarity": sim_grader
     },
 )
-evaluation
+sim_grader_evaluation
 ```
 
 ### Text similarity output

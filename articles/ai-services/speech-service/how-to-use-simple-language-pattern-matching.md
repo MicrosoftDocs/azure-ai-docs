@@ -7,7 +7,7 @@ ms.author: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.reviewer: chschrae
 zone_pivot_groups: programming-languages-set-thirteen
 ms.custom: devx-track-cpp, devx-track-csharp, mode-other, devx-track-extended-java, linux-related-content
@@ -15,6 +15,8 @@ ms.custom: devx-track-cpp, devx-track-csharp, mode-other, devx-track-extended-ja
 ---
 
 # How to recognize intents with simple language pattern matching
+
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
 
 The Azure AI services [Speech SDK](speech-sdk.md) has a built-in feature to provide **intent recognition** with **simple language pattern matching**. An intent is something the user wants to do: close a window, mark a checkbox, insert some text, etc.
 

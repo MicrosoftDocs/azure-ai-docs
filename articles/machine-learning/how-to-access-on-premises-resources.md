@@ -2,13 +2,12 @@
 title: How to access on-premises resources
 titleSuffix: Azure Machine Learning
 description: Learn how to configure an Azure Machine Learning's managed network to securely allow access to your on-premises resources.
-manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
 ms.date: 02/27/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure Machine Learning.
 ---
 

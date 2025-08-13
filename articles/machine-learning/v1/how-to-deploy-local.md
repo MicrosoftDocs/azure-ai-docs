@@ -6,10 +6,15 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.author: joburges
-author: ssalgadodev
+author: s-polly
 ms.date: 08/15/2022
 ms.topic: how-to
-ms.custom: UpdateFrequency5, deploy, sdkv1, build-2023
+ms.custom:
+  - UpdateFrequency5
+  - deploy
+  - sdkv1
+  - build-2023
+  - sfi-image-nochange
 ---
 
 # Deploy models trained with Azure Machine Learning on your local machines 

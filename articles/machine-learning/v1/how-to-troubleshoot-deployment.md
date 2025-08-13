@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 03/10/2025
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1

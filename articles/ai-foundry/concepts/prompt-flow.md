@@ -2,14 +2,13 @@
 title: Prompt flow in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces prompt flow in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 03/18/2025
+ms.date: 06/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt

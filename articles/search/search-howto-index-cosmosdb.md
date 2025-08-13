@@ -2,16 +2,16 @@
 title: Azure Cosmos DB NoSQL indexer
 titleSuffix: Azure AI Search
 description: Set up a search indexer to index data stored in Azure Cosmos DB for vector and full text search in Azure AI Search. This article explains how index data using the NoSQL API protocol.
-
 manager: nitinme
 author: mgottein
 ms.author: magottei
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
-ms.topic: how-to
-ms.date: 05/08/2025
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Cosmos DB for NoSQL for queries in Azure AI Search
@@ -28,9 +28,9 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This is the default configuration. Lazy indexing isn't recommended and can result in missing data.
 
-+ Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using identities (Microsoft Entra ID), make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) is assigned both **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions).
++ Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using identities (Microsoft Entra ID), make sure the [search service managed identity](search-how-to-managed-identities.md) is assigned as both **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions).
 
-To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
+To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-text.md). If you're using Azure portal, make sure that access to all public networks is enabled. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
 
 ## Try with sample data
 
@@ -78,7 +78,7 @@ You can use either the **Import data** wizard or **Import and vectorize data wiz
 
 1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the Azure portal uses the key.
 
-   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
+   If you [configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 
 1. For the **Import and vectorize data wizard**, you can specify options for change and deletion tracking.
 
@@ -460,7 +460,7 @@ For data accessed through the SQL API protocol, you can use the .NET SDK to auto
 
 ## Next steps
 
-You can now control how you [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-howto-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Cosmos DB:
+You can now control how you [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Cosmos DB:
 
 + [Set up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)
 + [Index large data sets](search-howto-large-index.md)

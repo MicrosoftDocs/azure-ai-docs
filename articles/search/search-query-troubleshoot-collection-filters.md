@@ -2,7 +2,6 @@
 title: Troubleshooting OData collection filters
 titleSuffix: Azure AI Search
 description: Learn approaches for resolving OData collection filter errors in Azure AI Search queries.
-
 author: bevloh
 ms.author: beloh
 ms.service: azure-ai-search

@@ -7,13 +7,15 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: quickstart
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-set-thirteen
 keywords: intent recognition
 ---
 
 # Quickstart: Recognize intents with Conversational Language Understanding
+
+[!INCLUDE [deprecation notice](./includes/intent-recognition-retire.md)]
 
 ::: zone pivot="programming-language-csharp"
 [!INCLUDE [C# include](includes/quickstarts/intent-recognition-clu/csharp.md)]

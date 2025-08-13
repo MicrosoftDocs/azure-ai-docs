@@ -1,4 +1,4 @@
----
+﻿---
 title: Default Guardrails & controls policies for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about the default Guardrails & controls policies that Azure AI Foundry Models uses to flag content.
@@ -7,7 +7,6 @@ ms.author: mopeakande
 ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.date: 05/19/2025
-manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---
@@ -68,7 +67,7 @@ Vision models can take both text and images at the same time as part of the inpu
 | Profanity                                         | Prompts                | N/A                 |
 
 
-In addition to the previous safety configurations, Azure OpenAI DALL-E also comes with [prompt transformation](../../../ai-services/openai/concepts/prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
+In addition to the previous safety configurations, Azure OpenAI DALL-E also comes with [prompt transformation](../../openai/concepts/prompt-transformation.md) by default. This transformation occurs on all prompts to enhance the safety of your original prompt, specifically in the risk categories of diversity, deceptive generation of political candidates, depictions of public figures, protected material, and others. 
 
 ### Meta: Llama-3.2-11B-Vision-Instruct and Llama-3.2-90B-Vision-Instruct
 

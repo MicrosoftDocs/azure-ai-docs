@@ -1,8 +1,7 @@
----
+﻿---
 title: How to use the Azure AI Foundry Models inference endpoints to consume models
 titleSuffix: Azure AI Foundry
 description: Learn how to use the Azure AI Foundry Models inference endpoint to consume models
-manager: scottpolly
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
@@ -44,7 +43,7 @@ For example, if you create a deployment named `Mistral-large`, then such deploym
 
 Azure AI Foundry also support the Azure OpenAI API. This API exposes the full capabilities of OpenAI models and supports additional features like assistants, threads, files, and batch inference. Non-OpenAI models can also be used for compatible functionalities.
 
-Azure OpenAI endpoints (usually with the form `https://<resource-name>.openai.azure.com`) work at the deployment level and they have their own URL that is associated with each of them. However, the same authentication mechanism can be used to consume them. Learn more in the reference page for [Azure OpenAI API](../../../ai-services/openai/reference.md)
+Azure OpenAI endpoints (usually with the form `https://<resource-name>.openai.azure.com`) work at the deployment level and they have their own URL that is associated with each of them. However, the same authentication mechanism can be used to consume them. Learn more in the reference page for [Azure OpenAI API](../../openai/reference.md)
 
 :::image type="content" source="../media/endpoint/endpoint-openai.png" alt-text="An illustration showing how Azure OpenAI deployments contain a single URL for each deployment." lightbox="../media/endpoint/endpoint-openai.png":::
 

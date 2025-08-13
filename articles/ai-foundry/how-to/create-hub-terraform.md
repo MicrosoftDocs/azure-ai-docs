@@ -5,11 +5,12 @@ ms.topic: how-to
 ms.date: 04/29/2025
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-foundry
-manager: scottpolly 
 ms.reviewer: andyaviles 
 ms.author: sgilley
 author: sdgilley
-ms.custom: devx-track-terraform
+ms.custom: 
+  - devx-track-terraform
+  - hub-only
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

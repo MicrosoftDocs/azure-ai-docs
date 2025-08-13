@@ -6,12 +6,12 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
-ms.date: 3/10/2025
+ms.date: 7/17/2025
 ms.author: eur
 ms.devlang: cpp
 # ms.devlang: cpp, csharp, golang, java, javascript, objective-c, python
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go
-zone_pivot_groups: programming-languages-speech-services
+zone_pivot_groups: programming-languages-text-to-speech
 keywords: text to speech
 #customer intent: As a user, I want to create speech output from text by using my choice of technologies which fit into my current processes.
 ---
@@ -54,8 +54,8 @@ keywords: text to speech
 [!INCLUDE [REST include](includes/quickstarts/text-to-speech-basics/rest.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-cli"
-[!INCLUDE [CLI include](includes/quickstarts/text-to-speech-basics/cli.md)]
+::: zone pivot="programming-language-typescript"
+[!INCLUDE [TypeScript include](includes/quickstarts/text-to-speech-basics/typescript.md)]
 ::: zone-end
 
 ## Next step

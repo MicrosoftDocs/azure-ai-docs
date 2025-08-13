@@ -2,23 +2,24 @@
 title: Add a search service to a network security perimeter
 titleSuffix: Azure AI Search
 description: Add a search service to a network security perimeter for a secure connection
-author: MattGotteiner
-ms.author: magottei
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 08/07/2025
 ---
 
 # Add a search service to a network security perimeter
 
 > [!IMPORTANT]
-> Azure AI Search support for network security perimeter is in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). It's available in [regions providing the feature](/azure/private-link/network-security-perimeter-concepts).
-> This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities.
+> Although network security perimeter is generally available, its implementation in Azure AI Search remains in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might be unsupported or have constrained capabilities.
 >
->  Review the [limitations and considerations](#limitations-and-considerations) section before you start.
+> This article and [What's new in Azure AI Search](whats-new.md) will announce when network security perimeter becomes generally available for Azure AI Search.
+
+A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, [Azure Storage](/azure/storage/common/storage-network-security-perimeter), and [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
 This article explains how to join an Azure AI Search service to a [network security perimeter](/azure/private-link/network-security-perimeter-concepts) to control network access to your search service. By joining a network security perimeter, you can:
 
@@ -30,7 +31,7 @@ You can add a search service to a network security perimeter in the Azure portal
 
 ## Limitations and considerations
 
-* For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-howto-managed-identities-data-sources.md) and have a role assignment that permits read-access to data sources.
+* For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-how-to-managed-identities.md) and have a role assignment that permits read-access to data sources.
 
 * Supported indexer data sources are currently limited to [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-howto-index-cosmosdb.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
 

@@ -6,11 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: yogipandey
+ms.author: scottpolly
 author: ynpandey
 ms.reviewer: fsolomon
 ms.date: 03/13/2025
-ms.custom: UpdateFrequency5, data4ml
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sfi-image-nochange
 #Customer intent: As low code experience data scientist, I need to make my data in storage on Azure available to my remote compute to train my ML models.
 ---
 

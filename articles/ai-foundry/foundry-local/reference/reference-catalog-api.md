@@ -2,12 +2,11 @@
 title: Catalog API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local Model Catalog API.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
 ms.topic: reference
-ms.date: 05/02/2025
+ms.date: 07/03/2025
 ms.author: jburchel
 reviewer: maanavdalal
 author: jonburchel

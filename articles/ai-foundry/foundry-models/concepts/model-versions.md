@@ -1,4 +1,4 @@
----
+﻿---
 title: Model versions in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn about model versions in Foundry Models.
@@ -6,7 +6,6 @@ ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.custom: ignite-2024, github-universe-2024
 ms.date: 05/19/2025
-manager: scottpolly
 author: msakande
 ms.author: mopeakande
 recommendations: false
@@ -48,8 +47,8 @@ Azure works closely with OpenAI to release new model versions. When a new versio
 
 As a customer of Azure OpenAI models, you might notice some changes in the model behavior and compatibility after a version upgrade.  These changes might affect your applications and workflows that rely on the models.  Here are some tips to help you prepare for version upgrades and minimize the impact:
 
-* Read [what's new](../../../ai-services/openai/whats-new.md) and [models](../../../ai-services/openai/concepts/models.md) to understand the changes and new features.
-* Read the documentation on [model deployments](../../../ai-services/openai/how-to/create-resource.md) and [version upgrades](../../../ai-services/openai/how-to/working-with-models.md) to understand how to work with model versions.
+* Read [what's new](../../openai/whats-new.md) and [models](../../openai/concepts/models.md) to understand the changes and new features.
+* Read the documentation on [model deployments](../../openai/how-to/create-resource.md) and [version upgrades](../../openai/how-to/working-with-models.md) to understand how to work with model versions.
 * Test your applications and workflows with the new model version after release.
 * Update your code and configuration to use the new features and capabilities of the new model version.
 
@@ -61,4 +60,4 @@ New model versions might result in a new model ID being published. For example, 
 
 ## Related content
 
-- [Learn more about working with Azure OpenAI models](../../../ai-services/openai/how-to/working-with-models.md)
+- [Learn more about working with Azure OpenAI models](../../openai/how-to/working-with-models.md)

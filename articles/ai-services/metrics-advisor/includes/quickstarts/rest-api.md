@@ -7,6 +7,7 @@ ms.service: azure-ai-metrics-advisor
 ms.topic: include
 ms.date: 06/12/2025
 ms.author: mbullwin
+ms.custom: sfi-ropc-nochange
 ---
 
 ## Prerequisites

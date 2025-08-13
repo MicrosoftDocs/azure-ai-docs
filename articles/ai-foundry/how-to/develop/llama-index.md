@@ -2,7 +2,6 @@
 title: Develop application with LlamaIndex and Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article explains how to use LlamaIndex with models deployed in Azure AI Foundry portal to build advance intelligent applications.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024

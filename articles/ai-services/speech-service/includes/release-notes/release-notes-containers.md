@@ -2,9 +2,18 @@
 author: eric-urban
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 4/28/2025
+ms.date: 7/1/2025
 ms.author: eur
 ---
+
+### 2025-June release
+
+#### Neural text to speech 3.11.0
+
+Released [neural text to speech version 3.11.0](../../speech-container-ntts.md).
+
+- Added support for new neural voices: `de-DE-SeraphinaMultilingualNeural`, `es-ES-XimenaMultilingualNeural`, `fi-FI-SelmaNeural`, `nb-NO-FinnNeural`.
+- Added support for multilingual custom lexicons.
 
 ### 2025-May release
 

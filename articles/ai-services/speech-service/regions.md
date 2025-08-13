@@ -6,7 +6,7 @@ author: eric-urban
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
+ms.date: 7/1/2025
 ms.author: eur
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
@@ -107,19 +107,19 @@ The regions in these tables support most of the core features of the Speech serv
 | **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| brazilsouth        | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| brazilsouth        | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
 | canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| centralindia       | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
-| centralus          | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| centralindia       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| centralus          | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
 | eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
 | eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| eastus2            | ✅ | ✅ |  |  | ✅ | ✅ |  |  | ✅ | ✅ |  |
+| eastus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| japaneast          | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| japaneast          | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | japanwest          | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| koreacentral       | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  |  |  |  |  |  |
+| koreacentral       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |  |  |
 | northeurope        | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | norwayeast         | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | qatarcentral       | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
@@ -133,9 +133,9 @@ The regions in these tables support most of the core features of the Speech serv
 | uksouth            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus             | ✅ | ✅ |  |  | ✅ | ✅ |  |  |  |  |  |
+| westus             | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus3            | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+| westus3            | ✅ |  |  |  | ✅ |  | ✅ |  |  |  |  |
 
 # [Speech translation](#tab/speech-translation)
 
@@ -171,6 +171,20 @@ The regions in these tables support most of the core features of the Speech serv
 | westus             | ✅ |
 | westus2            | ✅ |
 | westus3            | ✅ |
+
+# [Voice live](#tab/voice-live)
+
+| **Region** | **gpt-4o-realtime-preview** | **gpt-4o-mini-realtime-preview** | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **phi4-mm-realtime** | **phi4-mini** | 
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| centralindia       | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | - | Global standard | Global standard | - | - |
+| eastus2       | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional |
+| southeastasia       | - | - | - | - | - | Global standard | Global standard | - | - |
+| swedencentral       | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional |
+| westus2       | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional |
+
+<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The voice live API uses Sweden Central as needed for generative AI load balancing.  
+
+<sup>2</sup> The Azure AI Foundry resource must be in West US 2. Azure AI Speech features remain in West US 2. The voice live API uses East US 2 as needed for generative AI load balancing.
 
 # [Intent recognition](#tab/intent-recognition)
 
@@ -246,41 +260,40 @@ The regions in these tables support most of the core features of the Speech serv
 | westus2            | ✅ | ✅ |
 | westus3            |  |  |
 
-
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** | **Voice Live API** |
-|-----|-----|-----|-----|
-| australiaeast      | ✅ | ✅ |  |  |
-| brazilsouth        | ✅ |  |  |  |
-| canadacentral      | ✅ | ✅ | ✅ |  |
-| centralindia       | ✅ | ✅ |  |  |
-| centralus          | ✅ | ✅ |  |  |
-| eastasia           | ✅ | ✅ | ✅ |  |
-| eastus             | ✅ | ✅ | ✅ |  |
-| eastus2            | ✅ | ✅ | ✅ | ✅ |
-| francecentral      | ✅ | ✅ |  |  |
-| germanywestcentral | ✅ | ✅ |  |  |
-| japaneast          | ✅ | ✅ |  |  |
-| japanwest          | ✅ | ✅ |  |  |
-| koreacentral       | ✅ | ✅ |  |  |
-| northcentralus     | ✅ |  |  |  |
-| northeurope        | ✅ | ✅ | ✅ |  |
-| norwayeast         | ✅ | ✅ |  |  |
-| qatarcentral       | ✅ | ✅ |  |  |
-| southafricanorth   | ✅ |  |  |  |
-| southcentralus     | ✅ |  | ✅ |  |
-| southeastasia      | ✅ | ✅ | ✅ |  |
-| swedencentral      | ✅ | ✅ |  | ✅ |
-| switzerlandnorth   | ✅ |  |  |  |
-| switzerlandwest    | ✅ | ✅ |  |  |
-| uaenorth           | ✅ |  |  |  |
-| uksouth            | ✅ | ✅ |  |  |
-| westcentralus      | ✅ | ✅ | ✅ |  |
-| westeurope         | ✅ | ✅ | ✅ |  |
-| westus             | ✅ | ✅ | ✅ |  |
-| westus2            | ✅ | ✅ | ✅ |  |
-| westus3            | ✅ | ✅ |  |  |
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** | 
+|-----|-----|-----|
+| australiaeast      | ✅ | ✅ |  |
+| brazilsouth        | ✅ |  |  |
+| canadacentral      | ✅ | ✅ | ✅ |
+| centralindia       | ✅ | ✅ |  |
+| centralus          | ✅ | ✅ |  |
+| eastasia           | ✅ | ✅ | ✅ |
+| eastus             | ✅ | ✅ | ✅ |
+| eastus2            | ✅ | ✅ | ✅ |
+| francecentral      | ✅ | ✅ |  |
+| germanywestcentral | ✅ | ✅ |  |
+| japaneast          | ✅ | ✅ |  |
+| japanwest          | ✅ | ✅ |  |
+| koreacentral       | ✅ | ✅ |  |
+| northcentralus     | ✅ |  |  |
+| northeurope        | ✅ | ✅ | ✅ |
+| norwayeast         | ✅ | ✅ |  |
+| qatarcentral       | ✅ | ✅ |  |
+| southafricanorth   | ✅ |  |  |
+| southcentralus     | ✅ |  | ✅ |
+| southeastasia      | ✅ | ✅ | ✅ |
+| swedencentral      | ✅ | ✅ |  |
+| switzerlandnorth   | ✅ |  |  |
+| switzerlandwest    | ✅ | ✅ |  |
+| uaenorth           | ✅ |  |  |
+| uksouth            | ✅ | ✅ |  |
+| westcentralus      | ✅ | ✅ | ✅ |
+| westeurope         | ✅ | ✅ | ✅ |
+| westus             | ✅ | ✅ | ✅ |
+| westus2            | ✅ | ✅ | ✅ |
+| westus3            | ✅ | ✅ |  |
 
 > [!NOTE]
 > The [Speech SDK](speech-sdk.md) supports voice assistant capabilities through Direct Line Speech.

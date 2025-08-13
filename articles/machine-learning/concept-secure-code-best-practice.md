@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: concept-article
-ms.author: larryfr
-author:  Blackmist
+ms.author: scottpolly
+author:  s-polly
 ms.reviewer: deeikele
 ms.date: 04/01/2025
 ---

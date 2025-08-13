@@ -2,11 +2,11 @@
 title: 'RAG tutorial: Design an index'
 titleSuffix: Azure AI Search
 description: Design an index for RAG patterns in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 05/29/2025
 

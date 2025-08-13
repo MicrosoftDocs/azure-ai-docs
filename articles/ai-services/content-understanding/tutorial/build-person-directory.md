@@ -2,7 +2,7 @@
 title: Build a person directory with Azure AI Content Understanding Face APIs
 titleSuffix: Azure AI services
 description: Learn to build a person directory with Content Understanding Face APIs
-author: laujan
+author: PatrickFarley 
 ms.author: quentinm
 manager: nitinme
 ms.date: 05/19/2025
@@ -16,7 +16,7 @@ ms.custom:
 
 A person directory provides a structured approach to storing face data for recognition tasks. It allows you to add individual faces, search for visually similar faces, and create person profiles. You can associate faces with these profiles and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos.
 
-:::image type="content" source="../media/face/person-directory-processes.png" alt-text="Diagram illustrating the processes of enrollment and search in a person directory.":::
+:::image type="content" source="../media/face/person-directory-enrollment.jpg" lightbox="../media/face/person-directory-enrollment.jpg" alt-text="Diagram illustrating the processes of enrollment and search in a person directory.":::
 
 ## Data storage recommendation
 
@@ -81,7 +81,7 @@ Content-Type: application/json
 {
   "tags": {
     "name": "Alice",
-    "age": "20"
+    "employeeId": "E12345"
   }
 }
 ```
@@ -98,7 +98,7 @@ The API returns a `personId` that uniquely identifies the created person.
   "personId": "4f66b612-e57d-4d17-9ef7-b951aea2cf0f",
   "tags": {
     "name": "Alice",
-    "age": "20"
+    "employeeId": "E12345"
   }
 }
 ```
@@ -162,6 +162,8 @@ After creating your person directory and adding face images with optional person
 
 These capabilities enable robust face recognition and similarity matching for various applications.
 
+:::image type="content" source="../media/face/person-directory-search.png" lightbox="../media/face/person-directory-search.png" alt-text="Diagram illustrating the processes of search in a person directory.":::
+
 ### Identify a person
 
 Identify the most likely person matches by comparing the input face against enrolled persons in the directory.
@@ -195,7 +197,7 @@ The API returns the detected bounding box of the face along with the top person 
       "personId": "{personId1}",
       "tags": {
         "name": "Alice",
-        "age": "20"
+        "employeeId": "E12345"
       },
       "confidence": 0.92
     }

@@ -2,7 +2,6 @@
 title: Data import and data ingestion
 titleSuffix: Azure AI Search
 description: Populate and upload data to an index in Azure AI Search from external data sources.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -48,9 +47,9 @@ There's no support for pushing data via the Azure portal.
 
 For an introduction to the push APIs, see:
 
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)
 + [C# Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md)
-+ [REST Quickstart: Create an Azure AI Search index using PowerShell](search-get-started-powershell.md)
++ [REST Quickstart: Create an Azure AI Search index using PowerShell](search-get-started-text.md)
 
 <a name="indexing-actions"></a>
 

@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 ms.author: eur
 zone_pivot_groups: programming-languages-set-thirteen
 ---
@@ -28,8 +28,6 @@ Embedded speech is included with the Speech SDK (version 1.24.1 and higher) for 
 # [Android](#tab/android-target)
 
 Requires Android 8.0 (API level 26) or higher on Arm64 (`arm64-v8a`) or Arm32 (`armeabi-v7a`) hardware.
-
-Embedded TTS with neural voices is only supported on Arm64.
 
 # [Linux](#tab/linux-target)
 

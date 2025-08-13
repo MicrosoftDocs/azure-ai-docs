@@ -2,8 +2,8 @@
 title: Azure AI Content Understanding image overview
 titleSuffix: Azure AI services
 description: Learn how to use Azure AI Content Understanding image solutions
-author: laujan
-ms.author: lajanuar
+author: PatrickFarley 
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

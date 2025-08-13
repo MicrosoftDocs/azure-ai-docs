@@ -500,7 +500,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 
 #### Text to speech avatar
 
-- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [How to edit the background](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#how-to-edit-the-background).
+- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [batch synthesis avatar properties](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#edit-the-background).
 
 ### March 2024 release
 
@@ -856,7 +856,7 @@ For more information, see the [language and voice list](../../language-support.m
 #### Get facial position with viseme
 
 * Added support for blend shapes to drive the facial movements of a 3D character that you designed. Learn more at [how to get facial position with viseme](../../how-to-speech-synthesis-viseme.md).
-* SSML updated to support viseme element. See [speech synthesis markup](../../speech-synthesis-markup-structure.md#viseme-element).
+* SSML updated to support viseme element. See [speech synthesis markup](../../speech-synthesis-markup-voice.md#viseme-element).
 
 ### June 2022 release
 

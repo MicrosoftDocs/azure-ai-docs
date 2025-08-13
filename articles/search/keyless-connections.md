@@ -4,6 +4,7 @@ description: Use keyless connections with an Azure Identity library for Microsof
 ms.topic: how-to
 ms.date: 06/17/2025
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 author: HeidiSteen
 ms.author: heidist
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, Keyless-dotnet, Keyless-java, Keyless-js, Keyless-python, build-2024-intelligent-apps
@@ -184,7 +185,7 @@ from azure.search.documents import SearchClient
 from azure.identity import DefaultAzureCredential, AzureAuthorityHosts
 
 # Azure Public Cloud
-audience = "https://search.windows.net"
+audience = "https://search.azure.com"
 authority = AzureAuthorityHosts.AZURE_PUBLIC_CLOUD
 
 service_endpoint = os.environ["AZURE_SEARCH_ENDPOINT"]
@@ -202,6 +203,12 @@ search_index_client = SearchIndexClient(
     credential=credential, 
     audience=audience)
 ```
+
+The default authority is Azure public cloud. Custom `audience` values for sovereign or specialized clouds include:
+
+* `https://search.azure.us` for Azure Government
+* `https://search.azure.cn` for Azure China
+* `https://search.microsoftazure.de` for Azure Germany
 
 ---
 
