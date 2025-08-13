@@ -17,7 +17,7 @@ ms.date: 08/13/2025
 
 Azure AI Search provides information retrieval and uses optional AI integration to extract more value from text and vector content.
 
-The following table summarizes features by category. There's feature parity in all Azure public, private, and sovereign clouds, but some features aren't supported in specific regions or tiers. For more information, see [Choose a region](search-region-support.md) and [features availability by tier](search-sku-tier.md#feature-availability-by-tier).
+The following table summarizes features by category. There's feature parity in all Azure public, private, and sovereign clouds, but some features aren't supported in [specific regions](search-region-support.md) or [specific tiers](search-sku-tier.md#feature-availability-by-tier).
 
 > [!NOTE]
 > Looking for preview features? See the [preview features list](search-api-preview.md).
@@ -37,7 +37,7 @@ The following table summarizes features by category. There's feature parity in a
 | Chat completion models used during indexing | [**GenAI prompt skill (preview)**](cognitive-search-skill-genai-prompt.md) is a skill that calls a large language model during indexing and provides a prompt that determines the task. You decide what the task is. It might describing an image, summarizing or manipulating content, or any task the model can perform. Output is added as a new field in a searchable index. |
 | Chat completion models used at query time | [**Agentic retrieval (preview)**](search-agentic-retrieval-concept.md) uses a large language model for query planning, decomposing and paraphrasing complex queries for better query coverage over your index. Responses from agentic retrieval are designed for agent-to-agent workflows. You can pass search results as single large string, which simplifies agent consumption of your proprietary content. The response also includes citations and query execution information. </br></br>[**RAG patterns**](retrieval-augmented-generation-overview.md) can be implemented using existing capabilities. The ability to [tune for relevance](search-relevance-overview.md) and construct hybrid queries improve the quality of the content sent to chat bots for answer generation. |
 
-## Applied AI and AI integration
+## Applied AI and AI enriched content
 
 | Category&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  | Features |
 |-------------------|----------|
