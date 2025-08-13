@@ -72,16 +72,18 @@ Follow this link to view and download [example datasets](https://github.com/Azur
 ## Model Comparison Table
 This table provides an overview of the models available 
 
-| Model                | Modalities     | Techniques   | Strengths                        | 
-|----------------------|---------------|--------------|--------------------------------------|
+| Model                | Modalities    | Techniques   | Strengths                                                          | 
+|----------------------|---------------|--------------|--------------------------------------------------------------------|
 | GPT 4.1              | Text, Vision  | SFT, DPO     | Superior performance on sophisticated tasks, nuanced understanding |
-| GPT 4.1-mini         | Text          | SFT, DPO     | Fast iteration, cost-effective, good for simple tasks  |
-| GPT 4.1-nano         | Text          | SFT, DPO     | Fast, cost-effective, and minimal resource usage        |
-| o4-mini              | Text          | RFT          | Reasoning model suited for complex logical tasks        |
-| Phi 4                | Text          | SFT          | Cost effective option for simpler tasks                |
-| Ministral 3B         | Text          | SFT          | Low-cost option for faster iteration                   |
-| Mistral Nemo         | Text          | SFT          | Balance between size and capability                    |
-| Mistral Large (2411) | Text          | SFT          | Most capable Mistral model, better for complex tasks   |
+| GPT 4.1-mini         | Text          | SFT, DPO     | Fast iteration, cost-effective, good for simple tasks              |
+| GPT 4.1-nano         | Text          | SFT, DPO     | Fast, cost-effective, and minimal resource usage                   |
+| GPT 4o               | Text, Vision  | SFT, DPO     | Previous generation flagship model for complex tasks               |
+| GPT 4o-mini          | Text          | SFT          | Previous generation small model for simple tasks                   |
+| o4-mini              | Text          | RFT          | Reasoning model suited for complex logical tasks                   |
+| Phi 4                | Text          | SFT          | Cost effective option for simpler tasks                            |
+| Ministral 3B         | Text          | SFT          | Low-cost option for faster iteration                               |
+| Mistral Nemo         | Text          | SFT          | Balance between size and capability                                |
+| Mistral Large (2411) | Text          | SFT          | Most capable Mistral model, better for complex tasks               |
 
 ## Get Started with Fine Tuning
 
