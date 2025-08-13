@@ -542,8 +542,7 @@ Use Document Intelligence to automate document processing in applications and wo
 :::image type="content" source="media/overview/analyze-custom-neural.png" alt-text="Screenshot that shows Custom Neural model analysis by using Document Intelligence Studio.":::
 
   > [!NOTE]
-  > To train a custom neural model, set the `buildMode` property to `neural`.
-  > For more information, see [Training a neural model](train/custom-neural.md#training-a-model)
+  > To train a custom neural model, set the `buildMode` property to `neural`. For more information, see [Training a neural model](train/custom-neural.md#training-a-model).
 
 | About | Description |Automation use cases | Development options |
 |----------|--------------|-------------------------|-----------|
