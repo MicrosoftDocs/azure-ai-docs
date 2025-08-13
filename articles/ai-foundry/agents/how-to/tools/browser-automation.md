@@ -63,11 +63,11 @@ An example flow would be:
 
         For more information on getting this value, see the [PlayWright documentation](https://aka.ms/pww/docs/configure-service-endpoint)
 
-    1. * **Key**: [Get the Playwright access token](https://aka.ms/pww/docs/generate-access-token)
+        * **Key**: [Get the Playwright access token](https://aka.ms/pww/docs/generate-access-token)
 
     For more information on creating a connection, see [Create a connection](../../../how-to/connections-add.md?pivots=fdp-project).
 
-1. Create a Browser Automation tool with your connection ID.
+1. Configure your client by adding a Browser Automation tool using the Azure Playwright connection ID.
 
 ## Transparency note
 

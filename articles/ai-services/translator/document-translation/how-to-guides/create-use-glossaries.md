@@ -19,11 +19,6 @@ A glossary is a list of terms with definitions that you create for the Document 
 
 * **Specify translations for ambiguous words**. Choose a specific translation for poly&#8203;semantic words.
   
-*  **Explicitly identify the source and target languages for each glossary term**. Also include any relevant localization requirements.
-
-*  **Conduct regular reviews of the glossary to verify term accuracy and relevance**. Consistently update entries as necessary.
-
-*  **Provide precise and comprehensive definitions for each term**. Pay particular attention to technical or specialized vocabulary.
 
 ## Create, upload, and use a glossary file
 
@@ -65,7 +60,13 @@ By default, Azure AI Translator service API is **case-sensitive**, meaning that 
 
 ### Ensure accuracy
 
-Translation glossaries play an essential role in ensuring consistent and accurate terminology in multilingual localization projects. Applying a glossary during translation ensures that specific terms are translated according to the defined source and target language pair. Thus, it's important to define your glossary carefully and update it regularly to maintain precision and consistency.
+Translation glossaries play an essential role in ensuring consistent and accurate terminology in multilingual localization projects. Applying a glossary during translation ensures that specific terms are translated according to the defined source and target language pair. Thus, it's important to define your glossary carefully and update it regularly to maintain precision and consistency. Here are a few more tips:
+
+*  **Explicitly identify the source and target languages for each glossary term**. Also include any relevant localization requirements.
+
+*  **Conduct regular reviews of the glossary to verify term accuracy and relevance**. Consistently update entries as necessary.
+
+*  **Provide precise and comprehensive definitions for each term**. Pay particular attention to technical or specialized vocabulary.
 
 ## Next steps
 
