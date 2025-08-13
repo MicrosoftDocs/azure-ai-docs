@@ -92,13 +92,13 @@ CORS should now be configured to use the storage account from Document Intellige
     :::image border="true" type="content" source="../media/sas-tokens/upload-blob-window.png" alt-text="Screenshot that shows the Upload blob pane in the Azure portal.":::
 
 > [!NOTE]
-> By default, Document Intelligence Studio uses documents that are located at the root of your container. You can use data organized in folders by specifying the folder path in the Custom form project creation steps. For more information, see [Organize your data in subfolders](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional).
+> By default, Document Intelligence Studio uses documents that are located at the root of your container. You can use data organized in folders by specifying the folder path in the steps for creating a custom form project. For more information, see [Organize your data in subfolders](../how-to-guides/build-a-custom-model.md?view=doc-intel-2.1.0&preserve-view=true#organize-your-data-in-subfolders-optional).
 
 ## Use Document Intelligence Studio features
 
 ### Autolabel documents with prebuilt models or one of your own models
 
-On the custom extraction model labeling page, you can now autolabel your documents by using one of the Document Intelligent Service prebuilt models or your trained models.
+On the labeling page for the custom extraction model, you can now autolabel your documents by using one of the Document Intelligent Service prebuilt models or your trained models.
 
 :::image type="content" source="../media/studio/auto-label.gif" alt-text="Animated screenshot that shows autolabeling.":::
 
@@ -108,7 +108,7 @@ For some documents, duplicate labels after running autolabel are possible. Make 
 
 ### Autolabel tables
 
-On the custom extraction model labeling page, you can now autolabel the tables in the document without having to label the tables manually.
+On the labeling page for the custom extraction model, you can now autolabel the tables in the document without having to label the tables manually.
 
 :::image type="content" source="../media/studio/auto-table-label.gif" alt-text="Animated screenshot that shows autotable labeling.":::
 
@@ -122,7 +122,7 @@ If a low confidence score is returned for some labels, make sure to correctly la
 
 ### Make use of the document list options and filters in custom projects
 
-Use the custom extraction model labeling page to go through your training documents with ease by making use of the search, filter, and sort-by features.
+Use the labeling page for the custom extraction model to go through your training documents with ease by making use of the search, filter, and sort-by features.
 
 Use the grid view to preview documents, or use the list view to scroll through documents more easily.
 
