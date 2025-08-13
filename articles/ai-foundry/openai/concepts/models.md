@@ -29,7 +29,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`model-router`](#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [`computer-use-preview`](#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
 | [`o-series models`](#o-series-models) |[`Reasoning models`](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
-| [`GPT-4o, GPT-4o mini, and GPT-4 Turbo`](#gpt-4o-and-gpt-4-turbo) | The latest, most capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
+| [`GPT-4o, GPT-4o mini, and GPT-4 Turbo`](#gpt-4o-and-gpt-4-turbo) | Capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
 | [`GPT-4`](#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
 | [`GPT-3.5`](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
@@ -236,9 +236,9 @@ See [Model versions](../concepts/model-versions.md) to learn about how Azure Ope
 
 |  Model ID  | Description | Max request (tokens) | Training data (up to)  |
 |  --- |  :--- |:--- |:---: |
-| `gpt-4o` (2024-11-20) <br> GPT-4o (Omni)  | Latest large GA model. <br> - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. <br> - Enhanced creative writing ability. | Input: 128,000  <br> Output: 16,384 | October 2023 |
+| `gpt-4o` (2024-11-20) <br> GPT-4o (Omni)  | - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. <br> - Enhanced creative writing ability. | Input: 128,000  <br> Output: 16,384 | October 2023 |
 |`gpt-4o` (2024-08-06) <br> GPT-4o (Omni) | - Structured outputs.<br> - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 16,384 | October 2023 |
-|`gpt-4o-mini` (2024-07-18) <br> GPT-4o mini | Latest small GA model. <br> - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text and image processing. <br>- JSON Mode. <br> - Parallel function calling. | Input: 128,000 <br> Output: 16,384  | October 2023 |
+|`gpt-4o-mini` (2024-07-18) <br> GPT-4o mini | - Fast, inexpensive, capable model ideal for replacing GPT-3.5 Turbo series models. <br> - Text and image processing. <br>- JSON Mode. <br> - Parallel function calling. | Input: 128,000 <br> Output: 16,384  | October 2023 |
 |`gpt-4o` (2024-05-13) <br> GPT-4o (Omni) | - Text and image processing. <br> - JSON Mode. <br> - Parallel function calling. <br> - Enhanced accuracy and responsiveness. <br> - Parity with English text and coding tasks compared to GPT-4 Turbo with Vision. <br> - Superior performance in non-English languages and in vision tasks. |Input: 128,000  <br> Output: 4,096| October 2023 |
 | `gpt-4` (turbo-2024-04-09) <br>GPT-4 Turbo with Vision | New generally available model. <br> - Replacement for all previous GPT-4 preview models (`vision-preview`, `1106-Preview`, `0125-Preview`). <br> - [Feature availability](#gpt-4o-and-gpt-4-turbo) is currently different, depending on the method of input and the deployment type. | Input: 128,000  <br> Output: 4,096  | December 2023 |
 
@@ -251,7 +251,7 @@ GPT-3.5 models can understand and generate natural language or code. The most ca
 
 |  Model ID   | Description | Max request (tokens) | Training data (up to) |
 |  --------- |:---|:------:|:----:|
-| `gpt-35-turbo` (0125) *new* | Latest generally available model. <br> - JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). <br> - Higher accuracy when it responds in requested formats. <br> - Includes a fix for a bug that caused a text-encoding issue for non-English language function calls.  | Input: 16,385<br> Output: 4,096  | Sep 2021 |
+| `gpt-35-turbo` (0125) *new* |- JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). <br> - Higher accuracy when it responds in requested formats. <br> - Includes a fix for a bug that caused a text-encoding issue for non-English language function calls.  | Input: 16,385<br> Output: 4,096  | Sep 2021 |
 | `gpt-35-turbo` (1106) | Older generally available model. <br> - JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). | Input: 16,385<br> Output: 4,096 |  Sep 2021|
 | `gpt-35-turbo-instruct` (0914) | *Completions endpoint only*. <br> - Replacement for [legacy completions models](./legacy-models.md). | 4,097 |Sep 2021 |
 
