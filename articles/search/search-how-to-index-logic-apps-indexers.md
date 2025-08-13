@@ -111,7 +111,7 @@ Follow these steps to create a logic app workflow for indexing content in Azure 
 
 1. Start the Import and vectorize data wizard in the Azure portal.
 
-1. Choose a [supported Azure Logic Apps indexer](#supported-connectors).
+1. Choose a [supported Azure Logic Apps connector](#supported-connectors).
 
    :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the chosen data source page in the Import and vectorize data wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
 
