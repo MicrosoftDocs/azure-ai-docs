@@ -59,14 +59,13 @@ To __deploy the model through the UI__:
 
 1. Go to the model catalog.
 1. Search for the model and select its model card.
-1. On the model's overview page, select __Deploy__.
-1. If given the option to choose between serverless API deployment and deployment using a managed compute, select **Managed Compute**.
-1. Fill out the details in the deployment window.
-
+1. On the model's overview page, select __Use this model__ to open the deployment window. 
+    
     > [!NOTE]
     > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
-1. Select __Deploy__.
+1. Select the checkbox in the deployment window to use the temporary shared quota.
+1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. If you're satisfied with these settings, select **Deploy**.
 
 To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 
