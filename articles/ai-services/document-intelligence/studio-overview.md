@@ -31,17 +31,17 @@ Currently, features are migrating from [Document Intelligence Studio](https://do
 
 ## Choose the correct studio experience
 
-Currently, there are two studios: the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision) and [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio) for building and validating Document Intelligence models. As the experiences migrate to the new Azure AI Foundry portal, some experiences are available in both studios. Other experiences/models are available in only one of the studios.
+Currently, there are two studios for building and validating Document Intelligence models: the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision) and [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio). As the experiences migrate to the new Azure AI Foundry portal, some experiences are available in both studios. Other experiences and models are available in only one of the studios.
 
 The following guidelines help you to choose the studio experience for your needs. All the [prebuilt models](overview.md#prebuilt-models) and [general extraction models](overview.md#document-analysis-models) are available for both studios.
 
-### When to use [Document Intelligence Studio](https://documentintelligence.ai.azure.com/studio)
+### When to use Document Intelligence Studio
 
 Document Intelligence Studio contains all the features released on or before November 2024. For any of the v2.1, v3.0, v3.1 features, continue to use Document Intelligence Studio. 
 
 Document Intelligence Studio provides a visual experience for labeling, training, and validating custom models. For custom document field-extraction models, use Document Intelligence Studio for template and neural models. You can train and use custom classification models only on Document Intelligence Studio. Use Document Intelligence Studio if you want to try out generally available versions of the models from version v3.0, v3.1, and v4.0.
 
-### When to use the [Azure AI Foundry portal](https://ai.azure.com/explore/aiservices/vision)
+### When to use the Azure AI Foundry portal
 
 Start with Azure AI Foundry and try any of the prebuilt document models from the 2024-11-30 version, including general extraction models like read or layout.
 
