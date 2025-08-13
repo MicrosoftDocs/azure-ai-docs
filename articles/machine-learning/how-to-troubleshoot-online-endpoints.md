@@ -127,13 +127,13 @@ kubectl -n <compute-namespace> logs <container-name>
 To see log output from a container, use the following command:
 
 ```azurecli
-az ml online-deployment get-logs -e <endpoint-name> -n <deployment-name> -l 100
+az ml online-deployment get-logs -w <workspace-name> -e <endpoint-name> -n <deployment-name> -l 100
 ```
 
 Or
 
 ```azurecli
-az ml online-deployment get-logs --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
+az ml online-deployment get-logs --workspace-name <workspace-name> --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
 ```
 
 By default, logs are pulled from the inference server. You can get logs from the storage initializer container by passing `–-container storage-initializer`.
