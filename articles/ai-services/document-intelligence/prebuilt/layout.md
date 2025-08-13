@@ -470,7 +470,7 @@ Figures (charts and images) in documents play a crucial role in complementing an
 - `elements`: The identifiers for text elements or paragraphs within the document that are related to or describe the figure.
 - `caption`: The description if there is one.
 
-When `output=figures` is specified during the initial analyze operation, the service generates cropped images for all detected figures that can be accessed via `/analyeResults/{resultId}/figures/{figureId}`. The `FigureId` is the ID included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
+When `output=figures` is specified during the initial analyze operation, the service generates cropped images for all detected figures that can be accessed via `/analyeResults/{resultId}/figures/{figureId}`. The `FigureId` value is the ID included in each figure object, following an undocumented convention of `{pageNumber}.{figureIndex}` where `figureIndex` resets to one per page.
 
 For v4.0 2024-11-30 (GA), the bounding regions for figures and tables cover only the core content and exclude the associated caption and footnotes.
 
@@ -522,7 +522,7 @@ if result.figures:
 
 Hierarchical document structure analysis is pivotal in organizing, comprehending, and processing extensive documents. This approach is vital for semantically segmenting long documents to boost comprehension, facilitate navigation, and improve information retrieval. The advent of [retrieval-augmented generation (RAG)](../concept/retrieval-augmented-generation.md) in document-generative AI underscores the significance of hierarchical document structure analysis.
 
-The layout model supports sections and subsections in the output, which identifies the relationship of sections and objects within each section. The hierarchical structure is maintained in the `elements` of each section. You can use the [output response to Markdown format](#output-response-to-markdown-format) to easily get the sections and subsections in Markdown.
+The layout model supports sections and subsections in the output, which identifies the relationship of sections and objects within each section. The hierarchical structure is maintained in `elements` for each section. You can use the [output response to Markdown format](#output-response-to-markdown-format) to easily get the sections and subsections in Markdown.
 
 #### [Sample code](#tab/sample-code)
 
