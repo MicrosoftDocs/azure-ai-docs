@@ -25,7 +25,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`GPT-5 series`](#gpt-5) | **NEW** `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` |
 | [gpt-oss](#gpt-oss) | **NEW** open-weight reasoning models |
 | [`codex-mini`](#o-series-models) | Fine-tuned version of o4-mini. |  
-| [`GPT-4.1 series`](#gpt-41-series) | The latest model release from Azure OpenAI. |
+| [`GPT-4.1 series`](#gpt-41-series) | `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano` |
 | [`model-router`](#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [`computer-use-preview`](#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
 | [`o-series models`](#o-series-models) |[`Reasoning models`](../how-to/reasoning.md) with advanced problem solving and increased focus and capability. |

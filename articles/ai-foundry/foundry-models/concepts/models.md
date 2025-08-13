@@ -46,7 +46,7 @@ Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with diff
 | [`GPT-5 series`](../../openai/concepts/models.md#gpt-5) | **NEW** `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` |
 | [gpt-oss](../../openai/concepts/models.md#gpt-oss) | Open-weight reasoning models |
 | [codex-mini](../../openai/concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
-| [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | The latest model release from Azure OpenAI. |
+| [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano` |
 | [model-router](../../openai/concepts/models.md#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
 | [computer-use-preview](../../openai/concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
 | [o-series models](../../openai/concepts/models.md#o-series-models) |[Reasoning models](../../openai/how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
