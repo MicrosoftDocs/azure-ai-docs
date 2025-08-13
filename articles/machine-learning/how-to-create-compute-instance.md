@@ -9,7 +9,7 @@ ms.custom: devx-track-azurecli, FY25Q1-Linter
 ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
-ms.reviewer: vijetaj
+ms.reviewer: jturuk
 ms.date: 08/13/2025
 # customer intent: To create a compute instance in Azure Machine Learning for development and testing purposes.
 ---
