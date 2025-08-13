@@ -218,7 +218,7 @@ It's best to use paragraph roles with unstructured documents to help understand 
 
 ### Text, lines, and words
 
-The document layout model in Document Intelligence extracts print and handwritten-style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines, if detected, along with the `spans` that point to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
+The document layout model in Document Intelligence extracts print and handwritten-style text as `lines` and `words`. The `styles` collection includes any handwritten style for lines, if detected, along with the spans that point to the associated text. This feature applies to [supported handwritten languages](../language-support/prebuilt.md).
 
 For Microsoft Word, Excel, PowerPoint, and HTML, the Document Intelligence v4.0 2024-11-30 (GA) layout model extracts all embedded text as is. Texts are extracted as words and paragraphs. Embedded images aren't supported.
 
