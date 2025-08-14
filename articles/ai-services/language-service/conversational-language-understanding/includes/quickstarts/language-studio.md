@@ -1,4 +1,4 @@
----
+<!-- ---
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -46,4 +46,4 @@ Generally after training a model you would review its evaluation details. In thi
 
 ## Clean up resources
 
-[!INCLUDE [Delete project using Language studio](../language-studio/delete-project.md)]
+[!INCLUDE [Delete project using Language studio](../language-studio/delete-project.md)] -->
