@@ -171,7 +171,7 @@ You can add the Azure AI Search tool to an agent programmatically using the code
 
 Currently, if you want to use the Azure AI Search tool in the Azure AI Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After creating the agent in a code-based manner, you can then use it in the portal. 
 
-The Azure AI Search tool can only include one search index. If you want to utilize multiple index, consider using [connected agents](../connected-agents.md) with an Azure AI search index configured with each agent.
+The Azure AI Search tool can only include one search index. If you want to utilize multiple indexes, consider using [connected agents](../connected-agents.md) with an Azure AI search index configured with each agent.
 
 ## Next steps
 
