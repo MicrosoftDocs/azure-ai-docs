@@ -43,10 +43,10 @@ We provide SDKs in different languages to simplify development on frontend appli
 
 ### Download SDK for frontend application
 
-Follow the instructions in the readme documents of one of the frontend SDKs to integrate the UI and the code into your frontend application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications.
+Follow the instructions in the readme documents of one of the frontend SDKs below to integrate the UI and the code into your frontend application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications.
 
 > [!IMPORTANT]
-> Each frontend SDK requires will require access to a gated asset to be compiled. Instructions on how to set this up will be mentioned in the references below.
+> Each frontend SDK requires will require access to a gated asset to successfully compile. Instructions on how to set this up will be mentioned in the references below.
 
 For Swift iOS:
 - Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
@@ -63,7 +63,7 @@ For JavaScript Web:
 - API reference: [AzureAIVisionFaceUI Reference](https://orange-forest-0ea70d510.5.azurestaticapps.net/)
 - Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 
-Once you've added the code into your application, the SDK handles starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
+Once you have integrated the SDK into your frontend application, the SDK will handle starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
 
 You can monitor the [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) of the SDK repo for new SDK version updates.
 

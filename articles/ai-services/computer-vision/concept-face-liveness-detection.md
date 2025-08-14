@@ -20,6 +20,8 @@ This article explains the concept of Face liveness detection, its input and outp
 
 ## Introduction
 
+[![Watch the video](https://www.youtube.com/watch?v=3ysxiX49oxw/hqdefault.jpg)](https://www.youtube.com/watch?v=3ysxiX49oxw)
+
 Face Liveness detection is used to determine if a face in an input video stream is real (live) or fake (spoofed). It's an important building block in a biometric authentication system to prevent imposters from gaining access to the system using a photograph, video, mask, or other means to impersonate another person.
 
 The goal of liveness detection is to ensure that the system is interacting with a physically present, live person at the time of authentication. These systems are increasingly important with the rise of digital finance, remote access control, and online identity verification processes.
