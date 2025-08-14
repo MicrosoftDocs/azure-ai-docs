@@ -20,6 +20,10 @@ This article provides a summary of the latest releases and major documentation u
 
 ## August 2025
 
+### Provisioned spillover General Availability (GA)
+
+Spillover is now Generally Available. Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
+
 ### GPT-5 models available
 
 - `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).

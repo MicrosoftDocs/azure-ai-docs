@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 05/20/2025
 ---
 
-# Manage traffic with spillover for provisioned deployments (Preview)
+# Manage traffic with spillover for provisioned deployments
 
 Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Azure AI Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
 
