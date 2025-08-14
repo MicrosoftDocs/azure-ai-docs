@@ -2,14 +2,16 @@
 title: "Part 2: Build a custom knowledge retrieval (RAG) app with the Azure AI Foundry SDK"
 titleSuffix: Azure AI Foundry
 description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 06/27/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
-ms.custom: copilot-learning-hub, ignite-2024
+ms.custom: 
+  - copilot-learning-hub
+  - ignite-2024
+  - hub-only
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can build a RAG-based chat app.
 ---
 

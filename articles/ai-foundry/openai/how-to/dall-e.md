@@ -21,13 +21,13 @@ OpenAI's image generation models render images based on user-provided text promp
 ## Prerequisites
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
-- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability).
-- Deploy a `dall-e-3` or `gpt-image-1` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-services/openai/how-to/create-resource).
+- An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
+- Deploy a `dall-e-3` or `gpt-image-1` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 is the newer model and features a number of improvements over DALL-E 3. It's available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
 ## Call the Image Generation API
 
-The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-services/openai/dall-e-quickstart).
+The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-foundry/openai/dall-e-quickstart).
 
 
 #### [GPT-image-1](#tab/gpt-image-1)
@@ -108,7 +108,8 @@ The following is a sample request body. You specify a number of options, defined
 
 #### [GPT-image-1](#tab/gpt-image-1)
 
-The response from a successful image generation API call looks like the following example. The `b64_json` field contains the output image data. 
+
+The response from a successful image generation API call looks like the following example. The `b64_json` field contains the output image data.
 
 ```json
 { 
@@ -139,6 +140,7 @@ The response from a successful image generation API call looks like the followin
 } 
 ```
 ---
+
 
 ### API call rejection
 
@@ -177,7 +179,7 @@ Your prompts should describe the content you want to see in the image, and the v
 When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filtering](../concepts/content-filter.md).
 
 > [!TIP]
-> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-services/openai/concepts/gpt-4-v-prompt-engineering).
+> For a thorough look at how you can tweak your text prompts to generate different kinds of images, see the [Image prompt engineering guide](/azure/ai-foundry/openai/concepts/gpt-4-v-prompt-engineering).
 
 
 ### Specify API options
@@ -316,8 +318,7 @@ The response from a successful image editing API call looks like the following e
     "created": 1698116662, 
     "data": [ 
         { 
-            "b64_json": "<base64 image data>",
-            "revised_prompt": "<prompt_that_was_used>" 
+            "b64_json": "<base64 image data>"
         }
     ]
 } 
@@ -356,8 +357,8 @@ DALL-E models don't support the Image Edit API.
 
 * [What is Azure OpenAI?](../overview.md)
 * [Quickstart: Generate images with Azure OpenAI](../dall-e-quickstart.md)
-* [Image API reference](/azure/ai-services/openai/reference#image-generation)
-* [Image API (preview) reference](/azure/ai-services/openai/reference-preview)
+* [Image API reference](/azure/ai-foundry/openai/reference#image-generation)
+* [Image API (preview) reference](/azure/ai-foundry/openai/reference-preview)
 
 
 <!-- OAI HT guide https://platform.openai.com/docs/guides/images/usage

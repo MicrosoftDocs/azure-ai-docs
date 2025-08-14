@@ -6,6 +6,16 @@
       "redirect_document_id": false
     },
     {
+      "source_path": "articles/ai-foundry/how-to/develop/connections-add-sdk.md",
+      "redirect_url": "/azure/ai-foundry/how-to/connections-add?pivots=hub-project",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-foundry/how-to/develop/vscode.md",
+      "redirect_url": "/azure/ai-foundry/how-to/develop/get-started-projects-vs-code",
+      "redirect_document_id": false
+    },
+        {
       "source_path": "articles/ai-foundry/azure-openai-in-azure-ai-foundry.md",
       "redirect_url": "/azure/ai-foundry/what-is-azure-ai-foundry",
       "redirect_document_id": false
@@ -508,6 +518,16 @@
     {
       "source_path": "articles/machine-learning/how-to-package-models.md",
       "redirect_url": "/azure/machine-learning/concept-endpoints",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-terraform.md",
+      "redirect_url": "/azure/ai-foundry/how-to/create-resource-terraform",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/ai-services/create-account-bicep.md",
+      "redirect_url": "/azure/ai-foundry/how-to/create-resource-template",
       "redirect_document_id": false
     }
   ]

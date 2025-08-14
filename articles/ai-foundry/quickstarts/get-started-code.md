@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: dantaylo
 ms.date: 07/03/2025 
 ms.service: azure-ai-foundry

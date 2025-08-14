@@ -41,6 +41,9 @@ At a high level you can break down working with functions into three steps:
 * `gpt-4o-mini` (`2024-07-18`)
 * `gpt-4.1` (`2025-04-14`)
 * `gpt-4.1-mini` (`2025-04-14`)
+* `gpt-5` (`2025-08-07`)
+* `gpt-5-mini` (`2025-08-07`)
+* `gpt-5-nano` (`2025-08-07`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 

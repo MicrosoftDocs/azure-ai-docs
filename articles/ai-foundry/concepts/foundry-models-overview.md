@@ -2,7 +2,6 @@
 title: Explore Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: This article introduces Azure AI Foundry Models and the model catalog in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
@@ -11,6 +10,7 @@ ms.topic: how-to
 ms.date: 07/06/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ---
 
@@ -236,7 +236,7 @@ To set the public network access flag for the Azure AI Foundry hub:
 
 * If you have an Azure AI Foundry hub with MaaS deployments created before July 11, 2024, and you enable a private endpoint on this hub, the existing serverless API deployments won't follow the hub's networking configuration. For serverless API deployments in the hub to follow the hub's networking configuration, you need to create the deployments again.
 
-* Currently, [Azure OpenAI On Your Data](/azure/ai-services/openai/concepts/use-your-data) support isn't available for serverless API deployments in private hubs, because private hubs have the public network access flag disabled.
+* Currently, [Azure OpenAI On Your Data](/azure/ai-foundry/openai/concepts/use-your-data) support isn't available for serverless API deployments in private hubs, because private hubs have the public network access flag disabled.
 
 * Any network configuration change (for example, enabling or disabling the public network access flag) might take up to five minutes to propagate.
   

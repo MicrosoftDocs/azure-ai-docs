@@ -236,14 +236,18 @@ items:
          href: video-translation-get-started.md
 - name: Voice live (preview)
   items:
-    - name: Voice live API overview
+    - name: Voice live overview
       href: voice-live.md
-    - name: Voice live API quickstart
+    - name: Voice live with Foundry models quickstart
       href: voice-live-quickstart.md
-    - name: How to use Voice live API
+    - name: Voice live with Foundry agents quickstart
+      href: voice-live-agents-quickstart.md
+    - name: How to use voice live
       href: voice-live-how-to.md
+    - name: Voice live language support
+      href: voice-live-language-support.md
     - name: Audio events reference
-      href: /azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
+      href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview

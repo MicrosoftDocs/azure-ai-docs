@@ -2,7 +2,6 @@
 title: Explore model leaderboards in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces benchmarking capabilities and model leaderboards (preview) in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ai-learning-hub
@@ -107,7 +106,7 @@ Performance metrics are calculated as an aggregate over 14 days, based on 24 tra
 
 | Parameter                             | Value                                                                                              | Applicable For                                                                                                                                                                                                                              |
 |---------------------------------------|----------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Region                                | East US/East US2                                                                                   | [serverless API deployments](../how-to/model-catalog-overview.md#serverless-api-deployment-pay-per-token-offer-billing) and [Azure OpenAI](/azure/ai-services/openai/overview)                                                                                          |
+| Region                                | East US/East US2                                                                                   | [serverless API deployments](../how-to/model-catalog-overview.md#serverless-api-deployment-pay-per-token-offer-billing) and [Azure OpenAI](/azure/ai-foundry/openai/overview)                                                                                          |
 | Tokens per minute (TPM) rate limit    | 30k (180 RPM based on Azure OpenAI) for non-reasoning and 100k for reasoning models <br> N/A (serverless API deployments) | For Azure OpenAI models, selection is available for users with rate limit ranges based on deployment type (serverless API, global, global standard, and so on.) <br> For serverless API deployments, this setting is abstracted.                             |
 | Number of requests                    | Two requests in a trail for every hour (24 trails per day)                                         | serverless API deployments, Azure OpenAI                                                                                                                                                                                                               |
 | Number of trails/runs                 | 14 days with 24 trails per day for 336 runs                                                        | serverless API deployments, Azure OpenAI                                                                                                                                                                                                               |

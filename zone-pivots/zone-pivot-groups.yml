@@ -320,6 +320,8 @@ groups:
   pivots:
   - id: csharp
     title: C#
+  - id: java
+    title: Java
   - id: javascript
     title: JavaScript
   - id: python
@@ -1184,12 +1186,14 @@ groups:
   pivots:
   - id: ai-foundry-portal
     title: Foundry portal
-  - id: programming-language-csharp
-    title: C#
   - id: programming-language-python-azure
     title: Python
+  - id: programming-language-csharp
+    title: C#
   - id: programming-language-typescript
     title: TypeScript
+  - id: programming-language-java
+    title: Java
   - id: rest-api
     title: REST API
 # owner: aahi
@@ -1208,12 +1212,14 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python 
+  - id: java
+    title: Java 
   - id: rest-api
     title: REST API
 - id: selection-deep-research
@@ -1241,6 +1247,8 @@ groups:
   title: Selections
   prompt: What would you like to see?
   pivots:
+  - id: csharp
+    title: C#
   - id: python
     title: Python
   - id: rest
@@ -1259,12 +1267,14 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python  
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python  
-    title: Python
+  - id: java  
+    title: Java
   - id: rest
     title: REST API
 # owner: fosteramanda
@@ -1274,12 +1284,14 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 - id: selection-connected-agents
@@ -1299,12 +1311,14 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 - id: selection-bing-custom-grounding
@@ -1323,46 +1337,40 @@ groups:
   pivots:
   - id: portal
     title: Azure AI Foundry portal
+  - id: python
+    title: Python 
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python 
+  - id: java
+    title: Java
   - id: rest-api
     title: REST API
 - id: selection-azure-functions-samples
   title: Selections
   prompt: What would you like to see?
   pivots:
-  - id: csharp
-    title: C#
   - id: python
     title: Python
-  - id: rest
-    title: REST API
-- id: selection-function-calling-samples
-  title: Selections
-  prompt: What would you like to see?
-  pivots:
   - id: csharp
     title: C#
-  - id: python
-    title: Python
-  - id: typescript
-    title: TypeScript
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 - id: selection-function-calling
   title: Selections
   prompt: Choose a usage method
   pivots:
+  - id: python
+    title: Python
   - id: csharp
     title: C#
   - id: javascript
     title: JavaScript
-  - id: python
-    title: Python
+  - id: java
+    title: Java
   - id: rest
     title: REST API
 # owner: sgilley
@@ -1581,3 +1589,13 @@ groups:
     title: C#
   - id: rest
     title: REST
+ # Owner: laujan
+- id: language-clu-quickstart
+  title: API methods and platforms
+  prompt: Choose an API
+  pivots:
+  - id: azure-ai-foundry
+    title: Azure AI Foundry
+  - id: rest-api
+    title: REST API
+

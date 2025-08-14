@@ -39,7 +39,7 @@ For more information, see the [SDK release notes](https://github.com/Azure-Sampl
 
 The Face liveness detection feature is now generally available (GA).
 
-* Server-side API: [Face API v1.2](/rest/api/face/operation-groups?view=rest-face-v1.2)
+* Server-side API: [Face API v1.2](/rest/api/face/operation-groups?view=rest-face-v1.2&preserve-view=true)
 * Client-side SDK: [Azure AI Vision SDK 1.0.0](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases/tag/1.0.0)
 
 This SDK allows developers to utilize face liveness checks on both native-mobile applications and web-browsers applications for identity-verification scenarios.
@@ -51,7 +51,7 @@ For more information, see the [SDK release notes](https://github.com/Azure-Sampl
 
 ### Image Analysis 4.0 Preview API deprecation
 
-On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups?view=rest-computervision-v4.0%20(2024-02-01))API.
+On March 31, 2025, the Image Analysis 4.0 Preview APIs will be retired. Before that date, you need to migrate your Azure Image Analysis workloads to the [Image Analysis 4.0 GA ](/rest/api/computervision/operation-groups)API.
 
 We encourage you to make the transition sooner to gain access to improvements such as multimodal embedding, synchronous OCR, people detection, image tagging, smart cropping, caption, dense caption, and image object detection.
 These Image Analysis 4.0 preview APIs will be retired on March 31, 2025:
@@ -97,10 +97,10 @@ See the [language support](/azure/ai-services/computer-vision/language-support#m
 The Image Analysis SDK was rewritten in version 1.0.0-beta.1 to better align with other Azure SDKs. All APIs have changed. See the updated [quickstarts](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40), [samples](/azure/ai-services/computer-vision/sdk/overview-sdk#github-samples) and [how-to-guides](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) for information on how to use the new SDK.
 
 Major changes:
-- The SDK now calls the generally available [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-10-01), instead of the preview [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview).
+- The SDK now calls the generally available [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups), instead of the preview [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups).
 - Support for JavaScript was added.
 - C++ is no longer supported.
-- Image Analysis with a custom model, and Image Segmentation (background removal) are no longer supported in the SDK, because the [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-10-01) doesn't yet support them. To use either feature, call the [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview) directly (using the `Analyze` and `Segment` operations respectively).
+- Image Analysis with a custom model, and Image Segmentation (background removal) are no longer supported in the SDK, because the [Computer Vision REST API (2023-10-01)](/rest/api/computervision/operation-groups) doesn't yet support them. To use either feature, call the [Computer Vision REST API (2023-04-01-preview)](/rest/api/computervision/operation-groups) directly (using the `Analyze` and `Segment` operations respectively).
 
 ## November 2023
 
@@ -170,9 +170,9 @@ As part of the Image Analysis 4.0 API, the [Background removal API](./concept-ba
 ### Azure AI Vision 3.0 & 3.1 previews deprecation
 
 The preview versions of the Azure AI Vision 3.0 and 3.1 APIs are scheduled to be retired on September 30, 2023. Customers won't be able to make any calls to these APIs past this date. Customers are encouraged to migrate their workloads to the generally available (GA) 3.2 API instead. Mind the following changes when migrating from the preview versions to the 3.2 API:
-- The [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) and [Read](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) API calls take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
-- The [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) and [Read](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) API calls also return a `model-version` field in successful API responses. This field reports which model was used.
-- Azure AI Vision 3.2 API uses a different error-reporting format. See the [API reference documentation](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2) to learn how to adjust any error-handling code.
+- The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
+- The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls also return a `model-version` field in successful API responses. This field reports which model was used.
+- Azure AI Vision 3.2 API uses a different error-reporting format. See the [API reference documentation](/rest/api/computervision/operation-groups) to learn how to adjust any error-handling code.
 
 ## October 2022
 
@@ -218,9 +218,9 @@ Vision Studio provides you with a platform to try several service features, and 
 ### Azure AI Vision 3.2-preview deprecation
 
 The preview versions of the 3.2 API are scheduled to be retired in December of 2022. Customers are encouraged to use the generally available (GA) version of the API instead. Mind the following changes when migrating from the 3.2-preview versions:
-1. The [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) and [Read](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) API calls now take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
-1. The [Analyze Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) and [Read](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2) API calls also return a `model-version` field in successful API responses. This field reports which model was used.
-1. Image Analysis APIs now use a different error-reporting format. See the [API reference documentation](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) to learn how to adjust any error-handling code.
+1. The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls now take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
+1. The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls also return a `model-version` field in successful API responses. This field reports which model was used.
+1. Image Analysis APIs now use a different error-reporting format. See the [API reference documentation](/rest/api/computervision/analyze-image) to learn how to adjust any error-handling code.
 
 ## May 2022
 
@@ -280,7 +280,7 @@ See the [OCR how-to guide](how-to/call-read-api.md#determine-how-to-process-the-
 
 ### Image tagging language expansion
 
-The [latest version (v3.2)](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2) of the Image tagger now supports tags in 50 languages. See the [language support](language-support.md) page for more information.
+The [latest version (v3.2)](/rest/api/computervision/operation-groups) of the Image tagger now supports tags in 50 languages. See the [language support](language-support.md) page for more information.
 
 ## July 2021
 
@@ -307,13 +307,13 @@ A new version of the [Spatial Analysis container](spatial-analysis-container.md)
 
 The Azure AI Vision API v3.2 is now generally available with the following updates:
 
-* Improved image tagging model: analyzes visual content and generates relevant tags based on objects, actions, and content displayed in the image. This model is available through the [Tag Image API](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
-* Updated content moderation model: detects presence of adult content and provides flags to filter images containing adult, racy, and gory visual content. This model is available through the [Analyze API](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
+* Improved image tagging model: analyzes visual content and generates relevant tags based on objects, actions, and content displayed in the image. This model is available through the [Tag Image API](/rest/api/computervision/operation-groups). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
+* Updated content moderation model: detects presence of adult content and provides flags to filter images containing adult, racy, and gory visual content. This model is available through the [Analyze API](/rest/api/computervision/analyze-image). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
 * [OCR (Read) available for 73 languages](./language-support.md#optical-character-recognition-ocr) including Simplified and Traditional Chinese, Japanese, Korean, and Latin languages.
 * [OCR (Read)](./overview-ocr.md) also available as a [Distroless container](./computer-vision-how-to-install-containers.md?tabs=version-3-2) for on-premises deployment.
 
 > [!div class="nextstepaction"]
-> [See Azure AI Vision v3.2 GA](/rest/api/computervision/recognize-printed-text?view=rest-computervision-v3.2)
+> [See Azure AI Vision v3.2 GA](/rest/api/computervision/recognize-printed-text)
 
 ### PersonDirectory data structure (preview)
 
@@ -327,7 +327,7 @@ The Azure AI Vision API v3.2 is now generally available with the following updat
 The Azure AI Vision API v3.2 public preview has been updated. The preview release has all Azure AI Vision features along with updated Read and Analyze APIs.
 
 > [!div class="nextstepaction"]
-> [See Azure AI Vision v3.2 public preview 3](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2-preview)
+> [See Azure AI Vision v3.2 public preview 3](/rest/api/computervision/operation-groups)
 
 ## February 2021
 
@@ -344,7 +344,7 @@ The Azure AI Vision Read API v3.2 public preview, available as cloud service and
 See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 > [!div class="nextstepaction"]
-> [Use the Read API v3.2 Public Preview](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2-preview)
+> [Use the Read API v3.2 Public Preview](/rest/api/computervision/operation-groups)
 
 
 ### New Face API detection model
@@ -406,7 +406,7 @@ The Azure AI Vision Read API v3.1 public preview adds these capabilities:
 See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 > [!div class="nextstepaction"]
-> [Learn more about Read API v3.1 Public Preview 2](/rest/api/computervision/operation-groups?view=rest-computervision-v3.1-preview)
+> [Learn more about Read API v3.1 Public Preview 2](/rest/api/computervision/operation-groups)
 
 ## August 2020
 ### Customer-managed encryption of data at rest
@@ -423,7 +423,7 @@ The Azure AI Vision Read API v3.1 public preview adds support for Simplified Chi
 See the [Read API how-to guide](how-to/call-read-api.md) to learn more.
 
 > [!div class="nextstepaction"]
-> [Learn more about Read API v3.1 Public Preview 1](/rest/api/computervision/operation-groups?view=rest-computervision-v3.1-preview)
+> [Learn more about Read API v3.1 Public Preview 1](/rest/api/computervision/operation-groups)
 
 ## May 2020
 
@@ -478,7 +478,7 @@ Follow an [Extract text quickstart](https://github.com/Azure-Samples/cognitive-s
 ## January 2019
 
 ### Face Snapshot feature
-* This feature allows the service to support data migration across subscriptions: [Snapshot](/rest/api/face/snapshot?view=rest-face-v1.0-preview).
+* This feature allows the service to support data migration across subscriptions: [Snapshot](/rest/api/face/snapshot).
 
 > [!IMPORTANT]
 > As of June 30, 2023, the Face Snapshot API is retired.

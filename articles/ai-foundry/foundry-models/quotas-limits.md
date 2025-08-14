@@ -3,7 +3,6 @@ title: Azure AI Foundry Models quotas and limits
 titleSuffix: Azure AI Foundry
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Azure AI Foundry service.
 author: msakande
-manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
@@ -25,7 +24,7 @@ Azure uses quotas and limits to prevent budget overruns due to fraud, and to hon
 
 | Limit name | Limit value |
 |--|--|
-| Azure AI Foundry resources per region per Azure subscription | 30 |
+| Azure AI Foundry resources per region per Azure subscription | 100 |
 | Max projects per resource | 250 |
 | Max deployments per resource | 32 | 
 

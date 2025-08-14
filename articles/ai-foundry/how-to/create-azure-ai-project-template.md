@@ -4,11 +4,12 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry project in your Azure subscription.
 ms.author: sgilley
 author: sdgilley
-manager: scottpolly
 reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
-ms.custom: "subject-bicepqs"
+ms.custom: 
+  - subject-bicepqs
+  - hub-only
 ms.date: 04/29/2025
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---

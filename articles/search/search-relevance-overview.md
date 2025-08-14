@@ -2,7 +2,6 @@
 title: Relevance
 titleSuffix: Azure AI Search
 description: Describes how the scoring and ranking algorithms work in Azure AI Search and how to use them together.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist

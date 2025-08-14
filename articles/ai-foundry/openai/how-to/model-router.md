@@ -4,7 +4,7 @@ description: Learn how to use the model router in Azure OpenAI to select the bes
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 04/17/2025
+ms.date: 08/12/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -16,11 +16,14 @@ ms.custom:
 
 Model router for Azure AI Foundry is a deployable AI chat model that is trained to select the best large language model (LLM) to respond to a given prompt in real time. It uses a combination of preexisting models to provide high performance while saving on compute costs where possible, all packaged as a single model deployment. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 
-You can access model router through the Completions API just as you would use a single base model like GPT-4. The steps are the same as in the [Chat completions guide](/azure/ai-services/openai/how-to/chatgpt).
+You can access model router through the Completions API just as you would use a single base model like GPT-4. The steps are the same as in the [Chat completions guide](/azure/ai-foundry/openai/how-to/chatgpt).
 
 ## Deploy a model router model
 
-Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-services/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
+> [!NOTE]
+> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
+
+Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
 
 > [!NOTE]
 > Consider that your deployment settings apply to all underlying chat models that model router uses.
@@ -30,18 +33,18 @@ Model router is packaged as a single Azure AI Foundry model that you deploy. Fol
 
 ## Use model router in chats
 
-You can use model router through the [chat completions API](/azure/ai-services/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
+You can use model router through the [chat completions API](/azure/ai-foundry/openai/chatgpt-quickstart) in the same way you'd use other OpenAI chat models. Set the `model` parameter to the name of our model router deployment, and set the `messages` parameter to the messages you want to send to the model.
 
 In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), you can navigate to your model router deployment on the **Models + endpoints** page and select it to enter the model playground. In the playground experience, you can enter messages and see the model's responses. Each response message shows which underlying model was selected to respond.
 
 
 > [!IMPORTANT]
-> You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-services/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it ignores the `Temperature` and `Top_P` input parameters.
+> You can set the `Temperature` and `Top_P` parameters to the values you prefer (see the [concepts guide](/azure/ai-foundry/openai/concepts/prompt-engineering?tabs=chat#temperature-and-top_p-parameters)), but note that reasoning models (o-series) don't support these parameters. If model router selects a reasoning model for your prompt, it ignores the `Temperature` and `Top_P` input parameters.
 >
 > The parameters `stop`, `presence_penalty`, `frequency_penalty`, `logit_bias`, and `logprobs` are similarly dropped for o-series models but used otherwise.
 
 > [!IMPORTANT]
-> The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-services/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
+> The `reasoning_effort` parameter (see the [Reasoning models guide](/azure/ai-foundry/openai/how-to/reasoning?tabs=python-secure#reasoning-effort)) isn't supported in model router. If the model router selects a reasoning model for your prompt, it also selects a `reasoning_effort` input value based on the complexity of the prompt.
 
 ### Output format 
 

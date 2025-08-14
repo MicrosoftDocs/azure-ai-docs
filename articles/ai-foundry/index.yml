@@ -7,10 +7,10 @@ brand: azure
 metadata:
   title: Azure AI Foundry documentation
   description: The agent factory - Design, customize, manage, and support AI applications and agents at scale.
-  author: eric-urban
-  ms.author: eur
-  manager: nitinme
-  ms.date: 7/4/2025
+  author: sdgilley
+  ms.author: sgilley
+  manager: mcleans
+  ms.date: 08/07/2025
   ms.service: azure-ai-foundry
   ms.topic: hub-page
   ms.custom:
@@ -50,12 +50,12 @@ productDirectory:
     - title: Azure AI Foundry Models
       imageSrc: ~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg
       links:
-        - url: ./concepts/models-featured.md
-          text: Featured models
-        - url: ./how-to/model-catalog-overview.md
-          text: Select and deploy models
+        - url: foundry-models/concepts/models.md
+          text: Featured Foundry Models
         - url: ./how-to/benchmark-model-in-catalog.md
           text: Compare models in leaderboards
+        - url: concepts/deployments-overview.md
+          text: Explore deployment options
         - url: ./concepts/fine-tuning-overview.md
           text: Learn how to fine-tune models
         - url: ../ai-services/openai/concepts/models.md

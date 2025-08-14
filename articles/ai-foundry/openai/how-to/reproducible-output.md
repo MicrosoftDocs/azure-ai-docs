@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 08/11/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -18,20 +18,6 @@ recommendations: false
 By default if you ask an Azure OpenAI Chat Completion model the same question multiple times you're likely to get a different response. The responses are therefore considered to be nondeterministic. Reproducible output is a new  preview feature that allows you to selectively change the default behavior to help product more deterministic outputs.
 
 ## Reproducible output support
-
-Reproducible output is only currently supported with the following:
-
-### Supported models
-
-* `gpt-35-turbo` (1106)
-* `gpt-35-turbo` (0125)
-* `gpt-4` (1106-Preview)
-* `gpt-4` (0125-Preview)
-* `gpt-4` (turbo-2024-04-09)
-* `gpt-4o-mini` (2024-07-18)
-* `gpt-4o` (2024-05-13)
-
-Consult the [models page](../concepts/models.md) for the latest information on model regional availability.
 
 ### API Version
 

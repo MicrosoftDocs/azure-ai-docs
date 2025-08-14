@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 07/08/2025
+ms.date: 08/07/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -44,6 +44,10 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5` (Version: `2025-08-07`)
+- `gpt-5-mini` (Version: `2025-08-07`)
+- `gpt-5-nano` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-08-07`)
 - `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
 - `gpt-4o-mini` (Version: `2024-07-18`)
 - `computer-use-preview`
@@ -65,12 +69,12 @@ Not every model is available in the regions supported by the responses API. Chec
 > - Images can't be uploaded as a file and then referenced as input. Coming soon.
 >
 > There's a known issue with the following:
-> - PDF as an input file [is now supported](), but setting file upload purpose to `user_data` is not currently supported.
+> - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
 > - Performance when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ### Reference documentation
 
-- [Responses API reference documentation](/azure/ai-services/openai/reference-preview-latest?#create-response)
+- [Responses API reference documentation](/azure/ai-foundry/openai/reference-preview-latest?#create-response)
 
 ## Getting started with the responses API
 
@@ -497,7 +501,6 @@ for event in response:
 
 ```
 
-
 ## Function calling
 
 The responses API supports function calling.
@@ -563,6 +566,113 @@ second_response = client.responses.create(
 print(second_response.model_dump_json(indent=2)) 
 
 ```
+
+## Code Interpreter
+
+The Code Interpreter tool enables models to write and execute Python code in a secure, sandboxed environment. It supports a range of advanced tasks, including:
+
+* Processing files with varied data formats and structures
+* Generating files that include data and visualizations (for example, graphs)
+* Iteratively writing and running code to solve problems—models can debug and retry code until successful
+* Enhancing visual reasoning in supported models (for example, o3, o4-mini) by enabling image transformations such as cropping, zooming, and rotation
+* This tool is especially useful for scenarios involving data analysis, mathematical computation, and code generation.
+
+```bash
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+        "model": "gpt-4.1",
+        "tools": [
+            { "type": "code_interpreter", "container": {"type": "auto"} }
+        ],
+        "instructions": "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question.",
+        "input": "I need to solve the equation 3x + 11 = 14. Can you help me?"
+    }'
+```
+
+```python
+from openai import AzureOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AzureOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  azure_ad_token_provider=token_provider,
+  api_version="preview"
+)
+
+instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
+
+response = client.responses.create(
+    model="gpt-4.1",
+    tools=[
+        {
+            "type": "code_interpreter",
+            "container": {"type": "auto"}
+        }
+    ],
+    instructions=instructions,
+    input="I need to solve the equation 3x + 11 = 14. Can you help me?",
+)
+
+print(response.output)
+```
+
+### Containers
+
+> [!IMPORTANT]
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+
+The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
+
+To create a container, specify `"container": { "type": "auto", "files": ["file-1", "file-2"] }` in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call` in the output of the APIwill contain the `container_id` that was generated. This container expires if it is not used for 20 minutes.
+
+### File inputs and outputs
+
+When running Code Interpreter, the model can create its own files. For example, if you ask it to construct a plot, or create a CSV, it creates these images directly on your container. It will cite these files in the annotations of its next message.
+
+Any files in the model input get automatically uploaded to the container. You do not have to explicitly upload it to the container.
+
+### Supported Files
+
+|File format|MIME type|
+|---|---|
+|`.c`|text/x-c|
+|`.cs`|text/x-csharp|
+|`.cpp`|text/x-c++|
+|`.csv`|text/csv|
+|`.doc`|application/msword|
+|`.docx`|application/vnd.openxmlformats-officedocument.wordprocessingml.document|
+|`.html`|text/html|
+|`.java`|text/x-java|
+|`.json`|application/json|
+|`.md`|text/markdown|
+|`.pdf`|application/pdf|
+|`.php`|text/x-php|
+|`.pptx`|application/vnd.openxmlformats-officedocument.presentationml.presentation|
+|`.py`|text/x-python|
+|`.py`|text/x-script.python|
+|`.rb`|text/x-ruby|
+|`.tex`|text/x-tex|
+|`.txt`|text/plain|
+|`.css`|text/css|
+|`.js`|text/JavaScript|
+|`.sh`|application/x-sh|
+|`.ts`|application/TypeScript|
+|`.csv`|application/csv|
+|`.jpeg`|image/jpeg|
+|`.jpg`|image/jpeg|
+|`.gif`|image/gif|
+|`.pkl`|application/octet-stream|
+|`.png`|image/png|
+|`.tar`|application/x-tar|
+|`.xlsx`|application/vnd.openxmlformats-officedocument.spreadsheetml.sheet|
+|`.xml`|application/xml or "text/xml"|
+|`.zip`|application/zip|
 
 ## List input items
 
@@ -1061,7 +1171,7 @@ print(response.output_text)
 
 ## Background tasks
 
-Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that may take several minutes to complete, such as those handled by agents like Codex or Deep Research.
+Background mode allows you to run long-running tasks asynchronously using models like o3 and o1-pro. This is especially useful for complex reasoning tasks that can take several minutes to complete, such as those handled by agents like Codex or Deep Research.
 
 By enabling background mode, you can avoid timeouts and maintain reliability during extended operations. When a request is sent with `"background": true`, the task is processed asynchronously, and you can poll for its status over time.
 

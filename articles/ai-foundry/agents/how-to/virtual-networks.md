@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 05/12/2025
+ms.date: 08/01/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Create a new network-secured environment with user-managed identity
 
-Azure AI Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This set up creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+Azure AI Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
 
 ## Security features
 
@@ -33,13 +33,14 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C address ranges reserved for private networking.
+- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. Private Class A address ranges have limited region support. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/README.md).
 - **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Azure AI Foundry resources. Each AI Foundry must use a dedicated agent subnet.
+- **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environment`. For more on the subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
+- **Agent subnet egress firewall allowlisting**: If you are integrating an Azure Firewall with your private network secured standard agent, please allowlist the Fully Qualified Domain Names (FQDNs) listed in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article.
 - **All Foundry workspace resources must be deployed in the same region as the virtual network (VNet)**. This includes Cosmos DB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.  
     - **Exception:** You may connect your Foundry Project to models deployed in a different region (on another AI Foundry or Azure OpenAI resource) by configuring an appropriate AI Services connection on the Project's [capability host](/azure/templates/microsoft.cognitiveservices/accounts/projects/capabilityhosts).
 - **Region availability**:
-  - For supported regions for Foundry workspace resources, see: [Azure AI Foundry project region availability](../../reference/region-support.md#azure-ai-foundry-projects).
-  - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#azure-openai-models).
+  - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
 
 ## Prerequisites
@@ -79,7 +80,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 ## Configure a new network-secured environment 
 
 > [!NOTE]
-> - Programmatic deployment is required to set up a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure portal is currently not supported.
+> - Programmatic deployment is required to setup a network-secured environment for Azure AI Foundry Agent Service. Deployment through the Azure portal is currently not supported.
 > - If you want to delete your Foundry resource and Standard Agent with secured network set-up, delete your AI Foundry resource and virtual network last. Before deleting the virtual network, ensure to delete and [purge](../../../ai-services/recover-purge-resources.md#purge-a-deleted-resource) your AI Foundry resource.
 > - In the Standard Setup, agents use customer-owned, single-tenant resources. You have full control and visibility over these resources, but you incur costs based on your usage.
 
@@ -119,7 +120,7 @@ The following DNS zones are configured:
 Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
 
 > [!NOTE]
-> If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimize size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses) and is the default subnet size set in the network secured template. 
+> If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimize size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses), which is the default subnet size set in the network secured template. 
 
 ### Network rules
 
@@ -169,7 +170,7 @@ Once your template deployment is complete, you can access your Foundry project b
 
 This setup enables AI agents to operate entirely within a dedicated, isolated virtual network. By leveraging private network isolation (BYO VNet), organizations can enforce custom security policies, ensuring that AI agents operate within their trusted infrastructure.    
 
-Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly set up your agent environment while still maintaining full control over their networking and data.   
+Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly setup your agent environment while still maintaining full control over their networking and data.   
 
 
 ## What's next?

@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: changliu2
 ms.date: 07/15/2025
 ms.service: azure-ai-foundry

@@ -2,7 +2,6 @@
 title: Integrate with inference SDKs
 titleSuffix: Foundry Local
 description: This article provides instructions on how to integrate Foundry Local with common Inferencing SDKs.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
