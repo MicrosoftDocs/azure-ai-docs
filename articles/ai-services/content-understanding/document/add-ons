@@ -12,53 +12,44 @@ ms.custom:
   - build-2025
 ---
 
-
 # Reliable extracted outputs with grounding, confidence scoring, and in-context learning in Azure AI Content Understanding
 
-## Azure AI Content Understanding: How it helps extract the key details from documents
+## Azure AI Content Understanding: Improving output quality through confidence, grounding and in-context 
 
-Intelligent document processing—be it unstructured documents like contracts,  statements of work, or structured documents like invoices, and insurance forms— need to be processed for critical information for downstream application or automation workflows.
-However, extracting this data reliably, at scale, is challenging. You need more capabilities than just text extraction to be able to reliably scale your application on basis of **what was extracted**, **why it was extracted**, and **how reliably it was extracted**.
-
-Most enterprises faces the following challenges when handling any variety of documents at scale:
-
-- Need to **validate the sources** of extracted data for true reference —for example, if the model pulls out a payment term or contract clause, you must know exactly **where in the document** it came from.
-- Need to **automate workflows** but only when the extraction is accurately meeting a threshold that is critical for the business application—so you need to know how **accurate the model is** in its predictions.
-- And when the model gets something wrong or encounters a new format, a way to **correct it without retraining a model from scratch**—ideally by providing a few **examples**.
-
-To address these enterprise needs, Azure AI Content Understanding supports three powerful features:
-
-- **Grounding**: Anchors every output extracted to the original document
-- **Confidence scoring**: Quantifies the model’s certainty in each prediction through confidence scores
-- **In-context learning**: Enables to teach the model new patterns using examples and correcting the predicted outputs for incorrect values
+Intelligent document processing—be it unstructured documents like contracts, statements of work, or structured documents like invoices, and insurance forms— need to be processed for critical information for downstream application or automation workflows.
+However, extracting this data reliably, at scale, is challenging. You need more capabilities than just text extraction to be able to reliably scale your application on basis of what was extracted, why it was extracted, and how reliably it was extracted.
+Most enterprises face the following challenges when handling any variety of documents at scale:
+-	Need to validate the sources of extracted data for true reference —for example, if the model pulls out a payment term or contract clause, you must know exactly where in the document it came from.
+-	Need to automate workflows but only when the extraction is accurately meeting a threshold that is critical for the business application—so you need to know how confident/accurate the model is in its predictions.
+-	And when the model gets something wrong or encounters a new format, a way to correct it without retraining a model from scratch—ideally by providing a few labelled examples.
+To address these enterprise needs, Azure AI Content Understanding supports three powerful features for post processing on your extracted output:
+-	Grounding: References/citations for every output extracted to the original document
+-	Confidence scoring: Quantifies the model’s certainty in each prediction through confidence scores.
+-	In-context learning: To teach the model new patterns using examples and correcting the predicted outputs for incorrect values and improving overall accuracy, extraction quality. 
 
 Let's now deep dive into each of these features:
 ---
-
 ## Grounding: Trace every result to its source
-
-Grounding ensures that every extracted field, answer, or classification has a reference to its original location in the document. This includes page number followed by coordinates as part of **source**. 
-
+Grounding ensures that every extracted field, answer, or classification has a reference to its original location in the document. This includes source information - page number followed by coordinates, spans – offset and length details. 
 ### Why grounding matters
+In enterprise workflows, accuracy is not enough—you also need traceability. When a model extracts a customer name or a termination clause, you must be able to validate where that information came from. Grounding is critical:
+- To maintain clear traceability and localization of extracted data for any extracted output like clauses, financial numbers, tables, insurance ID, etc. 
+-	Internal compliance checks and ensuring transparency.
+-	Efficient Human-in-the-loop validation from actual reference source. 
+Example
+You want  to extract the termination clause from a contract. The model returns:
+•	Extracted text: “Either party may terminate this agreement with 60 days’ notice.”
+•	"spans": [
+              {
+                "offset": 343,
+                "length": 102
+              }
+            ],
+•	Source:
+	  Page: 3
+	  Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
+Span indicates the element's logical position using character offset and length, while source gives its visual position with page number and bounding box coordinates. With this grounding data, your legal team can verify the extraction by jumping directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output.
 
-In enterprise workflows, accuracy is not enough—you also need **explainability**. When a model extracts a customer name or a termination clause, your team must be able to validate where that information came from. Grounding supports:
-
-- To maintain clear traceability and localization of extracted data for any legal and regulatory audits 
-- Internal compliance checks and ensuring transparency.
-- Efficient Human-in-the-loop validation
-
-### Example
-
-You ask Azure AI Content Understanding to extract the *termination clause* from a contract. The model returns:
-
-- **Extracted text**: “Either party may terminate this agreement with 60 days’ notice.”
-- **Source**:
-  - Page: 3
-  - Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
-
-With this grounding data, your legal team can **verify the extraction** by jumping directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output. 
-
----
 
 ## Confidence scoring: Automate with control
 
@@ -85,24 +76,24 @@ In this case, your automation pipeline can post the billing address directly to 
 
 ## In-context learning: Teach the model by giving examples
 
+
 In-context learning allows you to guide the model’s behavior by providing **examples** in your prompt or API call—without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
 
 ### Why in-context learning matters
 
-To manage diverse layouts changes, across different versions, templates, languages or regions, it is optimal to help the model learn by adding examples 
-
-In-context learning is critcal as it helps: 
-
-- Add corrections for model's prediction.
-- Rapidly onboard new templates without labeling data.
-- Adding samples only when dealing with lower confidence score or incomplete extraction. 
-
-### Example
-
-You start receiving invoices from a new vendor that uses the label “Invoice Total” instead of “Amount Due.” The model keeps missing the correct value. Instead of retraining, you can add an example of different invoice vendor:
+If the context for all the fields is clearly provided in the testing document, zero-shot should be enough.  In-context learning allows you to guide the model’s behavior by providing additional labelled examples without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself. To enhance the model quality, for datasets with minimal template variations – you can add just single labelled example, for more complex variations, add a sample per  templates to cover all the scenarios.  
+### Why in-context learning matters
+To manage diverse layouts changes, across different versions, templates, languages or regions, it is optimal to help the model learn by adding examples. 
+In-context learning is critical as it helps:
+-	Provide context for the model to understand the meaning of each field by examples and thus improve model's accuracy.
+-	Rapidly onboard new templates without labeling data within a single analyzer. 
+-	Adding samples only when dealing with lower confidence score or incomplete/partial extraction.
+To add a label sample, you can upload a sample under Label data, and click on Auto label. Auto label will predict all the fields out of the box, and then you can go edit the fields by selecting the correct values for the fields. Once you save it, it will show as corrected tag for all the extracted fields that got corrected. 
+ 
+Example
+You start receiving invoices from a new vendor that uses the label “Invoice Total” instead of “Amount Due.” The model keeps missing the correct value. Instead of retraining, you can add an example of different invoice vendor.
 The model will now refer to this pattern to correctly extract the value in future similar types of documents, even though it wasn’t part of the original training data.
 
----
 
 ## Bringing it all together: A complete workflow
 
