@@ -37,11 +37,12 @@ Azure uses quotas and limits to prevent budget overruns due to fraud, and to hon
 | Tokens per minute    | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000,000 |
 | Requests per minute  | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000     |
 | Concurrent requests  | DeepSeek-R1<br />DeepSeek-V3-0324         | 300       |
-| Tokens per minute    | Rest of models      | 400,000   |
-| Requests per minute  | Rest of models      | 1,000     |
-| Concurrent requests  | Rest of models      | 300       |
+| Tokens per minute    | Llama 3.3 70B Instruct​<br />Llama-4-Maverick-17B-128E-Instruct-FP8​<br />Grok 3​​<br />Grok 3 mini      | 400,000   |
+| Requests per minute  | Llama 3.3 70B Instruct​<br />Llama-4-Maverick-17B-128E-Instruct-FP8​<br />Grok 3​​<br />Grok 3 mini      | 1,000     |
+| Concurrent requests  | Llama 3.3 70B Instruct​<br />Llama-4-Maverick-17B-128E-Instruct-FP8​<br />Grok 3​​<br />Grok 3 mini      | 300       |
+| Requests per minute  |Flux-Pro 1.1​<br />Flux.1-Kontext Pro​<br />   | 2 capacity units (6 requests per minute)       |
 
-You can [request increases to the default limits](#request-increases-to-the-default-limits). Due to high demand, limit increase requests can be submitted and evaluated per request.
+For Azure OpenAI quota increase request, please use [request a quota increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. For other models, You can [request increases to the default limits](#request-increases-to-the-default-limits). Due to high demand, limit increase requests can be submitted and evaluated per request.
 
 ### Other limits
 
