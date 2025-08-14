@@ -83,7 +83,7 @@ Use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to view t
 # [Azure CLI](#tab/cli)
 
 ```azurecli
-az resource list --name exampleRG
+az resource list --resource-group exampleRG
 ```
 
 # [Azure PowerShell](#tab/powershell)
