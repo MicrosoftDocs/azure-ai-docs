@@ -41,7 +41,7 @@ To improve model performance, you might consider fine-tuning a foundation model 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.
 
-    1. Select **Fine-tune model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
+    1. Select **Fine-tune a model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
     1. Select **Next** to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.
 
 1. Alternatively, you could select **Model catalog** from the left sidebar of your project and find the model card of the foundation model that you want to fine-tune.
