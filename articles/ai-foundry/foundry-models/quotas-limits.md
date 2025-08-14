@@ -30,22 +30,26 @@ Azure uses quotas and limits to prevent budget overruns due to fraud, and to hon
 
 ### Rate limits
 
-| Limit name           | Applies to          | Limit value |
-| -------------------- | ------------------- | ----------- |
-| Tokens per minute    | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). |
-| Requests per minute  | Azure OpenAI models | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). |
-| Tokens per minute    | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000,000 |
-| Requests per minute  | DeepSeek-R1<br />DeepSeek-V3-0324         | 5,000     |
-| Concurrent requests  | DeepSeek-R1<br />DeepSeek-V3-0324         | 300       |
-| Tokens per minute    | Llama 3.3 70B Instruct​<br />Llama-4-Maverick-17B-128E-Instruct-FP8​<br />Grok 3​​<br />Grok 3 mini      | 400,000   |
-| Requests per minute  | Llama 3.3 70B Instruct​<br />Llama-4-Maverick-17B-128E-Instruct-FP8​<br />Grok 3​​<br />Grok 3 mini      | 1,000     |
-| Concurrent requests  | Llama 3.3 70B Instruct​<br />Llama-4-Maverick-17B-128E-Instruct-FP8​<br />Grok 3​​<br />Grok 3 mini      | 300       |
-| Requests per minute  |Flux-Pro 1.1​<br />Flux.1-Kontext Pro​<br />   | 2 capacity units (6 requests per minute)       |
-| Tokens per minute    | Rest of models      | 400,000   |
-| Requests per minute  | Rest of models      | 1,000     |
-| Concurrent requests  | Rest of models      | 300       |
+The following table lists limits for Foundry Models for the following rates:
 
-For Azure OpenAI quota increase request, use [request a quota increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. For other models, You can [request increases to the default limits](#request-increases-to-the-default-limits). Due to high demand, limit increase requests can be submitted and are evaluated per request.
+- Tokens per minute
+- Requests per minute
+- Concurrent request
+
+| Models                                                                 | Tokens per minute                                   | Requests per minute                                   | Concurrent requests   |
+| ---------------------------------------------------------------------- | --------------------------------------------------- | ----------------------------------------------------- | -------------------- |
+| Azure OpenAI models                                                    | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | Varies per model and SKU. See [limits for Azure OpenAI](../openai/quotas-limits.md). | not applicable       |
+| DeepSeek-R1<br />DeepSeek-V3-0324                                      | 5,000,000                                           | 5,000                                                 | 300                  |
+| Llama 3.3 70B Instruct<br />Llama-4-Maverick-17B-128E-Instruct-FP8<br />Grok 3<br />Grok 3 mini | 400,000                                             | 1,000                                                 | 300                  |
+| Flux-Pro 1.1<br />Flux.1-Kontext Pro                                   | not applicable                                      | 2 capacity units (6 requests per minute)              | not applicable       |
+| Rest of models                                                         | 400,000                                             | 1,000                                                 | 300                  |
+
+To increase your quota:
+
+- For Azure OpenAI, use [Azure AI Foundry Service: Request for Quota Increase](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu) to submit your request. 
+- For other models, see [request increases to the default limits](#request-increases-to-the-default-limits). 
+ 
+Due to high demand, we evaluate limit increase requests per request.
 
 ### Other limits
 
