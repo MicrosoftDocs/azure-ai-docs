@@ -2,14 +2,18 @@
 title: How to configure a managed network for a hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a managed network for Azure AI Foundry hubs. A managed network secures your computing resources.
-manager: scottpolly
 ms.service: azure-ai-foundry
-ms.custom: ignite-2023, build-2024, devx-track-azurecli, ignite-2024
+ms.custom: 
+  - ignite-2023
+  - build-2024
+  - devx-track-azurecli
+  - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 04/30/2025
 ms.reviewer: meerakurup
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 zone_pivot_groups: azure-ai-studio-sdk-cli
 
 #Customer intent: As an administrator, I want to configure a managed network for Azure AI Foundry hubs so that my computing resources are protected.
@@ -632,7 +636,7 @@ To reduce the wait time and avoid potential timeout errors, we recommend manuall
 Alternatively, you can use the `provision_network_now` flag to provision the managed network as part of hub creation.
 
 > [!NOTE]
-> To create an online deployment, you must manually provision the managed network, or create a compute instance first. Creating a compute instance automatically provision it. 
+> To deploy a model to managed compute, you must manually provision the managed network, or create a compute instance first. Creating a compute instance automatically provisions it. 
 
 # [Azure portal](#tab/portal)
 
@@ -832,7 +836,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure AI Search
 * Azure AI services
 * Azure API Management
-    * Supporting only Classic tier without VNET injection and Standard V2 tier with virtual network integration. For more on API Management virtual networks, see [Virtual Network Concepts](https://learn.microsoft.com/azure/api-management/virtual-network-concepts)    
+    * Supporting only Classic tier without VNET injection and Standard V2 tier with virtual network integration. For more on API Management virtual networks, see [Virtual Network Concepts](/azure/api-management/virtual-network-concepts)    
 * Azure Container Registry
 * Azure Cosmos DB (all sub resource types)
 * Azure Data Factory
@@ -848,7 +852,7 @@ Private endpoints are currently supported for the following Azure services:
 * Azure Redis Cache
 * Azure SQL Server
 * Azure Storage (all sub resource types)
-* Application Insights (Through [PrivateLinkScopes](https://learn.microsoft.com/azure/azure-monitor/logs/private-link-configure#create-azure-monitor-private-link-scope-ampls))
+* Application Insights (Through [PrivateLinkScopes](/azure/azure-monitor/logs/private-link-configure#create-azure-monitor-private-link-scope-ampls))
 
 
 When you create a private endpoint, you provide the _resource type_ and _subresource_ that the endpoint connects to. Some resources have multiple types and subresources. For more information, see [what is a private endpoint](/azure/private-link/private-endpoint-overview).

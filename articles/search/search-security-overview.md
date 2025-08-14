@@ -2,20 +2,24 @@
 title: Security overview
 titleSuffix: Azure AI Search
 description: Learn about the security features in Azure AI Search to protect endpoints, content, and operations.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 02/28/2025
+ms.date: 08/08/2025
 ---
 
-# Security overview for Azure AI Search
+# Security in Azure AI Search
 
-This article describes the security features in Azure AI Search that protect data and operations.
+Azure AI Search provides comprehensive security controls across network access, authentication, authorization, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains: **network traffic patterns** (inbound client requests, outbound service connections, and internal Microsoft-managed traffic), **access control mechanisms** (Microsoft Entra ID with role-based access control or API key authentication), and **data protection** (encryption in transit via TLS 1.2/1.3, encryption at rest with optional customer-managed keys for double encryption).
+
+A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. For enterprise scenarios requiring granular permissions, you can implement document-level access controls and leverage network security perimeters to create logical boundaries around your Azure PaaS resources. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
+
+This article details the implementation options for each security layer to help you design appropriate security architectures for development and production environments.
 
 ## Data flow (network traffic patterns)
 
@@ -64,13 +68,13 @@ The following list is a full enumeration of the outbound requests for which you 
 | Operation | Scenario |
 | ----------| -------- |
 | Indexers | Connect to external data sources to retrieve data. For more information, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md). |
-| Indexers | Connect to Azure Storage to persist [knowledge stores](knowledge-store-concept-intro.md), [cached enrichments](cognitive-search-incremental-indexing-conceptual.md), [debug sessions](cognitive-search-debug-session.md). |
+| Indexers | Connect to Azure Storage to persist [knowledge stores](knowledge-store-concept-intro.md), [cached enrichments](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md). |
 | Custom skills | Connect to Azure functions, Azure web apps, or other apps running external code that's hosted off-service. The request for external processing is sent during skillset execution. |
 | Indexers and [integrated vectorization](vector-search-integrated-vectorization.md) | Connect to Azure OpenAI and a deployed embedding model, or it goes through a custom skill to connect to an embedding model that you provide. The search service sends text to embedding models for vectorization during indexing. |
 | Vectorizers | Connect to Azure OpenAI or other embedding models at query time to [convert user text strings to vectors](vector-search-how-to-configure-vectorizer.md) for vector search. |
 | Search service | Connect to Azure Key Vault for [customer-managed encryption keys](search-security-manage-encryption-keys.md) used to encrypt and decrypt sensitive data. |
 
-Outbound connections can be made using a resource's full access connection string that includes a key or a database login, or [a managed identity](search-howto-managed-identities-data-sources.md) if you're using Microsoft Entra ID and role-based access.
+Outbound connections can be made using a resource's full access connection string that includes a key or a database login, or [a managed identity](search-how-to-managed-identities.md) if you're using Microsoft Entra ID and role-based access.
 
 To reach Azure resources behind a firewall, [create inbound rules on other Azure resources that admit search service requests](search-indexer-howto-access-ip-restricted.md). 
 
@@ -110,6 +114,19 @@ The private endpoint uses an IP address from the virtual network address space f
 :::image type="content" source="media/search-security-overview/inbound-private-link-azure-cog-search.png" alt-text="sample architecture diagram for private endpoint access":::
 
 While this solution is the most secure, using more services is an added cost so be sure you have a clear understanding of the benefits before diving in. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/). For more information about how these components work together, [watch this video](#watch-this-video). Coverage of the private endpoint option starts at 5:48 into the video. For instructions on how to set up the endpoint, see [Create a Private Endpoint for Azure AI Search](service-create-private-endpoint.md).
+
+### Network security perimeter
+
+A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, Azure Storage, and Azure OpenAI. Inbound client connections and service-to-service connections occur within the boundary, which simplifies and strengthens your defenses against unauthorized access.
+
+It's common in Azure AI Search solutions to use multiple Azure resources. The following resources can all be joined to an [existing network security perimeter](/azure/private-link/create-network-security-perimeter-portal):
+
++ [Azure AI Search](search-security-network-security-perimeter.md)
++ [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter)
++ [Azure Storage](/azure/storage/common/storage-network-security-perimeter)
++ [Azure Monitor](/azure/azure-monitor/fundamentals/network-security-perimeter)
+
+For a complete list of eligible services, see [Onboarded private link resources](/azure/private-link/network-security-perimeter-concepts#onboarded-private-link-resources).
 
 ## Authentication
 
@@ -154,9 +171,11 @@ For multitenancy solutions requiring security boundaries at the index level, it'
 
 ### Restricting access to documents
 
-User permissions at the document level, also known as *row-level security*, isn't natively supported in Azure AI Search. If you import data from an external system that provides row-level security, such as Azure Cosmos DB, those permissions won't transfer with the data as its being indexed by Azure AI Search.
+User permissions at the document level, also known as *row-level security*, is available as a preview feature and depends on the data source. If content originates from [Azure Data Lake Storage (ADLS) Gen2](search-indexer-access-control-lists-and-role-based-access.md) or [Azure blobs](search-blob-indexer-role-based-access.md), user permission metadata that originates in Azure Storage is preserved in indexer-generated indexes and enforced at query time so that only authorized content is included in search results.
 
-If you require permissioned access over content in search results, there's a technique for applying filters that include or exclude documents based on user identity. This workaround adds a string field in the data source that represents a group or user identity, which you can make filterable in your index. For more information about this pattern, see [Security trimming based on identity filters](search-security-trimming-for-azure-search.md).
+For other data sources, you can [push a document payload that includes user or group permission metadata](search-index-access-control-lists-and-rbac-push-api.md), and those permissions are retained in indexed content and also enforced at query time. This capability is also in preview.
+
+If you can't use preview features and you require permissioned access over content in search results, there's a technique for applying filters that include or exclude documents based on user identity. This workaround adds a string field in the data source that represents a group or user identity, which you can make filterable in your index. For more information about this pattern, see [Security trimming based on identity filters](search-security-trimming-for-azure-search.md). For more information about document access, see [Document-level access control](search-document-level-access-overview.md).
 
 ## Data residency
 
@@ -164,7 +183,7 @@ When you set up a search service, you choose a region that determines where cust
 
 Currently, the only external resource that a search service writes to is Azure Storage. The storage account is one that you provide, and it could be in any region. A search service writes to Azure Storage if you use any of the following features:
 
-+ [enrichment cache](cognitive-search-incremental-indexing-conceptual.md)
++ [enrichment cache](enrichment-cache-how-to-configure.md)
 + [debug session](cognitive-search-debug-session.md)
 + [knowledge store](knowledge-store-concept-intro.md)
 
@@ -237,7 +256,7 @@ CMK support was rolled out in two phases. If you created your search service dur
 
 + The second rollout on May 13, 2021 added encryption for temporary disks and extended CMK encryption to [all supported regions](search-region-support.md).
 
-  If you're using CMK from a service created during the first rollout and you also want CMK encryption over temporary disks, you need to create a new search service in your region of choice and redeploy your content. To determine your service creation date, see [How to check service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date).
+  If you're using CMK from a service created during the first rollout and you also want CMK encryption over temporary disks, you need to create a new search service in your region of choice and redeploy your content. To determine your service creation date, see [Check your service creation or upgrade date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date).
 
 Enabling CMK encryption will increase index size and degrade query performance. Based on observations to date, you can expect to see an increase of 30-60 percent in query times, although actual performance will vary depending on the index definition and types of queries. Because of the negative performance impact, we recommend that you only enable this feature on indexes that really require it. For more information, see [Configure customer-managed encryption keys in Azure AI Search](search-security-manage-encryption-keys.md).
 

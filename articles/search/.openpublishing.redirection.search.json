@@ -1,6 +1,26 @@
 {
     "redirections": [
         {
+            "source_path_from_root": "/articles/search/search-howto-managed-identities-data-sources.md",
+            "redirect_url": "/azure/search/search-how-to-managed-identities",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-monitor-indexers.md",
+            "redirect_url": "/azure/search/search-monitor-indexers",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-incremental-indexing-conceptual.md",
+            "redirect_url": "/azure/search/enrichment-cache-how-to-manage",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-howto-incremental-index.md",
+            "redirect_url": "/azure/search/enrichment-cache-how-to-configure",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/search/search-security-network-security-perimiter.md",
             "redirect_url": "/azure/search/search-security-network-security-perimeter",
             "redirect_document_id": true
@@ -9,6 +29,16 @@
             "source_path_from_root": "/articles/search/cognitive-search-quickstart-blob.md",
             "redirect_url": "/azure/search/search-get-started-skillset",
             "redirect_document_id": true
+        },
+                {
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob.md",
+            "redirect_url": "/azure/search/tutorial-skillset",
+            "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/cognitive-search-tutorial-blob-dotnet.md",
+            "redirect_url": "/azure/search/tutorial-skillset",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md",
@@ -187,8 +217,8 @@
         },
         {
             "source_path_from_root": "/articles/search/search-performance-optimization.md",
-            "redirect_url": "/azure/search/search-reliability",
-            "redirect_document_id": true
+            "redirect_url": "/azure/reliability/reliability-ai-search",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/cognitive-search-quickstart-ocr.md",
@@ -415,6 +445,21 @@
             "source_path_from_root": "/articles/search/tutorial-multimodal-index-image-verbalization-skill.md",
             "redirect_url": "/azure/search/tutorial-document-layout-image-verbalization",
             "redirect_document_id": true
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-rest.md",
+            "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-get-started-powershell.md",
+            "redirect_url": "/azure/search/search-get-started-text",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/search/search-reliability.md",
+            "redirect_url": "/azure/reliability/reliability-ai-search",
+            "redirect_document_id": false
         }
     ]
   }

@@ -25,7 +25,7 @@ highlightedContent:
       url: whats-new.md
     - title: Responsible use of AI
       itemType: concept
-      url: /legal/cognitive-services/language-service/transparency-note?context=/azure/ai-services/language-service/context/context
+      url: /azure/ai-foundry/responsible-ai/language-service/transparency-note
 
 conceptualContent:
   items:
@@ -106,3 +106,9 @@ additionalContent:
         links:
         - text: Support and help
           url: ../cognitive-services-support-options.md?context=/azure/ai-services/speech-service/context/context
+      - title: Announced for Deprecation
+        links:
+        - text: Language Understanding
+          url: ../luis/index.yml
+        - text: QnA Maker
+          url: ../qnamaker/index.yml

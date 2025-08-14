@@ -5,12 +5,14 @@ description: Learn how to set up an indexer connection to Azure SQL Database  us
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-ms.custom:
-  - subject-rbac-steps
-  - ignite-2023
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.custom:
+  - subject-rbac-steps
+  - ignite-2023
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Set up an indexer connection to Azure SQL using a managed identity
@@ -21,7 +23,7 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 ## Prerequisites
 
-* [Create a managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+* [Create a managed identity](search-how-to-managed-identities.md) for your search service.
 
 * [Assign an Azure admin role on SQL](/azure/azure-sql/database/authentication-aad-configure). The identity used on the indexer connection needs read permissions. You must be a Microsoft Entra admin with a server in SQL Database or SQL Managed Instance to grant read permissions on a database.
 

@@ -2,8 +2,8 @@
 title: Set up AutoML with Python (v2)
 titleSuffix: Azure Machine Learning
 description: Learn how to set up an AutoML training run for tabular data with the Azure Machine Learning CLI and Python SDK v2.
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: rasavage
 services: machine-learning
 ms.service: azure-machine-learning

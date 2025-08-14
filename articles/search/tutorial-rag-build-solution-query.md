@@ -2,15 +2,15 @@
 title: 'RAG tutorial: Search using an LLM'
 titleSuffix: Azure AI Search
 description: Learn how to build queries and engineer prompts for LLM-enabled search on Azure AI Search. Queries used in generative search provide the inputs to an LLM chat engine.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: tutorial
-ms.date: 01/09/2025
+ms.date: 06/17/2025
 ---
 
 # Tutorial: Search your data using a chat model (RAG in Azure AI Search)

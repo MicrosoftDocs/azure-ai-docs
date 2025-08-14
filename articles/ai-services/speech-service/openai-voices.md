@@ -1,4 +1,4 @@
----
+﻿---
 title: What are OpenAI text to speech voices?
 titleSuffix: Azure AI services
 description: Learn about OpenAI voices that you can use for text to speech in Azure AI services.
@@ -6,7 +6,7 @@ author: eric-urban
 ms.author: eur
 manager: nitinme
 ms.reviewer: eur
-ms.date: 2/22/2025
+ms.date: 8/13/2025
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.custom:
@@ -38,7 +38,7 @@ You can choose from the following text to speech voices in Azure AI services:
 
 ## OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech?
 
-If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
+If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../../ai-foundry/openai/text-to-speech-quickstart.md) or via [Azure AI Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
 
 Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI and OpenAI text to speech voices in Azure AI Speech. 
 
@@ -105,4 +105,4 @@ The following table outlines the Speech Synthesis Markup Language (SSML) element
 ## Related content
 
 - [Try the text to speech quickstart in Azure AI Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech)
-- [Try the text to speech via Azure OpenAI](../openai/text-to-speech-quickstart.md)
+- [Try the text to speech via Azure OpenAI](../../ai-foundry/openai/text-to-speech-quickstart.md)

@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn about textual similarity evaluators for generative AI, including semantic similarity, F1 score, BLEU, GLEU, ROUGE, and METEOR metrics.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 05/19/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -30,7 +29,7 @@ load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
@@ -50,7 +49,7 @@ from azure.ai.evaluation import SimilarityEvaluator
 
 similarity = SimilarityEvaluator(model_config=model_config, threshold=3)
 similarity(
-    query="Is Marie Curie is born in Paris?", 
+    query="Is Marie Curie born in Paris?", 
     response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
     ground_truth="Marie Curie was born in Warsaw."
 )
@@ -134,7 +133,6 @@ The numerical score is a 0-1 float and a higher score is better. Given a numeric
 ```python
 from azure.ai.evaluation import GleuScoreEvaluator
 
-
 gleu_score = GleuScoreEvaluator(threshold=0.2)
 gleu_score(
     response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
@@ -168,7 +166,6 @@ rouge(
     response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
     ground_truth="Marie Curie was born in Warsaw."
 )
-
 ```
 
 ### ROUGE score output
@@ -203,7 +200,6 @@ meteor_score(
     response="According to wikipedia, Marie Curie was not born in Paris but in Warsaw.",
     ground_truth="Marie Curie was born in Warsaw."
 )
-
 ```
 
 ### METEOR score output

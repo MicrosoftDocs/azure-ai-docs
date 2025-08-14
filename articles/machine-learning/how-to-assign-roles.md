@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 06/09/2025
 ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter, ignite-2024
 monikerRange: 'azureml-api-1 || azureml-api-2'
@@ -287,7 +287,11 @@ The following table is a summary of Azure Machine Learning activities and the pe
 
 2. When attaching an AKS cluster, you also need to have the [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) on the cluster.
 
-3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](https://learn.microsoft.com/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](https://learn.microsoft.com/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](https://learn.microsoft.com/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](https://learn.microsoft.com/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
+3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
+
+4. When attaching user-managed identities, you also need to have `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identities. For more information, see [Azure built-in roles for Identity](/azure/role-based-access-control/built-in-roles/identity).
+
+5. When specifying a serverless compute custom subnet, you also need to have `Microsoft.Network/virtualNetworks/subnets/join/action` on the virtual network. For more information, see [Azure permissions for Networking](/azure/role-based-access-control/permissions/networking).
 
 ###  Deploy into a virtual network or subnet
 

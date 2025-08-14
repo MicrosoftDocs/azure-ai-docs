@@ -3,6 +3,7 @@ title: 'Tutorial: Index ADLS Gen2 permission metadata'
 titleSuffix: Azure AI Search  
 description: Learn how to index Access Control Lists (ACLs) and Azure Role-Based Access Control (RBAC) scope from ADLS Gen2 and query with permission-filtered results in Azure AI Search.
 ms.service: azure-ai-search  
+ms.update-cycle: 180-days
 ms.topic: tutorial  
 ms.date: 05/20/2025
 author: wlifuture
@@ -44,7 +45,7 @@ Use a REST client to complete this tutorial and the [2025-05-01-preview](/rest/a
 
 ## Prepare sample data
 
-Upload the [state parks sample data](https://github.com/Azure-Samples/azure-search-sample-data/state-parks) to a container in ADLS Gen2. The container name should be "parks" and it should have two folders: "Oregon" and "Washington".
+Upload the [state parks sample data](https://github.com/Azure-Samples/azure-search-sample-data) to a container in ADLS Gen2. The container name should be "parks" and it should have two folders: "Oregon" and "Washington".
 
 ## Check search service configuration
 
@@ -52,7 +53,7 @@ You search service must be configured for Microsoft Entra ID authentication and 
 
 + [Enable role-based access](search-security-enable-roles.md)
 
-+ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md).
++ [Configure a system-assigned managed identity](search-how-to-managed-identities.md).
 
 ## Get a personal identity token for local testing
 
@@ -130,7 +131,7 @@ For demo purposes, the permission field has `retrievable` enabled so that you ca
 
 ## Create a data source
 
-Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#configure-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
+Modify [data source configuration](search-indexer-access-control-lists-and-role-based-access.md#create-the-data-source) to specify indexer permission ingestion and the types of permission metadata that you want to index.
 
 A data source needs `indexerPermissionOptions`.
 
@@ -153,7 +154,7 @@ In this tutorial, use a system-assigned managed identity for the authenticated c
 
 ## Create and run the indexer
 
-Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#indexing-permission-metadata).
+Indexer configuration for permission ingestion is primarily about defining `fieldMappings` from [permission metadata](search-indexer-access-control-lists-and-role-based-access.md#).
 
 ```json
 {

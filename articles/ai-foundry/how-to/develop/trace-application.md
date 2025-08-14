@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: amibp
 ms.date: 05/19/2025
 ms.service: azure-ai-foundry
@@ -15,7 +14,7 @@ ms.topic: how-to
 
 Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. Such helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
 
-This article explains how to implement tracing for AI applications using OpenAI SDK with OpenTelemetry in Azure AI Foundry.
+This article explains how to implement tracing for AI applications using **OpenAI SDK** with OpenTelemetry in Azure AI Foundry.
 
 ## Prerequisites
 
@@ -28,9 +27,9 @@ You need the following to complete this tutorial:
 
 ## Enable tracing in your project
 
-Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect them to an existing Azure Application Insights resource or create a new one from within the project. You do such configuration once per each Azure AI Foundry resource.
+Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect projects to an existing Azure Application Insights resource or create a new one from within the project. You do such configuration once per each Azure AI Foundry resource.
 
-The following steps show how to configure:
+The following steps show how to configure your resource:
 
 1. Go to [Azure AI Foundry portal](https://ai.azure.com) and navigate to your project.
 
@@ -56,7 +55,7 @@ The following steps show how to configure:
 
     3. Select **Create** to create the resource and connect it to the Azure AI Foundry resource.
 
-4. Once the connection is configured, you are ready to use tracing in this project.
+4. Once the connection is configured, you are ready to use tracing in any project within the resource.
 
 5. Go to the landing page of your project and copy the project's endpoint URI. You need it later in the tutorial.
 
@@ -68,7 +67,7 @@ The following steps show how to configure:
 
 ## Instrument the OpenAI SDK
 
-When developing using the OpenAI SDK you can instrument your code so traces are sent to Azure AI Foundry. Follow these steps:
+When developing with the OpenAI SDK, you can instrument your code so traces are sent to Azure AI Foundry. Follow these steps to instrument your code:
 
 1. Install `azure-ai-projects`, `azure-monitor-opentelemetry`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
 
@@ -84,18 +83,18 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
     OpenAIInstrumentor().instrument()
     ```
 
-1. Get the connection string to the Azure Application Insights resource to your project:
+1. Get the connection string to the Azure Application Insights resource associated with your project. The following line uses the Azure AI Project client, which requires the use of Microsoft Entra ID for authentication:
 
     ```python
     from azure.ai.projects import AIProjectClient
     from azure.identity import DefaultAzureCredential
 
-    project_client = AIProjectClient.from_connection_string(
+    project_client = AIProjectClient(
         credential=DefaultAzureCredential(),
         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )
 
-    connection_string = project_client.telemetry.get_connection_string()
+    connection_string = project_client.telemetry.get_application_insights_connection_string()
     ```
 
     > [!TIP]
@@ -103,7 +102,7 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
     >
     > :::image type="content" source="../../media/how-to/develop/trace-application/tracing-copy-connection-string.png" alt-text="A screenshot showing how to copy the connection string to the underlying Azure Application Insights resource from a project." lightbox="../../media/how-to/develop/trace-application/tracing-copy-connection-string.png":::
 
-1. Configure OpenTelemetry to send traces to the Azure Application Insights used by Azure AI Foundry:
+1. Configure OpenTelemetry to send traces to the Azure Application Insights:
 
     ```python
     from azure.monitor.opentelemetry import configure_azure_monitor
@@ -111,12 +110,12 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
     configure_azure_monitor(connection_string=connection_string)
     ```
 
-1. By default, OpenTelemetry doesn't capture inputs and outputs. Use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` to capture it. Ensure this environment variable is configured in the environment level where your code is running.
+1. By default, OpenTelemetry doesn't capture inputs and outputs. Use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` to capture them. Ensure this environment variable is configured in the environment level where your code is running.
 
-1. Use the OpenAI SDK in the same way you are used to:
+1. Use the OpenAI SDK as usual:
 
     ```python
-    client = project_client.get_azure_openai_client()
+    client = project_client.get_openai_client()
 
     response = client.chat.completions.create(
         model="deepseek-v3-0324",
@@ -130,7 +129,7 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="A screenshot showing how a simple chat completion request is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
-1. It may be useful to capture sections of your code that mixes business logic with models when developing complex applications. You can do that by first getting an instance of the current tracer.
+1. It may be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
 
     ```python
     from opentelemetry import trace
@@ -138,7 +137,7 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
     tracer = trace.get_tracer(__name__)
     ```
 
-1. Then, use decorators in your method to capture specific scenarios in your code that you are interested in. The following example assesses if a list of claims with a list of contexts.
+1. Then, use decorators in your method to capture specific scenarios in your code that you are interested in. Such decorators generate spans automatically. The following code example instruments a method called `assess_claims_with_context` with iterates over a list of claims and verify if the claim is supported by the context using an LLM. All the calls made in this method are captured within the same span:
 
     ```python
     def build_prompt_with_context(claim: str, context: str) -> str:
@@ -171,7 +170,7 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-decorator.png" alt-text="A screenshot showing how a method using a decorator is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-decorator.png":::
 
-1. You may also want to add extra information as attributes to the current span. Use the `trace` object to access it and include extra information. See how the `assess_claims_with_context` method has been modified to include an attribute:
+1. You may also want to add extra information to the current span. OpenTelemetry uses the concept of **attributes** for that. Use the `trace` object to access them and include extra information. See how the `assess_claims_with_context` method has been modified to include an attribute:
 
     ```python
     @tracer.start_as_current_span("assess_claims_with_context")
@@ -194,7 +193,7 @@ When developing using the OpenAI SDK you can instrument your code so traces are 
 
 ## Trace to console
 
-It may be useful to also trace your application and send the traces to the local execution console. Such approach may result beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
+It may be useful to also trace your application and send the traces to the local execution console. Such approach may be beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
 
 Configure tracing as follows:
 

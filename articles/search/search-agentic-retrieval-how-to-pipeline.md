@@ -7,6 +7,7 @@ ms.author: heidist
 manager: nitinme
 ms.date: 06/08/2025
 ms.service: azure-ai-search
+ms.update-cycle: 90-days
 ms.topic: how-to
 ms.custom:
   - build-2025
@@ -69,7 +70,7 @@ Configure access to each resource identified in this section.
 Azure AI Search provides the agentic retrieval pipeline. Configure access for yourself, your app, and your search service for downstream access to models.
 
 1. [Enable role-based access](search-security-enable-roles.md).
-1. [Configure a managed identity](search-howto-managed-identities-data-sources.md).
+1. [Configure a managed identity](search-how-to-managed-identities.md).
 1. [Assign roles](search-security-rbac.md):
 
    + For local testing, you must have **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader** role assignments to create, load, and retrieve on Azure AI Search.
@@ -84,7 +85,7 @@ Azure AI Foundry hosts the AI agent and tool. Permissions are needed to create a
 
 + For local testing, you must be an **Azure AI User** to access chat completion models deployed to the Foundry resource. This assignment is conferred automatically for **Owners** when you create the resource. Other users need a specific role assignment. For more information, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
-+ For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has an **Azure AI User** role assignment on the Foundry resource.
++ For integrated operations, ensure your [search service identity](search-how-to-managed-identities.md) has an **Azure AI User** role assignment on the Foundry resource.
 
 ### [**Azure OpenAI**](#tab/openai-perms)
 
@@ -92,7 +93,7 @@ Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure 
 
 + For local testing, ensure that you have a **Cognitive Services User** role assignment to access the chat completion model and embedding models (if using).
 
-+ For integrated operations, ensure your [search service identity](search-howto-managed-identities-data-sources.md) has a **Cognitive Services User** role assignment for model access.
++ For integrated operations, ensure your [search service identity](search-how-to-managed-identities.md) has a **Cognitive Services User** role assignment for model access.
 
 ---
 
@@ -202,7 +203,7 @@ def agentic_retrieval() -> str:
         Be sure to use the same format in your agent's response
     """
     # Take the last 5 messages in the conversation
-    messages = project_client.agents.list_messages(thread.id, limit=5, order=ListSortOrder.DESCENDING)
+    messages = project_client.agents.messages.list(thread.id, limit=5, order=ListSortOrder.DESCENDING)
     # Reverse the order so the most recent message is last
     messages.data.reverse()
     retrieval_result = retrieval_result = agent_client.retrieve(

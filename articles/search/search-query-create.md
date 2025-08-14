@@ -2,7 +2,6 @@
 title: Create a full text query 
 titleSuffix: Azure AI Search
 description: Learn how to construct a query request for full text search in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -100,7 +99,7 @@ In the Azure portal, when you open an index, you can work with Search Explorer a
 
 ### [**REST API**](#tab/rest-text-query)
 
-Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Text search using REST](search-get-started-rest.md).
+Use a REST client to set up a request. If you need help with getting started, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 The following example calls the REST API for full text search:
 
@@ -172,4 +171,4 @@ The key point is that what you think your index contains, and what's actually in
 Now that you have a better understanding of how query requests work, try the following quickstarts for hands-on experience.
 
 + [Search explorer](search-explorer.md)
-+ [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md)
++ [Quickstart: Full-text search](search-get-started-text.md)

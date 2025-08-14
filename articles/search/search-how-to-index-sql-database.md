@@ -2,15 +2,15 @@
 title: Azure SQL indexer
 titleSuffix: Azure AI Search
 description: Set up a search indexer to index tables in Azure SQL Database for vector and full text search in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 03/18/2025
+ms.custom:
+  - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure SQL Database
@@ -42,7 +42,7 @@ This article also provides:
 
 + Read permissions. Azure AI Search supports SQL Server authentication, where the user name and password are provided on the connection string. Alternatively, you can [set up a managed identity and use Azure roles](search-howto-managed-identities-sql.md) with membership in **SQL Server Contributor** or **SQL DB Contributor** roles.
 
-To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-rest.md). If you're using Azure portal, make sure that access to all public networks is enabled in the Azure SQL firewall and that the client has access via an inbound rule. For a REST client that runs locally, configure the SQL Server firewall to allow inbound access from your device IP address. Other approaches for creating an Azure SQL indexer include Azure SDKs.
+To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-text.md). If you're using Azure portal, make sure that access to all public networks is enabled in the Azure SQL firewall and that the client has access via an inbound rule. For a REST client that runs locally, configure the SQL Server firewall to allow inbound access from your device IP address. Other approaches for creating an Azure SQL indexer include Azure SDKs.
 
 ## Try with sample data
 
@@ -130,7 +130,7 @@ In this step, specify the data source, index, and indexer.
    1. Provide a name for the data source object on Azure AI Search.
    1. Use the dropdowns to select the subscription, account type, server, database, table or view, schema, and table name.
    1. For change tracking we recommend **SQL Integrated Change Tracking Policy**.
-   1. For authentication, we recommend connecting with a [managed identity](search-howto-managed-identities-data-sources.md). Your search service must have **SQL Server Contributor** or **SQL DB Contributor** role membership on the database.
+   1. For authentication, we recommend connecting with a [managed identity](search-how-to-managed-identities.md). Your search service must have **SQL Server Contributor** or **SQL DB Contributor** role membership on the database.
    1. Select **Create** to create the data source.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::

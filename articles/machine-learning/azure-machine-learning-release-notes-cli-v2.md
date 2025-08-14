@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: engagement-fy23
 ms.topic: reference
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: hancwang
 ms.date: 12/17/2024
 ---

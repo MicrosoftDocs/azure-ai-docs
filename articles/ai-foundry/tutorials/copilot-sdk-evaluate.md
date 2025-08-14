@@ -2,12 +2,12 @@
 title: "Part 3: Evaluate a chat app with the Azure AI SDK"
 titleSuffix: Azure AI Foundry
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - hub-only
 ms.topic: tutorial
-ms.date: 04/07/2025
+ms.date: 06/27/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley

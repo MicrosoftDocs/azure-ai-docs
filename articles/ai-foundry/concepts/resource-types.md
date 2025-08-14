@@ -2,12 +2,11 @@
 title: Choose an Azure resource type for AI foundry
 titleSuffix: Azure AI Foundry
 description: Learn about the supported Azure resource types in Azure AI Foundry portal.
-author: deeikele
-ms.author: deeikele
-manager: scottpolly
-reviewer: larryfr
-ms.reviewer: larryfr
-ms.date: 05/18/2025
+reviewer: deeikele
+ms.reviewer: deeikele
+author: sgilley
+ms.author: sgilley
+ms.date: 07/22/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -19,15 +18,15 @@ ms.custom:
 
 An Azure resource is required to use and manage services in Azure. It defines the scope for configuring, securing, and monitoring the tools or capabilities you want to use—like AI models, agents, or storage.
 
-AI Foundry Portal and SDK clients support multiple distinct Azure resource types, each designed to serve different development and operational needs. This article explains which use case requires which type.
+Azure AI Foundry portal and SDK clients support multiple distinct Azure resource types, each designed to serve different development and operational needs. This article explains which use case requires which type.
 
 ## Resource Types supported with AI Foundry
 
-* **Azure AI Foundry** – The primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to agent service, models that are hosted using a serverless hosting model, evaluations, and Azure OpenAI service. This is the recommended resource type for most applications built in Azure AI Foundry. 
+* **Azure AI Foundry** – The primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to agent service, models that are hosted using a serverless hosting model, evaluations, and Azure OpenAI service. Azure AI Foundry is the recommended resource type for most applications built in Azure AI Foundry. 
  
   Get started by [creating a first AI Foundry resource](../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context).
 
-* **Azure AI Hub** – Use this resource type in combination with Azure AI Foundry to additionally access open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities. When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in both AI Foundry Portal and Machine Learning Studio.
+* **Azure AI Hub** – Use this resource type in combination with Azure AI Foundry to additionally access open-source model hosting and fine-tuning capabilities, as well as Azure Machine Learning capabilities. When you create an AI Hub, an Azure AI Foundry resource is automatically provisioned. Hub resources can be used in both Azure AI Foundry portal and Machine Learning Studio.
 
 * **Azure AI Search** – A resource used to index and retrieve data for grounding AI applications. It can be [connected](../how-to/connections-add.md) to Azure AI Foundry agents to enable retrieval-augmented generation (RAG) and semantic search experiences.
 

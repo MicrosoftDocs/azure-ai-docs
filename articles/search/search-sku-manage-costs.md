@@ -6,10 +6,11 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 06/10/2025
+ms.date: 08/01/2025
 ---
 
 # Plan and manage costs of an Azure AI Search service
@@ -58,7 +59,7 @@ Depending on your configuration and usage, the following charges might apply:
 
 + Data traffic might incur networking costs. See the [bandwidth pricing](https://azure.microsoft.com/pricing/details/bandwidth/).
 
-+ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](cognitive-search-incremental-indexing-conceptual.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
++ Several premium features, such as [knowledge stores](knowledge-store-concept-intro.md), [debug sessions](cognitive-search-debug-session.md), and [enrichment caches](enrichment-cache-how-to-configure.md), depend on Azure Storage and incur storage costs. Charges for these features appear on your Azure Storage bill.
 
 + [Customer-managed keys](search-security-manage-encryption-keys.md), which provide double encryption of sensitive content, require a billable [Azure Key Vault](https://azure.microsoft.com/pricing/details/key-vault/).
 
@@ -113,7 +114,7 @@ To minimize the costs of your Azure AI Search solution, use the following strate
 
 + Use [incremental indexing](search-howto-reindex.md) to process only new or changed data.
 
-+ Use [enrichment caching](cognitive-search-incremental-indexing-conceptual.md) and a [knowledge store](knowledge-store-concept-intro.md) to reuse previously enriched content. Although caching incurs a storage charge, it lowers the cumulative cost of [AI enrichment](cognitive-search-concept-intro.md).
++ Use [enrichment caching](enrichment-cache-how-to-configure.md) and a [knowledge store](knowledge-store-concept-intro.md) to reuse previously enriched content. Although caching incurs a storage charge, it lowers the cumulative cost of [AI enrichment](cognitive-search-concept-intro.md).
 
 + Keep vector payloads compact. For vector search, see the [vector  compression best practices](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/azure-ai-search-cut-vector-costs-up-to-92-5-with-new-compression-techniques/4404866).
 
@@ -137,7 +138,7 @@ Search runs as a continuous service. Dedicated resources are always operational 
 
 **Can I change the billing rate (tier) of an existing search service?**
 
-Existing services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+Existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
 ## Related content
 

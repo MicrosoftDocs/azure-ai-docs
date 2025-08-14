@@ -2,13 +2,14 @@
 title: "Quickstart: Create a project using Bicep"
 titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry project in your Azure subscription.
-author: Blackmist
-ms.author: larryfr
-manager: scottpolly
+ms.author: sgilley
+author: sdgilley
 reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
-ms.custom: "subject-bicepqs"
+ms.custom: 
+  - subject-bicepqs
+  - hub-only
 ms.date: 04/29/2025
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
@@ -61,7 +62,7 @@ Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
 ```azurecli
 az group create --name exampleRG --location eastus
-az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
+az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
 # [Azure PowerShell](#tab/powershell)

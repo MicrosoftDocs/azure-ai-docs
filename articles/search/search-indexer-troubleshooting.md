@@ -2,7 +2,6 @@
 title: Indexer troubleshooting
 titleSuffix: Azure AI Search
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
-
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
@@ -290,4 +289,4 @@ If you have [sensitivity labels set on documents](/microsoft-365/compliance/sens
 ## See also
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
-* [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
+* [Monitor indexer-based indexing](search-monitor-indexers.md)

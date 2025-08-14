@@ -4,11 +4,13 @@ description: Use the Document Intelligence REST API v3.0 to create a forms proce
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom: linux-related-content
 ms.topic: include
 ms.date: 11/19/2024
 ms.author: lajanuar
 monikerRange: 'doc-intel-3.1.0 || doc-intel-3.0.0'
+ms.custom:
+  - linux-related-content
+  - sfi-image-nochange
 ---
 
 <!-- markdownlint-disable MD033 -->

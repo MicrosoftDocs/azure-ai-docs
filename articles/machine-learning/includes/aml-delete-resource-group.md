@@ -3,11 +3,13 @@ title: "include file"
 description: "include file"
 services: machine-learning
 ms.service: azure-machine-learning
-ms.custom: "include file"
 ms.topic: "include"
 author: j-martens
 ms.author: jmartens
 ms.date: 09/30/2024
+ms.custom:
+  - include file
+  - sfi-image-nochange
 ---
 
 >[!IMPORTANT]

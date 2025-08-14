@@ -3,8 +3,8 @@ title: Inference data collection from models in production
 titleSuffix: Azure Machine Learning
 description: Collect inference data from models deployed on Azure Machine Learning to monitor their performance in production.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: alehughes

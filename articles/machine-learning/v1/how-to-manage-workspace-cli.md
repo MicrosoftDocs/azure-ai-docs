@@ -5,8 +5,8 @@ description: Learn how to use the Azure CLI extension v1 for machine learning to
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 07/26/2024
 ms.topic: how-to

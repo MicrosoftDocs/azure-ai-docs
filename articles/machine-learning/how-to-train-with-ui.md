@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: training
 ms.topic: how-to
 ms.custom: devplatv2
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 04/02/2025
 ms.reviewer: amipatel
 ---
