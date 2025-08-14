@@ -30,9 +30,9 @@ Azure speech to text is used for all configuration where a non-multimodal model 
 It supports all languages documented on the [Language and voice support for the Speech service - Speech to text](./language-support.md?tabs=stt) tab.
 
 There are three options for voice live language processing:
-1. Automatic multilingual configuration using multilingual model (default)
-1. Single language configuration
-1. Multilingual configuration using up to 10 defined languages
+- Automatic multilingual configuration using multilingual model (default)
+- Single language configuration
+- Multilingual configuration using up to 10 defined languages
 
 The current multi-lingual model supports the following languages:
 - Chinese (China) [zh-CN]
@@ -183,9 +183,9 @@ Azure text to speech is used by default for all configuration where a non-multim
 It supports all voices documented on the [Language and voice support for the Speech service - Text to speech](./language-support.md?tabs=tts) tab.
 
 The following types of voices are supported:
-1. Monolingual voices
-1. Multilingual voices
-1. Custom voices
+- Monolingual voices
+- Multilingual voices
+- Custom voices
 
 The supported language is tied to the voice used. To configure specific Azure text to speech voices, you need to add the `voice` configuration to the session`session.update` message.
 
