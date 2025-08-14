@@ -4,7 +4,7 @@ description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
-ms.date: 6/17/2025
+ms.date: 08/14/2025
 ms.service: azure-ai-openai
 ms.topic: whats-new
 ms.custom:
@@ -25,9 +25,12 @@ This article provides a summary of the latest releases and major documentation u
 - `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
 - `gpt-5-chat` is now available. To learn more, see the [models page](./concepts/models.md)
 
+- `gpt-5` and `gpt-5-mini` are now available for [Provisioned Throughput Units (PTU)](./how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
+
 - **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
+
 
 ### New version of model-router
 
