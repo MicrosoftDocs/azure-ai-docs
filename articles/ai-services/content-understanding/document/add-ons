@@ -77,7 +77,7 @@ In this case, your automation pipeline can post the billing address directly to 
 ## In-context learning: Teach the model by giving examples
 
 
-In-context learning allows you to guide the model’s behavior by providing **examples** in your prompt or API call—without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
+In-context learning allows you to guide the model’s behavior by providing labelled **examples** —without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
 
 ### Why in-context learning matters
 
