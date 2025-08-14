@@ -182,7 +182,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
         for claim, context in zip(claims, contexts):
             response = client.chat.completions.create(
-                model="gpt-4.5-preview",
+                model="gpt-4.1",
                 messages=build_prompt_with_context(claim=claim, context=context),
             )
             responses.append(response.choices[0].message.content.strip('., '))
