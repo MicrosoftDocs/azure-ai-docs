@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 07/16/2025
+ms.date: 08/14/2025
 ms.custom: 
 manager: nitinme
 author: mrbullwinkle
