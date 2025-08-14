@@ -127,21 +127,27 @@ kubectl -n <compute-namespace> logs <container-name>
 To see log output from a container, use the following command:
 
 ```azurecli
-az ml online-deployment get-logs -e <endpoint-name> -n <deployment-name> -l 100
+az ml online-deployment get-logs -g <resource-group> -w <workspace-name> -e <endpoint-name> -n <deployment-name> -l 100
 ```
 
 Or
 
 ```azurecli
-az ml online-deployment get-logs --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
+az ml online-deployment get-logs --resource-group <resource-group> --workspace-name <workspace-name> --endpoint-name <endpoint-name> --name <deployment-name> --lines 100
 ```
 
 By default, logs are pulled from the inference server. You can get logs from the storage initializer container by passing `–-container storage-initializer`.
 
-Add `--resource-group` and `--workspace-name` to the commands if you didn't already set these parameters via `az configure`. To see information about how to set these parameters, or if you currently have set values, run the following command:
+The commands above include `--resource-group` and `--workspace-name`. You can also set these parameters globally via `az configure` to avoid repeating them in each command. For example:
 
 ```azurecli
-az ml online-deployment get-logs -h
+az configure --defaults group=<resource-group> workspace=<workspace-name>
+```
+
+To check your current configuration settings, run:
+
+```azurecli
+az configure --list-defaults
 ```
 
 To see more information, add `--help`  or `--debug` to commands.

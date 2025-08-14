@@ -14,7 +14,7 @@ ms.author: eur
 
 # Speech to text REST API
 
-Speech to text REST API is used for [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
+Speech to text REST API is used for [fast transcription](fast-transcription-create.md), [batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md). 
 
 > [!IMPORTANT]
 > Speech to text REST API version `2024-11-15` is the latest version that's generally available. 

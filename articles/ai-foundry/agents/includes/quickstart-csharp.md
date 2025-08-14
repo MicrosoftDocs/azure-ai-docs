@@ -92,7 +92,7 @@ client.Messages.CreateMessage(
     MessageRole.User,
     "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
 
-//Have Agent beging processing user's question with some additional instructions associated with the ThreadRun.
+//Have Agent begin processing user's question with some additional instructions associated with the ThreadRun.
 ThreadRun run = client.Runs.CreateRun(
     thread.Id,
     agent.Id,
