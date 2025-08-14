@@ -18,7 +18,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 ## Prerequisites
 
-* The requirements in the [Browser Automation overview](./browser-automation.md).
+* The requirements in the [Browser Automation overview](./browser-automation.md#setup).
 * Your Azure AI Foundry Project endpoint.
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]
