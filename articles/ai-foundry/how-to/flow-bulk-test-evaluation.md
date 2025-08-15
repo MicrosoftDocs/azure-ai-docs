@@ -3,6 +3,7 @@ title: Submit batch run and evaluate a flow
 titleSuffix: Azure AI Foundry
 description: Learn how to submit batch run and use built-in evaluation methods in prompt flow to evaluate how well your flow performs with a large dataset with Azure AI Foundry.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
