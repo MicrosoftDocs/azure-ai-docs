@@ -43,7 +43,7 @@ To improve model performance, you might consider fine-tuning a foundation model 
 1. If you're not already in your project, select it. 
 1. Select **Fine-tuning** from the left pane.
 
-    1. Select **Fine-tune model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
+    1. Select **Fine-tune a model** and add the model that you want to fine-tune. This article uses _Phi-3-mini-4k-instruct_ for illustration.
     1. Select **Next** to see the available fine-tune options. Some foundation models support only the __Managed compute__ option.
 
 1. Alternatively, you could select **Model catalog** from the left sidebar of your project and find the model card of the foundation model that you want to fine-tune.
@@ -60,7 +60,7 @@ In this section, you go through the steps to configure fine-tuning for your mode
 
 1. Provide a name for the fine-tuned model on the "Basic settings" page, and select **Next** to go to the "Compute" page.
 
-1. Select the Azure Machine Learning compute cluster to use for fine-tuning the model. Fine-tuning runs on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you plan to use.
+1. Select a Virtual machine size to use for fine-tuning the model. Fine-tuning runs on GPU compute. Ensure that you have sufficient compute quota for the compute SKUs you plan to use.
 
     :::image type="content" source="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png" alt-text="Screenshot showing settings for the compute to use for fine-tuning." lightbox="../media/how-to/fine-tune-managed-compute/fine-tune-compute.png":::
 
