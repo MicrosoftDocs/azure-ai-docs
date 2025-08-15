@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: reference
 ms.date: 6/30/2025
 ms.reviewer: none
@@ -21,8 +22,12 @@ ms.update-cycle: 180-days
 
 The prompt flow Embedding tool enables you to convert text into dense vector representations for various natural language processing tasks.
 
-> [!NOTE]
+> [!TIP]
 > For chat and completion tools, learn more about the large language model [(LLM) tool](llm-tool.md).
+
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 ## Build with the Embedding tool
 
