@@ -121,7 +121,7 @@ The private endpoint uses an IP address from the virtual network address space f
 
 :::image type="content" source="media/search-security-overview/inbound-private-link-azure-cog-search.png" alt-text="sample architecture diagram for private endpoint access":::
 
-While this solution is the most secure, using more services is an added cost so be sure you have a clear understanding of the benefits before diving in. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/). For more information about how these components work together, [watch this video](#watch-this-video). Coverage of the private endpoint option starts at 5:48 into the video. For instructions on how to set up the endpoint, see [Create a Private Endpoint for Azure AI Search](service-create-private-endpoint.md).
+While this solution is the most secure, using more services is an added cost so be sure you have a clear understanding of the benefits before diving in. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/). For more information about how these components work together, [watch this video](/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security/player]). Coverage of the private endpoint option starts at 5:48 into the video. For instructions on how to set up the endpoint, see [Create a Private Endpoint for Azure AI Search](service-create-private-endpoint.md).
 
 ### Network security perimeter
 
@@ -301,3 +301,7 @@ Apply metadata tags to categorize search services based on data sensitivity and 
 + [Azure security fundamentals](/azure/security/fundamentals/)
 + [Azure Security](https://azure.microsoft.com/overview/security)
 + [Microsoft Defender for Cloud](/azure/security-center/)
+
+We also recommend the following video. It's several years old and doesn't cover newer features, but for a curated introduction to core security, you might find it helpful.
+
+> [!VIDEO https://learn.microsoft.com/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security/player]
