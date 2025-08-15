@@ -15,13 +15,13 @@ ms.date: 08/15/2025
 
 # Security in Azure AI Search
 
-Azure AI Search provides comprehensive security controls across network access, data access, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains: 
+Azure AI Search provides comprehensive security controls across network access, data access, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains:
 
-+ **Network traffic patterns and network security** - inbound requests, outbound service connections, and internal traffic
++ **Network traffic patterns and network security** - inbound, outbound, and internal traffic
 + **Access control mechanisms** - Microsoft Entra ID with roles, or API keys
 + **Data residency and protection** - encryption in transit, and at rest with optional double encryption
 
-A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, leverage network security perimeters to create logical boundaries around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
+A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, use a network security perimeter to create a logical boundary around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
 
 This article details the implementation options for each security layer to help you design appropriate security architectures for development and production environments.
 
@@ -42,7 +42,7 @@ Inbound requests that target a search service endpoint include:
 + Create, read, update, or delete indexes and other objects on the search service
 + Load an index with search documents
 + Query an index
-+ Trigger indexer or skillset execution
++ Run indexer or skillset jobs
 
 The [REST APIs](/rest/api/searchservice/) describe the full range of inbound requests that are handled by a search service.
 
@@ -55,20 +55,23 @@ Additionally, you can add [network security features](#service-access-and-authen
 
 ### Outbound traffic
 
-Outbound requests can be secured and managed by you. Outbound requests originate from a search service to other applications. These requests are typically made by indexers for text-based indexing, custom skills-based AI enrichment, and vectorizations at query time. Outbound requests include both read and write operations.
+Outbound requests can be secured and managed by you. Outbound requests originate from a search service to other applications. These requests are typically made by indexers for text-based and multimodal indexing, custom skills-based AI enrichment, and vectorizations at query time. Outbound requests include both read and write operations.
 
 The following list is a full enumeration of the outbound requests for which you can configure secure connections. A search service makes requests on its own behalf, and on the behalf of an indexer or custom skill.
 
 | Operation | Scenario |
 | ----------| -------- |
-| Indexers | Connect to external data sources to retrieve data. For more information, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md). |
-| Indexers | Connect to Azure Storage to persist [knowledge stores](knowledge-store-concept-intro.md), [cached enrichments](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md). |
+| Indexers | Connect to external data sources to retrieve data (read access). For more information, see [Indexer access to content protected by Azure network security](search-indexer-securing-resources.md). |
+| Indexers | Connect to Azure Storage for write operations to  [knowledge stores](knowledge-store-concept-intro.md), [cached enrichments](enrichment-cache-how-to-configure.md), [debug sessions](cognitive-search-debug-session.md). |
 | Custom skills | Connect to Azure functions, Azure web apps, or other apps running external code that's hosted off-service. The request for external processing is sent during skillset execution. |
 | Indexers and [integrated vectorization](vector-search-integrated-vectorization.md) | Connect to Azure OpenAI and a deployed embedding model, or it goes through a custom skill to connect to an embedding model that you provide. The search service sends text to embedding models for vectorization during indexing. |
 | Vectorizers | Connect to Azure OpenAI or other embedding models at query time to [convert user text strings to vectors](vector-search-how-to-configure-vectorizer.md) for vector search. |
+| Knowledge agents | Connect to chat completion models for [agentic retrieval](search-agentic-retrieval-concept.md) query planning, and also for formulating answers grounded in search results. |
 | Search service | Connect to Azure Key Vault for [customer-managed encryption keys](search-security-manage-encryption-keys.md) used to encrypt and decrypt sensitive data. |
 
-Outbound connections can be made using a resource's full access connection string that includes a key or a database login, or [a managed identity](search-how-to-managed-identities.md) if you're using Microsoft Entra ID and role-based access.
+Outbound connections can generally be made using a resource's full access connection string that includes a key or a database login, or [a managed identity](search-how-to-managed-identities.md) if you're using Microsoft Entra ID and role-based access.
+
+If you're implementing a [basic RAG pattern](retrieval-augmented-generation-overview.md), your query logic calls an external chat completion model for formulating an answer grounded in search results. For this pattern, the connection to the model uses the identity of your client or user. The search service identity isn't used for the connection. In contrast, if you use [knowledge agents](search-agentic-retrieval-how-to-create.md) in a RAG retrieval pattern, the outbound request is made by the search service managed identity.
 
 To reach Azure resources behind a firewall, [create inbound rules on other Azure resources that admit search service requests](search-indexer-howto-access-ip-restricted.md). 
 
