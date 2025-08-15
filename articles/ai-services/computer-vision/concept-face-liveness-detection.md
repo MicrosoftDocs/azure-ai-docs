@@ -60,8 +60,6 @@ You can combine face verification with liveness detection to verify that the fac
 | Liveness detection with face verification | Determine an input is real or fake and verify the identity of the person based on a reference image you provided. Either the app server or the frontend application can provide a reference image. Only the app server has the authority to initial the liveness check and query the result. |
 
 
-
-
 ## Output format
 
 The liveness detection API returns a JSON object with the following information:
@@ -78,9 +76,20 @@ We do not store any images or videos from the Face Liveness Check. No image/vide
 
 We include additional runtime application self-protections (RASP), provided by [GuardSquare]( https://www.guardsquare.com/blog/why-guardsquare), in our Mobile SDKs (iOS and Android). 
 
+## Abuse Detection
+
+We include built-in abuse detection capabilities designed to help developers identify liveness sessions that may present a high risk of fraudulent or malicious activity. The abuse detection feature performs multiple checks, including IP-based risk assessments, to provide actionable signals you can use in your own application logic or review workflows.
+
+This feature is particularly useful in high-security environments or scenarios with elevated fraud risk (e.g., account onboarding, identity verification, or remote authentication). It allows you to proactively detect suspicious activity patterns before completing verification steps.
+
+For detailed guidance on how to interpret and act on abuse detection results, see:
+[Liveness Abuse Monitoring](./concept-liveness-abuse-monitoring.md)
+
 ## Network isolation
 
-https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/liveness-use-network-isolation
+Optionally, we allow network isolation capabilities to give developers more control over how liveness detection calls are made from front-end clients. With this new option, you can disable public network access entirely for Liveness Detection API calls, ensuring they are only accessible within your defined private network boundaries.
+
+This capability is especially valuable in regulated or enterprise environments where compliance policies require all service calls to remain within a controlled network perimeter. It also helps reduce the attack surface by preventing direct calls from untrusted or unknown networks.
 
 ## Support options
 

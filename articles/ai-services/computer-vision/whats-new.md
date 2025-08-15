@@ -21,10 +21,26 @@ Learn what's new in Azure AI Vision. Check this page to stay up to date with new
 
 ## August 2025
 
-### Face liveness v1.3-preview.1 API
+### Face liveness service v1.3-preview.1 API release
 
+The **v1.3-preview.1** public preview introduces a new security enhancement:  
+
+- **Abuse detection** – Adds built-in risk assessments, including IP-based checks, to help identify and flag liveness sessions that may be fraudulent. This enables earlier intervention in high-risk scenarios such as identity verification or account onboarding. [Learn more](./concept-liveness-abuse-monitoring.md).  
+
+See the [API Reference](https://learn.microsoft.com/rest/api/face/liveness-session-operations?view=rest-face-v1.3-preview) for full details.  
+
+### Network isolation support for Liveness Detection APIs
+
+Liveness Detection APIs now support disabling public network access for calls from client applications, ensuring requests are only processed within your trusted network boundaries. This feature is available across supported API versions and is particularly valuable for regulated or high-security environments. [Learn more](./how-to/liveness-use-network-isolation.md).  
 
 ### Face liveness client-side SDK 1.4.1 release
+
+Version **1.4.1** improves distribution and CI/CD integration for the Liveness SDK.  
+
+- **Public wrapper SDKs** are now available in npm (JavaScript/Web), Maven Central (Android), and a GitHub repo (iOS xcframework), enabling easier integration and automated dependency monitoring with tools such as GitHub Dependabot or Renovate.  
+- **Simplified gated asset access** – Instead of running a local script, developers can now call a dedicated API to obtain an access token using their Azure Face resource endpoint and API key, making automated builds simpler to set up.  
+
+For platform-specific details, samples, and migration guidance, see the full [SDK release notes](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases).
 
 
 ## February 2025
