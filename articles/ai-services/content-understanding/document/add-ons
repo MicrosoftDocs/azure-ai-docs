@@ -28,7 +28,7 @@ To address these enterprise needs, Azure AI Content Understanding supports the f
 |--------|---------|-------|
 | **Grounding** | Links each output to original document content reference | Ensures traceability, compliance, and user trust |
 | **Confidence scoring** | Shows how certain the model is about its output| Drives automation with quality controls |
-| **In-context learning** | Teaches the model new patterns and corrections to handle edge cases without retraining | Rapidly adapts to new formats or edge cases |
+| **In-context learning** | Teaches the model new patterns using examples and correcting the predicted outputs for incorrect values, improving overall accuracy and extraction quality. | Rapidly adapts to new formats or edge cases |
 
 Learn more about these features below.
 
@@ -94,8 +94,8 @@ In-context learning allows you to guide the model’s behavior without the need 
 To manage diverse layout changes across different versions, templates, languages, or regions, help the model learn by adding examples.
 
 In-context learning helps: 
-- Add corrections for the model's prediction.
-- Rapidly onboard new templates without labeling data.
+- Provide context for the model to understand the meaning of each field by examples and thus improve model accuracy.
+- Rapidly onboard new templates without labeling data within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete extraction.
 
 ### Example
