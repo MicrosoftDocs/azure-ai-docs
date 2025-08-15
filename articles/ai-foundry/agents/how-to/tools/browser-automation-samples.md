@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 08/12/2025
+ms.date: 08/14/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -18,7 +18,7 @@ Use this article to find step-by-step instructions and code samples for using th
 
 ## Prerequisites
 
-* The requirements in the [Browser Automation overview](./deep-research.md).
+* The requirements in the [Browser Automation overview](./browser-automation.md#setup).
 * Your Azure AI Foundry Project endpoint.
     
     [!INCLUDE [endpoint-string-portal](../../includes/endpoint-string-portal.md)]

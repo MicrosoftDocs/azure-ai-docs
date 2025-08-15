@@ -108,6 +108,14 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi). There are also several Microsoft models available [from partners and community](#microsoft).
 
+### Mistral models sold directly by Azure
+
+| Model | Type | Capabilities | Project type 
+| ------ | ---- | ------------ | ------------ |
+| [mistral-document-ai-2505]() | Image-to-Text | - **Input:** image or PDF pages ( 30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  | Foundry |
+
+See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).  There are also several Mistral models available [from partners and community](#mistral-ai).
+
 
 ### xAI models sold directly by Azure
 
