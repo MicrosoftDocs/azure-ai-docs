@@ -28,9 +28,10 @@ This feature is disabled by default for every new resource. To enable it, use th
 
 #### [Azure portal](#tab/portal)
 
-1. Go to your resource's page in the Azure portal, and select the **Overview** tab.
-1.  Under the **Essentials** section, find the **Autoscale** line and select the link.
-1.  To view the **Autoscale Settings** pane, enable the autoscale feature.
+1. Go to your resource's page in the [Azure portal](https://portal.azure.com).
+1. Select the **Overview** tab.
+1. Under the **Essentials** section, find the **Autoscale** line and select the link.
+1. To view the **Autoscale Settings** pane, enable the autoscale feature.
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-services/portal-autoscale.png" alt-text="Screenshot of the Azure portal with the autoscale pane on right." lightbox="~/reusable-content/ce-skilling/azure/media/ai-services/portal-autoscale.png":::
 
