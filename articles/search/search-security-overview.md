@@ -15,13 +15,13 @@ ms.date: 08/15/2025
 
 # Security in Azure AI Search
 
-Azure AI Search provides comprehensive security controls across network access, authentication, authorization, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains: 
+Azure AI Search provides comprehensive security controls across network access, data access, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains: 
 
-+ **Network traffic patterns and network security** (inbound client requests, outbound service connections, and internal Microsoft-managed traffic)
-+ **Access control mechanisms** (Microsoft Entra ID with role-based access control or API key authentication)
-+ **Data residency and protection** (encryption in transit via TLS 1.2/1.3, encryption at rest with optional customer-managed keys for double encryption).
++ **Network traffic patterns and network security** - inbound requests, outbound service connections, and internal traffic
++ **Access control mechanisms** - Microsoft Entra ID with roles, or API keys
++ **Data residency and protection** - encryption in transit, and at rest with optional double encryption
 
-A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. For enterprise scenarios requiring granular permissions, you can implement document-level access controls and leverage network security perimeters to create logical boundaries around your Azure PaaS resources. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
+A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, leverage network security perimeters to create logical boundaries around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
 
 This article details the implementation options for each security layer to help you design appropriate security architectures for development and production environments.
 
@@ -121,9 +121,9 @@ While this solution is the most secure, using more services is an added cost so 
 
 ### Network security perimeter
 
-A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, Azure Storage, and Azure OpenAI. Inbound client connections and service-to-service connections occur within the boundary, which simplifies and strengthens your defenses against unauthorized access.
+A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, Azure Storage, and Azure OpenAI. You can grant exceptions through explicit access rules for inbound and outbound traffic. This approach helps prevent data exfiltration while maintaining necessary connectivity for your applications.
 
-It's common in Azure AI Search solutions to use multiple Azure resources. The following resources can all be joined to an [existing network security perimeter](/azure/private-link/create-network-security-perimeter-portal):
+Inbound client connections and service-to-service connections occur within the boundary, which simplifies and strengthens your defenses against unauthorized access. It's common in Azure AI Search solutions to use multiple Azure resources. The following resources can all be joined to an [existing network security perimeter](/azure/private-link/create-network-security-perimeter-portal):
 
 + [Azure AI Search](search-security-network-security-perimeter.md)
 + [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter)
