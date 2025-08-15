@@ -1,7 +1,7 @@
 ---
 title: Disable Shared Key Access to the Hub Storage Account
 titleSuffix: Azure AI Foundry
-description: Disable shared key access to the default storage account used by your Azure AI Foundry hub and projects.
+description: Disable shared-key access to the default storage account used by your Azure AI Foundry hub and projects.
 ms.author: jburchel 
 author: jonburchel 
 ms.service: azure-ai-foundry
@@ -10,7 +10,7 @@ ms.custom:
 ms.topic: how-to
 ms.date: 07/14/2025
 ms.reviewer: meerakurup
-#customer intent: As an admin, I want to disable shared key access to my resources to improve security.
+#customer intent: As an admin, I want to disable shared-key access to my resources to improve security.
 ---
 
 # Disable shared-key access for your hub's storage account (preview)
@@ -28,7 +28,7 @@ Use of your hub with a shared-key disabled storage account is currently in previ
 
 ## Prerequisites
 
-- An existing Storage account with shared-key authorization disabled. For more information about the process and implications of disabling shared-key authorization for your storage account, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
+- An existing storage account with shared-key authorization disabled. For more information about the process and implications of disabling shared-key authorization for your storage account, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 # [Azure portal](#tab/portal)
 
@@ -165,7 +165,7 @@ az ml workspace create -g <resource-group-name> --kind hub --file workspace.yml
 
 # [ARM template](#tab/armtemplate)
 
-In the following JSON template example, substitute your own values for the following placeholders:
+In the JSON template example, substitute your own values for the following placeholders:
 
 - *[workspace name]*
 - *[workspace friendly name]*
@@ -249,9 +249,9 @@ To update an existing hub, use the `az ml workspace update` command and specify 
 az ml workspace update --name myhub --system-datastores-auth-mode identity
 ```
 
-# [ARM Template](#tab/armtemplate)
+# [ARM template](#tab/armtemplate)
 
-In the following JSON template example, substitute your own values for the placeholders:
+In the JSON template example, substitute your own values for the following placeholders:
 
 - *[workspace name]*
 - *[workspace friendly name]*
@@ -305,7 +305,7 @@ For information on how to deploy an ARM template, see the following articles:
 
 ### Assign roles to users
 
-After you update the hub, update the storage account to disable shared-key access. For more information about how to disable shared-key access, see [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
+After you update the hub, update the storage account to disable shared-key access. For more information about how to disable shared-key access, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 You must also identify all the users who need access to the default datastores, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure RBAC for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see the [Role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
 
@@ -315,11 +315,11 @@ To revert a hub back to use of shared keys to access the storage account, use th
 
 # [Azure portal](#tab/portal)
 
-To update an existing workspace, go to **Properties** and select **Credential-based access**.
+1. To update an existing workspace, go to **Properties** and select **Credential-based access**.
 
-:::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot that shows selection of Credential-based access." lightbox="../media/disable-local-auth/update-existing-hub-credential-based-access.png":::
+   :::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot that shows selection of Credential-based access." lightbox="../media/disable-local-auth/update-existing-hub-credential-based-access.png":::
 
-Select **Save** to save this choice.
+1. Select **Save** to save this choice.
 
 # [Python SDK](#tab/python)
 
@@ -340,11 +340,11 @@ To configure the hub to once again use a shared key, use the `az ml workspace up
 az ml workspace update --name myhub --system-datastores-auth-mode accesskey
 ```
 
-# [ARM Template](#tab/armtemplate)
+# [ARM template](#tab/armtemplate)
 
 If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then, disable shared-key access on the storage account.
 
-In the following JSON template example, substitute your own values for the placeholders:
+In the JSON template example, substitute your own values for the following placeholders:
 
 - *[workspace name]*
 - *[workspace friendly name]*
@@ -398,7 +398,7 @@ After you create the hub, identify all the users who will use it, such as data s
 
 ---
 
-After you revert the hub, update the storage account to enable shared-key access. For more information, see [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
+After you revert the hub, update the storage account to enable shared-key access. For more information, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 ## Scenarios for hub storage account role assignments
 
@@ -415,5 +415,5 @@ To work with a storage account with disabled shared-key access, you might need t
 
 ## Related content
 
-- [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
+- [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent)
 - [Create an Azure AI Foundry hub](develop/create-hub-project-sdk.md)

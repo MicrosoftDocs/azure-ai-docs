@@ -74,10 +74,10 @@ Two architecture options are available when you use CMKs with Azure AI hubs:
 
 You must use Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. Your Azure resources and the Key Vault resources must be in the same region and in the same Microsoft Entra tenant. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-- You must enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
-- If you use the [key vault firewall](/azure/key-vault/general/access-behind-firewall), you must allow trusted Microsoft services to access the key vault.
-- You must grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity the following permissions on your key vault: Get key, Wrap key, Unwrap key.
-- Only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
+- Enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
+- Allow trusted Microsoft services to access the key vault if you use the [key vault firewall](/azure/key-vault/general/access-behind-firewall).
+- Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity the following permissions on your key vault: Get key, Wrap key, Unwrap key.
+- Note that only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ### Enable the managed identity for your Azure AI Foundry resource
 
@@ -124,17 +124,9 @@ You can rotate a CMK in Key Vault according to your compliance policies. When th
 
 ### Rotation limitations
 
-* Same key vault requirement
-
-   You can rotate encryption keys only to another key within the same Key Vault instance. Cross-vault key rotation isn't supported.
-
-* Scope of rotation
-
-   The new key must be compatible with the existing encryption configuration. Ensure that the new key is properly configured with the necessary access policies and permissions.
-
-* Update from customer managed to Microsoft managed
-  
-   When an Azure AI Foundry resource or Azure AI hub is created, you can update from Microsoft-managed keys to CMKs. You can't switch back from CMKs to Microsoft-managed keys.
+* **Same key vault requirement**: You can rotate encryption keys only to another key within the same Key Vault instance. Cross-vault key rotation isn't supported.
+* **Scope of rotation**: The new key must be compatible with the existing encryption configuration. Ensure that the new key is properly configured with the necessary access policies and permissions.
+* **Update from customer managed to Microsoft managed**: When an Azure AI Foundry resource or Azure AI hub is created, you can update from Microsoft-managed keys to CMKs. You can't switch back from CMKs to Microsoft-managed keys.
 
 ### Rotate encryption keys
 
