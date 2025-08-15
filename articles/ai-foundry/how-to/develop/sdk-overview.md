@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
+  - ai-assisted
 ms.topic: how-to
 ms.date: 07/01/2025
 ms.reviewer: dantaylo
