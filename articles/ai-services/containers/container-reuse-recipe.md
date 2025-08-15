@@ -6,7 +6,7 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 08/15/2025
 ms.author: aahi
 #Customer intent: As a potential customer, I want to know how to configure containers so I can reuse them.
 ---
@@ -122,7 +122,7 @@ Follow these steps to use the Dockerfile and place the new image in your private
     az acr login --name <my-registry>
     ```
 
-    You can also sign in with `docker login` if you are assigned a service principal.
+    You can also sign in with `docker login` if you are assigned to a service principal.
 
     ```Bash
     docker login <my-registry>.azurecr.io

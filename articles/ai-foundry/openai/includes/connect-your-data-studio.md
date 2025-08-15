@@ -7,7 +7,7 @@ ms.custom:
 ms.topic: include
 author: aahill
 ms.author: aahi
-ms.date: 11/06/2024
+ms.date: 08/15/2025
 recommendations: false
 ---
 
@@ -16,11 +16,7 @@ recommendations: false
 > [!TIP]
 > You can [use the Azure Developer CLI](../how-to/azure-developer-cli.md) to programmatically create the resources needed for Azure OpenAI On Your Data 
 
-Navigate to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign-in with credentials that have access to your Azure OpenAI resource. 
-
-1. You can either [create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md) by clicking **Create project**, or continue directly by clicking the button on the **Focused on Azure OpenAI in Azure AI Foundry Models** tile.  
-
-    :::image type="content" source="../media/use-your-data/ai-foundry-homepage.png" alt-text="A screenshot of the Azure AI Foundry portal landing page." lightbox="../media/use-your-data/ai-foundry-homepage.png":::
+Navigate to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and sign-in with credentials that have access to your Azure OpenAI resource. If you have an Azure AI Foundry resource, you can [create an Azure AI Foundry project](../../../ai-foundry/how-to/create-projects.md).  
 
 1. Select **Chat** under **Playgrounds** in the left pane, and select your model deployment.
 

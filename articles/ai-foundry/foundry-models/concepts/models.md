@@ -112,7 +112,7 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 | Model | Type | Capabilities | Project type 
 | ------ | ---- | ------------ | ------------ |
-| [mistral-document-ai-2505]() | Image-to-Text | - **Input:** image or PDF pages ( 30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  | Foundry |
+| [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral) | Image-to-Text | - **Input:** image or PDF pages ( 30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  | Foundry |
 
 See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=mistral).  There are also several Mistral models available [from partners and community](#mistral-ai).
 
