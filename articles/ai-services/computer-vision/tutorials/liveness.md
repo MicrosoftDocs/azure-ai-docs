@@ -14,18 +14,14 @@ feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 
 # Tutorial: Detect liveness in faces
 
-In this tutorial, you learn how to detect liveness in faces, using a combination of server-side code and a client-side mobile application. 
+Learn how to integrate face liveness detection into your workflow using server-side logic and companion frontend client applications.
 
 > [!TIP]
 > For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
-This tutorial demonstrates how to operate a frontend application and an app server to perform liveness detection, including the optional step of [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
-
+In this tutorial, you’ll learn how to run a front-end application with an app server to perform liveness detection, optionally adding [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
 
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
-
-> [!TIP]
-> After you complete the prerequisites, you can try the iOS liveness experience from [TestFlight](https://aka.ms/face/liveness/demo/ios) and the web-liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
 
 ## Prerequisites
 
@@ -33,17 +29,17 @@ This tutorial demonstrates how to operate a frontend application and an app serv
 - Your Azure account must have a **Cognitive Services Contributor** role assigned in order for you to agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
-    - You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- Access to the gated artifacts required for the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
+- Access to the gated artifacts required for the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. 
+    - To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
-## Prepare SDKs
 
-We provide SDKs in different languages to simplify development on frontend applications:
+> [!TIP]
+> After you complete the prerequisites, you can try the iOS liveness experience from [iOS App Store](https://aka.ms/face/liveness/demo/ios), the Android liveness experience from the [Android Google Play Store](https://aka.ms/face/liveness/demo/android) and the Web liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
 
-### Download SDK for frontend application
+## Prepare the frontend application
 
-Follow the instructions in the readme documents of one of the frontend SDKs below to integrate the UI and the code into your frontend application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications.
+We provide SDKs in multiple languages to simplify integration with your front-end application. Refer to the README for your chosen SDK below to integrate both the UI and required code.
 
 > [!IMPORTANT]
 > Each frontend SDK requires will require access to a gated asset to successfully compile. Instructions on how to set this up will be mentioned in the references below.
@@ -62,10 +58,11 @@ For JavaScript Web:
 - Artifacts: [@azure/ai-vision-face-ui - npm](https://www.npmjs.com/package/@azure/ai-vision-face-ui?activeTab=readme)
 - API reference: [AzureAIVisionFaceUI Reference](https://orange-forest-0ea70d510.5.azurestaticapps.net/)
 - Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
+- Framework Support: Works with popular frameworks such as React (including Next.js), Vue.js, and Angular.
 
-Once you have integrated the SDK into your frontend application, the SDK will handle starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
+Once integrated into your front-end application, the SDK will start the camera, guide the user to adjust their position, compose the liveness payload, and send it to the Azure AI Face service for processing.
 
-You can monitor the [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) of the SDK repo for new SDK version updates.
+Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—e.g., GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos); security suites like Snyk or Mend can also notify you of new versions and vulnerabilities.
 
 ## Perform liveness detection
 
@@ -129,7 +126,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     HttpResponse<String> res = HttpClient.newHttpClient()
             .send(req, HttpResponse.BodyHandlers.ofString());
 
-    resCodeCheck(res); // check for 200
+    if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
 
     JsonNode json = new ObjectMapper().readTree(res.body());
     System.out.println("Session created");
@@ -288,7 +285,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
 1. The SDK then starts the camera, guides the user to position correctly, and then prepares the payload to call the liveness detection service endpoint. 
  
-1. The SDK calls the Azure AI Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed.
+1. The SDK calls the Azure AI Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed. Note: the service response will not contain the liveness decision, and this will need to be queried from the app server.
 
 1. The frontend application relays the liveness check completion to the app server. 
 
@@ -334,7 +331,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     HttpResponse<String> res = HttpClient.newHttpClient()
         .send(req, HttpResponse.BodyHandlers.ofString());
 
-    resCodeCheck(res); // check for 200
+    if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
 
     JsonNode root = new ObjectMapper().readTree(res.body());
     JsonNode attempts = root.path("results").path("attempts");
@@ -638,7 +635,7 @@ The high-level steps involved in liveness with verification orchestration are il
             .build();
 
         HttpResponse<String> res = HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString());
-        resCodeCheck(res); // check for 200
+        if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
 
         JsonNode root = new ObjectMapper().readTree(res.body());
         System.out.println("Session created.");
@@ -754,7 +751,7 @@ The high-level steps involved in liveness with verification orchestration are il
         }
         ```
 
-    - The frontend application provides the reference image when initializing the SDK. This scenario is not supported in the web solution.
+    - The frontend application provides the reference image when initializing the mobile SDKs. This scenario is not supported in the web solution.
 
         #### [Android](#tab/mobile-kotlin)
         ```kotlin
@@ -842,7 +839,7 @@ The high-level steps involved in liveness with verification orchestration are il
         .build();
 
     HttpResponse<String> res = HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString());
-    resCodeCheck(res); // check for 200
+    if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
 
     ObjectMapper om = new ObjectMapper();
     JsonNode root = om.readTree(res.body());
@@ -941,51 +938,72 @@ The high-level steps involved in liveness with verification orchestration are il
     An example of the response body:
     ```json
     {
-        "sessionId": "93fd6f13-4161-41df-8a22-80a38ef53836",
-        "authToken": "",
-        "status": "Succeeded",
+        "sessionId": "b12e033e-bda7-4b83-a211-e721c661f30e",
+        "authToken": "eyJhbGciOiJFUzI1NiIsIm",
+        "status": "NotStarted",
         "modelVersion": "2024-11-15",
         "results": {
             "attempts": [
-                {
-                    "attemptId": 1,
-                    "attemptStatus": "Succeeded",
-                    "result": {
-                    "livenessDecision": "realface",
+            {
+                "attemptId": 2,
+                "attemptStatus": "Succeeded",
+                "result": {
+                "livenessDecision": "realface",
+                "targets": {
+                    "color": {
+                    "faceRectangle": {
+                        "top": 669,
+                        "left": 203,
+                        "width": 646,
+                        "height": 724
+                    }
+                    }
+                },
+                "verifyResult": {
+                    "matchConfidence": 0.08871888,
+                    "isIdentical": false
+                },
+                "digest": "B0A803BB7B26F3C8F29CD36030F8E63ED3FAF955FEEF8E01C88AB8FD89CCF761",
+                "sessionImageId": "Ae3PVWlXAmVAnXgkAFt1QSjGUWONKzWiSr2iPh9p9G4I",
+                "verifyImageHash": "43B7D8E8769533C3290DBD37A84D821B2C28CB4381DF9C6784DBC4AAF7E45018"
+                }
+            },
+            {
+                "attemptId": 1,
+                "attemptStatus": "Failed",
+                "error": {
+                    "code": "FaceWithMaskDetected",
+                    "message": "Mask detected on face image.",
                     "targets": {
                         "color": {
-                            "faceRectangle": {
+                        "faceRectangle": {
                                 "top": 669,
                                 "left": 203,
                                 "width": 646,
                                 "height": 724
                             }
                         }
-                    },
-                    "digest": "EE664438FDF0535C6344A468181E4DDD4A34AC89582D4FD6E9E8954B843C7AA7",
-                    "verifyResult": {
-                            "matchConfidence": 0.08172279,
-                            "isIdentical": false
-                        }
                     }
                 }
+            }
             ],
             "verifyReferences": [
-            {
-                "faceRectangle": {
-                    "top": 98,
+                {
+                    "referenceType": "image",
+                    "faceRectangle": {
+                    "top": 316,
                     "left": 131,
-                    "width": 233,
-                    "height": 300
+                    "width": 498,
+                    "height": 677
                     },
-                "qualityForRecognition": "high"
-            }
+                    "qualityForRecognition": "high"
+                }
             ]
+            }
         }
-    }
     ```
 
-1. The app server can delete the session if you don't query its result anymore.
+1. The app server can delete the session if you don't need its result anymore.
 
     #### [C#](#tab/csharp)
     ```csharp
