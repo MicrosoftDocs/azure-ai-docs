@@ -6,7 +6,7 @@ author: aahill
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 01/31/2025
+ms.date: 08/15/2025
 ms.author: aahi
 ms.custom: devx-track-azurecli
 ms.devlang: azurecli
