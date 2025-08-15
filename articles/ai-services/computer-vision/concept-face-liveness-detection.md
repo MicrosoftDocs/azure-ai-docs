@@ -20,7 +20,10 @@ This article explains the concept of Face liveness detection, its input and outp
 
 ## Introduction
 
-> [!VIDEO https://www.youtube-nocookie.com/embed/3ysxiX49oxw]
+> [!VIDEO ]
+[:::image type="content" source="../media/liveness/liveness-video-cover.png"
+alt-text="Introducing Microsoft Azure Face Liveness":::
+](https://www.youtube-nocookie.com/embed/3ysxiX49oxw)
 
 Face Liveness detection is used to determine if a face in an input video stream is real (live) or fake (spoofed). It's an important building block in a biometric authentication system to prevent imposters from gaining access to the system using a photograph, video, mask, or other means to impersonate another person.
 
