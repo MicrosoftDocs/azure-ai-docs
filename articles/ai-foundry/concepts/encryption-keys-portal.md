@@ -155,9 +155,7 @@ az keyvault key delete  \
   --vault-name <key-vault-name> \
   --id <key-ID>                     
 ```
-
-> [!IMPORTANT]
-> Revoking access to an active CMK while CMK encryption is still enabled prevents downloading of training data and results files, fine-tuning new models, and deploying fine-tuned models. Previously deployed fine-tuned models continue to operate and serve traffic until those deployments are deleted.
+Revoking access to an active CMK while CMK encryption is still enabled prevents downloading of training data and results files, fine-tuning new models, and deploying fine-tuned models. Previously deployed fine-tuned models continue to operate and serve traffic until those deployments are deleted.
 
 ## Added Azure cost when you use CMKs
 
