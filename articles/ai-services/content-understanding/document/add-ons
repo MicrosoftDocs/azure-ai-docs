@@ -89,14 +89,12 @@ In this case, your automation pipeline can post the billing address directly to 
 
 ## In-context learning: Teach the model by giving examples
 
-In-context learning allows you to guide the model’s behavior without the need for retraining or fine-tuning by providing labeled examples in your prompt or API call. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
+If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. In-context learning allows you to providing additional labeled examples in your prompt or API call to guide the model’s behavior without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
 
 To enhance the model quality: 
 - For datasets with minimal template variations, you can add just a single labeled example. 
 - For more complex variations, add a sample per templates to cover all the scenarios.
 
-> [!NOTE]
-> If the context for all the fields is clearly provided in the testing document, zero-shot should be enough.
 
 ### Why in-context learning matters
 
