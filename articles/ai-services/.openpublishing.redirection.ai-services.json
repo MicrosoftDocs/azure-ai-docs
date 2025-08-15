@@ -2706,6 +2706,11 @@
       "redirect_document_id": true
     },
     {
+      "source_path_from_root": "/articles/ai-services/containers/azure-kubernetes-recipe.md",
+      "redirect_url": "/azure/aks/what-is-aks",
+      "redirect_document_id": true
+    },
+    {
       "source_path_from_root": "/articles/ai-services/openai/references/on-your-data.md",
       "redirect_url": "/azure/ai-foundry/openai/references/on-your-data",
       "redirect_document_id": true
