@@ -1,11 +1,11 @@
 ---
-title: How to use image generation models
+title: How to Use Image Generation Models from OpenAI
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
-description: Learn how to generate and edit images with image models, and learn about the configuration options that are available.
+description: Learn how to generate and edit images using Azure OpenAI image generation models. Discover configuration options and start creating images today.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 04/23/2025
+ms.date: 08/15/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -15,22 +15,26 @@ ms.custom:
 
 # How to use Azure OpenAI image generation models
 
-OpenAI's image generation models render images based on user-provided text prompts and optionally provided images. This guide demonstrates how to use the image generation models and configure their options through REST API calls.
+OpenAI's image generation models create images from user-provided text prompts and optional images. This guide explains how to use these models, configure options, and benefit from advanced image generation capabilities in Azure.
 
 
 ## Prerequisites
+
 
 - An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?icid=ai-services).
 - An Azure OpenAI resource created in a supported region. See [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability).
 - Deploy a `dall-e-3` or `gpt-image-1` model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 is the newer model and features a number of improvements over DALL-E 3. It's available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
-## Call the Image Generation API
+
+## Call the image generation API
+
 
 The following command shows the most basic way to use an image model with code. If this is your first time using these models programmatically, we recommend starting with the [quickstart](/azure/ai-foundry/openai/dall-e-quickstart).
 
 
 #### [GPT-image-1](#tab/gpt-image-1)
+
 Send a POST request to:
 
 ```
@@ -41,13 +45,17 @@ https://<your_resource_name>.openai.azure.com/openai/deployments/<your_deploymen
 **URL**:
 
 Replace the following values:
+
 - `<your_resource_name>` is the name of your Azure OpenAI resource.
 - `<your_deployment_name>` is the name of your DALL-E 3 or GPT-image-1 model deployment.
 - `<api_version>` is the version of the API you want to use. For example, `2025-04-01-preview`.
 
+
 **Required headers**:
+
 - `Content-Type`: `application/json`
 - `api-key`: `<your_API_key>`
+
 
 **Body**:
 
@@ -172,7 +180,7 @@ It's also possible that the generated image itself is filtered. In this case, th
 }
 ```
 
-### Write text-to-image prompts
+### Write effective text-to-image prompts
 
 Your prompts should describe the content you want to see in the image, and the visual style of image.
 
@@ -265,7 +273,7 @@ The format in which DALL-E 3 generated images are returned. Must be one of `url`
 
 ---
 
-## Call the Image Edit API
+## Call the image edit API
 
 The Image Edit API allows you to modify existing images based on text prompts you provide. The API call is similar to the image generation API call, but you also need to provide an input image.
 
@@ -308,8 +316,7 @@ The following is a sample request body. You specify a number of options, defined
 -F "n=1" \
 -F "quality=high"
 ```
-
-### Output
+### API response output
 
 The response from a successful image editing API call looks like the following example. The `b64_json` field contains the output image data.
 
@@ -324,11 +331,11 @@ The response from a successful image editing API call looks like the following e
 } 
 ```
 
-### Specify API options
+### Specify image edit API options
 
 The following API body parameters are available for image editing models, in addition to the ones available for image generation models.
 
-### Image
+#### Image
 
 The *image* value indicates the image file you want to edit.
 
