@@ -31,7 +31,7 @@ To address these enterprise needs, Azure AI Content Understanding supports the f
 | **In-context learning** | Teaches the model new patterns using examples and correcting the predicted outputs for incorrect values, improving overall accuracy and extraction quality. | Rapidly adapts to new formats or edge cases |
 
 > [!NOTE]
-> These features are only available for the extractive field type.
+> These features are only available for fields with the **Extract** field type.
 
 Learn more about these features below.
 
@@ -105,7 +105,7 @@ In-context learning helps:
 - Rapidly onboard new templates without labeling data within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
-To add a label sample, you can upload a sample under **Label data**, and select **Auto label**. Auto label will predict all the fields out of the box. Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
+To add a label sample, go to a document extraction result page in the Azure AI Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label will predict all the fields out of the box. Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
 
 
 ### Example
