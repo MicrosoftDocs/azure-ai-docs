@@ -431,10 +431,10 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 
 ## Reasoning summary
 
-When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. This parameter can be set to `auto`, `concise`, or `detailed`. Access to this feature requires you to [Request Access](https://aka.ms/oai/o3access).
+When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. 
 
 > [!NOTE]
-> Even when enabled, reasoning summaries are not generated for every step/request. This is expected behavior.
+> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
 
 # [Python](#tab/py)
 
@@ -463,8 +463,8 @@ response = client.responses.create(
     model="gpt-5", # replace with model deployment name
     reasoning={
         "effort": "medium",
-        "summary": "auto" # auto, concise, or detailed 
-    }
+        "summary": "auto" # auto, concise, or detailed, gpt-5 series do not support concise 
+    },
     text={
         "verbosity": "low" # New with GPT-5 models
     }
