@@ -62,7 +62,7 @@ For JavaScript Web:
 
 Once integrated into your front-end application, the SDK will start the camera, guide the user to adjust their position, compose the liveness payload, and send it to the Azure AI Face service for processing.
 
-Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—e.g., GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos); security suites like Snyk or Mend can also notify you of new versions and vulnerabilities.
+Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—e.g., GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos).
 
 ## Perform liveness detection
 

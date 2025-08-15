@@ -19,6 +19,14 @@ ms.author: pafarley
 
 Learn what's new in Azure AI Vision. Check this page to stay up to date with new features, enhancements, fixes, and documentation updates. 
 
+## August 2025
+
+### Face liveness v1.3-preview.1 API
+
+
+### Face liveness client-side SDK 1.4.1 release
+
+
 ## February 2025
 
 ### Face liveness client-side SDK 1.1.0 release

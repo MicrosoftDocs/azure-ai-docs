@@ -78,6 +78,10 @@ We do not store any images or videos from the Face Liveness Check. No image/vide
 
 We include additional runtime application self-protections (RASP), provided by [GuardSquare]( https://www.guardsquare.com/blog/why-guardsquare), in our Mobile SDKs (iOS and Android). 
 
+## Network isolation
+
+https://learn.microsoft.com/en-us/azure/ai-services/computer-vision/how-to/liveness-use-network-isolation
+
 ## Support options
 
 In addition to using the main [Azure AI services support options](../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
