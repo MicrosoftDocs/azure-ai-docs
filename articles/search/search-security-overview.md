@@ -1,5 +1,5 @@
 ---
-title: Security overview
+title: Secure your Azure AI Search deployment
 titleSuffix: Azure AI Search
 description: Learn about the security features in Azure AI Search to protect endpoints, content, and operations.
 manager: nitinme
@@ -17,9 +17,9 @@ ms.date: 08/15/2025
 
 Azure AI Search provides comprehensive security controls across network access, authentication, authorization, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains: 
 
-+ **Network traffic patterns** (inbound client requests, outbound service connections, and internal Microsoft-managed traffic)
++ **Network traffic patterns and network security** (inbound client requests, outbound service connections, and internal Microsoft-managed traffic)
 + **Access control mechanisms** (Microsoft Entra ID with role-based access control or API key authentication)
-+ **Data protection** (encryption in transit via TLS 1.2/1.3, encryption at rest with optional customer-managed keys for double encryption).
++ **Data residency and protection** (encryption in transit via TLS 1.2/1.3, encryption at rest with optional customer-managed keys for double encryption).
 
 A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. For enterprise scenarios requiring granular permissions, you can implement document-level access controls and leverage network security perimeters to create logical boundaries around your Azure PaaS resources. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
 
@@ -27,7 +27,7 @@ This article details the implementation options for each security layer to help 
 
 ## Network traffic patterns
 
-An Azure AI Search service is hosted on Azure and is typically accessed by client applications over public network connections. While that pattern is predominant, it's not the only traffic pattern that you need to care about. Understanding all points of entry as well as outbound traffic is necessary background for securing your development and production environments.
+An Azure AI Search service can be hosted in the Azure public cloud, an Azure private cloud, or a sovereign cloud (such as Azure government). By default, for all cloud hosts, the search service is typically accessed by client applications over public network connections. While that pattern is predominant, it's not the only traffic pattern that you need to care about. Understanding all points of entry as well as outbound traffic is necessary background for securing your development and production environments.
 
 Azure AI Search has three basic network traffic patterns:
 
