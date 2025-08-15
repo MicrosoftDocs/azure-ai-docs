@@ -20,7 +20,6 @@ This article explains the concept of Face liveness detection, its input and outp
 
 ## Introduction
 
-> [!VIDEO ]
 [:::image type="content" source="../media/liveness/liveness-video-cover.png"
 alt-text="Introducing Microsoft Azure Face Liveness":::
 ](https://www.youtube-nocookie.com/embed/3ysxiX49oxw)
