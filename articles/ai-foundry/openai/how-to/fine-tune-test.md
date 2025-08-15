@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Deploy a fine-tuned model for testing (Preview)
+# Deploy a fine-tuned model for testing
 
 After you've fine-tuned a model, you may want to test its quality via the Chat Completions API or the [Evaluations](./evaluations.md) service.
 

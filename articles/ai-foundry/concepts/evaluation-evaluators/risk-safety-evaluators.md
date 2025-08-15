@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 05/19/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -62,7 +61,7 @@ azure_ai_project = {
 }
 ## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
-credential=DefaultAzureCredential()
+credential = DefaultAzureCredential()
 ```
 
 ## Hateful and unfair content

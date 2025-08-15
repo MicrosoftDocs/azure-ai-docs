@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: amibp
 ms.date: 05/19/2025
 ms.service: azure-ai-foundry
@@ -95,7 +94,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )
 
-    connection_string = project_client.telemetry.get_connection_string()
+    connection_string = project_client.telemetry.get_application_insights_connection_string()
     ```
 
     > [!TIP]
@@ -116,7 +115,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 1. Use the OpenAI SDK as usual:
 
     ```python
-    client = project_client.inference.get_azure_openai_client()
+    client = project_client.get_openai_client()
 
     response = client.chat.completions.create(
         model="deepseek-v3-0324",

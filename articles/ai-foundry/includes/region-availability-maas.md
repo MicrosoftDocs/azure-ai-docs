@@ -4,7 +4,7 @@ description: Include file
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: scottpolly
-ms.date: 03/24/2024
+ms.date: 07/29/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -12,16 +12,10 @@ ms.custom:
   - references_regions
   - build-aifnd
   - build-2025
+  - hub-only
 ---
 
 [!INCLUDE [uses-hub-only](uses-hub-only.md)]
-
-### AI21 models
-
-| Model  |Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
-|---------|---------|---------|---------|
-AI21-Jamba-1.5-Mini | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
-AI21-Jamba-1.5-Large | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions) | East US 2 <br> South Central US <br> East US <br> West US 3 <br> West US <br> North Central US <br> Sweden Central      |  Not available       |
 
 ### Bria models
 
@@ -84,6 +78,7 @@ Phi-4 <br>  Phi-4-mini-instruct <br>  Phi-4-multimodal-instruct    | Not applica
 
 | Model | Offer Availability Region  | Hub/Project Region for Deployment  | Hub/Project Region for Fine tuning  |
 |---------|---------|---------|---------|
+mistral-document-ai-2505    | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)      |    EastUS2 <br> Sweden Central        | Not available       |
 Codestral-2501    | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  <br> Brazil <br> Hong Kong SAR <br> Israel     | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3           | Not available       |
 Mistral OCR 25.03   | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)   <br> Brazil <br> Hong Kong SAR <br> Israel      | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3           |  Not available       |
 Mistral Nemo  | [Microsoft Managed Countries/Regions](/partner-center/marketplace/tax-details-marketplace#microsoft-managed-countriesregions)  <br> Brazil <br> Hong Kong SAR <br> Israel     | East US <br> East US 2 <br> North Central US <br> South Central US <br> Sweden Central <br> West US <br> West US 3          | East US 2 <br> East US <br> North Central US <br> South Central US <br> West US <br> West US 3    |

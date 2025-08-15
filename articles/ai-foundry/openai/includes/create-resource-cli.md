@@ -43,6 +43,8 @@ az cognitiveservices account create \
 --kind OpenAI \
 --sku s0 \
 --subscription <subscriptionID>
+--custom-domain MyOpenAIResource
+--yes
 ```
 
 ## Retrieve information about the resource

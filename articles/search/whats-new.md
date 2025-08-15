@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 05/15/2025
+ms.date: 08/07/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,15 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## July 2025
+
+| Item | Type | Description |
+|-----------------------------|------|--------------|
+| [Search Management 2025-05-01](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | REST | Stable release of the REST APIs for the control plane operations described in this table. For migration guidance, see [Upgrade to the latest REST API in Azure AI Search](search-api-migration.md). |
+| [Service upgrade](search-how-to-upgrade.md) | Service | Now generally available through [Upgrade Service (REST API)](/rest/api/searchmanagement/services/upgrade?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
+| [Pricing tier change](search-capacity-planning.md#change-your-pricing-tier) | Service | Now generally available through the `sku` property in [Update Service (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
+| [User-assigned managed identity assignment](search-how-to-managed-identities.md) | Security | Now generally available through the `identity` property that associates a user-assigned managed identity with a search service configuration. Only the assignment step, via the [Update Service (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true) or the Azure portal, is generally available. APIs used for data source or model connections that include a user-assigned managed identity are still in preview. |
 
 ## May 2025
 
@@ -47,7 +56,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | Type |  Description |
 |-----------------------------|------|--------------|
 | [Service upgrade (preview)](search-how-to-upgrade.md) | Service | Upgrade your search service to higher storage limits in your region. With a one-time upgrade, you no longer need to recreate your service. Available in [Upgrade Service (2025-02-01-preview)](/rest/api/searchmanagement/services/upgrade?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) and the Azure portal. |
-| [Pricing tier change (preview)](search-capacity-planning.md#change-your-pricing-tier) | Service | Change the [pricing tier](search-sku-tier.md) of your search service. This provides flexibility to scale storage, increase request throughput, and decrease latency based on your needs. In this preview, you can only change between Basic and Standard (S1, S2, and S3) tiers. Available in [Update Service (2025-02-01-preview)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#searchupdateservicewithsku) and the Azure portal. |
+| [Pricing tier change (preview)](search-capacity-planning.md#change-your-pricing-tier) | Service | Change the [pricing tier](search-sku-tier.md) of your search service. This provides flexibility to scale storage, increase request throughput, and decrease latency based on your needs. Initially, this preview only supported upgrades between Basic and Standard (S1, S2, and S3) tiers, but starting in July 2025, it supports upgrades *and* downgrades between these tiers. Available in [Update Service (2025-02-01-preview)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true#searchupdateservicewithsku) and the Azure portal. |
 | [Facet hierarchies, aggregations, and facet filters (preview)](search-faceted-navigation-examples.md) | Queries | New facet query parameters support nested facets. For numeric facetable fields, you can sum the values of each field. You can also specify filters on a facet to add inclusion or exclusion criteria. Available in [Search Documents (2025-03-01-preview)](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-03-01-preview&preserve-view=true) and the Azure portal.|
 | [Rescore vector queries over binary quantization using full precision vectors (preview)](vector-search-how-to-quantization.md#recommended-rescoring-techniques) | Queries | For vector indexes that contain binary quantization, you can rescore query results using a full precision vector query. The query engine uses the dot product of the binary embeddings and the vector query for rescoring, which improves the quality of search results.  Set `enableRescoring` and `discardOriginals` to use this feature, and call the latest preview API version on the request.|
 | [Semantic ranker prerelease models (preview)](semantic-how-to-configure.md#opt-in-for-prerelease-semantic-ranking-models) | Index | Opt in to use prerelease semantic ranker models if one happens to be available in your region. Available in [Create or Update Index (2025-03-01-preview)](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-03-01-preview#semanticconfiguration&preserve-view=true).|

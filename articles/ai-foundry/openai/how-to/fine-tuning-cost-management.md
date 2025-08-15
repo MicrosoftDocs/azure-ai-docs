@@ -149,7 +149,7 @@ We have three options for hosting:
 - **Standard**: pay per-token at the same rate as base model Standard deployments with an additional $1.70/hour hosting fee. Offers regional data residency guarantees.
 - **Global Standard**: pay per-token at the same rate as base model Global Standard deployments with an additional hosting fee. Doesn't offer data residency guarantees. Offers higher throughput than Standard deployments.
 - **Regional Provisioned Throughput**: offers latency guarantees, designed for latency-sensitive workloads. Instead of paying per-token or an hourly hosting fee, deployments accrue PTU-hours based on the number of provisioned throughput units (PTU) assigned to the deployment, and billed at a rate determined by your agreements or reservations with Microsoft Azure.
-- **Developer Tier (Public Preview)**: pay per-token and without an hourly hosting fee but offers neither data residency nor availability guarantees. Developer Tier is designed for model candidate evaluation and proof of concepts, deployments are removed automatically after 24 hours regardless of usage but may be redeployed as needed.
+- **Developer Tier**: pay per-token and without an hourly hosting fee but offers neither data residency nor availability guarantees. Developer Tier is designed for model candidate evaluation and proof of concepts, deployments are removed automatically after 24 hours regardless of usage but may be redeployed as needed.
 
 The right deployment type for your use case depends on weighing your AI requirements and where you are on your fine-tuning journey.
 

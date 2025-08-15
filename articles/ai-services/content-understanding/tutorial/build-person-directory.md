@@ -16,7 +16,7 @@ ms.custom:
 
 A person directory provides a structured approach to storing face data for recognition tasks. It allows you to add individual faces, search for visually similar faces, and create person profiles. You can associate faces with these profiles and match new face images to known individuals. This setup supports both flexible face matching and identity recognition across images and videos.
 
-:::image type="content" source="../media/face/person-directory-processes.png" alt-text="Diagram illustrating the processes of enrollment and search in a person directory.":::
+:::image type="content" source="../media/face/person-directory-enrollment.jpg" lightbox="../media/face/person-directory-enrollment.jpg" alt-text="Diagram illustrating the processes of enrollment and search in a person directory.":::
 
 ## Data storage recommendation
 
@@ -161,6 +161,8 @@ After creating your person directory and adding face images with optional person
 1. **[Find similar faces](#find-similar-faces)**: Search for visually similar faces across all stored face entries in the directory.
 
 These capabilities enable robust face recognition and similarity matching for various applications.
+
+:::image type="content" source="../media/face/person-directory-search.png" lightbox="../media/face/person-directory-search.png" alt-text="Diagram illustrating the processes of search in a person directory.":::
 
 ### Identify a person
 

@@ -2,7 +2,6 @@
 title: How to get started with Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -163,7 +162,7 @@ The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azu
 * Using the project endpoint, you can:
     - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
     - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
-    - [Run evaluations in the cloud](../../../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context)
+    - [Run evaluations in the cloud](cloud-evaluation.md))
     - [Enable tracing for your app](../../concepts/trace.md) 
     - Retrieve endpoints and keys for external resource connections
 

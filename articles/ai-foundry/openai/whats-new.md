@@ -18,6 +18,26 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## August 2025
+
+### GPT-5 models available
+
+- `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
+- `gpt-5-chat` is now available. To learn more, see the [models page](./concepts/models.md)
+
+- **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
+
+- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
+
+### New version of model-router
+
+- Model router nows supports GPT-5 series models.
+
+- The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
+
+- Model router for Azure AI Foundry is a deployable AI chat model that automatically selects the best underlying chat model to respond to a given prompt. For more information on how model router works and its advantages and limitations, see the [Model router concepts guide](./concepts/model-router.md). To use model router with the Completions API, follow the [How-to guide](./concepts/model-router.md).
+
+
 ## July 2025 
 
 ### GPT-image-1 update (preview)
@@ -42,7 +62,7 @@ This article provides a summary of the latest releases and major documentation u
 
 Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
 
-Follow the [Video generation quickstart](/azure/ai-services/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
+Follow the [Video generation quickstart](/azure/ai-foundry/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
 ### Spotlighting for prompt shields
 
@@ -68,7 +88,7 @@ GPT-image-1 (2025-04-15) is the latest image generation model from Azure OpenAI.
 
 Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
 
-Follow the [image generation how-to guide](/en-us/azure/ai-services/openai/how-to/dall-e) to get started with the new model.
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with the new model.
 
 ### o4-mini and o3 models released
 
@@ -219,7 +239,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### NEW AI abuse monitoring
 
-We're introducing new forms of abuse monitoring that leverage LLMs to improve efficiency of detection of potentially abusive use of the Azure OpenAI and to enable abuse monitoring without the need for human review of prompts and completions. Learn more, see [Abuse monitoring](/azure/ai-services/openai/concepts/abuse-monitoring).
+We're introducing new forms of abuse monitoring that leverage LLMs to improve efficiency of detection of potentially abusive use of the Azure OpenAI and to enable abuse monitoring without the need for human review of prompts and completions. Learn more, see [Abuse monitoring](/azure/ai-foundry/openai/concepts/abuse-monitoring).
 
 Prompts and completions that are flagged through content classification and/or identified to be part of a potentially abusive pattern of use are subjected to an additional review process to help confirm the system's analysis and inform actioning decisions. Our abuse monitoring systems have been expanded to enable review by LLM by default and by humans when necessary and appropriate. 
 
@@ -295,7 +315,7 @@ As of September 19, 2024, when you go to the [Azure OpenAI Studio](https://oai.a
 ### GPT-4o 2024-08-06 provisioned deployments
 GPT-4o 2024-08-06 is now available for provisioned deployments in East US, East US 2, North Central US, and Sweden Central. It's also available for global provisioned deployments.
 
-For the latest information on model availability, see the [models page](/azure/ai-services/openai/concepts/models#provisioned-deployment-model-availability).
+For the latest information on model availability, see the [models page](/azure/ai-foundry/openai/concepts/models#provisioned-deployment-model-availability).
 
 ### NEW Global provisioned deployment type
 Global deployments are available in the same Azure OpenAI resources as non-global deployment types but allow you to leverage Azure's global infrastructure to dynamically route traffic to the data center with best availability for each request. Global provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure global infrastructure. Global provisioned deployments are supported on `gpt-4o-2024-08-06` and `gpt-4o-mini-2024-07-18` models.
@@ -354,7 +374,7 @@ Once access has been granted, you'll need to:
 
 GPT-4o mini is now available for provisioned deployments in Canada East, East US, East US2, North Central US, and Sweden Central.
 
-For the latest information on model availability, see the [models page](/azure/ai-services/openai/concepts/models#provisioned-deployment-model-availability).
+For the latest information on model availability, see the [models page](/azure/ai-foundry/openai/concepts/models#provisioned-deployment-model-availability).
 
 ### GPT-4o fine-tuning (Public Preview)
 
@@ -367,7 +387,7 @@ For more information, see our [blog post](https://techcommunity.microsoft.com/t5
 API version `2024-07-01-preview` is the latest dataplane authoring & inference API release. It replaces API version `2024-05-01-preview` and adds support for:
 
 - [Batch API support added](./how-to/batch.md)
-- [Vector store chunking strategy parameters](/azure/ai-services/openai/reference-preview?#request-body-17)
+- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17)
 - `max_num_results` that the file search tool should output.
 
 For more information see our [reference documentation](./reference-preview.md)
@@ -566,19 +586,19 @@ For more information, see the [deployment types guide](https://aka.ms/aoai/docs/
 ### Fine-tuning updates
 
 - GPT-4 fine-tuning is [now available in public preview](./concepts/models.md#fine-tuning-models).
-- Added support for [seed](/azure/ai-services/openai/tutorials/fine-tune?tabs=python-new%2Ccommand-line#begin-fine-tuning), [events](/azure/ai-services/openai/tutorials/fine-tune?tabs=python-new%2Ccommand-line#list-fine-tuning-events), [full validation statistics](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-python#analyze-your-customized-model), and [checkpoints](/azure/ai-services/openai/tutorials/fine-tune?tabs=python-new%2Ccommand-line#list-checkpoints) as part of the `2024-05-01-preview` API release.
+- Added support for [seed](/azure/ai-foundry/openai/tutorials/fine-tune?tabs=python-new%2Ccommand-line#begin-fine-tuning), [events](/azure/ai-foundry/openai/tutorials/fine-tune?tabs=python-new%2Ccommand-line#list-fine-tuning-events), [full validation statistics](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-python#analyze-your-customized-model), and [checkpoints](/azure/ai-foundry/openai/tutorials/fine-tune?tabs=python-new%2Ccommand-line#list-checkpoints) as part of the `2024-05-01-preview` API release.
 
 ### DALL-E and GPT-4 Turbo Vision GA configurable content filters
 
-Create custom content filters for your DALL-E 2 and 3, GPT-4 Turbo with Vision GA (`turbo-2024-04-09`), and GPT-4o deployments. [Content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new#configurability-preview)
+Create custom content filters for your DALL-E 2 and 3, GPT-4 Turbo with Vision GA (`turbo-2024-04-09`), and GPT-4o deployments. [Content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#configurability-preview)
 
 ### Asynchronous Filter available for all Azure OpenAI customers
 
-Running filters asynchronously for improved latency in streaming scenarios is now available for all Azure OpenAI customers. [Content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new#content-streaming)
+Running filters asynchronously for improved latency in streaming scenarios is now available for all Azure OpenAI customers. [Content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#content-streaming)
 
 ### Prompt Shields
 
-Prompt Shields protect applications powered by Azure OpenAI models from two types of attacks: direct (jailbreak) and indirect attacks. Indirect Attacks (also known as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks) are a type of attack on systems powered by Generative AI models that might occur when an application processes information that wasn’t directly authored by either the developer of the application or the user. [Content filtering](/azure/ai-services/openai/concepts/content-filter?tabs=warning%2Cpython-new#prompt-shields)
+Prompt Shields protect applications powered by Azure OpenAI models from two types of attacks: direct (jailbreak) and indirect attacks. Indirect Attacks (also known as Indirect Prompt Attacks or Cross-Domain Prompt Injection Attacks) are a type of attack on systems powered by Generative AI models that might occur when an application processes information that wasn’t directly authored by either the developer of the application or the user. [Content filtering](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new#prompt-shields)
 
 ### 2024-05-01-preview API release
 
@@ -751,7 +771,7 @@ GPT-4 Turbo with Vision on Azure OpenAI is now in public preview. GPT-4 Turbo wi
 - Vision enhancement using GPT-4 Turbo with Vision is now available in the [Azure OpenAI Playground](https://oai.azure.com/) and includes support for Optical Character Recognition, object grounding, image support for "add your data," and support for video prompt.
 - Make calls to the chat API directly using the [REST API](https://aka.ms/gpt-v-api-ref).
 - Region availability is currently limited to `SwitzerlandNorth`, `SwedenCentral`, `WestUS`, and `AustraliaEast`  
-- Learn more about the known limitations of GPT-4 Turbo with Vision and other [frequently asked questions](/azure/ai-services/openai/faq#gpt-4-with-vision).
+- Learn more about the known limitations of GPT-4 Turbo with Vision and other [frequently asked questions](/azure/ai-foundry/openai/faq#gpt-4-with-vision).
 
 ## November 2023
 
@@ -783,7 +803,7 @@ Try out DALL-E 3 by following a [quickstart](./dall-e-quickstart.md).
 
 - **Expanded customer configurability**: All Azure OpenAI customers can now configure all severity levels (low, medium, high) for the categories hate, violence, sexual and self-harm, including filtering only high severity content. [Configure content filters](./how-to/content-filters.md)
 
-- **Content Credentials in all DALL-E models**: AI-generated images from all DALL-E models now include a digital credential that discloses the content as AI-generated. Applications that display image assets can leverage the open source [Content Authenticity Initiative SDK](https://opensource.contentauthenticity.org/docs/js-sdk/getting-started/quick-start/) to display credentials in their AI generated images. [Content Credentials in Azure OpenAI](/azure/ai-services/openai/concepts/content-credentials)
+- **Content Credentials in all DALL-E models**: AI-generated images from all DALL-E models now include a digital credential that discloses the content as AI-generated. Applications that display image assets can leverage the open source [Content Authenticity Initiative SDK](https://opensource.contentauthenticity.org/docs/js-sdk/getting-started/quick-start/) to display credentials in their AI generated images. [Content Credentials in Azure OpenAI](/azure/ai-foundry/openai/concepts/content-credentials)
 
 - **New RAI models**
     
@@ -844,7 +864,7 @@ Azure OpenAI now supports speech to text APIs powered by OpenAI's Whisper model.
 
 ### Azure OpenAI on your own data (preview) updates
 
-- You can now deploy Azure OpenAI On Your Data to [Power Virtual Agents](/azure/ai-services/openai/concepts/use-your-data#deploying-the-model).
+- You can now deploy Azure OpenAI On Your Data to [Power Virtual Agents](/azure/ai-foundry/openai/concepts/use-your-data#deploying-the-model).
 - Azure OpenAI On Your Data now supports private endpoints.
 - Ability to [filter access to sensitive documents](./concepts/use-your-data.md#document-level-access-control).
 - [Automatically refresh your index on a schedule](./concepts/use-your-data.md#schedule-automatic-index-refreshes).
@@ -917,7 +937,7 @@ If you're currently using the `2023-03-15-preview` API, we recommend migrating t
 
 - **DALL-E 2 public preview**. Azure OpenAI now supports image generation APIs powered by OpenAI's DALL-E 2 model. Get AI-generated images based on the descriptive text you provide. To learn more, check out the [quickstart](./dall-e-quickstart.md).
 
-- **Inactive deployments of customized models will now be deleted after 15 days; models will remain available for redeployment.** If a customized (fine-tuned) model is deployed for more than fifteen (15) days during which no completions or chat completions calls are made to it, the deployment will automatically be deleted (and no further hosting charges will be incurred for that deployment). The underlying customized model will remain available and can be redeployed at any time. To learn more check out the [how-to-article](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).
+- **Inactive deployments of customized models will now be deleted after 15 days; models will remain available for redeployment.** If a customized (fine-tuned) model is deployed for more than fifteen (15) days during which no completions or chat completions calls are made to it, the deployment will automatically be deleted (and no further hosting charges will be incurred for that deployment). The underlying customized model will remain available and can be redeployed at any time. To learn more check out the [how-to-article](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).
 
 
 ## March 2023
