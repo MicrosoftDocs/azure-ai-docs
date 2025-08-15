@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 5/21/2024
 ms.reviewer: none
@@ -31,6 +32,8 @@ In this article you learn to:
 - Ways to improve flow performance
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 For a batch run and to use an evaluation method, you need to have the following ready:
 

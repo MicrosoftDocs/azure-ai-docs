@@ -6,6 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: reference
 ms.date: 6/30/2025
 ms.reviewer: none
@@ -22,6 +23,8 @@ ms.update-cycle: 180-days
 The prompt flow Prompt tool offers a collection of textual templates that serve as a starting point for creating prompts. These templates, based on the [Jinja](https://jinja.palletsprojects.com/en/stable/) template engine, facilitate the definition of prompts. The tool proves useful when prompt tuning is required before the prompts are fed into the large language model (LLM) in the prompt flow.
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 Prepare a prompt. The [LLM tool](llm-tool.md) and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
 
