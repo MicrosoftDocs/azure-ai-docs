@@ -7,7 +7,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 08/15/2025
 ms.reviewer: obiume
 ms.author: mopeakande
 manager: nitinme
@@ -16,11 +16,11 @@ author: msakande
 
 # Autoscale Azure AI limits
 
-This article provides guidance for how you can manage and increase quotas for Azure AI services resources with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+This article provides guidance for managing and increasing quotas for Azure AI services resources with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 ## Overview
 
-Each Azure AI services resource has a preconfigured static call rate (transactions per second) which limits the number of concurrent calls that you can make to the backend service in a given time frame. The autoscale feature automatically increases or decreases your resource's rate limits based on near or real-time resource usage metrics and backend service capacity metrics.
+Each Azure AI services resource has a preconfigured static call rate (transactions per second) that limits the number of concurrent calls you can make to the backend service in a given time frame. The autoscale feature automatically increases or decreases your resource's rate limits based on near or real-time resource usage metrics and backend service capacity metrics.
 
 ## Get started with the autoscale feature
 
@@ -28,7 +28,9 @@ This feature is disabled by default for every new resource. To enable it, use th
 
 #### [Azure portal](#tab/portal)
 
-Go to your resource's page in the Azure portal, and select the **Overview** tab on the left pane. Under the **Essentials** section, find the **Autoscale** line and select the link to view the **Autoscale Settings** pane and enable the feature.
+1. Go to your resource's page in the Azure portal, and select the **Overview** tab.
+1.  Under the **Essentials** section, find the **Autoscale** line and select the link.
+1.  To view the **Autoscale Settings** pane, enable the autoscale feature.
 
 :::image type="content" source="~/reusable-content/ce-skilling/azure/media/ai-services/portal-autoscale.png" alt-text="Screenshot of the Azure portal with the autoscale pane on right." lightbox="~/reusable-content/ce-skilling/azure/media/ai-services/portal-autoscale.png":::
 
@@ -49,7 +51,7 @@ az resource update --namespace Microsoft.CognitiveServices --resource-type accou
 
 No, you might still get `429` errors for rate limit excess. If your application triggers a spike, and your resource reports a `429` response, autoscale checks the available capacity projection section to see whether the current capacity can accommodate a rate limit increase and respond within five minutes.
 
-If the available capacity is enough for an increase, autoscale gradually increases the rate limit cap of your resource. If you continue to call your resource at a high rate that results in more `429` throttling, your TPS rate will continue to increase over time. If this action continues for one hour or more, you should reach the maximum rate (up to 1000 TPS) currently available at that time for that resource.
+If the available capacity is enough for an increase, autoscale gradually increases the rate limit cap of your resource. If you continue to call your resource at a high rate that results in more `429` throttling, your TPS rate continues to increase over time. If this action continues for one hour or more, you reach the maximum rate (up to 1,000 TPS) currently available at that time for that resource.
 
 If the available capacity isn't enough for an increase, the autoscale feature waits five minutes and checks again.
 
@@ -59,9 +61,9 @@ By default, Azure AI services resources have a default rate limit of 10 TPS. If 
 
 ### Does autoscale increase my Azure spend? 
 
-Azure AI services pricing hasn't changed and can be viewed from the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/). We'll only bill for successful calls made to Azure AI services APIs. However, increased call rate limits mean more transactions are completed, and you might receive a higher bill.
+Azure AI services pricing hasn't changed and can be viewed from the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/). You pay only for successful calls made to Azure AI services APIs. However, increased call rate limits mean more transactions are completed, and you might receive a higher bill.
 
-Be aware of potential errors and their consequences. If a bug in your client application causes it to call the service hundreds of times per second, that would likely lead to a higher bill, whereas the cost would be much more limited under a fixed rate limit. Errors of this kind are your responsibility. We highly recommend that you perform development and client update tests against a resource with a fixed rate limit prior to using the autoscale feature.
+Be aware of potential errors and their consequences. If a bug in your client application causes it to call the service hundreds of times per second, that issue would likely lead to a higher bill, whereas the cost would be much more limited under a fixed rate limit. Errors of this kind are your responsibility. We highly recommend that you perform development and client update tests against a resource with a fixed rate limit prior to using the autoscale feature.
 
 ### Can I disable this feature if I'd rather limit the rate than have unpredictable spending?
 
@@ -79,5 +81,5 @@ No, the autoscale feature isn't available to free tier subscriptions.
 
 * [Plan and manage costs for Azure AI](costs-plan-manage.md).
 * [Optimize your cloud investment with Microsoft Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
-* Learn about how to [prevent unexpected costs](/azure/cost-management-billing/cost-management-billing-overview?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
+* Learn how to [prevent unexpected costs](/azure/cost-management-billing/cost-management-billing-overview?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 * Take the [Cost Management](/training/paths/control-spending-manage-bills?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) guided learning course.
