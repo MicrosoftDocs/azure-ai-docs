@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
-  - ai-assisted
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 07/01/2025
 ms.reviewer: dantaylo
@@ -169,6 +169,7 @@ The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azu
 
 ::: zone-end
 After you create a client, you can use it to access models, run evaluations, and connect to other AI services. The next section lists the available client libraries and shows how to use them for specific Azure AI services.
+
 <a name="azure-ai-foundry-agent-service"></a>
 * Using the project endpoint, you can:
     - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
