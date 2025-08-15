@@ -9,6 +9,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
+  - horz-security
 ms.topic: conceptual
 ms.date: 08/15/2025
 ---
@@ -27,7 +28,7 @@ This article details the implementation options for each security layer to help 
 
 ## Network traffic patterns
 
-An Azure AI Search service can be hosted in the Azure public cloud, an Azure private cloud, or a sovereign cloud (such as Azure government). By default, for all cloud hosts, the search service is typically accessed by client applications over public network connections. While that pattern is predominant, it's not the only traffic pattern that you need to care about. Understanding all points of entry as well as outbound traffic is necessary background for securing your development and production environments.
+An Azure AI Search service can be hosted in the Azure public cloud, an Azure private cloud, or a sovereign cloud (such as Azure Government). By default, for all cloud hosts, the search service is typically accessed by client applications over public network connections. While that pattern is predominant, it's not the only traffic pattern that you need to care about. Understanding all points of entry as well as outbound traffic is necessary background for securing your development and production environments.
 
 Azure AI Search has three basic network traffic patterns:
 
@@ -153,18 +154,20 @@ Azure AI Search provides authorization models for service management and content
 
 ### Privileged access
 
-All control plane (service or resource creation and management) tasks are authorized through [role assignments](/azure/role-based-access-control/overview), with no ability to use key-based authentication for service administration.
+On a new search service, existing role assignments at the subscription level are inherited by the search service, and only Owners and User Access Administrators can grant access.
 
-In Azure AI Search, Resource Manager is used to create or delete the service, manage API keys, scale the service, and configure security. As such, Azure role assignments will determine who can perform those tasks, regardless of whether they're using the [portal](search-manage.md), [PowerShell](search-manage-powershell.md), or the [Management REST APIs](/rest/api/searchmanagement).
+Control plane operations (service or resource creation and management) tasks are exclusively authorized through [role assignments](/azure/role-based-access-control/overview), with no ability to use key-based authentication for service administration.
 
-[Three basic roles](search-security-rbac.md) (Owner, Contributor, Reader) apply to search service administration. Role assignments are inherited from the subscription, but as an Owner or User Access Administrator, you can assign roles to others using any supported methodology (portal, PowerShell, and so forth).
+Control plane operations include create, configure, or delete the service, and manage security. As such, Azure role assignments will determine who can perform those tasks, regardless of whether they're using the [portal](search-manage.md), [PowerShell](search-manage-powershell.md), or the [Management REST APIs](/rest/api/searchmanagement).
+
+[Three basic roles](search-security-rbac.md#assign-roles-for-service-administration) (Owner, Contributor, Reader) apply to search service administration. 
 
 > [!NOTE]
 > Using Azure-wide mechanisms, you can lock a subscription or resource to prevent accidental or unauthorized deletion of your search service by users with admin rights. For more information, see [Lock resources to prevent unexpected deletion](/azure/azure-resource-manager/management/lock-resources).
 
 ### Authorize access to content
 
-Content management refers to the objects created and hosted on a search service.
+Data plane operations refers to the objects created and used on a search service.
 
 + For role-based authorization, [use Azure role assignments](search-security-rbac.md) to establish read-write access to operations.
 
@@ -279,11 +282,19 @@ Using alerts and the logging infrastructure in Azure, you can pick up on query v
 
 Azure AI Search participates in regular audits, and has been certified against many global, regional, and industry-specific standards for both the public cloud and Azure Government. For the complete list, download the [**Microsoft Azure Compliance Offerings** whitepaper](https://azure.microsoft.com/resources/microsoft-azure-compliance-offerings/) from the official Audit reports page.
 
+We recommend that you regularly review [Azure AI Search compliance certifications and documentation](/azure/compliance/) to ensure alignment with your regulatory requirements. 
+
+### Use Azure Policy
+
 For compliance, you can use [Azure Policy](/azure/governance/policy/overview) to implement the high-security best practices of [Microsoft cloud security benchmark](/security/benchmark/azure/introduction). The Microsoft cloud security benchmark is a collection of security recommendations, codified into security controls that map to key actions you should take to mitigate threats to services and data. There are currently 12 security controls, including [Network Security](/security/benchmark/azure/mcsb-network-security), Logging and Monitoring, and [Data Protection](/security/benchmark/azure/mcsb-data-protection).
 
 Azure Policy is a capability built into Azure that helps you manage compliance for multiple standards, including those of Microsoft cloud security benchmark. For well-known benchmarks, Azure Policy provides built-in definitions that provide both criteria and an actionable response that addresses noncompliance.
 
 For Azure AI Search, there's currently one built-in definition. It's for resource logging. You can assign a policy that identifies search services that are missing resource logging, and then turn it on. For more information, see [Azure Policy Regulatory Compliance controls for Azure AI Search](security-controls-policy.md).
+
+### Use tags
+
+Apply metadata tags to categorize search services based on data sensitivity and compliance requirements. This facilitates proper governance and security controls. For more information, see [Use tags to organize your Azure resources](/azure/azure-resource-manager/management/tag-resources) and [General guidance – Organize Azure resources using tags](/azure/azure-resource-manager/management/tag-resources).
 
 ## Learn more
 
