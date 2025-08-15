@@ -48,11 +48,21 @@ In enterprise workflows, it’s important to know not just what information was 
 You ask Azure AI Content Understanding to extract the *termination clause* from a contract. The model returns:
 
 - **Extracted text**: "Either party may terminate this agreement with 60 days’ notice."
+-	"spans": [
+              {
+                "offset": 343,
+                "length": 102
+              }
+            ],
 - **Source**:
-  - Page: 3
-  - Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
+	  Page: 3
+	  Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
+
+Span indicates the element's logical position using character offset and length, while source gives its visual position with page number and bounding box coordinates. With this grounding data, your legal team can verify the extraction by jumping directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output.
+
 
 With this grounding data, your legal team can verify the extraction by going directly to the source paragraph in the PDF. This eliminates guesswork and builds trust in the application output. 
+
 
 ## Confidence scoring
 
@@ -77,7 +87,7 @@ In this case, your automation pipeline can post the billing address directly to 
 
 ## In-context learning
 
-In-context learning allows you to guide the model’s behavior without the need for retraining or fine-tuning by providing examples in your prompt or API call. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
+In-context learning allows you to guide the model’s behavior without the need for retraining or fine-tuning by providing labeled examples in your prompt or API call. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
 
 ### Why in-context learning matters
 
