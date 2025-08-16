@@ -2,8 +2,8 @@
 title: Transparency note - Key Phrase Extraction feature of Azure AI Language
 titleSuffix: Azure AI services
 description: Azure AI Language key phrase extraction allows you to quickly identify the main concepts in text. For example, in the text "The food was delicious and there were wonderful staff", Key Phrase Extraction will return the main talking points "food" and "wonderful staff".
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

@@ -2,8 +2,8 @@
 title: Data, privacy, and security for Azure OpenAI Service
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for Azure OpenAI Service
-author: ChrisHMSFT
-ms.author: chrhoder
+author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article

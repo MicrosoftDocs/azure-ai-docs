@@ -2,8 +2,8 @@
 title: Limited access to Azure OpenAI Service 
 titleSuffix: Azure AI services
 description: This document details the limited access policy for Azure OpenAI Service
-author: krlaird
-ms.author: krlaird
+author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article
