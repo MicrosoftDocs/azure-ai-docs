@@ -2,13 +2,12 @@
 title: Disclosure design patterns for text to speech avatar
 titleSuffix: Azure AI services
 description: Design patterns and best practices for avatar disclosure.
-services: ai-services
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 11/16/2023
-ms.author: eur
 ---
 
 # Disclosure design patterns for text to speech avatar
