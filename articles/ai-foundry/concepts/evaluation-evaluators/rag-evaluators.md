@@ -244,8 +244,10 @@ AI systems can fabricate content or generate irrelevant responses outside the gi
 ### Groundedness Pro example
 
 ```python
-import os
 from azure.ai.evaluation import GroundednessProEvaluator
+from azure.identity import DefaultAzureCredential
+
+import os
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -258,7 +260,7 @@ azure_ai_project = {
 ## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
-groundedness_pro = GroundednessProEvaluator(azure_ai_project=azure_ai_project), 
+groundedness_pro = GroundednessProEvaluator(azure_ai_project=azure_ai_project, credential=DefaultAzureCredential())
 groundedness_pro(
     query="Is Marie Curie is born in Paris?", 
     context="Background: 1. Marie Curie is born on November 7, 1867. 2. Marie Curie is born in Warsaw.",

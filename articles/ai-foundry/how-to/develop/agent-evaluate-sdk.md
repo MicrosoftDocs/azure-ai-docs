@@ -172,8 +172,8 @@ And that's it! `converted_data` contains all inputs required for [these evaluato
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
-| `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness`| Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| Other quality evaluators| Not Supported | Supported | -- |
+| All quality evaluators except for `GroundednessProEvaluator` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| `GroundednessProEvaluator` | User does not need to support model | User does not need to support model | -- |
 
 For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
@@ -197,6 +197,7 @@ model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
+# example config for a reasoning model
 reasoning_model_config = {
     "azure_deployment": "o3-mini",
     "api_key": os.getenv("AZURE_API_KEY"),
@@ -204,10 +205,10 @@ reasoning_model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
-# Evaluators with reasoning model support
+# Evaluators you may want to use reasoning models with
 quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model_config, is_reasoning_model=True) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]}
 
-# Other evaluators do not support reasoning models 
+# Other evaluators you may NOT want to use reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
@@ -233,12 +234,12 @@ AI-assisted quality evaluators provide a result for a query and response pair. T
 - `{metric_name}`: Provides a numerical score, on a Likert scale (integer 1 to 5) or a float between 0 and 1.
 - `{metric_name}_label`: Provides a binary label (if the metric naturally outputs a binary score).
 - `{metric_name}_reason`: Explains why a certain score or label was given for each data point.
+- `details`: Optional output containing debugging information about the quality of a single agent run.
 
 To further improve intelligibility, all evaluators accept a binary threshold (unless their outputs are already binary) and output two new keys. For the binarization threshold, a default is set, which the user can override. The two new keys are:
 
 - `{metric_name}_result`: A "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold`: A numerical binarization threshold set by default or by the user.
-- `additional_details`: Contains debugging information about the quality of a single agent run.
 
 See the following example output for some evaluators:
 
