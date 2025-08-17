@@ -2,9 +2,9 @@
 title: Data, privacy, and security for Speech to text
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for a Speech to text.
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
-ms.author: eur
 ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 06/30/2021

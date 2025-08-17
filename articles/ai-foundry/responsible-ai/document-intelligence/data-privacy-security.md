@@ -2,8 +2,8 @@
 title: Data, privacy, and security for Document Intelligence
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for Document Intelligence.
-author: sanjeev3
-ms.author: sajagtap
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: article

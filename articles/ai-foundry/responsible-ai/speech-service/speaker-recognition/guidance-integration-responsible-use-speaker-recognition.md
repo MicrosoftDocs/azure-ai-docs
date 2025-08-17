@@ -2,8 +2,8 @@
 title: Guidance for integration and responsible use with Speaker Recognition
 titleSuffix: Azure AI services
 description: Guidance for how to deploy the Speaker Recognition feature responsibly, based on the knowledge and understanding from the team that created this product.
-author: HeidiHanZhang
-ms.author: heidizh
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article
