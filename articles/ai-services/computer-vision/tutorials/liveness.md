@@ -42,7 +42,7 @@ In this tutorial, you’ll learn how to run a front-end application with an app 
 We provide SDKs in multiple languages to simplify integration with your front-end application. Refer to the README for your chosen SDK below to integrate both the UI and required code.
 
 > [!IMPORTANT]
-> Each frontend SDK requires will require access to a gated asset to successfully compile. Instructions on how to set this up will be mentioned in the references below.
+> Each frontend SDK requires access to a gated asset to successfully compile. Instructions on how to set this up are mentioned below.
 
 For Swift iOS:
 - Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
