@@ -11,6 +11,7 @@ ms.custom:
   - ignite-2024
 ms.topic: concept-article
 ms.date: 03/11/2025
+ms.update-cycle: 365-days
 ---
 
 # Skills for extra processing during indexing (Azure AI Search)

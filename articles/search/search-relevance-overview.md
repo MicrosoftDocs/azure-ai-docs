@@ -8,6 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.date: 07/23/2025
+ms.update-cycle: 180-days
 ---
 
 # Relevance in Azure AI Search

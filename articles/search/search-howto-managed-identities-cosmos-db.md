@@ -7,6 +7,7 @@ ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/07/2025
+ms.update-cycle: 365-days
 ms.custom:
   - subject-rbac-steps
   - ignite-2023

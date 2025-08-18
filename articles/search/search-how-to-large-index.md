@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 08/01/2025
+ms.update-cycle: 180-days
 ---
 
 # Index large data sets in Azure AI Search

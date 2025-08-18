@@ -9,6 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: reference
 ms.date: 08/05/2024
+ms.update-cycle: 365-days
 ---
 
 # Azure AI Vision vectorizer

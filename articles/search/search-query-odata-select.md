@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 07/18/2022
+ms.update-cycle: 365-days
 ---
 
 # OData $select syntax in Azure AI Search

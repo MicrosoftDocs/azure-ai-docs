@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 05/19/2025
+ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search

@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 03/07/2025
+ms.update-cycle: 365-days
 ---
 
 # Full text search in Azure AI Search

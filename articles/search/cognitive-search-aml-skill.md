@@ -10,6 +10,7 @@ ms.custom:
   - build-2024
 ms.topic: reference
 ms.date: 08/04/2025
+ms.update-cycle: 180-days
 ---
 
 # AML skill in an Azure AI Search enrichment pipeline

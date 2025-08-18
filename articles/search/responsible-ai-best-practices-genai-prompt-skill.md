@@ -9,6 +9,7 @@ ms.custom:
   - build-2025
 ms.topic: concept-article
 ms.date: 07/28/2025
+ms.update-cycle: 180-days
 ---
 
 # Best practices - GenAI Prompt skill

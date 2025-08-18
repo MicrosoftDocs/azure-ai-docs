@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 07/03/2025
+ms.update-cycle: 180-days
 ---
 
 # Relevance in vector search
