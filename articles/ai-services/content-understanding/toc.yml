@@ -59,8 +59,16 @@ items:
         displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
         href: audio/overview.md
       - name: Video
-        href: video/overview.md
-        displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+        items:
+          - name: Overview
+            displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+            href: video/overview.md
+          - name: Elements 🆕
+            displayName: video, json, elements, field, structure, documentation
+            href: video/elements.md
+          - name: Markdown 🆕
+            displayName: video, markdown, elements, field, structure, documentation
+            href: video/markdown.md
   - name: Concepts
     items:
       - name: Analyzer templates in Azure AI Foundry

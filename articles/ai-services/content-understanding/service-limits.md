@@ -71,13 +71,21 @@ This article offers a quick reference of the quotas and limits for the Azure AI 
 
 #### Video
 
-| Supported File Types | File Size | Resolution | Length |
-| ---| --- | --- | --- |
-| ✓  `.mp4`, `.m4v` <br> ✓ `.flv` (H.264 and `AAC`) <br> ✓ `.wmv`, `.asf` <br> ✓ `.avi` <br> ✓ `.mkv` <br> ✓ `.mov` | ≤20 GB † | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels | ≤4 hours †|
+##### Supported file types and resolution
+
+| Supported File Types | Resolution |
+| --- | --- |
+| ✓  `.mp4`, `.m4v` <br> ✓ `.flv` (H.264 and `AAC`) <br> ✓ `.wmv`, `.asf` <br> ✓ `.avi` <br> ✓ `.mkv` <br> ✓ `.mov` | Min: 320 x 240 pixels <br>Max: 1920 x 1,080 pixels |
+
+##### File size limits
+
+| Upload Method | File Size | Length | Description |
+| --- | --- | --- | --- |
+| Direct upload | ≤ 200 MB | ≤ 30 minutes | When uploading a file via the API directly by including a file in the request. This is the path used by the Azure AI Foundry UX.  |
+| File reference | ≤ 20 GB | ≤ 4 hours | When referencing a video file via a URL stored in Azure Blob Storage or similar |
 
    > [!NOTE]
    > Video analysis has the following limitations:
-   > * Direct upload: Maximum file size of 200 MB and maximum duration of 30 minutes when uploading video directly
    > * Frame sampling: Analyzes approximately one frame per second, which may miss quick movements or brief events
    > * Resolution: All frames are scaled to 512 x 512 pixels, which may affect visibility of small details or distant objects
 
