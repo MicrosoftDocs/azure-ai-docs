@@ -6,12 +6,13 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 08/18/2025
 ms.reviewer: fasantia 
 reviewer: santiagxf
 ms.author: mopeakande
 manager: nitinme
 author: msakande
+zone_pivot_groups: azure-ai-managed-compute-deployment
 ---
 
 # How to deploy and inference a managed compute deployment with code
@@ -29,6 +30,17 @@ In this article, you learn how to deploy models using the Azure Machine Learning
 - If you don't have one, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
 
 - Marketplace purchases enabled for your Azure subscription. Learn more [here](/azure/cost-management-billing/manage/enable-marketplace-purchases).
+
+::: zone pivot="ai-foundry-portal"
+
+placeholder
+
+
+::: zone-end
+
+
+::: zone pivot="python-sdk"
+
 
 ## Get the model ID
 
@@ -162,6 +174,8 @@ You can deploy managed compute models using the Azure Machine Learning SDK, but 
 ## Configure Autoscaling
 
 To configure autoscaling for deployments, you can go to Azure portal, locate the Azure resource typed `Machine learning online deployment` in the resource group of the AI project, and use Scaling menu under Setting. For more information on autoscaling, see [Autoscale online endpoints](/azure/machine-learning/how-to-autoscale-endpoints) in the Azure Machine Learning documentation. 
+
+::: zone-end
 
 ## Delete the deployment endpoint
 
