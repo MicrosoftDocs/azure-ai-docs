@@ -7,6 +7,7 @@ ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/20/2025
+ms.update-cycle: 180-days
 ms.custom:
   - subject-rbac-steps
 ---

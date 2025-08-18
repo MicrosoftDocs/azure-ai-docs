@@ -8,6 +8,7 @@ manager: nitinme
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 02/24/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange

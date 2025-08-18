@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 # Troubleshooting OData collection filters in Azure AI Search
 

@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Find encrypted objects and information

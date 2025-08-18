@@ -10,6 +10,7 @@ ms.custom:
   - build-2024
 ms.topic: reference
 ms.date: 07/14/2025
+ms.update-cycle: 365-days
 ---
 # Skill context and input annotation language
 

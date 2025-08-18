@@ -8,6 +8,7 @@ ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 07/31/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - sfi-image-nochange

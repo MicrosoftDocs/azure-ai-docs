@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 05/16/2022
+ms.update-cycle: 365-days
 ---
 
 # Stopwords reference (Microsoft analyzers)

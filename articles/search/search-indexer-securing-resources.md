@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 05/12/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexer access to content protected by Azure network security

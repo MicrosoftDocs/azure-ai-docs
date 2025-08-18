@@ -9,6 +9,7 @@ ms.service: azure-ai-search
 ms.devlang: powershell
 ms.topic: how-to
 ms.date: 08/01/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-azurepowershell
   - ignite-2023
