@@ -46,7 +46,7 @@ You can add Azure AI Search to a network security perimeter so that all indexing
 
 1. In the Azure portal, find the network security perimeter service for your subscription.
 
-1. Select **Resources** from the left-hand menu.
+1. From the left pane, select **Settings** > **Associated resources**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-resources.png" alt-text="Screenshot of the network security perimeter left-hand menu." border="true":::
 
@@ -56,11 +56,11 @@ You can add Azure AI Search to a network security perimeter so that all indexing
 
 1. Select the profile you created when you created the network security perimeter for **Profile**.
 
-1. Select **Associate**, and then select the search service you created.
+1. Select **Add**, and then select your search service.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-associate-select-resource.png" alt-text="Screenshot of network security perimeter associate resource button with the select resource screen." border="true":::
 
-1. Select **Associate** in the bottom left-hand section of the screen to create the association.
+1. Select **Associate** in the lower-left corner to create the association.
 
 <a id="network-security-perimeter-access-modes"></a>
 
@@ -83,33 +83,33 @@ The `publicNetworkAccess` setting determines search service association with a n
 
 #### Change the network security perimeter access mode
 
-1. Navigate to your network security perimeter resource in the Azure portal.
+1. Go to your network security perimeter resource in the Azure portal.
 
-1. Select **Resources** in the left-hand menu.
+1. From the left pane, select **Settings** > **Associated resources**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-resources.png" alt-text="Screenshot of the network security perimeter left-hand menu." border="true":::
 
 1. Find your search service in the table.
 
-1. Select the three dots in the far right of the search service row. Select **Change access mode** in the popup.`
+1. Select the three dots at the end of the row, and then select **Change access mode**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-resource-change-access-mode.png" alt-text="Screenshot of the change access mode button in the network security perimeter portal." border="true":::
 
-1. Select the desired access mode and select **Apply**.
+1. Select your desired access mode, and then select **Apply**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-resource-change-access-mode-apply.png" alt-text="Screenshot of the change access mode button in the network security perimeter portal with the access modes displayed." border="true":::
 
 ## Enable logging network access
 
-1. Navigate to your network security perimeter resource in the Azure portal.
+1. Go to your network security perimeter resource in the Azure portal.
 
-1. Select **Diagnostic settings** in the left-hand menu.
+1. From the left pane, select **Monitoring** > **Diagnostic settings**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-diagnostic-settings.png" alt-text="Screenshot of left-hand menu in the network security perimeter portal." border="true":::
 
 1. Select **Add diagnostic setting**.
 
-1. Enter any name such as "diagnostic" for **Diagnostic setting name**.
+1. Enter any name, such as "diagnostic," for **Diagnostic setting name**.
 
 1. Under **Logs**, select **allLogs**. **allLogs** ensures all inbound and outbound network access to resources in your network security perimeter is logged.
 
@@ -180,17 +180,17 @@ Network security perimeter supports two types of inbound access rules:
 
 To add an inbound access rule in the Azure portal:
 
-1. Navigate to your network security perimeter resource in the Azure portal.
+1. Go to your network security perimeter resource in the Azure portal.
 
-1. Select **Profiles** in the left-hand menu.
+1. From the left pane, select **Settings** > **Profiles**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-profiles.png" alt-text="Screenshot of the left hand menu with profiles selected." border="true":::
 
-1. Select the profile you're using with your network security perimeter
+1. Select the profile you're using with your network security perimeter.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-select-profile.png" alt-text="Screenshot of selecting the profile from network security perimeter." border="true":::
 
-1. Select **Inbound access rules** in the left-hand menu.
+1. From the left pane, select **Settings** > **Inbound access rules**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-inbound-access-rules.png" alt-text="Screenshot of the left hand menu with inbound access rules selected." border="true":::
 
@@ -202,9 +202,9 @@ To add an inbound access rule in the Azure portal:
 
    | Setting | Value |
    | ------- | ----- |
-   | Rule name | The name for the inbound access rule (for example, "MyInboundAccessRule").  |
-   | Source Type | Valid values are IP address ranges or subscriptions. |
-   | Allowed Sources | If you selected IP address ranges, enter the IP address range in CIDR format that you want to allow inbound access from. Azure IP ranges are available at [this link](https://www.microsoft.com/download/details.aspx?id=56519). If you selected Subscriptions, use the subscription you want to allow inbound access from. |
+   | Rule name | The name for the inbound access rule, such as "MyInboundAccessRule."  |
+   | Source type | Valid values are **IP address ranges** or **Subscriptions**. |
+   | Allowed sources | If you selected **IP address ranges**, enter the IP address range in CIDR format that you want to allow inbound access from. Azure IP ranges are available at [this link](https://www.microsoft.com/download/details.aspx?id=56519). If you selected **Subscriptions**, use the subscription you want to allow inbound access from. |
 
 1. Select **Add** to create the inbound access rule.
 
@@ -220,9 +220,9 @@ Network security perimeter supports outbound access rules based on the Fully Qua
 
 To add an outbound access rule in the Azure portal:
 
-1. Navigate to your network security perimeter resource in the Azure portal.
+1. Go to your network security perimeter resource in the Azure portal.
 
-1. Select **Profiles** in the left-hand menu.
+1. From the left pane, select **Settings** > **Profiles**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-profiles.png" alt-text="Screenshot of the left hand menu with profiles option selected." border="true":::
 
@@ -230,7 +230,7 @@ To add an outbound access rule in the Azure portal:
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-select-profile.png" alt-text="Screenshot of selecting the profile from network security perimeter." border="true":::
 
-1. Select **Outbound access rules** in the left-hand menu.
+1. From the left pane, select **Settings** > **Outbound access rules**.
 
    :::image type="content" source="media/search-security-network-security-perimeter/portal-network-security-perimeter-select-outbound-access-rules.png" alt-text="Screenshot of selecting the outbound access rules in the left-hand menu." border="true":::
 
@@ -242,9 +242,9 @@ To add an outbound access rule in the Azure portal:
 
    | Setting | Value |
    | ------- | ----- |
-   | Rule name | The name for the outbound access rule (for example, "MyOutboundAccessRule")  |
-   | Destination Type | Leave as FQDN |
-   | Allowed Destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to |
+   | Rule name | The name for the outbound access rule, such as "MyOutboundAccessRule." |
+   | Destination type | Leave as **FQDN**. |
+   | Allowed destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to. |
 
 1. Select **Add** to create the outbound access rule.
 
@@ -268,8 +268,8 @@ In order to test your connection through network security perimeter, you need ac
 
 You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to review and reconcile perimeter configurations.
 
-Be sure to use `2025-05-01`, which is the latest stable version. [Learn how to call the Management REST APIs](search-manage-rest.md).
+Be sure to use `2025-05-01`, which is the latest stable REST API version. [Learn how to call the Search Management REST APIs](search-manage-rest.md).
 
-## See also
+## Related content
 
 * [Use Azure role-based access control in Azure AI Search](search-security-rbac.md)
