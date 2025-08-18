@@ -52,27 +52,16 @@ If you can't find an answer to your problem using search, submit a new question 
 * [Azure AI Custom Vision](/answers/topics/azure-custom-vision.html)
 * [Azure Face](/answers/topics/azure-face.html)
 * [Azure AI Document Intelligence](/answers/topics/azure-form-recognizer.html)
-* [Video Indexer](/answers/topics/azure-media-services.html)
 
 **Language**
 
 * [Azure AI Immersive Reader](/answers/topics/azure-immersive-reader.html)
-* [Language Understanding (LUIS)](/answers/topics/azure-language-understanding.html)
-* [Azure QnA Maker](/answers/topics/azure-qna-maker.html)
 * [Azure AI Language](/answers/topics/azure-text-analytics.html)
 * [Azure Translator](/answers/topics/azure-translator.html)
 
 **Speech**
 
 * [Azure AI Speech](/answers/topics/azure-speech.html)
-
-**Decision**
-
-* [Azure AI Anomaly Detector](/answers/topics/azure-anomaly-detector.html)
-* [Content Moderator](/answers/topics/azure-content-moderator.html)
-* [Azure AI Metrics Advisor](/answers/topics/148981/azure-metrics-advisor.html)
-* [Azure AI Personalizer](/answers/topics/azure-personalizer.html)
-
 
 ## Post a question to Stack Overflow
 
@@ -86,7 +75,6 @@ If you submit a new question to Stack Overflow, use one or more of the following
 
 * [Azure AI services](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
 
-
 **Azure OpenAI**
 
 * [Azure OpenAI](https://stackoverflow.com/search?q=azure+openai)
@@ -97,26 +85,16 @@ If you submit a new question to Stack Overflow, use one or more of the following
 * [Azure AI Custom Vision](https://stackoverflow.com/search?q=azure+custom+vision)
 * [Azure Face](https://stackoverflow.com/search?q=azure+face)
 * [Azure AI Document Intelligence](https://stackoverflow.com/search?q=azure+form+recognizer)
-* [Video Indexer](https://stackoverflow.com/search?q=azure+video+indexer)
 
 **Language**
 
 * [Azure AI Immersive Reader](https://stackoverflow.com/search?q=azure+immersive+reader)
-* [Language Understanding (LUIS)](https://stackoverflow.com/search?q=azure+luis+language+understanding)
-* [Azure QnA Maker](https://stackoverflow.com/search?q=azure+qna+maker)
 * [Azure AI Language service](https://stackoverflow.com/search?q=azure+text+analytics)
 * [Azure Translator](https://stackoverflow.com/search?q=azure+translator+text)
 
 **Speech**
 
 * [Azure AI Speech service](https://stackoverflow.com/search?q=azure+speech)
-
-**Decision**
-
-* [Azure AI Anomaly Detector](https://stackoverflow.com/search?q=azure+anomaly+detector) 
-* [Content Moderator](https://stackoverflow.com/search?q=azure+content+moderator)
-* [Azure AI Metrics Advisor](https://stackoverflow.com/search?q=azure+metrics+advisor)
-* [Azure AI Personalizer](https://stackoverflow.com/search?q=azure+personalizer)
 
 ## Other support options
 You can also use the following forums to ask questions and get help:
