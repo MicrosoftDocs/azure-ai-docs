@@ -2,8 +2,8 @@
 title: Guidance for integration and responsible use with Language Understanding
 titleSuffix: Azure AI services
 description: Guidance for how to deploy Language Understanding responsibly, based on the knowledge and understanding from the team that created this product.
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

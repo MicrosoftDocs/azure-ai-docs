@@ -2,8 +2,8 @@
 title: Transparency note for Document Intelligence
 titleSuffix: Azure AI services
 description: This document details some example use cases and tips for using Document Intelligence.
-author: sanjeev3
-ms.author: sajagtap
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: article
