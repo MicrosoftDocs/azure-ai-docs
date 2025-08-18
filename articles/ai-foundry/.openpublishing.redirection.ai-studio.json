@@ -216,6 +216,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/how-to/autoscale.md",
+            "redirect_url": "/azure/ai-services/autoscale?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-mistral-codestral.md",
             "redirect_url": "/azure/ai-foundry/how-to/deploy-models-mistral-codestral",
             "redirect_document_id": true
