@@ -148,3 +148,6 @@ Given this limited space, it's important to use it as efficiently as possible.
 * [Learn more about Azure OpenAI](../overview.md).
 * Get started with the ChatGPT model with [the ChatGPT quickstart](../chatgpt-quickstart.md).
 * For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples)
+
+## External resources
+* [God Tier Prompts](https://www.godtierprompts) - A community-driven leaderboard for the best AI prompts.
