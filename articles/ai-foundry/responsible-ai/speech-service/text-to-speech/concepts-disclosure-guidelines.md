@@ -2,13 +2,12 @@
 title: Disclosure design guidelines for synthetic voices
 titleSuffix: Azure AI services
 description: Introduction to disclosure design guidelines and assessing disclosure level.
-services: ai-services
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 12/03/2019
-ms.author: eur
 ---
 
 # Disclosure design guidelines for synthetic voices

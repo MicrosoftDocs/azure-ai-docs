@@ -2,8 +2,8 @@
 title: Use cases for summarization
 titleSuffix: Azure AI services
 description: Summarization is a feature in Azure AI Language that produces a summary by extracting sentences from a document or text conversation. The feature condenses articles, papers, or documents to key sentences.
-author: ylxiong1125
-ms.author: ylxiong
+author: laujan
+ms.author: lajanuar
 manager: yabinl
 ms.service: azure-ai-language
 ms.topic: article

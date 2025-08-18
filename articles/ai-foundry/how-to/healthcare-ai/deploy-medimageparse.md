@@ -65,7 +65,7 @@ To __deploy the model through the UI__:
     > For deployment to a self-hosted managed compute, you must have enough quota in your subscription. If you don't have enough quota available, you can use our temporary quota access by selecting the option **I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours.**
 
 1. Select the checkbox in the deployment window to use the temporary shared quota.
-1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. If you're satisfied with these settings, select **Deploy**.
+1. The deployment window displays settings that include a virtual machine selection, an endpoint name, and a deployment name. You can modify these settings. Once you're satisfied with them, select **Deploy**.
 
 To __deploy the model programmatically__, see [How to deploy and inference a managed compute deployment with code](../deploy-models-managed.md).
 

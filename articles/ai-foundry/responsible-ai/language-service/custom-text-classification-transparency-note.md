@@ -2,8 +2,8 @@
 title: Use cases for custom text classification
 titleSuffix: Azure AI services
 description: Learn about use cases for custom text classification.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

@@ -2,8 +2,8 @@
 title: Azure AI Search transparency note
 titleSuffix: Azure AI Search
 description: Azure AI Search basics, use cases, and terms
-author: PatrickFarley
-ms.author: pafarley
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: article

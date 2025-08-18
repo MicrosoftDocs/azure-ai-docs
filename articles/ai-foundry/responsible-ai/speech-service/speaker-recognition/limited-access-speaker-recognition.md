@@ -2,8 +2,8 @@
 title: Limited Access to Speaker Recognition
 titleSuffix: Azure AI services
 description: This article explains why Speaker Recognition is available as Limited Access feature and how to request access.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

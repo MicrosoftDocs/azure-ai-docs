@@ -3,6 +3,7 @@ title: How to build with prompt flow
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build with prompt flow.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024

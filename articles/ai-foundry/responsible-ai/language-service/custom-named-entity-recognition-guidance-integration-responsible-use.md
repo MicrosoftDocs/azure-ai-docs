@@ -2,8 +2,8 @@
 title: Guidance for integration and responsible use with custom NER
 titleSuffix: Azure AI services
 description: Guidance for integration and responsible use with custom named entity recognition
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article
