@@ -187,7 +187,7 @@ Aggregate content from diverse formats, cross-reference details, validate consis
 - Medical claims: Doctor notes + lab reports + phone consultations
 - Multimedia RFP submissions: Proposal PDF + product images + explainer videos
 
-:::image type="content" source="media/overview/invoice-mixed.png" alt-text="Scan of a sample invoice form." lightbox="media/overview/invoice-mixed.png":::
+:::image type="content" source="media/overview/invoice-mixed.png" alt-text="Scan of a sample tax invoice form." lightbox="media/overview/invoice-mixed.png":::
 :::image type="content" source="media/overview/receipt-mixed.png" alt-text="Scan of a sample receipt form." lightbox="media/overview/receipt-mixed.png":::
 
 **Recommendation**:
