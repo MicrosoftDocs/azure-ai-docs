@@ -1,5 +1,5 @@
 ---
-title: Autoscale AI services limits
+title: Autoscale Azure AI services limits
 description: Learn how to use the autoscale feature for Azure AI services to dynamically adjust the rate limit of your service.
 author: PatrickFarley
 ms.author: pafarley
@@ -10,9 +10,9 @@ ms.topic: how-to
 ms.date: 06/30/2025
 ---
 
-# Autoscale AI services limits
+# Autoscale Azure AI services limits
 
-This article provides guidance on how customers can access higher rate limits on certain Azure AI services resources.
+This article provides guidance on how customers can access higher rate limits on certain Azure AI services resources, including those AI services used with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) .
 
 ## Overview
 
