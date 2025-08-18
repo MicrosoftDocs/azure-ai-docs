@@ -19,7 +19,7 @@ Learn how to integrate face liveness detection into your workflow using server-s
 > [!TIP]
 > For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
-In this tutorial, you’ll learn how to run a front-end application with an app server to perform liveness detection, optionally adding [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
+In this tutorial, you’ll learn how to run a frontend application with an app server to perform liveness detection, optionally adding [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
 
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
 
@@ -39,7 +39,7 @@ In this tutorial, you’ll learn how to run a front-end application with an app 
 
 ## Prepare the frontend application
 
-We provide SDKs in multiple languages to simplify integration with your front-end application. Refer to the README for your chosen SDK below to integrate both the UI and required code.
+We provide SDKs in multiple languages to simplify integration with your frontend application. Refer to the README for your chosen SDK below to integrate both the UI and required code.
 
 > [!IMPORTANT]
 > Each frontend SDK requires access to a gated asset to successfully compile. Instructions on how to set this up are mentioned below.
@@ -60,7 +60,7 @@ For JavaScript Web:
 - Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
 - Framework Support: Works with popular frameworks such as React (including Next.js), Vue.js, and Angular.
 
-Once integrated into your front-end application, the SDK will start the camera, guide the user to adjust their position, compose the liveness payload, and send it to the Azure AI Face service for processing.
+Once integrated into your frontend application, the SDK will start the camera, guide the user to adjust their position, compose the liveness payload, and send it to the Azure AI Face service for processing.
 
 Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—e.g., GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos).
 
