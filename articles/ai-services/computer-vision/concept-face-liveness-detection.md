@@ -87,7 +87,7 @@ For detailed guidance on how to interpret and act on abuse detection results, se
 
 ## Network isolation
 
-Optionally, we allow network isolation capabilities to give developers more control over how liveness detection calls are made from front-end clients. With this new option, you can disable public network access entirely for Liveness Detection API calls, ensuring they are only accessible within your defined private network boundaries.
+Optionally, we allow network isolation capabilities to give developers more control over how liveness detection calls are made from front-end clients. With this option, you can disable public network access entirely for Liveness Detection API calls, ensuring they are only accessible within your defined private network boundaries.
 
 This capability is especially valuable in regulated or enterprise environments where compliance policies require all service calls to remain within a controlled network perimeter. It also helps reduce the attack surface by preventing direct calls from untrusted or unknown networks. [Learn more](./how-to/liveness-use-network-isolation.md)
 
