@@ -13,7 +13,7 @@ ms.custom:
   - devx-track-azurecli
   - devx-track-python
   - ignite-2024
-  - update-code5
+  - update-code6
   - build-aifnd
   - build-2025
   - peer-review-program
