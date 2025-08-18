@@ -5,7 +5,6 @@ description: Learn how to use grounding data from Azure AI Search with a chat mo
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.custom:
   - ignite-2024
 ms.topic: quickstart

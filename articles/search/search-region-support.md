@@ -7,7 +7,6 @@ ms.author: haileytapia
 manager: nitinme
 ms.date: 08/08/2025
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: conceptual
 ms.custom:
   - references_regions

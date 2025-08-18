@@ -7,7 +7,6 @@ ms.author: heidist
 manager: nitinme
 ms.date: 08/18/2025
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: concept-article
 ms.custom:
   - references_regions
