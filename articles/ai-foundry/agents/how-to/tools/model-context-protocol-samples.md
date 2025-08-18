@@ -146,9 +146,9 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 :::zone pivot="python"
 
-## Initialize the client
+## Code example
 
-The code begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client:
+The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
 
 
 ```python
@@ -198,7 +198,6 @@ with project_client:
         instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
         tools=mcp_tool.definitions,
     )
-    # [END create_agent_with_mcp_tool]
 
     print(f"Created agent, ID: {agent.id}")
     print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
@@ -214,8 +213,6 @@ with project_client:
         content="Please summarize the Azure REST API specifications Readme",
     )
     print(f"Created message, ID: {message.id}")
-
-    # [START handle_tool_approvals]
     # Create and process agent run in thread with MCP tools
     mcp_tool.update_headers("SuperSecret", "123456")
     # mcp_tool.set_approval_mode("never")  # Uncomment to disable approval requirement
@@ -255,7 +252,6 @@ with project_client:
                 )
 
         print(f"Current run status: {run.status}")
-        # [END handle_tool_approvals]
 
     print(f"Run completed with status: {run.status}")
     if run.status == "failed":
