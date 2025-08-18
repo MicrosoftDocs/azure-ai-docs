@@ -6,7 +6,6 @@ author: gmndrg
 ms.author: gimondra
 ms.date: 07/16/2025
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: conceptual
 ms.custom:
   - build-2025
