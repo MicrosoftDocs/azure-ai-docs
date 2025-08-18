@@ -251,7 +251,7 @@ The new CLU models have better semantic understanding of language than in LUIS, 
 
 ### If I don’t migrate my LUIS apps, are they deleted? 
 
-Your existing LUIS applications are available until October 1, 2025. After that time you'll no longer be able to use those applications, the service endpoints will no longer function, and the applications will be permanently deleted. 
+Your existing LUIS applications are available until March 31, 2025. After that time you'll no longer be able to use those applications, the service endpoints will no longer function, and the applications will be permanently deleted. Beginning October 31, 2025, you'll no longer have access to the LUIS portal online. 
 
 ### Are .LU files supported on CLU? 
 
