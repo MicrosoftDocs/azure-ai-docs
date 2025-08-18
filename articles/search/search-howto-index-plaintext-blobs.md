@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 02/24/2025
+ms.update-cycle: 365-days
 ---
 
 # Index plain text blobs and files in Azure AI Search

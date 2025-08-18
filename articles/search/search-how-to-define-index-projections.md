@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.update-cycle: 180-days
 ---
 
 # Define an index projection for parent-child indexing

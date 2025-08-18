@@ -2,6 +2,7 @@
 title: Monitoring data reference for Azure AI Search
 description: This article contains important reference material you need when you monitor Azure AI Search.
 ms.date: 07/25/2025
+ms.update-cycle: 365-days
 ms.custom: horz-monitor
 ms.topic: reference
 author: HeidiSteen

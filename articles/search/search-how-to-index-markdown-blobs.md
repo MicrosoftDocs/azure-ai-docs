@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 180-days
 ---
 
 # Index Markdown blobs and files in Azure AI Search

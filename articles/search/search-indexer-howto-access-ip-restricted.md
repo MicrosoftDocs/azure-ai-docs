@@ -8,6 +8,7 @@ ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange

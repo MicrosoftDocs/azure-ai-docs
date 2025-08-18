@@ -12,6 +12,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 02/24/2025
+ms.update-cycle: 365-days
 ---
 
 # Upgrade versions of the Azure Search .NET Management SDK
