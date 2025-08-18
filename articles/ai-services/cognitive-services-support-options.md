@@ -118,6 +118,10 @@ If you submit a new question to Stack Overflow, use one or more of the following
 * [Azure AI Metrics Advisor](https://stackoverflow.com/search?q=azure+metrics+advisor)
 * [Azure AI Personalizer](https://stackoverflow.com/search?q=azure+personalizer)
 
+## Other support options
+You can also use the following forums to ask questions and get help:
+* Discord - https://aka.ms/foundry/discord
+* GitHub - https://aka.ms/foundry/forum
 
 ## Submit feedback
 
