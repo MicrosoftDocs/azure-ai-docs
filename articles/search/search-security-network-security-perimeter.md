@@ -9,15 +9,10 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 08/18/2025
 ---
 
 # Add a search service to a network security perimeter
-
-> [!IMPORTANT]
-> Although network security perimeter is generally available, its implementation in Azure AI Search remains in public preview under [supplemental terms of use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might be unsupported or have constrained capabilities.
->
-> This article and [What's new in Azure AI Search](whats-new.md) will announce when network security perimeter becomes generally available for Azure AI Search.
 
 A network security perimeter is a logical network boundary around your platform-as-a-service (PaaS) resources that are deployed outside of a virtual network. It establishes a perimeter for controlling public network access to resources like Azure AI Search, [Azure Storage](/azure/storage/common/storage-network-security-perimeter), and [Azure OpenAI](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
@@ -27,7 +22,7 @@ This article explains how to join an Azure AI Search service to a [network secur
 * Block any data exfiltration from a search service to other services outside the perimeter.
 * Allow access to your search service using inbound and outbound access capabilities of the network security perimeter.
 
-You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01-preview&preserve-view=true) to view and synchronize the configuration settings.
+You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to view and synchronize the configuration settings.
 
 ## Limitations and considerations
 
@@ -271,9 +266,9 @@ In order to test your connection through network security perimeter, you need ac
 
 ## View and manage network security perimeter configuration
 
-You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01preview&preserve-view=true) to review and reconcile perimeter configurations.
+You can use the [Network Security Perimeter Configuration REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to review and reconcile perimeter configurations.
 
-Be sure to use preview API version `2024-06-01-preview` or a later preview. [Learn how to call the Management REST APIs](search-manage-rest.md).
+Be sure to use `2025-05-01`, which is the latest stable version. [Learn how to call the Management REST APIs](search-manage-rest.md).
 
 ## See also
 
