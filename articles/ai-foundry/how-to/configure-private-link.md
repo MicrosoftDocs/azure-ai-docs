@@ -445,6 +445,10 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
 :::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
 
 1. Set the public network access (PNA) flag of each of your resources to `Disabled`. Disabling public network access locks down inbound access from the public internet to the resources.
+
+   > [!NOTE]
+   > When the Foundry resources' public network access (PNA) flag is set to Disabled, actions such as deploying a model is possible for the user from their local machine. Only data actions such as building an Agent or creating a new evaluation is not possible for the user, unless they are securely accessing their Foundry resource using a VPN, VM, or ExpressRoute from their local machine.
+
 1. Create a private endpoint for each of your Azure resources that are required for a Standard Agent:
 
     - Azure Storage Account
