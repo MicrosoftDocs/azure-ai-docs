@@ -154,7 +154,7 @@ additionalContent:
         - text: Text to speech
           url: rest-text-to-speech.md
         - text: Conversation transcription
-          url: https://signature.centralus.cts.speech.microsoft.com/UI/index.html
+          url: /azure/ai-services/speech-service/speech-to-text
       - title: Resources
         links:
         - text: Pricing
