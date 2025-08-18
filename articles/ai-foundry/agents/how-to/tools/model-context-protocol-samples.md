@@ -13,9 +13,13 @@ zone_pivot_groups: selection-mcp-code
 ms.custom: azure-ai-agents-code
 ---
 
-# Code samples for the Model Context Protocol tool (preview)
+# How to use the Model Context Protocol tool (preview)
 
 Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
+
+## Prerequisites
+
+* A [configured MCP server](./model-context-protocol.md#setup), such as the GitHub MCP server.
 
 :::zone pivot="csharp"
 
@@ -146,7 +150,7 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 :::zone pivot="python"
 
-## Code example
+## Create an Agent with the MCP Tool
 
 The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
 
@@ -317,6 +321,11 @@ with project_client:
     agents_client.delete_agent(agent.id)
     print("Deleted agent")
 ```
+
+## Next steps
+
+* [Tools overview](./overview.md)
+* [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-agents/samples)
 
 :::zone-end
 
