@@ -29,7 +29,7 @@ This is the one-time, fixed cost associated with teaching a base model your spec
 It's straightforward to estimate the costs for SFT & DPO. You're charged based on the number of tokens in your training file, and the number of epochs for your training job.
 
 $$
-\text{price} = \text{\# training tokens} \times \text{\# epochs} \times \text{price per token}
+\text{price} = \text{\# training tokens} \times \text{\# epochs} \times \text{training price per token}
 $$
 
 In general, smaller models and more recent models have lower prices per token than larger, older models. To estimate the number of tokens in your file, you can use the [tiktoken library](https://github.com/openai/tiktoken) – or, for a less precise estimate, one word is roughly equivalent to four tokens.
@@ -37,7 +37,7 @@ In general, smaller models and more recent models have lower prices per token th
 We offer both regional and global training for SFT; if you don't need data residency, global training allows you to train at a discounted rate.
 
 > [!IMPORTANT]
-> We don't charge you for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks.
+> We don't charge you for time spent in queue, failed jobs, jobs canceled prior to training beginning, or data safety checks. Training token price is different from inferencing input/ output token price. Please refer the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service)
 
 #### Example: Supervised fine-tuning (SFT)
 
