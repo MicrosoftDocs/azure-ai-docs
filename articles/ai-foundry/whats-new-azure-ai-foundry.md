@@ -5,6 +5,7 @@ ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
+ms.service: azure-ai-foundry
 ms.custom: August-2025
 ms.date: 08/04/2025
 ---
