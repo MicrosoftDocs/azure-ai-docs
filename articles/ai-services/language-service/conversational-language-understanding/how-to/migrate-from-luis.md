@@ -298,7 +298,7 @@ No, you can't export CLU to containers.
 
 Any special characters in the LUIS application name are removed. If the cleared name length is greater than 50 characters, the extra characters are removed. If the name after removing special characters is empty (for example, if the LUIS application name was `@@`), the new name is _untitled_. If there's already a conversational language understanding project with the same name, the migrated LUIS application is appended with `_1` for the first duplicate and increase by one for each subsequent duplicate. If the new name's length is 50 characters and it needs to be renamed, the last one or two characters are removed.
 
-## Migration from LUIS Q&A
+## Migration from LUIS git p
 
 If you have any questions that were unanswered in this article, consider leaving your questions at our [Microsoft Q&A thread](https://aka.ms/luis-migration-qna-thread).
 
