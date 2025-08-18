@@ -74,7 +74,7 @@ Two architecture options are available when you use CMKs with Azure AI Hub:
 
 You must use Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. Your Azure resources and the Key Vault resources must be in the same region and in the same Microsoft Entra tenant. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-- Enable both the **Soft Delete** and **Do Not Purge** properties on the key vault.
+- Enable both the **Soft-delete** and **Purge protection** properties on the key vault.
 - Allow trusted Microsoft services to access the key vault if you use the [key vault firewall](/azure/key-vault/general/access-behind-firewall).
 - Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity the following permissions on your key vault: Get key, Wrap key, Unwrap key.
 - Note that only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
