@@ -1,5 +1,5 @@
 ---
-title: Vector store database
+title: Vector store
 titleSuffix: Azure AI Search
 description: Describes concepts behind vector storage in Azure AI Search.
 author: robertklee
@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 08/01/2025
+ms.update-cycle: 365-days
 ---
 
 # Vector indexes in Azure AI Search

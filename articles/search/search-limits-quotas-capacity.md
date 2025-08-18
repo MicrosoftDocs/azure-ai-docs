@@ -8,6 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/30/2025
+ms.update-cycle: 180-days
 ms.custom:
   - references_regions
   - build-2024

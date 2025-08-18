@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 07/25/2025
+ms.update-cycle: 365-days
 ---
 
 # How to model relational SQL data for import and indexing in Azure AI Search

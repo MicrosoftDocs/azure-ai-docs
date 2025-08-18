@@ -7,6 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 07/28/2025
+ms.update-cycle: 180-days
 ms.custom:
   - devx-track-csharp
   - build-2025

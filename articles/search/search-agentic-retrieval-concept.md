@@ -5,9 +5,8 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/11/2025
+ms.date: 08/18/2025
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: concept-article
 ms.custom:
   - references_regions
@@ -18,15 +17,15 @@ ms.custom:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It works by:
+In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed for complex questions posed by users or agents in chat and copilot apps. It's intended for [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md) patterns. Here's how it works:
 
-+ Using a large language model (LLM) to break down complex queries into smaller, focused subqueries. You can include chat history for additional context.
++ Uses a large language model (LLM) to break down a complex query into smaller, focused subqueries for better coverage over your indexed content. Subqueries can include chat history for extra context.
 
-+ Running multiple subqueries simultaneously to search your index. Each subquery is semantically reranked to find the most relevant matches.
++ Runs the multiple subqueries in parallel. Each subquery is semantically reranked to find the most relevant matches.
 
-+ Combining the best results into a unified response that your LLM can use to generate answers with your proprietary content.
++ Combines the best results into a unified response that your LLM can use to generate answers with your proprietary content.
 
-This high-performance pipeline helps you return comprehensive answers to complex questions quickly.
+This high-performance pipeline helps you generate high quality grounding data for your chat application, with the ability to answer complex questions quickly.
 
 Programmatically, agentic retrieval is supported through a new [Knowledge Agents object](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) in the 2025-05-01-preview data plane REST API and in Azure SDK preview packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 

@@ -7,6 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 06/04/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange

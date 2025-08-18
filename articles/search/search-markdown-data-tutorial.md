@@ -7,6 +7,7 @@ ms.author: mdonovan
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - sfi-ropc-nochange

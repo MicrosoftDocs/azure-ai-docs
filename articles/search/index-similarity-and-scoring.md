@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 08/13/2025
+ms.update-cycle: 365-days
 ---
 
 # Relevance in keyword search (BM25 scoring)

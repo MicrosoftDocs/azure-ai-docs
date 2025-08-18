@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/07/2025
+ms.date: 08/18/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -28,6 +28,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Service upgrade](search-how-to-upgrade.md) | Service | Now generally available through [Upgrade Service (REST API)](/rest/api/searchmanagement/services/upgrade?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
 | [Pricing tier change](search-capacity-planning.md#change-your-pricing-tier) | Service | Now generally available through the `sku` property in [Update Service (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true) and the Azure portal. |
 | [User-assigned managed identity assignment](search-how-to-managed-identities.md) | Security | Now generally available through the `identity` property that associates a user-assigned managed identity with a search service configuration. Only the assignment step, via the [Update Service (REST API)](/rest/api/searchmanagement/services/update?view=rest-searchmanagement-2025-05-01&preserve-view=true) or the Azure portal, is generally available. APIs used for data source or model connections that include a user-assigned managed identity are still in preview. |
+| [Network security perimeter](search-security-network-security-perimeter.md) | Security | Now generally available through the [Azure Virtual Network Manager REST APIs](/rest/api/networkmanager/), which are used to join a search service, and the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true), which are used to view and synchronize the configuration settings. Portal support for both steps is also generally available. |
 
 ## May 2025
 

@@ -9,6 +9,7 @@ ms.custom:
   - build-2024
 ms.topic: reference
 ms.date: 07/17/2024
+ms.update-cycle: 365-days
 ---
 
 #	Azure AI Foundry model catalog vectorizer

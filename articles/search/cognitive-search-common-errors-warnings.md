@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 02/19/2025
+ms.update-cycle: 180-days
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search

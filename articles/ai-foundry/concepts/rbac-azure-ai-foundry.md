@@ -22,7 +22,7 @@ In this article, you learn how to manage access (authorization) to your [Azure A
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types). Use the selector at the top of this article to switch between the two project types.
 
 > [!WARNING]
-> Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role doesn't have the ability to create a compute instance, the option to create a compute instance isn't available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error. 
+> Applying some roles might limit UI functionality in Azure AI Foundry portal for other users. For example, if a user's role doesn't have the ability to create a compute instance, the option to create a compute instance isn't available in studio. This behavior is expected, and prevents the user from attempting operations that would return an access denied error.
 
 ::: zone pivot="fdp-project"
 
@@ -60,7 +60,6 @@ Use the following table to help understand what privileges are given to each new
 | **Owner**                | ✔                     | ✔                        |                                               | ✔ (assign any role to any user)                  | ✔                                       | ✔                                               |
 | **Contributor**          | ✔                     | ✔                        |                                               |                                                 | ✔                                       | ✔                                               |
 | **Reader**               |                         |                          |                                               |                                                 | ✔                                       |                                                 |
-
 
 ## Default roles for the project
 
@@ -104,6 +103,8 @@ The full set of permissions for the new **Azure AI User** role are as follows:
     }
 }
 ```
+> [!NOTE]
+> If only the Azure AI User role is assigned to your user principle, and no other Azure built-in roles, a required Reader role on the Foundry resource must be assigned at minimum to satisfy least privilege access.
 
 ### Azure AI Project Manager
 

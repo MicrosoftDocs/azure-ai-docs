@@ -6,7 +6,6 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: quickstart
 ms.date: 03/04/2025
 ms.custom:

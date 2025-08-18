@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 05/27/2025
+ms.update-cycle: 365-days
 ---
 
 # Document Extraction cognitive skill

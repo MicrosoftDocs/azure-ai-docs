@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 04/18/2023
+ms.update-cycle: 365-days
 translation.priority.mt:
   - "de-de"
   - "es-es"

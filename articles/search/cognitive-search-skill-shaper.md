@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 02/22/2024
+ms.update-cycle: 365-days
 ---
 
 # Shaper cognitive skill

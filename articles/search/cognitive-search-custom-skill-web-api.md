@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Custom Web API skill in an Azure AI Search enrichment pipeline

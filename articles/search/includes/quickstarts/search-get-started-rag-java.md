@@ -5,6 +5,7 @@ ms.author: karler
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 08/08/2025
+ai-usage: ai-assisted
 ---
 ## Prerequisites
 

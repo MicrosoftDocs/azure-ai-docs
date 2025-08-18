@@ -8,6 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 03/18/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange

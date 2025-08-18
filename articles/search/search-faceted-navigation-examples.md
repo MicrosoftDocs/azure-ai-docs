@@ -9,6 +9,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/04/2025
+ms.update-cycle: 365-days
 ---
 
 # Faceted navigation examples

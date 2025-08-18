@@ -9,6 +9,7 @@ ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 08/08/2025
+ms.update-cycle: 180-days
 ---
 
 # Upgrade your Azure AI Search service in the Azure portal

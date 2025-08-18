@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 07/11/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexer connections to Azure SQL Managed Instance through a public endpoint
