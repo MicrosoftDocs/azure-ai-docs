@@ -107,11 +107,11 @@ In-context learning helps:
 
 To add a label sample, go to a document extraction result page in the Azure AI Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label will predict all the fields out of the box.
 
-:::image type="content" source="../media/document/in-context-learning.png" alt-text="Screenshot of auto labelling an invoice sample.":::
+:::image type="content" source="../media/document/in-context-learning.png" lightbox="../media/document/in-context-learning.png" alt-text="Screenshot of auto labelling an invoice sample.":::
 
 Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
 
-:::image type="content" source="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels":::
+:::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels":::
 
 > [!NOTE]
 > Labeled samples can be added in the Azure AI Foundry portal. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`)
