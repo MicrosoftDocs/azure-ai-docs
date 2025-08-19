@@ -191,7 +191,7 @@ PUT https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 
 + `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs that can use the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. You can create either [search index knowledge sources](search-knowledge-source-how-to-multi-index.md) or [blob knowledge sources](search-knowledge-source-how-to-blob.md).
++ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs that can use the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. You can create either [search index knowledge sources](search-knowledge-source-how-to-index.md) or [blob knowledge sources](search-knowledge-source-how-to-blob.md).
 
 + `defaultRerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
