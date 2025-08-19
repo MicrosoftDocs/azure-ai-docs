@@ -8,8 +8,8 @@ ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
 ms.date: 08/14/2025
 ms.author: mopeakande
-ms.reviewer: shiyingfu
-reviewer: swingfu
+ms.reviewer: haakar
+reviewer: haakar
 ---
 
 # Azure AI Foundry Models quotas and limits
