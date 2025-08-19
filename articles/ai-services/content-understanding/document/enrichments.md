@@ -31,7 +31,7 @@ To address these enterprise needs, Azure AI Content Understanding supports the f
 | **In-context learning** | Teaches the model new patterns using examples and correcting the predicted outputs for incorrect values, improving overall accuracy and extraction quality. | Rapidly adapts to new formats or edge cases |
 
 > [!NOTE]
-> These features are only available for fields with the **Extract** field type.
+> These features are only available for the extractive field type. (Method == Extract)
 
 Learn more about these features below.
 
@@ -89,7 +89,7 @@ In this case, your automation pipeline can post the billing address directly to 
 
 ## In-context learning: Teach the model by giving examples
 
-If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. In-context learning allows you to providing additional labeled examples in your prompt or API call to guide the model’s behavior without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules dynamically by correcting itself.
+If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. In-context learning allows you to providing additional labeled examples in Foundry to guide the model’s behavior without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules by correcting itself.
 
 To enhance the model quality: 
 - For datasets with minimal template variations, you can add just a single labeled example. 
@@ -105,15 +105,22 @@ In-context learning helps:
 - Rapidly onboard new templates without labeling data within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
-To add a label sample, go to a document extraction result page in the Azure AI Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label will predict all the fields out of the box. Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
+To add a label sample, go to a document extraction result page in the Azure AI Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label will predict all the fields out of the box.
 
+:::image type="content" source="../media/document/in-context-learning.png" alt-text="Screenshot of auto labelling an invoice sample.":::
+
+Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
+
+:::image type="content" source="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels":::
+
+> [!NOTE]
+> Labeled samples can be added in the Azure AI Foundry portal. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`)
 
 ### Example
 
 You start receiving invoices from a new vendor that uses the label "Invoice Total" instead of "Amount Due." The model keeps missing the correct value. Instead of retraining, you can add an example of the different invoice vendor.
 
 The model will now refer to this pattern to correctly extract the value in future similar types of documents, even though it wasn’t part of the original training data.
-
 
 ## A complete workflow
 
@@ -122,11 +129,10 @@ For building an intelligent document automation pipeline, these capabilities wil
 - Start and end dates
 - Cancellation clause
 
-To ensure quality and trust:
-- **Grounding** gives your legal team full traceability to every field.
+To ensure quality and trust, which is critical for enterprise-scale document understanding.:
+- **Grounding** gives your team full traceability to every field.
 - **Confidence scores** helps you automate, as human review is needed only when threshold is low.
-- **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few examples.
+- **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few labelled examples.
 
-This end-to-end solution is accurate, explainable, and adaptable, which is critical for enterprise-scale document understanding.
 
 
