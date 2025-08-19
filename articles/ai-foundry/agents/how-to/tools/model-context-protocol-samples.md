@@ -6,16 +6,20 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 08/18/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-mcp-code
 ms.custom: azure-ai-agents-code
 ---
 
-# Code samples for the Model Context Protocol tool (preview)
+# How to use the Model Context Protocol tool (preview)
 
 Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
+
+## Prerequisites
+
+* A [configured MCP server](./model-context-protocol.md#setup), such as the GitHub MCP server.
 
 :::zone pivot="csharp"
 
@@ -146,18 +150,27 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 :::zone pivot="python"
 
-## Initialize the client
+## Create an Agent with the MCP Tool
 
-The code begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client:
+The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
+
 
 ```python
 # Import necessary libraries
+
 import os, time
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-from azure.ai.agents.models import McpTool, RequiredMcpToolCall, SubmitToolApprovalAction, ToolApproval
+from azure.ai.agents.models import (
+    ListSortOrder,
+    McpTool,
+    RequiredMcpToolCall,
+    RunStepActivityDetails,
+    SubmitToolApprovalAction,
+    ToolApproval,
+)
 
-# Get the MCP server configuration from environment variables
+# Get MCP server configuration from environment variables
 mcp_server_url = os.environ.get("MCP_SERVER_URL", "https://gitmcp.io/Azure/azure-rest-api-specs")
 mcp_server_label = os.environ.get("MCP_SERVER_LABEL", "github")
 
@@ -165,13 +178,7 @@ project_client = AIProjectClient(
     endpoint=os.environ["PROJECT_ENDPOINT"],
     credential=DefaultAzureCredential(),
 )
-```
-
-## Set up the tool
-
-To add the MCP server to the agent, use the following example, which takes the MCP server label and URL from the previous step. You can also add or remove allowed tools dynamically through the `allow_tool` parameter.
-
-```python
+# Initialize agent MCP tool
 mcp_tool = McpTool(
     server_label=mcp_server_label,
     server_url=mcp_server_url,
@@ -182,102 +189,143 @@ mcp_tool = McpTool(
 search_api_code = "search_azure_rest_api_code"
 mcp_tool.allow_tool(search_api_code)
 print(f"Allowed tools: {mcp_tool.allowed_tools}")
-```
 
-## Create an agent
-
-You create an agent by using the `project_client.agents.create_agent` method:
-
-```python
-# Create a new agent.
-# NOTE: To reuse an existing agent, fetch it with get_agent(agent_id)
+# Create agent with MCP tool and process agent run
 with project_client:
     agents_client = project_client.agents
 
     # Create a new agent.
-    # NOTE: To reuse an existing agent, fetch it with get_agent(agent_id)
+    # NOTE: To reuse existing agent, fetch it with get_agent(agent_id)
     agent = agents_client.create_agent(
         model=os.environ["MODEL_DEPLOYMENT_NAME"],
         name="my-mcp-agent",
         instructions="You are a helpful agent that can use MCP tools to assist users. Use the available MCP tools to answer questions and perform tasks.",
         tools=mcp_tool.definitions,
     )
-```
 
-## Create a thread
+    print(f"Created agent, ID: {agent.id}")
+    print(f"MCP Server: {mcp_tool.server_label} at {mcp_tool.server_url}")
 
-Create the thread and add the initial user message:
+    # Create thread for communication
+    thread = agents_client.threads.create()
+    print(f"Created thread, ID: {thread.id}")
 
-```python
-# Create a thread for communication
-thread = agents_client.threads.create()
-print(f"Created thread, ID: {thread.id}")
+    # Create message to thread
+    message = agents_client.messages.create(
+        thread_id=thread.id,
+        role="user",
+        content="Please summarize the Azure REST API specifications Readme",
+    )
+    print(f"Created message, ID: {message.id}")
+    # Create and process agent run in thread with MCP tools
+    mcp_tool.update_headers("SuperSecret", "123456")
+    # mcp_tool.set_approval_mode("never")  # Uncomment to disable approval requirement
+    run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
+    print(f"Created run, ID: {run.id}")
 
-# Create a message for the thread
-message = agents_client.messages.create(
-    thread_id=thread.id,
-    role="user",
-    content="Please summarize the Azure REST API specifications Readme",
-)
-print(f"Created message, ID: {message.id}")
-```
+    while run.status in ["queued", "in_progress", "requires_action"]:
+        time.sleep(1)
+        run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
 
-## Handle tool approvals
+        if run.status == "requires_action" and isinstance(run.required_action, SubmitToolApprovalAction):
+            tool_calls = run.required_action.submit_tool_approval.tool_calls
+            if not tool_calls:
+                print("No tool calls provided - cancelling run")
+                agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
+                break
 
-Set the MCP server update headers and optionally disable tool approval requirements:
+            tool_approvals = []
+            for tool_call in tool_calls:
+                if isinstance(tool_call, RequiredMcpToolCall):
+                    try:
+                        print(f"Approving tool call: {tool_call}")
+                        tool_approvals.append(
+                            ToolApproval(
+                                tool_call_id=tool_call.id,
+                                approve=True,
+                                headers=mcp_tool.headers,
+                            )
+                        )
+                    except Exception as e:
+                        print(f"Error approving tool_call {tool_call.id}: {e}")
 
-```python
-mcp_tool.update_headers("SuperSecret", "123456")
-# mcp_tool.set_approval_mode("never")  # Uncomment to disable approval requirements
-run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id, tool_resources=mcp_tool.resources)
-print(f"Created run, ID: {run.id}")
-```
+            print(f"tool_approvals: {tool_approvals}")
+            if tool_approvals:
+                agents_client.runs.submit_tool_outputs(
+                    thread_id=thread.id, run_id=run.id, tool_approvals=tool_approvals
+                )
 
-## Create a run and check the output
+        print(f"Current run status: {run.status}")
 
-Create the run, check the output, and examine what tools were called during the run:
-
-```python
-    # Create and automatically process the run, handling tool calls internally
-    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
-    print(f"Run finished with status: {run.status}")
-
+    print(f"Run completed with status: {run.status}")
     if run.status == "failed":
         print(f"Run failed: {run.last_error}")
 
-    # Retrieve the steps taken during the run for analysis
-    run_steps = project_client.agents.run_steps.list(thread_id=thread.id, run_id=run.id)
+    # Display run steps and tool calls
+    run_steps = agents_client.run_steps.list(thread_id=thread.id, run_id=run.id)
 
-    # Loop through each step to display information
+    # Loop through each step
     for step in run_steps:
         print(f"Step {step['id']} status: {step['status']}")
 
-        tool_calls = step.get("step_details", {}).get("tool_calls", [])
-        for call in tool_calls:
-            print(f"  Tool Call ID: {call.get('id')}")
-            print(f"  Type: {call.get('type')}")
-            function_details = call.get("function", {})
-            if function_details:
-                print(f"  Function name: {function_details.get('name')}")
-                print(f" function output: {function_details.get('output')}")
+        # Check if there are tool calls in the step details
+        step_details = step.get("step_details", {})
+        tool_calls = step_details.get("tool_calls", [])
 
-        print()
+        if tool_calls:
+            print("  MCP Tool calls:")
+            for call in tool_calls:
+                print(f"    Tool Call ID: {call.get('id')}")
+                print(f"    Type: {call.get('type')}")
+
+        if isinstance(step_details, RunStepActivityDetails):
+            for activity in step_details.activities:
+                for function_name, function_definition in activity.tools.items():
+                    print(
+                        f'  The function {function_name} with description "{function_definition.description}" will be called.:'
+                    )
+                    if len(function_definition.parameters) > 0:
+                        print("  Function parameters:")
+                        for argument, func_argument in function_definition.parameters.properties.items():
+                            print(f"      {argument}")
+                            print(f"      Type: {func_argument.type}")
+                            print(f"      Description: {func_argument.description}")
+                    else:
+                        print("This function has no parameters")
+
+        print()  # add an extra newline between steps
+
+    # Fetch and log all messages
+    messages = agents_client.messages.list(thread_id=thread.id, order=ListSortOrder.ASCENDING)
+    print("\nConversation:")
+    print("-" * 50)
+    for msg in messages:
+        if msg.text_messages:
+            last_text = msg.text_messages[-1]
+            print(f"{msg.role.upper()}: {last_text.text.value}")
+            print("-" * 50)
+
+    # Example of dynamic tool management
+    print(f"\nDemonstrating dynamic tool management:")
+    print(f"Current allowed tools: {mcp_tool.allowed_tools}")
+
+    # Remove a tool
+    try:
+        mcp_tool.disallow_tool(search_api_code)
+        print(f"After removing {search_api_code}: {mcp_tool.allowed_tools}")
+    except ValueError as e:
+        print(f"Error removing tool: {e}")
+
+    # Clean-up and delete the agent once the run is finished.
+    # NOTE: Comment out this line if you plan to reuse the agent later.
+    agents_client.delete_agent(agent.id)
+    print("Deleted agent")
 ```
 
-## Perform cleanup
+## Next steps
 
-After the interaction is complete, the script performs cleanup by deleting the created agent resource via `agents_client.delete_agent()` to avoid leaving unused resources. It also fetches and prints the entire message history from the thread by using `agents_client.messages.list()` for review or logging.
-
-```python
-        # Delete the agent resource to clean up
-        project_client.agents.delete_agent(agent.id)
-        print("Deleted agent")
-
-        # Fetch and log all messages exchanged during the conversation thread
-        messages = project_client.agents.messages.list(thread_id=thread.id)
-        for msg in messages:
-            print(f"Message ID: {msg.id}, Role: {msg.role}, Content: {msg.content}")
-```
+* [Tools overview](./overview.md)
+* [Python SDK samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-agents/samples)
 
 :::zone-end
 
