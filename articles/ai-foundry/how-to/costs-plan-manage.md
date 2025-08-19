@@ -5,7 +5,8 @@ description: Learn how to plan for and manage costs for Azure AI Foundry by usin
 ms.author: mopeakande
 manager: nitinme
 author: msakande 
-ms.reviewer: obiume
+ms.reviewer: aashishb
+reviewer: aashishb
 ms.date: 08/12/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
