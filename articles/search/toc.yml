@@ -402,10 +402,14 @@ items:
         href: search-knowledge-source-how-to-index.md
       - name: Create a knowledge agent
         href: search-agentic-retrieval-how-to-create.md
+      - name: Configure answer synthesis for a knowledge agent
+        href: search-agentic-retrieval-how-to-synthesize.md
       - name: Retrieve data using a knowledge agent
         href: search-agentic-retrieval-how-to-retrieve.md
       - name: Build a retrieval pipeline
         href: search-agentic-retrieval-how-to-pipeline.md
+      - name: Migrate agentic retrieval code
+        href: search-agentic-retrieval-how-to-migrate.md
     - name: Vector search
       items:
       - name: Query vectors
