@@ -105,7 +105,13 @@ In-context learning helps:
 - Rapidly onboard new templates without labeling data within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
-To add a label sample, you can upload a sample under **Label data**, and select **Auto label**. Auto label will predict all the fields out of the box. Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
+To add a label sample, you can upload a sample under **Label data**, and select **Auto label**. Auto label will predict all the fields out of the box. 
+
+:::image type="content" source="../media/document/in-context-learning.png" alt-text="Screenshot of auto labelling an invoice sample.":::
+
+Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
+
+:::image type="content" source="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels":::
 
 > [!NOTE]
 > Labelled samples can be added in Foundry UX. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`) 
