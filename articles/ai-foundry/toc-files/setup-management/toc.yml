@@ -57,7 +57,7 @@ items:
   - name: Manage quotas
     href: ../../how-to/quota.md
   - name: Increase rate limit
-    href: ../../../ai-services/autoscale.md?context=/azure/ai-studio/context/context
+    href: ../../../ai-services/autoscale.md?context=/azure/ai-foundry/context/context
 - name: Cost management for Foundry Models
   items:
   - name: Manage costs for Foundry Models
