@@ -96,7 +96,7 @@ Content-Type: application/json
 
 **Key points**:
 
-+ `name` must be unique within the knowledge soruces collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
++ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
 + `sourceDataSelect` consists of searchable fields, either plain text or vector.
 
