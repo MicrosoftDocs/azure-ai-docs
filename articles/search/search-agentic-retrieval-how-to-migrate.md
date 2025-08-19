@@ -172,7 +172,7 @@ This section covers breaking and nonbreaking changes for the following REST API 
 
 #### [Breaking changes](#tab/breaking)
 
-+ Introduces knowledge sources as the way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob`. For more information, see [Create a search index knowledge source](search-knowledge-source-how-to-index.md) and [Create a blob knowledge source](search-knowledge-source-how-to-blob.md).
++ Introduces knowledge sources as the new way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob`. For more information, see [Create a search index knowledge source](search-knowledge-source-how-to-index.md) and [Create a blob knowledge source](search-knowledge-source-how-to-blob.md).
 + Requires `knowledgeSources` instead of `targetIndexes` in agent definitions. For migration steps, see [How to migrate](#how-to-migrate).
 
 #### [Nonbreaking changes](#tab/nonbreaking)
@@ -184,6 +184,8 @@ Adds the following properties to knowledge agents. For more information about ea
 + `alwaysInclude`
 + `includeReferences`
 + `includeActivity`
+
+---
 
 ### 2025-05-01-preview
 
