@@ -265,5 +265,3 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 > [!div class="nextstepaction"]
 > [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
-
-## Related content
