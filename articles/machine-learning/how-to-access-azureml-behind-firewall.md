@@ -46,6 +46,7 @@ The following terms and information are used throughout this article:
     | 80 | Unsecured web traffic (HTTP) |
     | 443 | Secured web traffic (HTTPS) |
     | 445 | SMB traffic used to access file shares in Azure File storage |
+    | 5831 | It is a VPN tunnel over UDP, encrypted with TLS | 
     | 8787 | Used when connecting to RStudio on a compute instance |
     | 18881 | Used to connect to the language server to enable IntelliSense for notebooks on a compute instance. |
 
