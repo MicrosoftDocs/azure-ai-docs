@@ -396,6 +396,10 @@ items:
       items:
       - name: Design an index for agentic retrieval
         href: search-agentic-retrieval-how-to-index.md
+      - name: Create a blob knowledge source
+        href: search-knowledge-source-how-to-blob.md
+      - name: Create a multi-index knowledge source
+        href: search-knowledge-source-how-to-multi-index.md
       - name: Create a knowledge agent
         href: search-agentic-retrieval-how-to-create.md
       - name: Retrieve data using a knowledge agent
