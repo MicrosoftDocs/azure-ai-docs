@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/30/2025
+ms.date: 08/29/2025
 ---
 
 # Create a knowledge agent in Azure AI Search
@@ -18,11 +18,14 @@ In Azure AI Search, a *knowledge agent* is a top-level resource representing a c
 
 A knowledge agent specifies:
 
-+ A model that provides reasoning capabilities
-+ A target search index used at query time
++ A chat completion model that provides reasoning capabilities for query planning and answer formulation
++ A knowledge source that specifies searchable content
 + Parameters on the index for setting default behaviors and response shaping
 
 After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
+
+> [!IMPORTANT]
+> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more knowledge source definitions. We recommend migrating existing code to the new APIs as soon as possible.
 
 ## Prerequisites
 
@@ -34,7 +37,7 @@ After you create a knowledge agent, you can update its properties at any time. I
 
 + Permissions on Azure AI Search. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article.
 
-+ A search index containing plain text or vectors. The index must [meet the requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
++ A knowledge source pointing to a search index or an Azure blob. A search index can have plain text or vectors and it must [meet the requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
 + API requirements. To create or use a knowledge agent, use the [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
@@ -154,12 +157,15 @@ PUT https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 
 {
     "name" : "{{agent-name}}",
-    "targetIndexes" : [
+    "retrievalInstructions": null,
+    "knowledgeSources": [
         {
-            "indexName" : "{{index-name}}",
-            "defaultRerankerThreshold": 2.5,
-            "defaultIncludeReferenceSourceData": true,
-            "defaultMaxDocsForReranker": 200
+            "name": "earth-at-night-ks",
+            "alwaysQuerySource": false,
+            "includeReferences": true,
+            "includeReferenceSourceData": true,
+            "maxSubQueries": null,
+            "rerankerThreshold": null
         }
     ],
     "models" : [ 
@@ -185,14 +191,7 @@ PUT https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview
 
 + `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `targetIndexes` is required for knowledge agent creation. It lists the search indexes that can use the knowledge agent. Currently in this preview release, the `targetIndexes` array can contain only one index. *It must have a default semantic configuration* (`defaultConfiguration`). For more information, see [Design an index for agentic retrieval](search-agentic-retrieval-how-to-index.md).
-
-    ```json
-    "semantic": {
-        "defaultConfiguration": "my-default-semantic-config",
-        "configurations": [ ]
-    }
-    ```
++ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs that can use the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. You can create either [search index knowledge sources](search-knowledge-source-how-to-index.md) or [blob knowledge sources](search-knowledge-source-how-to-blob.md).
 
 + `defaultRerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
