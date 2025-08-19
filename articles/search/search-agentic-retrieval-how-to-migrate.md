@@ -34,7 +34,7 @@ If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-prev
 
 To migrate an agent that uses `targetIndexes` to `knowledgeSources`:
 
-1. [Get the current `targetIndexes` configuration](#capture-the-current-targetindexes).
+1. [Get the current `targetIndexes` configuration](#get-the-current-configuration).
 2. [Port the configuration to a new knowledge source](#create-a-knowledge-source).
 3. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
 4. [Send a query to test the retrieval](#test-the-retrieval).
