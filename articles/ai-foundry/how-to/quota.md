@@ -9,7 +9,8 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 08/08/2025
-ms.reviewer: siarora
+ms.reviewer: haakar
+reviewer: haakar
 ms.author: mopeakande
 author: msakande 
 manager: nitinme

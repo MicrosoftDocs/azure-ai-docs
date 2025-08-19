@@ -224,7 +224,7 @@ SearchIndex index = new SearchIndex(indexName)
 await indexClient.CreateIndexAsync(index);
 ```
 
-For more examples, see [azure-search-dotnet-samples/quickstart/v11/](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/v11).
+For more examples, see [azure-search-dotnet-samples/quickstart/v11/](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart).
 
 ### [**Other SDKs**](#tab/index-other-sdks)
 
