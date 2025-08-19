@@ -2,15 +2,14 @@
 title: Search over Markdown blobs
 titleSuffix: Azure AI Search
 description: Extract searchable text from Markdown blobs using the blob indexer in Azure AI Search. Indexers provide indexing automation for supported data sources like Azure Blob Storage.
-
 author: mdonovan
 ms.author: mdonovan
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 180-days
 ---
 
 # Index Markdown blobs and files in Azure AI Search

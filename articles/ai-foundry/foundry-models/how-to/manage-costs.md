@@ -7,9 +7,8 @@ ms.custom: subject-cost-optimization
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025
-manager: scottpolly
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.reviewer: aashishb
+reviewer: aashishb
 ---
 
 # Plan to manage costs for Azure AI Foundry Models

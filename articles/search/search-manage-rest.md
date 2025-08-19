@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 08/01/2025
+ms.update-cycle: 365-days
 ---
 
 # Manage your Azure AI Search service using REST APIs
@@ -80,16 +81,16 @@ If you're not familiar with the REST client for Visual Studio Code, this section
 1. Provide variables for the values you retrieved in the previous step.
 
    ```http
-   @tenantId = PASTE-YOUR-TENANT-ID-HERE
-   @subscriptionId = PASTE-YOUR-SUBSCRIPTION-ID-HERE
-   @token = PASTE-YOUR-TOKEN-HERE
+   @tenant-id = PUT-YOUR-TENANT-ID-HERE
+   @subscription-id = PUT-YOUR-SUBSCRIPTION-ID-HERE
+   @token = PUT-YOUR-TOKEN-HERE
    ```
 
 1. Verify the session is operational by listing search services in your subscription.
 
    ```http
     ### List search services
-    GET https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Search/searchServices?api-version=2023-11-01
+    GET https://management.azure.com/subscriptions/{{subscription-id}}/providers/Microsoft.Search/searchServices?api-version=2025-05-01  HTTP/1.1
          Content-type: application/json
          Authorization: Bearer {{token}}
     ```
@@ -125,9 +126,10 @@ Creates or updates a search service under the current subscription. This example
 
 ```http
 ### Create a search service (provide an existing resource group)
-@resource-group = my-rg
-@search-service-name = my-search
-PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PUT https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -146,26 +148,28 @@ PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups
 
 ## Upgrade a service
 
-Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, you can [upgrade your service](search-how-to-upgrade.md).
+Some Azure AI Search capabilities are only available to new services. To avoid service recreation and bring these capabilities to an existing service, you might be able to [upgrade your service](search-how-to-upgrade.md).
 
 ```http
 ### Upgrade a search service
-@resource-group = my-rg
-@search-service-name = my-search
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/upgrade?api-version=2025-02-01-preview  HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+POST https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}/upgrade?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 ```
 
 ## Change pricing tiers
 
-If you need more <!-- or less-->capacity, you can [switch to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only move up between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the higher <!-- your new -->tier.
+If you need more or less capacity, you can [switch to a different pricing tier](search-capacity-planning.md#change-your-pricing-tier). Currently, you can only switch between Basic and Standard (S1, S2, and S3) tiers. Use the `sku` property to specify the new tier.
 
 ```http
 ### Change pricing tiers
-@resource-group = my-rg
-@search-service-name = my-search
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-02-01-preview HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -181,9 +185,11 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGrou
 To create an [S3HD](search-sku-tier.md#tier-descriptions) service, use a combination of `sku` and `hostingMode` properties. Set `sku` to `standard3` and "hostingMode" to `HighDensity`.
 
 ```http
-@resource-group = my-rg
-@search-service-name = my-search
-PUT https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+### Create an S3HD service
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PUT https://management.azure.com/subscriptions/{{subscription-id}}/resourceGroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -213,7 +219,11 @@ To use role-based access control for data plane operations, set `authOptions` to
 To use role-based access control exclusively, [turn off API key authentication](search-security-enable-roles.md#disable-api-key-authentication) by following up with a second request, this time setting `disableLocalAuth` to true.
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+### Configure role-based access
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 
@@ -238,7 +248,11 @@ If you're using [customer-managed encryption](search-security-manage-encryption-
 When you enable this policy, any REST calls that create objects containing sensitive data, such as the connection string within a data source, will fail if an encryption key isn't provided: `"Error creating Data Source: "CannotCreateNonEncryptedResource: The creation of non-encrypted DataSources is not allowed when encryption policy is enforced."`
 
 ```http
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+### Enforce a customer-managed key policy
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
      
@@ -257,7 +271,10 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 
 ```http
 ### Disable semantic ranker
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
      
@@ -276,7 +293,10 @@ Azure AI Search [writes to external data sources](search-indexer-securing-resour
 
 ```http
 ### Disable external access
-PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
      
@@ -291,7 +311,10 @@ PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegrou
 
 ```http
 ### Delete a search service
-DELETE https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+DELETE https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 ```
@@ -300,7 +323,10 @@ DELETE https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegro
 
 ```http
 ### List admin keys
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+POST https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}/listAdminKeys?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 ```
@@ -308,9 +334,13 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroup
 ## Regenerate admin API keys
 
 You can only regenerate one admin API key at a time.
+
 ```http
 ### Regnerate admin keys
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/regenerateAdminKey/primary?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+POST https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}/regenerateAdminKey/primary?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 ```
@@ -319,8 +349,11 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroup
 
 ```http
 ### Create a query key
-@query-key-name = myQueryKey
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/createQueryKey/{name}?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+@query-key = PUT-YOUR-QUERY-KEY-NAME-HERE
+
+POST https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}/createQueryKey/{query-key}?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 ```
@@ -329,7 +362,10 @@ POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroup
 
 ```http
 ### List private endpoint connections
-GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}/privateEndpointConnections?api-version=2023-11-01 HTTP/1.1
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+
+GET https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}/privateEndpointConnections?api-version=2025-05-01  HTTP/1.1
      Content-type: application/json
      Authorization: Bearer {{token}}
 ```
@@ -338,7 +374,7 @@ GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups
 
 ```http
 ### List search operations
-GET https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups?api-version=2021-04-01 HTTP/1.1
+GET https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups?api-version=2021-04-01  HTTP/1.1
   Content-type: application/json
   Authorization: Bearer {{token}}
 ```

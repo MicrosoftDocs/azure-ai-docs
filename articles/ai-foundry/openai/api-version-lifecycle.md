@@ -277,9 +277,9 @@ Azure OpenAI API latest releases:
 
 ## Changes between 2025-04-01-preview and 2025-03-01-preview
 
-- [`GPT-image-1` support](/azure/ai-services/openai/how-to/dall-e)
-- [Reasoning summary for `o3` and `o4-mini`](/azure/ai-services/openai/how-to/reasoning)
-- [Evaluation API](/azure/ai-services/openai/authoring-reference-preview#evaluation---create)
+- [`GPT-image-1` support](/azure/ai-foundry/openai/how-to/dall-e)
+- [Reasoning summary for `o3` and `o4-mini`](/azure/ai-foundry/openai/how-to/reasoning)
+- [Evaluation API](/azure/ai-foundry/openai/authoring-reference-preview#evaluation---create)
 
 ## Changes between 2025-03-01-preview and 2025-02-01-preview
 
@@ -322,7 +322,7 @@ Azure OpenAI API latest releases:
 ## Changes between 2024-5-01-preview and 2024-07-01-preview API specification
 
 - [Batch API support added](./how-to/batch.md)
-- [Vector store chunking strategy parameters](/azure/ai-services/openai/reference-preview?#request-body-17)
+- [Vector store chunking strategy parameters](/azure/ai-foundry/openai/reference-preview?#request-body-17)
 - `max_num_results` that the file search tool should output.
 
 ## Changes between 2024-04-01-preview and 2024-05-01-preview API specification

@@ -46,13 +46,11 @@ Use the following code to create and run an agent. To run this code, you will ne
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
+[!INCLUDE [connection-string-deprecation](connection-string-deprecation.md)]
+
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your endpoint may look something like:
-
-`https://myresource.services.ai.azure.com/api/projects/myproject`
-
-Set this endpoint in an environment variable variable named `ProjectEndpoint`.
+Set this endpoint in an environment variable named `ProjectEndpoint`.
 
 [!INCLUDE [model-name-portal](model-name-portal.md)]
 
@@ -94,7 +92,7 @@ client.Messages.CreateMessage(
     MessageRole.User,
     "Hi, Agent! Draw a graph for a line with a slope of 4 and y-intercept of 9.");
 
-//Have Agent beging processing user's question with some additional instructions associated with the ThreadRun.
+//Have Agent begin processing user's question with some additional instructions associated with the ThreadRun.
 ThreadRun run = client.Runs.CreateRun(
     thread.Id,
     agent.Id,

@@ -38,7 +38,7 @@ Use the management center to create and configure [!INCLUDE [FDP](../includes/fd
 For more information, see [Create a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](../how-to/create-projects.md?pivots=fdp-project)
 
 
-### Manage Azure AI Foundry hubs and hub based projects
+### Manage Azure AI Foundry hubs and hub-based projects
 
 You can also manage [!INCLUDE [hub](../includes/hub-project-name.md)]s from the management center. They're listed in the __All resources__ section, and when selected are displayed in the left menu.
 

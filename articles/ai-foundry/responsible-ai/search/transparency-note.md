@@ -2,8 +2,8 @@
 title: Azure AI Search transparency note
 titleSuffix: Azure AI Search
 description: Azure AI Search basics, use cases, and terms
-author: PatrickFarley
-ms.author: pafarley
+author: haileytap
+ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: article
@@ -117,7 +117,7 @@ Several [built-in skills](/azure/search/cognitive-search-predefined-skills) for 
 - Entity Recognition Skill: [Azure AI Language - Named Entity Recognition (NER)](/azure/ai-foundry/responsible-ai/language-service/transparency-note-named-entity-recognition)
 - PII Detection Skill: [Azure AI Language - PII Detection](/azure/ai-foundry/responsible-ai/language-service/transparency-note-personally-identifiable-information)
 - Sentiment Skill: [Azure AI Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
-- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
+- Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
 - OCR Skill: [Azure AI Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note)
 
 See the documentation for each skill to learn more about their respective capabilities, limitations, performance, evaluations, and methods for integration and responsible use. Note that using these skills in combination may lead to compounding effects (for example, errors introduced when using OCR will carry through when using key phrase extraction).
@@ -154,7 +154,7 @@ Azure AI Search also supports multiple similarity metrics to determine nearest n
 
 There are many scenarios where vector search is useful, and they're limited only by the capabilities of the model used to generate vector embeddings. Here are some general use cases where vector search can be used:
 
-- **Semantic search**: Extract semantic understanding from text by using a model, like using models such as the [Azure OpenAI Service embeddings models](/azure/ai-services/openai/concepts/models#embeddings-models-1).
+- **Semantic search**: Extract semantic understanding from text by using a model, like using models such as the [Azure OpenAI Service embeddings models](/azure/ai-foundry/openai/concepts/models#embeddings-models-1).
 - **Search across different data types (multimodal)**: Encode content coming from images, text, audio, and video, or a mix, and do a single search across all of them.
 - **Multilingual search**: Use a multilingual embeddings model to represent your document in multiple languages to find results in supported languages.
 - **Hybrid search**: Vector search is implemented at the field level, which means you can build queries that include vector fields and searchable text fields. The queries run in parallel, and the results are merged into a single response. Hybrid search results with semantic ranking have been shown to provide the best qualitative results.
@@ -199,7 +199,7 @@ We encourage customers to use semantic ranker in their innovative solutions or a
 
 ### System behavior
 
-The original query is sent to a [fine-tuned Small Language Model (SLM)]( /azure/ai-services/openai/concepts/fine-tuning-considerations) hosted by Azure AI Search. This model was trained by using public content. The SLM transforms the original query into a set of synthetic queries. These synthetic queries are semantically close to the intent of the original query but include a different set of terms to improve recall from the search engine. 
+The original query is sent to a [fine-tuned Small Language Model (SLM)]( /azure/ai-foundry/openai/concepts/fine-tuning-considerations) hosted by Azure AI Search. This model was trained by using public content. The SLM transforms the original query into a set of synthetic queries. These synthetic queries are semantically close to the intent of the original query but include a different set of terms to improve recall from the search engine. 
 
 The synthetic queries are then combined with the original query and sent to the search engine. When it performs [BM25 ranking]( /azure/search/index-similarity-and-scoring), key terms from the synthetic queries are combined with the original query. When it performs [vector search]( /azure/search/vector-search-ranking#vector-similarity), the original query is concatenated with the synthetic queries before the [vector embedding]( /azure/search/vector-search-overview#embeddings-and-vectorization) step. 
 

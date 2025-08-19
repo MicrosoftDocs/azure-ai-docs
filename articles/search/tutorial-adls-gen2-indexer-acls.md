@@ -45,7 +45,7 @@ Use a REST client to complete this tutorial and the [2025-05-01-preview](/rest/a
 
 ## Prepare sample data
 
-Upload the [state parks sample data](https://github.com/Azure-Samples/azure-search-sample-data/state-parks) to a container in ADLS Gen2. The container name should be "parks" and it should have two folders: "Oregon" and "Washington".
+Upload the [state parks sample data](https://github.com/Azure-Samples/azure-search-sample-data) to a container in ADLS Gen2. The container name should be "parks" and it should have two folders: "Oregon" and "Washington".
 
 ## Check search service configuration
 
@@ -53,7 +53,7 @@ You search service must be configured for Microsoft Entra ID authentication and 
 
 + [Enable role-based access](search-security-enable-roles.md)
 
-+ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md).
++ [Configure a system-assigned managed identity](search-how-to-managed-identities.md).
 
 ## Get a personal identity token for local testing
 

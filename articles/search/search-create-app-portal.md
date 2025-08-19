@@ -8,6 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
 ms.date: 03/04/2025
+ms.update-cycle: 180-days
 ms.custom:
   - mode-ui
   - ignite-2023

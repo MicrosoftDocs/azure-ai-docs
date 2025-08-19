@@ -3,6 +3,7 @@ items:
   href: index.yml
 - name: Overview
   expanded: true
+  displayName: introduction, getting started, what is azure ai language
   items:
   - name: What is Azure AI Language?
     href: overview.md
@@ -25,16 +26,16 @@ items:
   items:
   - name: Custom text classification
     items:
-    - name: Custom text classification overview
+    - name: Overview
       href: custom-text-classification/overview.md
-      displayName: ctc
-    - name: Custom text classification quickstart
+      displayName: ctc, custom text classification, custom classification, text classifier
+    - name: Quickstart
       href: custom-text-classification/quickstart.md
       displayName: ctc setup
-    - name: Custom text classification language support
+    - name: Language support
       href: custom-text-classification/language-support.md
       displayName: ctc languages, multilingual
-    - name: Custom text classification FAQ
+    - name: FAQ
       href: custom-text-classification/faq.md
       displayName: ctc faq, troubleshooting
     - name: Responsible use of AI
@@ -110,23 +111,23 @@ items:
       - name: Service limits
         href: custom-text-classification/service-limits.md
         displayName: quotas, restrictions, service boundaries
-  - name: Conversational language understanding
+  - name: "Conversational language understanding (CLU)"
     items:
-    - name: Conversational language understanding overview
+    - name: Overview
       href: conversational-language-understanding/overview.md
-      displayName: clu, conversational ai, intent recognition, entity extraction
-    - name: Conversational language understanding quickstart
+      displayName: clu, conversational language understanding, intent recognition, entity extraction
+    - name: Quickstart
       href: conversational-language-understanding/quickstart.md
       displayName: getting started, tutorial, conversational ai setup
-    - name: Conversational language understanding language support
+    - name: Language support
       href: conversational-language-understanding/language-support.md
       displayName: clu languages, supported languages, multilingual, international support
-    - name: Conversational language understanding FAQ
+    - name: FAQ
       href: conversational-language-understanding/faq.md
       displayName: frequently asked questions, troubleshooting, common issues
     - name: Responsible use of AI
       items:
-      - name: Transparency note for conversational language understanding
+      - name: Transparency note for CLU
         href: /legal/cognitive-services/language-service/clu-transparency-note?context=/azure/ai-services/language-service/context/context
       - name: Integration and responsible use
         href: /legal/cognitive-services/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context
@@ -148,10 +149,10 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Create projects
+        - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
-        - name: Build a schema
+        - name: Build a fine-tuning schema
           href: conversational-language-understanding/how-to/build-schema.md
           displayName: design, intents, entities, conversational model
         - name: Label utterances
@@ -160,7 +161,7 @@ items:
         - name: Train a model
           href: conversational-language-understanding/how-to/train-model.md
           displayName: training, clu training, conversational model training
-        - name: Configure Azure resources
+        - name: Configure Azure and CLU resources
           href: conversational-language-understanding/how-to/configure-azure-resources.md
           displayName: configuration, fine-tuning, azure ai foundry, azure portal 
         - name: View your model's performance
@@ -216,12 +217,12 @@ items:
         href: conversational-language-understanding/glossary.md
   - name: Entity linking
     items:
-    - name: Entity linking overview
+    - name: Overview
       href: entity-linking/overview.md
-      displayName: knowledge base linking, disambiguation
-    - name: Entity linking quickstart
+      displayName: entity linking,knowledge base linking, disambiguation
+    - name: Quickstart
       href: entity-linking/quickstart.md
-    - name: Entity linking language support
+    - name: Language support
       href: entity-linking/language-support.md
     - name: Responsible use of AI
       items:
@@ -238,12 +239,12 @@ items:
           displayName: entity linking, entity recognition
   - name: Language detection
     items:
-    - name: Language detection overview
+    - name: Overview
       href: language-detection/overview.md
-      displayName: language identification, automatic detection
-    - name: Language detection quickstart
+      displayName: language detection, language identification, automatic detection
+    - name: Quickstart
       href: language-detection/quickstart.md
-    - name: Language detection language support
+    - name: Language support
       href: language-detection/language-support.md
     - name: Responsible use of AI
       items:
@@ -274,12 +275,12 @@ items:
           href: ../cognitive-services-container-support.md
   - name: Key phrase extraction
     items:
-    - name: Key phrase extraction overview
+    - name: Overview
       href: key-phrase-extraction/overview.md
-      displayName: keyword extraction, key terms
-    - name: Key phrase extraction quickstart
+      displayName: key phrase extraction,keyword extraction, key terms
+    - name: Quickstart
       href: key-phrase-extraction/quickstart.md
-    - name: Key phrase extraction language support
+    - name: Language support
       href: key-phrase-extraction/language-support.md
     - name: Responsible use of AI
       items:
@@ -315,12 +316,12 @@ items:
         displayName: business intelligence, data visualization
   - name: Named Entity Recognition (NER)
     items:
-    - name: NER overview
+    - name: Overview
       href: named-entity-recognition/overview.md
-      displayName: ner introduction, entity extraction
-    - name: NER quickstart
+      displayName: named entity recognition, introduction, entity extraction
+    - name: Quickstart
       href: named-entity-recognition/quickstart.md
-    - name: NER language support
+    - name: Language support
       href: named-entity-recognition/language-support.md
     - name: Responsible use of AI
       items:
@@ -420,13 +421,14 @@ items:
             href: concepts/custom-features/project-versioning.md
   - name: Orchestration workflow
     items:
-    - name: Orchestration workflow overview
+    - name: Overview
       href: orchestration-workflow/overview.md
-    - name: Orchestration workflow quickstart
+      displayName: workflow orchestration, orchestration introduction, orchestration overview
+    - name: Quickstart
       href: orchestration-workflow/quickstart.md
-    - name: Orchestration workflow FAQ
+    - name: FAQ
       href: orchestration-workflow/faq.md
-    - name: Orchestration workflow language support
+    - name: Language support
       href: orchestration-workflow/language-support.md
     - name: How-to guides
       items:
@@ -464,7 +466,7 @@ items:
           href: conversational-language-understanding/concepts/app-architecture.md
     - name: Tutorials
       items:
-        - name: Connect conversational language understanding and custom question answering
+        - name: Connect CLU and custom question answering
           href: orchestration-workflow/tutorials/connect-services.md
           displayName: clu integration, qna integration, orchestration workflow, connect services
     - name: Reference
@@ -475,12 +477,12 @@ items:
         href: orchestration-workflow/glossary.md
   - name: Personally Identifiable Information (PII) detection
     items:
-    - name: PII overview
+    - name: Overview
       href: personally-identifiable-information/overview.md
-      displayName: native document
-    - name: PII quickstart
+      displayName: personally identifiable information, document
+    - name: Quickstart
       href: personally-identifiable-information/quickstart.md
-    - name: PII language support
+    - name: Language support
       href: personally-identifiable-information/language-support.md
     - name: Responsible use of AI
       items:
@@ -501,11 +503,11 @@ items:
         href: personally-identifiable-information/how-to/redact-conversation-pii.md
       - name: Redact PII from native documents
         href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name: Use containers
+      - name:  Adapt PII to your domain
         href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Adapt PII to your domain
+      - name: Use Docker containers
         items:
-          - name: Use Docker containers
+          - name: Install and run containers
             href: personally-identifiable-information/how-to/use-containers.md
           - name: Configure containers
             href: concepts/configure-containers.md
@@ -523,12 +525,12 @@ items:
         href: personally-identifiable-information/concepts/conversations-entity-categories.md
   - name: Custom question answering
     items:
-    - name: Custom question answering overview
+    - name: Overview
       href: question-answering/overview.md
-      displayName: qna, faq, knowledge base
-    - name: Custom question answering quickstart
+      displayName: custom question answering, faq, knowledge base
+    - name: Quickstart
       href: question-answering/quickstart/sdk.md
-    - name: Custom question answering language support
+    - name: Language support
       href: question-answering/language-support.md
     - name: Responsible use of AI
       items:
@@ -564,7 +566,7 @@ items:
         href: question-answering/how-to/chit-chat.md
       - name: Change default answer
         href: question-answering/how-to/change-default-answer.md
-      - name: Configure Azure resources
+      - name: Configure your environment and Azure resources
         href: question-answering/how-to/configure-azure-resources.md
         displayName: configuration, fine-tuning, azure ai foundry, azure portal 
       - name: Analytics
@@ -629,11 +631,12 @@ items:
           href: question-answering/reference/document-format-guidelines.md
   - name: Sentiment analysis and opinion mining
     items:
-      - name: Sentiment analysis and opinion mining overview
+      - name: Overview
         href: sentiment-opinion-mining/overview.md
-      - name: Sentiment analysis and opinion mining quickstart
+        displayName: sentiment analysis introduction, opinion mining overview, sentiment detection
+      - name: Quickstart
         href: sentiment-opinion-mining/quickstart.md
-      - name: Sentiment analysis and opinion mining language support
+      - name: language-detection/how-to/use-containers.mdanguage support
         href: sentiment-opinion-mining/language-support.md
       - name: Responsible use of AI
         items:
@@ -668,12 +671,12 @@ items:
           href: /training/modules/python-flask-build-ai-web-app/
   - name: Text Analytics for health
     items:
-    - name: Text Analytics for health overview
+    - name: Overview
       href: text-analytics-for-health/overview.md
-      displayName: healthcare nlp, medical text analysis, clinical text, health entities
-    - name: Text Analytics for health quickstart
+      displayName: text analytics for health, healthcare nlp, medical text analysis, clinical text, health entities
+    - name: Quickstart
       href: text-analytics-for-health/quickstart.md
-    - name: Text Analytics for health language support
+    - name: Language support
       href: text-analytics-for-health/language-support.md
     - name: Responsible use of AI
       items:
@@ -712,12 +715,12 @@ items:
         href: text-analytics-for-health/concepts/fhir.md
   - name: Summarization
     items:
-    - name: Summarization overview
+    - name: Overview
       href: summarization/overview.md
-      displayName: native document
-    - name: Summarization quickstart
+      displayName: summarization,native document
+    - name: Quickstart
       href: summarization/quickstart.md
-    - name: Summarization language support
+    - name: Language support
       href: summarization/language-support.md
     - name: How-to guides
       items:
@@ -839,8 +842,14 @@ items:
       items:
       - name: C#
         items:
-        - name: Text analysis
-          href: /dotnet/api/overview/azure/ai.textanalytics-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Language Text
+          href: /dotnet/api/overview/azure/ai.language.text-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Conversational Language Understanding
+          href: /dotnet/api/overview/azure/ai.language.conversations-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Conversations Authoring
+          href: /dotnet/api/overview/azure/ai.language.conversations.authoring-readme?view=azure-dotnet-preview&preserve-view=true
+        - name: Text Authoring
+          href: /dotnet/api/overview/azure/ai.language.text.authoring-readme?view=azure-dotnet-preview&preserve-view=true
         - name: Custom question answering
           href: /dotnet/api/overview/azure/ai.language.questionanswering-readme?view=azure-dotnet-preview&preserve-view=true
       - name: Python

@@ -2,12 +2,12 @@
 title: Create and manage prompt flow compute sessions
 titleSuffix: Azure AI Foundry
 description: In this article, learn how to create and manage compute sessions to run prompt flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 02/14/2025
 ms.reviewer: lochen

@@ -2,16 +2,15 @@
 title: Document Layout skill
 titleSuffix: Azure AI Search
 description: Analyze a document to extract regions of interest and their inter-relationships to produce a syntactical representation (markdown format) in an enrichment pipeline in Azure AI Search.
-
 author: rawan
 ms.author: rawan
-
 ms.service: azure-ai-search
 ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: reference
 ms.date: 07/10/2025
+ms.update-cycle: 365-days
 ---
 
 # Document Layout skill
@@ -22,16 +21,15 @@ The **Document Layout** skill analyzes a document to detect structure and charac
 
 This article is the reference documentation for the Document Layout skill. For usage information, see [How to chunk and vectorize by document layout](search-how-to-semantic-chunking.md). 
 
-It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate several scenarios: 
+This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
 
-+ [Tutorial: Index mixed content using image verbalizations and the Document Layout skill](tutorial-document-layout-image-verbalization.md)
+This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
-+ [Tutorial: Index mixed content using multimodal embeddings and the Document Layout skill](tutorial-document-layout-multimodal-embeddings.md)
-
-> [!NOTE]
-> This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
+> [!TIP]
+> It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate image verbalization with two different data chunking techniques:
 >
-> This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+> - [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
+> - [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)
 >
 
 ## Limitations

@@ -2,7 +2,6 @@
 title: 'Tutorial: Index at Scale (Spark)'
 titleSuffix: Azure AI Search
 description: Search big data from Apache Spark that's been transformed by SynapseML. Load invoices into data frames, apply machine learning, and then send output to a generated search index.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 365-days
 ---
 
 # Tutorial: Index large data from Apache Spark using SynapseML and Azure AI Search

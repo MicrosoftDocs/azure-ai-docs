@@ -2,13 +2,13 @@
 title: Manage concurrent writes
 titleSuffix: Azure AI Search
 description: Use optimistic concurrency to avoid mid-air collisions on updates or deletes to Azure AI Search indexes, indexers, data sources.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 08/08/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -32,6 +32,8 @@ Every time you update a resource, its ETag changes automatically. When you imple
 
 > [!Note]
 > There is only one mechanism for concurrency. It's always used regardless of which API or SDK is used for resource updates.
+
+Starting July 18, 2025, Azure AI Search began enforcing serialization for index creation and update operations to ensure consistency and reliability. This change aligns with long-standing best practices and the established behavior of the rest of operations in the service. As the rollout progresses across regions, you may begin seeing 409 conflict errors when sending concurrent or closely timed requests. To avoid these errors, ensure operations are not sent in parallel and follow the concurrency guidance outlined in this document.
 
 ## Example
 

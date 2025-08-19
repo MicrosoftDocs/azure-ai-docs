@@ -2,13 +2,13 @@
 title: How to get started with Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides an overview of the Azure AI Foundry SDK and how to get started using it.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
   - ignite-2024
+ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 07/01/2025
+ms.date: 08/15/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -42,9 +42,15 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
 
 ## Unified Projects client library
 
-The Azure AI Foundry Projects client library is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+The following examples show how to connect to your Azure AI Foundry project using different programming languages. This connection is the first step to accessing models, data, and AI services through the SDK. Each code block demonstrates how to authenticate and create a client for your project endpoint.
+
+> [!TIP]
+> The code samples below are starting points. You’ll use these clients to interact with models, run evaluations, and more, as described in the client libraries section below.
+
 
 ::: zone pivot="programming-language-python"
+
+The [Azure AI Foundry Projects client library for Python](/python/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install the project client library 
 
@@ -61,15 +67,17 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     project = AIProjectClient(
       endpoint="your_project_endpoint",  # Replace with your endpoint
       credential=DefaultAzureCredential())
+    # The AIProjectClient lets you access models, data, and services in your project.
     ```
-
 ::: zone-end
 
 ::: zone pivot="programming-language-java"
 
+The [Azure AI Foundry Projects client library for Java (preview)](/java/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
+
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-* Add these packages to your installation (preview):
+* Add these packages to your installation:
     * `com.azure.ai.projects`
     * `com.azure.core`
 
@@ -86,13 +94,16 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         .credential(new DefaultAzureCredential())
         .endpoint(endpoint)
         .buildClient();
+    // The ProjectsClient enables unified access to your project's resources.
     ```
+
+
 
 ::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [feature-preview](../../includes/feature-preview.md)]
+The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/overview/azure/ai-projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install dependencies (preview):
 
@@ -109,11 +120,15 @@ The Azure AI Foundry Projects client library is a unified library that enables y
     
     const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+    // The AIProjectClient lets you access models, data, and services in your project.
     ```
+
 
 ::: zone-end
 
 ::: zone pivot="programming-language-csharp"
+
+The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azure/ai.projects-readme) is a unified library that enables you to use multiple client libraries together by connecting to a single project endpoint.
 
 * Install packages:
 
@@ -140,6 +155,8 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         credential, 
         new string[] { "https://cognitiveservices.azure.com/.default" }
     );
+    // The PerRetry position ensures the authentication policy is applied to every retry attempt.
+    // This is important for robust authentication in distributed/cloud environments.
     clientOptions.AddPolicy(tokenPolicy, HttpPipelinePosition.PerRetry);
     
     var projectClient = new ChatCompletionsClient(
@@ -147,15 +164,17 @@ The Azure AI Foundry Projects client library is a unified library that enables y
         credential,
         clientOptions
     );
+    // The ChatCompletionsClient lets you interact with models and services in your project.
     ```
 
 ::: zone-end
+After you create a client, you can use it to access models, run evaluations, and connect to other AI services. The next section lists the available client libraries and shows how to use them for specific Azure AI services.
 
 <a name="azure-ai-foundry-agent-service"></a>
 * Using the project endpoint, you can:
     - [Use Foundry Model](../../quickstarts/get-started-code.md), including Azure OpenAI
     - [Use Foundry Agent Service](../../../ai-services/agents/quickstart.md?context=/azure/ai-foundry/context/context)
-    - [Run evaluations in the cloud](../../../ai-services/openai/how-to/evaluations.md?context=/azure/ai-foundry/context/context)
+    - [Run evaluations in the cloud](cloud-evaluation.md))
     - [Enable tracing for your app](../../concepts/trace.md) 
     - Retrieve endpoints and keys for external resource connections
 

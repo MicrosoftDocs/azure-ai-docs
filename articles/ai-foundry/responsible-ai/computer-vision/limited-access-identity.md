@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
-ms.date: 06/17/2022
+ms.date: 07/28/2025
 ---
 
 # Limited Access to Face API

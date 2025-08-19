@@ -2,10 +2,10 @@
 title: Troubleshoot private endpoint connection
 titleSuffix: Azure AI Foundry
 description: 'Learn how to troubleshoot connectivity problems to a project that is configured with a private endpoint.'
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 04/30/2025
 ms.reviewer: meerakurup

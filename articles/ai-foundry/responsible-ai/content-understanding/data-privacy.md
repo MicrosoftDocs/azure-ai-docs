@@ -33,11 +33,10 @@ Content Understanding first requires users to authenticate access to Content Und
 
 All Azure AI services endpoints use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the end points. For more information, see [Transport Layer Security](/azure/ai-services/security-features?tabs=command-line%2Ccsharp#transport-layer-security-tls). The incoming data is processed in the same region where the Azure resource was created. 
 
- 
 
 ### Encrypts input data for processing 
 
-The incoming data is processed in the same region where the Content Understanding resource was created. When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage before it is sent to Azure OpenAI for further processing. 
+The incoming data is processed in the same region where the Content Understanding resource was created. When you submit your files to a Content Understanding operation, it starts the process of analyzing the input. Your data and results are then temporarily encrypted and stored in Azure Storage before it is sent to Azure OpenAI for further processing. While compute resources are not dedicated per customer, requests are processed in logically isolated, sandboxed containers to ensure workload separation and prevent cross-tenant data exposure. All customer data in transit and at rest is encrypted using Microsoft-managed keys (MMK) by default, with the option to enable additional encryption with customer-managed keys (CMK). 
 
  
 
@@ -49,7 +48,7 @@ The "Get Result" operation is authenticated against the same API key that was us
 
 ### Data retention 
 
-For all the input, they are processed data as soon as possible, and the input files are not retained or stored in the service after processing. Analaysis result may be stored for up to 24 hours. The name of the analyzers will be logged for reporting and debugging. 
+Input documents and intermediate representations are written to secure Microsoft-managed storage only for the duration of processing and are deleted once the operation completes.  Output results are retained for up to 24 hours to support asynchronous retrieval, after which they are automatically deleted. The name of the analyzers will be logged for reporting and debugging. 
 
  
 

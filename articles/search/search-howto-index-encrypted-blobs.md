@@ -2,7 +2,6 @@
 title: 'Tutorial: Index Encrypted Blobs'
 titleSuffix: Azure AI Search
 description: Learn how to index and extract text from encrypted documents in Azure Blob Storage with Azure AI Search.
-
 manager: nitinme
 author: gmndrg
 ms.author: gimondra
@@ -10,6 +9,7 @@ ms.devlang: rest-api
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange

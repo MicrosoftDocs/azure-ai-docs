@@ -21,7 +21,7 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-node/releases) to track the latest updates to the library.
@@ -68,7 +68,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Create a new JavaScript application for image prompts
 
-Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images). Use the image URL in the code below or set the `IMAGE_URL` environment variable to the image URL.
+Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images). Enter your publicly accessible image URL in the code below or set the `IMAGE_URL` environment variable to it.
 
 > [!IMPORTANT]
 > If you use a SAS URL to an image stored in Azure blob storage, you need to enable Managed Identity and assign the **Storage Blob Reader** role to your Azure OpenAI resource (do this in the Azure portal). This allows the model to access the image in blob storage.

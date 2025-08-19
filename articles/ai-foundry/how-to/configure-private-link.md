@@ -3,11 +3,11 @@
 title: How to configure a private link for an Azure AI Foundry hub
 titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 05/06/2025
+ms.date: 07/31/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -47,8 +47,6 @@ You get several hub default resources in your resource group. You need to config
 
     > [!IMPORTANT]
     > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
-
-* Disable network policies for private endpoints before adding the private endpoint.
 
 :::zone pivot="fdp-project"
 
@@ -447,6 +445,10 @@ When creating a Foundry resource and [!INCLUDE [fdp-projects](../includes/fdp-pr
 :::image type="content" source="../media/how-to/network/network-diagram-agents.png" alt-text="Diagram of the recommended network isolation for AI Foundry projects and agents." lightbox="../media/how-to/network/network-diagram-agents.png":::
 
 1. Set the public network access (PNA) flag of each of your resources to `Disabled`. Disabling public network access locks down inbound access from the public internet to the resources.
+
+   > [!NOTE]
+   > When the Foundry resources' public network access (PNA) flag is set to Disabled, actions such as deploying a model is possible for the user from their local machine. Only data actions such as building an Agent or creating a new evaluation is not possible for the user, unless they are securely accessing their Foundry resource using a VPN, VM, or ExpressRoute from their local machine.
+
 1. Create a private endpoint for each of your Azure resources that are required for a Standard Agent:
 
     - Azure Storage Account

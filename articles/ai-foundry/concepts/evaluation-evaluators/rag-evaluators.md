@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about Retrieval-augmented Generation (RAG) evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: changliu2
 ms.date: 07/15/2025
 ms.service: azure-ai-foundry
