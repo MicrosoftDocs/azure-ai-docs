@@ -45,7 +45,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
     [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-    :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="A screenshot of the model catalog showing how to filter for models that can be deployed via managed compute." lightbox="../media/deploy-monitor/catalog-filter-managed-compute.png"::: 
+    :::image type="content" source="../media/deploy-models-managed/catalog-filter-managed-compute.png" alt-text="A screenshot of the model catalog showing how to filter for models that can be deployed via managed compute." lightbox="../media/deploy-models-managed/catalog-filter-managed-compute.png"::: 
 
 1. Select a model to open its model card. In this article, use the model `deepset-roberta-base-squad2`.
 
