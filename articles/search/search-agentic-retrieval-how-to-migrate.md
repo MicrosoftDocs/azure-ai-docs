@@ -14,7 +14,7 @@ ms.date: 08/19/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-If your agentic retrieval code was written against an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that provide agentic retrieval.
+If you wrote [agentic retrieval](search-agentic-retrieval-concept.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
 ## When to migrate
 
@@ -30,12 +30,12 @@ Migrate your agentic retrieval code when any of the following apply:
 
 ## How to migrate
 
-If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-preview), your agent definition includes an inline `targetIndexes` array. Starting with the [2025-08-01-preview](#2025-08-01-preview), reusable knowledge sources have replaced `targetIndexes`. This breaking change requires you to create a knowledge source, update your agent's definition to use `knowledgeSources`, and update client code that interacts with the agent.
+If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-preview), your agent's definition includes an inline `targetIndexes` array and an optional `defaultMaxDocsForReranker` property.
 
-To migrate an agent that uses `targetIndexes` to `knowledgeSources`:
+Starting with the [2025-08-01-preview](#2025-08-01-preview), reusable knowledge sources replace `targetIndexes`, and `defaultMaxDocsForReranker` is no longer supported. These breaking changes require you to:
 
 1. [Get the current `targetIndexes` configuration](#get-the-current-configuration).
-2. [Port the configuration to a new knowledge source](#create-a-knowledge-source).
+2. [Create an equivalent knowledge source](#create-a-knowledge-source).
 3. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
 4. [Send a query to test the retrieval](#test-the-retrieval).
 5. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
@@ -54,7 +54,7 @@ GET https://{{search-url}}/agents/{{agent-name}}?api-version=2025-05-01-preview 
     api-key: {{api-key}}
 ```
 
-The response should be similar to the following example. Copy the properties in the `targetIndexes` array, which you'll use to create a knowledge source in the next step.
+The response should be similar to the following example. Copy the `indexName`, `defaultRerankerThreshold`, and `defaultIncludeReferenceSourceData` values for use in the upcoming steps. `defaultMaxDocsForReranker` is deprecated, so you can ignore its value.
 
 ```json
 {
@@ -63,10 +63,10 @@ The response should be similar to the following example. Copy the properties in 
   "description": "My description of the agent",
   "targetIndexes": [
     {
-      "indexName": "my-index", // Copy this property
-      "defaultRerankerThreshold": 2.5, // Copy this property
-      "defaultIncludeReferenceSourceData": true, // Copy this property
-      "defaultMaxDocsForReranker": 100 // Copy this property
+      "indexName": "my-index", // Copy this value
+      "defaultRerankerThreshold": 2.5, // Copy this value
+      "defaultIncludeReferenceSourceData": true, // Copy this value
+      "defaultMaxDocsForReranker": 100
     }
   ],
   ... // Redacted for brevity
@@ -75,7 +75,7 @@ The response should be similar to the following example. Copy the properties in 
 
 ### Create a knowledge source
 
-To define a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). The new `searchIndexParameters` has the same syntax as `targetIndexes`, so you can use the properties from your previous configuration.
+To create a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `searchIndexName` to the value you previously copied.
 
 ```http
 @source-name = <YourSourceName>
@@ -90,10 +90,7 @@ PUT https://{{search-url}}/knowledgeSources/{{source-name}}?api-version=2025-08-
         "description": "My description of the knowledge source",
         "kind": "searchIndex",
         "searchIndexParameters": {
-            "indexName": "my-index", // Same property as before
-            "defaultRerankerThreshold": 2.5, // Same property as before
-            "defaultIncludeReferenceSourceData": true, // Same property as before
-            "defaultMaxDocsForReranker": 100 // Same property as before
+            "searchIndexName": "my-index" // Use the previous value
         }
     }
 ```
@@ -102,7 +99,7 @@ This example creates a knowledge source that represents one index, but you can t
 
 ### Update the agent
 
-To replace `targetIndexes` with `knowledgeSources` in your agent's definition, use the 2025-08-01-preview of [Knowledge Agents - Create or Update (REST API)](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+To replace `targetIndexes` with `knowledgeSources` in your agent's definition, use the 2025-08-01-preview of [Knowledge Agents - Create or Update (REST API)](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `rerankerThreshold` and `includeReferenceSourceData` to the values you previously copied.
 
 ```http
 ### Replace targetIndexes with knowledgeSources
@@ -113,12 +110,16 @@ POST https://{{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
     { 
         "name": "{{agent-name}}", 
         "knowledgeSources": [  
-            {"name": "{{source-name}}", "alwaysInclude": true},  
+            {  
+                "name": "{{source-name}}",
+                "rerankerThreshold": 2.5, // Use the previous value
+                "includeReferenceSourceData": true // Use the previous value
+            }
         ]
     } 
 ```
 
-This example updates the agent's definition to reference one knowledge source, but you can target multiple knowledge sources. For more information, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
+This example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
 
 ### Test the retrieval
 
@@ -145,20 +146,14 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
     }
 ```
 
-<!--
-The response should be similar to the following example, which includes...
-
-```json
-
-```
--->
+If the response has a `200 OK` HTTP code, your agent successfully retrieved content from the knowledge source.
 
 ### Update code and clients
 
 To complete your migration, follow these cleanup steps:
 
 + Replace all `targetIndexes` references with `knowledgeSources` in configuration files, code, scripts, and tests.
-+ Update client calls to use the 2025-08-01-preview REST API version.
++ Update client calls to use the 2025-08-01-preview.
 + Clear or regenerate cached agent definitions that were created using the old shape.
 
 ## Version-specific changes
@@ -172,21 +167,27 @@ This section covers breaking and nonbreaking changes for the following REST API 
 
 #### [Breaking changes](#tab/breaking)
 
-+ Introduces knowledge sources as the new way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob`. For more information, see [Create a search index knowledge source](search-knowledge-source-how-to-index.md) and [Create a blob knowledge source](search-knowledge-source-how-to-blob.md).
++ Introduces knowledge sources as the new way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob` kinds. For more information, see [Create a search index knowledge source](search-knowledge-source-how-to-index.md) and [Create a blob knowledge source](search-knowledge-source-how-to-blob.md).
+
 + Requires `knowledgeSources` instead of `targetIndexes` in agent definitions. For migration steps, see [How to migrate](#how-to-migrate).
+
++ Removes `defaultMaxDocsForReranker` support. This property previously existed in `targetIndexes`, but there's no replacement in `knowledgeSources`.
 
 #### [Nonbreaking changes](#tab/nonbreaking)
 
-Adds the following properties to knowledge agents. For more information about each property, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
++ Adds `knowledgeSources`, `outputConfiguration`, and `retrievalInstructions` to agent definitions. For information about supported properties, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
 
-+ `answerSynthesis`
-+ `retrievalInstructions`
-+ `alwaysInclude`
-+ `includeReferences`
-+ `includeActivity`
++ Renames `defaultRerankerThreshold` to `rerankerThreshold` and `defaultIncludeReferenceSourceData` to `includeReferenceSourceData`. These properties previously existed in `targetIndexes`, but you now specify them within each knowledge source reference in `knowledgeSources`.
 
 ---
 
 ### 2025-05-01-preview
 
-This REST API version introduces [agentic retrieval](search-agentic-retrieval-concept.md) and [knowledge agents](search-agentic-retrieval-how-to-create.md).
+This REST API version introduces agentic retrieval and knowledge agents. Each agent definition requires a `targetIndexes` array that specifies a single index and optional properties, such as `defaultRerankerThreshold` and `defaultIncludeReferenceSourceData`.
+
+## Related content
+
++ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
++ [Create a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-create.md)
++ [Create a search index knowledge source](search-knowledge-source-how-to-index.md)
++ [Create a blob knowledge source](search-knowledge-source-how-to-blob.md)
