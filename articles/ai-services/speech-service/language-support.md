@@ -2,12 +2,12 @@
 title: Language support - Speech service
 titleSuffix: Azure AI services
 description: The Speech service supports numerous languages for speech to text and text to speech conversion, along with speech translation. This article provides a comprehensive list of language support by service feature.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 6/5/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about the languages supported by the Speech service.
 ---
