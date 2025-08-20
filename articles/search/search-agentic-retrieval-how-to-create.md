@@ -25,7 +25,7 @@ A knowledge agent specifies:
 After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
 
 > [!IMPORTANT]
-> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more `knowledgeSource` definitions and an `alwaysInclude` property. We recommend migrating existing code to the new APIs as soon as possible.
+> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more `knowledgeSource` definitions. We recommend migrating existing code to the new APIs as soon as possible.
 
 ## Prerequisites
 
@@ -188,21 +188,16 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs that can use the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
 
-   + `name` is a reference to either a [search index knowledge sources](search-knowledge-source-how-to-index.md) or [blob knowledge sources](search-knowledge-source-how-to-blob.md).
+    + `name` is a reference to either a [search index knowledge sources](search-knowledge-source-how-to-index.md) or [blob knowledge sources](search-knowledge-source-how-to-blob.md).
+    
+    + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment.
 
-   + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment.
-
-            "includeReferences": true,
-            "includeReferenceSourceData": true,
-            "maxSubQueries": null,
-            "rerankerThreshold": null
-
-+ `defaultRerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
-
-+ `defaultIncludeReferenceSourceData` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
-
-+ `defaultMaxDocsForReranker` is the maximum number of documents that can be sent to the semantic ranker. Each subquery can pass a maximum of 50 documents to the semantic reranker, so setting this value above 50 generates more subqueries until the maximum is reached. For example, if you set this value to 200, then four subqueries are generated to support this number. This 
-
+    + `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
+    
+    + `includeReferences` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
+    
+    + `maxSubQueries` is the maximum number of documents that can be sent to the semantic ranker. Each subquery can pass a maximum of 50 documents to the semantic reranker, so setting this value above 50 generates more subqueries until the maximum is reached. For example, if you set this value to 200, then four subqueries are generated to support this number.
+    
 + `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
 <!--  Check minimum 10k  -->
