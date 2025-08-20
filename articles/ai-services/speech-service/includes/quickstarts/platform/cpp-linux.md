@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 02/02/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 This guide shows how to install the [Speech SDK](~/articles/ai-services/speech-service/speech-sdk.md) for Linux.
