@@ -396,10 +396,12 @@ items:
       items:
       - name: Create an index for agentic retrieval
         href: search-agentic-retrieval-how-to-index.md
-      - name: Create a knowledge source for blobs
-        href: search-knowledge-source-how-to-blob.md
-      - name: Create a knowledge source for indexes
-        href: search-knowledge-source-how-to-index.md
+      - name: Create a knowledge source
+        items:
+        - name: Azure blobs
+          href: search-knowledge-source-how-to-blob.md
+        - name: Search indexes
+          href: search-knowledge-source-how-to-index.md
       - name: Create a knowledge agent
         href: search-agentic-retrieval-how-to-create.md
       - name: Configure answer synthesis for agents
