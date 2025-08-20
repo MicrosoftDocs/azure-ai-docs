@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 1/21/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 In this how-to guide, you learn how to recognize human speech and translate it to another language.
