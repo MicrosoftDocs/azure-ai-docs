@@ -59,7 +59,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
     :::image type="content" source="../media/deploy-models-managed/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for managed compute deployment in Azure AI Foundry." lightbox="../media/deploy-models-managed/deployment-configuration.png":::
 
-1. Select **Next** to create your deployment. The creation process might take a few minutes to complete. When it's complete, the portal opens the model deployment page.
+1. Select **Deploy** to create your deployment. The creation process might take a few minutes to complete. When it's complete, the portal opens the model deployment page.
 
     > [!TIP]
     > To see endpoints deployed to your project, go to the **My assets** section of the left pane and select **Models + endpoints**.
@@ -74,7 +74,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 After you create your deployment, follow these steps to consume it:
 
-1. Select **Models + Endpoints** under _My assets_ in your Azure AI Foundry project.
+1. Select **Models + endpoints** under the **My assets** section in your Azure AI Foundry project.
 1. Select your deployment from the **Model deployments** tab.
 1. Go to the **Test** tab for sample inference to the endpoint.
 1. Return to the **Details** tab to copy the deployment's "Target URI", which you can use to run inference with code.
@@ -84,8 +84,7 @@ After you create your deployment, follow these steps to consume it:
 
 
 ::: zone pivot="python-sdk"
-
-1. Copy the model ID from the details page of the model you selected. It looks like this for the selected model: `azureml://registries/azureml/models/deepset-roberta-base-squad2/versions/17`.
+6. Copy the model ID from the details page of the model you selected. It looks like this for the selected model: `azureml://registries/azureml/models/deepset-roberta-base-squad2/versions/17`.
 
 
 ## Deploy the model
