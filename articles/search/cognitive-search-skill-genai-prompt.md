@@ -37,6 +37,8 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 
 You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
 
+For image verbalization, the model you use to analyze the image determines what image formats are supported.
+
 Billing is based on the pricing of the model you use.
 
 > [!NOTE]
