@@ -3,7 +3,7 @@ title: What is voice conversion?
 titleSuffix: Azure AI services
 description: Learn about voice conversion in Azure AI speech.
 author: JieD-7
-ms.author: eur
+ms.author: pafarley
 ms.reviewer: eur
 manager: nitinme
 ms.service: azure-ai-speech

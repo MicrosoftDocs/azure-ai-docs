@@ -3,8 +3,8 @@ title: Create a batch transcription - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Azure AI Speech for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 8/11/2025

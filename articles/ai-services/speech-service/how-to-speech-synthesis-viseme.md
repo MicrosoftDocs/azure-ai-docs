@@ -2,8 +2,8 @@
 title: Get facial position with viseme
 titleSuffix: Azure AI services
 description: Learn about visemes that represent key poses in observed speech, such as the position of the lips, jaw, and tongue when producing a particular phoneme.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
