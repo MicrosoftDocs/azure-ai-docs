@@ -182,7 +182,6 @@ The following points are some important takeaways from the table:
 | Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
 |--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
 | **Azure OpenAI**   | Gpt 5            | ✅                 | ✅                     | ✅                   | ✅                 |
-|                    | Gpt 5 mini       | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt4.1           | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4.1 mini     | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4.1 nano     | ✅                 | ✅                     | ✅                   | ✅                 |

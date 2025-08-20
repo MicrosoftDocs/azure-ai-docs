@@ -75,18 +75,34 @@ Customers that require long-term usage of regional provisioned, data zone provis
 
 The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens.  Starting with GPT 4.1 models and later, the system matches the global standard price ratio between input and output tokens. Cached tokens are deducted 100% from the utilization.
 
-For example, for `gpt-5` and `gpt-5-mini`, 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as `gpt-4.1`, 1 output token counts as 4 input tokens. Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
+For example, for gpt-5 and gpt-5-mini, 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
 
-|Topic| **gpt-5** | **gpt-5-mini** | **o4-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o3-mini** | **o1** | **gpt-4o** | **gpt-4o-mini** |  **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
-| --- |  --- | --- |  --- | --- |  --- |  --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|Global & data zone provisioned minimum deployment| 15  | 15 | 15 | 15|15| 15 | 15 |15|15|15|15| 100|100|100|
-|Global & data zone provisioned scale increment| 5 | 5 | 5 | 5|5| 5 | 5 |5|5|5|5|  100|100|100|
-|Regional provisioned minimum deployment| 50 | 25 |25| 50|25| 25 |50 | 25|25|50|25| NA|NA|NA|
-|Regional provisioned scale increment| 50 | 25 |25| 50|25| 25 | 50 | 25|50|50|25|NA|NA|NA|
-|Input TPM per PTU| 4,750 | 23,750 |5,400 | 3,000|14,900| 59,400 | 3,000 | 2,500|230|2,500|37,000|4,000|4,000|4,000|
-|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 66 Tokens Per Second\* | 99% > 40 Tokens Per Second\* | 99% > 50 Tokens Per Second\*| 99% > 60 Tokens Per Second\* | 99% > 40 Tokens Per Second\* | 99% > 66 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* | 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*|
+# [2025 models](#tab/2025-models)
+
+|Topic| **gpt-5** | **o4-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o3-mini** |
+| --- |  --- |  --- | --- |  --- |  --- | --- | --- |
+|Global & data zone provisioned minimum deployment| 15  | 15 | 15|15| 15 | 15 |15|
+|Global & data zone provisioned scale increment| 5 | 5 | 5|5| 5 | 5 |5|
+|Regional provisioned minimum deployment| 50 |25| 50|25| 25 |50 | 25|
+|Regional provisioned scale increment| 50 | 25| 50|25| 25 | 50 | 25|
+|Input TPM per PTU| 4,750 | 5,400 | 3,000|14,900| 59,400 | 3,000 | 2,500|
+|Latency Target Value| 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
+
+\* Calculated as p50 request latency on a per 5 minute basis. For customers with existing enterprise agreements that have latency SLAs calculated as p50 request latency on a per minute basis, the prior SLAs are also still applicable.
+# [Previous models](#tab/previous-models)
+
+|Topic| **o1** | **gpt-4o** | **gpt-4o-mini** |  **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
+| --- | --- | --- | --- | --- | --- | --- |
+|Global & data zone provisioned minimum deployment|15|15|15| 100|100|100|
+|Global & data zone provisioned scale increment|5|5|5|  100|100|100|
+|Regional provisioned minimum deployment|25|50|25| NA|NA|NA|
+|Regional provisioned scale increment|50|50|25|NA|NA|NA|
+|Input TPM per PTU|230|2,500|37,000|4,000|4,000|4,000|
+|Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* | 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*|
 
 \* Calculated as the average request latency on a per-minute basis across the month.
+
+---
 
 For a full list, see the [Azure AI Foundry calculator](https://ai.azure.com/resource/calculator).
 
