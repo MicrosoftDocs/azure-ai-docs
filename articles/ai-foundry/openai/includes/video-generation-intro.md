@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 5/29/2025
