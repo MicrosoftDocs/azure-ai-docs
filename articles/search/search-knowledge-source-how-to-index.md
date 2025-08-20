@@ -14,13 +14,13 @@ ms.date: 08/29/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A search index knowledge source specifies a connection to a search index on Azure AI Search that provides searchable content in an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
+A *search index knowledge source* specifies a connection to a search index on Azure AI Search that provides searchable content in an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
 
 Knowledge sources are new in the 2025-08-01-preview release. In this release, a knowledge agent can use multiple knowledge sources. It's now possible to query multiple indexes in the same request.
 
 ## Prerequisites
 
-+ A search index containing plain text or vector content, with a semantic configuration, created using the 2025-08-01-preview API. The search index must be on the same search service as the knowledge agent.
+You need a search index containing plain text or vector content, with a semantic configuration, created using the 2025-08-01-preview API and [designed for agentic retrieval](search-agentic-retrieval-how-to-index.md). The search index must be on the same search service as the knowledge agent.
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 

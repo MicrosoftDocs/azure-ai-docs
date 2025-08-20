@@ -14,7 +14,7 @@ ms.date: 08/29/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *blob knowledge source* specifies all of the information necessary for indexing and querying an Azure blob in an Azure AI Search agentic pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
+A *blob knowledge source* specifies all of the information necessary for indexing and querying multimodal Azure blob content in an Azure AI Search agentic pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
 
 A blob knowledge source has these components:
 
@@ -26,7 +26,7 @@ Knowledge sources are new in the 2025-08-01-preview release. In this release, a 
 
 ## Prerequisites
 
-+ A blob container containing supported content types.
+You need a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats).
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 
@@ -52,7 +52,7 @@ api-key: {{api-key}}
 Content-Type: application/json
 ```
 
-A response for blob knowledge source might look like the following example. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
+A response for blob knowledge source might look like the following example. 
 
 ```json
 
@@ -60,8 +60,6 @@ A response for blob knowledge source might look like the following example. Noti
   "name": "earth-at-night-ks-blob",
   "kind": "azureBlob",
   "description": "This is a blob storage container containing pages from the Earth at Night PDF.",
-  "encryptionKey": null,
-  "searchIndexParameters": null,
   "azureBlobParameters": {
     "connectionString": "<redacted>",
     "containerName": "nasa-ebook",
@@ -93,8 +91,7 @@ A response for blob knowledge source might look like the following example. Noti
       }
     },
     "ingestionSchedule": null,
-  },
-  "webParameters": null
+  }
 }
 ```
 
