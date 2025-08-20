@@ -404,9 +404,9 @@ items:
           href: search-knowledge-source-how-to-index.md
       - name: Create a knowledge agent
         href: search-agentic-retrieval-how-to-create.md
-      - name: Configure answer synthesis for agents
+      - name: Configure answer synthesis for an agent
         href: search-agentic-retrieval-how-to-synthesize.md
-      - name: Retrieve data using a knowledge agent
+      - name: Retrieve data using an agent
         href: search-agentic-retrieval-how-to-retrieve.md
       - name: Build a retrieval pipeline
         href: search-agentic-retrieval-how-to-pipeline.md
