@@ -3,8 +3,6 @@
  description: include file
  ms.service: azure-ai-services
  ms.topic: include
- author: eric-urban
- ms.author: eur
  ms.date: 8/1/2024
  ms.custom: include
 ---

@@ -1,11 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.date: 01/03/2022
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Create project](../../../quickstarts/platform/java.md)]

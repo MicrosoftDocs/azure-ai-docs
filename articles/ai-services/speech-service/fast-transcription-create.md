@@ -3,8 +3,8 @@ title: Use the fast transcription API - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Azure AI Speech for fast transcriptions, where you submit audio get the transcription results faster than real-time.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/25/2025
