@@ -7,8 +7,8 @@ ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 08/07/2025
 ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.author: pafarley
+author: PatrickFarley
 ---
 
 # Batch synthesis properties for text to speech avatar
