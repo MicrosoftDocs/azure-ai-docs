@@ -77,7 +77,7 @@ The amount of throughput (measured in tokens per minute or TPM) a deployment get
 
 For example, for gpt-5 and gpt-5-mini, 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
 
-## Azure OpenAI 2025
+## Azure OpenAI 2025 models
 
 |Topic| **gpt-5** | **o4-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o3-mini** |
 | --- |  --- |  --- | --- |  --- |  --- | --- | --- |
