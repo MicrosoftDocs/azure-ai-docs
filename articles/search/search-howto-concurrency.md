@@ -16,7 +16,12 @@ ms.custom:
 
 # Manage concurrency in Azure AI Search
 
-When managing Azure AI Search resources such as indexes and data sources, it's important to update resources safely, especially if resources are accessed concurrently by different components of your application. When two clients concurrently update a resource without coordination, race conditions are possible. To prevent this, Azure AI Search uses an *optimistic concurrency model*. There are no locks on a resource. Instead, there's an ETag for every resource that identifies the resource version so that you can formulate requests that avoid accidental overwrites.
+When managing Azure AI Search resources such as indexes and data sources, it's important to update resources safely, especially if resources are accessed concurrently by different components of your application.
+
+* Resource update operations may not complete immediately. For example, [updating an index](/search-howto-reindex#update-an-index-schema) or an [indexer](/search-how-to-create-indexers) may take several seconds to complete. Resource updates are *serialized*, which means multiple update operations may not run simultaneously on the same resource.
+* When two clients concurrently update a resource without coordination, a *race condition* is possible. One client could start an update operation while the other client recieves a conflict error. To prevent this, Azure AI Search supports an *optimistic concurrency model*. There are no locks on a resource. Instead, there's an ETag for every resource that identifies the resource version so that you can formulate requests that avoid accidental overwrites.
+
+
 
 ## How it works
 
@@ -32,8 +37,7 @@ Every time you update a resource, its ETag changes automatically. When you imple
 
 > [!Note]
 > There is only one mechanism for concurrency. It's always used regardless of which API or SDK is used for resource updates.
-
-Starting July 18, 2025, Azure AI Search began enforcing serialization for index creation and update operations to ensure consistency and reliability. This change aligns with long-standing best practices and the established behavior of the rest of operations in the service. As the rollout progresses across regions, you may begin seeing 409 conflict errors when sending concurrent or closely timed requests. To avoid these errors, ensure operations are not sent in parallel and follow the concurrency guidance outlined in this document.
+> Starting July 18, 2025, Azure AI Search began enforcing serialization for index creation and update operations to ensure consistency and reliability.
 
 ## Example
 
