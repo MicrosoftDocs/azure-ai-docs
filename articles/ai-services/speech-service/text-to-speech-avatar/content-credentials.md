@@ -2,8 +2,8 @@
 title: Content credentials in Azure text to speech avatar
 titleSuffix: Azure text to speech avatar
 description: Learn about the content credentials feature, which lets you verify that the text to speech avatar capability generated the video.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 08/07/2025
