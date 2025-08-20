@@ -86,7 +86,7 @@ For example, for gpt-5 and gpt-5-mini, 1 output token counts as 8 input tokens t
 |Regional provisioned minimum deployment| 50 |25| 50|25| 25 |50 | 25|
 |Regional provisioned scale increment| 50 | 25| 50|25| 25 | 50 | 25|
 |Input TPM per PTU| 4,750 | 5,400 | 3,000|14,900| 59,400 | 3,000 | 2,500|
-|Latency Target Value| 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
+|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
 
 \* Calculated as p50 request latency on a per 5 minute basis. For customers with existing enterprise agreements that have latency SLAs calculated as p50 request latency on a per minute basis, the prior SLAs are also still applicable.
 # [Previous models](#tab/previous-models)
