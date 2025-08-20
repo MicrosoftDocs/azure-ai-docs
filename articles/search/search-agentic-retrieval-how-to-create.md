@@ -18,14 +18,14 @@ In Azure AI Search, a *knowledge agent* is a top-level resource representing a c
 
 A knowledge agent specifies:
 
++ A knowledge source (one or more) that points to a searchable content
 + A chat completion model that provides reasoning capabilities for query planning and answer formulation
-+ A knowledge source that specifies searchable content
-+ Parameters on the index for setting default behaviors and response shaping
++ Properties for performance optimization (constrain query processing time)
 
 After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
 
 > [!IMPORTANT]
-> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more `knowledgeSource` definitions. We recommend migrating existing code to the new APIs as soon as possible.
+> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more `knowledgeSource` definitions. We recommend [migrating existing code](search-agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
 
 ## Prerequisites
 
@@ -35,17 +35,17 @@ After you create a knowledge agent, you can update its properties at any time. I
 
 + Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
 
-+ Permissions on Azure AI Search. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article.
++ Permissions on Azure AI Search. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
 
 + A knowledge source pointing to a search index or an Azure blob. A search index can have plain text or vectors and it must [meet the requirements for agentic retrieval](search-agentic-retrieval-how-to-index.md), including a [semantic configuration](semantic-how-to-configure.md) with the `defaultConfiguration` specified.
 
-+ API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support knowledge agents at this time**.
 
-To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
+To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. T
 
 ## Deploy a model for agentic retrieval
 
-Make sure you have a supported model that Azure AI Search can access. The following instruction assumes Azure AI Foundry Model as the provider.
+Make sure you have a supported model that Azure AI Search can access. The following instructions assume Azure AI Foundry Model as the provider.
 
 1. Sign in to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
@@ -133,9 +133,11 @@ GET {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 ## Create a knowledge agent
 
-A knowledge agent represents a connection between a model that you've deployed in Azure OpenAI and a target index on Azure AI Search. Parameters on the model establish the connection. Parameters on the index establish defaults that inform query execution and the response.
+A knowledge agent drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
 
-To create an agent, use the 2025-08-01-preview data plane REST API or an Azure SDK prerelease package that provides equivalent functionality.
+Its composition consists of connections between *knowledge sources* (searchable content) and chat completion models that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
+
+To create an agent, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
@@ -152,14 +154,23 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 {
     "name" : "{{agent-name}}",
-    "retrievalInstructions": null,
+    "description": "This knowledge agent handles questions directed at two unrelated sample indexes."
+    "retrievalInstructions": "Use the hotels knowledge source only for queries about hotels or where to stay, otherwise use the earth at night knowledge source.",
     "knowledgeSources": [
         {
-            "name": "earth-at-night-ks",
+            "name": "earth-at-night-blob-ks",
             "alwaysQuerySource": false,
             "includeReferences": true,
             "includeReferenceSourceData": true,
-            "maxSubQueries": null,
+            "maxSubQueries": 30,
+            "rerankerThreshold": null
+        },
+        {
+            "name": "hotels-index-ks",
+            "alwaysQuerySource": false,
+            "includeReferences": true,
+            "includeReferenceSourceData": true,
+            "maxSubQueries": 5,
             "rerankerThreshold": null
         }
     ],
@@ -174,11 +185,16 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
             }
         }
     ],
+    "outputConfiguration": {
+        "modality": "extractiveData",
+        "answerInstructions": "Provide a concise answer to the question.",
+        "attemptFastPath": false,
+        "includeActivity": true
+    },
     "requestLimits": {
         "maxOutputSize": 5000,
         "maxRuntimeInSeconds": 60
-    },
-    "encryptionKey": { }
+    }
 }
 ```
 
@@ -186,22 +202,36 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs that can use the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
++ `description` is recommended for query planning. The LLM uses the description to inform query planning. 
 
-    + `name` is a reference to either a [search index knowledge sources](search-knowledge-source-how-to-index.md) or [blob knowledge sources](search-knowledge-source-how-to-blob.md).
++ `retrievalInstructions` is recommended for query planning. You can provide a prompt used by the LLM to determine whether a knowledge source should be in scope for a query. 
+
++ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs used by the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
+
+    + `name` is a reference to either a [search index knowledge source](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md).
     
     + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment.
-
-    + `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
     
     + `includeReferences` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
     
-    + `maxSubQueries` is the maximum number of documents that can be sent to the semantic ranker. Each subquery can pass a maximum of 50 documents to the semantic reranker, so setting this value above 50 generates more subqueries until the maximum is reached. For example, if you set this value to 200, then four subqueries are generated to support this number.
-    
+    + `maxSubQueries` is the maximum number of queries the query planning step will generate. Each query can return up to 50 documents, which are reranked by semantic ranker. The `maxSubQueries` property must be between 2 and 40.
+
+    + `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
+
 + `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
++ `outputConfiguration` gives you control over query execution logic and output.
+
+  + `modality` determines the shape of the results. Valid values are `extractiveData` (default) or `answers`.
+
+  + `answerInstructions` is used for shaping answers. For more information, see [Use answer synthesis for citation-backed responses](search-agentic-retrieval-how-to-synthesize.md).
+
+  + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. The default is `false`.
+
+  + `includeActivity` indicates whether retrieval results should include the query plan. The default is `true`.
+
 <!--  Check minimum 10k  -->
-+ `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM. 
++ `requestLimits` sets numeric limits over query processing.
 
   + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 5,000 tokens as the minimum and recommended value, and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
 
@@ -213,7 +243,7 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 ## Confirm knowledge agent operations
 
-Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task.
 
 Replace "What are my vision benefits?" with a query string that's valid for your search index.
 
