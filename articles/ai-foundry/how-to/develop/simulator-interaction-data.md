@@ -28,11 +28,11 @@ In this article, you learn how to holistically generate high-quality datasets. Y
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 ## Get started
 
-To run the full example see [Simulate Queries and Responses from input text notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Context-Relevant_Data/Simulate_From_Input_Text/Simulate_From_Input_Text.ipynb).
+To run the full example, see [Simulate Queries and Responses from input text notebook](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Simulators/Simulate_Context-Relevant_Data/Simulate_From_Input_Text/Simulate_From_Input_Text.ipynb).
 
 Install and import the simulator package (preview) from the Azure AI Evaluation SDK:
 
