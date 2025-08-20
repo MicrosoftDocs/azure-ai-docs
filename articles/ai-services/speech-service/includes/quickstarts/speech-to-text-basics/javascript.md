@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 01/30/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
