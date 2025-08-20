@@ -14,15 +14,13 @@ ms.date: 08/29/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A search index knowledge source specifies a connection to a search index on Azure AI Search that provides searchable content to an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time.
+A *search index knowledge source* specifies a connection to a search index on Azure AI Search that provides searchable content in an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
 
 Knowledge sources are new in the 2025-08-01-preview release. In this release, a knowledge agent can use multiple knowledge sources. It's now possible to query multiple indexes in the same request.
 
 ## Prerequisites
 
-+ A search index containing plain text or vector content, with a semantic configuration, created using the 2025-08-01-preview API. The search index must be on the same search service as the knowledge agent 
-
-+ A knowledge agent that connects to the knowledge source
+You need a search index containing plain text or vector content, with a semantic configuration, created using the 2025-08-01-preview API and [designed for agentic retrieval](search-agentic-retrieval-how-to-index.md). The search index must be on the same search service as the knowledge agent.
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 
@@ -30,7 +28,7 @@ To try the examples in this article, we recommend [Visual Studio Code](https://c
 
 A knowledge source is a top-level, reusable object. All knowledge sources must be uniquely named within the knowledge sources collection. It's helpful to know about existing knowledge sources for either reuse or for naming new objects.
 
-The following request lists knowledge sources by name and type.
+Example request: List all knowledge sources on a search service by name and type.
 
 ```http
 # List knowledge sources by name and type
@@ -39,7 +37,7 @@ api-key: {{api-key}}
 Content-Type: application/json
 ```
 
-You can also return a single knowledge source by name to review its JSON definition.
+Example request: Return a single knowledge source by name to review its JSON definition.
 
 ```http
 ### Get a knowledge source definition
@@ -48,7 +46,7 @@ api-key: {{api-key}}
 Content-Type: application/json
 ```
 
-A response for searchIndex knowledge source might look like the following example. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
+An example response for a `searchIndex` knowledge source might look like the following JSON. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
 
 ```json
 {
@@ -68,18 +66,18 @@ A response for searchIndex knowledge source might look like the following exampl
 
 ## Create a knowledge source
 
-To create an agent, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a knowledge source, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
 + Choose an index [designed for agentic retrieval](search-agentic-retrieval-how-to-index.md)
-+ Specify searchable fields by name, or leave empty to include all searchable fields
++ Specify searchable fields by name, or leave empty to include all `searchable` vector and nonvector fields
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
+@api-key=<YOUR ADMIN API KEY>
 @ks-name=<YOUR KNOWLEDGE SOURCE NAME>
 @index-name=<YOUR INDEX NAME>
-@api-key=<YOUR ADMIN API KEY>
 
-POST {{endpoint}}/knowledgeSources?api-version={{api-version}}
+POST {{search-url}}/knowledgeSources?api-version=2025-08-01-preview
 api-key: {{api-key}}
 Content-Type: application/json
 
@@ -100,13 +98,17 @@ Content-Type: application/json
 
 + `sourceDataSelect` consists of searchable fields, either plain text or vector.
 
+## Use a knowledge agent for validation
+
+When you create a search index knowledge source, the search service checks for syntax errors, but the file isn't read or used until you define a knowledge agent that uses it. For more information about this task, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
+
 ## Delete a knowledge source
 
 If you no longer need the knowledge source, or if you need to rebuild it on the search service, use this request to delete the current object.
 
 ```http
 # Delete agent
-DELETE https://{{search-url}}/knowledgeSources/{{ks-name}}?api-version=2025-08-01-preview
+DELETE {{search-url}}/knowledgeSources/{{ks-name}}?api-version=2025-08-01-preview
 api-key: {{api-key}}
 ```
 

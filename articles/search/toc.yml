@@ -394,15 +394,15 @@ items:
     items:
     - name: Agentic retrieval
       items:
-      - name: Design an index for agentic retrieval
+      - name: Create an index for agentic retrieval
         href: search-agentic-retrieval-how-to-index.md
-      - name: Create a blob knowledge source
+      - name: Create a knowledge source for blobs
         href: search-knowledge-source-how-to-blob.md
-      - name: Create a search index knowledge source
+      - name: Create a knowledge source for indexes
         href: search-knowledge-source-how-to-index.md
       - name: Create a knowledge agent
         href: search-agentic-retrieval-how-to-create.md
-      - name: Configure answer synthesis for a knowledge agent
+      - name: Configure answer synthesis for agents
         href: search-agentic-retrieval-how-to-synthesize.md
       - name: Retrieve data using a knowledge agent
         href: search-agentic-retrieval-how-to-retrieve.md
