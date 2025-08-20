@@ -800,7 +800,15 @@ groups:
       title: Azure CLI
     - id: programming-language-bicep
       title: Bicep
-
+- id: azure-ai-managed-compute-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Azure AI Foundry portal
+    - id: python-sdk
+      title: Python SDK
 - id: azure-ai-serverless-deployment
 # Owner: mopeakande
   title: Programming languages
