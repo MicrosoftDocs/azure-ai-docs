@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/19/2025
+ms.date: 08/20/2025
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
@@ -32,7 +32,7 @@ To configure your knowledge agent for answer synthesis, use the 2025-08-01-previ
 
 In the `outputConfiguration` section:
 
-1. Set the `modality` to `answerSynthesis`.
+1. Set `modality` to `answerSynthesis`.
 
 1. (Optional) Use `answerInstructions` to customize the answer output. Our example instructs the agent to `Use concise bulleted lists`.
 
@@ -113,17 +113,27 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
     }
 ```
 
-The response should include a natural-language answer based on your agent instructions, with citations to your knowledge sources formatted as `[ref_id:<number>]`.
+The response should include a natural-language answer based on your instructions, with citations to your knowledge sources formatted as `[ref_id:<number>]`.
 
-<!--
-For example, if your instructions are `Use concise bulleted lists` and your query is `What are my vision benefits?`, the response might look like this:
+For example, if your answer instructions are `Use concise bulleted lists` and your query is `What is healthcare?`, the response might look like this:
 
 ```json
-
+{
+  "response": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "- Healthcare encompasses various services provided to patients and the general population, including primary health services, hospital care, dental care, mental health services, and alternative health services [ref_id:1].\n- It involves the delivery of safe, effective, patient-centered care through different modalities, such as in-person encounters, shared medical appointments, and group education sessions [ref_id:0].\n- Behavioral health is a significant aspect of healthcare, focusing on the connection between behavior and overall health, including mental health and substance use [ref_id:2].\n- The healthcare system aims to ensure quality of care, access to providers, and accountability for positive outcomes while managing costs effectively [ref_id:2].\n- The global health system is evolving to address complex health needs, emphasizing the importance of cross-sectoral collaboration and addressing social determinants of health [ref_id:4]."
+        }
+      ]
+    }
+  ],
+  ... // Redacted for brevity
+}
 ```
--->
 
-Depending on the agent's configuration, the response might include other information, such as activity logs and reference arrays. For more information, see [Retrieve data using a knowledge agent](search-agentic-retrieval-how-to-retrieve.md).
+Depending on your agent's configuration, the response might include other information, such as activity logs and reference arrays. For more information, see [Retrieve data using a knowledge agent](search-agentic-retrieval-how-to-retrieve.md).
 
 ## Related content
 
