@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 8/1/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Voice | Styles |Roles |

@@ -2,12 +2,12 @@
 title: "Quickstart: The Speech CLI - Speech service"
 titleSuffix: Azure AI services
 description: In this Azure AI Speech CLI quickstart, you interact with speech to text, text to speech, and speech translation without having to write code.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
 ms.date: 08/07/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: mode-api
 # Customer intent: As a developer, I want to learn how to use the Azure AI Speech CLI to interact with speech to text, text to speech, and speech translation without writing code.
 ---

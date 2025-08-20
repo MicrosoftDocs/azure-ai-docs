@@ -2,8 +2,8 @@
 title: Azure OpenAI in Azure AI Foundry Models audio
 titleSuffix: Azure OpenAI
 description: Learn about the audio capabilities of Azure OpenAI.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
 ms.date: 7/12/2025
