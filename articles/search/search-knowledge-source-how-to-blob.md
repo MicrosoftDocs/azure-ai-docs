@@ -26,7 +26,7 @@ Knowledge sources are new in the 2025-08-01-preview release. In this release, a 
 
 ## Prerequisites
 
-You need a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats).
+You need a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type is determined by your chat completion model and the image formats it supports.
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 
