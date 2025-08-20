@@ -24,51 +24,66 @@ This article provides a list of entity categories identified and returned by the
 
 The [NER language support](../language-support.md) page lists all languages available for the named entities in this article. Any exceptions are noted for specific named entities.
 
-### NER entities
+Supported API versions:
 
-# [Preview (2025-08-01-preview)](#tab/preview-api)
+* `**Preview: 2025-05-15-preview**`
+* `** Stable: Generally Available (GA)**`
 
 > [!NOTE]
-> Beginning with the API preview releases, the `tags` fields replace the GA `subtype` fields, providing greater flexibility.
+> Beginning with the GA API (released 2024-11-01), the **Subcategory** field is no longer supported. Going forward, all entity classifications use the **type** field.
 
-## Type: Address
+## NER named entity types
+
+|||||||
+|---|---|---|---|---|---|
+|[Address](#type-address)|[Age](#type-age)|[Airport](#type-airport)|[Area](#type-area)|[City](#type-city)|[ComputingProduct](#type-computingproduct)|
+|[Continent](#type-continent)|[CountryRegion](#type-countryregion)|[CulturalEvent](#type-culturalevent)|[Currency](#type-currency)|[Date](#type-date)|[DateRange](#type-daterange)|
+|[DateTime](#type-datetime)|[DateTimeRange](#type-datetimerange)|[Dimension](#type-dimension)|[Duration](#type-duration)|[Email](#type-email)|[Event](#type-event)|
+|[Geological](#type-geographical)|[GPE](#type-geopoliticalentity-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
+|[Location](#type-location)|[NaturalEvent](#type-naturalnatural)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Numeric](#type-numeric)|[Ordinal](#type-ordinal)|
+|[Organization](#type-organization)|[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|
+|[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[Quantity](#type-quantity)|[Set](#type-set)|[Skill](#type-skill)|
+|[Speed](#type-speed)|[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temperature](#type-temperature)|[Time](#type-time)|
+|[TimeRange](#type-timerange)|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)|||
+
+### Type: Address
 ##### Category: Address
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**Address**|Address|A distinct identifier assigned to a physical or geographic location, utilized for navigation, delivery services, and formal administrative purposes.|
 
-## Type: Age
+### Type: Age
 ##### Category: Quantity
 
 
-|Entity|Tags|Detail|
+|Entity|Tags|Detail|Metadata|
 |---|---|---|---|
-|**Age**|Numeric, Quantity, Age|A quantitative measure representing the length of time from an individual's birth to a specific reference date.|
+|**Age**|Numeric, Quantity, Age|A quantitative measure representing the length of time from an individual's birth to a specific reference date.|[Age metadata](entity-metadata.md#age)|
 
 
-## Type: Airport
+### Type: Airport
 ##### Category: Airport
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**Airport**|Airport|A designated location equipped with facilities for the landing, takeoff, and maintenance of aircraft.  |
 
-## Type: Area
+### Type: Area
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Area**|Numeric, Quantity, Dimension, Area|The measurement of a surface or region expressed in square units. |
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Area**|Numeric, Quantity, Dimension, Area|The measurement of a surface or region expressed in square units.|[Dimension metadata](entity-metadata.md#dimensions)|
 
-## Type: City
+### Type: City
 ##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**City**|Location,GPE,City|A settlement characterized by a dense population and infrastructure. |
 
-## Type: ComputingProduct
+### Type: ComputingProduct
 ##### Category: Product
 
 |Entity|Tags|Detail|
@@ -76,7 +91,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**ComputingProduct**|Product, ComputingProduct|A hardware or software item designed for computational tasks or digital processing.|
 
 
-## Type: Continent
+### Type: Continent
 ##### Category: Location
 
 
@@ -85,14 +100,14 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Continent**|Location,GPE,Continent|A vast, continuous landmass on the Earth's surface. | `en`|
 
 
-## Type: CountryRegion
+### Type: CountryRegion
 ##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**CountryRegion**|Location,GPE,CountryRegion|A distinct territorial entity recognized as a nation or administrative area.|
 
-## Type: CulturalEvent
+### Type: CulturalEvent
 ##### Category: Event
 
 |Entity|Tags|Detail|Language support|
@@ -100,61 +115,61 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**CulturalEvent**|Event, EventCultural|An organized activity or gathering that reflects or celebrates cultural practices or traditions| `en`|
 
 
-## Type: Currency
+### Type: Currency
 ##### Category: Quantity
 
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Currency**|Numeric, Quantity, Currency|A system of money in common use, typically issued by a government and used as a medium of exchange.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Currency**|Numeric, Quantity, Currency|A system of money in common use, typically issued by a government and used as a medium of exchange.|[Currency metadata](entity-metadata.md#currency)|
 
 
-## Type: Date
+### Type: Date
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|
+|Entity|Tags|Detail|MetaData|
 |---|---|---|
-|**Date**|DateTime, Date|A specific calendar day expressed in terms of day, month, and year.|
+|**Date**|DateTime, Date|A specific calendar day expressed in terms of day, month, and year.|[Date metadata](entity-metadata.md#date)|
 
 
-## Type: DateRange
+### Type: DateRange
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|
+|Entity|Tags|Detail|MetaData|
 |---|---|---|
-|**DateRange**|DateTime, DateRange|A span of time defined by a start and end date.|
+|**DateRange**|DateTime, DateRange|A span of time defined by a start and end date.|[DateRange metadata](entity-metadata.md#datetime-ranges)|
 
 
-## Type: DateTime
+### Type: DateTime
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**DateTime**|DateTime|A data type encompassing date and time components used in scheduling or logging events.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**DateTime**|DateTime|A data type encompassing date and time components used in scheduling or logging events.|[DateTime metadata](entity-metadata.md#datetime)|
 
 
-## Type: DateTimeRange
+### Type: DateTimeRange
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**DateTimeRange**|DateTime, DateTimeRange|A period defined by a starting and ending date and time.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**DateTimeRange**|DateTime, DateTimeRange|A period defined by a starting and ending date and time.|[DateTimeRange metadata](entity-metadata.md#datetime-ranges)|
 
 
-## Type: Dimension
+### Type: Dimension
 ##### Category: Quantity
 
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Dimension**|Numeric, Quantity, Dimension|The measurable size or extent of an object or area, commonly expressed in terms of length, width, height, or depth.|
+|Entity|Tags|Detail|MetaData
+|---|---|---|---|
+|**Dimension**|Numeric, Quantity, Dimension|The measurable size or extent of an object or area, commonly expressed in terms of length, width, height, or depth.|[Dimension metadata](entity-metadata.md#dimensions)|
 
 
-## Type: Duration
+### Type: Duration
 ##### Category: DateTime
 
 
@@ -163,7 +178,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Duration**|DateTime, Duration|The total time interval during which an event occurs or continues.|
 
 
-## Type: Email
+### Type: Email
 ##### Category: Email
 
 |Entity|Tags|Detail|
@@ -171,7 +186,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Email**|Email|An electronic message sent and received via digital mail systems.|
 
 
-## Type: Event
+### Type: Event
 ##### Category: Event
 
 
@@ -179,14 +194,14 @@ The [NER language support](../language-support.md) page lists all languages avai
 |---|---|---|
 |**Event**|Event|A specific or noteworthy instance, or activity occurring within a defined context.|
 
-## Type: EventNatural
+### Type: EventNatural
 ##### Category: Event
 
 |Entity|Tags|Detail|Language support|
 |---|---|---|---|
 |**EventNatural**|Event, EventNatural|An occurrence or phenomenon that takes place in a physical environment as a result of natural processes, without direct human intervention.|`en`|
 
-## Type: EventSports
+### Type: EventSports
 ##### Category: Event
 
 
@@ -195,14 +210,14 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**EventSports**|Event, EventSports|An organized competition or exhibition that involves skill or strategy typically governed by a set of rules.|`en`|
 
 
-## Type: Geographical
+### Type: Geographical
 ##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
-|**Geographical**|Location, Geographical|The science and study of the Earth's surface and features.|
+|**Geographical**|Location, Geographical|Earth's physical geography and natural features, including landforms like rivers, mountains, and valleys.|
 
-## Type: GeoPoliticalEntity (GPE)
+### Type: GeoPoliticalEntity (GPE)
 ##### Category: Location
 
 |Entity|Tags|Detail|
@@ -210,23 +225,23 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**GeoPoliticalEntity**|Location, GPE|A region or area defined by political boundaries or governance. |
 
 
-## Type: Height
+### Type: Height
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Height**|Numeric, Quantity, Dimension, Height|The measurement of vertical distance.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Height**|Numeric, Quantity, Dimension, Height|The measurement of vertical distance.|[Dimension metadata](entity-metadata.md#dimensions)|
 
 
-## Type: Information
+### Type: Information
 ##### Category: Information
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Information**|Information|Structured data or processed knowledge transmitted or acquired about a specific entity, event, or condition.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Information**|Information|Structured data or processed knowledge transmitted or acquired about a specific entity, event, or condition.|[Dimension metadata](entity-metadata.md#dimensions)|
 
 
-## Type: IpAddress
+### Type: IpAddress
 ##### Category:IpAddress
 
 |Entity|Tags|Detail|
@@ -234,15 +249,15 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**IpAddress**|IpAddress|A unique numerical label assigned a device connected to a computer network using Internet Protocol.|
 
 
-## Type: Length
+### Type: Length
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Length**|Numeric, Quantity, Dimension, Length|The measurement of an object or distance between two points.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Length**|Numeric, Quantity, Dimension, Length|The measurement of an object or distance between two points.|[Dimension metadata](entity-metadata.md#dimensions)|
 
 
-## Type: Location
+### Type: Location
 ##### Category: Location
 
 |Entity|Tags|Detail|
@@ -250,15 +265,15 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Location**|Location|A specific point or area in physical or virtual space defined by exact coordinates, metadata, or unique identifiers that can be referenced, queried, or accessed.|
 
 
-## Type: Number
+### Type: Number
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
 |**Number**|Numeric, Quantity, Number|A mathematical value used for counting, measuring, or labeling.|
 
 
-## Type: NumberRange
+### Type: NumberRange
 ##### Category: Quantity
 
 |Entity|Tags|Detail|
@@ -266,7 +281,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**NumberRange**|Numeric, Quantity, NumberRange|A set of numbers that includes all values between a specified minimum and maximum boundary.|
 
 
-## Type: Numeric
+### Type: Numeric
 ##### Category: Numeric
 
 |Entity|Tags|Detail|
@@ -274,7 +289,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Numeric**|Numeric|A value that can be measured, calculated, or represented as numbers, such as integers, decimals, or other number formats. |
 
 
-## Type: Ordinal
+### Type: Ordinal
 ##### Category: Quantity
 
 |Entity|Tags|Detail|
@@ -282,7 +297,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Ordinal**|Numeric, Ordinal|A number indicating position or order in a sequence, such as first, second, or third.|
 
 
-## Type: Organization
+### Type: Organization
 ##### Category: Organization
 
 |Entity|Tags|Detail|
@@ -290,27 +305,27 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Organization**|Organization|A company, institution, or group formed for a specific purpose.|
 
 
-## Type: OrganizationMedical
+### Type: OrganizationMedical
 ##### Category: Organization
 
 |Entity|Tags|Detail|Language support|
 |---|---|---|---|
 |**OrganizationMedical**|Organization, OrganizationMedical|An entity that delivers or facilitates healthcare or medical services.|`en`|
 
-## Type: OrganizationSports
+### Type: OrganizationSports
 
 |Entity|Tags|Detail|Language support|
 |---|---|---|---|
 |**OrganizationSports**|Organization, OrganizationSports|An entity that manages or promotes sports activities or teams (**Organization**).|`en`|
 
-## Type: OrganizationStockExchange
+### Type: OrganizationStockExchange
 ##### Category: Organization
 
 |Entity|Tags|Detail|Language support|
 |---|---|---|---|
 |**OrganizationStockExchange**|Organization, OrganizationStockExchange|An institution that manages or facilitates the trading of stocks and securities.|`en`|
 
-## Type: Percentage
+### Type: Percentage
 ##### Category: Quantity
 
 |Entity|Tags|Detail|
@@ -318,7 +333,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Percentage**|Numeric, Quantity, Percentage|A value expressed as a fraction of 100, representing a proportion or share.|
 
 
-## Type: Person
+### Type: Person
 ##### Category: Person
 
 |Entity|Tags|Detail|
@@ -326,7 +341,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**Person**|Person|An individual human being or a legal entity with rights and responsibilities.|
 
 
-## Type: PersonType
+### Type: PersonType
 ##### Category: PersonType
 
 |Entity|Tags|Detail|
@@ -334,7 +349,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**PersonType**|PersonType|A classification describing the role or category of a person, such as employee or customer.|
 
 
-## Type: PhoneNumber
+### Type: PhoneNumber
 ##### Category: PhoneNumber
 
 |Entity|Tags|Detail|
@@ -342,14 +357,14 @@ The [NER language support](../language-support.md) page lists all languages avai
 |**PhoneNumber**|PhoneNumber|A unique sequence of digits assigned to a telephone line or mobile device that serves as an identifier within a communication network.|
 
 
-## Type: Product
+### Type: Product
 ##### Category: Product
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**Product**|Product|An item or service offering value and created for sale or use.|
 
-## Type: Quantity
+### Type: Quantity
 ##### Category: Quantity
 Beginning with the `2025-05-15-preview` model and in all future versions, the **Quantity** entity is replaced contextually by the following, more specific entities:
 
@@ -370,22 +385,22 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 * [Weight](#type-weight)
 
 
-## Type: Set
+### Type: Set
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Set**|DateTime, Set|A sequence of sets, where each individual set is associated with a timestamp.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Set**|DateTime, Set|A sequence of sets, where each individual set is associated with a timestamp.|[Set metadata](entity-metadata.md#set)
 
-## Type: Skill
+### Type: Skill
 ##### Category: Skill
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**Skill**|Skill|The ability to perform a task or activity, acquired through training or experience.|
 
-## Type: Speed
+### Type: Speed
 ##### Category: Quantity
 
 |Entity|Tags|Detail|
@@ -393,7 +408,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**Speed**|Numeric, Quantity, Dimension, Speed|The rate at which something moves or operates, typically measured in units per time.|
 
 
-## Type: State
+### Type: State
 ##### Category: Location
 
 |Entity|Tags|Detail|
@@ -401,7 +416,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**State**|Location,GPE,State|The institutional framework and governing apparatus for a defined geographical area or political entity.|
 
 
-## Type: Structural
+### Type: Structural
 ##### Category: Location
 
 |Entity|Tags|Detail|
@@ -409,7 +424,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**Structural**|Location, Structural|The configuration or organizational schema of components within a system or object that define the overall architecture.|
 
 
-## Type: Temperature
+### Type: Temperature
 ##### Category: Quantity
 
 |Entity|Tags|Detail|
@@ -417,7 +432,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**Temperature**|Numeric, Quantity, Temperature|A quantitative expression that indicates the measure of heat or cold present in an object or environment, commonly expressed in units such as degrees.|
 
 
-## Type: Time
+### Type: Time
 ##### Category: DateTime
 
 |Entity|Tags|Detail|
@@ -425,7 +440,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**Time**|DateTime, Time|A quantifiable interval during which an event occurs, a process unfolds, or a condition persists.|
 
 
-## Type: TimeRange
+### Type: TimeRange
 ##### Category: DateTime
 
 
@@ -434,7 +449,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**TimeRange**|DateTime, TimeRange|An interval period defined by specific start and designated end times. |
 
 
-## Type: URL
+### Type: URL
 ##### Category: URL
 
 
@@ -443,7 +458,7 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**Skill**|URL|A Uniform Resource Identifier is a string of characters that uniquely identifies a resource on the internet.|
 
 
-## Type: Volume
+### Type: Volume
 ##### Category: Quantity
 
 
@@ -452,274 +467,14 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |**Volume**|Numeric, Quantity, Dimension, Volume|The measure of three-dimensional space taken up by a substance or object, typically expressed in cubic units.|
 
 
-## Type: Weight
+### Type: Weight
 ##### Category: Quantity
 
 |Entity|Tags|Detail|
 |---|---|---|
 |**Weight**|Numeric, Quantity, Dimension, Weight|The measure of the force exerted on an object due to gravity typically expressed in units like kilograms or pounds.|
 
-# [GA (generally available)](#tab/ga-api)
 
-## Type: Address
-##### Category: Address
-
-|Entity|Detail|
-|---|---|
-|**Address**|A distinct identifier assigned to a physical or geographic location, utilized for navigation, delivery services, and formal administrative purposes.|
-
-## Type: Age
-
-*See* [**Quantity**](#type-quantity) subtype (**Age**).
-
-
-## Type: Currency
-
-*See* [**Quantity**](#type-quantity) subtype (**Currency**).
-
-
-## Type: Date
-
-*See* [**DateTime**](#type-datetime) subtype (**Date**).
-
-## Type: DateRange
-*See* [**DateTime**](#type-datetime) subtype (**DateRange**).
-
-
-## Type: DateTime
-
-|Entity|Detail|
-|---|---|
-|**DateTime**|A data type encompassing date and time components used in scheduling or logging events.|
-
-The **DateTime** entity can have the following subtypes:
-
-|Subtype|Detail|
-|---|---|
-|**Date**|A specific calendar day expressed in terms of day, month, and year.|
-|**Time**|A quantifiable interval during which an event occurs, a process unfolds, or a condition persists.|
-|**DateRange**| span of time defined by a start and end date.|
-|**TimeRange**|An interval period defined by specific start and designated end times.|
-|**Duration**|The total time interval during which an event occurs or continues.|
-|**Set**|A temporal sequence wherein each element is linked to a specific timestamp.|
-
-
-## Type: Dimension
-
-*See* [**Quantity**](#type-quantity) subtypes (**Dimension**).
-
-
-## Type: Duration
-
-*See* [**DateTime**](#type-datetime) subtype (**Duration**).
-
-
-## Type: Email
-
-|Entity|Detail|
-|---|---|
-|**Email**|An electronic message sent and received via digital mail systems. |
-
-
-## Type: Event
-
-|Entity|Detail|
-|---|---|
-|**Event**|A specific or noteworthy instance, or activity occurring within a defined context (**Event**).|
-
-The **Event** entity can have the following subtypes:
-
-|Subtype|Detail|Language support|
-|---|---|---|
-|**Cultural**|An organized activity or gathering that reflects or celebrates cultural practices or traditions.| `en`|
-|**Natural**|An occurrence or phenomenon that takes place in a physical environment as a result of natural processes, without direct human intervention.|`en`|
-|**Sports**|An organized competition or exhibition that involves skill or strategy typically governed by a set of rules. |`en`|
-
-## Type: EventCultural
-
-*See* [**Event**](#type-event) subtype (**Cultural**).
-
-
-## Type: EventNatural
-
-*See* [**Event**](#type-event) subtype (**Natural**).
-
-## Type: EventSports
-
-*See* [**Event**](#type-event) subtype (**Sports**).
-
-
-## Type: Geographical
-
-*See* [**Location**](#type-location) subtype (**Geographical**).
-
-
-## Type: GeoPoliticalEntity
-
-*See* [**Location**](#type-location) subtype (**Geopolitical Entity**).
-
-
-## Type: IpAddress
-
-|Entity|Detail|
-|---|---|
-|**IpAddress**|A unique numerical label assigned a device connected to a computer network using Internet Protocol.|
-
-
-## Type: Location
-
-|Entity|Detail|
-|---|---|
-|**Location**|A specific point or area in physical or virtual space defined by exact coordinates, metadata, or unique identifiers that can be referenced, queried, or accessed.|
-
-The **Location** entity can have the following subtypes:
-
-|Subtype|Detail|Language support|
-|---|---|---|
-|**GeoPolitical**|Referencing a region or area defined by political boundaries or governance.|[Language support](../language-support.md)|
-|**Structural**|The configuration or organizational schema of components within a system or object that define the overall architecture.|`en`|
-|**Geographical**|Referencing the study or representation of Earth's features, including natural and human-made characteristics, and their spatial relationships|`en`|
-
-
-## Type: Number
-
-*See* [**Quantity**](#type-number) subtype (**Number**).
-
-
-## Type: Ordinal
-
-*See* [**Quantity**](#type-quantity) subtype (**Ordinal**).
-
-
-## Type: Organization
-
-|Entity|Detail|
-|---|---|
-|**Organization**|A company, institution, or group formed for a specific purpose.|
-
-The **Organization** entity can have the following subtypes:
-
-|Subtype|Detail|Language support|
-|---|---|---|
-|**Medical**|An entity that delivers or facilitates healthcare or medical services.|`en`|
-|**Sports**|An entity that manages or promotes sports activities or teams.|`en`|
-|**Stock exchange**|An institution that manages or facilitates the trading of stocks and securities.|`en`|
-
-
-## Type: OrganizationMedical
-
-*See* [**Organization**](#type-organization) subtype (**Medical**).
-
-
-## Type: OrganizationSports
-
-*See* [**Organization**](#type-organization) subtype (**Sports**).
-
-
-## Type: OrganizationStockExchange
-
-*See* [**Organization**](#type-location) subtype (**StockExchange**).
-
-
-## Type: Percentage
-
-*See* [**Quantity**](#type-quantity) subtype (**Percentage**).
-
-
-## Type: Person
-
-|Entity|Detail|
-|---|---|
-|**Person**|An individual human being or a legal entity with rights and responsibilities.|
-
-
-## Type: PersonType
-
-|Entity|Detail|
-|---|---|
-|**PersonType**|A classification describing the role or category of a person, such as employee or customer.|
-
-
-## Type: PhoneNumber
-
-|Entity|Detail|
-|---|---|
-|**PhoneNumber**|A unique sequence of digits assigned to a telephone line or mobile device that serves as an identifier within a communication network.|
-
-
-## Type: Product
-
-|Entity|Detail|
-|---|---|
-|**Product**|An item or service offering value and created for sale or use.|
-
-The **Product** entity can have the following subtypes:
-
-|Subtype|Detail|
-|---|---|
-|**ComputingProduct**|A hardware or software item designed for computational tasks or digital processing.|
-
-
-## Type: Quantity
-
-|Entity|Detail|
-|---|---|
-|**Quantity**|A property or characteristic of a physical object, phenomenon, or concept that can be measured or quantified.|
-
-The Quantity entity can have the following subtypes:
-
-| Subtype | Detail |
-|---|---|
-| **Age**|A quantitative measure representing the length of time from an individual's birth to a specific reference date.|
-| **Currency**|A system of money in common use, typically issued by a government and used as a medium of exchange.|
-| **Dimension** |The measurable size or extent of an object or area, commonly expressed in terms of length, width, height, or depth.|
-| **Number** |A mathematical value used for counting, measuring, or labeling.|
-| **Ordinal**  |A number indicating position or order in a sequence, such as first, second, or third.|
-| **Percentage** |A value expressed as a fraction of 100, representing a proportion or share|
-| **Temperature** |A quantitative expression that indicates the measure of heat or cold present in an object or environment, commonly expressed in units such as degrees.|
-
-
-## Type: Set
-
-*See* [**DateTime**](#type-datetime) subtype (**Set**).
-
-
-## Type: Skill
-
-|Entity|Detail|
-|---|---|
-|**Skill**|The ability to perform a task or activity, acquired through training or experience.|
-
-
-
-
-## Type: Structural
-
-*See* [**Location**](#type-location) subtype (**Structural**).
-
-
-## Type: Temperature
-
-*See* [**Quantity**](#type-quantity) subtypes (**Temperature**).
-
-
-## Type: Time
-
-*See* [**DateTime**](#type-datetime) subtype (**Time**).
-
-
-## Type: TimeRange
-
-*See* [**DateTime**](#type-datetime) subtype (**TimeRange**).
-
-
-## Type: URL
-
-|Entity|Detail|
-|---|---|
-|**Skill**|A Uniform Resource Identifier is a string of characters that uniquely identifies a resource on the internet.|
-
----
 
 ## Next steps
 
