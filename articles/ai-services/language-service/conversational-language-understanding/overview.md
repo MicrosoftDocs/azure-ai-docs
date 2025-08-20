@@ -51,7 +51,7 @@ Creating a CLU project typically involves several different steps.
 :::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path." lightbox="media/llm-quick-deploy.png":::
 
 > [!NOTE]
-> In the Azure AI Foundry, you’ll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
+> In the Azure AI Foundry, you'll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
 
 CLU offers two paths for you to get the most out of your implementation.
 
@@ -61,7 +61,7 @@ Option 1 (LLM-powered quick deploy):
 
 2. **Deploy the model**: Deploying a model with the LLM-based training config makes it available for use via the Runtime API.
 
-3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user’s utterances. 
+3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user's utterances. 
 
 Option 2 (Custom machine learned model)
 
@@ -94,7 +94,7 @@ As you use CLU, see the following reference documentation and samples for Azure 
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes the technology, the individuals who operate the system, the people who experience its effects, and the broader environment where the system functions all play a role. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. 
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 
