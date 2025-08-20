@@ -1,7 +1,7 @@
 ---
 services: ai-services
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 3/11/2025
