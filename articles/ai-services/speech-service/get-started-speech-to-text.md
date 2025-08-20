@@ -2,12 +2,12 @@
 title: "Speech to text quickstart"
 titleSuffix: Azure AI services
 description: In this quickstart, learn how to use the Speech service for real-time speech to text conversion.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: quickstart
 ms.date: 8/5/2025
-ms.author: eur
+ms.author: pafarley
 ms.reviewer: eur
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go, build-2024, ignite-2024
 zone_pivot_groups: programming-languages-get-started-transcription

@@ -2,12 +2,12 @@
 title: Install Speech containers
 titleSuffix: Azure AI services
 description: Details the speech to text helm chart configuration options.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 05/05/2020
-ms.author: eur
+ms.author: pafarley
 ---
 
 ### Speech to text (sub-chart: charts/speechToText)

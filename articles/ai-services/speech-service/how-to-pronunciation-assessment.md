@@ -2,7 +2,7 @@
 title: Use pronunciation assessment
 titleSuffix: Azure AI services
 description: Learn about pronunciation assessment features that are currently publicly available. Choose the programming solution for your needs.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
@@ -14,7 +14,7 @@ ms.custom:
   - build-2024
 ms.topic: how-to
 ms.date: 4/7/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: programming-languages-ai-services
 #Customer intent: As a developer, I want to implement pronunciation assessment on spoken language using a technology that works in my environment to gives feedback on accuracy and fluency.
 ---

@@ -7,8 +7,6 @@ ms.service: azure-ai-services
 keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
 ms.topic: quickstart
 ms.date: 8/1/2024
-ms.author: eur
-author: eric-urban
 ms.custom:
   - mode-api
   - devx-track-azurecli

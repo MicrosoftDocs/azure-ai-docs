@@ -3,8 +3,8 @@ title: Voice live API overview
 titleSuffix: Azure AI services
 description: Learn about the voice live API for real-time voice agents.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 7/31/2025

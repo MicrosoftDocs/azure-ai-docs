@@ -5,8 +5,8 @@ description: A common scenario for speech to text is transcribing large volumes 
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 08/07/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: jagoerge
 ms.custom: template-concept
 ---
