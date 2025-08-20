@@ -16,7 +16,7 @@ ms.date: 08/29/2025
 
 A *search index knowledge source* specifies a connection to a search index on Azure AI Search that provides searchable content in an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
 
-Knowledge sources are new in the 2025-08-01-preview release. In this release, a knowledge agent can use multiple knowledge sources. It's now possible to query multiple indexes in the same request.
+Knowledge sources are new in the 2025-08-01-preview release. You create them first, and then reference them in a knowledge agent.
 
 ## Prerequisites
 
@@ -64,43 +64,60 @@ An example response for a `searchIndex` knowledge source might look like the fol
 }
 ```
 
+> [!NOTE]
+> The `webParameters` property isn't operational in this preview and it's reserved for future use.
+
 ## Create a knowledge source
 
 To create a knowledge source, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
+A knowledge source can contain exactly one of the following: `searchIndexParameters` *or* `azureBlobParameters`. The `webParameters` property isn't supported in this release. If you specify `searchIndexParameters`, then `azureBlobParameters` must be null.
+
+For `searchIndexParameters`:
+
 + Choose an index [designed for agentic retrieval](search-agentic-retrieval-how-to-index.md)
-+ Specify searchable fields by name, or leave empty to include all `searchable` vector and nonvector fields
++ Specify any `retrievable` fields that can be used for citations, such as a file name or page number.
 
-```http
-@search-url=<YOUR SEARCH SERVICE URL>
-@api-key=<YOUR ADMIN API KEY>
-@ks-name=<YOUR KNOWLEDGE SOURCE NAME>
-@index-name=<YOUR INDEX NAME>
+1. Use the [Create or Update Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) preview REST API.
 
-POST {{search-url}}/knowledgeSources?api-version=2025-08-01-preview
-api-key: {{api-key}}
-Content-Type: application/json
+1. Set environment variables at the top of your file.
 
-{
-    "name" : "{{ks-name}}",
-    "kind" : "searchIndex",
-    "description" : "Earth at night e-book knowledge source",
-    "searchIndexParameters" :{
-      "searchIndexName" : "{{index-name}}",
-      "sourceDataSelect" : "page_chunk,page_number"
+    ```http
+    @search-url=<YOUR SEARCH SERVICE URL>
+    @api-key=<YOUR ADMIN API KEY>
+    @ks-name=<YOUR KNOWLEDGE SOURCE NAME>
+    @index-name=<YOUR INDEX NAME>
+    ```
+
+1. Formulate the request and then **Send**.
+
+    ```http
+    POST {{search-url}}/knowledgeSources?api-version=2025-08-01-preview
+    api-key: {{api-key}}
+    Content-Type: application/json
+    
+    {
+        "name" : "{{ks-name}}",
+        "kind" : "searchIndex",
+        "description" : "Earth at night e-book knowledge source",
+        "searchIndexParameters" :{
+          "searchIndexName" : "{{index-name}}",
+          "sourceDataSelect" : "page_chunk,page_number"
+        }
     }
-}
-```
+    ```
 
 **Key points**:
 
 + `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
-+ `sourceDataSelect` consists of searchable fields, either plain text or vector.
++ `sourceDataSelect` is the list of fields returned if you specify `includeReferenceSourceData` in the knowledge agent definition. These fields are used for the citation view experience and should include fields like a document or file name, page or chapter number, and so forth.
 
-## Use a knowledge agent for validation
+## Assign to a knowledge agent
 
-When you create a search index knowledge source, the search service checks for syntax errors, but the file isn't read or used until you define a knowledge agent that uses it. For more information about this task, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
+If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge agent](search-agentic-retrieval-how-to-create.md).
+
+Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
 
 ## Delete a knowledge source
 
