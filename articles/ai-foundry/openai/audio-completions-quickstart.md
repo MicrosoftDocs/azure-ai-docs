@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.date: 8/13/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: references_regions
 zone_pivot_groups: audio-completions-quickstart
 recommendations: false
