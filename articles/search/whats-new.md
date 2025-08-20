@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/18/2025
+ms.date: 08/29/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## August 2025
+
+| Item | Type | Description |
+|-----------------------------|------|--------------|
+| [Agentic retrieval updates (preview)](search-agentic-retrieval-concept.md) | Query | New and breaking changes in agentic retrieval include new APIs for specifying multiple indexes at query time. Knowledge agents can have multiple knowledge sources. You can create [knowledge sources for indexes](search-knowledge-source-how-to-index.md) and [knowledge sources for Azure blobs](search-knowledge-source-how-to-blob.md). <p>[Call an LLM to formulate an answer as an embedded step](search-agentic-retrieval-how-to-synthesize.md). Instead of passing search results extracted from index content, you can pass an LLM-composed string at LLM at query time. <p>For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md). |
 
 ## July 2025
 

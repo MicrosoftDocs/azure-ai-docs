@@ -16,7 +16,7 @@ ms.date: 08/29/2025
 
 A *search index knowledge source* specifies a connection to a search index on Azure AI Search that provides searchable content in an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
 
-Knowledge sources are new in the 2025-08-01-preview release. You create them first, and then reference them in a knowledge agent.
+Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 

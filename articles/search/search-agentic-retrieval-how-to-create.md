@@ -154,14 +154,23 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 {
     "name" : "{{agent-name}}",
-    "retrievalInstructions": null,
+    "description": "This knowledge agent handles questions directed at two unrelated sample indexes."
+    "retrievalInstructions": "Use the hotels knowledge source only for queries about hotels or where to stay, otherwise use the earth at night knowledge source.",
     "knowledgeSources": [
         {
-            "name": "earth-at-night-ks",
+            "name": "earth-at-night-blob-ks",
             "alwaysQuerySource": false,
             "includeReferences": true,
             "includeReferenceSourceData": true,
             "maxSubQueries": 30,
+            "rerankerThreshold": null
+        },
+        {
+            "name": "hotels-index-ks",
+            "alwaysQuerySource": false,
+            "includeReferences": true,
+            "includeReferenceSourceData": true,
+            "maxSubQueries": 5,
             "rerankerThreshold": null
         }
     ],
@@ -176,6 +185,12 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
             }
         }
     ],
+    "outputConfiguration": {
+        "modality": "extractiveData",
+        "answerInstructions": "Provide a concise answer to the question.",
+        "attemptFastPath": false,
+        "includeActivity": true
+    },
     "requestLimits": {
         "maxOutputSize": 5000,
         "maxRuntimeInSeconds": 60
@@ -187,11 +202,13 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
++ `description` is recommended for query planning. The LLM uses the description to inform query planning. 
+
 + `retrievalInstructions` is recommended for query planning. You can provide a prompt used by the LLM to determine whether a knowledge source should be in scope for a query. 
 
 + `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs used by the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
 
-    + `name` is a reference to either a [search index knowledge sources](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md).
+    + `name` is a reference to either a [search index knowledge source](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md).
     
     + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment.
     
@@ -203,8 +220,18 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
++ `outputConfiguration` gives you control over query execution logic and output.
+
+  + `modality` determines the shape of the results. Valid values are `extractiveData` (default) or `answers`.
+
+  + `answerInstructions` is used for shaping answers. For more information, see [Use answer synthesis for citation-backed responses](search-agentic-retrieval-how-to-synthesize.md).
+
+  + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. The default is `false`.
+
+  + `includeActivity` indicates whether retrieval results should include the query plan. The default is `true`.
+
 <!--  Check minimum 10k  -->
-+ `requestLimits` gives you control over the output generated during retrieval so that you can better manage inputs to the LLM. 
++ `requestLimits` sets numeric limits over query processing.
 
   + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 5,000 tokens as the minimum and recommended value, and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
 
@@ -216,7 +243,7 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 ## Confirm knowledge agent operations
 
-Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task.
 
 Replace "What are my vision benefits?" with a query string that's valid for your search index.
 

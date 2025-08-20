@@ -22,7 +22,7 @@ A search index that's used in agentic retrieval is specified as *knowledge sourc
 
 + An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](search-knowledge-source-how-to-index.md) definition.
 
-+ A generated index created from an automated blob indexer pipeline. This index is created based on a template and meets all of the criteria for knowledge agents and agentic retrieval. This index is created from a [blob knowledge source](search-knowledge-source-how-to-blob.md). 
++ A generated index created from an automated blob indexer pipeline. This index is created based on a template and meets all of the criteria for knowledge agents and agentic retrieval. This index is generated and populated using informaton from a [blob knowledge source](search-knowledge-source-how-to-blob.md). 
 
 ## Criteria for agentic retrieval
 

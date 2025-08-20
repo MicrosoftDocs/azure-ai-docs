@@ -25,7 +25,7 @@ In contrast with a [search index knowledge source](search-knowledge-source-how-t
 
 The generated index provides the content that's used by a knowledge agent.
 
-Knowledge sources are new in the 2025-08-01-preview release. You create them first, and then reference them in a knowledge agent.
+Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
@@ -120,6 +120,7 @@ For `azureBlobParameters`:
 + Provide a full access connection string for Azure Storage and the container name
 + Provide a text embedding model. This model is used to vectorize text content during indexing and queries.
 + Provide a chat completion model used for describing image content.
++ Provide an encryption key to doubly encrypt sensitive information in this knowledge source and in the generated resources.
 
 Models are referenced in the skillset and as vectorizer for encoding text strings at query time.
 
@@ -148,6 +149,7 @@ A blob knowledge source can include an `ingestionSchedule` that adds scheduling 
       "name": "earth-at-night-blob-ks",
       "kind": "azureBlob",
       "description": "This knowledge source pull from a blob storage container containing pages from the Earth at Night PDF.",
+      "encryptionKey": null,
       "azureBlobParameters": {
         "connectionString": "{{connection-string}}",
         "containerName": "nasa-ebook",
@@ -177,7 +179,9 @@ A blob knowledge source can include an `ingestionSchedule` that adds scheduling 
             "authIdentity": null
           }
         },
-        "ingestionSchedule": null
+        "ingestionSchedule": {
+          "interval": "P1D",
+          "startTime": "2025-01-07T19:30:00Z"
       }
     }
     ```
