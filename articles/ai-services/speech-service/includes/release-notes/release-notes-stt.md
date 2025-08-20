@@ -1,9 +1,9 @@
 ﻿---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 5/4/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions
 ---
 

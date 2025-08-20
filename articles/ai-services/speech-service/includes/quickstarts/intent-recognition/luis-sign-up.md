@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 02/04/2022
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 To complete the intent recognition quickstart, you'll need to create a LUIS account and a project using the LUIS preview portal. This quickstart requires a LUIS subscription [in a region where intent recognition is available](../../../regions.md#regions). A Speech service subscription isn't required.
