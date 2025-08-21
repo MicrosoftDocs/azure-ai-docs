@@ -7,7 +7,7 @@ ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: article
-ms.date: 05/16/2025
+ms.date: 08/21/2025
 ---
 
 # Transparency note: Azure AI Search
@@ -119,6 +119,9 @@ Several [built-in skills](/azure/search/cognitive-search-predefined-skills) for 
 - Sentiment Skill: [Azure AI Language - Sentiment Analysis](/azure/ai-foundry/responsible-ai/language-service/transparency-note-sentiment-analysis)
 - Image Analysis Skill: [Azure AI Vision - Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
 - OCR Skill: [Azure AI Vision - OCR](/azure/ai-foundry/responsible-ai/computer-vision/ocr-transparency-note)
+- Document Layout Skill: [Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note)
+- Content Understanding Skill: [Content Understanding](/azure/ai-foundry/responsible-ai/content-understanding/transparency-note)
+
 
 See the documentation for each skill to learn more about their respective capabilities, limitations, performance, evaluations, and methods for integration and responsible use. Note that using these skills in combination may lead to compounding effects (for example, errors introduced when using OCR will carry through when using key phrase extraction).
 
