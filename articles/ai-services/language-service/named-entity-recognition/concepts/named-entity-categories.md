@@ -34,13 +34,13 @@ Supported API versions:
 
 ## NER named entity types
 
-|||||||
+|*|*|Entities|Entities|*|*|
 |---|---|---|---|---|---|
 |[Address](#type-address)|[Age](#type-age)|[Airport](#type-airport)|[Area](#type-area)|[City](#type-city)|[ComputingProduct](#type-computingproduct)|
 |[Continent](#type-continent)|[CountryRegion](#type-countryregion)|[CulturalEvent](#type-culturalevent)|[Currency](#type-currency)|[Date](#type-date)|[DateRange](#type-daterange)|
 |[DateTime](#type-datetime)|[DateTimeRange](#type-datetimerange)|[Dimension](#type-dimension)|[Duration](#type-duration)|[Email](#type-email)|[Event](#type-event)|
 |[Geological](#type-geographical)|[GPE](#type-geopoliticalentity-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
-|[Location](#type-location)|[NaturalEvent](#type-naturalnatural)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Numeric](#type-numeric)|[Ordinal](#type-ordinal)|
+|[Location](#type-location)|[NaturalEvent](#type-naturalevent)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Numeric](#type-numeric)|[Ordinal](#type-ordinal)|
 |[Organization](#type-organization)|[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|
 |[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[Quantity](#type-quantity)|[Set](#type-set)|[Skill](#type-skill)|
 |[Speed](#type-speed)|[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temperature](#type-temperature)|[Time](#type-time)|
@@ -194,21 +194,6 @@ Supported API versions:
 |---|---|---|
 |**Event**|Event|A specific or noteworthy instance, or activity occurring within a defined context.|
 
-### Type: EventNatural
-##### Category: Event
-
-|Entity|Tags|Detail|Language support|
-|---|---|---|---|
-|**EventNatural**|Event, EventNatural|An occurrence or phenomenon that takes place in a physical environment as a result of natural processes, without direct human intervention.|`en`|
-
-### Type: EventSports
-##### Category: Event
-
-
-|Entity|Tags|Detail|Language support|
-|---|---|---|---|
-|**EventSports**|Event, EventSports|An organized competition or exhibition that involves skill or strategy typically governed by a set of rules.|`en`|
-
 
 ### Type: Geographical
 ##### Category: Location
@@ -263,6 +248,13 @@ Supported API versions:
 |Entity|Tags|Detail|
 |---|---|---|
 |**Location**|Location|A specific point or area in physical or virtual space defined by exact coordinates, metadata, or unique identifiers that can be referenced, queried, or accessed.|
+
+### Type: NaturalEvent
+##### Category: Event
+
+|Entity|Tags|Detail|Language support|
+|---|---|---|---|
+|**NaturalEvent**|Event, EventNatural|An occurrence or phenomenon that takes place in a physical environment as a result of natural processes, without direct human intervention.|`en`|
 
 
 ### Type: Number
@@ -364,26 +356,6 @@ Supported API versions:
 |---|---|---|
 |**Product**|Product|An item or service offering value and created for sale or use.|
 
-### Type: Quantity
-##### Category: Quantity
-Beginning with the `2025-05-15-preview` model and in all future versions, the **Quantity** entity is replaced contextually by the following, more specific entities:
-
-* [Age](#type-age)
-* [Area](#type-age)
-* [Currency](#type-currency)
-* [Dimension](#type-dimension)
-* [Height](#type-height)
-* [Information](#type-information)
-* [Length](#type-length)
-* [Number](#type-number)
-* [NumberRange](#type-numberrange)
-* [Ordinal](#type-ordinal)
-* [Percentage](#type-percentage)
-* [Speed](#type-speed)
-* [Temperature](#type-temperature)
-* [Volume](#type-volume)
-* [Weight](#type-weight)
-
 
 ### Type: Set
 ##### Category: DateTime
@@ -406,6 +378,15 @@ Beginning with the `2025-05-15-preview` model and in all future versions, the **
 |Entity|Tags|Detail|
 |---|---|---|
 |**Speed**|Numeric, Quantity, Dimension, Speed|The rate at which something moves or operates, typically measured in units per time.|
+
+### Type: SportsEvent
+##### Category: Event
+
+
+|Entity|Tags|Detail|Language support|
+|---|---|---|---|
+|**SportsEvent**|Event, EventSports|An organized competition or exhibition that involves skill or strategy typically governed by a set of rules.|`en`|
+
 
 
 ### Type: State
