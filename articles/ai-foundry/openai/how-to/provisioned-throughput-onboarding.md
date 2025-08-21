@@ -103,7 +103,7 @@ For example, for gpt-5 1 output token counts as 8 input tokens towards your util
 
 \* Calculated as the average request latency on a per-minute basis across the month.
 
-## Non-Azure OpenAI models
+## Direct from Azure models
  
 |Topic| **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
 | --- | --- | --- | --- |
