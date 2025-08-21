@@ -5,10 +5,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 03/26/2025
+ms.date: 08/21/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
