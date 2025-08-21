@@ -20,7 +20,7 @@ Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
-You need a search index containing plain text or vector content, with a semantic configuration, created using the 2025-08-01-preview API and [designed for agentic retrieval](search-agentic-retrieval-how-to-index.md). The search index must be on the same search service as the knowledge agent.
+You need a search index containing plain text or vector content, with a semantic configuration. [Review index criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md#criteria-for-agentic-retrieval). The search index must be on the same search service as the knowledge agent.
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 

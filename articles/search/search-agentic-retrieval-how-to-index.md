@@ -18,11 +18,11 @@ In Azure AI Search, *agentic retrieval* is a new parallel query architecture tha
 
 Subqueries are created internally. Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on agentic retrieval. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
-A search index that's used in agentic retrieval is specified as *knowledge source* and is one of the following:
+A search index that's used in agentic retrieval is specified as *knowledge source* and is either:
 
 + An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](search-knowledge-source-how-to-index.md) definition.
 
-+ A generated index created from an automated blob indexer pipeline. This index is created based on a template and meets all of the criteria for knowledge agents and agentic retrieval. This index is generated and populated using informaton from a [blob knowledge source](search-knowledge-source-how-to-blob.md). 
++ A generated index created from a generated blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](search-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
 
 ## Criteria for agentic retrieval
 
@@ -32,7 +32,7 @@ An index that's used in agentic retrieval must have these elements:
 + A semantic configuration, with a `defaultSemanticConfiguration`
 + Vector fields and a vectorizer if you want to include vector queries in the pipeline
 
-It should also fields that can be used for citations, such as  document or file name, page or chapter name, and so forth.
+It should also have fields that can be used for citations, such as  document or file name, page or chapter name, or at least a chunk ID.
 
 Optionally, the following index elements increase your opportunities for optimization:
 
