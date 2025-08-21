@@ -29,7 +29,7 @@ Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
-+ Azure Storage with a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type depends on your chat completion model and whether it an analyze and describe the image file.
++ Azure Storage with a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type depends on your chat completion model and whether it can analyze and describe the image file.
 
 + Azure AI Search, basic tier or higher, configured for semantic ranker.
 
