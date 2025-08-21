@@ -7,11 +7,10 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: conceptual
-ms.date: 02/22/2025
+ms.date: 08/21/2025
 ms.author: pafarley
-ms.custom:
-  - ignite-2023
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
