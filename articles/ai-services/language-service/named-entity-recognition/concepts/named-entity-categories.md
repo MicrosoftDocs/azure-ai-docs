@@ -34,17 +34,17 @@ Supported API versions:
 
 ## NER named entity types
 
-|*|*|Entities|Entities|*|*|
-|---|---|---|---|---|---|
+|Entities|Entities|Entities|Entities|Entities|Entities|
+|:---:|:---:|:---:|:---:|:---:|:---:|
 |[Address](#type-address)|[Age](#type-age)|[Airport](#type-airport)|[Area](#type-area)|[City](#type-city)|[ComputingProduct](#type-computingproduct)|
 |[Continent](#type-continent)|[CountryRegion](#type-countryregion)|[CulturalEvent](#type-culturalevent)|[Currency](#type-currency)|[Date](#type-date)|[DateRange](#type-daterange)|
 |[DateTime](#type-datetime)|[DateTimeRange](#type-datetimerange)|[Dimension](#type-dimension)|[Duration](#type-duration)|[Email](#type-email)|[Event](#type-event)|
 |[Geological](#type-geographical)|[GPE](#type-geopoliticalentity-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
 |[Location](#type-location)|[NaturalEvent](#type-naturalevent)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Numeric](#type-numeric)|[Ordinal](#type-ordinal)|
 |[Organization](#type-organization)|[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|
-|[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[Quantity](#type-quantity)|[Set](#type-set)|[Skill](#type-skill)|
-|[Speed](#type-speed)|[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temperature](#type-temperature)|[Time](#type-time)|
-|[TimeRange](#type-timerange)|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)|||
+|[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[Set](#type-set)|[Skill](#type-skill)|[Speed](#type-speed)|
+[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temperature](#type-temperature)|[Time](#type-time)|[TimeRange](#type-timerange)|
+|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)|||
 
 ### Type: Address
 ##### Category: Address
@@ -74,7 +74,7 @@ Supported API versions:
 
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
-|**Area**|Numeric, Quantity, Dimension, Area|The measurement of a surface or region expressed in square units.|[Dimension metadata](entity-metadata.md#dimensions)|
+|**Area**|Numeric, Quantity, Dimension, Area|The measurement of a surface or region expressed in square units.|[Area metadata](entity-metadata.md#area)|
 
 ### Type: City
 ##### Category: Location
@@ -137,9 +137,9 @@ Supported API versions:
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|MetaData|
+|Entity|Tags|Detail|
 |---|---|---|
-|**DateRange**|DateTime, DateRange|A span of time defined by a start and end date.|[DateRange metadata](entity-metadata.md#datetime-ranges)|
+|**DateRange**|DateTime, DateRange|A span of time defined by a start and end date.|
 
 
 ### Type: DateTime
@@ -155,18 +155,18 @@ Supported API versions:
 ##### Category: DateTime
 
 
-|Entity|Tags|Detail|MetaData|
-|---|---|---|---|
-|**DateTimeRange**|DateTime, DateTimeRange|A period defined by a starting and ending date and time.|[DateTimeRange metadata](entity-metadata.md#datetime-ranges)|
+|Entity|Tags|Detail|
+|---|---|---|
+|**DateTimeRange**|DateTime, DateTimeRange|A period defined by a starting and ending date and time.|
 
 
 ### Type: Dimension
 ##### Category: Quantity
 
 
-|Entity|Tags|Detail|MetaData
-|---|---|---|---|
-|**Dimension**|Numeric, Quantity, Dimension|The measurable size or extent of an object or area, commonly expressed in terms of length, width, height, or depth.|[Dimension metadata](entity-metadata.md#dimensions)|
+|Entity|Tags|Detail|
+|---|---|---|
+|**Dimension**|Numeric, Quantity, Dimension|The measurable size or extent of an object or area, commonly expressed in terms of length, width, height, or depth.|
 
 
 ### Type: Duration
@@ -213,9 +213,9 @@ Supported API versions:
 ### Type: Height
 ##### Category: Quantity
 
-|Entity|Tags|Detail|MetaData|
-|---|---|---|---|
-|**Height**|Numeric, Quantity, Dimension, Height|The measurement of vertical distance.|[Dimension metadata](entity-metadata.md#dimensions)|
+|Entity|Tags|Detail|
+|---|---|---|
+|**Height**|Numeric, Quantity, Dimension, Height|The measurement of vertical distance.|
 
 
 ### Type: Information
@@ -223,7 +223,7 @@ Supported API versions:
 
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
-|**Information**|Information|Structured data or processed knowledge transmitted or acquired about a specific entity, event, or condition.|[Dimension metadata](entity-metadata.md#dimensions)|
+|**Information**|Information|Structured data or processed knowledge transmitted or acquired about a specific entity, event, or condition.|[Dimension metadata](entity-metadata.md#information)|
 
 
 ### Type: IpAddress
@@ -239,7 +239,7 @@ Supported API versions:
 
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
-|**Length**|Numeric, Quantity, Dimension, Length|The measurement of an object or distance between two points.|[Dimension metadata](entity-metadata.md#dimensions)|
+|**Length**|Numeric, Quantity, Dimension, Length|The measurement of an object or distance between two points.|[Length metadata](entity-metadata.md#length)|
 
 
 ### Type: Location
@@ -262,15 +262,15 @@ Supported API versions:
 
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
-|**Number**|Numeric, Quantity, Number|A mathematical value used for counting, measuring, or labeling.|
+|**Number**|Numeric, Quantity, Number|A mathematical value used for counting, measuring, or labeling.|[Number metadata](entity-metadata.md#number)|
 
 
 ### Type: NumberRange
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**NumberRange**|Numeric, Quantity, NumberRange|A set of numbers that includes all values between a specified minimum and maximum boundary.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**NumberRange**|Numeric, Quantity, NumberRange|A set of numbers that includes all values between a specified minimum and maximum boundary.|[NumberRange metadata](entity-metadata.md#numericrange)
 
 
 ### Type: Numeric
@@ -284,9 +284,9 @@ Supported API versions:
 ### Type: Ordinal
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Ordinal**|Numeric, Ordinal|A number indicating position or order in a sequence, such as first, second, or third.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Ordinal**|Numeric, Ordinal|A number indicating position or order in a sequence, such as first, second, or third.|[Ordinal metadata](entity-metadata.md#ordinal)|
 
 
 ### Type: Organization
@@ -363,7 +363,7 @@ Supported API versions:
 
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
-|**Set**|DateTime, Set|A sequence of sets, where each individual set is associated with a timestamp.|[Set metadata](entity-metadata.md#set)
+|**Set**|DateTime, Set|A sequence of sets, where each individual set is associated with a timestamp.|[Set metadata](entity-metadata.md#set)|
 
 ### Type: Skill
 ##### Category: Skill
@@ -375,9 +375,9 @@ Supported API versions:
 ### Type: Speed
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Speed**|Numeric, Quantity, Dimension, Speed|The rate at which something moves or operates, typically measured in units per time.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Speed**|Numeric, Quantity, Dimension, Speed|The rate at which something moves or operates, typically measured in units per time.|[Speed metadata](entity-metadata.md#speed)|
 
 ### Type: SportsEvent
 ##### Category: Event
@@ -386,7 +386,6 @@ Supported API versions:
 |Entity|Tags|Detail|Language support|
 |---|---|---|---|
 |**SportsEvent**|Event, EventSports|An organized competition or exhibition that involves skill or strategy typically governed by a set of rules.|`en`|
-
 
 
 ### Type: State
@@ -408,17 +407,17 @@ Supported API versions:
 ### Type: Temperature
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Temperature**|Numeric, Quantity, Temperature|A quantitative expression that indicates the measure of heat or cold present in an object or environment, commonly expressed in units such as degrees.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Temperature**|Numeric, Quantity, Temperature|A quantitative expression that indicates the measure of heat or cold present in an object or environment, commonly expressed in units such as degrees.|[Temperature metadata](entity-metadata.md#temperature)|
 
 
 ### Type: Time
 ##### Category: DateTime
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Time**|DateTime, Time|A quantifiable interval during which an event occurs, a process unfolds, or a condition persists.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Time**|DateTime, Time|A quantifiable interval during which an event occurs, a process unfolds, or a condition persists.|[Time metadata](entity-metadata.md#time)|
 
 
 ### Type: TimeRange
@@ -443,20 +442,20 @@ Supported API versions:
 ##### Category: Quantity
 
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Volume**|Numeric, Quantity, Dimension, Volume|The measure of three-dimensional space taken up by a substance or object, typically expressed in cubic units.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Volume**|Numeric, Quantity, Dimension, Volume|The measure of three-dimensional space taken up by a substance or object, typically expressed in cubic units.|[Volume metadata](entity-metadata.md#volume)|
 
 
 ### Type: Weight
 ##### Category: Quantity
 
-|Entity|Tags|Detail|
-|---|---|---|
-|**Weight**|Numeric, Quantity, Dimension, Weight|The measure of the force exerted on an object due to gravity typically expressed in units like kilograms or pounds.|
+|Entity|Tags|Detail|MetaData|
+|---|---|---|---|
+|**Weight**|Numeric, Quantity, Dimension, Weight|The measure of the force exerted on an object due to gravity typically expressed in units like kilograms or pounds.|[Weight metadata](entity-metadata.md#weight)|
 
 
 
 ## Next steps
 
-* [NER overview](../overview.md)
+[NER overview](../overview.md)

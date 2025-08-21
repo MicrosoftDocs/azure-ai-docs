@@ -1,7 +1,7 @@
 ---
 title: Entity Metadata provided by Named Entity Recognition (NER)
 titleSuffix: Azure AI services
-description: Learn about entity metadata in the NER feature.
+description: View entity metadata values for named entity recognition (NER) named entities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
@@ -13,7 +13,7 @@ ms.custom: language-service-ner
 
 # Entity Metadata
 
-The Entity Metadata object stores optional supplementary details about detected entities, specifically providing standardized resolutions for numeric and temporal data. 
+The entity metadata object stores optional supplementary details about detected entities, specifically providing standardized resolutions for numeric and temporal data. 
 
 This attribute is only populated when extra information is available and may be empty or missing for some entities. 
 
@@ -147,9 +147,9 @@ Ambiguity can occur even for a given day of the week. For example, saying "Monda
 |Metadata|Type|Description|
 |---|---|---|
 |timex|string|The ISO 8601 formatted date and time:<br>`YYYY-MM-DDTHH:MM:SS`(year, month, day, hour, minutes, seconds, milliseconds) with a `T` separator. |
-|value|string|The actual denoted date. and time.|
+|value|string|The actual denoted date and time.|
 
-Similar to dates, you can have ambiguous datetime entities. For example, "May 3rd noon" could refer to any year. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified.
+Similar to dates, you can have ambiguous datetime entities. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified.
 
 ```json
 "metadata": {
@@ -292,7 +292,7 @@ Possible values for **rangeKind**:
 
 |Metadata|Type|Description|
 |---|---|---|
-|**offset**|string|Currency unit|The offset with respect to the reference (e.g., offset = -1 indicates the second to last)|
+|**offset**|string|Currency unit|The offset with respect to the reference (for example, offset = -1 indicates the second to last)|
 |**relativeTo**|The reference point that the ordinal number denotes.|
 |**value**|number|Numeric value for ordinal position.|
 
@@ -314,7 +314,7 @@ Possible values for **relativeTo**:
 
 ## Set
 
-A recurring datetime period (example:every Monday at 6 PM )
+A recurring datetime period (example: "every Monday at 6:00 PM.")
 
 |Metadata|Type|Description|
 |---|---|---|
