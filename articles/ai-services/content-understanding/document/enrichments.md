@@ -1,7 +1,7 @@
 ---
-title: "Document analysis with confidence, grounding and in-context learning"
+title: "Document analysis with confidence, grounding, and in-context learning"
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding's value add-ons to improve model extraction quality and performance
+description: Learn about Azure AI Content Understanding's value add-ons that improve model extraction quality and performance
 author: PatrickFarley 
 ms.author: additi
 manager: nitinme
@@ -13,7 +13,7 @@ ms.custom:
 ---
 
 
-# Improve document output quality with confidence, grounding and in-context learning
+# Improve document output quality with confidence, grounding, and in-context learning
 
 Intelligent document processing, whether for unstructured documents like contracts and statements of work, or structured documents like invoices and insurance forms, is done for critical information for RAG, search, agentic workflows, and any downstream applications or automation. Extracting this data reliably, at scale, requires more capabilities than just text extraction. Intelligent document processing requires information like what was extracted, why it was extracted, and how reliably it was extracted.
 
@@ -22,7 +22,7 @@ Most enterprises face the following challenges when handling a variety of docume
 - Need to **automate workflows**, but only when the extraction is meeting an accuracy threshold that is critical for the business application. You need to know how confident/accurate the model is in its predictions.
 - Need a way to **correct the model without retraining  from scratch** (ideally by providing a few labeled examples) when it gets something wrong or encounters a new format.
 
-To address these enterprise needs, Azure AI Content Understanding supports the following features for post-processing your extracted output.
+To address these needs, Azure AI Content Understanding supports the following features for post-processing your extracted output.
 
 | Feature | Purpose | Value |
 |--------|---------|-------|
@@ -51,14 +51,14 @@ In enterprise workflows, accuracy is not enough; you also need traceability. Whe
 You want to extract the *termination clause* from a contract. The model returns:
 
 - **Extracted text**: "Either party may terminate this agreement with 60 days’ notice."
--	"spans": [
-              {
-                "offset": 343,
-                "length": 102
-              }
-            ],
-- **Source**:
-	  Page: 3
+-	"spans":  [ <br>
+              { <br>
+                "offset": 343, <br>
+                "length": 102 <br>
+              } <br>
+            ] <br>
+- **Source**: <br>
+	  Page: 3 <br>
 	  Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
 
 Span indicates the element's logical position using character offset and length, while source gives its visual position with page number and bounding box coordinates. 
@@ -68,7 +68,7 @@ With this grounding data, your legal team can verify the extraction by jumping d
 
 ## Confidence scoring: Automate with control
 
-Every extraction field type comes with a confidence score between 0 and 1, indicating how certain the model is about the result. This gives you a tunable point to automate high-confidence results and flag lower-confidence outputs for human reviews.
+Every extraction field type comes with a confidence score between 0 and 1, indicating how certain the model is about the result. This number gives you a tunable point to automate high-confidence results and flag lower-confidence outputs for human reviews.
 
 ### Why confidence score matters
 
@@ -81,7 +81,7 @@ Confidence score let you design intelligent workflows, such as:
 
 You're processing scanned utility bills to extract billing address and amount due. For a document:
 
-- **Billing address**: "1234 Market St, San Francisco, CA" → Confidence: 0.96
+- **Billing address**: "1234 Market St., San Francisco, CA" → Confidence: 0.96
 - **Amount due**: "$128.74" → Confidence: 0.52
 
 In this case, your automation pipeline can post the billing address directly to your downstream application while routing the amount due to a human for verification. By using confidence scores, you reduce manual effort while maintaining accuracy.
@@ -89,7 +89,7 @@ In this case, your automation pipeline can post the billing address directly to 
 
 ## In-context learning: Teach the model by giving examples
 
-If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. In-context learning allows you to providing additional labeled examples in Foundry to guide the model’s behavior without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules by correcting itself.
+If the context for all the fields is clearly provided in the testing document, a zero-shot document extraction call should be sufficient. In-context learning allows you to provide extra labeled examples in Foundry to guide the model’s behavior without the need for retraining or fine-tuning. The model uses these examples to adapt to new formats, naming conventions, or extraction rules by correcting itself.
 
 To enhance the model quality: 
 - For datasets with minimal template variations, you can add just a single labeled example. 
@@ -105,16 +105,16 @@ In-context learning helps:
 - Rapidly onboard new templates without labeling data within a single analyzer.
 - Add samples only when dealing with lower confidence scores or incomplete/partial extraction.
 
-To add a label sample, you can upload a sample under **Label data**, and select **Auto label**. Auto label will predict all the fields out of the box. 
+To add a label sample, go to a document extraction result page in the Azure AI Foundry portal and select the **Label data** tab. Upload a sample, and select the **Auto label** button. Auto label predicts all the fields out of the box.
 
-:::image type="content" source="../media/document/in-context-learning.png" alt-text="Screenshot of auto labelling an invoice sample.":::
+:::image type="content" source="../media/document/in-context-learning.png" lightbox="../media/document/in-context-learning.png" alt-text="Screenshot of auto labeling an invoice sample.":::
 
-Then you can edit the fields by selecting the correct values. Once you save it, it will show with the **corrected** tag for all the extracted fields that were corrected. 
+Then you can edit the fields by selecting the correct values. Once you save it, it shows with the **corrected** tag for all the extracted fields that were corrected. 
 
-:::image type="content" source="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels":::
+:::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels.":::
 
 > [!NOTE]
-> Labelled samples can be added in Foundry UX. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`) 
+> Labeled samples can be added in the Azure AI Foundry portal. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`)
 
 ### Example
 
@@ -124,15 +124,15 @@ The model will now refer to this pattern to correctly extract the value in futur
 
 ## A complete workflow
 
-For building an intelligent document automation pipeline, these capabilities will help you reliably extract and scale the application. For example: If you want to process procurement contracts, you'll extract:
+For building an intelligent document automation pipeline, these capabilities help you reliably extract and scale the application. For example if you want to process procurement contracts, you extract:
 - Vendor name
 - Start and end dates
 - Cancellation clause
 
-To ensure quality and trust, which is critical for enterprise-scale document understanding.:
+To ensure quality and trust, which is critical for enterprise-scale document understanding:
 - **Grounding** gives your team full traceability to every field.
 - **Confidence scores** helps you automate, as human review is needed only when threshold is low.
-- **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few labelled examples.
+- **In-context learning** lets your model adapt to new contract templates or handling edge cases using just a few labeled examples.
 
 
 
