@@ -99,7 +99,7 @@ For example, for gpt-5 1 output token counts as 8 input tokens towards your util
 |Regional provisioned minimum deployment|25|50|25| 25|
 |Regional provisioned scale increment|50|50|25| 25|
 |Input TPM per PTU|230|2,500|37,000| 2,500|
-|Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* |  99% > 90 Tokens Per Second\* |
+|Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* |  99% > 66 Tokens Per Second\* |
 
 \* Calculated as the average request latency on a per-minute basis across the month.
 
