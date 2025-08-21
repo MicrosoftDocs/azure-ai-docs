@@ -24,7 +24,7 @@ items:
       href: search-what-is-an-index.md
     - name: Vector index
       href: vector-store.md
-    - name: Knowledge store
+    - name: Knowledge store in Azure Storage
       href: knowledge-store-concept-intro.md
     - name: Indexers
       href: search-indexer-overview.md
@@ -599,8 +599,6 @@ items:
       href: search-performance-tips.md
   - name: Knowledge store
     items:
-    - name: Knowledge store overview
-      href: knowledge-store-concept-intro.md
     - name: Knowledge store projections overview
       href: knowledge-store-projection-overview.md
     - name: Create using REST
