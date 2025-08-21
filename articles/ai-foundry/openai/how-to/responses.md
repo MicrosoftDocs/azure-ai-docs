@@ -331,6 +331,8 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 
 By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
 
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
 ```python
 from openai import AzureOpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
@@ -348,6 +350,26 @@ client = AzureOpenAI(
 response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 
 print(response)
+```
+
+# [REST API](#tab/rest-api)
+
+### API Key
+
+```bash
+curl -X DELETE https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" 
+```
+
+# [Output](#tab/output)
+
+```json
+{
+  "id": "resp_67cb61fa3a448190bcf2c42d96f0d1a8",
+  "object": "response.deleted",
+  "deleted": true
+}
 ```
 
 ## Chaining responses together
