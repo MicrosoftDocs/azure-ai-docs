@@ -69,7 +69,7 @@ An example response for a `searchIndex` knowledge source might look like the fol
 
 ## Create a knowledge source
 
-To create a knowledge source, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a [knowledge source](search-knowledge-source-overview.md), use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
 A knowledge source can contain exactly one of the following: `searchIndexParameters` *or* `azureBlobParameters`. The `webParameters` property isn't supported in this release. If you specify `searchIndexParameters`, then `azureBlobParameters` must be null.
 

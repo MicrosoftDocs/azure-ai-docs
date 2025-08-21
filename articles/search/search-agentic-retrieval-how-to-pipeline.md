@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 06/08/2025
+ms.date: 08/29/2025
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:

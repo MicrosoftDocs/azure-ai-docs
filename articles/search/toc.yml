@@ -398,6 +398,8 @@ items:
         href: search-agentic-retrieval-how-to-index.md
       - name: Create a knowledge source
         items:
+        - name: Knowledge sources
+          href: search-knowledge-source-overview.md
         - name: Azure blobs
           href: search-knowledge-source-how-to-blob.md
         - name: Search indexes
