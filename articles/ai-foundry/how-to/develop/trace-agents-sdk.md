@@ -11,7 +11,7 @@ ms.topic: how-to
 
 ---
 
-# Trace your AI agents using Azure AI Foundry portal and SDK 
+# Trace your AI agents using Azure AI Foundry portal and SDK (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
