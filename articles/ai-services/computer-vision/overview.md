@@ -8,11 +8,7 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: overview
 ms.date: 08/21/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
-ms.custom:
-  - ignite-2023
 keywords: Azure AI Vision, Azure AI Vision applications, Azure AI Vision service
 #Customer intent: As a developer, I want to evaluate image processing functionality, so that I can determine if it will work for my information extraction or object detection scenarios.
 ---
