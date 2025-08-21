@@ -29,7 +29,11 @@ Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
-You need a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type depends on your chat completion model and whether it an analyze and describe the image file.
++ Azure Storage with a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type depends on your chat completion model and whether it an analyze and describe the image file.
+
++ Azure AI Search, basic tier or higher, configured for semantic ranker.
+
++ An embedding model and a chat completion model used for verbalizing images. Depending on the models you specify, the generated skillset can include any of the following skills: [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [AML skill](cognitive-search-aml-skill.md). Each of these skills has a finite list of supported models. Check the skill documentation for supported models.
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
 
@@ -110,7 +114,7 @@ A response for blob knowledge source might look like the following example.
 
 ## Create a knowledge source
 
-To create a knowledge source, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a [knowledge source](search-knowledge-source-overview.md), use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
 A knowledge source can contain exactly one of the following: `searchIndexParameters` *or* `azureBlobParameters`. The `webParameters` property isn't supported in this release. If you specify `azureBlobParameters`, then `searchIndexParameters` must be null.
 
@@ -182,6 +186,7 @@ A blob knowledge source can include an `ingestionSchedule` that adds scheduling 
         "ingestionSchedule": {
           "interval": "P1D",
           "startTime": "2025-01-07T19:30:00Z"
+        }
       }
     }
     ```
