@@ -19,6 +19,6 @@ The Protected material code filter flags protected code content (from known GitH
 > [!IMPORTANT]
 > The Contents Filter models for protected material, groundedness detection, and custom categories (standard) work with English only.
 > 
-> Other Contents Filter models have been specifically trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, Portuguese. However, these features can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+> Other content filtering models have been specifically trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, Portuguese. However, these features can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
 
 [!INCLUDE [protected-material-examples](../../../ai-services/content-safety/includes/protected-material-examples.md)]
