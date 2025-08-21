@@ -49,7 +49,7 @@ For this deletion detection approach, Azure AI Search depends on the [native blo
 
 + Document keys for the documents in your index must be mapped to either be a blob property or blob metadata, such as "metadata_storage_path".
 
-+ You can use a the [REST API](/rest/api/searchservice/data-sources/create), or the indexer Data Source configuration in the Azure portal, to configure support for soft delete.
++ You can use the [REST API](/rest/api/searchservice/data-sources/create), or the indexer Data Source configuration in the Azure portal, to configure support for soft delete.
 
 + [Blob versioning](/azure/storage/blobs/versioning-overview) must not be enabled in the storage account. Otherwise, native soft delete isn't supported by design.
 
@@ -57,7 +57,7 @@ For this deletion detection approach, Azure AI Search depends on the [native blo
 
 In Blob storage, when enabling soft delete per the requirements, set the retention policy to a value that's much higher than your indexer interval schedule. If there's an issue running the indexer, or if you have a large number of documents to index, there's plenty of time for the indexer to eventually process the soft deleted blobs. Azure AI Search indexers will only delete a document from the index if it processes the blob while it's in a soft deleted state.
 
-In Azure AI Search, set a native blob soft deletion detection policy on the data source. You can do this either from the Azure portal or by using a [REST API](/rest/api/searchservice/data-sources/create). The following instructions explain how to set the delete detection policy in Azure portal or through REST APIs.
+In Azure AI Search, set a native blob soft deletion detection policy on the data source. You can do this either from the Azure portal or by using the [REST API](/rest/api/searchservice/data-sources/create). The following instructions explain how to set the delete detection policy in Azure portal or through REST APIs.
 
 ### [**Azure portal**](#tab/portal)
 
