@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 08/21/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -15,6 +15,9 @@ ms.custom:
 ---
 
 # Create a knowledge store using REST
+
+> [!NOTE]
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](search-agentic-retrieval-concept.md) workflows.
 
 In Azure AI Search, a [knowledge store](knowledge-store-concept-intro.md) is a repository of [AI-generated content](cognitive-search-concept-intro.md) that's used for non-search scenarios. You create the knowledge store using an indexer and skillset, and specify Azure Storage to store the output. After the knowledge store is populated, use tools like [Storage Explorer](/azure/vs-azure-tools-storage-manage-with-storage-explorer) or [Power BI](knowledge-store-connect-power-bi.md) to explore the content.
 
