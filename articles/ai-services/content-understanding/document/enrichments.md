@@ -51,14 +51,14 @@ In enterprise workflows, accuracy is not enough; you also need traceability. Whe
 You want to extract the *termination clause* from a contract. The model returns:
 
 - **Extracted text**: "Either party may terminate this agreement with 60 days’ notice."
--	"spans":  [
-              {
-                "offset": 343,
-                "length": 102
-              }
-            ],
-- **Source**:
-	  Page: 3
+-	"spans":  [ <br>
+              { <br>
+                "offset": 343, <br>
+                "length": 102 <br>
+              } <br>
+            ] <br>
+- **Source**: <br>
+	  Page: 3 <br>
 	  Coordinates: ({x1},{y1},{x2},{y2},{x3},{y3},{x4},{y4})
 
 Span indicates the element's logical position using character offset and length, while source gives its visual position with page number and bounding box coordinates. 
@@ -111,7 +111,7 @@ To add a label sample, go to a document extraction result page in the Azure AI F
 
 Then you can edit the fields by selecting the correct values. Once you save it, it shows with the **corrected** tag for all the extracted fields that were corrected. 
 
-:::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels":::
+:::image type="content" source="../media/document/label-corrected.png" lightbox="../media/document/label-corrected.png" alt-text="Screenshot of corrected labels.":::
 
 > [!NOTE]
 > Labeled samples can be added in the Azure AI Foundry portal. Once samples are added, you need to build the analyzer again so that samples can take effect. This will not improve any OCR corrections or generative fields output. (Method == `Generate` or `Classify`)
