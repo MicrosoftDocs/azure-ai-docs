@@ -292,7 +292,7 @@ Possible values for **rangeKind**:
 
 |Metadata|Type|Description|
 |---|---|---|
-|**offset**|string|Currency unit|The offset with respect to the reference (for example, offset = -1 indicates the second to last)|
+|**offset**|string|The offset with respect to the reference (for example, offset = -1 indicates the second to last)|
 |**relativeTo**|The reference point that the ordinal number denotes.|
 |**value**|number|Numeric value for ordinal position.|
 
