@@ -48,17 +48,6 @@ After selecting **Thread info**, the screen that appears will be let you view th
 > [!NOTE]
 > Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
-
-## Trace agents using OpenTelemetry and an Application Insights resource
-
-Tracing lets you analyze your agent's performance and behavior by using OpenTelemetry and adding an Application Insights resource to your Azure AI Foundry project. 
-
-To add an Application Insights resource, select **Observability** from the left pane in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), select **Tracing**, and then and create a new resource if you don't already have one.
-
-:::image type="content" source="../media/ai-foundry-observability.png" alt-text="A screenshot of the tracing screen in the Azure AI Foundry portal." lightbox="../media/ai-foundry-observability.png":::
-
-Once created, you can get an Application Insights connection string, configure your agents, and observe the full execution path of your agent through Azure Monitor. Typically you want to enable tracing before you create an agent.
-
 ## Observe an agent
 
 First, use `pip install` to install OpenTelemetry and the Azure SDK tracing plugin.
