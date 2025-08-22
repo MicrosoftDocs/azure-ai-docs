@@ -1492,14 +1492,15 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-    - id: programming-language-csharp
-      title: C#
-    - id: programming-language-java
-      title: Java
-    - id: programming-language-javascript
-      title: JavaScript
     - id: programming-language-python
       title: Python
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-java
+      title: Java
+      
 # Owner: samkemp
 - id: foundry-local-sdk
   title: Programming languages
