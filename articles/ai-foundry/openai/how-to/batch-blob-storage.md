@@ -19,15 +19,7 @@ Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storag
 
 ## Region Support
 
-- australiaeast
-- eastus
-- germanywestcentral
-- northcentralus
-- polandcentral
-- swedencentral
-- switzerlandnorth
-- eastus2
-- westus
+Now supported in [all regions where batch deployments are supported](./batch.md#batch-support).
 
 ## Azure Blob Storage configuration
 
