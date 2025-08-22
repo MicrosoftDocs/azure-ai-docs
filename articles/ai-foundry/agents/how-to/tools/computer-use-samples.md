@@ -6,10 +6,9 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/10/2025
+ms.date: 08/22/2025
 author: aahill
 ms.author: aahi
-zone_pivot_groups: selection-deep-research
 ---
 
 # How to use the Computer Use Tool

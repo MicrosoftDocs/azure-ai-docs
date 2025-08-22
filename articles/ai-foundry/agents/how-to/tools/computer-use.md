@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 08/22/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
