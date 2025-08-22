@@ -192,7 +192,7 @@ You might want to use Azure Blob Storage as a data source if you want to connect
 
 To keep your Azure AI Search index up-to-date with your latest data, you can schedule an automatic index refresh rather than manually updating it every time your data is updated. Automatic index refresh is only available when you choose **Azure Blob Storage** as the data source. To enable an automatic index refresh:
 
-1. [Add a data source](../use-your-data-quickstart.md.md) using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. [Add a data source](../use-your-data-quickstart.md) using [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. Under **Select or add data source** select **Indexer schedule** and choose the refresh cadence you would like to apply.
 
     :::image type="content" source="../media/use-your-data/indexer-schedule.png" alt-text="A screenshot of the indexer schedule in Azure AI Foundry portal." lightbox="../media/use-your-data/indexer-schedule.png":::
