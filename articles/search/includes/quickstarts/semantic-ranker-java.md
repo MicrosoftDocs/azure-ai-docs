@@ -2,10 +2,10 @@
 author: KarlErickson
 ms.author: karler
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
+ms.custom: devx-track-java
 ms.topic: include
-ms.date: 07/09/2025
+ms.date: 08/22/2025
+ai-usage: ai-assisted
 ---
 
 [!INCLUDE [Semantic ranker introduction](semantic-ranker-intro.md)]
@@ -61,6 +61,12 @@ The quickstart assumes the following is available on your computer:
        </dependencies>
    </project>
    ```
+
+1. Compile the project to resolve the dependencies:
+
+    ```bash
+    mvn compile
+    ```
 
 1. Create the source directory structure.
 
