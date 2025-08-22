@@ -26,11 +26,11 @@ The [NER language support](../language-support.md) page lists all languages avai
 
 Supported API versions:
 
-* `**Preview: 2025-05-15-preview**`
-* `** Stable: Generally Available (GA)**`
+* [**Preview: 2025-05-15-preview**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2025-05-15-preview&preserve-view=true&tabs=HTTP#entitycategory)
+* [**Stable: Generally Available (GA)**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=truetabs=HTTP#entitycategory)
 
 > [!NOTE]
-> Beginning with the GA API (released 2024-11-01), the **Subcategory** field is no longer supported. Going forward, all entity classifications use the **type** field.
+> Beginning with the GA API (released 2024-11-01), the **Subcategory** field is no longer supported. All entity classifications now use the **type** field.
 
 ## NER named entity types
 
@@ -42,9 +42,9 @@ Supported API versions:
 |[Geological](#type-geographical)|[GPE](#type-geopoliticalentity-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
 |[Location](#type-location)|[NaturalEvent](#type-naturalevent)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Numeric](#type-numeric)|[Ordinal](#type-ordinal)|
 |[Organization](#type-organization)|[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|
-|[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[Set](#type-set)|[Skill](#type-skill)|[Speed](#type-speed)|
-[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temperature](#type-temperature)|[Time](#type-time)|[TimeRange](#type-timerange)|
-|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)|||
+|[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[SetTemporal](#type-settemporal)|[Skill](#type-skill)|[Speed](#type-speed)|
+[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temporal](#type-temporal)|[Temperature](#type-temperature)|[Time](#type-time)|
+[TimeRange](#type-timerange)|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)||
 
 ### Type: Address
 ##### Category: Address
@@ -95,9 +95,9 @@ Supported API versions:
 ##### Category: Location
 
 
-|Entity|Tags|Detail|Language support|
-|---|---|---|---|
-|**Continent**|Location,GPE,Continent|A vast, continuous landmass on the Earth's surface. | `en`|
+|Entity|Tags|Detail|
+|---|---|---|
+|**Continent**|Location,GPE,Continent|A vast, continuous landmass on the Earth's surface. | 
 
 
 ### Type: CountryRegion
@@ -357,7 +357,7 @@ Supported API versions:
 |**Product**|Product|An item or service offering value and created for sale or use.|
 
 
-### Type: Set
+### Type: SetTemporal
 ##### Category: DateTime
 
 
@@ -402,6 +402,13 @@ Supported API versions:
 |Entity|Tags|Detail|
 |---|---|---|
 |**Structural**|Location, Structural|The configuration or organizational schema of components within a system or object that define the overall architecture.|
+
+### Type: Temporal
+##### Category: DateTime
+
+|Entity|Tags|Detail|
+|---|---|---|
+|**Temporal**|Related to time or time-based changes, such as data, events, or processes that vary over time.|
 
 
 ### Type: Temperature
