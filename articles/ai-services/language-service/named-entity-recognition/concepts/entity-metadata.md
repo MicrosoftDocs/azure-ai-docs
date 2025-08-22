@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 08/22/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---
@@ -25,7 +25,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
 
 ## Entities with metadata attributes
 
-|  |  |  |  |  |  |
+|Entities|Entities|Entities|Entities|Entities|Entities|
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |[Age](#age)|[Area](#area)|[Currency](#currency)|[Date](#date)|[Datetime](#datetime)|[Information](#information)|
 |[Length](#length)|[Number](#number)|[NumericRange](#numericrange)|[Ordinal](#ordinal)|[Set](#set)|[Speed](#speed)|
@@ -46,7 +46,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
             }
 ```
 
-**Possible values for **unit**:
+**Possible values for *unit***:
 
 * Day
 * Month
@@ -70,7 +70,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
             }
 ```
 
-**Possible values for **unit**:
+**Possible values for *unit***:
 
 * Acre
 * SquareCentimeter
@@ -102,7 +102,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
             }
 ```
 
-Possible values for "unit" and "ISO4217":
+**Possible values for *ISO4217***:
 - [ISO 4217 reference](https://docs.1010data.com/1010dataReferenceManual/DataTypesAndFormats/currencyUnitCodes.html).
 
 
@@ -189,7 +189,7 @@ Similar to dates, you can have ambiguous datetime entities. Resolution provides 
 
 ```
 
-Possible values for **unit**:
+**Possible values for *unit***:
 
 * Bit
 * Byte
@@ -220,7 +220,7 @@ Possible values for **unit**:
             }
 
 ```
-Possible values for **unit**:
+**Possible values for *unit***:
 
 * Centimeter
 * Decameter
@@ -256,7 +256,7 @@ Possible values for **unit**:
 
 ```
 
-Possible values for numberKind:
+**Possible values for *numberKind***:
 
 * Decimal
 * Fraction
@@ -282,7 +282,7 @@ Possible values for numberKind:
             }
 
 ```
-Possible values for **rangeKind**:
+**Possible values for *rangeKind***:
 
 * Age
 * Area
@@ -313,7 +313,7 @@ Possible values for **rangeKind**:
 
 ```
 
-Possible values for **relativeTo**:
+**Possible values for *relativeTo***:
 
 * Current
 * End
@@ -338,7 +338,7 @@ A recurring datetime period (example: "every Monday at 6:00 PM.")
 
 ```
 
-Possible values for type:
+**Possible values for *type***:
 
 * begin
 * end
@@ -363,7 +363,7 @@ Possible values for type:
 
 ```
 
-Possible values for **unit**:
+**Possible values for *unit***:
 
 * CentimetersPerMillisecond
 * FeetPerMinute
@@ -395,7 +395,7 @@ Possible values for **unit**:
             }
 
 ```
-Possible values for **unit**:
+**Possible values for *unit***:
 
 * Celsius
 * Fahrenheit
@@ -436,7 +436,7 @@ Possible values for **unit**:
             }
 
 ```
-Possible values for **unit**:
+**Possible values for *unit***:
 
 * Barrel
 * Bushel
@@ -482,7 +482,7 @@ Possible values for **unit**:
             }
 
 ```
-Possible values for **unit**:
+**Possible values for *unit***:
 
 * Dram
 * Gallon

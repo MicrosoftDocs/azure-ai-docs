@@ -40,14 +40,14 @@ Supported API versions:
 |[Continent](#type-continent)|[CountryRegion](#type-countryregion)|[CulturalEvent](#type-culturalevent)|[Currency](#type-currency)|[Date](#type-date)|[DateRange](#type-daterange)|
 |[DateTime](#type-datetime)|[DateTimeRange](#type-datetimerange)|[Dimension](#type-dimension)|[Duration](#type-duration)|[Email](#type-email)|[Event](#type-event)|
 |[Geological](#type-geographical)|[GPE](#type-geopoliticalentity-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
-|[Location](#type-location)|[NaturalEvent](#type-naturalevent)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Numeric](#type-numeric)|[Ordinal](#type-ordinal)|
-|[Organization](#type-organization)|[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|
-|[PersonType](#type-persontype)|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[SetTemporal](#type-settemporal)|[Skill](#type-skill)|[Speed](#type-speed)|
-[SportsEvent](#type-sportsevent)|[State](#type-state)|[Structural](#type-structural)|[Temporal](#type-temporal)|[Temperature](#type-temperature)|[Time](#type-time)|
-[TimeRange](#type-timerange)|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)||
+|[Location](#type-location)|[NaturalEvent](#type-naturalevent)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Ordinal](#type-ordinal)|[Organization](#type-organization)|
+|[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|[PersonType](#type-persontype)|
+|[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[SetTemporal](#type-settemporal)|[Skill](#type-skill)|[Speed](#type-speed)|[SportsEvent](#type-sportsevent)|
+|[State](#type-state)|[Structural](#type-structural)|[Temporal](#type-temporal)|[Temperature](#type-temperature)|[Time](#type-time)|[TimeRange](#type-timerange)|
+|[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)||
 
 ### Type: Address
-##### Category: Address
+##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
@@ -202,12 +202,12 @@ Supported API versions:
 |---|---|---|
 |**Geographical**|Location, Geographical|Earth's physical geography and natural features, including landforms like rivers, mountains, and valleys.|
 
-### Type: GeoPoliticalEntity (GPE)
+### Type: GPE
 ##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
-|**GeoPoliticalEntity**|Location, GPE|A region or area defined by political boundaries or governance. |
+|**GPE**|Location, GPE|Geo political entity (GPE) is a region or area defined by political boundaries or governance. |
 
 
 ### Type: Height
@@ -271,14 +271,6 @@ Supported API versions:
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
 |**NumberRange**|Numeric, Quantity, NumberRange|A set of numbers that includes all values between a specified minimum and maximum boundary.|[NumberRange metadata](entity-metadata.md#numericrange)
-
-
-### Type: Numeric
-##### Category: Numeric
-
-|Entity|Tags|Detail|
-|---|---|---|
-|**Numeric**|Numeric|A value that can be measured, calculated, or represented as numbers, such as integers, decimals, or other number formats. |
 
 
 ### Type: Ordinal
