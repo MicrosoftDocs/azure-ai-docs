@@ -39,7 +39,7 @@ Supported API versions:
 |[Address](#type-address)|[Age](#type-age)|[Airport](#type-airport)|[Area](#type-area)|[City](#type-city)|[ComputingProduct](#type-computingproduct)|
 |[Continent](#type-continent)|[CountryRegion](#type-countryregion)|[CulturalEvent](#type-culturalevent)|[Currency](#type-currency)|[Date](#type-date)|[DateRange](#type-daterange)|
 |[DateTime](#type-datetime)|[DateTimeRange](#type-datetimerange)|[Dimension](#type-dimension)|[Duration](#type-duration)|[Email](#type-email)|[Event](#type-event)|
-|[Geological](#type-geographical)|[GPE](#type-geopoliticalentity-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
+|[Geological](#type-geographical)|[GPE](#type-gpe)|[Height](#type-height)|[Information](#type-information)|[IpAddress](#type-ipaddress)|[Length](#type-length)|
 |[Location](#type-location)|[NaturalEvent](#type-naturalevent)|[Number](#type-number)|[NumberRange](#type-numberrange)|[Ordinal](#type-ordinal)|[Organization](#type-organization)|
 |[OrganizationMedical](#type-organizationmedical)|[OrganizationSports](#type-organizationsports)|[OrganizationStockExchange](#type-organizationstockexchange)|[Percentage](#type-percentage)|[Person](#type-person)|[PersonType](#type-persontype)|
 |[PhoneNumber](#type-phonenumber)|[Product](#type-product)|[SetTemporal](#type-settemporal)|[Skill](#type-skill)|[Speed](#type-speed)|[SportsEvent](#type-sportsevent)|
