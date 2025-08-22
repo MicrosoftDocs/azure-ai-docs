@@ -118,4 +118,5 @@ print(messages.data[0].content[0].text.value)
 ## Next steps
 
 * [Python agent samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/getting-started-agents)
-* [Example Playwright integration](../../../openai/how-to/computer-use.md#playwright-integration)
+* [Azure OpenAI Computer Use example Playwright integration](../../../openai/how-to/computer-use.md#playwright-integration)
+    * The Azure OpenAI API has implementation differences compared to the Agent Service, and these examples may need to be adapted to work with agents.
