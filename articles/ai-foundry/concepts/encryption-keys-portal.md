@@ -18,7 +18,7 @@ zone_pivot_groups: project-type
 
 # Customer-managed keys for encryption with Azure AI Foundry
 
-Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides enhanced control over the encryption of your data. By using CMK, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
+Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides enhanced control over the encryption of your data. By using a CMK, you can manage your own encryption keys to add an extra layer of protection and meet compliance requirements more effectively.
 
 ## About encryption in Azure AI Foundry
 
@@ -72,7 +72,7 @@ Two architecture options are available when you use CMKs with Azure AI Hub:
 
 ## Use CMKs with Azure Key Vault
 
-You must use Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. Your Azure resources and the Key Vault resources must be in the same region and in the same Microsoft Entra tenant. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
+You must use Azure Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. Your Azure resources and the Key Vault resources must be in the same region and in the same Microsoft Entra tenant. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
 - Enable both the **Soft-delete** and **Purge protection** properties on the key vault.
 - Allow trusted Microsoft services to access the key vault if you use the [key vault firewall](/azure/key-vault/general/access-behind-firewall).
@@ -175,11 +175,11 @@ When you use CMKs, generally your data is stored by using document-level encrypt
 Learn more:
 
 * [Customer-managed key encryption](../concepts/encryption-keys-portal.md)
-* [Disable local auth](../how-to/disable-local-auth.md)
+* [Disable local authorization](../how-to/disable-local-auth.md)
 * [What is Azure Key Vault?](/azure/key-vault/general/overview)
 
 Reference infrastructure-as-code templates:
 
 * [Bicep sample for CMK encryption for an Azure AI Foundry resource](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/30-customer-managed-keys)
 * [Bicep sample for CMK encryption for Azure an AI Foundry resource and agent service standard setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/31-customer-managed-keys-standard-agent)
-* [Bicep sample for CMK encryption for Azure AI Hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption).
+* [Bicep sample for CMK encryption for Azure AI Hub](https://github.com/azure/azure-quickstart-templates/tree/master/quickstarts/microsoft.machinelearningservices/aistudio-cmk-service-side-encryption)
