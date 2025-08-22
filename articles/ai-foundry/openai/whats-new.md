@@ -31,7 +31,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### New version of model-router
 
-- Model router nows supports GPT-5 series models.
+- Model router now supports GPT-5 series models.
 
 - The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
 
@@ -81,7 +81,7 @@ The Realtime API (preview) now supports WebRTC, enabling real-time audio streami
 
 ### GPT-image-1 released (preview, limited access)
 
-GPT-image-1 (2025-04-15) is the latest image generation model from Azure OpenAI. It features major improvements over DALL-E, including:
+GPT-image-1 (`2025-04-15`) is the latest image generation model from Azure OpenAI. It features major improvements over DALL-E, including:
 - Better at responding to precise instructions.
 - Reliably renders text.
 - Accepts images as input, which enables the new capabilities of image editing and inpainting.
@@ -144,7 +144,7 @@ For more information on model capabilities, and region availability see the [mod
 
 [Stored completions](./how-to/stored-completions.md#stored-completions-api) allow you to capture the conversation history from chat completions sessions to use as datasets for evaluations and fine-tuning.
 
-### o3-mini datazone standard deployments
+### o3-mini data zone standard deployments
 
 `o3-mini` is now available for global standard, and data zone standard deployments for registered limited access customers.
 
@@ -152,9 +152,9 @@ For more information, see our [reasoning model guide](./how-to/reasoning.md).
 
 ### gpt-4o mini audio released
 
-The `gpt-4o-mini-audio-preview` (2024-12-17) model is the latest audio completions model. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
+The `gpt-4o-mini-audio-preview` (`2024-12-17`) model is the latest audio completions model. For more information, see the [audio generation quickstart](./audio-completions-quickstart.md).
 
-The `gpt-4o-mini-realtime-preview` (2024-12-17) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
+The `gpt-4o-mini-realtime-preview` (`2024-12-17`) model is the latest real-time audio model. The real-time models use the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions. For more information, see the [real-time audio quickstart](./realtime-audio-quickstart.md).
 
 For more information about available models, see the [models and versions documentation](./concepts/models.md#audio-models).
 
@@ -162,7 +162,7 @@ For more information about available models, see the [models and versions docume
 
 ### o3-mini released
 
-`o3-mini` (2025-01-31) is the latest reasoning model, offering enhanced reasoning abilities. For more information, see our [reasoning model guide](./how-to/reasoning.md).
+`o3-mini` (`2025-01-31`) is the latest reasoning model, offering enhanced reasoning abilities. For more information, see our [reasoning model guide](./how-to/reasoning.md).
 
 ### GPT-4o audio completions
 
@@ -178,7 +178,7 @@ The `gpt-4o-audio-preview` model introduces the audio modality into the existing
 The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
-- Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: "alloy", "ash", "ballad", "coral", "echo", "sage", "shimmer", "verse".
+- Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
 - Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
 
 For more information, see the [GPT-4o real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
