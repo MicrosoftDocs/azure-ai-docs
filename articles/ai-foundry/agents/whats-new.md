@@ -66,7 +66,7 @@ The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs
 
 #### Trace agents
 
-Debug and monitor your agents by [tracing agent threads](concepts\tracing.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
+Debug and monitor your agents by [tracing agent threads](../how-to/develop/trace-agents-sdk.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
 
 #### Trigger agents using Azure Logic Apps 
 
@@ -122,7 +122,7 @@ Azure AI Service is now available in preview. The service builds off of the Assi
     * [.NET](quickstart.md?pivots=programming-language-csharp) 
     * [The Azure Python SDK](quickstart.md?pivots=programming-language-python-azure)  
     * [The OpenAI Python SDK](quickstart.md?pivots=programming-language-python-openai)   
-* Debugging support using [tracing with Application Insights](concepts\tracing.md)
+* Debugging support using [tracing with Application Insights](../how-to/develop/trace-agents-sdk.md)
 
 ## Next steps
 

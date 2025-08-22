@@ -64,7 +64,7 @@ To perform inferencing with Cohere rerank models, you're required to use Cohere'
 
 *Queries*, not to be confused with a user's query, is a pricing meter that refers to the cost associated with the tokens used as input for inference of a Cohere Rerank model. Cohere counts a single search unit as a query with up to 100 documents to be ranked. Documents longer than 500 tokens (for Cohere-rerank-v3.5) or longer than 4096 tokens (for Cohere-rerank-v3-English and Cohere-rerank-v3-multilingual) when including the length of the search query are split up into multiple chunks, where each chunk counts as a single document.
 
-See the [Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=cohere).
+See the [Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere).
 
 ## Core42
 
@@ -119,7 +119,7 @@ The following table provides links to examples of how to use Meta Llama models.
 
 ## Microsoft
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
 
 The following table provides links to examples of how to use Microsoft models.
  
@@ -133,7 +133,7 @@ The following table provides links to examples of how to use Microsoft models.
 | Llama-Index                               | Python            | [Link](https://aka.ms/azureai/llamaindex)             |  
 
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).
 
 
 ## Mistral AI
@@ -199,7 +199,7 @@ There are four pricing meters that determine the price you pay. These meters are
 | paygo-finetuned-model-inference-input-tokens | Costs associated with the tokens used as input for inference when *finetune_steps* > 0 |
 | paygo-finetuned-model-inference-output-tokens | Costs associated with the tokens used as output for inference when *finetune_steps* > 0 |
 
-See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=nixtla).
+See the [Nixtla model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Nixtla).
 
 ## Stability AI
 

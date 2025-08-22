@@ -20,7 +20,7 @@ Only a subset of dataplane authoring features are currently supported with the v
 ## List evals
 
 ```HTTP
-GET {endpoint}/openai/v1/evals?api-version=v1
+GET {endpoint}/openai/v1/evals
 ```
 
 List evaluations for a project.
@@ -67,7 +67,7 @@ List evaluations for a project.
 ## Create eval
 
 ```HTTP
-POST {endpoint}/openai/v1/evals?api-version=v1
+POST {endpoint}/openai/v1/evals
 ```
 
 Create the structure of an evaluation that can be used to test a model's performance.
@@ -127,7 +127,7 @@ An evaluation is a set of testing criteria and a datasource. After creating an e
 ## Get eval
 
 ```HTTP
-GET {endpoint}/openai/v1/evals/{eval_id}?api-version=v1
+GET {endpoint}/openai/v1/evals/{eval_id}
 ```
 
 Retrieve an evaluation by its ID.
@@ -175,7 +175,7 @@ Retrieves an evaluation by its ID.
 ## Update eval
 
 ```HTTP
-POST {endpoint}/openai/v1/evals/{eval_id}?api-version=v1
+POST {endpoint}/openai/v1/evals/{eval_id}
 ```
 
 
@@ -231,7 +231,7 @@ Update select, mutable properties of a specified evaluation.
 ## Delete eval
 
 ```HTTP
-DELETE {endpoint}/openai/v1/evals/{eval_id}?api-version=v1
+DELETE {endpoint}/openai/v1/evals/{eval_id}
 ```
 
 
@@ -279,7 +279,7 @@ Delete a specified evaluation.
 ## Get eval runs
 
 ```HTTP
-GET {endpoint}/openai/v1/evals/{eval_id}/runs?api-version=v1
+GET {endpoint}/openai/v1/evals/{eval_id}/runs
 ```
 
 
@@ -331,7 +331,7 @@ Retrieve a list of runs for a specified evaluation.
 ## Create eval run
 
 ```HTTP
-POST {endpoint}/openai/v1/evals/{eval_id}/runs?api-version=v1
+POST {endpoint}/openai/v1/evals/{eval_id}/runs
 ```
 
 
@@ -389,7 +389,7 @@ Create a new evaluation run, beginning the grading process.
 ## Get eval run
 
 ```HTTP
-GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=v1
+GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}
 ```
 
 
@@ -438,7 +438,7 @@ Retrieve a specific evaluation run by its ID.
 ## Cancel eval run
 
 ```HTTP
-POST {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=v1
+POST {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}
 ```
 
 
@@ -487,7 +487,7 @@ Cancel a specific evaluation run by its ID.
 ## Delete eval run
 
 ```HTTP
-DELETE {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}?api-version=v1
+DELETE {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}
 ```
 
 
@@ -536,7 +536,7 @@ Delete a specific evaluation run by its ID.
 ## Get eval run output items
 
 ```HTTP
-GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items?api-version=v1
+GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items
 ```
 
 
@@ -589,7 +589,7 @@ Get a list of output items for a specified evaluation run.
 ## Get eval run output item
 
 ```HTTP
-GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items/{output_item_id}?api-version=v1
+GET {endpoint}/openai/v1/evals/{eval_id}/runs/{run_id}/output_items/{output_item_id}
 ```
 
 
@@ -639,7 +639,7 @@ Retrieve a specific output item from an evaluation run by its ID.
 ## Create file
 
 ```HTTP
-POST {endpoint}/openai/v1/files?api-version=v1
+POST {endpoint}/openai/v1/files
 ```
 
 
@@ -696,14 +696,14 @@ POST {endpoint}/openai/v1/files?api-version=v1
 
 
 ```HTTP
-POST {endpoint}/openai/v1/files?api-version=v1
+POST {endpoint}/openai/v1/files
 
 ```
 
 ## List files
 
 ```HTTP
-GET {endpoint}/openai/v1/files?api-version=v1
+GET {endpoint}/openai/v1/files
 ```
 
 
@@ -746,7 +746,7 @@ GET {endpoint}/openai/v1/files?api-version=v1
 ## Retrieve file
 
 ```HTTP
-GET {endpoint}/openai/v1/files/{file_id}?api-version=v1
+GET {endpoint}/openai/v1/files/{file_id}
 ```
 
 
@@ -789,7 +789,7 @@ GET {endpoint}/openai/v1/files/{file_id}?api-version=v1
 ## Delete file
 
 ```HTTP
-DELETE {endpoint}/openai/v1/files/{file_id}?api-version=v1
+DELETE {endpoint}/openai/v1/files/{file_id}
 ```
 
 
@@ -832,7 +832,7 @@ DELETE {endpoint}/openai/v1/files/{file_id}?api-version=v1
 ## Download file
 
 ```HTTP
-GET {endpoint}/openai/v1/files/{file_id}/content?api-version=v1
+GET {endpoint}/openai/v1/files/{file_id}/content
 ```
 
 
@@ -875,7 +875,7 @@ GET {endpoint}/openai/v1/files/{file_id}/content?api-version=v1
 ## Run grader
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/alpha/graders/run?api-version=v1
+POST {endpoint}/openai/v1/fine_tuning/alpha/graders/run
 ```
 
 Run a grader.
@@ -939,7 +939,7 @@ Run a grader.
 ## Validate grader
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/alpha/graders/validate?api-version=v1
+POST {endpoint}/openai/v1/fine_tuning/alpha/graders/validate
 ```
 
 Validate a grader.
@@ -1001,7 +1001,7 @@ Validate a grader.
 ## Create fine-tuning job
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/jobs?api-version=v1
+POST {endpoint}/openai/v1/fine_tuning/jobs
 ```
 
 Creates a fine-tuning job which begins the process of creating a new model from a given dataset.
@@ -1065,7 +1065,7 @@ Response includes details of the enqueued job including job status and the name 
 ## List paginated fine-tuning jobs
 
 ```HTTP
-GET {endpoint}/openai/v1/fine_tuning/jobs?api-version=v1
+GET {endpoint}/openai/v1/fine_tuning/jobs
 ```
 
 List your organization's fine-tuning jobs
@@ -1109,7 +1109,7 @@ List your organization's fine-tuning jobs
 ## Retrieve fine-tuning job
 
 ```HTTP
-GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}?api-version=v1
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}
 ```
 
 Get info about a fine-tuning job.
@@ -1154,7 +1154,7 @@ Get info about a fine-tuning job.
 ## Cancel fine-tuning job
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel?api-version=v1
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel
 ```
 
 Immediately cancel a fine-tune job.
@@ -1197,7 +1197,7 @@ Immediately cancel a fine-tune job.
 ## List fine-tuning job checkpoints
 
 ```HTTP
-GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints?api-version=v1
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints
 ```
 
 List the checkpoints for a fine-tuning job.
@@ -1242,7 +1242,7 @@ List the checkpoints for a fine-tuning job.
 ## List fine-tuning events
 
 ```HTTP
-GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/events?api-version=v1
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/events
 ```
 
 Get status updates for a fine-tuning job.
@@ -1287,7 +1287,7 @@ Get status updates for a fine-tuning job.
 ## Pause fine-tuning job
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/pause?api-version=v1
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/pause
 ```
 
 Pause a fine-tune job.
@@ -1330,7 +1330,7 @@ Pause a fine-tune job.
 ## Resume fine-tuning job
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/resume?api-version=v1
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/resume
 ```
 
 Resume a paused fine-tune job.
@@ -1373,7 +1373,7 @@ Resume a paused fine-tune job.
 ## List models
 
 ```HTTP
-GET {endpoint}/openai/v1/models?api-version=v1
+GET {endpoint}/openai/v1/models
 ```
 
 Lists the currently available models, and provides basic information about each one such as the
@@ -1416,7 +1416,7 @@ owner and availability.
 ## Retrieve model
 
 ```HTTP
-GET {endpoint}/openai/v1/models/{model}?api-version=v1
+GET {endpoint}/openai/v1/models/{model}
 ```
 
 Retrieves a model instance, providing basic information about the model such as the owner and
