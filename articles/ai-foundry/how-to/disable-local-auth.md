@@ -20,7 +20,7 @@ ms.reviewer: meerakurup
 
 An [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
-To reduce the risk of unauthorized access, you can disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in the Azure Machine Learning studio or to run a notebook while authenticated with the user's identity. Machine Learning uses a managed identity to access the storage account. An example is when the managed identity runs a training job.
+To reduce the risk of unauthorized access, you can disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in Azure Machine Learning studio or to run a notebook while authenticated with the user's identity. Machine Learning uses a managed identity to access the storage account. An example is when the managed identity runs a training job.
 
 Use of your hub with a shared-key disabled storage account is currently in preview.
 
@@ -28,7 +28,7 @@ Use of your hub with a shared-key disabled storage account is currently in previ
 
 ## Prerequisites
 
-- An existing storage account with shared-key authorization disabled. For more information about the process and implications of disabling shared-key authorization for your storage account, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
+You need an existing storage account with shared-key authorization disabled. For more information about the process and implications of disabling shared-key authorization for your storage account, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 # [Azure portal](#tab/portal)
 
@@ -53,16 +53,16 @@ Not applicable.
       
     - (Optional) If you have multiple accounts, add the tenant ID of the Microsoft Entra ID that you want to use into `DefaultAzureCredential`. Find your tenant ID in the [Azure portal](https://portal.azure.com) under **Microsoft Entra ID** > **External Identities**.
                 
-    ```python
-    DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
-    ```
+      ```python
+      DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
+      ```
                 
     - (Optional) If you're working in the [Azure Government - US](https://azure.microsoft.com/explore/global-infrastructure/government/) or [Azure operated by 21Vianet](/azure/china/overview-operations) regions, you must specify the cloud into which you want to authenticate. You can specify these regions in `DefaultAzureCredential`.
                 
-    ```python
-    from azure.identity import AzureAuthorityHosts
-    DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT))
-    ```
+      ```python
+      from azure.identity import AzureAuthorityHosts
+      DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT))
+      ```
 
 # [Azure CLI](#tab/cli)
 
@@ -71,7 +71,7 @@ To use the CLI commands in this document, you need the [Azure CLI](/cli/azure/in
 If you use [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), the CLI is accessed through the browser and it lives in the cloud.
 
 > [!IMPORTANT]
-> The steps in this article require the Azure CLI Extension for Machine Learning, version 2.27.0 or later. To determine the version of the extension that you have installed, use the `az version` command from the Azure CLI. In the extensions collection that returns, find the `ml` extension. This code sample shows an example return value:
+> The steps in this article require the Azure CLI Extension for Machine Learning, version 2.27.0 or later. To determine the version of the extension that you installed, use the `az version` command from the Azure CLI. In the extensions collection that returns, find the `ml` extension. This code sample shows an example return value:
 >
 > ```json
 > {
