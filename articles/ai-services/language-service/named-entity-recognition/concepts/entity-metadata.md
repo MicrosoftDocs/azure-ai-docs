@@ -25,7 +25,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
 
 ## Entities with metadata attributes
 
-|Entities|Entities|Entities|Entities|Entities|Entities|
+|  |  |  |  |  |  |
 |:---:|:---:|:---:|:---:|:---:|:---:|
 |[Age](#age)|[Area](#area)|[Currency](#currency)|[Date](#date)|[Datetime](#datetime)|[Information](#information)|
 |[Length](#length)|[Number](#number)|[NumericRange](#numericrange)|[Ordinal](#ordinal)|[Set](#set)|[Speed](#speed)|
