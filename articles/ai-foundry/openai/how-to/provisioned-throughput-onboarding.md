@@ -79,27 +79,30 @@ For example, for gpt-5 1 output token counts as 8 input tokens towards your util
 
 ## Latest Azure OpenAI models
 
-|Topic| **gpt-5** | **o4-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | 
-| --- |  --- |  --- | --- |  --- |  --- | --- |
-|Global & data zone provisioned minimum deployment| 15  | 15 | 15|15| 15 | 15 |
-|Global & data zone provisioned scale increment| 5 | 5 | 5|5| 5 | 5 |
-|Regional provisioned minimum deployment| 50 |25| 50|25| 25 |50 |
-|Regional provisioned scale increment| 50 | 25| 50|25| 25 | 50 |
-|Input TPM per PTU| 4,750 | 5,400 | 3,000|14,900| 59,400 | 3,000 |
-|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 90 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* |
+> [!NOTE]
+> gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128 prompt tokens).
+
+|Topic| **gpt-5** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** | 
+| --- |  --- | --- |  --- |  --- | --- |  --- |
+|Global & data zone provisioned minimum deployment| 15  | 15|15| 15 | 15 | 15 |
+|Global & data zone provisioned scale increment| 5 | 5|5| 5 | 5 | 5 |
+|Regional provisioned minimum deployment| 50 | 50|25| 25 |50 |25|
+|Regional provisioned scale increment| 50 | 50|25| 25 | 50 | 25|
+|Input TPM per PTU| 4,750 | 3,000|14,900| 59,400 | 3,000 | 5,400 |
+|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
 
 \* Calculated as p50 request latency on a per 5 minute basis.
 
 ## Previous Azure OpenAI models
 
-|Topic| **o1** | **gpt-4o** | **gpt-4o-mini** | **o3-mini** |
+|Topic| **gpt-4o** | **gpt-4o-mini** | **o3-mini** | **o1** |
 | --- | --- | --- | --- | --- |
-|Global & data zone provisioned minimum deployment|15|15|15| 15|
-|Global & data zone provisioned scale increment|5|5|5| 5|
-|Regional provisioned minimum deployment|25|50|25| 25|
-|Regional provisioned scale increment|50|50|25| 25|
-|Input TPM per PTU|230|2,500|37,000| 2,500|
-|Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* |  99% > 66 Tokens Per Second\* |
+|Global & data zone provisioned minimum deployment|15|15| 15|15|
+|Global & data zone provisioned scale increment|5|5| 5|5|
+|Regional provisioned minimum deployment|50|25| 25|25|
+|Regional provisioned scale increment|50|25| 25|50|
+|Input TPM per PTU|2,500|37,000| 2,500|230|
+|Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* |  99% > 66 Tokens Per Second\* | 99% > 25 Tokens Per Second\* |
 
 \* Calculated as the average request latency on a per-minute basis across the month.
 
