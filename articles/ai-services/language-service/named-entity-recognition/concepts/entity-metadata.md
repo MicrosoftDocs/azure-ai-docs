@@ -46,7 +46,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
             }
 ```
 
-**Possible values for `unit`**:
+**Possible values for **unit**:
 
 * Day
 * Month
@@ -70,7 +70,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
             }
 ```
 
-**Possible values for `unit`**:
+**Possible values for **unit**:
 
 * Acre
 * SquareCentimeter
@@ -189,7 +189,7 @@ Similar to dates, you can have ambiguous datetime entities. Resolution provides 
 
 ```
 
-Possible values for unit:
+Possible values for **unit**:
 
 * Bit
 * Byte
@@ -220,7 +220,7 @@ Possible values for unit:
             }
 
 ```
-Possible values for unit:
+Possible values for **unit**:
 
 * Centimeter
 * Decameter
@@ -363,7 +363,7 @@ Possible values for type:
 
 ```
 
-Possible values for unit:
+Possible values for **unit**:
 
 * CentimetersPerMillisecond
 * FeetPerMinute
@@ -395,7 +395,7 @@ Possible values for unit:
             }
 
 ```
-Possible values for unit:
+Possible values for **unit**:
 
 * Celsius
 * Fahrenheit
@@ -436,7 +436,7 @@ Possible values for unit:
             }
 
 ```
-Possible values for unit:
+Possible values for **unit**:
 
 * Barrel
 * Bushel
@@ -482,7 +482,7 @@ Possible values for unit:
             }
 
 ```
-Possible values for unit:
+Possible values for **unit**:
 
 * Dram
 * Gallon
