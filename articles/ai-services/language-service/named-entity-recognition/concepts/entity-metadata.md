@@ -23,9 +23,16 @@ Metadata resolutions convert various entity forms into consistent formats—for 
 > [!NOTE]
 >  Support for Entity Metadata is available with API `2023-04-15-preview` and later versions. For older API versions, see [Entity Resolutions](./entity-resolutions.md).
 
-### Metadata attributes
+## Entities with metadata attributes
 
-## Age
+|Entities|Entities|Entities|Entities|Entities|Entities|
+|:---:|:---:|:---:|:---:|:---:|:---:|
+|[Age](#age)|[Area](#area)|[Currency](#currency)|[Date](#date)|[Datetime](#datetime)|[Information](#information)|
+|[Length](#length)|[Number](#number)|[NumericRange](#numericrange)|[Ordinal](#ordinal)|[Set](#set)|[Speed](#speed)|
+|[Temperature](#temperature)|[Time](#time)|[Volume](#volume)|[Weight](#weight)|||
+
+
+### Age
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -48,7 +55,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
 * Unspecified
 
 
-## Area
+### Area
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -79,7 +86,7 @@ Metadata resolutions convert various entity forms into consistent formats—for 
 * SquareYard
 * Unspecified
 
-## Currency
+### Currency
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -100,7 +107,7 @@ Possible values for "unit" and "ISO4217":
 
 
 
-## Date
+### Date
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -166,7 +173,7 @@ Similar to dates, you can have ambiguous datetime entities. Resolution provides 
               }
 ```
 
-## Information
+### Information
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -198,7 +205,7 @@ Possible values for unit:
 * Terabyte
 * Unspecified
 
-## Length
+### Length
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -233,7 +240,7 @@ Possible values for unit:
 * Yard
 * Unspecified
 
-## Number
+### Number
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -258,7 +265,7 @@ Possible values for numberKind:
 * Power
 * Unspecified
 
-## NumericRange
+### NumericRange
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -288,7 +295,7 @@ Possible values for **rangeKind**:
 * Volume
 * Weight
 
-## Ordinal
+### Ordinal
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -312,7 +319,7 @@ Possible values for **relativeTo**:
 * End
 * Start
 
-## Set
+### Set
 
 A recurring datetime period (example: "every Monday at 6:00 PM.")
 
@@ -340,7 +347,7 @@ Possible values for type:
 * timex
 
 
-## Speed
+### Speed
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -373,7 +380,7 @@ Possible values for unit:
 * YardsPerSecond
 * Unspecified
 
-## Temperature
+### Temperature
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -398,7 +405,7 @@ Possible values for unit:
 
 
 
-## Time
+### Time
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -414,7 +421,7 @@ Possible values for unit:
 
 ```
 
-## Volume
+### Volume
 
 |Metadata|Type|Description|
 |---|---|---|
@@ -460,7 +467,7 @@ Possible values for unit:
 * Teaspoon
 * Unspecified
 
-## Weight
+### Weight
 
 |Metadata|Type|Description|
 |---|---|---|
