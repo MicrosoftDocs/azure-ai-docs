@@ -78,7 +78,7 @@ print(response.model_dump_json(indent=2))
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `default_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
 
-Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+Once we release the GA next generation v1 API, you will no longer need to specify api-version at all. Access to new features that are still in preview will be controlled by passing feature specific headers to access the preview feature.
 
 # [Microsoft Entra ID](#tab/entra)
 
