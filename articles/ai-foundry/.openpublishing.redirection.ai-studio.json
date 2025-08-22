@@ -1279,7 +1279,7 @@
           "redirect_document_id": false
         },
      {
-          "source_path_from_root": "/articles/ai-foundry/openai/how-to/chat-markup-language.md.md",
+          "source_path_from_root": "/articles/ai-foundry/openai/how-to/chat-markup-language.md",
           "redirect_url": "/azure/ai-foundry/openai/responses",
           "redirect_document_id": false
         }
