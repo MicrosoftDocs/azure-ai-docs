@@ -54,7 +54,7 @@ ms.author: lajanuar
 |Dari|`prs`|✔|✔| |✔| | | |
 |Divehi|`dv`|✔|✔| |✔| | | |
 |Dogri|`doi`|✔| | | | | | |
-|Dutch|`nl`|✔|✔|✔|✔|✔| | |
+|Dutch|`nl`|✔|✔|✔|✔|✔|✔| |
 |English|`en`|✔|✔|✔|✔|✔|✔|✔|
 |Estonian|`et`|✔|✔|✔|✔| | ✔| |
 |Faroese|`fo`|✔|✔| |✔| | | |
@@ -82,7 +82,7 @@ ms.author: lajanuar
 |Inuktitut (Latin)|`iu-Latn`|✔|✔| |✔| | | |
 |Irish|`ga`|✔|✔|✔|✔| | | |
 |Italian|`it`|✔|✔|✔|✔|✔|✔|✔|
-|Japanese|`ja`|✔|✔|✔|✔|✔| | |
+|Japanese|`ja`|✔|✔|✔|✔|✔|✔| |
 |Kannada|`kn`|✔|✔|✔|✔| |✔| |
 |Kashmiri|`ks`|✔|✔ | | | | | |
 |Kazakh|`kk`|✔|✔| |✔| | | |
@@ -91,7 +91,7 @@ ms.author: lajanuar
 |Klingon|`tlh-Latn`|✔| | |✔|✔| | |
 |Klingon (plqaD)|`tlh-Piqd`|✔| | |✔| | | |
 |Konkani|`gom`|✔|✔| | | | | |
-|Korean|`ko`|✔|✔|✔|✔|✔| | |
+|Korean|`ko`|✔|✔|✔|✔|✔|✔| |
 |Kurdish (Central)|`ku`|✔|✔| |✔| | | |
 |Kurdish (Northern)|`kmr`|✔|✔| | | | | |
 |Kyrgyz (Cyrillic)|`ky`|✔|✔| |✔| | | |
@@ -127,7 +127,7 @@ ms.author: lajanuar
 |Rundi|`run`|✔|✔| | | | | |
 |Russian|`ru`|✔|✔|✔|✔|✔|✔| |
 |Samoan (Latin)|`sm`|✔|✔|✔|✔| | | |
-|Serbian (Cyrillic)|`sr-Cyrl`|✔|✔| |✔| | | |
+|Serbian (Cyrillic)|`sr-Cyrl`|✔|✔| |✔| |✔| |
 |Serbian (Latin)|`sr-Latn`|✔|✔|✔|✔|✔| | |
 |Sesotho|`st`|✔|✔| | | | | |
 |Sesotho sa Leboa|`nso`|✔|✔| | | | | |
@@ -138,7 +138,7 @@ ms.author: lajanuar
 |Slovenian|`sl`|✔|✔|✔|✔|✔|✔| |
 |Somali (Arabic)|`so`|✔|✔| |✔| | | |
 |Spanish|`es`|✔|✔|✔|✔|✔|✔|✔|
-|Swahili (Latin)|`sw`|✔|✔|✔| |✔| | |
+|Swahili (Latin)|`sw`|✔|✔|✔| |✔|✔| |
 |Swedish|`sv`|✔|✔|✔|✔|✔|✔| |
 |Tahitian|`ty`|✔|✔|✔|✔| | | |
 |Tamil|`ta`|✔|✔|✔|✔|✔|✔| |
@@ -148,14 +148,14 @@ ms.author: lajanuar
 |Tibetan|`bo`|✔|✔| |✔| | | |
 |Tigrinya|`ti`|✔|✔| |✔| | | |
 |Tongan|`to`|✔|✔|✔|✔| | | |
-|Turkish|`tr`|✔|✔|✔|✔|✔| | |
+|Turkish|`tr`|✔|✔|✔|✔|✔|✔| |
 |Turkmen (Latin)|`tk`|✔|✔| |✔| | | |
 |Ukrainian|`uk`|✔|✔|✔|✔|✔|✔| |
 |Upper Sorbian|`hsb`|✔|✔| |✔| | | |
 |Urdu|`ur`|✔|✔|✔|✔|✔|✔| |
 |Uyghur (Arabic)|`ug`|✔|✔| |✔| | | |
 |Uzbek (Latin)|`uz`|✔|✔| |✔| | | |
-|Vietnamese|`vi`|✔|✔|✔|✔|✔| | |
+|Vietnamese|`vi`|✔|✔|✔|✔|✔|✔| |
 |Welsh|`cy`|✔|✔|✔|✔|✔| | |
 |Xhosa|`xh`|✔|✔| |✔| | | |
 |Yoruba|`yo`|✔|✔| |✔| | | |
