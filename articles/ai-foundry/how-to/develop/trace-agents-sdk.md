@@ -39,7 +39,7 @@ The Agents playground in the Azure AI Foundry portal lets you trace threads and 
 
 :::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
 
-After selecting **Thread info**, the screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
+After selecting **Thread info**, the screen that appears will let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
