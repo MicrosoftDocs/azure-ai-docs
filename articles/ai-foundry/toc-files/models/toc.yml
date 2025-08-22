@@ -147,8 +147,6 @@ items:
         href: ../../openai/whisper-quickstart.md
       - name: Text to speech (preview)
         href: ../../openai/text-to-speech-quickstart.md
-      - name: Completions (legacy)
-        href: ../../openai/quickstart.md
   - name: Audio
     items:
         - name: Realtime API for speech and audio (preview)
@@ -358,16 +356,8 @@ items:
           href: ../../openai/how-to/role-based-access-control.md
         - name: Business continuity & disaster recovery (BCDR)
           href: ../../openai/how-to/business-continuity-disaster-recovery.md
-    - name: Work with code
-      href: ../../openai/how-to/work-with-code.md
     - name: Deploy and use web apps
       href: ../../openai/how-to/use-web-app.md
-    - name: Legacy
-      items:
-      - name: Completions (legacy)
-        href: ../../openai/how-to/completions.md
-      - name: Chat Markup Language (ChatML)
-        href: ../../openai/how-to/chat-markup-language.md 
   - name: Tutorials
     items:
       - name: Embeddings
