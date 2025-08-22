@@ -35,6 +35,10 @@ To request access, see the [application form](https://aka.ms/oai/cuaaccess).
 
 Once access has been granted, you will need to create a deployment for the model. 
 
+## Differences between Browser Automation and Computer Use
+
+The following table lists some of the differences between the Computer Use Tool and [Browser Automation](./browser-automation.md) Tool.
+
 | Feature                        | Browser Automation          | Computer Use Tool          |
 |--------------------------------|-----------------------------|----------------------------|
 | Model support                  | All GPT models              | `Computer-use-preview` model only |
