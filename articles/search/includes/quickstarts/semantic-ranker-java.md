@@ -19,9 +19,6 @@ The quickstart assumes the following is available on your computer:
 - [Java 21 (LTS)](/java/openjdk/install).
 - [Maven](https://maven.apache.org/download.cgi).
 
-> [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-java-samples/tree/main/quickstart-semantic-ranking) to start with a finished project or follow these steps to create your own.
-
 ### Set up local development environment
 
 1. Create a new Maven project directory.
@@ -34,34 +31,32 @@ The quickstart assumes the following is available on your computer:
 1. Create a `pom.xml` file with required dependencies.
 
    ```xml
-   <?xml version="1.0" encoding="UTF-8"?>
    <project xmlns="http://maven.apache.org/POM/4.0.0"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
             http://maven.apache.org/xsd/maven-4.0.0.xsd">
        <modelVersion>4.0.0</modelVersion>
-       
+   
        <groupId>com.azure.search</groupId>
        <artifactId>semantic-ranking-quickstart</artifactId>
-       <version>1.0.0</version>
-       <packaging>jar</packaging>
-       
+       <version>1.0-SNAPSHOT</version>
+   
        <properties>
            <maven.compiler.source>21</maven.compiler.source>
            <maven.compiler.target>21</maven.compiler.target>
            <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
        </properties>
-       
+   
        <dependencies>
            <dependency>
                <groupId>com.azure</groupId>
                <artifactId>azure-search-documents</artifactId>
-               <version>11.6.4</version>
+               <version>11.7.8</version>
            </dependency>
            <dependency>
                <groupId>com.azure</groupId>
                <artifactId>azure-identity</artifactId>
-               <version>1.11.4</version>
+               <version>1.17.0</version>
            </dependency>
        </dependencies>
    </project>
@@ -105,18 +100,23 @@ public class SearchConfig {
     
     static {
         try (InputStream input = SearchConfig.class.getClassLoader()
-                .getResourceAsStream("application.properties")) {
+            .getResourceAsStream("application.properties")) {
             properties.load(input);
         } catch (IOException e) {
-            throw new RuntimeException("Failed to load application.properties", e);
+            throw new RuntimeException(
+                "Failed to load application.properties", e);
         }
     }
     
-    public static final String SEARCH_ENDPOINT = properties.getProperty("azure.search.endpoint");
-    public static final String INDEX_NAME = properties.getProperty("azure.search.index.name");
-    public static final String SEMANTIC_CONFIG_NAME = properties.getProperty("semantic.configuration.name");
+    public static final String SEARCH_ENDPOINT = 
+        properties.getProperty("azure.search.endpoint");
+    public static final String INDEX_NAME = 
+        properties.getProperty("azure.search.index.name");
+    public static final String SEMANTIC_CONFIG_NAME = 
+        properties.getProperty("semantic.configuration.name");
     
-    public static final DefaultAzureCredential CREDENTIAL = new DefaultAzureCredentialBuilder().build();
+    public static final DefaultAzureCredential CREDENTIAL = 
+        new DefaultAzureCredentialBuilder().build();
     
     static {
         System.out.println("Using Azure Search endpoint: " + SEARCH_ENDPOINT);
@@ -134,45 +134,50 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     ```java
     package com.azure.search.quickstart;
     
-    import com.azure.search.documents.indexes.SearchIndexClient;
     import com.azure.search.documents.indexes.SearchIndexClientBuilder;
-    import com.azure.search.documents.indexes.models.SearchIndex;
     import com.azure.search.documents.indexes.models.SearchField;
+    import com.azure.search.documents.indexes.models.SearchIndex;
     import com.azure.search.documents.indexes.models.SemanticConfiguration;
     
     public class GetIndexSettings {
         public static void main(String[] args) {
             var indexClient = new SearchIndexClientBuilder()
-                    .endpoint(SearchConfig.SEARCH_ENDPOINT)
-                    .credential(SearchConfig.CREDENTIAL)
-                    .buildClient();
-            
+                .endpoint(SearchConfig.SEARCH_ENDPOINT)
+                .credential(SearchConfig.CREDENTIAL)
+                .buildClient();
+    
             System.out.println("Getting semantic search index settings...");
-            
+    
             SearchIndex index = indexClient.getIndex(SearchConfig.INDEX_NAME);
-            
+    
             System.out.println("Index name: " + index.getName());
             System.out.println("Number of fields: " + index.getFields().size());
-            
+    
             for (SearchField field : index.getFields()) {
                 System.out.printf("Field: %s, Type: %s, Searchable: %s%n",
-                        field.getName(), field.getType(), field.isSearchable());
+                    field.getName(), field.getType(), field.isSearchable());
             }
-            
+    
             var semanticSearch = index.getSemanticSearch();
-            if (semanticSearch != null && semanticSearch.getConfigurations() != null) {
+            if (semanticSearch != null && 
+                semanticSearch.getConfigurations() != null) {
                 System.out.println("Semantic search configurations: " + 
-                        semanticSearch.getConfigurations().size());
-                for (SemanticConfiguration config : semanticSearch.getConfigurations()) {
+                    semanticSearch.getConfigurations().size());
+                for (SemanticConfiguration config : 
+                    semanticSearch.getConfigurations()) {
                     System.out.println("Configuration name: " + config.getName());
                     var titleField = config.getPrioritizedFields().getTitleField();
                     if (titleField != null) {
-                        System.out.println("Title field: " + titleField.getFieldName());
+                        System.out.println("Title field: " + 
+                            titleField.getFieldName());
                     }
                 }
             } else {
-                System.out.println("No semantic configuration exists for this index.");
+                System.out.println(
+                    "No semantic configuration exists for this index.");
             }
+    
+            System.exit(0);
         }
     }
     ```
@@ -192,9 +197,12 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     ```java
     package com.azure.search.quickstart;
     
-    import com.azure.search.documents.indexes.SearchIndexClient;
     import com.azure.search.documents.indexes.SearchIndexClientBuilder;
-    import com.azure.search.documents.indexes.models.*;
+    import com.azure.search.documents.indexes.models.SearchIndex;
+    import com.azure.search.documents.indexes.models.SemanticConfiguration;
+    import com.azure.search.documents.indexes.models.SemanticField;
+    import com.azure.search.documents.indexes.models.SemanticPrioritizedFields;
+    import com.azure.search.documents.indexes.models.SemanticSearch;
     
     import java.util.ArrayList;
     import java.util.List;
@@ -203,79 +211,90 @@ In this section, you get settings for the existing `hotels-sample-index` index o
         public static void main(String[] args) {
             try {
                 var indexClient = new SearchIndexClientBuilder()
-                        .endpoint(SearchConfig.SEARCH_ENDPOINT)
-                        .credential(SearchConfig.CREDENTIAL)
-                        .buildClient();
-                
-                SearchIndex existingIndex = indexClient.getIndex(SearchConfig.INDEX_NAME);
-                
+                    .endpoint(SearchConfig.SEARCH_ENDPOINT)
+                    .credential(SearchConfig.CREDENTIAL)
+                    .buildClient();
+    
+                SearchIndex existingIndex = 
+                    indexClient.getIndex(SearchConfig.INDEX_NAME);
+    
                 // Create prioritized fields for semantic configuration
                 var prioritizedFields = new SemanticPrioritizedFields()
-                        .setTitleField(new SemanticField("HotelName"))
-                        .setKeywordsFields(List.of(new SemanticField("Tags")))
-                        .setContentFields(List.of(new SemanticField("Description")));
-                
+                    .setTitleField(new SemanticField("HotelName"))
+                    .setKeywordsFields(List.of(new SemanticField("Tags")))
+                    .setContentFields(List.of(new SemanticField("Description")));
+    
                 var newSemanticConfiguration = new SemanticConfiguration(
-                        SearchConfig.SEMANTIC_CONFIG_NAME, prioritizedFields);
-                
+                    SearchConfig.SEMANTIC_CONFIG_NAME, prioritizedFields);
+    
                 // Add the semantic configuration to the index
                 var semanticSearch = existingIndex.getSemanticSearch();
                 if (semanticSearch == null) {
                     semanticSearch = new SemanticSearch();
                     existingIndex.setSemanticSearch(semanticSearch);
                 }
-                
+    
                 var configurations = semanticSearch.getConfigurations();
                 if (configurations == null) {
                     configurations = new ArrayList<>();
                     semanticSearch.setConfigurations(configurations);
                 }
-                
+    
                 // Check if configuration already exists
                 boolean configExists = configurations.stream()
-                        .anyMatch(config -> SearchConfig.SEMANTIC_CONFIG_NAME.equals(config.getName()));
-                
+                    .anyMatch(config -> SearchConfig.SEMANTIC_CONFIG_NAME
+                        .equals(config.getName()));
+    
                 if (!configExists) {
                     configurations.add(newSemanticConfiguration);
                 }
-                
+    
                 indexClient.createOrUpdateIndex(existingIndex);
-                
-                SearchIndex updatedIndex = indexClient.getIndex(SearchConfig.INDEX_NAME);
-                
+    
+                SearchIndex updatedIndex = 
+                    indexClient.getIndex(SearchConfig.INDEX_NAME);
+    
                 System.out.println("Semantic configurations:");
                 System.out.println("-".repeat(40));
-                
+    
                 var updatedSemanticSearch = updatedIndex.getSemanticSearch();
-                if (updatedSemanticSearch != null && updatedSemanticSearch.getConfigurations() != null) {
-                    for (SemanticConfiguration config : updatedSemanticSearch.getConfigurations()) {
+                if (updatedSemanticSearch != null && 
+                    updatedSemanticSearch.getConfigurations() != null) {
+                    for (SemanticConfiguration config : 
+                        updatedSemanticSearch.getConfigurations()) {
                         System.out.println("Configuration name: " + config.getName());
-                        
+    
                         var fields = config.getPrioritizedFields();
                         if (fields.getTitleField() != null) {
-                            System.out.println("Title field: " + fields.getTitleField().getFieldName());
+                            System.out.println("Title field: " + 
+                                fields.getTitleField().getFieldName());
                         }
                         if (fields.getKeywordsFields() != null) {
                             var keywords = fields.getKeywordsFields().stream()
-                                    .map(SemanticField::getFieldName)
-                                    .toList();
-                            System.out.println("Keywords fields: " + String.join(", ", keywords));
+                                .map(SemanticField::getFieldName)
+                                .toList();
+                            System.out.println("Keywords fields: " + 
+                                String.join(", ", keywords));
                         }
                         if (fields.getContentFields() != null) {
                             var content = fields.getContentFields().stream()
-                                    .map(SemanticField::getFieldName)
-                                    .toList();
-                            System.out.println("Content fields: " + String.join(", ", content));
+                                .map(SemanticField::getFieldName)
+                                .toList();
+                            System.out.println("Content fields: " + 
+                                String.join(", ", content));
                         }
                         System.out.println("-".repeat(40));
                     }
                 } else {
                     System.out.println("No semantic configurations found.");
                 }
-                
+    
                 System.out.println("Semantic configuration updated successfully.");
+    
+                System.exit(0);
             } catch (Exception e) {
-                System.err.println("Error updating semantic configuration: " + e.getMessage());
+                System.err.println("Error updating semantic configuration: " + 
+                    e.getMessage());
             }
         }
     }
@@ -298,41 +317,46 @@ Once the `hotels-sample-index` index has a semantic configuration, you can run q
     ```java
     package com.azure.search.quickstart;
     
-    import com.azure.search.documents.SearchClient;
     import com.azure.search.documents.SearchClientBuilder;
-    import com.azure.search.documents.models.*;
+    import com.azure.search.documents.SearchDocument;
+    import com.azure.search.documents.models.QueryType;
+    import com.azure.search.documents.models.SearchOptions;
+    import com.azure.search.documents.models.SearchResult;
+    import com.azure.search.documents.models.SemanticSearchOptions;
     import com.azure.search.documents.util.SearchPagedIterable;
-    
-    import java.util.List;
     
     public class SemanticQuery {
         public static void main(String[] args) {
             var searchClient = new SearchClientBuilder()
-                    .endpoint(SearchConfig.SEARCH_ENDPOINT)
-                    .indexName(SearchConfig.INDEX_NAME)
-                    .credential(SearchConfig.CREDENTIAL)
-                    .buildClient();
-            
+                .endpoint(SearchConfig.SEARCH_ENDPOINT)
+                .indexName(SearchConfig.INDEX_NAME)
+                .credential(SearchConfig.CREDENTIAL)
+                .buildClient();
+    
             var searchOptions = new SearchOptions()
-                    .setQueryType(SearchQueryType.SEMANTIC)
-                    .setSemanticSearchOptions(new SemanticSearchOptions()
-                            .setSemanticConfigurationName(SearchConfig.SEMANTIC_CONFIG_NAME))
-                    .setSelect(List.of("HotelId", "HotelName", "Description"));
-            
-            SearchPagedIterable results = searchClient.search("walking distance to live music", searchOptions);
-            
+                .setQueryType(QueryType.SEMANTIC)
+                .setSemanticSearchOptions(new SemanticSearchOptions()
+                    .setSemanticConfigurationName(SearchConfig.SEMANTIC_CONFIG_NAME))
+                .setSelect("HotelId", "HotelName", "Description");
+    
+            SearchPagedIterable results = searchClient.search(
+                "walking distance to live music", searchOptions, null);
+    
             int rowNumber = 1;
             for (SearchResult result : results) {
                 var document = result.getDocument(SearchDocument.class);
                 double rerankerScore = result.getSemanticSearch().getRerankerScore();
-                
+    
                 System.out.printf("Search result #%d:%n", rowNumber++);
                 System.out.printf("  Re-ranker Score: %.2f%n", rerankerScore);
                 System.out.printf("  HotelId: %s%n", document.get("HotelId"));
                 System.out.printf("  HotelName: %s%n", document.get("HotelName"));
                 System.out.printf("  Description: %s%n%n", 
-                        document.get("Description") != null ? document.get("Description") : "N/A");
+                    document.get("Description") != null ? 
+                        document.get("Description") : "N/A");
             }
+    
+            System.exit(0);
         }
     }
     ```
@@ -354,64 +378,77 @@ Optionally, you can add captions to extract portions of the text and apply hit h
     ```java
     package com.azure.search.quickstart;
     
-    import com.azure.search.documents.SearchClient;
     import com.azure.search.documents.SearchClientBuilder;
-    import com.azure.search.documents.models.*;
+    import com.azure.search.documents.SearchDocument;
+    import com.azure.search.documents.models.QueryCaption;
+    import com.azure.search.documents.models.QueryCaptionType;
+    import com.azure.search.documents.models.QueryType;
+    import com.azure.search.documents.models.SearchOptions;
+    import com.azure.search.documents.models.SearchResult;
+    import com.azure.search.documents.models.SemanticSearchOptions;
     import com.azure.search.documents.util.SearchPagedIterable;
-    
-    import java.util.List;
     
     public class SemanticQueryWithCaptions {
         public static void main(String[] args) {
             var searchClient = new SearchClientBuilder()
-                    .endpoint(SearchConfig.SEARCH_ENDPOINT)
-                    .indexName(SearchConfig.INDEX_NAME)
-                    .credential(SearchConfig.CREDENTIAL)
-                    .buildClient();
-            
-            System.out.println("Using semantic configuration: " + SearchConfig.SEMANTIC_CONFIG_NAME);
+                .endpoint(SearchConfig.SEARCH_ENDPOINT)
+                .indexName(SearchConfig.INDEX_NAME)
+                .credential(SearchConfig.CREDENTIAL)
+                .buildClient();
+    
+            System.out.println("Using semantic configuration: " + 
+                SearchConfig.SEMANTIC_CONFIG_NAME);
             System.out.println("Search query: walking distance to live music");
-            
+    
             var searchOptions = new SearchOptions()
-                    .setQueryType(SearchQueryType.SEMANTIC)
-                    .setSemanticSearchOptions(new SemanticSearchOptions()
-                            .setSemanticConfigurationName(SearchConfig.SEMANTIC_CONFIG_NAME)
-                            .setCaptions(new QueryCaptionOptions(QueryCaptionType.EXTRACTIVE)
-                                    .setHighlightEnabled(true)))
-                    .setSelect(List.of("HotelId", "HotelName", "Description"));
-            
-            SearchPagedIterable results = searchClient.search("walking distance to live music", searchOptions);
-            
+                .setQueryType(QueryType.SEMANTIC)
+                .setSemanticSearchOptions(new SemanticSearchOptions()
+                    .setSemanticConfigurationName(SearchConfig.SEMANTIC_CONFIG_NAME)
+                    .setQueryCaption(new QueryCaption(QueryCaptionType.EXTRACTIVE)
+                        .setHighlightEnabled(true)))
+                .setSelect("HotelId", "HotelName", "Description");
+    
+            SearchPagedIterable results = searchClient.search(
+                "walking distance to live music", searchOptions, null);
+    
             System.out.printf("Found results with semantic search%n%n");
             int rowNumber = 1;
-            
+    
             for (SearchResult result : results) {
                 var document = result.getDocument(SearchDocument.class);
                 double rerankerScore = result.getSemanticSearch().getRerankerScore();
-                
+    
                 System.out.printf("Search result #%d:%n", rowNumber++);
                 System.out.printf("  Re-ranker Score: %.2f%n", rerankerScore);
                 System.out.printf("  HotelName: %s%n", document.get("HotelName"));
                 System.out.printf("  Description: %s%n%n", 
-                        document.get("Description") != null ? document.get("Description") : "N/A");
-                
+                    document.get("Description") != null ? 
+                        document.get("Description") : "N/A");
+    
                 // Handle captions
-                var captions = result.getSemanticSearch().getCaptions();
+                var captions = result.getSemanticSearch().getQueryCaptions();
                 if (captions != null && !captions.isEmpty()) {
                     var caption = captions.get(0);
-                    
-                    if (caption.getHighlights() != null && !caption.getHighlights().trim().isEmpty()) {
-                        System.out.printf("  Caption with highlights: %s%n", caption.getHighlights());
-                    } else if (caption.getText() != null && !caption.getText().trim().isEmpty()) {
-                        System.out.printf("  Caption text: %s%n", caption.getText());
+    
+                    if (caption.getHighlights() != null && 
+                        !caption.getHighlights().trim().isEmpty()) {
+                        System.out.printf("  Caption with highlights: %s%n", 
+                            caption.getHighlights());
+                    } else if (caption.getText() != null && 
+                        !caption.getText().trim().isEmpty()) {
+                        System.out.printf("  Caption text: %s%n", 
+                            caption.getText());
                     } else {
-                        System.out.println("  Caption exists but has no text or highlights content");
+                        System.out.println(
+                            "  Caption exists but has no text or highlights content");
                     }
                 } else {
                     System.out.println("  No captions found for this result");
                 }
                 System.out.println("-".repeat(60));
             }
+    
+            System.exit(0);
         }
     }
     ```
@@ -435,70 +472,84 @@ Semantic ranker can produce an answer to a query string that has the characteris
     ```java
     package com.azure.search.quickstart;
     
-    import com.azure.search.documents.SearchClient;
     import com.azure.search.documents.SearchClientBuilder;
-    import com.azure.search.documents.models.*;
+    import com.azure.search.documents.SearchDocument;
+    import com.azure.search.documents.models.QueryAnswer;
+    import com.azure.search.documents.models.QueryAnswerResult;
+    import com.azure.search.documents.models.QueryAnswerType;
+    import com.azure.search.documents.models.QueryCaption;
+    import com.azure.search.documents.models.QueryCaptionType;
+    import com.azure.search.documents.models.QueryType;
+    import com.azure.search.documents.models.SearchOptions;
+    import com.azure.search.documents.models.SearchResult;
+    import com.azure.search.documents.models.SemanticSearchOptions;
     import com.azure.search.documents.util.SearchPagedIterable;
-    
-    import java.util.List;
     
     public class SemanticAnswer {
         public static void main(String[] args) {
             var searchClient = new SearchClientBuilder()
-                    .endpoint(SearchConfig.SEARCH_ENDPOINT)
-                    .indexName(SearchConfig.INDEX_NAME)
-                    .credential(SearchConfig.CREDENTIAL)
-                    .buildClient();
-            
+                .endpoint(SearchConfig.SEARCH_ENDPOINT)
+                .indexName(SearchConfig.INDEX_NAME)
+                .credential(SearchConfig.CREDENTIAL)
+                .buildClient();
+    
             var searchOptions = new SearchOptions()
-                    .setQueryType(SearchQueryType.SEMANTIC)
-                    .setSemanticSearchOptions(new SemanticSearchOptions()
-                            .setSemanticConfigurationName(SearchConfig.SEMANTIC_CONFIG_NAME)
-                            .setCaptions(new QueryCaptionOptions(QueryCaptionType.EXTRACTIVE))
-                            .setAnswers(new QueryAnswerOptions(QueryAnswerType.EXTRACTIVE)))
-                    .setSelect(List.of("HotelName", "Description", "Category"));
-            
+                .setQueryType(QueryType.SEMANTIC)
+                .setSemanticSearchOptions(new SemanticSearchOptions()
+                    .setSemanticConfigurationName(SearchConfig.SEMANTIC_CONFIG_NAME)
+                    .setQueryCaption(new QueryCaption(QueryCaptionType.EXTRACTIVE))
+                    .setQueryAnswer(new QueryAnswer(QueryAnswerType.EXTRACTIVE)))
+                .setSelect("HotelName", "Description", "Category");
+    
             SearchPagedIterable results = searchClient.search(
-                    "What's a good hotel for people who like to read", searchOptions);
-            
+                "What's a good hotel for people who like to read",
+                searchOptions, null);
+    
             System.out.println("Answers:\n");
-            
+    
             // Extract semantic answers
-            var semanticAnswers = results.getSemanticResults().getAnswers();
+            var semanticAnswers = results.getSemanticResults().getQueryAnswers();
             int answerNumber = 1;
-            
+    
             if (semanticAnswers != null) {
                 for (QueryAnswerResult answer : semanticAnswers) {
-                    System.out.printf("Semantic answer result #%d:%n", answerNumber++);
-                    
-                    if (answer.getHighlights() != null && !answer.getHighlights().trim().isEmpty()) {
-                        System.out.printf("Semantic Answer: %s%n", answer.getHighlights());
+                    System.out.printf("Semantic answer result #%d:%n", 
+                        answerNumber++);
+    
+                    if (answer.getHighlights() != null && 
+                        !answer.getHighlights().trim().isEmpty()) {
+                        System.out.printf("Semantic Answer: %s%n", 
+                            answer.getHighlights());
                     } else {
                         System.out.printf("Semantic Answer: %s%n", answer.getText());
                     }
-                    System.out.printf("Semantic Answer Score: %.2f%n%n", answer.getScore());
+                    System.out.printf("Semantic Answer Score: %.2f%n%n",
+                        answer.getScore());
                 }
             }
-            
+    
             System.out.println("Search Results:\n");
             int rowNumber = 1;
-            
+    
             // Iterate through search results
             for (SearchResult result : results) {
                 var document = result.getDocument(SearchDocument.class);
                 double rerankerScore = result.getSemanticSearch().getRerankerScore();
-                
+    
                 System.out.printf("Search result #%d:%n", rowNumber++);
                 System.out.printf("Re-ranker Score: %.2f%n", rerankerScore);
                 System.out.printf("Hotel: %s%n", document.get("HotelName"));
                 System.out.printf("Description: %s%n", 
-                        document.get("Description") != null ? document.get("Description") : "N/A");
-                
-                var captions = result.getSemanticSearch().getCaptions();
+                    document.get("Description") != null ? 
+                        document.get("Description") : "N/A");
+    
+                var captions = result.getSemanticSearch().getQueryCaptions();
                 if (captions != null && !captions.isEmpty()) {
                     var caption = captions.get(0);
-                    if (caption.getHighlights() != null && !caption.getHighlights().trim().isEmpty()) {
-                        System.out.printf("Caption: %s%n%n", caption.getHighlights());
+                    if (caption.getHighlights() != null && 
+                        !caption.getHighlights().trim().isEmpty()) {
+                        System.out.printf("Caption: %s%n%n",
+                            caption.getHighlights());
                     } else {
                         System.out.printf("Caption: %s%n%n", caption.getText());
                     }
@@ -506,6 +557,8 @@ Semantic ranker can produce an answer to a query string that has the characteris
                     System.out.println();
                 }
             }
+    
+            System.exit(0);
         }
     }
     ```
