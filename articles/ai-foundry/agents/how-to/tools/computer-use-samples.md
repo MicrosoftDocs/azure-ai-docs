@@ -28,7 +28,7 @@ Use this article to learn how to use the Computer Use tool with the Azure AI Pro
 
 * The deployment name of your Computer Use model. You can find it in **Models + Endpoints** in the left navigation menu.
 
-   :::image type="content" source="../../media/tools/computer-use-model-deployment.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/computer-use-model-deployment":::
+   :::image type="content" source="../../media/tools/computer-use-model-deployment.png" alt-text="A screenshot showing the model deployment screen the AI Foundry portal." lightbox="../../media/tools/computer-use-model-deployment.png":::
     
     Save the name of your model's deployment name as an environment variable named `COMPUTER_USE_MODEL_DEPLOYMENT_NAME`.
 
