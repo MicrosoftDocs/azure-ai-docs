@@ -25,10 +25,9 @@ Determining the reasoning behind your agent's executions is important for troubl
 
 Tracing solves this by allowing you to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked.
 
-
 ## Tracing in the Azure AI Foundry Agents playground
 
-The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**. 
+The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
 > Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
@@ -38,16 +37,16 @@ The Agents playground in the Azure AI Foundry portal lets you trace threads and 
 >     * `southindia`
 >     * `uksouth`
 
-:::image type="content" source="../../agents/media/ai-foundry-tracing.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../agents/media/ai-foundry-tracing.png":::
+:::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
 
-After selecting **Thread info**, the screen that appears will be let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
+After selecting **Thread info**, the screen that appears will let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
 > [!TIP]
 > If you want to view the trace of a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 > :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
-> You will be able to see the **Thread info** button at the top of the screen to view the trace. 
+> You will be able to see the **Thread info** button at the top of the screen to view the trace.
 
 
 > [!NOTE]
