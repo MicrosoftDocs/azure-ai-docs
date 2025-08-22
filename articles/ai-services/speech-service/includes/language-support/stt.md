@@ -75,7 +75,7 @@ ms.author: pafarley
 | `es-PR` | Spanish (Puerto Rico) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-PY` | Spanish (Paraguay) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-SV` | Spanish (El Salvador) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-US` | Spanish (United States) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `es-US` | Spanish (United States)<sup>1</sup> | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `es-UY` | Spanish (Uruguay) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-VE` | Spanish (Venezuela) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `et-EE` | Estonian (Estonia) | No | Plain text<br/><br/>Pronunciation |
@@ -84,7 +84,7 @@ ms.author: pafarley
 | `fi-FI` | Finnish (Finland) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `fil-PH` | Filipino (Philippines) | No | Plain text<br/><br/>Pronunciation |
 | `fr-BE` | French (Belgium) | No | Plain text |
-| `fr-CA` | French (Canada) | No | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `fr-CA` | French (Canada)<sup>1</sup> | No | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `fr-CH` | French (Switzerland) | No | Plain text<br/><br/>Pronunciation |
 | `fr-FR` | French (France) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ga-IE` | Irish (Ireland) | No | Plain text<br/><br/>Pronunciation |
