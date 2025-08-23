@@ -40,7 +40,7 @@ When you get results from NER, you can stream the results to an application or s
 
 ## Select which entities to be returned
 
-The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given input text language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `includeList` and `excludeList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
+The API attempts to detect the [defined entity types and tags](concepts/named-entity-categories.md) for a given input text language. The entity types and tags replace the categories and subcategories structure the older models use to define entities for more flexibility. You can also specify which entities are detected and returned, use the optional `inclusionList` and `exclusionList` parameters with the appropriate entity types. The following example would detect only `Location`. You can specify one or more [entity types](concepts/named-entity-categories.md) to be returned. Given the types and tags hierarchy introduced for this version, you have the flexibility to filter on different granularity levels as so:
 
 **Input:**
 
@@ -52,7 +52,7 @@ The API attempts to detect the [defined entity types and tags](concepts/named-en
     "kind": "EntityRecognition",
     "parameters": 
     {
-        "includeList" :
+        "inclusionList" :
         [
             "Location"
         ]
@@ -78,7 +78,7 @@ The above examples would return entities falling under the `Location` entity typ
 
     "parameters": 
     {
-        "includeList" :
+        "inclusionList" :
         [
             "GPE"
         ]
@@ -86,17 +86,17 @@ The above examples would return entities falling under the `Location` entity typ
     
 ```
 
-This method returns all `Location` entities only falling under the `GPE` tag and ignore any other entity falling under the `Location` type that is tagged with any other entity tag such as `Structural` or `Geological` tagged `Location` entities. We can also further analyze our results by using the `excludeList` parameter. `GPE` tagged entities could be tagged with the following tags: `City`, `State`, `CountryRegion`, `Continent`. We could, for example, exclude `Continent` and `CountryRegion` tags for our example:
+This method returns all `Location` entities only falling under the `GPE` tag and ignore any other entity falling under the `Location` type that is tagged with any other entity tag such as `Structural` or `Geological` tagged `Location` entities. We can also further analyze our results by using the `exclusionList` parameter. `GPE` tagged entities could be tagged with the following tags: `City`, `State`, `CountryRegion`, `Continent`. We could, for example, exclude `Continent` and `CountryRegion` tags for our example:
 
 ```bash
 
     "parameters": 
     {
-        "includeList" :
+        "inclusionList" :
         [
             "GPE"
         ],
-        "excludeList": :
+        "exclusionList": :
         [
             "Continent",
             "CountryRegion"
@@ -105,7 +105,7 @@ This method returns all `Location` entities only falling under the `GPE` tag and
     
 ```
 
-Using these parameters we can successfully filter on only `Location` entity types, since the `GPE` entity tag included in the `includeList` parameter, falls under the `Location` type. We then filter on only Geopolitical entities and exclude any entities tagged with `Continent` or `CountryRegion` tags.
+Using these parameters we can successfully filter on only `Location` entity types, since the `GPE` entity tag included in the `inclusionList` parameter, falls under the `Location` type. We then filter on only Geopolitical entities and exclude any entities tagged with `Continent` or `CountryRegion` tags.
 
 ## Supported output attributes
 
