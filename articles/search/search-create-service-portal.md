@@ -115,7 +115,7 @@ In most cases, choose a region near you, unless any of the following apply:
 
 1. Do you have a specific tier in mind? Check [region availability by tier](search-sku-tier.md#region-availability-by-tier).
 
-1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in different Azure regions each with two or more replicas for [availability zones](/azure/reliability/reliability-ai-search#availability-zone-support). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service. For mre information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
+1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in different Azure regions each with two or more replicas for [availability zones](/azure/reliability/reliability-ai-search#availability-zone-support). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
 
 1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md)? For [billing purposes](cognitive-search-attach-cognitive-services.md), Azure AI Search and Azure AI services multi-service must coexist in the same region.
 
@@ -190,7 +190,7 @@ Most customers use a single search service at a tier [sufficient for the expecte
 
 However, you might need a second service for the following operational requirements:
 
-+ Region outages. In the unlikely event of a full region outage, Azure AI Search won't provide instant failover. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
++ Region outages. In the unlikely event of a full region outage, Azure AI Search doesn't provide instant failover. You need to implement your own multi-region solution and failover approach. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
 + [Multitenant architectures](search-modeling-multitenant-saas-applications.md) that require two or more services.
 + Globally deployed applications that require services in each geography to minimize latency.
 
