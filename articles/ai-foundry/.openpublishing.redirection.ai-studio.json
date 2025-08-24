@@ -1262,6 +1262,26 @@
           "source_path_from_root": "/articles/ai-foundry/how-to/evaluate-prompts-playground.md",
           "redirect_url": "/azure/ai-foundry/concepts/observability",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
+     {
+          "source_path_from_root": "/articles/ai-foundry/openai/how-to/work-with-code.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
+     {
+          "source_path_from_root": "/articles/ai-foundry/openai/how-to/completions.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
+     {
+          "source_path_from_root": "/articles/ai-foundry/openai/how-to/chat-markup-language.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
         }
     ]
 }
