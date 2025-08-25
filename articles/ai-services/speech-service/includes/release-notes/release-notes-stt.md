@@ -7,6 +7,11 @@ ms.author: pafarley
 ms.custom: references_regions
 ---
 
+### August 2025 release
+
+#### New locales supported in Fast Transcription
+Fast transcription now supports additional locales including a few `en-` variants (12 locales), `es-` variants (19 locales), and `ar-` variants (13 locales). For more information, see [speech to text supported languages](../../language-support.md?tabs=stt).
+
 ### July 2025 release
 
 #### Improved speech to text models
