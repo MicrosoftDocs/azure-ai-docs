@@ -58,7 +58,10 @@ In this quickstart, we walk you through setting up your local development enviro
 
 1. Select **Model catalog** from the left pane.
 
-1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it.
+
+   > [!NOTE]
+   > You can check out the [model catalog](https://ai.azure.com/explore/models) to confirm pricing on individual models.
 
 1. On the model details page, select **Use this model**.
 
