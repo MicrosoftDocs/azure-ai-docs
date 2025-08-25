@@ -12,11 +12,11 @@ ms.service: azure-ai-foundry
 # Azure AI Foundry status dashboard
 
 The Azure AI Foundry Status Dashboard provides visibility into the
-health and availability of key Foundry services. It is intended to help
+health and availability of key Foundry services. It's intended to help
 customers monitor service status, stay informed about ongoing incidents,
 and plan around scheduled maintenance windows.
 
-This dashboard is currently in **Preview**, which means we are still
+This dashboard is currently in **Preview**, which means we're still
 expanding coverage and improving the experience based on customer
 feedback.
 
@@ -35,13 +35,12 @@ feedback.
 ## Frequently Asked Questions
 
 **Q: Is this data real-time?**  
-Yes. The dashboard pulls updates in real time as status changes are
-published by our engineering and operations teams.
+Yes. The dashboard pulls updates in real time as the engineering and operations teams publish status changes.
 
 **Q: What does it mean that this dashboard is in “Preview”?**  
-During the Preview phase, we are gradually expanding service coverage
-and refining the dashboard UI and update workflows. Some services may
-not yet appear, and update timing may vary slightly. We appreciate your
+During the Preview phase, we're gradually expanding service coverage
+and refining the dashboard UI and update workflows. Some services might
+not yet appear, and update timing might vary slightly. We appreciate your
 patience and feedback.
 
 **Q: Can I subscribe to updates?**  
@@ -54,8 +53,8 @@ major regions. Expanded coverage, including specific regions, is in
 progress.
 
 **Q: How should I report discrepancies or missing status updates?**  
-If you notice a gap between your experience and what’s shown on the
-dashboard, please contact your Microsoft support representative or file
+If you notice a gap between your experience and what you see on the
+dashboard, contact your Microsoft support representative or file
 a support ticket through Azure Support.
 
 ## Feedback & Support
