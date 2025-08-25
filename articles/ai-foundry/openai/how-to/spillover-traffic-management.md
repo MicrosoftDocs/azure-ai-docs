@@ -33,11 +33,28 @@ Since spillover uses a combination of provisioned and standard deployments to ma
 
 - For any requests routed to your standard deployment, the request is billed at the associated input token, cached token, and output token rates for the specified model version and deployment type.
 
-## How to enable spillover
-The spillover capability can be enabled for all requests on a provisioned deployment using a deployment property or it can be managed on a per-request basis using request headers. The following section explains how to configure spillover for each of these scenarios. 
+## Deploy a model with with spillover in the Azure AI Foundry
 
-### Enable spillover for all requests on a provisioned deployment
-To enable spillover for all requests on a provisioned deployment, set the deployment property `spilloverDeploymentName` to the standard deployment target for spillover requests. This property can be set during the creation of a new provisioned deployment or can be added to an existing provisioned deployment. The `spilloverDeploymentName` property needs to be set to the name of a standard deployment within the same Azure OpenAI resource as your provisioned deployment. 
+To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left nativation menu, then select **Deployments**.
+
+
+Select **Deploy model**. In the menu that appears, select **Customize**.
+
+:::image type="content" source="../media/provisioned/customize.png" alt-text="A screenshot showing the deployment customization button." lightbox="../media/provisioned/customize.png":::
+
+Specify one the provisioned options as the **Deployment type**, for example **Global Provisioned Throughput**. Select **Traffic spillover** to enable spillover for your provisioned deployment. 
+
+:::image type="content" source="../media/provisioned/spillover.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover.png":::
+
+## View spillover metrics
+
+You can view the metrics for your resource in the [Azure portal](https://portal.azure.com) by navigating to the **Metrics** page for your resource. Select the `IsSpillover` split for your resource's requests to see how your spillover deployment is used.    
+
+:::image type="content" source="../media/provisioned/spillover-chart.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover-chart.png":::
+
+
+## Enable spillover for all requests on a provisioned deployment
+The spillover capability can be enabled for all requests on a provisioned deployment using a deployment property or it can be managed on a per-request basis using request headers. To enable spillover for all requests on a provisioned deployment, set the deployment property `spilloverDeploymentName` to the standard deployment target for spillover requests. This property can be set during the creation of a new provisioned deployment or can be added to an existing provisioned deployment. The `spilloverDeploymentName` property needs to be set to the name of a standard deployment within the same Azure OpenAI resource as your provisioned deployment. 
 
 ```Bash
 curl -X PUT https://management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/resource-group-temp/providers/Microsoft.CognitiveServices/accounts/docs-openai-test-001/deployments/spillover-ptu-deployment?api-version=2024-10-01 \
