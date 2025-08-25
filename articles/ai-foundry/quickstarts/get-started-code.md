@@ -60,10 +60,7 @@ In this quickstart, we walk you through setting up your local development enviro
 
 1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
 
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
-
+1. On the model details page, select **Use this model**.
 
 1. Leave the default **Deployment name**. Select **Deploy**.
 
