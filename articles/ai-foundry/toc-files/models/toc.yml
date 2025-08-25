@@ -37,8 +37,6 @@ items:
   items:
   - name: Endpoints for Foundry Models
     href: ../../foundry-models/concepts/endpoints.md
-  - name: Use Foundry Models in code
-    href: ../../foundry-models/how-to/inference.md
   - name: Supported programming languages and SDKs
     href: ../../../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Inference SDK
