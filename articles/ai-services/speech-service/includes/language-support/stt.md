@@ -10,22 +10,22 @@ ms.author: pafarley
 | ----- | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) | No | Plain text |
 | `am-ET` | Amharic (Ethiopia) | No | Plain text |
-| `ar-AE` | Arabic (United Arab Emirates) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-BH` | Arabic (Bahrain) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-AE` | Arabic (United Arab Emirates) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-BH` | Arabic (Bahrain) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-DZ` | Arabic (Algeria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-EG` | Arabic (Egypt) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
-| `ar-IL` | Arabic (Israel) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-IQ` | Arabic (Iraq) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-JO` | Arabic (Jordan) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-KW` | Arabic (Kuwait) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-LB` | Arabic (Lebanon) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-LY` | Arabic (Libya) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-EG` | Arabic (Egypt) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
+| `ar-IL` | Arabic (Israel) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-IQ` | Arabic (Iraq) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-JO` | Arabic (Jordan) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-KW` | Arabic (Kuwait) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-LB` | Arabic (Lebanon) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-LY` | Arabic (Libya) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-MA` | Arabic (Morocco) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-OM` | Arabic (Oman) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-PS` | Arabic (Palestinian Authority) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-QA` | Arabic (Qatar) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-OM` | Arabic (Oman) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-PS` | Arabic (Palestinian Authority) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-QA` | Arabic (Qatar) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-SA` | Arabic (Saudi Arabia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
-| `ar-SY` | Arabic (Syria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-SY` | Arabic (Syria) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-TN` | Arabic (Tunisia) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-YE` | Arabic (Yemen) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `as-IN` | Assamese (India) | No | Audio + human-labeled transcript |

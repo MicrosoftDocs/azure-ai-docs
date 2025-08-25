@@ -361,14 +361,6 @@ The token counting portion of the code demonstrated previously is a simplified v
 
 ## Troubleshooting
 
-### Don't use ChatML syntax or special tokens with the chat completion endpoint
-
-Some customers try to use the [legacy ChatML syntax](../how-to/chat-markup-language.md) with the chat completion endpoints and newer models. ChatML was a preview capability that only worked with the legacy completions endpoint with the `gpt-35-turbo` version 0301 model. This model is [slated for retirement](../concepts/model-retirements.md). If you attempt to use ChatML syntax with newer models and the chat completion endpoint, it can result in errors and unexpected model response behavior. We don't recommend this use. This same issue can occur when using common special tokens.
-
-| Error Code | Error Message | Solution |
-|---|---|---|
-| 400 | 400 - "Failed to generate output due to special tokens in the input." | Your prompt contains special tokens or legacy ChatML tokens not recognized or supported by the model/endpoint. Ensure that your prompt/messages array doesn't contain any legacy ChatML tokens/special tokens. If you're upgrading from a legacy model, exclude all special tokens before you submit an API request to the model.|
-
 ### Failed to create completion as the model generated invalid Unicode output
 
 | Error Code | Error Message | Workaround |
