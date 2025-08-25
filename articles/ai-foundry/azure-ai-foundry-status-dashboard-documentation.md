@@ -65,6 +65,6 @@ please contact your support team or Customer Success representative.
 
 ## Related content
 
-- [Azure AI Foundry documentation](.)
+- [Azure AI Foundry documentation](/azure/ai-foundry/)
 - [Azure status history](https://status.azure.com/status)
 - [Azure Service Health](https://azure.microsoft.com/status/)
