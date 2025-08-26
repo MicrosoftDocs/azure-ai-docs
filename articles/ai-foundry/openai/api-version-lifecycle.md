@@ -17,20 +17,20 @@ ms.custom:
 This article is to help you understand the support lifecycle for Azure OpenAI APIs.
 
 > [!NOTE]
-> New API response objects may be added to the API response at anytime. We recommend you only parse the response objects you require.
+> New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
 >
 
 ## API evolution
 
-Historically, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in August 2025, you can now opt in to our next generation of v1 Azure OpenAI APIs which add support for:
+Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in August 2025, you can now opt in to our next generation of v1 Azure OpenAI APIs which add support for:
 
 - Ongoing access to the latest features with no need specify and `api-version` each month.
 - Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
 - OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client will be added for all currently supported languages. Adding support for this functionality is **coming soon** for the [Python](https://pypi.org/project/openai/), and the [TypeScript/JavaScript](https://github.com/openai/openai-node) libraries. .NET, Java, and Go support is currently available in preview.
-- Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt-in to features you want, without having to swap API versions.
+- Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to features you want, without having to swap API versions.
 
-For the initial v1 GA API launch we are only supporting a subset of the inference and authoring API capabilities. We will be rapidly adding support for more capabilities in the coming weeks.  
+For the initial v1 GA API launch we're only supporting a subset of the inference and authoring API capabilities. We'll be rapidly adding support for more capabilities in the coming weeks.  
 
 ## Code changes
 
@@ -108,7 +108,7 @@ print(response.model_dump_json(indent=2))
 ### Next generation API
 
 > [!IMPORTANT]
-> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API will remove this dependency, but adding automatic token refresh support to the `OpenAI()` client is still in progress. The example below is the current proposed structure, but it may be subject to change. The code below is for example purposes only, and will not execute successfully until the updated OpenAI library is released.
+> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API will remove this dependency, but adding automatic token refresh support to the `OpenAI()` client is still in progress. The example below is the current proposed structure, but it may be subject to change. The code below is for example purposes only, and won't execute successfully until the updated OpenAI library is released.
 
 ```python
 from openai import OpenAI
@@ -293,7 +293,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 
 ## Changes between 2024-09-01-preview and 2024-08-01-preview
 
-- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` does not work with the **o1 series** models.
+- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` doesn't work with the **o1 series** models.
 - `parallel_tool_calls` added.
 - `completion_tokens_details` & `reasoning_tokens` added.
 - `stream_options` & `include_usage` added.
