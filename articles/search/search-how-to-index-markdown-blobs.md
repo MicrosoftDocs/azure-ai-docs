@@ -468,8 +468,8 @@ This method uses a soft-delete to delete documents associated with a specific bl
 
 Before re-indexing a modified Markdown file, explicitly delete the existing documents associated with that file using the [https://learn.microsoft.com/en-us/rest/api/searchservice/delete-documents](https://learn.microsoft.com/en-us/rest/api/searchservice/preview-api/add-update-delete-documents). You can either:
 
-* Manually indentify individual stale documents by identifying duplicates in the index to be deleted.
-* (**Recommended**) Bulk delete all documents generated from the same parent file before re-indexing.
+* Manually indentify individual stale documents by identifying duplicates in the index to be deleted. This may be feasible for small, well-understood changes but can be time-consuming.
+* (**Recommended**) Remove all documents generated from the same parent file before re-indexing. This ensures a clean slate and avoids inconsistencies.
 
   1. Identify the id  of the documents associated with the file. Use a query like the one below to retrieve the document key IDs (e.g., `id`, `chunk_id`, etc.) for all documents tied to a specific file. Replace `metadata_storage_path` with the appropriate field in your index that maps to the file path or blob URI. Note that this field must be a key.
   ```
