@@ -1607,4 +1607,12 @@ groups:
     title: Azure AI Foundry
   - id: rest-api
     title: REST API
-
+# Owner: jburchel/jonburchel
+- id: setup-key-vault
+  title: Setup methods
+  prompt: Choose a setup method
+  pivots:
+  - id: ai-foundry-portal
+    title: Azure AI Foundry Portal
+  - id: bicep
+    title: BICEP

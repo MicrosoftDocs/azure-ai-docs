@@ -8,7 +8,7 @@ ms.date: 08/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ai.usage: ai-assisted
-zone_pivot_groups: agents-quickstart
+zone_pivot_groups: setup-key-vault
 ---
 # Set up a Key Vault connection in Azure AI Foundry
 
