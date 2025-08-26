@@ -128,4 +128,4 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 ## Related content
 
 - [Azure Key Vault documentation](/azure/key-vault/)
-- [AI Foundry documentation](../) 
+- [AI Foundry documentation](/azure/ai-foundry/) 
