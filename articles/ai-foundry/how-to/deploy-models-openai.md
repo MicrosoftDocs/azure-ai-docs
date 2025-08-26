@@ -1,7 +1,7 @@
 ﻿---
-title: How to deploy Azure OpenAI models with Azure AI Foundry
+title: How to deploy Azure OpenAI in Foundry Models with Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to deploy Azure OpenAI models with Azure AI Foundry.
+description: Learn how to deploy and use Azure OpenAI models in Azure AI Foundry, including model region availability and quota management.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -16,7 +16,7 @@ manager: nitinme
 author: msakande
 ai-usage: ai-assisted
 
-#CustomerIntent: As a developer or data scientist, I want to deploy and interact with Azure OpenAI models in Azure AI Foundry so that I can build, test, and integrate advanced AI capabilities into my applications efficiently and securely.
+#CustomerIntent: As a developer or data scientist, I want to deploy and interact with Azure OpenAI in AI Foundry Models using the AI Foundry portal so that I can build, test, and integrate advanced AI capabilities into my applications efficiently and securely.
 ---
 
 # How to deploy Azure OpenAI models with Azure AI Foundry
