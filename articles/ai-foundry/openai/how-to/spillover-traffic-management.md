@@ -86,20 +86,26 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 ## How do I monitor my spillover usage?
 Since the spillover capability relies on a combination of provisioned and standard deployments to manage traffic overages, monitoring can be conducted at the deployment level for each deployment. To view how many requests were processed on the primary provisioned deployment versus the spillover standard deployment, apply the splitting feature within Azure Monitor metrics to view the requests processed by each deployment and their respective status codes. Similarly, the splitting feature can be used to view how many tokens were processed on the primary provisioned deployment versus the spillover standard deployment for a given time period. For more information on observability within Azure OpenAI, review the [Monitor Azure OpenAI](./monitor-openai.md) documentation. 
 
-The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. 
+## Monitor basic metrics in the Azure portal
 
-<!--
-1. Go to the **metrics** page for your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs)
-1. Apply the `IsSpillover`, `ModelDeploymentName` and `StatusCode` splits to the default requests value. see when spillover is being used.
+The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, go to the **metrics** page for your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs). Then apply the `ModelDeploymentName` and `StatusCode` splits to the default `Azure OpenAI Requests` requests metric, with a `Sum` aggregation. This will show you a chart with the `200` and `429` (too many requests) response codes that are generated for your resource.   
 
-![Azure monitor chart showing spillover requests from a provisioned deployment to a standard deployment.](../media/monitor-spillover-usage.png)
--->    
+:::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the spillover option in the Azure portal." lightbox="../media/provisioned/spillover-chart-simplified.png":::
+
+In this example, the following events take place:
+
+1. The requests sent to the provisioned throughput deployment exceed its capacity, generating `429` error codes and reducing the number of `200` responses. 
+1. Spillover is initiated after a short period of time and requests begin to be sent to the pay-as-you-go deployment, generating `200` responses for that deployment.
+    
+    > [!NOTE]
+    > As requests are sent to the pay-as-you-go deployment, they still will generate 429 response codes on the provisioned deployment before being redirected.
+    > :::image type="content" source="../media/provisioned/spillover-chart-errors.png" alt-text="A screenshot showing the the response codes from a provisioned deployment." lightbox="../media/provisioned/spillover-chart-errors.png":::
+    
+### Viewing spillover metrics
+
+Applying the `IsSpillover` split lets you view the requests to your deployment that are being redirected to your spillover deployment. Following from the previ
 
 :::image type="content" source="../media/provisioned/spillover-chart.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover-chart.png":::
-
-Initially, all calls going to the non-spillover deployment are sending HTTP 200 codes (the tall blue line). Once the capacity was exceeded and 429 HTTP codes start being recieved, spillover was activated after a short period of time and traffic was shifted to another deployment. Hovering over the graph for your pay-as-you-go deployment will show the requests being redirected.
-
-:::image type="content" source="../media/provisioned/spillover-chart-2.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover-chart-2.png":::
 
 
 
