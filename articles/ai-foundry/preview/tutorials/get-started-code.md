@@ -1,5 +1,5 @@
 ---
-title: "Preview quickstart - Get started with Azure AI Foundry"
+title: "Quickstart - Get started with Azure AI Foundry (Preview)"
 titleSuffix: Azure AI Foundry
 description: How to use the Preview experience of the Azure AI Foundry portal and the Azure AI Foundry SDK.
 author: sdgilley
@@ -14,7 +14,7 @@ ms.custom:
 # see-also: includes/get-started-code-fdp.md
 ---
 
-# Quickstart - Get started with Azure AI Foundry
+# Quickstart - Get started with Azure AI Foundry (Preview)
 
 [!INCLUDE [preview](../includes/preview.md)]
 
@@ -218,7 +218,7 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. Select **Knowlegde**
+1. Select **Knowledge**
 1. Upload your file.
 1. Chat with your agent.
 

@@ -1,5 +1,5 @@
 ---
-title: "Azure AI Foundry API & SDK reference"
+title: "Azure AI Foundry API and SDK Reference"
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to start using the Preview experience of the Azure AI Foundry portal and the Azure AI Foundry SDK.
 author: sdgilley
@@ -12,7 +12,7 @@ ms.custom:
   - preview
 ---
 
-# Azure AI Foundry API & SDK reference
+# Azure AI Foundry API and SDK Reference
 
 This page provides links to SDKs and REST APIs available in Azure AI Foundry.
 

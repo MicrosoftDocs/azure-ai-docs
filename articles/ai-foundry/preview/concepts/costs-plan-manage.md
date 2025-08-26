@@ -1,5 +1,5 @@
 ---
-title: Plan and manage costs for Azure AI Foundry (preview)
+title: Plan and Manage Costs for Azure AI Foundry (Preview)
 titleSuffix: Azure AI Foundry
 description: Learn how to plan for and manage costs for Azure AI Foundry (preview) by using cost analysis in the Azure portal.
 ms.author: mopeakande
@@ -13,7 +13,7 @@ ms.topic: concept-article
 # see also: ai-foundry/how-to/costs-plan-manage.md
 ---
 
-# Plan and manage costs for Azure AI Foundry (preview)
+# Plan and Manage Costs for Azure AI Foundry (Preview)
 
 [!INCLUDE [preview](../includes/preview.md)]
 

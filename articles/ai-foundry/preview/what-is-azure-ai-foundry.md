@@ -1,5 +1,5 @@
 ---
-title: What is Azure AI Foundry (preview)?
+title: What is Azure AI Foundry (Preview)?
 titleSuffix: Azure AI Foundry
 description: Azure AI Foundry (preview) is a preview version of the Azure AI Foundry portal.
 author: sdgilley
@@ -13,7 +13,7 @@ ms.custom:
 # customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
-# What is Azure AI Foundry (preview)?
+# What is Azure AI Foundry (Preview)?
 
 [!INCLUDE [preview](./includes/preview.md)]
 
