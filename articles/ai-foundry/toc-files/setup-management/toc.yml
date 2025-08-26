@@ -42,6 +42,8 @@ items:
     href: ../../how-to/create-azure-ai-project-template.md
 - name: Management center
   href: ../../concepts/management-center.md
+- name: AI Foundry Status Dashboard
+  href: ../../azure-ai-foundry-status-dashboard-documentation.md
 - name: Connect other services
   items:
   - name: Create a connection
