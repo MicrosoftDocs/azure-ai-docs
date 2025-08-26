@@ -58,6 +58,8 @@ Follow these steps to create a new connection to Azure Key Vault.
 
 Pull this content from the [foundry-samples repository (keyvaultconnection branch)](https://github.com/andyaviles121/foundry-samples/tree/keyvaultconnection) after it's merged.
 
+::: zone-end
+
 ## Key Vault connection management
 
 ### Creation
@@ -122,8 +124,6 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 1. Delete the Azure Key Vault connection.
 1. Delete all Foundry projects.
 1. Delete the Foundry resource.
-
-::: zone-end
 
 ## Related content
 
