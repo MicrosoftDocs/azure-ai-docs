@@ -16,8 +16,6 @@ items:
 
 - name: Operate & support
   items:
-    - name: Feature availability
-      href: concepts/new-article.md
     - name: Region support
       href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
     - name: Pricing calculator

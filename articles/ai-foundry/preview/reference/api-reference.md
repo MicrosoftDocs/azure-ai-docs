@@ -30,21 +30,20 @@ This page provides links to SDKs and REST APIs available in Azure AI Foundry.
 - [JavaScript](/javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true)
 - [Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
 - [REST API](/rest/api/aifoundry/aiagents)
-- [Data monitoring reference](../agents/reference/monitor-service.md)
+- [Data monitoring reference](../../agents/reference/monitor-service.md)
 
 ## SDKs & REST APIs (general)
 
 - [Azure AI Evaluation SDK](/python/api/overview/azure/ai-evaluation-readme)
-- [Azure AI services SDKs (client library development kit)](../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context)
-- [Azure AI services REST APIs (swagger)](../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context)
+- [Azure AI services SDKs (client library development kit)](../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context)
+- [Azure AI services REST APIs (swagger)](../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context)
 
 ## Azure AI Model Inference API
 
 - [What is the Model Inference API?](/rest/api/aifoundry/modelinference)
-- [Get Model Info](/rest/api/aifoundry/get-model-info/get-model-info)
-- [Get Chat Completions](/rest/api/aifoundry/get-chat-completions/get-chat-completions)
-- [Get Embeddings](/rest/api/aifoundry/get-embeddings/get-embeddings)
-- [Get Image Embeddings](/rest/api/aifoundry/get-image-embeddings/get-image-embeddings)
+<!-- - [Get Chat Completions](/rest/api/aifoundry/get-chat-completions/get-chat-completions) -->
+<!-- - [Get Embeddings](/rest/api/aifoundry/get-embeddings/get-embeddings)
+- [Get Image Embeddings](/rest/api/aifoundry/get-image-embeddings/get-image-embeddings) -->
 
 ## Azure OpenAI
 

@@ -18,7 +18,7 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In this quickstart, you use [Azure AI Foundry (preview)](https://preview.ai.azure.com/?cid=learnDocs) to:
+In this quickstart, you use [Azure AI Foundry (preview)]() to:
 
 > [!div class="checklist"]
 > * Create a project
