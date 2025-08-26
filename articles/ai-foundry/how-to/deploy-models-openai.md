@@ -39,8 +39,8 @@ Follow the steps in this section to deploy an Azure OpenAI model, such as `gpt-4
 
 [!INCLUDE [open-catalog](../includes/open-catalog.md)]
 
-1. In the **Collections** filter, select **Azure OpenAI**.
-
+4. In the **Collections** filter, select **Azure OpenAI**.
+    
     :::image type="content" source="../media/deploy-monitor/catalog-filter-azure-openai.png" alt-text="A screenshot showing how to filter by Azure OpenAI models in the catalog." lightbox="../media/deploy-monitor/catalog-filter-azure-openai.png":::
 
 1. Select a model such as `gpt-4o-mini` from the Azure OpenAI collection.
