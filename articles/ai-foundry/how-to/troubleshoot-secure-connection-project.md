@@ -7,7 +7,7 @@ ms.custom:
   - build-2024
   - hub-only
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 08/27/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -17,35 +17,35 @@ author: jonburchel
 
 [!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
 
-When you create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you can choose to secure it with a private endpoint. A private endpoint allows you to connect to the project over a private network, which can help protect your data and resources. However, if you're having trouble connecting to a project that uses a private endpoint, this article provides troubleshooting steps to help you resolve the issue.
+When you create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), you can secure it with a private endpoint. A private endpoint lets you connect to the project over a private network, which helps protect your data and resources. If you're having trouble connecting to a project that uses a private endpoint, this article lists troubleshooting steps to help you fix the issue.
 
-When connecting to an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) project configured with a private endpoint, you might encounter a 403 or a messaging saying that access is forbidden. Use the information in this article to check for common configuration problems that can cause this error.
+When you connect to an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) project that's configured with a private endpoint, you might encounter an HTTP 403 error or a message that says access is forbidden. Use this article to check for common configuration issues that cause this error.
 
-## Error loading Azure AI Hub or Project
+## Error loading Azure AI hub or project
 
-If you recieved an error loading your Azure AI hub or project, there may be one of two causes. 
+If you received an error loading your Azure AI hub or project, the issue might be caused by one of two settings.
 
-1) You set public network access to __Disabled__ on your hub.
-2) You set public network access to __Enable from selected IPs__ on your hub.
+1. Your hub has public network access set to __Disabled__.
+1. Your hub has public network access set to __Enable from selected IPs__.
 
-Depending on which setting you have selected for Public access to your Azure AI hub and projects, ensure the following: 
+Depending on your public access setting for your Azure AI hub and projects, do the following:
 
-| Public Network Access Setting | Action |
+| Public network access setting | Action |
 | ----- | ----- |
-| Disabled | Ensure an inbound private endpoint is created and approved from your virtual network to your Azure AI Foundry hub. Ensure you are securely connection to your hub or project using an Azure VPN, ExpressRoute, or Azure Bastion. |
-| Enable from selected IPs | Ensure your IP address is listed in the Firewall IP ranges allowed access Azure AI Foundry. If you cannot add your IP address, talk to your IT admin. |
+| Disabled | Create and approve an inbound private endpoint from your virtual network to your Azure AI Foundry hub. Connect securely to your hub or project by using Azure VPN, ExpressRoute, or Azure Bastion. |
+| Enable from selected IPs | Make sure your IP address is listed in the Firewall IP ranges allowed to access Azure AI Foundry. If you can't add your IP address, contact your IT admin. |
 
 ## Securely connect to your hub or project
 
-To connect to a hub or project secured behind a virtual network, use one of the following methods:
+To connect to a hub or project secured by a virtual network, use one of these methods:
 
-* [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways) - Connects on-premises networks to the virtual network over a private connection. Connection is made over the public internet. There are two types of VPN gateways that you might use:
+* [Azure VPN gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways)—Connects on-premises networks to the virtual network over a private connection. The connection uses the public internet. Choose from two VPN gateway types:
 
     * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal): Each client computer uses a VPN client to connect to the virtual network.
     * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal): A VPN device connects the virtual network to your on-premises network.
 
-* [ExpressRoute](https://azure.microsoft.com/services/expressroute/) - Connects on-premises networks into the cloud over a private connection. Connection is made using a connectivity provider.
-* [Azure Bastion](/azure/bastion/bastion-overview) - In this scenario, you create an Azure Virtual Machine (sometimes called a jump box) inside the virtual network. You then connect to the VM using Azure Bastion. Bastion allows you to connect to the VM using either an RDP or SSH session from your local web browser. You then use the jump box as your development environment. Since it is inside the virtual network, it can directly access the workspace.
+* [ExpressRoute](https://azure.microsoft.com/services/expressroute/)—Connects on-premises networks to the cloud over a private connection. The connection uses a connectivity provider.
+* [Azure Bastion](/azure/bastion/bastion-overview)—Create an Azure virtual machine (sometimes called a jump box) inside the virtual network. Then connect to the VM through Azure Bastion. Bastion lets you connect to the VM by using an RDP or SSH session from your browser. Use the jump box as your development environment. Because it's inside the virtual network, it can directly access the workspace.
 
 ## DNS configuration
 
@@ -139,14 +139,14 @@ If you use a proxy, it might prevent communication with a secured project. To te
 * Configure your proxy server to forward DNS requests to Azure DNS.
 * Ensure that the proxy allows connections to AML APIs, such as "*.\<region\>.api.azureml.ms" and "*.instances.azureml.ms"
 
-## Troubleshoot configurations on connecting to storage
+## Troubleshoot storage connection issues
 
-When you create a project, several connections to Azure storage are automatically created for data upload and artifact storage, including prompt flow. When your hub's associated Azure Storage account is having public network access set to 'Disabled', there might be a delay in these storage connections to be created. 
+When you create a project, Azure Storage creates several connections for data upload and artifact storage, including prompt flow. If your hub's associated Azure Storage account has public network access set to **Disabled**, these storage connections can take longer to create. 
 
-Try the following steps to troubleshoot:
-1. In Azure portal, check the network settings of the storage account that is associated to your hub.
-  * If public network access is set to __Enabled from selected virtual networks and IP addresses__, ensure the correct IP address ranges are added to access your storage account.
-  * If public network access is set to __Disabled__, ensure you have a private endpoint configured from your Azure virtual network to your storage account with Target sub-resource as blob. In addition, you must grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
-2. In Azure portal, navigate to your Azure AI Foundry hub. Ensure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. For more on provisioning the managed virtual network, see [How to configure a managed network for Azure AI Foundry hubs](configure-managed-network.md).
-3. Navigate to Azure AI Foundry > your project > project settings. 
-4. Refresh the page. Several connections should be created including 'workspaceblobstore'.
+Try these steps to troubleshoot:
+1. In the Azure portal, check the network settings of the storage account that's associated with your hub.
+  * If public network access is set to __Enabled from selected virtual networks and IP addresses__, make sure the correct IP address ranges are added to allow access to your storage account.
+  * If public network access is set to __Disabled__, make sure a private endpoint from your Azure virtual network to your storage account is configured with Target sub-resource set to blob. Also, grant the [Reader](/azure/role-based-access-control/built-in-roles#reader) role for the storage account private endpoint to the managed identity.
+1. In the Azure portal, go to your Azure AI Foundry hub. Make sure the managed virtual network is provisioned and the outbound private endpoint to blob storage is Active. Learn more in [How to configure a managed network for Azure AI Foundry hubs](configure-managed-network.md).
+1. Go to Azure AI Foundry > your project > project settings.
+1. Refresh the page. Several connections appear, including `workspaceblobstore`.

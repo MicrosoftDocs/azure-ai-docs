@@ -9,7 +9,7 @@ ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: andyaviles
-ms.date: 04/14/2025
+ms.date: 08/27/2025
 ---
 
 # Customer enabled disaster recovery
