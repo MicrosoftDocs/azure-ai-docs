@@ -33,7 +33,7 @@ The quickstart assumes the following is available on your computer:
    ```xml
    <project xmlns="http://maven.apache.org/POM/4.0.0"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 
+            xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
             http://maven.apache.org/xsd/maven-4.0.0.xsd">
        <modelVersion>4.0.0</modelVersion>
    
@@ -103,7 +103,7 @@ import java.util.Properties;
 
 public class SearchConfig {
     private static final Properties properties = new Properties();
-    
+
     static {
         try (InputStream input = SearchConfig.class.getClassLoader()
             .getResourceAsStream("application.properties")) {
@@ -113,17 +113,17 @@ public class SearchConfig {
                 "Failed to load application.properties", e);
         }
     }
-    
-    public static final String SEARCH_ENDPOINT = 
+
+    public static final String SEARCH_ENDPOINT =
         properties.getProperty("azure.search.endpoint");
-    public static final String INDEX_NAME = 
+    public static final String INDEX_NAME =
         properties.getProperty("azure.search.index.name");
-    public static final String SEMANTIC_CONFIG_NAME = 
+    public static final String SEMANTIC_CONFIG_NAME =
         properties.getProperty("semantic.configuration.name");
-    
-    public static final DefaultAzureCredential CREDENTIAL = 
+
+    public static final DefaultAzureCredential CREDENTIAL =
         new DefaultAzureCredentialBuilder().build();
-    
+
     static {
         System.out.println("Using Azure Search endpoint: " + SEARCH_ENDPOINT);
         System.out.println("Using index name: " + INDEX_NAME + "\n");
@@ -144,6 +144,8 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     import com.azure.search.documents.indexes.models.SearchField;
     import com.azure.search.documents.indexes.models.SearchIndex;
     import com.azure.search.documents.indexes.models.SemanticConfiguration;
+    import com.azure.search.documents.indexes.models.SemanticField;
+    import com.azure.search.documents.indexes.models.SemanticSearch;
     
     public class GetIndexSettings {
         public static void main(String[] args) {
@@ -164,17 +166,17 @@ In this section, you get settings for the existing `hotels-sample-index` index o
                     field.getName(), field.getType(), field.isSearchable());
             }
     
-            var semanticSearch = index.getSemanticSearch();
-            if (semanticSearch != null && 
+            SemanticSearch semanticSearch = index.getSemanticSearch();
+            if (semanticSearch != null &&
                 semanticSearch.getConfigurations() != null) {
-                System.out.println("Semantic search configurations: " + 
+                System.out.println("Semantic search configurations: " +
                     semanticSearch.getConfigurations().size());
-                for (SemanticConfiguration config : 
+                for (SemanticConfiguration config :
                     semanticSearch.getConfigurations()) {
                     System.out.println("Configuration name: " + config.getName());
-                    var titleField = config.getPrioritizedFields().getTitleField();
+                    SemanticField titleField = config.getPrioritizedFields().getTitleField();
                     if (titleField != null) {
-                        System.out.println("Title field: " + 
+                        System.out.println("Title field: " +
                             titleField.getFieldName());
                     }
                 }
@@ -221,7 +223,7 @@ In this section, you get settings for the existing `hotels-sample-index` index o
                     .credential(SearchConfig.CREDENTIAL)
                     .buildClient();
     
-                SearchIndex existingIndex = 
+                SearchIndex existingIndex =
                     indexClient.getIndex(SearchConfig.INDEX_NAME);
     
                 // Create prioritized fields for semantic configuration
@@ -234,13 +236,14 @@ In this section, you get settings for the existing `hotels-sample-index` index o
                     SearchConfig.SEMANTIC_CONFIG_NAME, prioritizedFields);
     
                 // Add the semantic configuration to the index
-                var semanticSearch = existingIndex.getSemanticSearch();
+                SemanticSearch semanticSearch = existingIndex.getSemanticSearch();
                 if (semanticSearch == null) {
                     semanticSearch = new SemanticSearch();
                     existingIndex.setSemanticSearch(semanticSearch);
                 }
     
-                var configurations = semanticSearch.getConfigurations();
+                List<SemanticConfiguration> configurations =
+                    semanticSearch.getConfigurations();
                 if (configurations == null) {
                     configurations = new ArrayList<>();
                     semanticSearch.setConfigurations(configurations);
@@ -257,36 +260,38 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     
                 indexClient.createOrUpdateIndex(existingIndex);
     
-                SearchIndex updatedIndex = 
+                SearchIndex updatedIndex =
                     indexClient.getIndex(SearchConfig.INDEX_NAME);
     
                 System.out.println("Semantic configurations:");
                 System.out.println("-".repeat(40));
     
-                var updatedSemanticSearch = updatedIndex.getSemanticSearch();
-                if (updatedSemanticSearch != null && 
+                SemanticSearch updatedSemanticSearch =
+                    updatedIndex.getSemanticSearch();
+                if (updatedSemanticSearch != null &&
                     updatedSemanticSearch.getConfigurations() != null) {
-                    for (SemanticConfiguration config : 
+                    for (SemanticConfiguration config :
                         updatedSemanticSearch.getConfigurations()) {
                         System.out.println("Configuration name: " + config.getName());
     
-                        var fields = config.getPrioritizedFields();
+                        SemanticPrioritizedFields fields =
+                            config.getPrioritizedFields();
                         if (fields.getTitleField() != null) {
-                            System.out.println("Title field: " + 
+                            System.out.println("Title field: " +
                                 fields.getTitleField().getFieldName());
                         }
                         if (fields.getKeywordsFields() != null) {
-                            var keywords = fields.getKeywordsFields().stream()
+                            List<String> keywords = fields.getKeywordsFields().stream()
                                 .map(SemanticField::getFieldName)
                                 .toList();
-                            System.out.println("Keywords fields: " + 
+                            System.out.println("Keywords fields: " +
                                 String.join(", ", keywords));
                         }
                         if (fields.getContentFields() != null) {
-                            var content = fields.getContentFields().stream()
+                            List<String> content = fields.getContentFields().stream()
                                 .map(SemanticField::getFieldName)
                                 .toList();
-                            System.out.println("Content fields: " + 
+                            System.out.println("Content fields: " +
                                 String.join(", ", content));
                         }
                         System.out.println("-".repeat(40));
@@ -299,7 +304,7 @@ In this section, you get settings for the existing `hotels-sample-index` index o
     
                 System.exit(0);
             } catch (Exception e) {
-                System.err.println("Error updating semantic configuration: " + 
+                System.err.println("Error updating semantic configuration: " +
                     e.getMessage());
             }
         }
@@ -357,8 +362,8 @@ Once the `hotels-sample-index` index has a semantic configuration, you can run q
                 System.out.printf("  Re-ranker Score: %.2f%n", rerankerScore);
                 System.out.printf("  HotelId: %s%n", document.get("HotelId"));
                 System.out.printf("  HotelName: %s%n", document.get("HotelName"));
-                System.out.printf("  Description: %s%n%n", 
-                    document.get("Description") != null ? 
+                System.out.printf("  Description: %s%n%n",
+                    document.get("Description") != null ?
                         document.get("Description") : "N/A");
             }
     
@@ -387,12 +392,15 @@ Optionally, you can add captions to extract portions of the text and apply hit h
     import com.azure.search.documents.SearchClientBuilder;
     import com.azure.search.documents.SearchDocument;
     import com.azure.search.documents.models.QueryCaption;
+    import com.azure.search.documents.models.QueryCaptionResult;
     import com.azure.search.documents.models.QueryCaptionType;
     import com.azure.search.documents.models.QueryType;
     import com.azure.search.documents.models.SearchOptions;
     import com.azure.search.documents.models.SearchResult;
     import com.azure.search.documents.models.SemanticSearchOptions;
     import com.azure.search.documents.util.SearchPagedIterable;
+
+    import java.util.List;
     
     public class SemanticQueryWithCaptions {
         public static void main(String[] args) {
@@ -402,7 +410,7 @@ Optionally, you can add captions to extract portions of the text and apply hit h
                 .credential(SearchConfig.CREDENTIAL)
                 .buildClient();
     
-            System.out.println("Using semantic configuration: " + 
+            System.out.println("Using semantic configuration: " +
                 SearchConfig.SEMANTIC_CONFIG_NAME);
             System.out.println("Search query: walking distance to live music");
     
@@ -427,22 +435,23 @@ Optionally, you can add captions to extract portions of the text and apply hit h
                 System.out.printf("Search result #%d:%n", rowNumber++);
                 System.out.printf("  Re-ranker Score: %.2f%n", rerankerScore);
                 System.out.printf("  HotelName: %s%n", document.get("HotelName"));
-                System.out.printf("  Description: %s%n%n", 
-                    document.get("Description") != null ? 
+                System.out.printf("  Description: %s%n%n",
+                    document.get("Description") != null ?
                         document.get("Description") : "N/A");
     
                 // Handle captions
-                var captions = result.getSemanticSearch().getQueryCaptions();
+                List<QueryCaptionResult> captions =
+                    result.getSemanticSearch().getQueryCaptions();
                 if (captions != null && !captions.isEmpty()) {
-                    var caption = captions.get(0);
+                    QueryCaptionResult caption = captions.get(0);
     
-                    if (caption.getHighlights() != null && 
+                    if (caption.getHighlights() != null &&
                         !caption.getHighlights().trim().isEmpty()) {
-                        System.out.printf("  Caption with highlights: %s%n", 
+                        System.out.printf("  Caption with highlights: %s%n",
                             caption.getHighlights());
-                    } else if (caption.getText() != null && 
+                    } else if (caption.getText() != null &&
                         !caption.getText().trim().isEmpty()) {
-                        System.out.printf("  Caption text: %s%n", 
+                        System.out.printf("  Caption text: %s%n",
                             caption.getText());
                     } else {
                         System.out.println(
@@ -465,13 +474,24 @@ Optionally, you can add captions to extract portions of the text and apply hit h
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.SemanticQueryWithCaptions"
     ```
 
-1. Output should include caption elements alongside search fields. Captions extract the most relevant passages from results, helpful for extracting interesting sentences from larger text chunks.
+1. Output should include a new caption element alongside search field. Captions are the most relevant passages in a result. If your index includes larger chunks of text, a caption is helpful for extracting the most interesting sentences.
+
+    ```console
+    Search result #1:
+      Re-ranker Score: 2.613231658935547
+      HotelName: Uptown Chic Hotel
+      Description: Chic hotel near the city. High-rise hotel in downtown, within walking distance to theaters, art galleries, restaurants and shops. Visit Seattle Art Museum by day, and then head over to Benaroya Hall to catch the evening's concert performance.
+
+      Caption with highlights: Chic hotel near the city. High-rise hotel in downtown, within walking distance to<em> theaters, </em>art galleries, restaurants and shops. Visit<em> Seattle Art Museum </em>by day, and then head over to<em> Benaroya Hall </em>to catch the evening's concert performance.
+    ```
 
 ### Return semantic answers
 
 In this final query, return semantic answers.
 
-Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content. If potential answers fail to meet a confidence threshold, the model doesn't return an answer.
+Semantic ranker can produce an answer to a query string that has the characteristics of a question. The generated answer is extracted verbatim from your content so it won't include composed content like what you might expect from a chat completion model.
+
+To produce a semantic answer, the question and answer must be closely aligned, and the model must find content that clearly answers the question. If potential answers fail to meet a confidence threshold, the model doesn't return an answer. For demonstration purposes, the question in this example is designed to get a response so that you can see the syntax.
 
 1. Create a file in `src/main/java/com/azure/search/quickstart` called `SemanticAnswer.java`.
 
@@ -484,12 +504,15 @@ Semantic ranker can produce an answer to a query string that has the characteris
     import com.azure.search.documents.models.QueryAnswerResult;
     import com.azure.search.documents.models.QueryAnswerType;
     import com.azure.search.documents.models.QueryCaption;
+    import com.azure.search.documents.models.QueryCaptionResult;
     import com.azure.search.documents.models.QueryCaptionType;
     import com.azure.search.documents.models.QueryType;
     import com.azure.search.documents.models.SearchOptions;
     import com.azure.search.documents.models.SearchResult;
     import com.azure.search.documents.models.SemanticSearchOptions;
     import com.azure.search.documents.util.SearchPagedIterable;
+    
+    import java.util.List;
     
     public class SemanticAnswer {
         public static void main(String[] args) {
@@ -514,17 +537,18 @@ Semantic ranker can produce an answer to a query string that has the characteris
             System.out.println("Answers:\n");
     
             // Extract semantic answers
-            var semanticAnswers = results.getSemanticResults().getQueryAnswers();
+            List<QueryAnswerResult> semanticAnswers =
+                results.getSemanticResults().getQueryAnswers();
             int answerNumber = 1;
     
             if (semanticAnswers != null) {
                 for (QueryAnswerResult answer : semanticAnswers) {
-                    System.out.printf("Semantic answer result #%d:%n", 
+                    System.out.printf("Semantic answer result #%d:%n",
                         answerNumber++);
     
-                    if (answer.getHighlights() != null && 
+                    if (answer.getHighlights() != null &&
                         !answer.getHighlights().trim().isEmpty()) {
-                        System.out.printf("Semantic Answer: %s%n", 
+                        System.out.printf("Semantic Answer: %s%n",
                             answer.getHighlights());
                     } else {
                         System.out.printf("Semantic Answer: %s%n", answer.getText());
@@ -545,14 +569,15 @@ Semantic ranker can produce an answer to a query string that has the characteris
                 System.out.printf("Search result #%d:%n", rowNumber++);
                 System.out.printf("Re-ranker Score: %.2f%n", rerankerScore);
                 System.out.printf("Hotel: %s%n", document.get("HotelName"));
-                System.out.printf("Description: %s%n", 
-                    document.get("Description") != null ? 
+                System.out.printf("Description: %s%n",
+                    document.get("Description") != null ?
                         document.get("Description") : "N/A");
     
-                var captions = result.getSemanticSearch().getQueryCaptions();
+                List<QueryCaptionResult> captions =
+                    result.getSemanticSearch().getQueryCaptions();
                 if (captions != null && !captions.isEmpty()) {
-                    var caption = captions.get(0);
-                    if (caption.getHighlights() != null && 
+                    QueryCaptionResult caption = captions.get(0);
+                    if (caption.getHighlights() != null &&
                         !caption.getHighlights().trim().isEmpty()) {
                         System.out.printf("Caption: %s%n%n",
                             caption.getHighlights());
@@ -575,4 +600,12 @@ Semantic ranker can produce an answer to a query string that has the characteris
     mvn compile exec:java -Dexec.mainClass="com.azure.search.quickstart.SemanticAnswer"
     ```
 
-1. Output should show semantic answers extracted verbatim from your content. Recall that answers are *verbatim content* pulled from your index. To get *composed answers* as generated by a chat completion model, consider using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../search-agentic-retrieval-concept.md).
+1. Output should look similar to the following example, where the best answer to question is pulled from one of the results.
+
+    Recall that answers are *verbatim content* pulled from your index and might be missing phrases that a user would expect to see. To get *composed answers* as generated by a chat completion model, considering using a [RAG pattern](../../retrieval-augmented-generation-overview.md) or [agentic retrieval](../../search-agentic-retrieval-concept.md).
+
+    ```console
+    Semantic answer result #1:
+    Semantic Answer: Nature is Home on the beach. Explore the shore by day, and then come home to our shared living space to relax around a stone fireplace, sip something warm, and explore the<em> library </em>by night. Save up to 30 percent. Valid Now through the end of the year. Restrictions and blackouts may apply.
+    Semantic Answer Score: 0.9829999804496765
+    ```
