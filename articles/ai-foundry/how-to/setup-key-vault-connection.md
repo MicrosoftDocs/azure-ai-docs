@@ -43,11 +43,11 @@ Follow these steps to create a new connection to Azure Key Vault.
 
 1. In the **Connected resources** section, select **+ New connection**.
 
-   :::image type="content" source="media/setup-key-vault-connection/select-azure-key-vault.jpeg" alt-text="Screenshot of the Connected resources section with the + New connection button selected, showing Azure Key Vault as an available option.":::
+   :::image type="content" source="../media/setup-key-vault-connection/select-azure-key-vault.jpeg" alt-text="Screenshot of the Connected resources section with the + New connection button selected, showing Azure Key Vault as an available option.":::
 
 1. Select **Azure Key Vault**.
 
-   :::image type="content" source="media/setup-key-vault-connection/azure-key-vault-connection.jpeg" alt-text="Screenshot of the Azure Key Vault selection dialog with Azure Key Vault selected.":::
+   :::image type="content" source="../media/setup-key-vault-connection/azure-key-vault-connection.jpeg" alt-text="Screenshot of the Azure Key Vault selection dialog with Azure Key Vault selected.":::
 
 1. Select your **Azure Key Vault**, and then select **Connect**.
 
@@ -93,7 +93,7 @@ Check whether your Azure Key Vault uses role-based access control (RBAC) or acce
 #### Role-based access control (RBAC)
 
 After you create the Key Vault connection, assign an appropriate RBAC role in the Azure portal. Key Vault Contributor or Key Vault Administrator are two roles that work. For minimal permissions, use the [Key Vault Secrets
-Officer](../role-based-access-control/built-in-roles/security.md#key-vault-secrets-officer).
+Officer](/azure/role-based-access-control/built-in-roles/security#key-vault-secrets-officer).
 
 #### Access policies
 
@@ -127,5 +127,5 @@ For cleanup, if you automate resource deletion by using templates, follow the cr
 
 ## Related content
 
-- [Azure Key Vault documentation](../key-vault/)
-- [AI Foundry documentation](../ai-foundry/) 
+- [Azure Key Vault documentation](/azure/key-vault/)
+- [AI Foundry documentation](../) 
