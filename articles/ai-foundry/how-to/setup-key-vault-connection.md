@@ -56,7 +56,11 @@ Follow these steps to create a new connection to Azure Key Vault.
 
 ## Create a Key Vault connection
 
-Pull this content from the [foundry-samples repository (keyvaultconnection branch)](https://github.com/andyaviles121/foundry-samples/tree/keyvaultconnection) after it's merged.
+<!-- Pull this content from the [foundry-samples repository (keyvaultconnection branch)](https://github.com/andyaviles121/foundry-samples/tree/keyvaultconnection) after it's merged.
+
+TBD - DO NOT PUBLISH WITHOUT UPDATING THIS WITH THE REAL CODE FOR THE SAMPLE.
+-->
+
 
 ::: zone-end
 
