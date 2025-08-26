@@ -442,6 +442,45 @@ The resulting search document in the index would look as follows:
 
 > [!NOTE]
 > These examples specify how to use these parsing modes entirely with or without field mappings, but you can leverage both in one scenario if that suits your needs.
+> 
+
+## Managing Stale Documents from Markdown Re-indexing
+
+When working with Markdown files in Azure AI Search, it's important to understand how deletions are handled during re-indexing. The indexer does not automatically delete previously indexed documents when a file is modified or sections are removed. This can lead to duplicate or stale documents remaining in the index.
+
+### Behavior overview
+
+* **No automatic deletion**: If sections are removed from a Markdown file and the file is re-indexed, the indexer will overwrite existing documents with new ones. However, it does not delete documents that no longer correspond to any content in the updated file.
+* **Potential for duplicates**: This behavior can result in duplicate documents, especially in `oneToMany` parsing mode where each section becomes a separate document. This issue typically arises only when more Markdown sections are deleted than inserted between indexing runs. In such cases, the index retains documents from the previous version that no longer match any current content, leading to stale entries.
+### Workaround options
+
+To ensure the index reflects the current state of your Markdown files, consider one of the following approaches:
+
+#### Option 1. Use the delete API
+
+Before re-indexing a modified Markdown file, explicitly delete the existing documents associated with that file using the https://learn.microsoft.com/en-us/rest/api/searchservice/delete-documents.
+Steps:
+  
+  1. Identify the id  of the documents associated with the file. Use a query like the one below to retrieve the document IDs (e.g., `id`, `chunk_id`, etc.) for all documents tied to a specific file. Replace `metadata_storage_path` with the appropriate field in your index that maps to the file path or blob URI.
+  ```
+  GET https://<search-service>.search.windows.net/indexes/<index-name>/docs?api-version=2025-05-01-preview
+  Content-Type: application/json
+  api-key: [admin key]
+
+  {  
+      "filter": "metadata_storage_path eq 'https://<storage-account>.blob.core.windows.net/<container-name>/<file-name>.md'",
+      "select": "id"
+  }
+```
+  2. Issue a delete request for those documents.
+  3. Re-index the updated file.
+     
+#### Option 2. Soft delete with metadata
+If identifying stale documents in the index is difficult, you can use a soft-delete approach:
+
+1. Mark the blob as deleted by setting a metadata field (e.g., deleted=true).
+2. Let the indexer run. It will delete all documents in the index associated with that blob.
+3. Remove the soft-delete marker and re-index the file.
 
 ## Next steps
 
