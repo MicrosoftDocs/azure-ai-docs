@@ -21,9 +21,9 @@ ai-usage: ai-assisted
 
 # How to deploy Azure OpenAI models with Azure AI Foundry
 
-In this article, you learn how to create Azure OpenAI model deployments in the Azure AI Foundry portal.
+In this article, you learn how to create deployments for Azure OpenAI in Azure AI Foundry Models, using the Azure AI Foundry portal.
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in the Azure AI Foundry portal, you can consume the deployments by using prompt flow or another tool. Model availability varies by region. For more information about the details of each model, see [Azure OpenAI models](../openai/concepts/models.md).
+Azure OpenAI in Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in the Azure AI Foundry portal, you can consume the deployments by using prompt flow or another tool. Model availability varies by region. For more information about the details of each model, see [Azure OpenAI models](../openai/concepts/models.md).
 
 To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you first need to deploy a base Azure OpenAI model to your project. After you deploy the model and make it available in your project, you can consume its REST API endpoint as-is or customize it further with your own data and other components, such as embeddings and indexes.  
 
