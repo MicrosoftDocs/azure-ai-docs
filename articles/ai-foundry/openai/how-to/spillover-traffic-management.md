@@ -92,7 +92,7 @@ The following Azure Monitor metrics chart provides an example of the split of re
 
 :::image type="content" source="../media/provisioned/spillover-chart.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover-chart.png":::
 
-Initially, all calls going to the non-spillover deployment are sending HTTP 200 codes (the tall blue line). Once the capacity was exceeded and 429 HTTP codes start being recieved, spillover was activated after a short period of time and traffic was shifted to another deployment. Hovering over the graph for your pay-as-you-go deployment will show that.
+Initially, all calls going to the non-spillover deployment are sending HTTP 200 codes (the tall blue line). Once the capacity was exceeded and 429 HTTP codes start being recieved, spillover was activated after a short period of time and traffic was shifted to another deployment. Hovering over the graph for your pay-as-you-go deployment will show the requests being redirected.
 
 :::image type="content" source="../media/provisioned/spillover-chart-2.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover-chart-2.png":::
 
