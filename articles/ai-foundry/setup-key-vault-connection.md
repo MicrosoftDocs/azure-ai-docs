@@ -8,6 +8,7 @@ ms.date: 08/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ai.usage: ai-assisted
+zone_pivot_groups: agents-quickstart
 ---
 # Set up a Key Vault connection in Azure AI Foundry
 
@@ -28,7 +29,9 @@ If you bring your own Azure Key Vault, review these limitations:
 1.  Deleting the underlying Azure Key Vault breaks the AI Foundry resource. Key Vault stores secrets for connections that don't use Entra ID, so any AI Foundry feature that depends on those connections stops working.
 1. Deleting the AI Foundry resource's connection secrets stored in your bring-your-own (BYO) Azure Key Vault can break connections to other services. It may break connections to other services.
 
-## Create an Azure Key Vault connection (pivot=Foundry UI)
+::: zone pivot="ai-foundry-portal"
+
+## Create an Azure Key Vault connection
 
 Follow these steps to create a new connection to Azure Key Vault.
 
@@ -48,7 +51,10 @@ Follow these steps to create a new connection to Azure Key Vault.
 
 1. Select your **Azure Key Vault**, and then select **Connect**.
 
-## Create a Key Vault connection (pivot=BICEP)
+::: zone-end
+::: zone pivot="programming-language-bicep"
+
+## Create a Key Vault connection
 
 Pull this content from the [foundry-samples repository (keyvaultconnection branch)](https://github.com/andyaviles121/foundry-samples/tree/keyvaultconnection) after it's merged.
 
@@ -102,15 +108,10 @@ After you create the Foundry resource and the Key Vault connection, assign the a
 ### Follow this order in your infrastructure as code templates
 
 1. Create the Foundry resource.
-
 1. Create a Foundry project.
-
 1. Create the Azure Key Vault connection.
-
 1. Assign the appropriate RBAC role on the Key Vault for the Foundry resource.
-
 1. (Optional) Validate that the RBAC role has taken effect.
-
 1. Create any other connections at the resource or project level, and set the `dependsOn` field for steps 3 and 4.
 
 #### Deletion
@@ -118,12 +119,11 @@ After you create the Foundry resource and the Key Vault connection, assign the a
 For cleanup, if you automate resource deletion by using templates, follow the creation steps in reverse:
 
 1. Delete all connections at the Foundry resource or project level.
-
 1. Delete the Azure Key Vault connection.
-
 1. Delete all Foundry projects.
-
 1. Delete the Foundry resource.
+
+::: zone-end
 
 ## Related content
 
