@@ -263,20 +263,29 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 
 ---
 
-## v1 API Support
+## v1 API support
 
-| API Path                               | Status              | Header                   |
-|----------------------------------------|---------------------|:------------------------:|
-| `/openai/v1/chat/completions`          | Generally Available | -                        |
-| `/openai/v1/embeddings`                | Generally Available | -                        |
-| `/openai/v1/evals`                     | Preview             | `"aoai-evals":"preview"` |
-| `/openai/v1/files`                     | Generally Available | -                        |
-| `openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview | `"aoai-copy-ft-checkpoints" : "preview"`  |
-| `/openai/v1/fine_tuning/alpha/graders/`| Preview             | -                        |
-| `/openai/v1/fine_tuning/`              | Generally Available | -                        |
-| `/openai/v1/models`                    | Generally Available | -                        |
-| `/openai/v1/responses`                 | Generally Available | -                        |
-| `/openai/v1/vector_stores`             | Generally Available | -                        |
+### Status
+
+| API Path                               | Status              |
+|----------------------------------------|---------------------|
+| `/openai/v1/chat/completions`          | Generally Available |
+| `/openai/v1/embeddings`                | Generally Available |
+| `/openai/v1/evals`                     | Preview             |
+| `/openai/v1/files`                     | Generally Available |
+| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview |
+| `/openai/v1/fine_tuning/alpha/graders/`| Preview             |
+| `/openai/v1/fine_tuning/`              | Generally Available |
+| `/openai/v1/models`                    | Generally Available |
+| `/openai/v1/responses`                 | Generally Available |
+| `/openai/v1/vector_stores`             | Generally Available |
+
+### Preview headers
+
+| API Path                              | Header                   |
+|---------------------------------------|:-------------------------|
+| `/openai/v1/evals`                    | `"aoai-evals":"preview"` |
+| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | `"aoai-copy-ft-checkpoints" : "preview"` |
 
 ## Changes between v1 preview release and 2025-04-01-preview
 
