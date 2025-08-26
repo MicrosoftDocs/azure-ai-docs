@@ -52,7 +52,7 @@ Follow these steps to create a new connection to Azure Key Vault.
 1. Select your **Azure Key Vault**, and then select **Connect**.
 
 ::: zone-end
-::: zone pivot="programming-language-bicep"
+::: zone pivot="bicep"
 
 ## Create a Key Vault connection
 
