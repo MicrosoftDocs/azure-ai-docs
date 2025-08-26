@@ -7,15 +7,13 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 06/19/2025
+ms.date: 08/25/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD001 -->
 
-# Answers to frequently asked questions
-
-### Azure AI Translator Document translation FAQ
+# Answers to frequently asked Document translation questions
 
 #### Should I specify the source language in a request?
 
