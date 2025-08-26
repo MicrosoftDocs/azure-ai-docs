@@ -35,8 +35,8 @@ This page provides links to SDKs and REST APIs available in Azure AI Foundry.
 ## SDKs & REST APIs (general)
 
 - [Azure AI Evaluation SDK](/python/api/overview/azure/ai-evaluation-readme)
-- [Azure AI services SDKs (client library development kit)](../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context)
-- [Azure AI services REST APIs (swagger)](../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context)
+- [Azure AI services SDKs (client library development kit)](../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context)
+- [Azure AI services REST APIs (swagger)](../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context)
 
 ## Azure AI Model Inference API
 

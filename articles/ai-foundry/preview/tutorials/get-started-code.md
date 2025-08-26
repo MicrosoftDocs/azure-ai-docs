@@ -16,7 +16,7 @@ ms.custom:
 
 # Quickstart - Get started with Azure AI Foundry
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/preview.md)]
 
 In this quickstart, you use [Azure AI Foundry (preview)]() to:
 
@@ -29,7 +29,7 @@ In this quickstart, you use [Azure AI Foundry (preview)]() to:
 
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
-[!INCLUDE [feature-preview](../includes/feature-preview2.md)]
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
 
@@ -41,7 +41,8 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 1. Sign in to [Azure AI Foundry (preview)]().
 1. In the top right, select **Discover**.
 1. In the left pane, select **Models**.
-1. Select **gpt-40**
+1. Select **gpt-40**.
+1. Select **Deploy**.
 
 ## Set up your environment  
 
@@ -140,7 +141,10 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-NextGen steps go here.
+1. In the top right, select **Build**.
+1. In the left menu, select **Models**.
+1. Select your model.
+1. Chat with your model.
 
 # [Python](#tab/python)
 
@@ -174,7 +178,10 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-NextGen steps go here.
+1. In the top right, select **Build**.
+1. In the left menu, select **Agents**.
+1. Select your agent.
+1. Chat with your agent.
 
 # [Python](#tab/python)
 
@@ -211,7 +218,9 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-NextGen steps go here.
+1. Select **Knowlegde**
+1. Upload your file.
+1. Chat with your agent.
 
 # [Python](#tab/python)
 

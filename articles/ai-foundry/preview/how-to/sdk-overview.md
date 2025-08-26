@@ -18,7 +18,7 @@ zone_pivot_groups: foundry-sdk-overview-languages
 
 # Use the Azure AI Foundry SDK client libraries
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../includes/preview.md)]
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
@@ -28,7 +28,7 @@ The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the d
 
 The Azure AI Foundry SDK is a set of client libraries and services designed to work together.
 
-[!INCLUDE [feature-preview2](../includes/feature-preview2.md)]
+[!INCLUDE [feature-preview2](../includes/feature-preview.md)]
 
 ## Prerequisites
 

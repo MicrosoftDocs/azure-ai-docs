@@ -15,7 +15,7 @@ ms.custom:
 
 # What is Azure AI Foundry (preview)?
 
-[!INCLUDE [feature-preview](./includes/feature-preview.md)]
+[!INCLUDE [feature-preview](./includes/preview.md)]
 
 [Azure AI Foundry (preview)](https://preview.ai.azure.com/?cid=learnDocs) provides early access to the next-generation experience of the Azure AI Foundry portal. 
 
@@ -32,12 +32,8 @@ Azure AI Foundry unifies agents, models, and tools under a single management gro
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
-[!INCLUDE [feature-preview](./includes/feature-preview2.md)]
+[!INCLUDE [feature-preview](./includes/feature-preview.md)]
 
-
-## Azure AI Foundry portal (preview)
-
-Talk about NextGen preview experience here.
 
 ## Pricing and billing
 
@@ -45,11 +41,11 @@ Azure AI Foundry is monetized through individual products customer access and co
 
 The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using Azure AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](../..//how-to/costs-plan-manage.md).
+Using Azure AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](../../../how-to/costs-plan-manage.md).
 
 ## Region availability
 
-Azure AI Foundry is available in most regions where Azure AI services are available. For more information, see [region support for Azure AI Foundry](../../reference/region-support.md).
+Azure AI Foundry is available in most regions where Azure AI services are available. For more information, see [region support for Azure AI Foundry](../reference/region-support.md).
 
 ## How to get access
 
@@ -59,4 +55,4 @@ But for full functionality, you need an [Azure account](https://azure.microsoft.
 
 ## Next step
 
-* [Quickstart - Create your first Azure AI Foundry Agent](quickstarts/your-first-ai-agent.md)
+* [Quickstart - Get started with Azure AI Foundry](tutorials/get-started-code.md)
