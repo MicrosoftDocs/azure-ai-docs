@@ -16,6 +16,8 @@ items:
 
 - name: Operate & support
   items:
+    - name: Manage costs 
+      href: concepts-costs-plan-manage.md
     - name: Region support
       href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
     - name: Pricing calculator

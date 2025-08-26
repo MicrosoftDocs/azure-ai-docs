@@ -27,8 +27,8 @@ This page provides links to SDKs and REST APIs available in Azure AI Foundry.
 
 - [C#](/dotnet/api/overview/azure/ai.agents.persistent-readme?view=azure-dotnet-preview&preserve-view=true)
 - [Java](/java/api/overview/azure/ai-agents-persistent-readme)
-- [JavaScript](/javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true)
-- [Python](/python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true)
+- [JavaScript](/javascript/api/overview/azure/ai-agents-readme?view=azure-node-preview&preserve-view=true)
+- [Python](/python/api/overview/azure/ai-agents-readme?view=azure-python-preview&preserve-view=true)
 - [REST API](/rest/api/aifoundry/aiagents)
 - [Data monitoring reference](../../agents/reference/monitor-service.md)
 
