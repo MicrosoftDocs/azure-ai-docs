@@ -22,9 +22,11 @@ This article is to help you understand the support lifecycle for Azure OpenAI AP
 
 ## API evolution
 
-Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in August 2025, you can now opt in to our next generation of v1 Azure OpenAI APIs which add support for:
+Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. 
 
-- Ongoing access to the latest features with no need specify and `api-version` each month.
+Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
+
+- Ongoing access to the latest features with no need specify new `api-version`'s each month.
 - Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
 - OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client will be added for all currently supported languages. Adding support for this functionality is **coming soon** for the [Python](https://pypi.org/project/openai/), and the [TypeScript/JavaScript](https://github.com/openai/openai-node) libraries. .NET, Java, and Go support is currently available in preview.
@@ -269,7 +271,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 | `/openai/v1/embeddings`                | Generally Available | -                        |
 | `/openai/v1/evals`                     | Preview             | `"aoai-evals":"preview"` |
 | `/openai/v1/files`                     | Generally Available | -                        |
-| `openai/v1 /fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview | `"aoai-copy-ft-checkpoints" : "preview"`  |
+| `openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview | `"aoai-copy-ft-checkpoints" : "preview"`  |
 | `/openai/v1/fine_tuning/alpha/graders/`| Preview             | -                        |
 | `/openai/v1/fine_tuning/`              | Generally Available | -                        |
 | `/openai/v1/models`                    | Generally Available | -                        |
