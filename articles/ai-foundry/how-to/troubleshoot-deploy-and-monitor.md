@@ -1,13 +1,14 @@
 ---
 title: How to troubleshoot your deployments and monitors in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to troubleshoot your deployments and monitors in Azure AI Foundry portal.
+description: Learn how to troubleshoot and monitor model deployments in Azure AI Foundry portal to quickly resolve errors and optimize performance.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
   - hub-only
+ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 08/26/2025
 ms.reviewer: fasantia
@@ -15,6 +16,8 @@ reviewer: santiagxf
 ms.author: mopeakande
 manager: nitinme
 author: msakande
+
+#CustomerIntent: As a developer or data scientist, I want to troubleshoot and monitor model deployments in Azure AI Foundry so that I can quickly resolve errors, optimize performance, and ensure my AI solutions run smoothly.
 ---
 
 # How to troubleshoot your deployments and monitors in Azure AI Foundry portal
@@ -46,24 +49,25 @@ For more information about managing quota, see:
 
 After you deploy a prompt flow, you might get the error message: "Tool load failed in 'search_question_from_indexed_docs': (ToolLoadError) Failed to load package tool 'Vector Index Lookup': (HttpResponseError) (AuthorizationFailed)." 
 
-To fix this error, follow these steps to manually assign the **Azure ML Data Scientist** role to your endpoint . It might take several minutes for the new role to take effect.
+To fix this error, manually assign the **Azure ML Data Scientist** role to your endpoint by following these steps. It might take several minutes for the new role to take effect.
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
 1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
 1. Under the **Project** heading, select **Overview**.
-1. Under **Quick reference**, select the link to your resource group to open it in the Azure portal. 
+1. Under **Project properties**, select the link to your resource group to open it in the Azure portal. 
 1. Select **Access control (IAM)** from the left pane in the Azure portal.
 1. Select **Add role assignment**.
-1. Select **Azure ML Data Scientist**, and select **Next**.
-1. Select **Managed Identity**.
-1. Select **+ Select members**.
-1. Select **Machine Learning Online Endpoints** in the Managed Identity dropdown field.
-1. Select your endpoint's name.
-1. Select **Select**.
-1. Select **Review + Assign**.
-1. Return to your project in Azure AI Foundry portal and select **Deployments** from the left pane. 
-1. Select your deployment.
+1. Select the **Azure ML Data Scientist** role. You might have to search for it in the search box.
+1. Select **Next** to go to the **Members** page.
+1. For **Assign access to**, select **Managed Identity**.
+1. For **Members**, select **+ Select members**. This action opens up the right pane where you can select managed identities.
+    1. Select **Machine learning online endpoint** in the Managed identity dropdown field.
+    1. Select your endpoint's name.
+    1. Select **Select** to choose the endpoint and close the right pane.
+1. Select **Review + assign**. Then select **Review + assign** again to confirm the role assignment.
+1. Return to your project in Azure AI Foundry portal and select **Models + endpoints** from the left pane.
+1. On the **Model deployments** page, select your deployment.
 1. Test the prompt flow deployment.
 
 ### Error: Deployment failure
@@ -80,9 +84,11 @@ __Option 1: Find the build log for the Azure default blob storage.__
 
 [!INCLUDE [uses-hub-only](../includes/uses-hub-only.md)]
 
-1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the settings page.
-1. Under the **Hub** heading, select **Overview**.
-1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. Selecting this link takes you to the storage account page in the [Azure portal](https://portal.azure.com).
+1. Go to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) and select **Management center** from the left pane to open the overview page of your hub.
+1. In the section for **Connected resources**, select the link to your storage account name. This name should be the name of the storage account listed in the error message you received. 
+1. On the details page of the storage account, select **View in Azure Portal** to open up the storage account page in the [Azure portal](https://portal.azure.com).
+1. Alternatively, go to the Azure portal, and from the home page, select **Storage accounts** from the list of Azure services.
+1. Select your storage account from the list. You might want to search for it in the search box to find it quickly.
 1. On the storage account page, select **Data Storage** > **Containers** from the left pane.
 1. Select the container name that's listed in the error message you received.
 1. Select through folders to find the build logs.
@@ -93,6 +99,7 @@ __Option 2: Find the build log within Azure Machine Learning studio.__
 > This option to access the build log uses [Azure Machine Learning studio](https://ml.azure.com), which is a different portal than [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 1. Go to [Azure Machine Learning studio](https://ml.azure.com).
+1. Go to your workspace or hub.
 1. Select **Endpoints** from the left pane.
 1. Select your endpoint name. It might be identical to your deployment name.
 1. Select the link to **Environment** from the deployment section.
@@ -110,7 +117,7 @@ We're working on improving the user experience of web app deployment. In the mea
 
 ### Question: I deployed a model but I don't see it in the playground
 
-Playground only supports select models, such as Azure OpenAI models and Llama-2. If playground support is available for a model, you see the **Open in playground** button on the model deployment's **Details** page. 
+The playground only supports select models, such as Azure OpenAI models and Llama-2. If the playground supports a model, you see the **Open in playground** button on the model deployment's **Details** page. 
 
 ## Related content
 
