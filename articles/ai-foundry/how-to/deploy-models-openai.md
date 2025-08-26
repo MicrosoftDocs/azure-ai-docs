@@ -21,11 +21,11 @@ ai-usage: ai-assisted
 
 # How to deploy Azure OpenAI models with Azure AI Foundry
 
-In this article, you learn to create Azure OpenAI model deployments in Azure AI Foundry portal.
+In this article, you learn how to create Azure OpenAI model deployments in the Azure AI Foundry portal.
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in Azure AI Foundry portal, you can consume the deployments, using prompt flow or another tool. Model availability varies by region. To learn more about the details of each model see [Azure OpenAI models](../openai/concepts/models.md).
+Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. When you deploy Azure OpenAI models in the Azure AI Foundry portal, you can consume the deployments by using prompt flow or another tool. Model availability varies by region. For more information about the details of each model, see [Azure OpenAI models](../openai/concepts/models.md).
 
-To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you first need to deploy a base Azure OpenAI model to your project. Once you deploy the model and make it available in your project, you can consume its REST API endpoint as-is or customize it further with your own data and other components (such as embeddings and indexes).  
+To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you first need to deploy a base Azure OpenAI model to your project. After you deploy the model and make it available in your project, you can consume its REST API endpoint as-is or customize it further with your own data and other components, such as embeddings and indexes.  
 
 ## Prerequisites
 
@@ -71,7 +71,7 @@ You can also start deployment from your project in Azure AI Foundry portal.
 
 To perform inferencing on the deployed model, use the playground or code samples. The playground is a web-based interface that lets you interact with the model in real-time. Use the playground to test the model with different prompts and see the model's responses.
 
-For more examples of how to consume the deployed model in your application, see the [Get started using chat completions with Azure OpenAI in Azure AI Foundry Models quickstart](../openai/chatgpt-quickstart.md)
+For more examples of how to consume the deployed model in your application, see the [Get started using chat completions with Azure OpenAI in Azure AI Foundry Models quickstart](../openai/chatgpt-quickstart.md).
 
 ## Regional availability and quota limits of a model
 
@@ -86,7 +86,7 @@ When you reach your quota limit, you can only create new deployments of that mod
 - Request more quota by submitting a [quota increase form](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR4xPXO648sJKt4GoXAed-0pUMFE1Rk9CU084RjA0TUlVSUlMWEQzVkJDNCQlQCN0PWcu).
 - Adjust the allocated quota on other model deployments to free up tokens for new deployments on the [Azure OpenAI Portal](https://oai.azure.com/portal).
 
-To learn more about quota, see [Azure AI Foundry quota](./quota.md) and [Manage Azure OpenAI quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
+For more information about quota, see [Azure AI Foundry quota](./quota.md) and [Manage Azure OpenAI quota](../../ai-services/openai/how-to/quota.md?tabs=rest).
 
 ## Related content
 
