@@ -29,6 +29,8 @@ items:
     href: ../../foundry-models/how-to/configure-marketplace.md
   - name: Deploy Foundry Models
     href: ../../foundry-models/how-to/create-model-deployments.md
+  - name: Deploy Azure OpenAI in Foundry Models
+    href: ../../how-to/deploy-models-openai.md
   - name: Upgrade from GitHub Models to Azure AI Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
