@@ -7,15 +7,13 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 06/19/2025
+ms.date: 08/25/2025
 ms.author: lajanuar
 ---
 
 <!-- markdownlint-disable MD001 -->
 
-# Answers to frequently asked questions
-
-## Azure AI Translator Document translation: FAQ
+# Answers to frequently asked Document translation questions
 
 #### Should I specify the source language in a request?
 
@@ -35,9 +33,13 @@ If the language of the content in the source document is known, we recommend tha
 
 Yes. Document translation feature supports [translating text embedded in images within documents](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) as an optional capability.
 
-#### Can Azure AI Translator Document translation translate content from scanned documents?
+#### Can Azure AI Translator Document translation translate content from fully scanned documents?
 
 Yes. Azure AI Translator Document translation translates content from _scanned PDF_ documents.
+
+#### Can Azure AI Translator Document translation translate the entire content of documents containing both digital and scanned elements?
+
+No. Only the digital portions are translated. To translate the full document, convert it into a fully scanned format before submission.
 
 #### Can encrypted or password-protected documents be translated?
 
