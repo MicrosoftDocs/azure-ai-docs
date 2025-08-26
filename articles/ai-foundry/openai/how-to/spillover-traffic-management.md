@@ -12,6 +12,9 @@ ms.date: 05/20/2025
 
 Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Azure AI Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
 
+> [!NOTE]
+> Spillover is currently not available for the `/v1` endpoint.
+
 ## Prerequisites
 - A global provisioned or data zone provisioned deployment to be used as your primary deployment.
 - A global or data zone standard deployment to be used as your spillover deployment. 
@@ -25,6 +28,9 @@ To maximize the utilization of your provisioned deployment, it is recommended to
 
 ## When does spillover come into effect?
 When spillover is enabled for a deployment or configured for a given inference request, spillover is initiated when a non-200 response code is received for a given inference request. When a request results in a non-200 response code, the Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed. Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment.
+
+> [!NOTE]
+> There can be a delay between when a non-200 response is generated and spillover comes into effect.
 
 ## How does spillover affect cost?
 Since spillover uses a combination of provisioned and standard deployments to manage traffic fluctuations, billing for spillover involves two components:
@@ -43,6 +49,9 @@ Select **Deploy model**. In the menu that appears, select **Customize**.
 :::image type="content" source="../media/provisioned/customize.png" alt-text="A screenshot showing the deployment customization button." lightbox="../media/provisioned/customize.png":::
 
 Specify one the provisioned options as the **Deployment type**, for example **Global Provisioned Throughput**. Select **Traffic spillover** to enable spillover for your provisioned deployment. 
+
+> [!TIP]
+>
 
 :::image type="content" source="../media/provisioned/spillover.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover.png":::
 
@@ -72,14 +81,19 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/spillover-ptu-deployment/chat/com
 ## How do I monitor my spillover usage?
 Since the spillover capability relies on a combination of provisioned and standard deployments to manage traffic overages, monitoring can be conducted at the deployment level for each deployment. To view how many requests were processed on the primary provisioned deployment versus the spillover standard deployment, apply the splitting feature within Azure Monitor metrics to view the requests processed by each deployment and their respective status codes. Similarly, the splitting feature can be used to view how many tokens were processed on the primary provisioned deployment versus the spillover standard deployment for a given time period. For more information on observability within Azure OpenAI, review the [Monitor Azure OpenAI](./monitor-openai.md) documentation. 
 
-The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated.
+The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. 
 
 <!--
-![Azure monitor chart showing spillover requests from a provisioned deployment to a standard deployment.](../media/monitor-spillover-usage.png)
--->
+1. Go to the **metrics** page for your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs)
+1. Apply the `IsSpillover`, `ModelDeploymentName` and `StatusCode` splits to the default requests value. see when spillover is being used.
 
+![Azure monitor chart showing spillover requests from a provisioned deployment to a standard deployment.](../media/monitor-spillover-usage.png)
+-->    
 
 :::image type="content" source="../media/provisioned/spillover-chart.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover-chart.png":::
+
+Initially, all calls going to the non-spillover deployment are sending HTTP 200 codes (the tall blue line). Once the capacity was exceeded and 429 HTTP codes start being recieved, spillover was activated after a short period of time and traffic was shifted to another deployment.
+
 
 ## See also
 
