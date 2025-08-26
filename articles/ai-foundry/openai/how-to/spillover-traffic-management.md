@@ -38,7 +38,7 @@ Since spillover uses a combination of provisioned and standard deployments to ma
 
 ## Enable spillover for all requests on a provisioned deployment
 
-# [Azure AI Foundry portal](#tab/linux)
+# [Azure AI Foundry portal](#tab/portal)
 
 To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left nativation menu, then select **Deployments**.
 
