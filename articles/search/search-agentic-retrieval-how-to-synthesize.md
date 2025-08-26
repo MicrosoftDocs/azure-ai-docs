@@ -1,13 +1,13 @@
 ---
 title: Configure Answer Synthesis
 titleSuffix: Azure AI Search
-description: Learn how to configure a knowledge agent to use answer synthesis in Azure AI Search. At query time, the agent uses your deployed chat completion model to produce natural-language answers with citations from your knowledge sources.
+description: Learn how to configure a knowledge agent to use answer synthesis in Azure AI Search. At query time, the agent uses your deployed chat completion model to produce natural-language answers with citations to your knowledge sources.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/21/2025
+ms.date: 08/26/2025
 ---
 
 # Use answer synthesis for citation-backed responses in Azure AI Search
@@ -19,6 +19,9 @@ By default, a [knowledge agent](search-agentic-retrieval-how-to-create.md) in Az
 You can configure the agent to perform *answer synthesis*, which uses your deployed chat completion model to respond to queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
 
 This article explains how to configure and test answer synthesis for an existing agent. Although you can use this configuration for new agents, agent creation is beyond the scope of this article.
+
+> [!IMPORTANT]
+> Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the chat completion model assigned to the agent. For more information, see [Availability and pricing of agentic retrieval](search-agentic-retrieval-concept.md#availability-and-pricing).
 
 ## Prerequisites
 
@@ -142,6 +145,6 @@ Depending on your agent's configuration, the response might include other inform
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-create.md)
++ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
 + [Create a search index knowledge source](search-knowledge-source-how-to-index.md)
 + [Create a blob knowledge source](search-knowledge-source-how-to-blob.md)
