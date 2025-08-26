@@ -13,7 +13,9 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD001 -->
 
-# Answers to frequently asked Document translation questions
+# Frequently asked questions—Document Translation API
+
+Azure Document Translation is a powerful cloud-based service designed to help you seamlessly translate documents at scale using advanced machine translation technology. This FAQ provides answers to common questions about the features, capabilities, and best practices for using Azure Document Translation.
 
 #### Should I specify the source language in a request?
 
