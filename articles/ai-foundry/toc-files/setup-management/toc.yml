@@ -49,6 +49,8 @@ items:
     displayName: code
   - name: Connect and manage data
     href: ../../how-to/data-add.md
+  - name: Set up a Key Vault connection
+    href: ../../setup-key-vault-connection.md
 - name: Costs and quotas
   items:
   - name: Plan and manage costs for AI Foundry resources
