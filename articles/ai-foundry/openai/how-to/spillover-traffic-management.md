@@ -51,7 +51,7 @@ Select **Deploy model**. In the menu that appears, select **Customize**.
 Specify one the provisioned options as the **Deployment type**, for example **Global Provisioned Throughput**. Select **Traffic spillover** to enable spillover for your provisioned deployment. 
 
 > [!TIP]
->
+> To enable spillover, your account must have at least one active pay-as-you-go deployment that matches the model and version of your current provisioned deployment.
 
 :::image type="content" source="../media/provisioned/spillover.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover.png":::
 
