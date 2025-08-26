@@ -1,0 +1,259 @@
+---
+title: "Quickstart - Get started with Azure AI Foundry (Preview)"
+titleSuffix: Azure AI Foundry
+description: How to use the Preview experience of the Azure AI Foundry portal and the Azure AI Foundry SDK.
+author: sdgilley
+ms.author: sgilley
+ms.reviewer: dantaylo
+ms.date: 08/20/2025
+ms.service: azure-ai-foundry
+ms.topic: quickstart
+ms.custom:
+  - preview
+# customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
+# see-also: includes/get-started-code-fdp.md
+---
+
+# Quickstart - Get started with Azure AI Foundry (Preview)
+
+[!INCLUDE [preview](../includes/preview.md)]
+
+In this quickstart, you use [Azure AI Foundry (preview)]() to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Run a chat completion
+> * Create and run an agent
+> * Upload files to the agent
+
+The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
+
+[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+
+## Prerequisites
+
+- An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
+- You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
+
+## Start with a project and model
+
+1. Sign in to [Azure AI Foundry (preview)]().
+1. In the top right, select **Discover**.
+1. In the left pane, select **Models**.
+1. Select **gpt-40**.
+1. Select **Deploy**.
+
+## Set up your environment  
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+No installation is necessary to use the Azure AI Foundry portal.
+
+# [Python](#tab/python)
+
+1. [Install Python and Azure CLI](../../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
+1. Install these packages:
+
+    ```
+    pip install openai azure-ai-projects azure-identity
+    ```
+
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
+
+> [!NOTE]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+
+# [C#](#tab/csharp)
+
+1. [Install C# and Azure CLI](../../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp)
+1. Install packages:
+
+    [!INCLUDE [install-csharp-packages](../../includes/install-csharp-packages.md)]
+
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+
+> [!NOTE]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+
+
+# [TypeScript](#tab/typescript)
+
+1. [Install Node.js and Azure CLI](../../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
+1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
+1. Install packages with `npm install`
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
+
+
+> [!NOTE]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart).
+
+# [Java (preview)](#tab/java)
+
+1. [Install Java and Azure CLI](../../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
+1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    ```txt
+    MODEL_DEPLOYMENT_NAME=gpt-4o
+    PROJECT_ENDPOINT=https://<your-foundry-resource-name>.services.ai.azure.com/api/projects/<your-foundry-project-name>
+    ```
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
+
+> [!NOTE]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
+
+
+# [REST API](#tab/rest)
+
+1. [Install Azure CLI](../../how-to/develop/install-cli-sdk.md#installs)
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
+1. Get a temporary access token.  It will expire in 60-90 minutes, you'll need to refresh after that.
+
+    ```azurecli
+    az account get-access-token --scope https://ai.azure.com/.default
+    ```
+    
+1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
+
+> [!NOTE]
+> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
+
+
+---
+
+## Run a chat completion
+
+Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. In the top right, select **Build**.
+1. In the left menu, select **Models**.
+1. Select your model.
+1. Chat with your model.
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="chat_completion":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/SimpleInference.cs" id="chat_completion":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="chat_completion":::
+
+# [Java (preview)](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/ChatCompletionSample.java" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
+
+---
+
+## Chat with an agent
+
+Agents have powerful capabilities through the use of tools. Start by chatting with an agent.
+ 
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. In the top right, select **Build**.
+1. In the left menu, select **Agents**.
+1. Select your agent.
+1. Chat with your agent.
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_and_run_agent":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentService.cs" id="create_and_run_agent" :::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="create_and_run_agent" :::
+
+# [Java (preview)](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/AgentSample.java" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
+
+---
+
+## Add files to the agent
+
+Now let's add a file search tool that enables us to do knowledge retrieval.
+
+* Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/data/product_info_1.md) to give to your agent.
+
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. Select **Knowledge**
+1. Upload your file.
+1. Chat with your agent.
+
+# [Python](#tab/python)
+
+Substitute your endpoint for the `endpoint` in this code:
+
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/quickstart.py" id="create_filesearch_agent":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/AgentFileSearch.cs" id="create_filesearch_agent":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/src/quickstart.ts" id="create_filesearch_agent":::
+
+# [Java (preview)](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/mslearn-resources/quickstart/src/main/java/com/azure/ai/foundry/samples/FileSearchAgentSample.java" :::
+
+# [REST API](#tab/rest)
+
+Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
+
+:::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
+
+---
+
+
+## Clean up resources
+
+[!INCLUDE [clean-up-resources](../includes/clean-up-resources.md)]
+
+## Next step
+
+> [!div class="nextstepaction"]
+> [Use the Azure AI Foundry client library](../how-to/sdk-overview.md)
