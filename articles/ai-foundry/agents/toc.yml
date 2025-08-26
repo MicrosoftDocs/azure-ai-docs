@@ -146,7 +146,7 @@ items:
     - name: Service monitoring
       href: how-to/metrics.md
     - name: Trace and observe agents
-      href: concepts/tracing.md
+      href: ../how-to/develop/trace-agents-sdk.md
 - name: Responsible AI
   items:
     - name: Transparency note

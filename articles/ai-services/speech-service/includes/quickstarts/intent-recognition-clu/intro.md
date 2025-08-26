@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 02/17/2023
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 In this quickstart, you'll use Speech and Language services to recognize intents from audio data captured from a microphone. Specifically, you'll use the Speech service to recognize speech, and a [Conversational Language Understanding (CLU)](../../../../language-service/conversational-language-understanding/overview.md) model to identify intents. 

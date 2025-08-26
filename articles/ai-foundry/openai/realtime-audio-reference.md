@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.date: 6/27/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 recommendations: false
 ---
 

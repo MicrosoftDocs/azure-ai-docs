@@ -5,11 +5,11 @@ description: Learn to use Azure AI Foundry playgrounds for exploration, experime
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 06/09/2025
-ms.reviewer: mopeakande
-reviewer: msakande
-ms.author: tgokal
+ms.author: mopeakande
+author: msakande
+ms.reviewer: tgokal
 manager: nitinme
-author: tgokal
+reviewer: tgokal
 ms.custom: build-2025 ai-assisted
 #customer intent: I'm a developer and want to use Azure AI Foundry Playground for quick experimentation and prototyping with models and agents before going to code.
 ---

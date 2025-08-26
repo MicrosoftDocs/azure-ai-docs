@@ -10,8 +10,6 @@ ms.custom:
   - ignite-2023
 ms.topic: whats-new
 ms.date: 06/30/2025
-ms.collection: ce-skilling-fresh-tier2
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 

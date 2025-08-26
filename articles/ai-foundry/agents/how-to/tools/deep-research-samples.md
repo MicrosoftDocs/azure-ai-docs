@@ -211,7 +211,7 @@ import "dotenv/config";
 const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
 const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
 const deepResearchModelDeploymentName =
-  process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+  process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"];
 const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-id>";
 
 /**

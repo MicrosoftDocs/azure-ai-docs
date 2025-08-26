@@ -2,12 +2,12 @@
 title: Regions - Speech service
 titleSuffix: Azure AI services
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 7/1/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---

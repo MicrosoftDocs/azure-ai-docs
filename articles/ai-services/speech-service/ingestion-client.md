@@ -2,12 +2,12 @@
 title: Ingestion Client - Speech service
 titleSuffix: Azure AI services
 description: Learn about a tool released on GitHub that enables customers push audio files to Speech service easily and quickly 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 08/07/2025
-ms.author: eur
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Ingestion Client tool that helps me quickly deploy a call center transcription solution to Azure with a no-code approach.
 ---
 

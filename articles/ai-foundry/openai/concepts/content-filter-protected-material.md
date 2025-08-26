@@ -16,4 +16,9 @@ The Protected material text filter flags known text content (for example, song l
 
 The Protected material code filter flags protected code content (from known GitHub repositories, including software libraries, source code, algorithms, and other proprietary programming content) that might be output by large language models.
 
+> [!IMPORTANT]
+> The content filtering models for protected material detection, groundedness detection, and custom categories (standard) work with English only.
+> 
+> Other content filtering models have been specifically trained and tested on the following languages: Chinese, English, French, German, Spanish, Italian, Japanese, Portuguese. However, these features can work in many other languages, but the quality might vary. In all cases, you should do your own testing to ensure that it works for your application.
+
 [!INCLUDE [protected-material-examples](../../../ai-services/content-safety/includes/protected-material-examples.md)]

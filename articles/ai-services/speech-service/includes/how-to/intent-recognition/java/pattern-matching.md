@@ -5,7 +5,7 @@ ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.date: 11/15/2021
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Create project](../../../quickstarts/platform/java.md)]
