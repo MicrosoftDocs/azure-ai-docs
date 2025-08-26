@@ -87,7 +87,7 @@ To load the connections:
 
 1. Set `@token` to the value you obtained in [Connect from your local system](#connect-from-your-local-system).
 
-1. Under `### List existing indexes by name`, select **Send Request** to verify your connection to Azure AI Search.
+1. Under `### List existing indexes by name`, select **Send Request** to verify the connection to your search service.
 
     A response should appear in an adjacent pane. If you have existing indexes, they're listed. Otherwise, the list is empty. If the HTTP code is `200 OK`, you're ready to proceed.
 
