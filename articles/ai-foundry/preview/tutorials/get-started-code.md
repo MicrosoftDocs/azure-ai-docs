@@ -16,7 +16,7 @@ ms.custom:
 
 # Quickstart - Get started with Azure AI Foundry
 
-[!INCLUDE [feature-preview](../includes/preview.md)]
+[!INCLUDE [preview](../includes/preview.md)]
 
 In this quickstart, you use [Azure AI Foundry (preview)]() to:
 

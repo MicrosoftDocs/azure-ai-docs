@@ -15,7 +15,7 @@ ms.custom:
 
 # What is Azure AI Foundry (preview)?
 
-[!INCLUDE [feature-preview](./includes/preview.md)]
+[!INCLUDE [preview](./includes/preview.md)]
 
 [Azure AI Foundry (preview)]() provides early access to the next-generation experience of the Azure AI Foundry portal. 
 
@@ -41,7 +41,7 @@ Azure AI Foundry is monetized through individual products customer access and co
 
 The platform is free to use and explore. Pricing occurs at deployment level. 
 
-Using Azure AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](how-to/costs-plan-manage.md).
+Using Azure AI Foundry also incurs cost associated with the underlying services. To learn more, read [Plan and manage costs for Azure AI services](concepts/costs-plan-manage.md).
 
 ## Region availability
 
