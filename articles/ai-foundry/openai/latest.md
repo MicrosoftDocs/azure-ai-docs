@@ -1307,7 +1307,7 @@ Validate a grader.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Create finetuning job
+## Create fine-tuning job
 
 ```HTTP
 POST {endpoint}/openai/v1/fine_tuning/jobs
@@ -1371,7 +1371,7 @@ Response includes details of the enqueued job including job status and the name 
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## List paginated finetuning jobs
+## List paginated fine-tuning jobs
 
 ```HTTP
 GET {endpoint}/openai/v1/fine_tuning/jobs
@@ -1415,7 +1415,7 @@ List your organization's fine-tuning jobs
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Retrieve finetuning job
+## Retrieve fine-tuning job
 
 ```HTTP
 GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}
@@ -1460,7 +1460,7 @@ Get info about a fine-tuning job.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Cancel finetuning job
+## Cancel fine-tuning job
 
 ```HTTP
 POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/cancel
@@ -1503,7 +1503,7 @@ Immediately cancel a fine-tune job.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## List finetuning job checkpoints
+## List fine-tuning job checkpoints
 
 ```HTTP
 GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints
@@ -1548,7 +1548,7 @@ List the checkpoints for a fine-tuning job.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Finetuning - Copy checkpoint
+## Fine-tuning - Copy checkpoint
 
 ```HTTP
 POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy
@@ -1605,7 +1605,7 @@ Creates a copy of a fine-tuning checkpoint at the given destination account and 
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Finetuning - Get checkpoint
+## Fine-tuning - Get checkpoint
 
 ```HTTP
 GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy
@@ -1655,7 +1655,7 @@ Gets the status of a fine-tuning checkpoint copy.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## List finetuning events
+## List fine-tuning events
 
 ```HTTP
 GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/events
@@ -1700,7 +1700,7 @@ Get status updates for a fine-tuning job.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Pause finetuning job
+## Pause fine-tuning job
 
 ```HTTP
 POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/pause
@@ -1743,7 +1743,7 @@ Pause a fine-tune job.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Resume finetuning job
+## Resume fine-tuning job
 
 ```HTTP
 POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/resume
