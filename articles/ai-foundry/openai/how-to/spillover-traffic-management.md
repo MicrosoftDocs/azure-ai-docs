@@ -16,7 +16,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 > Spillover is currently not available for the `/v1` [API endpoint](../reference-preview-latest.md).
 
 ## Prerequisites
-- Two seperate deployments to be used as primary and spillover deployments. You can use either a global provisioned or data zone provisioned deployment for either. You can additionally use a pay-as-you-go deployment for spillover.
+- Two separate deployments. The primary deployment can be any (standard, data zone) provisioned type. The spillover deployment can be a provisioned deployment of the same type as the primary deployment, or a pay-as-you-go deployment.
 
 - The provisioned and standard deployments must be in the same Azure OpenAI resource to be eligible for spillover.
 
