@@ -2,9 +2,11 @@
 manager: nitinme
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 05/29/2025
-ms.author: fasantia
-author: santiagxf
+ms.date: 08/27/2025
+ms.author: mopeakande
+author: msakande
+ms.reviewer: balapv
+reviewer: balapv
 ---
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
