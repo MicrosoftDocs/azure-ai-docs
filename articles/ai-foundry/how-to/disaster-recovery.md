@@ -10,6 +10,7 @@ ms.author: jburchel
 author: jonburchel 
 ms.reviewer: andyaviles
 ms.date: 08/27/2025
+ai.usage: ai-assisted
 ---
 
 # Customer enabled disaster recovery

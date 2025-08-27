@@ -369,7 +369,7 @@ To configure a managed virtual network that allows internet outbound, use the `M
         * __Resource name__: The name of the Azure resource.
         * __Sub Resource__: The sub resource of the Azure resource type.
 
-                > [!TIP]
+        > [!TIP]
         > The hub managed VNet doesn't support creating a private endpoint for all Azure resource types. For a list of supported resources, see the [Private endpoints](#private-endpoints) section.
 
         If the destination type is __Service Tag__, provide the following information:
