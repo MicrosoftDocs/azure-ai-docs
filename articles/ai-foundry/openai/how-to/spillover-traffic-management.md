@@ -97,6 +97,8 @@ The following Azure Monitor metrics chart provides an example of the split of re
     
 1. Select **Apply splitting** and apply the `ModelDeploymentName` and `StatusCode` splits to the `Azure OpenAI Requests` metric. This will show you a chart with the `200` (success) and `429` (too many requests) response codes that are generated for your resource.   
 
+    :::image type="content" source="../media/provisioned/add-splitting.png" alt-text="A screenshot showing the menu for adding splits in the Azure portal." lightbox="../media/provisioned/add-splitting.png":::
+
     The following example show an instance where a spike in requests sent to the provisioned throughput deployment generates `429` error codes. Shortly after, spillover occurs and requests begin to be sent to the pay-as-you-go deployment being used for spillover, generating `200` responses for that deployment.
     
 
