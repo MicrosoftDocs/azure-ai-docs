@@ -80,7 +80,7 @@ For example, for gpt-5 1 output token counts as 8 input tokens towards your util
 ## Latest Azure OpenAI models
 
 > [!NOTE]
-> gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128 prompt tokens).
+> gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
 
 |Topic| **gpt-5** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** | 
 | --- |  --- | --- |  --- |  --- | --- |  --- |
