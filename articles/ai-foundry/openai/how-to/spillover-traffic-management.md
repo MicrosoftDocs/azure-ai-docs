@@ -102,7 +102,7 @@ The following Azure Monitor metrics chart provides an example of the split of re
     The following example shows an instance where a spike in requests sent to the provisioned throughput deployment generates `429` error codes. Shortly after, spillover occurs and requests begin to be sent to the pay-as-you-go deployment being used for spillover, generating `200` responses for that deployment.
     
 
-    :::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for a basic spillover example in the Azure portal." lightbox="../media/provisioned/spillover-chart-simplified.png":::
+    :::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for visualizing spillover." lightbox="../media/provisioned/spillover-chart-simplified.png":::
 
     > [!NOTE]
     > As requests are sent to the pay-as-you-go deployment, they still will generate 429 response codes on the provisioned deployment before being redirected.
