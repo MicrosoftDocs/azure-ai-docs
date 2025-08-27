@@ -186,33 +186,39 @@ print(response.model_dump_json(indent=2))
 # [C#](#tab/csharp)
 
 ```c#
-using Azure.AI.OpenAI;
-using Azure.AI.OpenAI.Chat;
 using Azure.Identity;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel.Primitives;
 
-AzureOpenAIClient openAIClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
-ChatClient chatClient = openAIClient.GetChatClient("o3-mini"); //model deployment name
+#pragma warning disable OPENAI001 //currently required for token based authentication
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "o4-mini",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    }
+);
 
 ChatCompletionOptions options = new ChatCompletionOptions
 {
     MaxOutputTokenCount = 100000
 };
 
-#pragma warning disable AOAI001 //currently required to use MaxOutputTokenCount
+ChatCompletion completion = client.CompleteChat(
+         new DeveloperChatMessage("You are a helpful assistant"),
+         new UserChatMessage("Tell me about the bitter lesson")
+    );
 
-options.SetNewMaxCompletionTokensPropertyEnabled(true);
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
-ChatCompletion completion = chatClient.CompleteChat(
-    [
-
-        new UserChatMessage("Testing 1,2,3")
-    ],
-    options); // Pass the options to the CompleteChat method
-
-Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 ```
 
 ---
@@ -395,15 +401,27 @@ print(response.model_dump_json(indent=2))
 # [C#](#tab/csharp)
 
 ```csharp
-using Azure.AI.OpenAI;
-using Azure.AI.OpenAI.Chat;
-using Azure.Identity;
-using OpenAI.Chat;
 
-AzureOpenAIClient openAIClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
-ChatClient chatClient = openAIClient.GetChatClient("o3-mini"); //model deployment name
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001 //currently required for token based authentication
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "o4-mini",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    }
+);
 
 ChatCompletionOptions options = new ChatCompletionOptions
 {
@@ -411,18 +429,13 @@ ChatCompletionOptions options = new ChatCompletionOptions
     MaxOutputTokenCount = 100000
 };
 
-#pragma warning disable AOAI001 //currently required to use MaxOutputTokenCount
+ChatCompletion completion = client.CompleteChat(
+         new DeveloperChatMessage("You are a helpful assistant"),
+         new UserChatMessage("Tell me about the bitter lesson")
+    );
 
-options.SetNewMaxCompletionTokensPropertyEnabled(true);
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
-ChatCompletion completion = chatClient.CompleteChat(
-    [
-        new DeveloperChatMessage("You are a helpful assistant."),
-        new UserChatMessage("Testing 1,2,3")
-    ],
-    options); // Pass the options to the CompleteChat method
-
-Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 ```
 
 ---
@@ -443,17 +456,12 @@ pip install openai --upgrade
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -474,7 +482,7 @@ print(response.model_dump_json(indent=2))
 # [REST](#tab/REST)
 
 ```bash
-curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview" \
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
  -d '{
@@ -589,17 +597,12 @@ GPT-5 series reasoning models have the ability to call a new `custom_tool` calle
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME-HERE.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(  
