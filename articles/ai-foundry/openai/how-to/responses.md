@@ -1168,23 +1168,18 @@ print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 You can cancel an in-progress background task using the `cancel` endpoint. Canceling is idempotent—subsequent calls will return the final response object.
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.cancel("resp_1234567890")
@@ -1197,7 +1192,7 @@ print(response.status)
 To stream a background response, set both `background` and `stream` to true. This is useful if you want to resume streaming later in case of a dropped connection. Use the sequence_number from each event to track your position.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1210,17 +1205,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 # Fire off an async response but also start streaming immediately
@@ -1249,7 +1239,7 @@ for event in stream:
 ### Resume streaming from a specific point
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42&api-version=2025-04-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
@@ -1261,7 +1251,7 @@ When using the Responses API in stateless mode — either by setting `store` to 
 To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1361,89 +1351,6 @@ for event in stream:
         with open(f"river{idx}.png", "wb") as f:
             f.write(image_bytes)
 ```
-
-
-### Edit images
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-import base64
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
-)
-
-def create_file(file_path):
-  with open(file_path, "rb") as file_content:
-    result = client.files.create(
-        file=file_content,
-        purpose="vision",
-    )
-    return result.id
-
-def encode_image(file_path):
-    with open(file_path, "rb") as f:
-        base64_image = base64.b64encode(f.read()).decode("utf-8")
-    return base64_image
-
-prompt = """Generate a photorealistic image of a gift basket on a white background 
-labeled 'Relax & Unwind' with a ribbon and handwriting-like font, 
-containing all the items in the reference pictures."""
-
-base64_image1 = encode_image("image1.png")
-base64_image2 = encode_image("image2.png")
-file_id1 = create_file("image3.png")
-file_id2 = create_file("image4.png")
-
-response = client.responses.create(
-    model="gpt-4.1",
-    input=[
-        {
-            "role": "user",
-            "content": [
-                {"type": "input_text", "text": prompt},
-                {
-                    "type": "input_image",
-                    "image_url": f"data:image/jpeg;base64,{base64_image1}",
-                },
-                {
-                    "type": "input_image",
-                    "image_url": f"data:image/jpeg;base64,{base64_image2}",
-                },
-                {
-                    "type": "input_image",
-                    "file_id": file_id1,
-                },
-                {
-                    "type": "input_image",
-                    "file_id": file_id2,
-                }
-            ],
-        }
-    ],
-    tools=[{"type": "image_generation"}],
-)
-
-image_generation_calls = [
-    output
-    for output in response.output
-    if output.type == "image_generation_call"
-]
-
-image_data = [output.result for output in image_generation_calls]
-
-if image_data:
-    image_base64 = image_data[0]
-    with open("gift-basket.png", "wb") as f:
-        f.write(base64.b64decode(image_base64))
-else:
-    print(response.output.content)
-```
-
 
 ## Reasoning models
 
