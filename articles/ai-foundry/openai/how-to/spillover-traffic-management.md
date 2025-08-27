@@ -16,8 +16,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 > Spillover is currently not available for the `/v1` [API endpoint](../reference-preview-latest.md).
 
 ## Prerequisites
-- A global provisioned or data zone provisioned deployment to be used as your primary deployment.
-- A global or data zone standard deployment to be used as your spillover deployment. 
+- Two seperate provisioned deployments to be used as primary and spillover deployments. You can use either a global provisioned or data zone provisioned deployment for either.
 
 - The provisioned and standard deployments must be in the same Azure OpenAI resource to be eligible for spillover.
 
@@ -50,7 +49,8 @@ Select **Deploy model**. In the menu that appears, select **Customize**.
 Specify one the provisioned options as the **Deployment type**, for example **Global Provisioned Throughput**. Select **Traffic spillover** to enable spillover for your provisioned deployment. 
 
 > [!TIP]
-> To enable spillover, your account must have at least one active pay-as-you-go deployment that matches the model and version of your current provisioned deployment.
+> * To enable spillover, your account must have at least one active pay-as-you-go deployment that matches the model and version of your current provisioned deployment.
+> * To see how to enable spillover for select inference requests, click the **REST API** tab above.
 
 :::image type="content" source="../media/provisioned/spillover.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover.png":::
 
@@ -87,22 +87,28 @@ Since the spillover capability relies on a combination of provisioned and standa
 
 ## Monitor metrics in the Azure portal
 
-The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, go to the **metrics** page for your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs). Then apply the `ModelDeploymentName` and `StatusCode` splits to the default `Azure OpenAI Requests` requests metric, with a `Sum` aggregation. This will show you a chart with the `200` and `429` (too many requests) response codes that are generated for your resource.   
+The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, navigate to your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs). 
 
-:::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for a basic spillover example in the Azure portal." lightbox="../media/provisioned/spillover-chart-simplified.png":::
+1.  Select **Montioring** > **metrics** from the left navigation menu.
 
-In this example, the following events take place:
-
-1. The requests sent to the provisioned throughput deployment exceed its capacity, generating `429` error codes and reducing the number of `200` responses. 
-1. Spillover is initiated after a short period of time and requests begin to be sent to the pay-as-you-go deployment, generating `200` responses for that deployment.
+1. Add the `Azure OpenAI Requests` requests metric. 
     
+    :::image type="content" source="../media/provisioned/spillover-metrics-menu.png" alt-text="A screenshot showing the metrics for a basic spillover example in the Azure portal." lightbox="../media/provisioned/spillover-metrics-menu.png":::
+    
+1. Select **Apply splitting** and apply the `ModelDeploymentName` and `StatusCode` splits to the `Azure OpenAI Requests` metric. This will show you a chart with the `200` (success) and `429` (too many requests) response codes that are generated for your resource.   
+
+    The following example show an instance where a spike in requests sent to the provisioned throughput deployment generates `429` error codes. Shortly after, spillover occurs and requests begin to be sent to the pay-as-you-go deployment being used for spillover, generating `200` responses for that deployment.
+    
+
+    :::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for a basic spillover example in the Azure portal." lightbox="../media/provisioned/spillover-chart-simplified.png":::
+
     > [!NOTE]
     > As requests are sent to the pay-as-you-go deployment, they still will generate 429 response codes on the provisioned deployment before being redirected.
     > :::image type="content" source="../media/provisioned/spillover-chart-errors.png" alt-text="A screenshot showing the the response codes from a provisioned deployment." lightbox="../media/provisioned/spillover-chart-errors.png":::
     
 ### Viewing spillover metrics
 
-Applying the `IsSpillover` split lets you view the requests to your deployment that are being redirected to your spillover deployment. Following from the previous image, you can see how the `1, ptum-demo-global, 409` segment matches the `200` response codes generated by the spillover deployment.
+Applying the `IsSpillover` split lets you view the requests to your deployment that are being redirected to your spillover deployment. Following from the previous example, you can see how the `429` responses from the primary deployment match the `200` response codes generated by the spillover deployment.
 
 :::image type="content" source="../media/provisioned/spillover-chart.png" alt-text="A screenshot showing the spillover split in Azure portal." lightbox="../media/provisioned/spillover-chart.png":::
 
