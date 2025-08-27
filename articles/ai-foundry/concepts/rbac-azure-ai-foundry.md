@@ -353,11 +353,11 @@ az ml workspace update --name myworkspace --allow-roleassignment-on-rg true
 
 - Azure Python SDK: Set the `allow_roleassignment_on_rg` property of the Workspace object to `True` and then perform an update operation. The following example updates a workspace named `myworkspace`. This operation requires the Azure Machine Learning SDK version 1.17.0 or later.
 
-    ```python
-    ws = ml_client.workspaces.get(name="myworkspace")
-    ws.allow_roleassignment_on_rg = True
-    ws = ml_client.workspaces.begin_update(workspace=ws).result()
-    ```
+```python
+ws = ml_client.workspaces.get(name="myworkspace")
+ws.allow_roleassignment_on_rg = True
+ws = ml_client.workspaces.begin_update(workspace=ws).result()
+```
 
 If you encounter problems with the Azure AI Administrator role, you can revert to the Contributor role as a troubleshooting step. For more information, see [Revert to the Contributor role](#revert-to-the-contributor-role).
 

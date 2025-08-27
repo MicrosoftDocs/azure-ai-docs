@@ -95,19 +95,19 @@ Follow these steps to check whether your custom DNS solution resolves names to I
 
     For example:
 
-    ```powershell
-    nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
-    ```
+```powershell
+nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
+```
 
     Example output:
 
-    ```text
-    Server: yourdnsserver
-    Address: yourdnsserver-IP-address
+```text
+Server: yourdnsserver
+Address: yourdnsserver-IP-address
 
-    Name:   df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
-    Address: 10.0.0.4
-    ```
+Name:   df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
+Address: 10.0.0.4
+```
 
 1. If the `nslookup` command returns an error or a different IP address than the portal shows, your custom DNS solution isn't configured correctly.
 
