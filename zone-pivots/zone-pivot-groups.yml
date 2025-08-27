@@ -1497,7 +1497,7 @@ groups:
     - id: programming-language-csharp
       title: C#
     - id: programming-language-javascript
-      title: JavaScript
+      title: JavaScript/TypeScript
     - id: programming-language-java
       title: Java
       
