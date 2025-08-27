@@ -72,6 +72,16 @@ To help AI Agents make well-informed decisions with confidence, knowledge serves
 
 To learn more about Agent Knowledge tools, see [Knowledge tool overview](https://aka.ms/AgentToolOverviewDoc).
 
+## <a name="limits"></a> Azure Key Vault limitations
+
+All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your subscription. Enterprise customers who prefer to bring their own Azure Key Vault should consider the these limitations:
+
+- One Azure Key Vault connection per AI Foundry resource is allowed at a given time
+- Deleting an Azure Key Vault connection is only permitted if there are no other existing connections on the Foundry resource level, or project level. 
+- AI Foundry does not support secret migration. You need to remove and recreate connections after you connect the Key Vault.
+- Deleting the underlying Azure Key Vault would break the AI Foundry resource. Key Vaults store connections, so any Foundry feature that depends on a connection would be broken.
+- Deleting the Foundry resource's underlying connection secrets stored on the BYO Azure Key Vault may break connections to other services.
+
 ::: zone-end
 
 ## <a name="create-a-new-connection"></a> Create a new connection in Azure AI Foundry portal
