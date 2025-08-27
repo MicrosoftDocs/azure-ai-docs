@@ -33,7 +33,7 @@ Set up the following network isolation settings:
 
 - Choose a network isolation mode: allow internet outbound or allow only approved outbound.
 - If you use Visual Studio Code integration in allow only approved outbound mode, create FQDN outbound rules as described in the [use Visual Studio Code](#scenario-use-visual-studio-code) section.
-- If you use Hugging Face models in allow only approved outbound mode, create FQDN outbound rules as described in the [use Hugging Face models](#scenario-use-huggingface-models) section.
+- If you use Hugging Face models in allow only approved outbound mode, create FQDN outbound rules as described in the [use Hugging Face models](#scenario-use-hugging-face-models) section.
 - If you use one of the open source models in allow only approved outbound mode, create FQDN outbound rules as described in the [Models sold directly by Azure](#scenario-models-sold-directly-by-azure) section.
 
 ## Network isolation architecture and isolation modes
@@ -85,7 +85,7 @@ Before you start, make sure you have these prerequisites:
 
 * Use an Azure identity with the following [Azure role-based access control (Azure RBAC)](/azure/role-based-access-control/overview) actions to create private endpoints for the managed virtual network:
 
-        * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/read`
+    * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/read`
     * `Microsoft.MachineLearningServices/workspaces/privateEndpointConnections/write`
 
 # [Azure CLI](#tab/azure-cli)
@@ -367,10 +367,10 @@ To configure a managed virtual network that allows internet outbound, use the `M
         * __Resource group__: The resource group that contains the Azure resource you want to add a private endpoint for.
         * __Resource type__: The type of the Azure resource.
         * __Resource name__: The name of the Azure resource.
-        * __Sub Resource__: The sub resource of the Azure resource type.
+    * __Sub Resource__: The sub resource of the Azure resource type.
 
-                > [!TIP]
-        > The hub's managed VNet doesn't support private endpoints for all Azure resource types. For a list of supported resources, see the [Private endpoints](#private-endpoints) section.
+    > [!TIP]
+    > The hub's managed VNet doesn't support private endpoints for all Azure resource types. For a list of supported resources, see the [Private endpoints](#private-endpoints) section.
 
         If the destination type is __Service Tag__, enter the following information:
 
@@ -936,7 +936,7 @@ network = ManagedNetwork(isolation_mode=IsolationMode.ALLOW_ONLY_APPROVED_OUTBOU
 The hub managed virtual network feature is free, but you're charged for the following resources the managed virtual network uses:
 
 * Azure Private Link—Private endpoints that secure communication between the managed virtual network and Azure resources use Azure Private Link. For pricing, see [Azure Private Link pricing](https://azure.microsoft.com/pricing/details/private-link/).
-* FQDN outbound rules—Azure Firewall enforces these rules. If you use outbound FQDN rules, Azure Firewall charges appear on your bill. The Standard version of Azure Firewall is used by default. To select the Basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allowed-only-approved-outbound). Azure Firewall is provisioned per hub.
+* FQDN outbound rules—Azure Firewall enforces these rules. If you use outbound FQDN rules, Azure Firewall charges appear on your bill. The Standard version of Azure Firewall is used by default. To select the Basic version, see [Select an Azure Firewall version](#select-an-azure-firewall-version-for-allow-only-approved-outbound). Azure Firewall is provisioned per hub.
 
     > [!IMPORTANT]
     > Azure Firewall isn't created until you add an outbound FQDN rule. If you don't use FQDN rules, you won't be charged for Azure Firewall. For pricing, see [Azure Firewall pricing](https://azure.microsoft.com/pricing/details/azure-firewall/).
