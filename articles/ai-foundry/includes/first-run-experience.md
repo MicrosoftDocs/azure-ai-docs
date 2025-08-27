@@ -11,7 +11,7 @@ ms.custom: include
 ---
 ## First run experience
 
-Use this fast path when you don't have any projects yet. Pick what you want to do and we create the project and get you into the right playground. It is suggested to start with 
+Use this fast path when you don't have any projects yet. Pick what you want to do and we create the project and get you into the right playground. It is suggested to start with an agent but you can also explore models through the Foundry portal or model catalog.
 
 # [Agent (_recommended_)](#tab/azure-ai-foundry)
 
