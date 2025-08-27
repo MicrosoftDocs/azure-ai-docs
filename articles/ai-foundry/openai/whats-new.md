@@ -18,6 +18,49 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## August 2025
+
+Realtime API audio model updates:
+- We introduce two speech-to-speech standard voices, Marin and Cedar, that bring improved naturalness and clarity to speech synthesis.
+- Improved Instruction Following: Enhanced capabilities to follow instructions more accurately and reliably.
+- Enhanced Voice Naturalness: More lifelike and expressive voice output.
+- Higher Audio Quality: Superior audio quality for a better user experience.
+- Improved Function Calling: Enhanced ability to call custom code defined by developers.
+
+
+We’ve added 2 new voices intended to push quality to the highest level, marin
+and cedar . These voices will sound more natural and less robotic than previous
+voices, and the speech2speech paradigm enables extremely powerful
+expressiveness given it’s a native output of the model. For example users can
+prompt “speak slowly and empathetically”.
+We also saw naturalness improvements with our existing library of voices.
+We’ve trained the model to reduce audio glitches and aberrations, previously it
+was common to hear a strange sound in the background, or hear a specific
+syllable that sounded off.
+
+
+Model Improvements: The new scallion-sized speech-to-speech model is considered GA quality. It addresses previous issues with audio-related functionality and model behavior problems by rigorously defining customer requirements and collaborating across API and Research 1.
+
+Function Calling: Improvements have been made to the function calling capability, enhancing relevance, timing, and accuracy. This ensures that functions are called appropriately and with the correct arguments 1.
+
+Instruction Following: Posttraining work has improved the model's adherence to instructions, allowing for more precise behavior in various scenarios, such as speaking quickly, using specific accents, and handling conversation flow 1.
+
+Audio Quality: The audio output training process has been redone, introducing two new voices, Marin and Cedar, which sound more natural and less robotic. The model has also been trained to reduce audio glitches and aberrations 1.
+
+Audio Behavior Issues: The model has been trained to handle empty or low-signal audio better, ask for confirmation if the input is noisy or inaudible, and support strict modality control to ensure audio output when desired 1.
+
+Realtime API GA Shape Changes: Various changes have been made to the API shape, including consolidating session.update(d) and session.create(d) events, grouping audio-related fields in session and response objects, and renaming certain event names to match the responses API 1.
+
+New Features: The GA interface includes new features such as image input, asynchronous function calling, and new tracing events. Image input allows adding images to the session context, and asynchronous function calling enables conversations to continue while a function call is pending 1.
+
+Long Context and Truncation: The new model supports a 32k token context window, with changes to utilize the context window more effectively. New limits for instructions and configurable truncation behavior have been introduced to improve the handling of long sessions 1.
+
+EU Data Residency: EU data residency is supported on the GA model, allowing enterprise customers with EU data-residency enabled projects to use this feature 1.
+
+SIP Support: SIP entry to OpenAI has been added, allowing developers to build realtime applications using SIP or WebRTC. This includes support for SIPS and SRTP for media encryption, PSTN and HD Voice audio, and integration with developer-provided application servers 1.
+
+
+
 ## June 2025
 
 
