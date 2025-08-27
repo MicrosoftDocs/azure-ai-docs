@@ -34,6 +34,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 | [`GPT-3.5`](#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
 | [Embeddings](#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
 | [`Image generation`](#image-generation-models) | A series of models that can generate original images from natural language. |
+| [`Video generation`](#video-generation-models) | A model that can generate original video scenes from text instructions. |
 | [`Audio`](#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
 
 ## GPT-5
@@ -299,7 +300,7 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2|
+|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)|
 
 ## Audio models
 
