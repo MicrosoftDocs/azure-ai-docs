@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 7/3/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Locale (BCP-47) | Language | Text to speech voices |

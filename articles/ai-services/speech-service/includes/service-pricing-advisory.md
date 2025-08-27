@@ -1,12 +1,12 @@
 ---
 title: Speech service
 titleSuffix: Azure AI services
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 12/02/2019
-ms.author: eur
+ms.author: pafarley
 ---
 
 > [!IMPORTANT]

@@ -16,9 +16,9 @@ items:
     - name: Java
       href: /java/api/overview/azure/ai-agents-persistent-readme
     - name: JavaScript
-      href: /javascript/api/overview/azure/ai-projects-readme?view=azure-node-preview&preserve-view=true
+      href: /javascript/api/overview/azure/ai-agents-readme?view=azure-node-preview&preserve-view=true
     - name: Python
-      href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
+      href: /python/api/overview/azure/ai-agents-readme?view=azure-python-preview&preserve-view=true
     - name: REST API
       href: /rest/api/aifoundry/aiagents 
     - name: Data monitoring reference

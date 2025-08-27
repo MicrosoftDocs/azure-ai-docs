@@ -2,9 +2,9 @@
 title: Model lifecycle of custom speech - Speech service
 titleSuffix: Azure AI services
 description: Custom speech provides base models for training and lets you create custom models from your data. This article describes the timelines for models and for endpoints that use these models.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
-ms.author: eur
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/25/2025

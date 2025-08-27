@@ -2,13 +2,13 @@
 title: "Intent recognition quickstart - Speech service"
 titleSuffix: Azure AI services
 description: In this quickstart, you recognize intents from audio data with the Speech service and LUIS.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: quickstart
 ms.date: 08/07/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-services
 keywords: intent recognition, deprecation
 ---

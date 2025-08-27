@@ -2,12 +2,12 @@
 title: Customize speech models with fine-tuning
 titleSuffix: Azure AI services
 description: Learn about how to customize speech models with fine-tuning. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio
 #Customer intent: As a developer, I want to learn how to customize speech models with fine-tuning so that I can train and deploy a custom model.
 ---

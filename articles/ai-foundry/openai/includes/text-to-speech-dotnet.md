@@ -4,8 +4,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.date: 3/11/2025
 ms.reviewer: alexwolf
-ms.author: eur
-author: eric-urban
+ms.author: pafarley
+author: PatrickFarley
 recommendations: false
 ---
 

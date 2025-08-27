@@ -7,10 +7,9 @@ manager: nitinme
 #customer intent: As a developer, I want to build a React Native app to add users to a Face service so that I can obtain meaningful consent and high-quality face data.
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 01/29/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---

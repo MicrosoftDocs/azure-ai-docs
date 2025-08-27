@@ -5,8 +5,8 @@ description: Azure AI services for Language and Speech can help you realize part
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 08/07/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: jagoerge
 ---
 

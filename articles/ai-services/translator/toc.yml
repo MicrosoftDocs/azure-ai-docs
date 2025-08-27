@@ -7,6 +7,9 @@ items:
   - name: What is Translator Service?
     displayName: features,develop,development,free
     href: overview.md
+  - name: What's new?
+    displayName: release,ga,update,support, cognitive
+    href: whats-new.md
   - name: Create a Translator resource
     displayName: endpoint,key,portal,azure,authentication,delete,resource
     href: create-translator-resource.md
@@ -19,9 +22,6 @@ items:
   - name: Service limits
     displayName: detection,detect,region,
     href: service-limits.md
-  - name: What's new?
-    displayName: release,ga,update,support, cognitive
-    href: whats-new.md
   - name: Translator Service FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
