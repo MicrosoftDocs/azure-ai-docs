@@ -19,6 +19,8 @@ ai.usage: ai-assisted
 
 In this article, you learn how to manage access to your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources, like creating new resources or using existing ones. In Microsoft Entra ID, assign users roles that grant access to resources. Azure provides built-in roles and lets you create custom roles.
 
+If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
+
 Azure AI Foundry supports two project types: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. To learn about the differences between these types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types). Use the project type selector on this page to switch between project types.
 
 > [!WARNING]

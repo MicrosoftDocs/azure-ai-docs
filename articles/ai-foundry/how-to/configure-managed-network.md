@@ -374,13 +374,13 @@ To configure a managed virtual network that allows internet outbound, use the `M
 
     If the destination type is __Service Tag__, enter the following information:
 
-        * __Service tag__: The service tag to add to the approved outbound rules.
-        * __Protocol__: The protocol to allow for the service tag.
-        * __Port ranges__: The port ranges to allow for the service tag.
+    * __Service tag__: The service tag to add to the approved outbound rules.
+    * __Protocol__: The protocol to allow for the service tag.
+    * __Port ranges__: The port ranges to allow for the service tag.
 
-        If the destination type is __FQDN__, enter the following information:
+    If the destination type is __FQDN__, enter the following information:
 
-        * __FQDN destination__: The fully qualified domain name to add to the approved outbound rules.
+    * __FQDN destination__: The fully qualified domain name to add to the approved outbound rules.
 
         Select __Save__ to save the rule. To add more rules, select __Add user-defined outbound rules__ again.
 

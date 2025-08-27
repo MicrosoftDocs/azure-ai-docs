@@ -93,7 +93,7 @@ Follow these steps to check whether your custom DNS solution resolves names to I
 
     `nslookup <fqdn>`
 
-    For example:
+For example:
 
 ```powershell
 nslookup df33e049-7c88-4953-8939-aae374adbef9.workspace.eastus2.api.azureml.ms
