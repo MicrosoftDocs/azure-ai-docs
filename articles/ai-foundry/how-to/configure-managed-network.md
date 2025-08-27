@@ -372,7 +372,7 @@ To configure a managed virtual network that allows internet outbound, use the `M
     > [!TIP]
     > The hub's managed VNet doesn't support private endpoints for all Azure resource types. For a list of supported resources, see the [Private endpoints](#private-endpoints) section.
 
-        If the destination type is __Service Tag__, enter the following information:
+    If the destination type is __Service Tag__, enter the following information:
 
         * __Service tag__: The service tag to add to the approved outbound rules.
         * __Protocol__: The protocol to allow for the service tag.

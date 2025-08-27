@@ -1,4 +1,5 @@
 ---
+title: Role-based access control for Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article introduces role-based access control in Azure AI Foundry portal.
 ms.service: azure-ai-foundry
@@ -398,7 +399,7 @@ The full set of permissions for the Azure AI Developer role is as follows:
 }
 ```
 
-If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles).
+If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-hubs).
 
 ## Default roles for projects 
 
