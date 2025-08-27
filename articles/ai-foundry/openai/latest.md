@@ -380,7 +380,7 @@ List evaluations for a project.
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Createeval
+## Create eval
 
 ```HTTP
 POST {endpoint}/openai/v1/evals
@@ -445,7 +445,7 @@ For more information, see the [Evals guide](./how-to/evaluations.md).
 |:---|:---|:---|
 |application/json | [AzureErrorResponse](#azureerrorresponse) | |
 
-## Geteval
+## Get eval
 
 ```HTTP
 GET {endpoint}/openai/v1/evals/{eval_id}
