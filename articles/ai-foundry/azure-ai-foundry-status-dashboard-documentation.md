@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.service: azure-ai-foundry
 ---
 
-# Azure AI Foundry status dashboard
+# Azure AI Foundry status dashboard 
 
 The Azure AI Foundry Status Dashboard provides visibility into the
 health and availability of key Foundry services. It's intended to help
