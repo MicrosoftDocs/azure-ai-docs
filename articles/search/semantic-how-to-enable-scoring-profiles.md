@@ -7,7 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 08/27/2025
 ---
 
 # Use scoring profiles with semantic ranker in Azure AI Search
@@ -25,7 +25,7 @@ To ensure the scoring profile provides the determining score, the semantic ranke
 
 - [Azure AI Search](search-create-service-portal.md), Basic pricing tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- [REST API version `2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a preview Azure SDK package that provides the new APIs.
+- The [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or a preview Azure SDK package that provides the new APIs.
 
 - A search index with a semantic configuration that specifies `"rankingOrder": "boostedReRankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
 
@@ -58,10 +58,10 @@ In this scenario, a scoring profile is used twice.
 
 ## Enable scoring profiles in semantic configuration
 
-To enable scoring profiles with semantic ranking, use preview API version `2025-05-01-preview` to update an index by setting the `rankingOrder` property of its semantic configuration. Use the PUT method to update the index with your revisions. No index rebuild is required.
+To enable scoring profiles with semantic ranking, use the latest preview REST API (2025-08-01-preview) to update an index by setting the `rankingOrder` property of its semantic configuration. Use the PUT method to update the index with your revisions. No index rebuild is required.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-05-01-Preview
+PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-08-01-preview
 {
   "semantic": {
     "configurations": [
@@ -79,7 +79,7 @@ PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2
 To opt out of sorting by semantic reranker boosted score, set the `rankingOrder` field to `reRankerScore` value in the semantic configuration.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-05-01-Preview
+PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-08-01-preview
 {
   "semantic": {
     "configurations": [
@@ -99,7 +99,7 @@ Even if you opt out of sorting by `@search.rerankerBoostedScore`, the `boostedRe
 Start with a [semantic query](semantic-how-to-query-request.md) that specifies a scoring profile. The query uses the new preview REST API, and it targets a search index that has `rankingOrder` set to `boostedReRankerScore`.
 
 ```json
-POST https://{service-name}.search.windows.com/indexes/{index-name}/docs/search?api-version=2025-05-01-Preview
+POST https://{service-name}.search.windows.com/indexes/{index-name}/docs/search?api-version=2025-08-01-preview
 {
   "search": "my query to be boosted",
   "scoringProfile": "myScoringProfile",

@@ -8,14 +8,14 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 07/28/2025
+ms.date: 08/27/2025
 ---
 
 # GenAI Prompt skill
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models. Use this capability to create new information that can be indexed and stored as searchable content.
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models. Use this capability to create new information that can be indexed and stored as searchable content.
 
 Here are some examples of how the GenAI prompt skill can help you create content:
 
@@ -24,7 +24,7 @@ Here are some examples of how the GenAI prompt skill can help you create content
 - Simplify complex content
 - Perform any other task that you can articulate in a prompt
 
-The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. The skill supports text, image, and multimodal content such as a PDF that contains text and images. 
+The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as a PDF that contains text and images.
 
 > [!TIP]
 > It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate image verbalization with two different data chunking techniques:

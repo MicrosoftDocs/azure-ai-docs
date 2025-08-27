@@ -112,7 +112,11 @@ Choose any of these options for your next step.
   + [Use a knowledge agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
   + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md)
 
-+ REST API reference, [Knowledge Agents](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
++ REST API reference:
+
+  + [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-08-01-preview&preserve-view=true)
+  + [Knowledge Agents](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-08-01-preview&preserve-view=true)
+  + [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true)
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
 
