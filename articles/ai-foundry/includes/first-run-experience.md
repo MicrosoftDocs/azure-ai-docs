@@ -29,7 +29,7 @@ To start with an agent, use the following steps:
 
 1. Select **Deploy** on the final confirmation page after selecting a deployment type, and you see the Agents playground with your agent ready to chat.
 
-    :::image type="content" source="../media/quickstarts/deploy-agent-model.png" alt-text="Screenshot of Agents playground showing a default agent loaded with GPT-4o deployed. The chat interface and agent details panel are visible." lightbox="../media/quickstarts/deploy-agent-model.md.png":::
+    :::image type="content" source="../media/quickstarts/deploy-agent-model.png" alt-text="Screenshot of Agents playground showing a default agent loaded with GPT-4o deployed. The chat interface and agent details panel are visible." lightbox="../media/quickstarts/deploy-agent-model.png":::
 
 1. You see the Agents playground with your agent ready to chat.
 
