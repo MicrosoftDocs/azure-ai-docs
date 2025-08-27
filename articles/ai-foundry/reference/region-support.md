@@ -34,6 +34,7 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - Poland Central
 - South Africa North
 - South Central US
+- South East Asia
 - South India
 - Sweden Central
 - Switzerland North
