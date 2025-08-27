@@ -13,7 +13,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure OpenAI Responses API (Preview)
+# Azure OpenAI Responses API
 
 The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](../how-to/computer-use.md) capability.
 
@@ -21,7 +21,7 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 
 ### API support
 
-- [v1 preview API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
+- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
 
 ### Region Availability
 
@@ -70,7 +70,7 @@ Not every model is available in the regions supported by the responses API. Chec
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
-> - Performance when background mode is used with streaming. The issue is expected to be resolved soon.
+> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ### Reference documentation
 
@@ -86,7 +86,31 @@ pip install --upgrade openai
 
 ## Generate a text response
 
+# [Python (API Key)](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.responses.create(   
+  model="gpt-4.1-nano", # Replace with your model deployment name 
+  input="This is a test.",
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
 # [Python (Microsoft Entra ID)](#tab/python-secure)
+
+> [!NOTE]
+> Full v1 GA support for the OpenAI Python library with Microsoft Entra ID is coming soon. The example below will be replaced once support is added. To learn more, check out the [API lifecycle guide](../api-version-lifecycle.md#api-evolution).
 
 ```python
 from openai import AzureOpenAI
@@ -110,34 +134,12 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-# [Python (API Key)](#tab/python-key)
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
-)
-
-response = client.responses.create(   
-  model="gpt-4.1-nano", # Replace with your model deployment name 
-  input="This is a test.",
-)
-
-print(response.model_dump_json(indent=2)) 
-```
-
 # [REST API](#tab/rest-api)
 
 ### Microsoft Entra ID
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -149,7 +151,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 ### API Key
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -218,7 +220,27 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 
 To retrieve a response from a previous call to the responses API.
 
+# [Python (API Key)](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    default_query={"api-version": "preview"}, 
+)
+
+response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
+```
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
 # [Python (Microsoft Entra ID)](#tab/python-secure)
+
+> [!NOTE]
+> Full v1 GA support for the OpenAI Python library with Microsoft Entra ID is coming soon. The older preview API example below will be replaced once support is added. To learn more, check out the [API lifecycle guide](../api-version-lifecycle.md#api-evolution).
 
 ```python
 from openai import AzureOpenAI
@@ -239,29 +261,12 @@ response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 print(response.model_dump_json(indent=2))
 ```
 
-# [Python (API Key)](#tab/python-key)
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-```python
-import os
-from openai import OpenAI
-
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
-)
-
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-```
-
 # [REST API](#tab/rest-api)
 
 ### Microsoft Entra ID
 
 ```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
 ```
@@ -269,7 +274,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 ### API Key
 
 ```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
@@ -332,17 +337,12 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
