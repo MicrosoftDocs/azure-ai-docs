@@ -39,7 +39,7 @@ Since spillover uses a combination of provisioned and standard deployments to ma
 
 # [Azure AI Foundry portal](#tab/portal)
 
-To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left nativation menu, then select **Deployments**.
+To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left navigation menu, then select **Deployments**.
 
 
 Select **Deploy model**. In the menu that appears, select **Customize**.
@@ -89,7 +89,7 @@ Since the spillover capability relies on a combination of provisioned and standa
 
 The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, navigate to your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs). 
 
-1.  Select **Montioring** > **metrics** from the left navigation menu.
+1.  Select **Monitoring** > **metrics** from the left navigation menu.
 
 1. Add the `Azure OpenAI Requests` requests metric. 
     
@@ -99,14 +99,14 @@ The following Azure Monitor metrics chart provides an example of the split of re
 
     :::image type="content" source="../media/provisioned/add-splitting.png" alt-text="A screenshot showing the menu for adding splits in the Azure portal." lightbox="../media/provisioned/add-splitting.png":::
 
-    The following example show an instance where a spike in requests sent to the provisioned throughput deployment generates `429` error codes. Shortly after, spillover occurs and requests begin to be sent to the pay-as-you-go deployment being used for spillover, generating `200` responses for that deployment.
+    The following example shows an instance where a spike in requests sent to the provisioned throughput deployment generates `429` error codes. Shortly after, spillover occurs and requests begin to be sent to the pay-as-you-go deployment being used for spillover, generating `200` responses for that deployment.
     
 
     :::image type="content" source="../media/provisioned/spillover-chart-simplified.png" alt-text="A screenshot showing the metrics for a basic spillover example in the Azure portal." lightbox="../media/provisioned/spillover-chart-simplified.png":::
 
     > [!NOTE]
     > As requests are sent to the pay-as-you-go deployment, they still will generate 429 response codes on the provisioned deployment before being redirected.
-    > :::image type="content" source="../media/provisioned/spillover-chart-errors.png" alt-text="A screenshot showing the the response codes from a provisioned deployment." lightbox="../media/provisioned/spillover-chart-errors.png":::
+    > :::image type="content" source="../media/provisioned/spillover-chart-errors.png" alt-text="A screenshot showing the response codes from a provisioned deployment." lightbox="../media/provisioned/spillover-chart-errors.png":::
     
 ### Viewing spillover metrics
 
