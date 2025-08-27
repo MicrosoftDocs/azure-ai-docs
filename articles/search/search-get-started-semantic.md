@@ -29,6 +29,12 @@ zone_pivot_groups: search-get-started-semantic
 
 ::: zone-end
 
+::: zone pivot="java"
+
+[!INCLUDE [Java quickstart](includes/quickstarts/semantic-ranker-java.md)]
+
+::: zone-end
+
 ::: zone pivot="python"
 
 [!INCLUDE [Python quickstart](includes/quickstarts/semantic-ranker-python.md)]

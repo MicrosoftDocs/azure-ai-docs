@@ -266,7 +266,7 @@
         "Training",
         "Certification"
       ],
-      "uhfHeaderId": "azure",
+      "uhfHeaderId": "azure-ai-foundry",
       "ms.suite": "office",
       "zone_pivot_group_filename": "zone-pivots/azure-ai/zone-pivot-groups.json"
     },
