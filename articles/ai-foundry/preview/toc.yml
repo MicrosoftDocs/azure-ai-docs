@@ -1,25 +1,30 @@
 items:
 - name: What is Azure AI Foundry (preview)?
   href: what-is-azure-ai-foundry.md
-- name: Tutorials
-  expanded: true
-  items:
-    - name: Quickstart
-      href: tutorials/get-started-code.md
+- name: Quickstart
+  href: tutorials/get-started-code.md
+- name: Ask the Foundry agent
+  href: ../foundry-agent/ask-foundry-agent.md?context=/ai-foundry/preview/context/context
 
-- name: Reference
+- name: API & SDK
   items:
     - name: Use the client libraries
       href: how-to/sdk-overview.md
     - name: API & SDK guides
       href: reference/api-reference.md
 
-- name: Operate & support
+- name: Best practices
   items:
     - name: Manage costs 
       href: concepts/costs-plan-manage.md
-    - name: Region support
-      href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+
+- name: Configuration
+  items:
+  - name: Region support
+    href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+
+- name: Operate & support
+  items:
     - name: Pricing calculator
       href: https://azure.microsoft.com/pricing/calculator/
     - name: Compliance
