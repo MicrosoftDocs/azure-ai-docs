@@ -85,6 +85,7 @@ sections:
           | `The provided license path was not found. Please ensure a volume is mounted and a directory exists at the location specified by `Mounts:License` | **Disconnected containers only.** There is no license file stored locally at the location specified in your docker run command. You might have mounted the license volume incorrectly. Be sure to check your local file system and provide a valid filepath to the desired local storage location for the license file using the `-v` argument in your docker run command. |
           | `Unknown` | The server is currently unable to process billing requests. |
 
+
       - question: How do I get support?
         answer: |
           Customer support channels are the same as for the Azure AI services cloud-based APIs. All Azure AI containers include logging features that help us and the community support customers. Here are options for more support:
