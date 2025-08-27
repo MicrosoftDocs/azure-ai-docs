@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/29/2025
+ms.date: 08/27/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -24,7 +24,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 | Item | Type | Description |
 |-----------------------------|------|--------------|
-| [Agentic retrieval updates (preview)](search-agentic-retrieval-concept.md) | Query | New and breaking changes in agentic retrieval include new APIs for specifying multiple indexes at query time. Knowledge agents can have multiple knowledge sources. You can create [knowledge sources for indexes](search-knowledge-source-how-to-index.md) and [knowledge sources for Azure blobs](search-knowledge-source-how-to-blob.md). <p>[Call an LLM to formulate an answer as an embedded step](search-agentic-retrieval-how-to-synthesize.md). Instead of passing search results extracted from index content, you can pass an LLM-composed string at LLM at query time. <p>For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md). |
+| [Search Service 2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) | REST | New preview REST API version providing programmatic access to the data plane operations described in this table. |
+| [Knowledge agents (preview)](search-agentic-retrieval-how-to-create.md) | Query | Architectural changes to the knowledge agent definition, which now requires one or more `knowledgeSources` instead of `targetIndexes` and deprecates `defaultMaxDocsForReranker`. New `retrievalInstructions` and `outputConfiguration` properties provide greater control over query planning and execution. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md). |
+| [Knowledge sources (preview)](search-knowledge-source-overview.md) | Query | New REST APIs for creating and managing knowledge sources, which represent content that knowledge agents use to ground and answer queries. In this preview, you can create knowledge sources for [search indexes](search-knowledge-source-how-to-index.md) and [Azure blobs](search-knowledge-source-how-to-blob.md).  |
+| [Answer synthesis (preview)](search-agentic-retrieval-how-to-synthesize.md) | Query | New `answerSynthesis` modality for knowledge agents. When specified, an LLM generates a natural-language answer as an embedded step in the retrieval pipeline. This differs from the default `extractiveData` modality, which returns raw search results for downstream processing. |
+| [Strict postfiltering for vector queries (preview)](vector-search-filters.md) | Retrieval | New `strictPostFilter` mode for the `vectorFilterMode` parameter. When specified, filters are applied after the global top-`k` vector results are identified, ensuring that returned documents are a subset of the unfiltered results. |
+| [Increased maximum dimensions for vector fields](search-limits-quotas-capacity.md#index-limits) | Retrieval | The maximum dimensions per vector field are now `4096`. This update applies to all stable and preview REST API versions that support vectors and doesn't introduce breaking changes. |
 
 ## July 2025
 
@@ -47,7 +52,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Document-level access control (preview)](search-document-level-access-overview.md) | Security | Flow document-level permissions from blobs in Azure Data Lake Storage (ADLS) Gen2 to searchable documents in an index. Queries can now filter results based on user identity for selected data sources. |
 | [Multimodal search (preview)](multimodal-search-overview.md) | Indexing, Query | Ingest, understand, and retrieve documents that contain text and images, enabling you to perform searches that combine various modalities, such as querying with text to find information embedded in relevant complex images. See [Quickstart: Search for multimodal content](search-get-started-portal-image-search.md) for portal wizard support and [Azure AI Search Multimodal RAG Demo](https://github.com/Azure-Samples/azure-ai-search-multimodal-sample) for a code-first approach. |
 | [GenAI prompt skill (preview)](cognitive-search-skill-genai-prompt.md) | Skills | A new skill that connects to a large language model (LLM) for information, using a prompt you provide. With this skill, you can populate a searchable field using content from an LLM. A primary use case for this skill is *image verbalization*, using an LLM to describe images and send the description to a searchable field in your index. |
-| [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md)| Skills | New parameters are available for this skill if you use the 2025-05-01-preview API version. New parameters support image offset metadata that improves the image search experience. |
+| [Document Layout skill (preview)](cognitive-search-skill-document-intelligence-layout.md)| Skills | New parameters are available for this skill if you use the 2025-05-01-preview API version or later. New parameters support image offset metadata that improves the image search experience. |
 | Import and vectorize data wizard enhancements | Portal | This wizard provides two paths for creating and populating vector indexes: [Retrieval Augmented Generation (RAG)](search-get-started-portal-import-vectors.md) and [Multimodal RAG](search-get-started-portal-image-search.md). Logic apps integration is through the RAG path. |
 | [Index "description" support (preview)](search-howto-reindex.md#add-an-index-description-preview) | REST | The latest preview API adds a description to an index. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone. The description must be human readable and under four thousand characters.|
 | [2025-05-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) | REST | New data plane preview REST API version providing programmatic access to the preview features announced in this release. |
