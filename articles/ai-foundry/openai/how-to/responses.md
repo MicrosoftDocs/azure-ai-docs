@@ -694,17 +694,12 @@ print(response.model_dump_json(indent=2))
 ### Image url
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -731,17 +726,12 @@ print(response)
 
 ```python
 import base64
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 def encode_image(image_path):
@@ -792,17 +782,12 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 
 ```python
 import base64
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1/",
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
@@ -838,17 +823,12 @@ print(response.output_text)
 Upload the PDF file. A `purpose` of `user_data` is currently not supported. As a workaround you will need to set purpose to `assistants`.
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE=NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2024-10-21"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 
@@ -881,19 +861,13 @@ file_id = file.id
 You will then take the value of the `id` and pass that to a model for processing under `file_id`:
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1",
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
-)
-
 
 response = client.responses.create(
     model="gpt-4o-mini",
@@ -918,12 +892,12 @@ print(response.output_text)
 ```
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files?api-version=2024-10-21 \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -F purpose="assistants" \
   -F file="@your_file.pdf" \
 
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -957,7 +931,7 @@ You can extend the capabilities of your model by connecting it to tools hosted o
 The following example demonstrates how to use the fictitious MCP server to query information about the Azure REST API. This allows the model to retrieve and reason over repository content in real time.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -975,19 +949,13 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
-)
-
 response = client.responses.create(
     model="gpt-4.1", # replace with your model deployment name 
     tools=[
@@ -1027,7 +995,7 @@ When an approval is required, the model returns a `mcp_approval_request` item in
 To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1050,17 +1018,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1089,7 +1052,7 @@ Unlike the GitHub MCP server, most remote MCP servers require authentication. Th
 You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1108,17 +1071,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1147,7 +1105,7 @@ By enabling background mode, you can avoid timeouts and maintain reliability dur
 To start a background task, set the background parameter to true in your request:
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1158,17 +1116,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1183,24 +1136,19 @@ print(response.status)
 Use the `GET` endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
 
 ```bash
-curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?api-version=preview \
+curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from time import sleep
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
