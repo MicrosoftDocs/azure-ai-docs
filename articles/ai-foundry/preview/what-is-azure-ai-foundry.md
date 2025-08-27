@@ -19,6 +19,7 @@ ms.custom:
 
 [Azure AI Foundry (preview)]() provides early access to the next-generation experience of the Azure AI Foundry portal. 
 
+
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
 Azure AI Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
@@ -34,6 +35,11 @@ With Azure AI Foundry, you can explore a wide variety of models, services and ca
 
 [!INCLUDE [feature-preview](./includes/feature-preview.md)]
 
+## New user experience
+
+Azure AI Foundry has been reimagined as the AI app and agent factory for AI development teams, ushering in a true code shift for modern builders. The new version of Azure AI Foundry portal delivers speed, simplicity, and modularity as development teams access models, integrate knowledge, and continuously monitor the AI development lifecycle. ​
+
+The new user experience surfaces relevant models, agents, and tools contextually. Seamless transitions from playground to deployment reduce friction and empower teams to move from experimentation to production with ease. Advanced features like memory toggles, knowledge source federation, and embedded evaluation dashboards give development teams the power to design, customize, and manage AI apps and agents with confidence. ​
 
 ## Pricing and billing
 
