@@ -265,7 +265,7 @@ The Markdown is parsed based on headers into search documents, which contain the
 
   - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents and hierarchy of the Markdown content. 
 
-Here's the sample Markdown that we're using to explain an index schemas designed around each parsing mode.
+Here's the sample Markdown that we're using to explain the index schemas designed around each parsing mode.
 
 ```md
 # Section 1
@@ -452,7 +452,7 @@ The resulting search document in the index would look as follows:
 
 ## Managing stale documents from Markdown re-indexing
 
-When using one-to-many parsing mode, re-indexing a modified Markdown file can result in stale or duplicate documents if sections are removed. This behavior is specific to one-to-many mode and does not apply to one-to-one parsing.
+When using one-to-many parsing mode, re-indexing a modified Markdown file can result in stale or duplicate documents if sections are removed. This behavior is specific to one-to-many mode and doesn't apply to one-to-one parsing.
 
 ### Behavior overview
 
@@ -477,7 +477,7 @@ This method uses a soft-delete to delete documents associated with a specific bl
 Steps:
 
 1. Mark the blob as deleted by setting a metadata field.
-2. Let the indexer run. It will delete all documents in the index associated with that blob.
+2. Let the indexer run. It deletes all documents in the index associated with that blob.
 3. Remove the soft-delete marker and re-index the file.
      
 #### Option 2. Use the delete API
