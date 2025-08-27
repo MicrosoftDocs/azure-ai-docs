@@ -11,6 +11,7 @@ ms.date: 08/27/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
+ai.usage: ai-assisted
 ---
 
 # Troubleshoot connection to a project with a private endpoint
