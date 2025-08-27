@@ -20,6 +20,14 @@ This article provides a summary of the latest releases and major documentation u
 
 ## August 2025
 
+### Sora image-to-video support
+
+TBD You can specify the frame index (starting frame in video), and regions of the image to use.
+
+Sora is now available in the Sweden Central region as well as East US 2.
+
+TBD To create a video generation job with inpainting, user should send a POST request to : POST `/video/generations/jobs?api-version=preview`     api-version is v1 if not otherwise specified
+
 ### Provisioned spillover General Availability (GA)
 
 Spillover is now Generally Available. Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
