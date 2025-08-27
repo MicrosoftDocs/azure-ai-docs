@@ -7,8 +7,6 @@ items:
   href: ../../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/context/context
 - name: Use Azure AI Foundry with a screen reader
   href: ../../tutorials/screen-reader.md
-- name: Set up Azure Key Vault
-  href: ../../how-to/setup-key-vault-connection.md
 - name: Feature availability
   href: ../../reference/region-support.md
 - name: Region support
