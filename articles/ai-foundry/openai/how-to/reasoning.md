@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1,
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 08/15/2025
+ms.date: 08/27/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -46,7 +46,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 | **Feature**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
 |:-------------------|:--------------------------:|:------:|:--------:|
-| **API Version** | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) |
+| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | 
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
 | **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
@@ -83,7 +83,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 
 | **Feature**  | **codex-mini**, **2025-05-16**  | **o3-pro**, **2025-06-10**   | **o4-mini**, **2025-04-16**  | **o3**, **2025-04-16** | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   |  **o1-mini**, **2024-09-12**   |
 |:-------------------|:--------------------------:|:------:|:--------|:-----:|:-------:|:--------------------------:|:---:|
-| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
+| **API Version** | `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
 | **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | Input: 128,000  <br> Output: 65,536 |
@@ -118,6 +118,35 @@ The following are currently unsupported with reasoning models:
 
 These models [don't currently support the same set of parameters](#api--feature-support) as other models that use the chat completions API. 
 
+# [Python (key-based auth)](#tab/python)
+
+You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
+
+```cmd
+pip install openai --upgrade
+```
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.chat.completions.create(
+    model="gpt-5-mini", # replace with the model deployment name of your o1 deployment.
+    messages=[
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000
+
+)
+
+print(response.model_dump_json(indent=2))
+```
+
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 You'll need to upgrade your OpenAI client library for access to the latest parameters.
@@ -139,41 +168,11 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+  api_version="2025-04-01-preview"
 )
 
 response = client.chat.completions.create(
     model="o1-new", # replace with your model deployment name 
-    messages=[
-        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
-    ],
-    max_completion_tokens = 5000
-
-)
-
-print(response.model_dump_json(indent=2))
-```
-
-# [Python (key-based auth)](#tab/python)
-
-You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
-
-```cmd
-pip install openai --upgrade
-```
-
-```python
-
-from openai import AzureOpenAI
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-03-01-preview"
-)
-
-response = client.chat.completions.create(
-    model="o1-new", # replace with the model deployment name of your o1 deployment.
     messages=[
         {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
     ],
@@ -325,6 +324,36 @@ Functionally developer messages ` "role": "developer"` are the same as system me
 
 Adding a developer message to the previous code example would look as follows:
 
+# [Python (key-based auth)](#tab/python)
+
+You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
+
+```cmd
+pip install openai --upgrade
+```
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.chat.completions.create(
+    model="gpt-5-mini", # replace with the model deployment name of your o1 deployment.
+    messages=[
+        {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000,
+    reasoning_effort = "medium" # low, medium, or high
+)
+
+print(response.model_dump_json(indent=2))
+```
+
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 You'll need to upgrade your OpenAI client library for access to the latest parameters.
@@ -358,37 +387,6 @@ response = client.chat.completions.create(
     max_completion_tokens = 5000,
     reasoning_effort = "medium" # low, medium, or high
 
-)
-
-print(response.model_dump_json(indent=2))
-```
-
-# [Python (key-based auth)](#tab/python)
-
-You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
-
-```cmd
-pip install openai --upgrade
-```
-
-```python
-
-from openai import AzureOpenAI
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-04-01-preview"
-)
-
-response = client.chat.completions.create(
-    model="o1-new", # replace with the model deployment name of your o1 deployment.
-    messages=[
-        {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
-        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
-    ],
-    max_completion_tokens = 5000,
-    reasoning_effort = "medium" # low, medium, or high
 )
 
 print(response.model_dump_json(indent=2))
