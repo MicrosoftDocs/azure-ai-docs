@@ -40,11 +40,11 @@ Follow these steps to create a new connection to Azure Key Vault.
 
 1. In the **Connected resources** section, select **+ New connection**.
 
-   :::image type="content" source="media/setup-key-vault-connection/select-azure-key-vault.jpeg" alt-text="Screenshot of the Connected resources section with the + New connection button selected, showing Azure Key Vault as an available option.":::
+   :::image type="content" source="../media/setup-key-vault-connection/select-azure-key-vault.jpeg" alt-text="Screenshot of the Connected resources section with the + New connection button selected, showing Azure Key Vault as an available option.":::
 
 1. Select **Azure Key Vault**.
 
-   :::image type="content" source="media/setup-key-vault-connection/azure-key-vault-connection.jpeg" alt-text="Screenshot of the Azure Key Vault selection dialog with Azure Key Vault selected.":::
+   :::image type="content" source="../media/setup-key-vault-connection/azure-key-vault-connection.jpeg" alt-text="Screenshot of the Azure Key Vault selection dialog with Azure Key Vault selected.":::
 
 1. Select your **Azure Key Vault**, and then select **Connect**.
 
