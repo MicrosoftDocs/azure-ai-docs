@@ -229,7 +229,6 @@ from openai import OpenAI
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
 )
 
 response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
@@ -355,17 +354,12 @@ print(response)
 You can chain responses together by passing the `response.id` from the previous response to the `previous_response_id` parameter.
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -439,17 +433,12 @@ Note from the output that even though we never shared the first input question w
 Alternatively you can manually chain responses together using the method below:
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 
@@ -476,17 +465,12 @@ print(second_response.model_dump_json(indent=2))
 ## Streaming
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -506,17 +490,12 @@ for event in response:
 The responses API supports function calling.
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(  
@@ -592,17 +571,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
@@ -677,17 +651,12 @@ Any files in the model input get automatically uploaded to the container. You do
 ## List input items
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
