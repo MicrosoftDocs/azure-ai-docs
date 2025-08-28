@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/27/2025
+ms.date: 09/01/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -25,11 +25,14 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Type | Description |
 |-----------------------------|------|--------------|
 | [Search Service 2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) | REST | New preview REST API version providing programmatic access to the data plane operations described in this table. |
-| [Knowledge agents (preview)](search-agentic-retrieval-how-to-create.md) | Query | Architectural changes to the knowledge agent definition, which now requires one or more `knowledgeSources` instead of `targetIndexes` and deprecates `defaultMaxDocsForReranker`. New `retrievalInstructions` and `outputConfiguration` properties provide greater control over query planning and execution. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md). |
-| [Knowledge sources (preview)](search-knowledge-source-overview.md) | Query | New REST APIs for creating and managing knowledge sources, which represent content that knowledge agents use to ground and answer queries. In this preview, you can create knowledge sources for [search indexes](search-knowledge-source-how-to-index.md) and [Azure blobs](search-knowledge-source-how-to-blob.md).  |
-| [Answer synthesis (preview)](search-agentic-retrieval-how-to-synthesize.md) | Query | New `answerSynthesis` modality for knowledge agents. When specified, an LLM generates a natural-language answer as an embedded step in the retrieval pipeline. This differs from the default `extractiveData` modality, which returns raw search results for downstream processing. |
-| [Strict postfiltering for vector queries (preview)](vector-search-filters.md) | Retrieval | New `strictPostFilter` mode for the `vectorFilterMode` parameter. When specified, filters are applied after the global top-`k` vector results are identified, ensuring that returned documents are a subset of the unfiltered results. |
-| [Increased maximum dimensions for vector fields](search-limits-quotas-capacity.md#index-limits) | Retrieval | The maximum dimensions per vector field are now `4096`. This update applies to all stable and preview REST API versions that support vectors and doesn't introduce breaking changes. |
+| [Knowledge agents (preview)](search-agentic-retrieval-how-to-create.md) | Agentic search | Architectural changes to the knowledge agent definition, which now requires one or more `knowledgeSources` instead of `targetIndexes` and deprecates `defaultMaxDocsForReranker`. New `retrievalInstructions` and `outputConfiguration` properties provide greater control over query planning and execution. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md). |
+| [Knowledge sources (preview)](search-knowledge-source-overview.md) | Agentic search | New REST APIs for creating and managing knowledge sources, which represent content that knowledge agents use to ground and answer queries. In this preview, you can create knowledge sources for [search indexes](search-knowledge-source-how-to-index.md) and [Azure blobs](search-knowledge-source-how-to-blob.md).  |
+| [Answer synthesis (preview)](search-agentic-retrieval-how-to-synthesize.md) | Agentic search | New `answerSynthesis` modality for knowledge agents. When specified, an LLM generates a natural-language answer as an embedded step in the retrieval pipeline. This differs from the default `extractiveData` modality, which returns raw search results for downstream processing. |
+| ["Fast path" for knowledge agents (preview)](search-agentic-retrieval-how-to-create.md) | Agentic search | New optional output configuration on a knowledge agent enables a shorter processing time if queries are concise and the initial response is sufficiently relevant. |
+| [Retrieval instructions (preview)](search-agentic-retrieval-how-to-create.md) | Agentic search | A new `retrievalInstructions` property on a knowledge agent can provide instructions for query planning in agentic retrieval. For example, you can specify criteria for including or excluding specific knowledge sources.  |
+| [Strict postfiltering for vector queries (preview)](vector-search-filters.md) | Vector search | New `strictPostFilter` mode for the `vectorFilterMode` parameter. When specified, filters are applied after the global top-`k` vector results are identified, ensuring that returned documents are a subset of the unfiltered results. |
+| [Increased maximum dimensions for vector fields](search-limits-quotas-capacity.md#index-limits) | Vector search | The maximum dimensions per vector field are now `4096`. This update applies to all stable and preview REST API versions that support vectors and doesn't introduce breaking changes. |
+| [Improved indexer runtime tracking information (preview)](search-howto-run-reset-indexers.md) | Indexers | [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics?view=rest-searchservice-2025-08-01-preview&preserve-view=true) response now provides cumulative indexer processing information for the service all-up. [Get Status - Indexers](/rest/api/searchservice/get-service-statistics/get-status?view=rest-searchservice-2025-08-01-preview&preserve-view=true) shows the same information, but for a specific indexer. |
 
 ## July 2025
 
