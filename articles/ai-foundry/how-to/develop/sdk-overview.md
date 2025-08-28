@@ -8,7 +8,7 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/15/2025
+ms.date: 08/27/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley
@@ -120,6 +120,10 @@ The [Azure AI Foundry Projects client library for JavaScript](/javascript/api/ov
     
     const endpoint = "your_project_endpoint"; // Replace with your actual endpoint
     const project = new AIProjectClient(endpoint, new DefaultAzureCredential());
+    const projectClient = await project.getAzureOpenAIClient({
+        // The API version should match the version of the Azure OpenAI resource
+        apiVersion: "2024-12-01-preview"
+    });
     // The AIProjectClient lets you access models, data, and services in your project.
     ```
 
@@ -168,6 +172,7 @@ The [Azure AI Foundry Projects client library for .NET](/dotnet/api/overview/azu
     ```
 
 ::: zone-end
+
 After you create a client, you can use it to access models, run evaluations, and connect to other AI services. The next section lists the available client libraries and shows how to use them for specific Azure AI services.
 
 <a name="azure-ai-foundry-agent-service"></a>
