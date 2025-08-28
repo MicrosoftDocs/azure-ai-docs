@@ -403,7 +403,7 @@ api-key: {{admin-api-key}}
 
 + `postFilter` is applied after query execution. If k=50 returns 50 matches on the vector query side, followed by a post-filter applied to the 50 matches, your results are reduced by the number of documents that meet filter criteria. This leaves you with fewer than 50 documents to pass to semantic ranker. Keep this in mind if you're using semantic ranking. The semantic ranker works best if it has 50 documents as input.
 
-+ `strictPostFilter` (preview) is applied on the unfiltered top-`k` results after query execution. It always returns less than or equal to `k` documents. If the unfiltered k=50 returns 50 unfiltered results, and the filter matches 30 documents, only 30 documents are returned in the result set, even if the index has more than 30 documents that match the filter. Since it has the greatest reduction in recall, we don't recommend that you use this mode with semantic ranker.
++ `strictPostFilter` (preview) is applied on the unfiltered top-`k` results after query execution. It always returns less than or equal to `k` documents. If the unfiltered k=50 returns 50 unfiltered results, and the filter matches 30 documents, only 30 documents are returned in the result set, even if the index has more than 30 documents that match the filter. Since this mode has the greatest reduction in recall, we don't recommend that you use it with semantic ranker.
 
 ## Configure a query response
 
