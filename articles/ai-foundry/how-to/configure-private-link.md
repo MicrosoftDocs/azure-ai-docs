@@ -48,6 +48,18 @@ You get several hub default resources in your resource group. You need to config
     > [!IMPORTANT]
     > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
 
+## Securely connect to your hub or project
+
+To connect to a hub or project secured by a virtual network, use one of these methods:
+
+* [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways)-Connect on-premises networks to the virtual network over a private connection on the public internet. Choose from two VPN gateway types:
+
+    * [Point-to-site](/azure/vpn-gateway/vpn-gateway-howto-point-to-site-resource-manager-portal): Each client computer uses a VPN client to connect to the virtual network.
+    * [Site-to-site](/azure/vpn-gateway/tutorial-site-to-site-portal): A VPN device connects the virtual network to your on-premises network.
+
+* [ExpressRoute](https://azure.microsoft.com/services/expressroute/)-Connect on-premises networks to Azure over a private connection through a connectivity provider.
+* [Azure Bastion](/azure/bastion/bastion-overview)-Create an Azure virtual machine (a jump box) in the virtual network, then connect to it through Azure Bastion using RDP or SSH from your browser. Use the VM as your development environment. Because it's in the virtual network, it can access the workspace directly.
+
 :::zone pivot="fdp-project"
 
 ## Create a Foundry project that uses a private endpoint
@@ -61,6 +73,9 @@ When creating a new project, use the following steps to create the project.
 
     - From __Basics__, select the same __Region__ as your virtual network.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+
+    > [!NOTE]
+    > In the portal UI, the target to which you create the private endpoint may be labeled as an "account" or "resource". Select your Azure AI Foundry project resource when prompted.
 
 1. Continue through the forms to create the project. When you reach the __Review + create__ tab, review your settings and select __Create__ to create the project.
 
@@ -146,6 +161,9 @@ az network private-endpoint dns-zone-group create \
 
     - From __Basics__, select the same __Region__ as your virtual network.
     - From the __Virtual Network__ form, select the virtual network and subnet that you want to connect to.
+
+    > [!NOTE]
+    > The portal refers to the PE target as an "account" or "resource". Choose your Azure AI Foundry project resource as the target.
 
 1. After populating the forms with any other network configurations you require, use the __Review + create__ tab to review your settings and select __Create__ to create the private endpoint.
 
