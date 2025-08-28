@@ -1,6 +1,6 @@
 ---
 title: Azure AI Foundry Status Dashboard (Preview)
-description: Discover the Azure AI Foundry Status Dashboard (Preview) for real-time updates on service health, incident reports, and planned maintenance notifications.
+description: Discover the Azure AI Foundry Status Dashboard (Preview) for real-time updates on service health, incident reports.
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: nisi
@@ -26,9 +26,6 @@ feedback.
 
 - **Incident Reports** with timelines, resolutions, and root cause
   summaries
-
-- **Planned Maintenance Notifications** with expected impact and
-  duration
 
 - **Historical Uptime** to help assess service reliability over time
 
