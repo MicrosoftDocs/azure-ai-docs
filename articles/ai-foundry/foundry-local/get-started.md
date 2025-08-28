@@ -103,7 +103,7 @@ Each project includes:
 - Best practices implementation
 
 > [!TIP]
-> These starter projects align with scenarios covered in our [how-to guides](/azure/ai-foundry/howto/) and provide immediate practical value.
+> These starter projects align with scenarios covered in our [how-to guides](how-to/how-to-chat-application-with-open-web-ui.md) and provide immediate practical value.
 
 > [!TIP]
 > You can replace `phi-3.5-mini` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
