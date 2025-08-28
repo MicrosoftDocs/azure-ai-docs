@@ -73,6 +73,7 @@ To help AI Agents make well-informed decisions with confidence, knowledge serves
 To learn more about Agent Knowledge tools, see [Knowledge tool overview](https://aka.ms/AgentToolOverviewDoc).
 
 <a name="limits"></a> 
+
 ## Azure Key Vault limitations
 
 All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your subscription. Enterprise customers who prefer to bring their own Azure Key Vault should consider the these limitations:
