@@ -188,5 +188,5 @@ This REST API version introduces agentic retrieval and knowledge agents. Each ag
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-create.md)
++ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
 + [Create a knowledge source](search-knowledge-source-overview.md)
