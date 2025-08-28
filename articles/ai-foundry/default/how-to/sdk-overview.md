@@ -3,8 +3,6 @@ title: How to use the Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article gives you an overview of the Azure AI Foundry SDK and how to get started using it. 
 ms.service: azure-ai-foundry
-ms.custom:
-  - preview
 ai-usage: ai-assisted
 ms.topic: how-to
 ms.date: 08/15/2025

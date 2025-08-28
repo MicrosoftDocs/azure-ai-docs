@@ -4,7 +4,7 @@ items:
 - name: Quickstart
   href: tutorials/get-started-code.md
 - name: Ask the Foundry agent
-  href: ../foundry-agent/ask-foundry-agent.md?context=/azure/ai-foundry/preview/context/context
+  href: ../foundry-agent/ask-foundry-agent.md?context=/azure/ai-foundry/default/context/context
 
 - name: API & SDK
   items:

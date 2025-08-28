@@ -12,9 +12,9 @@ ms.topic: quickstart
 # see-also: includes/get-started-code-fdp.md
 ---
 
-# Quickstart - Get started with Azure AI Foundry (Preview)
+# Quickstart - Get started with Azure AI Foundry
 
-In this quickstart, you use [Azure AI Foundry (preview)]() to:
+In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -30,12 +30,12 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 - An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
 
-## Start with a project and model
+## Start with a model
 
-1. Sign in to [Azure AI Foundry (preview)]().
+1. Sign in to [Azure AI Foundry]((https://ai.azure.com/?cid=learnDocs).
 1. In the top right, select **Discover**.
 1. In the left pane, select **Models**.
-1. Select **gpt-40**.
+1. Search for, the select **gpt-40**.
 1. Select **Deploy**.
 
 ## Set up your environment  
@@ -135,10 +135,7 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. In the top right, select **Build**.
-1. In the left menu, select **Models**.
-1. Select your model.
-1. Chat with your model.
+Once you deploy your model, you're in the **Build** section ready to chat with it.
 
 # [Python](#tab/python)
 
