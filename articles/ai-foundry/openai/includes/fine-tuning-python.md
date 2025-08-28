@@ -140,14 +140,13 @@ After you upload your training and validation files, you're ready to start the f
 
 The following Python code shows an example of how to create a new fine-tune job with the Python SDK:
 
-In this example we are also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you.
-
 ```python
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
-    model="gpt-4.1-2025-04-14", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
-    seed = 105  # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
+    model="gpt-4.1-2025-04-14", # Enter base model name.
+    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Azure OpenAI the model cannot contain dot/period characters.
+    seed=105, # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
 )
 
 job_id = response.id
@@ -160,9 +159,24 @@ print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
+If you are fine tuning a model that supports [Global Training](../includes/fine-tune-models.md), you can specify the training type by using the `extra_body` named argument:
+
+```python
+response = client.fine_tuning.jobs.create(
+    training_file=training_file_id,
+    validation_file=validation_file_id,
+    model="gpt-4.1-2025-04-14",
+    suffix="my-model",
+    seed=105,
+    extra_body={ "trainingType": "globalstandard" }
+)
+
+job_id = response.id
+```
+
 You can also pass additional optional parameters like hyperparameters to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters. 
 
-The current supported hyperparameters for fine-tuning are:
+The current supported hyperparameters for Supervised Fine-Tuning are:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
@@ -171,7 +185,7 @@ The current supported hyperparameters for fine-tuning are:
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 |`seed` | integer |	The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
 
-To set custom hyperparameters with the 1.x version of the OpenAI Python API:
+To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of the `method`:
 
 ```python
 from openai import AzureOpenAI
@@ -184,12 +198,23 @@ client = AzureOpenAI(
 
 client.fine_tuning.jobs.create(
   training_file="file-abc123", 
-  model="gpt-4.1-2025-04-14", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
-  hyperparameters={
-    "n_epochs":2
+  model="gpt-4.1-2025-04-14",
+  suffix="my-model",
+  seed=105,
+  method={
+    "type": "supervised", # In this case, the job will be using Supervised Fine Tuning.
+    "supervised": {
+      "hyperparameters": {
+        "n_epochs": 2
+      }
+    }
   }
 )
 ```
+
+> [!NOTE]
+> See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
+
 
 ## Check fine-tuning job status
 
