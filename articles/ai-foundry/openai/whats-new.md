@@ -27,6 +27,20 @@ Realtime API audio model updates:
 - Higher Audio Quality: Superior audio quality for a better user experience.
 - Improved Function Calling: Enhanced ability to call custom code defined by developers.
 
+realtime api GA
+- and you can add images to realtime api?
+gpt-realtime pubprev? 
+- natively responds in audio. wide range of emotion. can switch langauges.
+
+and gpt-audio
+
+Key Model Features
+•     New natural, clear, and emotionally expressive voice options.
+•     Instruction Following – Enhanced adherence to tone, pacing, and escalation directives.
+•     Function Calling – Reliable and accurate tool invocation for production-grade applications.
+•     Audio Quality – Glitch-free output, improved alphanumeric reproduction, and modality control.
+•     Conversation Mode – Real-world turn-taking behavior for natural interactions.
+•     Image Input – Add and discuss images via voice without video requirements.
 
 We’ve added 2 new voices intended to push quality to the highest level, marin
 and cedar . These voices will sound more natural and less robotic than previous
