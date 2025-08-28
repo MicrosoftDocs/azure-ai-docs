@@ -1,7 +1,7 @@
 ---
-title: How to add and manage data in your Azure AI Foundry project
+title: How to add and manage data in your Azure AI Foundry hub-based project
 titleSuffix: Azure AI Foundry
-description: Learn how to add and manage data in your Azure AI Foundry project.
+description: Learn how to add and manage data in your Azure AI Foundry hub-based project.
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -10,16 +10,16 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 08/27/2025
 ms.author: jburchel 
 author: jonburchel 
 ---
 
-# How to add and manage data in your Azure AI Foundry project
+# How to add and manage data in your Azure AI Foundry hub-based project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how to create and manage data in Azure AI Foundry portal. Data can be used as a source for indexing in Azure AI Foundry portal.
+This article describes how to create and manage data in Azure AI Foundry hub-based projects. Data can be used as a source for indexing in Azure AI Foundry portal.
 
 Data can help when you need these capabilities:
 
@@ -37,7 +37,7 @@ Data can help when you need these capabilities:
 
 ## Add new data
 
-You are charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
+You're charged for the storage used by your data. To help estimate the cost, you can use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/). The data is stored in a container called `workspaceblobstore` in your project's Azure Storage account. 
 
 When you create your data, you need to set the data type. Azure AI Foundry supports these data types:
 
@@ -64,7 +64,7 @@ You can upload files or folders directly to your workspace storage account by se
 
 :::image type="content" source="../media/data-add/upload-file-folder.png" alt-text="This screenshot shows how to upload a file.":::
 
-When you upload files or folders, they are uploaded to the default `workspaceblobstore` connection. The files and folders are uploaded to the root of the storage container.
+When you upload files or folders, they're uploaded to the default `workspaceblobstore` connection. The files and folders are uploaded to the root of the storage container.
 
 ### Add file, folder, and table data from Azure Storage
 
@@ -99,7 +99,7 @@ These steps explain how to add an existing file, folder, or table data resource 
 
 ## Manage data
 
-After you add data to your hub-based project, you can you can delete, archive, restore, tag, archive, and preview the data in the Azure AI Foundry.
+After you add data to your hub-based project, you can delete, archive, restore, tag, archive, and preview the data in the Azure AI Foundry.
 
 ### Delete data
 
