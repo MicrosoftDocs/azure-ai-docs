@@ -35,7 +35,7 @@ Filters apply to `filterable` *nonvector* fields, either string or numeric, to i
 
 If your index lacks suitable text or numeric fields, check for document metadata that might be useful in filtering, such as `LastModified` or `CreatedBy` properties.
 
-The `vectorFilterMode` parameter controls when the filter is applied in the vector search process, with `k` setting the maximum number of nearest neighbors to return. Depending on the filter mode and how selective your filter is, more than `k` results might be returned.
+The `vectorFilterMode` parameter controls when the filter is applied in the vector search process, with `k` setting the maximum number of nearest neighbors to return. Depending on the filter mode and how selective your filter is, fewer than `k` results might be returned.
 
 ## Define a filter
 
@@ -74,7 +74,7 @@ POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api
     }
 ```
 
-In this example, the vector is a numeric representation of the following query string: "what Azure services support full text search". The query targets the `contentVector` field.
+In this example, the vector embedding targets the `contentVector` field.
 
 The filter criteria apply to `category`, a filterable text field. Because the `preFilter` mode is used, the filter is applied before the search engine runs the query, so only documents in the `Databases` category are considered during the vector search.
 
@@ -90,15 +90,15 @@ The `vectorFilterMode` parameter determines when and how the filter is applied r
 
 Prefiltering applies filters before query execution, which reduces the candidate set for the vector search algorithm. The top-`k` results are then selected from this filtered set.
 
-In a vector query, `preFilter` is the default mode.
+In a vector query, `preFilter` is the default mode because it favors recall and quality over latency.
 
 :::image type="content" source="media/vector-search-filters/pre-filter.svg" alt-text="Diagram of prefilters." border="true" lightbox="media/vector-search-filters/pre-filter.png":::
 
 ### [postFilter](#tab/postfilter-mode)
 
-Postfiltering applies filters after query execution, which narrows the search results. This mode processes results within each segment and then merges the filtered results from all segments to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
+Postfiltering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
 
-In a vector query, use `postFilter` for this task.
+In a vector query, to use this option, use `"vectorFilterMode": "postFilter"`.
 
 :::image type="content" source="media/vector-search-filters/post-filter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/post-filter.png":::
 
@@ -108,7 +108,7 @@ Strict postfiltering applies filters after identifying the global top-`k` result
 
 With strict postfiltering, highly selective filters or small `k` values can return zero results (even if matches exist) because only documents that match the filter within the global top `k` are returned. Don't use this mode if missing relevant results could have serious consequences, such as in healthcare or patent searches.
 
-In a vector query, use `strictPostFilter` and the latest preview version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions) for this task.
+In a vector query, to use this option, use `"vectorFilterMode": "postFilter"` and use the latest preview version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions).
 
 ---
 
