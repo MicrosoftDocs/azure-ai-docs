@@ -1,22 +1,18 @@
 ---
 title: "Quickstart - Get started with Azure AI Foundry (Preview)"
 titleSuffix: Azure AI Foundry
-description: How to use the Preview experience of the Azure AI Foundry portal and the Azure AI Foundry SDK.
+description: Get started with Azure AI Foundry. Create projects, deploy models, and chat with agents using Python, Java, TypeScript, C#, or REST API. Try it today.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
 ms.date: 08/20/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart
-ms.custom:
-  - preview
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 # see-also: includes/get-started-code-fdp.md
 ---
 
 # Quickstart - Get started with Azure AI Foundry (Preview)
-
-[!INCLUDE [preview](../includes/preview.md)]
 
 In this quickstart, you use [Azure AI Foundry (preview)]() to:
 
@@ -28,8 +24,6 @@ In this quickstart, you use [Azure AI Foundry (preview)]() to:
 > * Upload files to the agent
 
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
 

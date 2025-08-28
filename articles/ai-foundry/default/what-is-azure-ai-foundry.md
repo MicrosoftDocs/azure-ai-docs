@@ -1,23 +1,18 @@
 ---
-title: What is Azure AI Foundry (Preview)?
+title: Azure AI Foundry Overview
 titleSuffix: Azure AI Foundry
-description: Azure AI Foundry (preview) is a preview version of the Azure AI Foundry portal.
+description: Build, test, and deploy AI applications faster with Azure AI Foundry. Experience simplified management, robust monitoring, and enterprise-ready capabilities.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
 ms.date: 08/20/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
-ms.custom:
-  - preview
 # customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
-# What is Azure AI Foundry (Preview)?
+# What is Azure AI Foundry Overview
 
-[!INCLUDE [preview](./includes/preview.md)]
-
-[Azure AI Foundry (preview)]() provides early access to the next-generation experience of the Azure AI Foundry portal. 
 
 
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
@@ -32,8 +27,6 @@ Azure AI Foundry unifies agents, models, and tools under a single management gro
 - Work across model providers with a consistent API contract.
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
-
-[!INCLUDE [feature-preview](./includes/feature-preview.md)]
 
 ## New user experience
 
