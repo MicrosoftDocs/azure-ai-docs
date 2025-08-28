@@ -372,14 +372,6 @@ You can store the results of a batch transcription to a writable Azure Blob stor
 
 If you want to store the transcription results in an Azure Blob storage container by using the [Trusted Azure services security mechanism](batch-transcription-audio-data.md#trusted-azure-services-security-mechanism), consider using [Bring-your-own-storage (BYOS)](bring-your-own-storage-speech-resource.md). For more information, see [Use the Bring your own storage (BYOS) Azure AI Foundry resource for speech to text](bring-your-own-storage-speech-resource-speech-to-text.md).
 
-## Bulk submissions and polling
-
-Batch transcription is asynchronous, and requests are processed one at a time in each region. Submitting jobs at a higher rate does not speed up processing. For example, sending 600 or 6,000 requests per minute has no effect on throughput.
-
-[When monitoring job status](./batch-transcription-get.md), polling every few seconds is unnecessary. If you submit multiple jobs, only the first job will be processed initially; subsequent jobs will wait until the first job completes. Polling all jobs frequently increases system load without benefit. Checking status every ten minutes is sufficient, and polling more often than once per minute is not recommended. 
-
-To optimize throughput for large-scale batch transcription, consider distributing your jobs across multiple supported Azure regions. This approach can help balance load and reduce overall processing time, provided your data and compliance requirements allow for multi-region usage. Review [region availability](./regions.md) and ensure your storage and resources are accessible from each region you plan to use.
-
 ## Related content
 
 - [Learn more about batch transcription](batch-transcription.md)

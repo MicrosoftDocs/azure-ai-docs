@@ -8,8 +8,9 @@ ms.date: 08/27/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ai.usage: ai-assisted
-zone_pivot_groups: setup-key-vault
+zone_pivot_groups: set-up-key-vault
 ---
+
 # Set up a Key Vault connection in Azure AI Foundry
 
 Azure Key Vault is a service for securely storing and accessing secrets.
@@ -25,9 +26,9 @@ Create Azure Key Vault connections only when needed.
 
 If you bring your own Azure Key Vault, review these limitations:
 
-1.  One Azure Key Vault connection per AI Foundry resource is allowed.  Delete an Azure Key Vault connection only if no other connections exist at the AI Foundry resource or project level. AI Foundry doesn't support secret migration, so remove and recreate connections yourself.
-1.  Deleting the underlying Azure Key Vault breaks the AI Foundry resource. Key Vault stores secrets for connections that don't use Entra ID, so any AI Foundry feature that depends on those connections stops working.
-1. Deleting the AI Foundry resource's connection secrets stored in your bring-your-own (BYO) Azure Key Vault can break connections to other services. It may break connections to other services.
+- One Azure Key Vault connection per AI Foundry resource is allowed.  Delete an Azure Key Vault connection only if no other connections exist at the AI Foundry resource or project level. AI Foundry doesn't support secret migration, so remove and recreate connections yourself.
+- Deleting the underlying Azure Key Vault breaks the AI Foundry resource. Key Vault stores secrets for connections that don't use Entra ID, so any AI Foundry feature that depends on those connections stops working.
+- Deleting the AI Foundry resource's connection secrets stored in your bring-your-own (BYO) Azure Key Vault can break connections to other services. It may break connections to other services.
 
 ::: zone pivot="ai-foundry-portal"
 

@@ -1497,7 +1497,7 @@ groups:
     - id: programming-language-csharp
       title: C#
     - id: programming-language-javascript
-      title: JavaScript
+      title: JavaScript/TypeScript
     - id: programming-language-java
       title: Java
       
@@ -1561,6 +1561,8 @@ groups:
   pivots:
   - id: csharp
     title: C#
+  - id: java
+    title: Java
   - id: javascript
     title: JavaScript
   - id: python
@@ -1608,11 +1610,11 @@ groups:
   - id: rest-api
     title: REST API
 # Owner: jburchel/jonburchel
-- id: setup-key-vault
-  title: Setup methods
-  prompt: Choose a setup method
+- id: set-up-key-vault
+  title: Set up Key Vault
+  prompt: Choose a method to set up Key Vault
   pivots:
   - id: ai-foundry-portal
-    title: Azure AI Foundry Portal
+    title: Azure AI Foundry portal
   - id: bicep
-    title: BICEP
+    title: Bicep

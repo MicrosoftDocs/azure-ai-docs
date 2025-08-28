@@ -41,8 +41,6 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
-- name: Vulnerability management
-  href: ../../concepts/vulnerability-management.md
 - name: Disaster recovery
   href: ../../how-to/disaster-recovery.md
 - name: Security baseline
