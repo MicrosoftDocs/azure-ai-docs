@@ -48,8 +48,8 @@ This REST API provides:
 
 ```http
 POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api-version}
-    Content-Type: application/json
-    api-key: {admin-api-key}
+Content-Type: application/json
+api-key: {admin-api-key}
     
     {
         "count": true,
@@ -74,9 +74,7 @@ POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api
     }
 ```
 
-In this example, the vector embedding targets the `contentVector` field.
-
-The filter criteria apply to `category`, a filterable text field. Because the `preFilter` mode is used, the filter is applied before the search engine runs the query, so only documents in the `Databases` category are considered during the vector search.
+In this example, the vector embedding targets the `contentVector` field, and the filter criteria apply to `category`, a filterable text field. Because the `preFilter` mode is used, the filter is applied before the search engine runs the query, so only documents in the `Databases` category are considered during the vector search.
 
 ## Set the filter mode
 
@@ -98,7 +96,7 @@ In a vector query, `preFilter` is the default mode because it favors recall and 
 
 Postfiltering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
 
-In a vector query, to use this option, use `"vectorFilterMode": "postFilter"`.
+To use this option in a vector query, use `"vectorFilterMode": "postFilter"`.
 
 :::image type="content" source="media/vector-search-filters/post-filter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/post-filter.png":::
 
@@ -108,7 +106,7 @@ Strict postfiltering applies filters after identifying the global top-`k` result
 
 With strict postfiltering, highly selective filters or small `k` values can return zero results (even if matches exist) because only documents that match the filter within the global top `k` are returned. Don't use this mode if missing relevant results could have serious consequences, such as in healthcare or patent searches.
 
-In a vector query, to use this option, use `"vectorFilterMode": "postFilter"` and use the latest preview version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions).
+To use this option in a vector query, use `"vectorFilterMode": "strictPostFilter"` with the latest preview version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions).
 
 ---
 
