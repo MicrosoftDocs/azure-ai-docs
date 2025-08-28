@@ -44,7 +44,7 @@ Filters determine the scope of vector queries and are defined using [Documents -
 This REST API provides:
 
 + `filter` for the criteria.
-+ `vectorFilterMode` for pre-query or post-query filtering. For supported modes, see the [next section](#set-the-vector-filter-mode).
++ `vectorFilterMode` for pre-query or post-query filtering. For supported modes, see the [next section](#set-the-filter-mode).
 
 ```http
 POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api-version}
