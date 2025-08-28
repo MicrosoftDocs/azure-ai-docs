@@ -17,7 +17,7 @@ Prompt shields analyzes LLM inputs and detects adversarial user input attacks.
 
 [!INCLUDE [prompt-shield-attack-info](../../../ai-services/content-safety/includes/prompt-shield-attack-info.md)]
 
-## Spotlighting for prompt shields
+## Spotlighting for prompt shields (preview)
 
 Spotlighting is a feature that enhances protection against indirect attacks by tagging the input documents with special formatting to indicate lower trust to the model. When spotlighting is enabled, the service transforms the document content using base-64 encoding, and the model treats this content as less trustworthy than direct user and system prompts. This helps prevent the model from executing unintended commands or actions that are found in the content of the documents.
 
