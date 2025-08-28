@@ -259,7 +259,7 @@ api-key: {{admin-api-key}}
         }
     ],
     "search": "historic hotel walk to restaurants and shopping",
-    "vectorFilterMode": "postFilter",
+    "vectorFilterMode": "preFilter",
     "filter": "ParkingIncluded",
     "top": "10"
 }
@@ -390,7 +390,7 @@ api-key: {{admin-api-key}}
     "captions": "extractive",
     "answers": "extractive",
     "filter": "ParkingIsIncluded'",
-    "vectorFilterMode": "postFilter",
+    "vectorFilterMode": "preFilter",
     "top": "50"
 }
 ```
@@ -399,9 +399,11 @@ api-key: {{admin-api-key}}
 
 + The filter mode can affect the number of results available to the semantic reranker. As a best practice, it's smart to give the semantic ranker the maximum number of documents (50). If prefilters or postfilters are too selective, you might be underserving the semantic ranker by giving it fewer than 50 documents to work with.
 
-+ Prefiltering is applied before query execution. If prefilter reduces the search area to 100 documents, the vector query executes over the "DescriptionVector" field for those 100 documents, returning the k=50 best matches. Those 50 matching documents then pass to RRF for merged results, and then to semantic ranker.
++ `preFilter` is applied before query execution. If prefilter reduces the search area to 100 documents, the vector query executes over the `DescriptionVector` field for those 100 documents, returning the k=50 best matches. Those 50 matching documents then pass to RRF for merged results, and then to semantic ranker.
 
-+ Postfilter is applied after query execution. If k=50 returns 50 matches on the vector query side, followed by a post-filter applied to the 50 matches, your results are reduced by the number of documents that meet filter criteria. This leaves you with fewer than 50 documents to pass to semantic ranker. Keep this in mind if you're using semantic ranking. The semantic ranker works best if it has 50 documents as input.
++ `postFilter` is applied after query execution. If k=50 returns 50 matches on the vector query side, followed by a post-filter applied to the 50 matches, your results are reduced by the number of documents that meet filter criteria. This leaves you with fewer than 50 documents to pass to semantic ranker. Keep this in mind if you're using semantic ranking. The semantic ranker works best if it has 50 documents as input.
+
++ `strictPostFilter` (preview) is applied on the unfiltered top-`k` results after query execution. It always returns less than or equal to `k` documents. If the unfiltered k=50 returns 50 unfiltered results, and the filter matches 30 documents, only 30 documents are returned in the result set, even if the index has more than 30 documents that match the filter. Since this mode has the greatest reduction in recall, we don't recommend that you use it with semantic ranker.
 
 ## Configure a query response
 

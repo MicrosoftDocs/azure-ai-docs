@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/19/2025
+ms.date: 08/28/2025
 ---
 
 # Migrate agentic retrieval code to the latest version
@@ -95,7 +95,7 @@ PUT https://{{search-url}}/knowledgeSources/{{source-name}}?api-version=2025-08-
     }
 ```
 
-This example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure Storage container. For more information, see [Create a search index knowledge source](search-knowledge-source-how-to-index.md) and [Create a blob knowledge source](search-knowledge-source-how-to-blob.md).
+This example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure blob. For more information, see [Create a knowledge source](search-knowledge-source-overview.md).
 
 ### Update the agent
 
@@ -188,6 +188,5 @@ This REST API version introduces agentic retrieval and knowledge agents. Each ag
 ## Related content
 
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-create.md)
-+ [Create a search index knowledge source](search-knowledge-source-how-to-index.md)
-+ [Create a blob knowledge source](search-knowledge-source-how-to-blob.md)
++ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
++ [Create a knowledge source](search-knowledge-source-overview.md)
