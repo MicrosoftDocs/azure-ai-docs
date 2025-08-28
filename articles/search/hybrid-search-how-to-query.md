@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 08/28/2025
 ---
 
 # Create a hybrid query in Azure AI Search
@@ -269,7 +269,7 @@ api-key: {{admin-api-key}}
 
 + Filters are applied to the content of filterable fields. In this example, the ParkingIncluded field is a boolean and it's marked as `filterable` in the index schema.
 
-+ In hybrid queries, filters can be applied before query execution to reduce the query surface, or after query execution to trim results. `"preFilter"` is the default. To use `postFilter`, set the [filter processing mode](vector-search-filters.md) as shown in this example.
++ In hybrid queries, filters can be applied before query execution to reduce the query surface or after query execution to trim results. `"preFilter"` is the default. To use `postFilter` or `strictPostFilter` (preview), set the [filter processing mode](vector-search-filters.md) as shown in this example.
 
 + When you postfilter query results, the number of results might be less than top-n.
 
