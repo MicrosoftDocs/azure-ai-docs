@@ -13,7 +13,7 @@ ms.topic: concept-article
 # see also: ai-foundry/how-to/costs-plan-manage.md
 ---
 
-# Manage Costs for Azure AI Foundry
+# Manage costs for Azure AI Foundry
 
 This article describes how to plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs.
 
