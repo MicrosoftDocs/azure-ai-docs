@@ -32,7 +32,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Start with a model
 
-1. Sign in to [Azure AI Foundry]((https://ai.azure.com/?cid=learnDocs).
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. In the top right, select **Discover**.
 1. In the left pane, select **Models**.
 1. Search for, the select **gpt-40**.
