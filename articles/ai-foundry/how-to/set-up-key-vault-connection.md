@@ -1,5 +1,5 @@
 ---
-title: Set Up Azure Key Vault Connection in AI Foundry
+title: Set up an Azure Key Vault Connection (Preview)
 description: Learn how to securely connect your Azure Key Vault to AI Foundry. Follow step-by-step instructions to manage secrets and ensure seamless integration.
 author: jonburchel
 ms.author: jburchel
@@ -11,9 +11,8 @@ ai.usage: ai-assisted
 zone_pivot_groups: set-up-key-vault
 ---
 
-# Set up an Azure Key Vault connection in Azure AI Foundry
+# Set up an Azure Key Vault connection in Azure AI Foundry (Preview)
 
-Store and access secrets securely in Azure Key Vault.
 If you don't set up a Key Vault connection, Azure AI Foundry stores connection details in a Microsoft-managed Key Vault outside your subscription. To manage your own secrets, connect your Azure Key Vault to Azure AI Foundry.
 
 > [!NOTE]
