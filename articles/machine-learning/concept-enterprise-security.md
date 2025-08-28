@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: build-2023
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 09/12/2024
 # Customer Intent: As an admin, I want to understand how to secure Azure Machine Learning resources and workflows so that I can comply with my organization's security policies.
@@ -51,6 +51,8 @@ Each workspace has an associated system-assigned [managed identity](/azure/activ
 The system-assigned managed identity is used for internal service-to-service authentication between Azure Machine Learning and other Azure resources. Users can't access the identity token, and they can't use it to gain access to these resources. Users can access the resources only through [Azure Machine Learning control and data plane APIs](how-to-assign-roles.md), if they have sufficient RBAC permissions.
 
 We don't recommend that admins revoke the access of the managed identity to the resources mentioned in the preceding table. You can restore access by using the [resync keys operation](how-to-change-storage-access-key.md).
+
+You should not grant users to have permission on the workspace's storage account to users that you do not want to be able to access workspace computes or identities. The workspace's storage account contains code and executables that will be run on your workspace computes. Users that have access to that storage account can edit or change code that will be executed in the context of the workspace, allowing access to workspace data and credentials.
 
 > [!NOTE]
 > If your Azure Machine Learning workspace has compute targets (for example, compute cluster, compute instance, or Azure Kubernetes Service [AKS] instance) that were created _before May 14, 2021_, you might have an additional Microsoft Entra account. The account name starts with `Microsoft-AzureML-Support-App-` and has contributor-level access to your subscription for every workspace region.

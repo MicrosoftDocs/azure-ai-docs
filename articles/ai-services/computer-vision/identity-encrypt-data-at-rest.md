@@ -7,10 +7,10 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 08/21/2025
 ms.author: pafarley
-ms.custom: cogserv-non-critical-vision
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 #Customer intent: As a user of the Face service, I want to learn how encryption at rest works.
 ---
@@ -26,5 +26,5 @@ The Face service automatically encrypts your data when it's persisted to the clo
 ## Related content
 
 * For a full list of services that support CMK, see [Customer-Managed Keys for Azure AI services](../encryption/cognitive-services-encryption-keys-portal.md)
-* [What is Azure Key Vault?](/azure/key-vault/general/overview)?
+* [What is Azure Key Vault?](/azure/key-vault/general/overview)
 

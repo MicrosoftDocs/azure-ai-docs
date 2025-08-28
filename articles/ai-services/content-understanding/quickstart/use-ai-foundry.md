@@ -1,122 +1,101 @@
 ---
-title: "Use Azure AI Content Understanding Analyzer templates in Azure AI Foundry portal"
+title: "Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal"
 titleSuffix: Azure AI services
-description: Learn how to use Content Understanding Analyzer templates in Azure AI Foundry portal
-author: laujan
+description: Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal
+author: PatrickFarley 
+ms.author: kabrow
 manager: nitinme
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
-ms.date: 11/19/2024
-ms.custom: ignite-2024-understanding-release
+ms.custom:
+  - build-2025
 ---
 
-# Use Content Understanding in Azure AI Foundry portal
-[Azure AI Foundry portal](https://ai.azure.com/) is a comprehensive platform for developing and deploying generative AI applications and APIs responsibly. This guide shows you how to use Content Understanding and build an analyzer, either by creating your own schema from scratch or by using a suggested analyzer template.
+# Quickstart: Use Content Understanding with a single file
 
-  :::image type="content" source="../media/quickstarts/ai-foundry-overview.png" alt-text="Screenshot of the Content Understanding workflow in the Azure AI Foundry.":::
+This quickstart shows you how to use the Content Understanding service in the [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding) to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
+ 
+Suppose you have files—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows.
+ 
+In this guide, you build and test an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
 
-## Steps to create a Content Understanding analyzer
+:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/overview/component-overview-updated.png" :::
 
-Azure AI Foundry portal enables you to build a Content Understanding analyzer tailored to your specific needs. An analyzer can extract data from your content based on your scenario.
+## Prerequisites
 
-Follow these steps to create your own analyzer:
+To get started, make sure you have the following resources and permissions:
 
-1. Upload a sample data file.
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/).
 
-1. Select an analyzer template or build your own schema from scratch.
+* An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. Use a project to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
 
-1. Customize the schema to fit your specific scenario.
+[!INCLUDE [hub based project required](../../../ai-foundry/includes/uses-hub-only.md)]
 
-1. Test the analyzer on your data and validate its accuracy.
+## Create your single-file task powered by Content Understanding Standard mode
 
-1. Build the analyzer to integrate it into your applications.
+Follow these steps to create a custom task in the Azure AI Foundry. Use this task to build your first analyzer.
 
-## Build a schema
+1. Go to the **Home** page of [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Select your hub based project. You might need to select **View all resources** to see your project.
+1. Select **Content Understanding** from the left navigation pane.
+1. Select **+ Create**.
+1. In this guide, you create a `Single-file task` utilizing Content Understanding Standard mode, but if you're interested in creating a multi-file task utilizing Pro mode, refer to [Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal](./use-ai-foundry-pro-mode.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+1. Enter a name for your task. Optionally, enter a description and change other settings.
+1. Select **Create**.
 
-To follow is an example of building an analyzer to extract key data from an invoice document:
+## Create your first analyzer
 
-1. Upload a sample file of an invoice document or any other data relevant to your scenario.
+Now that everything is configured, you can build your first analyzer. 
 
-   :::image type="content" source="../media/analyzer-template/define-schema-upload.png" alt-text="Screenshot of upload step in user experience.":::
+When you create a single-file Content Understanding task, you start by uploading a sample of your data and building your field schema. The schema is the customizable framework that allows the analyzer to extract insights from your data. In this example, you create the schema to extract key data from an invoice document, but you can bring in any type of data and the steps remain the same. For a complete list of supported file types, see [input file limits](../service-limits.md#input-file-limits).
 
-1. Content Understanding suggests analyzer templates based on your content type. For this example, select **Document analysis** and build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See Analyzer templates for a full list of available templates.
+1. Upload a [sample file of an invoice document](https://github.com/Azure-Samples/azure-ai-content-understanding-python/raw/refs/heads/main/data/invoice.pdf) or any other data relevant to your scenario.
+
+   :::image type="content" source="../media/quickstarts/upload-data.png" alt-text="Screenshot of upload step in user experience.":::
+
+1. Next, the Content Understanding service suggests analyzer templates based on your content type. Check out [Analyzer templates offered with Content Understanding](../concepts/analyzer-templates.md) for a full list of all templates offered for each modality. For this example, select **Document analysis** to build your own schema tailored to the invoice scenario. When using your own data, select the analyzer template that best fits your needs, or create your own. See [Analyzer templates](../concepts/analyzer-templates.md) for a full list of available templates.
 
 1. Select **Create**.
 
-   :::image type="content" source="../media/analyzer-template/define-schema-template-selection.png" alt-text="Screenshot of analyzer templates.":::
+   :::image type="content" source="../media/quickstarts/invioce-template.png" alt-text="Screenshot of analyzer templates.":::
 
-1. Add fields to your schema:
+1. Next, add fields to your schema to reflect all of the outputs you want to generate. 
 
-    * Specify clear and simple field names. Example fields: **vendorName**, **items**, **price**.
+    * Specify clear and simple field names. Some example fields might include **vendorName**, **items**, **price**.
 
-    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-type-limits).
+    * Indicate the value type for each field (strings, dates, numbers, lists, groups). To learn more, *see* [supported field types](../service-limits.md#field-schema-limits).
 
     * *[Optional]* Provide field descriptions to explain the desired behavior, including any exceptions or rules.
 
-    * *[Optional]* Specify the method to generate the value for each field.
+    * Specify the method to generate the value for each field.
+  
+      For best practices on how to define your field schema, refer to [best practices for Azure AI Content Understanding](../concepts//best-practices.md). It might take a few minutes to build out your schema.
 
-1. Select **Save**.
+1. When your schema is ready to test, select **Save**. You can always come back and make changes if needed.
 
-   :::image type="content" source="../media/analyzer-template/define-schema.png" alt-text="Screenshot of completed schema.":::
+   :::image type="content" source="../media/quickstarts/define-invoice-schema.png" alt-text="Screenshot of completed schema.":::
 
-1. Content Understanding generates the output based on your schema. Test the analyzer's accuracy on added data or make changes to the schema if needed.
+1. With the completed schema, Content Understanding now generates the output on your sample data. At this step, you can add more data to test the analyzer's accuracy or make changes to the schema if needed.
 
-   :::image type="content" source="../media/analyzer-template/test-analyzer.png" alt-text="Screenshot of schema testing step.":::
+   :::image type="content" source="../media/quickstarts/test-invoice.png" alt-text="Screenshot of schema testing step.":::
 
-1. Once you're satisfied with the quality, select **Build analyzer**. This action creates an analyzer that you can integrate into your applications. You also receive an analyzer ID, which you can use to call the analyzer from your code.
+1. When you're satisfied with the quality of your output, select **Build analyzer**. This action creates an analyzer ID that you can integrate into your own applications, allowing you to call the analyzer from your code.
 
-   :::image type="content" source="../media/analyzer-template/build-analyzer.png" alt-text="Screenshot of built analyzer.":::
+   :::image type="content" source="../media/quickstarts/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
-## Analyzer templates
+You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
 
-Content Understanding analyzer templates give you a head start by allowing you to build your analyzer without creating schemas from scratch. They're fully customizable, allowing you to adjust any fields in the schemas to better fit your needs.
+## Sharing your project
 
-The following analyzer templates are available for use in the [Azure AI Foundry portal Content Understanding experience](https://ai.azure.com/).
+To share the project you created and manage access, go to the Management Center. You can find it at the bottom of the navigation pane for your project:
 
-# [Document](#tab/document)
+  :::image type="content" source="../media/quickstarts/cu-landing-page.png" alt-text="Screenshot of where to find management center.":::
 
-|Template| Description|
-| ----|----|----|
-|Document analysis |Analyze documents to extract text, layout, structured fields, and more.|
-|Text analysis |Analyze texts and extract structured fields.|
+In the Management Center, you can manage users and assign individual roles:
 
-   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of document analyzer template.":::
-
-# [Image](#tab/image)
-
-|Template| Description|
-| ----|----|----|
-|Image analysis |Analyze images and extract structured fields.|
-|Retail inventory management |Retail inventory management for monitoring of products on shelves.|
-|Defect detection |Identify potential defects in provided images of metal plates.|
-
-   :::image type="content" source="../media/analyzer-template/image-templates.png" alt-text="Screenshot of image analyzer template.":::
-
-# [Audio](#tab/audio)
-
-|Template| Description|
-| ----|----|----|
-|Audio transcription |Transcribe audio recordings.|
-|Conversation summarization |Transcribe conversations and extract summaries.|
-|Post call analytics |Analyze call center conversations to extract transcripts, summaries, sentiment, and more.|
-
-
-   :::image type="content" source="../media/analyzer-template/audio-templates.png" alt-text="Screenshot of audio analyzer template.":::
-
-# [Video](#tab/video)
-
-|Template| Description|
-| ----|----|----|
-|Video shot analysis |Analyze videos to extract transcript and structured fields for each shot.|
-|Media asset management |Extract structured information from marketing videos, news content, broadcast media, television episodes, and film archives.|
-|Advertising |Advertising analysis and moderation.|
-
-
-   :::image type="content" source="../media/analyzer-template/video-templates.png" alt-text="Screenshot of video analyzer template.":::
-
----
+   :::image type="content" source="../media/quickstarts/management-center.png" alt-text="Screenshot of Project users section of management center.":::
 
 ## Next steps
 
- * In this quickstart, you learned how to create an analyzer in Azure portal. To use [REST API](/rest/api/contentunderstanding/operation-groups?view=rest-contentunderstanding-2024-12-01-preview&preserve-view=true), *see* the [REST API quickstart](use-rest-api.md).
-
+ * Learn more about creating and using [analyzer templates](../concepts/analyzer-templates.md) in the Azure AI Foundry.

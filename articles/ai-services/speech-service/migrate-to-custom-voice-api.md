@@ -2,12 +2,12 @@
 title: Migrate to custom voice REST API - Speech service
 titleSuffix: Azure AI services
 description: This document helps developers migrate code from v3 text to speech REST API to custom voice REST API.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to migrate code from v3 text to speech REST API to custom voice REST API in the Speech service.
 ---
 
@@ -15,7 +15,7 @@ ms.author: eur
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The custom voice REST API is a new version of the text to speech REST API. You can deploy and use custom neural voice models with the API. 
+The custom voice REST API is a new version of the text to speech REST API. You can deploy and use custom voice models with the API. 
 
 In this article, you learn how to migrate code from the v3 text to speech REST API to the custom voice REST API.
 
@@ -31,7 +31,7 @@ This article retains information about the v3 text to speech REST API for refere
 
 ### Suspend and resume endpoint via REST API
 
-This section shows you how to [get](#get-endpoint), [suspend](#suspend-endpoint), or [resume](#resume-endpoint) a custom neural voice endpoint via REST API.
+This section shows you how to [get](#get-endpoint), [suspend](#suspend-endpoint), or [resume](#resume-endpoint) a custom voice endpoint via REST API.
 
 
 #### Get endpoint

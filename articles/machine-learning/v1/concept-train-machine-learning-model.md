@@ -8,7 +8,7 @@ author: manashgoswami
 ms.author: manashg
 ms.reviewer: ssalgado
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/30/2022
 ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli
 ms.devlang: azurecli
@@ -17,6 +17,8 @@ ms.devlang: azurecli
 # Train models with Azure Machine Learning (v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Azure Machine Learning provides several ways to train your models, from code-first solutions using the SDK to low-code solutions such as automated machine learning and the visual designer. Use the following list to determine which training method is right for you:
 
@@ -86,7 +88,6 @@ The Azure training lifecycle consists of:
 1. Building or downloading the dockerfile to the compute node 
     1. The system calculates a hash of: 
         - The base image 
-        - Custom docker steps (see [Deploy a model using a custom Docker base image](how-to-deploy-package-models.md))
         - The conda definition YAML (see [Create & use software environments in Azure Machine Learning](how-to-use-environments.md))
     1. The system uses this hash as the key in a lookup of the workspace Azure Container Registry (ACR)
     1. If it is not found, it looks for a match in the global ACR

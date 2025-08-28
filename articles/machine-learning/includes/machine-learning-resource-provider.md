@@ -1,9 +1,9 @@
 ---
-author: blackmist
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 10/23/2023
-ms.author: larryfr
+ms.date: 02/10/2025
+ms.author: scottpolly
 ---
 
 When creating an Azure Machine Learning workspace, or a resource used by the workspace, you may receive an error similar to the following messages:

@@ -2,13 +2,13 @@
 title: Deploy a custom speech model - Speech service
 titleSuffix: Azure AI services
 description: Learn how to deploy custom speech models. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
-ms.author: eur
-zone_pivot_groups: speech-studio-cli-rest
+ms.date: 5/19/2025
+ms.author: pafarley
+zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
 ---
 
@@ -25,6 +25,31 @@ You can deploy an endpoint for a base or custom model, and then [update](#change
 > Endpoints used by `F0` Speech resources are deleted after seven days. 
 
 ## Add a deployment endpoint
+
+> [!TIP]
+> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
+
+::: zone pivot="ai-foundry-portal"
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Select **Fine-tuning** from the left pane and then select **AI Service fine-tuning**.
+1. Select the custom speech fine-tuning task (by model name) that you [started as described in the how to start custom speech fine-tuning article](./how-to-custom-speech-create-project.md).
+1. Select **Deploy models** > **+ Deploy models**. 
+
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model.png" alt-text="Screenshot of the page with an option to deploy the custom speech model." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model.png":::
+
+1. In the **Deploy a new model** wizard, select the model that you want to deploy. 
+
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-select-and-deploy.png" alt-text="Screenshot of the page with an option to select the model that you want to deploy." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-select-and-deploy.png":::
+
+1. Enter a name and description for the deployment. Select the box to agree to the terms of use. Then select **Deploy**.
+
+1. After the deployment status is **Succeeded**, you can view the deployment details. Select the deployment to view the details like the endpoint ID. 
+
+    :::image type="content" source="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png" alt-text="Screenshot of the page with an option to select the deployment to view the details like the endpoint ID." lightbox="./media/custom-speech/ai-foundry/new-fine-tune-deploy-model-status-succeeded.png":::
+
+
+::: zone-end
 
 ::: zone pivot="speech-studio"
 
@@ -58,13 +83,15 @@ Select the endpoint link to view information specific to it, such as the endpoin
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To create an endpoint and deploy a model, use the `spx csr endpoint create` command. Construct the request parameters according to the following instructions:
 
-- Set the `project` parameter to the ID of an existing project. This is recommended so that you can also view and manage the endpoint in Speech Studio. You can run the `spx csr project list` command to get available projects.
-- Set the required `model` parameter to the ID of the model that you want deployed to the endpoint. 
-- Set the required `language` parameter. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` parameter corresponds to the `locale` property in the JSON request and response.
-- Set the required `name` parameter. This is the name that is displayed in the Speech Studio. The Speech CLI `name` parameter corresponds to the `displayName` property in the JSON request and response.
-- Optionally, you can set the `logging` parameter. Set this to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
+- Set the `project` property to the ID of an existing project. The `project` property is recommended so that you can also manage fine-tuning for custom speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
+- Set the required `model` property to the ID of the model that you want deployed to the endpoint. 
+- Set the required `language` property. The endpoint locale must match the locale of the model. The locale can't be changed later. The Speech CLI `language` property corresponds to the `locale` property in the JSON request and response.
+- Set the required `name` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The Speech CLI `name` property corresponds to the `displayName` property in the JSON request and response.
+- Optionally, you can set the `logging` property. Set this to `enabled` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
 Here's an example Speech CLI command to create an endpoint and deploy a model:
 
@@ -72,25 +99,28 @@ Here's an example Speech CLI command to create an endpoint and deploy a model:
 spx csr endpoint create --api-version v3.2 --project YourProjectId --model YourModelId --name "My Endpoint" --description "My Endpoint Description" --language "en-US"
 ```
 
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
+
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
     "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -118,18 +148,18 @@ spx help csr endpoint
 
 To create an endpoint and deploy a model, use the [Endpoints_Create](/rest/api/speechtotext/endpoints/create) operation of the [Speech to text REST API](rest-speech-to-text.md). Construct the request body according to the following instructions:
 
-- Set the `project` property to the URI of an existing project. This is recommended so that you can also view and manage the endpoint in Speech Studio. You can make a [Projects_List](/rest/api/speechtotext/projects/list) request to get available projects.
+- Set the `project` property to the URI of an existing project. This property is recommended so that you can also view and manage the endpoint in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). To get the project ID, see [Get the project ID for the REST API](./how-to-custom-speech-create-project.md#get-the-project-id-for-the-rest-api) documentation.
 - Set the required `model` property to the URI of the model that you want deployed to the endpoint. 
 - Set the required `locale` property. The endpoint locale must match the locale of the model. The locale can't be changed later.
-- Set the required `displayName` property. This is the name that is displayed in the Speech Studio.
+- Set the required `displayName` property. This is the name that is displayed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 - Optionally, you can set the `loggingEnabled` property within `properties`. Set this to `true` to enable audio and diagnostic [logging](#view-logging-data) of the endpoint's traffic. The default is `false`. 
 
-Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
+Make an HTTP POST request using the URI as shown in the following [Endpoints_Create](/rest/api/speechtotext/endpoints/create) example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -137,7 +167,7 @@ curl -v -X POST -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-
   "displayName": "My Endpoint",
   "description": "My Endpoint Description",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ae8d1643-53e4-4554-be4c-221dcfb471c5"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/base/ddddeeee-3333-ffff-4444-aaaa5555bbbb"
   },
   "locale": "en-US",
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints"
@@ -147,21 +177,21 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
     "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -183,6 +213,12 @@ The top-level `self` property in the response body is the endpoint's URI. Use th
 
 An endpoint can be updated to use another model that was created by the same Speech resource. As previously mentioned, you must update the endpoint's model before the [model expires](./how-to-custom-speech-model-and-endpoint-lifecycle.md). 
 
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 To use a new model and redeploy the custom endpoint:
@@ -197,10 +233,12 @@ To use a new model and redeploy the custom endpoint:
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To redeploy the custom endpoint with a new model, use the `spx csr model update` command. Construct the request parameters according to the following instructions:
 
-- Set the required `endpoint` parameter to the ID of the endpoint that you want deployed.
-- Set the required `model` parameter to the ID of the model that you want deployed to the endpoint.
+- Set the required `endpoint` property to the ID of the endpoint that you want deployed.
+- Set the required `model` property to the ID of the model that you want deployed to the endpoint.
 
 Here's an example Speech CLI command that redeploys the custom endpoint with a new model:
 
@@ -208,25 +246,28 @@ Here's an example Speech CLI command that redeploys the custom endpoint with a n
 spx csr endpoint update --api-version v3.2 --endpoint YourEndpointId --model YourModelId
 ```
 
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
+
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
     "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -254,12 +295,12 @@ To redeploy the custom endpoint with a new model, use the [Endpoints_Update](/re
 
 - Set the `model` property to the URI of the model that you want deployed to the endpoint.
 
-Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
 }'  "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId"
 ```
@@ -268,21 +309,21 @@ You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
     "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -304,6 +345,12 @@ The redeployment takes several minutes to complete. In the meantime, your endpoi
 
 Logging data is available for export if you configured it while creating the endpoint. 
 
+::: zone pivot="ai-foundry-portal"
+
+
+
+::: zone-end
+
 ::: zone pivot="speech-studio"
 
 To download the endpoint logs:
@@ -317,15 +364,20 @@ To download the endpoint logs:
 
 ::: zone pivot="speech-cli"
 
+Before proceeding, make sure that you have the [Speech CLI](./spx-basics.md) installed and configured.
+
 To get logs for an endpoint, use the `spx csr endpoint list` command. Construct the request parameters according to the following instructions:
 
-- Set the required `endpoint` parameter to the ID of the endpoint that you want to get logs.
+- Set the required `endpoint` property to the ID of the endpoint that you want to get logs.
 
 Here's an example Speech CLI command that gets logs for an endpoint:
 
 ```azurecli-interactive
 spx csr endpoint list --api-version v3.2 --endpoint YourEndpointId
 ```
+
+> [!IMPORTANT]
+> You must set `--api-version v3.2`. The Speech CLI uses the REST API, but doesn't yet support versions later than `v3.2`.
 
 The locations of each log file with more details are returned in the response body.
 
@@ -335,31 +387,31 @@ The locations of each log file with more details are returned in the response bo
 
 To get logs for an endpoint, start by using the [Endpoints_Get](/rest/api/speechtotext/endpoints/get) operation of the [Speech to text REST API](rest-speech-to-text.md).
 
-Make an HTTP GET request using the URI as shown in the following example. Replace `YourEndpointId` with your endpoint ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the URI as shown in the following example. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 ```azurecli-interactive
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 You should receive a response body in the following format:
 
 ```json
 {
-  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
+  "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/aaaabbbb-0000-cccc-1111-dddd2222eeee",
   "model": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/9e240dc1-3d2d-4ac9-98ec-1be05ba0e9dd"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/models/bbbbcccc-1111-dddd-2222-eeee3333ffff"
   },
   "links": {
     "logs": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/a07164e8-22d1-4eb7-aa31-bf6bb1097f37/files/logs",
-    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37",
-    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=a07164e8-22d1-4eb7-aa31-bf6bb1097f37"
+    "restInteractive": "https://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restConversation": "https://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "restDictation": "https://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketInteractive": "wss://eastus.stt.speech.microsoft.com/speech/recognition/interactive/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketConversation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee",
+    "webSocketDictation": "wss://eastus.stt.speech.microsoft.com/speech/recognition/dictation/cognitiveservices/v1?cid=aaaabbbb-0000-cccc-1111-dddd2222eeee"
   },
   "project": {
-    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/0198f569-cc11-4099-a0e8-9d55bc3d0c52"
+    "self": "https://eastus.api.cognitive.microsoft.com/speechtotext/v3.2/projects/ccccdddd-2222-eeee-3333-ffff4444aaaa"
   },
   "properties": {
     "loggingEnabled": true
@@ -373,11 +425,11 @@ You should receive a response body in the following format:
 }
 ```
 
-Make an HTTP GET request using the "logs" URI from the previous response body. Replace `YourEndpointId` with your endpoint ID, replace `YourSubscriptionKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
+Make an HTTP GET request using the "logs" URI from the previous response body. Replace `YourEndpointId` with your endpoint ID, replace `YourSpeechResoureKey` with your Speech resource key, and replace `YourServiceRegion` with your Speech resource region.
 
 
 ```curl
-curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey"
+curl -v -X GET "https://YourServiceRegion.api.cognitive.microsoft.com/speechtotext/v3.2/endpoints/YourEndpointId/files/logs" -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey"
 ```
 
 The locations of each log file with more details are returned in the response body.

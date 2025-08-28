@@ -2,13 +2,12 @@
 title: "Quickstart: Use the Key Phrase Extraction client library"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using the Key Phrase Extraction API.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 08/20/2025
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-key-phrase, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
@@ -32,7 +31,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS quickstart](includes/quickstarts/nodejs-sdk.md)]
+[!INCLUDE [Node.js quickstart](includes/quickstarts/nodejs-sdk.md)]
 
 ::: zone-end
 
@@ -45,6 +44,12 @@ zone_pivot_groups: programming-languages-text-analytics
 ::: zone pivot="rest-api"
 
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

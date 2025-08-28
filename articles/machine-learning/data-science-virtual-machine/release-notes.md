@@ -4,8 +4,8 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Release notes for the Azure Data Science Virtual Machine
 ms.service: azure-data-science-virtual-machines
 ms.custom: linux-related-content
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: jcioffi
 ms.date: 05/21/2024
 ms.topic: reference
@@ -20,6 +20,77 @@ Because of rapidly evolving needs and packages updates, we target new releases o
 Azure portal users can find the latest image available for provisioning the Data Science Virtual Machine. For CLI or Azure Resource Manager (ARM) users, we keep images of individual versions available for 12 months. After that period, specific image versions are no longer available for provisioning.
 
 Visit the [list of known issues](reference-known-issues.md) to learn about known bugs and workarounds.
+
+## May 20, 2025
+
+[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version  `25.05.19`
+
+- SDK `1.60.0`
+
+## May 15, 2025
+
+[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+
+Version  `25.05.10`
+
+- SDK `1.60.0`
+
+[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+
+Version  `25.05.10`
+
+- SDK `1.60.0`
+
+[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version `25.02.13`
+
+- SDK `1.60.0`
+  
+## April 28, 2025
+
+[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version  `25.04.15`
+
+- SDK `1.60.0`
+
+## February 18, 2025
+
+[Data Science VM – Ubuntu 20.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version `25.02.13`
+
+- SDK `1.59.0`
+- NVDIA `535.183.01`
+- Cuda `cuda_12.2.r12`
+- Python `3.10.8`
+  
+## February 7, 2025
+
+[Data Science Virtual Machine - Windows 2022](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2022?tab=Overview)
+
+Version  `25.02.03`
+
+- SDK `1.59.0`
+  
+## February 4, 2025
+
+[Data Science Virtual Machine - Windows 2019](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.dsvm-win-2019?tab=Overview)
+
+Version  `25.01.31`
+
+- SDK `1.59.0`
+
+## January 22, 2025
+
+[Data Science VM – Ubuntu 22.04](https://azuremarketplace.microsoft.com/marketplace/apps/microsoft-dsvm.ubuntu-2004?tab=Overview)
+
+Version  `25.01.20`
+
+- SDK `1.59.0`
 
 ## October 21, 2024
 
@@ -471,7 +542,7 @@ Primary changes:
 - Changed Intellijidea to version 2021.2.3
 - Changed NVIDIA Drivers to version 470.103.01
 - Changed NVIDIA SMI to version 470.103.01
-- Changed Nodejs to version v16.13.0
+- Changed Node.js to version v16.13.0
 - Changed Pycharm to version 2021.2.3
 - Changed VS Code to version 1.61.2
 - Conda
@@ -502,7 +573,7 @@ Primary changes:
 - Changed pytorch to version 1.9.1
 - Changed Docker to version 20.10.9
 - Changed Intellijidea to version 2021.2.2
-- Changed Nodejs to version v14.18.0
+- Changed Node.js to version v14.18.0
 - Changed Pycharm to version 2021.2.2
 - Changed VS Code to version 1.60.2
 - Fixed AutoML environment (azureml_py36_automl)
@@ -518,7 +589,7 @@ Version: `21.08.11`
 Primary changes:
 
 - Windows Security update
-- Update of Nvidia CuDNN to 8.1.0
+- Update of NVIDIA CuDNN to 8.1.0
 - Update of Jupyter Lab -to 3.0.16
 - Added MLFLow for experiment tracking
 - Improvement of stability and minor bug fixes
@@ -578,7 +649,7 @@ Selected version updates include:
 - Julia 1.0.5
 - Jupyter Lab 2.2.6
 - Microsoft Edge browser
-- NodeJS 16.2.0
+- Node.js 16.2.0
 - Power BI Desktop 2.93.641.0 64-bit (May 2021)
 - PyCharm Community Edition 2021.1.1
 - Python 3.8

@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 02/22/2024
+ms.update-cycle: 365-days
 ---
 
 # Shaper cognitive skill
@@ -241,7 +242,7 @@ In this case, the **Shaper** creates a complex type. This structure exists in-me
                     "chapterTitles": [
                       { "title": "Start young", "number": 1},
                       { "title": "Laugh often", "number": 2},
-                      { "title": "Eat, sleep and exercise", "number: 3}
+                      { "title": "Eat, sleep and exercise", "number": 3}
                     ]
                 }
             }

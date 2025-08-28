@@ -5,8 +5,8 @@ description: Learn how to deploy your MLflow model to the deployment targets tha
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 09/27/2024
 ms.topic: concept-article
@@ -29,10 +29,8 @@ For no-code deployment, Azure Machine Learning:
 
 - Ensures that all the package dependencies indicated in the MLflow model are satisfied.
 - Provides an MLflow base image or curated environment that contains the following items:
-  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/README_SKINNY.md).
+  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md).
   - A scoring script to perform inference.
-
-[!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]
 
 ### Packages and dependencies
 
@@ -43,7 +41,7 @@ The following example *conda.yaml* file shows conda dependencies specified in an
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sklearn-diabetes/model/conda.yaml":::
 
 > [!IMPORTANT]
-> MLflow automatically detects packages when it logs a model, and it pins the package versions in the model's conda dependencies. This automatic package detection might not reflect your intentions or requirements. You can alternatively [log models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
+> MLflow automatically detects packages when it logs a model, and it pins the package versions in the model's conda dependencies. This automatic package detection might not reflect your intentions or requirements. You can alternatively [log models that use a custom signature, environment, or samples](how-to-log-mlflow-models.md#log-models-that-use-a-custom-signature-environment-or-samples).
 
 ### Models with signatures
 
@@ -56,7 +54,7 @@ The following example *MLmodel* file highlights the `signature`.
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/endpoints/online/mlflow/sklearn-diabetes/model/MLmodel" highlight="19-25":::
 
 > [!TIP]
-> Signatures in MLflow models are recommended because they provide a convenient way to detect data compatibility issues. For more information about how to log models with signatures, see [Logging models with a custom signature, environment or samples](how-to-log-mlflow-models.md#logging-models-with-a-custom-signature-environment-or-samples).
+> Signatures in MLflow models are recommended because they provide a convenient way to detect data compatibility issues. For more information about how to log models with signatures, see [Log models that use a custom signature, environment, or samples](how-to-log-mlflow-models.md#log-models-that-use-a-custom-signature-environment-or-samples).
 
 <a name="models-deployed-in-azure-machine-learning-vs-models-deployed-in-the-mlflow-built-in-server"></a>
 ## Deployment in the MLflow built-in server vs. deployment in Azure Machine Learning inferencing server
@@ -209,7 +207,7 @@ When you log a model by using either `mlflow.autolog` or `mlflow.<flavor>.log_mo
 
 In some cases, you might want to do some preprocessing or postprocessing before and after your model executes. Or, you might want to change what is returned; for example, probabilities instead of classes. One solution is to implement machine learning pipelines that move from inputs to outputs directly.
 
-For example, [`sklearn.pipeline.Pipeline`](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) or [`pyspark.ml.Pipeline`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.Pipeline.html) are popular ways to implement pipelines, and are sometimes recommended for performance reasons. You can also customize how your model does inferencing by [logging custom models](how-to-log-mlflow-models.md?#logging-custom-models).
+For example, [`sklearn.pipeline.Pipeline`](https://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html) or [`pyspark.ml.Pipeline`](https://spark.apache.org/docs/latest/api/python/reference/api/pyspark.ml.Pipeline.html) are popular ways to implement pipelines, and are sometimes recommended for performance reasons. You can also customize how your model does inferencing by [logging custom models](how-to-log-mlflow-models.md?#log-custom-models).
 
 ### Customize inference with a scoring script
 
@@ -238,11 +236,10 @@ Each tool has different capabilities, particularly for which type of compute it 
 | Deploy to web services like Azure Container Instances or Azure Kubernetes Service (AKS) | Legacy support<sup>2</sup> | Not supported<sup>2</sup> |
 | Deploy to web services like Container Instances or AKS with a scoring script | Not supported<sup>3</sup> | Legacy support<sup>2</sup> |
 
-<sup>1</sup> Deployment to online endpoints that are in workspaces with private link enabled requires you to [package models before deployment (preview)](how-to-package-models.md).
 
-<sup>2</sup> Switch to [managed online endpoints](concept-endpoints.md) if possible.
+<sup>1</sup> Switch to [managed online endpoints](concept-endpoints.md) if possible.
 
-<sup>3</sup> Open-source MLflow doesn't have the concept of a scoring script and doesn't support batch execution.
+<sup>2</sup> Open-source MLflow doesn't have the concept of a scoring script and doesn't support batch execution.
 
 ### Choose a deployment tool
 

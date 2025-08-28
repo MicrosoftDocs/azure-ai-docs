@@ -5,8 +5,8 @@ description: Learn how to use the Azure CLI extension v1 for machine learning to
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 07/26/2024
 ms.topic: how-to
@@ -101,7 +101,7 @@ When you deploy an Azure Machine Learning workspace, various other services are 
 > * Hierarchical Namespace (ADLS Gen 2) is disabled
 > These requirements are only for the _default_ storage account used by the workspace.
 >
-> When attaching Azure container registry, you must have the [admin account](/azure/container-registry/container-registry-authentication#admin-account) enabled before it can be used with an Azure Machine Learning workspace.
+> When attaching Azure Container Registry, you must have the [admin account](/azure/container-registry/container-registry-authentication#admin-account) enabled before it can be used with an Azure Machine Learning workspace.
 
 # [Create with new resources](#tab/createnewresources)
 

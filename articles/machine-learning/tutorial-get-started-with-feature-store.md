@@ -6,11 +6,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 11/21/2024
 ms.reviewer: seramasu
-ms.custom: sdkv2, build-2023, ignite-2023, update-code2
+ms.custom:
+  - sdkv2
+  - build-2023
+  - ignite-2023
+  - update-code2
+  - sfi-image-nochange
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 
@@ -436,7 +441,7 @@ The Storage Blob Data Reader role must be assigned to your user account on the o
 
 ## Enable offline materialization on the `transactions` feature set
 
-   After feature set materialization is enabled, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, visit the [the third tutorial in the series](./tutorial-enable-recurrent-materialization-run-batch-inference.md) resource.
+   After feature set materialization is enabled, you can perform a backfill. You can also schedule recurrent materialization jobs. For more information, visit the [third tutorial in the series](./tutorial-enable-recurrent-materialization-run-batch-inference.md) resource.
 
 ### [SDK track](#tab/SDK-track)
 

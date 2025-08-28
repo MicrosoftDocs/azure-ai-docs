@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 11/09/2023
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: timanghn
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
 ms.devlang: azurecli
@@ -44,7 +44,7 @@ In this article, you will learn how to deploy a model using no-code deployment f
 * A working Python 3.8 (or higher) environment. 
 
 * You must have additional Python packages installed for scoring and may install them with the code below. They include:
-    * Numpy - An array and numerical computing library 
+    * NumPy - An array and numerical computing library 
     * [Triton Inference Server Client](https://github.com/triton-inference-server/client) - Facilitates requests to the Triton Inference Server
     * Pillow - A library for image operations
     * Gevent - A networking library used when connecting to the Triton Server
@@ -76,7 +76,7 @@ The information in this document is based on using a model stored in ONNX format
 * A working Python 3.8 (or higher) environment.
 
 * You must have additional Python packages installed for scoring and may install them with the code below. They include:
-    * Numpy - An array and numerical computing library 
+    * NumPy - An array and numerical computing library 
     * [Triton Inference Server Client](https://github.com/triton-inference-server/client) - Facilitates requests to the Triton Inference Server
     * Pillow - A library for image operations
     * Gevent - A networking library used when connecting to the Triton Server

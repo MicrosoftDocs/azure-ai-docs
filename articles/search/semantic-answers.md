@@ -2,7 +2,6 @@
 title: Return a semantic answer
 titleSuffix: Azure AI Search
 description: Describes the composition of a semantic answer and how to obtain answers from a result set.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 02/18/2025
+ms.update-cycle: 365-days
 ---
 
 # Return a semantic answer in Azure AI Search
@@ -48,7 +48,6 @@ Answers are returned as an independent, top-level object in the query response p
 
 To return a semantic answer, the query must have the semantic `"queryType"`, `"queryLanguage"`, `"semanticConfiguration"`, and the `"answers"` parameters. Specifying these parameters doesn't guarantee an answer, but the request must include them for answer processing to occur.
 
-
 ```json
 {
     "search": "how do clouds form",
@@ -81,7 +80,7 @@ Answers are provided in the `"@search.answers"` array, which appears first in th
 
 If an answer is indeterminate, the response shows up as `"@search.answers": []`. The answers array is followed by the value array, which is the standard response in a semantic query.
 
-Given the query "how do clouds form", the following example illustrates an answer:
+Given the query "how do clouds form" which can be directed at an index built on [content from the NASA Earth Book](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book), the following example illustrates a verbatim answer (found on page 38):
 
 ```json
 {

@@ -1,13 +1,12 @@
 ---
 title: Identification entities
 titleSuffix: Azure AI services
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/05/2025
+ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
@@ -32,13 +31,13 @@ This category contains the following entity:
         American Banker Association (ABA) transit routing numbers. Also returned with `domain=phi`.
 
         To get this entity category, add `ABARoutingNumber` to the `piiCategories` parameter. `ABARoutingNumber` will also be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="2":::
       **Supported languages**
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
-      
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
    :::column-end:::
 :::row-end:::
 
@@ -60,13 +59,13 @@ This category contains the following entity:
         SWIFT codes for payment instruction information. Also returned with `domain=phi`.
 
         To get this entity category, add `SWIFTCode` to the `piiCategories` parameter. `SWIFTCode` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="2":::
       **Supported languages**
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
-      
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
    :::column-end:::
 :::row-end:::
 
@@ -92,12 +91,12 @@ This category contains the following entity:
     :::column span="2":::
       **Supported languages**
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
-      
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
    :::column-end:::
 :::row-end:::
 
-## Category: International Banking Account Number (IBAN) 
+## Category: International Banking Account Number (IBAN)
 
 This category contains the following entity:
 
@@ -114,24 +113,24 @@ This category contains the following entity:
         IBAN codes for payment instruction information. Also returned with `domain=phi`.
 
         To get this entity category, add `InternationalBankingAccountNumber` to the `piiCategories` parameter. `InternationalBankingAccountNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="2":::
       **Supported languages**
 
-      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`  
-      
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
+
    :::column-end:::
 :::row-end:::
 
 ## Government and country/region-specific identification
 
 > [!NOTE]
-> The following financial and country/region-specific entities are not returned with the `domain=phi` parameter:
+> The following financial and country/region-specific entities aren't returned with the `domain=phi` parameter:
 > * Passport numbers
 > * Tax IDs
 
-The following entities are grouped and listed by country/region:
+The following entities are listed via country and/or region:
 
 ### Argentina
 
@@ -139,22 +138,22 @@ The following entities are grouped and listed by country/region:
     :::column span="":::
         **Entity**
 
-        Argentina National Identity (DNI) Number 
+        Argentina National Identity (DNI) Number
 
     :::column-end:::
     :::column span="2":::
         **Details**
 
         Also returned with `domain=phi`.
-        
+
         To get this entity category, add `ARNationalIdentityNumber` to the `piiCategories` parameter. `ARNationalIdentityNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -172,13 +171,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `ATIdentityCard` to the `piiCategories` parameter. `ATIdentityCard` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -190,12 +189,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ATTaxIdentificationNumber` to the `piiCategories` parameter. `ATTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -207,12 +206,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ATValueAddedTaxNumber` to the `piiCategories` parameter. `ATValueAddedTaxNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -231,14 +230,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `AUBankAccountNumber` to the `piiCategories` parameter. `AUBankAccountNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -250,12 +249,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `AUBusinessNumber` to the `piiCategories` parameter. `AUBusinessNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -267,30 +266,30 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `AUCompanyNumber` to the `piiCategories` parameter. `AUCompanyNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
     :::column span="":::
 
-        Australia driver's license  
+        Australia driver's license
 
     :::column-end:::
     :::column span="2":::
 
         To get this entity category, add `AUDriversLicenseNumber` to the `piiCategories` parameter. `AUDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -302,13 +301,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `AUMedicalAccountNumber` to the `piiCategories` parameter. `AUMedicalAccountNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -320,12 +319,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `AUPassportNumber` to the `piiCategories` parameter. `AUPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -337,12 +336,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `AUTaxFileNumber` to the `piiCategories` parameter. `AUTaxFileNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -360,14 +359,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `BENationalNumber` to the `piiCategories` parameter. `BENationalNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -380,17 +379,17 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `BEValueAddedTaxNumber` to the `piiCategories` parameter. `BEValueAddedTaxNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
 
-### Brazil 
+### Brazil
 
 :::row:::
     :::column span="":::
@@ -398,21 +397,21 @@ The following entities are grouped and listed by country/region:
 
         Brazil legal entity number (CNPJ)
 
-        
+
 
     :::column-end:::
     :::column span="2":::
         **Details**
 
         To get this entity category, add `BRLegalEntityNumber` to the `piiCategories` parameter. `BRLegalEntityNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -424,13 +423,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `BRCPFNumber` to the `piiCategories` parameter. `BRCPFNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -442,13 +441,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `BRNationalIDRG` to the `piiCategories` parameter. `BRNationalIDRG` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -465,14 +464,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `CABankAccountNumber` to the `piiCategories` parameter. `CABankAccountNumber` will be returned in the API response if detected.
-    
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -485,14 +484,14 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `CADriversLicenseNumber` to the `piiCategories` parameter. `CADriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
 
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -500,20 +499,20 @@ The following entities are grouped and listed by country/region:
 
         Canada health service number
 
-        
+
     :::column-end:::
 
     :::column span="2":::
 
         To get this entity category, add `CAHealthServiceNumber` to the `piiCategories` parameter. `CAHealthServiceNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
 
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -525,12 +524,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `CAPassportNumber` to the `piiCategories` parameter. `CAPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -544,12 +543,12 @@ The following entities are grouped and listed by country/region:
         To get this entity category, add `CAPersonalHealthIdentification` to the `piiCategories` parameter. `CAPersonalHealthIdentification` will be returned in the API response if detected.
 
         Also returned with `domain=phi`.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -561,17 +560,17 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `CASocialInsuranceNumber` to the `piiCategories` parameter. `CASocialInsuranceNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
-### Chile 
+### Chile
 
 :::row:::
     :::column span="":::
@@ -584,14 +583,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `CLIdentityCardNumber` to the `piiCategories` parameter. `CLIdentityCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -608,14 +607,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `CNResidentIdentityCardNumber` to the `piiCategories` parameter. `CNResidentIdentityCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -633,14 +632,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `EUDebitCardNumber` to the `piiCategories` parameter. `EUDebitCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -652,13 +651,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `EUDriversLicenseNumber` to the `piiCategories` parameter. `EUDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -670,12 +669,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `EUGPSCoordinates` to the `piiCategories` parameter. `EUGPSCoordinates` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -687,13 +686,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `EUNationalIdentificationNumber` to the `piiCategories` parameter. `EUNationalIdentificationNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -705,12 +704,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `EUPassportNumber` to the `piiCategories` parameter. `EUPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -722,13 +721,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `EUSocialSecurityNumber` to the `piiCategories` parameter. `EUSocialSecurityNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -740,12 +739,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `EUTaxIdentificationNumber` to the `piiCategories` parameter. `EUTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -762,14 +761,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `FRDriversLicenseNumber` to the `piiCategories` parameter. `FRDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -781,12 +780,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `FRHealthInsuranceNumber` to the `piiCategories` parameter. `FRHealthInsuranceNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -798,13 +797,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `FRNationalID` to the `piiCategories` parameter. `FRNationalID` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -816,12 +815,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `FRPassportNumber` to the `piiCategories` parameter. `FRPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -833,13 +832,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `FRSocialSecurityNumber` to the `piiCategories` parameter. `FRSocialSecurityNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -851,12 +850,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `FRTaxIdentificationNumber` to the `piiCategories` parameter. `FRTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -868,12 +867,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `FRValueAddedTaxNumber` to the `piiCategories` parameter. `FRValueAddedTaxNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -890,14 +889,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `DEDriversLicenseNumber` to the `piiCategories` parameter. `DEDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -909,13 +908,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `DEIdentityCardNumber` to the `piiCategories` parameter. `DEIdentityCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -927,12 +926,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `DEPassportNumber` to the `piiCategories` parameter. `DEPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -944,12 +943,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `DETaxIdentificationNumber` to the `piiCategories` parameter. `DETaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -962,12 +961,12 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `DEValueAddedNumber` to the `piiCategories` parameter. `DEValueAddedNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -984,14 +983,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `HKIdentityCardNumber` to the `piiCategories` parameter. `HKIdentityCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1008,13 +1007,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `HUPersonalIdentificationNumber` to the `piiCategories` parameter. `HUPersonalIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1026,12 +1025,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `HUTaxIdentificationNumber` to the `piiCategories` parameter. `HUTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1043,12 +1042,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `HUValueAddedNumber` to the `piiCategories` parameter. `HUValueAddedNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1065,14 +1064,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `INPermanentAccount` to the `piiCategories` parameter. `INPermanentAccount` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1085,13 +1084,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `INUniqueIdentificationNumber` to the `piiCategories` parameter. `INUniqueIdentificationNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1110,14 +1109,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `IDIdentityCardNumber` to the `piiCategories` parameter. `IDIdentityCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1134,14 +1133,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `IEPersonalPublicServiceNumber` to the `piiCategories` parameter. `IEPersonalPublicServiceNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1158,13 +1157,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `ILNationalID` to the `piiCategories` parameter. `ILNationalID` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1176,13 +1175,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ILBankAccountNumber` to the `piiCategories` parameter. `ILBankAccountNumber` will be returned in the API response if detected.
-    
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1199,14 +1198,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `ITDriversLicenseNumber` to the `piiCategories` parameter. `ITDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1218,12 +1217,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ITFiscalCode` to the `piiCategories` parameter. `ITFiscalCode` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1235,12 +1234,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ITValueAddedTaxNumber` to the `piiCategories` parameter. `ITValueAddedTaxNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1258,14 +1257,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `JPBankAccountNumber` to the `piiCategories` parameter. `JPBankAccountNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1277,13 +1276,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `JPDriversLicenseNumber` to the `piiCategories` parameter. `JPDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1295,12 +1294,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `JPMyNumberPersonal` to the `piiCategories` parameter. `JPMyNumberPersonal` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1312,12 +1311,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `JPMyNumberCorporate` to the `piiCategories` parameter. `JPMyNumberCorporate` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1328,14 +1327,14 @@ The following entities are grouped and listed by country/region:
     :::column-end:::
     :::column span="2":::
 
-        To get this entity category, add `ITValueAddedTaxNumber` to the `piiCategories` parameter. `ITValueAddedTaxNumber` will be returned in the API response if detected.
-      
+        To get this entity category, add `JPResidentRegistrationNumber` to the `piiCategories` parameter. `JPResidentRegistrationNumber` will be returned in the API response if detected.
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
      `ja`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1347,13 +1346,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `JPResidenceCardNumber` to the `piiCategories` parameter. `JPResidenceCardNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1365,13 +1364,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `JPSocialInsuranceNumber` to the `piiCategories` parameter. `JPSocialInsuranceNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1383,12 +1382,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `JPPassportNumber` to the `piiCategories` parameter. `JPPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1405,13 +1404,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `LUNationalIdentificationNumberNatural` to the `piiCategories` parameter. `LUNationalIdentificationNumberNatural` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1423,12 +1422,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `LUNationalIdentificationNumberNonNatural` to the `piiCategories` parameter. `LUNationalIdentificationNumberNonNatural` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1445,13 +1444,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `MTIdentityCardNumber` to the `piiCategories` parameter. `MTIdentityCardNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1463,12 +1462,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `MTTaxIDNumber` to the `piiCategories` parameter. `MTTaxIDNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1486,13 +1485,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `NZBankAccountNumber` to the `piiCategories` parameter. `NZBankAccountNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1504,12 +1503,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `NZDriversLicenseNumber` to the `piiCategories` parameter. `NZDriversLicenseNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1521,12 +1520,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `NZInlandRevenueNumber` to the `piiCategories` parameter. `NZInlandRevenueNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1538,13 +1537,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `NZMinistryOfHealthNumber` to the `piiCategories` parameter. `NZMinistryOfHealthNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1556,12 +1555,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `NZSocialWelfareNumber` to the `piiCategories` parameter. `NZSocialWelfareNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1579,18 +1578,18 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `PHUnifiedMultiPurposeIDNumber` to the `piiCategories` parameter. `PHUnifiedMultiPurposeIDNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
-### Portugal 
+### Portugal
 
 :::row:::
     :::column span="":::
@@ -1603,14 +1602,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `PTCitizenCardNumber` to the `piiCategories` parameter. `PTCitizenCardNumber` will be returned in the API response if detected.
-          
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1622,13 +1621,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `PTTaxIdentificationNumber` to the `piiCategories` parameter. `PTTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1645,13 +1644,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `PTTaxIdentificationNumber` to the `piiCategories` parameter. `PTTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `zh-hans`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1669,14 +1668,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `ZAIdentificationNumber` to the `piiCategories` parameter. `ZAIdentificationNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1694,14 +1693,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `KRResidentRegistrationNumber` to the `piiCategories` parameter. `KRResidentRegistrationNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1718,13 +1717,13 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `ESDNI` to the `piiCategories` parameter. `ESDNI` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1736,13 +1735,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ESSocialSecurityNumber` to the `piiCategories` parameter. `ESSocialSecurityNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1754,15 +1753,15 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `ESTaxIdentificationNumber` to the `piiCategories` parameter. `ESTaxIdentificationNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
- 
+
 ### Switzerland
 
 :::row:::
@@ -1776,18 +1775,18 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `CHSocialSecurityNumber` to the `piiCategories` parameter. `CHSocialSecurityNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
 
-### Taiwan 
+### Taiwan
 
 :::row:::
     :::column span="":::
@@ -1800,14 +1799,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `TWNationalID` to the `piiCategories` parameter. `TWNationalID` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1819,13 +1818,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `TWResidentCertificate` to the `piiCategories` parameter. `TWResidentCertificate` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1837,12 +1836,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `TWPassportNumber` to the `piiCategories` parameter. `TWPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1859,16 +1858,16 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `UKDriversLicenseNumber` to the `piiCategories` parameter. `UKDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
     :::column-end:::
-    
+
 :::row-end:::
 :::row:::
     :::column span="":::
@@ -1879,13 +1878,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `UKElectoralRollNumber` to the `piiCategories` parameter. `UKElectoralRollNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1897,13 +1896,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `UKNationalHealthNumber` to the `piiCategories` parameter. `UKNationalHealthNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1915,13 +1914,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `UKNationalInsuranceNumber` to the `piiCategories` parameter. `UKNationalInsuranceNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1933,12 +1932,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `USUKPassportNumber` to the `piiCategories` parameter. `USUKPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1950,12 +1949,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `UKUniqueTaxpayerNumber` to the `piiCategories` parameter. `UKUniqueTaxpayerNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 
@@ -1973,14 +1972,14 @@ The following entities are grouped and listed by country/region:
         **Details**
 
         To get this entity category, add `USSocialSecurityNumber` to the `piiCategories` parameter. `USSocialSecurityNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
       **Supported languages**
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -1992,13 +1991,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `USDriversLicenseNumber` to the `piiCategories` parameter. `USDriversLicenseNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -2010,12 +2009,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `USUKPassportNumber` to the `piiCategories` parameter. `USUKPassportNumber` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -2027,12 +2026,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `USIndividualTaxpayerIdentification` to the `piiCategories` parameter. `USIndividualTaxpayerIdentification` will be returned in the API response if detected.
-      
+
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -2044,13 +2043,13 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `DrugEnforcementAgencyNumber` to the `piiCategories` parameter. `DrugEnforcementAgencyNumber` will be returned in the API response if detected.
-      
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::
 :::row:::
@@ -2062,12 +2061,12 @@ The following entities are grouped and listed by country/region:
     :::column span="2":::
 
         To get this entity category, add `USBankAccountNumber` to the `piiCategories` parameter. `USBankAccountNumber` will be returned in the API response if detected.
-        
+
         Also returned with `domain=phi`.
     :::column-end:::
     :::column span="":::
 
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
-      
+
    :::column-end:::
 :::row-end:::

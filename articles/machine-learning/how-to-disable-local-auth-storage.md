@@ -3,7 +3,7 @@ title: "Disable shared key access to the workspace storage account"
 titleSuffix: Azure Machine Learning
 description: "Disable shared key access to the default storage account used by your Azure Machine Learning workspace."
 author: AmarBadal
-ms.author: larryfr
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom:
@@ -421,6 +421,9 @@ To work with a storage account with disabled shared key access, you might need t
 | Studio: notebook's file explorer | User's identity | Storage File Data Privileged Contributor |  |
 | PromptFlow | User's identity | Storage Blob Data Contributor</br>Storage File Data Privileged Contributor |  |
 | Data: datastores and datasets | User's identity | Storage Blob Data Contributor |  |
+
+## Limitations
+- Creating a compute instance with System-Assigned Managed Identity is NOT support for identity based workspace. If the workspace's storage account access type is identity-based access, compute instances currently doesn't support system assigned identity to mount data store, please use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Priviliiged Contributor** on the storage account.
 
 ## Related content
 

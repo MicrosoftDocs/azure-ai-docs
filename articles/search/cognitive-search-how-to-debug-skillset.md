@@ -2,15 +2,16 @@
 title: Debug a skillset
 titleSuffix: Azure AI Search
 description: Learn how to troubleshoot Azure AI Search skillset errors and issues by using a debug session in Azure portal.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/08/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 12/03/2024
+  - sfi-image-nochange
 ---
 
 # Debug an Azure AI Search skillset in Azure portal
@@ -47,7 +48,7 @@ Debug sessions work with all generally available [indexer data sources](search-d
 
 + For the SQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
 
-+ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
++ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-how-to-managed-identities.md).
 
 ## Create a debug session
 
@@ -176,7 +177,7 @@ Tunnelmole is an open source tunneling tool that can create a public URL that fo
    + npm:  `npm install -g tunnelmole`
    + Linux: `curl -s https://tunnelmole.com/sh/install-linux.sh | sudo bash`
    + Mac:  `curl -s https://tunnelmole.com/sh/install-mac.sh --output install-mac.sh && sudo bash install-mac.sh`
-   + Windows: Install by using npm. Or if you don't have NodeJS installed, download the [precompiled .exe file for Windows](https://tunnelmole.com/downloads/tmole.exe) and put it somewhere in your PATH.
+   + Windows: Install by using npm. Or if you don't have Node.js installed, download the [precompiled .exe file for Windows](https://tunnelmole.com/downloads/tmole.exe) and put it somewhere in your PATH.
 
 1. Run this command to create a new tunnel:
 

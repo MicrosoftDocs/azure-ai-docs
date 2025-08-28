@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 09/07/2022
+ms.update-cycle: 365-days
 ---
 
 # Custom Entity Lookup cognitive skill

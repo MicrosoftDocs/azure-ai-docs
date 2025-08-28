@@ -2,7 +2,6 @@
 title: Debug Sessions concepts
 titleSuffix: Azure AI Search
 description: Debug Sessions, accessed through the Azure portal, provides an IDE-like environment where you can identify and fix errors, validate changes, and push changes to skillsets in an Azure AI Search enrichment pipeline.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/03/2024
+ms.date: 04/10/2025
+ms.update-cycle: 365-days
 ---
 
 # Debug Sessions in Azure AI Search
@@ -51,8 +51,10 @@ Debug Sessions work with all generally available [indexer data sources](search-d
 
 + For the SQL API of Azure Cosmos DB, if a partitioned collection was previously non-partitioned, the debug session won't find the document.
 
-+ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md).
++ For custom skills, a user-assigned managed identity isn't supported for a debug session connection to Azure Storage. As stated in the prerequisites, you can use a system managed identity, or specify a full access connection string that includes a key. For more information, see [Connect a search service to other Azure resources using a managed identity](search-how-to-managed-identities.md).
 
++ Data sources with encryption enabled via [customer managed keys (CMK)](search-security-manage-encryption-keys.md).
+  
 + Currently, the ability to select which document to debug is unavailable. This limitation isn't permanent and will be lifted soon. At this time, Debug Sessions selects the first document in the source data container or folder.
 
 ## How a debug session works

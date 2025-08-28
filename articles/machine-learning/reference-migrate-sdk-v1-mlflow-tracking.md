@@ -8,9 +8,9 @@ ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2
 
-author: Blackmist
-ms.author: larryfr
-ms.date: 01/16/2024
+author: s-polly
+ms.author: scottpolly
+ms.date: 02/05/2025
 ms.reviewer: kritifaujdar
 ---
 

@@ -2,15 +2,15 @@
 title: Semantic ranking
 titleSuffix: Azure AI Search
 description: Learn how Azure AI Search uses deep learning semantic ranking models from Bing to make search results more intuitive.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 12/10/2024
+ms.date: 06/10/2025
 ---
 
 # Semantic ranking in Azure AI Search
@@ -20,15 +20,19 @@ In Azure AI Search, *semantic ranker* is a feature that measurably improves sear
 Semantic ranker is a premium feature, billed by usage. We recommend this article for background, but if you'd rather get started, [follow these steps](#how-to-get-started-with-semantic-ranker).
 
 > [!NOTE]
-> Semantic ranker doesn't use generative AI or vectors. If you're looking for vectors and similarity search, see [Vector search in Azure AI Search](vector-search-overview.md) for details.
+> Semantic ranker doesn't use generative AI or vectors for secondary level 2 (L2) ranking. If you're looking for vectors and similarity search, see [Vector search in Azure AI Search](vector-search-overview.md).
 
 ## What is semantic ranking?
 
-Semantic ranker is a collection of query-side capabilities that improve the quality of an initial [BM25-ranked](index-similarity-and-scoring.md) or [RRF-ranked](hybrid-search-ranking.md) search result for text-based queries, vector queries, and hybrid queries. When you enable it on your search service, semantic ranking extends the query execution pipeline in two ways:
+Semantic ranker is a collection of query-side capabilities that improve the quality of an initial [BM25-ranked](index-similarity-and-scoring.md) or [RRF-ranked](hybrid-search-ranking.md) search result for text-based queries, the text portion of vector queries, and hybrid queries. Semantic ranking extends the query execution pipeline in three ways:
 
-* First, it adds secondary ranking over an initial result set that was scored using BM25 or Reciprocal Rank Fusion (RRF). This secondary ranking uses multi-lingual, deep learning models adapted from Microsoft Bing to promote the most semantically relevant results.
+* First, it always adds secondary ranking over an initial result set that was scored using BM25 or Reciprocal Rank Fusion (RRF). This secondary ranking uses multi-lingual, deep learning models adapted from Microsoft Bing to promote the most semantically relevant results.
 
-* Second, it extracts and returns captions and answers in the response, which you can render on a search page to improve the user's search experience.
+* Second, it returns captions and optionally extracts answers in the response, which you can render on a search page to improve the user's search experience.
+
+* Third, if you enable query rewrite, it expands an initial query string into multiple semantically similar query strings. 
+
+Secondary ranking and "answers" apply to the query response. Query rewrite is part of the query request.
 
 Here are the capabilities of the semantic reranker.
 
@@ -37,6 +41,7 @@ Here are the capabilities of the semantic reranker.
 | L2 ranking | Uses the context or semantic meaning of a query to compute a new relevance score over preranked results. |
 | [Semantic captions and highlights](semantic-how-to-query-request.md) | Extracts verbatim sentences and phrases from fields that best summarize the content, with highlights over key passages for easy scanning. Captions that summarize a result are useful when individual content fields are too dense for the search results page. Highlighted text elevates the most relevant terms and phrases so that users can quickly determine why a match was considered relevant. |
 | [Semantic answers](semantic-answers.md) | An optional and extra substructure returned from a semantic query. It provides a direct answer to a query that looks like a question. It requires that a document has text with the characteristics of an answer. |
+| [Query rewrite](semantic-how-to-query-rewrite.md) | Using text queries or the text portion of a vector query, semantic ranker creates up to 10 variants of the query, perhaps correcting typos or spelling errors, or rephrasing a query using generated synonyms. The rewritten query runs on the search engine. The results are scored using BM25 or RRF scoring, and then rescored by semantic ranker.  |
 
 ## How semantic ranker works
 
@@ -58,7 +63,7 @@ There are three steps to semantic ranking:
 
 In semantic ranking, the query subsystem passes search results as an input to summarization and ranking models. Because the ranking models have input size constraints and are processing intensive, search results must be sized and structured (summarized) for efficient handling.
 
-1. Semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. Only text fields are used in the reranking exercise, and only the top 50 results progress to semantic ranking, even if results include more than 50. Typically, fields used in semantic ranking are informational and descriptive.
+1. Semantic ranker starts with a [BM25-ranked result](index-ranking-similarity.md) from a text query or an [RRF-ranked result](hybrid-search-ranking.md) from a vector or hybrid query. Only text is used in the reranking exercise, and only the top 50 results progress to semantic ranking, even if results include more than 50. Typically, fields used in semantic ranking are informational and descriptive.
 
 1. For each document in the search result, the summarization model accepts up to 2,000 tokens, where a token is approximately 10 characters. Inputs are assembled from the "title", "keyword", and "content" fields listed in the [semantic configuration](semantic-how-to-configure.md). 
 
@@ -74,7 +79,7 @@ In semantic ranking, the query subsystem passes search results as an input to su
 
    As of November 2024, the maximum length of each generated summary string passed to the semantic ranker is 2,048 tokens. Previously, it was 256 tokens.
 
-### How ranking is scored
+## How results are scored
 
 Scoring is done over the caption, and any other content from the summary string that fills out the 2,048 token length.
 
@@ -109,7 +114,7 @@ Captions and answers are always verbatim text from your index. There's no genera
 
 ## Semantic capabilities and limitations
 
-Semantic ranker is a newer technology so it's important to set expectations about what it can and can't do. What it *can* do:
+What semantic ranker *can* do:
 
 * Promote matches that are semantically closer to the intent of original query.
 
@@ -124,6 +129,12 @@ The underlying technology is from Bing and Microsoft Research, and integrated in
 The following video provides an overview of the capabilities.
 
 > [!VIDEO https://www.youtube.com/embed/yOf0WfVd_V0]
+
+
+## How semantic ranker uses synonym maps
+
+If you have already enabled support for [synonym maps associated to a field](search-synonyms.md#assign-synonyms-to-fields) in your search index, and that field is included in the [semantic ranker configuration](semantic-how-to-configure.md), the semantic ranker will automatically apply the configured synonyms during the reranking process.
+
 
 ## Availability and pricing
 

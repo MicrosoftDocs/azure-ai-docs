@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-azurecli, sdkv1
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 07/26/2024
 ---
@@ -17,7 +17,9 @@ ms.date: 07/26/2024
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
-[!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 In this document, you learn how to configure a private endpoint for your Azure Machine Learning workspace. For information on creating a virtual network for Azure Machine Learning, see [Virtual network isolation and privacy overview](../how-to-network-security-overview.md).
 

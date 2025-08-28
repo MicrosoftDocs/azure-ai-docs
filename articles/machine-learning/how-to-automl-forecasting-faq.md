@@ -3,14 +3,14 @@ title: Frequently asked questions about forecasting in AutoML
 titleSuffix: Azure Machine Learning
 description: Read answers to frequently asked questions about forecasting in AutoML.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sagoswami
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: faq
 ms.custom: automl, sdkv2
-ms.date: 08/01/2023
+ms.date: 03/08/2025
 ---
 
 # Frequently asked questions about forecasting in AutoML

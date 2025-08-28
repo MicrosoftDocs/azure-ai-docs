@@ -24,7 +24,7 @@ Use this component to generate predictions using a trained image model on input 
 
 2. Attach a trained image model and a dataset containing input image data. 
 
-    The data should be of type ImageDirectory. Refer to [Convert to Image Directory](convert-to-image-directory.md) component for more information about how to get a image directory. The schema of the input dataset should also generally match the schema of the data used to train the model.
+    The data should be of type ImageDirectory. Refer to [Convert to Image Directory](convert-to-image-directory.md) component for more information about how to get an image directory. The schema of the input dataset should also generally match the schema of the data used to train the model.
 
 3. Submit the pipeline.
 

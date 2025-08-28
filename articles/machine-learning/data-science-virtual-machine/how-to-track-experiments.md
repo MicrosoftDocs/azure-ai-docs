@@ -152,7 +152,7 @@ Select __Create__.
 When we registered the model in our code using `register_model`, we specified the framework as **sklearn**. Azure Machine Learning supports no code deployments for these frameworks:
 
 * scikit-learn
-* Tensorflow SaveModel format
+* TensorFlow SaveModel format
 * ONNX model format
 
 No-code deployment means that you can deploy straight from the model artifact. You don't need to specify any specific scoring script.

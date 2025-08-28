@@ -2,7 +2,6 @@
 title: Find encryption key information
 titleSuffix: Azure AI Search
 description: Retrieve the encryption key name and version used in an index or synonym map so that you can manage the key in Azure Key Vault.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/30/2024
+ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Find encrypted objects and information
@@ -41,7 +41,7 @@ You must have [Search Service Contributor](search-security-rbac.md#built-in-role
 
 1. On the left side, select **Keys** and copy an admin API. 
 
-For the remaining steps, switch to PowerShell and the REST API. the Azure portal doesn't show encryption key information for any object.
+For the remaining steps, switch to PowerShell and the REST API. The Azure portal doesn't show encryption key information for any object.
 
 ## Retrieve object properties
 

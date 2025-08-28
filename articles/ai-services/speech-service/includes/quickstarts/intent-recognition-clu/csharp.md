@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 02/17/2023
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -108,7 +108,7 @@ Follow these steps to create a new console application and install the Speech SD
                     {
                         Console.WriteLine($"CANCELED: ErrorCode={cancellation.ErrorCode}");
                         Console.WriteLine($"CANCELED: ErrorDetails={cancellation.ErrorDetails}");
-                        Console.WriteLine($"CANCELED: Did you update the subscription info?");
+                        Console.WriteLine($"CANCELED: Did you update the Speech resource info?");
                     }
                 }
             }

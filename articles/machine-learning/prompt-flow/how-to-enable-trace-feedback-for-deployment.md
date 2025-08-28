@@ -5,12 +5,14 @@ description: Learn how to enable trace and collect feedback during inference tim
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 05/09/2024
+ms.custom:
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Enable trace and collect feedback for a flow deployment (preview)
@@ -121,7 +123,7 @@ trace.set_tracer_provider(TracerProvider())
 # The example below assumes JSON formatting which may be updated
 # depending on the format your endpoint expects.
 # More information can be found here:
-# https://docs.microsoft.com/azure/machine-learning/how-to-deploy-advanced-entry-script
+# https://learn.microsoft.com/azure/machine-learning/how-to-deploy-advanced-entry-script
 data = {
     "question": "hello",
     "chat_history": []

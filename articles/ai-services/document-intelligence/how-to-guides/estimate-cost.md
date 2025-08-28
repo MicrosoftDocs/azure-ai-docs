@@ -39,7 +39,7 @@ We start by looking at the page processing data for a given time period:
 
 We can now take a deeper dive to see each model's analyzed pages:
 
-1. Under the **Monitoring** section, select **Metrics** from the left navigation menu.
+1. Under the **Monitoring** section, select **Metrics** from the left pane.
 
    :::image type="content" source="../media/azure-portal-monitoring-metrics.png" alt-text="Screenshot of the monitoring menu in the Azure portal.":::
 

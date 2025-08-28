@@ -1,17 +1,16 @@
 ---
 title: Anomaly Detector JavaScript client library quickstart
 titleSuffix: Azure AI services
-#services: cognitive-services
 author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ms.custom: devx-track-js
 ---
 
-<a href="https://go.microsoft.com/fwlink/?linkid=2090788" target="_blank">Library reference documentation</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector" target="_blank">Library source code</a> | <a href="https://www.npmjs.com/package/%40azure/ai-anomaly-detector" target="_blank">Package (npm)</a> |<a href="https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/javascript/AnomalyDetector" target="_blank">Find the sample code on GitHub</a>
+<a href="/javascript/api/overview/azure/ai-anomaly-detector-readme" target="_blank">Library reference documentation</a> |<a href="https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/anomalydetector" target="_blank">Library source code</a> | <a href="https://www.npmjs.com/package/%40azure/ai-anomaly-detector" target="_blank">Package (npm)</a> |<a href="https://github.com/Azure-Samples/cognitive-services-quickstart-code/tree/master/javascript/AnomalyDetector" target="_blank">Find the sample code on GitHub</a>
 
 Get started with the Anomaly Detector client library for JavaScript. Follow these steps to install the package, and start using the algorithms provided by the service. The Anomaly Detector service enables you to find abnormalities in your time series data by automatically using the best-fitting model on it, regardless of industry, scenario, or data volume.
 
@@ -74,7 +73,7 @@ Go to your resource in the Azure portal. The **Endpoint and Keys** can be found 
 
 Create and assign persistent environment variables for your key and endpoint.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 # [Command Line](#tab/command-line)
 

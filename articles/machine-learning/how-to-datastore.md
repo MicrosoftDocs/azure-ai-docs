@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: yogipandey
-ms.date: 02/20/2024
+ms.date: 02/28/2025
 ms.custom: data4ml, ignite-2023, devx-track-azurecli
 # Customer intent: As an experienced Python developer, I need to make my data in Azure storage available to my remote compute resource to train my machine learning models.
 ---
@@ -36,8 +36,9 @@ In this article, you learn how to connect to Azure data storage services with Az
 ```python
 from azure.ai.ml.entities import AzureBlobDatastore
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureBlobDatastore(
     name="",
@@ -55,8 +56,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureBlobDatastore
 from azure.ai.ml.entities import AccountKeyConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureBlobDatastore(
     name="blob_protocol_example",
@@ -65,7 +67,7 @@ store = AzureBlobDatastore(
     container_name="data-container",
     protocol="https",
     credentials=AccountKeyConfiguration(
-        account_key="XXXxxxXXXxXXXXxxXXXXXxXXXXXxXxxXxXXXxXXXxXXxxxXXxxXXXxXxXXXxxXxxXXXXxxxxxXXxxxxxxXXXxXXX"
+        account_key="aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
     ),
 )
 
@@ -78,8 +80,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureBlobDatastore
 from azure.ai.ml.entities import SasTokenConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureBlobDatastore(
     name="blob_sas_example",
@@ -87,7 +90,7 @@ store = AzureBlobDatastore(
     account_name="mytestblobstore",
     container_name="data-container",
     credentials=SasTokenConfiguration(
-        sas_token= "?xx=XXXX-XX-XX&xx=xxxx&xxx=xxx&xx=xxxxxxxxxxx&xx=XXXX-XX-XXXXX:XX:XXX&xx=XXXX-XX-XXXXX:XX:XXX&xxx=xxxxx&xxx=XXxXXXxxxxxXXXXXXXxXxxxXXXXXxxXXXXXxXXXXxXXXxXXxXX"
+        sas_token= "?xx=A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u&xx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1wx&xx=Ff6Gg~7Hh8.-Ii9Jj0Kk1Ll2Mm3Nn4_Oo5Pp6Qq7&xx=N7oP8qR9sT0uV1wX2yZ3aB4cD5eF6g&xxx=Ee5Ff~6Gg7.-Hh8Ii9Jj0Kk1Ll2Mm3_Nn4Oo5Pp6&xxx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w"
     ),
 )
 
@@ -125,7 +128,7 @@ description: Datastore pointing to a blob container.
 account_name: mytestblobstore
 container_name: data-container
 credentials:
-  account_key: XXXxxxXXXxXXXXxxXXXXXxXXXXXxXxxXxXXXxXXXxXXxxxXXxxXXXxXxXXXxxXxxXXXXxxxxxXXxxxxxxXXXxXXX
+  account_key: aaaaaaaa-0b0b-1c1c-2d2d-333333333333
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -146,7 +149,7 @@ description: Datastore pointing to a blob container using SAS token.
 account_name: mytestblobstore
 container_name: data-container
 credentials:
-  sas_token: ?xx=XXXX-XX-XX&xx=xxxx&xxx=xxx&xx=xxxxxxxxxxx&xx=XXXX-XX-XXXXX:XX:XXX&xx=XXXX-XX-XXXXX:XX:XXX&xxx=xxxxx&xxx=XXxXXXxxxxxXXXXXXXxXxxxXXXXXxxXXXXXxXXXXxXXXxXXxXX
+  sas_token: "?xx=A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u&xx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1wx&xx=Ff6Gg~7Hh8.-Ii9Jj0Kk1Ll2Mm3Nn4_Oo5Pp6Qq7&xx=N7oP8qR9sT0uV1wX2yZ3aB4cD5eF6g&xxx=Ee5Ff~6Gg7.-Hh8Ii9Jj0Kk1Ll2Mm3_Nn4Oo5Pp6&xxx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w"
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -163,8 +166,9 @@ az ml datastore create --file my_blob_datastore.yml
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen2Datastore
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen2Datastore(
     name="",
@@ -183,8 +187,9 @@ from azure.ai.ml.entities import AzureDataLakeGen2Datastore
 from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen2Datastore(
     name="adls_gen2_example",
@@ -192,9 +197,9 @@ store = AzureDataLakeGen2Datastore(
     account_name="mytestdatalakegen2",
     filesystem="my-gen2-container",
      credentials=ServicePrincipalCredentials(
-        tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-        client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-        client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        tenant_id= "bbbbcccc-1111-dddd-2222-eeee3333ffff",
+        client_id= "44445555-eeee-6666-ffff-7777aaaa8888",
+        client_secret= "Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4",
     ),
 )
 
@@ -232,9 +237,9 @@ description: Datastore pointing to an Azure Data Lake Storage Gen2 instance.
 account_name: mytestdatalakegen2
 filesystem: my-gen2-container
 credentials:
-  tenant_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-  client_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-  client_secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  tenant_id: bbbbcccc-1111-dddd-2222-eeee3333ffff
+  client_id: 44445555-eeee-6666-ffff-7777aaaa8888
+  client_secret: Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -252,8 +257,9 @@ az ml datastore create --file my_adls_datastore.yml
 from azure.ai.ml.entities import AzureFileDatastore
 from azure.ai.ml.entities import AccountKeyConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureFileDatastore(
     name="file_example",
@@ -261,7 +267,7 @@ store = AzureFileDatastore(
     account_name="mytestfilestore",
     file_share_name="my-share",
     credentials=AccountKeyConfiguration(
-        account_key= "XXXxxxXXXxXXXXxxXXXXXxXXXXXxXxxXxXXXxXXXxXXxxxXXxxXXXxXxXXXxxXxxXXXXxxxxxXXxxxxxxXXXxXXX"
+        account_key= "aaaaaaaa-0b0b-1c1c-2d2d-333333333333"
     ),
 )
 
@@ -274,8 +280,9 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureFileDatastore
 from azure.ai.ml.entities import SasTokenConfiguration
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureFileDatastore(
     name="file_sas_example",
@@ -283,7 +290,7 @@ store = AzureFileDatastore(
     account_name="mytestfilestore",
     file_share_name="my-share",
     credentials=SasTokenConfiguration(
-        sas_token="?xx=XXXX-XX-XX&xx=xxxx&xxx=xxx&xx=xxxxxxxxxxx&xx=XXXX-XX-XXXXX:XX:XXX&xx=XXXX-XX-XXXXX:XX:XXX&xxx=xxxxx&xxx=XXxXXXxxxxxXXXXXXXxXxxxXXXXXxxXXXXXxXXXXxXXXxXXxXX"
+        sas_token="?xx=A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u&xx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1wx&xx=Ff6Gg~7Hh8.-Ii9Jj0Kk1Ll2Mm3Nn4_Oo5Pp6Qq7&xx=N7oP8qR9sT0uV1wX2yZ3aB4cD5eF6g&xxx=Ee5Ff~6Gg7.-Hh8Ii9Jj0Kk1Ll2Mm3_Nn4Oo5Pp6&xxx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w"
     ),
 )
 
@@ -302,7 +309,7 @@ description: Datastore pointing to an Azure File Share.
 account_name: mytestfilestore
 file_share_name: my-share
 credentials:
-  account_key: XxXxXxXXXXXXXxXxXxxXxxXXXXXXXXxXxxXXxXXXXXXXxxxXxXXxXXXXXxXXxXXXxXxXxxxXXxXXxXXXXXxXxxXX
+  account_key: aaaaaaaa-0b0b-1c1c-2d2d-333333333333
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -323,7 +330,7 @@ description: Datastore pointing to an Azure File Share using an SAS token.
 account_name: mytestfilestore
 file_share_name: my-share
 credentials:
-  sas_token: ?xx=XXXX-XX-XX&xx=xxxx&xxx=xxx&xx=xxxxxxxxxxx&xx=XXXX-XX-XXXXX:XX:XXX&xx=XXXX-XX-XXXXX:XX:XXX&xxx=xxxxx&xxx=XXxXXXxxxxxXXXXXXXxXxxxXXXXXxxXXXXXxXXXXxXXXxXXxXX
+  sas_token: "?xx=A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u&xx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1wx&xx=Ff6Gg~7Hh8.-Ii9Jj0Kk1Ll2Mm3Nn4_Oo5Pp6Qq7&xx=N7oP8qR9sT0uV1wX2yZ3aB4cD5eF6g&xxx=Ee5Ff~6Gg7.-Hh8Ii9Jj0Kk1Ll2Mm3_Nn4Oo5Pp6&xxx=C2dE3fH4iJ5kL6mN7oP8qR9sT0uV1w"
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -340,8 +347,9 @@ az ml datastore create --file my_files_datastore.yml
 ```python
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen1Datastore(
     name="",
@@ -358,17 +366,18 @@ ml_client.create_or_update(store)
 from azure.ai.ml.entities import AzureDataLakeGen1Datastore
 from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = AzureDataLakeGen1Datastore(
     name="adls_gen1_example",
     description="Datastore pointing to an Azure Data Lake Storage Gen1.",
     store_name="mytestdatalakegen1",
     credentials=ServicePrincipalCredentials(
-        tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-        client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-        client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        tenant_id= "bbbbcccc-1111-dddd-2222-eeee3333ffff",
+        client_id= "44445555-eeee-6666-ffff-7777aaaa8888",
+        client_secret= "Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4",
     ),
 )
 
@@ -404,9 +413,9 @@ type: azure_data_lake_gen1
 description: Datastore pointing to an Azure Data Lake Storage Gen1 instance.
 store_name: mytestdatalakegen1
 credentials:
-  tenant_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-  client_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-  client_secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  tenant_id: bbbbcccc-1111-dddd-2222-eeee3333ffff
+  client_id: 44445555-eeee-6666-ffff-7777aaaa8888
+  client_secret: Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -445,16 +454,17 @@ You will then find "Endpoint", "Workspace GUID" and "Artifact GUID" in "URL" and
 ```python
 from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = OneLakeDatastore(
     name="onelake_example_id",
     description="Datastore pointing to an Microsoft fabric artifact.",
-    one_lake_workspace_name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", #{your_one_lake_workspace_guid}
+    one_lake_workspace_name="bbbbbbbb-7777-8888-9999-cccccccccccc", #{your_one_lake_workspace_guid}
     endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
     artifact = OneLakeArtifact(
-        name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files", #{your_one_lake_artifact_guid}/Files
+        name="cccccccc-8888-9999-0000-dddddddddddd/Files", #{your_one_lake_artifact_guid}/Files
         type="lake_house"
     )
 )
@@ -465,30 +475,26 @@ ml_client.create_or_update(store)
 # [Python SDK: Service principal](#tab/sdk-onelake-sp)
 
 ```python
-from azure.ai.ml.entities import AzureDataLakeGen1Datastore
+from azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
 from azure.ai.ml.entities._datastore.credentials import ServicePrincipalCredentials
 from azure.ai.ml import MLClient
+from azure.identity import DefaultAzureCredential
 
-ml_client = MLClient.from_config()
-
-rom azure.ai.ml.entities import OneLakeDatastore, OneLakeArtifact
-from azure.ai.ml import MLClient
-
-ml_client = MLClient.from_config()
+ml_client = MLClient.from_config(credential=DefaultAzureCredential())
 
 store = OneLakeDatastore(
     name="onelake_example_sp",
     description="Datastore pointing to an Microsoft fabric artifact.",
-    one_lake_workspace_name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX", #{your_one_lake_workspace_guid}
+    one_lake_workspace_name="bbbbbbbb-7777-8888-9999-cccccccccccc", #{your_one_lake_workspace_guid}
     endpoint="msit-onelake.dfs.fabric.microsoft.com" #{your_one_lake_endpoint}
     artifact = OneLakeArtifact(
-    name="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files", #{your_one_lake_artifact_guid}/Files
+    name="cccccccc-8888-9999-0000-dddddddddddd/Files", #{your_one_lake_artifact_guid}/Files
     type="lake_house"
     )
     credentials=ServicePrincipalCredentials(
-        tenant_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-        client_id= "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX",
-        client_secret= "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX",
+        tenant_id= "bbbbcccc-1111-dddd-2222-eeee3333ffff",
+        client_id= "44445555-eeee-6666-ffff-7777aaaa8888",
+        client_secret= "Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4",
     ),
 )
 
@@ -504,11 +510,11 @@ $schema: http://azureml/sdk-2-0/OneLakeDatastore.json
 name: onelake_example_id
 type: one_lake
 description: Credential-less datastore pointing to a OneLake lakehouse.
-one_lake_workspace_name: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+one_lake_workspace_name: "eeeeffff-4444-aaaa-5555-bbbb6666cccc"
 endpoint: "msit-onelake.dfs.fabric.microsoft.com"
 artifact:
   type: lake_house
-  name: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files"
+  name: "1111bbbb-22cc-dddd-ee33-ffffff444444/Files"
 ```
 
 Create the Machine Learning datastore in the CLI:
@@ -526,15 +532,15 @@ $schema: http://azureml/sdk-2-0/OneLakeDatastore.json
 name: onelake_example_id
 type: one_lake
 description: Credential-less datastore pointing to a OneLake lakehouse.
-one_lake_workspace_name: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+one_lake_workspace_name: "eeeeffff-4444-aaaa-5555-bbbb6666cccc"
 endpoint: "msit-onelake.dfs.fabric.microsoft.com"
 artifact:
   type: lake_house
-  name: "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/Files"
+  name: "1111bbbb-22cc-dddd-ee33-ffffff444444/Files"
 credentials:
-  tenant_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-  client_id: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-  client_secret: XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+  tenant_id: bbbbcccc-1111-dddd-2222-eeee3333ffff
+  client_id: 44445555-eeee-6666-ffff-7777aaaa8888
+  client_secret: Cc3Dd~4Ee5.-Ff6Gg7Hh8Ii9Jj0Kk1_Ll2Mm3Nn4
 ```
 
 Create the Machine Learning datastore in the CLI:

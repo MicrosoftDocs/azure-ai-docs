@@ -5,8 +5,8 @@ description: Learn the available options for building a data ingestion pipeline 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 manager: davete
 ms.reviewer: iefedore
 ms.date: 08/19/2024
@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
 
 
 # Data ingestion with Azure Data Factory
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn about the available options for building a data ingestion pipeline with [Azure Data Factory](/azure/data-factory/introduction). This Azure Data Factory pipeline is used to ingest data for use with [Azure Machine Learning](../overview-what-is-azure-machine-learning.md). Data Factory allows you to easily extract, transform, and load (ETL) data. Once the data is transformed and loaded into storage, it can be used to train your machine learning models in Azure Machine Learning.
 

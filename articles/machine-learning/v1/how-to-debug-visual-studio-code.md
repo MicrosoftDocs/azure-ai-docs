@@ -10,13 +10,18 @@ ms.reviewer: ssalgado
 author: tbombach
 ms.author: tbombach
 ms.date: 10/21/2021
-ms.custom: UpdateFrequency5, sdkv1
 monikerRange: 'azureml-api-1'
+ms.custom:
+  - UpdateFrequency5
+  - sdkv1
+  - sfi-image-nochange
 ---
 
 # Interactive debugging with Visual Studio Code
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to interactively debug Azure Machine Learning experiments, pipelines, and deployments using Visual Studio Code (VS Code) and [debugpy](https://github.com/microsoft/debugpy/).
 
@@ -367,7 +372,7 @@ Local web service deployments require a working Docker installation on your loca
 
 1. To configure VS Code to communicate with the Docker image, create a new debug configuration:
 
-    1. From VS Code, select the __Debug__ menu in the __Run__ extention and then select __Open configurations__. A file named __launch.json__ opens.
+    1. From VS Code, select the __Debug__ menu in the __Run__ extension and then select __Open configurations__. A file named __launch.json__ opens.
 
     1. In the __launch.json__ file, find the __"configurations"__ item (the line that contains `"configurations": [`), and insert the following text after it. 
 
@@ -507,7 +512,7 @@ Local web service deployments require a working Docker installation on your loca
 
     This command attaches your `score.py` locally to the one in the container. Therefore, any changes made in the editor are automatically reflected in the container
 
-2. For a better experience, you can go into the container with a new VS Code interface. Select the `Docker` extention from the VS Code side bar, find your local container created, in this documentation its `debug:1`. Right-click this container and select `"Attach Visual Studio Code"`, then a new VS Code interface will be opened automatically, and this interface shows the inside of your created container.
+2. For a better experience, you can go into the container with a new VS Code interface. Select the `Docker` extension from the VS Code side bar, find your local container created, in this documentation its `debug:1`. Right-click this container and select `"Attach Visual Studio Code"`, then a new VS Code interface will be opened automatically, and this interface shows the inside of your created container.
 
     ![The container VS Code interface](../media/how-to-troubleshoot-deployment/container-interface.png)
 
@@ -520,7 +525,7 @@ Local web service deployments require a working Docker installation on your loca
 
     ![The container run console output](../media/how-to-troubleshoot-deployment/container-run.png)
 
-4. To attach VS Code to debugpy inside the container, open VS Code, and use the F5 key or select __Debug__. When prompted, select the __Azure Machine Learning Deployment: Docker Debug__ configuration. You can also select the __Run__ extention icon from the side bar, the __Azure Machine Learning Deployment: Docker Debug__ entry from the Debug dropdown menu, and then use the green arrow to attach the debugger.
+4. To attach VS Code to debugpy inside the container, open VS Code, and use the F5 key or select __Debug__. When prompted, select the __Azure Machine Learning Deployment: Docker Debug__ configuration. You can also select the __Run__ extension icon from the side bar, the __Azure Machine Learning Deployment: Docker Debug__ entry from the Debug dropdown menu, and then use the green arrow to attach the debugger.
 
     ![The debug icon, start debugging button, and configuration selector](../media/how-to-troubleshoot-deployment/start-debugging.png)
     

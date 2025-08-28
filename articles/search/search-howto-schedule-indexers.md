@@ -9,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 03/11/2025
+ms.update-cycle: 365-days
 ---
 
 # Schedule an indexer in Azure AI Search
@@ -56,7 +57,7 @@ Schedules are specified in an indexer definition. To set up a schedule, you can 
 ### [**Azure portal**](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
-1. On the left navigation pane, select **Indexers**.
+1. On the left pane, select **Indexers**.
 1. Open an indexer.
 1. Select **Settings**.
 1. Scroll down to **Schedule**, and then choose Hourly, Daily, or Custom to set a specific date, time, or custom interval.
@@ -138,6 +139,6 @@ If an indexer is set to a certain schedule but repeatedly fails on the same docu
 
 For indexers that run on a schedule, you can monitor operations by retrieving status from the search service, or obtain detailed information by enabling resource logging.
 
-+ [Monitor search indexer status](search-howto-monitor-indexers.md)
++ [Monitor search indexer status](search-monitor-indexers.md)
 + [Collect and analyze log data](monitor-azure-cognitive-search.md)
 + [Index large data sets](search-howto-large-index.md)

@@ -1,7 +1,6 @@
 ---
 title: include file
 description: include file
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-personalizer
 ms.topic: include

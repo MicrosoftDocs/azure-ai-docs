@@ -10,14 +10,15 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 09/19/2024
+ms.date: 03/11/2025
+ms.update-cycle: 365-days
 ---
 
 # Skills for extra processing during indexing (Azure AI Search)
 
 This article describes the skills in Azure AI Search that you can include in a [skillset](cognitive-search-working-with-skillsets.md) to access external processing. 
 
-A *skill* provides an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is text-based so that it can be used in [full text search](search-lucene-query-architecture.md) or vectors used in [vector search](vector-search-overview.md).
+A *skill* is an atomic operation that transforms content in some way. Often, it's an operation that recognizes or extracts text, but it can also be a utility skill that reshapes the enrichments that are already created. Typically, the output is either text-based so that it can be used in [full text search](search-lucene-query-architecture.md), or vectors used in [vector search](vector-search-overview.md).
 
 Skills are organized into categories:
 
@@ -29,7 +30,7 @@ Skills are organized into categories:
 
 ## Azure AI resource skills
 
-Skills that call the Azure AI are billed at the pay-as-you-go rate when you [attach an AI service resource](cognitive-search-attach-cognitive-services.md).
+Skills that call the Azure AI are billed at the Standard rate when you [attach an AI service resource](cognitive-search-attach-cognitive-services.md).
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
@@ -48,7 +49,7 @@ Skills that call the Azure AI are billed at the pay-as-you-go rate when you [att
 
 ## Azure OpenAI skills
 
-Skills that call models deployed on Azure OpenAI are billed at the pay-as-you-go rate.
+Skills that call models deployed on Azure OpenAI are billed at the Standard rate.
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
@@ -81,4 +82,4 @@ For guidance on creating a custom skill, see [Define a custom interface](cogniti
 
 + [How to define a skillset](cognitive-search-defining-skillset.md)
 + [Custom Skills interface definition](cognitive-search-custom-skill-interface.md)
-+ [Tutorial: Enriched indexing with AI](cognitive-search-tutorial-blob.md)
++ [Tutorial: Enriched indexing with AI](tutorial-skillset.md)

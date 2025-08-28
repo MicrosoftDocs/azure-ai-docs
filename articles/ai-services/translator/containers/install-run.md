@@ -2,12 +2,11 @@
 title: Install and run Translator container using Docker API
 titleSuffix: Azure AI services
 description: Use the Translator container and API to translate text and documents.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 04/14/2025
 ms.author: lajanuar
 recommendations: false
 keywords: on-premises, Docker, container, identify
@@ -24,7 +23,7 @@ Containers enable you to host the Azure AI Translator API on your own infrastruc
 
 In this article, learn how to install and run the Translator container online with Docker API. The Azure AI Translator container supports the following operations:
 
-* **Text Translation**. Translate the contextual meaning of words or phrases from supported `source` to supported `target` language in real time. For more information, *see* [**Container: translate text**](translator-container-supported-parameters.md).
+* **Text translation**. Translate the contextual meaning of words or phrases from supported `source` to supported `target` language in real time. For more information, *see* [**Container: translate text**](translator-container-supported-parameters.md).
 
 * **🆕 Text Transliteration**. Convert text from one language script or writing system to another language script or writing system in real time. For more information, *see* [Container: transliterate text](transliterate-text-parameters.md).
 
@@ -40,7 +39,7 @@ To get started, you need the following resources, gated access approval, and too
 >
 > Your translator resource must meet the following requirements:
 >
-> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI services resource).
+> * Your Translator instance must be a **Translator** resource (**not** a multi-service Azure AI Foundry resource).
 >
 > * Your Translator instance must be a **regional** resource (**not** a global Azure AI Translator resource) within am available Azure geographic region. For more information, *see* [Azure AI Translator region pricing options](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#overview).
 
@@ -140,8 +139,8 @@ All Azure AI containers require the following input values:
 
 | Option | Description |
 |--------|-------------|
-| `ApiKey` | The key of the Azure AI services resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
-| `Billing` | The endpoint of the Azure AI services resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
+| `ApiKey` | The key of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
+| `Billing` | The endpoint of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 ### Connecting to Azure
@@ -156,7 +155,7 @@ All Azure AI containers require the following input values:
 
 The Azure AI services container images can be found in the [**Microsoft Artifact Registry**](https://mcr.microsoft.com/catalog?page=3) catalog. Azure AI Translator container resides within the azure-cognitive-services/translator repository and is named `text-translation`. The fully qualified container image name is `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`.
 
-To use the latest version of the container, use the latest tag. You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
+To use the latest version of the container, use the latest tag. You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.
 
 ## Use containers
 
@@ -257,7 +256,7 @@ Disconnected containers enable you to use the Azure AI Translator API by exporti
 
 * If you decide that you don't want to continue purchasing a commitment plan, you can set your resource's autorenewal to **Do not auto-renew**.
 
-* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at pay-as-you-go pricing.
+* Your commitment plan expires on the displayed commitment end date. After this date, you won't be charged for the commitment plan. You're still able to continue using the Azure resource to make API calls, charged at Standard pricing.
 
 * You have until midnight (UTC) on the last day of the year to end a commitment plan for disconnected containers. If you do so, you avoid charges for the following year.
 
@@ -325,7 +324,7 @@ The following example shows the formatting for the `docker run` command with pla
 | `{LICENSE_MOUNT}` | The path where the license is downloaded, and mounted.  | `/host/license:/path/to/license/directory` |
 | `{MODEL_MOUNT_PATH}`| The path where the machine translation models are downloaded, and mounted. Your directory structure must be formatted as **/usr/local/models** | `/host/translator/models:/usr/local/models`|
 | `{ENDPOINT_URI}` | The endpoint for authenticating your service request. You can find it on your resource's **Key and endpoint** page, in the Azure portal. | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-| `{API_KEY}` | The key for your Text Translation resource. You can find it on your resource's **Key and endpoint** page, in the Azure portal. |`{string}`|
+| `{API_KEY}` | The key for your Text translation resource. You can find it on your resource's **Key and endpoint** page, in the Azure portal. |`{string}`|
 | `{LANGUAGES_LIST}` | List of language codes separated by commas. It's mandatory to have English (en) language as part of the list.| `en`, `fr`, `it`, `zu`, `uk` |
 | `{CONTAINER_LICENSE_DIRECTORY}` | Location of the license folder on the container's local filesystem.  | `/path/to/license/directory` |
 
@@ -447,10 +446,10 @@ The following table lists the required supporting containers for your text and d
 
 |Operation|Request query|Document type|Supporting containers|
 |-----|-----|-----|-----|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Office documents| None|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
-|&bullet; Text translation<br>&bullet; Document Translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Office documents| None|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified. Requires automatic language detection to determine the source language. |Office documents |✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation |`from` specified. |Scanned PDF documents| ✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
+|&bullet; Text translation<br>&bullet; Document translation|`from` not specified requiring automatic language detection to determine source language.|Scanned PDF documents| ✔️ [**Text analytics:language**](../../language-service/language-detection/how-to/use-containers.md) container<br><br>✔️ [**Vision:read**](../../computer-vision/computer-vision-how-to-install-containers.md) container|
 
 ## Operate supporting containers with `docker compose`
 
@@ -532,7 +531,7 @@ The Azure AI services container images can be found in the [**Microsoft Artifact
 
 |Container|Image location|Notes|
 |--------|-------------|---------------|
-|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text Translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
+|Translator: Text and document translation| `mcr.microsoft.com/azure-cognitive-services/translator/text-translation:latest`| You can view the full list of [Azure AI services Text translation](https://mcr.microsoft.com/product/azure-cognitive-services/translator/text-translation/tags) version tags on MCR.|
 |Text analytics: language|`mcr.microsoft.com/azure-cognitive-services/textanalytics/language:latest` |You can view the full list of [Azure AI services Text Analytics Language](https://mcr.microsoft.com/product/azure-cognitive-services/textanalytics/language/tags) version tags on MCR.|
 |Vision: read|`mcr.microsoft.com/azure-cognitive-services/vision/read:latest`|You can view the full list of [Azure AI services Computer Vision Read `OCR`](https://mcr.microsoft.com/product/azure-cognitive-services/vision/read/tags) version tags on MCR.|
 
@@ -579,7 +578,7 @@ The container provides two endpoints for returning records regarding its usage.
 
 The following endpoint provides a report summarizing all of the usage collected in the mounted billing record directory.
 
-```HTTP
+```bash
 https://<service>/records/usage-logs/
 ```
 
@@ -591,7 +590,7 @@ https://<service>/records/usage-logs/
 
 The following endpoint provides a report summarizing usage over a specific month and year:
 
-```HTTP
+```bash
 https://<service>/records/usage-logs/{MONTH}/{YEAR}
 ```
 

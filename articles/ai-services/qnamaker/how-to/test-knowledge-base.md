@@ -3,11 +3,11 @@ title: How to test a knowledge base - QnA Maker
 description: Testing your QnA Maker knowledge base is an important part of an iterative process to improve the accuracy of the responses being returned. You can test the knowledge base through an enhanced chat interface that also allows you make edits.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 07/16/2025
 ---
 # Test your knowledge base in QnA Maker
 
@@ -85,7 +85,7 @@ Use the batch testing tool when you want to:
 
 ### Sign into QnA Maker portal
 
-[Sign in](https://www.qnamaker.ai/) to the QnA Maker portal.
+Sign in to the QnA Maker portal.
 
 ### Create a new knowledge base from the multi-turn sample.docx file
 

@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
-ms.date: 09/03/2024
+ms.author: scottpolly
+author: s-polly
+ms.date: 06/09/2025
 ms.custom: how-to, devx-track-azurecli, devx-track-arm-template, FY25Q1-Linter, ignite-2024
 monikerRange: 'azureml-api-1 || azureml-api-2'
 # Customer Intent: As an admin, I want to understand what permissions I need to assign resources so my users can accomplish their tasks.
@@ -51,6 +51,90 @@ You can combine the roles to grant different levels of access. For example, you 
 
 > [!IMPORTANT]
 > Role access can be scoped to multiple levels in Azure. For example, someone with owner access to a workspace may not have owner access to the resource group that contains the workspace. For more information, see [How Azure RBAC works](/azure/role-based-access-control/overview#how-azure-rbac-works).
+
+## Azure AI Administrator role
+
+Prior to 11/19/2024, the system-assigned managed identity created for the workspace was automatically assigned the __Contributor__ role for the resource group that contains the workspace. Workspaces created after this date have the system-assigned managed identity assigned to the __Azure AI Administrator__ role. This role is more narrowly scoped to the minimum permissions needed for the managed identity to perform its tasks.
+
+The __Azure AI Administrator__ role has the following permissions:
+
+```json
+{
+    "permissions": [
+        {
+            "actions": [
+                "Microsoft.Authorization/*/read",
+                "Microsoft.CognitiveServices/*",
+                "Microsoft.ContainerRegistry/registries/*",
+                "Microsoft.DocumentDb/databaseAccounts/*",
+                "Microsoft.Features/features/read",
+                "Microsoft.Features/providers/features/read",
+                "Microsoft.Features/providers/features/register/action",
+                "Microsoft.Insights/alertRules/*",
+                "Microsoft.Insights/components/*",
+                "Microsoft.Insights/diagnosticSettings/*",
+                "Microsoft.Insights/generateLiveToken/read",
+                "Microsoft.Insights/logDefinitions/read",
+                "Microsoft.Insights/metricAlerts/*",
+                "Microsoft.Insights/metricdefinitions/read",
+                "Microsoft.Insights/metrics/read",
+                "Microsoft.Insights/scheduledqueryrules/*",
+                "Microsoft.Insights/topology/read",
+                "Microsoft.Insights/transactions/read",
+                "Microsoft.Insights/webtests/*",
+                "Microsoft.KeyVault/*",
+                "Microsoft.MachineLearningServices/workspaces/*",
+                "Microsoft.Network/virtualNetworks/subnets/joinViaServiceEndpoint/action",
+                "Microsoft.ResourceHealth/availabilityStatuses/read",
+                "Microsoft.Resources/deployments/*",
+                "Microsoft.Resources/deployments/operations/read",
+                "Microsoft.Resources/subscriptions/operationresults/read",
+                "Microsoft.Resources/subscriptions/read",
+                "Microsoft.Resources/subscriptions/resourcegroups/deployments/*",
+                "Microsoft.Resources/subscriptions/resourceGroups/read",
+                "Microsoft.Resources/subscriptions/resourceGroups/write",
+                "Microsoft.Storage/storageAccounts/*",
+                "Microsoft.Support/*",
+                "Microsoft.Search/searchServices/write",
+                "Microsoft.Search/searchServices/read",
+                "Microsoft.Search/searchServices/delete",
+                "Microsoft.Search/searchServices/indexes/*",
+                "Microsoft.DataFactory/factories/*"
+            ],
+            "notActions": [],
+            "dataActions": [],
+            "notDataActions": []
+        }
+    ]
+}
+```
+
+### Convert an existing system-managed identity to the Azure AI Administrator role
+
+> [!TIP]
+> We recommend that you convert workspaces created before 11/19/2024 to use the Azure AI Administrator role. The Azure AI Administrator role is more narrowly scoped than the previously used Contributor role and follows the principal of least privilege.
+
+You can convert workspaces created before 11/19/2024 by using one of the following methods:
+
+- Azure REST API: Use a `PATCH` request to the Azure REST API for the workspace. The body of the request should set `{"properties":{"allowRoleAssignmeentOnRG":true}}`. The following example shows a `PATCH` request using `curl`. Replace `<your-subscription>`, `<resource-group-name>`, `<workspace-name>`, and `<YOUR-ACCESS-TOKEN>` with the values for your scenario. For more information on using REST APIs, visit the [Azure REST API documentation](/rest/api/azure/).
+
+    ```bash
+    curl -X PATCH https://management.azure.com/subscriptions/<your-subscription>/resourcegroups/<resource-group-name>/providers/Microsoft.MachineLearningServices/workspaces/<workspace-name>?api-version=2024-04-01-preview -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+    ```
+
+- Azure CLI: Use the `az ml workspace update` command with the `--allow-roleassignment-on-rg true` parameter. The following example updates a workspace named `myworkspace`. This command requires the Azure Machine Learning CLI extension version 2.27.0 or later.
+
+    ```azurecli
+    az ml workspace update --name myworkspace --allow-roleassignment-on-rg true
+    ```
+
+- Azure Python SDK: Set the `allow_roleassignment_on_rg` property of the Workspace object to `True` and then perform an update operation. The following example updates a workspace named `myworkspace`. This operation requires the Azure Machine Learning SDK version 1.17.0 or later.
+
+    ```python
+    ws = ml_client.workspaces.get(name="myworkspace")
+    ws.allow_roleassignment_on_rg = True
+    ws = ml_client.workspaces.begin_update(workspace=ws).result()
+    ```
 
 ## Manage workspace access
 
@@ -179,11 +263,11 @@ If you anticipate that you need to recreate complex role assignments, an Azure R
 The following table is a summary of Azure Machine Learning activities and the permissions required to perform them at the least scope. For example, if an activity can be performed with a workspace scope (Column 4), then all higher scope with that permission also work automatically. For certain activities, the permissions differ between V1 and V2 APIs.
 
 > [!IMPORTANT]
-> All paths in this table that start with `/` are *relative paths* to `Microsoft.MachineLearningServices/` :
+> All paths in this table that start with `/` are *relative paths* to `Microsoft.MachineLearningServices/`
 
 | Activity | Subscription-level scope | Resource group-level scope | Workspace-level scope |
 | ----- | ----- | ----- | ----- |
-| Create new workspace <sub>1</sub> | Not required | Owner or contributor | N/A (becomes Owner or inherits higher scope role after creation) |
+| Create new workspace <sub>1</sub> | Not required | Owner, contributor, or custom role allowing: `Microsoft.Resources/deployments/*`, `Microsoft.MachineLearningServices/workspaces/write` and dependent resources' write permissions (see point 3 down below) | N/A (becomes Owner or inherits higher scope role after creation) |
 | Request subscription level Amlcompute quota or set workspace level quota | Owner, or contributor, or custom role <br>allowing `/locations/updateQuotas/action`<br> at subscription scope | Not authorized | Not authorized |
 | Create new compute cluster | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
 | Create new compute instance | Not required | Not required | Owner, contributor, or custom role allowing: `/workspaces/computes/write` |
@@ -202,6 +286,12 @@ The following table is a summary of Azure Machine Learning activities and the pe
 1. If you receive a failure when trying to create a workspace for the first time, make sure that your role allows `Microsoft.MachineLearningServices/register/action`. This action allows you to register the Azure Machine Learning resource provider with your Azure subscription.
 
 2. When attaching an AKS cluster, you also need to have the [Azure Kubernetes Service Cluster Admin Role](/azure/role-based-access-control/built-in-roles#azure-kubernetes-service-cluster-admin-role) on the cluster.
+
+3. These scenarios don't include the permissions needed to create workspace dependent resources. For more information, see the write permissions for [Storage](/azure/role-based-access-control/permissions/storage#microsoftstorage), [OperationalInsights](/azure/role-based-access-control/permissions/monitor#microsoftoperationalinsights), [Key Vault](/azure/role-based-access-control/permissions/security#microsoftkeyvault) and [Container Registry](/azure/role-based-access-control/permissions/containers#microsoftcontainerregistry).
+
+4. When attaching user-managed identities, you also need to have `Microsoft.ManagedIdentity/userAssignedIdentities/assign/action` permission on the identities. For more information, see [Azure built-in roles for Identity](/azure/role-based-access-control/built-in-roles/identity).
+
+5. When specifying a serverless compute custom subnet, you also need to have `Microsoft.Network/virtualNetworks/subnets/join/action` on the virtual network. For more information, see [Azure permissions for Networking](/azure/role-based-access-control/permissions/networking).
 
 ###  Deploy into a virtual network or subnet
 
@@ -490,6 +580,31 @@ Here are a few things to be aware of while you use Azure RBAC:
 - When there are two role assignments to the same Microsoft Entra user with conflicting sections of Actions/NotActions, your operations listed in NotActions from one role might not take effect if they're also listed as Actions in another role. To learn more about how Azure parses role assignments, read [How Azure RBAC determines if a user has access to a resource](/azure/role-based-access-control/overview#how-azure-rbac-determines-if-a-user-has-access-to-a-resource)
 
 - It can sometimes take up to one hour for your new role assignments to take effect over cached permissions across the stack.
+
+### Revert to the Contributor role
+
+If you create a new workspace and encounter errors with the new default role assignment of Azure AI Administrator for the workspace managed identity, use the following steps to revert to the Contributor role:
+
+> [!IMPORTANT]
+> We don't recommend reverting to the Contributor role unless you encounter problems. If reverting a workspace does solve the problems that you are encountering, please log a support incident with information on the problems that reverting solved so that we can invesitage further.
+>
+> If you would like to revert to the Contributor role as the _default_ for new workspaces, open a [support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade) with your Azure subscription details and request that your subscription be changed to use the Contributor role as the default for the system-assigned managed identity of new workspaces.
+
+1. Delete the role assignment for the workspace's managed-identity. The scope for this role assignment is the __resource group__ that contains the workspace, so the role must be deleted from the resource group. 
+
+    > [!TIP]
+    > The system-assigned managed identity for the workspace is the same as the workspace name.
+
+    From the Azure portal, navigate to the __resource group__ that contains the workspace. Select __Access control (IAM)__, and then select __Role assignments__. In the list of role assignments, find the role assignment for the managed identity. Select it, and then select __Delete__.
+
+    For information on deleting a role assignment, see [Remove role assigngments](/azure/role-based-access-control/role-assignments-remove).
+
+1. Create a new role assignment on the __resource group__ for the __Contributor__ role. When adding this role assignment, select the managed-identity for the workspace as the assignee. The name of the system-assigned managed identity is same as the workspace name.
+
+    1. From the Azure portal, navigate to the __resource group__ that contains the workspace. Select __Access control (IAM)__, and then select __Add role assignment__. 
+    1. From the __Role__ tab, select __Contributor__. 
+    1. From the __Members__ tab, select __Managed identity__, __+ Select members__, ans set the __Managed identity__ dropdown to __Azure Machine Learning workspace__. If the workspace is a hub workspace, select __Azure AI hub__ instead. In the __Select__ field, enter the name of the workspace. Select the workspace from the list, and then select __Select__.
+    1. From the __Review + assign__ tab, select __Review + assign__.
 
 ## Related content
 

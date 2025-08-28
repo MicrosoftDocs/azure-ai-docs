@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.custom: devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-python, linux-related-content
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 02/07/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-set-formre
 ---
@@ -94,12 +94,12 @@ Choose from the following Document Intelligence models and analyze and extract d
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-4.0.0"
-[!INCLUDE [NodeJS SDK quickstart](includes/v4-0/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](includes/v4-0/javascript-sdk.md)]
 ::: moniker-end
 
 ::: moniker range="doc-intel-3.1.0 || doc-intel-3.0.0"
 
-[!INCLUDE [NodeJS SDK quickstart](includes/v3-0/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](includes/v3-0/javascript-sdk.md)]
 ::: moniker-end
 
 ::: zone-end
@@ -176,7 +176,7 @@ You use the following APIs to extract structured data from forms and documents:
 ::: zone pivot="programming-language-javascript"
 
 ::: moniker range="doc-intel-2.1.0"
-[!INCLUDE [NodeJS SDK quickstart](includes/v2-1/javascript-sdk.md)]
+[!INCLUDE [Node.js SDK quickstart](includes/v2-1/javascript-sdk.md)]
 ::: moniker-end
 
 ::: zone-end

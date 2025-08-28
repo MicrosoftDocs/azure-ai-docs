@@ -2,26 +2,26 @@
 title: Security filter pattern
 titleSuffix: Azure AI Search
 description: Learn how to implement security privileges at the document level for Azure AI Search search results, using security filters and user identities.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/15/2025
+ms.date: 07/16/2025
 ---
 
 # Security filters for trimming results in Azure AI Search
 
-Azure AI Search doesn't provide native document-level permissions and can't vary search results based on user identity. As a workaround, you can create a filter that trims search results based on a string containing a group or user identity.
+For search solutions that can't use the [built-in access control list (ACL) support](search-document-level-access-overview.md)  for document-level authorization, Azure AI Search supports creating a filter that trims search results based on a string containing a group or user identity.
 
 This article describes a pattern for security filtering having the following steps:
 
 > [!div class="checklist"]
-> * Assemble source documents with the required content
-> * Create a field for the principal identifiers 
+> * Assemble source documents with the required content, including a string for storing an identity
+> * Create a field  in the search index for the principal identifiers 
 > * Push the documents to the search index for indexing
 > * Query the index with the `search.in` filter function
 
@@ -29,9 +29,7 @@ It concludes with links to demos and examples that provide hands-on learning. We
 
 ## About the security filter pattern
 
-Although Azure AI Search doesn't integrate with security subsystems for access to content within an index, many customers who have document-level security requirements find that filters can meet their needs.
-
-In Azure AI Search, a security filter is a regular OData filter that includes or excludes a search result based on a string consisting of a security principal. There's no authentication or authorization through the security principal. The principal is just a string, used in a filter expression, to include or exclude a document from the search results.
+The security filter pattern simulates document-level authorization by using a regular OData filter that includes or excludes a search result based on a string consisting of a security principal. There's no authentication or authorization through the security principal. The principal is just a string, used in a filter expression, to include or exclude a document from the search results.
 
 There are several ways to achieve security filtering. One way is through a complicated disjunction of equality expressions: for example, `Id eq 'id1' or Id eq 'id2'`, and so forth. This approach is error-prone, difficult to maintain, and in cases where the list contains hundreds or thousands of values, slows down query response time by many seconds. 
 
@@ -191,4 +189,4 @@ For more examples, demos, and videos:
 
 * [Get started with chat document security in Python](/azure/developer/python/get-started-app-chat-document-security-trim)
 * [Set up optional sign in and document level access control (modifications to the AzureOpenAIDemo app)](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/docs/login_and_acl.md)
-* [Video: Secure your Intelligent Applications with Microsoft Entra](https://build.microsoft.com/en-US/sessions/b5636ca7-64c2-493c-9b30-4a35852acfbe?source=/speakers/cc9b56a0-4af0-4b60-a2f3-8312c5b35ca2)
+* [Video: Secure your Intelligent Applications with Microsoft Entra](https://www.youtube.com/watch?v=e5aR_52oeBY)

@@ -8,8 +8,8 @@ ms.subservice: mlops
 ms.custom: build-2023
 ms.topic: reference
 
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/31/2022
 ms.reviewer: bozhlin
 ---
@@ -86,7 +86,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | --- | ---- | ----------- |
 | `cpu` | string | The number of CPU cores requested for the container. |
 | `memory` | string | The memory size requested for the container |
-| `nvidia.com/gpu` | string | The number of Nvidia GPU cards requested for the container |
+| `nvidia.com/gpu` | string | The number of NVIDIA GPU cards requested for the container |
 
 ### ContainerResourceLimits
 
@@ -94,7 +94,7 @@ The source JSON schema can be found at https://azuremlschemas.azureedge.net/late
 | --- | ---- | ----------- |
 | `cpu` | string | The limit for the number of CPU cores for the container. |
 | `memory` | string | The limit for the memory size for the container. |
-| `nvidia.com/gpu` | string | The limit for the number of Nvidia GPU cards for the container |
+| `nvidia.com/gpu` | string | The limit for the number of NVIDIA GPU cards for the container |
 
 ### DataCollector
 

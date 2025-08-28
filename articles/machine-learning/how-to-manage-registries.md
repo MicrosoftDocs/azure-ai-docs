@@ -5,8 +5,8 @@ description: Learn how create Azure Machine Learning registries with the CLI, RE
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: kritifaujdar
 ms.date: 10/10/2024
 ms.topic: how-to
@@ -30,8 +30,6 @@ Azure Machine Learning registries enable you to create and use those assets in d
 ## Prerequisites
 
 [!INCLUDE [CLI v2 preres](includes/machine-learning-cli-prereqs.md)]
-
-[!INCLUDE [CLI v2 update](./includes/new-feature-cli.md)]
 
 ## Prepare to create registry
 

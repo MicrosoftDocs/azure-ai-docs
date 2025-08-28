@@ -2,17 +2,17 @@
 title: "Example: Use the PersonDirectory data structure - Face"
 titleSuffix: Azure AI services
 description: Learn how to use the PersonDirectory data structure to store face and person data at greater capacity and with other new features.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
+ms.update-cycle: 90-days
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 ms.devlang: csharp
-ms.custom: [devx-track-csharp, cogserv-non-critical-vision]
+ms.custom: devx-track-csharp
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 

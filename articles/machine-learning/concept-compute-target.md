@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: concept-article
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: vijetaj
 ms.date: 10/17/2024
 ms.custom:
@@ -203,7 +203,7 @@ If you use the GPU-enabled compute targets, it's important to ensure that the co
 In addition to ensuring the CUDA version and hardware are compatible, also ensure that the CUDA version is compatible with the version of the machine learning framework you're using:
 
 - For PyTorch, you can check the compatibility by visiting [PyTorch's previous versions page](https://pytorch.org/get-started/previous-versions/).
-- For Tensorflow, you can check the compatibility by visiting [Tensorflow's build from source page](https://www.tensorflow.org/install/source#gpu).
+- For TensorFlow, you can check the compatibility by visiting [TensorFlow's build from source page](https://www.tensorflow.org/install/source#gpu).
 
 ### Compute isolation
 

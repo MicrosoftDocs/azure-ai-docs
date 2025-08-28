@@ -5,8 +5,8 @@ description: Learn how to manage Azure Machine Learning workspaces in the Azure 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 03/08/2022
 ms.topic: how-to
@@ -16,6 +16,8 @@ ms.custom: UpdateFrequency5, fasttrack-edit, sdkv1, devx-track-python
 # Manage Azure Machine Learning workspaces with the Python SDK (v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you create, view, and delete [**Azure Machine Learning workspaces**](../concept-workspace.md) for [Azure Machine Learning](../overview-what-is-azure-machine-learning.md), using the [SDK for Python](/python/api/overview/azure/ml/).  
 

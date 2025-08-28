@@ -1,0 +1,47 @@
+items:
+- name: Identity & access management
+  items:
+  - name: Role-based access control
+    href: ../../concepts/rbac-azure-ai-foundry.md
+  - name: Rotate API access keys
+    href: ../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
+  - name: Configure key-less authentication
+    href: ../../foundry-models/how-to/configure-entra-id.md
+- name: Network security
+  items:
+  - name: Configure private link
+    displayName: custom dns
+    href: ../../how-to/configure-private-link.md
+  - name: Managed network for hubs
+    items:
+    - name: Configure managed network
+      href: ../../how-to/configure-managed-network.md
+    - name: Secure playground chat
+      href: ../../how-to/secure-data-playground.md
+    - name: Securely access on-premises resources
+      href: ../../how-to/access-on-premises-resources.md
+    - name: Troubleshoot secure project connectivity
+      href: ../../how-to/troubleshoot-secure-connection-project.md
+- name: Data protection & encryption
+  items:
+  - name: Configure customer-managed keys
+    href: ../../concepts/encryption-keys-portal.md
+  - name: Disable shared key access to storage
+    href: ../../how-to/disable-local-auth.md
+- name: Azure policies
+  items:
+  - name: Audit and manage hubs
+    href: ../../how-to/azure-policy.md
+    displayName: Azure Policy
+  - name: Built-in policies for model deployment
+    href: ../../how-to/built-in-policy-model-deployment.md
+    displayName: Azure Policy
+  - name: Custom policies for model deployment
+    href: ../../foundry-models/how-to/configure-deployment-policies.md
+  - name: Built-in policy definitions
+    displayName: samples, policies, definitions, Azure Policy
+    href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
+- name: Disaster recovery
+  href: ../../how-to/disaster-recovery.md
+- name: Security baseline
+  href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline

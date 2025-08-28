@@ -2,12 +2,12 @@
 title: Distributed GPU training guide (SDK v2)
 titleSuffix: Azure Machine Learning
 description: Learn best practices for distributed training with supported frameworks, such as  PyTorch, DeepSpeed, TensorFlow, and InfiniBand.
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ratanase
 ms.service: azure-machine-learning
 ms.subservice: training
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 01/29/2024
 ms.custom: sdkv2, update-code1
 ---
@@ -115,7 +115,7 @@ TF_CONFIG='{
 
 ### TensorFlow example
 
-* For the full notebook to run the TensorFlow example, see [azureml-examples: Train a basic neural network with distributed MPI on the MNIST dataset using Tensorflow with Horovod](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed/tensorflow-mnist-distributed.ipynb).
+* For the full notebook to run the TensorFlow example, see [azureml-examples: Train a basic neural network with distributed MPI on the MNIST dataset using TensorFlow with Horovod](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/tensorflow/mnist-distributed/tensorflow-mnist-distributed.ipynb).
 
 ## Accelerating distributed GPU training with InfiniBand
 

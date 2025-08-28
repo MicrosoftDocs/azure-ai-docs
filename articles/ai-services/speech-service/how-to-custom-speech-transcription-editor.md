@@ -2,12 +2,12 @@
 title: How to use the online transcription editor for custom speech - Speech service
 titleSuffix: Azure AI services
 description: The online transcription editor allows you to create or edit audio + human-labeled transcriptions for custom speech.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/19/2024
-ms.author: eur
+ms.date: 5/19/2025
+ms.author: pafarley
 #Customer intent: As a developer, I need to understand how to use the online transcription editor for custom speech so that I can create or edit audio + human-labeled transcriptions for custom speech.
 ---
 

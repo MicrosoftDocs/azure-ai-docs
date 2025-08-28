@@ -1,9 +1,10 @@
 ---
 title: Monitor Azure AI Search
 description: Start here to learn how to monitor Azure AI Search.
-ms.date: 01/27/2025
+ms.date: 07/25/2025
+ms.update-cycle: 365-days
 ms.custom: horz-monitor
-ms.topic: conceptual
+ms.topic: concept-article
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
@@ -12,9 +13,6 @@ ms.service: azure-ai-search
 # Monitor Azure AI Search
 
 [!INCLUDE [horz-monitor-intro](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-intro.md)]
-
-> [!NOTE]
-> Azure AI Search doesn't log the identity of the person or app accessing content or operations on the search service. If you require this level of monitoring, you need to implement it in your client application.
 
 [!INCLUDE [horz-monitor-resource-types](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-resource-types.md)]
 
@@ -35,7 +33,7 @@ For the available resource log categories, their associated Log Analytics tables
 
 In Azure AI Search, activity logs reflect control plane activity such as service creation and configuration, or API key usage or management. Entries often include **Get Admin Key**, one entry for every call that [provided an admin API key](search-security-api-keys.md) on the request. There are no details about the call itself, just a notification that the admin key was used.
 
-API keys can be disabled for data plane operations, such as creating or querying an index, but on the control plane they're used in the Azure portal to return service information.
+API keys can be disabled for data plane operations, such as creating or querying an index, but on the control plane they're used in the Azure portal to return service information. Control plane operations can request API keys so you continue to see key-related requests in the Activity log even if you disable key-based authentication.
 
 The following screenshot shows Azure AI Search activity log signals you can configure in an alert.
 
@@ -69,30 +67,10 @@ AzureDiagnostics
 | summarize count() by OperationName
 ```
 
-#### Long-running queries
-
-This Kusto query against AzureDiagnostics returns `Query.Search` operations, sorted by duration (in milliseconds). For more examples of `Query.Search` queries, see [Analyze performance in Azure AI Search](search-performance-analysis.md).
-
-```Kusto
-AzureDiagnostics
-| project OperationName, resultSignature_d, DurationMs, Query_s, Documents_d, IndexName_s
-| where OperationName == "Query.Search"
-| sort by DurationMs   
-```
-
-#### Indexer status
-
-This Kusto query returns the status of indexer operations. Results include the operation name, description of the request (which includes the name of the indexer), result status (Success or Failure), and the [HTTP status code](/rest/api/searchservice/http-status-codes). For more information about indexer execution, see [Monitor indexer status](search-howto-monitor-indexers.md).
-
-```Kusto
-AzureDiagnostics
-| project OperationName, Description_s, Documents_d, ResultType, resultSignature_d
-| where OperationName == "Indexers.Status"
-```
-
 [!INCLUDE [horz-monitor-alerts](~/reusable-content/ce-skilling/azure/includes/azure-monitor/horizontals/horz-monitor-alerts.md)]
 
 ### Azure AI Search alert rules
+
 The following table lists common and recommended alert rules for Azure AI Search. On a search service, throttling or query latency that exceeds a given threshold are the most commonly used alerts, but you might also want to be notified if a search service is deleted.
 
 | Alert type | Condition | Description  |
@@ -108,9 +86,7 @@ The following table lists common and recommended alert rules for Azure AI Search
 - [Azure AI Search monitoring data reference](monitor-azure-cognitive-search-data-reference.md)
 - [Monitor Azure resources with Azure Monitor](/azure/azure-monitor/essentials/monitor-azure-resource)
 - [Monitor queries](search-monitor-queries.md)
-- [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
-- [Monitor client-side interactions](search-traffic-analytics.md)
+- [Monitor indexer-based indexing](search-monitor-indexers.md)
 - [Visualize resource logs](search-monitor-logs-powerbi.md)
 - [Analyze performance in Azure AI Search](search-performance-analysis.md)
-- [Performance benchmarks](performance-benchmarks.md)
 - [Tips for better performance](search-performance-tips.md)

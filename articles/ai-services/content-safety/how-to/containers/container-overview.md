@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 09/23/2024
+ms.date: 03/26/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
@@ -17,7 +17,7 @@ Containers let you use a subset of the Azure AI Content Safety features in your 
 
 ## Available containers
 
-The following table lists the content safety containers available in the Microsoft Container Registry (MCR). The table also lists the features supported by each container and the latest version of the container. 
+The following table lists the content safety containers available in the Microsoft Container Registry (MCR). The table also lists the features supported by each container and the latest version of the container.
 
 | Container                            |  Features |
 |--------------------------------------|----------|
@@ -37,7 +37,7 @@ The request form takes information about you, your company, and the user scenari
 
 After you submit the form, the Azure AI services team reviews it and emails you with a decision within 10 business days.
 
-## Billing
+## Billing information
 
 The content safety containers send billing information to Azure through the content safety resource in your Azure account.
 

@@ -2,14 +2,14 @@
 title: Indexer troubleshooting
 titleSuffix: Azure AI Search
 description: Provides indexer problem and resolution guidance for cases when no error messages are returned from the service search.
-
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 12/10/2024
+ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexer troubleshooting guidance for Azure AI Search
@@ -31,9 +31,9 @@ If you get an error code 403 with the following message, you might have a proble
 
 * `"A Virtual Network is configured for this resource. Please use the correct endpoint for making requests. Check https://aka.ms/cogsvc-vnet for more details."`
 
-This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
+This error occurs if you have [configured a shared private link](search-indexer-howto-access-private.md) for connections to Azure AI services multi-service, and the endpoint is missing a custom subdomain. A custom subdomain is the first part of the endpoint (for example, `http://my-custom-subdomain.cognitiveservices.azure.com`). A custom domain might be missing if you created the resource in Azure AI Foundry.
 
-If the Azure AI multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
+If the Azure AI services multi-service account isn't in the same region as Azure AI Search, [use a keyless connection](cognitive-search-attach-cognitive-services.md) when attaching a billable Azure AI resource.
 
 ### Firewall rules
 
@@ -290,4 +290,4 @@ If you have [sensitivity labels set on documents](/microsoft-365/compliance/sens
 ## See also
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
-* [Monitor indexer-based indexing](search-howto-monitor-indexers.md)
+* [Monitor indexer-based indexing](search-monitor-indexers.md)

@@ -52,6 +52,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 - The studio UI supports only v2 schedules, and can't list or access v1 schedules that are based on published pipelines or pipeline endpoints. You can create a schedule for an unpublished pipeline.
 - If recurrence is set as the 31st or 30th day of every month, the schedule doesn't trigger jobs in months that have fewer days.
 - `DAYS` and `MONTHS` values aren't supported in cron schedule expressions. Values passed for these parameters are ignored and treated as `*`.
+- Even after assigning a managed identity to a schedule, the author must retain their job run permissions for the schedule to function.
 
 ## Create a schedule
 
@@ -469,8 +470,9 @@ Admins can configure the following action rules related to schedules in the Azur
 ## Cost considerations
 
 Schedules are billed based on the number of schedules. Each schedule creates a logic app that Azure Machine Learning hosts on behalf of (HOBO) the user.
+Therefore the logic app cannot be shown as a resource under the user's subscription in Azure portal. 
 
-The logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
+On the other hand, the logic app charges back to the user's Azure subscription. HOBO resource costs are billed using the same meter emitted by the original resource provider. Charges appear under the host resource, which is the Azure Machine Learning workspace.
 
 ## Related content
 

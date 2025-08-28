@@ -7,6 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 01/18/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023

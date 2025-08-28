@@ -1,11 +1,10 @@
 ---
 title: include file
 description: include file
-#services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.topic: include
 ---
 ## Sign in to LUIS portal

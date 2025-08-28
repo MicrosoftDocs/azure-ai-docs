@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
 ms.custom: UpdateFrequency5, devx-track-azurecli, references_regions, cliv1
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: swatig
 ms.date: 05/02/2022
 ---
@@ -17,6 +17,7 @@ ms.date: 05/02/2022
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to create and manage a [compute instance](../concept-compute-instance.md) in your Azure Machine Learning workspace with CLI v1.
 

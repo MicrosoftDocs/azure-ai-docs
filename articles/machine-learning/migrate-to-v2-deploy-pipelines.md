@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.date: 05/01/2023
 ms.reviewer: fasantia
 ms.custom:
@@ -257,4 +257,4 @@ response = requests.post(
 
 - [How to deploy pipelines in Batch Endpoints](how-to-use-batch-pipeline-deployments.md)
 - [How to operationalize a training routine in batch endpoints](how-to-use-batch-training-pipeline.md)
-- [How to operationalize an scoring routine in batch endpoints](how-to-use-batch-scoring-pipeline.md)
+- [How to operationalize a scoring routine in batch endpoints](how-to-use-batch-scoring-pipeline.md)

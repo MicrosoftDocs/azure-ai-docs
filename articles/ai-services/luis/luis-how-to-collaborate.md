@@ -2,14 +2,13 @@
 title: Collaborate with others - LUIS
 titleSuffix: Azure AI services
 description: An app owner can add contributors to the authoring resource. These contributors can modify the model, train, and publish the app.
-#services: cognitive-services
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 02/05/2024
+ms.date: 06/12/2025
 ---
 
 # Add contributors to your app
@@ -62,7 +61,7 @@ The tenant admin should work directly with the user who needs access granted to 
 
 If the tenant admin only wants certain users to use LUIS, there are a couple of possible solutions:
 * Giving the "admin consent" (consent to all users of the Microsoft Entra ID), but then set to "Yes" the "User assignment required" under Enterprise Application Properties, and finally assign/add only the wanted users to the Application. With this method, the Administrator is still providing "admin consent" to the App, however, it's possible to control the users that can access it.
-* A second solution is to use the [Microsoft Entra identity and access management API in Microsoft Graph](/graph/azuread-identity-access-management-concept-overview) to provide consent to each specific user.
+* A second solution is to use the [Microsoft Entra identity and access management API in Microsoft Graph](/graph/identity-network-access-overview) to provide consent to each specific user.
 
 Learn more about Microsoft Entra users and consent:
 * [Restrict your app](/azure/active-directory/develop/howto-restrict-your-app-to-a-set-of-users) to a set of users

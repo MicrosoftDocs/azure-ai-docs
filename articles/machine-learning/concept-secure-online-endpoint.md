@@ -5,12 +5,16 @@ description: Learn how private endpoints provide network isolation for Azure Mac
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
-author: msakande
-ms.author: mopeakande
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
-ms.custom: devplatv2, moe-wsvnet, ignite-2024
 ms.date: 02/29/2024
+ms.custom:
+  - devplatv2
+  - moe-wsvnet
+  - ignite-2024
+  - sfi-image-nochange
 ---
 
 # Network isolation with managed online endpoints
@@ -64,9 +68,9 @@ endpoint = ManagedOnlineEndpoint(name='my-online-endpoint',
 # [Studio](#tab/azure-studio)
 
 1. Go to the [Azure Machine Learning studio](https://ml.azure.com).
-1. Select the **Workspaces** page from the left navigation bar.
+1. Select the **Workspaces** page from the left pane.
 1. Enter a workspace by clicking its name.
-1. Select the **Endpoints** page from the left navigation bar.
+1. Select the **Endpoints** page from the left pane.
 1. Select **+ Create** to open the **Create deployment** setup wizard.
 1. Disable the **Public network access** flag at the **Create endpoint** step.
 

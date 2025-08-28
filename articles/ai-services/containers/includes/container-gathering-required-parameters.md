@@ -1,6 +1,5 @@
 ---
 title: Gather required parameters
-#services: cognitive-services
 author: aahill
 manager: nitinme
 description: The parameters for all Azure AI containers.
@@ -8,6 +7,7 @@ ms.service: azure-ai-services
 ms.topic: include 
 ms.date: 04/01/2020
 ms.author: aahi
+ms.custom: sfi-image-nochange
 ---
 
 ## Gather required parameters

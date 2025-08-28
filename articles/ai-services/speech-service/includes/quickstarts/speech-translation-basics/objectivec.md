@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 06/08/2022
-ms.author: eur
+ms.date: 7/17/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/objectivec.md)]

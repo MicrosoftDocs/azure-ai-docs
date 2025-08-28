@@ -2,7 +2,6 @@
 title: Multi-language indexing for non-English search queries
 titleSuffix: Azure AI Search
 description: Create an index that supports multi-language content and then create queries scoped to that content.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,12 +9,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/10/2024
+ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Create an index for multiple languages in Azure AI Search
 
-If you have strings in multiple languages, you can attach [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that analyze strings using linguistic rules of a specific language during indexing and query execution. With a language analyzer, you get better handling of diacritics, character variants, punctuation, and word root forms.
+If you have strings in multiple languages, you can use [vector search](vector-search-overview.md) to represent multilingual content mathematically, which is the more modern approach. Alternatively, if you aren't using vectors, you can attach [language analyzers](index-add-language-analyzers.md#supported-language-analyzers) that analyze strings using linguistic rules of a specific language during indexing and query execution. With a language analyzer, you get better handling of diacritics, character variants, punctuation, and word root forms.
 
 Azure AI Search supports Microsoft and Lucene analyzers. By default, the search engine uses Standard Lucene, which is language agnostic. If testing indicates that the default analyzer is insufficient, replace it with a language analyzer.
 

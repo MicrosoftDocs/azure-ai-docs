@@ -2,7 +2,6 @@
 title: Add synonyms to expand queries for equivalent terms
 titleSuffix: Azure AI Search
 description: Create a synonym map to expand the scope of a search query over an Azure AI Search index. The query can search on equivalent terms provided in the synonym map, even if the query doesn't explicitly include the term.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/28/2024
+ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Add synonyms in Azure AI Search
@@ -214,7 +214,7 @@ SearchIndex index = new SearchIndex(indexName)
 await indexClient.CreateIndexAsync(index);
 ```
 
-For more examples, see the [quickstart/v11 on GitHub](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/v11).
+For more examples, see the [quickstart/v11 on GitHub](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart).
 
 ### [**Other SDKs**](#tab/other-sdks-assign)
 

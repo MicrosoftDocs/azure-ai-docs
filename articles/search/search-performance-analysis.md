@@ -7,6 +7,7 @@ ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 01/16/2025
+ms.update-cycle: 365-days
 ---
 
 # Analyze performance in Azure AI Search
@@ -16,8 +17,6 @@ This article describes the tools, behaviors, and approaches for analyzing query 
 ## Develop baseline numbers
 
 In any large implementation, it's critical to do a performance benchmarking test of your Azure AI Search service before you roll it into production. You should test both the search query load that you expect, but also the expected data ingestion workloads (if possible, run both workloads simultaneously). Having benchmark numbers helps to validate the proper [search tier](search-sku-tier.md), [service configuration](search-capacity-planning.md), and expected [query latency](search-performance-analysis.md#average-query-latency).
-
-<!-- To develop benchmarks, we recommend the [azure-search-performance-testing (GitHub)](https://github.com/Azure-Samples/azure-search-performance-testing) tool. -->
 
 To isolate the effects of a distributed service architecture, try testing on service configurations of one replica and one partition.
 
@@ -77,7 +76,7 @@ AzureDiagnostics
 
 In some cases, it can be useful to test individual queries to see how they're performing. To do this, it's important to be able to see how long the search service takes to complete the work, as well as how long it takes to make the round-trip request from the client and back to the client. The diagnostics logs could be used to look up individual operations, but it might be easier to do this all from a REST client.
 
-In the example below, a REST-based search query was executed. Azure AI Search includes in every response the number of milliseconds it takes to complete the query, visible in the Headers tab, in "elapsed-time". Next to Status at the top of the response, you'll find the round-trip duration, in this case, 418 milliseconds (ms). In the results section, the “Headers” tab was chosen. Using these two values, highlighted with a red box in the image below, we see the search service took 21 ms to complete the search query and the entire client round-trip request took 125 ms. By subtracting these two numbers we can determine that it took 104-ms additional time to transmit the search query to the search service and to transfer the search results back to the client.
+In the example below, a REST-based search query was executed. Azure AI Search includes in every response the number of milliseconds it takes to complete the query, visible in the Headers tab, in "elapsed-time". Next to Status at the top of the response, you'll find the round-trip duration, in this case, 125 milliseconds (ms). In the results section, the “Headers” tab was chosen. Using these two values, highlighted with a red box in the image below, we see the search service took 21 ms to complete the search query and the entire client round-trip request took 125 ms. By subtracting these two numbers we can determine that it took 104-ms additional time to transmit the search query to the search service and to transfer the search results back to the client.
 
 This technique helps you isolate network latencies from other factors impacting query performance.
 

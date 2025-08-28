@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023
-ms.topic: conceptual
-ms.author: sgilley
-author: sdgilley
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.date: 09/30/2024
 #Customer intent: As a data scientist, I want to understand the big picture about how Azure Machine Learning works.

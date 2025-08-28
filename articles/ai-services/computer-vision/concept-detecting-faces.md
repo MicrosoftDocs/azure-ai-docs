@@ -2,7 +2,6 @@
 title: Face detection - Azure AI Vision
 titleSuffix: Azure AI services
 description: Learn concepts related to the face detection feature of the Azure AI Vision API.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 
@@ -110,7 +109,7 @@ The next example demonstrates the JSON response returned for an image containing
 
 ## Use the API
 
-The face detection feature is part of the [Analyze Image 3.2](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP) API. You can call this API through a native SDK or through REST calls. Include `Faces` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"faces"` section.
+The face detection feature is part of the [Analyze Image 3.2](/rest/api/computervision/analyze-image/analyze-image?view=rest-computervision-v3.2&tabs=HTTP&preserve-view=true) API. You can call this API through a native SDK or through REST calls. Include `Faces` in the **visualFeatures** query parameter. Then, when you get the full JSON response, simply parse the string for the contents of the `"faces"` section.
 
 ## Next step
 

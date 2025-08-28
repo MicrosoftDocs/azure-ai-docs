@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2
 
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.date: 12/22/2022
 ms.reviewer: xiaoxiaoli
 ---
@@ -24,7 +24,7 @@ Every Azure Machine Learning entity has a schematized YAML representation. You c
 
 This article provides a reference for some syntax concepts you will encounter while configuring these YAML files for NLP text classification jobs.
 
-The source JSON schema can be found at https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLNLPTextClassificationJob.schema.json
+The source JSON schema can be found at https://azuremlschemasprod.azureedge.net/latest/autoMLNLPTextClassificationJob.schema.json
 
 
 

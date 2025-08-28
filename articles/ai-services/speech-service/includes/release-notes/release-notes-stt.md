@@ -1,45 +1,101 @@
-author: eric-urban
+﻿---
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 1/21/2025
-ms.author: eur
+ms.date: 5/4/2025
+ms.author: pafarley
+ms.custom: references_regions
 ---
+
+### August 2025 release
+
+#### New locales supported in Fast Transcription
+Fast transcription now supports additional locales including a few `en-` variants (12 locales), `es-` variants (19 locales), and `ar-` variants (13 locales). For more information, see [speech to text supported languages](../../language-support.md?tabs=stt).
+
+### July 2025 release
+
+#### Improved speech to text models
+
+The English models (all `en-*` models except for `en-IN`) were updated to incorporate a new VAD (voice activity detector) which helps reduce the latency by 100 ms or more. It can affect the accuracy and silence segmentation both positively and negatively, with the aim of reducing latency. Further language expansion is coming in the next few months.
+
+### June 2025 release
+
+#### Improved pronunciation assessment model
+
+We rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+These updated models are ready to use through the API and the Azure AI Foundry playground, just like before.
+
+#### Improved speech to text models
+Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales improving by 10%-25% percent respectively, particularly with improved readability and recognition on entities.
+
+### May 2025 release
+
+#### Improved speech to text models
+Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales improving by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models.
+
+#### Fast transcription API - Multi-lingual speech transcription
+
+To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](../../fast-transcription-create.md?tabs=multilingual-transcription-on).
+
+#### New locales supported in Fast Transcription
+Fast transcription now supports additional locales including fi-FI, he-IL, id-ID, pl-PL, pt-PT, sv-SE, etc. For more information, see [speech to text supported languages](../../language-support.md?tabs=stt).
+
+### April 2025 release
+
+#### Pronunciation assessment
+
+We are excited to announce substantial improvements to our pronunciation assessment models for these locales: `de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, and `pt-BR`. These enhancements bring significant advancements in Pearson Correlation Coefficients (PCC), ensuring more accurate and reliable assessments.
+
+As before, the models are available through the API and Azure AI Foundry playground.
+
+### March 2025 release
+
+#### Conversation transcription multichannel diarization (retired)
+
+Conversation transcription multichannel diarization is retiring on March 28, 2025.
+
+To continue using speech to text with diarization, use the following features instead:
+
+- [Real-time speech to text with diarization](../../get-started-stt-diarization.md)
+- [Fast transcription with diarization](../../fast-transcription-create.md)
+- [Batch transcription with diarization](../../batch-transcription.md)
+
+These speech to text features only support diarization for single-channel audio. Multichannel audio that you used with conversation transcription multichannel diarization isn't supported.
 
 ### January 2025 release
 
 #### New Feature - Semantic Segmentation
 Announcing the release of a new feature: Semantic Segmentation. This feature integrates a punctuation module inside decoder that segments audio based on semantic information, resulting in more logical and precise segmentation boundaries.
 Key Benefits:
-- Improved Segmentation Accuracy: By leveraging semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
-- Reduce latency caused by under-segmentation: The overall latency for the Speech-to-Text service is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
+- Improved Segmentation Accuracy: By using semantic information, this feature significantly reduces instances of long segments caused by the absence of pauses in the input audio.
+- Reduce latency caused by under-segmentation: The overall latency for speech recognition is reduced, with a 40%-60% reduction in the length of the longest 5% of segments.
 - Over-Segmentation Mitigation: This feature also helps prevent over-segmentation by delaying segmentation when a better sentence can be formed.
 
 Supported Locales:
+- English (en-US, en-GB)
+- Chinese (zh-CN, zh-HK)
+- Japanese (ja-JP)
+- Korean (ko-KR)
+- German (de-DE)
+- French (fr-FR)
+- Italian (it-IT)
+- Spanish (es-ES, es-MX)
+- Hindi (hi-IN)
+- Portuguese (pt-BR, pt-PT)
+- Turkish (tr-TR)
+- Russian (ru-RU)
+- Thai (th-TH)
+- Indonesian (id-ID)
 
-<li>English (en-US, en-GB)</li>
-<li>Chinese (zh-CN, zh-HK)</li>
-<li>Japanese (ja-JP)</li>
-<li>Korean (ko-KR)</li>
-<li>German (de-DE)</li>
-<li>French (fr-FR)</li>
-<li>Italian (it-IT)</li>
-<li>Spanish (es-ES, es-MX)</li>
-<li>Hindi (hi-IN)</li>
-<li>Portuguese (pt-BR, pt-PT)</li>
-<li>Turkish (tr-TR)</li>
-<li>Russian (ru-RU)</li>
-<li>Thai (th-TH)</li>
-<li>Indonesian (id-ID)</li>
-
-For implementation details, please refer to the documentation: [How to Recognize Speech](https://learn.microsoft.com/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in section "Semantic Segmentation".
+For implementation details, please refer to the documentation: [How to Recognize Speech](/azure/ai-services/speech-service/how-to-recognize-speech?pivots=programming-language-csharp) in the "Semantic Segmentation" section.
 
 #### Real-time speech to text - New English model release
 
 Announcing the release of the latest English speech model (en-US, en-CA), which brings substantial improvements across various performance metrics. Below are the key highlights of this release:
 - Accessibility Enhancements: Achieved a 36% reduction in Word Error Rate (WER) on Microsoft internal accessibility test sets, making speech recognition more accurate and reliable for recognizing speech from individuals with speech disabilities.
-- 
 - Ghost Word Reduction: A remarkable 90% reduction in ghost words on the ghost word development set and reductions range from 63% to 100% across other ghost word datasets, significantly enhancing the clarity and accuracy of transcriptions.
-- 
+
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
 These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
@@ -55,7 +111,7 @@ The speech to text REST API version 2024-11-15 is released for general availabil
 
 #### Fast transcription (GA)
 
-Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now generally available via [speech to text REST API version 2024-11-15](https://go.microsoft.com/fwlink/?linkid=2296107). Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 ### October 2024 release
 
@@ -69,11 +125,11 @@ The video translation API is now available in public preview. For more informati
 
 ### September 2024 release
 
-#### Real-time speech to text 
+#### Real-time speech to text
 
-[Real-time speech to text](../../how-to-recognize-speech.md) has released new models, with better quality, for the following languages. 
+[Real-time speech to text](../../how-to-recognize-speech.md) has released new models, with better quality, for the following languages.
 
-fi-FI/id-ID/zh-TW/pl-PL/pt-PT 
+fi-FI/id-ID/zh-TW/pl-PL/pt-PT
 es-SV/es-EC/es-BO/es-PY/es-AR/es-DO/es-UY/es-CR/es-VE/es-NI/es-HN/es-PR/es-CO/es-CL/es-CU/es-PE/es-PA/es-GT/es-GQ
 
 #### Fast transcription (Preview)
@@ -89,7 +145,7 @@ Language learning is now available in public preview. Interactive language learn
 
 Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now supports 33 languages generally available, and each language is available on all Speech to text [regions](../../regions.md#regions). For more information, see the full [language list for Pronunciation assessment](../../language-support.md?tabs=pronunciation-assessment).
 
-| Language | Locale (BCP-47) | 
+| Language | Locale (BCP-47) |
 |--|--|
 |Arabic (Egypt)|`ar-EG` |
 |Arabic (Saudi Arabia)|`ar-SA` |
@@ -103,10 +159,10 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 |English (Canada)|`en-CA` |
 |English (India)|`en-IN` |
 |English (United Kingdom)|`en-GB`|
-|English (United States)|`en-US`|  
-|Finnish (Finland)|`fi-FI`|  
-|French (Canada)|`fr-CA`| 
-|French (France)|`fr-FR`|  
+|English (United States)|`en-US`|
+|Finnish (Finland)|`fi-FI`|
+|French (Canada)|`fr-CA`|
+|French (France)|`fr-FR`|
 |German (Germany)|`de-DE`|
 |Hindi (India)|`hi-IN`|
 |Italian (Italy)|`it-IT`|
@@ -118,11 +174,11 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 |Portuguese (Brazil)|`pt-BR`|
 |Portuguese (Portugal)|`pt-PT`|
 |Russian (Russia)|`ru-RU`|
-|Spanish (Mexico)|`es-MX` | 
-|Spanish (Spain)|`es-ES` | 
+|Spanish (Mexico)|`es-MX` |
+|Spanish (Spain)|`es-ES` |
 |Swedish (Sweden)|`sv-SE`|
-|Tamil (India)|`ta-IN` | 
-|Thai (Thailand)|`th-TH` | 
+|Tamil (India)|`ta-IN` |
+|Thai (Thailand)|`th-TH` |
 |Vietnamese (Vietnam)|`vi-VN` |
 
 
@@ -130,7 +186,7 @@ Speech [pronunciation assessment](../../how-to-pronunciation-assessment.md) now
 
 #### Fast Transcription API (Preview)
 
-Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
+Fast transcription is now available in public preview. Fast transcription allows you to transcribe audio file to text accurately and synchronously, with a high speed factor. It can transcribe audio faster than the actual audio duration. For more information, see the [fast transcription API guide](../../fast-transcription-create.md).
 
 > [!TIP]
 > Try out fast transcription in the [Azure AI Foundry portal](https://aka.ms/fasttranscription/studio).
@@ -139,12 +195,12 @@ Fast transcription is now available in public preview. Fast transcription allows
 
 #### Speech to text REST API v3.2 general availability
 
-The Speech to text REST API version 3.2 is now generally available. For more information about speech to text REST API v3.2, see the [Speech to text REST API v3.2 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-v3.2&preserve-view=true) and the [Speech to text REST API guide](../../rest-speech-to-text.md). 
+The Speech to text REST API version 3.2 is now generally available. For more information about speech to text REST API v3.2, see the [Speech to text REST API v3.2 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-v3.2&preserve-view=true) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
 
 > [!NOTE]
 > Preview versions *3.2-preview.1* and *3.2-preview.2* are retired as of September 2024.
 
-[Speech to text REST API](../../rest-speech-to-text.md) v3.1 will be retired on a date to be announced. Speech to text REST API v3.0 will be retired on April 1st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
+[Speech to text REST API](../../rest-speech-to-text.md) v3.1 will be retired on a date to be announced. Speech to text REST API v3.0 will be retired on March 31st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
 
 ### May 2024 release
@@ -186,9 +242,9 @@ You can create speech to text applications that use diarization to distinguish b
 
 #### Speech to text model Update
 
-[Real-time speech to text](../../how-to-recognize-speech.md) has released new models with bilingual capabilities. The `en-IN` model now supports both English and Hindi bilingual scenarios and offers improved accuracy. Arabic locales (`ar-AE`, `ar-BH`, `ar-DZ`, `ar-IL`, `ar-IQ`, `ar-KW`, `ar-LB`, `ar-LY`, `ar-MA`, `ar-OM`, `ar-PS`, `ar-QA`, `ar-SA`, `ar-SY`, `ar-TN`, `ar-YE`) are now equipped with bilingual support for English, enhanced accuracy and call center support. 
+[Real-time speech to text](../../how-to-recognize-speech.md) has released new models with bilingual capabilities. The `en-IN` model now supports both English and Hindi bilingual scenarios and offers improved accuracy. Arabic locales (`ar-AE`, `ar-BH`, `ar-DZ`, `ar-IL`, `ar-IQ`, `ar-KW`, `ar-LB`, `ar-LY`, `ar-MA`, `ar-OM`, `ar-PS`, `ar-QA`, `ar-SA`, `ar-SY`, `ar-TN`, `ar-YE`) are now equipped with bilingual support for English, enhanced accuracy and call center support.
 
-[Batch transcription](../../batch-transcription.md) provides models with new architecture for these locales: `es-ES`, `es-MX`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN`. These models significantly enhance readability and entity recognition. 
+[Batch transcription](../../batch-transcription.md) provides models with new architecture for these locales: `es-ES`, `es-MX`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN`. These models significantly enhance readability and entity recognition.
 
 ### March 2024 release
 
@@ -196,7 +252,7 @@ You can create speech to text applications that use diarization to distinguish b
 
 The Whisper speech to text model with Azure AI Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service. 
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models.
 
 ### February 2024 release
 
@@ -212,11 +268,11 @@ Added phrase list support for the following locales: ar-SA, de-CH, en-IE, en-ZA,
 
 #### Introducing Bilingual Speech Modeling!
 We're thrilled to unveil a groundbreaking addition to our real-time speech modeling—Bilingual Speech Modeling. This significant enhancement allows our speech model to seamlessly support bilingual language pairs, such as English and Spanish, as well as English and French. This feature empowers users to effortlessly switch between languages during real-time interactions, marking a pivotal moment in our commitment to enhancing communication experiences.
- 
+
 Key Highlights:
 - Bilingual Support: With our latest release, users can seamlessly switch between English and Spanish or between English and French during real-time speech interactions. This functionality is tailored to accommodate bilingual speakers who frequently transition between these two languages.
 - Enhanced User Experience: Bilingual speakers, whether at work, home, or in various community settings, will find this feature immensely beneficial. The model's ability to comprehend and respond to both English and Spanish in real time opens up new possibilities for effective and fluid communication.
- 
+
 How to Use:
 
 Choose es-US (Spanish and English) or fr-CA (French and English) when you call the Speech Service API or try it out on Speech Studio. Feel free to speak either language or mix them together—the model is designed to adapt dynamically, providing accurate and context-aware responses in both languages.
@@ -233,7 +289,7 @@ Highlights:
 - Advanced entity recognition: Entity recognition receives a substantial upgrade, resulting in more accurate and nuanced results.
 
 Potential impacts: Despite these advancements, it's crucial to be mindful of potential impacts:
-- Custom Silence Timeout Feature: Users employing custom silence timeout, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
+- Custom Silences Time-out Feature: Users employing custom silence time-out, especially with low settings, might encounter over-segmentation and potential omissions of single-word phrases.
 - The new model might exhibit compatibility issues with the Keyword prefix feature, and users are advised to assess its performance in their specific applications.
 - Reduced disfluency words or phrases: Users might notice a reduction in disfluency words or phrases like "um" or "uh" in the speech output.
 - Inaccuracies in word timestamp duration: Some disfluency words might display inaccuracies in timestamp duration, requiring attention in applications dependent on precise timing.
@@ -252,16 +308,16 @@ We encourage you to explore these improvements and consider potential issues for
 
 #### Whisper public preview
 
-Azure AI Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide. 
+Azure AI Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
 
 > [!NOTE]
-> Azure OpenAI Service also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../openai/whisper-quickstart.md). 
+> Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service. 
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
 
 #### Speech to text REST API v3.2 public preview
 
-Speech to text REST API v3.2 is available in preview. [Speech to text REST API](../../rest-speech-to-text.md) v3.1 is generally available. Speech to text REST API v3.0 will be retired on April 1st, 2026. For more information, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
+Speech to text REST API v3.2 is available in preview. [Speech to text REST API](../../rest-speech-to-text.md) v3.1 is generally available. Speech to text REST API v3.0 will be retired on March 31st, 2026. For more information, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
 ### August 2023 release
 
@@ -283,13 +339,13 @@ Speech to text supports two new locales as shown in the following table. Refer t
 #### Pronunciation Assessment
 
 - Speech [Pronunciation Assessment](../../how-to-pronunciation-assessment.md) now supports 3 additional languages generally available in German (Germany), Japanese (Japan), and Spanish (Mexico), with 4 additional languages available in preview. For more information, see the full [language list for Pronunciation Assessment](../../language-support.md?tabs=pronunciation-assessment).
-- You can now use the standard Speech to Text commitment tier for pronunciation assessment on all public regions. If you purchase a commitment tier for standard Speech to text, the spend for pronunciation assessment goes towards meeting the commitment. See [commitment tier pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services). 
+- You can now use the standard Speech to Text commitment tier for pronunciation assessment on all public regions. If you purchase a commitment tier for standard Speech to text, the spend for pronunciation assessment goes towards meeting the commitment. See [commitment tier pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services).
 
 ### February 2023 release
 
 #### Pronunciation Assessment
 
-- Speech [Pronunciation Assessment](../../how-to-pronunciation-assessment.md) now supports 5 additional languages generally available in English (United Kingdom), English (Australia), French (France), Spanish (Spain), and Chinese (Mandarin, Simplified), with other languages available in preview. 
+- Speech [Pronunciation Assessment](../../how-to-pronunciation-assessment.md) now supports 5 additional languages generally available in English (United Kingdom), English (Australia), French (France), Spanish (Spain), and Chinese (Mandarin, Simplified), with other languages available in preview.
 - Added sample codes showing how to use Pronunciation Assessment in streaming mode in your own application.
   - **C#**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
   - **C++**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
@@ -487,4 +543,3 @@ Speech to text released 26 new locales in August: 2 European languages `cs-CZ` a
 | `es-UY` | Spanish (Uruguay)                 |
 | `es-VE` | Spanish (Venezuela)               |
 | `hu-HU` | Hungarian (Hungary)               |
-

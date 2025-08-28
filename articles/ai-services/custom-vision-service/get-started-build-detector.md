@@ -2,15 +2,16 @@
 title: "Quickstart: Build an object detector with the Custom Vision website"
 titleSuffix: Azure AI services
 description: Learn how to use the Custom Vision website to create, train, and test an object detector model.
-#services: cognitive-services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
 ms.topic: quickstart
 ms.date: 11/06/2024
 ms.author: pafarley
-ms.custom: mode-other
 keywords: image recognition, image recognition app, custom vision
+ms.custom:
+  - mode-other
+  - sfi-image-nochange
 ---
 
 # Quickstart: Build an object detector with the Custom Vision website
@@ -21,7 +22,7 @@ This quickstart explains how to use the Custom Vision website to create an objec
 
 - An Azure subscription. You can create a [free account](https://azure.microsoft.com/free/cognitive-services/).
 - A set of images with which to train your detector model. You can use the set of [sample images](https://github.com/Azure-Samples/cognitive-services-python-sdk-samples/tree/master/samples/vision/images) on GitHub. Or, you can choose your own images by using the following tips.
-- A [supported web browser](overview.md#supported-browsers-for-custom-vision-web-portal).
+- A [supported web browser](overview.md#supported-browsers).
 
 ## Create Custom Vision resources
 

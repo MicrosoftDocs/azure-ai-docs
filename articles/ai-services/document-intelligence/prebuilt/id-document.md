@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 11/19/2024
+ms.date: 07/29/2025
 ms.author: lajanuar
 ms.custom: references.regions
 ---
@@ -32,16 +32,19 @@ ms.custom: references.regions
 
 ::: moniker range=">=doc-intel-3.0.0"
 
+> [!NOTE]
+>
+> Document Intelligence `v4.0 2024-11-30 (GA)` API for the prebuilt Identity document (ID) model now supports identification documents from all regions worldwide, including expanded coverage across North America, South America, Asia, Europe, Africa, and Oceania.
+
 Document Intelligence Identity document (ID) model combines Optical Character Recognition (OCR) with deep learning models to analyze and extract key information from identity documents. The API analyzes identity documents (including the following) and returns a structured JSON data representation.
 
 | Region | Document types |
 |--------|----------------|
 |Worldwide|Passport Book, Passport Card|
 |United States|Driver License, Identification Card, Residency Permit (Green card), Social Security Card, Military ID|
-|Europe|Driver License, Identification Card, Residency Permit|
 |India|Driver License, PAN Card, Aadhaar Card|
-|Canada|Driver License, Identification Card, Residency Permit (Maple Card)|
 |Australia|Driver License, Photo Card, Key-pass ID (including digital version)|
+|Other|Driver License, Identification Card, Residency Permit|
 
 ::: moniker-end
 
@@ -207,7 +210,7 @@ Extract data, including name, birth date, and expiration date, from ID documents
     * The "documentResults" field contains key/value pairs information and line items information for the most relevant parts of the document.
 
 > [!NOTE]
-> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) does not support the BMP file format. This is a limitation of the tool not the Document Intelligence Service.
+> The [Sample Labeling tool](https://fott-2-1.azurewebsites.net/) doesn't support the BMP file format. This restriction is a limitation of the tool not the Document Intelligence Service.
 
 ::: moniker-end
 

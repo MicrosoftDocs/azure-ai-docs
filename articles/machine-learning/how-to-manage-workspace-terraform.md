@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: devx-track-terraform
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
-ms.date: 06/25/2024
+ms.date: 06/13/2025
 ms.topic: how-to
 ms.tool: terraform
 ---

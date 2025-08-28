@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: concept-article
-ms.author: mopeakande
-author: msakande
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: kritifaujdar
 ms.date: 09/30/2024
 #customer intent: As a data scientist, I want to learn about ONNX so I can use it to optimize the inference of my machine learning models.
@@ -29,7 +29,7 @@ This ONNX flow diagram shows available frameworks and deployment options.
 
 [ONNX Runtime](https://onnxruntime.ai) is a high-performance inference engine for deploying ONNX models to production. ONNX Runtime is optimized for both cloud and edge, and works on Linux, Windows, and macOS. ONNX is written in C++, but also has C, Python, C#, Java, and JavaScript (Node.js) APIs to use in those environments.
 
-ONNX Runtime supports both deep neural networks (DNN) and traditional machine learning models, and it integrates with accelerators on different hardware such as TensorRT on Nvidia GPUs, OpenVINO on Intel processors, and DirectML on Windows. By using ONNX Runtime, you can benefit from extensive production-grade optimizations, testing, and ongoing improvements.
+ONNX Runtime supports both deep neural networks (DNN) and traditional machine learning models, and it integrates with accelerators on different hardware such as TensorRT on NVIDIA GPUs, OpenVINO on Intel processors, and DirectML on Windows. By using ONNX Runtime, you can benefit from extensive production-grade optimizations, testing, and ongoing improvements.
 
 High-scale Microsoft services such as Bing, Office, and Azure AI use ONNX Runtime. Although performance gains depend on many factors, these Microsoft services report an average 2x performance gain on CPU by using ONNX. ONNX Runtime runs in Azure Machine Learning and other Microsoft products that support machine learning workloads, including:
 

@@ -6,12 +6,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 08/16/2024
 ms.topic: how-to
-ms.custom: subject-rbac-steps, cliv2, build-2023
 monikerRange: 'azureml-api-2 || azureml-api-1'
+ms.custom:
+  - subject-rbac-steps
+  - cliv2
+  - build-2023
+  - sfi-image-nochange
 ---
 # Tutorial: How to create a secure workspace with an Azure Virtual Network
 
@@ -205,6 +209,10 @@ To create a virtual network, use the following steps:
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/key-vault-private-endpoint.png" alt-text="Screenshot of the key vault private endpoint configuration form.":::
 
 1. Select __Review + create__. Verify that the information is correct, and then select __Create__.
+
+1. Once the key vault is created, select **Go to resource**.
+
+1. From the left navigation, select __Networking__ the __Firewalls and virtual networks__ tab and then enable the checkbox for __Allow trusted Microsoft services to bypass this firewall__ and __Apply__.
 
 ## Create a container registry
 
@@ -403,7 +411,7 @@ Use the following steps to create an Azure Virtual Machine to use as a jump box.
 1. From the top of the page, select __Connect__ and then __Connect via Bastion__.
 
     > [!TIP]
-    > Azure Bastion uses port 443 for inbound communication. If you have a firewall that restricts outbound traffic, ensure that it allows traffic on port 443 to the Azure Bastion service. For more information, see [Wroking with NSGs and Azure Bastion](/azure/bastion/bastion-nsg).
+    > Azure Bastion uses port 443 for inbound communication. If you have a firewall that restricts outbound traffic, ensure that it allows traffic on port 443 to the Azure Bastion service. For more information, see [Working with NSGs and Azure Bastion](/azure/bastion/bastion-nsg).
 
     :::image type="content" source="./media/tutorial-create-secure-workspace-vnet/virtual-machine-connect.png" alt-text="Screenshot of the 'connect' list, with 'Bastion' selected.":::
 

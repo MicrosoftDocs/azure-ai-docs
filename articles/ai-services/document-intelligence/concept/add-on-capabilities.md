@@ -6,7 +6,7 @@ author: jaep3347
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 01/15/2025
+ms.date: 02/27/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.1.0'
 ---
@@ -93,7 +93,7 @@ The task of recognizing small text from large-size documents, like engineering d
 ### [REST API](#tab/rest-api)
 
 ```bash
-{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=ocrHighResolution
+{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=ocrHighResolution
 ```
 
 ### [Sample code](#tab/sample-code)
@@ -362,7 +362,7 @@ The `ocr.formula` capability extracts all identified formulas, such as mathemati
 ### [REST API](#tab/rest-api)
 
 ```bash
-{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=formulas
+{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=formulas
 ```
 
 ### [Sample code](#tab/sample-code)
@@ -509,7 +509,7 @@ The `ocr.font` capability extracts all font properties of text extracted in the 
 ### [REST API](#tab/rest-api)
 
 ```bash
-  {your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=styleFont
+  {your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=styleFont
 ```
 
 ### [Sample code](#tab/sample-code)
@@ -766,7 +766,7 @@ The `ocr.barcode` capability extracts all identified barcodes in the `barcodes` 
 ### [REST API](#tab/rest-api)
 
 ```bash
-{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=barcodes
+{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=barcodes
 ```
 
 ### [Sample code](#tab/sample-code)
@@ -875,7 +875,7 @@ Adding the `languages` feature to the `analyzeResult` request predicts the detec
 ### [REST API](#tab/rest-api)
 
 ```bash
-{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=languages
+{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=languages
 ```
 
 ### [Sample code](#tab/sample-code)
@@ -1025,7 +1025,7 @@ Keys can also exist in isolation when the model detects that a key exists, with 
 ### REST API
 
 ```bash
-{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=keyValuePairs
+{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=keyValuePairs
 ```
 
 ## Query Fields
@@ -1065,7 +1065,7 @@ For query field extraction, specify the fields you want to extract and Document 
 ### [REST API](#tab/rest-api)
 
 ```bash
-{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-02-29-preview&features=queryFields&queryFields=TERMS
+{your-resource-endpoint}.cognitiveservices.azure.com/documentintelligence/documentModels/prebuilt-layout:analyze?api-version=2024-11-30&features=queryFields&queryFields=TERMS
 ```
 
 ### [Sample code](#tab/sample-code)

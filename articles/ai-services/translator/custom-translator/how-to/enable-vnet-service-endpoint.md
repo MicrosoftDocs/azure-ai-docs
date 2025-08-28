@@ -2,11 +2,10 @@
 title: Enable Virtual Network service endpoints with Azure AI Custom Translator service
 titleSuffix: Azure AI services
 description: This article describes how to use Azure AI Custom Translator service with an Azure Virtual Network service endpoint.
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: moelghaz
 ms.topic: how-to
 ---
@@ -29,14 +28,14 @@ For more information, see [Azure Virtual Network overview](/azure/virtual-networ
 
 ## Configure virtual networks resource networking settings
 
-To start, you need to add all virtual networks that are allowed access via the service endpoint to the Translator resource networking properties. To enable access to a Translator resource via the `VNet`, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so routes all subnet traffic related to Azure AI services through the private global network. If you intend to access any other Azure AI services resources from the same subnet, make sure these resources are also configured to allow your virtual network.
+To start, you need to add all virtual networks that are allowed access via the service endpoint to the Translator resource networking properties. To enable access to a Translator resource via the `VNet`, you need to enable the `Microsoft.CognitiveServices` service endpoint type for the required subnets of your virtual network. Doing so routes all subnet traffic related to Azure AI services through the private global network. If you intend to access any other Azure AI Foundry resources from the same subnet, make sure these resources are also configured to allow your virtual network.
 
 > [!NOTE]
 >
 > * If a virtual network isn't added as *allowed* in the Translator resource networking properties, it doesn't have access to the Translator resource via the service endpoint, even if the `Microsoft.CognitiveServices` service endpoint is enabled for the virtual network.
 > * If the service endpoint is enabled but the virtual network isn't allowed, the Translator resource isn't accessible for the virtual network through a public IP address. This restriction applies regardless of your other network security settings.
 > * Enabling the `Microsoft.CognitiveServices` endpoint routes all traffic related to Azure AI services through the private global network. Thus, the virtual network should be explicitly allowed to access the resource.
-> * This guidance applies for all Azure AI services resources, not just for Translator resources.
+> * This guidance applies for all Azure AI Foundry resources, not just for Translator resources.
 
 Let's get started:
 
@@ -64,7 +63,7 @@ Let's get started:
       * If you create a new virtual network, the **default** subnet is automatically configured to the `Microsoft.CognitiveServices` service endpoint. This operation can take few minutes.
 
     > [!NOTE]
-    > As described in the [previous section](#configure-virtual-networks-resource-networking-settings), when you configure a virtual network as *allowed* for the Translator resource, the `Microsoft.CognitiveServices` service endpoint is automatically enabled. If you later disable it, you need to re-enable it manually to restore the service endpoint access to the Translator resource (and to a subset of other Azure AI services resources).
+    > As described in the [previous section](#configure-virtual-networks-resource-networking-settings), when you configure a virtual network as *allowed* for the Translator resource, the `Microsoft.CognitiveServices` service endpoint is automatically enabled. If you later disable it, you need to re-enable it manually to restore the service endpoint access to the Translator resource (and to a subset of other Azure AI Foundry resources).
 
 1. Now, when you choose the **Selected Networks and Private Endpoints** tab, you can see your enabled virtual network and subnets under the **Virtual networks** section.
 
@@ -91,12 +90,12 @@ The following table describes Custom Translator project accessibility per Transl
    :::image type="content" source="../media/how-to/allow-network-access.png" alt-text="Screenshot of allowed network access section in the Azure portal.":::
 
  > [!IMPORTANT]
- > If you configure **Selected Networks and Private Endpoints** via the **Networking** → **Firewalls and virtual networks** tab, you can't use the Custom Translator portal to create workspaces to train and publish models. However, you can still use the Translator resource with [Custom Translator non-interactive REST API](https://microsofttranslator.github.io/CustomTranslatorApiSamples/) to build and publish custom models.
+ > If you configure **Selected Networks and Private Endpoints** via the **Networking** → **Firewalls and virtual networks** tab, you can't use the Custom Translator portal to create workspaces to train and publish models. However, you can still use the Translator resource with [Custom Translator non-interactive REST API](https://github.com/MicrosoftTranslator/CustomTranslatorApiSamples/tree/arvadivel/adding_curl) to build and publish custom models.
 
 | Translator resource network security setting | Custom Translator portal accessibility |
 |--|--|
 | All networks | &bullet; No restrictions |
-| Selected Networks and Private Endpoints | &bullet; Not accessible. Use [Custom Translator non-interactive REST API](https://microsofttranslator.github.io/CustomTranslatorApiSamples/) to build and publish custom models. |
+| Selected Networks and Private Endpoints | &bullet; Not accessible. Use [Custom Translator non-interactive REST API](https://github.com/MicrosoftTranslator/CustomTranslatorApiSamples/tree/arvadivel/adding_curl) to build and publish custom models. |
 | Disabled | &bullet; Not accessible |
 
 To use Custom Translator without relaxing network access restrictions on your production Translator resource, consider this workaround:
@@ -105,7 +104,7 @@ To use Custom Translator without relaxing network access restrictions on your pr
 
 * Prepare your custom model in the Custom Translator portal on the development resource.
 
-* Copy the model on your development resource to your production resource using [Custom Translator non-interactive REST API](https://microsofttranslator.github.io/CustomTranslatorApiSamples/) `workspaces` → `copy authorization and models`  → `copy functions`.
+* Copy the model on your development resource to your production resource using [Custom Translator non-interactive REST API](https://github.com/MicrosoftTranslator/CustomTranslatorApiSamples/tree/arvadivel/adding_curl) `workspaces` → `copy authorization and models`  → `copy functions`.
 
 ## Billing region codes
 
@@ -151,4 +150,4 @@ Congratulations! You learned how to use Azure `VNet` service endpoints with Cust
 
 ## Learn more
 
-Visit the [**Custom Translator API**](https://microsofttranslator.github.io/CustomTranslatorApiSamples/) page to view our non-interactive REST APIs.
+Visit the [**Custom Translator API**](https://github.com/MicrosoftTranslator/CustomTranslatorApiSamples/tree/arvadivel/adding_curl) page to view our non-interactive REST APIs.

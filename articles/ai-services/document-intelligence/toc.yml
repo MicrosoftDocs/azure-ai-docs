@@ -5,7 +5,7 @@ items:
   expanded: true
   items:
   - name: What is Azure AI Document Intelligence?
-    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer
+    displayName: models, develop, development, cognitive, applied, form recognizer, form, recognizer, region availability, regional availability
     href: overview.md
   - name: What's new
     displayName: changelog, release, updates, previews, beta, packages, ga, cognitive, applied, form recognizer, form, recognizer
@@ -51,7 +51,7 @@ items:
         href: v21/sdk-overview-v2-1.md
   - name: Changelog and migration guide
     displayName: latest, update, beta, package, preview, version
-    href: changelog-release-history.md      
+    href: changelog-release-history.md
   - name: Frequently asked questions (FAQ)
     displayName: storage, security, privacy, help, support, versions, development, migrate, migration, cognitive, applied, form recognizer, form, recognizer
     href: faq.yml
@@ -153,18 +153,27 @@ items:
   - name: Analyze document API response
     displayName: words, lines, pages, bounding regions, documents
     href: concept/analyze-document-response.md
+  - name: Layout API markdown output elements
+    displayName: words, lines, pages, bounding regions, documents
+    href: concept/markdown-elements.md
   - name: Retrieval-Augmented Generation (RAG)
     displayName: RAG, LLM, semantic, chunk, LangChain, language model
     href: concept/retrieval-augmented-generation.md
   - name: Batch documents analysis
     displayName: analyze, azureBlobFileListSource, azureBlobSource, azureBlobFileListSource, resultContainerUrl, resultPrefix, overwriteExisting
     href: concept-batch-analysis.md
+  - name: Troubleshoot latency issues
+    displayName: latency, performance, slow, response, time, analyze
+    href: concept/troubleshoot-latency.md
 - name: Quickstarts
   items:
     - name: Document Intelligence Studio custom projects
       displayName: get started, cors, blob, storage, upload, labels, custom, dynamic, fixed, signatures
       href: quickstarts/studio-custom-project.md
-    - name: "Get started with Document Intelligence"
+    - name: Get started with Document Intelligence Studio
+      displayName: get started, studio, upload, labels, custom, dynamic, fixed, signatures
+      href: quickstarts/get-started-studio.md
+    - name: "Get started with Document Intelligence client libraries"
       displayName: formRecognizerClient, Document Intelligence client, boundingBox, box, begin_recognize
       href: quickstarts/get-started-sdks-rest-api.md
     - name: Sample Labeling tool
@@ -265,9 +274,9 @@ items:
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/cognitive-services/document-intelligence/transparency-note?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
+    href: /azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
   - name: Data, privacy, and security
-    href: /legal/cognitive-services/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
+    href: /azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
 - name: Tutorials
   items:
   - name: Create workflows using Azure Logic Apps
@@ -337,7 +346,7 @@ items:
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/pay-stub.md
     - name: Receipt
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/receipt.md
-    - name: US tax W-2 form 
+    - name: US tax W-2 form
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w2.md
     - name: US tax W-4 form
       href: https://github.com/Azure-Samples/document-intelligence-code-samples/blob/main/schema/2024-11-30-ga/us-tax/w4.md
@@ -362,3 +371,5 @@ items:
     href: ../../ai-services/cognitive-services-support-options.md?context=/azure/ai-services/document-intelligence/context/context
   - name: Privacy and cookies
     href: https://privacy.microsoft.com/en-US/privacystatement
+  - name: Azure AI Document Intelligence release history
+    href: reference/release-history.md

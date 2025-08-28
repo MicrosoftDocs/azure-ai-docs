@@ -2,12 +2,12 @@
 title: Text to speech API reference (REST) - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use the REST API to convert text into synthesized speech.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 9/23/2024
-ms.author: eur
+ms.topic: how-to
+ms.date: 08/07/2025
+ms.author: pafarley
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.
 ---
@@ -19,14 +19,14 @@ The Speech service allows you to [convert text into synthesized speech](#convert
 > [!TIP]
 > Use cases for the text to speech REST API are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md). For example, with the Speech SDK you can [subscribe to events](how-to-speech-synthesis.md#subscribe-to-synthesizer-events) for more insights about the text to speech processing and results.
 
-The text to speech REST API supports neural text to speech voices in many locales. Each available endpoint is associated with a region. A Speech resource key for the endpoint or region that you plan to use is required. Here are links to more information:
+The text to speech REST API supports neural text to speech voices in many locales. Each available endpoint is associated with a region. An API key for the endpoint or region that you plan to use is required. Here are links to more information:
 
 - For a complete list of voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 - For information about regional availability, see [Speech service supported regions](regions.md#regions).
 - For Azure Government and Microsoft Azure operated by 21Vianet endpoints, see [this article about sovereign clouds](sovereign-clouds.md).
 
 > [!IMPORTANT]
-> Costs vary for prebuilt neural voices (called *Neural* on the pricing page) and custom neural voices (called *Custom Neural* on the pricing page). For more information, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
+> Costs vary for standard voices and custom voices. For more information, see [text to speech pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/).
 
 Before you use the text to speech REST API, understand that you need to complete a token exchange as part of authentication to access the service. For more information, see [Authentication](#authentication).
 
@@ -223,7 +223,7 @@ This table lists required and optional headers for text to speech requests:
 
 ### Request body
 
-If you're using a custom neural voice, the body of a request can be sent as plain text (ASCII or UTF-8). Otherwise, the body of each `POST` request is sent as [SSML](speech-synthesis-markup.md). SSML allows you to choose the voice and language of the synthesized speech that the text to speech feature returns. For a complete list of supported voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+If you're using a custom voice, the body of a request can be sent as plain text (ASCII or UTF-8). Otherwise, the body of each `POST` request is sent as [SSML](speech-synthesis-markup.md). SSML allows you to choose the voice and language of the synthesized speech that the text to speech feature returns. For a complete list of supported voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 ### Sample request
 
@@ -264,7 +264,7 @@ If the HTTP status is `200 OK`, the body of the response contains an audio file 
 
 ## Audio outputs
 
-The supported streaming and nonstreaming audio formats are sent in each request as the `X-Microsoft-OutputFormat` header. Each format incorporates a bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz, 16-kHz, and 8-kHz audio outputs. Each prebuilt neural voice model is available at 24kHz and high-fidelity 48kHz.
+The supported streaming and nonstreaming audio formats are sent in each request as the `X-Microsoft-OutputFormat` header. Each format incorporates a bit rate and encoding type. The Speech service supports 48-kHz, 24-kHz, 16-kHz, and 8-kHz audio outputs. Each standard voice model is available at 24kHz and high-fidelity 48kHz.
 
 #### [Streaming](#tab/streaming)
 
@@ -326,5 +326,5 @@ riff-48khz-16bit-mono-pcm
 ## Next steps
 
 - [Create a free Azure account](https://azure.microsoft.com/free/cognitive-services/)
-- [Get started with custom neural voice](professional-voice-create-project.md)
+- [Get started with custom voice](professional-voice-create-project.md)
 - [Batch synthesis](batch-synthesis.md)

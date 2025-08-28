@@ -2,16 +2,15 @@
 title: Map fields in indexers
 titleSuffix: Azure AI Search
 description: Configure field mappings in an indexer to account for differences in field names and data representations.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/09/2024
+ms.date: 02/24/2025
+ms.update-cycle: 180-days
 ---
 
 # Field mappings and transformations using Azure AI Search indexers
@@ -157,7 +156,9 @@ A field mapping function transforms the contents of a field before it's stored i
 + [base64Encode](#base64EncodeFunction)
 + [base64Decode](#base64DecodeFunction)
 + [extractTokenAtPosition](#extractTokenAtPositionFunction)
++ [fixedLengthEncode](#fixedLengthEncodeFunction)
 + [jsonArrayToStringCollection](#jsonArrayToStringCollectionFunction)
++ [toJson](#toJsonFunction)
 + [urlEncode](#urlEncodeFunction)
 + [urlDecode](#urlDecodeFunction)
 

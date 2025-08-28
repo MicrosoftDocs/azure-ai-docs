@@ -1,12 +1,12 @@
 ---
 title: Interactive language learning with pronunciation assessment
 description: Interactive language learning with pronunciation assessment gives you instant feedback on pronunciation, fluency, prosody, grammar, and vocabulary through interactive chats.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/20/2024
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
 ---
 

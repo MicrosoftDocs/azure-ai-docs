@@ -6,11 +6,18 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 07/08/2024
 ms.topic: how-to
-ms.custom: tracking-python, security, cliv2, sdkv2, engagement-fy23, build-2023
+ms.custom:
+  - tracking-python
+  - security
+  - cliv2
+  - sdkv2
+  - engagement-fy23
+  - build-2023
+  - sfi-image-nochange
 ---
 
 # Secure an Azure Machine Learning workspace with virtual networks
@@ -82,9 +89,6 @@ When your Azure Machine Learning workspace or any resource is configured with a 
 
 > [!IMPORTANT]
 > The compute cluster used to build Docker images needs to be able to access the package repositories that are used to train and deploy your models. You might need to add network security rules that allow access to public repos, [use private Python packages](concept-vulnerability-management.md#using-a-private-package-repository), or use [custom Docker images (SDK v1)](v1/how-to-train-with-custom-image.md?view=azureml-api-1&preserve-view=true) that already include the packages.
-
-> [!WARNING]
-> If your Azure Container Registry uses a private endpoint or service endpoint to communicate with the virtual network, you cannot use a managed identity with an Azure Machine Learning compute cluster.
 
 ### Azure Monitor
 

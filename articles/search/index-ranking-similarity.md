@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/22/2024
+ms.date: 02/24/2025
+ms.update-cycle: 365-days
 ---
 
 # Configure BM25 relevance scoring

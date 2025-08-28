@@ -6,14 +6,14 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 9/11/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
 # Analyze image content with docker containers (preview)
 
-The analyze image container scans images for sexual content, violence, hate, and self-harm with multi-severity levels. This guide shows how to download, install, and run a content safety image container.
+The Analyze image container scans images for sexual content, violence, hate, and self-harm with multi-severity levels. This guide shows how to download, install, and run a content safety image container.
 
 For more information about prerequisites, validating that a container is running, running multiple containers on the same host, and running disconnected containers, see [Install and run content safety containers with Docker](./install-run-container.md).
 
@@ -21,7 +21,7 @@ For more information about prerequisites, validating that a container is running
 
 The content safety analyze image container image for all supported versions can be found on the [Microsoft Container Registry (MCR)](https://mcr.microsoft.com/product/azure-cognitive-services/contentsafety/image-analyze/tags) syndicate. It resides in the `azure-cognitive-services/contentsafety` repository and is named `image-analyze`.
 
-:::image type="content" source="../../media/image-container.png" alt-text="Screenshot of image container on registry website.":::
+:::image type="content" source="../../media/image-container.png" lightbox="../../media/image-container.png" alt-text="Screenshot of image container on registry website.":::
 
 
 The fully qualified container name is, `mcr.microsoft.com/en-us/product/azure-cognitive-services/contentsafety/image-analyze`. Append a specific container version, or append `:latest` to get the most recent version. For example:

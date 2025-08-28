@@ -3,14 +3,14 @@ title: Reference for configuring Kubernetes cluster for Azure Machine Learning
 titleSuffix: Azure Machine Learning
 description: Reference for configuring Kubernetes cluster for Azure Machine Learning.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: jinzhong
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: devx-track-arm-template
 ms.topic: reference
-ms.date: 06/06/2022
+ms.date: 02/10/2025
 ---
 
 # Reference for configuring Kubernetes cluster for Azure Machine Learning
@@ -397,6 +397,7 @@ More information about how to use ARM template can be found from [ARM template d
 
 | Date | Version |Version description |
 |---|---|---|
+|Apr 6, 2025 | 1.1.76|  Fix vulnerable image. Updated nginx-ingress-controller to v1.12.1 |
 |Jan 28, 2025 | 1.1.71|  Fix vulnerable image. |
 |Jan 20, 2025 | 1.1.70|  Fix compatible issue with AKS autoscale for AKS 1.30. |
 |Sep 26, 2024 | 1.1.64|  Fixed vulnerabilities. |

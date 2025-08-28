@@ -41,7 +41,7 @@ A labeled dataset consists of several files:
 
 * We explore how to create a balanced data set and select the right documents to label. This process sets you on the path to higher quality models.
 
-> [!VIDEO https://www.microsoft.com/en-us/videoplayer/embed/RWWHru]
+> [!VIDEO 1190c010-ef3e-4cc6-8ffc-6d896fbb9711]
 
 ## Create a balanced dataset
 
@@ -82,7 +82,7 @@ Custom neural models currently only support key-value pairs, structured fields (
 
 | Model type | Form fields | Selection marks | Tabular fields | Signature | Region | Overlapping fields |
 |---|---|---|---|---|---|
-| Custom neural | ✔️Supported | ✔️Supported | ✔️Supported | Unsupported | ✔️Supported<sup>1</sup> | ✔️Supported<sup>2</sup> |
+| Custom neural | ✔️Supported | ✔️Supported | ✔️Supported | ✔️Supported | ✔️Supported<sup>1</sup> | ✔️Supported<sup>2</sup> |
 | Custom template | ✔️Supported| ✔️Supported | ✔️Supported | ✔️Supported | ✔️Supported | Unsupported |
 
 <sup>1</sup> Region labeling implementation differs between template and neural models. For template models, the training process injects synthetic data at training time if no text is found in the region labeled. With neural models, no synthetic text is injected and the recognized text is used as is.</br>
