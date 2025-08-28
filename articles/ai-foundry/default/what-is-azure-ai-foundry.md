@@ -11,7 +11,7 @@ ms.topic: overview
 # customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
-# What is Azure AI Foundry Overview
+# What is Azure AI Foundry overview
 
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
