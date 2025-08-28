@@ -9,7 +9,7 @@ ms.custom: devx-track-python, update-code
 ms.topic: how-to
 ms.reviewer: None
 author: ssalgadodev
-ms.author: ssalgado
+ms.author: osiotugo
 ms.date: 12/11/2024
 ms.collection: ce-skilling-ai-copilot
 ---
