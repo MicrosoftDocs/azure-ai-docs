@@ -4,7 +4,7 @@ description: Discover the Azure AI Foundry Status Dashboard (Preview) for real-t
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: nisi
-ms.date: 08/25/2025
+ms.date: 08/27/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ---

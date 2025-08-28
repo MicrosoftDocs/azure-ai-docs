@@ -1551,7 +1551,7 @@ List the checkpoints for a fine-tuning job.
 ## Fine-tuning - Copy checkpoint
 
 ```HTTP
-POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy
+POST {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_name}/copy
 ```
 
 
@@ -1568,7 +1568,7 @@ Creates a copy of a fine-tuning checkpoint at the given destination account and 
 | aoai-copy-ft-checkpoints | header | Yes | string<br>Possible values: `preview` | Enables access to checkpoint copy operations for models, an AOAI preview feature.<br>This feature requires the 'aoai-copy-ft-checkpoints' header to be set to 'preview'. |
 | accept | header | Yes | string<br>Possible values: `application/json` |  |
 | fine_tuning_job_id | path | Yes | string |  |
-| fine_tuning_checkpoint_id | path | Yes | string |  |
+| fine_tuning_checkpoint_name | path | Yes | string |  |
 
 ### Request Header
 
@@ -1608,7 +1608,7 @@ Creates a copy of a fine-tuning checkpoint at the given destination account and 
 ## Fine-tuning - Get checkpoint
 
 ```HTTP
-GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy
+GET {endpoint}/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_name}/copy
 ```
 
 
@@ -1626,7 +1626,7 @@ Gets the status of a fine-tuning checkpoint copy.
 | aoai-copy-ft-checkpoints | header | Yes | string<br>Possible values: `preview` | Enables access to checkpoint copy operations for models, an AOAI preview feature.<br>This feature requires the 'aoai-copy-ft-checkpoints' header to be set to 'preview'. |
 | accept | header | Yes | string<br>Possible values: `application/json` |  |
 | fine_tuning_job_id | path | Yes | string |  |
-| fine_tuning_checkpoint_id | path | Yes | string |  |
+| fine_tuning_checkpoint_name | path | Yes | string |  |
 
 ### Request Header
 
