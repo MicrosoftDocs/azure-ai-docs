@@ -2,14 +2,14 @@
 title: How to use image-to-text models in the model catalog
 titleSuffix: Azure AI Foundry
 description: Learn how to use image-to-text models from the AI Foundry model catalog.
-author: msakande
-reviewer: frogglew
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 05/02/2025
+ms.date: 08/28/2025
 ms.author: mopeakande
+author: msakande
+ms.reviewer: malpande
+reviewer: mpande98
 manager: nitinme
-ms.reviewer: frogglew
 ms.custom: references_regions, tool_generated
 ---
 
