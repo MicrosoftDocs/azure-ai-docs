@@ -37,15 +37,19 @@ This article explains how to use the push REST API to index document-level permi
 
 - An index can hold at most five unique values among fields of type `rbacScope` on all documents. There's no limit on the number of documents that share the same value of `rbacScope`.
 
-- A preexisting field can't be converted into a `permissionFilter` field type for use with built-in ACLs or RBAC metadata filtering. To enable filtering on an existing index, new fields must be created with the correct permission filter type.
+- A preexisting field can be converted into a `permissionFilter` field type for use with built-in ACLs or RBAC metadata filtering. To enable filtering on an existing index, create new fields or modify an existing field to include a `permissionFilter`.
 
 - Only one field of each `permissionFilter` type (one each of `groupIds`, `usersIds`, and `rbacScope`) can exist in an index.
+
+- Each permissionFilter field should have `filterable` set to true.
 
 ## Create an index with permission filter fields
 
 Indexing document ACLs and RBAC metadata with the REST API requires setting up an index schema that enables permission filters and has fields with permission filter assignments.
 
-Permission filter field types can be added to an existing index on new fields. The value of `permissionFilterOption` can be set to either `enabled` or `disabled` while indexing documents. However, setting it to `disabled` turns off the permission filter functionality.
+First, add a `permissionFilterOption` option. Valid values are `enabled` or `disabled`, and you should set it to `enabled`. You can switch it to `disabled` if you want to turn off the permission filter functionality at the index level.
+
+Second, create string fields for your permission metadata and include `permissionFilter`. Recall that you can have one of each permission filter type.
 
 Here's a basic example schema that includes all `permissionFilter` types:
 
@@ -63,7 +67,7 @@ Here's a basic example schema that includes all `permissionFilter` types:
 
 ## REST API indexing example
 
-Once you have an index with the desired permission filter fields, you can populate those values using the indexing push API as with any other document fields. Here's an example using the specified index schema.
+Once you have an index with permission filter fields, you can populate those values using the indexing push API as with any other document fields. Here's an example using the specified index schema, where each document specifies the upload action, the key field (DocumentId), and permission fields. It should also have content, but that field is omitted in this example for brevity.
 
 ```https
 POST https://exampleservice.search.windows.net/indexes('indexdocumentsexample')/docs/search.index?api-version=2025-08-01-preview
