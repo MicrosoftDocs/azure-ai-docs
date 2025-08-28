@@ -1,7 +1,7 @@
 ---
-title: How to add and manage data in your Azure AI Foundry project
+title: How to add and manage data in your Azure AI Foundry hub project
 titleSuffix: Azure AI Foundry
-description: Learn how to add and manage data in your Azure AI Foundry project.
+description: Learn how to add and manage data in your Azure AI Foundry hub project.
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom:
@@ -15,11 +15,11 @@ ms.author: jburchel
 author: jonburchel 
 ---
 
-# How to add and manage data in your Azure AI Foundry project
+# How to add and manage data in your Azure AI Foundry hub project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article describes how to create and manage data in Azure AI Foundry portal. Data can be used as a source for indexing in Azure AI Foundry portal.
+This article describes how to create and manage data in Azure AI Foundry hub projects. Data can be used as a source for indexing in Azure AI Foundry portal.
 
 Data can help when you need these capabilities:
 
