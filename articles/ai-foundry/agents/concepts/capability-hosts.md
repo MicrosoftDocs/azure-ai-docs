@@ -35,12 +35,14 @@ Creating capability hosts is not required. However if you do want agents to use 
 
 ### Default behavior (Microsoft-managed resources)
 If you don't create an account-level and project-level capability host, the Azure AI Foundry Agent Service automatically uses Microsoft-managed Azure resources for:
-- Thread storage (conversation history)
+- Thread storage (conversation history, agent definitions)
 - File storage (uploaded documents) 
 - Vector search (embeddings and retrieval)
 
 ### Bring-your-own resources
 When you create capability hosts at both the account and project levels, all agent data is stored and processed using your own Azure resources within your subscription. This configuration is called a **standard agent setup**.
+
+All Foundry workspace resources should be in the same region as the VNet, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, Managed Identity.
 
 #### Configuration hierarchy
 
@@ -67,7 +69,7 @@ A capability host must be configured with the following three properties at eith
 
 | Property | Purpose | Required Azure resource | Example connection name |
 |----------|---------|------------------------|------------------------|
-| `threadStorageConnections` | Stores conversation history and chat threads | Azure Cosmos DB | `"my-cosmosdb-connection"` |
+| `threadStorageConnections` | Stores agent definitions, conversation history and chat threads | Azure Cosmos DB | `"my-cosmosdb-connection"` |
 | `vectorStoreConnections` | Handles vector storage for retrieval and search | Azure AI Search | `"my-ai-search-connection"` |
 | `storageConnections` | Manages file uploads and blob storage | Azure Storage Account | `"my-storage-connection"` |
 
