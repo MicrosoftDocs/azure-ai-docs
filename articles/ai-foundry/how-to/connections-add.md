@@ -75,7 +75,7 @@ To learn more about Agent Knowledge tools, see [Knowledge tool overview](https:/
 
 ## Azure Key Vault limitations
 
-All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your subscription. Enterprise customers who prefer to bring their own Azure Key Vault should consider the these limitations:
+All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your subscription. Enterprise customers who prefer to bring their own Azure Key Vault should consider these limitations:
 
 - One Azure Key Vault connection per AI Foundry resource is allowed at a given time
 - Deleting an Azure Key Vault connection is only permitted if there are no other existing connections on the Foundry resource level, or project level. 
