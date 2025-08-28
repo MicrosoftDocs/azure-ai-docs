@@ -23,20 +23,7 @@ For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-projec
 
 If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
 
-## Prerequisites
-
-- A subscription below the [quota limit](../how-to/quota.md) to [deploy a new model in this tutorial](#deploy-a-chat-model). Otherwise you already need to have a [deployed chat model](../how-to/deploy-models-openai.md).
-
-
-## Deploy a chat model
-
-[!INCLUDE [deploy-model](../includes/deploy-model.md)]
-
-7. Once the model is deployed, select **Open in playground** to test your model.
-
-You're now in a project, with a deployed model. You can use the chat playground to interact with your model.
-
-For more information about deploying models, see [how to deploy models](../how-to/deploy-models-openai.md).
+[!INCLUDE [feature-preview](../includes/first-run-experience.md)]
 
 ## Chat in the playground without your data
 
