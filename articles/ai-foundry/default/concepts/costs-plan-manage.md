@@ -1,7 +1,7 @@
 ---
-title: Plan and Manage Costs for Azure AI Foundry (Preview)
+title: Manage Costs for Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to plan for and manage costs for Azure AI Foundry (preview) by using cost analysis in the Azure portal.
+description: Learn to plan, analyze, and monitor expenses for AI services in Azure. Create budgets and export cost data for better control.
 ms.author: mopeakande
 manager: nitinme
 author: msakande 
@@ -13,9 +13,7 @@ ms.topic: concept-article
 # see also: ai-foundry/how-to/costs-plan-manage.md
 ---
 
-# Plan and Manage Costs for Azure AI Foundry (Preview)
-
-[!INCLUDE [preview](../includes/preview.md)]
+# Manage costs for Azure AI Foundry
 
 This article describes how to plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs.
 
@@ -23,8 +21,6 @@ This article describes how to plan for and manage costs for [Azure AI Foundry](h
 > Azure AI Foundry doesn't have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
 
 You use Azure AI services in Azure AI Foundry portal. Costs for Azure AI services are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including third-party services.
-
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 ## Prerequisites
 
