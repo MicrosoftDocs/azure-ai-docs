@@ -26,7 +26,7 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 + Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
-+ Each one specifies extra properties for query execution. The full specification is in the [REST API reference](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Besides the knowledge source definition itself, there are [KnowledgeSourceReference properties](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview#knowledgesourcereference&preserve-view-true) in the knowledge agent.
++ Each one specifies extra properties for query execution. The full specification is in the [REST API reference](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Besides the knowledge source definition itself, there are [KnowledgeSourceReference properties](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view-true) in the knowledge agent.
 
 ## Supported knowledge sources
 
