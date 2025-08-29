@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 09/01/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -26,7 +26,7 @@ This article explains how to run indexers on demand, with and without a reset. I
 
 ## How indexers connect to Azure resources
 
-Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. You can use keys or roles to authenticate the connection.
+Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. Depending on the external data source, you can use keys or roles to authenticate the connection.
 
 In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
 
@@ -272,7 +272,6 @@ While using either "reset" or "reset docs" can address this issue, "reset" can b
 
 Resync Indexers offers an efficient and convenient alternative. Users simply place the indexer in resync mode and specify the content to resynchronize by calling the resync indexers API. In the next run, the indexer will inspect only relevant portion of data in the source and avoid any unnecessary processing that is unrelated to the specified data.  It will also query the existing documents in the target index and only update the documents that show discrepancies between the data source and the target index. After the resync run, the indexer will be synchronized and revert to regular indexer run mode for subsequent runs.
 
-
 ### How to resync and run indexers
 
 1. Call [Indexers - Resync](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-08-01-preview&preserve-view=true) with a preview API version to specify what content to re-synchronize.
@@ -295,7 +294,7 @@ Resync Indexers offers an efficient and convenient alternative. Users simply pla
 
 To check reset status and to see which document keys are queued up for processing, following these steps.
 
-1. Call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2024-05-01-preview&preserve-view=true) with a preview API. 
+1. Call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&preserve-view=true) with a preview API. 
 
    The preview API will return the **`currentState`** section, found at the end of the response.
 
@@ -324,6 +323,38 @@ To check reset status and to see which document keys are queued up for processin
    For Reset Documents, "mode" should be set to **`indexingResetDocs`**. The indexer retains this status until all the document keys provided in the reset documents call are processed, during which time no other indexer jobs will execute while the operation is progressing. Finding all of the documents in the document keys list requires cracking each document to locate and match on the key, and this can take a while if the data set is large. If a blob container contains hundreds of blobs, and the docs you want to reset are at the end, the indexer won't find the matching blobs until all of the others have been checked first.
 
 1. After the documents are reprocessed, run Get Indexer Status again. The indexer returns to the **`indexingAllDocs`** mode and will process any new or updated documents on the next run.
+
+## Check indexer runtime quota for S3 HD search services
+
+Applies to search services at the Standard 3 High Density (S3 HD) pricing tier.
+
+To help you monitor indexer running times relative to the 24-hour window, [Get Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics#servicestatistics?view=rest-searchservice-2025-08-01-preview&preserve-view=true) and [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&preserve-view=true) now return more information in the response.
+
+### Track cumulative runtime quota
+
+Track a search service's cumulative indexer runtime usage and determine how much runtime quota is left within the current 24-hour window period.
+
+Send a GET request to the search service resource provider. For help with setting up a REST client and getting an access token, see [Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest).
+
+```http
+GET {{search-endpoint}}/servicestats?api-version=2025-08-01-preview 
+  Content-Type: application/json
+  Authorization: Bearer {{accessToken}}
+```
+
+Responses include `indexersRuntime` properties, showing start and end times, seconds used, seconds remaining, and cumulative runtime within the last 24 hours.
+
+### Track indexer runtime quota
+
+Return the same information for a single indexer.
+
+```http
+GET {{search-endpoint}}/indexers/hotels-sample-indexer/search.status?api-version=2025-08-01-preview 
+  Content-Type: application/json
+  Authorization: Bearer {{accessToken}}
+```
+
+Responses include a `runtime` properties, showing start and end times, seconds used, and seconds remaining.
 
 ## Next steps
 
