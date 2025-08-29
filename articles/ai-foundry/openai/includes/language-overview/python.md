@@ -333,10 +333,6 @@ CreateEmbeddingResponse(data=[Embedding(embedding=[0.009098228, -0.010369237, -0
 
 [Fine-tuning with Python how-to article](../../how-to/fine-tuning.md)
 
-## Batch
-
-[Batch with Python how-to article](../../how-to/batch.md)
-
 ## Responses API
 
 See the [Responses API](../../how-to/responses.md) documentation.
