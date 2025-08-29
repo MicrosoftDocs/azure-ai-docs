@@ -2,14 +2,14 @@
 title: How to use image-to-text models in the model catalog
 titleSuffix: Azure AI Foundry
 description: Learn how to use image-to-text models from the AI Foundry model catalog.
-author: msakande
-reviewer: frogglew
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 05/02/2025
+ms.date: 08/28/2025
 ms.author: mopeakande
+author: msakande
+ms.reviewer: malpande
+reviewer: mpande98
 manager: nitinme
-ms.reviewer: frogglew
 ms.custom: references_regions, tool_generated
 ---
 
@@ -42,7 +42,7 @@ To use image models in your application, you need:
     If you're using Bash:
   
     ```bash    
-    export AZURE_API_KEY = "<your-api-key>"
+    export AZURE_API_KEY="<your-api-key>"
     ```
 
     If you're in PowerShell:
@@ -54,7 +54,7 @@ To use image models in your application, you need:
     If you're using Windows command prompt:
     
     ```
-    export AZURE_API_KEY = "<your-api-key>"
+    set AZURE_API_KEY=<your-api-key>
     ```
 
 1. Run a basic code sample. Different image models accept different data formats. In this example, _Mistral OCR 25.03_ supports only base64 encoded data; document url or image url isn't supported. Paste the following code into a shell.
@@ -62,8 +62,8 @@ To use image models in your application, you need:
     ```http
     curl --request POST \
       --url https://<your_serverless_endpoint>/v1/ocr \
-      --header 'Authorization: <api_key>' \
-      --header 'Content-Type: Application/json' \
+      --header 'Authorization: Bearer <api_key>' \
+      --header 'Content-Type: application/json' \
       --data '{
       "model": "mistral-ocr-2503",
       "document": {
