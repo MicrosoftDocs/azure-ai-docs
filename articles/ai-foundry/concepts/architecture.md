@@ -71,16 +71,15 @@ In the default setup, Azure AI Foundry uses Microsoft-managed storage accounts t
 * **Bring Your Own Storage (Optional)**:
 Users can optionally connect their own Azure Storage accounts. Foundry tools can read inputs from and write outputs to these accounts, depending on the tool and use case.
 
-* **Bring-your-own storage for storing Agent state:**
+* **Bring-your-own storage for storing Agent state**:
 
   * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with logical separation.
   * With the [Agent standard setup](../agents/how-to/use-your-own-resources.md), you can bring your own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account.
 
-* **Customer-Managed Key Encryption:**
+* **Customer-Managed Key Encryption**:
   By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Data is encrypted and decrypted using FIPS 140-2 compliant 256-bit AES encryption. Encryption and decryption are transparent, meaning encryption and access are managed for you. Your data is secure by default and you don't need to modify your code or applications to take advantage of encryption.
 
-  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys.
-  
+  When using customer-managed keys, your data on Microsoft-managed infrastructure is encrypted using your keys.  
   To learn more about data encryption, see [customer-managed keys for encryption with Azure AI Foundry](encryption-keys-portal.md).
 
 ## Next steps

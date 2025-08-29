@@ -55,7 +55,6 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 
 1. Select the  **Create** button. It can take a few minutes for the *creating* operation to complete.
 
-
    > [!NOTE]
    >
    > * **Standard training** enables faster training times and quicker iterations; however it's only available for English.

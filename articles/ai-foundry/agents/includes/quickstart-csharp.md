@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 03/28/2025
+ms.date: 08/29/2025
 ---
 
 | [Reference documentation](/dotnet/api/overview/azure/ai.agents.persistent-readme) | [Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/getting-started-agents) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Agents.Persistent) |
@@ -61,16 +61,12 @@ Save the name of your model deployment name as an environment variable named `Mo
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
-using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
 
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
+
 
 //Create a PersistentAgentsClient and PersistentAgent.
 PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
@@ -141,7 +137,7 @@ foreach (PersistentThreadMessage threadMessage in messages)
     }
 }
 
-//Clean up test resources.
-client.Threads.DeleteThread(threadId: thread.Id);
-client.Administration.DeleteAgent(agentId: agent.Id);
+//If you want to delete your agent, uncomment the following lines:
+//client.Threads.DeleteThread(threadId: thread.Id);
+//client.Administration.DeleteAgent(agentId: agent.Id);
 ```

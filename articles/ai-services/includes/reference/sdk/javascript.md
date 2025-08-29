@@ -2,7 +2,7 @@
 title: Azure AI SDK for JavaScript
 titleSuffix: Azure AI services
 description: Provides an overview with links to available Azure AI client libraries and packages for JavaScript.
-author: eric-urban
+author: laujan
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
