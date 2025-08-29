@@ -11,7 +11,6 @@ ms.custom:
 ms.topic: reference
 ms.date: 01/23/2024
 ms.author: lagayhar
-ms.reviewer: eur
 ---
 
 # Index Lookup tool for Azure Machine Learning (Preview)

@@ -4,7 +4,6 @@ titleSuffix: Azure AI services
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
 author: PatrickFarley
 ms.author: pafarley
-ms.reviewer: eur
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
