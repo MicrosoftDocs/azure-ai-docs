@@ -265,6 +265,8 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 
 ## v1 API support
 
+- [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
+
 ### Status
 
 | API Path                               | Status              |

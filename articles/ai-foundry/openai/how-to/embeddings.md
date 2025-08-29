@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 08/28/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -19,24 +19,23 @@ An embedding is a special format of data representation that can be easily utili
 
 To obtain an embedding vector for a piece of text, we make a request to the embeddings endpoint as shown in the following code snippets:
 
-# [console](#tab/console)
+# [REST](#tab/console)
 ```console
-curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_NAME/embeddings?api-version=2024-10-21\
+curl https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/embeddings \
   -H 'Content-Type: application/json' \
   -H 'api-key: YOUR_API_KEY' \
   -d '{"input": "Sample Document goes here"}'
 ```
 
-# [OpenAI Python 1.x](#tab/python-new)
+# [Python](#tab/python-new)
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint =os.getenv("AZURE_OPENAI_ENDPOINT") 
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.embeddings.create(
@@ -48,38 +47,36 @@ print(response.model_dump_json(indent=2))
 ```
 
 # [C#](#tab/csharp)
+
 ```csharp
-using Azure;
-using Azure.AI.OpenAI;
+using OpenAI;
+using OpenAI.Embeddings;
+using System.ClientModel;
 
-Uri oaiEndpoint = new ("https://YOUR_RESOURCE_NAME.openai.azure.com");
-string oaiKey = "YOUR_API_KEY";
+EmbeddingClient client = new(
+    "text-embedding-3-small",
+    credential: new ApiKeyCredential("API-KEY"),
+    options: new OpenAIClientOptions()
+    {
 
-AzureKeyCredential credentials = new (oaiKey);
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    }
+);
 
-AzureOpenAIClient openAIClient = new (oaiEndpoint, credentials);
+string input = "This is a test";
 
-EmbeddingsOptions embeddingOptions = new()
-{
-    DeploymentName = "text-embedding-3-large",
-    Input = { "Your text string goes here" },
-};
-
-var returnValue = openAIClient.GetEmbeddings(embeddingOptions);
-
-foreach (float item in returnValue.Value.Data[0].Embedding.ToArray())
-{
-    Console.WriteLine(item);
-}
+OpenAIEmbedding embedding = client.GenerateEmbedding(input);
+ReadOnlyMemory<float> vector = embedding.ToFloats();
+Console.WriteLine($"Embeddings: [{string.Join(", ", vector.ToArray())}]");
 ```
 
 # [PowerShell](#tab/PowerShell)
+
 ```powershell-interactive
 # Azure OpenAI metadata variables
 $openai = @{
     api_key     = $Env:AZURE_OPENAI_API_KEY
     api_base    = $Env:AZURE_OPENAI_ENDPOINT # your endpoint should look like the following https://YOUR_RESOURCE_NAME.openai.azure.com/
-    api_version = '2024-02-01' # this may change in the future
     name        = 'YOUR-DEPLOYMENT-NAME-HERE' #This will correspond to the custom name you chose for your deployment when you deployed a model.
 }
 
@@ -93,7 +90,7 @@ $body = [ordered]@{
     input = $text
 } | ConvertTo-Json
 
-$url = "$($openai.api_base)/openai/deployments/$($openai.name)/embeddings?api-version=$($openai.api_version)"
+$url = "$($openai.api_base)/openai/v1/embeddings"
 
 $response = Invoke-RestMethod -Uri $url -Headers $headers -Body $body -Method Post -ContentType 'application/json'
 return $response.data.embedding
