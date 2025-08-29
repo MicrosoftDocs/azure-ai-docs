@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This article describes how to create an Azure AI Foundry project so you can work with generative AI in the cloud.
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: deeikele
 ms.date: 07/03/2025
 ms.service: azure-ai-foundry
@@ -173,7 +172,7 @@ In addition, many resources are only accessible by users in your project workspa
    | workspacefilestore | {project-GUID}-code | Hosts files created on your compute and using prompt flow |
 
 > [!NOTE]
-> Storage connections aren't created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-configurations-on-connecting-to-storage)
+> Storage connections aren't created directly with the project when your storage account has public network access set to disabled. These are created instead when a first user accesses Azure AI Foundry over a private network connection. [Troubleshoot storage connections](troubleshoot-secure-connection-project.md#troubleshoot-storage-connection-issues)
 
 ## Delete projects
 

@@ -2,11 +2,11 @@
 title: Region availability for models in serverless APIs
 titleSuffix: Azure AI Foundry
 description: Learn about the regions where each model is available for deployment in serverless APIs via Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 04/22/2025
+ms.date: 07/24/2025
 ms.author: mopeakande
+manager: nitinme
 author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
@@ -22,7 +22,7 @@ In this article, you learn about which regions are available for each of the mod
 
 [!INCLUDE [models-preview](../includes/models-preview.md)]
 
-Certain models in the model catalog can be deployed as a serverless API. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription.
+Certain models in the model catalog can be deployed as a serverless API. This kind of deployment provides a way to consume models as an API without hosting them on your subscription, while keeping the enterprise security and compliance that organizations need. This deployment option doesn't require quota from your subscription. This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../concepts/model-lifecycle-retirement.md#deprecated). 
 
 ## Region availability
 

@@ -266,7 +266,7 @@
         "Training",
         "Certification"
       ],
-      "uhfHeaderId": "azure",
+      "uhfHeaderId": "azure-ai-foundry",
       "ms.suite": "office",
       "zone_pivot_group_filename": "zone-pivots/azure-ai/zone-pivot-groups.json"
     },
@@ -356,10 +356,13 @@
       },
       "manager": {
         "articles/search/**/*.md": "nitinme",
-        "articles/ai-studio/**/*.md": "scottpolly",
+        "articles/ai-foundry/**/*.md": "mcleans ",
+        "articles/ai-foundry/openai/*.md": "nitinme ",
+        "articles/ai-foundry/agents/**/*.md": "nitinme ",
+        "articles/ai-foundry/foundry-models/**/*.md": "nitinme ",
         "articles/ai-services/**/*.md": "nitinme",
-        "articles/genomics/**/*.md": "scottpolly",
-        "articles/genomics/**/*.yml": "scottpolly"
+        "articles/machine-learning/**/*.md": "mcleans ",
+        "articles/opendatasets/**/*.yml": "mcleans "
       },
       "ms.author": {
         "articles/ai-studio/**/*.md": "sgilley",
@@ -396,6 +399,8 @@
         "articles/ai-services/content-moderator/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-services/custom-vision-service/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-services/custom-vision-service/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
+        "articles/ai-services/computer-vision/**/*.md": "ce-skilling-ai-copilot",
+        "articles/ai-services/computer-vision/**/*.yml": "ce-skilling-ai-copilot",
         "articles/ai-services/metrics-advisor/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-services/metrics-advisor/**/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/ai-services/personalizer/**/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
@@ -425,10 +430,6 @@
         "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
       },
       "ms.update-cycle": {
-        "articles/ai-services/openai/**/*.md": "90-days",
-        "articles/ai-services/openai/**/*.yml": "90-days",
-        "articles/ai-services/agents/**/*.md": "90-days",
-        "articles/ai-services/agents/**/*.yml": "90-days",
         "articles/ai-services/content-understanding/**/*.md": "90-days",
         "articles/ai-services/content-understanding/**/*.yml": "90-days",
         "articles/ai-services/anomaly-detector/**/*.md": "365-days",
@@ -437,8 +438,20 @@
         "articles/ai-services/document-intelligence/**/*.yml": "365-days",
         "articles/ai-services/content-moderator/**/*.md": "365-days",
         "articles/ai-services/content-moderator/**/*.yml": "365-days",
+        "articles/ai-services/content-safety/**/*.md": "90-days",
+        "articles/ai-services/content-safety/**/*.yml": "90-days",
         "articles/ai-services/custom-vision-service/**/*.md": "365-days",
         "articles/ai-services/custom-vision-service/**/*.yml": "365-days",
+        "articles/ai-services/computer-vision/**/*.md": "365-days",
+        "articles/ai-services/computer-vision/**/*.yml": "365-days",
+        "articles/ai-services/containers/**/*.md": "365-days",
+        "articles/ai-services/containers/**/*.yml": "365-days",
+        "articles/ai-services/language-service/**/*.md": "180-days",
+        "articles/ai-services/language-service/**/*.yml": "180-days",
+        "articles/ai-services/speech-service/**/*.md": "180-days",
+        "articles/ai-services/speech-service/**/*.yml": "180-days",
+        "articles/ai-services/translator/**/*.md": "180-days",
+        "articles/ai-services/translator/**/*.yml": "180-days",
         "articles/ai-services/metrics-advisor/**/*.md": "365-days",
         "articles/ai-services/metrics-advisor/**/*.yml": "365-days",
         "articles/ai-services/personalizer/**/*.md": "365-days",
@@ -461,8 +474,8 @@
         "articles/open-datasets/**/*.md": "365-days", 
         "articles/open-datasets/**/*.yml": "365-days", 
         "articles/machine-learning/v1/*.md": "365-days",
-        "articles/search/*.md": "365-days",
-        "articles/search/*.yml": "365-days"
+        "articles/search/*.md": "90-days",
+        "articles/search/*.yml": "90-days"
       },
       "ms.custom": {
         "articles/machine-learning/v1/*.md": "UpdateFrequency5"

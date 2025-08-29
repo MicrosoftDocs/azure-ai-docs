@@ -2,7 +2,6 @@
 title: Indexer errors and warnings
 titleSuffix: Azure AI Search
 description: This article provides information and solutions to common errors and warnings you might encounter during AI enrichment in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 02/19/2025
+ms.update-cycle: 180-days
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search

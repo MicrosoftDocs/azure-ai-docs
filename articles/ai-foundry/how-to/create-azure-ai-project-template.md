@@ -4,18 +4,16 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use a Bicep file (template) to create an Azure AI Foundry project in your Azure subscription.
 ms.author: sgilley
 author: sdgilley
-manager: scottpolly
 reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
-ms.custom: "subject-bicepqs"
-ms.date: 04/29/2025
+ms.custom: 
+  - subject-bicepqs
+ms.date: 08/14/2025
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
 # Quickstart: Create an Azure AI Foundry project using a Bicep file
-
-[!INCLUDE [hub-only-alt](../includes/uses-fdp-only-alt.md)]
 
 Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (template) to create an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) project. A template makes it easy to create resources as a single, coordinated operation. A Bicep file is a text document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the file to deploy resources.
 
@@ -61,20 +59,20 @@ Deploy the Bicep file using either the Azure CLI or Azure PowerShell.
 
 ```azurecli
 az group create --name exampleRG --location eastus
-az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiServicesName=myai aiProjectName=myai-proj 
+az deployment group create --resource-group exampleRG --template-file main.bicep --parameters aiFoundryName=myai aiProjectName=myai-proj 
 ```
 
 # [Azure PowerShell](#tab/powershell)
 
 ```azurepowershell
 New-AzResourceGroup -Name exampleRG -Location eastus
-New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiHubName myai -aiProjectName myai-proj
+New-AzResourceGroupDeployment -ResourceGroupName exampleRG -TemplateFile main.bicep -aiFoundryName myai -aiProjectName myai-proj
 ```
 
 ---
 
 > [!NOTE]
-> Replace `myai` with the name of your resource.
+> Replace `myai` with the name of your resource. 
 
 When the deployment finishes, you should see a message indicating the deployment succeeded.
 
@@ -85,7 +83,7 @@ Use the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) to view t
 # [Azure CLI](#tab/cli)
 
 ```azurecli
-az resource list --name exampleRG
+az resource list --resource-group exampleRG
 ```
 
 # [Azure PowerShell](#tab/powershell)

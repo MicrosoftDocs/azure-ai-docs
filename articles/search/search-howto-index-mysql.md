@@ -5,11 +5,11 @@ description: Learn how to set up a search indexer to index data stored in Azure 
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
 ms.devlang: rest-api
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ms.custom:
   - kr2b-contr-experiment
   - ignite-2023
@@ -33,7 +33,7 @@ When configured to include a high water mark and soft deletion, the indexer take
 
 - [Azure Database for MySQL Flexible Server](/azure/mysql/flexible-server/overview) and sample data. Data must reside in a table or view. A primary key is required. If you're using a view, it must have a [high water mark column](#DataChangeDetectionPolicy). 
 
-- Read permissions. A *full access* connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Reader** permissions on MySQL.
+- Read permissions. A *full access* connection string includes a key that grants access to the content, but if you're using Azure roles, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Reader** permissions on MySQL.
 
 - A [REST client](search-get-started-text.md) to create the data source, index, and indexer.
 
@@ -264,7 +264,7 @@ The `softDeleteMarkerValue` must be a string. For example, if you have an intege
 
 ## Next steps
 
-You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-howto-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure MySQL:
+You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure MySQL:
 
 - [Index large data sets](search-howto-large-index.md)
 - [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md)

@@ -6,7 +6,6 @@ ms.author: ssalgado
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.date: 06/30/2025
-manager: scottpolly
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---

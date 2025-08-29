@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
-ms.date: 05/25/2025
+ms.date: 08/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 ---
@@ -15,7 +15,7 @@ ms.author: mbullwin
 
 ## How do I enable fine-tuning?
 
-In order to successfully access fine-tuning, you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+In order to successfully access fine-tuning, you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
 
 ## Why did my upload fail?
 

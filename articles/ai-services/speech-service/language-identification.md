@@ -2,13 +2,13 @@
 title: Implement language identification - Speech service
 titleSuffix: Azure AI services
 description: Learn how language identification can determine the language being spoken in audio when compared against a list of provided languages.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
 ms.date: 5/25/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #customer intent: As an application developer, I want to use language recognition or translations in order to make my apps work seamlessly for more customers.
 ---

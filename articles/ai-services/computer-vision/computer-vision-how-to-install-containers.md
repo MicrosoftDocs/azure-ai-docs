@@ -7,8 +7,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 06/30/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 keywords: on-premises, OCR, Docker, container
 ---
@@ -345,6 +343,6 @@ In this article, you learned concepts and workflow for downloading, installing, 
 
 * Review [Configure containers](computer-vision-resource-container-config.md) for configuration settings
 * Review the [OCR overview](overview-ocr.md) to learn more about recognizing printed and handwritten text
-* Refer to the [Read API](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2-preview) for details about the methods supported by the container.
+* Refer to the [Read API](/rest/api/computervision/operation-groups) for details about the methods supported by the container.
 * Refer to [Frequently asked questions (FAQ)](FAQ.yml) to resolve issues related to Azure AI Vision functionality.
 * Use more [Azure AI containers](../cognitive-services-container-support.md)

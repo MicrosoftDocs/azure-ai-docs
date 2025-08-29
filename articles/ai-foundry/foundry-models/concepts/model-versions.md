@@ -5,8 +5,7 @@ description: Learn about model versions in Foundry Models.
 ms.service: azure-ai-model-inference
 ms.topic: concept-article
 ms.custom: ignite-2024, github-universe-2024
-ms.date: 05/19/2025
-manager: scottpolly
+ms.date: 08/15/2025
 author: msakande
 ms.author: mopeakande
 recommendations: false

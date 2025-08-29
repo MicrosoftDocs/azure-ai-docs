@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/04/2025
+ms.date: 08/07/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-pii
@@ -85,6 +85,7 @@ This category contains the following entity:
 
    :::column-end:::
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -147,9 +148,87 @@ This category contains the following entity:
       `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `af`, `ca`, `da`, `el`, `ga`, `gl`, `ku`, `nl`, `no`, `ss`, `ro`, `sq`, `ur`, `ar`, `bg`, `bs`, `cy`, `fa`, `hr`, `id`, `mg`, `mk`, `ms`, `ps`, `ru`, `sl`, `so`, `sr`, `sw`, `am`, `as`, `cs`, `et`, `eu`, `fi`, `he`, `hu`, `km`, `lo`, `lt`, `lv`, `mr`, `my`, `ne`, `or`, `pa`, `pl`, `sk`, `th`, `uk`, `az`, `bn`, `gu`, `hy`, `ka`, `kk`, `kn`, `ky`, `ml`, `mn`, `ta`, `te`, `ug`, `uz`, `vi`
 
    :::column-end:::
-:::row-end:::
+ :::row-end:::
 
 ---
+
+# [Preview API](#tab/preview-api)
+
+## Type: License Plate 🆕
+
+This type contains the following entity:
+
+
+:::row:::
+    :::column span="":::
+        **Entity**
+
+        LicensePlate
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        License Plate is an alphanumeric code assigned to a vehicle by a state's Department of Licensing (or the equivalent).
+
+        To get this entity category, add `LicensePlate` to the `piiCategories` parameter. `LicensePlate` is returned in the API response if detected.
+
+    :::column-end:::
+
+    :::column span="":::
+      **Supported languages**
+
+      `en`
+
+   :::column-end:::
+:::row-end:::
+
+# [GA API](#tab/ga-api)
+
+## License Plate
+
+The **LicensePlate** entity isn't available with the current GA version.
+
+---
+
+# [Preview API](#tab/preview-api)
+
+## Type: Sort Code 🆕
+
+This type contains the following entity:
+
+:::row:::
+    :::column span="":::
+            **Entity**
+
+            SortCode
+
+        :::column-end:::
+        :::column span="2":::
+            **Details**
+
+            `SortCode` entity is a 6-digit number used in the UK to identify a specific bank and branch where a bank account is held.
+
+            To get this entity category, add `SortCode` to the `piiCategories` parameter. `SortCode` is returned in the API response if detected.
+
+        :::column-end:::
+
+        :::column span="":::
+          **Supported languages**
+
+          `en`
+
+   :::column-end:::
+:::row-end:::
+
+# [GA API](#tab/ga-api)
+
+## Sort Code
+
+The **SortCode** entity isn't available with the current GA version.
+
+---
+
 
 # [Preview API](#tab/preview-api)
 
@@ -212,6 +291,7 @@ This category contains the following entity:
    :::column-end:::
 
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -607,6 +687,7 @@ This category contains the following entity:
     :::column-end:::
 
 :::row-end:::
+
 ---
 
 # [Preview API](#tab/preview-api)
@@ -775,7 +856,7 @@ The PII service supports the Age subtype within the broader Quantity type (since
    :::column-end:::
 :::row-end:::
 
-#### Subtype: DateOfBirth
+#### Subtype: DateOfBirth 🆕
 
 :::row:::
     :::column span="":::
@@ -789,13 +870,13 @@ The PII service supports the Age subtype within the broader Quantity type (since
 
       Date
 
-      To get this entity type, add `DateOfBirth` to the `piiCategories` parameter. `DateOfBirth` is returned in the API response if detected. 
+      To get this entity type, add `DateOfBirth` to the `piiCategories` parameter. `DateOfBirth` is returned in the API response if detected.
 
     :::column-end:::
     :::column span="2":::
       **Supported languages**
 
-      `en`
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `nl`
 
    :::column-end:::
 :::row-end:::
@@ -828,6 +909,10 @@ This category contains the following entities:
 
    :::column-end:::
 :::row-end:::
+
+### Subtypes
+
+The subtype `DateOFBirth` isn't available in the current GA version.
 
 ### Subcategories
 

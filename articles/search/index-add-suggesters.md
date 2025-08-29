@@ -2,13 +2,13 @@
 title: Configure a suggester for autocomplete and suggestions
 titleSuffix: Azure AI Search
 description: Enable typeahead query actions in Azure AI Search by creating suggesters and formulating requests that invoke autocomplete or autosuggested query terms.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet

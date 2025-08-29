@@ -4,23 +4,55 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: amibp
-ms.date: 05/19/2025
+ms.date: 08/21/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.custom:
-  - build-2024
-  - ignite-2024
-  - build-aifnd
-  - build-2025
+
 ---
 
-# Trace your AI agents using Azure AI Foundry SDK (preview)
+# Trace your AI agents using Azure AI Foundry portal and SDK (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 This article walks you through how to instrument tracing in agents using Azure AI Foundry SDK with OpenTelemetry and Azure Monitor for enhanced observability and debugging.
+
+Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for a number of reasons:
+* There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
+* The sequence of steps might vary based on user input.
+* The inputs/outputs at each stage might be long and deserve more detailed inspection.
+* Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
+
+Tracing solves this by allowing you to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked.
+
+## Tracing in the Azure AI Foundry Agents playground
+
+The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
+
+> [!NOTE]
+> Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+> * Evaluations are not available in the following regions.
+>     * `australiaeast`
+>     * `japaneast`
+>     * `southindia`
+>     * `uksouth`
+
+:::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
+
+After selecting **Thread logs**, the screen that appears will let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
+
+:::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
+
+> [!TIP]
+> If you want to view the trace of a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
+> :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
+> You will be able to see the **Thread logs** button at the top of the screen to view the trace.
+
+
+> [!NOTE]
+> Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
+
+## Trace agents using the Azure AI Foundry SDK
 
 Here's a brief overview of key concepts before getting started:
 
@@ -65,7 +97,7 @@ Let's begin instrumenting our agent with OpenTelemetry tracing, by starting off 
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
-project_client = AIProjectClient.from_connection_string(
+project_client = AIProjectClient(
     credential=DefaultAzureCredential(),
     endpoint=os.environ["PROJECT_ENDPOINT"],
 )
@@ -75,12 +107,8 @@ Next, retrieve the connection string from the Application Insights resource conn
 
 ```python
 from azure.monitor.opentelemetry import configure_azure_monitor
-connection_string = project_client.telemetry.get_connection_string()
 
-if not connection_string:
-    print("Application Insights is not enabled. Enable by going to Tracing in your Azure AI Foundry project.")
-    exit()
-
+connection_string = project_client.telemetry.get_application_insights_connection_string()
 configure_azure_monitor(connection_string=connection_string) #enable telemetry collection
 ```
 
@@ -96,11 +124,11 @@ with tracer.start_as_current_span("example-tracing"):
         name="my-assistant",
         instructions="You are a helpful assistant"
     )
-    thread = project_client.agents.create_thread()
-    message = project_client.agents.create_message(
+    thread = project_client.agents.threads.create()
+    message = project_client.agents.messages.create(
         thread_id=thread.id, role="user", content="Tell me a joke"
     )
-    run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
 After running your agent, you can go begin to [view traces in Azure AI Foundry Portal](#view-traces-in-azure-ai-foundry-portal).
@@ -112,7 +140,8 @@ To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another 
 ```bash
 pip install azure-core-tracing-opentelemetry opentelemetry-exporter-otlp opentelemetry-sdk
 ```
-Next, you want to configure tracing for your application.
+
+Next, configure tracing for console output:
 
 ```python
 from azure.core.settings import settings
@@ -128,18 +157,16 @@ tracer_provider = TracerProvider()
 tracer_provider.add_span_processor(SimpleSpanProcessor(span_exporter))
 trace.set_tracer_provider(tracer_provider)
 ```
-Use `enable_telemetry` to begin collecting telemetry. 
+
+Or modify the above code, based on [Aspire Dashboard](https://aspiredashboard.com/#start), to trace to a local OTLP viewer.
+
+Now enable Agent instrumentation and run your Agent:
 
 ```python
-from azure.ai.projects import enable_telemetry
-enable_telemetry(destination=sys.stdout)
+from azure.ai.agents.telemetry import AIAgentsInstrumentor
+AIAgentsInstrumentor().instrument()
 
-# Logging to an OTLP endpoint, change the destination to
-# enable_telemetry(destination="http://localhost:4317")
-```
-```python
 # Start tracing
-from opentelemetry import trace
 tracer = trace.get_tracer(__name__)
 
 with tracer.start_as_current_span("example-tracing"):
@@ -148,11 +175,11 @@ with tracer.start_as_current_span("example-tracing"):
         name="my-assistant",
         instructions="You are a helpful assistant"
     )
-    thread = project_client.agents.create_thread()
-    message = project_client.agents.create_message(
+    thread = project_client.agents.threads.create()
+    message = project_client.agents.messages.create(
         thread_id=thread.id, role="user", content="Tell me a joke"
     )
-    run = project_client.agents.create_run(thread_id=thread.id, agent_id=agent.id)
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
 ## Trace custom functions
@@ -242,7 +269,6 @@ For more information on how to send Azure AI Inference traces to Azure Monitor a
 ## Related content
 
 - [Python samples](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-inference/samples/sample_chat_completions_with_tracing.py) containing fully runnable Python code for tracing using synchronous and asynchronous clients.
-- [Sample Agents with Console tracing](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_telemetry/sample_agents_basics_async_with_console_tracing.py)
-- [Sample Agents with Azure Monitor](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-agents/samples/agents_telemetry/sample_agents_basics_with_azure_monitor_tracing.py)
+- [Python samples for tracing agents with console tracing and Azure Monitor](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-agents/samples/agents_telemetry)
 - [JavaScript samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples/v1-beta/typescript/src) containing fully runnable JavaScript code for tracing using synchronous and asynchronous clients.
 - [C# Samples](https://github.com/Azure/azure-sdk-for-net/blob/Azure.AI.Inference_1.0.0-beta.2/sdk/ai/Azure.AI.Inference/samples/Sample8_ChatCompletionsWithOpenTelemetry.md) containing fully runnable C# code for doing inference using synchronous and asynchronous methods.

@@ -2,7 +2,6 @@
 title: Create and Configure your Storage Account for Evaluations
 titleSuffix: Azure AI Foundry
 description:  Learn how to create and configure your storage account for Azure AI Foundry evaluations.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 06/30/2025
@@ -14,7 +13,7 @@ author: lgayhardt
 # How to create and configure your storage account for use in Azure AI Foundry Projects
 
 > [!IMPORTANT]
-> This guidance only applies to the new Foundry resource based projects, not hub based projects. These steps aren't required for hub based projects.
+> This guidance only applies to the new Foundry resource based projects, not hub-based projects. These steps aren't required for hub-based projects.
 
 When running evaluations with user provided datasets, users must connect a Storage Account to their Azure AI Foundry Resource. This is the storage account that is used to store these datasets. However, providing this connection isn't enough, the project must also be given contributor access to the blob storage to allow read and write access to the storage account. These instructions walk you through how to create the storage account, connect it to your project, and give resource permission.
 

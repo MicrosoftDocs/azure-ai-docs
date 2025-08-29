@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: amibp
 ms.date: 05/19/2025
 ms.service: azure-ai-foundry
@@ -95,7 +94,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )
 
-    connection_string = project_client.telemetry.get_connection_string()
+    connection_string = project_client.telemetry.get_application_insights_connection_string()
     ```
 
     > [!TIP]
@@ -116,7 +115,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 1. Use the OpenAI SDK as usual:
 
     ```python
-    client = project_client.get_azure_openai_client()
+    client = project_client.get_openai_client()
 
     response = client.chat.completions.create(
         model="deepseek-v3-0324",
@@ -159,7 +158,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         responses = []
         for claim, context in zip(claims, contexts):
             response = client.chat.completions.create(
-                model="gpt-4.5-preview",
+                model="gpt-4.1",
                 messages=build_prompt_with_context(claim=claim, context=context),
             )
             responses.append(response.choices[0].message.content.strip('., '))
@@ -183,7 +182,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
         for claim, context in zip(claims, contexts):
             response = client.chat.completions.create(
-                model="gpt-4.5-preview",
+                model="gpt-4.1",
                 messages=build_prompt_with_context(claim=claim, context=context),
             )
             responses.append(response.choices[0].message.content.strip('., '))
@@ -194,7 +193,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
 ## Trace to console
 
-It may be useful to also trace your application and send the traces to the local execution console. Such approach may result beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
+It may be useful to also trace your application and send the traces to the local execution console. Such approach may be beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
 
 Configure tracing as follows:
 

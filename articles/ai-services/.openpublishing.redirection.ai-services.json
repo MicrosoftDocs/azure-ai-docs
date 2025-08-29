@@ -127,17 +127,17 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/monitoring.md",
-      "redirect_url": "/azure/ai-services/openai/how-to/monitor-openai",
+      "redirect_url": "/azure/ai-foundry/openai/how-to/monitor-openai",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/prepare-dataset.md",
-      "redirect_url": "/azure/ai-services/openai/concepts/fine-tuning-considerations",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/concepts/fine-tuning-considerations",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/audio-real-time.md",
-      "redirect_url": "/azure/ai-services/openai/realtime-audio-quickstart",
+      "redirect_url": "/azure/ai-foundry/openai/realtime-audio-quickstart",
       "redirect_document_id": false
     },
     {
@@ -182,8 +182,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/api-version-deprecation.md",
-      "redirect_url": "/azure/ai-services/openai/api-version-lifecycle",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/api-version-lifecycle",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-talent.md",
@@ -972,8 +972,8 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/how-to/integrate-synapseml.md",
-      "redirect_url": "/azure/ai-services/openai/overview",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/overview",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/ai-services-and-ecosystem.md",
@@ -1177,23 +1177,23 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-messages.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#list---messages",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---messages",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-runs.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread-and-run",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread-and-run",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference-threads.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#create---thread",
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#create---thread",
       "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/assistants-reference.md",
-      "redirect_url": "/azure/ai-services/openai/reference-preview#list---assistants",
-      "redirect_document_id": true
+      "redirect_url": "/azure/ai-foundry/openai/reference-preview#list---assistants",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/speech-service/meeting-transcription.md",
@@ -1232,7 +1232,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/concepts/content-filter-personal-information.md",
-      "redirect_url": "/azure/ai-services/openai/concepts/content-filter",
+      "redirect_url": "/azure/ai-foundry/openai/concepts/content-filter",
       "redirect_document_id": false
     },
     {
@@ -2704,6 +2704,11 @@
       "source_path_from_root": "/articles/ai-services/openai/references/mongo-db.md",
       "redirect_url": "/azure/ai-foundry/openai/references/mongo-db",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/containers/azure-kubernetes-recipe.md",
+      "redirect_url": "/azure/aks/what-is-aks",
+      "redirect_document_id": false
     },
     {
       "source_path_from_root": "/articles/ai-services/openai/references/on-your-data.md",

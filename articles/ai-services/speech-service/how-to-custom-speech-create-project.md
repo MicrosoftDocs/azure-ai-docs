@@ -2,12 +2,12 @@
 title: Customize speech models with fine-tuning
 titleSuffix: Azure AI services
 description: Learn about how to customize speech models with fine-tuning. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio
 #Customer intent: As a developer, I want to learn how to customize speech models with fine-tuning so that I can train and deploy a custom model.
 ---
@@ -15,6 +15,9 @@ zone_pivot_groups: foundry-speech-studio
 # Customize speech models with fine-tuning
 
 With custom speech, you can enhance speech recognition accuracy for your applications by using a custom model for real-time speech to text, speech translation, and batch transcription. 
+
+> [!TIP]
+> Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
 
 You create a custom speech model by fine-tuning an Azure AI Speech base model with your own data. You can upload your data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint.
 
@@ -63,7 +66,7 @@ After fine-tuning, you can access your custom speech models and deployments from
 
 ::: zone pivot="speech-studio"
 
-To create a custom speech project in [Speech Studio](https://aka.ms/speechstudio/customspeech), follow these steps:
+After you create a custom speech project, you can access your custom speech models and deployments from the **Custom speech** page.
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech).
 1. Select the subscription and Speech resource to work with. 
@@ -75,6 +78,46 @@ To create a custom speech project in [Speech Studio](https://aka.ms/speechstudio
 1. Follow the instructions provided by the wizard to create your project. 
 
 Select the new project by name or select **Go to project**. Then you should see these menu items in the left panel: **Speech datasets**, **Train custom models**, **Test models**, and **Deploy models**. 
+
+::: zone-end
+
+
+## Get the project ID for the REST API
+
+::: zone pivot="ai-foundry-portal"
+
+When you use the speech to text REST API for custom speech, you need to set the `project` property to the ID of your custom speech project. You need to set the `project` property so that you can manage fine-tuning in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). 
+
+> [!IMPORTANT]
+> The project ID for custom speech isn't the same as the ID of the Azure AI Foundry project.
+
+You can find the project ID in the URL after you select or start fine-tuning a custom speech model. 
+
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Select **Fine-tuning** from the left pane.
+1. Select **AI Service fine-tuning**.
+1. Select the custom model that you want to check from the **Model name** column.
+1. Inspect the URL in your browser. The project ID is part of the URL. For example, the project ID is `00001111-aaaa-2222-bbbb-3333cccc4444` in the following URL: 
+
+    ```https
+    https://ai.azure.com/build/models/aiservices/speech/customspeech/00001111-aaaa-2222-bbbb-3333cccc4444/<REDACTED_FOR_BREVITY>
+    ```
+
+::: zone-end
+
+::: zone pivot="speech-studio"
+
+When you use the speech to text REST API for custom speech, you need to set the `project` property to the ID of your custom speech project. You need to set the `project` property so that you can manage fine-tuning in the [Speech Studio](https://aka.ms/speechstudio/customspeech). 
+
+To get the project ID for a custom speech project in [Speech Studio](https://aka.ms/speechstudio/customspeech):
+
+1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customspeech) and select the **Custom speech** tile.
+1. Select your custom speech project. 
+1. Inspect the URL in your browser. The project ID is part of the URL. For example, the project ID is `00001111-aaaa-2222-bbbb-3333cccc4444` in the following URL:
+
+    ```https
+    https://speech.microsoft.com/portal/<Your-Resource-ID>/customspeech/a0a0a0a0-bbbb-cccc-dddd-e1e1e1e1e1e1
+    ```
 
 ::: zone-end
 

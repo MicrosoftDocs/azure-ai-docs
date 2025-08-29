@@ -2,8 +2,8 @@
 title: Use cases for Speaker Recognition
 titleSuffix: Azure AI services
 description: Speaker recognition, also known as voice recognition, is used to verify people's identity by comparing the voice characteristics of incoming speech with their registered voice signatures. This article discusses points to consider when you're choosing use cases for the service. 
-ms.author: heidizh
-author: HeidiHanZhang 
+author: PatrickFarley
+ms.author: pafarley 
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

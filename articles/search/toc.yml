@@ -18,28 +18,22 @@ items:
   items:
   - name: Data
     items:
+    - name: Data import strategies
+      href: search-what-is-data-import.md
     - name: Search index
       href: search-what-is-an-index.md
     - name: Vector index
       href: vector-store.md
     - name: Knowledge store
       href: knowledge-store-concept-intro.md
-    - name: Data import strategies
-      href: search-what-is-data-import.md
     - name: Indexers
       href: search-indexer-overview.md
   - name: Applied AI
     items:
-    - name: Multimodal search
-      href: multimodal-search-overview.md
-    - name: Built-in vectorization
-      href: vector-search-integrated-vectorization.md
     - name: AI enrichment during indexing
       href: cognitive-search-concept-intro.md
-    - name: Enrichment cache
-      href: cognitive-search-incremental-indexing-conceptual.md
-    - name: Skillsets
-      href: cognitive-search-working-with-skillsets.md
+    - name: Built-in vectorization
+      href: vector-search-integrated-vectorization.md
   - name: Retrieval
     items:
     - name: Agentic search
@@ -50,26 +44,22 @@ items:
       href: vector-search-overview.md
     - name: Hybrid search
       href: hybrid-search-overview.md
+    - name: Multimodal search
+      href: multimodal-search-overview.md
     - name: Retrieval Augmented Generation (RAG)
       href: retrieval-augmented-generation-overview.md
     - name: Other query types
       href: search-query-overview.md
   - name: Relevance
+    href: search-relevance-overview.md
+  - name: Reliability
     items:
-    - name: Semantic ranking
-      href: semantic-search-overview.md
-    - name: BM25 ranking
-      href: index-similarity-and-scoring.md
-    - name: Vector ranking
-      href: vector-search-ranking.md
-    - name: Hybrid ranking (RRF)
-      href: hybrid-search-ranking.md
+      - name: Reliability in Azure AI Search
+        href: /azure/reliability/reliability-ai-search?toc=/azure/search/toc.json&bc=/azure/search/breadcrumb/toc.json
+      - name: Multi-region deployment
+        href: search-multi-region.md
   - name: Security
-    items:
-    - name: Security overview
-      href: search-security-overview.md
-    - name: Secure access to external data
-      href: search-indexer-securing-resources.md
+    href: search-security-overview.md
 - name: Quickstarts
   items:
   - name: Connect to a search service
@@ -154,14 +144,14 @@ items:
       href: tutorial-adls-gen2-indexer-acls.md
   - name: Multimodal indexing tutorials
     items:
-    - name: Use document extraction and multimodal embeddings
+    - name: Vectorize images and text
       href: tutorial-document-extraction-multimodal-embeddings.md
-    - name: Use document extraction and image verbalizations
-      href: tutorial-document-extraction-image-verbalization.md
-    - name: Use semantic chunking and multimodal embeddings
+    - name: Vectorize from a structured document layout
       href: tutorial-document-layout-multimodal-embeddings.md
-    - name: Use semantic chunking and image verbalizations
-      href: tutorial-document-layout-image-verbalization.md      
+    - name: Verbalize images using generative AI
+      href: tutorial-document-extraction-image-verbalization.md
+    - name: Verbalize images from a structured document layout
+      href: tutorial-document-layout-image-verbalization.md
   - name: RAG tutorials
     items:
     - name: Build a RAG solution
@@ -204,8 +194,6 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Reliability and recovery
-      href: search-reliability.md
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
@@ -360,8 +348,12 @@ items:
         href: search-howto-index-sharepoint-online.md
     - name: Skillsets (indexers)
       items:
+      - name: Skillsets overview
+        href: cognitive-search-working-with-skillsets.md
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
+      - name: Design tips
+        href: cognitive-search-concept-troubleshooting.md
       - name: Attach an Azure AI resource
         href: cognitive-search-attach-cognitive-services.md
       - name: Define an index projection
@@ -376,22 +368,28 @@ items:
         href: cognitive-search-output-field-mapping.md
       - name: Process image files
         href: cognitive-search-concept-image-scenarios.md
-      - name: Cache (incremental) enrichment
-        href: search-howto-incremental-index.md
-      - name: Design tips
-        href: cognitive-search-concept-troubleshooting.md
-      - name: Best practices - GenAI Prompt skill
-        href: responsible-ai-best-practices-genai-prompt-skill.md
-      - name: GenAI Prompt Skill - Example Usage Guide
-        href: chat-completion-skill-example-usage.md
+      - name: Enrichment cache
+        items:
+        - name: Configure an enrichment cache
+          href: enrichment-cache-how-to-configure.md
+        - name: Manage an enrichment cache
+          href: enrichment-cache-how-to-manage.md
+      - name: Generative AI skills
+        items:
+        - name: Add AI-generated content (GenAI Prompt skill)
+          href: chat-completion-skill-example-usage.md
+        - name: Best practices using GenAI Prompt skill
+          href: responsible-ai-best-practices-genai-prompt-skill.md
       - name: Custom skills
         items:
-        - name: Integrate custom skills
+        - name: Add custom skills
           href: cognitive-search-custom-skill-interface.md
         - name: Scale out custom skills
           href: cognitive-search-custom-skill-scale.md
         - name: Example - Bing Entity Search
           href: cognitive-search-create-custom-skill-example.md
+        - name: Azure AI Search Power Skills
+          href: https://github.com/Azure-Samples/azure-search-power-skills
   - name: Retrieval
     items:
     - name: Agentic retrieval
@@ -457,12 +455,24 @@ items:
           href: search-query-fuzzy.md
     - name: Hybrid search
       href: hybrid-search-how-to-query.md
-    - name: Ranking and relevance
+  - name: Ranking and relevance
+    items:
+    - name: BM25 ranking
       items:
-      - name: Add a scoring profile
-        href: index-add-scoring-profiles.md
+      - name: BM25 ranking overview
+        href: index-similarity-and-scoring.md
       - name: Configure BM25 ranking
         href: index-ranking-similarity.md
+    - name: Vector ranking
+      href: vector-search-ranking.md
+    - name: Hybrid ranking (RRF)
+      href: hybrid-search-ranking.md
+    - name: Add a scoring profile
+      href: index-add-scoring-profiles.md
+    - name: Semantic ranking
+      items:
+      - name: Semantic ranking overview
+        href: semantic-search-overview.md
       - name: Enable or disable semantic ranker
         href: semantic-how-to-enable-disable.md
       - name: Configure semantic ranker
@@ -499,8 +509,10 @@ items:
         href: search-security-api-keys.md
     - name: Outbound connections
       items:
+      - name: Secure access to external data
+        href: search-indexer-securing-resources.md
       - name: Configure a managed identity
-        href: search-howto-managed-identities-data-sources.md
+        href: search-how-to-managed-identities.md
       - name: Connect using a managed identity
         items:
         - name: Azure Storage
@@ -568,7 +580,7 @@ items:
     - name: Monitor queries
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
-      href: search-howto-monitor-indexers.md
+      href: search-monitor-indexers.md
     - name: Visualize resource logs
       href: search-monitor-logs-powerbi.md
     - name: Performance analysis

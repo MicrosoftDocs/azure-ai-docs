@@ -3,10 +3,9 @@ title: Understanding deployment types in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to use deployment types in Azure AI model deployments
 author: msakande
-manager: scottpolly
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 08/15/2025
 ms.author: mopeakande
 ms.custom: ignite-2024, github-universe-2024
 ms.reviewer: fasantia
@@ -78,7 +77,7 @@ Key use cases include:
 
 Data zone standard deployments are available in the same Azure AI Foundry resource as all other AI Foundry Models deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone standard provides higher default quotas than our Azure geography-based deployment types. 
 
-Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [Quotas and limits](/azure/ai-services/openai/quotas-limits#usage-tiers) page to learn more. For workloads that require low latency variance at large volume, we recommend leveraging the provisioned deployment offerings. 
+Customers with high consistent volume may experience greater latency variability. The threshold is set per model. See the [Quotas and limits](/azure/ai-foundry/openai/quotas-limits#usage-tiers) page to learn more. For workloads that require low latency variance at large volume, we recommend leveraging the provisioned deployment offerings. 
 
 ## Data zone provisioned
 
@@ -110,7 +109,7 @@ Standard deployments are optimized for low to medium volume workloads with high 
 
 **SKU name in code:** `ProvisionedManaged`
 
-Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. Learn more from our [Provisioned throughput concepts article](/azure/ai-services/openai/concepts/provisioned-throughput).
+Provisioned deployments allow you to specify the amount of throughput you require in a deployment. The service then allocates the necessary model processing capacity and ensures it's ready for you. Throughput is defined in terms of provisioned throughput units (PTU) which is a normalized way of representing the throughput for your deployment. Each model-version pair requires different amounts of PTU to deploy and provide different amounts of throughput per PTU. Learn more from our [Provisioned throughput concepts article](/azure/ai-foundry/openai/concepts/provisioned-throughput).
 
 
 ## Control deployment options

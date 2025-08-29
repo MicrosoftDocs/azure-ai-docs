@@ -6,10 +6,10 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: alexeyo
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource
@@ -385,7 +385,7 @@ For example, you can allow traffic from selected public IP addresses and Azure V
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.
 1. In the *Settings* group in the left pane, select *Configuration*.
-1. Select *Disabled* for *Allow Blob public access*. 
+1. Select *Disabled* for *Allow Blob anonymous access*. 
 1. Select *Disabled* for *Allow storage account key access*
 1. Select *Save*.
 
@@ -427,7 +427,7 @@ These are the most restricted security settings possible for the text to speech 
 1. Go to the [Azure portal](https://portal.azure.com/) and sign in to your Azure account.
 1. Select the Storage account.
 1. In the *Settings* group in the left pane, select *Configuration*.
-1. Select *Disabled* for *Allow Blob public access*. 
+1. Select *Disabled* for *Allow Blob anonymous access*. 
 1. Select *Disabled* for *Allow storage account key access*
 1. Select *Save*.
 

@@ -2,13 +2,12 @@
 title: Foundry Local REST API Reference
 titleSuffix: Foundry Local
 description: Complete reference guide for the Foundry Local REST API.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
 ms.author: jburchel
 ms.reviewer: samkemp
-author: jburchel
+author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
 ms.date: 07/03/2025

@@ -27,9 +27,7 @@ To work with a model, you first deploy it into a project.
 
     :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
 
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+1. On the model details page, select **Use this model**.
 
 
 1. Leave the default **Deployment name**. Select **Deploy**.

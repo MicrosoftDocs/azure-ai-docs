@@ -166,7 +166,7 @@ This can be accomplished using the Advanced edit or simple Edit options as previ
 
 ### Using Azure AI Foundry portal
 
-Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-foundry/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-services/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
+Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-foundry/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-foundry/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
 
 ### Using environment variables
 

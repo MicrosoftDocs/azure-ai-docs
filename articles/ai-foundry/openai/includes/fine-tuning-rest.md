@@ -20,9 +20,6 @@ ms.custom:
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you don't already have access to view quota, and deploy models in Azure AI Foundry portal you'll require [additional permissions](../how-to/role-based-access-control.md).  
 
-> [!NOTE]
-> The REST API does not currently support **Global** training jobs. Inspecting Global training jobs via the API may return incorrect information.
-
 ### Supported models
 
 Consult the [models page](../concepts/models.md#fine-tuning-models) to check which regions currently support fine-tuning.
@@ -103,7 +100,7 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 ### Upload training data
 
 ```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/files?api-version=2023-12-01-preview \
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/files \
   -H "Content-Type: multipart/form-data" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F "purpose=fine-tune" \
@@ -113,7 +110,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/files?api-version=2023-12-01-preview 
 ### Upload validation data
 
 ```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/files?api-version=2023-12-01-preview \
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/files \
   -H "Content-Type: multipart/form-data" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -F "purpose=fine-tune" \
@@ -127,7 +124,7 @@ After you uploaded your training and validation files, you're ready to start the
 In this example we are also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed is not specified, one will be generated for you.
 
 ```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2024-10-21 \
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -154,8 +151,28 @@ The current supported hyperparameters for fine-tuning are:
 After you start a fine-tune job, it can take some time to complete. Your job might be queued behind other jobs in the system. Training your model can take minutes or hours depending on the model and dataset size. The following example uses the REST API to check the status of your fine-tuning job. The example retrieves information about your job by using the job ID returned from the previous example:
 
 ```bash
-curl -X GET $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/<YOUR-JOB-ID>?api-version=2024-10-21 \
+curl -X GET $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/<YOUR-JOB-ID> \
   -H "api-key: $AZURE_OPENAI_API_KEY"
+```
+
+## Pause and resume
+
+During the training you can view the logs and metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evals are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+
+### Pause
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/pause \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" 
+```
+
+### Resume
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/resume \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
 
 ### List fine-tuning events
@@ -163,10 +180,57 @@ curl -X GET $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/<YOUR-JOB-ID>?api-ver
 To examine the individual fine-tuning events that were generated during training:
 
 ```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/{fine_tuning_job_id}/events?api-version=2024-10-21 \
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/events \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
+
+### Copy model (preview)
+
+You can now copy a fine-tuned checkpointed model from one region to another, across different subscriptions but within the same tenant. The process uses dedicated APIs to ensure efficient and secure transfers. This feature is currently available only with the API and not through the Foundry portal.
+Once the model is copied from region A to region B, you can continually fine-tune the model in region B and deploy the model from this location.
+
+> [!NOTE]
+> Deletion of the model checkpoint in the source region will not cause the model to be deleted in the destination region. To delete the model in both regions once it has been copied, the model must be deleted separately in each region.
+
+**Pre-requisites**
+
+- Destination resource/account should have at least one fine-tuning job.
+- Destination resource/account should not disable public network access. (At least while sending copying request).
+- You can only copy to the destination account, if the account initiating the copy has sufficient permissions to access the destination account.
+
+**Permissions configuration**
+
+1. Create a [user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities?pivots=identity-mi-methods-azp).
+2. Give Cognitive Services OpenAI contributor role to your user-assigned managed identity on your destination resource/account.
+3. [Assign the user-assigned managed identity](/entra/identity/managed-identities-azure-resources/how-to-assign-access-azure-resource?pivots=identity-mi-access-portal#use-azure-rbac-to-assign-a-managed-identity-access-to-another-resource-using-the-azure-portal) to your source resource account.
+
+**Copy model**
+
+```bash
+curl --request POST \
+  --url 'https://<aoai-resource>.openai.azure.com/openai/v1/fine_tuning/jobs/<ftjob>/checkpoints/<checkpoint-name>/copy' \
+  --header 'Content-Type: application/json' \
+  --header 'api-key: <api-key>' \
+  --header 'aoai-copy-ft-checkpoints: preview' \
+  --data '{
+  "destinationResourceId": "<resourceId>",
+  "region": "<region>"
+}'
+```
+
+Since this is a long running operation, check the status of the Fine-tuned model copy by providing the checkpoint ID of the source account used in the POST call.
+
+**Check copy status**
+
+```bash
+curl --request GET \
+  --url 'https://<aoai-resource>.openai.azure.com//openai/v1/fine_tuning/jobs/<ftjob>/checkpoints/<checkpoint-name>/copy' \
+  --header 'Content-Type: application/json' \
+  --header 'api-key: <api-key>' \
+  --header 'aoai-copy-ft-checkpoints: preview' 
+```
+
 
 ## Checkpoints
 
@@ -175,7 +239,7 @@ When each training epoch completes a checkpoint is generated. A checkpoint is a 
 You can run the list checkpoints command to retrieve the list of checkpoints associated with an individual fine-tuning job:
 
 ```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints?api-version=2024-10-21 \
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
@@ -187,12 +251,12 @@ Azure OpenAI attaches a result file named _results.csv_ to each fine-tune job af
 The following Python example uses the REST API to retrieve the file ID of the first result file attached to the fine-tuning job for your customized model, and then downloads the file to your working directory for analysis.
 
 ```bash
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs/<JOB_ID>?api-version=2023-12-01-preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs/<JOB_ID>" \
   -H "api-key: $AZURE_OPENAI_API_KEY")
 ```
 
 ```bash
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/files/<RESULT_FILE_ID>/content?api-version=2023-12-01-preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/files/<RESULT_FILE_ID>/content" \
     -H "api-key: $AZURE_OPENAI_API_KEY" > <RESULT_FILENAME>
 ```
 
@@ -232,7 +296,7 @@ If you're ready to deploy for production or have particular data residency needs
 | fine_tuned_model | Retrieve this value from your fine-tuning job results in the previous step. It will look like `gpt-4.1-2025-04-14.ft-b044a9d3cf9c4228b5d393567f693b83`. You'll need to add that value to the deploy_data json. Alternatively you can also deploy a checkpoint, by passing the checkpoint ID which will appear in the format `ftchkpt-e559c011ecc04fc68eaa339d8227d02d` |
 
 ```bash
-curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>api-version=2024-10-21" \
+curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2024-10-21" \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -257,7 +321,7 @@ Once you have created a fine-tuned model, you might want to continue to refine t
 To perform fine-tuning on a model that you have previously fine-tuned, you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```bash
-curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2023-12-01-preview \
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{

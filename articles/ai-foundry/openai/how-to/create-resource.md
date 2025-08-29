@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: devx-track-azurecli, build-2023, build-2023-dataai, devx-track-azurepowershell, innovation-engine
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 07/31/2025
 zone_pivot_groups: openai-create-resource
 author: mrbullwinkle
 ms.author: mbullwin
@@ -46,6 +46,5 @@ In this article, you review examples for creating and deploying resources in the
 ## Next steps
 
 - [Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)
-- Make API calls and generate text with [Azure OpenAI quickstarts](../quickstart.md).
 - Learn more about the [Azure OpenAI models](../concepts/models.md).
 - For information on pricing visit the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)

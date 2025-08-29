@@ -2,12 +2,12 @@
 title: Speech to text overview - Speech service
 titleSuffix: Azure AI services
 description: Get an overview of the benefits and capabilities of the speech to text feature of the Speech service.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the benefits and capabilities of the speech to text feature of the Speech service.
 ---
 

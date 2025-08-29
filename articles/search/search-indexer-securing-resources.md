@@ -2,7 +2,6 @@
 title: Indexer access to protected resources
 titleSuffix: Azure AI Search
 description: Learn import concepts and requirements related to network-level security options for outbound requests made by indexers in Azure AI Search.
-
 manager: nitinme
 author: arv100kri
 ms.author: arjagann
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 05/12/2025
+ms.update-cycle: 365-days
 ---
 
 # Indexer access to content protected by Azure network security
@@ -177,7 +177,7 @@ There are two options for supporting data access using the system identity:
 
 - Configure a [resource instance rule](/azure/storage/common/storage-network-security#grant-access-from-azure-resource-instances) in Azure Storage that admits inbound requests from an Azure resource.
 
-The above options depend on Microsoft Entra ID for authentication, which means that the connection must be made with a Microsoft Entra login. Currently, only an Azure AI Search [system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity) is supported for same-region connections through a firewall.
+The above options depend on Microsoft Entra ID for authentication, which means that the connection must be made with a Microsoft Entra login. Currently, only an Azure AI Search [system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) is supported for same-region connections through a firewall.
 
 ### Services in different regions
 

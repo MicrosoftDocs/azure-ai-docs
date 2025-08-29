@@ -53,7 +53,7 @@ You search service must be configured for Microsoft Entra ID authentication and 
 
 + [Enable role-based access](search-security-enable-roles.md)
 
-+ [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md).
++ [Configure a system-assigned managed identity](search-how-to-managed-identities.md).
 
 ## Get a personal identity token for local testing
 

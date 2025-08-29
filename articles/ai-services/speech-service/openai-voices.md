@@ -2,11 +2,10 @@
 title: What are OpenAI text to speech voices?
 titleSuffix: Azure AI services
 description: Learn about OpenAI voices that you can use for text to speech in Azure AI services.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
-ms.reviewer: eur
-ms.date: 2/22/2025
+ms.date: 8/13/2025
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.custom:

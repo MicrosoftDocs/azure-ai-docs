@@ -5,7 +5,6 @@ description: Learn how to index and search for multimodal content in the Azure p
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: quickstart
 ms.date: 07/22/2025
 ms.custom:
@@ -92,7 +91,7 @@ On your Azure AI Search service:
 
 1. [Enable role-based access](search-security-enable-roles.md).
 
-1. [Configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+1. [Configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 1. [Assign the following roles](search-security-rbac.md) to yourself:
 
@@ -108,7 +107,7 @@ Azure Storage is both the data source for your documents and the destination for
 
 On your Azure Storage account:
 
-+ Assign **Storage Blob Data Contributor** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Storage Blob Data Contributor** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ---
 
@@ -122,7 +121,7 @@ Azure OpenAI provides LLMs for image verbalization and embedding models for text
 
 On your Azure OpenAI resource:
 
-+ Assign **Cognitive Services OpenAI User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Cognitive Services OpenAI User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ### [**Azure AI Foundry**](#tab/ai-foundry-perms)
 
@@ -133,7 +132,7 @@ The Azure AI Foundry model catalog provides LLMs for image verbalization and emb
 
 On your Azure AI Foundry project:
 
-+ Assign **Azure AI Project Manager** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Azure AI Project Manager** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ### [**Azure AI services**](#tab/ai-services-perms)
 
@@ -141,7 +140,7 @@ An Azure AI multi-service resource provides multiple Azure AI services, includin
 
 On your Azure AI multi-service resource:
 
-+ Assign **Cognitive Services User** to your [search service identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
++ Assign **Cognitive Services User** to your [search service identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 ---
 
@@ -465,7 +464,7 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 This quickstart introduced you to the **Import and vectorize data** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
 
-+ [Tutorial: Image verbalization and Document Extraction skill](tutorial-document-extraction-image-verbalization.md)
-+ [Tutorial: Image verbalization and Document Layout skill](tutorial-document-layout-image-verbalization.md)
-+ [Tutorial: Multimodal embeddings and Document Extraction skill](tutorial-document-extraction-multimodal-embeddings.md)
-+ [Tutorial: Multimodal embeddings and Document Layout skill](tutorial-document-layout-multimodal-embeddings.md)
++ [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
++ [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)
++ [Tutorial: Vectorize images and text](tutorial-document-extraction-multimodal-embeddings.md)
++ [Tutorial: Vectorize from a structured document layout](tutorial-document-layout-multimodal-embeddings.md)

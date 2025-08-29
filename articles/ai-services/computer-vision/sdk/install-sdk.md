@@ -6,9 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: quickstart
-ms.date: 06/01/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 07/28/2025
 ms.author: pafarley
 ms.custom: devx-track-python, devx-track-csharp, devx-track-extended-java, devx-track-js, linux-related-content
 zone_pivot_groups: programming-languages-vision-40-sdk

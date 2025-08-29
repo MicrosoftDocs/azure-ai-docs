@@ -5,7 +5,7 @@ description: Learn how to use identity-based data access to connect to storage s
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.author: yogipandey
+ms.author: scottpolly
 author: ynpandey
 ms.reviewer: franksolomon
 ms.date: 03/07/2025

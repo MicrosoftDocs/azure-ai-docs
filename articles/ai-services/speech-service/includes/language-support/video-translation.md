@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 2/28/2025
+ms.date: 8/1/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Locale (BCP-47) | Language | Standard voice source | Standard voice target | Personal voice source | Personal voice target | 

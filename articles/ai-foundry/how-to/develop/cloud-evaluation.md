@@ -2,7 +2,6 @@
 title: Cloud Evaluation with the Azure AI Foundry SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate a generative AI application in the cloud.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
@@ -28,11 +27,7 @@ In this article, you learn how to run evaluations in the cloud (preview) in pre-
 - Azure OpenAI Deployment with GPT model supporting `chat completion`. For example, `gpt-4`.
 - Make sure you're first logged into your Azure subscription by running `az login`.
 
-If this is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do a few additional steps:
-
-1. Create and connect your storage account to your Azure AI Foundry project at the resource level. There are two ways you can do this. You can [use a Bicep template](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep), which provisions and connects a storage account to your Foundry project with key authentication. You can also [manually create and provision access](../evaluations-storage-account.md) to your storage account in the Azure portal.
-1. Make sure the connected storage account has access to all projects.
-1. If you connected your storage account with Microsoft Entra ID, make sure to give managed identity **Storage Blob Data Owner** permissions to both your account and the Foundry project resource in the Azure portal.
+[!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
 ## Get started
 

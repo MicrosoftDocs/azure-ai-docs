@@ -2,13 +2,13 @@
 title: "Part 1: Set up project and development environment to build a custom knowledge retrieval (RAG) app"
 titleSuffix: Azure AI Foundry
 description:  Build a custom chat app using the Azure AI Foundry SDK. Part 1 of a 3-part tutorial series, which shows how to create the resources you need for parts 2 and 3.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
   - update-code
+  - hub-only
 ms.topic: tutorial
-ms.date: 06/27/2025
+ms.date: 08/29/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
@@ -58,9 +58,7 @@ These steps deploy a model to a real-time endpoint from the Azure AI Foundry por
 
     :::image type="content" source="../media/tutorials/chat/select-model.png" alt-text="Screenshot of the model selection page." lightbox="../media/tutorials/chat/select-model.png":::
 
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
+1. On the model details page, select **Use this model**.
 
 1. Leave the default **Deployment name**. select **Deploy**.  Or, if the model isn't available in your region, a different region is selected for you and connected to your project.  In this case, select **Connect and deploy**.
 

@@ -2,8 +2,8 @@
 title: Data and privacy for Language Understanding (LUIS)
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for Language Understanding (LUIS).
-author: skandil
-ms.author: sarakandil
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

@@ -2,16 +2,15 @@
 title: Update or rebuild an index
 titleSuffix: Azure AI Search
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 05/19/2025
+ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search

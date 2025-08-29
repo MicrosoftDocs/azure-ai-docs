@@ -2,7 +2,6 @@
 title: Create a vector index
 titleSuffix: Azure AI Search
 description: Create or update a search index to include vector fields.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search

@@ -31,7 +31,7 @@ The indexer approach is built on this foundation:
 
 + [Microsoft Entra ID authentication and authorization](/entra/identity/authentication/overview-authentication). Services and apps must be in the same tenant. Users can be in different tenants as long as all of the tenants are Microsoft Entra ID. Role assignments are used for each authenticated connection.
 
-+ Azure AI Search, any region, but you must have a billable tier (basic and higher) see [Service limits](search-limits-quotas-capacity.md) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-howto-managed-identities-data-sources.md).
++ Azure AI Search, any region, but you must have a billable tier (basic and higher) see [Service limits](search-limits-quotas-capacity.md) for managed identity support. The search service must be [configured for role-based access](search-security-enable-roles.md) and it must [have a managed identity (either system or user)](search-how-to-managed-identities.md).
 
 ## Configure Blob storage
 
@@ -52,7 +52,7 @@ For indexer execution, your search service identity must have **Storage Blob Dat
 Recall that the search service must have:
 
 + [Role-based access enabled](search-security-enable-roles.md)
-+ [Managed identity configured](search-howto-managed-identities-data-sources.md)
++ [Managed identity configured](search-how-to-managed-identities.md)
 
 ### Authorization
 
@@ -72,7 +72,7 @@ In Azure AI Search, configure an indexer, data source, and index to pull permiss
 
   + For `rbacScope`, configure the [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   
-  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity), you must also specify the `identity` property.
+  + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
 
 <!-- Question/Comment: check this example -->
 JSON example with system managed identity:
@@ -168,9 +168,10 @@ JSON schema example:
 
 To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-howto-index-changed-deleted-blobs.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and have them deleted from the index.  
 
-## Related content
+## See also
 
++ [Connect to Azure AI Search using roles](search-security-rbac.md)
+- [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
+- [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
 + [Search over Azure Blob Storage content](search-blob-storage-integration.md)
 + [Configure a blob indexer](search-howto-indexing-azure-blob-storage.md)
-+ [Change and delete detection using indexers for Azure Storage](search-howto-index-changed-deleted-blobs.md)
-+ [Connect to Azure AI Search using roles](search-security-rbac.md)

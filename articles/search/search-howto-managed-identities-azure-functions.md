@@ -4,10 +4,10 @@ titleSuffix: Azure AI Search
 description: Learn how to set up an indexer connection to an Azure Function using built-in authentication also known as "Easy Auth".
 author: arv100kri
 ms.author: arjagann
-
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/20/2025
+ms.update-cycle: 180-days
 ms.custom:
   - subject-rbac-steps
 ---
@@ -20,7 +20,7 @@ You can use either a system-assigned or a user-assigned identity of the search s
 
 ## Prerequisites
 
-* [Create a managed identity](search-howto-managed-identities-data-sources.md) for your search service.
+* [Create a managed identity](search-how-to-managed-identities.md) for your search service.
 
 ## Configure Microsoft Entra ID application to use as authentication provider
 

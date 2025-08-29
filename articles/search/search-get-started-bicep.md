@@ -12,6 +12,7 @@ ms.custom:
   - devx-track-bicep
   - ignite-2023
 ms.date: 03/04/2025
+ms.update-cycle: 365-days
 ---
 
 # Quickstart: Deploy Azure AI Search using Bicep
