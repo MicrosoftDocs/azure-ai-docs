@@ -31,7 +31,6 @@ ai-usage: ai-assisted
 [!INCLUDE [bicep](../../foundry-models/includes/configure-content-filters/bicep.md)]
 ::: zone-end
 
-## Next steps
-
-- Read more about [content filtering categories and severity levels](../../model-inference/concepts/content-filter.md) with Azure OpenAI in Azure AI Foundry Models.
-- Learn more about red teaming from our: [Introduction to red teaming large language models (LLMs) article](../../openai/concepts/red-teaming.md).
+## Related content
+- [Content filtering for Azure AI Foundry Models](../../model-inference/concepts/content-filter.md)
+- [Introduction to red teaming large language models (LLMs)](../../openai/concepts/red-teaming.md)
