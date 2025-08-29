@@ -7,11 +7,14 @@ ms.topic: how-to
 ms.date: 05/19/2025
 author: msakande
 ms.author: mopeakande
+ms.reviewer: yinchang
+reviewer: ychang-msft
 recommendations: false
 ms.custom: ignite-2024, github-universe-2024
 zone_pivot_groups: azure-ai-models-deployment
-ms.reviewer: fasantia
-reviewer: santiagxf
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer working with Azure AI Foundry Models, I want to configure custom content filters for my model deployments so that I can implement appropriate safety guardrails, control harmful content detection at specific severity levels, and ensure my AI applications comply with responsible AI standards and organizational policies.
 ---
 
 # How to configure content filters for models in Azure AI Foundry
