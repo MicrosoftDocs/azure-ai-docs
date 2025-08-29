@@ -41,14 +41,14 @@ We highly recommend that all customers transition to the newly launched GA model
 <!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
 
 
-
+<!--
 ### gpt-audio Preview
 
 - Designed for audio content creation and analysis. It’s great for: 
-    - Spoken summaries and audio narratio
-    - Sentiment analysis from voic
+    - Spoken summaries and audio narration
+    - Sentiment analysis from voice
     - Captioning and meeting summaries
-- It supports both streaming and non-streaming audio completions, expressive multilingual output, and REST API integration.
+- It supports both streaming and non-streaming audio completions, expressive multilingual output, and REST API integration. -->
 
 
 ## June 2025
