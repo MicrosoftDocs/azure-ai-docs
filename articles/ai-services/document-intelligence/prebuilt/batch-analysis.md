@@ -5,7 +5,7 @@ description: Learn about the Document Intelligence Batch analysis API
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/27/2025
+ms.date: 08/29/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
