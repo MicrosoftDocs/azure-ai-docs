@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to configure key-less authorization to use Azure AI Foundry Models with Microsoft Entra ID.
 ms.service: azure-ai-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 08/29/2025
 ms.custom: ignite-2024, github-universe-2024
 author: msakande
 ms.author: mopeakande
