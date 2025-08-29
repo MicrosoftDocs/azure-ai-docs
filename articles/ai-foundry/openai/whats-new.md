@@ -22,7 +22,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Realtime API audio model GA
 
-OpenAI's GPT-4o Real-Time and Audio models are now generally available on Azure AI Foundry Direct Models.
+OpenAI's GPT-4o RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
 
 Model improvements:
 - Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
@@ -63,7 +63,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
 
-- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
+- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` don't require registration.
 
 
 ### New version of model-router
@@ -129,7 +129,7 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 
 ### o4-mini and o3 models released
 
-`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ### GPT-4.1 released
 
@@ -149,9 +149,9 @@ For more information about available models, see the [models and versions docume
 
 ### Responses API & computer-use-preview model
 
-The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](./how-to/computer-use.md) capability.
+The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model, which powers the [Computer use](./how-to/computer-use.md) capability.
 
-**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models still need to request access for this model.
 
 Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess)
 
@@ -216,7 +216,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
-- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
 For more information, see the [GPT-4o real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 
@@ -260,7 +260,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### NEW data zone provisioned deployment type
 
-Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within Microsoft specified data zones. Data zone provisioned deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
+Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to use Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within Microsoft specified data zones. Data zone provisioned deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
 
