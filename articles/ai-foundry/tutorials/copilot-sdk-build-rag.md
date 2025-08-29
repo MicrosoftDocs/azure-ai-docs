@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description:  Learn how to build a RAG-based chat app using the Azure AI Foundry SDK. This tutorial is part 2 of a 3-part tutorial series.
 ms.service: azure-ai-foundry
 ms.topic: tutorial
-ms.date: 06/27/2025
+ms.date: 08/29/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
