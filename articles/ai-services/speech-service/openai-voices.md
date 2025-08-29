@@ -5,7 +5,6 @@ description: Learn about OpenAI voices that you can use for text to speech in Az
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.reviewer: eur
 ms.date: 8/13/2025
 ms.service: azure-ai-speech
 ms.topic: overview

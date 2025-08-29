@@ -6,7 +6,6 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 6/13/2025
-ms.reviewer: eur
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: references_regions

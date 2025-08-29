@@ -4,7 +4,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: include
-ms.date: 11/13/2024
+ms.date: 08/29/2025
 ---
 
 
@@ -117,7 +117,7 @@ with project_client:
             project_client.agents.files.save(file_id=file_id, file_name=file_name)
             print(f"Saved image file to: {Path.cwd() / file_name}")
 
-    # Delete the agent when done
-    project_client.agents.delete_agent(agent.id)
-    print("Deleted agent")
+    # Uncomment these lines to delete the agent when done
+    # project_client.agents.delete_agent(agent.id)
+    # print("Deleted agent")
 ```
