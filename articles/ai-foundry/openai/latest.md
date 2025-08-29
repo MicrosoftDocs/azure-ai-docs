@@ -10,12 +10,14 @@ author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
 ms.custom:
-  - ignite-2023
+
 ---
 
 # Azure OpenAI in Azure AI Foundry Models v1 REST API reference
 
 Only a subset of operations are currently supported with the v1 API. To learn more, see the [API version lifecycle guide](./api-version-lifecycle.md).
+
+- [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
 
 ## Create chat completion
 
