@@ -1,11 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 01/30/2024
-ms.author: eur
+ms.date: 7/16/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/swift.md)]

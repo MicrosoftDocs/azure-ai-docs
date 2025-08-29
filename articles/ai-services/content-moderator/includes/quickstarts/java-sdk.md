@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: include
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.custom: devx-track-java
 ms.author: pafarley
 ---
@@ -20,7 +20,7 @@ Use the Content Moderator client library for Java to:
 * Moderate text
 * Moderate images
 
-[Reference documentation](/java/api/overview/azure/cognitiveservices/client/contentmoderator) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-contentmoderator) |[Artifact (Maven)](https://mvnrepository.com/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-contentmoderator) | [Samples](/samples/browse/?products=azure&term=content-moderator)
+[Reference documentation](/java/api/overview/azure/cognitiveservices/client/contentmoderator) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices) |[Artifact (Maven)](https://mvnrepository.com/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-contentmoderator) | [Samples](/samples/browse/?products=azure&term=content-moderator)
 
 ## Prerequisites
 

@@ -7,10 +7,9 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: conceptual
-ms.date: 03/26/2025
+ms.date: 08/21/2025
 ms.author: pafarley
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
@@ -36,7 +35,7 @@ Try out the capabilities of face detection quickly and easily by using Azure AI 
 
 ## Face ID
 
-The face ID is a unique identifier string for each detected face in an image. Face ID requires limited access approval, which you can apply for by filling out the [intake form](https://aka.ms/facerecognition). For more information, see the Face API [Limited Access page](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext). You can request a face ID in your [Detect] API call.
+The face ID is a unique identifier string for each detected face in an image. Face ID requires limited access approval, which you can apply for by filling out the [intake form](https://aka.ms/facerecognition). For more information, see the Face API [Limited Access page](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity). You can request a face ID in your [Detect] API call.
 
 ## Face landmarks
 

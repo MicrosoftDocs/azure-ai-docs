@@ -2,11 +2,11 @@
 title: Identify and extract Personally Identifying Information (PII) from native documents
 titleSuffix: Azure AI services
 description: This article shows you how to redact Personally Identifying Information (PII) from native documents.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 03/05/2025
+ms.date: 07/17/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -57,18 +57,13 @@ A native document refers to the file format used to create the original document
 
 ***Let's get started:***
 
-* For this project, we use the cURL command line tool to make REST API calls.
+* For this project, we use the cURL command-line tool to make REST API calls.
 
     > [!NOTE]
     > The cURL package is preinstalled on most Windows 10 and Windows 11 and most macOS and Linux distributions. You can check the package version with the following commands:
     > Windows: `curl.exe -V`
     > macOS `curl -V`
     > Linux: `curl --version`
-
-* If cURL isn't installed, here are installation links for your platform:
-
-  * [Windows](https://curl.haxx.se/windows/).
-  * [Mac or Linux](https://learn2torials.com/thread/how-to-install-curl-on-mac-or-linux-(ubuntu)-or-windows).
 
 * An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
 
@@ -77,7 +72,7 @@ A native document refers to the file format used to create the original document
   * **Source container**. This container is where you upload your native files for analysis (required).
   * **Target container**. This container is where your analyzed files are stored (required).
 
-* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI services resource):
+* A [**single-service Language resource**](https://ms.portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics) (**not** a multi-service Azure AI Foundry resource):
 
   **Complete the Language resource project and instance details fields as follows:**
 

@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 10/16/2024
+ms.date: 04/29/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 #customer intent: As a developer, I want to learn how to use Prompt Shields so that I can ensure AI-generated content is safe and compliant.
@@ -15,9 +15,9 @@ zone_pivot_groups: programming-languages-content-safety-foundry-rest
 
 # Quickstart: Use Prompt Shields
 
-In this quickstart, you use the "Prompt Shields" feature. Prompt Shields in Azure AI Content Safety are designed to safeguard generative AI systems from generating harmful or inappropriate content. These shields detect and mitigate risks associated with both User Prompt Attacks (malicious or harmful user-generated inputs) and Document Attacks (inputs containing harmful content embedded within documents). The use of "Prompt Shields" is crucial in environments where GenAI is employed, ensuring that AI outputs remain safe, compliant, and trustworthy.
+In this quickstart, you use the Prompt Shields feature. Prompt Shields in Azure AI Content Safety is designed to safeguard generative AI systems from generating harmful or inappropriate content. These filters detect and mitigate risks associated with both User Prompt Attacks (malicious or harmful user-generated inputs) and Document Attacks (inputs containing harmful content embedded within documents). The use of Prompt Shields is crucial in environments where GenAI is used, to ensure that AI outputs remain safe, compliant, and trustworthy.
 
-The primary objectives of the "Prompt Shields" feature for GenAI applications are:
+The primary objectives of the Prompt Shields feature for GenAI applications are:
 
 - To detect and block harmful or policy-violating user prompts that could lead to unsafe AI outputs.
 - To identify and mitigate document attacks where harmful content is embedded within user-provided documents.

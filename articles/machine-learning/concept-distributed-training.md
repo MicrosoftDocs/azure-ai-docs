@@ -4,12 +4,12 @@ titleSuffix: Azure Machine Learning
 description: Learn what type of distributed training Azure Machine Learning supports and the open source framework integrations available for distributed training.
 services: machine-learning
 ms.service: azure-machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ratanase
 ms.subservice: training
 ms.custom: build-2023
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 12/05/2024
 ---
 

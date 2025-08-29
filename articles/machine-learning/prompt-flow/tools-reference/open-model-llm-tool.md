@@ -5,12 +5,14 @@ description: The prompt flow Open Model LLM tool enables you to utilize various 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom: ignite-2023
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: GEWOODS
 ms.date: 11/02/2023
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Open Model LLM tool
@@ -41,7 +43,7 @@ This prompt flow tool supports two different LLM API types:
 
 - Pick the model that matched your scenario from the [Azure Machine Learning model catalog](https://ml.azure.com/model/catalog).
 - Use the **Deploy** button to deploy the model to an Azure Machine Learning online inference endpoint.
-   - Use one of the Pay as you go deployment options.
+   - Use one of the standard deployment options.
 
 To learn more, see [Deploy foundation models to endpoints for inferencing](../../how-to-use-foundation-models.md#deploying-foundation-models-to-endpoints-for-inferencing).
 

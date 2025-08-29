@@ -2,7 +2,6 @@
 title: OData search.score function reference
 titleSuffix: Azure AI Search
 description: Syntax and reference documentation for using the search.score function in Azure AI Search queries.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 04/18/2023
+ms.update-cycle: 365-days
 translation.priority.mt:
   - "de-de"
   - "es-es"

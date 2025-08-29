@@ -3,12 +3,15 @@ title: 'Quickstart: Create an Ubuntu Data Science Virtual Machine'
 titleSuffix: Azure Data Science Virtual Machine
 description: Configure and create a Data Science Virtual Machine for Linux (Ubuntu) to do analytics and machine learning.
 ms.service: azure-data-science-virtual-machines
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.topic: quickstart
 ms.reviewer: jeffshep
 ms.date: 10/14/2024
-ms.custom: mode-other, linux-related-content
+ms.custom:
+  - mode-other
+  - linux-related-content
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to learn how to provision the Linux DSVM so that I can move my existing workflow to the cloud.
 ---
 
@@ -39,6 +42,10 @@ To create an instance of either the Ubuntu 20.04 DSVM or the Azure DSVM for PyTo
       * **Region**: Select the datacenter that's most appropriate. For fastest network access, the datacenter that hosts most of your data or is located closest to your physical location is the best choice. For more information, visit [Azure regions](https://azure.microsoft.com/global-infrastructure/regions/).
       * **Image**: Don't change the default value.
       * **Size**: This option should autopopulate with an appropriate size for general workloads. For more information, visit [Linux VM sizes in Azure](/azure/virtual-machines/sizes).
+        
+        > [!NOTE]
+        > DSVM won't support NV family as it is incompatible with NVIDIA CUDA drivers.
+        
       * **Authentication type**: For quicker setup, select **Password**.
 
          > [!NOTE]

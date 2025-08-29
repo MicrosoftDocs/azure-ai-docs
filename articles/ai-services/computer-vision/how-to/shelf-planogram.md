@@ -8,7 +8,6 @@ ms.service: azure-ai-vision
 ms.custom: build-2023
 ms.topic: how-to
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -303,4 +302,4 @@ Paired planogram position ID and corresponding detected object from product unde
 ## Related content
 
 * [Image Analysis overview](../overview-image-analysis.md)
-* [API reference](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview)
+* [API reference](/rest/api/computervision/operation-groups)

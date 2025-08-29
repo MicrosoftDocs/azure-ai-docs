@@ -8,7 +8,7 @@ author: manashgoswami
 ms.author: manashg
 ms.reviewer: ssalgado
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 08/30/2022
 ms.custom: UpdateFrequency5, devx-track-python, devx-track-azurecli
 ms.devlang: azurecli
@@ -88,7 +88,6 @@ The Azure training lifecycle consists of:
 1. Building or downloading the dockerfile to the compute node 
     1. The system calculates a hash of: 
         - The base image 
-        - Custom docker steps (see [Deploy a model using a custom Docker base image](how-to-deploy-package-models.md))
         - The conda definition YAML (see [Create & use software environments in Azure Machine Learning](how-to-use-environments.md))
     1. The system uses this hash as the key in a lookup of the workspace Azure Container Registry (ACR)
     1. If it is not found, it looks for a match in the global ACR

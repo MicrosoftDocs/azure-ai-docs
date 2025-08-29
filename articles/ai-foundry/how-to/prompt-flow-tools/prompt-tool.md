@@ -1,18 +1,20 @@
----
+﻿---
 title: Prompt tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Prompt tool for flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Prompt tool for flows in Azure AI Foundry portal
@@ -22,6 +24,8 @@ ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
 The prompt flow Prompt tool offers a collection of textual templates that serve as a starting point for creating prompts. These templates, based on the [Jinja](https://jinja.palletsprojects.com/en/stable/) template engine, facilitate the definition of prompts. The tool proves useful when prompt tuning is required before the prompts are fed into the large language model (LLM) in the prompt flow.
 
 ## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 Prepare a prompt. The [LLM tool](llm-tool.md) and Prompt tool both support [Jinja](https://jinja.palletsprojects.com/en/stable/) templates.
 
@@ -41,11 +45,11 @@ Please select an option from the menu below:
 4. Contact customer support
 ```
 
-For more information and best practices, see [Prompt engineering techniques](../../../ai-services/openai/concepts/advanced-prompt-engineering.md).
+For more information and best practices, see [Prompt engineering techniques](../../openai/concepts/advanced-prompt-engineering.md).
 
 ## Build with the Prompt tool
 
-1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com). For more information, see [Create a flow](../flow-develop.md).
+1. Create or open a flow in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). For more information, see [Create a flow](../flow-develop.md).
 1. Select **+ Prompt** to add the Prompt tool to your flow.
 
     :::image type="content" source="../../media/prompt-flow/prompt-tool.png" alt-text="Screenshot that shows the Prompt tool added to a flow in Azure AI Foundry portal." lightbox="../../media/prompt-flow/prompt-tool.png":::

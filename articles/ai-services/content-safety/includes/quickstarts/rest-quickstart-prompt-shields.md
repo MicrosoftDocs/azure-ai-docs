@@ -79,7 +79,7 @@ The JSON fields in the output are defined here:
 | **documentsAnalysis**  | Contains a list of analysis results for each document provided. | Array of objects |
 | - **attackDetected**   | Indicates whether a Document attack (for example, commands, malicious input) is detected in the document. This is part of the **documentsAnalysis** array. | Boolean          |
 
-A value of `true` for `attackDetected` signifies a detected threat, in which case we recommend review and action to ensure content safety.
+A value of `true` for `attackDetected` signifies a detected threat, in which case we recommend review and action.
 
 ## Clean up resources
 

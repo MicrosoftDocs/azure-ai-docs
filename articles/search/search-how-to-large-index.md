@@ -2,7 +2,6 @@
 title: Index large data sets for full text search
 titleSuffix: Azure AI Search
 description: Learn about strategies for large data indexing or computationally intensive indexing through batch mode, resourcing, and scheduled, parallel, and distributed indexing.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 03/21/2025
+ms.date: 08/01/2025
+ms.update-cycle: 180-days
 ---
 
 # Index large data sets in Azure AI Search
@@ -46,7 +46,7 @@ Because the optimal batch size depends on your index and your data, the best app
 
 ### Manage threads and a retry strategy
 
-Indexers have built-in thread management, but when you're using the push APIs, your application code needs to manage threads. Make sure there are sufficient threads to make full use of the available capacity, especially if you recently [upgraded your service](search-how-to-upgrade.md), [switched to a higher tier](search-capacity-planning.md#change-your-pricing-tier), or [increased partitions](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
+Indexers have built-in thread management, but when you're using the push APIs, your application code needs to manage threads. Make sure there are sufficient threads to make full use of the available capacity, especially if you recently [upgraded your service](search-how-to-upgrade.md), [switched to a higher pricing tier](search-capacity-planning.md#change-your-pricing-tier), or [increased partitions](search-capacity-planning.md#add-or-remove-partitions-and-replicas).
 
 1. [Increase the number of concurrent threads](tutorial-optimize-indexing-push-api.md#use-multiple-threadsworkers) in your client code.
 
@@ -140,4 +140,4 @@ If you have a big data architecture and your data is on a Spark cluster, we reco
 + [Tips for better performance in Azure AI Search](search-performance-tips.md)
 + [Analyze performance in Azure AI Search](search-performance-analysis.md)
 + [Indexers in Azure AI Search](search-indexer-overview.md)
-+ [Monitor indexer status and results in Azure AI Search](search-howto-monitor-indexers.md)
++ [Monitor indexer status and results in Azure AI Search](search-monitor-indexers.md)

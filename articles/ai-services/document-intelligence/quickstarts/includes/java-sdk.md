@@ -47,10 +47,10 @@ In this quickstart, use the following features to analyze and extract data and v
 
   * [**Gradle**](https://docs.gradle.org/current/userguide/installation.html), version 6.8 or later.
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource, in the Azure portal, to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
     > [!TIP]
-    > Create an Azure AI services resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+    > Create an Azure AI Foundry resource if you plan to access multiple Azure AI services under a single endpoint/key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
 * After your resource deploys, select **Go to resource**. You need the key and endpoint from the resource you create to connect your application to the Document Intelligence API. Later, you paste your key and endpoint into the code:
 
@@ -264,9 +264,11 @@ Extract text, selection marks, text styles, table structures, and bounding regio
 
 ```java
 
-import com.azure.ai.documentintelligence.models.AnalyzeDocumentRequest;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClient;
+import com.azure.ai.documentintelligence.DocumentIntelligenceClientBuilder;
+import com.azure.ai.documentintelligence.models.AnalyzeDocumentOptions;
+import com.azure.ai.documentintelligence.models.AnalyzeOperationDetails;
 import com.azure.ai.documentintelligence.models.AnalyzeResult;
-import com.azure.ai.documentintelligence.models.AnalyzeResultOperation;
 import com.azure.ai.documentintelligence.models.DocumentTable;
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.core.util.polling.SyncPoller;
@@ -291,17 +293,11 @@ public class DocIntelligence {
     String modelId = "prebuilt-layout";
     String documentUrl = "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-layout.pdf";
 
-    SyncPoller <AnalyzeResultOperation, AnalyzeResultOperation> analyzeLayoutPoller =
-      client.beginAnalyzeDocument(modelId,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          new AnalyzeDocumentRequest().setUrlSource(documentUrl));
+    AnalyzeDocumentOptions options = new AnalyzeDocumentOptions(documentUrl);
 
-    AnalyzeResult analyzeLayoutResult = analyzeLayoutPoller.getFinalResult().getAnalyzeResult();
+    SyncPoller<AnalyzeOperationDetails, AnalyzeResult> analyzeLayoutPoller = client.beginAnalyzeDocument(modelId, options);
+
+    AnalyzeResult analyzeLayoutResult = analyzeLayoutPoller.getFinalResult();
 
     // pages
     analyzeLayoutResult.getPages().forEach(documentPage -> {
@@ -336,16 +332,14 @@ public class DocIntelligence {
       DocumentTable documentTable = tables.get(i);
       System.out.printf("Table %d has %d rows and %d columns.%n", i, documentTable.getRowCount(),
         documentTable.getColumnCount());
-      documentTable.getCells().forEach(documentTableCell -> {
+      documentTable.getCells().forEach(documentTableCell ->
         System.out.printf("Cell '%s', has row index %d and column index %d.%n", documentTableCell.getContent(),
-          documentTableCell.getRowIndex(), documentTableCell.getColumnIndex());
-      });
+          documentTableCell.getRowIndex(), documentTableCell.getColumnIndex()));
       System.out.println();
     }
 
     // styles
-    analyzeLayoutResult.getStyles().forEach(documentStyle -
-      > System.out.printf("Document is handwritten %s.%n", documentStyle.isHandwritten()));
+    analyzeLayoutResult.getStyles().forEach(documentStyle -> System.out.printf("Document is handwritten %s.%n", documentStyle.isHandwritten()));
   }
 }
 

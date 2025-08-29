@@ -2,19 +2,23 @@
 title: How to access on-premises resources
 titleSuffix: Azure AI Foundry
 description: Learn how to configure an Azure AI Foundry managed network to securely allow access to your on-premises resources.
-manager: scottpolly
+manager: mcleans
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
 ms.topic: how-to
-ms.date: 02/27/2025
+ms.date: 07/31/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure AI Foundry.
 ---
 
 # Access on-premises resources from your Azure AI Foundry's managed network
 
-To access your non-Azure resources located in a different virtual network or located entirely on-premises from your [Azure AI Foundry](https://ai.azure.com)'s managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
+[!INCLUDE [hub-only](../includes/uses-hub-only.md)]
+
+To access your non-Azure resources located in a different virtual network or located entirely on-premises from your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)'s managed virtual network, an Application Gateway must be configured. Through this Application Gateway, full end to end access can be configured to your resources.
 
 Azure Application Gateway is a load balancer that makes routing decisions based on the URL of an HTTPS request. Azure Machine Learning supports using an application gateway to securely communicate with non-Azure resources. For more on Application Gateway, see [What is Azure Application Gateway](/azure/application-gateway/overview).
 
@@ -78,6 +82,8 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - Resource name: The name of your Application Gateway resource.
     - Sub resource: `appGwPrivateFrontendIpIPv4` 
     - FQDNs: These FQDNs are the aliases that you want to use inside the Azure AI Foundry portal. They're resolved to the managed private endpoint's private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
+      - All Added FQDNs will have the same IP address for the targeted Application Gateway.
+      - The IP address is within the managed VNET range, not the customer's VNET range.
 
     > [!NOTE]
     > - If you're using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call fails with SNI (Server Name Indication).

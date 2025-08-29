@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 02/24/2025
+ms.update-cycle: 365-days
 ---
 
 # Configure BM25 relevance scoring

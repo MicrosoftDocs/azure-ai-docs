@@ -2,16 +2,18 @@
 title: Overview of prompt flow tools in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn about prompt flow tools that are available in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: reference
-ms.date: 01/29/2025
+ms.date: 6/30/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Overview of prompt flow tools in Azure AI Foundry portal
@@ -22,7 +24,7 @@ The following table provides an index of tools in prompt flow.
 
 | Tool name | Description | Package name |
 |------|-----------|-------------|
-| [LLM](./llm-tool.md) | Use large language models (LLM) with the Azure OpenAI Service for tasks such as text completion or chat. | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
+| [LLM](./llm-tool.md) | Use large language models (LLM) with Azure OpenAI in Azure AI Foundry Models for tasks such as text completion or chat. | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
 | [Prompt](./prompt-tool.md) | Craft a prompt by using Jinja as the templating language. | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
 | [Python](./python-tool.md) | Run Python code. | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
 | [Azure OpenAI GPT-4 Turbo with Vision](./azure-open-ai-gpt-4v-tool.md) | Use an Azure OpenAI GPT-4 Turbo with Vision model deployment to analyze images and provide textual responses to questions about them. | [promptflow-tools](https://pypi.org/project/promptflow-tools/) |
@@ -33,6 +35,8 @@ The following table provides an index of tools in prompt flow.
 | [Rerank](./rerank-tool.md) | Rerank documents based on the relevancy to a given query. | [promptflow-vectordb](https://pypi.org/project/promptflow-vectordb/) |
 
 <sup>1</sup> The Index Lookup tool replaces the three deprecated legacy index tools: Vector Index Lookup, Vector DB Lookup, and Faiss Index Lookup.
+
+[!INCLUDE [uses-hub-only](../../includes/uses-hub-only.md)]
 
 ## Custom tools
 

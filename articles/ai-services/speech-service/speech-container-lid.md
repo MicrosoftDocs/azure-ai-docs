@@ -2,13 +2,13 @@
 title: Language identification containers - Speech service
 titleSuffix: Azure AI services
 description: Install and run language identification containers with Docker to perform speech recognition, transcription, generation, and more on-premises.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 4/28/2025
-ms.author: eur
+ms.date: 7/1/2025
+ms.author: pafarley
 zone_pivot_groups: programming-languages-speech-sdk-cli
 keywords: on-premises, Docker, container
 #Customer intent: As a developer, I want to learn how to install and run language identification containers with Docker.

@@ -5,17 +5,17 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 10/30/2024
+ms.date: 05/01/2025
 ms.author: pafarley
 ---
 
 # Azure AI services support and help options
 
-Are you just starting to explore the functionality of Azure AI services? Perhaps you're implementing a new feature in your application. Or after using the service, do you have suggestions on how to improve it? Here are options for where you can get support, stay up-to-date, give feedback, and report bugs for Azure AI services.
+Here are the options for getting support, staying up to date, giving feedback, and reporting bugs for Azure AI services.
 
 ## Get solutions to common issues
 
-In the Azure portal, you can find answers to common AI service issues. 
+In the Azure portal, you can find answers to common AI service issues.
 
 1. Go to your Azure AI services resource in the Azure portal. You can find it on the list on this page: [Azure AI services](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllCognitiveServices). If you're a United States government customer, use the [Azure portal for the United States government](https://portal.azure.us).
 1. In the left pane, under **Help**, select **Support + Troubleshooting**.
@@ -41,19 +41,21 @@ If you can't find an answer to your problem using search, submit a new question 
 
 * [Azure AI services](/answers/topics/azure-cognitive-services.html)
 
+
+**Azure OpenAI**
+
+* [Azure OpenAI](/answers/topics/azure-openai.html)
+
 **Vision**
 
 * [Azure AI Vision](/answers/topics/azure-computer-vision.html)
 * [Azure AI Custom Vision](/answers/topics/azure-custom-vision.html)
 * [Azure Face](/answers/topics/azure-face.html)
 * [Azure AI Document Intelligence](/answers/topics/azure-form-recognizer.html)
-* [Video Indexer](/answers/topics/azure-media-services.html)
 
 **Language**
 
 * [Azure AI Immersive Reader](/answers/topics/azure-immersive-reader.html)
-* [Language Understanding (LUIS)](/answers/topics/azure-language-understanding.html)
-* [Azure QnA Maker](/answers/topics/azure-qna-maker.html)
 * [Azure AI Language](/answers/topics/azure-text-analytics.html)
 * [Azure Translator](/answers/topics/azure-translator.html)
 
@@ -61,28 +63,21 @@ If you can't find an answer to your problem using search, submit a new question 
 
 * [Azure AI Speech](/answers/topics/azure-speech.html)
 
-**Decision**
-
-* [Azure AI Anomaly Detector](/answers/topics/azure-anomaly-detector.html)
-* [Content Moderator](/answers/topics/azure-content-moderator.html)
-* [Azure AI Metrics Advisor](/answers/topics/148981/azure-metrics-advisor.html)
-* [Azure AI Personalizer](/answers/topics/azure-personalizer.html)
-
-**Azure OpenAI**
-
-* [Azure OpenAI](/answers/topics/azure-openai.html)
-
 ## Post a question to Stack Overflow
 
 <div class='icon is-large'>
     <img alt='Stack Overflow' src='/media/logos/logo_stackoverflow.svg'>
 </div>
 
-For answers on your developer questions from the largest community developer ecosystem, ask your question on Stack Overflow.
+For answers to your developer questions from the largest community developer ecosystem, ask your question on Stack Overflow.
 
-If you do submit a new question to Stack Overflow, use one or more of the following tags when you create the question:
+If you submit a new question to Stack Overflow, use one or more of the following tags when you create the question:
 
 * [Azure AI services](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
+
+**Azure OpenAI**
+
+* [Azure OpenAI](https://stackoverflow.com/search?q=azure+openai)
 
 **Vision**
 
@@ -90,13 +85,10 @@ If you do submit a new question to Stack Overflow, use one or more of the follow
 * [Azure AI Custom Vision](https://stackoverflow.com/search?q=azure+custom+vision)
 * [Azure Face](https://stackoverflow.com/search?q=azure+face)
 * [Azure AI Document Intelligence](https://stackoverflow.com/search?q=azure+form+recognizer)
-* [Video Indexer](https://stackoverflow.com/search?q=azure+video+indexer)
 
 **Language**
 
 * [Azure AI Immersive Reader](https://stackoverflow.com/search?q=azure+immersive+reader)
-* [Language Understanding (LUIS)](https://stackoverflow.com/search?q=azure+luis+language+understanding)
-* [Azure QnA Maker](https://stackoverflow.com/search?q=azure+qna+maker)
 * [Azure AI Language service](https://stackoverflow.com/search?q=azure+text+analytics)
 * [Azure Translator](https://stackoverflow.com/search?q=azure+translator+text)
 
@@ -104,16 +96,10 @@ If you do submit a new question to Stack Overflow, use one or more of the follow
 
 * [Azure AI Speech service](https://stackoverflow.com/search?q=azure+speech)
 
-**Decision**
-
-* [Azure AI Anomaly Detector](https://stackoverflow.com/search?q=azure+anomaly+detector) 
-* [Content Moderator](https://stackoverflow.com/search?q=azure+content+moderator)
-* [Azure AI Metrics Advisor](https://stackoverflow.com/search?q=azure+metrics+advisor)
-* [Azure AI Personalizer](https://stackoverflow.com/search?q=azure+personalizer)
-
-**Azure OpenAI**
-
-* [Azure OpenAI](https://stackoverflow.com/search?q=azure+openai)
+## Other support options
+You can also use the following forums to ask questions and get help:
+* Discord - https://aka.ms/foundry/discord
+* GitHub - https://aka.ms/foundry/forum
 
 ## Submit feedback
 

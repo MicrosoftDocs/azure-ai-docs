@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # SnpEff: Genomic variant annotations and functional effect prediction toolbox
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 [SnpEff](https://pcingola.github.io/SnpEff/) Genetic variant annotation and functional effect prediction toolbox. It annotates and predicts the effects of genetic variants on genes and proteins (such as amino acid changes).
 
 For more information on the data, see the [User Manual](https://pcingola.github.io/SnpEff/snpeff/introduction/).

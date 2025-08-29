@@ -2,12 +2,12 @@
 title: The Azure AI Speech CLI
 titleSuffix: Azure AI services
 description: In this article, you learn about the Speech CLI, a command-line tool for using Speech service without having to write any code.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about the Speech CLI, a command-line tool for using Speech service without having to write any code.
 ---
 

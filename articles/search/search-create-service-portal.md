@@ -2,16 +2,17 @@
 title: 'Create a Search Service in the Azure Portal'
 titleSuffix: Azure AI Search
 description: Learn how to set up an Azure AI Search resource in the Azure portal. Choose resource groups, regions, and a pricing tier.
-
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
+ms.topic: how-to
+ms.date: 08/08/2025
 ms.custom:
   - references_regions
   - build-2024
-ms.topic: how-to
-ms.date: 04/28/2025
+  - sfi-image-nochange
 ---
 
 # Create an Azure AI Search service in the Azure portal
@@ -39,11 +40,11 @@ Some properties are fixed for the lifetime of the search service. Before you cre
 |--|--|
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
-| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. In the 2025-02-01-preview, you can also [switch from a lower tier to a higher tier](search-capacity-planning.md#change-your-pricing-tier). |
+| [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you can [switch between Basic and Standard (S1, S2, and S3) tiers](search-capacity-planning.md#change-your-pricing-tier). |
 
 ## Subscribe to Azure
 
-Azure AI Search requires a free or pay-as-you-go Azure subscription.
+Azure AI Search requires a free or Standard Azure subscription.
 
 To try Azure AI Search for free, [start a trial subscription](https://azure.microsoft.com/pricing/free-trial/?WT.mc_id=A261C142F) and then [create your search service on the Free tier](#choose-a-tier). Each Azure subscription can have one free search service, which is intended for short-term, non-production evaluation of the product. You can complete all of our quickstarts and most of our tutorials on the Free tier. For more information, see [Try Azure AI Search for free](search-try-for-free.md).
 
@@ -102,7 +103,7 @@ If you use multiple Azure services, putting all of them in the same region minim
 
 In most cases, choose a region near you, unless any of the following apply:
 
-+ Your nearest region is [at capacity](search-sku-tier.md#region-availability-by-tier). The Azure portal has the advantage of hiding unavailable regions and tiers during resource setup.
++ Your nearest region is [at capacity](search-region-support.md), which is indicated by the footnotes of each table. The Azure portal has the advantage of hiding unavailable regions and tiers during resource setup.
 
 + You want to use integrated data chunking and vectorization or built-in skills for AI enrichment. Integrated operations have region requirements.
 
@@ -114,24 +115,13 @@ In most cases, choose a region near you, unless any of the following apply:
 
 1. Do you have a specific tier in mind? Check [region availability by tier](search-sku-tier.md#region-availability-by-tier).
 
-1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in [regional pairs](/azure/reliability/cross-region-replication-azure#azure-paired-regions) within [availability zones](search-reliability.md#availability-zones). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service.
+1. Do you have business continuity and disaster recovery (BCDR) requirements? Create two or more search services in different Azure regions, each with two or more replicas so that they can be spread across multiple [availability zones](/azure/reliability/reliability-ai-search#availability-zone-support). For example, if you're operating in North America, you might choose East US and West US, or North Central US and South Central US, for each search service. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
 
-1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal image search](search-get-started-portal-image-search.md)? Azure AI Search, Azure OpenAI, and Azure AI services multi-service must coexist in the same region.
+1. Do you need [AI enrichment](cognitive-search-concept-intro.md), [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), or [multimodal search](multimodal-search-overview.md)? For [billing purposes](cognitive-search-attach-cognitive-services.md), Azure AI Search and Azure AI services multi-service must coexist in the same region.
 
-   + Start with [Azure OpenAI regions](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability) because they have the most variability. Azure OpenAI provides embedding models and chat models for RAG and integrated vectorization.
+   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions). If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI Search and Azure AI services multi-service are in the same region.
 
-   + Check [Azure AI Search regions](search-region-support.md#azure-public-regions) for a match to your Azure OpenAI region. If you're using OCR, entity recognition, or other skills backed by Azure AI, the **AI enrichment** column indicates whether Azure AI services multi-service and Azure AI Search are in the same region.
-
-   + Check [multimodal embedding regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs and image search. This API is accessed through an Azure AI services multi-service account, but in general, it's available in fewer regions than Azure AI services multi-service.
-
-### Regions with the most overlap
-
-Currently, the following regions offer cross-regional availability for Azure AI Search, Azure OpenAI, and Azure AI Vision multimodal:
-
-+ Americas: West US, East US
-+ Europe: Switzerland North, Sweden Central
-
-This list isn't definitive, and depending on your tier, you might have more choices. Region status can also change quickly, so confirm your region choice before you create your search service.
+   + Check [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability) for multimodal APIs that enable text and image vectorization. These APIs are powered by Azure AI Vision and accessed through an Azure AI services multi-service resource. However, they're generally available in fewer regions than the multi-service resource itself.
 
 ## Choose a tier
 
@@ -149,8 +139,7 @@ The Basic and Standard tiers are the most common for production workloads, but m
 :::image type="content" source="media/search-create-service-portal/select-pricing-tier.png" lightbox="media/search-create-service-portal/select-pricing-tier.png" alt-text="Screenshot of the Select Pricing Tier page in the Azure portal." border="true":::
 
 > [!NOTE]
-> + After you create your service, you can move up between Basic and Standard (S1, S2, and S3) tiers. Switching to a lower tier isn't currently supported. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
-> + Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+> Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
 
 ## Create your service
 
@@ -201,7 +190,7 @@ Most customers use a single search service at a tier [sufficient for the expecte
 
 However, you might need a second service for the following operational requirements:
 
-+ [Business continuity and disaster recovery (BCDR)](/azure/reliability/cross-region-replication-azure). If there's an outage, Azure AI Search won't provide instant failover.
++ Region outages. In the unlikely event of a full region outage, Azure AI Search doesn't provide instant failover. You must implement your own multi-region solution and failover approach. For more information, see [Multi-region deployments in Azure AI Search](search-multi-region.md).
 + [Multitenant architectures](search-modeling-multitenant-saas-applications.md) that require two or more services.
 + Globally deployed applications that require services in each geography to minimize latency.
 

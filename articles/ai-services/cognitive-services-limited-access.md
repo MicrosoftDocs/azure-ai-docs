@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 03/26/2025
+ms.date: 5/19/2025
 ms.author: pafarley
 ---
 
@@ -24,13 +24,13 @@ Limited Access services are made available to customers under the terms governin
 
 The following services are Limited Access:
 
-- [Custom Neural Voice](/legal/cognitive-services/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): Pro features
-- [Custom text to speech avatar](/legal/cognitive-services/speech-service/text-to-speech/limited-access?context=/azure/ai-services/speech-service/context/context): All features
-- [Speaker Recognition](/legal/cognitive-services/speech-service/speaker-recognition/limited-access-speaker-recognition?context=/azure/ai-services/speech-service/context/context): All features 
-- [Azure AI Face](/legal/cognitive-services/computer-vision/limited-access-identity?context=/azure/ai-services/computer-vision/context/context): Identify and Verify features, face ID property
-- [Azure AI Vision](/legal/cognitive-services/computer-vision/limited-access?context=/azure/ai-services/computer-vision/context/context): Celebrity Recognition feature
+- [Custom Neural Voice](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access): Pro features
+- [Custom text to speech avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access): All features
+- [Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition): All features 
+- [Azure AI Face](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity): Identify and Verify features, face ID property
+- [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/limited-access): Celebrity Recognition feature
 - [Azure AI Video Indexer](/azure/azure-video-indexer/limited-access-features): Celebrity Recognition and Face Identify features
-- [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters
+- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/limited-access): Azure OpenAI in Azure AI Foundry Models, modified abuse monitoring, and modified content filters
 
 Features of these services that aren't listed are available without registration. 
 
@@ -46,7 +46,7 @@ Submit a registration form for each Limited Access service you would like to use
 - [Azure AI Face](https://aka.ms/facerecognition): Identify and Verify features
 - [Azure AI Vision](https://aka.ms/facerecognition): Celebrity Recognition feature 
 - [Azure AI Video Indexer](https://aka.ms/facerecognition): Celebrity Recognition and Face Identify features 
-- [Azure OpenAI](/legal/cognitive-services/openai/limited-access): Azure OpenAI Service, modified abuse monitoring, and modified content filters 
+- [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/limited-access): Azure OpenAI, modified abuse monitoring, and modified content filters 
 
 ### How long does the registration process take?
 

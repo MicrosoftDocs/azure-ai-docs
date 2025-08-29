@@ -6,10 +6,12 @@ author: HeidiSteen
 manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
 ms.date: 03/19/2025
+ms.update-cycle: 180-days
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Run or reset indexers, skills, or documents
@@ -26,7 +28,7 @@ This article explains how to run indexers on demand, with and without a reset. I
 
 Indexers are one of the few subsystems that make overt outbound calls to other Azure resources. You can use keys or roles to authenticate the connection.
 
-In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-howto-managed-identities-data-sources.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
+In terms of Azure roles, indexers don't have separate identities: a connection from the search engine to another Azure resource is made using the [system or user-assigned managed identity](search-how-to-managed-identities.md) of a search service, plus a role assignment on the target Azure resource. If the indexer connects to an Azure resource on a virtual network, you should create a [shared private link](search-indexer-howto-access-private.md) for that connection.
 
 ## Indexer execution
 
@@ -85,9 +87,10 @@ You need to reset the indexer, as explained in the next section, to reprocess in
 
 After the initial run, an indexer keeps track of which search documents are indexed through an internal *high-water mark*. The marker is never exposed, but internally the indexer knows where it last stopped.
 
-If you need to rebuild all or part of an index, you can clear the indexer's high-water mark through a reset. Reset APIs are available at decreasing levels in the object hierarchy:
+If you need to rebuild all or part of an index, use Reset APIs available at decreasing levels in the object hierarchy:
 
 + [Reset Indexers](#reset-indexers) clears the high-water mark and performs a full reindex of all documents
++ [Resync Indexers (preview)](#resync-indexers) performs an efficient partial reindex of all documents
 + [Reset Documents (preview)](#reset-docs) reindexes a specific document or list of documents
 + [Reset Skills (preview)](#reset-skills) invokes skill processing for a specific skill
 
@@ -100,7 +103,7 @@ After reset, follow with a Run command to reprocess new and existing documents. 
 
 ## How to reset and run indexers
 
-Reset clears the high-water mark. All documents in the search index are flagged for full overwrite, without inline updates or merging into existing content. For indexers with a skillset and [enrichment caching](cognitive-search-incremental-indexing-conceptual.md), resetting the index also implicitly resets the skillset. 
+Reset clears the high-water mark. All documents in the search index are flagged for full overwrite, without inline updates or merging into existing content. For indexers with a skillset and [enrichment caching](enrichment-cache-how-to-configure.md), resetting the index also implicitly resets the skillset. 
 
 The actual work occurs when you follow a reset with a Run command:
 
@@ -180,7 +183,7 @@ catch (RequestFailedException ex) when (ex.Status == 429)
 
 ## How to reset skills (preview)
 
-For indexers that have skillsets, you can reset individual skills to force processing of just that skill and any downstream skills that depend on its output. The [enrichment cache](search-howto-incremental-index.md), if you enabled it, is also refreshed. 
+For indexers that have skillsets, you can reset individual skills to force processing of just that skill and any downstream skills that depend on its output. The [enrichment cache](enrichment-cache-how-to-configure.md), if you enabled it, is also refreshed. 
 
 [Reset Skills](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is currently REST-only, available through 2020-06-30-preview or later. We recommend the latest preview API.
 
@@ -207,7 +210,9 @@ Remember to follow up with Run Indexer to invoke actual processing.
 
 The [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2024-05-01-preview&preserve-view=true) accepts a list of document keys so that you can refresh specific documents. If specified, the reset parameters become the sole determinant of what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, only that document is processed.
 
-On a per-document basis, all fields in that search document are refreshed with values from the data source. You can't pick and choose which fields to refresh. 
+On a per-document basis, all fields in the search document are refreshed with values and metadata from the data source. You can't pick and choose which fields to refresh. 
+
+If the data source is Azure Data Lake Storage (ADLS) Gen2, and the blobs are associated with permission metadata, those permissions are also re-ingested in the search index if permissions change in the underlying data. For more information, see [Re-indexing ACL and RBAC scope with ADLS Gen2 indexers](search-indexer-access-control-lists-and-role-based-access.md#synchronize-permissions-between-indexed-and-source-content).
 
 If the document is enriched through a skillset and has cached data, the  skillset is invoked for just the specified documents, and the cache is updated for the reprocessed documents.
 
@@ -252,6 +257,40 @@ POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs
 }
 ```
 
+<a name="resync-indexers"></a>
+
+## How to resync indexers (preview)
+
+[Resync Indexers](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-05-01-preview&preserve-view=true) is a new preview API that performs a partial reindex of all documents.
+An indexer is considered synchronized with its data source when specific fields of all documents in the target index are consistent with the data in the data source. Typically, an indexer achieves synchronization after a successful initial run. If a document is deleted from the data source, the indexer remains synchronized according to this definition. However, during the next indexer run, the corresponding document in the target index will be removed if delete tracking is enabled.
+
+If a document is modified in the data source, the indexer becomes unsynchronized. Generally, change tracking mechanisms will resynchronize the indexer during the next run. For example, in Azure Storage, modifying a blob updates its last modified time, allowing it to be re-indexed in the subsequent indexer run because the updated time surpasses the high-water mark set by the previous run.
+
+In contrast, for certain data sources like ADLS Gen2, altering the Access Control Lists (ACLs) of a blob does not change its last modified time, rendering change tracking ineffective if ACLs are to be ingested. Consequently, the modified blob will not be re-indexed in the subsequent run, as only documents modified after the last high-water mark are processed.
+
+While using either "reset" or "reset docs" can address this issue, "reset" can be time-consuming and inefficient for large datasets, and "reset docs" requires identifying the document key of the blob intended for update.
+
+Resync Indexers offers an efficient and convenient alternative. Users simply place the indexer in resync mode and specify the content to resynchronize by calling the resync indexers API. In the next run, the indexer will inspect only relevant portion of data in the source and avoid any unnecessary processing that is unrelated to the specified data.  It will also query the existing documents in the target index and only update the documents that show discrepancies between the data source and the target index. After the resync run, the indexer will be synchronized and revert to regular indexer run mode for subsequent runs.
+
+
+### How to resync and run indexers
+
+1. Call [Indexers - Resync](/rest/api/searchservice/indexers/resync?view=rest-searchservice-2025-05-01-preview&preserve-view=true) with a preview API version to specify what content to re-synchronize.
+
+    ```http
+    POST https://[service name].search.windows.net/indexers/[indexer name]/resync?api-version=2025-05-01-preview
+    {
+        "options" : [
+            "permissions"
+        ]
+    }
+    ```
+    + The `options` field is required. Currently the only supported option is `permissions`. That is, only permission filter fields in the target index will be updated.
+
+1. Call [Run Indexer](/rest/api/searchservice/indexers/run) (any API version) to re-synchronize the indexer.
+
+1. Call [Run Indexer](/rest/api/searchservice/indexers/run) a second time to process from the last high-water mark.
+
 ## Check reset status "currentState"
 
 To check reset status and to see which document keys are queued up for processing, following these steps.
@@ -267,6 +306,8 @@ To check reset status and to see which document keys are queued up for processin
         "allDocsFinalTrackingState": "{\"LastFullEnumerationStartTime\":\"2021-02-06T19:02:07.0323764+00:00\",\"LastAttemptedEnumerationStartTime\":\"2021-02-06T19:02:07.0323764+00:00\",\"NameHighWaterMark\":null}",
         "resetDocsInitialTrackingState": null,
         "resetDocsFinalTrackingState": null,
+        "resyncInitialTrackingState": null,
+        "resyncFinalTrackingState": null,
         "resetDocumentKeys": [
             "200",
             "630"
@@ -278,6 +319,8 @@ To check reset status and to see which document keys are queued up for processin
 
    For Reset Skills, "mode" should be set to **`indexingAllDocs`** (because potentially all documents are affected, in terms of the fields that are populated through AI enrichment).
 
+   For Resync Indexers, "mode" should be set to **`indexingResync`**. The indexer checks all documents and focuses on interested data in data source and interested fields in the target index. 
+
    For Reset Documents, "mode" should be set to **`indexingResetDocs`**. The indexer retains this status until all the document keys provided in the reset documents call are processed, during which time no other indexer jobs will execute while the operation is progressing. Finding all of the documents in the document keys list requires cracking each document to locate and match on the key, and this can take a while if the data set is large. If a blob container contains hundreds of blobs, and the docs you want to reset are at the end, the indexer won't find the matching blobs until all of the others have been checked first.
 
 1. After the documents are reprocessed, run Get Indexer Status again. The indexer returns to the **`indexingAllDocs`** mode and will process any new or updated documents on the next run.
@@ -288,6 +331,6 @@ Reset APIs are used to inform the scope of the next indexer run. For actual proc
 
 After you reset and rerun indexer jobs, you can monitor status from the search service, or obtain detailed information through resource logging.
 
-+ [Monitor search indexer status](search-howto-monitor-indexers.md)
++ [Monitor search indexer status](search-monitor-indexers.md)
 + [Collect and analyze log data](monitor-azure-cognitive-search.md)
 + [Schedule an indexer](search-howto-schedule-indexers.md)

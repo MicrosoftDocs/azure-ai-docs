@@ -6,13 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 10/10/2022
 ms.reviewer: cacrest
 ms.custom:
   - devplatv2
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Run batch endpoints from Event Grid events in storage
@@ -141,7 +142,7 @@ To indicate the input data that you want to send to the deployment job, this tut
 
    | Property | Required | Value | Description |
    |----------|----------|-------|-------------|
-   | **Subscription** | Yes | <*Azure-subscription-name*> | Your Azure subscription name. This example uses **Pay-As-You-Go**. |
+   | **Subscription** | Yes | <*Azure-subscription-name*> | Your Azure subscription name. This example uses **Standard**. |
    | **Resource Group** | Yes | **LA-TravelTime-RG** | The [Azure resource group](/azure/azure-resource-manager/management/overview) where you create your logic app resource and related resources. This name must be unique across regions and can contain only letters, numbers, hyphens (`-`), underscores (`_`), parentheses (`(`, `)`), and periods (`.`). |
    | **Name** | Yes | **LA-TravelTime** | Your logic app resource name, which must be unique across regions and can contain only letters, numbers, hyphens (`-`), underscores (`_`), parentheses (`(`, `)`), and periods (`.`). |
 

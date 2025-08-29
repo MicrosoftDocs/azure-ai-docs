@@ -1,5 +1,5 @@
 ---
-title: Autoscale AI services limits
+title: Autoscale Azure AI services limits
 description: Learn how to use the autoscale feature for Azure AI services to dynamically adjust the rate limit of your service.
 author: PatrickFarley
 ms.author: pafarley
@@ -7,16 +7,16 @@ ms.service: azure-ai-services
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/10/2025
+ms.date: 06/30/2025
 ---
 
-# Autoscale AI services limits
+# Autoscale Azure AI services limits
 
-This article provides guidance for how customers can access higher rate limits on certain Azure AI services resources.
+This article provides guidance on how customers can access higher rate limits on certain Azure AI services resources, including those AI services used with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) .
 
 ## Overview
 
-Each Azure AI services resource has a pre-configured static call rate (transactions per second) which limits the number of concurrent calls that customers can make to the backend service in a given time frame. The autoscale feature will automatically increase/decrease a customer's resource's rate limits based on near-real-time resource usage metrics and backend service capacity metrics.
+Each Azure AI services resource has a pre-configured static call rate (transactions per second) which limits the number of concurrent calls that customers can make to the service in a given time frame. The autoscale feature will automatically increase/decrease a customer's resource's rate limits based on near-real-time resource usage metrics and backend service capacity metrics.
 
 ## Get started with the autoscale feature
 
@@ -84,7 +84,7 @@ Be aware of potential errors and their consequences. If a bug in your client app
 Yes, you can disable the autoscale feature through Azure portal or CLI and return to your default call rate limit setting. If your resource was previously approved for a higher default TPS, it goes back to that rate. It can take up to five minutes for the changes to go into effect.
 
 
-## Next steps
+## Related content
 
 * [Plan and Manage costs for Azure AI services](../ai-foundry/how-to/costs-plan-manage.md).
 * [Optimize your cloud investment with Microsoft Cost Management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).

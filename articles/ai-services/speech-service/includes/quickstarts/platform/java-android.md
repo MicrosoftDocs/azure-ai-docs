@@ -2,13 +2,13 @@
 title: Install the Speech SDK by using Android Studio
 titleSuffix: Azure AI services
 description: Use this guide to install the Speech SDK for Java in Android Studio.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 02/02/2024
 ms.custom: devx-track-java
-ms.author: eur
+ms.author: pafarley
 ---
 
 This guide shows how to install the [Speech SDK](../../../speech-sdk.md) for Java on Android.
@@ -36,7 +36,7 @@ Create a new project in Android Studio and add the Speech SDK for Java as a libr
 1. Enter *samples.speech.cognitiveservices.microsoft.com* in the **Package name** text box.
 1. Select a project directory in the **Save location** selection box.
 1. Select **Java** in the **Language** selection box.
-1. Select **API 23: Android 6.0 (Marshmallow)** in the **Minimum API level** selection box.
+1. Select **API 26: Android 8.0 (Oreo)** in the **Minimum API level** selection box.
 1. Select **Finish**.
 
 Android Studio takes some time to prepare your new project. For your first time using Android Studio, it might take a few minutes to set preferences, accept licenses, and complete the wizard.

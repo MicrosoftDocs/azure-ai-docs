@@ -9,7 +9,6 @@ ms.service: azure-ai-vision
 ms.custom: build-2023, build-2023-dataai
 ms.topic: how-to
 ms.date: 02/14/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
 ms.author: pafarley
 ---
 
@@ -71,4 +70,4 @@ In this guide, you learned how to use a custom Product Recognition model to bett
 > [Planogram matching](shelf-planogram.md)
 
 * [Image Analysis overview](../overview-image-analysis.md)
-* [API reference](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview)
+* [API reference](/rest/api/computervision/operation-groups)

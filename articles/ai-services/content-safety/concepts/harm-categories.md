@@ -7,14 +7,14 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: conceptual
-ms.date: 10/16/2024
+ms.date: 07/28/2025
 ms.author: pafarley
 ---
 
 
 # Harm categories in Azure AI Content Safety
 
-This guide describes all of the harm categories and ratings that Azure AI Content Safety uses to flag content. Both text and image content use the same set of flags.
+Azure AI Content Safety uses harm categories to flag and rate objectionable content in both text and images. This guide describes all of the harm categories and ratings that Azure AI Content Safety uses. Understanding these categories helps you configure moderation and compliance for your use cases. Both text and image content use the same set of flags.
 
 ## Harm categories
 
@@ -58,7 +58,7 @@ Every harm category the service applies also comes with a severity level rating.
 [!INCLUDE [severity-levels multimodal](../includes/severity-levels-multimodal.md)]
 
 
-## Next steps
+## Next step
 
 Follow a quickstart to get started using Azure AI Content Safety in your application.
 

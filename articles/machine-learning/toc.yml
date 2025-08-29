@@ -301,6 +301,8 @@ items:
     - name: Connect to data (UI)
       displayName: blob, get, fileshare, access, mount, download, data lake, datastore, dataset, data set
       href: ./v1/how-to-connect-data-ui.md
+    - name: Enable log metrics in designer
+      href: ./v1/how-to-track-designer-experiments.md
     - name: Manage & consume data
       items:
         - name: Train with datasets
@@ -512,6 +514,9 @@ items:
   - name: Configure & submit training run
     displayName: run config, script run config, scriptrunconfig, compute target, dsvm, Data Science Virtual Machine, local, cluster, ACI, container instance, Databricks, data lake, lake, HDI, HDInsight
     href: ./v1/how-to-set-up-training-targets.md
+  - name: Log metrics, parameters, and files
+    displayName: troubleshoot, log, files, tracing, metrics
+    href: ./v1/how-to-log-view-metrics.md
   # end v1
   - name: Training with CLI and SDK
     href: how-to-train-model.md
@@ -579,8 +584,8 @@ items:
     href: how-to-schedule-pipeline-job.md
 - name: Explore AI model capabilities
   items:
-    - name: Model catalog overview
-      href: concept-model-catalog.md
+    - name: Explore Azure AI Foundry Models
+      href: foundry-models-overview.md
     - name: Data, privacy, and security for Model Catalog
       href: concept-data-privacy.md
     - name: Model lifecycle and retirement
@@ -623,6 +628,8 @@ items:
             href: ../ai-foundry/model-inference/how-to/use-chat-reasoning.md?context=/azure/machine-learning/context/context
           - name: Work with multimodal models
             href: ../ai-foundry/model-inference/how-to/use-chat-multi-modal.md?context=/azure/machine-learning/context/context
+      - name: Work with image models
+        href: ../ai-foundry/how-to/use-image-models.md?context=/azure/machine-learning/context/context
     - name: Built-in policy to allow specific models
       href: how-to-built-in-policy-model-deployment.md
     - name: Custom policy to allow specific models
@@ -687,8 +694,6 @@ items:
               href: ./prompt-flow/how-to-integrate-with-llm-app-devops.md
             - name: Deploy a flow to online endpoint for real-time inference with CLI 
               href: ./prompt-flow/how-to-deploy-to-code.md
-            - name: Trace your application with prompt flow
-              href: ./prompt-flow/how-to-trace-local-sdk.md
             - name: Enable trace and collect feedback for a flow deployment 
               href: ./prompt-flow/how-to-enable-trace-feedback-for-deployment.md
             - name: How to use streaming endpoints deployed from prompt flow
@@ -908,8 +913,6 @@ items:
           href: how-to-deploy-online-endpoints.md
         - name: Deploy models with safe rollout strategy
           href: how-to-safely-rollout-online-endpoints.md
-        - name: Deploy model packages to online endpoints
-          href: how-to-package-models-moe.md
         - name: Autoscale online endpoints
           href: how-to-autoscale-endpoints.md
         - name: Managed online endpoints VM SKU list
@@ -1007,8 +1010,6 @@ items:
               href: how-to-use-event-grid-batch.md
             - name: Run batch endpoints from Microsoft Fabric
               href: how-to-use-batch-fabric.md
-    - name: Deploy models outside Azure Machine Learning
-      href: how-to-package-models-app-service.md
     - name: Model optimization
       items:
         - name: Accelerate inference with ONNX 
@@ -1077,9 +1078,6 @@ items:
     - name: Deploy designer models
       displayName: designer, studio
       href: ./v1/how-to-deploy-model-designer.md
-    - name: Package models
-      displayName: docker file download
-      href: ./v1/how-to-deploy-package-models.md
     # end v1
 - name: Operationalize with MLOps
   items:
@@ -1119,10 +1117,6 @@ items:
       items:
         - name: Endpoints for inferencing
           href: concept-endpoints.md
-        - name: Packages for model deployment
-          href: concept-package-models.md
-        - name: How to package models for deployment
-          href: how-to-package-models.md
     - name: Automation
       items:
         - name: Schedule Job

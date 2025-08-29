@@ -1,27 +1,25 @@
 ---
-title: Share data across workspaces with registries (preview)
+title: Share data across workspaces with registries
 titleSuffix: Azure Machine Learning
 description: Learn how practice cross-workspace MLOps and collaborate across teams by sharing data through registries.
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: soumyapatro
 ms.date: 04/07/2025
 ms.topic: how-to
 ms.custom: devx-track-azurecli, sdkv2, build-2023
 ---
 
-# Share data across workspaces with registries (preview)
+# Share data across workspaces with registries
 
-Azure Machine Learning registry enables you to collaborate across workspaces within your organization. Using registries, you can share models, components, environments, and data. Sharing data with registries is currently a preview feature. In this article, you learn how to:
+Azure Machine Learning registry enables you to collaborate across workspaces within your organization. Using registries, you can share models, components, environments, and data. In this article, you learn how to:
 
 * Create a data asset in the registry.
 * Share an existing data asset from workspace to registry
 * Use the data asset from registry as input to a model training job in a workspace.
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ### Key scenario addressed by data sharing using Azure Machine Learning registry 
 

@@ -2,7 +2,6 @@
 title: Shape search results
 titleSuffix: Azure AI Search
 description: Modify search result composition, get a document count, sort results, and add content navigation to search results in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,12 +9,13 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 12/09/2024
+ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Shape search results or modify search results composition in Azure AI Search
 
-This article explains search results composition and how to shape search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
+This article explains search results composition and how to shape full text search results to fit your scenarios. Search results are returned in a query response. The shape of a response is determined by parameters in the query itself. These parameters include:
 
 + Number of matches found in the index (`count`)
 + Number of matches returned in the response (50 by default, configurable through `top`) or per page (`skip` and `top`)

@@ -5,10 +5,10 @@ description: An overview of the features, capabilities, and restrictions for aud
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: hasshah
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ms.custom: devx-track-csharp
 ---
 
@@ -39,7 +39,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto audioProcessingOptions = AudioProcessingOptions::Create(AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 auto audioInput = AudioConfig::FromDefaultMicrophoneInput(audioProcessingOptions);
@@ -80,7 +80,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto audioProcessingOptions = AudioProcessingOptions::Create(AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT, PresetMicrophoneArrayGeometry::Linear2);
 auto audioInput = AudioConfig::FromMicrophoneInput("hw:0,1", audioProcessingOptions);
@@ -132,7 +132,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 MicrophoneArrayGeometry microphoneArrayGeometry
 {
@@ -188,7 +188,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 auto audioProcessingOptions = AudioProcessingOptions::Create(AUDIO_INPUT_PROCESSING_DISABLE_ECHO_CANCELLATION | AUDIO_INPUT_PROCESSING_DISABLE_NOISE_SUPPRESSION | AUDIO_INPUT_PROCESSING_ENABLE_DEFAULT);
 auto audioInput = AudioConfig::FromDefaultMicrophoneInput(audioProcessingOptions);
@@ -241,7 +241,7 @@ var recognizer = new SpeechRecognizer(speechConfig, audioInput);
 ### [C++](#tab/cpp)
 
 ```cpp
-auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSubscriptionKey");
+auto speechConfig = SpeechConfig::FromEndpoint("YourServiceEndpoint", "YourSpeechResoureKey");
 
 MicrophoneArrayGeometry microphoneArrayGeometry
 {

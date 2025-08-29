@@ -16,7 +16,7 @@ ms.author: lajanuar
 
 :::moniker range="doc-intel-2.1.0"
 
-Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Layout model:
+Support for containers is currently available with Document Intelligence version `2022-08-31 (GA)` for all models, `2023-07-31 (GA)` for Read, Layout, Invoice, Receipt, and ID Document models, and `2024-11-30 (GA)` for Read and Layout model:
 
 * [REST API `2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
@@ -38,7 +38,7 @@ With Document Intelligence containers, you can build an application architecture
 
 > [!IMPORTANT]
 >
-> Document Intelligence v4.0 container is currently available for Layout model only.
+> Document Intelligence v4.0 container is currently available for Read and Layout model only.
 
 ## Configuration settings
 

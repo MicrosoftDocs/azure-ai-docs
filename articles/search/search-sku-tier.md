@@ -2,14 +2,12 @@
 title: Choose a service tier
 titleSuffix: Azure AI Search
 description: 'Learn about the service tiers (or SKUs) for Azure AI Search. A search service can be provisioned at these tiers: Free, Basic, Standard, and Storage Optimized. Standard is available in various resource configurations and capacity levels.'
-
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 03/21/2025
-
+ms.date: 08/08/2025
 ---
 
 # Choose a service tier for Azure AI Search
@@ -54,13 +52,9 @@ You can find out more about the various tiers on the [pricing page](https://azur
 
 ## Region availability by tier
 
-The supported [regions list](search-region-support.md) provides the locations where Azure AI Search is offered.
+The [regions list](search-region-support.md) provides the locations where Azure AI Search is offered. Some regions might have capacity constraints for certain tiers, which prevents the creation of new search services on those tiers. The list uses footnotes to indicate constrained regions and tiers.
 
-Currently, several regions are capacity-constrained for specific tiers and can't be used for new search services. If you use the Azure portal to create a search service, the Azure portal excludes any region-tier combinations that aren't available.
-
-| Region | Disabled tier (SKU) due to over-capacity | Suggested alternative |
-|--------|------------------------------------------|-----------------------|
-| North Europe | S2, S3, L1, L2 | Sweden Central, West Europe|
+When you create a search service in the Azure portal, unavailable region–tier combinations are automatically excluded.
 
 ## Feature availability by tier
 
@@ -71,11 +65,11 @@ Most features are available on all tiers, including the Free tier. In a few case
 | [indexers](search-indexer-overview.md) | Indexers aren't available on S3 HD. Indexers have [more limitations](search-limits-quotas-capacity.md#indexer-limits) on the free tier. |
 | [indexer `executionEnvironment` configuration parameter](search-how-to-create-indexers.md?tabs=indexer-rest#create-an-indexer) | The ability to pin all indexer processing to just the search clusters allocated to your search service requires S2 and higher. |
 | [AI enrichment](cognitive-search-concept-intro.md) | Runs on the Free tier but not recommended. |
-| [Managed or trusted identities for outbound (indexer) access](search-howto-managed-identities-data-sources.md) | Not available on the Free tier.|
+| [Managed or trusted identities for outbound (indexer) access](search-how-to-managed-identities.md) | Not available on the Free tier.|
 | [Customer-managed encryption keys](search-security-manage-encryption-keys.md) | Not available on the Free tier. |
 | [IP firewall access](service-configure-firewall.md) | Not available on the Free tier. |
 | [Private endpoint (integration with Azure Private Link)](service-create-private-endpoint.md) | For inbound connections to a search service, not available on the Free tier. <br>For outbound connections by indexers to other Azure resources, not available on Free or S3 HD. <br>For indexers that use skillsets, not available on Free, Basic, S1, or S3 HD.|
-| [Availability Zones](search-reliability.md) | Not available on the Free or Basic tier. |
+| [Availability zones](/azure/reliability/reliability-ai-search#availability-zone-support) | Not available on the Free tier. |
 | [Semantic ranker](semantic-search-overview.md) | Not available on the Free tier. |
 
 Resource-intensive features might not work well unless you give it sufficient capacity. For example, [AI enrichment](cognitive-search-concept-intro.md) has long-running skills that time out on a Free service unless the dataset is small.
@@ -86,10 +80,10 @@ Tiers determine the  maximum storage of the service itself, plus the maximum num
 
 ## Partition size and speed
 
-Tier pricing includes details about per-partition storage that ranges from 15 GB for Basic, up to 2 TB for Storage Optimized (L2) tiers. Other hardware characteristics, such as speed of operations, latency, and transfer rates, aren't published, but tiers that are designed for specific solution architectures are built on hardware that has the features to support those scenarios. For more information about partitions, see [Estimate and manage capacity](search-capacity-planning.md) and [Reliability in Azure AI Search](search-reliability.md).
+Tier pricing includes details about per-partition storage that ranges from 15 GB for Basic, up to 2 TB for Storage Optimized (L2) tiers. Other hardware characteristics, such as speed of operations, latency, and transfer rates, aren't published, but tiers that are designed for specific solution architectures are built on hardware that has the features to support those scenarios. For more information about partitions, see [Estimate and manage capacity](search-capacity-planning.md) and [Reliability in Azure AI Search](/azure/reliability/reliability-ai-search).
 
 > [!NOTE]
-> Higher capacity partitions became available in select regions in April 2024. A second wave of higher capacity partitions was released in May 2024. If you have an older search service, you might be able to [upgrade your service](search-how-to-upgrade.md) to benefit from more capacity at the same billing rate.
+> Higher-capacity partitions became available in select regions in April 2024. A second wave of higher-capacity partitions was released in May 2024. If you have an older search service, you might be able to [upgrade your service](search-how-to-upgrade.md) to benefit from more capacity at the same billing rate.
 
 ## Billing rates
 
@@ -105,9 +99,9 @@ This billing model is based on the concept of applying the billing rate to the n
 
 ## Tier changes
 
-Services can be switched between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only switch from a lower tier to a higher tier, such as going from Basic to S1. Your region also can't have capacity constraints on the higher tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+Existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
-If you want to switch to a lower tier or to a different tier than those previously listed, the approach is:
+If you want to switch to a different tier than those previously listed, the approach is:
 
 1. Create a new search service at the new tier.
 

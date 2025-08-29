@@ -2,12 +2,13 @@
 title: How to use train and test
 description:  Learn how to train and test the application.
 ms.service: azure-ai-language
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
+ms.custom: sfi-image-nochange
 ---
 
 # Train and test your LUIS app

@@ -6,10 +6,12 @@ author: gmndrg
 ms.author: gimondra
 manager: vinodva
 ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 12/10/2024
+  - sfi-ropc-nochange
 ---
 
 # Index data from Azure Data Lake Storage Gen2
@@ -20,6 +22,9 @@ This article supplements [**Create an indexer**](search-howto-create-indexers.md
 
 For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md) on GitHub.
 
+> [!NOTE]
+> ADLS Gen2 supports an [access control model](/azure/storage/blobs/data-lake-storage-access-control) with Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search can now recognize document-level permissions in ADLS Gen2 blobs during indexing and transfers those permissions to indexed content in the search index. For more information about ACL ingestion and RBAC scope during indexing, see [Indexing Access Control Lists and Azure Role-Based Access Control scope using Indexers](search-indexer-access-control-lists-and-role-based-access.md).
+
 ## Prerequisites
 
 + [ADLS Gen2](/azure/storage/blobs/data-lake-storage-introduction) with [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace) enabled. ADLS Gen2 is available through Azure Storage. When setting up a storage account, you have the option of enabling [hierarchical namespace](/azure/storage/blobs/data-lake-storage-namespace), organizing files into a hierarchy of directories and nested subdirectories. By enabling a hierarchical namespace, you enable ADLS Gen2.
@@ -28,12 +33,9 @@ For a code sample in C#, see [Index Data Lake Gen2 using Microsoft Entra ID](htt
 
 + Blobs containing text. If you have binary data, you can include [AI enrichment](cognitive-search-concept-intro.md) for image analysis. Blob content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
-+ Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) has **Storage Blob Data Reader** permissions.
++ Read permissions on Azure Storage. A "full access" connection string includes a key that grants access to the content, but if you're using Azure roles instead, make sure the [search service managed identity](search-how-to-managed-identities.md) has **Storage Blob Data Reader** permissions.
 
-+ Use a [REST client](search-get-started-rest.md) to formulate REST calls similar to the ones shown in this article.
-
-> [!NOTE]
-> ADLS Gen2 implements an [access control model](/azure/storage/blobs/data-lake-storage-access-control) that supports both Azure role-based access control (Azure RBAC) and POSIX-like access control lists (ACLs) at the blob level. Azure AI Search does not support document-level permissions. All users have the same level of access to all searchable and retrievable content in the index. If document-level permissions are an application requirement, consider [security trimming](search-security-trimming-for-azure-search.md) as a potential solution.
++ Use a [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
 <a name="SupportedFormats"></a>
 
@@ -129,7 +131,7 @@ Indexers can connect to a blob container using the following connections.
 | Managed identity connection string |
 |------------------------------------|
 |`{ "connectionString" : "ResourceId=/subscriptions/<your subscription ID>/resourceGroups/<your resource group name>/providers/Microsoft.Storage/storageAccounts/<your storage account name>/;" }`|
-|This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-howto-managed-identities-data-sources.md).|
+|This connection string doesn't require an account key, but you must have previously configured a search service to [connect using a managed identity](search-how-to-managed-identities.md).|
 
 | Storage account shared access signature** (SAS) connection string |
 |-------------------------------------------------------------------|
@@ -312,7 +314,7 @@ PUT /indexers/[indexer name]?api-version=2024-07-01
 
 ## Next steps
 
-You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-howto-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
+You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
 
 + [Change detection and deletion detection](search-howto-index-changed-deleted-blobs.md)
 + [Index large data sets](search-howto-large-index.md)

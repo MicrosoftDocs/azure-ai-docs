@@ -8,7 +8,10 @@ ms.topic: troubleshooting
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 08/04/2023
-ms.custom: known-issue, devx-track-bicep
+ms.custom:
+  - known-issue
+  - devx-track-bicep
+  - sfi-image-nochange
 ---
 
 # Known issue  - Idleshutdown property in Bicep template causes error

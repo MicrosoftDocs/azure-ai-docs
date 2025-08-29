@@ -5,7 +5,7 @@ description: This article contains answers to frequently asked questions about t
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 01/28/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: faq
 ms.custom: cogserv-non-critical-translator
@@ -36,7 +36,7 @@ The deployment generally takes less than an hour.
 
 ## How do you access a deployed system?
 
-Deployed systems can be accessed via the Microsoft Translator Text API V3 by specifying the CategoryID. More information about the Translator Text API can be found in the [API Reference](../text-translation/reference/v3/reference.md) webpage.
+Deployed systems can be accessed via the Microsoft Translator Text API v3 by specifying the CategoryID. More information about the Translator Text API can be found in the [API Reference](../text-translation/reference/v3/reference.md) webpage.
 
 ## How do I skip alignment and sentence breaking if my data is already sentence aligned?
 

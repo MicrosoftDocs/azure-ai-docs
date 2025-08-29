@@ -1,10 +1,10 @@
----
-author: jboback
+<!-- ---
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ---
 
 ## Prerequisites
@@ -46,4 +46,4 @@ Generally after training a model you would review its evaluation details. In thi
 
 ## Clean up resources
 
-[!INCLUDE [Delete project using Language studio](../language-studio/delete-project.md)]
+[!INCLUDE [Delete project using Language studio](../language-studio/delete-project.md)] -->

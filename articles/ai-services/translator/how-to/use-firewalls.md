@@ -6,15 +6,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 07/22/2025
 ms.author: lajanuar
 ---
 
 # Use Azure AI Translator behind firewalls
 
-Azure AI Translator can translate behind firewalls using either [Domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the preferred method.
+Azure AI Translator can translate behind firewalls by using either [domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the recommended approach.
 
-If you still require IP filtering, you can get the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is under the **CognitiveServicesManagement** service tag.
+If you still require IP filtering, you can obtain the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is included under the **CognitiveServicesManagement** service tag.
 
 ## Configure firewall
 
@@ -28,7 +28,7 @@ If you still require IP filtering, you can get the [IP addresses details using s
    > [!NOTE]
    >
    > * Once you enable **Selected Networks and Private Endpoints**, you must use the **Virtual Network** endpoint to call the Translator. You can't use the standard translator endpoint (`api.cognitive.microsofttranslator.com`) and you can't authenticate with an access token.
-   > * For more information, *see* [**Virtual Network Support**](../text-translation/reference/v3/reference.md#virtual-network-support).
+   > * For more information, *see* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support).
 
 1. To grant access to an internet IP range, enter the IP address or address range (in [`CIDR` notation](https://tools.ietf.org/html/rfc4632)) under **Firewall** > **Address Range**. Only valid public IP (`non-reserved`) addresses are accepted.
 
@@ -44,6 +44,6 @@ The IP addresses for Translator geographical endpoints as of September 21, 2021 
 
 ## Next steps
 
-[**Azure AI Translator virtual network support**](../text-translation/reference/v3/reference.md#virtual-network-support)
+[**Azure AI Translator virtual network support**](../text-translation/reference/authentication.md#virtual-network-support)
 
 [**Configure virtual networks**](../../cognitive-services-virtual-networks.md#grant-access-from-an-internet-ip-range)

@@ -2,7 +2,6 @@
 title: 'Tutorial: Index Semi-Structured Data in JSON Blobs'
 titleSuffix: Azure AI Search
 description: Learn how to index and search semi-structured Azure JSON blobs using Azure AI Search REST APIs.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 365-days
 
 ---
 
@@ -106,7 +106,7 @@ Here's the first nested JSON in the file. The remainder of the file includes 1,5
 
 ### Copy a search service URL and API key
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
+For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-how-to-managed-identities.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 
@@ -129,7 +129,7 @@ For this tutorial, connections to Azure AI Search require an endpoint and an API
 
 1. Save the file using a `.rest` or `.http` file extension.
 
-For help with the REST client, see [Quickstart: Keyword search using REST](search-get-started-rest.md).
+For help with the REST client, see [Quickstart: Full-text search using REST](search-get-started-text.md).
 
 ## Create a data source
 
@@ -346,7 +346,7 @@ For filters, you can also use Logical operators (and, or, not) and comparison op
 
 ## Reset and rerun
 
-Indexers can be reset to clear execution history, which allows a full rerun. The following GET requests are for reset, followed by rerun.
+Indexers can be reset to clear execution history, which allows a full rerun. The following POST requests are for reset, followed by rerun.
 
 ```http
 ### Reset the indexer

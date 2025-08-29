@@ -52,7 +52,7 @@ The following table lists the base URLs for Azure sovereign cloud endpoints:
 
 Base URL:
 
-```http
+```bash
 https://portal.azure.us
 ```
 
@@ -65,25 +65,25 @@ Replace the `<region-identifier>` parameter with the sovereign cloud identifier:
 | Azure US Government|<ul><li>`usgovarizona` (US Gov Arizona)</li><li>`usgovvirginia` (US Gov Virginia)</li></ul>|
 | Azure operated by 21Vianet|<ul><li>`chinaeast2` (East China 2)</li><li>`chinanorth` (China North)</li></ul>|
 
-```http
+```bash
 https://<region-identifier>.api.cognitive.microsoft.us/sts/v1.0/issueToken
 ```
 
 #### Text translation
 
-```http
+```bash
 https://api.cognitive.microsofttranslator.us/
 ```
 
 #### Document translation custom endpoint
 
-```http
+```bash
 https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.us/translator/text/batch/v1.0
 ```
 
 #### Custom Translator portal
 
-```http
+```bash
 https://portal.customtranslator.azure.us/
 ```
 
@@ -93,7 +93,7 @@ Translate a single sentence from English to Simplified Chinese.
 
 **Request**
 
-```curl
+ ```bash
 curl -X POST "https://api.cognitive.microsofttranslator.us/translate?api-version=3.0?&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <key>" -H "Ocp-Apim-Subscription-Region: chinanorth" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text':'你好, 你叫什么名字？'}]"
 ```
 
@@ -132,7 +132,7 @@ Base URL
 
 #### Azure portal
 
-```http
+```bash
 https://portal.azure.cn
 ```
 
@@ -140,13 +140,13 @@ https://portal.azure.cn
 
 Replace the `<region-identifier>` parameter with the sovereign cloud identifier:
 
-```http
+```bash
 https://<region-identifier>.api.cognitive.azure.cn/sts/v1.0/issueToken
 ```
 
 #### Text translation
 
-```http
+```bash
 https://api.translator.azure.cn/translate
 ```
 
@@ -156,7 +156,7 @@ Translate a single sentence from English to Simplified Chinese.
 
 **Request**
 
-```curl
+ ```bash
 curl -X POST "https://api.translator.azure.cn/translate?api-version=3.0&from=en&to=zh-Hans" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json; charset=UTF-8" -d "[{'Text': 'Hello, what is your name?'}]"
 ```
 
@@ -174,7 +174,7 @@ curl -X POST "https://api.translator.azure.cn/translate?api-version=3.0&from=en&
 
 #### Document translation custom endpoint
 
-```http
+```bash
 https://<NAME-OF-YOUR-RESOURCE>.cognitiveservices.azure.cn/translator/text/batch/v1.0
 ```
 

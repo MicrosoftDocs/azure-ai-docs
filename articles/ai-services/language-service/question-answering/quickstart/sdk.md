@@ -4,8 +4,8 @@ description: This quickstart shows you how to create and manage your project usi
 ms.service: azure-ai-language
 ms.topic: quickstart
 ms.date: 03/24/2025
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
 # ms.devlang: csharp, python

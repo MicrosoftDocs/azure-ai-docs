@@ -8,6 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: how-to
 ms.date: 04/03/2025
 ms.author: lajanuar
+ms.custom: sfi-ropc-nochange
 ---
 
 # Install and run containers
@@ -23,7 +24,7 @@ Azure AI Document Intelligence is an Azure AI service that lets you build automa
 
 In this article you can learn how to download, install, and run Document Intelligence containers. Containers enable you to run the Document Intelligence service in your own environment. Containers are great for specific security and data governance requirements.
 
-* **Layout** model is supported by Document Intelligence v4.0 containers.
+* **Read**, **Layout** model is supported by Document Intelligence v4.0 containers.
 
 * **Read**, **Layout**,  **ID Document**,  **Receipt**, and **Invoice**  models are supported by Document Intelligence v3.1 containers.
 
@@ -31,7 +32,7 @@ In this article you can learn how to download, install, and run Document Intelli
 
 ## Version support
 
-Support for containers is currently available with Document Intelligence version `v3.0: 2022-08-31 (GA)` for all models, `v3.1 2023-07-31 (GA)` for Read, Layout, ID Document, Receipt, and Invoice models, and `v4.0 2024-11-30 (GA)` for Layout:
+Support for containers is currently available with Document Intelligence version `v3.0: 2022-08-31 (GA)` for all models, `v3.1 2023-07-31 (GA)` for Read, Layout, ID Document, Receipt, and Invoice models, and `v4.0 2024-11-30 (GA)` for Read and Layout:
 
 * [REST API `v3.0: 2022-08-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.0%20(2022-08-31)&preserve-view=true&tabs=HTTP)
 * [REST API `v3.1: 2023-07-31 (GA)`](/rest/api/aiservices/document-models/analyze-document?view=rest-aiservices-v3.1%20(2023-07-31)&tabs=HTTP&preserve-view=true)
@@ -50,7 +51,7 @@ You also need the following to use Document Intelligence containers:
 |----------|---------|
 | **Familiarity with Docker** | You should have a basic understanding of Docker concepts, like registries, repositories, containers, and container images, as well as knowledge of basic `docker`  [terminology and commands](/dotnet/architecture/microservices/container-docker-introduction/docker-terminology). |
 | **Docker Engine installed** | <ul><li>You need the Docker Engine installed on a [host computer](#host-computer-requirements). Docker provides packages that configure the Docker environment on [macOS](https://docs.docker.com/docker-for-mac/), [Windows](https://docs.docker.com/docker-for-windows/), and [Linux](https://docs.docker.com/engine/installation/#supported-platforms). For a primer on Docker and container basics, see the [Docker overview](https://docs.docker.com/engine/docker-overview/).</li><li> Docker must be configured to allow the containers to connect with and send billing data to Azure. </li><li> On **Windows**, Docker must also be configured to support **Linux** containers.</li></ul>  |
-|**Document Intelligence resource** | A [**single-service Azure AI Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [**multi-service**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource in the Azure portal. To use the containers, you must have the associated key and endpoint URI. Both values are available on the Azure portal Document Intelligence **Keys and Endpoint** page: <ul><li>**{FORM_RECOGNIZER_KEY}**: one of the two available resource keys.<li>**{FORM_RECOGNIZER_ENDPOINT_URI}**: the endpoint for the resource used to track billing information.</li></li></ul>|
+|**Document Intelligence resource** | A [**single-service Azure AI Document Intelligence**](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [**multi-service**](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal. To use the containers, you must have the associated key and endpoint URI. Both values are available on the Azure portal Document Intelligence **Keys and Endpoint** page: <ul><li>**{FORM_RECOGNIZER_KEY}**: one of the two available resource keys.<li>**{FORM_RECOGNIZER_ENDPOINT_URI}**: the endpoint for the resource used to track billing information.</li></li></ul>|
 
 |Optional|Purpose|
 |---------|----------|
@@ -171,7 +172,7 @@ version: "3.9"
 services:
   azure-form-recognizer-read:
     container_name: azure-form-recognizer-read
-    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-3.1
+    image: mcr.microsoft.com/azure-cognitive-services/form-recognizer/read-4.0
     environment:
       - EULA=accept
       - billing={FORM_RECOGNIZER_ENDPOINT_URI}
@@ -1178,7 +1179,7 @@ The Document Intelligence containers send billing information to Azure by using 
 
 Queries to the container are billed at the pricing tier of the Azure resource used for the API `Key`. Billing is calculated for each container instance used to process your documents and images.
 
-If you receive the following error: *Container isn't in a valid state. Subscription validation failed with status 'OutOfQuota' API key is out of quota*. It's an indicator that your containers aren't communication wit the billing endpoint.
+If you receive the following error: *Container isn't in a valid state. Subscription validation failed with status 'OutOfQuota' API key is out of quota*. It's an indicator that your containers aren't communication with the billing endpoint.
 
 ### Connect to Azure
 
@@ -1190,8 +1191,8 @@ The [**docker-compose up**](https://docs.docker.com/engine/reference/commandline
 
 | Option | Description |
 |--------|-------------|
-| `ApiKey` | The key of the Azure AI services resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
-| `Billing` | The endpoint of the Azure AI services resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
+| `ApiKey` | The key of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
+| `Billing` | The endpoint of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 For more information about these options, see [Configure containers](configuration.md).

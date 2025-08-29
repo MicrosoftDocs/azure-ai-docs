@@ -2,7 +2,6 @@
 title: Indexer errors and warnings
 titleSuffix: Azure AI Search
 description: This article provides information and solutions to common errors and warnings you might encounter during AI enrichment in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: concept-article
 ms.date: 02/19/2025
+ms.update-cycle: 180-days
 ---
 
 # Troubleshooting common indexer errors and warnings in Azure AI Search
@@ -414,3 +414,12 @@ This warning is passed from the Language service of Azure AI services. In some c
 ## `Error: Cannot write more bytes to the buffer than the configured maximum buffer size`
 
 Indexers have [document size limits](search-limits-quotas-capacity.md#indexer-limits). Make sure that the documents in your data source are smaller than the supported size limit, as documented for your service tier. 
+
+<a name="error-failed-to-compare-type-value"></a>
+## `Error: Failed to compare value 'X' of type M to value 'Y' of type N.`
+
+This error usually happens in Azure SQL indexers when the source column type used for [`dataChangeDetectionPolicy`](search-how-to-index-sql-database.md#high-water-mark-change-detection-policy) doesn’t match what the indexer expects, especially if [`convertHighWaterMarkToRowVersion`](search-how-to-index-sql-database.md#converthighwatermarktorowversion) is turned on.
+
+For example, if the column used for change detection is of type datetime, but the indexer expects a rowversion type because convertHighWaterMarkToRowVersion is enabled, the mismatch will cause an error.
+
+Check the data type for the 'High Water Mark' column in the source and update the indexer configuration accordingly. Once verified and updated, reset and rerun the indexer to process the column values.

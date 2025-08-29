@@ -5,10 +5,12 @@ description: Step-by-step guidance on how to build a Power App that connects to 
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.custom:
-  - ignite-2023
 ms.topic: tutorial
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Tutorial: Query an Azure AI Search index from Power Apps

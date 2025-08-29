@@ -5,8 +5,8 @@ description: Securely access Azure resources for your machine learning model dep
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.date: 03/18/2024
 ms.topic: how-to

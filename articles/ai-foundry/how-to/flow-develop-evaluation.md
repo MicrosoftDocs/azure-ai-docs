@@ -2,17 +2,19 @@
 title: Develop an evaluation flow
 titleSuffix: Azure AI Foundry
 description: Learn how to customize or create your own evaluation flow tailored to your tasks and objectives, and then use in a batch run as an evaluation method in prompt flow with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 3/31/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Develop an evaluation flow in Azure AI Foundry portal
@@ -25,6 +27,10 @@ In prompt flow, you can customize or create your own evaluation flow tailored to
 
 - How to develop an evaluation method.
 - Understand inputs, outputs, and logging metrics for prompt flow evaluations.
+
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 ## Starting to develop an evaluation method
 

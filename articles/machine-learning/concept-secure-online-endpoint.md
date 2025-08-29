@@ -5,12 +5,16 @@ description: Learn how private endpoints provide network isolation for Azure Mac
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
-author: msakande
-ms.author: mopeakande
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
-ms.custom: devplatv2, moe-wsvnet, ignite-2024
 ms.date: 02/29/2024
+ms.custom:
+  - devplatv2
+  - moe-wsvnet
+  - ignite-2024
+  - sfi-image-nochange
 ---
 
 # Network isolation with managed online endpoints

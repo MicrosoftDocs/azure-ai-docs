@@ -52,7 +52,7 @@ sections:
         answer: |
           **Yes.**
 
-           You can also use a document generative AI solution to chat with your documents (RAG), generate captivating content from those documents, and access Azure OpenAI Service models on your data.
+           You can also use a document generative AI solution to chat with your documents (RAG), generate captivating content from those documents, and access Azure OpenAI models on your data.
 
           - With Azure AI Document Intelligence and Azure OpenAI combined, you can build an enterprise application to seamlessly interact with your documents using natural language. You can easily find answers, gain valuable insights, and generate new and engaging content from existing documents.
 
@@ -84,7 +84,7 @@ sections:
 
           - Basic
 
-            - **Cognitive Services User**: You need this role for a [Document Intelligence](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure Cognitive Services multiple-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource to use Document Intelligence Studio.
+            - **Cognitive Services User**: You need this role for a [Document Intelligence](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure Cognitive Services multiple-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource to use Document Intelligence Studio.
 
           - Advanced
 
@@ -94,7 +94,7 @@ sections:
 
           - Basic
 
-            - **Cognitive Services User**: You need this role for a [Document Intelligence](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Cognitive Services multiple-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices) resource to train a custom model or analyze with trained models.
+            - **Cognitive Services User**: You need this role for a [Document Intelligence](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Cognitive Services multiple-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource to train a custom model or analyze with trained models.
 
             - **Storage Blob Data Contributor**: You need this role for a storage account to create project and label data.
 
@@ -386,7 +386,7 @@ sections:
           For all features, Document Intelligence temporarily stores data and results in Azure Storage in the same region as the request. Your data is then deleted 24 hours from the time that you submit an analyze request. If you would like the data deleted sooner, you can call the [delete analyze response](https://learn.microsoft.com/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&tabs=HTTP). This API marks the results for deletion and is available in the v4.0 API.
     
 
-          Learn more about [data, privacy, and security for Document Intelligence](/legal/cognitive-services/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json).
+          Learn more about [data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
 
           For trained custom models, the interim outputs after analysis and labeling are stored in the same Azure Storage location where you store your training data. The trained custom models are stored in Azure Storage in the same region, and are logically isolated with your Azure subscription and API credentials.
 

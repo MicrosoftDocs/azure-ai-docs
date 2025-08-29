@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 10/16/2024
+ms.date: 04/29/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 #customer intent: As a developer, I want to learn how to use the groundedness detection API so that I can ensure generated content is aligned with factual references.
@@ -16,7 +16,7 @@ zone_pivot_groups: programming-languages-content-safety-foundry-rest
 
 # Quickstart: Use Groundedness detection (preview)
 
-This guide shows you how to use the groundedness detection API. This feature automatically detects and corrects ungrounded text based on the provided source documents, ensuring that the generated content is aligned with factual or intended references. Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes. 
+This guide shows you how to use the groundedness detection API. This feature automatically detects and corrects text that goes against the provided source documents, ensuring that the generated content is aligned with factual or intended references. Below, we explore several common scenarios to help you understand how and when to apply these features to achieve the best outcomes. 
 
 
 ::: zone pivot="programming-language-foundry-portal"

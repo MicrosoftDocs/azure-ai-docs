@@ -138,7 +138,7 @@ ms.author: lajanuar
 |Slovenian|`sl`|✔|✔|✔|✔|✔|
 |Somali (Arabic)|`so`|✔|✔| |✔| |
 |Spanish|`es`|✔|✔|✔|✔|✔|
-|Swahili (Latin)|`sw`|✔|✔|✔|✔|✔|
+|Swahili (Latin)|`sw`|✔|✔|✔| |✔|
 |Swedish|`sv`|✔|✔|✔|✔|✔|
 |Tahitian|`ty`|✔|✔|✔|✔| |
 |Tamil|`ta`|✔|✔|✔|✔|✔|
@@ -173,7 +173,7 @@ ms.author: lajanuar
 |Armenian|`hy`|Yes|No|
 |Assamese|`as`|Yes|No|
 |Azerbaijani (Latin)|`az`|Yes|Yes|
-|Bangla|`bn`|Yes|No|
+|Bangla|`bn`|No|No|
 |Bashkir|`ba`|Yes|Yes|
 |Basque|`eu`|Yes|Yes|
 |Bosnian (Latin)|`bs`|Yes|Yes|

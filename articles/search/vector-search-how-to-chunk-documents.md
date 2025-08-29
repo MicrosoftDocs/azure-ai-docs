@@ -2,10 +2,10 @@
 title: Chunk documents in vector search
 titleSuffix: Azure AI Search
 description: Learn strategies for chunking PDFs, HTML files, and other large documents for vectors and search indexing and query workloads.
-
 author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
@@ -196,6 +196,6 @@ A [fixed-sized chunking and embedding generation sample](https://github.com/Azur
 
 ## See also
 
-+ [Understand embeddings in Azure OpenAI Service](/azure/ai-services/openai/concepts/understand-embeddings)
++ [Understand embeddings in Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/concepts/understand-embeddings)
 + [Learn how to generate embeddings](/azure/ai-services/openai/how-to/embeddings)
-+ [Tutorial: Explore Azure OpenAI Service embeddings and document search](/azure/ai-services/openai/tutorials/embeddings)
++ [Tutorial: Explore Azure OpenAI embeddings and document search](/azure/ai-services/openai/tutorials/embeddings)

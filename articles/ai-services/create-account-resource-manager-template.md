@@ -1,12 +1,12 @@
 ---
-title: "Quickstart: Create an Azure AI services resource by using an ARM template"
-description: Learn how to use an Azure Resource Manager template to create an Azure AI services resource.
+title: "Quickstart: Create an AI Foundry resource by using an ARM template"
+description: Learn how to use an Azure Resource Manager template to create an AI Foundry resource.
 keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
 author: eric-urban
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 2/7/2025
+ms.date: 5/19/2025
 ms.author: eur
 ms.custom:
   - subject-armqs
@@ -15,7 +15,7 @@ ms.custom:
   - ignite-2023
 ---
 
-# Quickstart: Create an Azure AI services resource by using an ARM template
+# Quickstart: Create an AI Foundry resource by using an ARM template
 
 This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Azure AI services.
 
@@ -52,7 +52,7 @@ As needed, change the `sku` parameter value to the [pricing](https://azure.micro
     | **Subscription** | Select an Azure subscription. |
     | **Resource group** | Select **Create new**, enter a unique name for the resource group, and then select **OK**. |
     | **Region** | Select a region (for example, **East US**). |
-    | **AI service Name** | Replace the value with a unique name for your Azure AI services resource. You'll need the name in the next section when you validate the deployment. |
+    | **AI service Name** | Replace the value with a unique name for your Azure AI Foundry resource. You'll need the name in the next section when you validate the deployment. |
     | **Location** | Replace with the region that you selected. |
     | **Sku** | Select the [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/) for your resource. |
 
@@ -62,7 +62,7 @@ As needed, change the `sku` parameter value to the [pricing](https://azure.micro
 
 # [Azure CLI](#tab/CLI)
 
-Run the following script from [your local machine](/cli/azure/install-azure-cli), or run it from a browser by using the **Try it** button. Include a name and location (for example, `centralus`) for a new resource group, and the ARM template will be used to deploy an Azure AI services resource within it. Remember the name that you use. You'll use it later to validate the deployment.
+Run the following script from [your local machine](/cli/azure/install-azure-cli), or run it from a browser by using the **Try it** button. Include a name and location (for example, `centralus`) for a new resource group, and the ARM template will be used to deploy an AI Foundry resource within it. Remember the name that you use. You'll use it later to validate the deployment.
 
 > [!NOTE]
 > The `az deployment group create` command in the script requires Azure CLI version 2.6 or later. To display the version, enter `az --version`. For more information, see the [documentation](/cli/azure/deployment/group).
@@ -80,7 +80,7 @@ read
 ---
 
 > [!TIP]
-> If your subscription doesn't allow you to create an Azure AI services resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) by using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), a [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you're not the subscription owner, ask the subscription owner or someone with an admin role to complete the registration for you. Or ask for the */register/action* privileges to be granted to your account.
+> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) by using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), a [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you're not the subscription owner, ask the subscription owner or someone with an admin role to complete the registration for you. Or ask for the */register/action* privileges to be granted to your account.
 
 ## Review deployed resources
 
@@ -96,7 +96,7 @@ When your deployment finishes, you can select the **Go to resource** button to s
 Run the following script. Include the name of the resource group that you created earlier.
 
 ```azurecli-interactive
-echo "Enter the resource group where the Azure AI services resource exists:" &&
+echo "Enter the resource group where the Azure AI Foundry resource exists:" &&
 read resourceGroupName &&
 az cognitiveservices account list -g $resourceGroupName
 ```

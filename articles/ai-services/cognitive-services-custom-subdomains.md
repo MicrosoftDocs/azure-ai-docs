@@ -7,17 +7,17 @@ manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurecli
 ms.topic: conceptual
-ms.date: 10/30/2024
+ms.date: 05/01/2025
 ms.author: pafarley
 ---
 
 # Custom subdomain names for Azure AI services
 
-Starting in July 2019, Azure AI services use custom subdomain names for each resource created through the [Azure portal](https://portal.azure.com), [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), or [Azure CLI](/cli/azure/install-azure-cli). Unlike regional endpoints, which were common for all customers in a specific Azure region, custom subdomain names are unique to the resource. Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
+Since July 2019, new Azure AI service resources use custom subdomain names when created through the [Azure portal](https://portal.azure.com), [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), or [Azure CLI](/cli/azure/install-azure-cli). Unlike regional endpoints, which were common for all customers in a specific Azure region, custom subdomain names are unique to the resource. Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
 
 ## How does this impact existing resources?
 
-Azure AI services resources created before July 1, 2019, use the regional endpoints for the associated service. These endpoints work with existing and new resources.
+Azure AI services resources created before July 1, 2019 use the regional endpoints for the associated service. These endpoints work with existing and new resources.
 
 If you'd like to migrate an existing resource to use custom subdomain names to enable features like Microsoft Entra ID, follow these instructions:
 
@@ -54,7 +54,7 @@ No. After a custom subdomain name is created and associated with a resource, it 
 
 ## Can I reuse a custom domain name?
 
-Each custom subdomain name is unique. In order to reuse a custom subdomain name that you've assigned to an Azure AI services resource, you'll need to delete the existing resource. After the resource is deleted, you can reuse the custom subdomain name.
+Each custom subdomain name is unique. In order to reuse a custom subdomain name that you've assigned to an AI Foundry resource, you'll need to delete the existing resource. After the resource is deleted, you can reuse the custom subdomain name.
 
 ## Is there a list of regional endpoints?
 

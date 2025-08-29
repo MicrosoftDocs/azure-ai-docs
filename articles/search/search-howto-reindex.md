@@ -2,16 +2,15 @@
 title: Update or rebuild an index
 titleSuffix: Azure AI Search
 description: Update or rebuild an index to update the schema or clean out obsolete documents. You can fully rebuild or do partial indexing.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/28/2025
+ms.date: 05/19/2025
+ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search
@@ -158,7 +157,7 @@ Status code 429 indicates that you've exceeded your quota on the number of docum
 
 + To merge inline changes into string collection, provide the entire value. Recall the `tags` field example from the previous section. New values overwrite the old values for an entire field, and there's no merging within the content of a field.
 
-Here's a [REST API example](search-get-started-rest.md) demonstrating these tips:
+Here's a [REST API example](search-get-started-text.md) demonstrating these tips:
 
 ```rest
 ### Get Stay-Kay City Hotel by ID
@@ -199,6 +198,7 @@ The index schema defines the physical data structures created on the search serv
 
 The following list enumerates the schema changes that can be introduced seamlessly into an existing index. Generally, the list includes new fields and functionality used during query execution.
 
++ Add an [index description (preview)]()
 + Add a new field
 + Set the `retrievable` attribute on an existing field
 + Update `searchAnalyzer` on a field having an existing `indexAnalyzer`
@@ -253,6 +253,47 @@ When you create the index, physical storage is allocated for each field in the i
 
 To minimize disruption to application code, consider [creating an index alias](search-how-to-alias.md). Application code references the alias, but you can update the name of the index that the alias points to.
 
+## Add an index description (preview)
+
+Beginning with REST API version 2025-05-01-preview, a `ddescription` is now supported. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+
+An index description is a schema update, and you can add it without having to rebuild the entire index.
+
++ String length is 4,000 characters maximum.
++ Content must be human-readable, in Unicode. Your use-case should determine which language to use.
+
+Support for an index description is provided in the preview REST API, the Azure portal, or in a prerelease Azure SDK package that provides the feature.
+
+### [**Azure portal**](#tab/portal)
+
+The Azure portal supports the latest preview API.
+
+1. Sign in to the Azure portal and find your search service.
+
+1. Under **Search management** > **Indexes**, select an index.
+
+1. Select **Edit JSON**.
+
+1. Insert `"description"`, followed by the description. The value must be less than 4,000 characters and in Unicode.
+
+   :::image type="content" source="media/search-how-to-index/edit-index-json.png" alt-text="Screenshot of the JSON definition of an index in the Azure portal.":::
+
+1. Save the index.
+
+### [**REST**](#tab/rest)
+
+1. [GET an index definition](/rest/api/searchservice/indexes/get).
+
+1. Copy the JSON so that you can use it as the basis of a new request.
+
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+
+1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
+
+1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+
+---
+
 ## Balancing workloads
 
 Indexing doesn't run in the background, but the search service will balance any indexing jobs against ongoing queries. During indexing, you can [monitor query requests](search-monitor-queries.md) in the Azure portal to ensure queries are completing in a timely manner.
@@ -263,7 +304,7 @@ If indexing workloads introduce unacceptable levels of query latency, conduct [p
 
 You can begin querying an index as soon as the first document is loaded. If you know a document's ID, the [Lookup Document REST API](/rest/api/searchservice/documents/get) returns the specific document. For broader testing, you should wait until the index is fully loaded, and then use queries to verify the context you expect to see.
 
-You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-rest.md) to check for updated content.
+You can use [Search Explorer](search-explorer.md) or a [REST client](search-get-started-text.md) to check for updated content.
 
 If you added or renamed a field, use [select](search-query-odata-select.md) to return that field: 
 
@@ -285,7 +326,7 @@ Deleting a document doesn't immediately free up space in the index. Every few mi
 
 1. Check the values of the document key field: `search=*&$select=HotelId`. A simple string is straightforward, but if the index uses a base-64 encoded field, or if search documents were generated from a `parsingMode` setting, you might be working with values that you aren't familiar with.
 
-1. [Look up the document](/rest/api/searchservice/documents/get) to verify the value of the document ID and to review its content before deleting it. Specify the key or document ID in the request. The following examples illustrate a simple string for the [Hotels sample index](search-get-started-portal.md) and a base-64 encoded string for the metadata_storage_path key of the [cog-search-demo index](cognitive-search-tutorial-blob.md).
+1. [Look up the document](/rest/api/searchservice/documents/get) to verify the value of the document ID and to review its content before deleting it. Specify the key or document ID in the request. The following examples illustrate a simple string for the [Hotels sample index](search-get-started-portal.md) and a base-64 encoded string for the metadata_storage_path key of the [cog-search-demo index](tutorial-skillset.md).
 
     ```http
     GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2024-07-01

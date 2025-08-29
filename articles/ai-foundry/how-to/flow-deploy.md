@@ -2,18 +2,20 @@
 title: Deploy a Flow as a Managed Online Endpoint for Real-Time Inference
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 01/27/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
 ms.collection: ce-skilling-ai-copilot, ce-skilling-fresh-tier1
+ms.update-cycle: 180-days
 ---
 
 # Deploy a flow for real-time inference
@@ -33,6 +35,8 @@ In this article, you learn how to deploy a flow as a managed online endpoint for
 - Consume the endpoint.
 
 ## Prerequisites
+
+ [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 
 To deploy a prompt flow as an online endpoint, you need:
 

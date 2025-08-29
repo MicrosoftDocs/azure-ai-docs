@@ -5,12 +5,17 @@ description: Learn how to collect data from models deployed to web service endpo
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: alehughes
 ms.date: 03/10/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, devx-track-python, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - devx-track-python
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 ---
 
 # Monitor and collect data from ML web service endpoints

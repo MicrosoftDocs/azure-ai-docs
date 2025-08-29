@@ -2,7 +2,6 @@
 title: Autocomplete or typeahead
 titleSuffix: Azure AI Search
 description: Enable search-as-you-type query actions in Azure AI Search by creating suggesters and queries that autocomplete a search string with finished terms or phrases. You can also return suggested matches.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Add autocomplete and search suggestions in client apps

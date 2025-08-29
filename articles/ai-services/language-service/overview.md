@@ -2,12 +2,12 @@
 title: What is Azure AI Language
 titleSuffix: Azure AI services
 description: Learn how to integrate AI into your applications that can extract information and understand written language.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 03/05/2025
-ms.author: jboback
+ms.date: 07/17/2025
+ms.author: lajanuar
 ---
 
 # What is Azure AI Language?
@@ -26,7 +26,7 @@ The Language service also provides several new features as well, which can eithe
 > [!TIP]
 > Unsure which feature to use? See [Which Language service feature should I use](#which-language-service-feature-should-i-use) to help you decide.
 
-[**Azure AI Foundry**](https://ai.azure.com) enables you to use most of the following service features without needing to write code.
+[**Azure AI Foundry**](https://ai.azure.com/?cid=learnDocs) enables you to use most of the following service features without needing to write code.
 
 ### Named Entity Recognition (NER)
 
@@ -243,6 +243,6 @@ Use Language service containers to deploy API features on-premises. These Docker
 
 An AI system includes not only the technology, but also the people who use it, the people affected by it, and the deployment environment. Read the following articles to learn about responsible AI use and deployment in your systems:
 
-* [Transparency note for the Language service](/legal/cognitive-services/text-analytics/transparency-note)
-* [Integration and responsible use](/legal/cognitive-services/text-analytics/guidance-integration-responsible-use)
-* [Data, privacy, and security](/legal/cognitive-services/text-analytics/data-privacy)
+* [Transparency note for the Language service](../../ai-foundry/responsible-ai/language-service/transparency-note.md)
+* [Integration and responsible use](../../ai-foundry/responsible-ai/language-service/guidance-integration-responsible-use.md)
+* [Data, privacy, and security](../../ai-foundry/responsible-ai/language-service/data-privacy.md)

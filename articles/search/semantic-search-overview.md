@@ -2,15 +2,15 @@
 title: Semantic ranking
 titleSuffix: Azure AI Search
 description: Learn how Azure AI Search uses deep learning semantic ranking models from Bing to make search results more intuitive.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 03/31/2025
+ms.date: 06/10/2025
 ---
 
 # Semantic ranking in Azure AI Search
@@ -79,7 +79,7 @@ In semantic ranking, the query subsystem passes search results as an input to su
 
    As of November 2024, the maximum length of each generated summary string passed to the semantic ranker is 2,048 tokens. Previously, it was 256 tokens.
 
-### How ranking is scored
+## How results are scored
 
 Scoring is done over the caption, and any other content from the summary string that fills out the 2,048 token length.
 
@@ -114,7 +114,7 @@ Captions and answers are always verbatim text from your index. There's no genera
 
 ## Semantic capabilities and limitations
 
-Semantic ranker is a newer technology so it's important to set expectations about what it can and can't do. What it *can* do:
+What semantic ranker *can* do:
 
 * Promote matches that are semantically closer to the intent of original query.
 
@@ -129,6 +129,12 @@ The underlying technology is from Bing and Microsoft Research, and integrated in
 The following video provides an overview of the capabilities.
 
 > [!VIDEO https://www.youtube.com/embed/yOf0WfVd_V0]
+
+
+## How semantic ranker uses synonym maps
+
+If you have already enabled support for [synonym maps associated to a field](search-synonyms.md#assign-synonyms-to-fields) in your search index, and that field is included in the [semantic ranker configuration](semantic-how-to-configure.md), the semantic ranker will automatically apply the configured synonyms during the reranking process.
+
 
 ## Availability and pricing
 

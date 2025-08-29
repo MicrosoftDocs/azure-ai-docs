@@ -2,8 +2,8 @@
 title: Debug with the Azure Machine Learning inference server
 titleSuffix: Azure Machine Learning
 description: See how to use the Azure Machine Learning inference HTTP server to debug scoring scripts or endpoints locally, before you deploy them to the cloud.
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: alehughes
 services: machine-learning
 ms.service: azure-machine-learning

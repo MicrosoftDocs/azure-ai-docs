@@ -288,7 +288,7 @@ The following are the possible HTTP status codes that a request returns.
 
 |Key parameter|Type|Description|
 |--- |--- |--- |
-|code|`string`|Enums containing high-level error codes. Possible values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized|
+|code|`string`|Enums containing high-level error codes. Accepted values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized|
 |message|`string`|Gets high-level error message.|
 |innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
 |inner.Errorcode|`string`|Gets code error string.|
