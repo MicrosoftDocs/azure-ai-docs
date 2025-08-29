@@ -1,9 +1,11 @@
 ---
 manager: nitinme
-author: santiagxf
-ms.author: fasantia 
+author: msakande
+ms.author: mopeakande
+ms.reviewer: yinchang
+reviewer: ychang-msft
 ms.service: azure-ai-model-inference
-ms.date: 1/21/2025
+ms.date: 08/29/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
