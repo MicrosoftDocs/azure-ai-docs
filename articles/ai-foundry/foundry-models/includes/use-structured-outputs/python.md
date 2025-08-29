@@ -6,7 +6,7 @@ author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-model-inference
 ms.topic: include
-ms.date: 05/29/2025
+ms.date: 08/28/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 zone_pivot_groups: azure-ai-inference-samples
@@ -26,7 +26,7 @@ zone_pivot_groups: azure-ai-inference-samples
     from azure.core.credentials import AzureKeyCredential
     
     client = ChatCompletionsClient(
-        endpoint="https://aiservices-demo-wus2.services.ai.azure.com/models",
+        endpoint="https://<resource>.services.ai.azure.com/models",
         credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
         model="gpt-4o"
     )
