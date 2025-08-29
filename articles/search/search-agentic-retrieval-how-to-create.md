@@ -204,13 +204,13 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `description` is recommended for query planning. The LLM uses the description to inform query planning. 
 
-+ `retrievalInstructions` is recommended for query planning. You can provide a prompt used by the LLM to determine whether a knowledge source should be in scope for a query. 
++ `retrievalInstructions` is recommended for query planning. The instructions are passed as a prompt to the LLM to determine whether a knowledge source should be in scope for a query. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing all knowledge sources).
 
 + `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs used by the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
 
     + `name` is a reference to either a [search index knowledge source](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md).
     
-    + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment.
+    + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment. If you're using `attemptFastPath`, you must have at least one knowledge source that has `alwaysQuerySource` set to true.
     
     + `includeReferences` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
     
@@ -226,7 +226,7 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
   + `answerInstructions` is used for shaping answers (see [Use answer synthesis for citation-backed responses](search-agentic-retrieval-how-to-synthesize.md)). The default is null.
 
-  + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. If the query is larger or the score is lower, query planning is invoked. If there are multiple knowledge sources, the small query runs on all of them. The default is `false`.
+  + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. If the query is larger or the score is lower, query planning is invoked. You must have at least one knowledge source that has `alwaysQuerySource` enabled. If there are multiple knowledge sources, they must all have `alwaysQuerySource` enabled to be considered for fast path. The small query runs on all of them. The default is `false`.
 
   + `includeActivity` indicates whether retrieval results should include the query plan. The default is `true`.
 
