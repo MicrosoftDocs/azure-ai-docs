@@ -9,7 +9,7 @@ ms.custom: data4ml, devx-track-azurecli
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: xunwan
-ms.date: 07/26/2024
+ms.date: 08/29/2025
 ---
 
 # Create and manage data assets
