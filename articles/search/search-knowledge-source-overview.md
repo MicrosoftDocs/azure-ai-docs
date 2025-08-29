@@ -49,13 +49,15 @@ Properties on the knowledge agent determine whether and how the knowledge source
 When you have multiple knowledge sources, set the following properties to bias query planning to a specific knowledge source.
 
 + Setting `alwaysQuerySource` forces query planning to always include the knowledge source.
-+ Setting `retrievalInstructions` to guidance that includes or excludes a knowledge source. 
++ Setting `retrievalInstructions` provides guidance that includes or excludes a knowledge source. 
 
-If these settings conflict, retrieval instructions override `alwaysQuerySource`.
+Retrieval instructions are sent as a prompt to the large language model (LLM) used for query planning. This prompt is helpful when you have multiple knowledge sources and want to provide guidance on when to use each one. For example, if you have separate indexes for product information, job postings, and technical support, the retrieval instructions might say "use the jobs index only if the question is about a job application."
+
+The `alwaysQuerySource` property overrides `retrievalInstructions`. You should set `alwaysQuerySource` to false when providing retrieval instructions.
 
 ### Attempt fast path processing
 
-Fast path is opportunistic query processing that approaches the millisecond query performance of regular search. It's turned off by default, but if you enable it, the search engine attempts fast path when the following criteria are met:
+Fast path is opportunistic query processing that approaches the millisecond query performance of regular search. If you enable it, the search engine attempts fast path under the following conditions:
 
 + `attemptFastPath` is set to true in `knowledgeSourceReferences`.
 
@@ -63,12 +65,18 @@ Fast path is opportunistic query processing that approaches the millisecond quer
 
 + The query target is one or more knowledge sources and each one has `alwaysQuerySource` set to true.
 
-+ The small query, which executes in parallel on all compliant knowledge sources, returns a response that's scored 1.9 or higher. The highest scoring result is returned in the response.
+The small query, which executes in parallel on all compliant knowledge sources listed in the knowledge agent, returns a result if its scored 1.9 or higher. The highest scoring result is returned in the response. If no results satisfy this criteria, fast path is abandoned and query execution resumes with query planning and the usual agentic retrieval pipeline.
+
+Under fast path, the response omits query planning information (`type": "modelQueryPlanning"`) and "activitySource" is set to 0 for each reference citation.
+
+Under fast path, `retrievalInstructions` are ignored. In general, `alwaysQuerySource` overrides `retrievalInstructions`.
 
 To achieve the fastest possible response times, follow these best practices:
 
-+ Set `modality` to `extractiveData`. Answer synthesis is supported in fast path, but the extra step takes time.
++ Set `modality` to `answerSynthesis` to get a response framed as an LLM-formulated answer. It takes a few extra seconds, but it improves the quality of the response and saves time overall if the answer is usable without further LLM processing.
 
-+ Set `includeActivity` to false if fast path is the predominant pattern. If there's no query plan, you can omit it from the response formulation.
++ Retain `includeActivity` set to true (default setting) for insights about query execution and elapsed time.
 
-+ Ensure `retrievalInstructions` don't conflict with knowledge source selection.
++ Retain `includeReferences` set to true (default setting) for details about each individually scored result.
+
++ Set `includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
