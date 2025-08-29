@@ -174,7 +174,7 @@ Some reasoning models, like DeepSeek-R1, generate completions and include the re
 
 # [OpenAI API](#tab/openai)
 
-The reasoning associated with the completion is included in the field `reasoning_content`. The model may select on which scenearios to generate reasoning content. 
+The reasoning associated with the completion is included in the field `reasoning_content`. The model may select on which scenarios to generate reasoning content. 
 
 ```python
 print("Thinking:", response.choices[0].message.reasoning_content)
