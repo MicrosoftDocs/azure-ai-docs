@@ -6,7 +6,6 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
 ms.date: 8/13/2025
-ms.reviewer: eur
 ms.author: pafarley
 author: PatrickFarley
 recommendations: false
