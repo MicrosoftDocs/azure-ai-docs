@@ -18,7 +18,7 @@ A knowledge source wraps a search index with extra properties for agentic retrie
 
 + Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in single request. Subqueries are generated for each knowledge sources. Top results are returned in the retrieval response.
 
-Make sure you have at least one knowledge source before creating a knowledge agent.
+Make sure you have at least one knowledge source before creating a knowledge agent. The full specification of a knowledge agent is in the [REST API reference](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). 
 
 ## Key points about a knowledge source
 
@@ -26,13 +26,13 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 + Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
 
-+ Each one specifies extra properties for query execution. The full specification is in the [REST API reference](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Besides the knowledge source definition itself, there are [KnowledgeSourceReference properties](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view-true) in the knowledge agent.
++ For each knowledge source, the knowledge agent provides extra properties for query execution. [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query planning. [KnowledgeAgentOutputConfiguration](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query output.
 
 ## Supported knowledge sources
 
 Here are the knowledge sources you can create in this preview:
 
-+ [Search index knowledge source (any existing index)](search-knowledge-source-how-to-index.md)
++ [Search index knowledge source (an existing index)](search-knowledge-source-how-to-index.md)
 + [Blob knowledge source](search-knowledge-source-how-to-blob.md)
 
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides all extraction, enrichment and transformations over blob content, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
@@ -42,7 +42,7 @@ A platform-specific knowledge source like the blob knowledge source includes spe
 
 ## Control knowledge source usage
 
-Properties on the knowledge agent determine whether and how the knowledge source is used. 
+Properties on the knowledge agent determine whether and how the knowledge source is used. The [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge agent.
 
 ### Use multiple knowledge sources simultaneously
 
@@ -63,7 +63,7 @@ Fast path is opportunistic query processing that approaches the millisecond quer
 
 + The query input is a single message that's fewer than 512 characters.
 
-+ The query target is one or more knowledge sources and each one has `alwaysQuerySource` set to true.
++ The query targets are the knowledge sources specified in the agent that have `alwaysQuerySource` set to true.
 
 The small query, which executes in parallel on all compliant knowledge sources listed in the knowledge agent, returns a result if its scored 1.9 or higher. The highest scoring result is returned in the response. If no results satisfy this criteria, fast path is abandoned and query execution resumes with query planning and the usual agentic retrieval pipeline.
 
