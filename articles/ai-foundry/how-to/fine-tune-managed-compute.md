@@ -7,9 +7,9 @@ ms.topic: how-to
 ms.date: 08/15/2025
 ms.reviewer: vkann
 reviewer: kvijaykannan
-ms.author: mopeakande
+ms.author: ssalgado
 manager: nitinme
-author: msakande
+author: ssalgadodev
 ms.custom: 
   - references_regions
   - hub-only
