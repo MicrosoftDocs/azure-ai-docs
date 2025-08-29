@@ -1137,18 +1137,18 @@ groups:
     title: C#
   - id: programming-language-cpp
     title: C++
-- id: custom-qna-quickstart
+- id: custom-cqa-quickstart
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: studio
+  - id: Azure AI Foundry
     title: Language Studio
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
     title: Python
   - id: rest
-    title: REST
+    title: REST API
 # Owner: farazgis
 - id: programming-languages-document-sdk
   # Owner: lajanuar

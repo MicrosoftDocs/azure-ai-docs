@@ -10,7 +10,7 @@ recommendations: false
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: devx-track-python, devx-track-csharp, language-service-question-answering, mode-api, devx-track-dotnet
-zone_pivot_groups: custom-qna-quickstart
+zone_pivot_groups: custom-cqa-quickstart
 ---
 
 # Quickstart: custom question answering
@@ -21,7 +21,7 @@ zone_pivot_groups: custom-qna-quickstart
 Get started with the custom question answering client library. Follow these steps to install the package and try out the example code for basic tasks.
 
 ::: zone pivot="studio"
-[!INCLUDE [Studio quickstart](../includes/studio.md)]
+[!INCLUDE [Azure AI Foundry quickstart](../includes/azure-ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="rest"
