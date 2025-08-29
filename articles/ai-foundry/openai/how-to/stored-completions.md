@@ -565,7 +565,7 @@ print(response.model_dump_json(indent=2))
 ```python
 from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"), 
 )
