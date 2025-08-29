@@ -94,7 +94,7 @@ We can use structured outputs with the defined schema as follows:
 __Request__
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-10-21
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
@@ -281,7 +281,7 @@ We can use structured outputs with the defined schema as follows:
 __Request__
 
 ```http
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-10-21
+POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
 Content-Type: application/json
 api-key: <key>
 ```
