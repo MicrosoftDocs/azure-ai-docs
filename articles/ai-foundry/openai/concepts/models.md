@@ -257,6 +257,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-4o-realtime-preview` (2025-06-03) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-mini-realtime-preview` (2024-12-17) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
+|`gpt-4o-realtime` (2025-08-29) <br> **GPT-4o audio** | **Audio model** for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, see the [models table](#global-standard-model-availability).
 
