@@ -10,7 +10,6 @@ ms.custom:
   - ignite-2024
 ms.topic: concept-article
 ms.date: 07/28/2025
-ms.reviewer: eur
 ms.author: pafarley
 author: PatrickFarley
 ---

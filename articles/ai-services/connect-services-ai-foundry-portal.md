@@ -10,9 +10,9 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 4/14/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: lajanuar
+ms.author: lajanuar
+author: laujan
 ---
 
 # How to use Azure AI services in Azure AI Foundry portal

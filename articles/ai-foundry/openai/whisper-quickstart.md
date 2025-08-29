@@ -7,7 +7,6 @@ ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: quickstart
 ms.date: 8/13/2025
-ms.reviewer: eur
 ms.author: pafarley
 author: PatrickFarley
 recommendations: false
