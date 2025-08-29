@@ -222,9 +222,9 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `outputConfiguration` gives you control over query execution logic and output.
 
-  + `modality` determines the shape of the results. Valid values are `extractiveData` (default) or `answers`.
+  + `modality` determines the shape of the results. Valid values are `extractiveData` (default) or `answerSynthesis` (see [Use answer synthesis for citation-backed responses](search-agentic-retrieval-how-to-synthesize.md)).
 
-  + `answerInstructions` is used for shaping answers. For more information, see [Use answer synthesis for citation-backed responses](search-agentic-retrieval-how-to-synthesize.md).
+  + `answerInstructions` is used for shaping answers. For more information, see [Use answer synthesis for citation-backed responses](search-agentic-retrieval-how-to-synthesize.md). The default is null.
 
   + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. The default is `false`.
 
