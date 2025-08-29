@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 05/25/2025
+ms.date: 08/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -48,7 +48,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
   azure_ad_token_provider=token_provider,
-  api_version="2025-02-01-preview"
+  api_version="2025-04-01-preview"
 )
 
 completion = client.chat.completions.create(
@@ -76,12 +76,11 @@ print(completion.choices[0].message)
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
     
-client = AzureOpenAI(
+client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-02-01-preview",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
     )
 
 completion = client.chat.completions.create(
@@ -106,7 +105,7 @@ print(completion.choices[0].message)
 ### Microsoft Entra ID
 
 ```bash
-curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-version=2025-02-01-preview \
+curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -128,7 +127,7 @@ curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-versi
 ### API Key
 
 ```bash
-curl $AZURE_OPENAI_ENDPOINT/openai/deployments/gpt-4o/chat/completions?api-version=2025-02-01-preview \
+curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -329,7 +328,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
   azure_ad_token_provider=token_provider,
-  api_version="2025-02-01-preview"
+  api_version="2025-04-01-preview"
 )
 
 response = client.chat.completions.list()
@@ -340,12 +339,11 @@ print(response.model_dump_json(indent=2))
 # [Python (API Key)](#tab/python-key)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"), 
-  api_version="2025-02-01-preview"
 )
 
 response = client.chat.completions.list()
@@ -358,7 +356,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
 ```
@@ -366,7 +364,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-ver
 ### API Key
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
 ```
@@ -444,7 +442,7 @@ token_provider = get_bearer_token_provider(
 client = AzureOpenAI(
   azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
   azure_ad_token_provider=token_provider,
-  api_version="2025-02-01-preview"
+  api_version="2025-04-01-preview"
 )
 
 response = client.chat.completions.retrieve("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
@@ -455,12 +453,12 @@ print(response.model_dump_json(indent=2))
 # [Python (API Key)](#tab/python-key)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   api_key=os.getenv("AZURE_OPENAI_API_KEY"), 
-  api_version="2025-02-01-preview"
+
 )
 
 response = client.chat.completions.retrieve("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
@@ -473,7 +471,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
 ```
@@ -481,7 +479,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 ### API Key
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
 ```
@@ -565,12 +563,11 @@ print(response.model_dump_json(indent=2))
 # [Python (API Key)](#tab/python-key)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
 client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"), 
-  api_version="2025-02-01-preview"
 )
 
 response = client.chat.completions.messages.list("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u", limit=2)
@@ -583,7 +580,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u/messages?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u/messages \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
 ```
@@ -591,7 +588,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmp
 ### API Key
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u/messages?api-version=2025-02-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u/messages \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
 ```
@@ -661,12 +658,11 @@ print(response.model_dump_json(indent=2))
 # [Python (API Key)](#tab/python-key)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"), 
-  api_version="2025-02-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.chat.completions.update(
@@ -682,7 +678,7 @@ print(response.model_dump_json(indent=2))
 ### Microsoft Entra ID
 
 ```bash
-curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
+curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
   -d '{
@@ -695,7 +691,7 @@ curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chat
 ### API Key
 
 ```bash
-curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
+curl -X https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -d '{
@@ -783,12 +779,11 @@ print(response.model_dump_json(indent=2))
 # [Python (API Key)](#tab/python-key)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"), 
-  api_version="2025-02-01-preview"
 )
 
 response = client.chat.completions.delete("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
@@ -799,7 +794,7 @@ print(response.model_dump_json(indent=2))
 # [REST API](#tab/rest-api)
 
 ```bash
-curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
+curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
@@ -807,7 +802,7 @@ curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/comp
 ### API Key
 
 ```bash
-curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u?api-version=2025-02-01-preview \
+curl -X DELETE -D - https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
@@ -850,4 +845,3 @@ You'll need to open a case with customer support to disable stored completions a
 ### TypeError: Completions.create() got an unexpected argument 'store'
 
 This error occurs when you're running an older version of the OpenAI client library that predates the stored completions feature being released. Run  `pip install openai --upgrade`.
-
