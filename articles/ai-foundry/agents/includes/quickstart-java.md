@@ -129,9 +129,9 @@ public class AgentSample {
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         } finally {
-            //cleanup - remove or comment out these lines if you want to keep the agent
-            threadsClient.deleteThread(thread.getId());
-            administrationClient.deleteAgent(agent.getId());
+            //cleanup - uncomment these lines if you want to delete the agent
+            //threadsClient.deleteThread(thread.getId());
+            //administrationClient.deleteAgent(agent.getId());
         }
     }
 

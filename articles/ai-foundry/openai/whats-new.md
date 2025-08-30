@@ -4,7 +4,7 @@ description: Learn about the latest news and features updates for Azure OpenAI.
 author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
-ms.date: 6/17/2025
+ms.date: 08/14/2025
 ms.service: azure-ai-openai
 ms.topic: whats-new
 ms.custom:
@@ -20,14 +20,21 @@ This article provides a summary of the latest releases and major documentation u
 
 ## August 2025
 
+### Provisioned spillover General Availability (GA)
+
+Spillover is now Generally Available. Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
+
 ### GPT-5 models available
 
 - `gpt-5`, `gpt-5-mini`, `gpt-5-nano` To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md).
 - `gpt-5-chat` is now available. To learn more, see the [models page](./concepts/models.md)
 
+- `gpt-5` is now available for [Provisioned Throughput Units (PTU)](./how-to/provisioned-throughput-onboarding.md#how-much-throughput-per-ptu-you-get-for-each-model).
+
 - **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
+
 
 ### New version of model-router
 
@@ -64,7 +71,7 @@ Sora (2025-05-02) is a video generation model from OpenAI that can create realis
 
 Follow the [Video generation quickstart](/azure/ai-foundry/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
-### Spotlighting for prompt shields
+### Spotlighting for prompt shields (preview)
 
 Spotlighting is a sub-feature of prompt shields that enhances protection against indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields filter](./concepts/content-filter-prompt-shields.md) documentation.
 

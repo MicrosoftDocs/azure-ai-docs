@@ -223,7 +223,7 @@ Supported API versions:
 
 |Entity|Tags|Detail|MetaData|
 |---|---|---|---|
-|**Information**|Information|Structured data or processed knowledge transmitted or acquired about a specific entity, event, or condition.|[Dimension metadata](entity-metadata.md#information)|
+|**Information**|Information|Structured data or processed knowledge transmitted or acquired about a specific entity, event, or condition.|[Information metadata](entity-metadata.md#information)|
 
 
 ### Type: IpAddress

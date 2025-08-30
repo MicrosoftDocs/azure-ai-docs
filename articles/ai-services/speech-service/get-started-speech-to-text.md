@@ -8,7 +8,6 @@ ms.service: azure-ai-speech
 ms.topic: quickstart
 ms.date: 8/5/2025
 ms.author: pafarley
-ms.reviewer: eur
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-other, devx-track-extended-java, devx-track-go, build-2024, ignite-2024
 zone_pivot_groups: programming-languages-get-started-transcription
 #customer intent: As a developer, I want to use the Speech service to covert speech to text, from either a microphone or a file using my choice of technology.

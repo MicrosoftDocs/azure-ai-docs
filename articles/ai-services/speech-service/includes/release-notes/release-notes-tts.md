@@ -6,6 +6,58 @@ ms.date: 4/8/2025
 ms.author: pafarley
 ms.custom: references_regions
 ---
+### July 2025 release
+
+#### Public preview Personal Voice upgraded to v2.1
+
+Our new “DragonV2.1” model brings improvements to the naturalness of speech, offering more realistic and stable prosody while maintaining better pronunciation accuracy.
+
+### June 2025 release
+
+#### VoiceLive API update 
+- Support more GenAI models: GPT-4.1, GPT-4.1 Mini and GPT-4.1 Nano, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
+- Support more customization capabilities
+- Azure Semantic VAD is extended to support GPT-4o-Realtime and GPT-4o-Mini-Realtime.
+- Availability in more regions
+
+#### Public preview of Voice Conversion feature on selected en-US voices
+
+The following voices are now available for the feature:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-Adam:MultilingualNeural` (Male)            |
+| `en-US`             | `en-US-Amanda:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-Andrew:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-Ava:MultilingualNeural` (Female)               |
+| `en-US`             | `en-US-Brandon:MultilingualNeural` (Male)             |
+| `en-US`             | `en-US-Brian:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Christopher:MultilingualNeural` (Male)         |
+| `en-US`             | `en-US-Cora:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Davis:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Derek:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Dustin:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-EchoTurbo:MultilingualNeural` (Male)         |
+| `en-US`             | `en-US-Emma:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Evelyn:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-FableTurbo:MultilingualNeural` (Neutral)        |
+| `en-US`             | `en-US-Jenny:MultilingualNeural` (Female)             |
+| `en-US`             | `en-US-Lewis:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Lola:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Nancy:MultilingualNeural` (Female)             |
+| `en-US`             | `en-US-NovaTurbo:MultilingualNeural` (Female)         |
+| `en-US`             | `en-US-OnyxTurbo:MultilingualNeural` (Male)           |
+| `en-US`             | `en-US-Phoebe:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-Ryan:MultilingualNeural` (Male)                |
+| `en-US`             | `en-US-Samuel:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-Serena:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-ShimmerTurbo:MultilingualNeural` (Female)      |
+| `en-US`             | `en-US-Steffan:MultilingualNeural` (Male)             |
+
+### May 2025 release
+
+#### Public preview for VoiceLive API
+Azure AI Speech feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
 
 ### April 2025 release
 

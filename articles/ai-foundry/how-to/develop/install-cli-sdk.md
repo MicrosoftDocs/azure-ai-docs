@@ -5,7 +5,7 @@ description: Instructions for installing the Azure AI Foundry SDK and the Azure 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 04/22/2025
+ms.date: 08/27/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
