@@ -20,7 +20,7 @@ zone_pivot_groups: custom-cqa-quickstart
 
 Get started with the custom question answering client library. Follow these steps to install the package and try out the example code for basic tasks.
 
-::: zone pivot="studio"
+::: zone pivot="foundry"
 [!INCLUDE [Azure AI Foundry quickstart](../includes/azure-ai-foundry.md)]
 ::: zone-end
 
