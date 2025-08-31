@@ -5,7 +5,7 @@ description: Learn about the Document Intelligence Batch analysis API
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 08/29/2025
+ms.date: 08/28/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
@@ -160,7 +160,7 @@ Here's an example **successful** response
 
 ```bash
 202 Accepted
-Operation-Location: /documentModels/{modelId}/analyzeBatchResults/{resultId}
+Operation-Location: /documentintelligence/documentModels/{modelId}/analyzeBatchResults/{resultId}?api-version=2024-11-30
 ```
 
 ### 4. Retrieve API results
