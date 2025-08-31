@@ -6,7 +6,6 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
 ms.date: 5/25/2025
-ms.reviewer: eur
 author: PatrickFarley
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn about the Speech to text REST API.
