@@ -60,7 +60,7 @@ Let's begin:
 
 *  From the menu you can select **Add chit chat**, **Add URLs**, or **Add Files**.
 
-  :::image type="content" source="..media/agents/add-source-menu.png" alt-text="Screenshot of add source drop-down menu in the Azure AI Foundry.":::
+  :::image type="content" source="../media/agents/add-source-menu.png" alt-text="Screenshot of add source drop-down menu in the Azure AI Foundry.":::
 
 * For this project, let's choose **Add chitchat**.
 

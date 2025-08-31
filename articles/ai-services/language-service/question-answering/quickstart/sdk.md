@@ -44,7 +44,6 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
 
-
 ## Explore the REST API
 
 * [Authoring API reference](/rest/api/questionanswering/question-answering-projects)
