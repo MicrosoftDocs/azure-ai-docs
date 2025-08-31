@@ -3,7 +3,7 @@ title: Create, test, and deploy your custom question answering project in Azure 
 description: Create a custom question answering project from your own content, such as FAQs or product manuals. This article includes an example of creating a custom question answering project from a simple FAQ webpage, to answer questions.
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 08/30/2025
 ---
 
 This quickstart guides you through the essential steps needed to create, test, and deploy a custom question answering (CQA) project in the Azure AI Foundry. Whether you're transitioning from Language Studio or starting from scratch, this quickstart is for you. It provides clear and actionable instructions to achieve a fast and successful CQA project deployment.
