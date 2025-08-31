@@ -1141,8 +1141,8 @@ groups:
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: Azure AI Foundry
-    title: Language Studio
+  - id: foundry
+    title: Azure AI Foundry
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
