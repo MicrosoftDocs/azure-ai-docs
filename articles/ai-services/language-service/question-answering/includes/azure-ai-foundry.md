@@ -25,16 +25,16 @@ Before you get started, you need the following resources and permissions:
 *   An [Azure AI Search resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.Search) (required for accessing CQA). For more information on how to connect your Azure AI Search resource, *see* [Configure connections in AI Foundry](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry)
 * A Foundry project created in the Azure AI Foundry. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-Let's begin:
+## Get started
 
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
-1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
-1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
-1. If you're not already at your project for this task, select it.
+* Navigate to the [Azure AI Foundry](https://ai.azure.com/).
+* If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
+* Once signed in, you can create or access your existing projects within Azure AI Foundry.
+* If you're not already at your project for this task, select it.
 
 ## Create your CQA fine tuning task
 
-* After you select the Azure AI Foundry project to use for this quickstart, from the left navigation menu select **fine-tuning**.
+* After you select the Azure AI Foundry project to use for this quickstart, select **fine-tuning** from the left navigation menu.
 
    :::image type="content" source="../media/agents/fine-tuning-selection.png" alt-text="Screenshot of the fine-tuning menu selection in the Azure AI Foundry.":::
 
@@ -48,7 +48,9 @@ Let's begin:
 
 *  Select your **Connected Azure AI Search resource** from the **Create CQA fine tuning task** window. For more information, *see* [Configure Azure resource connections](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry).
 
-* Next, complete the **Name** and **Language** fields. For this project, you can leave the **Default answer when no answer is returned** field as **No answer found**. Select the **Create** button.
+* Next, complete the **Name** and **Language** fields. For this project, you can leave the **Default answer when no answer is returned** field as is (**No answer found**). 
+
+* Select the **Create** button.
 
 ## Add a knowledge base source
 
@@ -58,21 +60,21 @@ Let's begin:
 
 * From the main window, select the **+ Add source** drop-down menu.
 
-*  From the menu you can select **Add chit chat**, **Add URLs**, or **Add Files**.
+*  From the drop-down menu you can select **Add chit chat**, **Add URLs**, or **Add Files**.
 
   :::image type="content" source="../media/agents/add-source-menu.png" alt-text="Screenshot of add source drop-down menu in the Azure AI Foundry.":::
 
 * For this project, let's choose **Add chitchat**.
 
-*  From the **Add new source** window, let's choose **Friendly**. Finally, select **Add**. It may take a few minutes for the source to be created.
+*  From the **Add new source** window, let's choose **Friendly**. 
 
    :::image type="content" source="../media/agents/select-source-type.png" alt-text="Screenshot of the select source selection and add button in the Azure AI Foundry.":::
 
+* Finally, select **Add**. It may take a few minutes for the source to be created.
 
 *  Once created, the source is listed in the **Manage sources** window.
 
    :::image type="content" source="../media/agents/manage-sources-list.png" alt-text="Screenshot of manage sources list in the Azure AI Foundry.":::
-
 
 ## Test your knowledge base
 

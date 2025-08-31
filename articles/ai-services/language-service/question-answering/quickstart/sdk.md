@@ -15,10 +15,6 @@ zone_pivot_groups: custom-cqa-quickstart
 
 # Quickstart: custom question answering (CQA)
 
-> [!NOTE]
-> Are you looking to migrate your workloads from QnA Maker? See our [migration guide](../how-to/migrate-qnamaker-to-question-answering.md) for information on feature comparisons and migration steps.
-
-Get started with the custom question answering client library. Follow these steps to install the package and try out the example code for basic tasks.
 
 ::: zone pivot="foundry"
 [!INCLUDE [Azure AI Foundry quickstart](../includes/azure-ai-foundry.md)]
