@@ -10,9 +10,9 @@ ms.author: mbullwin
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
-* An Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability).  If you don't have a resource the process of creating one is documented in our [resource deployment guide](../how-to/create-resource.md).
+* An Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability). If you don't have a resource the process of creating one is documented in our [resource deployment guide](../how-to/create-resource.md).
 * <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>
-* The following Python libraries: openai, num2words, matplotlib, plotly, scipy, scikit-learn, pandas, tiktoken.
+* The following Python libraries: `openai`, `num2words`, `matplotlib`, `plotly`, `scipy`, `scikit-learn`, `pandas`, `tiktoken`.
 * [Jupyter Notebooks](https://jupyter.org/)
 
 ## Set up
@@ -113,7 +113,7 @@ df_bills
 
 **Output:**
 
-:::image type="content" source="../media/tutorials/cleanup-dataframe.png" alt-text="Screenshot of the smaller DataFrame table results with only text, summary and title columns displayed." lightbox="../media/tutorials/cleanup-dataframe.png":::
+:::image type="content" source="../media/tutorials/cleanup-dataframe.png" alt-text="Screenshot of the smaller DataFrame table results with only text, summary, and title columns displayed." lightbox="../media/tutorials/cleanup-dataframe.png":::
 
 Next we'll perform some light data cleaning by removing redundant whitespace and cleaning up the punctuation to prepare the data for tokenization.
 
@@ -135,7 +135,7 @@ def normalize_text(s, sep_token = " \n "):
 df_bills['text']= df_bills["text"].apply(lambda x : normalize_text(x))
 ```
 
-Now we need to remove any bills that are too long for the token limit (8192 tokens).
+Now we need to remove any bills that are too long for the token limit (8,192 tokens).
 
 ```python
 tokenizer = tiktoken.get_encoding("cl100k_base")
@@ -149,7 +149,7 @@ len(df_bills)
 ```
 
 >[!NOTE]
->In this case all bills are under the embedding model input token limit, but you can use the technique above to remove entries that would otherwise cause embedding to fail. When faced with content that exceeds the embedding limit, you can also chunk the content into smaller pieces and then embed those one at a time.
+>In this case all bills are under the embedding model input token limit, but you can use the technique above to remove entries that would otherwise cause embedding to fail. When faced with content that exceeds the embedding limit, you can also chunk the content into smaller pieces and then embed the chunks one at a time.
 
 We'll once again examine **df_bills**.
 
@@ -289,7 +289,7 @@ res = search_docs(df_bills, "Can I get information on cable company tax revenue?
 
 :::image type="content" source="../media/tutorials/query-result.png" alt-text="Screenshot of the formatted results of res once the search query has been run." lightbox="../media/tutorials/query-result.png":::
 
-Finally, we'll show the top result from document search based on user query against the entire knowledge base. This returns the top result of the "Taxpayer's Right to View Act of 1993". This document has a cosine similarity score of 0.76 between the query and the document:
+Finally, we'll show the top result from document search based on user query against the entire knowledge base. This returns the top result of the "Taxpayer's Right to View Act of 1993." This document has a cosine similarity score of 0.76 between the query and the document:
 
 ```python
 res["summary"][9]
