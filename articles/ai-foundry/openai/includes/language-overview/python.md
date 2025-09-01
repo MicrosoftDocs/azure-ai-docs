@@ -15,7 +15,7 @@ ms.date: 08/29/2024
 
 ## Azure OpenAI API version support
 
-- v1 Generally Available (GA) API now allows access to be both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
+- v1 Generally Available (GA) API now allows access to both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
 
 ## Installation
 
