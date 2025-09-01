@@ -3,7 +3,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/26/2025
+ms.date: 09/01/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 ---
@@ -21,21 +21,10 @@ ms.author: mbullwin
 
 If you haven't already, you need to install the following libraries:
 
-# [OpenAI Python 1.x](#tab/python-new)
 
 ```console
 pip install openai num2words matplotlib plotly scipy scikit-learn pandas tiktoken
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```cmd
-pip install "openai==0.28.1" num2words matplotlib plotly scipy scikit-learn pandas tiktoken
-```
-
----
 
 <!--Alternatively, you can use our [requirements.txt file](https://github.com/Azure-Samples/Azure-OpenAI-Docs-Samples/blob/main/Samples/Tutorials/Embeddings/requirements.txt).-->
 
@@ -55,7 +44,7 @@ curl "https://raw.githubusercontent.com/Azure-Samples/Azure-OpenAI-Docs-Samples/
 
 ### Environment variables
 
-Create and assign persistent environment variables for your key and endpoint.
+Create and assign persistent environment variables for your API key.
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
@@ -65,26 +54,17 @@ Create and assign persistent environment variables for your key and endpoint.
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE" 
 ```
 
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE" 
-```
-
 # [PowerShell](#tab/powershell)
 
 ```powershell
 [System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_API_KEY', 'REPLACE_WITH_YOUR_KEY_VALUE_HERE', 'User')
 ```
 
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_ENDPOINT', 'REPLACE_WITH_YOUR_ENDPOINT_HERE', 'User')
-```
 
 # [Bash](#tab/bash)
 
 ```Bash
 echo export AZURE_OPENAI_API_KEY="REPLACE_WITH_YOUR_KEY_VALUE_HERE" >> /etc/environment
-echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/environment
-
 source /etc/environment
 ```
 
@@ -112,97 +92,6 @@ import numpy as np
 import tiktoken
 from openai import AzureOpenAI
 ```
-
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-import openai
-import os
-import re
-import requests
-import sys
-from num2words import num2words
-import os
-import pandas as pd
-import numpy as np
-from openai.embeddings_utils import get_embedding, cosine_similarity
-import tiktoken
-
-API_KEY = os.getenv("AZURE_OPENAI_API_KEY") 
-RESOURCE_ENDPOINT = os.getenv("AZURE_OPENAI_ENDPOINT") 
-
-openai.api_type = "azure"
-openai.api_key = API_KEY
-openai.api_base = RESOURCE_ENDPOINT
-openai.api_version = "2024-10-21"
-
-url = openai.api_base + "/openai/deployments?api-version=2024-10-21" 
-
-r = requests.get(url, headers={"api-key": API_KEY})
-
-print(r.text)
-```
-
-```output
-{
-  "data": [
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "text-embedding-ada-002",
-      "owner": "organization-owner",
-      "id": "text-embedding-ada-002",
-      "status": "succeeded",
-      "created_at": 1657572678,
-      "updated_at": 1657572678,
-      "object": "deployment"
-    },
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "code-cushman-001",
-      "owner": "organization-owner",
-      "id": "code-cushman-001",
-      "status": "succeeded",
-      "created_at": 1657572712,
-      "updated_at": 1657572712,
-      "object": "deployment"
-    },
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "text-search-curie-doc-001",
-      "owner": "organization-owner",
-      "id": "text-search-curie-doc-001",
-      "status": "succeeded",
-      "created_at": 1668620345,
-      "updated_at": 1668620345,
-      "object": "deployment"
-    },
-    {
-      "scale_settings": {
-        "scale_type": "standard"
-      },
-      "model": "text-search-curie-query-001",
-      "owner": "organization-owner",
-      "id": "text-search-curie-query-001",
-      "status": "succeeded",
-      "created_at": 1669048765,
-      "updated_at": 1669048765,
-      "object": "deployment"
-    }
-  ],
-  "object": "list"
-}
-```
-
-The output of this command will vary based on the number and type of models you've deployed. In this case, we need to confirm that we have an entry for **text-embedding-ada-002**. If you find that you're missing this model, you'll need to [deploy the model](../how-to/create-resource.md#deploy-a-model) to your resource before proceeding.
-
----
 
 Now we need to read our csv file and create a pandas DataFrame. After the initial DataFrame is created, we can view the contents of the table by running `df`.
 
@@ -347,13 +236,10 @@ Now that we understand more about how tokenization works we can move on to embed
 
 In the example below we're calling the embedding model once per every item that we want to embed. When working with large embedding projects you can alternatively pass the model an array of inputs to embed rather than one input at a time. When you pass the model an array of inputs the max number of input items per call to the embedding endpoint is 2048.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```python
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-02-01",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 def generate_embeddings(text, model="text-embedding-ada-002"): # model = "deployment_name"
@@ -362,13 +248,6 @@ def generate_embeddings(text, model="text-embedding-ada-002"): # model = "deploy
 df_bills['ada_v2'] = df_bills["text"].apply(lambda x : generate_embeddings (x, model = 'text-embedding-ada-002')) # model should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-df_bills['ada_v2'] = df_bills["text"].apply(lambda x : get_embedding(x, engine = 'text-embedding-ada-002')) # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
-```
-
----
 
 ```python
 df_bills
@@ -379,8 +258,6 @@ df_bills
 :::image type="content" source="../media/tutorials/embed-text-documents.png" alt-text="Screenshot of the formatted results from df_bills command." lightbox="../media/tutorials/embed-text-documents.png":::
 
 As we run the search code block below, we'll embed the search query *"Can I get information on cable company tax revenue?"* with the same **text-embedding-ada-002 (Version 2)** model. Next we'll find the closest bill embedding to the newly embedded text from our query ranked by [cosine similarity](../concepts/understand-embeddings.md).
-
-# [OpenAI Python 1.x](#tab/python-new)
 
 ```python
 def cosine_similarity(a, b):
@@ -407,31 +284,6 @@ def search_docs(df, user_query, top_n=4, to_print=True):
 
 res = search_docs(df_bills, "Can I get information on cable company tax revenue?", top_n=4)
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-```python
-# search through the reviews for a specific product
-def search_docs(df, user_query, top_n=3, to_print=True):
-    embedding = get_embedding(
-        user_query,
-        engine="text-embedding-ada-002" # engine should be set to the deployment name you chose when you deployed the text-embedding-ada-002 (Version 2) model
-    )
-    df["similarities"] = df.ada_v2.apply(lambda x: cosine_similarity(x, embedding))
-
-    res = (
-        df.sort_values("similarities", ascending=False)
-        .head(top_n)
-    )
-    if to_print:
-        display(res)
-    return res
-
-
-res = search_docs(df_bills, "Can I get information on cable company tax revenue?", top_n=4)
-```
-
----
 
 **Output**:
 
