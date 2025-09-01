@@ -11,7 +11,6 @@ This quickstart guides you through the essential steps needed to create, test, a
 > [!NOTE]
 >
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. For more information, see [How to use Azure AI services in the Azure AI Foundry portal](../../../../ai-services/connect-services-ai-foundry-portal.md).
-> * In Azure AI Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
 > * We highly recommend that you use an Azure AI Foundry resource in the AI Foundry; however, you can also follow these instructions using a Language resource.
 >
 
@@ -27,80 +26,91 @@ Before you get started, you need the following resources and permissions:
 
 ## Get started
 
-* Navigate to the [Azure AI Foundry](https://ai.azure.com/).
-* If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
-* Once signed in, you can create or access your existing projects within Azure AI Foundry.
-* If you're not already at your project for this task, select it.
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
+
+1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
+
+1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
+
+1. If you're not already at your project for this task, select it.
 
 ## Create your CQA fine tuning task
 
-* After you select the Azure AI Foundry project to use for this quickstart, select **fine-tuning** from the left navigation menu.
+In the Azure AI Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
 
-   :::image type="content" source="../media/agents/fine-tuning-selection.png" alt-text="Screenshot of the fine-tuning menu selection in the Azure AI Foundry.":::
+1. After you select the Azure AI Foundry project to use for this quickstart, select **fine-tuning** from the left navigation menu.
 
-*  From the main window, select the **AI Service fine-tuning** tab and then the **+ Fine-tune button**.
+     :::image type="content" source="../media/agents/fine-tuning-selection.png" alt-text="Screenshot of the fine-tuning menu selection in the Azure AI Foundry.":::
 
-    :::image type="content" source="../media/agents/fine-tune-button.png" alt-text="Screenshot of fine-tune button in the Azure AI Foundry.":::
+1. From the main window, select the **AI Service fine-tuning** tab and then the **+ Fine-tune button**.
 
-* From the **Create service fine-tuning** window, choose the **Custom question answering** tab and then select **Next**.
+     :::image type="content" source="../media/agents/fine-tune-button.png" alt-text="Screenshot of fine-tune button in the Azure AI Foundry.":::
 
-    :::image type="content" source="../media/agents/custom-question-answering-tab.png" alt-text="Screenshot of custom question answering tab in the Azure AI Foundry.":::
+1. From the **Create service fine-tuning** window, choose the **Custom question answering** tab and then select **Next**.
 
-*  Select your **Connected Azure AI Search resource** from the **Create CQA fine tuning task** window. For more information, *see* [Configure Azure resource connections](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry).
+     :::image type="content" source="../media/agents/custom-question-answering-tab.png" alt-text="Screenshot of custom question answering tab in the Azure AI Foundry.":::
 
-* Next, complete the **Name** and **Language** fields. For this project, you can leave the **Default answer when no answer is returned** field as is (**No answer found**). 
+1. Select your **Connected Azure AI Search resource** from the **Create CQA fine tuning task** window. For more information, *see* [Configure Azure resource connections](../../conversational-language-understanding/how-to/configure-azure-resources.md#step-2-configure-connections-in-ai-foundry).
 
-* Select the **Create** button.
+1. Next, complete the **Name** and **Language** fields. For this project, you can leave the **Default answer when no answer is returned** field as is (**No answer found**).
 
-## Add a knowledge base source
+1. Select the **Create** button.
 
-*  From the **Getting Started** menu, select **Manage sources**.
+## Add a CQA knowledge base source
 
-   :::image type="content" source="../media/agents/manage-sources.png" alt-text="Screenshot of manage sources selection in the Azure AI Foundry.":::
+A CQA knowledge base is a structured set of question-and-answer pairs optimized for conversational AI. The knowledge base uses natural language processing to interpret user queries and return context-aware, accurate answers from a specific dataset.
 
-* From the main window, select the **+ Add source** drop-down menu.
+1. From the **Getting Started** menu, select **Manage sources**.
 
-*  From the drop-down menu you can select **Add chit chat**, **Add URLs**, or **Add Files**.
+     :::image type="content" source="../media/agents/manage-sources.png" alt-text="Screenshot of manage sources selection in the Azure AI Foundry.":::
 
-  :::image type="content" source="../media/agents/add-source-menu.png" alt-text="Screenshot of add source drop-down menu in the Azure AI Foundry.":::
+1. From the main window, select the **+ Add source** drop-down menu.
 
-* For this project, let's choose **Add chitchat**.
+1. From the drop-down menu you can select **Add chit chat**, **Add URLs**, or **Add Files**.
 
-*  From the **Add new source** window, let's choose **Friendly**. 
+     :::image type="content" source="../media/agents/add-source-menu.png" alt-text="Screenshot of add source drop-down menu in the Azure AI Foundry.":::
 
-   :::image type="content" source="../media/agents/select-source-type.png" alt-text="Screenshot of the select source selection and add button in the Azure AI Foundry.":::
+1. For this project, let's choose **Add chitchat**.
 
-* Finally, select **Add**. It may take a few minutes for the source to be created.
+1. From the **Add new source** window, let's choose **Friendly**.
 
-*  Once created, the source is listed in the **Manage sources** window.
+     :::image type="content" source="../media/agents/select-source-type.png" alt-text="Screenshot of the select source selection and add button in the Azure AI Foundry.":::
 
-   :::image type="content" source="../media/agents/manage-sources-list.png" alt-text="Screenshot of manage sources list in the Azure AI Foundry.":::
+1. Finally, select **Add**. It may take a few minutes for the source to be created.
+
+1. Once created, the source is listed in the **Manage sources** window.
+
+     :::image type="content" source="../media/agents/manage-sources-list.png" alt-text="Screenshot of manage sources list in the Azure AI Foundry.":::
 
 ## Test your knowledge base
 
-* Select **Test knowledge base** from the **Getting Started** menu.
+1. Select **Test knowledge base** from the **Getting Started** menu.
 
-*  Type the following in the **Type your question** field and then select **Run**.
+1. Type the following in the **Type your question** field and then select **Run**.
 
-   ```text
-      Hello! How are you doing today?
+     ```text
+       Hello! How are you doing today?
 
-   ```
+     ```
 
-* In the inspection interface, you can review the response confidence level and choose the most suitable answer.
+1. In the inspection interface, you can review the response confidence level and choose the most suitable answer.
 
-:::image type="content" source="../media/agents/inspection-interface.png" alt-text="Screenshot of the inspection interface in the Azure AI Foundry.":::
+    :::image type="content" source="../media/agents/inspection-interface.png" alt-text="Screenshot of the inspection interface in the Azure AI Foundry.":::
 
 
 ## Deploy the Knowledge Base
 
-*  Once your inspection is complete, choose the **Deploy knowledge base** section from the **Getting Started** menu.
+Deploying a CQA knowledge base means publishing your curated question-and-answer content as a live, searchable endpoint. This process moves your project from a testing phase to a production environment enabling client applications to use it for various projects and solutions, including chatbots.
 
-* Select the **Deploy** button first from the **Deploy knowledge base** main window and then from the **Deploy this project** pop-up window. It takes a few minutes to deploy.
+1. Once your inspection is complete, choose the **Deploy knowledge base** section from the **Getting Started** menu.
 
-* Once deployment is complete, your deployed project is listed in the **Deploy knowledge base** window.
+1. Select the **Deploy** button first from the **Deploy knowledge base** main window and then from the **Deploy this project** pop-up window. It takes a few minutes to deploy.
 
-That's it! Your Custom Question Answering (CQA) knowledge base enables a natural language interface for your data. With this deployed solution, you can build intelligent chatbots and interactive agents that understand user queries, deliver accurate responses, and adapt to evolving informational needs.
+1. After deployment is complete, your deployed project is listed in the **Deploy knowledge base** window.
+
+That's it! Your Custom Question Answering (CQA) knowledge base provides a natural language interface to your data, allowing users to interact with information in a conversational manner. By deploying this solution, you can create advanced chatbots and interactive agents that comprehend user questions, supply precise answers, and adjust to changing informational requirements.
+
+
 
 
 
