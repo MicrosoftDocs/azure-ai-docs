@@ -65,6 +65,14 @@ items:
           href: ../../openai/latest.md#list-evals
         - name: Files
           href: ../../openai/latest.md#create-file
+        - name: Fine-tuning
+          href: ../../openai/latest.md#create-fine-tuning-job
+        - name: Models
+          href: ../../openai/latest.md#list-models
+        - name: Responses
+          href: ../../openai/latest.md#create-response   
+        - name: Vector stores
+          href: ../../openai/latest.md#list-vector-stores
       - name: v1 Preview API
         href: ../../openai/reference-preview-latest.md
   - name: Pre v1 API
