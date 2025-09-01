@@ -98,7 +98,7 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
     :::image type="content" source="../media/agents/inspection-interface.png" alt-text="Screenshot of the inspection interface in the Azure AI Foundry.":::
 
 
-## Deploy the Knowledge Base
+## Deploy your knowledge base
 
 Deploying a CQA knowledge base means publishing your curated question-and-answer content as a live, searchable endpoint. This process moves your project from a testing phase to a production environment enabling client applications to use it for various projects and solutions, including chatbots.
 
