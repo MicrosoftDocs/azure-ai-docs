@@ -135,7 +135,7 @@ func main() {
 
 	// Create client with Azure endpoint and token credential
 	client := openai.NewClient(
-		option.WithBaseURL("https://france-central-test-001.openai.azure.com/openai/v1/"),
+		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
 		azure.WithTokenCredential(tokenCredential),
 	)
 
@@ -155,25 +155,3 @@ func main() {
 }
 ```
 
-
-
-
-## Error handling
-
-All methods that send HTTP requests return `*azcore.ResponseError` when these requests fail. `ResponseError` has error details and the raw response from the service.
-
-### Logging
-
-This module uses the logging implementation in azcore. To turn on logging for all Azure SDK modules, set AZURE_SDK_GO_LOGGING to all. By default, the logger writes to stderr. Use the azcore/log package to control log output. For example, logging only HTTP request and response events, and printing them to stdout:
-
-```go
-import azlog "github.com/Azure/azure-sdk-for-go/sdk/azcore/log"
-
-// Print log events to stdout
-azlog.SetListener(func(cls azlog.Event, msg string) {
-	fmt.Println(msg)
-})
-
-// Includes only requests and responses in credential logs
-azlog.SetEvents(azlog.EventRequest, azlog.EventResponse)
-```
