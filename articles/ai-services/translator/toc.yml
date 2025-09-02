@@ -28,7 +28,7 @@ items:
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
 
-- name: Text translation 2025-05-01-preview 🆕
+- name: Text translation (2025-05-01-preview) 🆕
   items:
   - name: Overview 🆕
     displayName: gpt, adaptive, tone, gender
@@ -36,7 +36,7 @@ items:
   - name: "Migrate to 2025-05-01-preview 🆕"
     displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
     href: text-translation/how-to/migrate-to-preview.md
-  - name: REST API guide (preview) 🆕
+  - name: REST API guide (2025-05-01-preview) 🆕
     displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
     href: text-translation/preview/rest-api-guide.md
   - name: Get languages 🆕
@@ -80,10 +80,6 @@ items:
   - name: Migrate to v3 Text translation API
     displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
     href: text-translation/how-to/migrate-to-v3.md
-
-  - name: Authentication and authorization
-    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/authentication.md
 
   - name: Quickstarts
     items:
@@ -136,6 +132,9 @@ items:
           href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
         - name: Ruby
           href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
+- name: Text translation authentication
+  displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+  href: text-translation/reference/authentication.md
 
 - name: Document translation
   items:
