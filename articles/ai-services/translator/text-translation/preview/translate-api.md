@@ -22,12 +22,18 @@ The Text translation API enables you to translate your source language text into
 
 ## Request URL
 
-**Send a `POST` request to**:
+### Global endpoint
+
+**Send a `POST` request**:
 
 ```bash
-https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview"
 
 ```
+
+### Custom endpoint
+
+
 
 For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 

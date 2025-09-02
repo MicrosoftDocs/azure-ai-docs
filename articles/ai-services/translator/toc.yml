@@ -108,30 +108,34 @@ items:
     - name: Translate behind firewalls
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
+  - name: V3 code samples
+    items:
+    - name: Code Sample page
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
+    - name: C# samples
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
+    - name: Java
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
+    - name: Python
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
+    - name: Node.js
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
+    - name: Go
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
+    - name: PHP
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
+    - name: Ruby
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby   
 
   - name: Reference (GA)
     items:
       - name: Status codes
         displayName: 401000,405000,400000
         href: text-translation/reference/status-response-codes.md
-      - name: V3 code samples
-        items:
-        - name: Code Sample page
-          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
-        - name: C# samples
-          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
-        - name: Java
-          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
-        - name: Python
-          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
-        - name: Node.js
-          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
-        - name: Go
-          href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
-        - name: PHP
-          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
-        - name: Ruby
-          href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
+      - name: metrics
+        displayName: document count,character count,translation duration
+        href: text-translation/reference/metrics.md
+
 - name: Text translation authentication
   displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
   href: text-translation/reference/authentication.md

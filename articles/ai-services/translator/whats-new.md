@@ -25,7 +25,7 @@ Azure AI Translator service supports language translation for more than 100 lang
 
 ### Azure AI Translator 2025-05-01-preview
 
-Azure AI Translator 2025-05-01-preview is our latest cloud-based, multilingual, neural machine translation service. This Text translation API provides the flexibility for you to choose general neural machine translation (NMT), or a list of generative AI large language models (LLMs) at a request level and enables robust and scalable translation capabilities suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md)
+Azure AI Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. You can choose between general neural machine translation (NMT) or select from a list of generative AI large language models (LLMs) at the request level. The service enables robust and scalable translation capabilities, making it suitable for diverse applications. For more information, *see* [Text translation overview](text-translation/overview.md).
 
 ## July 2025
 

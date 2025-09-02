@@ -10,11 +10,11 @@ ms.date: 06/19/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator 2025-05-01-preview 
+# Azure AI Translator 2025-05-01-preview
 
-Azure AI Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications. 
+Azure AI Translator `2025-05-01-preview` is our latest cloud-based, multilingual, neural machine translation service. The Text translation API enables robust and scalable translation capabilities suitable for diverse applications.
 
-The Translator service is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.  
+The Translator service is an optimal solution for managing extensive multilingual content. It easily integrates with your applications and workflows through a single REST API call and supports multiple programming languages. Translator supports over 100 languages and dialects, making it ideal for businesses, developers, and organizations seeking to seamlessly integrate multilingual communication.
 
 
 >[!IMPORTANT]
@@ -25,9 +25,21 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 ## What's new for 2025-05-01-preview?
 
-* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or one of two Large Language Model (LLM) deployment types: GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
+* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or a Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
 
-* **Adaptive custom translation**. You can provide reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations tailored to your needs. 
+* **Adaptive custom translation**. You can provide up to five reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs.
+
+* **Tone variant translations**. Use generative AI LLMs translate text across multiple tonal categories—formal, informal, and neutral—ensuring precise contextual adaptation.
+
+*  **Gender-specific language translations**.  Apply generative AI LLMs for the linguistic transformation of text according to specified gender parameters—male, female, and neutral—to ensure targeted stylistic and semantic alignment.
+
+## Language support
+
+The languages supported for LLM and Adaptive custom translations are listed in the Translation section of our [Language support page](../../language-support.md#translation).
+
+## Authentication
+
+The `2025-05-01-preview` API supports both the resource API key and Microsoft Entra ID authentication. For your information, *see* [Authorization and authentication](../../text-translation/reference/authentication.md)
 
 ## Base URLs
 
@@ -49,64 +61,6 @@ To force the request to be handled within a specific geography, use the desired 
 
 Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
 
-## Metrics
-
-Metrics allow you to view the translator usage and availability information in Azure portal, under metrics section as shown in the following screenshot. For more information, see [Data and platform metrics](/azure/azure-monitor/essentials/data-platform-metrics).
-
-:::image type="content" source="../../media/azure-portal-metrics-v4.png" alt-text="Screenshot of HTTP request metrics in the Azure portal.":::
-
-#### Metrics terminology
-
-* **PTU**: provisioned throughput units
-* **TPS**: transactions per second
-* **TPM**: tokens per minute
-
-The following tables list available metrics with description of how they're used to monitor **Translator resource** API calls.
-
-#### Translator resource HTTP requests
-
-| Metrics | Description |
-|:----|:-----|
-| `BlockedCalls`| Number of calls that exceeded rate or quota limit.|
-| `ClientErrors`| Number of calls with client-side error(4XX).|
-| `Latency`| Duration to complete request in milliseconds.|
-| `Ratelimit`| The current rate limit of the rate limit key.|
-| `ServerErrors`| Number of calls with server internal error(5XX).|
-| `SuccessfulCalls`| Number of successful calls.|
-| `TotalCalls`| Total number of API calls.|
-| `TotalErrors`| Number of calls with error response.|
-| `TotalTokenCalls`| Total number of API calls via token service using authentication token.|
-
-#### Translator resource usage
-
-| Metrics | Description |
-|:----|:-----|
-| `TextCharactersTranslated`|Number of characters in incoming text translation request.|
-| `TextCustomCharactersTranslated`|Number of characters in incoming custom text translation request.|
-| `TextTrainedCharacters`|Number of characters trained using text translation.|
-| `DocumentCharactersTranslated`|Number of characters in document translation request.|
-| `DocumentCustomCharactersTranslated`|Number of characters in custom document translation request.|
-
-The following tables list available metrics with description of how they're used to monitor **Azure OpenAI** API calls.
-
-#### Azure OpenAI HTTP requests
-
-| Metrics | Description |
-|:----|:-----|
-| `AzureOpenAIAvailabilityRate`|Availability percentage with the following calculation:<br>`(Total Calls - Server Errors) / Total Calls`. Server Errors include any HTTP response >= 500.|
-|`AzureOpenAIRequests`|Number of calls made to the Azure OpenAI API over a period of time. Applies to `PTU`, `PTU`-managed, and Pay-as-you-go deployments. To breakdown API requests, you can add a filter or apply splitting by the following dimensions: <br> `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` (successful, client errors, server errors), `StreamType` (streaming vs nonstreaming requests), and `Operation`.|
-
-#### Azure OpenAI usage
-
-| Metrics | Description |
-|:----|:-----|
-|`ActiveTokens`|Total tokens minus cached tokens over a period of time. Applies to `PTU` and `PTU`-managed deployments. Use this metric to understand your `TPS`- or `TPM`-based utilization for `PTU`s and compare your benchmarks for target `TPS` or `TPM` for your scenarios. <br> To breakdown API requests, you can add a filter or apply splitting by the following dimensions: `ModelDeploymentName`, `ModelName`, `ModelVersion`.|
-|`GeneratedTokens`|Number of tokens generated (output) from an OpenAI model. Applies to `PTU`, `PTU`-managed, and Pay-as-you-go deployments. To analyze this metric in detail, you can add a filter or apply splitting by the following dimensions:<br>`ModelDeploymentName`or `ModelName`.|
-|`FineTunedTrainingHours`|Number of training hours processed on an OpenAI fine-tuned model.|
-|`TokenTransaction`|Number of inference tokens processed on an OpenAI model. Calculated as prompt tokens (input) plus generated tokens (output). Applies to `PTU`, `PTU`-managed, and Pay-as-you-go deployments. To analyze this metric in detail, you can add a filter or apply splitting by the following dimensions:<br>`ModelDeploymentName`or `ModelName`.|
-|`ProcessedPromptTokens`|Number of prompt tokens processed (input) on an OpenAI model. Applies to `PTU`, `PTU`-managed, and Pay-as-you-go deployments. To analyze this metric in detail, you can add a filter or apply splitting by the following dimensions:<br>`ModelDeploymentName`or `ModelName`.|
-|`AzureOpenAIContextTokensCacheMatchRate`|Percentage of prompt tokens that hit the cache. Applies to `PTU` and `PTU`-managed deployments.
-|`AzureOpenAIProvisionedManagedUtilizationV2`|Utilization percentage for a provisioned-managed deployment, calculated as (`PTU`s consumed / `PTU`s deployed) x 100. When utilization is greater than or equal to 100%, calls are throttled and error code 429 is returned. To analyze this metric in detail, you can add a filter or apply splitting by the following dimensions: `ModelDeploymentName`, `ModelName`, `ModelVersion`, and `StreamType` (streaming vs nonstreaming requests).|
 
 
 
