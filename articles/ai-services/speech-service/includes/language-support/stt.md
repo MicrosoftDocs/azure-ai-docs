@@ -59,7 +59,7 @@ ms.author: pafarley
 | `es-AR` | Spanish (Argentina) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-BO` | Spanish (Bolivia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CL` | Spanish (Chile) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-CO` | Spanish (Colombia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-CO` | Spanish (Colombia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CR` | Spanish (Costa Rica) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CU` | Spanish (Cuba) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-DO` | Spanish (Dominican Republic) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
