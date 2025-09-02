@@ -22,6 +22,8 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 ## Key points about a knowledge source
 
++ Creation path: first create knowledge source, then create knowledge agents. Deletion path: update or delete knowledge agents, delete knowledge sources last.
+
 + A knowledge source, its index, and the knowledge agent must all exist on the same search service.
 
 + Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
@@ -80,3 +82,34 @@ To achieve the fastest possible response times, follow these best practices:
 + Retain `includeReferences` set to true (default setting) for details about each individually scored result.
 
 + Set `includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
+
+## Delete a knowledge source
+
+Before you can delete a knowledge source, you must delete or update the knowledge agent that references it. The associated index is a standalone object in Azure AI Search and doesn't need to be deleted or updated in tandem with the knowledge source.
+
+1. Get the knowledge agent definition.
+
+    ```http
+    ### Get the knowledge agent
+    GET {{search-endpoint}}/agents/hotels-index-ka?api-version=2025-08-01-preview
+    api-key: {{api-key}}
+    Content-Type: application/json
+    ```
+
+1. Either update the knowledge agent by removing the knowledge source, or delete the knowledge agent. This example shows deletion.
+
+    ```http
+    ### Delete knowledge agent
+    DELETE {{search-endpoint}}/agents/hotels-index-ka?api-version=2025-08-01-preview
+    api-key: {{api-key}}
+    Content-Type: application/json
+    ```
+
+1. Delete the knowledge source.
+
+    ```http
+    ### Delete a knowledge source definition
+    GET {{search-endpoint}}/knowledgeSources/hotels-index-ks?api-version=2025-08-01-preview
+    api-key: {{api-key}}
+    Content-Type: application/json
+    ```

@@ -211,9 +211,11 @@ We recommend using the Azure portal to validate output creation.
 
 ## Assign to a knowledge agent
 
-If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge agent](search-agentic-retrieval-how-to-create.md).
+If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge agent](search-agentic-retrieval-how-to-create.md).
 
 Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
+
+After the knowledge agent is configured, use the retrieve action to query the knowledge source.
 
 ## Delete a knowledge source
 
