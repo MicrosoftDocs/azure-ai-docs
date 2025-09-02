@@ -28,6 +28,36 @@ Sora is now available in the Sweden Central region as well as East US 2.
 
 TBD To create a video generation job with inpainting, user should send a POST request to : POST `/video/generations/jobs?api-version=preview`     api-version is v1 if not otherwise specified
 
+### Realtime API audio model GA
+
+OpenAI's GPT-4o RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
+
+Model improvements:
+- Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
+- New standard voices, Marin and Cedar, that bring improved naturalness and clarity to speech synthesis.
+- Improved audio quality: Glitch-free output, improved alphanumeric reproduction, and modality control.
+
+Realtime API service improvements:
+- Image Input: Add and discuss images via voice without video requirements.
+- Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
+- Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
+- SIP entry supported: public SIP URI, SIPS/SRTP, PSTN, HD Voice. 
+
+
+We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
+
+<!-- and quickstart page: https://learn.microsoft.com/en-us/azure/ai-foundry/openai/realtime-audio-quickstart?tabs=keyless%2Cwindows&pivots=ai-foundry-portal -->
+
+
+<!--
+### gpt-audio Preview
+
+- Designed for audio content creation and analysis. It’s great for: 
+    - Spoken summaries and audio narration
+    - Sentiment analysis from voice
+    - Captioning and meeting summaries
+- It supports both streaming and non-streaming audio completions, expressive multilingual output, and REST API integration. -->
+
 ### Provisioned spillover General Availability (GA)
 
 Spillover is now Generally Available. Spillover manages traffic fluctuations on provisioned deployments by routing overages to a designated standard deployment. To learn more about how to maximize utilization for your provisioned deployments with spillover, see [Manage traffic with spillover for provisioned deployments](./how-to/spillover-traffic-management.md).
@@ -41,7 +71,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 - **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
 
-- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
+- `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` don't require registration.
 
 
 ### New version of model-router
@@ -79,7 +109,7 @@ Sora (2025-05-02) is a video generation model from OpenAI that can create realis
 
 Follow the [Video generation quickstart](/azure/ai-foundry/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
-### Spotlighting for prompt shields
+### Spotlighting for prompt shields (preview)
 
 Spotlighting is a sub-feature of prompt shields that enhances protection against indirect (embedded document) attacks by tagging input documents with special formatting to indicate lower trust to the model. For more information, see the [Prompt shields filter](./concepts/content-filter-prompt-shields.md) documentation.
 
@@ -107,7 +137,7 @@ Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to
 
 ### o4-mini and o3 models released
 
-`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering significantly enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
+`o4-mini` and `o3` models are now available. These are the latest reasoning models from Azure OpenAI offering enhanced reasoning, quality, and performance. For more information, see the [getting started with reasoning models page](./how-to/reasoning.md).
 
 ### GPT-4.1 released
 
@@ -127,9 +157,9 @@ For more information about available models, see the [models and versions docume
 
 ### Responses API & computer-use-preview model
 
-The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](./how-to/computer-use.md) capability.
+The [Responses API](./how-to/responses.md) is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model, which powers the [Computer use](./how-to/computer-use.md) capability.
 
-**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models will still need to request access for this model.
+**For access to `computer-use-preview` registration is required, and access will be granted based on Microsoft's eligibility criteria**. Customers who have access to other limited access models still need to request access for this model.
 
 Request access: [`computer-use-preview` limited access model application](https://aka.ms/oai/cuaaccess)
 
@@ -194,7 +224,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 
 - Added support for [prompt caching](./how-to/prompt-caching.md) with the `gpt-4o-realtime-preview` model.
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
-- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100K TPM and 1K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit will be 100K TPM and 1K RPM.
+- Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
 For more information, see the [GPT-4o real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 
@@ -238,7 +268,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### NEW data zone provisioned deployment type
 
-Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to leverage Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within Microsoft specified data zones. Data zone provisioned deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
+Data zone provisioned deployments are available in the same Azure OpenAI resource as all other Azure OpenAI deployment types but allow you to use Azure global infrastructure to dynamically route traffic to the data center within the Microsoft defined data zone with the best availability for each request. Data zone provisioned deployments provide reserved model processing capacity for high and predictable throughput using Azure infrastructure within Microsoft specified data zones. Data zone provisioned deployments are supported on `gpt-4o-2024-08-06`, `gpt-4o-2024-05-13`, and `gpt-4o-mini-2024-07-18` models.
 
 For more information, see the [deployment types guide](https://aka.ms/aoai/docs/deployment-types).
 

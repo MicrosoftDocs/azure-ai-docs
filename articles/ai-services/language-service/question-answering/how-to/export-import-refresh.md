@@ -2,7 +2,6 @@
 title: Export/import/refresh | custom question answering projects and projects
 description: Learn about backing up your custom question answering projects and projects
 ms.service: azure-ai-language
-ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar

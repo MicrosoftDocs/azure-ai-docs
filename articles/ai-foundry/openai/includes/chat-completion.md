@@ -6,7 +6,7 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 08/29/2024
+ms.date: 09/01/2025
 manager: nitinme
 keywords: ChatGPT
 
@@ -19,12 +19,11 @@ The following code snippet shows the most basic way to interact with models that
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.chat.completions.create(
@@ -238,12 +237,11 @@ Every time a new question is asked, a running transcript of the conversation so 
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 conversation=[{"role": "system", "content": "You are a helpful assistant."}]
@@ -279,12 +277,11 @@ The code uses tiktoken `0.5.1`. If you have an older version, run `pip install t
 ```python
 import tiktoken
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 system_message = {"role": "system", "content": "You are a helpful assistant."}

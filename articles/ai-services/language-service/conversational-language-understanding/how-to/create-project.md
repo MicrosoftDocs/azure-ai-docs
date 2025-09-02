@@ -43,36 +43,17 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 
    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Azure AI Foundry.":::
 
-1. Select **the AI Service fine-tuning** tab and then **+ Fine-tune** button.
+1. From the main window, select **the AI Service fine-tuning** tab and then the **+ Fine-tune** button.
 
-   :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tuning button in the Azure AI Foundry.":::
+   :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tune button in the Azure AI Foundry.":::
 
-1. From **Create service fine-tuning** window, choose the **Conversational language understanding** tab then select **Next**.
+1. From the **Create service fine-tuning** window, choose the **Conversational language understanding** tab and then select **Next**.
 
    :::image type="content" source="../media/select-project.png" alt-text="Screenshot of conversational language understanding tab in the Azure AI Foundry.":::
 
-1. In **Create CLU fine-tuning task** window, complete the **Name** and **Language** fields. If you're planning to fine-tune a model using the free **Standard Training** mode, select **English** for the language field.
-
-1. Navigate to the [Azure AI Foundry](https://ai.azure.com/).
-1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
-1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
-1. If you're not already at your project for this task, select it.
-1. Select Fine-tuning from the left navigation panel.
-
-    :::image type="content" source="../media/select-fine-tuning.png" alt-text="Screenshot of fine-tuning selector in the Azure AI Foundry.":::
-
-1. Select **the AI Service fine-tuning** tab and then **+ Fine-tune** button.
-
-    :::image type="content" source="../media/fine-tune-button.png" alt-text="Screenshot of fine-tuning button in the Azure AI Foundry.":::
-
-1. From **Create service fine-tuning** window, choose the **Conversational language understanding** tab then select **Next**.
-
-    :::image type="content" source="../media/select-project.png" alt-text="Screenshot of conversational language understanding selection card in the Azure AI Foundry.":::
-
-1. In **Create CLU fine tuning task** window, select your **Connected service** from the drop-down menu, then complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
+1. In the **Create CLU fine-tuning task** window, complete the **Name** and **Language** fields. If you're planning to fine-tune a model using the free **Standard Training** mode, select **English** for the language field.
 
 1. Select the  **Create** button. It can take a few minutes for the *creating* operation to complete.
-
 
    > [!NOTE]
    >

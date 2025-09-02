@@ -2,13 +2,13 @@
 title: What are Azure AI services?
 titleSuffix: Azure AI services
 description: Azure AI services are cloud-based artificial intelligence (AI) services that help developers build cognitive intelligence into applications without having direct AI or data science skills or knowledge.
-author: eric-urban
+author: nitinme
 manager: nitinme
 keywords: Azure AI services, cognitive
 ms.service: azure-ai-services
 ms.topic: overview
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: nitinme
 ms.custom:
   - build-2023
   - build-2023-dataai
