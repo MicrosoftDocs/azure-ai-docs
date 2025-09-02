@@ -15,7 +15,7 @@ ms.topic: include
 You can create an evaluation by specifying a data source config and the evaluation testing criteria. Below is one of many ways you can define a data source config. You can also specify one or many testing criteria.
 
 ```curl
-curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals?api-version=preview" \
+curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "aoai-evals: preview" \
@@ -54,7 +54,7 @@ Azure OpenAI Evaluation allows creating multiple runs under an evaluation job.
 You can add new evaluation runs to the evaluation job you had created in the previous step, by specifying `eval-id`.
 
 ```curl
-curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs?api-version=preview" \
+curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -H "aoai-evals: preview" \
@@ -63,7 +63,7 @@ curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs?api-version=
 ### Update Existing Evaluation
 
 ```curl
-curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}?api-version=preview" \
+curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id} \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -H "aoai-evals: preview" \
@@ -74,7 +74,7 @@ curl -X POST "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}?api-version=previ
 Once evaluation is complete, you can fetch the evaluation results for the evaluation job by specifying the `eval_id`.
 
 ```curl
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}?api-version=preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -H "aoai-evals: preview" \
@@ -85,7 +85,7 @@ curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}?api-version=previe
 Just like how you can create a single evaluation run under an existing evaluation job, you can also retrieve the result for a single run:
 
 ```curl
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}?api-version=preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -H "aoai-evals: preview" \
@@ -109,7 +109,7 @@ In addition to the parameters in the examples above, you can optionally add thes
 To see the list of all evaluation jobs that were created:
 
 ```curl
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs?api-version=preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -H "aoai-evals: preview" \
@@ -120,7 +120,7 @@ curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs?api-version=p
 You can view the individual outputs generated from the graders for a single evaluation run: 
 
 ```curl
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/output_items?api-version=preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/output_items" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
   -H "aoai-evals: preview" \
@@ -129,7 +129,7 @@ curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/outp
 If you have a particular output result you would like to see, you can specify the output item ID: 
 
 ```curl
-curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/output_items/{output-item-id}?api-version=preview" \
+curl -X GET "$AZURE_OPENAI_ENDPOINT/openai/v1/evals/{eval-id}/runs/{run-id}/output_items/{output-item-id}" \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY"
   -H "aoai-evals: preview" \

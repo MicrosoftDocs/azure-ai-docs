@@ -1,27 +1,32 @@
 ﻿---
-title: "Azure AI Services docs: What's new for August 2025"
-description: Discover key changes and updates in Azure AI Services documentation for August 2025.
+title: "Azure AI Services docs: What's new for September 2025"
+description: Discover key changes and updates in Azure AI Services documentation for September 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: August-2025
-ms.date: 08/04/2025
+ms.custom: September-2025
+ms.date: 09/02/2025
 ---
 
 # What's new in Azure AI Services documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Services documentation for August 2025.
+Welcome! This article highlights key changes and updates in Azure AI Services documentation for September 2025.
 
-- [AudioVisual analysis: extracting structured content](../ai-services/content-understanding/video/elements.md)
-- [AudioVisual analysis: Markdown representation](../ai-services/content-understanding/video/markdown.md)
-- [Choose the right Azure AI tool for document processing: Azure Document Intelligence, Azure AI Content Understanding, and Azure OpenAI](../ai-services/content-understanding/choosing-right-ai-tool.md)
-- [Quickstart: Create a voice live real-time voice agent with Azure AI Foundry Agent Service (Preview)](../ai-services/speech-service/voice-live-agents-quickstart.md)
-- [What is voice conversion? (Preview)](../ai-services/speech-service/voice-conversion.md)
+## New articles
+- [Improve document output quality with confidence, grounding, and in-context learning](../ai-services/content-understanding/document/enrichments.md)
+- [Use liveness detection with network isolation (preview)](../ai-services/computer-vision/how-to/liveness-use-network-isolation.md)
+- [Voice live API supported languages (Preview)](../ai-services/speech-service/voice-live-language-support.md)
 
-### Updated articles
-
-- [Create a fine-tuning task project](../ai-services/language-service/conversational-language-understanding/how-to/create-project.md)
-- [Customize voice and sound with SSML](../ai-services/speech-service/speech-synthesis-markup-voice.md)
-- [Document analysis: extracting structured content](../ai-services/content-understanding/document/elements.md)
-- [Quickstart: Get started with the Azure AI Speech CLI](../ai-services/speech-service/spx-basics.md)
+## Updated articles
+- [Adapt Personally Identifying Information (PII) to your domain](../ai-services/language-service/personally-identifiable-information/how-to/adapt-to-domain-pii.md) - 
+- [Document analysis: Extract structured content](../ai-services/content-understanding/document/elements.md)
+- [Document processing models](../ai-services/document-intelligence/model-overview.md)
+- [Entity Metadata](../ai-services/language-service/named-entity-recognition/concepts/entity-metadata.md)
+- [Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)](../ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md)
+- [Named entity categories and types](../ai-services/language-service/named-entity-recognition/concepts/named-entity-categories.md) 
+- [Prebuilt API](../ai-services/language-service/question-answering/how-to/prebuilt.md)
+- [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
+- [Tutorial: Detect liveness in faces](../ai-services/computer-vision/tutorials/liveness.md)
+- [What is Azure AI Document Intelligence?](../ai-services/document-intelligence/overview.md)
+- [What is the Document Intelligence layout model?](../ai-services/document-intelligence/prebuilt/layout.md)

@@ -70,6 +70,57 @@ ReadOnlyMemory<float> vector = embedding.ToFloats();
 Console.WriteLine($"Embeddings: [{string.Join(", ", vector.ToArray())}]");
 ```
 
+# [Go](#tab/go)
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+	"os"
+
+	"github.com/openai/openai-go/v2"
+	"github.com/openai/openai-go/v2/option"
+)
+
+func main() {
+	// Get API key from environment variable
+	apiKey := os.Getenv("AZURE_OPENAI_API_KEY")
+	if apiKey == "" {
+		panic("AZURE_OPENAI_API_KEY environment variable is not set")
+	}
+
+	// Create a client with Azure OpenAI endpoint and API key
+	client := openai.NewClient(
+		option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+		option.WithAPIKey(apiKey),
+	)
+
+	ctx := context.Background()
+	text := "The attention mechanism revolutionized natural language processing"
+
+	// Make an embedding request
+	embedding, err := client.Embeddings.New(ctx, openai.EmbeddingNewParams{
+		Input: openai.EmbeddingNewParamsInputUnion{OfString: openai.String(text)},
+		Model: "text-embedding-3-large", // Use your deployed model name on Azure
+	})
+	if err != nil {
+		panic(err.Error())
+	}
+
+	// Print embedding information
+	fmt.Printf("Model: %s\n", embedding.Model)
+	fmt.Printf("Number of embeddings: %d\n", len(embedding.Data))
+	fmt.Printf("Embedding dimensions: %d\n", len(embedding.Data[0].Embedding))
+	fmt.Printf("Usage - Prompt tokens: %d, Total tokens: %d\n", embedding.Usage.PromptTokens, embedding.Usage.TotalTokens)
+	
+	// Print first few values of the embedding vector
+	fmt.Printf("First 10 embedding values: %v\n", embedding.Data[0].Embedding[:10])
+}
+```
+
+
 # [PowerShell](#tab/PowerShell)
 
 ```powershell-interactive
