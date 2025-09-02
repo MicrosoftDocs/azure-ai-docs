@@ -12,7 +12,7 @@ Upgrading to Azure AI Foundry unlocks the following capabilites.
 |---|---|---|
 | Models sold directly by Azure | Azure OpenAI only | Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft  |
 | Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc.|  | ✅ |
-| Azure OpenAI API (batch, stored completions, fine-tuning, evaluation, ..) | ✅ | ✅ |n
+| Azure OpenAI API (batch, stored completions, fine-tuning, evaluation, ..) | ✅ | ✅ |
 | Agent service | | ✅ |
 | Azure Foundry API |  | ✅ |
 | AI Services (Speech, Vision, Language, Content Understanding) | | ✅ |
@@ -128,7 +128,7 @@ Then, use either AI Foundry Portal or ARM template to rollback:
     Run the template using Azure CLI options or your VSCode extension for Bicep as a patch operation on your current resource.
 
 
-## Inspect whether a resoure was upgraded before
+## How to inspect whether a resoure was upgraded before
 
 The following Azure resource property is available to inspect whether a resource was previously upgraded to AI Foundry.
 
