@@ -28,18 +28,7 @@ items:
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
 
-- name: Text translation
-  items:
-  - name: What is Text translation?
-    displayName: features,develop,development,free
-    href: text-translation/overview.md
-  - name: Text translation SDK
-    displayName: get started,sdk,keys,endpoint
-    href: text-sdk-overview.md
-  - name: Authentication and authorization
-    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/authentication.md
-  - name: 2025-05-01-preview 🆕
+  - name: Text translation 2025-05-01-preview 🆕
     items:
     - name: Overview 🆕
       displayName: gpt, adaptive, tone, gender
@@ -50,13 +39,52 @@ items:
     - name: REST API guide (preview) 🆕
       displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
       href: text-translation/preview/rest-api-guide.md
-    - name: Get languages
+    - name: Get languages 🆕
       href: text-translation/preview/get-languages.md
-    - name: Translate
+    - name: Translate 🆕
       displayName: detection,detect
       href: text-translation/preview/translate-api.md
-    - name: Transliterate
+    - name: Transliterate 🆕
       href: text-translation/preview/transliterate-api.md
+
+- name: Text translation (GA)
+  items:
+  - name: What is Text translation?
+    displayName: features,develop,development,free
+    href: text-translation/overview.md
+  - name: Text translation SDK
+    displayName: get started,sdk,keys,endpoint
+    href: text-sdk-overview.md
+
+  - name: HTTP requests
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/v3/reference.md
+  - name: Text Translation REST APIs (GA)
+    href:  text-translation/reference/rest-api-guide.md
+  - name: Get languages
+    href: text-translation/reference/v3/languages.md
+  - name: Translate
+    displayName: detection,detect
+    href: text-translation/reference/v3/translate.md
+  - name: Transliterate
+    href: text-translation/reference/v3/transliterate.md
+  - name: Detect
+    href: text-translation/reference/v3/detect.md
+  - name: BreakSentence
+    displayName: detection,detect
+    href: text-translation/reference/v3/break-sentence.md
+  - name: Dictionary Lookup
+    href: text-translation/reference/v3/dictionary-lookup.md
+  - name: Dictionary Examples
+    href: text-translation/reference/v3/dictionary-examples.md
+  - name: Migrate to v3 Text translation API
+    displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
+    href: text-translation/how-to/migrate-to-v3.md
+
+  - name: Authentication and authorization
+    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/authentication.md
+
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -85,34 +113,7 @@ items:
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
 
-  - name: Azure AI Translator v3
-    items:
-    - name: Overview
-      displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-      href: text-translation/reference/v3/reference.md
-    - name: Text Translation v3 REST APIs
-      href:  text-translation/reference/rest-api-guide.md
-    - name: Get languages
-      href: text-translation/reference/v3/languages.md
-    - name: Translate
-      displayName: detection,detect
-      href: text-translation/reference/v3/translate.md
-    - name: Transliterate
-      href: text-translation/reference/v3/transliterate.md
-    - name: Detect
-      href: text-translation/reference/v3/detect.md
-    - name: BreakSentence
-      displayName: detection,detect
-      href: text-translation/reference/v3/break-sentence.md
-    - name: Dictionary Lookup
-      href: text-translation/reference/v3/dictionary-lookup.md
-    - name: Dictionary Examples
-      href: text-translation/reference/v3/dictionary-examples.md
-    - name: Migrate to v3 Text translation API
-      displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
-      href: text-translation/how-to/migrate-to-v3.md
-
-  - name: Reference
+  - name: Reference (GA)
     items:
       - name: Status codes
         displayName: 401000,405000,400000
