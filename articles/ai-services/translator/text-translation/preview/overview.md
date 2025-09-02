@@ -61,8 +61,19 @@ To force the request to be handled within a specific geography, use the desired 
 
 Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
 
+#### Service limits
 
+| Operation | Maximum Number of Array Elements | Maximum Size of Array Element | Generative AI LLM: Maximum Number of Array Elements | Generative AI LLM: Maximum Size of Array Element |
+| --- | --- | --- | --- | --- |
+| Translate | 1,000 | 50,000 | 50 | 105,000 |
 
+The translation latency when using generative AI large language models is influenced by the amount of computing resources provided. You can affect latency by adjusting the capacity allocated during model deployment.
+
+#### Pricing
+
+* By default, translations using general NMT (Neural Machine Translation) models are billed according to the number of characters in the source text. For more information, *see* [Azure AI Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+
+* Translations using generative AI LLMs are charged according to the number of input and output tokens processed. For more information, *see* [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/).
 
 
 ## Next steps

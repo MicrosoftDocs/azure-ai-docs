@@ -22,18 +22,57 @@ The Text translation API enables you to translate your source language text into
 
 ## Request URL
 
-### Global endpoint
+### Global endpoint configuration
 
 **Send a `POST` request**:
 
+***Windows***
+
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview"
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview"^
+ -H "Ocp-Apim-Subscription-Key:<your-key>" ^
+ -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
+ -H "Content-Type: application/json" ^
+ -d "<your-request-body>"
 
 ```
+***Linux or macOS***
 
-### Custom endpoint
+```bash
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview" \
+-H "Ocp-Apim-Subscription-Key:<your-key>" \
+-H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
+-H "Content-Type: application/json" \
+-d "<your-request-body>"
+```
 
 
+### Custom endpoint configuration
+
+ Your custom domain endpoint is a URL formatted with your resource name and hostname and is available in the Azure portal. When you created your Translator resource, the value that you entered in the `Name` field is the custom domain name parameter for the endpoint.
+
+**Send a `POST` request**:
+
+***Windows***
+
+```bash
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-05-01-preview"^
+    -H "Ocp-Apim-Subscription-Key:<your-key>"^
+    -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
+    -H "Content-Type: application/json"^
+    -d "<your-request-body>"
+```
+***Linux or macOS***
+
+```bash
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-05-01-preview" \
+    -H "Ocp-Apim-Subscription-Key:<your-key>" \
+    -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
+    -H "Content-Type: application/json" \
+    -d "<your-request-body>"
+```
+
+### Private endpoint
 
 For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
@@ -156,7 +195,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 ## Examples
 
-#### Translate
+#### Translate source text using NMT
 
 ***Request***
 
@@ -200,7 +239,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 72
 ```
 
-#### Translate source text into multiple languages
+#### Translate source text into multiple languages using NMT 
 
 ***Request***
 
@@ -252,9 +291,31 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 144
 ```
 
-#### Translate using `GPT-4o mini` and `NMT` deployments
+#### Translate using LLM model
 
-Here, users request specific `GPT` models for deployment. Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+This request uses a gpt-4o-mini model instance with a user defined name (contoso-gpt-4o-mini). When the source language isn't indicated, the system detects it automatically. 
+
+```json
+[
+  {
+    "Text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        "deploymentName": "contoso-gpt-4o-mini"
+      }
+    ]
+  }
+]
+
+```
+
+
+
+#### Translate using `GPT-4o mini` deployment and `NMT`
+
+* Here,  the source text is translated into Spanish language using a specified mode (gpt-4o) and into German language using general NMT model. 
+* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -266,7 +327,7 @@ Here, users request specific `GPT` models for deployment. Using an `LLM` model r
     "targets": [
       {
         "language": "es",
-        " deploymentName": "your-gpt-4omini-deployment-name"
+        " deploymentName": "your-gpt-4o-mini-deployment-name"
       },
       {
         "language": "de"
