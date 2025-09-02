@@ -7,12 +7,33 @@ items:
   href: ../foundry-agent/ask-foundry-agent.md?context=/azure/ai-foundry/default/context/context
 
 - name: Agent development
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Agent tools & integration
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Model catalog
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Model operations
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Integration & orchestration
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Observability, evaluation, & tracing
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Developer environment 
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: API & SDK
   items:
     - name: Use the client libraries
@@ -21,12 +42,21 @@ items:
       href: reference/api-reference.md
 
 - name: Responsible AI
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Best practices
   items:
     - name: Manage costs 
       href: concepts/costs-plan-manage.md
 - name: Architecture & design
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Security & governance
+  items:
+    - name: Article placeholder
+      href: concepts/new-article.md
 - name: Configuration
   items:
   - name: Region support
