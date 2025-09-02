@@ -21,7 +21,7 @@ The Azure AI Foundry provisioned throughput offering is a model deployment type 
 
 Provisioned throughput provides:
 
-- **A boarder model choice** on the latest flagship models
+- **A broader model choice** on the latest flagship models
 - **Flexibility** to switch models and deployments with given provisioned throughput quota
 - **Significant discounts** and the ability to boost your reservation utilization with a more flexible reservation choice
 - **Predictable performance**, by providing stable max latency and throughput for uniform workloads.
