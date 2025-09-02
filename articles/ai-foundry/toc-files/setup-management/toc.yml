@@ -54,7 +54,7 @@ items:
     href: ../../how-to/connections-add.md
     displayName: code
   - name: Create a Key Vault
-    href:../../how-to/set-up-key-vault-connection.md
+    href: ../../how-to/set-up-key-vault-connection.md
 - name: Costs and quotas
   items:
   - name: Plan and manage costs for AI Foundry resources
