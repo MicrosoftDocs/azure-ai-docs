@@ -6,6 +6,13 @@ items:
 - name: Ask the Foundry agent
   href: ../foundry-agent/ask-foundry-agent.md?context=/azure/ai-foundry/default/context/context
 
+- name: Agent development
+- name: Agent tools & integration
+- name: Model catalog
+- name: Model operations
+- name: Integration & orchestration
+- name: Observability, evaluation, & tracing
+- name: Developer environment 
 - name: API & SDK
   items:
     - name: Use the client libraries
@@ -13,11 +20,13 @@ items:
     - name: API & SDK guides
       href: reference/api-reference.md
 
+- name: Responsible AI
 - name: Best practices
   items:
     - name: Manage costs 
       href: concepts/costs-plan-manage.md
-
+- name: Architecture & design
+- name: Security & governance
 - name: Configuration
   items:
   - name: Region support
