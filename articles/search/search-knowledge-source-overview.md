@@ -85,9 +85,11 @@ To achieve the fastest possible response times, follow these best practices:
 
 ## Delete a knowledge source
 
-Before you can delete a knowledge source, you must delete or update the knowledge agent that references it. The associated index is a standalone object in Azure AI Search and doesn't need to be deleted or updated in tandem with the knowledge source.
+Before you can delete a knowledge source, you must delete or update any knowledge agent that references it. The associated index is a standalone object in Azure AI Search and doesn't need to be deleted or updated in tandem with the knowledge source, but no references to the knowledge source can exist if you want to delete it.
 
-1. Get the knowledge agent definition.
+If you try to delete a knowledge source that's in use, the action fails and a list of affected knowledge agents is returned.
+
+1. Get the knowledge agent definition to confirm knowledge source references.
 
     ```http
     ### Get the knowledge agent
