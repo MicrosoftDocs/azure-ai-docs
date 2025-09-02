@@ -241,13 +241,68 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 <!-- --- -->
 
-## Confirm knowledge agent operations
+## Query the knowledge agent
 
 Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task.
 
-Replace "What are my vision benefits?" with a query string that's valid for your search index.
+Replace "where does the ocean look green?" with a query string that's valid for your search index.
 
 ```http
+# Send grounding request
+POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
+   Content-Type: application/json
+   Authorization: Bearer {{accessToken}}
+
+{
+  "messages" : [
+        { "role" : "assistant",
+                "content" : [
+                  { "type" : "text", "text" : "Use the earth at night index to answer the question. If you can't find relevant content, say you don't know." }
+                ]
+        },
+        {
+            "role" : "user",
+            "content" : [
+                {
+                    "text" : "where does the ocean look green?",
+                    "type" : "text"
+                }
+            ]
+        }
+    ],
+  "knowledgeSourceParams": [
+    {
+      "filterAddOn": null,
+      "knowledgeSourceName": "earth-at-night-blob-ks",
+      "kind": "searchIndex"
+    }
+  ]
+}
+```
+
+[messages](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just "user" role that provides the query.
+
+[`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the agent is configured for multiple sources and you want to focus the retrieve action on just one of them.
+
+A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
+
+The response to the previous query might look like this:
+
+```http
+  "response": [
+    {
+      "content": [
+        {
+          "type": "text",
+          "text": "The ocean appears green off the coast of Antarctica due to phytoplankton flourishing in the water, particularly in Granite Harbor near Antarctica’s Ross Sea, where they can grow in large quantities during spring, summer, and even autumn under the right conditions [ref_id:0]. Additionally, off the coast of Namibia, the ocean can also look green due to blooms of phytoplankton and yellow-green patches of sulfur precipitating from bacteria in oxygen-depleted waters [ref_id:1]. In the Strait of Georgia, Canada, the waters turned bright green due to a massive bloom of coccolithophores, a type of phytoplankton [ref_id:5]. Furthermore, a milky green and blue bloom was observed off the coast of Patagonia, Argentina, where nutrient-rich waters from different currents converge [ref_id:6]. Lastly, a large bloom of cyanobacteria was captured in the Baltic Sea, which can also give the water a green appearance [ref_id:9]."
+        }
+      ]
+    }
+  ],
+```
+
+
+<!-- ```http
 # Send grounding request
 POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
    Content-Type: application/json
@@ -278,7 +333,7 @@ POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-previe
         } 
     ]
 }
-```
+``` -->
 
 For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
 
