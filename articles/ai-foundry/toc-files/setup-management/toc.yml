@@ -3,6 +3,8 @@ items:
   href: ../../concepts/planning.md
 - name: Choose a resource type
   href: ../../concepts/resource-types.md
+- name: Upgrade from Azure OpenAI Service
+  href: ../../how-to/upgrade-azure-openai.md
 - name: Manage AI Foundry resources
   items:
   - name: Create your first resource

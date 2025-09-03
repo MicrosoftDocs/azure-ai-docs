@@ -30,6 +30,8 @@ Depending on the AI service and model you want to use, you can use them in Azure
 - [Fine-tune](#fine-tune-azure-ai-services-models) models. You can fine-tune a subset of Azure AI services models in Azure AI Foundry portal.
 - [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Azure AI services models are already deployed and ready to use.
 
+Or, you can [Upgrade from Azure OpenAI to Azure AI Foundry (Preview)](../ai-foundry/how-to/upgrade-azure-openai.md).
+
 ### Connect Azure AI services after you create a project
 
 You can connect Azure AI services resources to an Azure AI Foundry project after you create a project. To use your existing Azure AI services resources (such as Azure AI Speech) in an Azure AI Foundry project, you need to create a connection to the resource.
@@ -106,3 +108,4 @@ However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-a
 
 - [What are Azure AI services?](./what-are-ai-services.md)
 - [How to add a new connection in Azure AI Foundry portal](../ai-foundry/how-to/connections-add.md)
+- [Upgrade from Azure OpenAI to Azure AI Foundry (Preview)](../ai-foundry/how-to/upgrade-azure-openai.md).
