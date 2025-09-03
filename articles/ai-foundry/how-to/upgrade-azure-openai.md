@@ -63,51 +63,51 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Foundry portal](#tab/portal)
 
-* **Option 1: use Azure AI Foundry Portal**
+**Option 1: use Azure AI Foundry Portal**
 
-  * Navigate to your Azure OpenAI resource.
-  * On the overview page, find the banner *'Make the switch to AI Foundry'* and select *'switch now.'*
-  * Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
-  * Confirm to start the upgrade. The upgrade takes up to two minutes.
-  
-  > [!NOTE]
-  > While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the UX for your resource.
+* Navigate to your Azure OpenAI resource.
+* On the overview page, find the banner *'Make the switch to AI Foundry'* and select *'switch now.'*
+* Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
+* Confirm to start the upgrade. The upgrade takes up to two minutes.
+
+> [!NOTE]
+> While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the UX for your resource.
 
 # [Azure Bicep](#tab/bicep)
 
-* **Option 2: use an Azure Bicep template**
+**Option 2: use an Azure Bicep template**
 
-    Starting with your existing Azure OpenAI template configuration, set the following properties:
+Starting with your existing Azure OpenAI template configuration, set the following properties:
 
-    * Update kind from value 'OpenAI' => 'AIServices'
-    * Set allowProjectManagement: True
-    * Configure managed identity
+* Update kind from value 'OpenAI' => 'AIServices'
+* Set allowProjectManagement: True
+* Configure managed identity
 
-    Sample configuration:
+Sample configuration:
 
-    ```bicep
-    resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
-        name: aiFoundryName // Your existing resource name
-        location: location
-        identity: {
-            type: 'SystemAssigned'
-        }
-        sku: {
-            name: 'S0'
-        }
-        kind: 'AIServices' // Update from 'OpenAI'
-        properties: {
-            // required to work in AI Foundry
-            allowProjectManagement: true 
-
-            // Needed for capabilities that require EntraID authentication
-            customSubDomainName: aiFoundryName
-            disableLocalAuth: true
-        }
+```bicep
+resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+    name: aiFoundryName // Your existing resource name
+    location: location
+    identity: {
+        type: 'SystemAssigned'
     }
-    ```
+    sku: {
+        name: 'S0'
+    }
+    kind: 'AIServices' // Update from 'OpenAI'
+    properties: {
+        // required to work in AI Foundry
+        allowProjectManagement: true 
 
-    Run the template using Azure CLI options or your VS Code extension for Bicep as a patch operation on your current resource.
+        // Needed for capabilities that require EntraID authentication
+        customSubDomainName: aiFoundryName
+        disableLocalAuth: true
+    }
+}
+```
+
+Run the template using Azure CLI options or your VS Code extension for Bicep as a patch operation on your current resource.
 
 ---
 
@@ -123,37 +123,38 @@ Then, use either AI Foundry Portal or ARM template to rollback:
 
 # [Foundry portal](#tab/portal)
 
-* **Option 1: use Azure AI Foundry Portal**
+**Option 1: use Azure AI Foundry Portal**
 
-  * To start, navigate to management center in the left bottom of your screen.
-  * On your resource overview page, find the rollback option.
+* To start, navigate to management center in the left bottom of your screen.
+* On your resource overview page, find the rollback option.
 
 # [Azure Bicep](#tab/bicep)
 
-* **Option 2: use an Azure Bicep template**
+**Option 2: use an Azure Bicep template**
   
-  To rollback, convert your template configuration back to 'OpenAI' as kind.
-  
-    ```bicep
-    resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
-    name: aiFoundryName
-    location: location
-    identity: {
-        type: 'SystemAssigned'
-    }
-    sku: {
-        name: 'S0'
-    }
-    kind: 'OpenAI'
-    properties: {
+To rollback, convert your template configuration back to 'OpenAI' as kind.
 
-        // Defines developer API endpoint subdomain
-        customSubDomainName: aiFoundryName
-        disableLocalAuth: true
-    }
-    ```
+  ```bicep
+  resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
+  name: aiFoundryName
+  location: location
+  identity: {
+      type: 'SystemAssigned'
+  }
+  sku: {
+      name: 'S0'
+  }
+  kind: 'OpenAI'
+  properties: {
 
-    Run the template using Azure CLI options or your VS Code extension for Bicep as a patch operation on your current resource.
+      // Defines developer API endpoint subdomain
+      customSubDomainName: aiFoundryName
+      disableLocalAuth: true
+  }
+  ```
+
+  Run the template using Azure CLI options or your VS Code extension for Bicep as a patch operation on your current resource.
+
 ---
 
 ## How to inspect whether a resource was upgraded before
