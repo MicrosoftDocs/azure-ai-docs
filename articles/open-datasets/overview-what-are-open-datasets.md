@@ -4,7 +4,7 @@ description: Learn about Azure Open Datasets, curated datasets from the public d
 ms.service: azure-open-datasets
 ms.topic: overview
 author: fbsolo-ms1
-ms.author: franksolomon
+ms.author: scottpolly
 ms.date: 07/29/2024
 ---
 

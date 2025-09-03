@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 01/18/2025
+ms.update-cycle: 365-days
 ---
 
 # Efficiently scale out a custom skill

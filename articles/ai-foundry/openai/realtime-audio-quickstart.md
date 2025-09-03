@@ -6,16 +6,15 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.date: 6/7/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: references_regions, ignite-2024
 zone_pivot_groups: openai-portal-js-python-ts
 recommendations: false
 ---
 
-# GPT-4o Realtime API for speech and audio (Preview)
+# GPT-4o Realtime API for speech and audio
 
-[!INCLUDE [Feature preview](includes/preview-feature.md)]
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
@@ -31,12 +30,13 @@ Follow the instructions in this article to get started with the Realtime API via
 The GPT 4o real-time models are available for global deployments.
 - `gpt-4o-realtime-preview` (version `2024-12-17`)
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
+- `gpt-4o-realtime` (version `2025-08-28`)
 
 See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
 
 ## API support
 
-Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-04-01-preview` to access the latest Realtime API features. 
+Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-08-28` to access the latest Realtime API features. 
 
 ::: zone pivot="ai-foundry-portal"
 

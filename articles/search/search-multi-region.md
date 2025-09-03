@@ -7,6 +7,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 08/08/2025
+ms.update-cycle: 365-days
 ---
 
 # Multi-region deployments in Azure AI Search

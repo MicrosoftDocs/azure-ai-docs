@@ -7,6 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 07/11/2025
+ms.update-cycle: 180-days
 ---
 
 # Skillset concepts in Azure AI Search

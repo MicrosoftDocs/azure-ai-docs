@@ -2,8 +2,8 @@
 title: Speech SDK logging - Speech service
 titleSuffix: Azure AI services
 description: Learn about how to enable logging in the Speech SDK (C++, C#, Python, Objective-C, Java).
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to

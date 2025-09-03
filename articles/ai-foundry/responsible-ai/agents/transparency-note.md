@@ -2,8 +2,8 @@
 title: Transparency Note for Azure Agent Service
 titleSuffix: Azure AI services
 description: Transparency Note for Azure Agents Service
-author: PatrickFarley
-ms.author: pafarley
+author: aahill
+ms.author: aahi
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: article

@@ -3,6 +3,7 @@ title: How to build with prompt flow
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to build with prompt flow.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024
@@ -38,7 +39,7 @@ In this article, you learn how to create and develop your first prompt flow in A
 - You need a deployed model.
 - In your project, configure access control for the blob storage account. Assign the **Storage Blob Data Contributor** role to your user account.
     - In the bottom left of the Azure AI Foundry portal, select **Management center**.
-    - In **Connected resources** for your project, select the link that corresponds to the **Azure Blob Storage** type. 
+    - In **Connected resources** for your hub, select the link that corresponds to the **Azure Blob Storage** type. 
     - Select **View in Azure Portal**
     - In the Azure portal, select **Access control (IAM)**.
     - Select **Add>Add role assignment**.

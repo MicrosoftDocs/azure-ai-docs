@@ -179,7 +179,7 @@ from azure.ai.projects.models
 
 sampling_config = AgentEvaluationSamplingConfiguration (  
     name = agent.id,  
-    samplingPercent = 15,       # Percentage of sampling per hour (0-100)
+    samplingPercent = 100,       # Percentage of sampling per hour (0-100)
     maxRequestRate = 250,       # Maximum request rate per hour (0-1000)
 )                                
 project_client.evaluation.create_agent_evaluation(

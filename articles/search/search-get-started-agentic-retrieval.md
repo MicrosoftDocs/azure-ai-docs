@@ -5,7 +5,6 @@ description: Learn how to use agentic retrieval to create a knowledge agent that
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: quickstart
 ms.date: 7/21/2025
 zone_pivot_groups: search-get-started-agentic-retrieval

@@ -6,9 +6,8 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: quickstart
 ms.date: 8/13/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.author: pafarley
+author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-js-cs
 ---

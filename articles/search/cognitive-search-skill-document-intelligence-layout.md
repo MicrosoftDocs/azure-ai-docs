@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2024
 ms.topic: reference
 ms.date: 07/10/2025
+ms.update-cycle: 365-days
 ---
 
 # Document Layout skill

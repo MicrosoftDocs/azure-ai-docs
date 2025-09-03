@@ -1,7 +1,7 @@
 ---
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 3/20/2025
@@ -12,7 +12,7 @@ ms.date: 3/20/2025
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
-- Then, you need to deploy a `gpt-4o-mini-realtime-preview` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Then, you need to deploy a `gpt-4o-realtime` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -109,12 +109,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         client = AsyncAzureOpenAI(
             azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
             azure_ad_token_provider=token_provider,
-            api_version="2025-04-01-preview",
+            api_version="2025-08-28",
         )
         async with client.beta.realtime.connect(
-            model="gpt-4o-realtime-preview",  # name of your deployment
+            model="gpt-4o-realtime",  # name of your deployment
         ) as connection:
-            await connection.session.update(session={"modalities": ["text", "audio"]})  
+            await connection.session.update(session={"output_modalities": ["text", "audio"]})  
             while True:
                 user_input = input("Enter a message: ")
                 if user_input == "q":
@@ -129,15 +129,15 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 )
                 await connection.response.create()
                 async for event in connection:
-                    if event.type == "response.text.delta":
+                    if event.type == "response.output_text.delta":
                         print(event.delta, flush=True, end="")
-                    elif event.type == "response.audio.delta":
+                    elif event.type == "response.output_audio.delta":
                         
                         audio_data = base64.b64decode(event.delta)
                         print(f"Received {len(audio_data)} bytes of audio data.")
-                    elif event.type == "response.audio_transcript.delta":
+                    elif event.type == "response.output_audio_transcript.delta":
                         print(f"Received text delta: {event.delta}")
-                    elif event.type == "response.text.done":
+                    elif event.type == "response.output_text.done":
                         print()
                     elif event.type == "response.done":
                         break
@@ -181,12 +181,12 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         client = AsyncAzureOpenAI(
             azure_endpoint=os.environ["AZURE_OPENAI_ENDPOINT"],
             api_key=os.environ["AZURE_OPENAI_API_KEY"],
-            api_version="2025-04-01-preview",
+            api_version="2025-08-28",
         )
         async with client.beta.realtime.connect(
-            model="gpt-4o-realtime-preview",  # deployment name of your model
+            model="gpt-4o-realtime",  # deployment name of your model
         ) as connection:
-            await connection.session.update(session={"modalities": ["text", "audio"]})  
+            await connection.session.update(session={"output_modalities": ["text", "audio"]})  
             while True:
                 user_input = input("Enter a message: ")
                 if user_input == "q":
@@ -201,15 +201,15 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
                 )
                 await connection.response.create()
                 async for event in connection:
-                    if event.type == "response.text.delta":
+                    if event.type == "response.output_text.delta":
                         print(event.delta, flush=True, end="")
-                    elif event.type == "response.audio.delta":
+                    elif event.type == "response.output_audio.delta":
                         
                         audio_data = base64.b64decode(event.delta)
                         print(f"Received {len(audio_data)} bytes of audio data.")
-                    elif event.type == "response.audio_transcript.delta":
+                    elif event.type == "response.output_audio_transcript.delta":
                         print(f"Received text delta: {event.delta}")
-                    elif event.type == "response.text.done":
+                    elif event.type == "response.output_text.done":
                         print()
                     elif event.type == "response.done":
                         break

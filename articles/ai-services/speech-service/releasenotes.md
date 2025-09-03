@@ -3,8 +3,8 @@ title: What's new - Speech service
 titleSuffix: Azure AI services
 description: Discover the latest updates, features, and improvements in Azure AI Speech, including SDK, CLI, and service releases.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: release-notes
 ms.date: 4/28/2025

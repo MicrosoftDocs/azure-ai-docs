@@ -7,6 +7,7 @@ ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 01/16/2025
+ms.update-cycle: 365-days
 ---
 
 # Analyze performance in Azure AI Search

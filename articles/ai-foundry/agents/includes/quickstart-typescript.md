@@ -243,9 +243,9 @@ export async function main(): Promise<void> {
     // Removing these references as they don't exist in this context
   });
 
-  // Delete the agent once done
-  await client.deleteAgent(agent.id);
-  console.log(`Deleted agent, agent ID: ${agent.id}`);
+  // Uncomment these lines to delete the agent once done
+  //await client.deleteAgent(agent.id);
+  //console.log(`Deleted agent, agent ID: ${agent.id}`);
 }
 
 main().catch((err) => {

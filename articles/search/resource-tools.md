@@ -7,6 +7,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 07/28/2025
+ms.update-cycle: 365-days
 ---
 
 # Productivity tools and accelerators for Azure AI Search

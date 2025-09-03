@@ -8,6 +8,7 @@ ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/07/2025
+ms.update-cycle: 365-days
 ---
 
 # Training - Azure AI Search

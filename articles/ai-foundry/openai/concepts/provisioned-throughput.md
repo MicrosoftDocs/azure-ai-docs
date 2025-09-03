@@ -21,7 +21,7 @@ The Azure AI Foundry provisioned throughput offering is a model deployment type 
 
 Provisioned throughput provides:
 
-- **A boarder model choice** on the latest flagship models
+- **A broader model choice** on the latest flagship models
 - **Flexibility** to switch models and deployments with given provisioned throughput quota
 - **Significant discounts** and the ability to boost your reservation utilization with a more flexible reservation choice
 - **Predictable performance**, by providing stable max latency and throughput for uniform workloads.
@@ -177,11 +177,12 @@ The following points are some important takeaways from the table:
 
 - PTU are managed regionally and by offer type. PTU quota and any reservations must be in the region and shape (Global, Data zone, Regional) you wish to use. 
 
-- Spillover is an optional capability that manages traffic fluctuations on provisioned deployments. For more information on spillover, see [Manage traffic with spillover for provisioned deployments (Preview)](../how-to/spillover-traffic-management.md).
+- Spillover is an optional capability that manages traffic fluctuations on provisioned deployments. For more information on spillover, see [Manage traffic with spillover for provisioned deployments](../how-to/spillover-traffic-management.md).
 
 | Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
 |--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt4.1           | ✅                 | ✅                     | ✅                   | ✅                 |
+| **Azure OpenAI**   | Gpt 5            |                    | ✅                     |                      | ✅                 |
+|                    | Gpt4.1           | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4.1 mini     | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4.1 nano     | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4o           | ✅                 | ✅                     | ✅                   | ✅                 |

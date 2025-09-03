@@ -4,12 +4,12 @@ titleSuffix: Azure AI Foundry
 description: Learn how to fine-tune models using a managed compute with Azure AI Foundry.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 04/25/2025
+ms.date: 08/15/2025
 ms.reviewer: vkann
 reviewer: kvijaykannan
-ms.author: mopeakande
+ms.author: ssalgado
 manager: nitinme
-author: msakande
+author: ssalgadodev
 ms.custom: 
   - references_regions
   - hub-only
@@ -72,7 +72,7 @@ In this section, you go through the steps to configure fine-tuning for your mode
 
 1. Select **Next** to go to the "Task parameters" page. Tuning hyperparameters is essential for optimizing large language models (LLMs) in real-world applications. It allows for improved performance and efficient resource usage. You can choose to keep the default settings or customize parameters like epochs or learning rate.
 
-1. Select **Next** to go to the "Review" page and check that all the settings look good.
+1. Select **Next** to go to the "Review" page and review that all the settings look good.
 
 1. Select **Submit** to submit your fine-tuning job. Once the job completes, you can view evaluation metrics for the fine-tuned model. You can then deploy this model to an endpoint for inferencing.
 

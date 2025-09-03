@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 01/15/2025
+ms.update-cycle: 365-days
 ---
 
 # Add a custom skill to an Azure AI Search enrichment pipeline

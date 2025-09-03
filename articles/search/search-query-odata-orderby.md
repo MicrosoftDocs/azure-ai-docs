@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 11/02/2022
+ms.update-cycle: 365-days
 ---
 
 # OData $orderby syntax in Azure AI Search

@@ -2,12 +2,12 @@
 title: How to record video samples for custom text to speech avatar - Speech service
 titleSuffix: Azure AI services
 description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 08/07/2025
-ms.author: eur
+ms.author: pafarley
 keywords: how to record video samples for custom text to speech avatar
 ---
 

@@ -800,7 +800,15 @@ groups:
       title: Azure CLI
     - id: programming-language-bicep
       title: Bicep
-
+- id: azure-ai-managed-compute-deployment
+# Owner: mopeakande
+  title: Programming languages
+  prompt: Choose a tool or API
+  pivots:
+    - id: ai-foundry-portal
+      title: Azure AI Foundry portal
+    - id: python-sdk
+      title: Python SDK
 - id: azure-ai-serverless-deployment
 # Owner: mopeakande
   title: Programming languages
@@ -1129,18 +1137,18 @@ groups:
     title: C#
   - id: programming-language-cpp
     title: C++
-- id: custom-qna-quickstart
+- id: custom-cqa-quickstart
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-  - id: studio
-    title: Language Studio
+  - id: foundry
+    title: Azure AI Foundry
   - id: programming-language-csharp
     title: C#
   - id: programming-language-python
     title: Python
   - id: rest
-    title: REST
+    title: REST API
 # Owner: farazgis
 - id: programming-languages-document-sdk
   # Owner: lajanuar
@@ -1156,10 +1164,10 @@ groups:
   title: Programming languages
   prompt: Choose your preferred usage method
   pivots:
-  - id: programming-language-powershell
-    title: PowerShell
   - id: programming-language-python
     title: Python
+  - id: programming-language-powershell
+    title: PowerShell
 - id: openai-portal-js
   title: Programming languages
   prompt: Choose your preferred usage method
@@ -1463,35 +1471,36 @@ groups:
   - id: fdp-project
     title: Foundry project (recommended)
   - id: hub-project
-    title: Hub based project 
+    title: Hub-based project 
 # Owner: sgilley
 - id: foundry-sdk-languages
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-    - id: programming-language-csharp
-      title: C#
-    - id: programming-language-go
-      title: Go
-    - id: programming-language-java
-      title: Java
-    - id: programming-language-javascript
-      title: JavaScript
     - id: programming-language-python
       title: Python
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-javascript
+      title: JavaScript
+    - id: programming-language-java
+      title: Java
+    - id: programming-language-go
+      title: Go
 # Owner: sgilley
 - id: foundry-sdk-overview-languages
   title: Programming languages
   prompt: Choose a programming language
   pivots:
-    - id: programming-language-csharp
-      title: C#
-    - id: programming-language-java
-      title: Java
-    - id: programming-language-javascript
-      title: JavaScript
     - id: programming-language-python
       title: Python
+    - id: programming-language-csharp
+      title: C#
+    - id: programming-language-javascript
+      title: JavaScript/TypeScript
+    - id: programming-language-java
+      title: Java
+      
 # Owner: samkemp
 - id: foundry-local-sdk
   title: Programming languages
@@ -1552,6 +1561,8 @@ groups:
   pivots:
   - id: csharp
     title: C#
+  - id: java
+    title: Java
   - id: javascript
     title: JavaScript
   - id: python
@@ -1598,4 +1609,12 @@ groups:
     title: Azure AI Foundry
   - id: rest-api
     title: REST API
-
+# Owner: jburchel/jonburchel
+- id: set-up-key-vault
+  title: Set up Key Vault
+  prompt: Choose a method to set up Key Vault
+  pivots:
+  - id: ai-foundry-portal
+    title: Azure AI Foundry portal
+  - id: bicep
+    title: Bicep

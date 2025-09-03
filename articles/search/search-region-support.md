@@ -7,7 +7,6 @@ ms.author: haileytapia
 manager: nitinme
 ms.date: 08/08/2025
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.topic: conceptual
 ms.custom:
   - references_regions
@@ -45,7 +44,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​|  |  | ✅ | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| East US​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ |  |
+| East US​ | ✅ | ✅ | ✅ | ✅ |  |
 | East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ | ✅ | ✅ |
@@ -54,8 +53,6 @@ You can create an Azure AI Search service in any of the following Azure public r
 | West US 2​ ​| ✅ | ✅ | ✅ | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Central US​ ​ | ✅ |  | ✅ | ✅ |  |
-
-<sup>1</sup> This region has capacity constraints on all tiers.
 
 ### Europe
 

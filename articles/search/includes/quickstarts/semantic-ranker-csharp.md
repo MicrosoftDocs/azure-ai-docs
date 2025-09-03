@@ -17,7 +17,7 @@ In this quickstart, you use an IDE and the [**Azure.Search.Documents**](/dotnet/
 We recommend [Visual Studio](https://visualstudio.microsoft.com/vs/community/) for this quickstart.
 
 > [!TIP]
-> You can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search/SemanticSearchQuickstart) to start with a finished project or follow these steps to create your own. 
+> You can [download the source code](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-semantic-search) to start with a finished project or follow these steps to create your own. 
 
 ### Install libraries
 

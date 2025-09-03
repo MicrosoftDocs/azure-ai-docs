@@ -2,8 +2,8 @@
 title: Data, privacy, and security for Azure AI Translator
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for Azure AI Translator
-author: PatrickFarley
-ms.author: pafarley
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: article

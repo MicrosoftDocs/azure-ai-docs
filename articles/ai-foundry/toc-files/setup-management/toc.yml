@@ -30,6 +30,10 @@ items:
       href: ../../how-to/develop/create-hub-project-sdk.md
     - name: Create a hub using Terraform
       href: ../../how-to/create-hub-terraform.md
+    - name: Vulnerability management
+      href: ../../concepts/vulnerability-management.md     
+  - name: Connect and manage data
+    href: ../../how-to/data-add.md
   - name: Create and manage compute
     href: ../../how-to/create-manage-compute.md
 - name: Manage projects
@@ -42,13 +46,13 @@ items:
     href: ../../how-to/create-azure-ai-project-template.md
 - name: Management center
   href: ../../concepts/management-center.md
+- name: Status dashboard
+  href: ../../azure-ai-foundry-status-dashboard-documentation.md
 - name: Connect other services
   items:
   - name: Create a connection
     href: ../../how-to/connections-add.md
     displayName: code
-  - name: Connect and manage data
-    href: ../../how-to/data-add.md
 - name: Costs and quotas
   items:
   - name: Plan and manage costs for AI Foundry resources
@@ -57,7 +61,7 @@ items:
   - name: Manage quotas
     href: ../../how-to/quota.md
   - name: Increase rate limit
-    href: ../../how-to/autoscale.md
+    href: ../../../ai-services/autoscale.md?context=/azure/ai-foundry/context/context
 - name: Cost management for Foundry Models
   items:
   - name: Manage costs for Foundry Models

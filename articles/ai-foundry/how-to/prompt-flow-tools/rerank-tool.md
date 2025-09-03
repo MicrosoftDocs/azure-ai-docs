@@ -3,6 +3,7 @@ title: Rerank tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Rerank tool for flows in Azure AI Foundry portal.
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.topic: reference
 ms.date: 6/30/2025
 ms.reviewer: jingyizhu

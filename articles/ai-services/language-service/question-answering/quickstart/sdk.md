@@ -1,27 +1,23 @@
 ---
-title: "Quickstart: Use SDK to create and manage project - custom question answering"
-description: This quickstart shows you how to create and manage your project using custom question answering.
+title: "Quickstart: custom question answering"
+description: This quickstart shows you how to create and manage your  custom question answering projects.
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 03/24/2025
+ms.date: 08/29/2025
 author: laujan
 ms.author: lajanuar
 recommendations: false
 ms.devlang: csharp
 # ms.devlang: csharp, python
 ms.custom: devx-track-python, devx-track-csharp, language-service-question-answering, mode-api, devx-track-dotnet
-zone_pivot_groups: custom-qna-quickstart
+zone_pivot_groups: custom-cqa-quickstart
 ---
 
-# Quickstart: custom question answering
+# Quickstart: custom question answering (CQA)
 
-> [!NOTE]
-> Are you looking to migrate your workloads from QnA Maker? See our [migration guide](../how-to/migrate-qnamaker-to-question-answering.md) for information on feature comparisons and migration steps.
 
-Get started with the custom question answering client library. Follow these steps to install the package and try out the example code for basic tasks.
-
-::: zone pivot="studio"
-[!INCLUDE [Studio quickstart](../includes/studio.md)]
+::: zone pivot="foundry"
+[!INCLUDE [Azure AI Foundry quickstart](../includes/azure-ai-foundry.md)]
 ::: zone-end
 
 ::: zone pivot="rest"
@@ -44,10 +40,7 @@ If you want to clean up and remove an Azure AI services subscription, you can de
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
 
 
-
 ## Explore the REST API
-
-To learn about automating your custom question answering pipeline consult the REST API documentation. Currently authoring functionality is only available via REST API:
 
 * [Authoring API reference](/rest/api/questionanswering/question-answering-projects)
 * [Authoring API cURL examples](../how-to/authoring.md)

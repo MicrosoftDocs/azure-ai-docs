@@ -5,21 +5,17 @@ description: Azure OpenAI Python support
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 03/27/2024
+ms.date: 08/29/2024
 ---
 
-[Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) | [Reference](../../reference.md) |
+[Library source code](https://github.com/openai/openai-python?azure-portal=true) | [Package (PyPi)](https://pypi.org/project/openai?azure-portal=true) | [Reference](../../latest.md) |
 
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
 
 ## Azure OpenAI API version support
 
-Feature availability in Azure OpenAI is dependent on what version of the REST API you target. For the newest features, target the latest preview API.
-
-| Latest GA API | Latest Preview API|
-|:-----|:------|
-|`2024-10-21` |`2025-03-01-preview`|
+- v1 Generally Available (GA) API now allows access to both GA and Preview operations. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
 
 ## Installation
 
@@ -35,91 +31,25 @@ pip install openai --upgrade
 
 ## Authentication
 
-# [Microsoft Entra ID](#tab/python-secure)
-
-```python
-import os
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2024-10-21"
-)
-```
-
-For more information about Azure OpenAI keyless authentication, see the "[Get started with the Azure OpenAI security building block](/azure/developer/ai/get-started-securing-your-ai-app?tabs=github-codespaces&pivots=python)" QuickStart article. 
-
 # [API Key](#tab/python-key)
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
     
-client = AzureOpenAI(
+client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2024-10-21",
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
     )
 
 ```
 
----
 
-## Audio
+# [Microsoft Entra ID](#tab/python-secure)
 
-### audio.speech.create()
-
-This function currently requires a preview API version. 
-
-Set `api_version="2024-10-01-preview"` to use this function. 
-
-```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
-
-from pathlib import Path
-import os
-
-speech_file_path = Path("speech.mp3")
-
-response = client.audio.speech.create(
-  model="tts-hd", #Replace with model deployment name
-  voice="alloy",
-  input="Testing, testing, 1,2,3."
-)
-response.write_to_file(speech_file_path)
-```
-
-### audio.transcriptions.create()
-
-
-# [Python](#tab/command)
-
-```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
-
-audio_file = open("speech1.mp3", "rb")
-transcript = client.audio.transcriptions.create(
-  model="whisper", # Replace with model deployment name
-  file=audio_file
-)
-
-print(transcript)
-```
-# [Response](#tab/response)
-
-```text
-Transcription(text='Testing, testing, one, two, three.')
-```
+v1 support for Entra ID authentication is coming soon. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
 
 ---
 
@@ -130,11 +60,11 @@ Transcription(text='Testing, testing, one, two, three.')
 # [Python](#tab/command)
 
 ```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
+# from openai import OpenAI
+# client = OpenAI()
 
 completion = client.chat.completions.create(
-  model="gpt-4o", # Replace with your model dpeloyment name.
+  model="gpt-4o", # Replace with your model deployment name.
   messages=[
     {"role": "system", "content": "You are a helpful assistant."},
     {"role": "user", "content": "When was Microsoft founded?"}
@@ -231,11 +161,11 @@ print(completion.model_dump_json(indent=2)
 # [Python](#tab/command)
 
 ```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
+# from openai import OpenAI
+# client = OpenAI()
 
 completion = client.chat.completions.create(
-  model="gpt-4o", # Replace with your model dpeloyment name.
+  model="gpt-4o", # Replace with your model deployment name.
   messages=[
     {"role": "system", "content": "You are a helpful assistant."},
     {"role": "user", "content": "When was Microsoft founded?"}
@@ -272,7 +202,7 @@ completion = client.chat.completions.create(
                 {
                     "type": "image_url",
                     "image_url": {
-                        "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-services/openai/media/how-to/generated-seattle.png",
+                        "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png",
                     }
                 },
             ],
@@ -377,8 +307,8 @@ print(completion.model_dump_json(indent=2))
 # [Python](#tab/command)
 
 ```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
+# from openai import OpenAI
+# client = OpenAI()
 
 embedding = client.embeddings.create(
   model="text-embedding-3-large", # Replace with your model deployment name
@@ -403,191 +333,15 @@ CreateEmbeddingResponse(data=[Embedding(embedding=[0.009098228, -0.010369237, -0
 
 [Fine-tuning with Python how-to article](../../how-to/fine-tuning.md)
 
-## Batch
-
-[Batch with Python how-to article](../../how-to/batch.md)
-
-## Images
-
-### images.generate()
-
-
-# [Python](#tab/command)
-
-```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
-
-generate_image = client.images.generate(
-  model="dall-e-3", #replace with your model deployment name
-  prompt="A rabbit eating pancakes",
-  n=1,
-  size="1024x1024",
-  quality = "hd",
-  response_format = "url",
-  style = "vivid"
-)
-
-print(generate_image.model_dump_json(indent=2))
-```
-
-# [Response](#tab/response)
-
-```json
-{
-  "created": 1731894125,
-  "data": [
-    {
-      "b64_json": null,
-      "revised_prompt": "A fluffy rabbit contentedly munching on a stack of miniature pancakes laid out on a small plate just its size, set against the backdrop of a sunny meadow.",
-      "url": "{Secure path to generated image's Azure Blob storage image url}",
-      "content_filter_results": {
-        "hate": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "self_harm": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": false,
-          "severity": "safe"
-        }
-      },
-      "prompt_filter_results": {
-        "hate": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "profanity": {
-          "detected": false,
-          "filtered": false
-        },
-        "self_harm": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": false,
-          "severity": "safe"
-        }
-      }
-    }
-  ]
-}
-```
-
----
-
 ## Responses API
 
 See the [Responses API](../../how-to/responses.md) documentation.
 
-## Completions (legacy)
-
-### completions.create()
-
-# [Python](#tab/command)
-
-```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
-
-legacy_completion = client.completions.create(
-  model="gpt-35-turbo-instruct", # Replace with model deployment name
-  prompt="Hello World!",
-  max_tokens=100,
-  temperature=0
-)
-
-print(legacy_completion.model_dump_json(indent=2))
-```
-
-
-# [Response](#tab/response)
-
-```
-{
-  "id": "cmpl-AUlF8xymP0ngMlIgIEYlT7C3Igi2H",
-  "choices": [
-    {
-      "finish_reason": "stop",
-      "index": 0,
-      "logprobs": null,
-      "text": "\n\nHello World!\n\nHello World!",
-      "content_filter_results": {
-        "hate": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "self_harm": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": false,
-          "severity": "safe"
-        }
-      }
-    }
-  ],
-  "created": 1731894806,
-  "model": "gpt-35-turbo-instruct",
-  "object": "text_completion",
-  "system_fingerprint": null,
-  "usage": {
-    "completion_tokens": 8,
-    "prompt_tokens": 3,
-    "total_tokens": 11,
-    "completion_tokens_details": null,
-    "prompt_tokens_details": null
-  },
-  "prompt_filter_results": [
-    {
-      "prompt_index": 0,
-      "content_filter_results": {
-        "hate": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "self_harm": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "sexual": {
-          "filtered": false,
-          "severity": "safe"
-        },
-        "violence": {
-          "filtered": false,
-          "severity": "safe"
-        }
-      }
-    }
-  ]
-}
-```
-
----
-
 ## Error handling
 
 ```python
-# from openai import AzureOpenAI
-# client = AzureOpenAI()
+# from openai import OpenAI
+# client = OpenAI()
 
 import openai
 
@@ -643,8 +397,8 @@ Use `max_retries` to set/disable the retry behavior:
 ```python
 # For all requests
 
-from openai import AzureOpenAI
-client = AzureOpenAI(
+from openai import OpenAI
+client = OpenAI(
       max_retries=0
 )
 ```
