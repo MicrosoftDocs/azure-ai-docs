@@ -7,7 +7,7 @@ ms.author: gimondra
 manager: vinodva
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 02/18/2025
+ms.date: 08/27/2025
 ms.update-cycle: 365-days
 ms.custom:
   - subject-rbac-steps
@@ -99,7 +99,7 @@ Provide a connection string that contains a `ResourceId`, with no account key or
 Provide an `identity` using the syntax shown in the following example. Set `userAssignedIdentity` to the user-assigned managed identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
 
 {
     "name" : "blob-datasource",

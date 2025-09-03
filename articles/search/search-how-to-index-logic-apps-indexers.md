@@ -5,7 +5,7 @@ description: Use an Azure Logic Apps workflow for indexer-based indexing in Azur
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 08/27/2025
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -103,7 +103,7 @@ Currently, the public preview has these limitations:
 + Vectorization supports text embedding only.
 + Deletion detection isn't supported. You must manually [delete orphaned documents](search-howto-reindex.md#delete-orphan-documents) from the index.
 + Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
-+ No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow. Use the [2025-05-01-preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a prerelease Azure SDK package that provides the feature.
++ No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow. Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or a prerelease Azure SDK package that provides the feature.
 
 ## Create a logic app workflow
 

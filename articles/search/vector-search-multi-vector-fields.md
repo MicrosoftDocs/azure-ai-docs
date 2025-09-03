@@ -7,7 +7,7 @@ ms.author: gimondra
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: conceptual
-ms.date: 05/07/2025
+ms.date: 08/27/2025
 ---
 
 # Multi-vector field support in Azure AI Search
@@ -98,7 +98,7 @@ Here's a sample document that illustrates how you might use multi-vector fields 
   "title": "Non-Existent Movie",
   "description": "A fictional movie for demonstration purposes.",
   "descriptionEmbedding": [1, 2, 3],
-  "releaseDate": "2025-05-01",
+  "releaseDate": "2025-08-01",
   "scenes": [
     {
       "embedding": [4, 5, 6],
@@ -161,10 +161,10 @@ When a collection of complex types is included in the `$select` parameter, only 
 
 When a document includes multiple embedded vectors, such as text and image embeddings in different subfields, the system uses the highest vector score across all elements to rank the document.
 
-To debug how each vector contributed, use the `innerHits` debug mode (available in API version 2025-05-01-preview).
+To debug how each vector contributed, use the `innerHits` debug mode (available in the latest preview REST API).
 
 ```json
-POST /indexes/my-index/docs/search?api-version=2025-05-01-preview
+POST /indexes/my-index/docs/search?api-version=2025-08-01-preview
 {
   "vectorQueries": [
     {
