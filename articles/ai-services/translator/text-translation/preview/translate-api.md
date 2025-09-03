@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 09/02/2025
 ms.author: lajanuar
 ---
 
@@ -22,12 +22,57 @@ The Text translation API enables you to translate your source language text into
 
 ## Request URL
 
-**Send a `POST` request to**:
+### Global endpoint configuration
+
+**Send a `POST` request**:
+
+***Windows***
 
 ```bash
-https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview"^
+ -H "Ocp-Apim-Subscription-Key:<your-key>" ^
+ -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
+ -H "Content-Type: application/json" ^
+ -d "<your-request-body>"
 
 ```
+***Linux or macOS***
+
+```bash
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview" \
+-H "Ocp-Apim-Subscription-Key:<your-key>" \
+-H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
+-H "Content-Type: application/json" \
+-d "<your-request-body>"
+```
+
+
+### Custom endpoint configuration
+
+ Your custom domain endpoint is a URL formatted with your resource name and hostname and is available in the Azure portal. When you created your Translator resource, the value that you entered in the `Name` field is the custom domain name parameter for the endpoint.
+
+**Send a `POST` request**:
+
+***Windows***
+
+```bash
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-05-01-preview"^
+    -H "Ocp-Apim-Subscription-Key:<your-key>"^
+    -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
+    -H "Content-Type: application/json"^
+    -d "<your-request-body>"
+```
+***Linux or macOS***
+
+```bash
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translator/text/translate?api-version=2025-05-01-preview" \
+    -H "Ocp-Apim-Subscription-Key:<your-key>" \
+    -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
+    -H "Content-Type: application/json" \
+    -d "<your-request-body>"
+```
+
+### Private endpoint
 
 For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
@@ -48,29 +93,25 @@ Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-|**`api-version`**|string|True|Version of the API requested by the client. Accepted value is `2025-05-01-preview`.|
-|**`text`** | string | True | Source text for translation. |
-| **`targets`** | array | True | User-specified values for the translated (`target`) text. |
-| **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
-| **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
+|**api-version**|string|True|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
+|**text** | string | True | Source text for translation. |
+|**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
+| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
+||||
+| **targets** | array | True | User-specified values for the translated (target) text. |
+| **targets.language** | string | True |The language code for the translated (target) text *specified in the targets array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 
 #### Targets array (user-specified values for translated text)
-
->[!NOTE]
-> The current preview only supports the following two `LLM` deployment types:
-> * `GPT 4o`
-> * `GPT 4o mini`
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 | **targets.language** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-and-nmt-deployments)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Azure AI Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
-| **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
-| **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
-| **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
 | **targets.script** | string | False | Specify the script of the transliterated text. |
+|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-deployment-and-nmt)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Azure AI Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
+| **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
+| **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `female`, `male`, or `neutral`.|
+| **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
 | **targets.allowFallback** | string | False | If the desired model doesn't support a particular pair of source and target languages, an alternative approach may be employed. In such cases, the service may default to utilizing a general system as a substitute. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
 | **targets.referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation. |
 | **targets.referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored. |
@@ -115,9 +156,9 @@ A successful response is a JSON array with one result for each string in the inp
 
 * `detectedLanguage`: An object describing the detected language through the following properties:
 
-  * `language`: A string representing the code of the detected language.
+  * `language`: A string representing the code of the source language.
 
-  * `score`: A float value indicating the confidence in the result. The score is between zero and one and a low score indicates a low confidence.
+  * `score`: A floating-point value between zero and one that represents the statistical confidence and accuracy that the detected language is correct. The score is between zero and one and a low score indicates a low confidence.
 
   The `detectedLanguage` property is only present in the result object when language `autodetection` is requested.
 
@@ -150,7 +191,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 
 ## Examples
 
-#### Translate
+#### Translate source text using NMT
 
 ***Request***
 
@@ -194,7 +235,7 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 72
 ```
 
-#### Translate source text into multiple languages
+#### Translate source text into multiple languages using NMT 
 
 ***Request***
 
@@ -246,9 +287,31 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 "sourceCharactersCharged": 144
 ```
 
-#### Translate using `GPT-4o mini` and `NMT` deployments
+#### Translate using large language model
 
-Here, users request specific `GPT` models for deployment. Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+This request uses a gpt-4o-mini model instance with a user defined name (contoso-gpt-4o-mini). When the source language isn't indicated, the system detects it automatically. 
+
+```json
+[
+  {
+    "Text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+    "targets": [
+      {
+        "language": "es",
+        "deploymentName": "contoso-gpt-4o-mini"
+      }
+    ]
+  }
+]
+
+```
+
+
+
+#### Translate using `GPT-4o mini` deployment and `NMT`
+
+* Here,  the source text is translated into Spanish language using a specified mode (gpt-4o) and into German language using general NMT model. 
+* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -260,7 +323,7 @@ Here, users request specific `GPT` models for deployment. Using an `LLM` model r
     "targets": [
       {
         "language": "es",
-        " deploymentName": "your-gpt-4omini-deployment-name"
+        " deploymentName": "your-gpt-4o-mini-deployment-name"
       },
       {
         "language": "de"

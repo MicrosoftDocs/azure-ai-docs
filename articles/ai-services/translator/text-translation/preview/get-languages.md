@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 09/02/2025
 ms.author: lajanuar
 ---
 
@@ -39,7 +39,7 @@ Request parameters passed on the query string are:
 |Query parameters|Description|
 |---|---|
 |api-version|**Required parameter**<br><br>The version of the API requested by the client. Value must be `2025-05-01-preview`.|
-|scope|**Optional parameter**.<br><br>A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`, `transliteration`, and `dictionary`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,dictionary`.|
+|scope|**Optional parameter**.<br><br>A comma-separated list of names defining the group of languages to return. Allowed group names are: `translation`,`transliteration`, and `models`. If no scope is given, then all groups are returned, which is equivalent to passing `scope=translation,transliteration,models`.|
 
 *See* [response body](#response-body).
 
@@ -60,9 +60,9 @@ A client uses the `scope` query parameter to define which groups of languages to
 
 * `scope=transliteration` provides capabilities for converting text in one language from one script to another script;
 
-* `scope=dictionary` provides language pairs for which `Dictionary` operations return data.
+* `scope=models` provides list of available LLM models.
 
-A client may retrieve several groups simultaneously by specifying a comma-separated list of names. For example, `scope=translation,transliteration,dictionary` would return supported languages for all groups.
+A client may retrieve several groups simultaneously by specifying a comma-separated list of names. For example, `scope=translation,transliteration,models` would return supported languages for all groups.
 
 A successful response is a JSON object with one property for each requested group:
 
@@ -74,8 +74,8 @@ A successful response is a JSON object with one property for each requested grou
     "transliteration": {
         //... set of languages supported to convert between scripts (scope=transliteration)
     },
-    "dictionary": {
-        //... set of languages supported for alternative translations and examples (scope=dictionary)
+    "models": {
+        //... set of supported LLM models
     }
 }
 ```
@@ -84,7 +84,7 @@ The value for each property is as follows.
 
 * `translation` property
 
-  The value of the `translation` property is a dictionary of (key, value) pairs. Each key is a `BCP` 47 language tag. A key identifies a language for which text can be translated to or translated from. The value associated with the key is a JSON object with properties that describe the language:
+  The value of the `translation` property is an associative array of (key, value) pairs. Each key is a `BCP` 47 language tag. A key identifies a language for which text can be translated to or translated from. The value associated with the key is a JSON object with properties that describe the language:
 
   * `name`: Display name of the language in the locale requested via `Accept-Language` header.
 
@@ -110,7 +110,7 @@ The value for each property is as follows.
 
 * `transliteration` property
 
-  The value of the `transliteration` property is a dictionary of (key, value) pairs. Each key is a `BCP` 47 language tag. A key identifies a language for which text can be converted from one script to another script. The value associated with the key is a JSON object with properties that describe the language and its supported scripts:
+  The value of the `transliteration` property is an associative array of (key, value) pairs. Each key is a `BCP` 47 language tag. A key identifies a language for which text can be converted from one script to another script. The value associated with the key is a JSON object with properties that describe the language and its supported scripts:
 
   * `name`: Display name of the language in the locale requested via `Accept-Language` header.
 
@@ -171,44 +171,6 @@ The value for each property is as follows.
       ...
     }
   }
-  ```
-
-* `dictionary` property
-
-  The value of the `dictionary` property is a dictionary of (key, value) pairs. Each key is a `BCP` 47 language tag. The key identifies a language for which alternative translations and back-translations are available. The value is a JSON object that describes the source language and the target languages with available translations:
-
-  * `name`: Display name of the source language in the locale requested via `Accept-Language` header.
-
-  * `nativeName`: Display name of the language in the locale native for this language.
-
-  * `dir`: Directionality, which is `rtl` for right-to-left languages or `ltr` for left-to-right languages.
-
-  * `translations`: List of languages with alterative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
-
-    * `name`: Display name of the target language in the locale requested via `Accept-Language` header.
-
-    * `nativeName`: Display name of the target language in the locale native for the target language.
-
-    * `dir`: Directionality, which is `rtl` for right-to-left languages or `ltr` for left-to-right languages.
-
-    * `code`: Language code identifying the target language.
-
-  An example is:
-
-  ```json
-  "es": {
-    "name": "Spanish",
-    "nativeName": "Español",
-    "dir": "ltr",
-    "translations": [
-      {
-        "name": "English",
-        "nativeName": "English",
-        "dir": "ltr",
-        "code": "en"
-      }
-    ]
-  },
   ```
 
 The structure of the response object doesn't change without a change in the version of the API. For the same version of the API, the list of available languages may change over time because Microsoft Translator continually extends the list of languages supported by its services.
