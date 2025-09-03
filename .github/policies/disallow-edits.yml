@@ -62,15 +62,15 @@ configuration:
                 - isActivitySender:
                     user: laujan
                 - isActivitySender:
-                    user: patrickfarley
+                    user: PatrickFarley
                 - isActivitySender:
-                    user: heidisteen
+                    user: HeidiSteen
                 - isActivitySender:
                     user: haileytap
         then:
           - addReply:
               reply: >-
-                @${issueAuthor} - Please don't sign off on this PR. The area owners will sign off once they've reviewed your contribution.
+                ${issueAuthor} - Please don't sign off on this PR. The area owners will sign off once they've reviewed your contribution.
           - mentionUsers:
               mentionees:
                 - eric-urban

@@ -12,7 +12,7 @@ ms.date: 3/20/2025
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>. We recommend using Python 3.10 or later, but having at least Python 3.8 is required. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
-- Then, you need to deploy a `gpt-4o-realtime` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- Then, you need to deploy a `gpt-realtime` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 ## Microsoft Entra ID prerequisites
 
@@ -112,7 +112,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             api_version="2025-08-28",
         )
         async with client.beta.realtime.connect(
-            model="gpt-4o-realtime",  # name of your deployment
+            model="gpt-realtime",  # name of your deployment
         ) as connection:
             await connection.session.update(session={"output_modalities": ["text", "audio"]})  
             while True:
@@ -184,7 +184,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             api_version="2025-08-28",
         )
         async with client.beta.realtime.connect(
-            model="gpt-4o-realtime",  # deployment name of your model
+            model="gpt-realtime",  # deployment name of your model
         ) as connection:
             await connection.session.update(session={"output_modalities": ["text", "audio"]})  
             while True:

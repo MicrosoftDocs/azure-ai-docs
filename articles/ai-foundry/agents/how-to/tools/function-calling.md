@@ -23,7 +23,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|Azure AI foundry support  | Python SDK |    C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -381,6 +381,7 @@ Finally, clean up the created resources by deleting the thread and the agent.
 client.Threads.DeleteThread(threadId: thread.Id);
 // Delete the agent definition
 client.Administration.DeleteAgent(agentId: agent.Id);
+```
 
 ::: zone-end
 
