@@ -1,7 +1,7 @@
 ---
 title: Azure AI Translator usage and data metrics
 titleSuffix: Azure AI services
-description: Reference documentation for Azure AI Translator Azure Monitor Metrics .
+description: Reference documentation for Azure AI Translator Azure Monitor Metrics.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

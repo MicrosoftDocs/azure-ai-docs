@@ -25,13 +25,13 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 ## What's new for 2025-05-01-preview?
 
-* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or a Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
+* **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
 
 * **Adaptive custom translation**. You can provide up to five reference translations or translation memory datasets to enable an `LLM` model to perform few-shot translations in a similar style and tailored to your needs.
 
 * **Tone variant translations**. Use generative AI LLMs translate text across multiple tonal categories—formal, informal, and neutral—ensuring precise contextual adaptation.
 
-*  **Gender-specific language translations**.  Apply generative AI LLMs for the linguistic transformation of text according to specified gender parameters—male, female, and neutral—to ensure targeted stylistic and semantic alignment.
+*  **Gender-specific language translations**. Apply generative AI LLMs for the linguistic transformation of text according to specified gender parameters—male, female, and neutral—to ensure targeted stylistic and semantic alignment.
 
 ## Language support
 
@@ -63,7 +63,7 @@ To force the request to be handled within a specific geography, use the desired 
 Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
 
 > [!NOTE]
-> When you deploy a large language model (LLM), where your data is processed is determined by the configuration options you select (global, data zone, or regional).
+> When you deploy a large language model (LLM), The configuration options you select (global, data zone, or regional) determine where your data is processed.
 
 #### Service limits
 
@@ -71,7 +71,7 @@ Customers with a resource located in Switzerland North or Switzerland West can e
 | --- | --- | --- | --- | --- |
 | Translate | 1,000 | 50,000 | 50 | 105,000 |
 
-The translation latency when using generative AI large language models is influenced by the amount of computing resources provided. You can affect latency by adjusting the capacity allocated during model deployment.
+The amount of computing resources you provide influences translation latency when you use generative AI large language models. By adjusting the capacity allocated during model deployment, you can affect latency.
 
 #### Pricing
 
