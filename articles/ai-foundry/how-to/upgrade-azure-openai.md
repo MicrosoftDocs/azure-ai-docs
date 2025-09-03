@@ -1,5 +1,5 @@
 ---
-title: Upgrade from Azure OpenAI to Azure AI Foundry (Preview)
+title: Upgrade from Azure OpenAI to Azure AI Foundry 
 titleSuffix: Azure AI Foundry
 description: Upgrade seamlessly from Azure OpenAI to Azure AI Foundry and unlock advanced capabilities like a broader model catalog, agents service, and evaluation tools.
 ms.author: sgilley
@@ -10,13 +10,11 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
 
-# Upgrade from Azure OpenAI to Azure AI Foundry (Preview)
+# Upgrade from Azure OpenAI to Azure AI Foundry
 
 The Azure AI Foundry resource type offers a superset of capabilities compared to the Azure OpenAI resource type. It enables access to a broader model catalog, agents service, and evaluation capabilities.
 
 An upgrade option is available for you to keep your existing Azure OpenAI API endpoint, state of work, and security configurations, without creating a new Azure AI Foundry resource.
-
-[!INCLUDE [preview-feature](../openai/includes/preview-feature.md)]
 
 
 ## Benefits of Upgrading
@@ -65,10 +63,11 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 **Option 1: Use Azure AI Foundry Portal**
 
-* Navigate to your Azure OpenAI resource.
-* On the overview page, find the banner **Make the switch to AI Foundry** and select **Switch now.**
-* Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
-* Confirm to start the upgrade. The upgrade takes up to two minutes.
+1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+1. Select your Azure OpenAI resource.
+1. On the overview page, find the banner **Make the switch to AI Foundry** and select **Switch now.**
+1. Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
+1. Confirm to start the upgrade. The upgrade takes up to two minutes.
 
 > [!NOTE]
 > While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the portal for your resource. Use Azure Bicep or wait until you see the banner.
@@ -125,8 +124,11 @@ Then, use either AI Foundry Portal or ARM template to rollback:
 
 **Option 1: Use Azure AI Foundry Portal**
 
-* To start, navigate to management center in the left bottom of your screen.
-* On your resource overview page, find the rollback option.
+1. Navigate to management center in the left bottom of your screen.
+1. On your resource overview page, find the rollback option.
+1. Select **Rollback**.
+
+:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Azure AI Foundry portal.":::
 
 # [Azure Bicep](#tab/bicep)
 
@@ -175,3 +177,7 @@ Not sure who upgraded your resource to Azure AI Foundry? You can inspect the act
 1. Use Azure Activity Logs (under "Monitoring") to see if an upgrade operation was performed.
 1. Filter by "Write" operations on the storage account.
 1. Look for operations listed as `Microsoft.CognitiveServices/accounts/write`.
+
+## Related content
+
+* [Choose an Azure resource type for AI foundry](../concepts/resource-types.md)
