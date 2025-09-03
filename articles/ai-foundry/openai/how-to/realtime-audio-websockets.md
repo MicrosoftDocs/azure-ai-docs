@@ -59,9 +59,19 @@ You can construct a full request URI by concatenating:
 
 The following example is a well-constructed `/realtime` request URI:
 
+#### [preview version](#tab/preview)
+
 ```http
 wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-04-01-preview&deployment=gpt-4o-mini-realtime-preview-deployment-name
 ```
+#### [GA version](#tab/ga)
+
+```http
+wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-08-28&model=gpt-realtime-deployment-name
+```
+
+---
+
 
 To authenticate:
 - **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
