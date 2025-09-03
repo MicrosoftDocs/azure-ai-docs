@@ -63,14 +63,15 @@ To force the request to be handled within a specific geography, use the desired 
 
 Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
 
-> [!NOTE]
-> When you deploy a large language model (LLM), The configuration options you select (global, data zone, or regional) determine where your data is processed.
+### LLM processing
+
+When you deploy a large language model (LLM), the configuration options you choose—global, data zone, or regional—directly impact and determine the specific location in which your data is processed. Therefore, your selections during setup play a significant role in defining the geographical boundaries for how and where the model processes your information.
 
 #### Service limits
 
 | Operation | Maximum Number of Array Elements | Maximum Size of Array Element | Generative AI LLM: Maximum Number of Array Elements | Generative AI LLM: Maximum Size of Array Element |
 | --- | --- | --- | --- | --- |
-| Translate | 1,000 | 50,000 | 50 | 105,000 |
+| Translate | 1,000 | 50,000 | 50 | 5,000 |
 
 The amount of computing resources you provide influences translation latency when you use generative AI large language models. By adjusting the capacity allocated during model deployment, you can affect latency.
 

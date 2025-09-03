@@ -28,24 +28,7 @@ items:
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
 
-- name: Text translation (2025-05-01-preview) 🆕
-  items:
-  - name: Overview 🆕
-    displayName: gpt, adaptive, tone, gender
-    href: text-translation/preview/overview.md
-  - name: "Migrate to 2025-05-01-preview 🆕"
-    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-    href: text-translation/how-to/migrate-to-preview.md
-  - name: REST API guide (2025-05-01-preview) 🆕
-    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/preview/rest-api-guide.md
-  - name: Get languages 🆕
-    href: text-translation/preview/get-languages.md
-  - name: Translate 🆕
-    displayName: detection,detect
-    href: text-translation/preview/translate-api.md
-  - name: Transliterate 🆕
-    href: text-translation/preview/transliterate-api.md
+
 
 - name: Text translation (GA)
   items:
@@ -125,7 +108,7 @@ items:
     - name: PHP
       href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
     - name: Ruby
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby   
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
 
   - name: Reference (GA)
     items:
@@ -139,6 +122,25 @@ items:
 - name: Text translation authentication
   displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
   href: text-translation/reference/authentication.md
+
+- name: Text translation (2025-05-01-preview) 🆕
+  items:
+  - name: Overview 🆕
+    displayName: gpt, adaptive, tone, gender
+    href: text-translation/preview/overview.md
+  - name: "Migrate to 2025-05-01-preview 🆕"
+    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+    href: text-translation/how-to/migrate-to-preview.md
+  - name: REST API guide (2025-05-01-preview) 🆕
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/preview/rest-api-guide.md
+  - name: Get languages 🆕
+    href: text-translation/preview/get-languages.md
+  - name: Translate 🆕
+    displayName: detection,detect
+    href: text-translation/preview/translate-api.md
+  - name: Transliterate 🆕
+    href: text-translation/preview/transliterate-api.md
 
 - name: Document translation
   items:
