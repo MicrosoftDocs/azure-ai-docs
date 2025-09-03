@@ -6,7 +6,7 @@ ms.topic: include
 ms.author: pafarley
 ---
 
-| Locale (BCP-47) | Language | Standard voice source | Standard voice target | Personal voice source | Personal voice target | TTS custom lexicon phone target |
+| Locale (BCP-47) | Language | Standard voice source | Standard voice target | Personal voice source | Personal voice target | TTS custom lexicon phoneme target |
 | ----- | ----- | ----- | ----- | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) |  Yes |  Yes |  Yes | No | No |
 | `am-ET` | Amharic (Ethiopia) |  Yes |  Yes |  Yes |  Yes | No |
