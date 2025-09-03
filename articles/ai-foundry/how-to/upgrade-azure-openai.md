@@ -17,7 +17,7 @@ The Azure AI Foundry resource type offers a superset of capabilities compared to
 An upgrade option is available for you to keep your existing Azure OpenAI API endpoint, state of work, and security configurations, without creating a new Azure AI Foundry resource.
 
 
-## Benefits of Upgrading
+## Benefits of upgrading
 
 Upgrading to Azure AI Foundry unlocks the following capabilities.
 
