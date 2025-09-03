@@ -150,7 +150,7 @@ ms.author: pafarley
 | `ur-PK` | Urdu (Pakistan) | No | Yes | No |No |  No |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) |  Yes |  Yes |  Yes | No | No |
 | `vi-VN` | Vietnamese (Vietnam) |  Yes |  Yes |  Yes |  Yes |  Yes |
-| `wuu-CN` | Chinese (Wu, Simplified) | No |No |No |No |
+| `wuu-CN` | Chinese (Wu, Simplified) | No |No |No |No | No |
 | `yue-CN` | Chinese (Cantonese, Simplified) |  Yes |  Yes |  Yes | No | No |
 | `zh-CN` | Chinese (Mandarin, Simplified) |  Yes |  Yes |  Yes |  Yes |  Yes |
 | `zh-CN-GUANGXI` | Chinese (Guangxi Accent Mandarin, Simplified) |  Yes |  Yes |  Yes | No | No |
