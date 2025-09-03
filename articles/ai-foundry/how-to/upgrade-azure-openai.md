@@ -128,7 +128,7 @@ Then, use either AI Foundry Portal or ARM template to rollback:
 1. On your resource overview page, find the rollback option.
 1. Select **Rollback**.
 
-:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Azure AI Foundry portal.":::
+:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Azure AI Foundry portal." lightbox = "../media/upgrade-azure-openai/rollback.png":::
 
 # [Azure Bicep](#tab/bicep)
 
