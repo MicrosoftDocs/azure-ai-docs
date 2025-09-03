@@ -159,7 +159,7 @@ To rollback, convert your template configuration back to 'OpenAI' as kind.
 
 ---
 
-## How to inspect whether a resource was upgraded before
+## How to inspect whether a resource has been upgraded
 
 The following Azure resource property is available to inspect whether a resource was previously upgraded to AI Foundry.
 
