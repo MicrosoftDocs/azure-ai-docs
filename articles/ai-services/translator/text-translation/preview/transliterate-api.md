@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 09/02/2025
 ms.author: lajanuar
 ---
 
@@ -42,47 +42,22 @@ Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-|**`api-version`**|string|True|Version of the API requested by the client. Accepted value is `2025-05-01-preview`.|
-|**`text`** | string | True | Source text for translation. |
-| **`targets`** | array | True | User-specified values for the translated (`target`) text. |
-| **`language`** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
+|**api-version**|string|True|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
+|**text** | string | True | Source text for translation. |
 | **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
 | **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | **Specifies the script of the source text**. |
+| **targets** | array | True | User-specified values for the translated (target) text. |
+| **targets.language** | string | True |The language code for the translated (target) text *specified in the targets array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
+
 
 #### Targets array (user-specified values for translated text)
-
->[!NOTE]
-> The current preview only supports the following two `LLM` deployment types:
-> * `GPT 4o`
-> * `GPT 4o mini`
 
 | Parameter | Type | Required? | Description |
 | --- | --- | --- | --- |
 | **targets.language** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-|**targets.deploymentName** | string | False | &bullet; Default is `general`, which uses a neural machine translation (NMT) system.<br>&bullet; `your-model-name-gpt-4o-mini` is an example deployment name for the GPT-4o-mini model. For more information, *see* [Translate using GPT-4o mini and NMT deployments](translate-api.md#translate-using-gpt-4o-mini-and-nmt-deployments)<br>&bullet; `<categoryID>` uses the custom `NMT` model trained by customer. For more information, *see* [Train a custom model in Azure AI Foundry](../../custom-translator/azure-ai-foundry/how-to/train-model.md)<br>  |
-| **targets.tone** | string | False | Desired tone of target translation. Accepted values are `formal`, `informal`, or `neutral`. |
-| **targets.gender** (For more information, *see* [Gender-specific translations](#gender-specific-translations))| string | False | Desired gender of target translation. Accepted values are `male`, `female`, or `neutral`.|
-| **targets.adaptiveDatasetId** | string | False | Reference dataset ID having sentence pair to generate adaptive customized translation. The maximum number of reference text pairs to generate adaptive customized translation is five (5).|
 | **targets.script** | string | False | Specify the script of the transliterated text. |
 | **targets.allowFallback** | string | False | If the desired model doesn't support a particular pair of source and target languages, an alternative approach may be employed. In such cases, the service may default to utilizing a general system as a substitute. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
-| **targets.referenceTextPairs** | string | False | Reference text pairs to generate adaptive customized translation. |
-| **targets.referenceTextPairs.source** | string | False | Source text in reference text pair. If provided, `adaptiveDatasetId` is ignored. |
-| **targets.referenceTextPairs.target** | string | False | Target text in reference text pair. |
-| **targets.profanityAction** | string | False | Specifies how profanities should be treated in translations. Accepted values are: `NoAction` (default), `Marked`, or `Deleted`. |
-| **targets.profanityMarker** | string | False | Specifies how profanities should be marked in translations. Accepted values are `Asterisk` (default) or Tag. |
-
-##### Gender-specific translations
-
-The following table shows gender-specific translations with the optional targets array gender parameter.
-
-| Source text | Target gender | Expected gender in translation |
-| --- | --- | --- |
-| Neutral | Not indicated | Neutral /  **Random**: if target language doesn't have a gender-neutral term. |
-| Female | Not indicated | Female / **Neutral**: if target language is gender neutral. |
-| Male |Not indicated | Male / **Neutral**: if target language is gender neutral. |
-| Neutral<br>Female<br>Male  | → Female<br>→ Female<br>→ Female | Female / **Neutral**: if target language is gender neutral. |
-| Neutral<br>Female<br>Male | → Male<br>→ Male<br>→ Male | Male / **Neutral**: if target language is gender neutral. |
 
 ## Request body
 

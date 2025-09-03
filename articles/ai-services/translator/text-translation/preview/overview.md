@@ -41,7 +41,7 @@ The languages supported for LLM and Adaptive custom translations are listed in t
 
 The `2025-05-01-preview` API supports both the resource API key and Microsoft Entra ID authentication. For your information, *see* [Authorization and authentication](../../text-translation/reference/authentication.md)
 
-## Base URLs
+## NMT Base URLs
 
 Requests to Translator are, in most cases, handled by the datacenter that is closest to where the request originated. If there's a datacenter failure when using the global endpoint, the request may be routed outside of the geography.
 
@@ -49,7 +49,8 @@ To force the request to be handled within a specific geography, use the desired 
 
 ✔️ Feature: **Translator Text** </br>
 
-| Service endpoint | Request processing data center |
+
+| NMT model service endpoint | Request processing data center |
 |------------------|--------------------------|
 |**Global (recommended):**</br>**`api.cognitive.microsofttranslator.com`**|Closest available data center.|
 |**Americas:**</br>**`api-nam.cognitive.microsofttranslator.com`**|East US 2 &bull; West US 2|
@@ -60,6 +61,9 @@ To force the request to be handled within a specific geography, use the desired 
 #### Switzerland service endpoints
 
 Customers with a resource located in Switzerland North or Switzerland West can ensure that their Text API requests are served within Switzerland. To ensure that requests are handled in Switzerland, create the Translator resource in the `Resource region` `Switzerland North` or `Switzerland West`, then use the resource's custom endpoint in your API requests.
+
+> [!NOTE]
+> When you deploy a large language model (LLM), where your data is processed is determined by the configuration options you select (global, data zone, or regional).
 
 #### Service limits
 
