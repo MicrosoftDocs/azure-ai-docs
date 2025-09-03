@@ -146,6 +146,8 @@ The audio API models can be used to transcribe and translate speech to text. The
 
 Learn more about each model on our [models concept page](./concepts/models.md).
 
-## Next steps
+## Related content
 
-Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+
+- [Upgrade from Azure OpenAI to Azure AI Foundry (Preview)](../ai-foundry/how-to/upgrade-azure-openai.md).
