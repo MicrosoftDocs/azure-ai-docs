@@ -1,5 +1,5 @@
 ---
-title: 'How to use the GPT-4o Realtime API via WebRTC (Preview)'
+title: 'How to use the GPT-4o Realtime API via WebRTC'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT-4o Realtime API for speech and audio via WebRTC.
 manager: nitinme
@@ -12,9 +12,8 @@ ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT-4o Realtime API via WebRTC (Preview)
+# How to use the GPT-4o Realtime API via WebRTC
 
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
@@ -33,6 +32,7 @@ Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you nee
 The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
+- `gpt-realtime` (version 2025-08-28)
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
 
@@ -44,7 +44,7 @@ Before you can use GPT-4o real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Connection and authentication
 
