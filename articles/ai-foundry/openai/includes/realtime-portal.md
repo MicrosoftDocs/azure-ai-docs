@@ -13,16 +13,16 @@ ms.date: 3/20/2025
 
 ## Use the GPT-4o real-time audio
 
-To chat with your deployed `gpt-4o-realtime` model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) **Real-time audio** playground, follow these steps:
+To chat with your deployed `gpt-realtime` model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) **Real-time audio** playground, follow these steps:
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project that has your deployed `gpt-4o-realtime` model.
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your project that has your deployed `gpt-realtime` model.
 1. Select **Playgrounds** from the left pane.
 1. Select **Audio playground** > **Try the Audio playground**. 
 
     > [!NOTE]
-    > The **Chat playground** doesn't support the `gpt-4o-realtime` model. Use the **Audio playground** as described in this section.
+    > The **Chat playground** doesn't support the `gpt-realtime` model. Use the **Audio playground** as described in this section.
 
-1. Select your deployed `gpt-4o-realtime` model from the **Deployment** dropdown.
+1. Select your deployed `gpt-realtime` model from the **Deployment** dropdown.
 
     <!--:::image type="content" source="../media/how-to/real-time/real-time-playground.png" alt-text="Screenshot of the audio playground with the deployed model selected." lightbox="../media/how-to/real-time/real-time-playground.png":::-->
 

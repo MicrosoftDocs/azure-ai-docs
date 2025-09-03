@@ -247,8 +247,8 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
 |`gpt-4o-mini-audio-preview` | Default | 2M | 1K |
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
-|`gpt-4o-audio` |   Default | 100K | 30 |
-|`gpt-4o-realtime` | Default | 100K | 30 |
+|`gpt-audio` |   Default | 100K | 30 |
+|`gpt-realtime` | Default | 100K | 30 |
 
 ## GPT-image-1 rate limits
 
