@@ -45,11 +45,11 @@ Your existing resource configurations and state remain preserved including:
 Backend limitations:
 
 * Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
-* AI Foundry resource type doesn't support configuring Weights & Biases.
+* The AI Foundry resource type doesn't support configuring Weights & Biases.
 
-Foundry UX limitations:
+Foundry portal limitations:
 
-* Evaluations UX view doesn't yet support all capabilities that Azure OpenAI evaluations UX view supports.
+* The evaluations view doesn't yet support all the capabilities available in the Azure OpenAI evaluations view.
 
 ## Support level post-upgrade 
 
@@ -57,7 +57,7 @@ The upgrade converts your Azure OpenAI resource type to Azure AI Foundry resourc
 
 ## How to upgrade
 
-As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via Foundry Portal UX or using Azure Bicep or Resource Manager templates.
+As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via the Azure AI Foundry portal or using Azure Bicep or Resource Manager templates.
 
 # [Foundry portal](#tab/portal)
 
