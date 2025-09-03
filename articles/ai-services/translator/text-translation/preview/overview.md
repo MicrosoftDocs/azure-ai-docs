@@ -6,6 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
+ms.custom: references_regions
 ms.date: 06/19/2025
 ms.author: lajanuar
 ---
