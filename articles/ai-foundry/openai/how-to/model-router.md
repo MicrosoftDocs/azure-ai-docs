@@ -20,9 +20,6 @@ Use model router through the Completions API like you use a single base model su
 
 ## Deploy a model router model
 
-> [!NOTE]
-> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
-
 Model router is packaged as a single Azure AI Foundry model that you deploy. Follow the steps in the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource). In the **Create new deployment** step, find `model-router` in the **Models** list. Select it, and then complete the rest of the deployment steps.
 
 > [!NOTE]
