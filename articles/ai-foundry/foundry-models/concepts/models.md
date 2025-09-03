@@ -45,8 +45,8 @@ To learn more about the available Azure OpenAI models and their regions of avail
 
 The Black Forest Labs collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation. 
 
-| Model  | Type | Capabilities | Region availability | Project type |
-| ------ | ---- | ------------ | Deployment type (region availability) | ------------ |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | - Global standard (all regions) | Foundry, Hub-based |
 | [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text (5,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | - Global standard (all regions) | Hub-based |
 
@@ -57,8 +57,8 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 The DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks by using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
 
-| Model  | Type | Capabilities | Region availability | Project type |
-| ------ | ---- | ------------ | Deployment type (region availability) | ------------ |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions)| Foundry, Hub-based |
 | [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
 | [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
@@ -73,8 +73,8 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
 - High-performance models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
 
-| Model  | Type | Capabilities | Region availability | Project type |
-| ------ | ---- | ------------ | Deployment type (region availability) | ------------ |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and images (1M tokens) <br /> - **Output:** text (1M tokens) <br /> - **Languages:** `ar`, `en`, `fr`, `de`, `hi`, `id`, `it`, `pt`, `es`, `tl`, `th`, and `vi` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | - Global standard (all regions) | Foundry, Hub-based |
 | [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | - Global standard (all regions) | Foundry, Hub-based |
 
@@ -84,16 +84,16 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-| Model  | Type | Capabilities | Region availability | Project type |
-| ------ | ---- | ------------ | ------------------- | ------------ |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |- Global standard (all regions) | Foundry, Hub-based |
 
 See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft). You can also find several Microsoft models available [from partners and community](#microsoft).
 
 ### Mistral models sold directly by Azure
 
-| Model | Type | Capabilities | Region availability | Project type |
-| ------ | ---- | ------------ | Deployment type (region availability) | ------------ |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral) | Image-to-Text | - **Input:** image or PDF pages ( 30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br> - Data zone standard (US)  | Foundry |
 
 See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI).  You can also find several Mistral models available [from partners and community](#mistral-ai).
@@ -107,8 +107,8 @@ Grok 3 is a non-reasoning model pretrained by the Colossus datacenter. It's tail
 
 On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents. It excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
 
-| Model  | Type | Capabilities | Region availability | Project type |
-| ------ | ---- | ------------ | Deployment type (region availability) | ------------ |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
 | [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai)<sup>1</sup> | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions) <br> - Data zone standard (US) | Foundry, Hub-based |
 | [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai)<sup>1</sup> | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text | - Global standard (all regions) <br> - Data zone standard (US) | Foundry, Hub-based |
 
@@ -125,7 +125,7 @@ Models from partners and community make up most of the Azure AI Foundry Models. 
 The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
 | Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------- | ------------ |
+| ------ | ---- | ------------ | ------------ |
 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,182 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
@@ -136,7 +136,7 @@ The Cohere family of models includes various models optimized for different use 
 #### Cohere rerank
 
 | Model | Type | Capabilities | API Reference | Project type |
-| ------ | ---- | ------------ | ------------- | ------------ |
+| ----- | ---- | ------------ | ------------- | ------------ |
 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification | - **Input:** text <br /> - **Output:** text  <br /> - **Languages:** English, Chinese, French, German, Indonesian, Italian, Portuguese, Russian, Spanish, Arabic, Dutch, Hindi, Japanese, Vietnamese | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) | Hub-based |
 
 For more details on pricing for Cohere rerank models, see [Pricing for Cohere rerank models](../../concepts/models-inference-examples.md#pricing-for-cohere-rerank-models).
@@ -190,7 +190,7 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 Mistral AI offers two categories of models: premium models such as Mistral Large 2411 and Ministral 3B, and open models such as Mistral Nemo.
 
 | Model | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
+| ----- | ---- | ------------ | ------------ |
 | [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion | - **Input:** text (262,144 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, de, es, it, and en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `zh`, `ja`, `ko`, `pt`, `nl`, and `pl` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
@@ -213,7 +213,7 @@ Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection 
 To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
 
 | Model  | Type | Capabilities | Inference API | Project type |
-| ------ | ---- | --- | ------------ | ------------ |
+| ------ | ---- | ------------ | ------------- | ------------ |
 | [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) | Hub-based |
 
 For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples.md#nixtla).
