@@ -63,7 +63,7 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: use Azure AI Foundry Portal**
+**Option 1: Use Azure AI Foundry Portal**
 
 * Navigate to your Azure OpenAI resource.
 * On the overview page, find the banner **Make the switch to AI Foundry** and select **Switch now.**
@@ -75,7 +75,7 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Azure Bicep](#tab/bicep)
 
-**Option 2: use an Azure Bicep template**
+**Option 2: Use an Azure Bicep template**
 
 Starting with your existing Azure OpenAI template configuration, set the following properties:
 
@@ -123,14 +123,14 @@ Then, use either AI Foundry Portal or ARM template to rollback:
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: use Azure AI Foundry Portal**
+**Option 1: Use Azure AI Foundry Portal**
 
 * To start, navigate to management center in the left bottom of your screen.
 * On your resource overview page, find the rollback option.
 
 # [Azure Bicep](#tab/bicep)
 
-**Option 2: use an Azure Bicep template**
+**Option 2: Use an Azure Bicep template**
   
 To rollback, convert your template configuration back to 'OpenAI' as kind.
 
