@@ -1,7 +1,7 @@
 ---
 title: Vector Query Filters
 titleSuffix: Azure AI Search
-description: Learn how to add filter expressions to vector queries in Azure AI Search. Configure prefiltering and postfiltering modes to optimize query performance and improve search results.
+description: Learn how to add filter expressions to vector queries in Azure AI Search. Configure prefilter, postfilter, and strict postfilter (preview) modes to optimize query performance and improve search results.
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -9,134 +9,111 @@ ms.update-cycle: 180-days
 ms.custom:
   + ignite-2023
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 08/28/2025
 ---
 
 # Add a filter to a vector query in Azure AI Search
 
-In Azure AI Search, you can define a vector query request that includes a [filter expression](search-filters.md) to add inclusion or exclusion criteria to your queries. This article explains how to:
+> [!NOTE]
+> `strictPostFilter` is currently in public preview. This preview is provided without a service-level agreement and isn't recommended for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).
+>
+> `prefilter` and `postfilter` are generally available in the [latest stable REST API version](/rest/api/searchservice/search-service-api-versions).
 
-> [!div class="checklist"]
-> + [Define a `filter` expression](#define-a-filter)
-> + [Set the `vectorFilterMode` for pre-query or post-query filtering](#set-the-vectorfiltermode)
+In Azure AI Search, you can use a [filter expression](search-filters.md) to add inclusion or exclusion criteria to a vector query. You can also specify a filtering mode that applies the filter:
+
++ Before query execution, known as *prefiltering*.
++ After query execution, known as *postfiltering*.
++ After the global top-`k` results are identified, known as *strict postfiltering* (preview).
 
 This article uses REST for illustration. For code samples in other languages and end-to-end solutions that include vector queries, see the [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples) GitHub repository.
 
 You can also use [Search Explorer](search-get-started-portal-import-vectors.md#check-results) in the Azure portal to query vector content. If you use the JSON view, you can add filters and specify the filter mode.
 
-## How filtering works in a vector query
+## How filtering works in vector queries
 
-Filters apply to `filterable` *nonvector* fields, either string or numeric, to include or exclude search documents based on filter criteria. Although a vector field isn't filterable itself, you can add filters to nonvector fields in the same index to include or exclude documents that also contain vector fields you're searching on.
+Filters apply to `filterable` *nonvector* fields, either string or numeric, to include or exclude search documents based on filter criteria. Although vector fields aren't filterable, you can use filters on nonvector fields in the same index to include or exclude documents that contain vector fields you're searching on.
 
-Filters are applied before or after query execution based on the `vectorFilterMode` parameter.
+If your index lacks suitable text or numeric fields, check for document metadata that might be useful in filtering, such as `LastModified` or `CreatedBy` properties.
+
+The `vectorFilterMode` parameter controls when the filter is applied in the vector search process, with `k` setting the maximum number of nearest neighbors to return. Depending on the filter mode and how selective your filter is, fewer than `k` results might be returned.
 
 ## Define a filter
 
-Filters determine the scope of a vector query. They're set on and iterate over nonvector string and numeric fields marked as `filterable` in the index. The purpose of a filter determines *what* the vector query executes over: the entire searchable space (prefiltering) or the contents of a search result (postfiltering).
+Filters determine the scope of vector queries and are defined using [Documents - Search Post (REST API)](/rest/api/searchservice/documents/search-post). Unless you want to use a preview feature, use the latest stable version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions) to formulate the request.
 
-If you don't have source fields with text or numeric values, check for document metadata, such as `LastModified` or `CreatedBy` properties, that might be useful in a metadata filter.
+This REST API provides:
 
-### [**2024-07-01**](#tab/filter-2024-07-01)
-
-[**2024-07-01**](/rest/api/searchservice/search-service-api-versions#2024-07-01) is the stable version of this API. This version has:
-
-+ `vectorFilterMode` for prefilter (default) or postfilter filtering modes.
 + `filter` for the criteria.
-
-In the following example, the vector is a representation of this query string: "what Azure services support full text search". The query targets the `contentVector` field. The actual vector has 1,536 embeddings, so it's trimmed for readability.
-
-The filter criteria are applied to a filterable text field (`category` in this example) before the search engine executes the vector query.
++ `vectorFilterMode` for pre-query or post-query filtering. For supported modes, see the [next section](#set-the-filter-mode).
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api-version}
 Content-Type: application/json
-api-key: {{admin-api-key}}
-{
-    "count": true,
-    "select": "title, content, category",
-    "filter": "category eq 'Databases'",
-    "vectorFilterMode": "preFilter",
-    "vectorQueries": [
-        {
-            "kind": "vector",
-            "vector": [
-                -0.009154141,
-                0.018708462,
-                . . . 
-                -0.02178128,
-                -0.00086512347
-            ],
-            "exhaustive": true,
-            "fields": "contentVector",
-            "k": 5
-        }
-    ]
-}
+api-key: {admin-api-key}
+    
+    {
+        "count": true,
+        "select": "title, content, category",
+        "filter": "category eq 'Databases'",
+        "vectorFilterMode": "preFilter",
+        "vectorQueries": [
+            {
+                "kind": "vector",
+                "vector": [
+                    -0.009154141,
+                    0.018708462,
+                    . . . // Trimmed for readability
+                    -0.02178128,
+                    -0.00086512347
+                ],
+                "exhaustive": true,
+                "fields": "contentVector",
+                "k": 5
+            }
+        ]
+    }
 ```
 
-### [**2024-05-01-preview**](#tab/filter-2024-05-01-preview)
+In this example, the vector embedding targets the `contentVector` field, and the filter criteria apply to `category`, a filterable text field. Because the `preFilter` mode is used, the filter is applied before the search engine runs the query, so only documents in the `Databases` category are considered during the vector search.
 
-[**2024-05-01-preview**](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) introduces filter options. This version adds:
+## Set the filter mode
 
-+ `vectorFilterMode` for prefilter (default) or postfilter filtering modes.
-+ `filter` for the criteria.
+The `vectorFilterMode` parameter determines when and how the filter is applied relative to vector query execution. There are three modes:
 
-In the following example, the vector is a representation of this query string: "what Azure services support full text search". The query targets the `contentVector` field. The actual vector has 1,536 embeddings, so it's trimmed for readability.
++ `preFilter` (default)
++ `postFilter`
++ `strictPostFilter` (preview)
 
-The filter criteria are applied to a filterable text field (`category` in this example) before the search engine executes the vector query.
+### [preFilter](#tab/prefilter-mode)
 
-```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-05-01-preview
-Content-Type: application/json
-api-key: {{admin-api-key}}
-{
-    "count": true,
-    "select": "title, content, category",
-    "filter": "category eq 'Databases'",
-    "vectorFilterMode": "preFilter",
-    "vectorQueries": [
-        {
-            "kind": "vector",
-            "vector": [
-                -0.009154141,
-                0.018708462,
-                . . . 
-                -0.02178128,
-                -0.00086512347
-            ],
-            "exhaustive": true,
-            "fields": "contentVector",
-            "k": 5
-        }
-    ]
-}
-```
+Prefiltering applies filters before query execution, which reduces the candidate set for the vector search algorithm. The top-`k` results are then selected from this filtered set.
 
----
-
-## Set the vectorFilterMode
-
-The `vectorFilterMode` query parameter determines whether the filter is applied before or after vector query execution.
-
-### [Prefilter mode](#tab/prefilter-mode)
-
-Prefiltering applies filters before query execution, reducing the search surface area over which the vector search algorithm looks for similar content.
-
-In a vector query, `preFilter` is the default.
+In a vector query, `preFilter` is the default mode because it favors recall and quality over latency.
 
 :::image type="content" source="media/vector-search-filters/pre-filter.svg" alt-text="Diagram of prefilters." border="true" lightbox="media/vector-search-filters/pre-filter.png":::
 
-### [Postfilter mode](#tab/postfilter-mode)
+### [postFilter](#tab/postfilter-mode)
 
-Postfiltering applies filters after query execution, narrowing the search results.
+Postfiltering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
 
-In a vector query, use `postFilter` for this task.
+To use this option in a vector query, use `"vectorFilterMode": "postFilter"`.
 
 :::image type="content" source="media/vector-search-filters/post-filter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/post-filter.png":::
 
+### [strictPostFilter (preview)](#tab/strictpostfilter-mode)
+
+Strict postfiltering applies filters after identifying the global top-`k` results. This mode guarantees that the filtered results are always a subset of the unfiltered top `k`.
+
+With strict postfiltering, highly selective filters or small `k` values can return zero results (even if matches exist) because only documents that match the filter within the global top `k` are returned. Don't use this mode if missing relevant results could have serious consequences, such as in healthcare or patent searches.
+
+To use this option in a vector query, use `"vectorFilterMode": "strictPostFilter"` with the latest preview version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions).
+
 ---
 
-### Benchmark testing of vector filter modes
+### Benchmark testing of prefiltering and postfiltering
+
+> [!IMPORTANT]
+> This section applies to prefiltering and postfiltering, not strict postfiltering.
 
 To understand the conditions under which one filter mode performs better than the other, we ran a series of tests to evaluate query outcomes over small, medium, and large indexes.
 
@@ -231,3 +208,9 @@ The vertical axis represents the relative performance of prefiltering compared t
 + A value of `1.0` means prefiltering and post filtering are equivalent.
 
 The horizontal axis represents the filtering rate, or the percentage of candidate documents after applying the filter. For example, a rate of `1.00%` means the filter criteria selected one percent of the search corpus.
+
+## Related content
+
++ [Vector search in Azure AI Search](vector-search-overview.md)
++ [Create a vector index](vector-search-how-to-create-index.md)
++ [Create a vector query](vector-search-how-to-query.md)

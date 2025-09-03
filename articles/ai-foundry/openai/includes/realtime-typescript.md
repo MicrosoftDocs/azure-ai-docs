@@ -13,7 +13,7 @@ ms.date: 3/20/2025
 - <a href="https://nodejs.org/" target="_blank">Node.js LTS or ESM support.</a>
 - [TypeScript](https://www.typescriptlang.org/download/) installed globally.
 - An Azure OpenAI resource created in one of the supported regions. For more information about region availability, see the [models and versions documentation](../concepts/models.md#global-standard-model-availability).
-- Then, you need to deploy a `gpt-4o-realtime` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
+- Then, you need to deploy a `gpt-realtime` model with your Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md). 
 
 ### Microsoft Entra ID prerequisites
 
@@ -83,7 +83,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
         
         // Required Azure OpenAI deployment name and API version
-        const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-realtime";
+        const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-realtime";
         const apiVersion = process.env.OPENAI_API_VERSION || "2025-08-28"; 
     
         // Keyless authentication 
@@ -106,7 +106,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             type: "session.update",
             session: {
                 modalities: ["text", "audio"],
-                model: "gpt-4o-realtime",
+                model: "gpt-realtime",
             },
             });
             realtimeClient.send({
@@ -196,7 +196,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         const apiKey = process.env.AZURE_OPENAI_API_KEY || "Your API key";
         
         // Required Azure OpenAI deployment name and API version
-        const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-4o-realtime";
+        const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-realtime";
         const apiVersion = process.env.OPENAI_API_VERSION || "2025-08-28"; 
         
         const azureOpenAIClient = new AzureOpenAI({
@@ -214,7 +214,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
             type: "session.update",
             session: {
                 modalities: ["text", "audio"],
-                model: "gpt-4o-realtime",
+                model: "gpt-realtime",
             },
             });
             realtimeClient.send({

@@ -5,7 +5,7 @@ description: Learn how to design and build a custom agentic retrieval solution w
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 06/08/2025
+ms.date: 08/29/2025
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -192,7 +192,7 @@ project_client.agents.enable_auto_function_calls(toolset)
 
 ## How to structure messages
 
-The messages sent to the agent tool include instructions for chat history and using the results obtained from [knowledge retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true) on Azure AI Search. The response is passed as a large single string with no serialization or structure.
+The messages sent to the agent tool include instructions for chat history and using the results obtained from [knowledge retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) on Azure AI Search. The response is passed as a large single string with no serialization or structure.
 
 ```python
 def agentic_retrieval() -> str:
