@@ -7,7 +7,7 @@ ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date: 08/21/2025
 ms.update-cycle: 365-days
 ms.custom:
   - mode-ui
@@ -16,6 +16,9 @@ ms.custom:
 ---
 
 # Quickstart: Create a knowledge store in the Azure portal
+
+> [!NOTE]
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](search-agentic-retrieval-concept.md) workflows.
 
 In this quickstart, you create a [knowledge store](knowledge-store-concept-intro.md) that serves as a repository for output generated from an [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search. A knowledge store makes generated content available in Azure Storage for workloads other than search.
 
