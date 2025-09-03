@@ -36,25 +36,26 @@ The following list compares available Azure AI Translator `2025-05-01-preview` m
 
 |2025-05-01 method|v3 method|
 |:---|---|
-|**`api-version`**<br>&bullet; Value must be **`2025-05-01-preview`** |**`api-version`**<br>&bullet; Value must be **`3.0`**|
-|**`text`**<br>&bullet; Specifies source text for translation. | **`text`**<br>&bullet; Specifies source text for translation|
-|**`targets`**<br>&bullet; Array containing user-specified values for the translated text|&bullet; *The targets array isn't included with the Translator v3.0 schema.*|
-|**`language`**<br>&bullet; The language code for the translated (target) text *specified in the `targets` array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|**`to`**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
+|**api-version**<br>&bullet; Value must be **2025-05-01-preview** |**api-version**<br>&bullet; Value must be **3.0**|
+|**text**<br>&bullet; Specifies source text for translation. | **text**<br>&bullet; Specifies source text for translation|
+|**targets**<br>&bullet; Array containing user-specified values for the translated text|&bullet; *The targets array isn't included with the Translator v3.0 schema.*|
+|**language**<br>&bullet; The language code for the translated (target) text *specified in the targets array*. <br> &bullet; Values are [supported language](../../language-support.md) codes for the translation operation.|**to**<br>&bullet; Specifies the language of the output text.<br>&bullet; The target language must be one of the [supported languages](../../language-support.md#translation) included in the translation scope.|
 
-For more information on **`targets array`** values, *see* [Translate text](../preview/translate-api.md).
+For more information on **targets array** values, *see* [Translate text](../preview/translate-api.md).
 
 ## API compatibility
 
 The following table compares Translator `2025-05-01-preview` and Translator v3 API methods.
 
-|Translator 2025-05-01-preview method|Translator v3 compatibility|
+|Translator v3 compatibility|Translator 2025-05-01-preview method|
 |---|---|
-|[Translate text](../preview/translate-api.md)|[Translate text](../reference/v3/translate.md)|
-|[Transliterate](../preview/transliterate-api.md)|[Transliterate](../reference/v3/transliterate.md)|
-|[Languages](../preview/get-languages.md)|[Languages](../reference/v3/languages.md)|
-[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
-[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
-|[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported|
+|[Translate text](../reference/v3/translate.md)|[Translate text](../preview/translate-api.md)|
+|[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../preview/transliterate-api.md)|
+|[Languages](../reference/v3/languages.md)|[Languages](../preview/get-languages.md)|
+|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
+|[Detect](../reference/v3/detect.md)|Feature no longer supported. Use|
+|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
+|[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported.<br> Use the [Azure AI Language detection API](/azure/ai-services/language-service/language-detection/quickstart#create-a-json-file-with-the-example-request-body)|
 
 
 ## Next Steps
