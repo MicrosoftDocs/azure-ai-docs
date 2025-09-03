@@ -66,12 +66,12 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 **Option 1: use Azure AI Foundry Portal**
 
 * Navigate to your Azure OpenAI resource.
-* On the overview page, find the banner *'Make the switch to AI Foundry'* and select *'switch now.'*
+* On the overview page, find the banner **Make the switch to AI Foundry** and select **Switch now.**
 * Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
 * Confirm to start the upgrade. The upgrade takes up to two minutes.
 
 > [!NOTE]
-> While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the UX for your resource.
+> While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the portal for your resource. Use Azure Bicep or wait until you see the banner.
 
 # [Azure Bicep](#tab/bicep)
 
