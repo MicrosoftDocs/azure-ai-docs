@@ -61,7 +61,7 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: Use Azure AI Foundry Portal**
+**Option 1: Use Azure AI Foundry portal**
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your Azure OpenAI resource.
@@ -122,7 +122,7 @@ Then, use either AI Foundry Portal or ARM template to rollback:
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: Use Azure AI Foundry Portal**
+**Option 1: Use Azure AI Foundry portal**
 
 1. Navigate to management center in the left bottom of your screen.
 1. On your resource overview page, find the rollback option.
