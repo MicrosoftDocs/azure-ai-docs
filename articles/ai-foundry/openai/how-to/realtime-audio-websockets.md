@@ -1,5 +1,5 @@
 ---
-title: 'How to use the GPT-4o Realtime API via WebSockets (Preview)'
+title: 'How to use the GPT-4o Realtime API via WebSockets'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT-4o Realtime API for speech and audio via WebSockets.
 manager: nitinme
@@ -12,9 +12,8 @@ ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT-4o Realtime API via WebSockets (Preview)
+# How to use the GPT-4o Realtime API via WebSockets
 
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
 
 Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
@@ -30,6 +29,7 @@ Follow the instructions in this article to get started with the Realtime API via
 The GPT-4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
+- `gpt-realtime` (version 2025-08-28)
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
 
@@ -41,7 +41,7 @@ Before you can use GPT-4o real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section. You can deploy the model from the [Azure AI Foundry portal model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model in a supported region as described in the [supported models](#supported-models) section. You can deploy the model from the [Azure AI Foundry portal model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Connection and authentication
 
@@ -55,13 +55,23 @@ You can construct a full request URI by concatenating:
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
 - The `openai/realtime` API path.
 - An `api-version` query string parameter for a supported API version such as `2024-12-17`
-- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model deployment.
+- A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model deployment.
 
 The following example is a well-constructed `/realtime` request URI:
+
+#### [preview version](#tab/preview)
 
 ```http
 wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-04-01-preview&deployment=gpt-4o-mini-realtime-preview-deployment-name
 ```
+#### [GA version](#tab/ga)
+
+```http
+wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-08-28&model=gpt-realtime-deployment-name
+```
+
+---
+
 
 To authenticate:
 - **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.
