@@ -59,7 +59,7 @@ Create a connection to Azure Key Vault.
 
 Use this template:
 
-:::code language="Bicep" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/01-connections/connection-key-vault.bicep
+:::code language="bicep" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/01-connections/connection-key-vault.bicep"
 
 ::: zone-end
 
