@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/05/2025
+ms.date: 08/29/2025
 ---
 
 # Design an index for agentic retrieval in Azure AI Search
@@ -16,18 +16,28 @@ ms.date: 05/05/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a chat completion model for query planning, generating subqueries that broaden the scope of what's searchable and relevant.
 
-Queries are created internally. Certain aspects of those generated queries are determined by your search index. This article explains which index elements affect agentic retrieval. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
+Subqueries are created internally. Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on agentic retrieval. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
-Summarized, the search index specified in the `targetIndexes` of an [agent definition](search-agentic-retrieval-how-to-create.md) must have these elements:
+A search index that's used in agentic retrieval is specified as *knowledge source* and is either:
+
++ An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](search-knowledge-source-how-to-index.md) definition.
+
++ A generated index created from a generated blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](search-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
+
+## Criteria for agentic retrieval
+
+An index that's used in agentic retrieval must have these elements:
 
 + String fields attributed as `searchable` and `retrievable`
 + A semantic configuration, with a `defaultSemanticConfiguration`
-+ A vectorizer if you want to include vector queries in the pipeline
++ Vector fields and a vectorizer if you want to include vector queries in the pipeline
+
+It should also have fields that can be used for citations, such as  document or file name, page or chapter name, or at least a chunk ID.
 
 Optionally, the following index elements increase your opportunities for optimization:
 
 + `scoringProfile` with a `defaultScoringProfile`, for boosting relevance
-+ `synonymMaps` for terminology or jargon
++ `synonymMaps` for terminology or jargon 
 + `analyzers` for linguistics rules or patterns (like whitespace preservation, or special characters)
 
 ## Example index definition
@@ -139,9 +149,11 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
 
 **Key points**:
 
-In agentic retrieval, a large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed and search results are generated, those results are passed to the LLM again, this time as grounding data. LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you must have `searchable` fields that provide plain text strings, and are `retrievable` in the response.
+In agentic retrieval, a large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed and search results are generated, those results are passed to the LLM again, this time as grounding data that's used to formulate an answer. 
 
-This index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but it does need to be `searchable`. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
+LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you must have `searchable` fields that provide plain text strings, and are `retrievable` in the response. Vector fields and vector search are also important because they add similarity search to information retrieval. Vectors enhance and improve the quality of search, but aren't otherwise strictly required. Azure AI Search has built-in capabilities that [simplify and automate vectorization](vector-search-overview.md).
+
+The previous example index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but notice that its `searchable` for vector search. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
 
 The vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
@@ -269,7 +281,7 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
 
 [Scoring profiles](index-add-scoring-profiles.md) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated during query execution, although the precise behavior depends on the API version used to create the index.
 
-If you create the index using 2025-05-01-preview, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking.
+If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking.
 
 You can use any scoring profile that makes sense for your index. Here's an example of one that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example if a match was found in the "Category" field, the boosted score is multiplied by 5.
 

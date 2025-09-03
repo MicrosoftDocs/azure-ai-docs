@@ -57,11 +57,9 @@ Create a connection to Azure Key Vault.
 
 ## Create a Key Vault connection
 
-<!-- Pull this content from the [foundry-samples repository (keyvaultconnection branch)](https://github.com/andyaviles121/foundry-samples/tree/keyvaultconnection) after it's merged.
+Use this template:
 
-TBD - DO NOT PUBLISH WITHOUT UPDATING THIS WITH THE REAL CODE FOR THE SAMPLE.
--->
-
+:::code language="bicep" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup/01-connections/connection-key-vault.bicep"
 
 ::: zone-end
 

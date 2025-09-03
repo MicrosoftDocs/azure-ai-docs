@@ -11,7 +11,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 07/31/2025
+ms.date: 08/27/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -23,7 +23,7 @@ Here are the most recent versions of the REST APIs:
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
 | Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
-| Data plane | [`2025-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-05-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
@@ -40,7 +40,7 @@ We recommend upgrading API versions in succession, working through each version 
 
 Azure AI Search breaks backward compatibility as a last resort. Upgrade is necessary when:
 
-+ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
++ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
 
 + Your code fails when unrecognized properties are returned in an API response. As a best practice, your application should ignore properties that it doesn't understand.
 
@@ -61,6 +61,10 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 ## Breaking changes
 
 The following breaking changes apply to data operations.
+
+### Breaking changes for knowledge agents
+
+[Knowledge agents](search-agentic-retrieval-how-to-create.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 
@@ -85,6 +89,15 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 ## Data plane upgrades
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2025-08-01-preview
+
+[`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview) introduces the following breaking changes to knowledge agents created using `2025-05-01-preview`:
+
++ Replaces `targetIndexes` with `knowledgeSources`.
++ Removes `defaultMaxDocsForReranker` without replacement.
+
+Otherwise, there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2025-05-01-preview
 
