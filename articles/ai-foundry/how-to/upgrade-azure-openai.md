@@ -196,7 +196,7 @@ The following Azure resource property is available to inspect whether a resource
 }
 ```
 
-Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure portal](/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
+Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure portal](/azure/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
 
 1. Use Azure Activity Logs (under "Monitoring") to see if an upgrade operation was performed.
 1. Filter by "Write" operations on the storage account.
