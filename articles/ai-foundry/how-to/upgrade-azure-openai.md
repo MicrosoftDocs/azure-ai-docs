@@ -14,12 +14,11 @@ ms.topic: how-to
 
 The Azure AI Foundry resource type offers a superset of capabilities compared to the Azure OpenAI resource type. It enables access to a broader model catalog, agents service, and evaluation capabilities.
 
-An upgrade option is available for you to keep your existing Azure OpenAI API endpoint, state of work, and security configurations, without creating a new Azure AI Foundry resource.
-
+An upgrade option is available to convert your Azure OpenAI resource to an Azure AI Foundry resource. You keep your existing Azure OpenAI API endpoint, state of work, and security configurations, and don't need to create a new Azure AI Foundry resource.
 
 ## Benefits of upgrading
 
-Upgrading to Azure AI Foundry unlocks the following capabilities.
+Upgrading your Azure OpenAI resource to an Azure AI Foundry resource unlocks the following capabilities.
 
 |Feature|Azure OpenAI|Azure AI Foundry|
 |---|---|---|
@@ -53,7 +52,7 @@ Foundry portal limitations:
 
 ## Support level post-upgrade 
 
-The upgrade converts your Azure OpenAI resource type to Azure AI Foundry resource type. Both services are generally available and supported before and after the upgrade. This is an early access feature. If needed, you can [roll back to your previous setup](#rollback-to-azure-openai).
+The upgrade converts your Azure OpenAI resource type to Azure AI Foundry resource type. Both services are generally available and supported before and after the upgrade. Upgrading your AOAI resource is an opt-in capability. If needed, you can [roll back to your previous setup](#roll-back-to-azure-openai).
 
 ## How to upgrade
 
@@ -106,29 +105,54 @@ resource aiFoundry 'Microsoft.CognitiveServices/accounts@2025-06-01' = {
 }
 ```
 
-Run the template using Azure CLI options or your VS Code extension for Bicep as a patch operation on your current resource.
+Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bicep-cli) or your [Visual Studio Code extension for Bicep](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-bicep) as a patch operation on your current resource.
 
 ---
 
-## Rollback to Azure OpenAI
+## UX navigation differences after upgrading
 
-In case you run into any issues, a rollback option is available. As prerequisite to rollback, you're required to delete any of the following configurations first:
+After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to the portal’s navigation and feature access:
+
+1. **Updated left-side navigation**
+   
+   The left-hand menu is re-organized to consolidate playgrounds, including Assistants, under a single landing page, streamlining access to experimentation environments. You find access to new features including Agent service and Content Understanding.
+
+   An *Azure OpenAI section* provides access to features that are exclusively used with Azure OpenAI models.
+
+   > [!NOTE]
+   > Not all Foundry tools are visible by default in the left side navigation, which is customizable. Select '... More' to locate them.
+
+1. **Your default view is now a project**
+
+   Projects are folders to organize your work in Foundry. They're also a container for access management and data isolation. Multiple can be created as part of your AI Foundry resource, so you can separate your work between use cases that you're working on. The first project after upgrade has access to your previous work in Azure OpenAI.
+
+1. **Broader set of models in model catalog**
+   
+   Your model catalog now includes more models that can be directly deployed using your Azure AI Foundry resource. 
+
+1. **Developer endpoints**
+
+   Your project overview page includes your previous Azure OpenAI endpoint, and a new Azure AI Foundry endpoint. Foundry API and SDK grant access to the broader set of models and features including agent service.
+
+## Roll back to Azure OpenAI
+
+In case you run into any issues, a roll back option is available. As prerequisite to roll back, you're required to delete any of the following configurations first:
 
 * Projects
 * Connections
 * Non-Azure OpenAI model deployments
 
-Then, use either AI Foundry Portal or ARM template to rollback:
+Then, use either AI Foundry Portal or ARM template to roll back:
 
 # [Foundry portal](#tab/portal)
 
 **Option 1: Use Azure AI Foundry portal**
 
 1. Navigate to management center in the left bottom of your screen.
-1. On your resource overview page, find the rollback option.
+1. On your resource overview page, find the roll back option.
 1. Select **Rollback**.
 
-:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the rollback option in the Azure AI Foundry portal." lightbox = "../media/upgrade-azure-openai/rollback.png":::
+:::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the roll back option in the Azure AI Foundry portal." lightbox = "../media/upgrade-azure-openai/rollback.png":::
 
 # [Azure Bicep](#tab/bicep)
 
@@ -172,7 +196,7 @@ The following Azure resource property is available to inspect whether a resource
 }
 ```
 
-Not sure who upgraded your resource to Azure AI Foundry? You can inspect the activity sign in the Azure portal:
+Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure portal](/azure/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
 
 1. Use Azure Activity Logs (under "Monitoring") to see if an upgrade operation was performed.
 1. Filter by "Write" operations on the storage account.
@@ -181,3 +205,4 @@ Not sure who upgraded your resource to Azure AI Foundry? You can inspect the act
 ## Related content
 
 * [Choose an Azure resource type for AI foundry](../concepts/resource-types.md)
+* [Bicep samples for Azure AI Foundry common infrastructure configurations](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
