@@ -100,7 +100,7 @@ The `vectorFilterMode` parameter determines when and how the filter is applied r
 
 ### Pre-filter
 
-Prefiltering applies filters before query execution, which reduces the candidate set for the vector search algorithm. The top-`k` results are then selected from this filtered set. In a vector query, `preFilter` is the default mode because it favors recall and quality over latency.
+Pre-filtering applies filters before query execution, which reduces the candidate set for the vector search algorithm. The top-`k` results are then selected from this filtered set. In a vector query, `preFilter` is the default mode because it favors recall and quality over latency.
 
 1. On each shard, during HNSW traversal, apply the filter predicate when considering candidates, expanding the graph traversal until `k` candidates are found.
 1. Pre-filtered local top-k results are produced per shard, which are aggregated into the global top-k. 
@@ -111,7 +111,7 @@ Prefiltering applies filters before query execution, which reduces the candidate
 
 ### Post-filter
 
-Postfiltering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
+Post-filtering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
 
 To use this option in a vector query, use `"vectorFilterMode": "postFilter"`.
 
@@ -125,7 +125,7 @@ To use this option in a vector query, use `"vectorFilterMode": "postFilter"`.
 
 ### Strict Post-filter (preview)
 
-Strict postfiltering applies filters after identifying the global top-`k` results. This mode guarantees that the filtered results are always a subset of the unfiltered top `k`.
+Strict post-filtering applies filters after identifying the global top-`k` results. This mode guarantees that the filtered results are always a subset of the unfiltered top `k`.
 
 With strict postfiltering, highly selective filters or small `k` values can return zero results (even if matches exist) because only documents that match the filter within the global top `k` are returned. Don't use this mode if missing relevant results could have serious consequences, such as in healthcare or patent searches.
 
