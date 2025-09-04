@@ -278,7 +278,59 @@ A user might want to interrupt the assistant's response or ask the assistant to 
 - Truncating audio deletes the server-side text transcript to ensure there isn't text in the context that the user doesn't know about.
 - The server responds with a [`conversation.item.truncated`](../realtime-audio-reference.md#realtimeservereventconversationitemtruncated) event.
 
-## Text in audio out example
+## Image input
+
+The `gpt-realtime` model supports image input as part of the conversation. The model can ground responses in what the user is currently seeing. You can send images to the model as part of a conversation item. The model can then generate responses that reference the images.
+
+The following example json body adds an image to the conversation:
+
+```json
+{
+    "type": "conversation.item.create",
+    "previous_item_id": null,
+    "item": {
+        "type": "message",
+        "role": "user",
+        "content": [
+            {
+                "type": "input_image",
+                "image_url": "data:image/{format(example: png)};base64,{some_base64_image_bytes}"
+            }
+        ]
+    }
+}
+```
+
+## MCP server support
+
+To enable MCP support in a Realtime API session, provide the URL of a remote MCP server in your session configuration. After connecting, the API will automatically manage tool calls on your behalf.
+
+You can easily enhance your agent's functionality by specifying a different MCP server in the session configuration—any tools available on that server will be accessible immediately.
+
+The following example json body sets up an MCP server:
+
+```json
+// POST /v1/realtime/client_secrets
+{
+  "session": {
+    "type": "realtime",
+    "tools": [
+      {
+        "type": "mcp",
+        "server_label": "stripe",
+        "server_url": "https://mcp.stripe.com",
+        "authorization": "{access_token}",
+        "require_approval": "never"
+      }
+    ]
+  }
+}
+```
+
+
+
+
+## Text-in, audio-out example
 
 Here's an example of the event sequence for a simple text-in, audio-out conversation:
 
