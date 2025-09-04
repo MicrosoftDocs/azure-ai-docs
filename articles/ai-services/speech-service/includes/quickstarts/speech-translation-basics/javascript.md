@@ -47,8 +47,8 @@ To translate speech from a file:
     ```javascript
     import { readFileSync } from "fs";
     import { SpeechTranslationConfig, AudioConfig, TranslationRecognizer, ResultReason, CancellationDetails, CancellationReason } from "microsoft-cognitiveservices-speech-sdk";
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechTranslationConfig = SpeechTranslationConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechTranslationConfig = SpeechTranslationConfig.fromEndpoint(new URL(process.env.ENDPOINT), process.env.SPEECH_KEY);
     speechTranslationConfig.speechRecognitionLanguage = "en-US";
     const language = "it";
     speechTranslationConfig.addTargetLanguage(language);

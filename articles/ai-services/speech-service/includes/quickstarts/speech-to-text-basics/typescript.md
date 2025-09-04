@@ -69,8 +69,8 @@ To transcribe speech from a file:
         SpeechRecognitionResult 
     } from "microsoft-cognitiveservices-speech-sdk";
     
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechConfig: SpeechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY!, process.env.SPEECH_REGION!);
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechConfig: SpeechConfig = SpeechConfig.fromEndpoint(new URL(process.env.ENDPOINT!), process.env.SPEECH_KEY!);
     speechConfig.speechRecognitionLanguage = "en-US";
     
     function fromFile(): void {
