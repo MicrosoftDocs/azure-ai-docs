@@ -47,7 +47,7 @@ For more information on **targets array** values, *see* [Translate text](../prev
 
 The following table provides a detailed comparison of the updates introduced in API version 2025-05-01-preview.
 
-|API version: V3|API version: 2025-05-01-preview|
+|API version: v3|API version: 2025-05-01-preview|
 |---|---|
 |[Translate text](../reference/v3/translate.md)|[Translate text](../preview/translate-api.md)|
 |[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../preview/transliterate-api.md)|
