@@ -3,7 +3,8 @@ title: Monitor model deployments in Azure AI Foundry Models
 description: Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for Foundry Models.
 author: ssalgadodev
 ms.author: ssalgado
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-inference
 ms.topic: how-to
 ms.date: 06/30/2025
 ms.reviewer: fasantia

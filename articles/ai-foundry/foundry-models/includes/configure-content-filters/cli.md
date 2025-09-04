@@ -4,7 +4,8 @@ author: msakande
 ms.author: mopeakande
 ms.reviewer: yinchang
 reviewer: ychang-msft
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-inference
 ms.date: 08/29/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment

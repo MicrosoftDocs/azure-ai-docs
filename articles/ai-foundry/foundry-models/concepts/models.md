@@ -7,7 +7,8 @@ ms.author: mopeakande
 reviewer: santiagxf
 ms.reviewer: fasantia
 ms.date: 09/03/2025
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-inference
 ms.topic: how-to
 ms.custom:
   - references_regions
