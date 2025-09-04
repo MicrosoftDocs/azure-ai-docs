@@ -2,8 +2,8 @@
 title: Content filtering for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how Azure AI Foundry Models filter harmful content in prompts and completions, including configuration and API scenarios.
-author: msakande
-ms.author: mopeakande
+author: ssalgadodev
+ms.author: ssalgado
 ms.reviewer: yinchang
 reviewer: ychang-msft
 ms.service: azure-ai-model-inference
