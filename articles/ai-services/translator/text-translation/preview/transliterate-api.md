@@ -57,8 +57,8 @@ Request parameters passed with the request are as follows:
 | --- | --- | --- | --- |
 |**api-version**|string|True|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
 | **language** | string | True | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
-| **fromScript** | string | True | **Specifies the script for the source text**. *See* [supported languages](languages.md), using the `transliteration` scope, to view input scripts available for the source language. |
-| **toScript** | string | True | Specifies the script for the target text. *See* [supported languages](languages.md), using the `transliteration` scope, to view input scripts available for the target language. |
+| **fromScript** | string | True | **Specifies the script for the source text**. *See* [supported languages](../../language-support.md),`transliteration`, to view input scripts available for the source language. |
+| **toScript** | string | True | Specifies the script for the target text. *See* [supported languages](../../language-support.md), `transliteration`, to view input scripts available for the target language. |
 
 ## Request body
 
