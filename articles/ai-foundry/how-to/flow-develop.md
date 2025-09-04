@@ -139,6 +139,13 @@ n
 
 #### View test result and trace (preview)
 
+Tracing is disabled by default, to enable tracing you need to set the environment variable `PF_DISABLE_TRACING` to `false`. One way you can do this is by adding the following to the python node:
+
+```python
+import os
+os.environ["PF_DISABLE_TRACING"] = "false"
+```
+
 For the whole flow run, after you execute the flow, you can see the run status in the run banner. To view the trace for checking the result and observing the flow execution, you can select **View outputs** and then select the **trace** tab. You can see the input and output of the whole flow and each node, along with more detailed information for debugging. It's available during the running and after the run is completed.
 
 ##### Understand the trace view
