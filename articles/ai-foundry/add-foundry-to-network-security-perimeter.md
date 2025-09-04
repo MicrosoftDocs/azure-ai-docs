@@ -10,7 +10,7 @@ ms.service: azure-ai-foundry
 ai.usage: ai-assisted
 ---
 
-# Add an Azure AI Foundry to a network security perimeter
+# Add Azure AI Foundry to a network security perimeter
 
 > [!NOTE]
 > Azure AI Foundry support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. Review the limitations and considerations section before you start.
