@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Transliterate (2025-05-01-preview)
 
-The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
+The Text transliteration API maps your source language script or alphabet to a target language script or alphabet. Unlike translation, transliteration doesn't return the meaning, only the way the text is written.
 
 ## Request URL
 
@@ -23,6 +23,20 @@ https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-
 ```
 
 For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
+
+#### Request parameters
+
+Request parameters passed with the request are as follows:
+
+| Parameter | Type | Required | Description |
+| --- | --- | --- | --- |
+|**api-version**|string|True|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
+| **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
+|**text** | string | True | Source text for translation. |
+| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
+| **script** | string | False | **Specifies the script of the source text**. |
+| **targets** | array | True | User-specified values for the translated (target) text. |
+| **targets.language** | string | True |The language code for the translated (target) text *specified in the targets array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 
 ## Request headers
 
@@ -36,19 +50,6 @@ Request headers include:
 | **X-ClientTraceId** | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
 
 
-#### Request parameters
-
-Request parameters passed with the request are as follows:
-
-| Parameter | Type | Required | Description |
-| --- | --- | --- | --- |
-|**api-version**|string|True|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
-|**text** | string | True | Source text for translation. |
-| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
-| **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
-| **script** | string | False | **Specifies the script of the source text**. |
-| **targets** | array | True | User-specified values for the translated (target) text. |
-| **targets.language** | string | True |The language code for the translated (target) text *specified in the targets array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
 
 
 #### Targets array (user-specified values for translated text)
