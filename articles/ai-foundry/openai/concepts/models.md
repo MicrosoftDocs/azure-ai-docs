@@ -18,7 +18,7 @@ ms.custom:
 
 # Azure OpenAI in Azure AI Foundry models
 
-[!INCLUDE [azure-open-ai-models-list](../includes/azure-open-ai-models-list.md)]
+[!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
 
 ## GPT-5
 
