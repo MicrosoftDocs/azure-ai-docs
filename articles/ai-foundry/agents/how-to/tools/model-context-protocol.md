@@ -6,13 +6,16 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 09/04/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
 ---
 
 # Connect to Model Context Protocol servers (preview)
+
+> [!NOTE]
+> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
 You can extend the capabilities of your Azure AI Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Azure AI Foundry Agent Service, can access.
 
@@ -40,9 +43,6 @@ For more information on using MCP, see:
 
 * [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
 * [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
-
-> [!NOTE]
-> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
 ## Usage support
 

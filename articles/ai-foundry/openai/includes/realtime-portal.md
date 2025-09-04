@@ -11,7 +11,7 @@ ms.date: 3/20/2025
 
 [!INCLUDE [Deploy model](realtime-deploy-model.md)]
 
-## Use the GPT-4o real-time audio
+## Use the GPT real-time audio
 
 To chat with your deployed `gpt-realtime` model in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) **Real-time audio** playground, follow these steps:
 
