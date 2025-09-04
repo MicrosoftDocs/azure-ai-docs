@@ -54,10 +54,12 @@ Register the network security perimeter feature from the Azure portal preview fe
 
 Or use the following CLI commands to register the two Preview features
 
-- az feature registration create --name OpenAI.NspPreview --namespace
+```azurecli-interactive
+az feature registration create --name OpenAI.NspPreview --namespace
   Microsoft.CognitiveServices
+```
 
-Ensure the Microsoft.CognitiveServices and Microsoft.Network providers are registered. To check if the feature flags are allowlisted, use command az feature registration list.
+Ensure the `Microsoft.CognitiveServices` and `Microsoft.Network` providers are registered. To check if the feature flags are allowlisted, use `command az feature registration list`.
 
 ## Assign an Azure AI Foundry account to a network security perimeter
 
@@ -65,10 +67,10 @@ Azure Network Security Perimeter allows administrators to define a logical netwo
 
 You can add Azure AI Foundry to a network security perimeter so that all requests occur within the security boundary.
 1. In the Azure portal, find the network security perimeter service for your subscription.
-1. Select Associated Resources from the left-hand menu. {Image 1}
-1. Select Add > Associate resources with an existing profile. {Image 2}
+1. Select Associated Resources from the left-hand menu. 
+1. Select Add > Associate resources with an existing profile.
 1. Select the profile you created when you created the network security perimeter for a profile.
-1. Select Associate, and then select the Azure AI Foundry resource you created. {Image 3}
+1. Select Associate, and then select the Azure AI Foundry resource you created.
 1. Select Associate in the bottom left-hand section of the screen to create the association.
 
 
@@ -90,19 +92,19 @@ The `publicNetworkAccess` setting determines the Azure AI Foundry resource's ass
 ## Change the network security perimeter access mode
 
 1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Resources** in the left-hand menu. {Image 4}
+1. Select **Resources** in the left-hand menu. 
 1. Find your Azure AI Foundry resource in the table.
-1. Select the three dots in the far right of the Azure Foundry resource row. Select **Change access mode** in the popup. {Image 5}
-1. Select the desired access mode and select Apply. {Image 6}
+1. Select the three dots in the far right of the Azure Foundry resource row. Select **Change access mode** in the popup.
+1. Select the desired access mode and select Apply. 
 
 ## Enable logging network access
 
 1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Diagnostic settings** in the left-hand menu. {Image 7}
+1. Select **Diagnostic settings** in the left-hand menu.
 1. Select **Add diagnostic setting**.
 1. Enter any name such as "diagnostic" for Diagnostic setting name.
 1. Under Logs, select `allLogs`. `allLogs` ensures all inbound and outbound network access to resources in your network security perimeter is logged.
-1. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations. {Image 8}
+1. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations. 
 1. Select Save to create the diagnostic setting and start logging network access.
 
 ## Reading network access logs
@@ -136,10 +138,10 @@ Inbound access rules can allow the internet and resources outside the perimeter 
 - Subscriptions. This type of rule allows inbound access authenticated using any managed identity from the subscription.
 To add an inbound access rule in the Azure portal:
 1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Profiles** in the left-hand menu. {Image 9}
-1. Select the profile you're using with your network security perimeter. {Image 10}
-1. Select **Inbound access rules** in the left-hand menu. {Image 11}
-1. Select **Add**. {Image 12}
+1. Select **Profiles** in the left-hand menu.
+1. Select the profile you're using with your network security perimeter. 
+1. Select **Inbound access rules** in the left-hand menu.
+1. Select **Add**.
 1. Enter or select the following values:
     
     | Setting | Value |
@@ -148,7 +150,7 @@ To add an inbound access rule in the Azure portal:
     | Source Type | Valid values are IP address ranges or subscriptions. |
     | Allowed Sources | If you selected IP address ranges, enter the IP address range in a CIDR format that you want to allow inbound access from. Azure IP ranges are available at this link. If you selected **Subscriptions**, use the subscription you want to allow inbound access from. |
     
-1. Select **Add** to create the inbound access rule. {Image 13}
+1. Select **Add** to create the inbound access rule.
 
 ## Add an outbound access rule
 Recall that in public preview, Azure AI Foundry can connect to Azure Storage, Azure Cosmos DB, Azure Monitor, and Azure AI Search within the security perimeter. If you want to use other data sources, you need an outbound access rule to support that connection.
@@ -157,10 +159,10 @@ Network security perimeter supports outbound access rules based on the Fully Qua
 To add an outbound access rule in the Azure portal:
 
 1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Profiles** in the left-hand menu. {Image 14}
-1. Select the profile you're using with your network security perimeter. {Image 15}
-1. Select **Outbound access rules** in the left-hand menu. {Image 16}
-1. Select **Add**. {Image 17}
+1. Select **Profiles** in the left-hand menu.
+1. Select the profile you're using with your network security perimeter.
+1. Select **Outbound access rules** in the left-hand menu.
+1. Select **Add**.
 1. Enter or select the following values:
     
     | Setting | Value |
@@ -169,7 +171,7 @@ To add an outbound access rule in the Azure portal:
     | Destination Type | Leave as FQDN |
     | Allowed Destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to |
     
-1. Select **Add** to create the outbound access rule. {Image 18}
+1. Select **Add** to create the outbound access rule.
 
 ## Test your connection through network security perimeter
 
