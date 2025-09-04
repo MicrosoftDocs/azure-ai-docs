@@ -25,7 +25,7 @@ Before you make a request, you need an Azure account and an Azure AI services su
 
 * Define the permitted FQDNs for outbound connections from the AI services resource and apply egress controls accordingly using the information in this guide.
 
-* If you want to restrict outbound access for your AI Services resource that's hosted publically and using role-based or key-based access, then restrict outbound access to the list of FQDNs using the `allowedFqdnList` property. But if you want to restrict inbound and outbound for your AI Services resource that's hosted publically and using role-based access only, then restrict outbound access using a network security perimeter. For more information, see [Add an Azure OpenAI service to a network security perimeter (preview)](../ai-foundry/openai/how-to/network-security-perimeter).
+* If you want to restrict outbound access for your AI Services resource that's hosted publically and using role-based or key-based access, then restrict outbound access to the list of FQDNs using the `allowedFqdnList` property. But if you want to restrict inbound and outbound for your AI Services resource that's hosted publically and using role-based access only, then restrict outbound access using a network security perimeter. For more information, see [Add an Azure OpenAI service to a network security perimeter (preview)](../ai-foundry/openai/how-to/network-security-perimeter.md).
 
 ## Enabling data loss prevention
 
