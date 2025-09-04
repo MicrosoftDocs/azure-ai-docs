@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from Azure Data Lake Storage (ADLS) Gen2 data sources.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 07/16/2025  
+ms.date: 08/27/2025  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
@@ -25,7 +25,7 @@ This article explains how to set up queries that use permission metadata to filt
 
 - For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. For blob data sources, your have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
 
-- Use the 2025-05-01-preview REST API or a preview package of an Azure SDK to query the index. This API version supports internal queries that filter out unauthorized results.
+- The latest preview REST API (2025-08-01-preview) or a preview package of an Azure SDK to query the index. This API version supports internal queries that filter out unauthorized results.
 
 ## How query-time enforcement works
 
@@ -64,7 +64,7 @@ The security filter efficiently matches the userIds, groupIds, and rbacScope fro
 Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-05-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-08-01-preview
 Authorization: Bearer {{query-token}}
 x-ms-query-source-authorization: {{query-token}}
 Content-Type: application/json

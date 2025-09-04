@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 07/01/2025
+ms.date: 09/03/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -54,6 +54,6 @@ Instructions vary by sample, but most include how to:
 
 The README also includes information about the application, such as the use case, architecture, and pricing information.
 
-## Related content
+## Next step
 
-- [Get started building a chat app using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
+- [Quickstart: Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)

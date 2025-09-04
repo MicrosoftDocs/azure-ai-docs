@@ -42,7 +42,7 @@ Once you test the service with your own data, you can use `entitySynonyms` to:
 ## Usage guidelines
 
 1. Synonyms must be restricted to phrases that directly refer to the type, and preserve semantic correctness. For example, for the entity type `InternationalBankAccountNumber`, a valid synonym could be "Financial Account Number" or *FAN*. But, the word *deposit* though may be associated with type, as it doesn't directly have a meaning of a bank account number and therefore shouldn't be used.
-1. Synonyms should be country agnostic. For example, *German passport* wouldn't be helpful to include.
+1. Synonyms should be country/region agnostic. For example, *German passport* wouldn't be helpful to include.
 1. Synonyms can't be reused for more than one entity type.
 1. This synonym recognition feature only accepts a subset of entity types supported by the service. The supported entity types and example synonyms include:
 
