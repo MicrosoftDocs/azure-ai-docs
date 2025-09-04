@@ -105,6 +105,8 @@ items:
   items:
   - name: Azure OpenAI 
     href: ../../openai/overview.md
+  - name: Upgrade from Azure OpenAI Service
+    href: ../../how-to/upgrade-azure-openai.md
   - name: Quotas and limits
     href: ../../openai/quotas-limits.md
     displayName: openai 

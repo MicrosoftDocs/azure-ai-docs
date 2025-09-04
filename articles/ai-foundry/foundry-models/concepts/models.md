@@ -6,7 +6,7 @@ author: msakande
 ms.author: mopeakande
 reviewer: santiagxf
 ms.reviewer: fasantia
-ms.date: 08/08/2025
+ms.date: 09/03/2025
 ms.service: azure-ai-model-inference
 ms.topic: how-to
 ms.custom:
@@ -19,7 +19,7 @@ ms.custom:
 # Foundry Models and capabilities
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options.
-This article lists a selection of model offerings and their capabilities, excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
+This article lists a selection of model offerings along with their capabilities, [deployment types and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 
 Depending on what [kind of project](../../what-is-azure-ai-foundry.md#work-in-an-azure-ai-foundry-project) you're using in Azure AI Foundry, you might see a different selection of these models. Specifically, if you're using a Foundry project, built on an Azure AI Foundry resource, you see the models that are available for standard deployment to a Foundry resource. Alternatively, if you're using a hub-based project, hosted by an Azure AI Foundry hub, you see models that are available for deployment to managed compute and serverless APIs. These model selections do overlap in many cases, since many models support the multiple [deployment options](../../concepts/deployments-overview.md). 
 
@@ -35,103 +35,89 @@ Models sold directly by Azure include all Azure OpenAI models and specific, sele
 
 ### Azure OpenAI
 
-Azure OpenAI in Azure AI Foundry Models offers a diverse set of models with different capabilities and price points. Learn more details at [Azure OpenAI Model availability](../../openai/concepts/models.md). These models include:
-
-- State-of-the-art models designed to tackle reasoning and problem-solving tasks with increased focus and capability
-- Models that can understand and generate natural language and code
-- Models that can transcribe and translate speech to text
-
-| Models | Description |
-|--|--|
-| [`GPT-5 series`](../../openai/concepts/models.md#gpt-5) | **NEW** `gpt-5`, `gpt-5-mini`, `gpt-5-nano`, `gpt-5-chat` |
-| [gpt-oss](../../openai/concepts/models.md#gpt-oss) | Open-weight reasoning models |
-| [codex-mini](../../openai/concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
-| [GPT-4.1 series](../../openai/concepts/models.md#gpt-41-series) | `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano` |
-| [model-router](../../openai/concepts/models.md#model-router) | A model that intelligently selects from a set of underlying chat models to respond to a given prompt. |
-| [computer-use-preview](../../openai/concepts/models.md#computer-use-preview) | An experimental model trained for use with the Responses API computer use tool. |
-| [o-series models](../../openai/concepts/models.md#o-series-models) |[Reasoning models](../../openai/how-to/reasoning.md) with advanced problem solving and increased focus and capability. |
-| [GPT-4o, GPT-4o mini, and GPT-4 Turbo](../../openai/concepts/models.md#gpt-4o-and-gpt-4-turbo) | Capable Azure OpenAI models with multimodal versions, which can accept both text and images as input. |
-| [GPT-4](../../openai/concepts/models.md#gpt-4) | A set of models that improve on GPT-3.5 and can understand and generate natural language and code. |
-| [GPT-3.5](../../openai/concepts/models.md#gpt-35) | A set of models that improve on GPT-3 and can understand and generate natural language and code. |
-| [Embeddings](../../openai/concepts/models.md#embeddings) | A set of models that can convert text into numerical vector form to facilitate text similarity. |
-| [Image generation](../../openai/concepts/models.md#image-generation-models) | A series of models that can generate original images from natural language. |
-| [Audio](../../openai/concepts/models.md#audio-models) | A series of models for speech to text, translation, and text to speech. GPT-4o audio models support either low latency *speech in, speech out* conversational interactions or audio generation. |
+[!INCLUDE [azure-open-ai-models-list](../../openai/includes/azure-openai-models-list.md)]
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?selectedCollection=OpenAI).
 
+To learn more about the available Azure OpenAI models and their regions of availability, see [Azure OpenAI in Azure AI Foundry models](../../openai/concepts/models.md).
+
 ### Black Forest Labs models sold directly by Azure
 
-The Black Forest Labs collection of image generation models include FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation. 
+The Black Forest Labs collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation. 
 
-| Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
-| [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text and image (5000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | Foundry, Hub-based |
-| [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text (5000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Hub-based |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text and image (5,000 tokens and 1 image)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats**: Image (PNG and JPG) | - Global standard (all regions) | Foundry, Hub-based |
+| [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs) | Image generation | - **Input:** text (5,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | - Global standard (all regions) | Hub-based |
 
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=black+forest+labs).
 
 ### DeepSeek models sold directly by Azure
 
-DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
+The DeepSeek family of models includes DeepSeek-R1, which excels at reasoning tasks by using a step-by-step training process, such as language, scientific reasoning, and coding tasks.
 
-| Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
-| [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | Foundry, Hub-based |
-| [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
-| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | Foundry, Hub-based |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [DeepSeek-R1-0528](https://ai.azure.com/explore/models/deepseek-r1-0528/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions)| Foundry, Hub-based |
+| [DeepSeek-V3-0324](https://ai.azure.com/explore/models/deepseek-v3-0324/version/1/registry/azureml-deepseek) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (131,072 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
+| [DeepSeek-R1](https://ai.azure.com/explore/models/deepseek-r1/version/1/registry/azureml-deepseek) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | - Global standard (all regions) <br> - Global provisioned (all regions) | Foundry, Hub-based |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=DeepSeek).
 
 ### Meta models sold directly by Azure
 
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
+Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range in scale to include:
 
 - Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
-- High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
+- High-performance models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
 
-| Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
-| [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and images (1M tokens) <br /> - **Output:** text (1M tokens) <br /> - **Languages:** `ar`, `en`, `fr`, `de`, `hi`, `id`, `it`, `pt`, `es`, `tl`, `th`, and `vi` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | Foundry, Hub-based |
-| [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | Foundry, Hub-based |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [Llama-4-Maverick-17B-128E-Instruct-FP8](https://ai.azure.com/explore/models/Llama-4-Maverick-17B-128E-Instruct-FP8/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and images (1M tokens) <br /> - **Output:** text (1M tokens) <br /> - **Languages:** `ar`, `en`, `fr`, `de`, `hi`, `id`, `it`, `pt`, `es`, `tl`, `th`, and `vi` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) | Foundry, Hub-based |
+| [Llama-3.3-70B-Instruct](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct/version/4/registry/azureml-meta) | chat-completion | - **Input:** text (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | - Global standard (all regions) | Foundry, Hub-based |
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta). There are also several Meta models available [from partners and community](#meta).
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta). You can also find several Meta models available [from partners and community](#meta).
 
 ### Microsoft models sold directly by Azure
 
 Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
-| Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
-| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. | Foundry, Hub-based |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [MAI-DS-R1](https://ai.azure.com/explore/models/MAI-DS-R1/version/1/registry/azureml) | chat-completion <br /> [(with reasoning content)](../how-to/use-chat-reasoning.md) | - **Input:** text (163,840 tokens) <br /> - **Output:**  (163,840 tokens) <br /> - **Languages:** `en` and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text. |- Global standard (all regions) | Foundry, Hub-based |
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft). There are also several Microsoft models available [from partners and community](#microsoft).
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft). You can also find several Microsoft models available [from partners and community](#microsoft).
 
 ### Mistral models sold directly by Azure
 
-| Model | Type | Capabilities | Project type 
-| ------ | ---- | ------------ | ------------ |
-| [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral) | Image-to-Text | - **Input:** image or PDF pages ( 30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  | Foundry |
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral) | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br> - Data zone standard (US)  | Foundry |
 
-See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI).  There are also several Mistral models available [from partners and community](#mistral-ai).
+See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI).  You can also find several Mistral models available [from partners and community](#mistral-ai).
 
 
 ### xAI models sold directly by Azure
 
-xAI's Grok 3 and Grok 3 Mini models are designed to excel in various enterprise domains. Grok 3, a non-reasoning model pretrained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is adept at drawing connections across domains and languages. On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
+xAI's Grok 3 and Grok 3 Mini models excel in various enterprise domains. 
 
-| Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
-| [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai)<sup>1</sup> | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text | Foundry, Hub-based |
-| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai)<sup>1</sup> | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text | Foundry, Hub-based |
+Grok 3 is a non-reasoning model pretrained by the Colossus datacenter. It's tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, so it can handle extensive inputs while maintaining coherence and depth. It's adept at drawing connections across domains and languages. 
+
+On the other hand, Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents. It excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets.
+
+| Model  | Type | Capabilities | Deployment type (region availability) | Project type |
+| ------ | ---- | ------------ | ------------------------------------- | ------------ |
+| [grok-3](https://ai.azure.com/explore/models/grok-3/version/1/registry/azureml-xai) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text |- Global standard (all regions) <br> - Data zone standard (US) | Foundry, Hub-based |
+| [grok-3-mini](https://ai.azure.com/explore/models/grok-3-mini/version/1/registry/azureml-xai) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (131,072 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** yes <br /> - **Response formats:** text | - Global standard (all regions) <br> - Data zone standard (US) | Foundry, Hub-based |
 
 See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI).
 
 
 ## Models from partners and community
 
-Models from partners and community constitute the majority of the Azure AI Foundry Models and are provided by trusted third-party organizations, partners, research labs, and community contributors. To learn more about these models, see [Models from Partners and Community](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
+Models from partners and community make up most of the Azure AI Foundry Models. Trusted third-party organizations, partners, research labs, and community contributors provide these models. For more information about these models, see [Models from Partners and Community](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
 
 ### Cohere
@@ -139,7 +125,7 @@ Models from partners and community constitute the majority of the Azure AI Found
 The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
 | Model  | Type | Capabilities | Project type |
-| ------ | ---- | ------------- | ------------ |
+| ------ | ---- | ------------ | ------------ |
 | [Cohere-command-a](https://ai.azure.com/explore/models/Cohere-command-a/version/1/registry/azureml-cohere) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (8,182 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Cohere-command-r-plus-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-plus-08-2024/version/1/registry/azureml-cohere) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Cohere-command-r-08-2024](https://ai.azure.com/explore/models/Cohere-command-r-08-2024/version/1/registry/azureml-cohere) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
@@ -150,7 +136,7 @@ The Cohere family of models includes various models optimized for different use 
 #### Cohere rerank
 
 | Model | Type | Capabilities | API Reference | Project type |
-| ------ | ---- | ------------ | ------------- | ------------ |
+| ----- | ---- | ------------ | ------------- | ------------ |
 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) | rerank <br> text classification | - **Input:** text <br /> - **Output:** text  <br /> - **Languages:** English, Chinese, French, German, Indonesian, Italian, Portuguese, Russian, Spanish, Arabic, Dutch, Hindi, Japanese, Vietnamese | [Cohere's v2/rerank API](https://docs.cohere.com/v2/reference/rerank) | Hub-based |
 
 For more details on pricing for Cohere rerank models, see [Pricing for Cohere rerank models](../../concepts/models-inference-examples.md#pricing-for-cohere-rerank-models).
@@ -159,7 +145,7 @@ See [the Cohere model collection in Azure AI Foundry portal](https://ai.azure.co
 
 ### Core42
 
-Core42 includes autoregressive bi-lingual LLMs for Arabic & English with state-of-the-art capabilities in Arabic.
+Core42 includes autoregressive bilingual LLMs for Arabic and English with state-of-the-art capabilities in Arabic.
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
@@ -169,18 +155,18 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Meta
 
-Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range is scale to include:
+Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range in scale to include:
 
 - Small language models (SLMs) like 1B and 3B Base and Instruct models for on-device and edge inferencing
 - Mid-size large language models (LLMs) like 7B, 8B, and 70B Base and Instruct models
-- High-performant models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
+- High-performance models like Meta Llama 3.1-405B Instruct for synthetic data generation and distillation use cases.
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
-| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | Foundry, Hub-based |
-| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | Foundry, Hub-based |
-| [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | Foundry, Hub-based |
-| [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No* <br /> - **Response formats:** Text | Foundry, Hub-based |
+| [Llama-3.2-11B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-11B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
+| [Llama-3.2-90B-Vision-Instruct](https://ai.azure.com/explore/models/Llama-3.2-90B-Vision-Instruct/version/1/registry/azureml-meta) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
+| [Meta-Llama-3.1-405B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-405B-Instruct/version/1/registry/azureml-meta) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
+| [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta). There are also several Meta models available as [models sold directly by Azure](#meta-models-sold-directly-by-azure).
@@ -197,14 +183,14 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 | [Phi-4-reasoning](https://aka.ms/azureai/landing/Phi-4-reasoning) | chat-completion with reasoning content | - **Input:** text (32,768 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Phi-4-mini-reasoning](https://aka.ms/azureai/landing/Phi-4-mini-reasoning) | chat-completion with reasoning content | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).  There are also Microsoft models available as [models sold directly by Azure](#microsoft-models-sold-directly-by-azure).
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).  Microsoft models are also available as [models sold directly by Azure](#microsoft-models-sold-directly-by-azure).
 
 ### Mistral AI
 
 Mistral AI offers two categories of models: premium models such as Mistral Large 2411 and Ministral 3B, and open models such as Mistral Nemo.
 
 | Model | Type | Capabilities | Project type |
-| ------ | ---- | ------------ | ------------ |
+| ----- | ---- | ------------ | ------------ |
 | [Codestral-2501](https://ai.azure.com/explore/models/Codestral-2501/version/2/registry/azureml-mistral) | chat-completion | - **Input:** text (262,144 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** en <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Ministral-3B](https://ai.azure.com/explore/models/Ministral-3B/version/1/registry/azureml-mistral) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, de, es, it, and en <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 | [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `zh`, `ja`, `ko`, `pt`, `nl`, and `pl` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
@@ -222,12 +208,12 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Nixtla
 
-Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 can produce accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
+Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 produces accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
 To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference API.
 
 | Model  | Type | Capabilities | Inference API | Project type |
-| ------ | ---- | --- | ------------ | ------------ |
+| ------ | ---- | ------------ | ------------- | ------------ |
 | [TimeGEN-1](https://ai.azure.com/explore/models/TimeGEN-1/version/1/registry/azureml-nixtla) | Forecasting  | - **Input:** Time series data as JSON or dataframes (with support for multivariate input)  <br /> - **Output:**  Time series data as JSON <br /> - **Tool calling:** No <br /> - **Response formats:** JSON  | [Forecast client to interact with Nixtla's API](https://nixtlaverse.nixtla.io/nixtla/docs/reference/nixtla_client.html#nixtlaclient-forecast) | Hub-based |
 
 For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples.md#nixtla).
@@ -235,7 +221,7 @@ For more details on pricing for Nixtla models, see [Nixtla](../../concepts/model
 
 ### NTT Data
 
-**tsuzumi** is an autoregressive language optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
+**tsuzumi** is an autoregressive language-optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
@@ -245,7 +231,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ### Stability AI
 
-The Stability AI collection of image generation models include Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large allows for an image and text input. 
+The Stability AI collection of image generation models includes Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large accepts both image and text input. 
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
@@ -258,7 +244,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Open and custom models
 
-The model catalog offers a larger selection of models, from a bigger range of providers. For these models, you can't use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs; rather, to deploy these models, you might be required to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
+The model catalog offers a larger selection of models from a wider range of providers. For these models, you can't use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs. Instead, to deploy these models, you might need to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
 
 Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in managed compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
 
@@ -267,5 +253,5 @@ Furthermore, these models can be open-access or IP protected. In both cases, you
 
 - [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
 - [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
-- [How to generate chat completions with Azure AI Foundry Models](../how-to/use-chat-completions.md)
+- [Deployment types in Azure AI Foundry Models](deployment-types.md)
 - [Serverless API inference examples for Foundry Models](../../concepts/models-inference-examples.md)
