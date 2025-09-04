@@ -52,7 +52,7 @@ Foundry portal limitations:
 
 ## Support level post-upgrade 
 
-The upgrade converts your Azure OpenAI resource type to Azure AI Foundry resource type. Both services are generally available and supported before and after the upgrade. This is an early access feature. If needed, you can [roll back to your previous setup](#rollback-to-azure-openai).
+The upgrade converts your Azure OpenAI resource type to Azure AI Foundry resource type. Both services are generally available and supported before and after the upgrade. Upgrading your AOAI resource is an opt-in capability. If needed, you can [roll back to your previous setup](#rollback-to-azure-openai).
 
 ## How to upgrade
 
