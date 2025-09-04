@@ -2,8 +2,8 @@
 title: Serverless API inference examples for Foundry Models
 titleSuffix: Azure AI Foundry
 description: Inference examples for Foundry Models that support deployment to serverless APIs in Azure AI Foundry.
-author: msakande
-ms.author: mopeakande
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 reviewer: santiagxf
 ms.reviewer: fasantia
