@@ -30,6 +30,8 @@ This article explains how to join an Azure AI Foundry resource to a network secu
 
 You can add an Azure AI Foundry resource to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the Azure Virtual Network Manager REST API to join a service and use the Management REST APIs to view and synchronize the configuration settings.
 
+[!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)]
+
 ## Limitations and considerations
 
 - Azure AI Foundry customer-managed keys might not behave as expected. The Azure AI Foundry resources in the Azure subscription might not be able to use the fine-tune API or assistants API.
@@ -50,7 +52,7 @@ You can add an Azure AI Foundry resource to a network security perimeter in the 
 
 Register the network security perimeter feature from the Azure portal preview features. The feature names are the following:
 
-- OpenAI.NspPreview
+- `OpenAI.NspPreview`
 
 Or use the following CLI commands to register the two Preview features
 
