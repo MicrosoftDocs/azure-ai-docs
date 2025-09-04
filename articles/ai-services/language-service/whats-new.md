@@ -28,9 +28,8 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
 **New Python SDK release: `azure-ai-language-conversations 2.0.0b1`**. The latest Python SDK, azure-ai-language-conversations 2.0.0b1, is now available and supports the `2025-15-05-preview` REST API for conversation runtime.
 
-* Enhanced features:
-  * Conversational Language Understanding (CLU) inference now allows for seamless integration with advanced large-scale language models, providing real-time recognition of user intent without the need for extra model training.
-  * Enhanced intent prediction capabilities enable support for complex, multi-turn conversations. iThese advancements contribute to greater sophistication in conversational AI systems and, as a result, workflow automation processes are improved.
+* Conversational Language Understanding (CLU) inference now allows for seamless integration with advanced large-scale language models, providing real-time recognition of user intent without the need for extra model training.
+* Enhanced intent prediction capabilities enable support for complex, multi-turn conversations. iThese advancements contribute to greater sophistication in conversational AI systems and, as a result, workflow automation processes are improved.
 
 
 ## July 2025
