@@ -3,9 +3,9 @@ metadata:
   title: Azure AI Foundry Models frequently asked questions
   titleSuffix: Azure AI Foundry
   description: Get answers to the most popular questions about Foundry Models
-  #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-model-inference
+  ms.service: azure-ai-foundry
+  ms.subservice: azure-ai-foundry-inference
   ms.topic: faq
   ms.date: 1/21/2025
   ms.author: fasantia
