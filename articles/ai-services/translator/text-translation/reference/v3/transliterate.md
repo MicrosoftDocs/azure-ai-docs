@@ -13,13 +13,13 @@ ms.author: lajanuar
 
 # Translator 3.0: Transliterate
 
-Converts text in one language from one script to another script.
+The Text transliteration API maps your source language script or alphabet to a target language script or alphabet.
 
 ## Request URL
 
 Send a `POST` request to:
 
-```HTTP
+```bash
 https://api.cognitive.microsofttranslator.com/transliterate?api-version=3.0
 ```
 
@@ -36,7 +36,7 @@ Request parameters passed on the query string are:
 | fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
 
-Request headers include:
+## Request headers 
 
 | Headers | Description |
 | --- | --- |
