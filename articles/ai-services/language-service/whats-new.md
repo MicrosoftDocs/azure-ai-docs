@@ -18,15 +18,15 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
 **Release of new PII and NER model (2025-08-01-preview)**. This new preview model version introduces broader functionality and expanded capabilities for personal information identification (PII) and named entity recognition (NER):
 
-* **Expanded language support for `DateOfBirth` entity**. The `DateOfBirth` entity, which initially supported English only, now includes Tier 1 language coverage. This expansion supports French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch, ensuring broader international applicability.
+* **Expanded language support for DateOfBirth entity**. The **DateOfBirth** entity, which initially supported English only, now includes Tier 1 language coverage. This expansion supports French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch, ensuring broader international applicability.
 
 * **Two new entity types added**:
-   * **`SortCode`**: A financial identifier used in the UK and Ireland to specify the bank and branch associated with an account.
-   * **`LicensePlateNumber`**: Support is now available for standard alphanumeric vehicle identification codes. At this time, license plates that consist exclusively of letters aren't supported.
+   * **SortCode**: A financial identifier used in the UK and Ireland to specify the bank and branch associated with an account.
+   * **LicensePlateNumber**: Support is now available for standard alphanumeric vehicle identification codes. At this time, license plates that consist exclusively of letters aren't supported.
 
-* **Improved AI accuracy in financial entity recognition**. The `2025-08-01-preview` model is further optimized to minimize both false positives and false negatives in financial entity recognition, resulting in greater accuracy and reliability.
+* **Improved AI accuracy in financial entity recognition**. The **2025-08-01-preview** model is further optimized to minimize both false positives and false negatives in financial entity recognition, resulting in greater accuracy and reliability.
 
-**New Python SDK release: `azure-ai-language-conversations 2.0.0b1`**. The latest Python SDK, azure-ai-language-conversations 2.0.0b1, is now available and supports the `2025-15-05-preview` REST API for conversation runtime.
+**New Python SDK release: azure-ai-language-conversations 2.0.0b1**. The latest Python SDK, **azure-ai-language-conversations 2.0.0b1**, is now available and supports the **2025-15-05-preview** REST API for conversation runtime.
 
 * Conversational Language Understanding (CLU) inference now allows for seamless integration with advanced large-scale language models, providing real-time recognition of user intent without the need for extra model training.
 * Enhanced intent prediction capabilities enable support for complex, multi-turn conversations. iThese advancements contribute to greater sophistication in conversational AI systems and, as a result, workflow automation processes are improved.
