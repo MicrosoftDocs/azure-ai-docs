@@ -5,7 +5,7 @@ description: Learn about the import wizards in the Azure portal used to create a
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 05/12/2025
+ms.date: 09/04/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -16,102 +16,115 @@ ms.custom:
 
 # Import data wizards in the Azure portal
 
-Azure AI Search has two wizards that automate indexing and object creation so that you can begin querying immediately. If you're new to Azure AI Search, these wizards are one of the most powerful features at your disposal. With minimal effort, you can create an indexing or enrichment pipeline that exercises most of the functionality of Azure AI Search.
+> [!IMPORTANT]
+> The **Import and vectorize data** wizard now supports keyword search, which was previously exclusive to the **Import data** wizard. Both wizards are currently available in the Azure portal, but we recommend the **Import and vectorize data** wizard for an improved search experience.
+>
+> The **Import and vectorize data** wizard isn't a direct replacement for the **Import data** wizard. Certain skills and functionality are only available in the classic wizard. For more information about their similarities and differences, continue reading this article.
 
-+ **Import data wizard** supports nonvector workflows. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills that infer structure and generate text searchable content from image files and unstructured data.
+Azure AI Search provides two wizards that automate indexing, enrichment, and object creation for various search scenarios:
 
-+ **Import and vectorize data wizard** adds chunking and vectorization. You must specify an existing deployment of an embedding model, but the wizard makes the connection, formulates the request, and handles the response. It generates vector content from text or image content.
++ The **Import data** wizard supports keyword (nonvector) search. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills to infer structure and generate searchable text from image files and unstructured data.
 
-If you're using the wizard for proof-of-concept testing, this article explains the internal workings of the wizards so that you can use them more effectively.
++ The **Import and vectorize data** wizard supports keyword search, RAG, and multimodal RAG. For keyword search, it modernizes the **Import data** experience but lacks some functionality, such as automatic metadata field creation. For RAG and multimodal RAG, it connects to your embedding model deployment, sends requests, and generates vectors from text or images.
 
-This isn't a step-by-step article. To use the wizard with sample data, see:
-
-+ [Quickstart: Create a search index](search-get-started-portal.md)
-+ [Quickstart: Create a text translation and entity skillset](search-get-started-skillset.md)
-+ [Quickstart: Create a vector index](search-get-started-portal-import-vectors.md)
-+ [Quickstart: Image search (vectors)](search-get-started-portal-image-search.md)
+This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions using sample data, see [Try the wizards](#try-the-wizards).
 
 ## Supported data sources and scenarios
 
-The wizards support most of the data sources supported by indexers.
+This section describes the available options in each wizard, including supported data sources and skills.
 
-| Data | Import data wizard | Import and vectorize data wizard |
+### Data sources
+
+The wizards support the following data sources, most of which use [built-in indexers](search-indexer-overview.md#supported-data-sources). Exceptions are noted in the table's footnotes.
+
+| Data source | Import data wizard | Import and vectorize data wizard |
 |------|--------------------|----------------------------------|
-| [ADLS Gen2](search-howto-index-azure-data-lake-storage.md)  | ✅ | ✅ |
+| [ADLS Gen2](search-howto-index-azure-data-lake-storage.md) | ✅ | ✅ |
 | [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
-| [Azure File Storage](search-file-storage-integration.md)  | ❌ | ❌ |
-| [Azure Table Storage](search-howto-indexing-azure-tables.md)  | ✅ | ✅ |
-| [Azure SQL database and managed instance](search-how-to-index-sql-database.md)  | ✅ | ✅ |
+| [Azure File Storage](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
+| [Azure Queues](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [Azure Table Storage](search-howto-indexing-azure-tables.md) | ✅ | ✅ |
+| [Azure SQL Database and Managed Instance](search-how-to-index-sql-database.md) | ✅ | ✅ |
 | [Cosmos DB for NoSQL](search-howto-index-cosmosdb.md) | ✅ | ✅ |
 | [Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) | ✅ | ✅ |
 | [Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) | ✅ | ✅ |
 | [MySQL](search-howto-index-mysql.md)  | ❌ | ❌ |
-| [OneLake](search-how-to-index-onelake-files.md)  | ✅ | ✅ |
-| [SharePoint Online](search-howto-index-sharepoint-online.md)  | ❌ | ❌ |
-| [SQL Server on virtual machines](search-how-to-index-sql-server.md)  | ✅ | ✅ |
+| [OneDrive](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [OneDrive for Business](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [OneLake](search-how-to-index-onelake-files.md) | ✅ | ✅ |
+| [Service Bus](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [SharePoint Online](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
+| [SQL Server on virtual machines](search-how-to-index-sql-server.md) | ✅ | ✅ |
+
+<sup>1</sup> This data source uses an [Azure Logic Apps connectors (preview)](search-how-to-index-logic-apps-indexers.md#supported-connectors) instead of a built-in indexer.
+
+<sup>2</sup> Instead of using a connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-howto-index-sharepoint-online.md).
 
 ### Sample data
 
-Microsoft hosts sample data so that you can omit a data source configuration step on a wizard workflow.
+The wizards support the following Microsoft-hosted sample data, which bypasses the data source configuration step.
 
 | Sample data | Import data wizard | Import and vectorize data wizard |
 |-------------|--------------------|----------------------------------|
-| hotels      | ✅                 | ❌                              |
-| real estate | ✅                 | ❌                              |
+| Hotels      | ✅                 | ❌                              |
+| Real estate | ✅                 | ❌                              |
 
 ### Skills
 
-This section lists the skills that might appear in a skillset generated by a wizard. Wizards generate a skillset and output field mappings based on options you select. After the skillset is created, you can modify its JSON definition to add more skills.
+Each wizard generates a skillset and outputs field mappings based on options you select. After the skillset is created, you can modify its JSON definition to add or remove skills.
 
-Here are some points to keep in mind about the skills in the following list:
+The following skills might appear in a wizard-generated skillset.
 
-+ OCR and image analysis options are available for blobs in Azure Storage and files in OneLake, assuming the default parsing mode. Images are either an image content type (such as PNG or JPG) or an embedded image in an application file (such as PDF).
-+ Shaper is added if you configure a knowledge store.
-+ Text Split and Text Merge are added for data chunking if you choose an embedding model. They are added for other non-embedding skills if the source field granularity is set to pages or sentences.
-
-| Skills | Import data wizard | Import and vectorize data wizard |
+| Skill | Import data wizard | Import and vectorize data wizard |
 |------|--------------------|----------------------------------|
-| [AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ |
-| [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ |
-| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ |
-| [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ |
-| [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ❌ |
-| [Image analysis (applies to blobs, default parsing, whole file indexing](cognitive-search-skill-image-analysis.md)  | ✅ | ❌ |
+| [Azure AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ <sup>1</sup> |
+| [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ <sup>1</sup> |
+| [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ <sup>1</sup> |
+| [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ <sup>1</sup> |
+| [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ✅ |
+| [Image analysis](cognitive-search-skill-image-analysis.md) <sup>2</sup> | ✅ | ❌ |
 | [Keyword extraction](cognitive-search-skill-keyphrases.md)  | ✅ | ❌ |
 | [Language detection](cognitive-search-skill-language-detection.md)  | ✅ | ❌ |
 | [Text translation](cognitive-search-skill-text-translation.md)  | ✅ | ❌ |
-| [OCR (applies to blobs, default parsing, whole file indexing)](cognitive-search-skill-ocr.md)  | ✅ | ✅ |
+| [OCR](cognitive-search-skill-ocr.md) <sup>2</sup> | ✅ | ✅ |
 | [PII detection](cognitive-search-skill-pii-detection.md)  | ✅ | ❌ |
 | [Sentiment analysis](cognitive-search-skill-sentiment.md)  | ✅ | ❌ |
-| [Shaper (applies to knowledge store)](cognitive-search-skill-shaper.md)  | ✅ | ❌ |
-| [Text Split](cognitive-search-skill-textsplit.md)  | ✅ | ✅ |
-| [Text Merge](cognitive-search-skill-textmerger.md)  | ✅ | ✅ |
+| [Shaper](cognitive-search-skill-shaper.md) <sup>3</sup> | ✅ | ❌ |
+| [Text Split](cognitive-search-skill-textsplit.md) <sup>4</sup> | ✅ | ✅ |
+| [Text Merge](cognitive-search-skill-textmerger.md) <sup>4</sup> | ✅ | ✅ |
+
+<sup>1</sup> This skill is available for RAG and multimodal RAG workflows only. Keyword search isn't supported.
+
+<sup>2</sup> This skill is available for Azure Storage blobs and OneLake files, assuming the default parsing mode. Images can be an image content type (such as PNG or JPG) or an embedded image in an application file (such as PDF).
+
+<sup>3</sup> This skill is added when you configure a knowledge store.
+
+<sup>4</sup> This skill is added for data chunking when you choose an embedding model. For nonembedding skills, it's added when you set the source field granularity to pages or sentences.
 
 ### Knowledge store
 
-You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. You might want a knowledge store for information retrieval workflows that don't require a search engine.
+You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. A knowledge store is useful for information retrieval workflows that don't require a search engine.
 
 | Knowledge store | Import data wizard | Import and vectorize data wizard |
 |-----------------|--------------------|----------------------------------|
-| storage         | ✅                 | ❌                              |
+| Storage | ✅ | ❌ |
 
 ## What the wizards create
 
-The import wizards create the objects described in the following table. After the objects are created, you can review their JSON definitions in the Azure portal or call them from code.
-
-To view these objects after the wizard runs:
-
-1. [Sign in to the Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
-
-1. Select **Search management** on the menu to find pages for indexes, indexers, data sources, and skillsets.
+The following table lists the objects created by the wizards. After the objects are created, you can review their JSON definitions in the Azure portal or call them from code.
 
 | Object | Description |
 |--------|-------------|
-| [Indexer](/rest/api/searchservice/indexers/create)  | A configuration object specifying a data source, target index, an optional skillset, optional schedule, and optional configuration settings for error handing and base-64 encoding. |
-| [Data Source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. |
-| [Index](/rest/api/searchservice/indexes/create) | Physical data structure used for full text search and other queries. |
-| [Skillset](/rest/api/searchservice/skillsets/create) | Optional. A complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. Unless the volume of work fall under the limit of 20 transactions per indexer per day, the skillset must include a reference to an Azure AI services multi-service resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Foundry model catalog. | 
-| [Knowledge store](knowledge-store-concept-intro.md) | Optional. Available only in the **Import data** wizard. Stores enriched skillset output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. |
+| [Indexer](/rest/api/searchservice/indexers/create) | Configuration object that specifies a data source, target index, optional skillset, optional schedule, and optional configuration settings for error handling and base-64 encoding. |
+| [Data source](/rest/api/searchservice/data-sources/create)  | Persists connection information to a [supported data source](search-indexer-overview.md#supported-data-sources) on Azure. A data source object is used exclusively with indexers. |
+| [Index](/rest/api/searchservice/indexes/create) | Physical data structure for full-text search, vector search, and other queries. |
+| [Skillset](/rest/api/searchservice/skillsets/create) | (Optional) Complete set of instructions for manipulating, transforming, and shaping content, including analyzing and extracting information from image files. Skillsets are also used for integrated vectorization. If the volume of work exceeds 20 transactions per indexer per day, the skillset must include a reference to an Azure AI services multi-service resource that provides enrichment. For integrated vectorization, you can use either Azure AI Vision or an embedding model in the Azure AI Foundry model catalog. |
+| [Knowledge store](knowledge-store-concept-intro.md) | (Optional) Stores enriched skillset output from in tables and blobs in Azure Storage for independent analysis or downstream processing in nonsearch scenarios. Available only in the **Import data** wizard. |
+
+To view these objects after the wizard runs:
+
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
+1. From the left pane, select **Search management** to find pages for indexes, indexers, data sources, and skillsets.
 
 ## Benefits
 
@@ -165,15 +178,15 @@ If firewall settings prevent your wizard workflows from succeeding, consider scr
 
 ## Workflow
 
-The wizard is organized into four main steps:
+Both wizards follow a similar high-level workflow:
 
 1. Connect to a supported Azure data source.
 
 1. Create an index schema, inferred by sampling source data.
 
-1. Optionally, it adds skills to extract or generate content and structure. Inputs for creating a knowledge store are collected in this step.
+1. (Optional) Add skills to extract or generate content and structure.
 
-1. Run the wizard to create objects, optionally vectorize data, load data into an index, set a schedule and other configuration options.
+1. Run the wizard to create objects, optionally vectorize data, load data into an index, set a schedule, and configure other options.
 
 The workflow is a pipeline, so it's one way. You can't use the wizard to edit any of the objects that were created, but you can use other portal tools, such as the index or indexer designer or the JSON editors, for allowed updates.
 
