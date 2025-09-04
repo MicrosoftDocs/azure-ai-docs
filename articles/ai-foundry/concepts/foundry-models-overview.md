@@ -7,7 +7,7 @@ ms.custom:
   - build-2025
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 07/06/2025
+ms.date: 09/04/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
 manager: nitinme
@@ -40,17 +40,17 @@ For all models, Customers remain responsible for (i) complying with the law in t
  
 ## Models Sold Directly by Azure 
  
-These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure's AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
+These are models that are hosted and sold by Microsoft under Microsoft Product Terms. Microsoft has evaluated these models and they are deeply integrated into Azure's AI ecosystem. The models come from a variety of providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
  
 Characteristics of models sold directly by Azure: 
 
-- Official first-party support from Microsoft 
-- High level of integration with Azure services and infrastructure 
-- Extensive performance benchmarking and validation 
-- Adherence to Microsoft's Responsible AI standards 
-- Enterprise-grade scalability, reliability, and security
+- Support available from Microsoft.
+- High level of integration with Azure services and infrastructure. 
+- Subject to internal review based on Microsoft’s Responsible AI standards.
+- Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
+- Enterprise-grade scalability, reliability, and security. 
 
-These Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
+Some of these Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
 
 ## Models from Partners and Community
 
