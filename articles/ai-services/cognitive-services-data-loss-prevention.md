@@ -19,6 +19,10 @@ Azure AI services data loss prevention capabilities allow customers to configure
 
 Before you make a request, you need an Azure account and an Azure AI services subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an AI Foundry resource](multi-service-resource.md?pivots=azportal).
 
+>[!NOTE]
+>
+> If you want to restrict outbound for your AI Services resource which are hosted publically and using role-based or key-based access, then restrict outbound access to the list of FQDNs using the `allowedFqdnList`  property. But if you want to restrict inbound and outbound for your AI Services resource which are hosted publically and using role-based access only, then restrict outbound access using Network Security Perimeter. For more on NSP, see [Add an Azure OpenAI service to a network security perimeter (preview)](/azure/ai-foundry/openai/how-to/network-security-perimeter.md). 
+
 ## Enabling data loss prevention
 
 There are two parts to enable data loss prevention. First, the resource property `restrictOutboundNetworkAccess` must be set to `true`. When this is set to true, you also need to provide the list of approved URLs. The list of URLs is added to the `allowedFqdnList` property. The `allowedFqdnList` property contains an array of comma-separated URLs.
