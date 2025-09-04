@@ -5,9 +5,9 @@ description: Learn how to consume serverless APIs from a different project or hu
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 05/19/2025
-ms.author: mopeakande
 manager: nitinme
-author: msakande
+author: ssalgadodev
+ms.author: ssalgado
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom:
