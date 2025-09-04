@@ -22,7 +22,7 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Realtime API audio model GA
 
-OpenAI's GPT-4o RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
+OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
 
 Model improvements:
 - Improved instruction following: Enhanced capabilities to follow tone, pacing, and escalation instructions more accurately and reliably. Can also switch languages.
@@ -210,7 +210,7 @@ The `gpt-4o-audio-preview` model introduces the audio modality into the existing
 > [!NOTE]
 > The [Realtime API](./realtime-audio-quickstart.md) uses the same underlying GPT-4o audio model as the completions API, but is optimized for low-latency, real-time audio interactions.
 
-### GPT-4o Realtime API 2024-12-17
+### GPT Realtime API 2024-12-17
 
 The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global deployments in [East US 2 and Sweden Central regions](./concepts/models.md#global-standard-model-availability). Use the `gpt-4o-realtime-preview` version 2024-12-17 model instead of the `gpt-4o-realtime-preview` version 2024-10-01-preview model for real-time audio interactions.
 
@@ -218,7 +218,7 @@ The `gpt-4o-realtime-preview` model version 2024-12-17 is available for global d
 - Added support for new voices. The `gpt-4o-realtime-preview` models now support the following voices: `alloy`, `ash`, `ballad`, `coral`, `echo`, `sage`, `shimmer`, `verse`.
 - Rate limits are no longer based on connections per minute. Rate limiting is now based on RPM (requests per minute) and TPM (tokens per minute) for the `gpt-4o-realtime-preview` model. The rate limits for each `gpt-4o-realtime-preview` model deployment are 100 K TPM and 1 K RPM. During the preview, [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and APIs might inaccurately show different rate limits. Even if you try to set a different rate limit, the actual rate limit is 100 K TPM and 1 K RPM.
 
-For more information, see the [GPT-4o real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
+For more information, see the [GPT real-time audio quickstart](realtime-audio-quickstart.md) and the [how-to guide](./how-to/realtime-audio.md).
 
 ## December 2024
 
