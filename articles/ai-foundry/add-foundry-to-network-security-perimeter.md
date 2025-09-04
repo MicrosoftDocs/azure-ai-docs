@@ -41,7 +41,7 @@ You can add an Azure AI Foundry resource to a network security perimeter in the 
 
 - Consider securing with a network security perimeter when configuring Azure Blob Storage for Azure AI Foundry. Azure AI Foundry now supports using Azure Blob Storage for Azure AI Foundry Batch input and output files. Secure communications with Blob Storage and Azure OpenAI by placing both resources in the same perimeter. For more on the Azure OpenAI Batch and Blob Storage scenario, see Configuring Azure Blob Storage for Azure OpenAI.
 
-- The Foundry Agent Service supports [Network security perimeter](azure/private-link/network-security-perimeter-concepts). However, in Secured Standard Agents with network isolation, NSP is neither required nor supported, as all resources connect securely via Private Link within the customer's virtual network, eliminating the need for public IP or FQDN definitions.
+- The Foundry Agent Service supports [Network security perimeter](/azure/private-link/network-security-perimeter-concepts). However, in Secured Standard Agents with network isolation, NSP is neither required nor supported, as all resources connect securely via Private Link within the customer's virtual network, eliminating the need for public IP or FQDN definitions.
 
 ## Prerequisites
 
@@ -75,6 +75,7 @@ You can add Azure AI Foundry to a network security perimeter so that all request
 ## Network security perimeter access modes
 
 Network security perimeter supports two different access modes for associated resources:
+
 |Mode |Description  |
 |---------|---------|
 |Learning mode     | This is the default access mode. In learning mode, network security perimeter logs all traffic to the Azure AI Foundry resource that would have been denied if the perimeter was in enforced mode. This allows network administrators to understand the existing access patterns of the Azure AI Foundry resource service before implementing enforcement of access rules. |
@@ -108,6 +109,7 @@ The `publicNetworkAccess` setting determines the Azure AI Foundry resource's ass
 
 The `network-security-perimeterAccessLogs` table contains all the logs for every log category (for example `network-security-perimeterPublicInboundResourceRulesAllowed`). Every log contains a record of the network security perimeter network access that matches the log category.
 Here's an example of the `network-security-perimeterPublicInboundResourceRulesAllowed` log format:
+
 | **Column Name**       | **Meaning**                                                                 | **Example Value**                              |
 |------------------------|-----------------------------------------------------------------------------|------------------------------------------------|
 | Profile                | Which network security perimeter the Azure AI Foundry resource was associated with | `defaultProfile`                                 |
