@@ -43,21 +43,9 @@ Request parameters passed with the request are as follows:
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
 |**api-version**|string|True|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
-|**text** | string | True | Source text for translation. |
-| **textType** | string | False | Defines whether the text being translated is plain text or HTML text. Any HTML needs to be a well-formed, complete element. Accepted values are: plain (default) or html. |
-| **language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
-| **script** | string | False | **Specifies the script of the source text**. |
-| **targets** | array | True | User-specified values for the translated (target) text. |
-| **targets.language** | string | True |The language code for the translated (target) text *specified in the targets array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-
-
-#### Targets array (user-specified values for translated text)
-
-| Parameter | Type | Required? | Description |
-| --- | --- | --- | --- |
-| **targets.language** | string | True |The language code for the translated (`target`) text *specified in the `targets` array*. Accepted values are [supported language](../../../language-support.md) codes for the translation operation.|
-| **targets.script** | string | False | Specify the script of the transliterated text. |
-| **targets.allowFallback** | string | False | If the desired model doesn't support a particular pair of source and target languages, an alternative approach may be employed. In such cases, the service may default to utilizing a general system as a substitute. This action ensures that translations can still be provided even when the preferred model is unavailable. Default is `true`. If `false` system returns an error if language pair isn't supported. |
+| **language** | string | True | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
+| **fromScript** | string | True | **Specifies the script for the source text**. *See* [supported languages](languages.md), using the `transliteration` scope, to view input scripts available for the source language. |
+| **toScript** | string | True | Specifies the script for the target text. *See* [supported languages](languages.md), using the `transliteration` scope, to view input scripts available for the target language. |
 
 ## Request body
 
