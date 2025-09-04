@@ -34,7 +34,7 @@ The following list compares available Azure AI Translator `2025-05-01-preview` m
 
 ### Required parameters
 
-|API Version: 2025-05-01-preview|API Version: V3|
+|API version: 2025-05-01-preview|API version: v3|
 |:---|---|
 |**api-version**<br>&bullet; Value must be **2025-05-01-preview** |**api-version**<br>&bullet; Value must be **3.0**|
 |**text**<br>&bullet; Specifies source text for translation. | **text**<br>&bullet; Specifies source text for translation|
