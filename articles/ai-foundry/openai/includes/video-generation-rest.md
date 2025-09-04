@@ -172,7 +172,7 @@ You can generate a video with the Sora model by creating a video generation job,
 
     ```python
     # 1. Create a video generation job with image inpainting (multipart upload)
-    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version={api_version}"
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
     
     # Flatten the body for multipart/form-data
     data = {
@@ -219,7 +219,7 @@ You can generate a video with the Sora model by creating a video generation job,
     print(f"Job created: {job_id}")
     
     # 2. Poll for job status
-    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version={api_version}"
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
     status = None
     while status not in ("succeeded", "failed", "cancelled"):
         time.sleep(5)
@@ -232,7 +232,7 @@ You can generate a video with the Sora model by creating a video generation job,
         generations = status_response.get("generations", [])
         if generations:
             generation_id = generations[0].get("id")
-            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version={api_version}"
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version=preview"
             video_response = requests.get(video_url, headers=headers)
             if video_response.ok:
                 output_filename = "output.mp4"
