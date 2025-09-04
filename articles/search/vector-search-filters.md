@@ -58,34 +58,33 @@ Filters determine the scope of vector queries and are defined using [Documents -
 This REST API provides:
 
 + `filter` for the criteria.
-+ `vectorFilterMode` for pre-query or post-query filtering. For supported modes, see the [next section](#set-the-filter-mode).
++ `vectorFilterMode` to specify when the filter should be applied during the query. For supported modes, see the next section.
 
 ```http
 POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api-version}
 Content-Type: application/json
 api-key: {admin-api-key}
     
-    {
-        "count": true,
-        "select": "title, content, category",
-        "filter": "category eq 'Databases'",
-        "vectorFilterMode": "preFilter",
-        "vectorQueries": [
-            {
-                "kind": "vector",
-                "vector": [
-                    -0.009154141,
-                    0.018708462,
-                    . . . // Trimmed for readability
-                    -0.02178128,
-                    -0.00086512347
-                ],
-                "exhaustive": true,
-                "fields": "contentVector",
-                "k": 5
-            }
-        ]
-    }
+{
+    "count": true,
+    "select": "title, content, category",
+    "filter": "category eq 'Databases'",
+    "vectorFilterMode": "preFilter",
+    "vectorQueries": [
+        {
+            "kind": "vector",
+            "vector": [
+                -0.009154141,
+                0.018708462,
+                . . . // Trimmed for readability
+                -0.02178128,
+                -0.00086512347
+            ],
+            "fields": "contentVector",
+            "k": 50
+        }
+    ]
+}
 ```
 
 In this example, the vector embedding targets the `contentVector` field, and the filter criteria apply to `category`, a filterable text field. Because the `preFilter` mode is used, the filter is applied before the search engine runs the query, so only documents in the `Databases` category are considered during the vector search.
