@@ -310,7 +310,6 @@ You can easily enhance your agent's functionality by specifying a different MCP 
 The following example json body sets up an MCP server:
 
 ```json
-// POST /v1/realtime/client_secrets
 {
   "session": {
     "type": "realtime",
