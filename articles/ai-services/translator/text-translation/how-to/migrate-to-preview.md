@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 06/19/2025
+ms.date: 09/03/2025
 ms.author: lajanuar
 ---
 
@@ -34,7 +34,7 @@ The following list compares available Azure AI Translator `2025-05-01-preview` m
 
 ### Required parameters
 
-|2025-05-01 method|v3 method|
+|API version: 2025-05-01-preview|API version: v3|
 |:---|---|
 |**api-version**<br>&bullet; Value must be **2025-05-01-preview** |**api-version**<br>&bullet; Value must be **3.0**|
 |**text**<br>&bullet; Specifies source text for translation. | **text**<br>&bullet; Specifies source text for translation|
@@ -45,17 +45,17 @@ For more information on **targets array** values, *see* [Translate text](../prev
 
 ## API compatibility
 
-The following table compares Translator `2025-05-01-preview` and Translator v3 API methods.
+The following table provides a detailed comparison of the updates introduced in API version 2025-05-01-preview.
 
-|Translator v3 compatibility|Translator 2025-05-01-preview method|
+|API version: v3|API version: 2025-05-01-preview|
 |---|---|
 |[Translate text](../reference/v3/translate.md)|[Translate text](../preview/translate-api.md)|
 |[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../preview/transliterate-api.md)|
 |[Languages](../reference/v3/languages.md)|[Languages](../preview/get-languages.md)|
-|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use sentence delimiters function or a Natural Language Processing (NLP) library supported for your programming language.|
-|[Detect](../reference/v3/detect.md)|Feature no longer supported. Use|
-|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported|
-|[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported.<br> Use the [Azure AI Language detection API](/azure/ai-services/language-service/language-detection/quickstart#create-a-json-file-with-the-example-request-body)|
+|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use a sentence delimiter function or a Natural Language Processing (NLP) library that is compatible with your programming language.|
+|[Detect](../reference/v3/detect.md)|Feature no longer supported.<br>Use the [Azure AI Language detection API](../../../language-service/language-detection/how-to/call-api.md).|
+|[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported.|
+|[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported.|
 
 
 ## Next Steps
