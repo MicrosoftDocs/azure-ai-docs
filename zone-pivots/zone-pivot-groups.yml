@@ -831,6 +831,15 @@ groups:
       title: Python
     - id: programming-language-rest
       title: REST
+- id: models-sold-directly-by-azure
+# Owner: mopeakande
+  title: Azure direct models
+  prompt: Choose a collection from Foundry Models sold directly by Azure
+  pivots:
+    - id: azure-openai
+      title: Azure OpenAI models
+    - id: azure-direct-others
+      title: Other models in the collection
 - id: azure-ai-model-fine-tune
 # Owner: ssalgadodev
   title: Programming languages
