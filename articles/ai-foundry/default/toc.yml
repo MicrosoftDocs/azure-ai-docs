@@ -1,12 +1,11 @@
 monikerRange: 'azureml-api-2'
 items:
 - name: What is Azure AI Foundry?
-  href: what-is-azure-ai-foundry.md
+  href: ../what-is-azure-ai-foundry.md
 - name: Quickstart
-  href: tutorials/get-started-code.md
+  href: concepts/new-article.md
 - name: Ask the Foundry agent
-  href: ../foundry-agent/ask-foundry-agent.md?context=/azure/ai-foundry/default/context/context
-
+  href: ../foundry-agent/ask-foundry-agent.md
 - name: Agent development
   items:
     - name: Article placeholder
@@ -38,9 +37,9 @@ items:
 - name: API & SDK
   items:
     - name: Use the client libraries
-      href: how-to/sdk-overview.md
+      href: concepts/new-article.md
     - name: API & SDK guides
-      href: reference/api-reference.md
+      href: concepts/new-article.md
 
 - name: Responsible AI
   items:
