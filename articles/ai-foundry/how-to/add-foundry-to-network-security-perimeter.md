@@ -194,5 +194,5 @@ You can use the Network Security Perimeter Configuration REST APIs to review and
 
 ## Related content
 
-- [Role-based access control for Azure AI Foundry](concepts/rbac-azure-ai-foundry.md) 
-- [What is Azure AI Foundry Agent Service?](agents/overview.md)
+- [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md) 
+- [What is Azure AI Foundry Agent Service?](../agents/overview.md)
