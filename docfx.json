@@ -13,8 +13,7 @@
           "**/obj/**",
           "**/*.graffle",
           "machine-learning/**",
-          "machine-learning/v1/**",
-          "ai-foundry/**"
+          "machine-learning/v1/**"
         ],
         "src": "articles",
         "dest": "."
@@ -67,35 +66,6 @@
         "group": "grp-machine-learningv1",
         "src": "articles/machine-learning/v-fake",
         "dest": "./machine-learning/v1",        
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-foundry-classic",
-        "src": "articles/ai-foundry",
-        "dest": "./ai-foundry",
-        "files": [
-          "**/*.md",
-          "**/*.yml"
-        ],
-        "exclude": [
-          "default/**",
-          "**/_themes/**",
-          "**/includes/**",
-          "**/obj/**"
-        ]
-      },
-      {
-        "group": "grp-foundry-default",
-        "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -219,14 +189,6 @@
       "grp-machine-learningv1": {
         "moniker_range": "azureml-api-1",
         "dest": "destmachinelearningv1"
-      },
-      "grp-foundry-classic": {
-        "moniker_range": "azureml-api-1",
-        "dest": "destfoundryclassic"
-      },
-      "grp-foundry-default": {
-        "moniker_range": "azureml-api-2",
-        "dest": "destfoundrydefault"
       }
     },
     "globalMetadata": {
