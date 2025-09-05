@@ -1,7 +1,7 @@
 ---
 title: Foundry Models sold directly by Azure
 titleSuffix: Azure AI Foundry
-description: Explore the Foundry Models sold directly by Azure and their capabilities.
+description: Learn about Azure AI Foundry Models sold directly by Azure, their capabilities, deployment types, and regional availability for AI applications.
 author: msakande
 ms.author: mopeakande
 manager: nitinme
@@ -16,21 +16,22 @@ ms.custom:
   - build-2025
 zone_pivot_groups: models-sold-directly-by-azure
 
-# customer intent:
+#CustomerIntent: As a developer or AI practitioner, I want to explore and understand Azure AI Foundry Models sold directly by Azure, including Azure OpenAI models and selected partner models, along with their capabilities and regional availability, so that I can choose the right model for my AI application.
 ---
 
 # Foundry Models sold directly by Azure
 
-Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options. Foundry Models belong to one of two categories: Models sold directly by Azure and Models from partners and community. 
-This article lists a selection of Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
+This article lists a selection of Azure AI Foundry Models sold directly by Azure along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
+Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers. 
 
-Models sold directly by Azure include all Azure OpenAI models and specific, selected models from top providers. To learn more about these models, see [Models sold directly by Azure](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure).
+[!INCLUDE [models-list-introduction](../includes/models-list-introduction.md)]
 
-Depending on what [kind of project](../../what-is-azure-ai-foundry.md#work-in-an-azure-ai-foundry-project) you're using in Azure AI Foundry, you might see a different selection of these models. Specifically, if you're using a Foundry project, built on an Azure AI Foundry resource, you see the models that are available for standard deployment to a Foundry resource. Alternatively, if you're using a hub-based project, hosted by an Azure AI Foundry hub, you see models that are available for deployment to managed compute and serverless APIs. These model selections do overlap in many cases, since many models support the multiple [deployment options](../../concepts/deployments-overview.md). 
+To learn more about Foundry Models sold directly by Azure, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure).
 
 ## Region availability for models sold directly by Azure
 
-**_Add tables that summarize ADM region availability_**
+> [!IMPORTANT]
+> Add tables that summarize ADM region availability
 
 
 ::: zone pivot="azure-openai"

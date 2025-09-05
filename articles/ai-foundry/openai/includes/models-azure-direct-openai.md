@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ---
 
-# Azure OpenAI in Azure AI Foundry models
+## Azure OpenAI in Azure AI Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
 
