@@ -80,7 +80,7 @@
       {
         "group": "grp-foundry-classic",
         "src": "articles/ai-foundry",
-        "dest": "./ai-foundry/",
+        "dest": "./ai-foundry/v1/",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -95,7 +95,7 @@
       {
         "group": "grp-foundry-default",
         "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry/",
+        "dest": "./ai-foundry/v2/",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -567,8 +567,8 @@
       },
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
-        "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1",
+        "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/ai-foundry/default/**/*.*": "azureml-api-2",
         "articles/ai-foundry/**/*.*": "azureml-api-1"
       },

@@ -8,6 +8,7 @@ ms.reviewer: sgilley
 ms.author: jeomhove
 author: jfomhover
 ms.topic: concept-article
+monikerRange: 'azureml-api-1 || azureml-api-2'
 ---
 
 # Ask the Foundry agent for help (preview)
