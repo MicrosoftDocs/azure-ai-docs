@@ -90,8 +90,10 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ]
+        ],
+        "monikerRange": "azureml-api-1"
       },
+
       {
         "group": "grp-foundry-default",
         "src": "articles/ai-foundry/default",
