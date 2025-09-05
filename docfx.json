@@ -80,7 +80,7 @@
       {
         "group": "grp-foundry-classic",
         "src": "articles/ai-foundry",
-        "dest": "./ai-foundry/",
+        "dest": "./ai-foundry/v1/",
         "files": [
           "**/*.md",
           "**/*.yml"
@@ -95,7 +95,7 @@
       {
         "group": "grp-foundry-default",
         "src": "articles/ai-foundry/default",
-        "dest": "./ai-foundry/",
+        "dest": "./ai-foundry/v2/",
         "files": [
           "**/*.md",
           "**/*.yml"
