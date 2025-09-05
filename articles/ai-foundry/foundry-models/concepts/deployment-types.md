@@ -3,7 +3,8 @@ title: Understanding deployment types in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to use deployment types in Azure AI model deployments
 author: msakande
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 08/15/2025
 ms.author: mopeakande
