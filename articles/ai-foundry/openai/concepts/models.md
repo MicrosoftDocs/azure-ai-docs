@@ -283,7 +283,7 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2|
+|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)|
 
 ## Audio models
 
