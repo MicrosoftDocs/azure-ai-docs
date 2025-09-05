@@ -568,9 +568,9 @@
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1",
-        "articles/machine-learning/**/*.md": "azureml-api-2",
-        "articles/ai-foundry/default/**/*.*": "azureml-api-2",
-        "articles/ai-foundry/**/*.*": "azureml-api-1"
+        "articles/machine-learning/**/*.md": "azureml-api-2"
+        // "articles/ai-foundry/default/**/*.*": "azureml-api-2",
+        // "articles/ai-foundry/**/*.*": "azureml-api-1"
       },
       "open_to_public_contributors": {
         "articles/ai-foundry/responsible-ai/**.*": false
