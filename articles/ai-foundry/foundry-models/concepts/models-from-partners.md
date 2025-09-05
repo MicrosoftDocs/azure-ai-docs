@@ -28,7 +28,7 @@ Models from partners and community make up most of the Foundry Models. Trusted t
 
 For more information about Foundry Models from partners and community, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
-### Cohere
+## Cohere
 
 The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
 
@@ -41,7 +41,7 @@ The Cohere family of models includes various models optimized for different use 
 | [Cohere-embed-v3-english](https://ai.azure.com/explore/models/Cohere-embed-v3-english/version/1/registry/azureml-cohere) | embeddings | - **Input:** text and images (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en` | Foundry, Hub-based |
 | [Cohere-embed-v3-multilingual](https://ai.azure.com/explore/models/Cohere-embed-v3-multilingual/version/1/registry/azureml-cohere) | embeddings | - **Input:** text (512 tokens) <br /> - **Output:** Vector (1024 dim.) <br /> - **Languages:** `en`, `fr`, `es`, `it`, `de`, `pt-br`, `ja`, `ko`, `zh-cn`, and `ar` | Foundry, Hub-based |
 
-#### Cohere rerank
+### Cohere rerank
 
 | Model | Type | Capabilities | API Reference | Project type |
 | ----- | ---- | ------------ | ------------- | ------------ |
@@ -51,7 +51,7 @@ For more details on pricing for Cohere rerank models, see [Pricing for Cohere re
 
 See [the Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere).
 
-### Core42
+## Core42
 
 Core42 includes autoregressive bilingual LLMs for Arabic and English with state-of-the-art capabilities in Arabic.
 
@@ -61,7 +61,7 @@ Core42 includes autoregressive bilingual LLMs for Arabic and English with state-
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Core42).
 
-### Meta
+## Meta
 
 Meta Llama models and tools are a collection of pretrained and fine-tuned generative AI text and image reasoning models. Meta models range in scale to include:
 
@@ -79,7 +79,7 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta). There are also several Meta models available as [models sold directly by Azure](#meta-models-sold-directly-by-azure).
 
-### Microsoft
+## Microsoft
 
 Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi).
 
@@ -93,7 +93,7 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 
 See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft).  Microsoft models are also available as [models sold directly by Azure](#microsoft-models-sold-directly-by-azure).
 
-### Mistral AI
+## Mistral AI
 
 Mistral AI offers two categories of models: premium models such as Mistral Large 2411 and Ministral 3B, and open models such as Mistral Nemo.
 
@@ -114,7 +114,7 @@ Mistral AI offers two categories of models: premium models such as Mistral Large
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI).
 
 
-### Nixtla
+## Nixtla
 
 Nixtla's TimeGEN-1 is a generative pretrained forecasting and anomaly detection model for time series data. TimeGEN-1 produces accurate forecasts for new time series without training, using only historical values and exogenous covariates as inputs.
 
@@ -127,7 +127,7 @@ To perform inferencing, TimeGEN-1 requires you to use Nixtla's custom inference 
 For more details on pricing for Nixtla models, see [Nixtla](../../concepts/models-inference-examples.md#nixtla).
 
 
-### NTT Data
+## NTT Data
 
 **tsuzumi** is an autoregressive language-optimized transformer. The tuned versions use supervised fine-tuning (SFT). tsuzumi handles both Japanese and English language with high efficiency.
 
@@ -137,7 +137,7 @@ For more details on pricing for Nixtla models, see [Nixtla](../../concepts/model
 
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=NTT+Data).
 
-### Stability AI
+## Stability AI
 
 The Stability AI collection of image generation models includes Stable Image Core, Stable Image Ultra, and Stable Diffusion 3.5 Large. Stable Diffusion 3.5 Large accepts both image and text input. 
 
@@ -150,11 +150,7 @@ The Stability AI collection of image generation models includes Stable Image Cor
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI).
 
 
-## Open and custom models
-
-The model catalog offers a larger selection of models from a wider range of providers. For these models, you can't use the option for [standard deployment in Azure AI Foundry resources](../../concepts/deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources), where models are provided as APIs. Instead, to deploy these models, you might need to host them on your infrastructure, create an AI hub, and provide the underlying compute quota to host the models.
-
-Furthermore, these models can be open-access or IP protected. In both cases, you have to deploy them in managed compute offerings in Azure AI Foundry. To get started, see [How-to: Deploy to Managed compute](../../how-to/deploy-models-managed.md).
+[!INCLUDE [models-open-and-custom](../includes/models-open-and-custom.md)]
 
 
 ## Related content
