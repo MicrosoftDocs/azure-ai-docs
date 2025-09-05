@@ -258,7 +258,7 @@
         "dest": "destmachinelearningv1"
       },
         "grp-foundry-classic": {
-        "moniker_range": "azureml-api-1",
+        "moniker_range": "azureml-api-1 || azureml-api-2",
         "dest": "destfoundry"
       },
       "grp-foundry-default": {
