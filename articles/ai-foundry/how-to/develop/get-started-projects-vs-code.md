@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 09/05/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -138,10 +138,6 @@ You can create a new Azure AI Foundry project from the Azure AI Foundry Extensio
 
 1. Select the **plus** icon next to **Resources** in the **Resources** section of the Azure AI Foundry Extension view.
 
-1. In the top center, enter the Azure AI Foundry Project name to use in the **Enter project name** textbox and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-project-name.png" alt-text="Screenshot of the Enter project name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-project-name.png":::
-
 You can either create a new resource group or select an existing one.
 - To create a new resource group:
     1. In the top center, select **Create new resource group** and press Enter.
@@ -154,6 +150,10 @@ You can either create a new resource group or select an existing one.
 
 - To use an existing resource group:
     1. In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
+
+1. In the top center, enter the Azure AI Foundry Project name to use in the **Enter project name** textbox and press Enter.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-project-name.png" alt-text="Screenshot of the Enter project name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-project-name.png":::
 
 After project deployment, a popup appears with the message **Project deployed successfully**.
 
