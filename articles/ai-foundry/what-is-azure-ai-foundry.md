@@ -8,6 +8,7 @@ ms.reviewer: sgilley
 ms.date: 07/01/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
+monikerRange: azureml-api-1 || azureml-api-2
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
@@ -18,7 +19,6 @@ ms.custom:
 keywords:
   - Azure AI services
   - cognitive
-monikerRange: 'azureml-api-1 || azureml-api-2'
 # customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
