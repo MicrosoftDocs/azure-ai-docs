@@ -15,7 +15,13 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 ## Supported features
 
-Sora can generate complex scenes with multiple characters, diverse motions, and detailed backgrounds. The model interprets prompts with contextual and physical world understanding, enabling accurate scene composition and character persistence across multiple shots. Sora demonstrates strong language comprehension for prompt interpretation and emotional character generation. 
+Sora can generate complex scenes with multiple characters, diverse motions, and detailed backgrounds. 
+
+**Text to video**: The model interprets prompts with contextual and physical world understanding, enabling accurate scene composition and character persistence across multiple shots. Sora demonstrates strong language comprehension for prompt interpretation and emotional character generation. 
+
+**Image to video**: Sora can generate video content from a still image. You can specify where in the generated video the image appears (it doesn't need to be the first frame) and which region of the image to use.
+
+
 
 ## How it works
 

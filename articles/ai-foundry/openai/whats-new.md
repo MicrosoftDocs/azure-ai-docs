@@ -20,6 +20,14 @@ This article provides a summary of the latest releases and major documentation u
 
 ## August 2025
 
+### Sora image-to-video support
+
+The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning.
+
+
+Sora is now available in the Sweden Central region as well as East US 2.
+
+
 ### Realtime API audio model GA
 
 OpenAI's GPT RealTime and Audio models are now generally available on Azure AI Foundry Direct Models.
