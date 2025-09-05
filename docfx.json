@@ -90,8 +90,7 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ],
-        "monikerRange": "azureml-api-1 || azureml-api-2"
+        ]
       },
       {
         "group": "grp-foundry-default",
@@ -571,6 +570,9 @@
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/**/*.md": "azureml-api-2",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1",
+        "articles/ai-foundry/toc.yml": "azureml-api-1",
+        "articles/ai-foundry/context/**/*.*": "azureml-api-1",
+        "articles/ai-foundry/breadcrumb/**/*.*": "azureml-api-1",
         "articles/ai-foundry/default/**/*.*": "azureml-api-2"
       },
       "open_to_public_contributors": {
