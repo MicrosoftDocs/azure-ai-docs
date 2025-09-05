@@ -10,10 +10,13 @@ ms.date: 09/03/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
+monikerRange: azureml-api-1 || azureml-api-2
 #customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
 
 # Get started with an AI template
+
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
@@ -26,18 +29,35 @@ Available templates include:
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
+- 
+::: moniker range="azureml-api-1"
 - Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
+::: moniker-end
+
 
 ## Start with a sample application
 
+::: moniker range="azureml-api-1"
+
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Sign in to [Azure AI Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
 1. Open your project in Azure AI Foundry portal.
 1. On the left pane, select **Templates**.
 1. Find the solution template you want to use.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
+::: moniker-end
+
+::: moniker range="azureml-api-2"
+
+1. Sign in to [Azure AI Foundry portal]().
+1. On the top right, select **Discover**.
+1. On the left pane, select **Templates**.
+1. Select **Open in Github** to view the entire sample application.
+1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
+1. 
+::: moniker-end
 
 ## Explore the sample application
 
