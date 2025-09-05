@@ -90,8 +90,7 @@
           "**/_themes/**",
           "**/includes/**",
           "**/obj/**"
-        ],
-        "monikerRange": "azureml-api-1"
+        ]
       },
 
       {
@@ -575,6 +574,7 @@
         "articles/ai-foundry/toc.yml": "azureml-api-1",
         "articles/ai-foundry/context/**/*.*": "azureml-api-1",
         "articles/ai-foundry/breadcrumb/**/*.*": "azureml-api-1",
+        "articles/ai-foundry/**/*.*": "azureml-api-1",
         "articles/ai-foundry/default/**/*.*": "azureml-api-2"
       },
       "open_to_public_contributors": {
