@@ -19,7 +19,7 @@ monikerRange: azureml-api-1 || azureml-api-2
 
 # Azure AI Foundry SDK client libraries
 
-[!INCLUDE [classic-banner](includes/classic-banner.md)]
+[!INCLUDE [classic-banner](/foundry/includes/classic-banner)]
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 
