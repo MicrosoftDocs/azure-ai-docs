@@ -17,15 +17,15 @@ ms.custom:
 # Import data wizards in the Azure portal
 
 > [!IMPORTANT]
-> The **Import and vectorize data** wizard now supports keyword search, which was previously exclusive to the **Import data** wizard. Both wizards are currently available in the Azure portal, but we recommend the **Import and vectorize data** wizard for an improved search experience.
+> The **Import and vectorize data** wizard now supports keyword search, which was previously exclusive to the **Import data** wizard. Both wizards are currently available in the Azure portal, but we recommend the **Import and vectorize data** wizard for an improved search experience that uses the latest frameworks.
 >
-> The **Import and vectorize data** wizard isn't a direct replacement for the **Import data** wizard. Certain skills and functionality are only available in the classic wizard. For more information about their similarities and differences, continue reading this article.
+> The wizards don't have identical keyword search workflows. Certain skills and functionality are only available in the **Import data** wizard. For more information about their similarities and differences, continue reading this article.
 
 Azure AI Search provides two wizards that automate indexing, enrichment, and object creation for various search scenarios:
 
 + The **Import data** wizard supports keyword (nonvector) search. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills to infer structure and generate searchable text from image files and unstructured data.
 
-+ The **Import and vectorize data** wizard supports keyword search, RAG, and multimodal RAG. For keyword search, it modernizes the **Import data** experience but lacks some functionality, such as automatic metadata field creation. For RAG and multimodal RAG, it connects to your embedding model deployment, sends requests, and generates vectors from text or images.
++ The **Import and vectorize data** wizard supports keyword search, RAG, and multimodal RAG. For keyword search, it modernizes the **Import data** workflow but lacks some functionality, such as automatic metadata field creation. For RAG and multimodal RAG, it connects to your embedding model deployment, sends requests, and generates vectors from text or images.
 
 This article explains how the wizards work to help you with proof-of-concept testing. For step-by-step instructions using sample data, see [Try the wizards](#try-the-wizards).
 
@@ -56,13 +56,13 @@ The wizards support the following data sources, most of which use [built-in inde
 | [SharePoint Online](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
 | [SQL Server on virtual machines](search-how-to-index-sql-server.md) | ✅ | ✅ |
 
-<sup>1</sup> This data source uses an [Azure Logic Apps connectors (preview)](search-how-to-index-logic-apps-indexers.md#supported-connectors) instead of a built-in indexer.
+<sup>1</sup> This data source uses an [Azure Logic Apps connector (preview)](search-how-to-index-logic-apps-indexers.md#supported-connectors) instead of a built-in indexer.
 
-<sup>2</sup> Instead of using a connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-howto-index-sharepoint-online.md).
+<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-howto-index-sharepoint-online.md).
 
 ### Sample data
 
-The wizards support the following Microsoft-hosted sample data, which bypasses the data source configuration step.
+Microsoft hosts the following sample data so that you can skip the wizard step for data source configuration.
 
 | Sample data | Import data wizard | Import and vectorize data wizard |
 |-------------|--------------------|----------------------------------|
@@ -128,7 +128,7 @@ To view these objects after the wizard runs:
 
 ## Benefits
 
-Before writing any code, you can use the wizards for prototyping and proof-of-concept testing. The wizards connect to external data sources, sample the data to create an initial index, and then import and optionally vectorize the data as JSON documents into an index on Azure AI Search. 
+Before wryouiting any code, you can use the wizards for prototyping and proof-of-concept testing. The wizards connect to external data sources, sample the data to create an initial index, and then import and optionally vectorize the data as JSON documents into an index on Azure AI Search. 
 
 If you're evaluating skillsets, the wizard handles output field mappings and adds helper functions to create usable objects. Text split is added if you specify a parsing mode. Text merge is added if you chose image analysis so that the wizard can reunite text descriptions with image content. Shaper skills are added to support valid projections if you chose the knowledge store option. All of the above tasks come with a learning curve. If you're new to enrichment, the ability to have these steps handled for you allows you to measure the value of a skill without having to invest much time and effort.
 
