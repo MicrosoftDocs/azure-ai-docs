@@ -143,7 +143,7 @@ items:
         href: ../../openai/video-generation-quickstart.md
       - name: Use your data
         href: ../../openai/use-your-data-quickstart.md
-      - name: Realtime API for speech and audio (preview)
+      - name: Realtime API for speech and audio
         href: ../../openai/realtime-audio-quickstart.md
       - name: Speech to text with Whisper
         href: ../../openai/whisper-quickstart.md
@@ -151,11 +151,11 @@ items:
         href: ../../openai/text-to-speech-quickstart.md
   - name: Audio
     items:
-        - name: Realtime API for speech and audio (preview)
+        - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
-        - name: Realtime API via WebRTC (preview)
+        - name: Realtime API via WebRTC
           href: ../../openai/how-to/realtime-audio-webrtc.md
-        - name: Realtime API via WebSockets (preview)
+        - name: Realtime API via WebSockets
           href: ../../openai/how-to/realtime-audio-websockets.md
   - name: Batch
     items:
