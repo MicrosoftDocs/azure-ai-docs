@@ -30,12 +30,14 @@ items:
       href: concepts/new-article.md
 - name: Developer environment 
   items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+    - name: Start with an AI template
+      href: ../how-to/develop/ai-template-get-started.md
+    - name: Work in VS Code
+      href: ../how-to/develop/get-started-projects-vs-code.md
 - name: API & SDK
   items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+    - name: Azure AI Foundry client libraries
+      href: ../how-to/develop/sdk-overview.md
 - name: Responsible AI
   items:
     - name: Article placeholder
