@@ -13,7 +13,8 @@
           "**/obj/**",
           "**/*.graffle",
           "machine-learning/**",
-          "machine-learning/v1/**"
+          "machine-learning/v1/**",
+          "ai-foundry/**"
         ],
         "src": "articles",
         "dest": "."
@@ -75,6 +76,36 @@
           "**/includes/**",
           "**/obj/**"
         ]
+      },
+      {
+        "group": "grp-foundry-classic",
+        "src": "articles/ai-foundry",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "default/**",
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
+      },
+      {
+        "group": "grp-foundry-default",
+        "src": "articles/ai-foundry/default",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.md",
+          "**/*.yml"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ],
+        "monikerRange": "azureml-api-2"
       },
       {
         "files": [
@@ -175,6 +206,41 @@
           "**/_themes/**",
           "**/obj/**"
         ]
+      },
+            {
+        "group": "grp-foundry-classic",
+        "src": "articles/ai-foundry",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "default/**",
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
+      },
+      {
+        "group": "grp-foundry-default",
+        "src": "articles/ai-foundry/default",
+        "dest": "./ai-foundry/",
+        "files": [
+          "**/*.gif",
+          "**/*.jpeg",
+          "**/*.jpg",
+          "**/*.png",
+          "**/*.svg"
+        ],
+        "exclude": [
+          "**/_themes/**",
+          "**/includes/**",
+          "**/obj/**"
+        ]
       }
     ],
     "groups": {
@@ -189,6 +255,14 @@
       "grp-machine-learningv1": {
         "moniker_range": "azureml-api-1",
         "dest": "destmachinelearningv1"
+      },
+        "grp-foundry-classic": {
+        "moniker_range": "azureml-api-1 || azureml-api-2",
+        "dest": "destfoundry"
+      },
+      "grp-foundry-default": {
+        "moniker_range": "azureml-api-2",
+        "dest": "destfoundrydefault"
       }
     },
     "globalMetadata": {
@@ -495,7 +569,11 @@
       "monikerRange": {
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/**/*.md": "azureml-api-2",
-        "articles/machine-learning/v1/**/*.md": "azureml-api-1"
+        "articles/machine-learning/v1/**/*.md": "azureml-api-1",
+        "articles/ai-foundry/toc.yml": "azureml-api-1",
+        "articles/ai-foundry/context/**/*.*": "azureml-api-1",
+        "articles/ai-foundry/breadcrumb/**/*.*": "azureml-api-1",
+        "articles/ai-foundry/default/**/*.*": "azureml-api-2"
       },
       "open_to_public_contributors": {
         "articles/ai-foundry/responsible-ai/**.*": false

@@ -8,8 +8,8 @@ ms.reviewer: dantaylo
 ms.date: 08/20/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-ms.custom:
-  - preview
+monikerRange: 'azureml-api-1 || azureml-api-2'
+
 ---
 
 # Azure AI Foundry API and SDK Reference
@@ -95,3 +95,7 @@ This page provides links to SDKs and REST APIs available in Azure AI Foundry.
 - [REST (resource creation & deployment)](/rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP)
 - [Azure OpenAI monitoring data reference](../../openai/monitor-openai-reference.md)
 - [Audio events reference](../../openai/realtime-audio-reference.md)
+
+## Azure Machine Learning
+ - [Python SDK](/python/api/overview/azure/ai-ml-readme)
+ - [REST API](/rest/api/azureml)

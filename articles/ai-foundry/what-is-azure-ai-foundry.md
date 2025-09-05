@@ -8,6 +8,7 @@ ms.reviewer: sgilley
 ms.date: 07/01/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
+monikerRange: azureml-api-1 || azureml-api-2
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
@@ -23,6 +24,8 @@ keywords:
 
 # What is Azure AI Foundry?
 
+[!INCLUDE [classic-banner](includes/classic-banner.md)]
+
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
 Azure AI Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
@@ -36,11 +39,25 @@ Azure AI Foundry unifies agents, models, and tools under a single management gro
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
+::: moniker range="azureml-api-2"
+
+## New user experience
+
+Azure AI Foundry has been reimagined as the AI app and agent factory for AI development teams, ushering in a true code shift for modern builders. The new version of Azure AI Foundry portal delivers speed, simplicity, and modularity as development teams access models, integrate knowledge, and continuously monitor the AI development lifecycle. ​
+
+The new user experience surfaces relevant models, agents, and tools contextually. Seamless transitions from playground to deployment reduce friction and empower teams to move from experimentation to production with ease. Advanced features like memory toggles, knowledge source federation, and embedded evaluation dashboards give development teams the power to design, customize, and manage AI apps and agents with confidence. ​
+
+::: moniker-end
+
+::: moniker range="azureml-api-1"
+
 ## Work in an Azure AI Foundry project
 
 An Azure AI Foundry project is where you do most of your development work. You can work with your project in the Azure AI Foundry portal, or use the SDK in your preferred development environment.
 
 Azure AI Foundry projects provide developers with self-serve capabilities to independently create new environments for exploring ideas and building prototypes, while managing data in isolation. Projects act as secure units of isolation and collaboration where agents share file storage, thread storage (conversation history), and search indexes. You can also bring your own Azure resources for compliance and control over sensitive data.
+
+::: moniker-end
 
 ## Azure AI Foundry API and SDKs
 
@@ -53,6 +70,8 @@ The [Azure AI Foundry API](/rest/api/aifoundry/) is designed specifically for bu
 
 The [Azure AI Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
+::: moniker range="azureml-api-1"
+
 ## <a name="project-types"></a> Types of projects
 
 Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hub-project-name.md)]** and a **[!INCLUDE [fdp](includes/fdp-project-name.md)]**. In most cases, you want to use a [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)].
@@ -61,7 +80,7 @@ Azure AI Foundry supports two types of projects: a **[!INCLUDE [hub](includes/hu
 
 - [!INCLUDE [hub-description](includes/hub-description.md)]
 
-- To understand the how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
+- To understand how the newer [!INCLUDE [fdp-project-name](includes/fdp-project-name.md)] differs from the [!INCLUDE [hub-project-name](includes/hub-project-name.md)], see [New Foundry projects overview](how-to/migrate-project.md#overview).
 
 
 ### Which type of project do I need?
@@ -140,6 +159,8 @@ Pin or unpin items into the left pane. When you unpin an item, it's hidden from 
 * Select **... More** at the bottom of the pane to see items to pin and unpin.
 * Customize each project separately. The left pane isn't shared across projects.
 * The left pane isn't shared across users. Each user customizes their own left pane for each project. 
+
+::: moniker-end
 
 ## Management center
 
