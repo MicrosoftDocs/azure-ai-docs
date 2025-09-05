@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/26/2025
+ms.date: 09/05/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -22,14 +22,14 @@ This article is to help you understand the support lifecycle for Azure OpenAI AP
 
 ## API evolution
 
-Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. 
+Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI.
 
 Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
 
 - Ongoing access to the latest features with no need specify new `api-version`'s each month.
 - Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
-- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client will be added for all currently supported languages. Adding support for this functionality is **coming soon** for the [Python](https://pypi.org/project/openai/), and the [TypeScript/JavaScript](https://github.com/openai/openai-node) libraries. .NET, Java, and Go support is currently available in preview.
+- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
 
 Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to the features you want, without having to swap API versions. Alternatively, some features will indicate preview status through their API path and don't require an additional header.
 
@@ -38,7 +38,7 @@ Examples:
 - `/openai/v1/evals` is in preview and requires passing an `"aoai-evals":"preview"` header.
 - `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
 
-For the initial v1 GA API launch we're only supporting a subset of the inference and authoring API capabilities. We'll be rapidly adding support for more capabilities soon.  
+For the initial v1 Generally Available (GA) API launch we're only supporting a subset of the inference and authoring API capabilities. All GA features are supported for use in production. We'll be rapidly adding support for more capabilities soon.  
 
 ## Code changes
 
@@ -116,7 +116,7 @@ print(response.model_dump_json(indent=2))
 ### Next generation API
 
 > [!IMPORTANT]
-> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API will remove this dependency, but adding automatic token refresh support to the `OpenAI()` client is still in progress. The example below is the current proposed structure, but it may be subject to change. The code below is for example purposes only, and won't execute successfully until the updated OpenAI library is released.
+> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API removes this dependency, by adding automatic token refresh support to the `OpenAI()` client.
 
 ```python
 from openai import OpenAI
@@ -128,7 +128,7 @@ token_provider = get_bearer_token_provider(
 
 client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key=lamba: fetch_azure_token()  
+  api_key = token_provider  
 )
 
 response = client.responses.create(
@@ -141,7 +141,7 @@ print(response.model_dump_json(indent=2))
 
 - `AzureOpenAI()` is used to take advantage of automatic token refresh provided by `azure_ad_token_provider`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `api_key` parameter will call `fetch_azure_token()`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
+- `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 
 # [REST](#tab/rest)
 
@@ -268,6 +268,8 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 - [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
 
 ### Status
+
+Generally Available features are supported for use in production.
 
 | API Path                               | Status              |
 |----------------------------------------|---------------------|
