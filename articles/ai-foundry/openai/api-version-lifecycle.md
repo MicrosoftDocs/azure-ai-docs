@@ -139,7 +139,6 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `AzureOpenAI()` is used to take advantage of automatic token refresh provided by `azure_ad_token_provider`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 
