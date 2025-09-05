@@ -5,7 +5,7 @@ description: Learn how to generate embeddings with Azure AI Foundry Models
 author: mopeakande
 reviewer: santiagxf
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 05/29/2025
 ms.author: mopeakande

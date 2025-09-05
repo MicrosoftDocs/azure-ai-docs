@@ -3,7 +3,7 @@ title: How to use image and audio in chat completions with Azure AI Foundry Mode
 titleSuffix: Azure AI Foundry
 description: Learn how to process audio and images with chat completions models with Azure AI Foundry Models
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 08/27/2025
 ms.author: mopeakande

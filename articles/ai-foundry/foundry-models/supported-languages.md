@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to choose the right programming languages and SDKs for deploying and using models in Azure AI Foundry Models.
 author: msakande
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
 ms.date: 08/29/2025

@@ -4,7 +4,7 @@ description: Learn how to configure access to Models from Partners and Community
 author: msakande   
 ms.author: mopeakande
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 5/11/2025
 ms.reviewer: fasantia

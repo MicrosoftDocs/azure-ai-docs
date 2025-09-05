@@ -3,7 +3,7 @@ manager: nitinme
 author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.date: 5/11/2025
 ms.topic: include
 ---

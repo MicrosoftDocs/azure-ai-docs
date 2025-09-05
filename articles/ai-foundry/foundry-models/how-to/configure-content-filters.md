@@ -3,7 +3,7 @@ title: 'How to configure content filters for models in Azure AI Foundry'
 titleSuffix: Azure AI Foundry
 description: Learn to use and configure the content filters that come with Azure AI Foundry, including getting approval for gated modifications.
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 08/29/2025
 author: ssalgadodev

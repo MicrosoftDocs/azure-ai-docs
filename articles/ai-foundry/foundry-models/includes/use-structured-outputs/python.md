@@ -5,7 +5,7 @@ description: Learn how to use structured outputs with chat completions with Azur
 author: msakande
 reviewer: santiagxf
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
 ms.date: 08/28/2025
 ms.author: mopeakande

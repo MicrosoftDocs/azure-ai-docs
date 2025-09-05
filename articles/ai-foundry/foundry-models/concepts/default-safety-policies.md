@@ -7,7 +7,7 @@ ms.author: ssalgado
 ms.reviewer: yinchang
 reviewer: ychang-msft
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-inference
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: concept-article
 ms.date: 08/29/2025
 ai-usage: ai-assisted
