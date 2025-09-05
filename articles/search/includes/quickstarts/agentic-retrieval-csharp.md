@@ -16,7 +16,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 To get started with a Jupyter notebook instead, see the [Azure-Samples/azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) repository on GitHub.
 
 > [!TIP]
-> The C# version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the REST version of this quickstart.
+> The C# version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the REST or Python version.
 
 ## Prerequisites
 
