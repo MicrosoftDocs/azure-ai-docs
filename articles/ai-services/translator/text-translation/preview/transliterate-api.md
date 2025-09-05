@@ -16,33 +16,75 @@ The Text transliteration API maps your source language script or alphabet to a t
 
 ## Request URL
 
-Send a `POST` request to:
+### Global endpoint configuration
+
+**Send a `POST` request to**:
 
 ```bash
-https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
+curl -X POST https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
+ -H "Ocp-Apim-Subscription-Key:<your-key>" ^
+ -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
+ -H "Content-Type: application/json" ^
+ -d "<your-request-body>"
 ```
 
-For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md#virtual-network-support).
+***Linux or macOS***
 
-## Request parameters
+```bash
+curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview" \
+-H "Ocp-Apim-Subscription-Key:<your-key>" \
+-H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
+-H "Content-Type: application/json" \
+-d "<your-request-body>"
+```
+### Custom endpoint configuration
 
-Request parameters passed on the query string are:
+ Your custom domain endpoint is a URL formatted with your resource name and hostname and is available in the Azure portal. When you created your Translator resource, the value that you entered in the `Name` field is the custom domain name parameter for the endpoint.
 
-| Query parameter | Description |
-| --- | --- |
-| api-version | *Required parameter*.<br/>Version of the API requested by the client. Value must be `3.0`. |
-| language | *Required parameter*.<br/>Specifies the language of the text to convert from one script to another. Possible languages are listed in the `transliteration` scope obtained by querying the service for its [supported languages](get-languages.md). |
-| fromScript | *Required parameter*.<br/>Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
-| toScript | *Required parameter*.<br/>Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
+**Send a `POST` request**:
+
+***Windows***
+
+```bash
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-05-01-preview"^
+    -H "Ocp-Apim-Subscription-Key:<your-key>"^
+    -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
+    -H "Content-Type: application/json"^
+    -d "<your-request-body>"
+```
+***Linux or macOS***
+
+```bash
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-05-01-preview" \
+    -H "Ocp-Apim-Subscription-Key:<your-key>" \
+    -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
+    -H "Content-Type: application/json" \
+    -d "<your-request-body>"
+```
+
+### Private endpoint
+
+For more information on Translator service selected network and private endpoint configuration and support, *see* [**Virtual Network Support**](../reference/authentication.md).
 
 ## Request headers 
 
-| Headers | Description |
-| --- | --- |
-| Authentication headers | _Required request header_.<br/>See [available options for authentication](../../../authentication.md). |
-| Content-Type | _Required request header_.<br/>Specifies the content type of the payload. Possible values are: `application/json` |
-| Content-Length | _Optional_.<br/>The length of the request body. |
-| X-ClientTraceId | _Optional_.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+| Headers | Required| Description |
+| --- | --- |---|
+| **Authentication headers** |**True**| *See* [available options for authentication](../reference/authentication.md). |
+| **Content-Type** |**True**| Specifies the content type of the payload. Accepted values are: `application/json`; `charset=UTF-8`|
+| **Content-Length** |False| The length of the request body. |
+| **X-ClientTraceId** |False| A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
+
+## Request parameters
+
+Request parameters passed on the query string areas are as follows:
+
+| Parameter |Type| Required | Description |
+| --- | --- |---|---|
+|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
+| **fromScript**| string|**True**| Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
+| **toScript** |string| **True**| Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
+|**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 
 ## Request body
 
@@ -82,7 +124,21 @@ An example JSON response is:
 
 | Headers | Description |
 | --- | --- |
-| X-RequestId | Value generated by the service to identify the request and used for troubleshooting purposes. |
+| **X-RequestId** | Value generated by the service to identify the request and used for troubleshooting purposes. |
+
+## Example
+
+The following example shows how to convert two Japanese strings into Romanized Japanese.
+
+```bash
+  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
+```
+
+The JSON payload for the request in this example:
+
+```json
+[{"text":"こんにちは","script":"jpan"},{"text":"さようなら","script":"jpan"}]
+```
 
 ## Response status codes
 
@@ -100,17 +156,9 @@ The following are the possible HTTP status codes that a request returns.
 
 If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [Status code reference page](../reference/status-response-codes.md).
 
-## Examples
 
-The following example shows how to convert two Japanese strings into Romanized Japanese.
+## Next steps
 
-The JSON payload for the request in this example:
+> [!div class="nextstepaction"]
+> [View 2025-05-01-preview migration guide](../how-to/migrate-to-preview.md)
 
-```json
-[{"text":"こんにちは","script":"jpan"},{"text":"さようなら","script":"jpan"}]
-```
-
-
-```
-curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
-```
