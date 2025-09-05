@@ -43,7 +43,7 @@ items:
 - name: Best practices
   items:
     - name: Article placeholder
-      href: concepts/new-article.md.md
+      href: concepts/new-article.md
 - name: Architecture & design
   items:
     - name: Article placeholder
