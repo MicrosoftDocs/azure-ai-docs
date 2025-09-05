@@ -256,11 +256,11 @@
         "dest": "destmachinelearningv1"
       },
         "grp-foundry-classic": {
-        "moniker_range": "azureml-api-1 || azureml-api-2",
+        "moniker_range": "azureml-api-1",
         "dest": "destfoundry"
       },
       "grp-foundry-default": {
-        "moniker_range": "azureml-api-1 || azureml-api-2",
+        "moniker_range": "azureml-api-2",
         "dest": "destfoundrydefault"
       }
     },
@@ -569,8 +569,8 @@
         "articles/ai-services/document-intelligence/**/*.md": ">=doc-intel-2.1.0",
         "articles/machine-learning/v1/**/*.md": "azureml-api-1",
         "articles/machine-learning/**/*.md": "azureml-api-2",
-        "articles/ai-foundry/default/**/*.*": "azureml-api-1 || azureml-api-2",
-        "articles/ai-foundry/**/*.*": "azureml-api-1 || azureml-api-2"
+        "articles/ai-foundry/default/**/*.*": "azureml-api-2",
+        "articles/ai-foundry/**/*.*": "azureml-api-1"
       },
       "open_to_public_contributors": {
         "articles/ai-foundry/responsible-ai/**.*": false
