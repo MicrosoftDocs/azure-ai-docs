@@ -48,7 +48,7 @@ items:
 - name: Best practices
   items:
     - name: Manage costs 
-      href: concepts/costs-plan-manage.md
+      href: concepts/new-article.md
 - name: Architecture & design
   items:
     - name: Article placeholder
