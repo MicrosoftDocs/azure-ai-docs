@@ -20,7 +20,6 @@ ms.custom:
 # Foundry Models and capabilities
 
 Azure AI Foundry Models gives you access to flagship models in Azure AI Foundry to consume them as APIs with flexible deployment options.
-
 This article lists a selection of model offerings along with their capabilities, [deployment types and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 
 Depending on what [kind of project](../../what-is-azure-ai-foundry.md#work-in-an-azure-ai-foundry-project) you're using in Azure AI Foundry, you might see a different selection of these models. Specifically, if you're using a Foundry project, built on an Azure AI Foundry resource, you see the models that are available for standard deployment to a Foundry resource. Alternatively, if you're using a hub-based project, hosted by an Azure AI Foundry hub, you see models that are available for deployment to managed compute and serverless APIs. These model selections do overlap in many cases, since many models support the multiple [deployment options](../../concepts/deployments-overview.md). 
@@ -107,7 +106,7 @@ xAI's Grok models in Azure AI Foundry Models include a diverse set of models des
 
 - Grok 3, a non-reasoning model pretrained by the Colossus datacenter, is tailored for business use cases such as data extraction, coding, and text summarization, with exceptional instruction-following capabilities. It supports a 131,072 token context window, allowing it to handle extensive inputs while maintaining coherence and depth, and is adept at drawing connections across domains and languages.
 - Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets. 
-- Grok Code Fast 1, a fast and efficient reasoning model designed for use in agentic coding applications. It was pre-trained on a coding-focused data mixture, then post-trained on demonstrations of various coding tasks and tool use as well as demonstrations of correct refusal behaviors based on xAI's safety policy. Learn more about Grok Code Fast 1's capabilities, risks, and limitations, in the model card [here](https://ai.azure.com/explore/models/grok-code-fast-1/version/1/registry/azureml-xa). 
+- Grok Code Fast 1, a fast and efficient reasoning model designed for use in agentic coding applications. It was pre-trained on a coding-focused data mixture, then post-trained on demonstrations of various coding tasks and tool use as well as demonstrations of correct refusal behaviors based on xAI’s safety policy. Learn more about Grok Code Fast 1’s capabilities, risks, and limitations, in the model card [here](https://ai.azure.com/explore/models/grok-code-fast-1/version/1/registry/azureml-xa). 
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
