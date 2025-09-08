@@ -13,7 +13,7 @@ zone_pivot_groups: openai-video-generation
 
 # Quickstart: Generate a video with Sora (preview)
 
-[!INCLUDE [Video generation introduction](video-generation-intro.md)]
+[!INCLUDE [Video generation introduction](./includes/video-generation-intro.md)]
 
 ::: zone pivot="ai-foundry-portal"
 
