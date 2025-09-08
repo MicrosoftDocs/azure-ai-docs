@@ -1553,14 +1553,14 @@ groups:
   title: Programming languages
   prompt: Choose a usage method
   pivots:
-  - id: javascript
-    title: JavaScript
-  - id: python
-    title: Python
   - id: dotnet
     title: C#
   - id: java
     title: Java
+  - id: javascript
+    title: JavaScript
+  - id: python
+    title: Python
   - id: rest
     title: REST
   - id: typescript
