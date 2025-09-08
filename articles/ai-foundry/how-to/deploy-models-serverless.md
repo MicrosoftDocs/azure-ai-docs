@@ -5,9 +5,9 @@ description: Learn to deploy models as serverless API deployments, using Azure A
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 07/29/2025
-ms.author: mopeakande
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
-author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024

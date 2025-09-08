@@ -3,7 +3,8 @@ title: Endpoints for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to access and use Azure AI Foundry Models endpoints for secure model inference, flexible deployments, and keyless authentication.
 author: msakande
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 08/25/2025
 ms.author: mopeakande

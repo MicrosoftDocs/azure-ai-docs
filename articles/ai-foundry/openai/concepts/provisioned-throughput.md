@@ -3,10 +3,10 @@ title: Provisioned throughput for Azure AI Foundry Models
 description: Learn about provisioned throughput and Azure AI Foundry.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 06/03/2025
+ms.date: 09/03/2025
 manager: nitinme
-author: aahill #ChrisHMSFT
-ms.author: aahi #chrhoder
+author: msakande #ChrisHMSFT
+ms.author: mopeakande #chrhoder
 ms.reviewer: shiyingfu
 reviewer: swingfu
 recommendations: false
@@ -181,8 +181,8 @@ The following points are some important takeaways from the table:
 
 | Model Family       | Model name       | Global provisioned | Data zone provisioned | Regional provisioned | Spillover feature |
 |--------------------|------------------|--------------------|-----------------------|----------------------|-------------------|
-| **Azure OpenAI**   | Gpt 5            |                    | ✅                     |                      | ✅                 |
-|                    | Gpt4.1           | ✅                 | ✅                     | ✅                   | ✅                 |
+| **Azure OpenAI**   | Gpt 5            | ✅                 | ✅                     |                      | ✅                 |
+|                    | Gpt 4.1          | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4.1 mini     | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4.1 nano     | ✅                 | ✅                     | ✅                   | ✅                 |
 |                    | Gpt 4o           | ✅                 | ✅                     | ✅                   | ✅                 |
