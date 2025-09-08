@@ -18,10 +18,10 @@ ms.custom: references_regions, build-2025
 | --------------------------|-------------------|:----------------------|------------------------------------|--------------------------------------|
 | `computer-use-preview`    | 2025-03-11		| Preview               | No earlier than October 10, 2025   |                                      |
 | `o1-mini`                 | 2024-09-12		| Generally Available   | No earlier than October 27, 2025   | `o4-mini`                            |
-| `gpt-35-turbo`            | 1106				| Generally Available   | No earlier than November  11, 2025 | `gpt-4.1-mini`                       |
-| `gpt-35-turbo`            | 0125				| Generally Available   | No earlier than November  11, 2025 | `gpt-4.1-mini`                       |
-| `gpt-3.5-turbo-instruct`  | 0914				| Generally Available   | No earlier than November  11, 2025 |                                      |
-| `gpt-4`                   | turbo-2024-04-09	| Generally Available   | No earlier than November  11, 2025 | `gpt-4.1`                            |
+| `gpt-35-turbo`            | 1106				| Generally Available   | November  11, 2025                 | `gpt-4.1-mini`                       |
+| `gpt-35-turbo`            | 0125				| Generally Available   | November  11, 2025                 | `gpt-4.1-mini`                       |
+| `gpt-3.5-turbo-instruct`  | 0914				| Generally Available   | November  11, 2025                 |                                      |
+| `gpt-4`                   | turbo-2024-04-09	| Generally Available   | November  11, 2025                 | `gpt-4.1`                            |
 | `gpt-5-chat`              | 2025-08-07		| Preview               | No earlier than November 15, 2025  |                                      |
 | `model-router`            | 2025-05-19		| Preview               | No earlier than November 30, 2025  |                                      |
 | `model-router`            | 2025-08-07        | Preview               | No earlier than November 30, 2025  |                                      |
