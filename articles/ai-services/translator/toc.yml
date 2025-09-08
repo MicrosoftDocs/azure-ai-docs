@@ -119,9 +119,6 @@ items:
         displayName: document count,character count,translation duration
         href: text-translation/reference/metrics.md
 
-- name: Text translation authentication
-  displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
-  href: text-translation/reference/authentication.md
 
 - name: Text translation (2025-05-01-preview) 🆕
   items:
@@ -141,6 +138,9 @@ items:
     href: text-translation/preview/translate-api.md
   - name: Transliterate 🆕
     href: text-translation/preview/transliterate-api.md
+ - name: Text translation authentication
+  displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+  href: text-translation/reference/authentication.md   
 
 - name: Document translation
   items:
