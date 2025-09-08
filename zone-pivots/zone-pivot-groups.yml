@@ -839,7 +839,7 @@ groups:
     - id: azure-openai
       title: Azure OpenAI models
     - id: azure-direct-others
-      title: Other models in the collection
+      title: Other model collections
 - id: azure-ai-model-fine-tune
 # Owner: ssalgadodev
   title: Programming languages
