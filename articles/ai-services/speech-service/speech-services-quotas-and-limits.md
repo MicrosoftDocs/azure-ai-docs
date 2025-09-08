@@ -91,6 +91,9 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 | Max total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Max SSML message size per turn for websocket | 64 KB | 64 KB |
 
+> [!NOTE]
+> Most HTTP 429 errors with Text-to-Speech Standard Voice are caused by limited backend service capacity for a specific voice in the selected region, not by quota limits. Increasing your quota won't resolve these errors. For best results, use the voice in its native region or select a more popular voice in your current region.
+
 #### Batch synthesis
 
 These limits aren't adjustable. For more information on batch synthesis latency, see [the batch synthesis latency and best practices](batch-synthesis.md#batch-synthesis-latency-and-best-practices).
