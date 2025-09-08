@@ -28,6 +28,9 @@ Most Foundry Models come from partners and community. Trusted third-party organi
 
 To learn more about attributes of Foundry Models from partners and community, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-from-partners-and-community).
 
+> [!NOTE]
+> For a list of models sold directly by Azure, see [Foundry Models sold directly by Azure](models-sold-directly-by-azure.md).
+
 ## Cohere
 
 The Cohere family of models includes various models optimized for different use cases, including chat completions and embeddings. Cohere models are optimized for various use cases that include reasoning, summarization, and question answering.
