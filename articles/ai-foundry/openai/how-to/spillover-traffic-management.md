@@ -1,11 +1,11 @@
 ---
 title: Manage traffic with spillover for Provisioned deployments
 description: Article outlining how to use the spillover feature to manage traffic bursts for Azure OpenAI in Azure AI Foundry Models provisioned deployments
-author: aahill # GitHub alias
-ms.author: aahi
+author: msakande
+ms.author: mopeakande
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 09/03/2025
 ---
 
 # Manage traffic with spillover for provisioned deployments

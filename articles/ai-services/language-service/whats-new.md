@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: whats-new
-ms.date: 07/16/2025
+ms.date: 09/04/2025
 ms.author: lajanuar
 ---
 
@@ -14,9 +14,27 @@ ms.author: lajanuar
 
 Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+## August 2025
+
+**Release of new PII and NER model (2025-08-01-preview)**. This new preview model version introduces broader functionality and expanded capabilities for personal information identification (PII) and named entity recognition (NER):
+
+* **Expanded language support for DateOfBirth entity**. The **DateOfBirth** entity, which initially supported English only, now includes Tier 1 language coverage. This expansion supports French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch, ensuring broader international applicability.
+
+* **Two new entity types added**:
+   * **SortCode**: A financial identifier used in the UK and Ireland to specify the bank and branch associated with an account.
+   * **LicensePlateNumber**: Support is now available for standard alphanumeric vehicle identification codes. At this time, license plates that consist exclusively of letters aren't supported.
+
+* **Improved AI accuracy in financial entity recognition**. The **2025-08-01-preview** model is further optimized to minimize both false positives and false negatives in financial entity recognition, resulting in greater accuracy and reliability.
+
+**New Python SDK release: azure-ai-language-conversations 2.0.0b1**. The latest Python SDK, **azure-ai-language-conversations 2.0.0b1**, is now available and supports the **2025-15-05-preview** REST API for conversation runtime.
+
+* **Conversational Language Understanding (CLU) inference** now allows for seamless integration with advanced large-scale language models, providing real-time recognition of user intent without the need for extra model training.
+* **Enhanced intent prediction capabilities** enable support for complex, multi-turn conversations. These advancements contribute to greater sophistication in conversational AI systems and, as a result, workflow automation processes are improved.
+
+
 ## July 2025
 
- **Expanded .NET SDK support for text and conversation authoring APIs**:
+ **Expanded .NET SDK support for text and conversation authoring APIs**. 
 
   * [**Azure.AI.Language.Text.Authoring `1.0.0-beta.2`**](https://www.nuget.org/packages/Azure.AI.Language.Text.Authoring/1.0.0-beta.2) now supports project import with raw JSON string for custom NER and custom text classification.
 

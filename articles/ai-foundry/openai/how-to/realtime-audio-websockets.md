@@ -1,7 +1,7 @@
 ---
-title: 'How to use the GPT-4o Realtime API via WebSockets'
+title: 'How to use the GPT Realtime API via WebSockets'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
-description: Learn how to use the GPT-4o Realtime API for speech and audio via WebSockets.
+description: Learn how to use the GPT Realtime API for speech and audio via WebSockets.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
@@ -12,10 +12,10 @@ ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT-4o Realtime API via WebSockets
+# How to use the GPT Realtime API via WebSockets
 
 
-Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. 
 
@@ -26,7 +26,7 @@ Follow the instructions in this article to get started with the Realtime API via
 
 ## Supported models
 
-The GPT-4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
@@ -37,7 +37,7 @@ For more information about supported models, see the [models and versions docume
 
 ## Prerequisites
 
-Before you can use GPT-4o real-time audio, you need:
+Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).

@@ -3,10 +3,10 @@ title:  Understanding costs associated with provisioned throughput units (PTU)
 description: Learn about provisioned throughput costs and billing in Azure AI Foundry. 
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 08/14/2025
+ms.date: 09/03/2025
 manager: nitinme
-author: aahill 
-ms.author: aahi 
+author: msakande 
+ms.author: mopeakande 
 recommendations: false
 ---
 

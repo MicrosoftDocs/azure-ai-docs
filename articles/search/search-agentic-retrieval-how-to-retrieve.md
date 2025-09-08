@@ -67,7 +67,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
                 "content" : [
                   { "type" : "text", "text" : "You can answer questions about the Earth at night.
                     Sources have a JSON format with a ref_id that must be cited in the answer.
-                    If you do not have the answer, respond with "I don't know"." }
+                    If you do not have the answer, respond with 'I don't know'." }
                 ]
             },
             {
@@ -77,39 +77,29 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
                 ]
             }
         ],
-    "targetIndexParams" :  [
-        { 
-            "indexName" : "{{index-name}}",
-            "filterAddOn" : "page_number eq '105'",
-            "IncludeReferenceSourceData": true, 
-            "rerankerThreshold" : 2.5,
-            "maxDocsForReranker": 50
-        } 
-    ]
+  "knowledgeSourceParams": [
+    {
+      "filterAddOn": null,
+      "knowledgeSourceName": "earth-at-night-blob-ks",
+      "kind": "searchIndex"
+    }
+  ]
 }
 ```
 
 **Key points**:
 
++ The retrieve action targets a [knowledge agent](search-agentic-retrieval-how-to-create.md). The knowledge agent specifies one or more knowledge sources and a knowledge source configuration. Review your knowledge agent definition for output and semantic ranking configuration.
+
 + `messages` articulates the messages sent to the model. The message format is similar to Azure OpenAI APIs.
 
   + `role` defines where the message came from, for example either `assistant` or `user`. The model you use determines which roles are valid.
 
-  + `content` is the message sent to the LLM. It must be text in this preview.
+  + `content` is the message or prompt sent to the LLM. It must be text in this preview.
 
-+ `targetIndexParams` provide instructions on the retrieval. Currently in this preview, you can only target a single index. 
++ [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the agent has more than one, and you want to focus the retrieve action on just one knowledge source. If the knowledge agent has just one knowledge source with the configuration you want, you can omit this section.
 
-  + `filterAddOn` lets you set an [OData filter expression](search-filters.md) for keyword or hybrid search.
-
-  + `IncludeReferenceSourceData` tells the retrieval engine to return the source content in the response. This value is initially set in the knowledge agent definition. You can override that setting in the retrieve action to return original source content in the [references section](#review-the-references-array) of the response.
-
-  + `rerankerThreshold` and `maxDocsForReranker` are also initially set in the knowledge agent definition as defaults. You can override them in the retrieve action to configure [semantic reranker](semantic-how-to-configure.md), setting minimum thresholds and the maximum number of inputs sent to the reranker.
-
-    `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
-
-    `maxDocsForReranker` dictates the maximum number of documents to consider for the final response string. Semantic reranker accepts 50 documents. If the maximum is 200, four more subqueries are added to the query plan to ensure all 200 documents are semantically ranked. for semantic ranking. If the number isn't evenly divisible by 50, the query plan rounds up to nearest whole number. 
-
-    The `content` portion of the response consists of the 200 chunks or less, excluding any results that fail to meet the minimum threshold of a 2.5 reranker score.
+  A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
 
 ## Review the extracted response
 
@@ -133,9 +123,13 @@ The body of the response is also structured in the chat message style format. Cu
 
 **Key points**:
 
-+ `content` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a chat completion model uses to formulate a response to the user's question.
++ `content.text` is a JSON array. It's a single string composed of the most relevant documents (or chunks) found in the search index, given the query and chat history inputs. This array is your grounding data that a chat completion model uses to formulate a response to the user's question.
 
-+ "text" is the only valid value for `type`, and it consists of the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, you should assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field. 
+  This portion of the response consists of the 200 chunks or less, excluding any results that fail to meet the minimum threshold of a 2.5 reranker score.
+
+  The string starts with the reference ID of the chunk (used for citation purposes), and any fields specified in the semantic configuration of the target index. In this example, you should assume the semantic configuration in the target index has a "title" field, a "terms" field, and a "content" field.
+
++ `content.type` has one valid value in this preview: `text`. 
 
 > [!NOTE]
 > The `maxOutputSize` property on the [knowledge agent](search-agentic-retrieval-how-to-create.md) determines the length of the string. We recommend 5,000 tokens.
