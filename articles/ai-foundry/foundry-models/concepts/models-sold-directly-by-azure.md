@@ -26,12 +26,7 @@ Models sold directly by Azure include all Azure OpenAI models and specific, sele
 
 [!INCLUDE [models-list-introduction](../includes/models-list-introduction.md)]
 
-To learn more about Foundry Models sold directly by Azure, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure).
-
-## Region availability for models sold directly by Azure
-
-> [!IMPORTANT]
-> Add tables that summarize ADM region availability
+To learn more about attributes of Foundry Models sold directly by Azure, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure).
 
 
 ::: zone pivot="azure-openai"
