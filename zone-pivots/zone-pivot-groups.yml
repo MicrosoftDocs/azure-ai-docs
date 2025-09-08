@@ -1618,3 +1618,12 @@ groups:
     title: Azure AI Foundry portal
   - id: bicep
     title: Bicep
+# Owner: haileytapia
+- id: search-get-started-portal
+  title: Azure portal wizards
+  prompt: Choose a wizard
+  pivots:
+  - id: import-data
+    title: Import data
+  - id: import-and-vectorize-data
+    title: Import and vectorize data

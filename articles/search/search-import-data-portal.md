@@ -219,7 +219,7 @@ To start the wizards:
 
 1. On the **Overview** page, select **Import data** or **Import and vectorize data**.
 
-    :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the import wizard options." border="true":::
+    :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the import wizard options." border="true":::
 
     The wizards open fully expanded in the browser window, giving you more room to work.
 
