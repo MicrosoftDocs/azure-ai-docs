@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/27/2025
+ms.date: 09/08/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -109,21 +109,17 @@ print(response.model_dump_json(indent=2))
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-> [!NOTE]
-> Full v1 GA support for the OpenAI Python library with Microsoft Entra ID is coming soon. The example below will be replaced once support is added. To learn more, check out the [API lifecycle guide](../api-version-lifecycle.md#api-evolution).
-
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_key=token_provider,
 )
 
 response = client.responses.create(
@@ -238,21 +234,17 @@ response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
-> [!NOTE]
-> Full v1 GA support for the OpenAI Python library with Microsoft Entra ID is coming soon. The older preview API example below will be replaced once support is added. To learn more, check out the [API lifecycle guide](../api-version-lifecycle.md#api-evolution).
-
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_key=token_provider,
 )
 
 response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
