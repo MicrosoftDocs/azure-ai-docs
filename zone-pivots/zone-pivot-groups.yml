@@ -1197,6 +1197,14 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+- id: openai-video-generation
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: rest-api
+    title: REST API
 - id: agents-quickstart
   title: Usage methods
   prompt: Choose a usage method
