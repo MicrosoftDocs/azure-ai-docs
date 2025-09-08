@@ -12,16 +12,17 @@ ms.custom:
   - mode-ui
   - ignite-2023
   - ignite-2024
+zone_pivot_groups: search-get-started-portal
 ---
 
 # Quickstart: Create a search index in the Azure portal
 
 ::: zone pivot="import-and-vectorize-data"
-[!INCLUDE [Import and vectorize data instructions](includes/how-tos/search-get-started-portal-import-and-vectorize-data.md)]
+[!INCLUDE [Import and vectorize data instructions](includes/quickstarts/search-get-started-portal-import-and-vectorize-data.md)]
 ::: zone-end
 
 ::: zone pivot="import-data"
-[!INCLUDE [Import data instructions](includes/how-tos/search-get-started-portal-import-data.md)]
+[!INCLUDE [Import data instructions](includes/quickstarts/search-get-started-portal-import-data.md)]
 ::: zone-end
 
 ## Next step
