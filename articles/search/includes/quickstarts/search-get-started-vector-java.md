@@ -42,8 +42,6 @@ In the remaining sections, you set up API calls to Azure OpenAI and Azure AI Sea
 
 ## Set up the Java project
 
-Set up project with Visual Studio Code and Java.
-
 1. Create a new Maven project directory.
 
    ```bash
