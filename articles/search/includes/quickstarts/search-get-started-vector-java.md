@@ -309,7 +309,7 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
     hotels-vector-quickstart created
     ```
 
-   Key takeaways when creating vector index with the `@azure/search-documents` library:
+   Key takeaways when creating vector index with the `azure-search-documents` library:
 
    - You define an index by creating a list of fields. 
 
