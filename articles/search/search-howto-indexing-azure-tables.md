@@ -38,7 +38,7 @@ Use these instructions to create a table in Azure Storage for testing purposes.
 
 1. [Install Azure Storage Explorer](https://azure.microsoft.com/products/storage/storage-explorer/#Download-4).
 
-1. [Download HotelsData_toAzureSearch.csv](https://github.com/HeidiSteen/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.csv) from GitHub. This file is a subset of the built-in hotels sample dataset. It omits the rooms collection, translated descriptions, and geography coordinates.
+1. [Download HotelsData_toAzureSearch.csv](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.csv) from GitHub. This file is a subset of the built-in hotels sample dataset. It omits the rooms collection, translated descriptions, and geography coordinates.
 
 1. In Azure Storage Explorer, sign in to Azure, select your subscription, and then select your storage account.
 

@@ -37,7 +37,7 @@ To work through the examples in this article, you need the Azure portal or a [RE
 
 Use these instructions to create a container and database in Cosmos DB for testing purposes.
 
-1. [Download HotelsData_toCosmosDB.JSON](https://github.com/HeidiSteen/azure-search-sample-data/blob/main/hotels/HotelsData_toCosmosDB.JSON) from GitHub to create a container in Cosmos DB that contains a subset of the sample hotels data set.
+1. [Download HotelsData_toCosmosDB.json](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toCosmosDB.json) from GitHub to create a container in Cosmos DB that contains a subset of the sample hotels data set.
 
 1. Sign in to the Azure portal and [create an account, database, and container](/azure/cosmos-db/nosql/quickstart-portal) on Cosmos DB. 
 
@@ -55,7 +55,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
 
 1. In **Data Explorer**, expand *hotelsdb* and *hotels*, and then select **Items**.
 
-1. Select **Upload Item** and then select *HotelsData_toCosmosDB.JSON* file that you downloaded from GitHub.
+1. Select **Upload Item** and then select *HotelsData_toCosmosDB.json* file that you downloaded from GitHub.
 
 1. Right-click **Items** and select **New SQL query**. The default query is `SELECT * FROM c`.
 
