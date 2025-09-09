@@ -7,12 +7,27 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 5/29/2025
+ms.date: 09/08/2025
+zone_pivot_groups: openai-video-generation
 ---
 
 # Quickstart: Generate a video with Sora (preview)
 
+[!INCLUDE [Video generation introduction](./includes/video-generation-intro.md)]
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Portal quickstart](includes/video-generation-studio.md)]
+
+::: zone-end
+
+::: zone pivot="rest-api"
+
+
 [!INCLUDE [REST API quickstart](includes/video-generation-rest.md)]
+
+::: zone-end
+
 
 ## Clean-up resources
 
