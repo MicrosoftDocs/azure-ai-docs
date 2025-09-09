@@ -129,14 +129,14 @@ Add a tool to the AI Agent with the following steps:
 1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
  
 > [!NOTE]
-> When you add a tool, you can also add any new assets, it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+> When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
 
 #### Add an existing MCP Server tool to the AI Agent
 
 You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `Server Label` value within the same agent and a `Server URL` value that points to the remote MCP server.
 
 > [!WARNING]
-> The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. For more information, see [Considerations for using non-Microsoft services and server](/azure/ai-foundry/agents/how-to/tools/model-context-protocol?branch=pr-en-us-6966#considerations-for-using-non-microsoft-services-and-servers)
+> The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. For more information, see [Considerations for using non-Microsoft services and server](/azure/ai-foundry/agents/how-to/tools/model-context-protocol?branch=pr-en-us-6966#considerations-for-using-non-microsoft-services-and-servers).
 
 To add an existing MCP Server tool to your AI Agent, follow these steps:
 
@@ -156,7 +156,7 @@ To add an existing MCP Server tool to your AI Agent, follow these steps:
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png" alt-text="Screenshot of the MCP Server tool dialog box with the 'Allowed tools' dropdown highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png":::
 
     > [!WARNING]
-    > When you add an allowed tool, you can also pass a set of headers that the MCP server requires. Currently, there is an  issue when running an agent with MCP server that requires authentication in agent playground. https://github.com/microsoft/ai-foundry-for-vscode/issues/150
+    > When you add an allowed tool, you can also pass a set of headers that the MCP server requires. Currently, there is an issue when running an agent with MCP server that requires authentication in agent playground. For more information about this issue: https://github.com/microsoft/ai-foundry-for-vscode/issues/150
 
 1. After entering the required information, select the **Create tool** button in the bottom-left corner.
 
