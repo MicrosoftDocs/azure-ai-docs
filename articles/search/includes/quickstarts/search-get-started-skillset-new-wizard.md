@@ -12,7 +12,7 @@ ms.date: 09/09/2025
 
 In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text merging, and entity recognition to generate text-searchable content in an index.
 
-You can run the **Import and vectorize data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can then query generated content in the Azure portal using [**Search explorer**](search-explorer.md).
+You can run the **Import and vectorize data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can then query generated content in the Azure portal using [**Search explorer**](../../search-explorer.md).
 
 Before you run the wizard, you create a few resources and upload sample files.
 
@@ -69,9 +69,9 @@ If you get `Error detecting index schema from data source`, the indexer that pow
 
 | Security feature | Solution |
 |--------------------|----------|
-| Resource requires Azure roles, or its access keys are disabled. | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-how-to-managed-identities.md). |
-| Resource is behind an IP firewall. | [Create an inbound rule for Azure AI Search and the Azure portal](search-indexer-howto-access-ip-restricted.md). |
-| Resource requires a private endpoint connection. | [Connect over a private endpoint](search-indexer-howto-access-private.md). |
+| Resource requires Azure roles, or its access keys are disabled. | [Connect as a trusted service](../../search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](../../search-how-to-managed-identities.md). |
+| Resource is behind an IP firewall. | [Create an inbound rule for Azure AI Search and the Azure portal](../../search-indexer-howto-access-ip-restricted.md). |
+| Resource requires a private endpoint connection. | [Connect over a private endpoint](../../search-indexer-howto-access-private.md). |
 
 ### Step 2: Add cognitive skills
 
@@ -101,7 +101,7 @@ To add the skills:
 
     + **Categorize content**
 
-    :::image type="content" source="../../media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-text.png":::
+    :::image type="content" source="../../media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract text from images options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-text.png":::
 
 1. Leave the **Use a free AI service (limited enrichments)** checkbox selected.
 
