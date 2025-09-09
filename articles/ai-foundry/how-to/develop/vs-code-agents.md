@@ -135,6 +135,9 @@ Add a tool to the AI Agent with the following steps:
 
 You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `Server Label` value within the same agent and a `Server URL` value that points to the remote MCP server.
 
+> [!WARNING]
+> The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. For more information, see [Considerations for using non-Microsoft services and server](/azure/ai-foundry/agents/how-to/tools/model-context-protocol?branch=pr-en-us-6966#considerations-for-using-non-microsoft-services-and-servers)
+
 To add an existing MCP Server tool to your AI Agent, follow these steps:
 
 
