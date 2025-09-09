@@ -19,6 +19,7 @@ In Azure AI Search, a [vector store](../../vector-store.md) has an index schema 
 - An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
 
 - An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/CognitiveSearch) in your current subscription.
+    - The `Search Index Data Contributor` role assigned at the scope of the service.
     - You can use a free search service for most of this quickstart, but we recommend the Basic tier or higher for larger data files.
     - To run the query example that invokes [semantic reranking](../../semantic-search-overview.md), your search service must be at the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
@@ -111,14 +112,14 @@ In this section, you create a vector index in Azure AI Search with [SearchIndexC
 
 1. Run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/createIndex.js
     ```
 1. The output of this code shows that the index is created successfully:
 
-    ```console
-    Using Azure Search endpoint: https://my-service.search.windows.net
-    Using index name: hotels-vector-quickstart
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
     Creating index...
     hotels-vector-quickstart created
     ```
@@ -142,7 +143,7 @@ Creating and loading the index are separate steps. You created the index schema 
 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
-1. Create a `uploadDocuments.js` file in the `src` directory.
+1. Create an `uploadDocuments.js` file in the `src` directory.
 1. Copy the following code into the file.
 
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/uploadDocuments.js" :::
@@ -153,12 +154,14 @@ In Azure AI Search, the index stores all searchable content, while the search en
 
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/uploadDocuments.js
     ```
 1. The output of this code shows that the documents are indexed and ready for search:
 
-    ```console
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
     Uploading documents...
     Key: 1, Succeeded: true, ErrorMessage: none
     Key: 2, Succeeded: true, ErrorMessage: none
@@ -171,7 +174,7 @@ In Azure AI Search, the index stores all searchable content, while the search en
     All documents indexed successfully.
     ```
 
-    Key takeaways about the upload_documents() method and this example:
+    Key takeaways about the uploadDocuments() method and this example:
     
     * Your code interacts with a specific search index hosted in your Azure AI Search service through the SearchClient, which is the main object provided by the @azure/search-documents package. The SearchClient provides access to index operations such as:
         * Data ingestion - uploadDocuments(), mergeDocuments(), deleteDocuments(), etc.
@@ -211,15 +214,15 @@ The first example demonstrates a basic scenario where you want to find document 
 
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/searchSingle.js
     ```
 
 1. The output of this code shows the relevant docs for the query `quintessential lodging near running trails, eateries, retail`. 
 
-    ```console
-    Using Azure Search endpoint: https://ai-search-dib-2.search.windows.net
-    Using index name: hotels-vector-quickstart-0627-4
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
     
     
     Single Vector search found 5
@@ -247,14 +250,14 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/searchSingleWithFilter.js
     ```
 1. The output of this code shows the relevant documents for the query with the filter for `free wifi` applied:
 
-    ```console
-    Using Azure Search endpoint: https://ai-search-dib-2.search.windows.net
-    Using index name: hotels-vector-quickstart-0627-4
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
     
     
     Single Vector search found 2
@@ -273,15 +276,15 @@ You can specify a geospatial filter to limit results to a specific geographic ar
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchSingleWithFilterGeo.js" :::
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/searchSingleWithFilterGeo.js
     ```
 
 1. The output of this code shows the relevant documents for the query with the geospatial post-processing exclusion filter applied:
 
-    ```console
-    Using Azure Search endpoint: https://ai-search-dib-2.search.windows.net
-    Using index name: hotels-vector-quickstart-0627-4
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
     
     
     Single Vector search found 2
@@ -305,14 +308,14 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
     :::code language="javascript" source="~/azure-search-javascript-samples/quickstart-vector-js/src/searchHybrid.js" :::
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/searchHybrid.js
     ```
 1. The output of this code shows the relevant documents for the hybrid search:
 
-    ```console
-    Using Azure Search endpoint: https://ai-search-dib-2.search.windows.net
-    Using index name: hotels-vector-quickstart-0627-4
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
     
     
     Hybrid search found 7 then limited to top 5
@@ -417,7 +420,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
            "@search.score": 0.8133763,
            "HotelId": "3",
            "HotelName": "Gastronomic Landscape Hotel",
-           "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.",
+           "Description": "The Hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.",
            "Category": "Resort and Spa"
        }
    ]
@@ -436,15 +439,15 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
 
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/searchSemanticHybrid.js
     ```
 
 1. The output of this code shows the relevant documents for the semantic hybrid search:
 
-    ```console
-    Using Azure Search endpoint: https://ai-search-dib-2.search.windows.net
-    Using index name: hotels-vector-quickstart-0627-4
+    ```output
+    Using Azure Search endpoint: https://<search-service-name>.search.windows.net
+    Using Azure Search index: <vector-index-name>
 
     
     Semantic hybrid search found 7 then limited to top 5
@@ -480,7 +483,7 @@ This search uses [SearchClient](/javascript/api/@azure/search-documents/searchcl
       Re-ranker Score: 2.0582215785980225
       HotelId: 3
       HotelName: Gastronomic Landscape Hotel
-      Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel’s restaurant services.
+      Description: The Gastronomic Hotel stands out for its culinary excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services.
       Category: Suite
     ```
 
@@ -509,7 +512,7 @@ If you want to keep the search service, but delete the index and documents, you 
 
 1. Build and run the file:
 
-    ```console
+    ```bash
     node -r dotenv/config src/deleteIndex.js
     ```
 
