@@ -1,4 +1,4 @@
-monikerRange: 'azureml-api-2'
+monikerRange: 'foundry'
 items:
 - name: What is Azure AI Foundry?
   href: ../what-is-azure-ai-foundry.md

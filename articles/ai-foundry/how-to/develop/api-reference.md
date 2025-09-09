@@ -8,7 +8,7 @@ ms.reviewer: dantaylo
 ms.date: 08/20/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
-monikerRange: 'azureml-api-1 || azureml-api-2'
+monikerRange: 'foundry-classic || foundry'
 
 ---
 
