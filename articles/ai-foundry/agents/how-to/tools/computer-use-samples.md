@@ -31,6 +31,8 @@ Use this article to learn how to use the Computer Use tool with the Azure AI Pro
     
     Save the name of your model's deployment name as an environment variable named `COMPUTER_USE_MODEL_DEPLOYMENT_NAME`.
 
+* Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
+
 The Computer Use tool requires the latest prerelease versions of the `azure-ai-projects` library. First we recommend creating a [virtual environment](https://docs.python.org/3/library/venv.html) to work in:
 
 ```console
@@ -50,69 +52,167 @@ pip install --pre azure-ai-projects, azure-identity, azure-ai-agents
 The following code sample shows a basic API request. Once the initial API request is sent, you would perform a loop where the specified action is performed in your application code, sending a screenshot with each turn so the model can evaluate the updated state of the environment. You can see an example integration for a similar API in the [Azure OpenAI documentation](../../../openai/how-to/computer-use.md#playwright-integration). 
 
 ```python
+import os, time, base64
+from typing import List
+from azure.ai.agents.models._models import ComputerScreenshot, TypeAction
 from azure.ai.projects import AIProjectClient
-from azure.ai.agents.models import ComputerUseTool
+from azure.ai.agents.models import (
+    MessageRole,
+    RunStepToolCallDetails,
+    RunStepComputerUseToolCall,
+    ComputerUseTool,
+    ComputerToolOutput,
+    MessageInputContentBlock,
+    MessageImageUrlParam,
+    MessageInputTextBlock,
+    MessageInputImageUrlBlock,
+    RequiredComputerUseToolCall,
+    SubmitToolOutputsAction,
+)
 from azure.identity import DefaultAzureCredential
-import os
-import time
 
-# Initialize client
-project_client = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+def image_to_base64(image_path: str) -> str:
+    """
+    Convert an image file to a Base64-encoded string.
 
-# Create agent with computer use capability (similar to OpenAI but enhanced)
-computer_use_tool = ComputerUseTool(
-    display_width=1024,
-    display_height=768,
-    environment="browser"  # "browser", "mac", "windows", "ubuntu"
-)
+    :param image_path: The path to the image file (e.g. 'image_file.png')
+    :return: A Base64-encoded string representing the image.
+    :raises FileNotFoundError: If the provided file path does not exist.
+    :raises OSError: If there's an error reading the file.
+    """
+    if not os.path.isfile(image_path):
+        raise FileNotFoundError(f"File not found at: {image_path}")
 
-agent = project_client.agents.create_agent(
-    model=os.environ["COMPUTER_USE_MODEL_DEPLOYMENT_NAME"],  # computer-capable model
-    name="computer-assistant",
-    instructions="You are an assistant that can interact with computer interfaces to help users automate tasks. Always take a screenshot first to understand the current state.",
-    tools=[computer_use_tool]
-)
+    try:
+        with open(image_path, "rb") as image_file:
+            file_data = image_file.read()
+        return base64.b64encode(file_data).decode("utf-8")
+    except Exception as exc:
+        raise OSError(f"Error reading file '{image_path}'") from exc
 
-# Create a thread for persistent computer automation
-thread = project_client.agents.create_thread()
+asset_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/cua_screenshot.jpg"))
+action_result_file_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "../assets/cua_screenshot_next.jpg"))
+project_client = AIProjectClient(endpoint=os.environ["PROJECT_ENDPOINT"], credential=DefaultAzureCredential())
 
-# Ask agent to automate a task
-message = project_client.agents.create_message(
-    thread_id=thread.id,
-    role="user",
-    content="Check the latest Azure AI news on bing.com and summarize the top 3 articles"
-)
+# Initialize Computer Use tool with a browser-sized viewport
+environment = os.environ.get("COMPUTER_USE_ENVIRONMENT", "windows")
+computer_use = ComputerUseTool(display_width=1026, display_height=769, environment=environment)
 
-# Run the agent - it will use computer use tool automatically
-run = project_client.agents.create_run(
-    thread_id=thread.id,
-    agent_id=agent.id
-)
+with project_client:
 
-# Poll for completion and get results
-while run.status in ["queued", "in_progress", "requires_action"]:
-    if run.status == "requires_action":
-        # Handle safety checks or user confirmations
-        required_action = run.required_action
-        if required_action.type == "computer_call":
-            # User must acknowledge safety checks
-            project_client.agents.submit_tool_outputs(
-                thread_id=thread.id,
-                run_id=run.id,
-                tool_outputs=[
-                    # TODO
-                ]
-            )
-    
-    time.sleep(1)
-    run = project_client.agents.retrieve_run(thread_id=thread.id, run_id=run.id)
+    agents_client = project_client.agents
 
-# Get the final response
-messages = project_client.agents.list_messages(thread_id=thread.id)
-print(messages.data[0].content[0].text.value) 
+    # Create a new Agent that has the Computer Use tool attached.
+    agent = agents_client.create_agent(
+        model=os.environ["MODEL_DEPLOYMENT_NAME"],
+        name="my-agent-computer-use",
+        instructions="""
+            You are an computer automation assistant. 
+            Use the computer_use_preview tool to interact with the screen when needed.
+            """,
+        tools=computer_use.definitions,
+    )
+
+    print(f"Created agent, ID: {agent.id}")
+
+    # Create thread for communication
+    thread = agents_client.threads.create()
+    print(f"Created thread, ID: {thread.id}")
+
+    input_message = (
+        "I can see a web browser with bing.com open and the cursor in the search box."
+        "Type 'movies near me' without pressing Enter or any other key. Only type 'movies near me'."
+    )
+    image_base64 = image_to_base64(asset_file_path)
+    img_url = f"data:image/jpeg;base64,{image_base64}"
+    url_param = MessageImageUrlParam(url=img_url, detail="high")
+    content_blocks: List[MessageInputContentBlock] = [
+        MessageInputTextBlock(text=input_message),
+        MessageInputImageUrlBlock(image_url=url_param),
+    ]
+    # Create message to thread
+    message = agents_client.messages.create(thread_id=thread.id, role=MessageRole.USER, content=content_blocks)
+    print(f"Created message, ID: {message.id}")
+
+    run = agents_client.runs.create(thread_id=thread.id, agent_id=agent.id)
+    print(f"Created run, ID: {run.id}")
+
+    # create a fake screenshot showing the text typed in
+    result_image_base64 = image_to_base64(action_result_file_path)
+    result_img_url = f"data:image/jpeg;base64,{result_image_base64}"
+    computer_screenshot = ComputerScreenshot(image_url=result_img_url)
+
+    while run.status in ["queued", "in_progress", "requires_action"]:
+        time.sleep(1)
+        run = agents_client.runs.get(thread_id=thread.id, run_id=run.id)
+
+        if run.status == "requires_action" and isinstance(run.required_action, SubmitToolOutputsAction):
+            print("Run requires action:")
+            tool_calls = run.required_action.submit_tool_outputs.tool_calls
+            if not tool_calls:
+                print("No tool calls provided - cancelling run")
+                agents_client.runs.cancel(thread_id=thread.id, run_id=run.id)
+                break
+
+            tool_outputs = []
+            for tool_call in tool_calls:
+                if isinstance(tool_call, RequiredComputerUseToolCall):
+                    print(tool_call)
+                    try:
+                        action = tool_call.computer_use_preview.action
+                        print(f"Executing computer use action: {action.type}")
+                        if isinstance(action, TypeAction):
+                            print(f"  Text to type: {action.text}")
+                            #(add hook to input text in managed environment API here)
+
+                            tool_outputs.append(
+                                ComputerToolOutput(tool_call_id=tool_call.id, output=computer_screenshot)
+                            )
+                        if isinstance(action, ComputerScreenshot):
+                            print(f"  Screenshot requested")
+                            # (add hook to take screenshot in managed environment API here)
+
+                            tool_outputs.append(
+                                ComputerToolOutput(tool_call_id=tool_call.id, output=computer_screenshot)
+                            )
+                    except Exception as e:
+                        print(f"Error executing tool_call {tool_call.id}: {e}")
+
+            print(f"Tool outputs: {tool_outputs}")
+            if tool_outputs:
+                agents_client.runs.submit_tool_outputs(thread_id=thread.id, run_id=run.id, tool_outputs=tool_outputs)
+
+        print(f"Current run status: {run.status}")
+
+    print(f"Run completed with status: {run.status}")
+    if run.status == "failed":
+        print(f"Run failed: {run.last_error}")
+
+    # Fetch run steps to get the details of the agent run
+    run_steps = agents_client.run_steps.list(thread_id=thread.id, run_id=run.id)
+    for step in run_steps:
+        print(f"Step {step.id} status: {step.status}")
+        print(step)
+
+        if isinstance(step.step_details, RunStepToolCallDetails):
+            print("  Tool calls:")
+            run_step_tool_calls = step.step_details.tool_calls
+
+            for call in run_step_tool_calls:
+                print(f"    Tool call ID: {call.id}")
+                print(f"    Tool call type: {call.type}")
+
+                if isinstance(call, RunStepComputerUseToolCall):
+                    details = call.computer_use_preview
+                    print(f"    Computer use action type: {details.action.type}")
+
+                print()  # extra newline between tool calls
+
+        print()  # extra newline between run steps
+
+    # Optional: Delete the agent once the run is finished.
+    agents_client.delete_agent(agent.id)
+    print("Deleted agent")
 ```
 
 ## Next steps

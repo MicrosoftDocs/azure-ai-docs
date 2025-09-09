@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 08/22/2025
+ms.date: 09/09/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
@@ -47,11 +47,11 @@ The following table lists some of the differences between the Computer Use Tool 
 | How it acts                    | A list of actions provided by the model | Virtual keyboard and mouse |
 | Is it multi-step?                    | Yes                         | Yes                        |
 | Interfaces                     | Browser                     | Computer and browser       |
-| Do I need to bring my own resource?    | Your own Playwright resource with the keys stored as a connection. | No additional resource needed          |
+| Do I need to bring my own resource?    | Your own Playwright resource with the keys stored as a connection. | No additional resource required but we highly recommend running this tool in a sandboxed environment.          |
 
 ## Regional support 
 
-In order to use the Computer Use Tool, you need to have a Computer Use model deployment. The Computer Use model is available in the following regions: 
+In order to use the Computer Use Tool, you need to have a [Computer Use model](../../../foundry-models/concepts/models-sold-directly-by-azure.md#computer-use-preview) deployment. The Computer Use model is available in the following regions: 
 * `eastus2` 
 * `swedencentral` 
 * `southindia` 
@@ -69,6 +69,9 @@ When working with the Computer Use tool, you typically would perform the followi
 1. After executing the action, capture the updated state of the environment as a screenshot. 
 
 1. Send a new request with the updated state as a `tool_call_output`, and repeat this loop until the model stops requesting actions or you decide to stop. 
+
+    > [!NOTE]
+    > Before using the tool, you need to set up an environment that can capture screenshots and execute the recommended actions by the agent. We recommend using a sandboxed environment, such as Playwright for safety reasons.
 
 ## Handling conversation history 
 
