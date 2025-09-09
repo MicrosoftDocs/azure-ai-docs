@@ -142,7 +142,7 @@ You can create a new Azure AI Foundry project from the Azure AI Foundry Extensio
 1. To create a new resource group:
     1. In the top center, select **Create new resource group** and press Enter.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the Create new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::
+        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the Create new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::
 
     1. In the top center, enter the Azure Resource Group name to use in the **Enter new resource group** textbox and press Enter.
 

@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 09/08/2025
+ms.date: 09/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
