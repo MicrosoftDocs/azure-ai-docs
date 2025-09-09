@@ -108,6 +108,10 @@ ml_client = MLClient(
 )
 ```
 
+**Reference links:**
+- [MLClient](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient)
+- [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential)
+
 > [!NOTE]
 > Creating MLClient won't connect to the workspace. The client initialization is lazy, it will wait for the first time it needs to make a call (this will happen in the next code cell).
 
@@ -121,6 +125,9 @@ ws = ml_client.workspaces.get(WS_NAME)
 print(ws.location, ":", ws.resource_group)
 ```
 
+**Reference links:**
+- [WorkspaceOperations.get](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-get)
+
 ## Access the registered data asset
 
 Start by getting the data that you previously registered in [Tutorial: Upload, access and explore your data in Azure Machine Learning](tutorial-explore-data.md).
@@ -133,6 +140,9 @@ Start by getting the data that you previously registered in [Tutorial: Upload, a
 credit_data = ml_client.data.get(name="credit-card", version="initial")
 print(f"Data asset URI: {credit_data.path}")
 ```
+
+**Reference links:**
+- [DataOperations.get](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
 
 ## Create a job environment for pipeline steps
 
@@ -198,6 +208,10 @@ print(
     f"Environment with name {pipeline_job_env.name} is registered to workspace, the environment version is {pipeline_job_env.version}"
 )
 ```
+
+**Reference links:**
+- [Environment](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.environment)
+- [EnvironmentOperations.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.environmentoperations#azure-ai-ml-operations-environmentoperations-create-or-update)
 
 ## Build the training pipeline
 
@@ -318,6 +332,11 @@ data_prep_component = command(
 )
 ```
 
+**Reference links:**
+- [command](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
+- [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
+- [Output](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.output)
+
 Optionally, register the component in the workspace for future reuse.
 
 
@@ -331,6 +350,9 @@ print(
     f"Component {data_prep_component.name} with Version {data_prep_component.version} is registered"
 )
 ```
+
+**Reference links:**
+- [MLClient.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
 
 ### Create component 2: training (using yaml definition)
 
@@ -505,6 +527,10 @@ print(
 )
 ```
 
+**Reference links:**
+- [load_component](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-load-component)
+- [MLClient.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
+
 ### Create the pipeline from components
 
 Now that both your components are defined and registered, you can start implementing the pipeline.
@@ -557,6 +583,11 @@ def credit_defaults_pipeline(
     }
 ```
 
+**Reference links:**
+- [dsl.pipeline](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.dsl#azure-ai-ml-dsl-pipeline)
+- [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
+- [Output](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.output)
+
 Now use your pipeline definition to instantiate a pipeline with your dataset, split rate of choice and the name you picked for your model.
 
 
@@ -571,6 +602,9 @@ pipeline = credit_defaults_pipeline(
     pipeline_job_registered_model_name=registered_model_name,
 )
 ```
+
+**Reference links:**
+- [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
 
 ## Submit the job 
 
@@ -590,6 +624,10 @@ pipeline_job = ml_client.jobs.create_or_update(
 )
 ml_client.jobs.stream(pipeline_job.name)
 ```
+
+**Reference links:**
+- [JobOperations.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-create-or-update)
+- [JobOperations.stream](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-stream)
 
 You can track the progress of your pipeline, by using the link generated in the previous cell. When you first select this link, you might see that the pipeline is still running. Once it's complete, you can examine each component's results.
 
