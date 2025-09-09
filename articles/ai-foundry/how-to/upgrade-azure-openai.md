@@ -183,6 +183,19 @@ To rollback, convert your template configuration back to 'OpenAI' as kind.
 
 ---
 
+## Troubleshooting Common Issues
+
+Resource limits and organizational configurations should be considered. The table below outlines some of the most common issues along with recommended solutions to help troubleshooting.
+
+|Issue|Solution/mitigation|
+|---|---|
+|User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resources e.g. Owner, Contributor, Azure AI Administrator.| 
+|Managed identity is not enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure portal.|
+|No permissions to create agents, while you are the owner/contributor on the resource.|Obtain an EntraID data plane role for development permissions e.g. Azure AI User or Azure AI Project Manager. Owner and Contributor roles only grant access to management operations in Azure.|
+|An Azure Policy conflict occurred.|Your organization may have put constraints on resource configurations. Inspect the details of the policy violation. Then upgrade your resource via template options for further customization.|
+|Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Azure AI Foundry. Then retry rolling back your current resource.|
+|Exceeded number of AIServices instances of 100 per subscription per region.|Delete an Azure AI Foundry resource you may not use in this subscription. Then retry upgrading your current resource.|
+
 ## How to inspect whether a resource has been upgraded
 
 The following Azure resource property is available to inspect whether a resource was previously upgraded to AI Foundry.
