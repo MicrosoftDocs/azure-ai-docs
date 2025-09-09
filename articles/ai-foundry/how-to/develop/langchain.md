@@ -7,21 +7,32 @@ ms.custom:
   - ignite-2024
   - update-code
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 09/09/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
+monikerRange: azureml-api-1 || azureml-api-2
+ai-usage: ai-assisted
 ---
 
 # Develop applications with LangChain and Azure AI Foundry
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
+::: moniker range="azureml-api-1"
 Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LangChain in two ways:
+::: moniker-end
+
+::: moniker range="azureml-api-2"
+Models deployed to [Azure AI Foundry](https://aka.ms/nextgen-canary) can be used with LangChain in two ways:
+::: moniker-end
 
 - **Using the Azure AI Model Inference API:** All models deployed to Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
+
 
 In this tutorial, you learn how to use the packages `langchain-azure-ai` to build applications with LangChain.
 
@@ -47,7 +58,13 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
+::: moniker range="azureml-api-1"
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
+::: moniker-end
+
+::: moniker range="azureml-api-2"
+[!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
+::: moniker-end
 
 Once configured, create a client to connect with the chat model by using the `init_chat_model`. For Azure OpenAI models, configure the client as indicated at [Using Azure OpenAI models](#using-azure-openai-models).
 
@@ -240,7 +257,10 @@ Use the client as usual in your code.
 
 You can use the tracing capabilities in Azure AI Foundry by creating a tracer. Logs are stored in Azure Application Insights and can be queried at any time using Azure Monitor or Azure AI Foundry portal. Each AI Hub has an Azure Application Insights associated with it.
 
+
 ### Get your instrumentation connection string
+
+::: moniker range="azureml-api-1"
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -279,6 +299,10 @@ You can configure your application to send telemetry to Azure Application Insigh
         
         application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
+::: moniker-end
+::: moniker range="azureml-api-2"
+
+::: moniker-end
 
 ### Configure tracing for Azure AI Foundry
 
@@ -315,13 +339,28 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
+::: moniker range="azureml-api-1"
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-2. Navigate to **Tracing** section.
+1. Navigate to **Tracing** section.
 
-3. Identify the trace you have created. It may take a couple of seconds for the trace to show.
+1. Identify the trace you have created. It may take a couple of seconds for the trace to show.
 
     :::image type="content" source="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png" alt-text="A screenshot showing the trace of a chain." lightbox="../../media/how-to/develop-langchain/langchain-portal-tracing-example.png":::
+
+::: moniker-end
+
+::: moniker range="azureml-api-2"
+1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary).
+
+1. Navigate to **Tracing** section.
+
+1. Identify the trace you have created. It may take a couple of seconds for the trace to show.
+::: moniker-end
+
+
+
+
 
 Learn more about [how to visualize and manage traces](visualize-traces.md).
 
