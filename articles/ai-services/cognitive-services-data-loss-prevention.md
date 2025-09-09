@@ -3,7 +3,7 @@ title: Data loss prevention
 description: Azure AI services data loss prevention capabilities allow customers to configure the list of outbound URLs their Azure AI services resources are allowed to access. This configuration creates another level of control for customers to prevent data loss.
 author: gclarkmt
 ms.author: gregc
-ms.date: 5/19/2025
+ms.date: 09/09/2025
 ms.service: azure-ai-services
 ms.topic: how-to
 ms.custom:
@@ -21,11 +21,9 @@ Before you make a request, you need an Azure account and an Azure AI services su
 
 ## Access control guidance for Azure AI Services
 
-* You can limit inbound and outbound access to AI services by implementing a [network security perimeter](/azure/private-link/network-security-perimeter-concepts). For additional information on how to implement a network security perimeter for Azure AI Services, see [Add network security perimeter (preview) to Azure AI Services](../ai-foundry/openai/how-to/network-security-perimeter.md).
+* You can limit inbound and outbound access to Azure OpenAI by implementing a [network security perimeter](/azure/private-link/network-security-perimeter-concepts). For additional information on how to implement a network security perimeter for Azure AI Services, see [Add network security perimeter (preview) to Azure OpenAI](../ai-foundry/openai/how-to/network-security-perimeter.md). For additional information on how to implement a network security perimeter for Azure AI Foundry-based projects, see [Add Azure AI Foundry to a network security perimeter (preview)](../ai-foundry/how-to/add-foundry-to-network-security-perimeter.md).
 
 * Define the permitted FQDNs for outbound connections from the AI services resource and apply egress controls accordingly using the information in this guide.
-
-* If you want to restrict outbound access for your AI Services resource that's hosted publically and using role-based or key-based access, then restrict outbound access to the list of FQDNs using the `allowedFqdnList` property. But if you want to restrict inbound and outbound for your AI Services resource that's hosted publically and using role-based access only, then restrict outbound access using a network security perimeter. For more information, see [Add an Azure OpenAI service to a network security perimeter (preview)](../ai-foundry/openai/how-to/network-security-perimeter.md).
 
 ## Enabling data loss prevention
 
@@ -103,6 +101,7 @@ There are two parts to enable data loss prevention. First, the resource property
 The following services support data loss prevention configuration:
 
 * Azure OpenAI
+* Azure AI Foundry (Foundry-based projects)
 * Azure AI Vision
 * Content Moderator
 * Custom Vision
