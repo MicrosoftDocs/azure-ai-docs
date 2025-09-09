@@ -152,8 +152,8 @@ To add an existing MCP Server tool to your AI Agent, follow these steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png" alt-text="Screenshot of the MCP Server tool dialog box with the 'Allowed tools' dropdown highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png":::
 
-    > [!NOTE]
-    > When you add an allowed tool, you can also pass a set of headers that the MCP server requires.
+    > [!WARNING]
+    > When you add an allowed tool, you can also pass a set of headers that the MCP server requires. Currently, there is an  issue when running an agent with MCP server that requires authentication in agent playground. https://github.com/microsoft/ai-foundry-for-vscode/issues/150
 
 1. After entering the required information, select the **Create tool** button in the bottom-left corner.
 
