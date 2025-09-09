@@ -18,12 +18,15 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## Sora video-to-video support 
+
+The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
+
 ## August 2025
 
 ### Sora image-to-video support
 
-The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning.
-
+The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./video-generation-quickstart.md) to get started.
 
 Sora is now available in the Sweden Central region as well as East US 2.
 
