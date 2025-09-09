@@ -99,7 +99,7 @@ Here are the permissions for the **Azure AI User** role:
 ```
 
 > [!NOTE]
-> If only the Azure AI User role is assigned to your user principal and no other Azure built-in roles are assigned, also assign the Reader role on the Azure AI Foundry resource to meet least privilege requirements.
+> If only the Azure AI User role is assigned to your user principal and no other Azure built-in roles are assigned, also assign the Reader role on the Azure AI Foundry resource to view your Foundry resource in the Foundry portal. This only applies to the Foundry Portal UX experience.
 
 ### Azure AI Project Manager
 

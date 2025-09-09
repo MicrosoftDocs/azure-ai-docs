@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 5/29/2025
 ---
 
-[!INCLUDE [Video generation introduction](video-generation-intro.md)]
+
 
 ## Prerequisites
 
