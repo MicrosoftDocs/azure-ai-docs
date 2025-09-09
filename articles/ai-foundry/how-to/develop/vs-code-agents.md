@@ -138,20 +138,20 @@ You can bring multiple remote MCP servers by adding them as tools. For each tool
 To add an existing MCP Server tool to your AI Agent, follow these steps:
 
 
-    1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the **MCP Server** tool.
+  1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the **MCP Server** tool.
     
-    1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an mcp tool with the following information:
-    
-        1. `Server URL`: The URL of the MCP server; for example, [https://gitmcp.io/Azure/azure-rest-api-specs](https://gitmcp.io/Azure/azure-rest-api-specs).
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an mcp tool with the following information:
 
-        1. `Server Label`: A unique identifier of this MCP server to the agent; for example, `fetch_rest_api_docs`.
+    1. `Server URL`: The URL of the MCP server; for example, [https://gitmcp.io/Azure/azure-rest-api-specs](https://gitmcp.io/Azure/azure-rest-api-specs).
 
-        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png" alt-text="Screenshot of the MCP Server tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png":::
+    1. `Server Label`: A unique identifier of this MCP server to the agent; for example, `fetch_rest_api_docs`.
 
-    1. Next, select the **Allowed tools** dropdown to choose which tools the MCP server can use:
-    
-        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png" alt-text="Screenshot of the MCP Server tool dialog box with the 'Allowed tools' dropdown highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png":::
-    
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png" alt-text="Screenshot of the MCP Server tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png":::
+
+ 1. Next, select the **Allowed tools** dropdown to choose which tools the MCP server can use:
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png" alt-text="Screenshot of the MCP Server tool dialog box with the 'Allowed tools' dropdown highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png":::
+
     > [!NOTE]
     > When you add an allowed tool, you can also pass a set of headers that the MCP server requires.
 
