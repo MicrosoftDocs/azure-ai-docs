@@ -108,7 +108,7 @@ ml_client = MLClient(
 )
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [MLClient](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient)
 - [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential)
 
@@ -125,7 +125,7 @@ ws = ml_client.workspaces.get(WS_NAME)
 print(ws.location, ":", ws.resource_group)
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [WorkspaceOperations.get](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-get)
 
 ## Access the registered data asset
@@ -141,7 +141,7 @@ credit_data = ml_client.data.get(name="credit-card", version="initial")
 print(f"Data asset URI: {credit_data.path}")
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [DataOperations.get](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
 
 ## Create a job environment for pipeline steps
@@ -209,7 +209,7 @@ print(
 )
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [Environment](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.environment)
 - [EnvironmentOperations.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.environmentoperations#azure-ai-ml-operations-environmentoperations-create-or-update)
 
@@ -332,7 +332,7 @@ data_prep_component = command(
 )
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [command](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
 - [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
 - [Output](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.output)
@@ -351,7 +351,7 @@ print(
 )
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [MLClient.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
 
 ### Create component 2: training (using yaml definition)
@@ -527,7 +527,7 @@ print(
 )
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [load_component](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-load-component)
 - [MLClient.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
 
@@ -583,7 +583,7 @@ def credit_defaults_pipeline(
     }
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [dsl.pipeline](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.dsl#azure-ai-ml-dsl-pipeline)
 - [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
 - [Output](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.output)
@@ -603,7 +603,7 @@ pipeline = credit_defaults_pipeline(
 )
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
 
 ## Submit the job 
@@ -625,7 +625,7 @@ pipeline_job = ml_client.jobs.create_or_update(
 ml_client.jobs.stream(pipeline_job.name)
 ```
 
-**Reference links:**
+**SDK Reference:**
 - [JobOperations.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-create-or-update)
 - [JobOperations.stream](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-stream)
 
