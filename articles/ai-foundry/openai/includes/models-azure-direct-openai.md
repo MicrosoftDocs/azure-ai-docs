@@ -1,28 +1,21 @@
 ---
 title: Azure OpenAI in Azure AI Foundry Models
-titleSuffix: Azure OpenAI
-description: Learn about the model capabilities for models like GPT-5, GPT-5-mini, GPT-5-nano, and GPT-5-chat
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
 ms.date: 08/12/2025
-ms.service: azure-ai-openai
-ms.topic: conceptual
-ms.custom:
-  - references_regions
-  - build-2023
-  - build-2023-dataai
-  - refefences_regions
-  - build-2025
+ms.service: azure-ai-foundry
+ms.topic: include
 ---
 
-# Azure OpenAI in Azure AI Foundry models
+## Azure OpenAI in Azure AI Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
 
 ## GPT-5
 
 ### Region availability
+
 
 | Model | Region |
 |---|---|
@@ -134,6 +127,7 @@ Larger context windows are compatible with *some* of the underlying models. That
 
 ## computer-use-preview
 
+
 An experimental model trained for use with the [Responses API](../how-to/responses.md) computer use tool.
 
 It can be used with third-party libraries to allow the model to control mouse and keyboard input, while getting context from screenshots of the current environment.
@@ -231,13 +225,13 @@ See [Model versions](../concepts/model-versions.md) to learn about how Azure Ope
 
 ## GPT-3.5
 
-GPT-3.5 models can understand and generate natural language or code. The most capable and cost effective model in the GPT-3.5 family is GPT-3.5 Turbo, which is optimized for chat and also works well for traditional completions tasks. GPT-3.5 Turbo is available for use with the Chat Completions API. GPT-3.5 Turbo Instruct has similar capabilities to `text-davinci-003` when you use the Completions API instead of the Chat Completions API. We recommend using GPT-3.5 Turbo and GPT-3.5 Turbo Instruct over [legacy GPT-3.5 and GPT-3 models](./legacy-models.md).
+GPT-3.5 models can understand and generate natural language or code. The most capable and cost effective model in the GPT-3.5 family is GPT-3.5 Turbo, which is optimized for chat and also works well for traditional completions tasks. GPT-3.5 Turbo is available for use with the Chat Completions API. GPT-3.5 Turbo Instruct has similar capabilities to `text-davinci-003` when you use the Completions API instead of the Chat Completions API. We recommend using GPT-3.5 Turbo and GPT-3.5 Turbo Instruct over [legacy GPT-3.5 and GPT-3 models](../concepts/legacy-models.md).
 
 |  Model ID   | Description | Max request (tokens) | Training data (up to) |
 |  --------- |:---|:------:|:----:|
 | `gpt-35-turbo` (0125) *new* |- JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). <br> - Higher accuracy when it responds in requested formats. <br> - Includes a fix for a bug that caused a text-encoding issue for non-English language function calls.  | Input: 16,385<br> Output: 4,096  | Sep 2021 |
 | `gpt-35-turbo` (1106) | Older generally available model. <br> - JSON Mode. <br> - Parallel function calling. <br> - Reproducible output (preview). | Input: 16,385<br> Output: 4,096 |  Sep 2021|
-| `gpt-35-turbo-instruct` (0914) | *Completions endpoint only*. <br> - Replacement for [legacy completions models](./legacy-models.md). | 4,097 |Sep 2021 |
+| `gpt-35-turbo-instruct` (0914) | *Completions endpoint only*. <br> - Replacement for [legacy completions models](../concepts/legacy-models.md). | 4,097 |Sep 2021 |
 
 To learn more about how to interact with GPT-3.5 Turbo and the Chat Completions API, check out our [in-depth how-to article](../how-to/chatgpt.md).
 
@@ -283,7 +277,7 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2|
+|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)|
 
 ## Audio models
 
@@ -305,7 +299,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-realtime` (2025-08-28) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
+|`gpt-realtime` (2025-08-28) (GA)<br> GPT-4o audio | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 
@@ -314,6 +308,7 @@ To compare the availability of GPT-4o audio models across all regions, refer to 
 The audio models via the `/audio` API can be used for speech to text, translation, and text to speech.
 
 #### Speech-to-text models
+
 
 |  Model ID  | Description | Max request (audio file size) |
 | ----- | ----- | ----- |
@@ -349,6 +344,7 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../how-to/deployment-types.md).
 
 # [Global Standard](#tab/global-standard)
+
 
 ### Global Standard model availability
 
@@ -412,7 +408,7 @@ All deployments can perform the exact same inference operations, but the billing
 > [!NOTE]
 > The provisioned version of `gpt-4` version `turbo-2024-04-09` is currently limited to text only.
 
-For more information on provisioned deployments, see [Provisioned guidance](./provisioned-throughput.md).
+For more information on provisioned deployments, see [Provisioned guidance](../concepts/provisioned-throughput.md).
 
 ---
 
@@ -501,7 +497,7 @@ These models can be used only with Embedding API requests.
 
 ## Assistants (preview)
 
-For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](./provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
+For Assistants, you need a combination of a supported model and a supported region. Certain tools and capabilities require the latest models. The following models are available in the Assistants API, SDK, and Azure AI Foundry. The following table is for standard deployment. For information on provisioned throughput unit availability, see [Provisioned throughput](../concepts/provisioned-throughput.md). The listed models and regions can be used with both Assistants v1 and v2. You can use [Global Standard models](#global-standard-model-availability) if they're supported in the following regions.
 
 | Region   |  gpt-4o, 2024-05-13   | gpt-4o, 2024-08-06   | gpt-4o-mini, 2024-07-18   | gpt-4, 0613   | gpt-4, 1106-Preview   | gpt-4, 0125-Preview    | gpt-4, turbo-2024-04-09   | gpt-4-32k, 0613  | gpt-35-turbo, 0613   | gpt-35-turbo, 1106   | gpt-35-turbo, 0125   | gpt-35-turbo-16k, 0613   |
 |:-----------------|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:---------------------------:|:---------------------------:|:-------------------------------:|:-----------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:------------------------------:|
@@ -519,11 +515,11 @@ For Assistants, you need a combination of a supported model and a supported regi
 
 ## Model retirement
 
-For the latest information on model retirements, refer to the [model retirement guide](./model-retirements.md).
+For the latest information on model retirements, refer to the [model retirement guide](../concepts/model-retirements.md).
 
 ## Related content
 
-- [Model retirement and deprecation](./model-retirements.md)
+- [Model retirement and deprecation](../concepts/model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Learn more about Azure OpenAI](../overview.md)
 - [Learn more about fine-tuning Azure OpenAI models](../how-to/fine-tuning.md)

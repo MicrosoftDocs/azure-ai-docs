@@ -29,8 +29,9 @@ Available templates include:
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- 
+ 
 ::: moniker range="foundry-classic"
+
 - Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
 ::: moniker-end
 
@@ -56,7 +57,7 @@ Available templates include:
 1. On the left pane, select **Templates**.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
-1. 
+
 ::: moniker-end
 
 ## Explore the sample application

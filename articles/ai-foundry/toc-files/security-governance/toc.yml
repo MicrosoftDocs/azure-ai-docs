@@ -12,6 +12,8 @@ items:
   - name: Configure private link
     displayName: custom dns
     href: ../../how-to/configure-private-link.md
+  - name: Network security perimeter (preview)
+    href: ../../how-to/add-foundry-to-network-security-perimeter.md
   - name: Managed network for hubs
     items:
     - name: Configure managed network

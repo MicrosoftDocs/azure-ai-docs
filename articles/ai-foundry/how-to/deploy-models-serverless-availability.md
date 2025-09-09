@@ -5,9 +5,9 @@ description: Learn about the regions where each model is available for deploymen
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 07/24/2025
-ms.author: mopeakande
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
-author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom: 
