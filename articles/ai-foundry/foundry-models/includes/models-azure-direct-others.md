@@ -9,7 +9,7 @@ ms.author: mopeakande
 author: msakande
 ---
 
-### Black Forest Labs models sold directly by Azure
+## Black Forest Labs models sold directly by Azure
 
 The Black Forest Labs collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation. 
 
