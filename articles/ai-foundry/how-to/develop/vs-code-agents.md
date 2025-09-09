@@ -241,7 +241,7 @@ Open the **Agents Playground** using the following steps:
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png" alt-text="Screenshot of the MCP Server tool authentication prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png":::
 1. Next, select the approval preference for the MCP Server tool. Choose the appropriate approval preference and proceed, as in the following image.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP Server tool approval prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP Server tool approval preference in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
 
 1. If you chose `Ask every time` for your approval preference, you need to approve or reject the tool call, as in the following image.
 
