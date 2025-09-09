@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 12/27/2024
 ms.custom: include
 ---
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 > [!NOTE]
 > This article applies to Azure AI Foundry (classic).  
 ::: moniker-end

@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-monikerRange: azureml-api-1 || azureml-api-2
+monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ms.date: 09/09/2025
 ms.reviewer: fasantia
@@ -20,11 +20,11 @@ author: sdgilley
 
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LlamaIndex in two ways:
 ::: moniker-end
 
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 Models deployed to [Azure AI Foundry](https://aka.ms/nextgen-canary) can be used with LlamaIndex in two ways:
 
 ::: moniker-end
@@ -66,11 +66,11 @@ To run this tutorial, you need:
 ## Configure the environment
 
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 ::: moniker-end
 
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 [!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
 ::: moniker-end
 

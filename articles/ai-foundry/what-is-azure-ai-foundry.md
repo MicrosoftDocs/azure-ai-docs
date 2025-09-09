@@ -8,7 +8,7 @@ ms.reviewer: sgilley
 ms.date: 07/01/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
-monikerRange: azureml-api-1 || azureml-api-2
+monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ms.custom:
   - ignite-2023
@@ -39,7 +39,7 @@ Azure AI Foundry unifies agents, models, and tools under a single management gro
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
 
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 
 ## New user experience
 
@@ -49,7 +49,7 @@ The new user experience surfaces relevant models, agents, and tools contextually
 
 ::: moniker-end
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 
 ## Work in an Azure AI Foundry project
 
@@ -70,7 +70,7 @@ The [Azure AI Foundry API](/rest/api/aifoundry/) is designed specifically for bu
 
 The [Azure AI Foundry for VS Code Extension](how-to/develop/get-started-projects-vs-code.md) helps you explore models and develop agents directly in your development environment.
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 
 ## <a name="project-types"></a> Types of projects
 

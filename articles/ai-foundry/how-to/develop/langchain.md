@@ -11,7 +11,7 @@ ms.date: 09/09/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
-monikerRange: azureml-api-1 || azureml-api-2
+monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ---
 
@@ -21,11 +21,11 @@ ai-usage: ai-assisted
 
 LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LangChain in two ways:
 ::: moniker-end
 
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 Models deployed to [Azure AI Foundry](https://aka.ms/nextgen-canary) can be used with LangChain in two ways:
 ::: moniker-end
 
@@ -58,11 +58,11 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
 ::: moniker-end
 
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 [!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
 ::: moniker-end
 
@@ -260,7 +260,7 @@ You can use the tracing capabilities in Azure AI Foundry by creating a tracer. L
 
 ### Get your instrumentation connection string
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -300,7 +300,7 @@ You can configure your application to send telemetry to Azure Application Insigh
         application_insights_connection_string = project_client.telemetry.get_application_insights_connection_string()
         ```
 ::: moniker-end
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 
 ::: moniker-end
 
@@ -339,7 +339,7 @@ chain.invoke({"topic": "living in a foreign country"})
 
 To see traces:
 
-::: moniker range="azureml-api-1"
+::: moniker range="foundry-classic"
 1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Navigate to **Tracing** section.
@@ -350,7 +350,7 @@ To see traces:
 
 ::: moniker-end
 
-::: moniker range="azureml-api-2"
+::: moniker range="foundry"
 1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary).
 
 1. Navigate to **Tracing** section.
