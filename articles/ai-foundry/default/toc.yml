@@ -2,8 +2,10 @@ monikerRange: 'azureml-api-2'
 items:
 - name: What is Azure AI Foundry?
   href: ../what-is-azure-ai-foundry.md
-- name: Ask the Foundry agent
-  href: ../foundry-agent/ask-foundry-agent.md
+- name: Get started
+  items:
+  - name: Ask the Foundry agent
+    href: ../foundry-agent/ask-foundry-agent.md
 - name: Agent development
   items:
     - name: Article placeholder
