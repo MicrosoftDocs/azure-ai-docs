@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki
-ms.date: 09/13/2024
+ms.date: 09/9/2025
 ms.custom: responsible-ai, build-2023, build-2023-dataai
 #Customer intent: As a data scientist, I want to learn what Responsible AI is and how I can use it in Azure Machine Learning.
 ---
@@ -18,57 +18,73 @@ ms.custom: responsible-ai, build-2023, build-2023-dataai
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Responsible Artificial Intelligence (Responsible AI) is an approach to developing, assessing, and deploying AI systems in a safe, trustworthy, and ethical way. AI systems are the product of many decisions made by those who develop and deploy them. From system purpose to how people interact with AI systems, Responsible AI can help proactively guide these decisions toward more beneficial and equitable outcomes. That means keeping people and their goals at the center of system design decisions and respecting enduring values like fairness, reliability, and transparency.
 
-Microsoft developed a [Responsible AI Standard](https://blogs.microsoft.com/wp-content/uploads/prod/sites/5/2022/06/Microsoft-Responsible-AI-Standard-v2-General-Requirements-3.pdf). It's a framework for building AI systems according to six principles: fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability. For Microsoft, these principles are the cornerstone of a responsible and trustworthy approach to AI, especially as intelligent technology becomes more prevalent in products and services that people use every day.
+Responsible Artificial Intelligence (Responsible AI) is an approach to developing, assessing, and deploying AI systems safely, ethically, and with trust. AI systems result from many decisions made by their creators. Responsible AI helps guide these decisions—from defining system purpose to user interaction—toward more beneficial and equitable outcomes. It keeps people and their goals at the center of design and respects values like fairness, reliability, and transparency.
 
-This article demonstrates how Azure Machine Learning supports tools for enabling developers and data scientists to implement and operationalize the six principles.
+
+Microsoft created a [Responsible AI Standard](https://blogs.microsoft.com/wp-content/uploads/prod/sites/5/2022/06/Microsoft-Responsible-AI-Standard-v2-General-Requirements-3.pdf), a framework for building AI systems based on six principles: fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability. These principles are the foundation of a responsible and trustworthy approach to AI, especially as intelligent technology becomes more common in everyday products and services.
+
+
+This article explains how Azure Machine Learning provides tools to help developers and data scientists implement and operationalize these six principles.
 
 :::image type="content" source="./media/concept-responsible-ai/concept-responsible-ml.png" alt-text=" Diagram of the six principles of Microsoft Responsible AI, which encompass fairness, reliability and safety, privacy and security, inclusiveness, transparency, and accountability." border="false":::
 
 ## Fairness and inclusiveness
 
-AI systems should treat everyone fairly and avoid affecting similarly situated groups of people in different ways. For example, when AI systems provide guidance on medical treatment, loan applications, or employment, they should make the same recommendations to everyone who has similar symptoms, financial circumstances, or professional qualifications.  
 
-**Fairness and inclusiveness in Azure Machine Learning**: The [fairness assessment](./concept-fairness-ml.md) component of the [Responsible AI dashboard](./concept-responsible-ai-dashboard.md) enables data scientists and developers to assess model fairness across sensitive groups defined in terms of gender, ethnicity, age, and other characteristics.
+AI systems should treat everyone fairly and avoid affecting similar groups differently. For example, when AI systems provide guidance on medical treatment, loan applications, or employment, they should make the same recommendations to people with similar symptoms, financial circumstances, or qualifications.  
+
+
+**Fairness and inclusiveness in Azure Machine Learning**: The [fairness assessment](./concept-fairness-ml.md) component of the [Responsible AI dashboard](./concept-responsible-ai-dashboard.md) helps assess model fairness across sensitive groups, such as gender, ethnicity, age, and other characteristics.
 
 ## Reliability and safety
 
-To build trust, it's critical that AI systems operate reliably, safely, and consistently. These systems should be able to operate as they were originally designed, respond safely to unanticipated conditions, and resist harmful manipulation. How they behave and the variety of conditions they can handle reflect the range of situations and circumstances that developers anticipated during design and testing.
 
-**Reliability and safety in Azure Machine Learning**:  The [error analysis](./concept-error-analysis.md) component of the [Responsible AI dashboard](./concept-responsible-ai-dashboard.md) enables data scientists and developers to:
+To build trust, AI systems must operate reliably, safely, and consistently. They should function as designed, respond safely to unexpected conditions, and resist harmful manipulation. Their behavior and ability to handle different conditions reflect the range of situations developers anticipated during design and testing.
+
+
+**Reliability and safety in Azure Machine Learning**: The [error analysis](./concept-error-analysis.md) component of the [Responsible AI dashboard](./concept-responsible-ai-dashboard.md) helps you:
 
 - Get a deep understanding of how failure is distributed for a model.
 - Identify cohorts (subsets) of data with a higher error rate than the overall benchmark. 
 
-These discrepancies might occur when the system or model underperforms for specific demographic groups or for infrequently observed input conditions in the training data.
+
+These discrepancies can occur when the system or model underperforms for specific demographic groups or for rarely observed input conditions in the training data.
 
 ## Transparency
 
-When AI systems help inform decisions that have tremendous impacts on people's lives, it's critical that people understand how those decisions were made. For example, a bank might use an AI system to decide whether a person is creditworthy. A company might use an AI system to determine the most qualified candidates to hire.
 
-A crucial part of transparency is *interpretability*: the useful explanation of the behavior of AI systems and their components. Improving interpretability requires stakeholders to comprehend how and why AI systems function the way they do. The stakeholders can then identify potential performance issues, fairness issues, exclusionary practices, or unintended outcomes.  
+When AI systems inform decisions that impact people's lives, it's critical that people understand how those decisions are made. For example, a bank might use an AI system to decide if a person is creditworthy, or a company might use one to select job candidates.
 
-**Transparency in Azure Machine Learning**: The [model interpretability](how-to-machine-learning-interpretability.md) and [counterfactual what-if](./concept-counterfactual-analysis.md) components of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md) enable data scientists and developers to generate human-understandable descriptions of the predictions of a model.
 
-The model interpretability component provides multiple views into a model's behavior:
+A crucial part of transparency is *interpretability*: providing useful explanations of AI system behavior. Improving interpretability helps stakeholders understand how and why AI systems work, so they can identify performance issues, fairness concerns, exclusionary practices, or unintended outcomes.  
+
+
+**Transparency in Azure Machine Learning**: The [model interpretability](how-to-machine-learning-interpretability.md) and [counterfactual what-if](./concept-counterfactual-analysis.md) components of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md) help generate human-understandable descriptions of model predictions.
+
+
+The model interpretability component provides several views into a model's behavior:
 
 - *Global explanations*. For example, what features affect the overall behavior of a loan allocation model?
 - *Local explanations*. For example, why was a customer's loan application approved or rejected? 
 - *Model explanations for a selected cohort of data points*. For example, what features affect the overall behavior of a loan allocation model for low-income applicants?
 
-The counterfactual what-if component enables understanding and debugging a machine learning model in terms of how it reacts to feature changes and perturbations.
 
-Azure Machine Learning also supports a [Responsible AI scorecard](./how-to-responsible-ai-scorecard.md). The scorecard is a customizable PDF report that developers can easily configure, generate, download, and share with their technical and non-technical stakeholders to educate them about their datasets and models health, achieve compliance, and build trust. This scorecard can also be used in audit reviews to uncover the characteristics of machine learning models.
+The counterfactual what-if component helps you understand and debug a machine learning model by showing how it reacts to feature changes and perturbations.
+
+
+Azure Machine Learning also supports a [Responsible AI scorecard](./how-to-responsible-ai-scorecard.md). The scorecard is a customizable PDF report that developers can configure, generate, download, and share with technical and non-technical stakeholders. It helps educate stakeholders about dataset and model health, achieve compliance, and build trust. The scorecard can also support audit reviews by revealing machine learning model characteristics.
 
 ## Privacy and security
 
-As AI becomes more prevalent, protecting privacy and securing personal and business information are becoming more important and complex. With AI, privacy and data security require close attention because access to data is essential for AI systems to make accurate and informed predictions and decisions about people. AI systems must comply with privacy laws that:
+
+As AI becomes more common, protecting privacy and securing personal and business information is more important and complex. Privacy and data security require close attention because AI systems need data to make accurate predictions and decisions. AI systems must comply with privacy laws that:
 
 - Require transparency about the collection, use, and storage of data.
 - Mandate that consumers have appropriate controls to choose how their data is used.  
 
-**Privacy and security in Azure Machine Learning**: Azure Machine Learning enables administrators and developers to [create a secure configuration that complies](concept-enterprise-security.md) with their companies' policies. With Azure Machine Learning and the Azure platform, users can:
+
+**Privacy and security in Azure Machine Learning**: Azure Machine Learning enables administrators and developers to [create secure configurations](concept-enterprise-security.md) that comply with company policies. With Azure Machine Learning and the Azure platform, you can:
 
 - Restrict access to resources and operations by user account or group.
 - Restrict incoming and outgoing network communications.
@@ -76,7 +92,8 @@ As AI becomes more prevalent, protecting privacy and securing personal and busin
 - Scan for vulnerabilities.
 - Apply and audit configuration policies.
 
-Microsoft also created two open-source packages that can enable further implementation of privacy and security principles:
+
+Microsoft also created two open-source packages to help implement privacy and security principles:
 
 - [SmartNoise](https://github.com/opendifferentialprivacy/smartnoise-core): Differential privacy is a set of systems and practices that help keep the data of individuals safe and private. In machine learning solutions, differential privacy might be required for regulatory compliance. SmartNoise is an open-source project (co-developed by Microsoft) that contains components for building differentially private systems that are global.
 
@@ -84,21 +101,25 @@ Microsoft also created two open-source packages that can enable further implemen
 
 ## Accountability
 
-The people who design and deploy AI systems must be accountable for how their systems operate. Organizations should draw upon industry standards to develop accountability norms. These norms can ensure that AI systems aren't the final authority on any decision that affects people's lives. They can also ensure that humans maintain meaningful control over otherwise highly autonomous AI systems.
 
-**Accountability in Azure Machine Learning**: [Machine learning operations (MLOps)](concept-model-management-and-deployment.md) is based on DevOps principles and practices that increase the efficiency of AI workflows. Azure Machine Learning provides the following MLOps capabilities for better accountability of your AI systems:
+People who design and deploy AI systems must be accountable for how those systems operate. Organizations should use industry standards to develop accountability norms. These norms help ensure that AI systems are not the final authority on decisions that affect people's lives and that humans maintain meaningful control over highly autonomous systems.
+
+
+**Accountability in Azure Machine Learning**: [Machine learning operations (MLOps)](concept-model-management-and-deployment.md) is based on DevOps principles and practices that improve AI workflow efficiency. Azure Machine Learning provides these MLOps capabilities for better accountability:
 
 - Register, package, and deploy models from anywhere. You can also track the associated metadata that's required to use the model.
 - Capture the governance data for the end-to-end machine learning lifecycle. The logged lineage information can include who is publishing models, why changes were made, and when models were deployed or used in production.
 - Notify and alert on events in the machine learning lifecycle. Examples include experiment completion, model registration, model deployment, and data drift detection.
 - Monitor applications for operational issues and issues related to machine learning. Compare model inputs between training and inference, explore model-specific metrics, and provide monitoring and alerts on your machine learning infrastructure.
 
-Besides the MLOps capabilities, the [Responsible AI scorecard](concept-responsible-ai-scorecard.md) in Azure Machine Learning creates accountability by enabling cross-stakeholder communications. The scorecard also creates accountability by empowering developers to configure, download, and share their model health insights with their technical and non-technical stakeholders about AI data and model health. Sharing these insights can help build trust.  
 
-The machine learning platform also enables decision-making by informing business decisions through:
+In addition, the [Responsible AI scorecard](concept-responsible-ai-scorecard.md) in Azure Machine Learning creates accountability by enabling cross-stakeholder communication. The scorecard empowers developers to configure, download, and share model health insights with both technical and non-technical stakeholders. Sharing these insights helps build trust.  
 
-- Data-driven insights, to help stakeholders understand causal treatment effects on an outcome, by using historical data only. For example, "How would a medicine affect a patient's blood pressure?" These insights are provided through the [causal inference](concept-causal-inference.md) component of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md).
-- Model-driven insights, to answer users' questions (such as "What can I do to get a different outcome from your AI next time?") so they can take action. Such insights are provided to data scientists through the [counterfactual what-if](concept-counterfactual-analysis.md) component of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md).
+
+Azure Machine Learning also supports decision-making by informing business decisions through:
+
+- Data-driven insights, which help stakeholders understand causal treatment effects on outcomes using historical data only. For example, "How would a medicine affect a patient's blood pressure?" These insights come from the [causal inference](concept-causal-inference.md) component of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md).
+- Model-driven insights, which answer user questions (such as "What can I do to get a different outcome from your AI next time?") so they can take action. These insights are provided through the [counterfactual what-if](concept-counterfactual-analysis.md) component of the [Responsible AI dashboard](concept-responsible-ai-dashboard.md).
 
 ## Next steps
 
