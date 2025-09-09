@@ -1,0 +1,154 @@
+---
+manager: nitinme
+author: haileytap
+ms.author: haileytapia
+ms.service: azure-ai-search
+ms.topic: include
+ms.date: 09/09/2025
+---
+
+> [!IMPORTANT]
+> The **Import and vectorize data** wizard now supports keyword search, which was previously limited to the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
+
+In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text merging, and entity recognition to generate text-searchable content in an index.
+
+You can run the **Import and vectorize data** wizard in the Azure portal to apply skills that create and transform textual content during indexing. The input is your raw data, usually blobs in Azure Storage. The output is a searchable index containing AI-generated image text, captions, and entities. You can then query generated content in the Azure portal using [**Search explorer**](search-explorer.md).
+
+Before you run the wizard, you create a few resources and upload sample files.
+
+## Prerequisites
+
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
+
++ An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
+
++ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. Choose the same region as Azure AI Search to avoid bandwidth charges. 
+
+> [!NOTE]
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. You can complete this quickstart without having to create an Azure AI services multi-service resource.
+
+## Prepare sample data
+
+In this section, you create an Azure Storage container to store sample data consisting of various file types, including images and application files that aren't full-text searchable in their native formats.
+
+To prepare the sample data for this quickstart:
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure Storage account.
+
+1. From the left pane, select **Data storage** > **Containers**.
+
+1. Create a container, and then upload the [sample data](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) to the container.
+
+## Run the wizard
+
+To run the wizard:
+
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
+
+1. On the **Overview** page, select **Import and vectorize data**.
+
+   :::image type="content" source="../../media/search-import-data-portal/import-vectorize-data-cmd.png" alt-text="Screenshot that shows how to open the Import and vectorize data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-vectorize-data-cmd.png":::
+
+1. Select **Azure Blob Storage** for the data source.
+
+1. Select **Keyword search**.
+
+### Step 1: Create a data source
+
+Azure AI Search requires a connection to a data source for content ingestion and indexing. In this case, the data source is sample data in your Azure Storage account.
+
+To create the data source:
+
+1. On the **Connect to your data** page, select your Azure subscription.
+
+1. Select your storage account, and then select the container you created.
+
+1. Select **Next** to continue.
+
+<!--
+If you get `Error detecting index schema from data source`, the indexer that powers the wizard can't connect to your data source. The data source most likely has security protections. Try the following solutions, and then rerun the wizard.
+
+| Security feature | Solution |
+|--------------------|----------|
+| Resource requires Azure roles, or its access keys are disabled. | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-how-to-managed-identities.md). |
+| Resource is behind an IP firewall. | [Create an inbound rule for Azure AI Search and the Azure portal](search-indexer-howto-access-ip-restricted.md). |
+| Resource requires a private endpoint connection. | [Connect over a private endpoint](search-indexer-howto-access-private.md). |
+-->
+
+### Step 2: Add cognitive skills
+
+The next step is to configure AI enrichment to invoke OCR, image analysis, and entity recognition.
+
+OCR and image analysis are available for blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2 and for image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+
+To add the skills:
+
+1. Select **Extract entities**, and then select the gear icon.
+
+1. Select and save the following checkboxes:
+
+    + **Persons**
+
+    + **Locations**
+
+    + **Organizations**
+
+    :::image type="content" source="../../media/search-get-started-skillset/extract-entities.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-entities.png":::
+
+1. Select **Extract text from images**, and then select the gear icon.
+
+1. Select and save the following checkboxes:
+
+    + **Generate tags**
+
+    + **Categorize content**
+
+    :::image type="content" source="../../media/search-get-started-skillset/extract-entities.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-entities.png":::
+
+1. Select the **Use a free AI service (limited enrichments)** checkbox.
+
+   The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient.
+
+1. Select **Next** to continue.
+
+### Step 3: Configure the index
+
+An index contains your searchable content. The wizard can usually create the schema by sampling the data source. In this step, you review the generated schema and potentially revise any settings. 
+
+For this quickstart, the wizard sets reasonable defaults:  
+
++ Default fields are based on metadata properties of existing blobs and new fields for the enrichment output, such as `persons`, `locations`, and `organizations`. Data types are inferred from metadata and by data sampling.
+
+  :::image type="content" source="../../media/search-get-started-skillset/index-fields-import-vectorize-data-wizard.png" alt-text="Screenshot of the index definition page." border="true" lightbox="../../media/search-get-started-skillset/index-fields-import-vectorize-data-wizard.png":::
+
++ Default document key is `metadata_storage_path`, which is selected because the field contains unique values.
+
++ Default attributes are **Retrievable** and **Searchable**. **Retrievable** means field values can be returned in results, while **Searchable** allows full-text search on a field. The wizard assumes you want `persons`, `locations`, `organizations`, `text`, and `layoutText` to be retrievable and searchable because you created these fields via a skillset.
+
+  To view and change field attributes, select **Configure field**. Use **Filterable** if you want to use fields in a filter expression.
+  
+  Marking a field as **Retrievable** doesn't mean that the field *must* be present in the search results. You can control search results composition by using the `select` query parameter to specify which fields to include.
+      
+After you review the index schema, select **Next: Create an indexer** to continue.
+
+### Step 4: Skip advanced settings
+
+The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Semantic ranking is enabled by default, so you must disable it.
+
+To skip this wizard step:
+
+1. On the **Advanced settings** page, deselect the **Enable semantic ranker** checkbox.
+
+1. Leave the indexing schedule as **Once**.
+
+1. Select **Next** to continue.
+
+### Step 5: Review and create objects
+
+The last step is to review your configuration and create the index, indexer, and data source on your search service. The indexer automates the process of extracting content from your data source, loading the index, and driving skillset execution.
+
+To review and create the objects:
+
+1. Accept the default object name prefix.
+
+1. Select **Create** to simultaneously create the objects and run the indexer.

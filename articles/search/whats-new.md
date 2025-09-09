@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/01/2025
+ms.date: 09/09/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:
@@ -19,6 +19,12 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 
 > [!NOTE]
 > Preview features are announced here, but we also maintain a [preview features list](search-api-preview.md) so you can find them in one place.
+
+## September 2025
+
+| Item | Type | Description |
+|--|--|--|
+| [Import and vectorize data wizard updates (Phase 1)](search-import-data-portal.md) | Portal | The Azure portal is undergoing a three-phase rollout to unify the two import wizards. For Phase 1, the **Import and vectorize data** wizard has been redeveloped to support keyword search, modernizing the legacy **Import data** workflow with an improved interface and user experience. <p>**Import and vectorize data** isn't a direct replacement for **Import data**. For example, it supports fewer skills for keyword search and doesn't offer built-in sample data.<p>Both wizards are currently available, but **Import data** will be deprecated in a future phase. |
 
 ## August 2025
 

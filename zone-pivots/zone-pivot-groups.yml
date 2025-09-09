@@ -1632,7 +1632,16 @@ groups:
   title: Azure portal wizards
   prompt: Choose a wizard
   pivots:
+  - id: import-and-vectorize-data
+    title: Import and vectorize data (recommended)
   - id: import-data
     title: Import data
+# Owner: haileytapia
+- id: search-get-started-skillset
+  title: Azure portal wizards
+  prompt: Choose a wizard
+  pivots:
   - id: import-and-vectorize-data
-    title: Import and vectorize data
+    title: Import and vectorize data (recommended)
+  - id: import-data
+    title: Import data

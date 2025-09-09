@@ -95,9 +95,9 @@ The following skills might appear in a wizard-generated skillset.
 | [Azure Machine Learning (Azure AI Foundry model catalog)](cognitive-search-aml-skill.md)  | ❌ | ✅ <sup>1</sup> |
 | [Document layout](cognitive-search-skill-document-intelligence-layout.md)  | ❌ | ✅ <sup>1</sup> |
 | [Entity recognition](cognitive-search-skill-entity-recognition-v3.md)  | ✅ | ✅ |
-| [Image analysis](cognitive-search-skill-image-analysis.md) <sup>2</sup> | ✅ | ❌ |
-| [Keyword extraction](cognitive-search-skill-keyphrases.md)  | ✅ | ❌ |
-| [Language detection](cognitive-search-skill-language-detection.md)  | ✅ | ❌ |
+| [Image analysis](cognitive-search-skill-image-analysis.md) <sup>2</sup> | ✅ | ✅ |
+| [Key phrase extraction](cognitive-search-skill-keyphrases.md)  | ✅ | ✅ |
+| [Language detection](cognitive-search-skill-language-detection.md)  | ✅ | ✅ |
 | [Text translation](cognitive-search-skill-text-translation.md)  | ✅ | ❌ |
 | [OCR](cognitive-search-skill-ocr.md) <sup>2</sup> | ✅ | ✅ |
 | [PII detection](cognitive-search-skill-pii-detection.md)  | ✅ | ❌ |
