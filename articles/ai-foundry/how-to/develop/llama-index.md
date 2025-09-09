@@ -6,7 +6,9 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/28/2025
+monikerRange: azureml-api-1 || azureml-api-2
+ai-usage: ai-assisted
+ms.date: 09/09/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -14,15 +16,25 @@ author: sdgilley
 
 # Develop applications with LlamaIndex and Azure AI Foundry
 
+[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 
+::: moniker range="azureml-api-1"
 Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LlamaIndex in two ways:
+::: moniker-end
+
+::: moniker range="azureml-api-2"
+Models deployed to [Azure AI Foundry](https://aka.ms/nextgen-canary) can be used with LlamaIndex in two ways:
+
+::: moniker-end
 
 - **Using the Azure AI Model Inference API:** All models deployed to Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LlamaIndex, install the extensions `llama-index-llms-azure-inference` and `llama-index-embeddings-azure-inference`.
 
 - **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LlamaIndex. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with `llama-index`, install the extension specific for the model you want to use, like `llama-index-llms-openai` or `llama-index-llms-cohere`.
 
 In this example, we're working with the **Model Inference API**.
+
 
 ## Prerequisites
 
@@ -53,7 +65,14 @@ To run this tutorial, you need:
 
 ## Configure the environment
 
+
+::: moniker range="azureml-api-1"
 [!INCLUDE [set-endpoint](../../includes/set-endpoint.md)]
+::: moniker-end
+
+::: moniker range="azureml-api-2"
+[!INCLUDE [set-endpoint](../../default/includes/set-endpoint.md)]
+::: moniker-end
 
 Once configured, create a client to connect to the endpoint.
 

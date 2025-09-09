@@ -36,6 +36,10 @@ items:
       href: ../how-to/develop/ai-template-get-started.md
     - name: Work in VS Code
       href: ../how-to/develop/get-started-projects-vs-code.md
+    - name: Develop with LangChain
+      href: ../how-to/develop/langchain.md
+    - name: Develop with Llama-Index
+      href: ../how-to/develop/llama-index.md
 - name: API & SDK
   items:
     - name: Azure AI Foundry client libraries
