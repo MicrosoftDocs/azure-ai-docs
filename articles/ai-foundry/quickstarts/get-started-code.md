@@ -56,14 +56,11 @@ In this quickstart, we walk you through setting up your local development enviro
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. If you don't have a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)], select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article to use a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] instead.
 
-1. Select **Model catalog** from the left pane.
+1. Select **Model catalog** from the left pane. The [model catalog](https://ai.azure.com/explore/models) shows pricing and capabilities of various models.
 
-1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it. 
+1. Select the **gpt-4o-mini** model from the list of models. You can use the search bar to find it.
 
-1. On the model details page, select **Deploy**.
-
-    :::image type="content" source="../media/tutorials/chat/deploy-model.png" alt-text="Screenshot of the model details page with a button to deploy the model." lightbox="../media/tutorials/chat/deploy-model.png":::
-
+1. On the model details page, select **Use this model**.
 
 1. Leave the default **Deployment name**. Select **Deploy**.
 

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
-ms.date: 07/30/2025
+ms.date: 08/27/2025
 
 ---
 
@@ -137,7 +137,7 @@ To get the Azure AI Search endpoint and API key:
 
 ```http
 ### Create a data source
-POST {{searchUrl}}/datasources?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/datasources?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -166,7 +166,7 @@ Send the request. The response should look like:
 HTTP/1.1 201 Created
 Transfer-Encoding: chunked
 Content-Type: application/json; odata.metadata=minimal; odata.streaming=true; charset=utf-8
-Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-05-01-preview -Preview
+Location: https://<YOUR-SEARCH-SERVICE-NAME>.search.windows-int.net:443/datasources('doc-extraction-multimodal-embedding-ds')?api-version=2025-08-01-preview -Preview
 Server: Microsoft-IIS/10.0
 Strict-Transport-Security: max-age=2592000, max-age=15724800; includeSubDomains
 Preference-Applied: odata.include-annotations="*"
@@ -204,7 +204,7 @@ For nested JSON, the index fields must be identical to the source fields. Curren
 
 ```http
 ### Create an index
-POST {{searchUrl}}/indexes?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -356,7 +356,7 @@ The skillset also performs actions specific to images. It uses the GenAI Prompt 
 
 ```http
 ### Create a skillset
-POST {{searchUrl}}/skillsets?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/skillsets?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -624,7 +624,7 @@ Key points:
 
 ```http
 ### Create and run an indexer
-POST {{searchUrl}}/indexers?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
 
@@ -656,7 +656,7 @@ You can start searching as soon as the first document is loaded.
 
 ```http
 ### Query the index
-POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -692,7 +692,7 @@ Connection: close
   },
   "value": [
   ],
-  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview "
+  "@odata.nextLink": "https://<YOUR-SEARCH-SERVICE-NAME>.search.windows.net/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-08-01-preview "
 }
 ```
 
@@ -707,7 +707,7 @@ Here are some examples of other queries:
 
 ```http
 ### Query for only images
-POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -720,7 +720,7 @@ POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?
 
 ```http
 ### Query for text or images with content related to energy, returning the id, parent document, and text (extracted text for text chunks and verbalized image text for images), and the content path where the image is saved in the knowledge store (only populated for images)
-POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexes/doc-extraction-image-verbalization-index/docs/search?api-version=2025-08-01-preview   HTTP/1.1
   Content-Type: application/json
   api-key: {{searchApiKey}}
   
@@ -737,19 +737,19 @@ Indexers can be reset to clear the high-water mark, which allows a full rerun. T
 
 ```http
 ### Reset the indexer
-POST {{searchUrl}}/indexers/doc-extraction-image-verbalization-indexer/reset?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/doc-extraction-image-verbalization-indexer/reset?api-version=2025-08-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Run the indexer
-POST {{searchUrl}}/indexers/doc-extraction-image-verbalization-indexer/run?api-version=2025-05-01-preview   HTTP/1.1
+POST {{searchUrl}}/indexers/doc-extraction-image-verbalization-indexer/run?api-version=2025-08-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 
 ```http
 ### Check indexer status 
-GET {{searchUrl}}/indexers/doc-extraction-image-verbalization-indexer/status?api-version=2025-05-01-preview   HTTP/1.1
+GET {{searchUrl}}/indexers/doc-extraction-image-verbalization-indexer/status?api-version=2025-08-01-preview   HTTP/1.1
   api-key: {{searchApiKey}}
 ```
 

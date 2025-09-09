@@ -10,22 +10,22 @@ ms.author: pafarley
 | ----- | ----- | ----- | ----- |
 | `af-ZA` | Afrikaans (South Africa) | No | Plain text |
 | `am-ET` | Amharic (Ethiopia) | No | Plain text |
-| `ar-AE` | Arabic (United Arab Emirates) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-BH` | Arabic (Bahrain) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-AE` | Arabic (United Arab Emirates) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-BH` | Arabic (Bahrain) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-DZ` | Arabic (Algeria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-EG` | Arabic (Egypt) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
-| `ar-IL` | Arabic (Israel) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-IQ` | Arabic (Iraq) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-JO` | Arabic (Jordan) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-KW` | Arabic (Kuwait) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-LB` | Arabic (Lebanon) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-LY` | Arabic (Libya) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-EG` | Arabic (Egypt) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
+| `ar-IL` | Arabic (Israel) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-IQ` | Arabic (Iraq) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-JO` | Arabic (Jordan) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-KW` | Arabic (Kuwait) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-LB` | Arabic (Lebanon) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-LY` | Arabic (Libya) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-MA` | Arabic (Morocco) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-OM` | Arabic (Oman) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-PS` | Arabic (Palestinian Authority) | No | Audio + human-labeled transcript<br/><br/>Plain text |
-| `ar-QA` | Arabic (Qatar) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-OM` | Arabic (Oman) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-PS` | Arabic (Palestinian Authority) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-QA` | Arabic (Qatar) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-SA` | Arabic (Saudi Arabia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Phrase list |
-| `ar-SY` | Arabic (Syria) | No | Audio + human-labeled transcript<br/><br/>Plain text |
+| `ar-SY` | Arabic (Syria) | Yes | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-TN` | Arabic (Tunisia) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ar-YE` | Arabic (Yemen) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `as-IN` | Assamese (India) | No | Audio + human-labeled transcript |
@@ -59,7 +59,7 @@ ms.author: pafarley
 | `es-AR` | Spanish (Argentina) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-BO` | Spanish (Bolivia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CL` | Spanish (Chile) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-CO` | Spanish (Colombia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `es-CO` | Spanish (Colombia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CR` | Spanish (Costa Rica) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-CU` | Spanish (Cuba) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-DO` | Spanish (Dominican Republic) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
@@ -75,7 +75,7 @@ ms.author: pafarley
 | `es-PR` | Spanish (Puerto Rico) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-PY` | Spanish (Paraguay) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-SV` | Spanish (El Salvador) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
-| `es-US` | Spanish (United States) | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `es-US` | Spanish (United States)<sup>1</sup> | Yes | Plain text<br/><br/>Structured text<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `es-UY` | Spanish (Uruguay) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `es-VE` | Spanish (Venezuela) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `et-EE` | Estonian (Estonia) | No | Plain text<br/><br/>Pronunciation |
@@ -84,7 +84,7 @@ ms.author: pafarley
 | `fi-FI` | Finnish (Finland) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `fil-PH` | Filipino (Philippines) | No | Plain text<br/><br/>Pronunciation |
 | `fr-BE` | French (Belgium) | No | Plain text |
-| `fr-CA` | French (Canada) | No | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
+| `fr-CA` | French (Canada)<sup>1</sup> | No | Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `fr-CH` | French (Switzerland) | No | Plain text<br/><br/>Pronunciation |
 | `fr-FR` | French (France) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation<br/><br/>Phrase list |
 | `ga-IE` | Irish (Ireland) | No | Plain text<br/><br/>Pronunciation |

@@ -5,7 +5,7 @@ description: Learn how to use and configure the content filters that come with A
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 5/28/2025
+ms.date: 8/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

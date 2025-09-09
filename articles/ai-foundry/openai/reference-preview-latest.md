@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's latest v1 preview REST API. In this
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 05/28/2025
+ms.date: 08/29/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -20,7 +20,7 @@ This article provides details on the inference REST API endpoints for Azure Open
 
 The rest of the article covers our new v1 preview API release of the Azure OpenAI data plane inference specification. Learn more in our [API lifecycle guide](./api-version-lifecycle.md#api-evolution).
 
-If you're looking for documentation on the latest GA API release, refer to the [latest GA data plane inference API](./reference.md)
+If you're looking for documentation on the latest v1 GA API release, refer to the [latest GA data plane inference API](./latest.md)
 
 [!INCLUDE [API surfaces](./includes/api-versions/new-inference-preview.md)]
 

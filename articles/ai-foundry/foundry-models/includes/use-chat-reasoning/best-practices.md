@@ -1,10 +1,13 @@
 ---
 manager: nitinme
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 1/31/2025
-ms.author: fasantia
-author: santiagxf
+ms.date: 08/27/2025
+ms.author: mopeakande
+author: msakande
+ms.reviewer: balapv
+reviewer: balapv
 ---
 
 ### Prompt reasoning models
