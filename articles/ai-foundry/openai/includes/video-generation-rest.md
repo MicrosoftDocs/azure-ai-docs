@@ -251,7 +251,7 @@ You can generate a video with the Sora model by creating a video generation job,
 
     Replace the `"file_name"` field in `"inpaint_items"` with the name of your input video file. Also replace the construction of the `files` array, which associates the path to the actual file with the filename that the API uses.
 
-    Use the `"crop_bounds"` data (image crop distances, from each direction, as a fraction of the total image dimensions) to specify which part of the video frame should be used in video generation.
+    Use the `"crop_bounds"` data (image crop distances, from each direction, as a fraction of the total frame dimensions) to specify which part of the video frame should be used in video generation.
 
     You can optionally set the `"frame_index"` to the frame in the generated video where your input video should start (the default is 0, the beginning).
 
@@ -284,7 +284,7 @@ You can generate a video with the Sora model by creating a video generation job,
         ])
     }
     
-    # Replace with your own image file path
+    # Replace with your own video file path
     with open("dog_swimming.mp4", "rb") as video_file:
         files = [
             ("files", ("dog_swimming.mp4", video_file, "video/mp4"))
