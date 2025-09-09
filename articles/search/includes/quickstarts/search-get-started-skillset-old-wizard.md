@@ -47,7 +47,7 @@ To run the wizard:
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="../../media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command." border="true" lightbox="../../media/search-import-data-portal/import-data-cmd.png":::
+   :::image type="content" source="../../media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command." border="true" lightbox="../../media/search-import-data-portal/import-data-button.png":::
 
 ### Step 1: Create a data source
 
@@ -140,3 +140,55 @@ To configure the indexer:
    :::image type="content" source="../../media/search-get-started-skillset/indexer-def.png" alt-text="Screenshot of the indexer definition page." border="true" lightbox="../../media/search-get-started-skillset/indexer-def.png":::
 
 1. Select **Submit** to simultaneously create and run the indexer.
+
+## Monitor status
+
+You can monitor the creation of the indexer in the Azure portal. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
+
+To monitor the progress of the indexer:
+
+1. From the left pane, select **Indexers**.
+
+1. Select your indexer from the list.
+
+1. Select **Success** (or **Failed**) to view execution details.
+
+   :::image type="content" source="../../media/search-get-started-skillset/indexer-notification.png" alt-text="Screenshot of the indexer status page." border="true" lightbox="../../media/search-get-started-skillset/indexer-notification.png":::
+
+  In this quickstart, there are a few warnings, including `Could not execute skill because one or more skill input was invalid.` This warning tells you that a PNG file in the data source doesn't provide a text input to Entity Recognition. It occurs because the upstream OCR skill didn't recognize any text in the image and couldn't provide a text input to the downstream Entity Recognition skill.
+
+  Warnings are common in skillset execution. As you become familiar with how skills iterate over your data, you might begin to notice patterns and learn which warnings are safe to ignore.
+
+## Query in Search explorer
+
+To query your index:
+
+1. From the left pane, select **Indexes**.
+
+1. Select your index from the list. If the index has zero documents or storage, wait for the Azure portal to refresh.
+
+1. On the **Search explorer** tab, enter a search string, such as `satya nadella`.
+
+The search bar accepts keywords, quote-enclosed phrases, and operators. For example: `"Satya Nadella" +"Bill Gates" +"Steve Ballmer"`
+
+Results are returned as verbose JSON, which can be hard to read, especially in large documents. Here are tips for searching in this tool:
+    
+   + Switch to the JSON view to specify parameters that shape results.
+   + Add `select` to limit the fields in results.
+   + Add `count` to show the number of matches.
+   + Use Ctrl-F to search within the JSON for specific properties or terms.
+
+:::image type="content" source="../../media/search-get-started-skillset/search-explorer-old-wizard.png" alt-text="Screenshot of the Search explorer page." border="true" lightbox="../../media/search-get-started-skillset/search-explorer-old-wizard.png":::
+
+Here's some JSON you can paste into the view:
+    
+```json
+{
+"search": "\"Satya Nadella\" +\"Bill Gates\" +\"Steve Ballmer\"",
+"count": true,
+"select": "content, people"
+}
+```
+
+> [!TIP]
+> Query strings are case sensitive, so if you get an "unknown field" message, check **Fields** or **Index Definition (JSON)** to verify the name and case.

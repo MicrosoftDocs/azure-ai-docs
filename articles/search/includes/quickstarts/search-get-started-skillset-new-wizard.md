@@ -47,7 +47,7 @@ To run the wizard:
 
 1. On the **Overview** page, select **Import and vectorize data**.
 
-   :::image type="content" source="../../media/search-import-data-portal/import-vectorize-data-cmd.png" alt-text="Screenshot that shows how to open the Import and vectorize data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-vectorize-data-cmd.png":::
+   :::image type="content" source="../../media/search-import-data-portal/import-vectorize-data-button.png" alt-text="Screenshot that shows how to open the Import and vectorize data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-vectorize-data-button.png":::
 
 1. Select **Azure Blob Storage** for the data source.
 
@@ -65,7 +65,6 @@ To create the data source:
 
 1. Select **Next** to continue.
 
-<!--
 If you get `Error detecting index schema from data source`, the indexer that powers the wizard can't connect to your data source. The data source most likely has security protections. Try the following solutions, and then rerun the wizard.
 
 | Security feature | Solution |
@@ -73,7 +72,6 @@ If you get `Error detecting index schema from data source`, the indexer that pow
 | Resource requires Azure roles, or its access keys are disabled. | [Connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md) or [connect using a managed identity](search-how-to-managed-identities.md). |
 | Resource is behind an IP firewall. | [Create an inbound rule for Azure AI Search and the Azure portal](search-indexer-howto-access-ip-restricted.md). |
 | Resource requires a private endpoint connection. | [Connect over a private endpoint](search-indexer-howto-access-private.md). |
--->
 
 ### Step 2: Add cognitive skills
 
@@ -103,9 +101,9 @@ To add the skills:
 
     + **Categorize content**
 
-    :::image type="content" source="../../media/search-get-started-skillset/extract-entities.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-entities.png":::
+    :::image type="content" source="../../media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-text.png":::
 
-1. Select the **Use a free AI service (limited enrichments)** checkbox.
+1. Leave the **Use a free AI service (limited enrichments)** checkbox selected.
 
    The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient.
 
@@ -119,13 +117,13 @@ For this quickstart, the wizard sets reasonable defaults:
 
 + Default fields are based on metadata properties of existing blobs and new fields for the enrichment output, such as `persons`, `locations`, and `organizations`. Data types are inferred from metadata and by data sampling.
 
-  :::image type="content" source="../../media/search-get-started-skillset/index-fields-import-vectorize-data-wizard.png" alt-text="Screenshot of the index definition page." border="true" lightbox="../../media/search-get-started-skillset/index-fields-import-vectorize-data-wizard.png":::
+  :::image type="content" source="../../media/search-get-started-skillset/index-fields-new-wizard.png" alt-text="Screenshot of the index definition page." border="true" lightbox="../../media/search-get-started-skillset/index-fields-new-wizard.png":::
 
 + Default document key is `metadata_storage_path`, which is selected because the field contains unique values.
 
-+ Default attributes are **Retrievable** and **Searchable**. **Retrievable** means field values can be returned in results, while **Searchable** allows full-text search on a field. The wizard assumes you want `persons`, `locations`, `organizations`, `text`, and `layoutText` to be retrievable and searchable because you created these fields via a skillset.
++ Default field attributes are **Retrievable** and **Searchable**. To view and change these attributes, select a field, and then select **Configure field**.
 
-  To view and change field attributes, select **Configure field**. Use **Filterable** if you want to use fields in a filter expression.
+  **Retrievable** means field values can be returned in results, while **Searchable** allows full-text search on a field. The wizard assumes you want `persons`, `locations`, `organizations`, `text`, and `layoutText` to be retrievable and searchable because you created these fields via a skillset. Use **Filterable** if you want to use fields in a filter expression. 
   
   Marking a field as **Retrievable** doesn't mean that the field *must* be present in the search results. You can control search results composition by using the `select` query parameter to specify which fields to include.
       
@@ -152,3 +150,55 @@ To review and create the objects:
 1. Accept the default object name prefix.
 
 1. Select **Create** to simultaneously create the objects and run the indexer.
+
+## Monitor status
+
+You can monitor the creation of the indexer in the Azure portal. Skills-based indexing takes longer than text-based indexing, especially OCR and image analysis.
+
+To monitor the progress of the indexer:
+
+1. From the left pane, select **Indexers**.
+
+1. Select your indexer from the list.
+
+1. Select **Success** (or **Failed**) to view execution details.
+
+   :::image type="content" source="../../media/search-get-started-skillset/indexer-notification.png" alt-text="Screenshot of the indexer status page." border="true" lightbox="../../media/search-get-started-skillset/indexer-notification.png":::
+
+  In this quickstart, there are a few warnings, including `Could not execute skill because one or more skill input was invalid.` This warning tells you that a PNG file in the data source doesn't provide a text input to Entity Recognition. It occurs because the upstream OCR skill didn't recognize any text in the image and couldn't provide a text input to the downstream Entity Recognition skill.
+
+  Warnings are common in skillset execution. As you become familiar with how skills iterate over your data, you might begin to notice patterns and learn which warnings are safe to ignore.
+
+## Query in Search explorer
+
+To query your index:
+
+1. From the left pane, select **Indexes**.
+
+1. Select your index from the list. If the index has zero documents or storage, wait for the Azure portal to refresh.
+
+1. On the **Search explorer** tab, enter a search string, such as `satya nadella`.
+
+The search bar accepts keywords, quote-enclosed phrases, and operators. For example: `"Satya Nadella" +"Bill Gates" +"Steve Ballmer"`
+
+Results are returned as verbose JSON, which can be hard to read, especially in large documents. Here are tips for searching in this tool:
+    
+   + Switch to the JSON view to specify parameters that shape results.
+   + Add `select` to limit the fields in results.
+   + Add `count` to show the number of matches.
+   + Use Ctrl-F to search within the JSON for specific properties or terms.
+
+:::image type="content" source="../../media/search-get-started-skillset/search-explorer-new-wizard.png" alt-text="Screenshot of the Search explorer page." border="true" lightbox="../../media/search-get-started-skillset/search-explorer-new-wizard.png":::
+
+Here's some JSON you can paste into the view:
+    
+```json
+{
+"search": "\"Satya Nadella\" +\"Bill Gates\" +\"Steve Ballmer\"",
+"count": true,
+"select": "merged_content, persons"
+}
+```
+
+> [!TIP]
+> Query strings are case sensitive, so if you get an "unknown field" message, check **Fields** or **Index Definition (JSON)** to verify the name and case.

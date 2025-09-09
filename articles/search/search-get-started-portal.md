@@ -18,11 +18,11 @@ zone_pivot_groups: search-get-started-portal
 # Quickstart: Create a search index in the Azure portal
 
 ::: zone pivot="import-and-vectorize-data"
-[!INCLUDE [Import and vectorize data instructions](includes/quickstarts/search-get-started-portal-import-vectorize.md)]
+[!INCLUDE [Import and vectorize data instructions](includes/quickstarts/search-get-started-portal-new-wizard.md)]
 ::: zone-end
 
 ::: zone pivot="import-data"
-[!INCLUDE [Import data instructions](includes/quickstarts/search-get-started-portal-import.md)]
+[!INCLUDE [Import data instructions](includes/quickstarts/search-get-started-portal-old-wizard.md)]
 ::: zone-end
 
 ## Monitor indexer progress

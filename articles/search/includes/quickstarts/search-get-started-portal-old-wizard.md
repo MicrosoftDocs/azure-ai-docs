@@ -42,7 +42,7 @@ To start the wizard for this quickstart:
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="../../media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot that shows how to open the Import data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-data-cmd.png":::
+   :::image type="content" source="../../media/search-import-data-portal/import-data-button.png" alt-text="Screenshot that shows how to open the Import data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-data-button.png":::
 
 
 ## Create and load a search index

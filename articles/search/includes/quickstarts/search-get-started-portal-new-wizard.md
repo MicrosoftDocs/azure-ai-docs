@@ -58,7 +58,7 @@ To start the wizard for this quickstart:
 
 1. On the **Overview** page, select **Import and vectorize data**.
 
-   :::image type="content" source="../../media/search-import-data-portal/import-vectorize-data-cmd.png" alt-text="Screenshot that shows how to open the Import and vectorize data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-vectorize-data-cmd.png":::
+   :::image type="content" source="../../media/search-import-data-portal/import-vectorize-data-button.png" alt-text="Screenshot that shows how to open the Import and vectorize data wizard in the Azure portal." lightbox="../../media/search-import-data-portal/import-vectorize-data-button.png":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 
