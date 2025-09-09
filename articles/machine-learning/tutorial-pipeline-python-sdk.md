@@ -109,8 +109,8 @@ ml_client = MLClient(
 ```
 
 **SDK Reference:**
-- [MLClient](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient)
-- [DefaultAzureCredential](https://learn.microsoft.com/python/api/azure-identity/azure.identity.defaultazurecredential)
+- [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient)
+- [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 > [!NOTE]
 > Creating MLClient won't connect to the workspace. The client initialization is lazy, it will wait for the first time it needs to make a call (this will happen in the next code cell).
@@ -126,7 +126,7 @@ print(ws.location, ":", ws.resource_group)
 ```
 
 **SDK Reference:**
-- [WorkspaceOperations.get](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-get)
+- [WorkspaceOperations.get](/python/api/azure-ai-ml/azure.ai.ml.operations.workspaceoperations#azure-ai-ml-operations-workspaceoperations-get)
 
 ## Access the registered data asset
 
@@ -142,7 +142,7 @@ print(f"Data asset URI: {credit_data.path}")
 ```
 
 **SDK Reference:**
-- [DataOperations.get](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
+- [DataOperations.get](/python/api/azure-ai-ml/azure.ai.ml.operations.dataoperations#azure-ai-ml-operations-dataoperations-get)
 
 ## Create a job environment for pipeline steps
 
@@ -210,8 +210,8 @@ print(
 ```
 
 **SDK Reference:**
-- [Environment](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.entities.environment)
-- [EnvironmentOperations.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.environmentoperations#azure-ai-ml-operations-environmentoperations-create-or-update)
+- [Environment](/python/api/azure-ai-ml/azure.ai.ml.entities.environment)
+- [EnvironmentOperations.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.environmentoperations#azure-ai-ml-operations-environmentoperations-create-or-update)
 
 ## Build the training pipeline
 
@@ -333,9 +333,9 @@ data_prep_component = command(
 ```
 
 **SDK Reference:**
-- [command](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
-- [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
-- [Output](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.output)
+- [command](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-command)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml.input)
+- [Output](/python/api/azure-ai-ml/azure.ai.ml.output)
 
 Optionally, register the component in the workspace for future reuse.
 
@@ -352,7 +352,7 @@ print(
 ```
 
 **SDK Reference:**
-- [MLClient.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
+- [MLClient.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
 
 ### Create component 2: training (using yaml definition)
 
@@ -528,8 +528,8 @@ print(
 ```
 
 **SDK Reference:**
-- [load_component](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-load-component)
-- [MLClient.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
+- [load_component](/python/api/azure-ai-ml/azure.ai.ml#azure-ai-ml-load-component)
+- [MLClient.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure-ai-ml-mlclient-create-or-update)
 
 ### Create the pipeline from components
 
@@ -584,9 +584,9 @@ def credit_defaults_pipeline(
 ```
 
 **SDK Reference:**
-- [dsl.pipeline](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.dsl#azure-ai-ml-dsl-pipeline)
-- [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
-- [Output](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.output)
+- [dsl.pipeline](/python/api/azure-ai-ml/azure.ai.ml.dsl#azure-ai-ml-dsl-pipeline)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml.input)
+- [Output](/python/api/azure-ai-ml/azure.ai.ml.output)
 
 Now use your pipeline definition to instantiate a pipeline with your dataset, split rate of choice and the name you picked for your model.
 
@@ -604,7 +604,7 @@ pipeline = credit_defaults_pipeline(
 ```
 
 **SDK Reference:**
-- [Input](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.input)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml.input)
 
 ## Submit the job 
 
@@ -626,8 +626,8 @@ ml_client.jobs.stream(pipeline_job.name)
 ```
 
 **SDK Reference:**
-- [JobOperations.create_or_update](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-create-or-update)
-- [JobOperations.stream](https://learn.microsoft.com/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-stream)
+- [JobOperations.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-create-or-update)
+- [JobOperations.stream](/python/api/azure-ai-ml/azure.ai.ml.operations.joboperations#azure-ai-ml-operations-joboperations-stream)
 
 You can track the progress of your pipeline, by using the link generated in the previous cell. When you first select this link, you might see that the pipeline is still running. Once it's complete, you can examine each component's results.
 
