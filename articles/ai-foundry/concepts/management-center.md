@@ -22,7 +22,7 @@ The management center is a part of the Azure AI Foundry portal that streamlines 
 - Quotas for models and virtual machines (VMs)
 
     > [!NOTE]
-    > VMs, and VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
+    > VMs and VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
 
 - User management and role assignment
 
