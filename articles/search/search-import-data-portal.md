@@ -191,7 +191,7 @@ You can use the wizards over restricted public connections, but not all function
 
   If Azure AI Search can't connect:
 
-  + In the **Import and vectorize data wizard**, the error is `"Access denied due to Virtual Network/Firewall rules."`.
+  + In the **Import and vectorize data** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`.
 
   + In the **Import data** wizard, there's no error, but the skillset won't be created.
 

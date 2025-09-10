@@ -51,7 +51,7 @@ To run the wizard:
 
 1. Select **Azure Blob Storage** for the data source.
 
-   :::image type="content" source="../../media/search-get-started-skillset/choose-data-source.png" alt-text="Screenshot of the Azure Blob Storage data source option in the Azure portal." border="true" lightbox="../../media/search-get-started-portal/choose-data-source.png":::
+   :::image type="content" source="../../media/search-get-started-skillset/choose-data-source.png" alt-text="Screenshot of the Azure Blob Storage data source option in the Azure portal." border="true" lightbox="../../media/search-get-started-skillset/choose-data-source.png":::
 
 1. Select **Keyword search**.
 

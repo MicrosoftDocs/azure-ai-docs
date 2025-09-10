@@ -32,7 +32,7 @@ This quickstart uses text-based PDFs from the [azure-search-sample-data](https:/
 
 ### Supported data sources
 
-The **Import and vectorize data wizard** [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
+The **Import and vectorize data** wizard [supports a wide range of Azure data sources](search-import-data-portal.md#supported-data-sources-and-scenarios). However, this quickstart only covers the data sources that work with whole files, which are described in the following table.
 
 | Supported data source | Description |
 |--|--|
@@ -578,4 +578,4 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next step
 
-This quickstart introduced you to the **Import and vectorize data wizard**, which creates all of the necessary objects for integrated vectorization. To explore each step in detail, see [Set up integrated vectorization in Azure AI Search](search-how-to-integrated-vectorization.md).
+This quickstart introduced you to the **Import and vectorize data** wizard, which creates all of the necessary objects for integrated vectorization. To explore each step in detail, see [Set up integrated vectorization in Azure AI Search](search-how-to-integrated-vectorization.md).

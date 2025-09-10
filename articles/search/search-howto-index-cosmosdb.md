@@ -81,7 +81,7 @@ You can use either the **Import data** wizard or **Import and vectorize data** w
 
    If you [configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 
-1. For the **Import and vectorize data wizard**, you can specify options for change and deletion tracking.
+1. For the **Import and vectorize data** wizard, you can specify options for change and deletion tracking.
 
    [Change detection](#incremental-indexing-and-custom-queries) is supported by default through a `_ts` field (timestamp). If you upload content using the approach described in [Try with sample data](#try-with-sample-data), the collection is created with a `_ts` field.
 

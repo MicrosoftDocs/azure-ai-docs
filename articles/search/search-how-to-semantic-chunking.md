@@ -30,7 +30,7 @@ In this article, learn how to:
 > + Generate embeddings for each chunk
 > + Use index projections to map embeddings to fields in a search index
 
-For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import and vectorize data wizard**.
+For illustration purposes, this article uses the [sample health plan PDFs](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) uploaded to Azure Blob Storage and then indexed using the **Import and vectorize data** wizard.
 
 ## Prerequisites
 
@@ -67,7 +67,7 @@ Here's an example payload of a single search document designed around chunks. Wh
 
 The Document Layout skill outputs headings and content. In this example, `header_1` through `header_3` store document headings, as detected by the skill. Other content, such as paragraphs, is stored in `chunk`. The `text_vector` field is a vector representation of the chunk field content.
 
-You can use the **Import and vectorize data wizard** in the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md). The following index is very similar to what the wizard creates by default. You might have more fields if you add image vectorization.
+You can use the **Import and vectorize data** wizard in the Azure portal, REST APIs, or an Azure SDK to [create an index](search-how-to-load-search-index.md). The following index is very similar to what the wizard creates by default. You might have more fields if you add image vectorization.
 
 If you aren't using the wizard, the index must exist on the search service before you create the skillset or run the indexer.
 
