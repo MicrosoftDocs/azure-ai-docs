@@ -30,7 +30,7 @@ Azure AI Foundry stores traces in Azure Application Insights resources using Ope
 
 The following steps show how to configure your resource:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com) and navigate to your project.
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your project.
 
 1. On the side navigation bar, select **Tracing**.
 

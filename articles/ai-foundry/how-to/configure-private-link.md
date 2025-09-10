@@ -48,9 +48,9 @@ You get several hub default resources in your resource group. You need to config
     > [!IMPORTANT]
     > We don't recommend using the 172.17.0.0/16 IP address range for your VNet. This is the default subnet range used by the Docker bridge network on-premises.
 
-## Securely connect to your hub or project
+## Securely connect to Foundry
 
-To connect to a hub or project secured by a virtual network, use one of these methods:
+To connect to Foundry secured by a virtual network, use one of these methods:
 
 * [Azure VPN Gateway](/azure/vpn-gateway/vpn-gateway-about-vpngateways)-Connect on-premises networks to the virtual network over a private connection on the public internet. Choose from two VPN gateway types:
 
@@ -566,6 +566,7 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 - A network-secured Agent (bring your own virtual network) is only supported through Bicep template deployment. For more information on network-secured Agent deployment, see [How to use a virtual network with the Azure AI Agent Service](/azure/ai-services/agents/how-to/virtual-networks). 
 - A network-secured Agent to be deployed is only a Standard Agent, not a Light Agent. 
 - There's no managed virtual network support for the Agent Service or [!INCLUDE [FDP](../includes/fdp-project-name.md)].
+- Evaluations in AI Foundry are currently not supported with virtual network injection for egress. 
 
 :::zone-end
 
