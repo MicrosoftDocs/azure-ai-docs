@@ -4,11 +4,12 @@ titleSuffix: Azure AI Foundry
 description: "The management center in Azure AI Foundry portal provides a centralized hub for governance and management activities."
 ms.author: sgilley
 author: sdgilley
+ms.reviewer: aashishb
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: concept-article #Don't change.
-ms.date: 07/01/2025
+ms.date: 09/10/2025
 #customer intent: As an admin, I want a central location where I can perform governance and management activities.
 ---
 
@@ -21,17 +22,17 @@ The management center is a part of the Azure AI Foundry portal that streamlines 
 - Quotas for models and virtual machines (VMs)
 
     > [!NOTE]
-    > VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
+    > VMs and VM quotas are only available for [!INCLUDE [hub](../includes/hub-project-name.md)]s.
 
 - User management and role assignment
 
-To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select a project, and then select **Management center** from the bottom of left menu.
+To access the management center, sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select a project, then select **Management center** from the bottom of left menu. (You might have to scroll down to find it.)
 
 :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the left menu of Azure AI Foundry with the management center selected." :::
 
 ## Manage Foundry projects
 
-Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use __All resources__ to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the __Project__ section of the left menu to manage individual [!INCLUDE [FDP](../includes/fdp-project-name.md)].
+Use the management center to create and configure [!INCLUDE [FDP](../includes/fdp-project-name.md)]s. Use __All resources__ to view all [!INCLUDE [FDP](../includes/fdp-project-name.md)]s that you have access to, or to create new projects. Use the __Project__ section of the left menu to manage and create individual [!INCLUDE [FDP](../includes/fdp-project-name.md)] on the AI Foundry resource.
 
 :::image type="content" source="../media/management-center/project-management.png" alt-text="Screenshot of the all resources, hub, and project sections of the management studio selected." lightbox="../media/management-center/project-management.png":::
 
