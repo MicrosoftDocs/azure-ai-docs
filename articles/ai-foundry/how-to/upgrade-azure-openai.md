@@ -138,7 +138,7 @@ After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to 
 
 There are no pricing differences for existing Azure OpenAI functionality when upgrading to Azure AI Foundry—your current usage patterns and costs remain unchanged. However, Azure AI Foundry unlocks access to additional features such as expanded model catalogs, agent services, and evaluation tools, which may have their own pricing structures depending on the models and services used.
 
-For estimating costs of new features available in Azure AI Foundry, use the [Azure Pricing Calculator](pricing/calculator/).
+For estimating costs of new features available in Azure AI Foundry, use the [Azure Pricing Calculator](/pricing/calculator/).
 
 ## Roll back to Azure OpenAI
 
