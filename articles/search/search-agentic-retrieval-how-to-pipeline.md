@@ -109,7 +109,8 @@ Developments in Azure AI Agent side include:
 
 + Set up the AI project client and an AI agent.
 + Add a tool to coordinate calls from the AI agent to the retriever and knowledge agent.
-+ Query processing is driven by the tool, where the tool calls both the AI agent and the retriever on Azure AI Search.
+
+Query processing is initiated by a client app, such as a chat bot, that calls the AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the retriever on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot.
 
 ## Components of the solution
 
@@ -176,7 +177,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 ### Add an agentic retrieval tool to AI Agent
 
-An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent on Azure AI Search. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
+An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent on Azure AI Search. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool is configured in the AI agent and it calls the Azure AI Search knowledge retrieval client and sends back responses that drive the conversation with the user.
 
 ```python
 from azure.ai.agents.models import FunctionTool, ToolSet, ListSortOrder
