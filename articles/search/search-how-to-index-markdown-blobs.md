@@ -8,7 +8,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/29/2025
+ms.date: 08/27/2025
+ms.update-cycle: 180-days
 ---
 
 # Index Markdown blobs and files in Azure AI Search
@@ -36,7 +37,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake su
 Parsing mode parameters are specified in an indexer definition when you create or update an indexer.
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -77,7 +78,7 @@ This setting can be changed after initial creation of the indexer, however the s
 
 ## Supported Markdown elements
 
-Markdown parsing will only split content based on headers. All other elements such as lists, code blocks, tables, and so forth, are treated as plain text and passed into a content field.
+Markdown parsing only splits content based on headers. All other elements such as lists, code blocks, tables, and so forth, are treated as plain text and passed into a content field.
 
 <a name="parsing-markdown-one-to-many"></a>
 
@@ -98,7 +99,7 @@ Content for section 2.
 
 ## Use one-to-many parsing mode
 
-The one-to-many parsing mode parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into search documents which contain the following content:
+The one-to-many parsing mode parses Markdown files into multiple search documents, where each document corresponds to a specific content section of the Markdown file based on the header metadata at that point in the document. The Markdown is parsed based on headers into search documents, which contain the following content:
 
 - `content`: A string that contains the raw Markdown found in a specific location, based on the header metadata at that point in the document.
 
@@ -153,7 +154,7 @@ An example index configuration might look something like this:
 If field names and data types align, the blob indexer can infer the mapping without an explicit field mapping present in the request, so an indexer configuration corresponding to the provided index configuration might look like this:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -168,7 +169,7 @@ api-key: [admin key]
 ```
 
 > [!NOTE]
-> The `submode` does not need to be set explicitly here because `oneToMany` is the default. 
+> The `submode` doesn't need to be set explicitly here because `oneToMany` is the default. 
 
 ### Indexer output for one-to-many parsing
 
@@ -248,7 +249,7 @@ In the one-to-one parsing mode, the entire Markdown document is indexed as a sin
 
 Within the indexer definition, set the `parsingMode` to `"markdown"` and use the optional `markdownHeaderDepth` parameter to define the maximum heading depth for chunking. If not specified, it defaults to `h6`, capturing all possible header depths.
 
-The Markdown is parsed based on headers into search documents which contain the following content: 
+The Markdown is parsed based on headers into search documents, which contain the following content: 
 
 - `document_content`: Contains the full Markdown text as a single string. This field serves as a raw representation of the input document. 
 
@@ -258,13 +259,13 @@ The Markdown is parsed based on headers into search documents which contain the 
 
   - `header_name`: A string containing the text of the header as it appears in the Markdown document. This field provides a label or title for the section. 
 
-  - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there's no content directly under a header, this is an empty string. 
+  - `content`: A string containing text content that immediately follows the header, up to the next header. This field captures the detailed information or description associated with the header. If there's no content directly under a header, the value is an empty string. 
 
   - `ordinal_position`: An integer value indicating the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block. 
 
   - `sections`: An array that contains objects representing subsections nested under the current section. This array follows the same structure as the top-level `sections` array, allowing for the representation of multiple levels of nested content. Each subsection object also includes `header_level`, `header_name`, `content`, and `ordinal_position` properties, enabling a recursive structure that represents and hierarchy of the Markdown content. 
 
-Here's the sample Markdown that we're using to explain an index schema that's designed around each parsing mode.
+Here's the sample Markdown that we're using to explain the index schemas designed around each parsing mode.
 
 ```md
 # Section 1
@@ -285,19 +286,25 @@ If you aren't utilizing field mappings, the shape of the index should reflect th
   "name": "my-markdown-index",
   "fields": [
   {
-    "name": "document_content",
+    "name": "id",
     "type": "Edm.String",
+    "key": true
+  },
+  {
+    "name": "document_content",
+    "type": "Edm.String"
+  },
   {
     "name": "sections",
-    "type": "Edm.ComplexType",
+    "type": "Collection(Edm.ComplexType)",
     "fields": [
     {
       "name": "header_level",
-      "type": "Edm.String",
+      "type": "Edm.String"
     },
     {
       "name": "header_name",
-      "type": "Edm.String",
+      "type": "Edm.String"
     },
     {
       "name": "content",
@@ -305,19 +312,19 @@ If you aren't utilizing field mappings, the shape of the index should reflect th
     },
     {
       "name": "ordinal_position",
-      "type": "Edm.Int"
+      "type": "Edm.Int32"
     },
     {
       "name": "sections",
-      "type": "Edm.ComplexType",
+      "type": "Collection(Edm.ComplexType)",
       "fields": [
       {
         "name": "header_level",
-        "type": "Edm.String",
+        "type": "Edm.String"
       },
       {
         "name": "header_name",
-        "type": "Edm.String",
+        "type": "Edm.String"
       },
       {
         "name": "content",
@@ -325,17 +332,17 @@ If you aren't utilizing field mappings, the shape of the index should reflect th
       },
       {
         "name": "ordinal_position",
-        "type": "Edm.Int"
+        "type": "Edm.Int32"
       }]
     }]
-  }
+  }]
 }
 ```
 
 ### Indexer definition for one-to-one parsing
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -440,7 +447,81 @@ The resulting search document in the index would look as follows:
 ```
 
 > [!NOTE]
-> These examples specify how to use these parsing modes entirely with or without field mappings, but you can leverage both in one scenario if that suits your needs.
+> These examples specify how to use these parsing modes entirely with or without field mappings, but you can apply both in one scenario if it suits your needs.
+> 
+
+## Managing stale documents from Markdown re-indexing
+
+When using one-to-many parsing mode, re-indexing a modified Markdown file can result in stale or duplicate documents if sections are removed. This behavior is specific to one-to-many mode and doesn't apply to one-to-one parsing.
+
+### Behavior overview
+
+#### One-to-many parsing mode
+In `oneToMany` mode, each Markdown section (based on headers) is indexed as a separate search document. When the file is re-indexed:
+
+* **No automatic deletion**: The indexer overwrites existing documents with new ones, but it does not delete documents that no longer correspond to any content in the updated file.
+* **Potential for duplicates**: This issue specifically arises only when more sections are deleted than inserted between indexing runs. In such cases, leftover documents from the previous version remain in the index, leading to stale entries that no longer reflect the current state of the source file.
+
+#### One-to-one parsing mode
+In `oneToOne` mode, the entire Markdown file is indexed as a single search document. When the file is re-indexed:
+* **Overwrite behavior**: The existing document is replaced entirely with the new version.
+* **No stale sections**: When the file is re-indexed, the existing document is replaced with the updated version and removed content is no longer included. The only exception is if the file path or blob URI changes, which could result in a new document being created alongside the old one.
+
+### Workaround options
+
+To ensure the index reflects the current state of your Markdown files, consider one of the following approaches:
+
+#### Option 1. Soft delete with metadata
+This method uses a soft-delete to delete documents associated with a specific blob. For more information, see [Change and delete detection using indexers for Azure Storage in Azure AI Search](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata).
+
+Steps:
+
+1. Mark the blob as deleted by setting a metadata field.
+2. Let the indexer run. It deletes all documents in the index associated with that blob.
+3. Remove the soft-delete marker and re-index the file.
+     
+#### Option 2. Use the delete API
+
+Before re-indexing a modified Markdown file, explicitly delete the existing documents associated with that file using the [delete API](/rest/api/searchservice/documents#indexactiontype). You can either:
+
+* Manually indentify individual stale documents by identifying duplicates in the index to be deleted. This may be feasible for small, well-understood changes but can be time-consuming.
+* (**Recommended**) Remove all documents generated from the same parent file before re-indexing, ensuring inconsistencies are avoided.
+
+Steps:
+
+1. Identify the id  of the documents associated with the file. Use a query like the following example to retrieve the document key IDs (for example, `id`, `chunk_id`, etc.) for all documents tied to a specific file. Replace `metadata_storage_path` with the appropriate field in your index that maps to the file path or blob URI. This field must be a key.
+    ```http
+    GET https://[service name].search.windows.net/indexes/[index name]/docs?api-version=2025-05-01-preview
+    Content-Type: application/json
+    api-key: [admin key]
+
+
+      {  
+          "filter": "metadata_storage_path eq 'https://<storage-account>.blob.core.windows.net/<container-name>/<file-name>.md'",
+          "select": "id"
+      }
+    ```
+
+  2. Issue a delete request for the documents with the identified keys.
+      ```http
+      POST https://[service name].search.windows.net/indexes/[index name]/docs/index?api-version=2025-05-01-preview
+      Content-Type: application/json
+      api-key: [admin key]
+
+      {  
+        "value": [  
+          {  
+            "@search.action": "delete",  
+            "id": "aHR0c...jI1"  
+          },
+          {  
+            "@search.action": "delete",  
+            "id": "aHR0...MQ2"  
+          }  
+        ]  
+      }
+      ```
+  3. Re-index the updated file.
 
 ## Next steps
 

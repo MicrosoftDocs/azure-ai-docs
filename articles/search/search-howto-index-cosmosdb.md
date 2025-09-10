@@ -8,6 +8,7 @@ ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 05/08/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-dotnet
   - ignite-2023
@@ -28,7 +29,7 @@ Because terminology can be confusing, it's worth noting that [Azure Cosmos DB in
 
 + An [automatic indexing policy](/azure/cosmos-db/index-policy) on the Azure Cosmos DB collection, set to [Consistent](/azure/cosmos-db/index-policy#indexing-mode). This is the default configuration. Lazy indexing isn't recommended and can result in missing data.
 
-+ Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using identities (Microsoft Entra ID), make sure the [search service managed identity](search-howto-managed-identities-data-sources.md) is assigned as both **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions).
++ Read permissions. A "full access" connection string includes a key that grants access to the content, but if you're using identities (Microsoft Entra ID), make sure the [search service managed identity](search-how-to-managed-identities.md) is assigned as both **Cosmos DB Account Reader Role** and [**Cosmos DB Built-in Data Reader Role**](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions).
 
 To work through the examples in this article, you need the Azure portal or a [REST client](search-get-started-text.md). If you're using Azure portal, make sure that access to all public networks is enabled. Other approaches for creating a Cosmos DB indexer include Azure SDKs.
 
@@ -36,7 +37,7 @@ To work through the examples in this article, you need the Azure portal or a [RE
 
 Use these instructions to create a container and database in Cosmos DB for testing purposes.
 
-1. [Download HotelsData_toCosmosDB.JSON](https://github.com/HeidiSteen/azure-search-sample-data/blob/main/hotels/HotelsData_toCosmosDB.JSON) from GitHub to create a container in Cosmos DB that contains a subset of the sample hotels data set.
+1. [Download HotelsData_toCosmosDB.json](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toCosmosDB.json) from GitHub to create a container in Cosmos DB that contains a subset of the sample hotels data set.
 
 1. Sign in to the Azure portal and [create an account, database, and container](/azure/cosmos-db/nosql/quickstart-portal) on Cosmos DB. 
 
@@ -54,7 +55,7 @@ Use these instructions to create a container and database in Cosmos DB for testi
 
 1. In **Data Explorer**, expand *hotelsdb* and *hotels*, and then select **Items**.
 
-1. Select **Upload Item** and then select *HotelsData_toCosmosDB.JSON* file that you downloaded from GitHub.
+1. Select **Upload Item** and then select *HotelsData_toCosmosDB.json* file that you downloaded from GitHub.
 
 1. Right-click **Items** and select **New SQL query**. The default query is `SELECT * FROM c`.
 
@@ -78,7 +79,7 @@ You can use either the **Import data** wizard or **Import and vectorize data wiz
 
 1. Specify an authentication method, either a managed identity or built-in API key. If you don't specify a managed identity connection, the Azure portal uses the key.
 
-   If you [configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
+   If you [configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 
 1. For the **Import and vectorize data wizard**, you can specify options for change and deletion tracking.
 
@@ -460,7 +461,7 @@ For data accessed through the SQL API protocol, you can use the .NET SDK to auto
 
 ## Next steps
 
-You can now control how you [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-howto-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Cosmos DB:
+You can now control how you [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Cosmos DB:
 
 + [Set up an indexer connection to an Azure Cosmos DB database using a managed identity](search-howto-managed-identities-cosmos-db.md)
 + [Index large data sets](search-howto-large-index.md)

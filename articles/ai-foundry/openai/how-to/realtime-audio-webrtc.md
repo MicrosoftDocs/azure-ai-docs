@@ -1,22 +1,21 @@
 ---
-title: 'How to use the GPT-4o Realtime API via WebRTC (Preview)'
+title: 'How to use the GPT Realtime API via WebRTC'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
-description: Learn how to use the GPT-4o Realtime API for speech and audio via WebRTC.
+description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.date: 6/7/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT-4o Realtime API via WebRTC (Preview)
+# How to use the GPT Realtime API via WebRTC
 
-[!INCLUDE [Feature preview](../includes/preview-feature.md)]
 
-Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via WebRTC.
 
@@ -30,9 +29,10 @@ Use the [Realtime API via WebSockets](./realtime-audio-websockets.md) if you nee
 
 ## Supported models
 
-The GPT 4o real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
+- `gpt-realtime` (version 2025-08-28)
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. The API version is included in the sessions URL.
 
@@ -40,11 +40,11 @@ For more information about supported models, see the [models and versions docume
 
 ## Prerequisites
 
-Before you can use GPT-4o real-time audio, you need:
+Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview` or `gpt-4o-mini-realtime-preview` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Connection and authentication
 
@@ -113,9 +113,9 @@ sequenceDiagram
 
 ## WebRTC example via HTML and JavaScript
 
-The following code sample demonstrates how to use the GPT-4o Realtime API via WebRTC. The sample uses the [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) to establish a real-time audio connection with the model.
+The following code sample demonstrates how to use the GPT Realtime API via WebRTC. The sample uses the [WebRTC API](https://developer.mozilla.org/en-US/docs/Web/API/WebRTC_API) to establish a real-time audio connection with the model.
 
-The sample code is an HTML page that allows you to start a session with the GPT-4o Realtime API and send audio input to the model. The model's responses are played back in real-time.
+The sample code is an HTML page that allows you to start a session with the GPT Realtime API and send audio input to the model. The model's responses are played back in real-time.
 
 > [!WARNING]
 > The sample code includes the API key hardcoded in the JavaScript. This code isn't recommended for production use. In a production environment, you should use a secure backend service to generate an ephemeral key and return it to the client.
@@ -299,7 +299,7 @@ The sample code is an HTML page that allows you to start a session with the GPT-
     </html>
     ```
 
-1. Select **Start Session** to start a session with the GPT-4o Realtime API. The session ID and ephemeral key are displayed in the log container.
+1. Select **Start Session** to start a session with the GPT Realtime API. The session ID and ephemeral key are displayed in the log container.
 1. Allow the browser to access your microphone when prompted.
 1. Confirmation messages are displayed in the log container as the session progresses. Here's an example of the log messages:
 

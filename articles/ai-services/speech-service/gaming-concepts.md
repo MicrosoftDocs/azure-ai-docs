@@ -2,12 +2,12 @@
 title: Game development with Azure AI Speech - Speech service
 titleSuffix: Azure AI services
 description: Concepts for game development with Azure AI Speech.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 ---
 
 # Game development with Azure AI Speech

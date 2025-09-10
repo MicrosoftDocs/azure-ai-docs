@@ -2,12 +2,11 @@
 title: View AI red teaming results in Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to view the results of the AI red teaming agent's scan of a Generative AI application in Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 06/03/2025
+ms.date: 08/29/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -21,7 +20,7 @@ After your automated scan is finished running [locally](./develop/run-scans-ai-r
 
 ## View report of each scan
 
-In your Azure AI Foundry project or hub based project, navigate to the **Evaluations** page and select the **AI red teaming** tab to view the comprehensive report with a detailed drill-down of each scan.
+In your Azure AI Foundry project or hub-based project, navigate to the **Evaluations** page and select the **AI red teaming** tab to view the comprehensive report with a detailed drill-down of each scan.
 
 :::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team.png" alt-text="Screenshot of AI Red Teaming tab in Azure AI Foundry project page." lightbox="../media/evaluations/red-teaming-agent/ai-red-team.png":::
 

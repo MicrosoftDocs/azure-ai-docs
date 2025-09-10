@@ -1,25 +1,24 @@
 ---
 
-title: How to add a new connection in Azure AI Foundry portal
+title: Add a new connection to your project
 titleSuffix: Azure AI Foundry
-description: Learn how to add a new connection in Azure AI Foundry portal.
-manager: scottpolly
+description: Learn how to add a new connection to your hub-based or Foundry project.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 08/27/2025
 ms.reviewer: sgilley
 ms.author: sgilley
 author: sdgilley
 zone_pivot_groups: project-type
-# Customer Intent: As an admin or developer, I want to understand how to add new connections in Azure AI Foundry portal.
+# Customer Intent: As an admin or developer, I want to understand how to add new connections in my project.
 
 ---
 
-# How to add a new connection in Azure AI Foundry portal
+# Add a new connection to your project
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -45,7 +44,6 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 | API key || API Key connections handle authentication to your specified target on an individual basis. |
 | Custom || Custom connections allow you to securely store and access keys while storing related properties, such as targets and versions. Custom connections are useful when you have many targets that, or cases where, you wouldn't need a credential to access. LangChain scenarios are an example where you would use custom service connections. Custom connections don't manage authentication, so you have to manage authentication on your own. |
 
-
 ::: zone-end
 
 ::: zone pivot="fdp-project"
@@ -61,7 +59,7 @@ Here's a table of some of the available connection types in Azure AI Foundry por
 | Custom                        |         |                                        | Custom connections allow you to securely store and access keys while storing related properties, such as targets and versions. Custom connections are useful when you have many targets or cases where you wouldn't need a credential to access. LangChain scenarios are a good example where you would use custom service connections. Custom connections don't manage authentication, so you have to manage authentication on your own. |
 | Serverless Model              |    ✅    |                                        | Serverless Model connections allow you to serverless API deployment.                                                                                                                     |
 | Azure Databricks              |    ✅    |                                        | Azure Databricks connector allows you to connect your Azure AI Foundry Agents to Azure Databricks to access workflows and Genie Spaces during runtime. It supports three connection types - __Jobs__, __Genie__, and __Other__. You can pick the Job or Genie space you want associated with this connection while setting up the connection in the Foundry UI. You can also use the Other connection type and allow your agent to access workspace operations in Azure Databricks. Authentication is handled through Microsoft Entra ID for users or service principals. For examples of using this connector, see [Jobs](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_job.py) and [Genie](https://github.com/Azure-Samples/AI-Foundry-Connections/blob/main/src/samples/python/sample_agent_adb_genie.py). Note: Usage of this connection is available only via the Foundry SDK in code and is integrated into agents as a FunctionTool (please see the samples above for details). Usage of this connection in AI Foundry Playground is currently not supported.|
-
+| Azure Key Vault| ✅ | | Azure service for securely storing and accessing secrets. AI Foundry stores connections details in a managed Azure Key Vault if no Key Vault connection is created. Users that prefer to manage their secrets themselves can bring their own Azure Key Vault via a connection. (See [limitations](#limits)) |
 
 ## Agent knowledge tool connections
 
@@ -74,10 +72,21 @@ To help AI Agents make well-informed decisions with confidence, knowledge serves
 
 To learn more about Agent Knowledge tools, see [Knowledge tool overview](https://aka.ms/AgentToolOverviewDoc).
 
+<a name="limits"></a> 
+
+## Azure Key Vault limitations
+
+All Azure AI Foundry projects use a managed Azure Key Vault, not shown in your subscription. Enterprise customers who prefer to bring their own Azure Key Vault should consider these limitations:
+
+- One Azure Key Vault connection per AI Foundry resource is allowed at a given time
+- Deleting an Azure Key Vault connection is only permitted if there are no other existing connections on the Foundry resource level, or project level. 
+- AI Foundry does not support secret migration. You need to remove and recreate connections after you connect the Key Vault.
+- Deleting the underlying Azure Key Vault would break the AI Foundry resource. Key Vaults store connections, so any Foundry feature that depends on a connection would be broken.
+- Deleting the Foundry resource's underlying connection secrets stored on the BYO Azure Key Vault may break connections to other services.
 
 ::: zone-end
 
-## Create a new connection
+## <a name="create-a-new-connection"></a> Create a new connection in Azure AI Foundry portal
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
@@ -102,6 +111,14 @@ Follow these steps to create a new connection that's only available for the curr
     :::image type="content" source="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png" alt-text="Screenshot of the page to select the Azure AI Search service that you want to connect to." lightbox="../media/data-connections/connection-add-azure-ai-search-connect-entra-id.png":::
 
 1. After the service is connected, select __Close__.
+
+::: zone pivot="hub-project"
+
+## Create a new connection with Azure Machine Learning SDK
+
+[!INCLUDE [hub-connections](../includes/hub-connections.md)]
+
+::: zone-end 
 
 ## Network isolation
 

@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 07/09/2025
+ms.date: 08/13/2025
 ---
 
 In this quickstart, you use role-based access control (RBAC) and Microsoft Entra ID to establish a keyless connection to your Azure AI Search service. You then use REST in Visual Studio Code to interact with your service.
@@ -33,10 +33,18 @@ To get your token:
 
 1. On your local system, open a command-line tool.
 
-1. Sign in to Azure. If you have multiple subscriptions, select the one whose ID you obtained in [Get service information](#get-service-information).
+1. Check for the active tenant and subscription in your local environment.
 
    ```azurecli
-   az login
+   az account show
+   ```
+
+1. If the active subscription and tenant aren't valid for your search service, change the variables. You can check for the subscription ID on the search service overview page in the Azure portal. You can check for the tenant ID by clicking through to the subscription. Make a note of the values that are valid for your search service and run the following commands to update your local environment.
+
+   ```azurecli
+    az account set --subscription <your-subscription-id>
+
+    az login --tenant <your-tenant-id>
    ```
 
 1. Generate an access token.
@@ -50,7 +58,7 @@ To get your token:
 ## Connect to Azure AI Search
 
 > [!NOTE]
-> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Run agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
+> This section illustrates the basic REST pattern for keyless connections. For comprehensive guidance, see a specific quickstart or tutorial, such as [Quickstart: Use agentic retrieval in Azure AI Search](../../search-get-started-agentic-retrieval.md).
 
 You can use the REST Client extension in Visual Studio Code to send requests to your Azure AI Search service. For request authentication, include an `Authorization` header with the Microsoft Entra ID token you previously generated.
 

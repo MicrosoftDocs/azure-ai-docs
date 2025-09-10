@@ -7,6 +7,7 @@ ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 08/01/2025
+ms.update-cycle: 365-days
 ---
 
 # Tips for better performance in Azure AI Search

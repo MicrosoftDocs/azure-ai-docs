@@ -2,7 +2,7 @@
 title: Azure AI SDK for Go
 titleSuffix: Azure AI services
 description: Provides an overview with links to available Azure AI client libraries and packages for Go.
-author: eric-urban
+author: laujan
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference

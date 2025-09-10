@@ -111,7 +111,7 @@ items:
       - name: Service limits
         href: custom-text-classification/service-limits.md
         displayName: quotas, restrictions, service boundaries
-  - name: Conversational language understanding
+  - name: "Conversational language understanding (CLU)"
     items:
     - name: Overview
       href: conversational-language-understanding/overview.md
@@ -127,7 +127,7 @@ items:
       displayName: frequently asked questions, troubleshooting, common issues
     - name: Responsible use of AI
       items:
-      - name: Transparency note for conversational language understanding
+      - name: Transparency note for CLU
         href: /legal/cognitive-services/language-service/clu-transparency-note?context=/azure/ai-services/language-service/context/context
       - name: Integration and responsible use
         href: /legal/cognitive-services/language-service/guidance-integration-responsible-use?context=/azure/ai-services/language-service/context/context
@@ -149,6 +149,9 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
+        - name: Configure Azure resources
+          href: conversational-language-understanding/how-to/configure-azure-resources.md
+          displayName: configuration, fine-tuning, azure ai foundry, azure portal     
         - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
@@ -161,9 +164,6 @@ items:
         - name: Train a model
           href: conversational-language-understanding/how-to/train-model.md
           displayName: training, clu training, conversational model training
-        - name: Configure Azure and CLU resources
-          href: conversational-language-understanding/how-to/configure-azure-resources.md
-          displayName: configuration, fine-tuning, azure ai foundry, azure portal 
         - name: View your model's performance
           href: conversational-language-understanding/how-to/view-model-evaluation.md
           displayName: evaluation, performance metrics, clu accuracy, testing
@@ -466,7 +466,7 @@ items:
           href: conversational-language-understanding/concepts/app-architecture.md
     - name: Tutorials
       items:
-        - name: Connect conversational language understanding and custom question answering
+        - name: Connect CLU and custom question answering
           href: orchestration-workflow/tutorials/connect-services.md
           displayName: clu integration, qna integration, orchestration workflow, connect services
     - name: Reference
@@ -503,11 +503,11 @@ items:
         href: personally-identifiable-information/how-to/redact-conversation-pii.md
       - name: Redact PII from native documents
         href: personally-identifiable-information/how-to/redact-document-pii.md
-      - name: Use containers
+      - name:  Adapt PII to your domain
         href: personally-identifiable-information/how-to/adapt-to-domain-pii.md
-      - name: Adapt PII to your domain
+      - name: Use Docker containers
         items:
-          - name: Use Docker containers
+          - name: Install and run containers
             href: personally-identifiable-information/how-to/use-containers.md
           - name: Configure containers
             href: concepts/configure-containers.md

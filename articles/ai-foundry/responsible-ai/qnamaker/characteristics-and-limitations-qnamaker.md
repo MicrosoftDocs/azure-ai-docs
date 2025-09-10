@@ -2,8 +2,8 @@
 title: Characteristics and limitations of QnA Maker
 titleSuffix: Azure AI services
 description: Characteristics and limitations of QnA Maker
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

@@ -2,15 +2,15 @@
 title: Explore Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: This article introduces Azure AI Foundry Models and the model catalog in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
   - ai-learning-hub
 ms.topic: how-to
-ms.date: 07/06/2025
+ms.date: 09/04/2025
 ms.reviewer: jcioffi
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ---
 
@@ -20,13 +20,13 @@ Azure AI Foundry Models is your one-stop destination for discovering, evaluating
 
 With Foundry Models, you can: 
 
-* Explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek,  Hugging Face, Meta, and more. 
+* Explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. 
 * Compare and evaluate models side-by-side using real-world tasks and your own data. 
 * Deploy with confidence, thanks to built-in tools for fine-tuning, observability, and responsible AI. 
 * Choose your path—bring your own model, use a hosted one, or integrate seamlessly with Azure services. 
-* Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast.
+* Whether you're a developer, data scientist, or enterprise architect, Foundry Models gives you the flexibility and control to build AI solutions that scale—securely, responsibly, and fast. 
 
-Azure AI Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more.
+Azure AI Foundry offers a comprehensive catalog of AI models. There are over 1900+ models ranging from Foundation Models, Reasoning Models, Small Language Models, Multimodal Models, Domain Specific Models, Industry Models and more. 
 
 Our catalog is organized into two main categories: 
 
@@ -34,20 +34,23 @@ Our catalog is organized into two main categories:
 * [Models from Partners and Community](#models-from-partners-and-community)
 
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
+
+> [!NOTE]
+> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Microsoft AI Services complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models Sold Directly by Azure 
  
-These are models that are hosted and sold by Microsoft under Microsoft Product Terms. These models have undergone rigorous evaluation and are deeply integrated into Azure's AI ecosystem. The models come from a variety of top providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
+These are models that are hosted and sold by Microsoft under Microsoft Product Terms. Microsoft has evaluated these models and they are deeply integrated into Azure's AI ecosystem. The models come from a variety of providers and they offer enhanced integration, optimized performance, and direct Microsoft support, including enterprise-grade Service Level Agreements (SLAs).
  
 Characteristics of models sold directly by Azure: 
 
-- Official first-party support from Microsoft 
-- High level of integration with Azure services and infrastructure 
-- Extensive performance benchmarking and validation 
-- Adherence to Microsoft's Responsible AI standards 
-- Enterprise-grade scalability, reliability, and security
+- Support available from Microsoft.
+- High level of integration with Azure services and infrastructure. 
+- Subject to internal review based on Microsoft’s Responsible AI standards.
+- Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
+- Enterprise-grade scalability, reliability, and security. 
 
-These Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
+Some of these Models also have the benefit of fungible Provisioned Throughput, meaning you can flexibly use your quota and reservations across any of these models.
 
 ## Models from Partners and Community
 

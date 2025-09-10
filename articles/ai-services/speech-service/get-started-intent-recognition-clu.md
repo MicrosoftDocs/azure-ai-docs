@@ -2,13 +2,13 @@
 title: "Intent recognition with CLU quickstart - Speech service"
 titleSuffix: Azure AI services
 description: In this quickstart, you recognize intents from audio data with the Speech service and Language service.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java
 ms.topic: quickstart
-ms.date: 3/10/2025
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 zone_pivot_groups: programming-languages-set-thirteen
 keywords: intent recognition
 ---

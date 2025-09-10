@@ -2,8 +2,8 @@
 title: Azure OpenAI in Azure AI Foundry Models audio
 titleSuffix: Azure OpenAI
 description: Learn about the audio capabilities of Azure OpenAI.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
 ms.date: 7/12/2025
@@ -22,7 +22,7 @@ For information about the available audio models per region in Azure OpenAI, see
 
 ## GPT-4o audio Realtime API
 
-GPT-4o real-time audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user. For more information on how to use GPT-4o real-time audio, see the [GPT-4o real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
+GPT real-time audio is designed to handle real-time, low-latency conversational interactions, making it a great fit for support agents, assistants, translators, and other use cases that need highly responsive back-and-forth with a user. For more information on how to use GPT real-time audio, see the [GPT real-time audio quickstart](../realtime-audio-quickstart.md) and [how to use GPT-4o audio](../how-to/realtime-audio.md).
 
 ## GPT-4o audio completions
 
@@ -40,4 +40,4 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 - [Audio models](models.md#audio-models)
 - [Whisper quickstart](../whisper-quickstart.md)
 - [Audio generation quickstart](../audio-completions-quickstart.md)
-- [GPT-4o real-time audio quickstart](../realtime-audio-quickstart.md)
+- [GPT real-time audio quickstart](../realtime-audio-quickstart.md)

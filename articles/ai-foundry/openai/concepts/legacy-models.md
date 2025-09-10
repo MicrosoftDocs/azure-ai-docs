@@ -22,6 +22,7 @@ Azure OpenAI offers a variety of models for different use cases. The following m
 
 | Model | Deprecation date | Retirement date | Suggested replacement |
 | --------- | --------------------- | ------------------- | -------------------- |
+| `o1-preview`  | |  July 28, 2025                       | `o1`                                 |
 | `gpt-4.5-preview`         |       |  July 14, 2025 | `gpt-4.1` version: `2025-04-14`      |
 | `gpt-4o-realtime-preview` - 2024-10-01 | February 25, 2025 | March 26, 2025 | `gpt-4o-realtime-preview` (version 2024-12-17) or `gpt-4o-mini-realtime-preview` (version 2024-12-17) |
 | `gpt-35-turbo` - 0301 | | February 13, 2025   | `gpt-35-turbo` (0125) <br><br> `gpt-4o-mini`  |

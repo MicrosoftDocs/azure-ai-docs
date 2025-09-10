@@ -2,12 +2,11 @@
 title: Securely use playground chat
 titleSuffix: Azure AI Foundry
 description: Learn how to securely use the Azure AI Foundry portal playground chat on your own data. 
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - hub-only
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 08/27/2025
 ms.reviewer: meerakurup 
 ms.author: jburchel 
 author: jonburchel 

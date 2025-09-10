@@ -10,7 +10,8 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 08/06/2025
+ms.date: 08/15/2025
+ms.update-cycle: 180-days
 ---
 
 # Estimate and manage capacity of a search service
@@ -109,13 +110,11 @@ To increase or decrease the capacity of your service, you have two options:
 ### Change your pricing tier
 
 > [!NOTE]
-> The Azure portal supports changes between Basic and Standard (S1, S2, and S3) tiers. Currently, you can only use the portal to switch from a lower tier to a higher tier, such as switching from Basic to S1. Your region also can't have [capacity constraints on the higher tier](search-region-support.md).
+> The Azure portal supports changes between Basic and Standard (S1, S2, and S3) tiers. You can upgrade or downgrade tiers, provided your current service configuration doesn't exceed the [limits of the target tier](search-limits-quotas-capacity.md). Your region also can't have [capacity constraints on the target tier](search-region-support.md).
 
-<!-- You can upgrade or downgrade tiers, provided your current service configuration doesn't exceed the [limits of the target tier](search-limits-quotas-capacity.md). Your region also can't have [capacity constraints on the target tier](search-region-support.md). -->
+Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more or less capacity, you can switch to a different pricing tier that accommodates your storage needs.
 
-Your [pricing tier](search-sku-tier.md) determines the maximum storage of your search service. If you need more <!-- or less capacity --> capacity, you can switch to a different pricing tier that accommodates your storage needs.
-
-In addition to capacity, pricing tiers determine limits on indexes, indexers, and other search objects. Compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier before proceeding. Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency. <!-- while switching to a lower tier has the opposite effect. -->
+In addition to capacity, pricing tiers determine limits on indexes, indexers, and other search objects. Compare the [service limits](search-limits-quotas-capacity.md) of your current tier and your desired tier before you proceed. Generally, switching to a higher tier increases your [storage limit](search-limits-quotas-capacity.md#service-limits) and [vector limit](search-limits-quotas-capacity.md#vector-index-size-limits), increases request throughput, and decreases latency, while switching to a lower tier has the opposite effect.
 
 Switching to a higher pricing tier also increases the cost of running your search service. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/).
 
@@ -131,7 +130,7 @@ To change your pricing tier:
 
 1. On the **Select Pricing Tier** page, choose a different tier from the list.
 
-   Currently, you can upgrade <!-- switch --> between Basic, S1, S2, and S3 only. Other pricing tiers are unavailable and appear dimmed.
+   Currently, you can switch between Basic, S1, S2, and S3 only. Other pricing tiers are unavailable and appear dimmed.
 
    :::image type="content" source="media/search-capacity-planning/pricing-tier-list.png" alt-text="Screenshot of the Select Pricing Tier page and the list of available tiers in the Azure portal." border="true" lightbox="media/search-capacity-planning/pricing-tier-list.png":::
 
@@ -158,12 +157,12 @@ The above steps aren't entirely consecutive. For example, the system starts prov
 
 ## Errors during scaling
 
-The following table lists the causes and solutions for errors that can occur during scaling operations.
+The following table lists causes and solutions for errors that can occur during scaling operations.
 
 | Error message | Cause | Solution |
 |--|--|--|
-| "Service update operations aren't allowed at this time because we're processing a previous request." | Another scaling operation is already in progress. | Check the **Overview** page in the Azure portal or use the [Search Management REST API](/rest/api/searchmanagement/services/get), [Azure PowerShell](search-manage-powershell.md#get-search-service-information), or [Azure CLI](search-manage-azure-cli.md#get-search-service-information) to get the status of your search service. If the status is "Provisioning," wait until it becomes "Succeeded" or "Failed" before trying again. <sup>1, 2</sup> |
-<!-- | "Failed to scale search service *servicename*. Error: *Object* count *ActualCount* exceeds allowable limit: *MaximumCount*." | Your current service configuration exceeds the limits of the target pricing tier. | Check that your storage usage, vector usage, indexes, indexers, and other objects fit within the lower tier's [service limits](search-limits-quotas-capacity.md). For example, the Basic tier supports up to 15 indexes, so you can't switch from S1 to Basic if you have 16 or more indexes. Adjust your resources before trying again. | -->
+| "Service update operations aren't allowed at this time because we're processing a previous request." | Another scaling operation is in progress. | Check the **Overview** page in the Azure portal or use the [Search Management REST API](/rest/api/searchmanagement/services/get), [Azure PowerShell](search-manage-powershell.md#get-search-service-information), or [Azure CLI](search-manage-azure-cli.md#get-search-service-information) to get the status of your search service. If the status is "Provisioning," wait until it becomes "Succeeded" or "Failed" before you try again. <sup>1, 2</sup> |
+| "Failed to scale search service *servicename*. Error: *Object* count *ActualCount* exceeds allowable limit: *MaximumCount*." | Your current service configuration exceeds the limits of the target pricing tier. | Check that your storage usage, vector usage, indexes, indexers, and other objects fit within the lower tier's [service limits](search-limits-quotas-capacity.md). For example, the Basic tier supports up to 15 indexes, so you can't switch from S1 to Basic if you have 16 indexes. Adjust your resources before you try again. |
 
 <sup>1</sup> There's no status for backups, which are internal operations that are unlikely to disrupt a scaling exercise.
 

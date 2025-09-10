@@ -5,10 +5,9 @@ description: Get an overview of the Text to speech avatar feature of speech serv
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 7/31/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 08/07/2025
+ms.author: pafarley
+author: PatrickFarley
 ms.custom: references_regions
 ---
 
@@ -54,7 +53,7 @@ Both batch synthesis and real-time synthesis resolution are 1920 x 1080, and the
 
 You can create custom text to speech avatars that are unique to your product or brand. All it takes to get started is taking 10 minutes of video recordings. If you're also fine-tuning a professional voice for the actor, the avatar can be highly realistic. 
 
-Voice sync for avatar is trained alongside the custom avatar utilizing audio from the training video. The voice is exclusively associated with the custom avatar and cannot be independently used.
+Voice sync for avatar is trained alongside the custom avatar utilizing audio from the training video. The voice is exclusively associated with the custom avatar and can't be independently used.
 
 [Professional voice fine-tuning](../custom-neural-voice.md) and [custom text to speech avatar](what-is-custom-text-to-speech-avatar.md) are separate features. You can use them independently or together. If you plan to also use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) your fine-tuned professional voice model to one of the [avatar supported regions](#available-locations).
 
@@ -71,10 +70,10 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 
 ## Pricing
 
-- Throughout an avatar real-time session or batch content creation, the text-to-speech, speech-to-text, Azure OpenAI, or other Azure services are charged separately.
+- Throughout an avatar real-time session or batch content creation, the text to speech, speech to text, Azure OpenAI, or other Azure services are charged separately.
 - Voice sync for avatar (via custom avatar training) is charged the same as a personal voice in terms of voice creation and synthesis. The storage of the voice is free.
 - Refer to [text to speech avatar pricing note](../text-to-speech.md#text-to-speech-avatar) to learn how billing works for the text-to-speech avatar feature.
-- For the detailed pricing, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service regions where the feature is available, including Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
+- For the detailed pricing, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Avatar pricing is only visible for service regions where the feature is available, including Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
 
 ## Available locations
 

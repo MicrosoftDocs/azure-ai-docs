@@ -9,7 +9,8 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 08/27/2025
+ms.update-cycle: 180-days
 ---
 
 # Update or rebuild an index in Azure AI Search
@@ -285,11 +286,11 @@ The Azure portal supports the latest preview API.
 
 1. Copy the JSON so that you can use it as the basis of a new request.
 
-1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and the preview API.
+1. [Formulate an index update using a PUT request](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) and the latest preview REST API.
 
 1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
 
-1. To confirm the change, issue another [GET using the 2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+1. To confirm the change, issue another [GET using the latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
 ---
 

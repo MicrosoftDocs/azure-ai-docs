@@ -2,8 +2,8 @@
 title: Python tool for flows in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: This article introduces you to the Python tool for flows in Azure AI Foundry portal.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom: 
   - ignite-2023
   - devx-track-python
@@ -24,6 +24,10 @@ ms.update-cycle: 180-days
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
 The prompt flow Python tool offers customized code snippets as self-contained executable nodes. You can quickly create Python tools, edit code, and verify results.
+
+## Prerequisites
+
+[!INCLUDE [hub-only-prereq](../../includes/hub-only-prereq.md)]
 
 ## Build with the Python tool
 

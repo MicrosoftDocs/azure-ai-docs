@@ -7,7 +7,8 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 07/23/2025
+ms.date: 08/27/2025
+ms.update-cycle: 180-days
 ---
 
 # Relevance in Azure AI Search
@@ -83,7 +84,7 @@ The following diagram illustrates how the ranking algorithms work together.
 A query that generates the previous workflow might look like the following example. This hybrid semantic query is scored using RRF (based on L1 scores for text and vectors), and semantic ranking.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-05-01-preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-08-01-preview
 
 {
   "search": "cloud formation over water",

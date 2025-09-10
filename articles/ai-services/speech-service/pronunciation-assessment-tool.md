@@ -2,14 +2,14 @@
 title: How to use pronunciation assessment in the Azure AI Foundry portal
 titleSuffix: Azure AI services
 description: The pronunciation assessment tool in the Azure AI Foundry portal gives you feedback on the accuracy and fluency of your speech, no coding required.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
 ms.date: 3/10/2025
-ms.author: eur
+ms.author: pafarley
 # Customer intent: As a language learner, I want to use the pronunciation assessment tool in the Azure AI Foundry portal to get feedback on my speech.
 ---
 

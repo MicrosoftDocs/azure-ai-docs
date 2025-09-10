@@ -13,6 +13,7 @@ ms.custom:
   - devx-track-arm-template
   - ignite-2023
 ms.date: 03/04/2025
+ms.update-cycle: 365-days
 ---
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template

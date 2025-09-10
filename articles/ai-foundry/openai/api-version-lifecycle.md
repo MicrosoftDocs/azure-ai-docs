@@ -5,7 +5,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 05/25/2025
+ms.date: 09/05/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -17,18 +17,28 @@ ms.custom:
 This article is to help you understand the support lifecycle for Azure OpenAI APIs.
 
 > [!NOTE]
-> New API response objects may be added to the API response without version changes. We recommend you only parse the response objects you require.
+> New API response objects may be added to the API response at any time. We recommend you only parse the response objects you require.
 >
-> The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
 
 ## API evolution
 
-Historically, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI. Starting in May 2025, you can now opt in to our next generation of v1 Azure OpenAI APIs which add support for:
+Previously, Azure OpenAI received monthly updates of new API versions. Taking advantage of new features required constantly updating code and environment variables with each new API release. Azure OpenAI also required the extra step of using Azure specific clients which created overhead when migrating code between OpenAI and Azure OpenAI.
 
-- Ongoing access to the latest features with no need to update `api-version` each month.
+Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
+
+- Ongoing access to the latest features with no need specify new `api-version`'s each month.
+- Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
+- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
 
-For the initial preview launch we are only supporting a subset of the inference API. While in preview, operations may have incomplete functionality that will be continually expanded.
+Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to the features you want, without having to swap API versions. Alternatively, some features will indicate preview status through their API path and don't require an additional header.
+
+Examples:
+
+- `/openai/v1/evals` is in preview and requires passing an `"aoai-evals":"preview"` header.
+- `/openai/v1/fine_tuning/alpha/graders/` is in preview and requires no custom header due to the presence of `alpha` in the API path.
+
+For the initial v1 Generally Available (GA) API launch we're only supporting a subset of the inference and authoring API capabilities. All GA features are supported for use in production. We'll be rapidly adding support for more capabilities soon.  
 
 ## Code changes
 
@@ -62,8 +72,7 @@ from openai import OpenAI
 
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.responses.create(   
@@ -76,9 +85,7 @@ print(response.model_dump_json(indent=2))
 
 - `OpenAI()` client is used instead of `AzureOpenAI()`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `default_query={"api-version": "preview"}` indicates that the version-less always up-to-date preview API is being used.
-
-Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+- `api-version` is no longer a required parameter with the v1 GA API.
 
 # [Microsoft Entra ID](#tab/entra)
 
@@ -108,19 +115,20 @@ print(response.model_dump_json(indent=2))
 
 ### Next generation API
 
+> [!IMPORTANT]
+> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API removes this dependency, by adding automatic token refresh support to the `OpenAI()` client.
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_key = token_provider  
 )
 
 response = client.responses.create(
@@ -131,11 +139,8 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `AzureOpenAI()` is used to take advantage of automatic token refresh provided by `azure_ad_token_provider`.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
-- `api-version="preview"` indicates that the version-less always up-to-date preview API is being used.
-
-Once we release the GA next generation v1 API, we will support two values: `latest` and `preview`. If `api-version` is not passed traffic is automatically routed to the `latest` GA version. Currently only `preview` is supported.
+- `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 
 # [REST](#tab/rest)
 
@@ -257,13 +262,33 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 
 ---
 
-## Preview API releases
+## v1 API support
 
-Azure OpenAI API latest releases:
+- [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
 
-- [**NEW** v1 Preview API](reference-preview-latest.md)
-- Inference: [2025-04-01-preview](reference-preview.md)
-- Authoring: [2025-04-01-preview](authoring-reference-preview.md)
+### Status
+
+Generally Available features are supported for use in production.
+
+| API Path                               | Status              |
+|----------------------------------------|---------------------|
+| `/openai/v1/chat/completions`          | Generally Available |
+| `/openai/v1/embeddings`                | Generally Available |
+| `/openai/v1/evals`                     | Preview             |
+| `/openai/v1/files`                     | Generally Available |
+| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | Preview |
+| `/openai/v1/fine_tuning/alpha/graders/`| Preview             |
+| `/openai/v1/fine_tuning/`              | Generally Available |
+| `/openai/v1/models`                    | Generally Available |
+| `/openai/v1/responses`                 | Generally Available |
+| `/openai/v1/vector_stores`             | Generally Available |
+
+### Preview headers
+
+| API Path                              | Header                   |
+|---------------------------------------|:-------------------------|
+| `/openai/v1/evals`                    | `"aoai-evals":"preview"` |
+| `/openai/v1/fine_tuning/jobs/{fine_tuning_job_id}/checkpoints/{fine_tuning_checkpoint_id}/copy` | `"aoai-copy-ft-checkpoints" : "preview"` |
 
 ## Changes between v1 preview release and 2025-04-01-preview
 
@@ -303,7 +328,7 @@ Azure OpenAI API latest releases:
 
 ## Changes between 2024-09-01-preview and 2024-08-01-preview
 
-- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` does not work with the **o1 series** models.
+- `max_completion_tokens` added to support `o1-preview` and `o1-mini` models. `max_tokens` doesn't work with the **o1 series** models.
 - `parallel_tool_calls` added.
 - `completion_tokens_details` & `reasoning_tokens` added.
 - `stream_options` & `include_usage` added.
@@ -344,13 +369,10 @@ Azure OpenAI API latest releases:
 
 Azure OpenAI API version [2024-10-21](./reference.md) is currently the latest GA API release. This API version is the replacement for the previous `2024-06-01` GA API release.
 
-## Updating API versions
+## Known issues
 
-We recommend first testing the upgrade to new API versions to confirm there's no impact to your application from the API update before making the change globally across your environment.
+- The `2025-04-01-preview` Azure OpenAI spec uses OpenAPI 3.1, is a known issue that this is currently not fully supported by [Azure API Management](/azure/api-management/api-management-key-concepts)
 
-If you're using the OpenAI Python or JavaScript client libraries, or the REST API, you'll need to update your code directly to the latest preview API version.
-
-If you're using one of the Azure OpenAI SDKs for C#, Go, or Java, you'll instead need to update to the latest version of the SDK. Each SDK release is hardcoded to work with specific versions of the Azure OpenAI API.
 
 ## Next steps
 

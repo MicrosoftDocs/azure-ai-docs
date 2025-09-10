@@ -6,7 +6,7 @@ author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 08/29/2024
+ms.date: 09/01/2025
 manager: nitinme
 keywords: ChatGPT
 
@@ -19,12 +19,11 @@ The following code snippet shows the most basic way to interact with models that
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.chat.completions.create(
@@ -238,12 +237,11 @@ Every time a new question is asked, a running transcript of the conversation so 
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 conversation=[{"role": "system", "content": "You are a helpful assistant."}]
@@ -279,12 +277,11 @@ The code uses tiktoken `0.5.1`. If you have an older version, run `pip install t
 ```python
 import tiktoken
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
+client = OpenAI(
   api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version = "2024-10-21",
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")  # Your Azure OpenAI resource's endpoint value.
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 system_message = {"role": "system", "content": "You are a helpful assistant."}
@@ -360,14 +357,6 @@ An alternative approach is to limit the conversation duration to the maximum tok
 The token counting portion of the code demonstrated previously is a simplified version of one of [OpenAI's cookbook examples](https://github.com/openai/openai-cookbook/blob/main/examples/How_to_format_inputs_to_ChatGPT_models.ipynb).
 
 ## Troubleshooting
-
-### Don't use ChatML syntax or special tokens with the chat completion endpoint
-
-Some customers try to use the [legacy ChatML syntax](../how-to/chat-markup-language.md) with the chat completion endpoints and newer models. ChatML was a preview capability that only worked with the legacy completions endpoint with the `gpt-35-turbo` version 0301 model. This model is [slated for retirement](../concepts/model-retirements.md). If you attempt to use ChatML syntax with newer models and the chat completion endpoint, it can result in errors and unexpected model response behavior. We don't recommend this use. This same issue can occur when using common special tokens.
-
-| Error Code | Error Message | Solution |
-|---|---|---|
-| 400 | 400 - "Failed to generate output due to special tokens in the input." | Your prompt contains special tokens or legacy ChatML tokens not recognized or supported by the model/endpoint. Ensure that your prompt/messages array doesn't contain any legacy ChatML tokens/special tokens. If you're upgrading from a legacy model, exclude all special tokens before you submit an API request to the model.|
 
 ### Failed to create completion as the model generated invalid Unicode output
 

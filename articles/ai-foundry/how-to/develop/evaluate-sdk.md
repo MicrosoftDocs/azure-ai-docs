@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate a generative AI application with the Azure AI Evaluation SDK.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: minthigpen
 ms.date: 07/15/2025
 ms.service: azure-ai-foundry

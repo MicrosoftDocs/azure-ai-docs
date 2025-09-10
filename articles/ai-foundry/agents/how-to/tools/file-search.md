@@ -35,9 +35,9 @@ File search augments agents with knowledge from outside its model, such as propr
 >    * Italy north
 >    * Brazil south
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️  | ✔️ | ✔️ | ✔️ | ✔️ |  ✔️ | File upload only | File upload and using  bring-your-own blob storage | 
 
 ## Dependency on agent setup
 

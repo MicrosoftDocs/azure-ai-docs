@@ -8,6 +8,7 @@ ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 08/04/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -37,7 +38,7 @@ In Azure AI Search, indexers that access Azure blobs can use the [trusted servic
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Identity** page, make sure that a [system assigned identity is enabled](search-howto-managed-identities-data-sources.md). Remember that user-assigned managed identities won't work for a trusted service connection.
+1. On the **Identity** page, make sure that a [system assigned identity is enabled](search-how-to-managed-identities.md). Remember that user-assigned managed identities won't work for a trusted service connection.
 
    :::image type="content" source="media/search-managed-identities/system-assigned-identity-object-id.png" alt-text="Screenshot of a system identity object identifier." border="true":::
 
@@ -79,7 +80,7 @@ The easiest way to test the connection is by running the Import data wizard.
 
 ## See also
 
-+ [Connect to other Azure resources using a managed identity](search-howto-managed-identities-data-sources.md)
++ [Connect to other Azure resources using a managed identity](search-how-to-managed-identities.md)
 + [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
 + [ADLS Gen2 indexer](search-howto-index-azure-data-lake-storage.md)
 + [Authenticate with Microsoft Entra ID](/azure/architecture/framework/security/design-identity-authentication)

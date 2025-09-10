@@ -9,6 +9,7 @@ ms.custom:
   - ignite-2023
 ms.topic: conceptual
 ms.date: 05/08/2025
+ms.update-cycle: 365-days
 ---
 
 # Tips for AI enrichment in Azure AI Search

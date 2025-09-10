@@ -2,8 +2,8 @@
 title: Overview of Responsible AI practices for Azure OpenAI models 
 titleSuffix: Azure AI services
 description: RAI overview for Azure OpenAI Service
-author: PatrickFarley
-ms.author: pafarley
+author: mrbullwinkle
+ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article

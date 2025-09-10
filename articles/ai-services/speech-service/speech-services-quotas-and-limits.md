@@ -2,8 +2,8 @@
 title: Speech service quotas and limits
 titleSuffix: Azure AI services
 description: Quick reference, detailed description, and best practices on the quotas and limits for the Speech service in Azure AI services.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
@@ -91,6 +91,9 @@ You can use real-time text to speech with the [Speech SDK](speech-sdk.md) or the
 | Max total number of distinct `<voice>` and `<audio>` tags in SSML | 50 | 50 |
 | Max SSML message size per turn for websocket | 64 KB | 64 KB |
 
+> [!NOTE]
+> Most HTTP 429 errors with Text-to-Speech Standard Voice are caused by limited backend service capacity for a specific voice in the selected region, not by quota limits. Increasing your quota won't resolve these errors. For best results, use the voice in its native region or select a more popular voice in your current region.
+
 #### Batch synthesis
 
 These limits aren't adjustable. For more information on batch synthesis latency, see [the batch synthesis latency and best practices](batch-synthesis.md#batch-synthesis-latency-and-best-practices).
@@ -169,7 +172,12 @@ The following quotas are adjustable for Standard (S0) resources. The Free (F0) r
 - Text to speech [maximum number of transactions per time period](#text-to-speech-quotas-and-limits-per-resource) for standard voices and custom voices
 - Speech translation [concurrent request limit](#real-time-speech-to-text-and-speech-translation)
 
-Before requesting a quota increase (where applicable), check your current TPS (transactions per second) and ensure that it's necessary to increase the quota. Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
+Before requesting a quota increase (where applicable), check your current TPS (transactions per second) and ensure that you need to increase the quota.
+
+> [!NOTE]
+> Batch transcription is an asynchronous process, and jobs are processed one-by-one in a queue. So, increasing the quota won't improve transcription performance. For performance improvements, see [Batch transcription best practices](./batch-transcription.md#best-practices-for-improving-performance).
+
+Speech service uses autoscaling technologies to bring the required computational resources in on-demand mode. At the same time, Speech service tries to keep your costs low by not maintaining an excessive amount of hardware capacity.
 
 Let's look at an example. Suppose that your application receives response code 429, which indicates that there are too many requests. Your application receives this response even though your workload is within the limits defined by the [Quotas and limits reference](#quotas-and-limits-reference). The most likely explanation is that Speech service is scaling up to your demand and didn't reach the required scale yet. Therefore the service doesn't immediately have enough resources to serve the request. In such cases, increasing the quota won’t help. In most cases, the Speech service will scale up soon, and the issue causing response code 429 will be resolved.
 

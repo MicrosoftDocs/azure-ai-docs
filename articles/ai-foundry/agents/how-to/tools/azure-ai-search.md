@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 7/28/2025
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -36,9 +36,9 @@ You can have indexes without a specified search type. By default, the Azure AI S
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|---------|
-| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
 ## Setup
 
@@ -165,6 +165,13 @@ You can add the Azure AI Search tool to an agent programmatically using the code
     :::image type="content" source="../../media/tools/knowledge-tools-ai-search-create-index.png" alt-text="A screenshot with the option to create a new index in the Azure AI Foundry portal." lightbox="../../media/tools/knowledge-tools-ai-search-create-index.png":::
 
 1. The index is created and connected to the [Azure AI Search](/azure/search/) service. You can now use the index with the Azure AI Search tool in your agent. You can also use the index outside of the agent, such as the Azure AI Search REST API or SDKs.
+
+
+## Limitations
+
+Currently, if you want to use the Azure AI Search tool in the Azure AI Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After creating the agent in a code-based manner, you can then use it in the portal. 
+
+The Azure AI Search tool can only include one search index. If you want to utilize multiple indexes, consider using [connected agents](../connected-agents.md) with an Azure AI search index configured with each agent.
 
 ## Next steps
 

@@ -6,10 +6,10 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: alexeyo
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource

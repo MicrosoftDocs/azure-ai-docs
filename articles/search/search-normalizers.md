@@ -10,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/19/2025
+ms.update-cycle: 365-days
 ---
 
 # Text normalization for case-insensitive filtering, faceting and sorting

@@ -2,12 +2,12 @@
 title: Deploy models as serverless API deployments
 titleSuffix: Azure AI Foundry
 description: Learn to deploy models as serverless API deployments, using Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 07/29/2025
-ms.author: mopeakande
-author: msakande
+author: ssalgadodev
+ms.author: ssalgado
+manager: nitinme
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024
@@ -495,7 +495,9 @@ Furthermore, models offered through Azure Marketplace are available for deployme
     param modelId string = 'azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
-    var subscriptionName = '${modelName}-subscription'
+    // Replace period character which is used in some model names (and is not valid in the subscription name)
+    var sanitizedModelName = replace(modelName, '.', '')
+    var subscriptionName = '${sanitizedModelName}-subscription'
     
     resource projectName_subscription 'Microsoft.MachineLearningServices/workspaces/marketplaceSubscriptions@2024-04-01-preview' = if (!startsWith(
       modelId,
@@ -541,7 +543,9 @@ In this section, you create an endpoint for your model. Name the endpoint **myse
     param modelId string = 'azureml://registries/azureml-deepseek/models/DeepSeek-R1'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
-    var subscriptionName = '${modelName}-subscription'
+    // Replace period character which is used in some model names (and is not valid in the subscription name)
+    var sanitizedModelName = replace(modelName, '.', '')
+    var subscriptionName = '${sanitizedModelName}-subscription'
     
     resource projectName_endpoint 'Microsoft.MachineLearningServices/workspaces/serverlessEndpoints@2024-04-01-preview' = {
       name: '${projectName}/${endpointName}'

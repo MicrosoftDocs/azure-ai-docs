@@ -12,6 +12,8 @@ items:
   - name: Configure private link
     displayName: custom dns
     href: ../../how-to/configure-private-link.md
+  - name: Network security perimeter (preview)
+    href: ../../how-to/add-foundry-to-network-security-perimeter.md
   - name: Managed network for hubs
     items:
     - name: Configure managed network
@@ -41,8 +43,6 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
-- name: Vulnerability management
-  href: ../../concepts/vulnerability-management.md
 - name: Disaster recovery
   href: ../../how-to/disaster-recovery.md
 - name: Security baseline

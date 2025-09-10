@@ -2,11 +2,10 @@
 title: How to create a hub using the Azure Machine Learning SDK/CLI
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to create an Azure AI Foundry hub using the Azure Machine Learning SDK and Azure CLI extension.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom: build-2024, devx-track-azurecli
 ms.topic: how-to
-ms.date: 06/24/2025
+ms.date: 08/14/2025
 ms.reviewer: dantaylo
 ms.author: sgilley
 author: sdgilley

@@ -8,7 +8,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 08/27/2025
 ---
 
 # Create an index in Azure AI Search
@@ -53,7 +53,7 @@ Use this checklist to assist the design decisions for your search index.
 
 1. Review [supported data types](/rest/api/searchservice/supported-data-types). The data type affects how the field is used. For example, numeric content is filterable but not full text searchable. The most common data type is `Edm.String` for searchable text, which is tokenized and queried using the full text search engine. The most common data type for a vector field is `Edm.Single` but you can use other types as well.
 
-1. Provide a description of the index (preview), 4,000 character maximum. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on index name alone. An index Description field is available in the [2025-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-05-01-preview&preserve-view=true), the Azure portal, or a prerelease package of an Azure SDK that provides the feature. For more information, see [Add an index description](search-howto-reindex.md#add-an-index-description-preview).
+1. Provide a description of the index (preview), 4,000 character maximum. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be based on the description rather than on index name alone. An index `description` field is available in the [latest preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true), the Azure portal, or a preview package of an Azure SDK that provides the feature. For more information, see [Add an index description](search-howto-reindex.md#add-an-index-description-preview).
 
 1. Identify a [document key](#document-keys). A document key is an index requirement. It's a single string field populated from a source data field that contains unique values. For example, if you're indexing from Blob Storage, the metadata storage path is often used as the document key because it uniquely identifies each blob in the container.
 
@@ -224,7 +224,7 @@ SearchIndex index = new SearchIndex(indexName)
 await indexClient.CreateIndexAsync(index);
 ```
 
-For more examples, see [azure-search-dotnet-samples/quickstart/v11/](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/v11).
+For more examples, see [azure-search-dotnet-samples/quickstart/v11/](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart).
 
 ### [**Other SDKs**](#tab/index-other-sdks)
 
@@ -277,12 +277,12 @@ To minimize churn in the design process, the following table describes which ele
 | Field attribute (retrievable) | Yes |
 | Stored (applies to vectors) | No |
 | [Analyzer](search-analyzers.md) | You can add and modify custom analyzers in the index. Regarding analyzer assignments on string fields, you can only modify `searchAnalyzer`. All other assignments and modifications require a rebuild. |
-| [Scoring profiles](index-add-scoring-profiles.md) | Yes |
+| [Scoring profiles](index-add-scoring-profiles.md) | Yes, you can create and edit scoring profiles with no rebuild. |
 | [Suggesters](index-add-suggesters.md) | No |
 | [cross-origin resource sharing (CORS)](#corsoptions) | Yes |
-| [Encryption](search-security-manage-encryption-keys.md) | Yes |
-| [Synonym maps](search-synonyms.md) | Yes |
-| [Semantic configuration](semantic-how-to-configure.md) | Yes |
+| [Encryption](search-security-manage-encryption-keys.md) | Yes, you can update all parts of an *existing* encryption definition. |
+| [Synonym maps](search-synonyms.md) | Yes, you can create and edit synonym maps with no rebuild. |
+| [Semantic configuration](semantic-how-to-configure.md) | Yes, you can create and edit semantic configurations with no rebuild. |
 
 ## Next steps
 

@@ -7,7 +7,7 @@ author: aahill
 ms.author: aahi
 ms.service: azure-ai-agent-service
 ms.topic: overview
-ms.date: 08/04/2025
+ms.date: 08/07/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -16,6 +16,18 @@ ms.custom: azure-ai-agents
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
 
 ## August 2025
+
+### Java SDK Availability
+
+The public preview of the Azure AI Agent Service Java SDK is available. See the following articles for code samples:
+
+* [quickstart](./quickstart.md?pivots=programming-language-java)
+* [Azure AI Search](./how-to/tools/azure-ai-search-samples.md?pivots=java)
+* [Azure Functions](./how-to/tools/azure-functions-samples.md?pivots=java) 
+* [Code interpreter](./how-to/tools/code-interpreter-samples.md?pivots=java) 
+* [File search](./how-to/tools/file-search-upload-files.md?pivots=java)
+* [Grounding with Bing Search](./how-to/tools/bing-code-samples.md?pivots=java)
+* [OpenAPI based tools](./how-to/tools/openapi-spec-samples.md?pivots=java)
 
 ### Browser Automation tool
 
@@ -54,7 +66,7 @@ The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs
 
 #### Trace agents
 
-Debug and monitor your agents by [tracing agent threads](concepts\tracing.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
+Debug and monitor your agents by [tracing agent threads](../how-to/develop/trace-agents-sdk.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
 
 #### Trigger agents using Azure Logic Apps 
 
@@ -110,7 +122,7 @@ Azure AI Service is now available in preview. The service builds off of the Assi
     * [.NET](quickstart.md?pivots=programming-language-csharp) 
     * [The Azure Python SDK](quickstart.md?pivots=programming-language-python-azure)  
     * [The OpenAI Python SDK](quickstart.md?pivots=programming-language-python-openai)   
-* Debugging support using [tracing with Application Insights](concepts\tracing.md)
+* Debugging support using [tracing with Application Insights](../how-to/develop/trace-agents-sdk.md)
 
 ## Next steps
 

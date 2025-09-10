@@ -2,7 +2,6 @@
 title: How to build and consume vector indexes in Azure AI Foundry portal
 titleSuffix: Azure AI Foundry
 description: Learn how to create and use a vector index for performing Retrieval Augmented Generation (RAG).
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -12,6 +11,7 @@ ms.topic: how-to
 ms.date: 06/29/2025
 ms.reviewer: estraight
 ms.author: ssalgado
+manager: nitinme
 author: ssalgadodev
 ---
 

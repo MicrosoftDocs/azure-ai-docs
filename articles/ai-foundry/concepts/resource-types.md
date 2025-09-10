@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about the supported Azure resource types in Azure AI Foundry portal.
 reviewer: deeikele
 ms.reviewer: deeikele
-manager: scottpolly
 author: sgilley
 ms.author: sgilley
 ms.date: 07/22/2025
@@ -31,7 +30,7 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
 
 * **Azure AI Search** – A resource used to index and retrieve data for grounding AI applications. It can be [connected](../how-to/connections-add.md) to Azure AI Foundry agents to enable retrieval-augmented generation (RAG) and semantic search experiences.
 
-* **Azure OpenAI** – A specialized resource type that provides access to OpenAI models such as GPT-4 and GPT-4o. It offers a subset of the capabilities available in Azure AI Foundry and provides solely access to Azure OpenAI APIs.
+* **Azure OpenAI** – A specialized resource type that provides access to OpenAI models such as GPT-4 and GPT-4o. It offers a subset of the capabilities available in Azure AI Foundry and provides solely access to Azure OpenAI APIs. [Upgrade from Azure OpenAI to Azure AI Foundry](../how-to/upgrade-azure-openai.md) to gain access to more capabilities while keeping the existing Azure OpenAI API endpoint, state of work, and security configurations.
 
 ## References
 

@@ -7,13 +7,17 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 06/17/2025
+ms.date: 08/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
 ---
 
 # Define projections in a knowledge store
+
+> [!NOTE]
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](search-agentic-retrieval-concept.md) workflows.
 
 [Projections](knowledge-store-projection-overview.md) are the component of a [knowledge store definition](knowledge-store-concept-intro.md) that determines how AI enriched content is stored in Azure Storage. Projections determine the type, quantity, and composition of the data structures containing your content.
 
@@ -269,7 +273,7 @@ You can process projections by following these steps:
 
 1. [Run the indexer](/rest/api/searchservice/indexers/run) to put the skillset into execution. 
 
-1. [Monitor indexer execution](search-howto-monitor-indexers.md) to check progress and catch any errors.
+1. [Monitor indexer execution](search-monitor-indexers.md) to check progress and catch any errors.
 
 1. Use Azure portal to verify object creation in Azure Storage.
 

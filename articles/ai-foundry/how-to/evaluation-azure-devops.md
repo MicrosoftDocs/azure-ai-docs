@@ -2,7 +2,6 @@
 title: How to run an evaluation in Azure DevOps
 titleSuffix: Azure AI Foundry
 description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 07/25/2025
@@ -106,7 +105,7 @@ agent-ids: "<your-ai-agent-ids>
 
 ```
 
-# [Hub based project](#tab/hub-project)
+# [Hub-based project](#tab/hub-project)
 
 ```yaml
 

@@ -361,37 +361,52 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 ### Standard
 
-[Standard deployments](./deployment-types.md#standard) provides a pay-per-call billing model, and the model available in each region as well as throughput may be limited.
+[Standard deployments](./deployment-types.md#standard) provide a pay-per-token billing model with data residency confined to the deployed region.
 
-| Models | Region |
-|--|--|
-|GPT-4o-finetune|East US2, North Central US, Sweden Central|
-|gpt-4o-mini-2024-07-18|North Central US, Sweden Central|
-|GPT-4-finetune|North Central US, Sweden Central|
-|GPT-35-Turbo-finetune|East US2, North Central US, Sweden Central, Switzerland West|
-|GPT-35-Turbo-1106-finetune|East US2, North Central US, Sweden Central, Switzerland West|
-|GPT-35-Turbo-0125-finetune|East US2, North Central US, Sweden Central, Switzerland West|
+| Models             | East US2 | North Central US | Sweden Central | Switzerland West |
+|--------------------|:--------:|:----------------:|:--------------:|:----------------:|
+|o4-mini             | ✅       |                  | ✅             |                  |
+|GPT-4.1             |          | ✅               | ✅             |                  |
+|GPT-4.1-mini        |          | ✅               | ✅             |                  |
+|GPT-4.1-nano        |          | ✅               | ✅             |                  |
+|GPT-4o              | ✅       |                  | ✅             |                  |
+|GPT-4o-mini         |          | ✅               | ✅             |                  |
+|GPT-35-Turbo (1106) | ✅       | ✅               | ✅             | ✅               |
+|GPT-35-Turbo (0125) | ✅       | ✅               | ✅             | ✅               |
 
 ### Global Standard
 
 [Global standard](./deployment-types.md#global-standard) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
-| Models | Region |
-|--|--|
-|GPT-4.1-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4.1-mini-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4.1-nano-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4o-finetune|East US2, North Central US, and Sweden Central|
-|GPT-4o-mini-finetune|East US2, North Central US, and Sweden Central|
+Global standard deployments are available from all Azure OpenAI regions for the following models:
+
+* o4-mini
+* GPT-4.1
+* GPT-4.1-mini
+* GPT-4.1-nano
+* GPT-4o
+* GPT-4o-mini
 
 :::image type="content" source="../media/fine-tuning/global-standard.png" alt-text="Screenshot of the global standard deployment user experience with a fine-tuned model." lightbox="../media/fine-tuning/global-standard.png":::
 
+### Developer Tier
+
+[Developer](./deployment-types.md#developer-for-fine-tuned-models) fine-tuned deployments offer a similar experience as [Global Standard](#global-standard) without an hourly hosting fee, but do not offer an availability SLA. Developer deployments are designed for model candidate evaluation and not for production use.
+
+Developer deployments are available from all Azure OpenAI regions for the following models:
+
+* GPT-4.1
+* GPT-4.1-mini
+* GPT-4.1-nano
+
+
 ### Provisioned Throughput
 
-| Models | Region |
-|--|--|
-|GPT-4o-finetune|North Central US, Sweden Central|
-|GPT-4o-mini-finetune|North Central US, Sweden Central|
+| Models       | North Central US | Sweden Central |
+|--------------|:----------------:|:--------------:|
+| GPT-4.1      |                  | ✅             |
+| GPT-4o       | ✅               | ✅             |
+| GPT-4o-mini  | ✅               | ✅             |
 
 [Provisioned throughput](./deployment-types.md#regional-provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
 

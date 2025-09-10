@@ -7,6 +7,7 @@ ms.author: mdonovan
 ms.service: azure-ai-search
 ms.topic: tutorial
 ms.date: 03/28/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
   - sfi-ropc-nochange
@@ -193,7 +194,7 @@ Thank you for reviewing this example!
 
 ## Copy a search service URL and API key
 
-For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-howto-managed-identities-data-sources.md).
+For this tutorial, connections to Azure AI Search require an endpoint and an API key. You can get these values from the Azure portal. For alternative connection methods, see [Managed identities](search-how-to-managed-identities.md).
 
 1. Sign in to the [Azure portal](https://portal.azure.com), navigate to the search service **Overview** page, and copy the URL. An example endpoint might look like `https://mydemo.search.windows.net`.
 

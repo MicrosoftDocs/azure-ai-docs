@@ -24,7 +24,7 @@ items:
       href: search-what-is-an-index.md
     - name: Vector index
       href: vector-store.md
-    - name: Knowledge store
+    - name: Knowledge store in Azure Storage
       href: knowledge-store-concept-intro.md
     - name: Indexers
       href: search-indexer-overview.md
@@ -52,6 +52,12 @@ items:
       href: search-query-overview.md
   - name: Relevance
     href: search-relevance-overview.md
+  - name: Reliability
+    items:
+      - name: Reliability in Azure AI Search
+        href: /azure/reliability/reliability-ai-search?toc=/azure/search/toc.json&bc=/azure/search/breadcrumb/toc.json
+      - name: Multi-region deployment
+        href: search-multi-region.md
   - name: Security
     href: search-security-overview.md
 - name: Quickstarts
@@ -188,8 +194,6 @@ items:
       href: search-capacity-planning.md
     - name: Plan and manage costs
       href: search-sku-manage-costs.md
-    - name: Reliability and recovery
-      href: search-reliability.md
     - name: Multi-tenancy
       href: search-modeling-multitenant-saas-applications.md
     - name: Manage
@@ -390,14 +394,26 @@ items:
     items:
     - name: Agentic retrieval
       items:
-      - name: Design an index for agentic retrieval
+      - name: Create an index for agentic retrieval
         href: search-agentic-retrieval-how-to-index.md
+      - name: Create a knowledge source
+        items:
+        - name: Knowledge sources
+          href: search-knowledge-source-overview.md
+        - name: Azure blobs
+          href: search-knowledge-source-how-to-blob.md
+        - name: Search indexes
+          href: search-knowledge-source-how-to-index.md
       - name: Create a knowledge agent
         href: search-agentic-retrieval-how-to-create.md
-      - name: Retrieve data using a knowledge agent
+      - name: Configure answer synthesis for an agent
+        href: search-agentic-retrieval-how-to-synthesize.md
+      - name: Retrieve data using an agent
         href: search-agentic-retrieval-how-to-retrieve.md
       - name: Build a retrieval pipeline
         href: search-agentic-retrieval-how-to-pipeline.md
+      - name: Migrate agentic retrieval code
+        href: search-agentic-retrieval-how-to-migrate.md
     - name: Vector search
       items:
       - name: Query vectors
@@ -451,7 +467,7 @@ items:
           href: search-query-fuzzy.md
     - name: Hybrid search
       href: hybrid-search-how-to-query.md
-  - name: Ranking and relevance
+  - name: Ranking
     items:
     - name: BM25 ranking
       items:
@@ -508,7 +524,7 @@ items:
       - name: Secure access to external data
         href: search-indexer-securing-resources.md
       - name: Configure a managed identity
-        href: search-howto-managed-identities-data-sources.md
+        href: search-how-to-managed-identities.md
       - name: Connect using a managed identity
         items:
         - name: Azure Storage
@@ -576,7 +592,7 @@ items:
     - name: Monitor queries
       href: search-monitor-queries.md
     - name: Monitor indexer-based indexing
-      href: search-howto-monitor-indexers.md
+      href: search-monitor-indexers.md
     - name: Visualize resource logs
       href: search-monitor-logs-powerbi.md
     - name: Performance analysis
@@ -585,8 +601,6 @@ items:
       href: search-performance-tips.md
   - name: Knowledge store
     items:
-    - name: Knowledge store overview
-      href: knowledge-store-concept-intro.md
     - name: Knowledge store projections overview
       href: knowledge-store-projection-overview.md
     - name: Create using REST

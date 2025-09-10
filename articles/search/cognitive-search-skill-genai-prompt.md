@@ -8,14 +8,14 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 07/28/2025
+ms.date: 08/27/2025
 ---
 
 # GenAI Prompt skill
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a Large Language Model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models. Use this capability to create new information that can be indexed and stored as searchable content.
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models. Use this capability to create new information that can be indexed and stored as searchable content.
 
 Here are some examples of how the GenAI prompt skill can help you create content:
 
@@ -24,7 +24,7 @@ Here are some examples of how the GenAI prompt skill can help you create content
 - Simplify complex content
 - Perform any other task that you can articulate in a prompt
 
-The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true) only. The skill supports text, image, and multimodal content such as a PDF that contains text and images. 
+The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/searchservice/skillsets/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). This skill supports text, image, and multimodal content, such as a PDF that contains text and images.
 
 > [!TIP]
 > It's common to use this skill combined with a data chunking skill. The following tutorials demonstrate image verbalization with two different data chunking techniques:
@@ -36,6 +36,8 @@ The GenAI Prompt skill is available in the [2025-05-01-preview REST API](/rest/a
 ## Supported models
 
 You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
+
+For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
 Billing is based on the pricing of the model you use.
 
@@ -51,7 +53,7 @@ Billing is based on the pricing of the model you use.
 
   - Provide this endpoint in the `Uri` parameter of your skill definition.
 
-- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-howto-managed-identities-data-sources.md) assigned to a role.
+- Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-how-to-managed-identities.md) assigned to a role.
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 

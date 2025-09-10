@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: changliu2
 ms.date: 07/16/2025
 ms.service: azure-ai-foundry

@@ -7,6 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 06/11/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
   - ignite-2024
@@ -46,7 +47,7 @@ To attach an Azure AI multi-service resource, you must provide connection inform
 
 Using the Azure portal or newer preview REST APIs and beta SDK packages, you can attach an Azure AI services multi-service resource using a managed identity and permissions. The advantage of this approach is that billing is keyless and has no dependency on regions.
 
-1. [Configure Azure AI Search to use a managed identity](search-howto-managed-identities-data-sources.md).
+1. [Configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md).
 
 1. On your Azure AI services multi-service resource, [assign the identity](/azure/role-based-access-control/role-assignments-portal) to the **Cognitive Services User** role.
 
@@ -179,7 +180,7 @@ Content-Type: application/json
 
 ### [**.NET SDK**](#tab/cogkey-csharp)
 
-The following code snippet is from [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/tutorial-ai-enrichment/v11/Program.cs), trimmed for brevity.
+The following code snippet is from [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/tutorial-ai-enrichment/tutorial-ai-enrichment/Program.cs), trimmed for brevity.
 
 ```csharp
 IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");

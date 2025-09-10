@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 3/10/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 The output file with complete captions is written to `caption.output.txt`. Intermediate results are shown in the console:

@@ -2,8 +2,8 @@
 title: Data and privacy for Speaker Recognition
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for the Speaker Recognition feature.
-author: HeidiHanZhang 
-ms.author: heidizh
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

@@ -3,7 +3,7 @@ title: Data loss prevention
 description: Azure AI services data loss prevention capabilities allow customers to configure the list of outbound URLs their Azure AI services resources are allowed to access. This configuration creates another level of control for customers to prevent data loss.
 author: gclarkmt
 ms.author: gregc
-ms.date: 5/19/2025
+ms.date: 09/09/2025
 ms.service: azure-ai-services
 ms.topic: how-to
 ms.custom:
@@ -19,6 +19,12 @@ Azure AI services data loss prevention capabilities allow customers to configure
 
 Before you make a request, you need an Azure account and an Azure AI services subscription. If you already have an account, go ahead and skip to the next section. If you don't have an account, we have a guide to get you set up in minutes: [Create an AI Foundry resource](multi-service-resource.md?pivots=azportal).
 
+## Access control guidance for Azure AI Services
+
+* You can limit inbound and outbound access to Azure OpenAI by implementing a [network security perimeter](/azure/private-link/network-security-perimeter-concepts). For additional information on how to implement a network security perimeter for Azure AI Services, see [Add network security perimeter (preview) to Azure OpenAI](../ai-foundry/openai/how-to/network-security-perimeter.md). For additional information on how to implement a network security perimeter for Azure AI Foundry-based projects, see [Add Azure AI Foundry to a network security perimeter (preview)](../ai-foundry/how-to/add-foundry-to-network-security-perimeter.md).
+
+* Define the permitted FQDNs for outbound connections from the AI services resource and apply egress controls accordingly using the information in this guide.
+
 ## Enabling data loss prevention
 
 There are two parts to enable data loss prevention. First, the resource property `restrictOutboundNetworkAccess` must be set to `true`. When this is set to true, you also need to provide the list of approved URLs. The list of URLs is added to the `allowedFqdnList` property. The `allowedFqdnList` property contains an array of comma-separated URLs.
@@ -26,7 +32,7 @@ There are two parts to enable data loss prevention. First, the resource property
 >[!NOTE]
 >
 > * The `allowedFqdnList`  property value supports a maximum of 1000 URLs.
-> * The property supports fully qualified domain names (i.e., `www.contoso.com`) as values.
+> * The property supports fully qualified domain names (for example `www.contoso.com`) as values.
 > * It can take up to 15 minutes for the updated list to take effect. 
 
 # [Azure CLI](#tab/azure-cli)
@@ -95,6 +101,7 @@ There are two parts to enable data loss prevention. First, the resource property
 The following services support data loss prevention configuration:
 
 * Azure OpenAI
+* Azure AI Foundry (Foundry-based projects)
 * Azure AI Vision
 * Content Moderator
 * Custom Vision

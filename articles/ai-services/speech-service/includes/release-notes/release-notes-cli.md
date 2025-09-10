@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/01/2024
-ms.author: eur
+ms.author: pafarley
 ---
 ### Speech CLI 1.45.0: 2025-June release
 Updated to use Speech SDK 1.45.0

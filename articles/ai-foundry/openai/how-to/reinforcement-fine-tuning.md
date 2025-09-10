@@ -4,7 +4,7 @@ description: Learn how to use reinforcement fine-tuning with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 05/11/2025
+ms.date: 08/29/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -188,6 +188,23 @@ Models which we're supporting as grader models are:
 
 To use a score model grader, the input is a list of chat messages, each containing a role, and content. The output of the grader will be truncated to the given range, and default to 0 for all non-numeric outputs.
 
+### Custom Code Grader
+
+Custom code  grader allows you to execute arbitrary python code to grade the model output. The grader expects a grade function to be present that takes in two arguments and outputs a float value. Any other result (exception, invalid float value, etc.) will be marked as invalid and return a 0 grade.
+
+```json
+{
+    "type": "python",
+    "source": "def grade(sample, item):\n    return 1.0",
+    "image_tag": "2025-05-08"
+}
+```
+***Technical Constraints:***
+	Your uploaded code must be less than 256kB. It will not have any network access.
+	The grading execution itself cannot exceed 2 minutes.
+	At runtime you will be given a limit of 2Gb of memory and 1Gb of disk space to use.
+	There's a limit of 1 CPU cores—any usage above this amount will result in throttling.
+
 ### Multi Grader
 
 A multigrader object combines the output of multiple graders to produce a single score.	
@@ -272,6 +289,19 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 }
 ```
 
+**Custom code grader** - This is python code grader where you can use any python code to grader the training output.
+
+The python libraries which are supported by custom code grader are 
+
+```json
+{
+"type": "python", 
+"image_tag": "alpha", 
+"source": "import json\nimport re\n\ndef extract_numbers_from_expression(expression: str):\n    return [int(num) for num in re.findall(r'-?\\d+', expression)]\n\ndef grade(sample, item) -> float:\n    expression_str = sample['output_json']['expression']\n    try:\n        math_expr_eval = eval(expression_str)\n    except Exception:\n        return 0\n    expr_nums_list = extract_numbers_from_expression(expression_str)\n    input_nums_list = [int(x) for x in json.loads(item['nums'])]\n    if sorted(expr_nums_list) != sorted(input_nums_list):\n        return 0\n    sample_result_int = int(sample['output_json']['result'])\n    item_result_int = int(item['target'])\n    if math_expr_eval != sample_result_int:\n        return 1\n    if sample_result_int == item_result_int:\n        return 5\n    if abs(sample_result_int - item_result_int) <= 1:\n        return 4\n    if abs(sample_result_int - item_result_int) <= 5:\n        return 3\n    return 2""
+	}
+```
+If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect.
+
 **Multi Grader** - A multigrader object combines the output of multiple graders to produce a single score.
 
 ```json
@@ -293,9 +323,6 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 "calculate_output":"0.5 * ext_text_similarity + 0.5 * clause_string_check"
 }
 ```
-
-> [!Note]
-> : Currently we don’t support `multi` with model grader as a sub grader. `Multi` grader is supported only with `text_Similarity` and `string_check`.
 
 Example of response format which is an optional field:
 

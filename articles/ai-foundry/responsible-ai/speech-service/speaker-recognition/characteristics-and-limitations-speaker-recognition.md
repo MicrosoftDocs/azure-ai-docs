@@ -2,8 +2,8 @@
 title: Characteristics and limitations of Speaker Recognition
 titleSuffix: Azure AI services
 description: Speaker Recognition, also known as voice recognition, is used to verify a speaker's identity by comparing the voice characteristics of incoming speech with their registered voice signatures. This article discusses the characteristics and limitations of the Speaker Recognition service in Azure.
-author: HeidiHanZhang
-ms.author: heidizh
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

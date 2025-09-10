@@ -11,6 +11,7 @@ ms.custom:
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Model complex data types in Azure AI Search

@@ -2,12 +2,11 @@
 title: Run AI Red Teaming Agent in the cloud (Azure AI Foundry SDK)
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to use the AI Red Teaming Agent to run an automated scan in the cloud of a Generative AI application with the Azure AI Foundry SDK.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 07/23/2025
+ms.date: 09/02/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -30,7 +29,7 @@ Though the AI Red Teaming Agent (preview) can be run [locally](run-scans-ai-red-
 First, install Azure AI Foundry SDK's project client, which runs the AI Red Teaming Agent in the cloud.
 
 ```python
-uv install azure-ai-projects azure-identity
+uv install azure-ai-projects==1.1.0b3 azure-identity
 ```
 
 > [!NOTE]
@@ -99,28 +98,28 @@ with AIProjectClient(
   credential=DefaultAzureCredential(exclude_interactive_browser_credential=False),
 ) as project_client:
 
-# Create target configuration for testing an Azure OpenAI model
-target_config = AzureOpenAIModelConfiguration(model_deployment_name=model_deployment_name)
+  # Create target configuration for testing an Azure OpenAI model
+  target_config = AzureOpenAIModelConfiguration(model_deployment_name=model_deployment_name)
 
-# Instantiate the AI Red Teaming Agent
-red_team_agent = RedTeam(
-    attack_strategies=[AttackStrategy.BASE64],
-    risk_categories=[RiskCategory.VIOLENCE],
-    display_name="red-team-cloud-run", 
-    target=target_config,
-)
+  # Instantiate the AI Red Teaming Agent
+  red_team_agent = RedTeam(
+      attack_strategies=[AttackStrategy.BASE64],
+      risk_categories=[RiskCategory.VIOLENCE],
+      display_name="red-team-cloud-run", 
+      target=target_config,
+  )
 
-# Create and run the red teaming scan
-# If you configured target using Option 1, use:
-# headers = {"model-endpoint": model_endpoint, "api-key": model_api_key}
-# If you configured target using Option 2, use:
-# headers = {}
+  # Create and run the red teaming scan
+  # If you configured target using Option 1, use:
+  # headers = {"model-endpoint": model_endpoint, "api-key": model_api_key}
+  # If you configured target using Option 2, use:
+  # headers = {}
 
-# Choose one of the following based on your configuration option:
-headers = {"model-endpoint": model_endpoint, "api-key": model_api_key}  # For Option 1
-# headers = {}  # For Option 2
+  # Choose one of the following based on your configuration option:
+  headers = {"model-endpoint": model_endpoint, "api-key": model_api_key}  # For Option 1
+  # headers = {}  # For Option 2
 
-red_team_response = project_client.red_teams.create(red_team=red_team_agent, headers=headers)
+  red_team_response = project_client.red_teams.create(red_team=red_team_agent, headers=headers)
 ```
 
 # [cURL](#tab/curl)

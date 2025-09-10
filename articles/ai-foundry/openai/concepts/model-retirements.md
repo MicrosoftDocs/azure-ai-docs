@@ -4,7 +4,7 @@ titleSuffix: Azure OpenAI
 description: Learn about model deprecations and retirements in Azure OpenAI.
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 07/16/2025
+ms.date: 09/08/2025
 ms.custom: 
 manager: nitinme
 author: mrbullwinkle
@@ -15,6 +15,16 @@ recommendations: false
 # Azure OpenAI in Azure AI Foundry model deprecations and retirements
 
 Azure OpenAI models are continually refreshed with newer and more capable models. As part of this process, we deprecate and retire older models. This article provides information about models that are currently available, deprecated, and retired.
+
+## Model availability
+
+For the availability of models, see the following information:
+
+- Generally Available (GA) model versions will be available for a minimum of 12 months.
+- After 12 months, existing customers may continue to use older model versions for an additional six months.
+- New customers who have never deployed the older model version will no longer have access after 12 months.
+- For global deployments, all future model versions starting with `gpt-4o` and `gpt-4 0409` will be available with their (`N`) next succeeding model (`N+1`) for comparison together.
+- Customers have 60 days to try out a new GA model in at least one global or standard region before any upgrades happen to a newer GA model.
 
 ### Terminology
 
@@ -48,14 +58,6 @@ Event types include:
 - `Service issue = Outages`. (We recommend this event type only if you want to be notified of outages.)
 
 If you want to receive SMS text-based alerts versus just emails, select **Create action group**. Then, under **Notification type**, select **Email/SMS message/Push/Voice** and configure your phone number.
-
-## Model availability
-
-For the availability of models, see the following information:
-
-- There is at least one year of model availability for GA models after the release date of a model in at least one region worldwide
-- For global deployments, all future model versions starting with `gpt-4o` and `gpt-4 0409` will be available with their (`N`) next succeeding model (`N+1`) for comparison together.
-- Customers have 60 days to try out a new GA model in at least one global or standard region before any upgrades happen to a newer GA model.  
 
 ### Considerations for Azure public cloud
 

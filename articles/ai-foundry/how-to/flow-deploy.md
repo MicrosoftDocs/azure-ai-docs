@@ -2,8 +2,8 @@
 title: Deploy a Flow as a Managed Online Endpoint for Real-Time Inference
 titleSuffix: Azure AI Foundry
 description: Learn how to deploy a flow as a managed online endpoint for real-time inference with Azure AI Foundry.
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.subservice: azure-ai-prompt-flow
 ms.custom:
   - ignite-2023
   - build-2024

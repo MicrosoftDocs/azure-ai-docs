@@ -2,8 +2,8 @@
 title: Transparency Note for Azure AI Language
 titleSuffix: Azure AI services
 description: The Transparency note discusses Azure AI Language and the key considerations for making use of this technology responsibly.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

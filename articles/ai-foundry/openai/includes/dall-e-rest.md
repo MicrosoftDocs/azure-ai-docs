@@ -128,7 +128,10 @@ Create a new Python file named _quickstart.py_. Open the new file in your prefer
 
     Wait a few moments to get the response.
 
-
+<!--
+#### [Black Forest Labs](#tab/bfl)
+tbd
+-->
 
 #### [DALL-E](#tab/dall-e-3)
 
@@ -232,5 +235,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).
+* Try examples in the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).
 * See the [API reference](../reference.md#image-generation)

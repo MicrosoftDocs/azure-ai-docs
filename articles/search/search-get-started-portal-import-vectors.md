@@ -5,7 +5,6 @@ description: Learn how to use a wizard to automate data chunking and vectorizati
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.custom:
   - build-2024
   - ignite-2024
@@ -75,7 +74,7 @@ Free search services support role-based connections to Azure AI Search. However,
 
 To configure the recommended role-based access:
 
-1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-howto-managed-identities-data-sources.md#create-a-system-managed-identity).
+1. On your search service, [enable roles](search-security-enable-roles.md) and [configure a system-assigned managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity).
 
 1. [Assign the following roles](search-security-rbac.md) to yourself:
 
