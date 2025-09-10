@@ -11,7 +11,7 @@ ms.date: 5/29/2025
 
 # Sora video generation (preview)
 
-Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions. The model is capable of generating a wide range of video content, including realistic scenes, animations, and special effects. Several video resolutions and durations are supported.
+Sora is an AI model from OpenAI that can create realistic and imaginative video scenes from text instructions and/or input images or video. The model is capable of generating a wide range of video content, including realistic scenes, animations, and special effects. Several video resolutions and durations are supported.
 
 ## Supported features
 
@@ -21,7 +21,7 @@ Sora can generate complex scenes with multiple characters, diverse motions, and 
 
 **Image to video**: Sora can generate video content from a still image. You can specify where in the generated video the image appears (it doesn't need to be the first frame) and which region of the image to use.
 
-
+**Video to video**: Sora can generate new video content from an existing video clip. You can specify where in the generated video the input video appears (it doesn't need to be the beginning).
 
 ## How it works
 
@@ -44,10 +44,12 @@ Sora has some technical limitations to be aware of:
 
 - Sora supports the following output resolution dimensions: 
 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
-- Sora supports video durations between 1 and 20 seconds.
+- Sora can produce videos between 1 and 20 seconds long.
 - You can request multiple video variants in a single job: for 1080p resolutions, this feature is disabled; for 720p, the maximum is two variants; for other resolutions, the maximum is four variants.
 - You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
 - Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
+- Up to two images can be used as input (the generated video interpolates content between them).
+- One video up to five seconds can be used as input.
 
 ## Responsible AI
 
