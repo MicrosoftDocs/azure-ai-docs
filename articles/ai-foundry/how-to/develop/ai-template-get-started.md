@@ -52,7 +52,7 @@ Available templates include:
 
 ::: moniker range="foundry"
 
-1. Sign in to [Azure AI Foundry portal]().
+1. Sign in to [Azure AI Foundry portal](https://aka.ms/nextgen-canary).
 1. On the top right, select **Discover**.
 1. On the left pane, select **Templates**.
 1. Select **Open in Github** to view the entire sample application.
