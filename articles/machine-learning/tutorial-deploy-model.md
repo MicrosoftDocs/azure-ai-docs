@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sehan
-ms.date: 09/13/2024
+ms.date: 09/10/2025
 ms.custom:
   - mlops
   - devx-track-python #add more custom tags
