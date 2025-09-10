@@ -11,6 +11,7 @@ ms.service: azure-ai-foundry
 
 # Azure AI Foundry status dashboard
 
+<!--
 The Azure AI Foundry Status Dashboard provides visibility into the
 health and availability of key Foundry services. It's intended to help
 customers monitor service status, stay informed about ongoing incidents,
@@ -65,3 +66,5 @@ please contact your support team or Customer Success representative.
 - [Azure AI Foundry documentation](/azure/ai-foundry/)
 - [Azure status history](https://status.azure.com/status)
 - [Azure Service Health](https://azure.microsoft.com/status/)
+
+-->
