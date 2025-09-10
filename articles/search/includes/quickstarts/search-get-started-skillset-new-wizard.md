@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 09/10/2025
 ---
 
 > [!IMPORTANT]
@@ -22,10 +22,10 @@ Before you run the wizard, you create a few resources and upload sample files.
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
 
-+ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. Choose the same region as Azure AI Search to avoid bandwidth charges. 
++ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. You can complete this quickstart without having to create an Azure AI services multi-service resource.
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. Therefore, you don't need to create an Azure AI services multi-service resource.
 
 ## Prepare sample data
 
@@ -51,7 +51,11 @@ To run the wizard:
 
 1. Select **Azure Blob Storage** for the data source.
 
+   :::image type="content" source="../../media/search-get-started-skillset/choose-data-source.png" alt-text="Screenshot of the Azure Blob Storage data source option in the Azure portal." border="true" lightbox="../../media/search-get-started-portal/choose-data-source.png":::
+
 1. Select **Keyword search**.
+
+   :::image type="content" source="../../media/search-get-started-portal/keyword-search-tile.png" alt-text="Screenshot of the keyword search tile in the Azure portal." border="true" lightbox="../../media/search-get-started-portal/keyword-search-tile.png":::
 
 ### Step 1: Create a data source
 
@@ -63,7 +67,9 @@ To create the data source:
 
 1. Select your storage account, and then select the container you created.
 
-1. Select **Next** to continue.
+   :::image type="content" source="../../media/search-get-started-skillset/connect-to-your-data.png" alt-text="Screenshot of the Connect to your data page in the Azure portal." border="true" lightbox="../../media/search-get-started-skillset/connect-to-your-data.png":::
+
+1. Select **Next**.
 
 If you get `Error detecting index schema from data source`, the indexer that powers the wizard can't connect to your data source. The data source most likely has security protections. Try the following solutions, and then rerun the wizard.
 
@@ -85,29 +91,29 @@ To add the skills:
 
 1. Select and save the following checkboxes:
 
-    + **Persons**
+   + **Persons**
 
-    + **Locations**
+   + **Locations**
 
-    + **Organizations**
+   + **Organizations**
 
-    :::image type="content" source="../../media/search-get-started-skillset/extract-entities.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-entities.png":::
+   :::image type="content" source="../../media/search-get-started-skillset/extract-entities.png" alt-text="Screenshot of the Extract entities options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-entities.png":::
 
 1. Select **Extract text from images**, and then select the gear icon.
 
 1. Select and save the following checkboxes:
 
-    + **Generate tags**
+   + **Generate tags**
 
-    + **Categorize content**
+   + **Categorize content**
 
-    :::image type="content" source="../../media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract text from images options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-text.png":::
+   :::image type="content" source="../../media/search-get-started-skillset/extract-text.png" alt-text="Screenshot of the Extract text from images options in the Azure portal." lightbox="../../media/search-get-started-skillset/extract-text.png":::
 
 1. Leave the **Use a free AI service (limited enrichments)** checkbox selected.
 
    The sample data consists of 14 files, so the free allotment of 20 transactions on Azure AI services is sufficient.
 
-1. Select **Next** to continue.
+1. Select **Next**.
 
 ### Step 3: Configure the index
 
@@ -127,19 +133,11 @@ For this quickstart, the wizard sets reasonable defaults:
   
   Marking a field as **Retrievable** doesn't mean that the field *must* be present in the search results. You can control search results composition by using the `select` query parameter to specify which fields to include.
       
-After you review the index schema, select **Next: Create an indexer** to continue.
+After you review the index schema, select **Next**.
 
 ### Step 4: Skip advanced settings
 
-The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Semantic ranking is enabled by default, so you must disable it.
-
-To skip this wizard step:
-
-1. On the **Advanced settings** page, deselect the **Enable semantic ranker** checkbox.
-
-1. Leave the indexing schedule as **Once**.
-
-1. Select **Next** to continue.
+The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
 
 ### Step 5: Review and create objects
 
@@ -147,7 +145,13 @@ The last step is to review your configuration and create the index, indexer, and
 
 To review and create the objects:
 
-1. Accept the default object name prefix.
+1. Accept the default **Objects name prefix**.
+
+1. Review the object configurations.
+
+   :::image type="content" source="../../media/search-get-started-skillset/review-and-create.png" alt-text="Screenshot of the object configuration page in the Azure portal." border="true" lightbox="../../media/search-get-started-skillset/review-and-create.png":::
+
+   AI enrichment, semantic ranker, and indexer scheduling are either disabled or set to their default values because you skipped their wizard steps.
 
 1. Select **Create** to simultaneously create the objects and run the indexer.
 

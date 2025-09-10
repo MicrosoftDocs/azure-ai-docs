@@ -10,8 +10,8 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/04/2025
-zone_pivot_groups: search-get-started-skillset
+ms.date: 09/10/2025
+zone_pivot_groups: azure-portal-wizards
 ---
 
 # Quickstart: Create a skillset in the Azure portal

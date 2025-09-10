@@ -1628,16 +1628,7 @@ groups:
   - id: bicep
     title: Bicep
 # Owner: haileytapia
-- id: search-get-started-portal
-  title: Azure portal wizards
-  prompt: Choose a wizard
-  pivots:
-  - id: import-and-vectorize-data
-    title: Import and vectorize data (recommended)
-  - id: import-data
-    title: Import data
-# Owner: haileytapia
-- id: search-get-started-skillset
+- id: azure-portal-wizards
   title: Azure portal wizards
   prompt: Choose a wizard
   pivots:

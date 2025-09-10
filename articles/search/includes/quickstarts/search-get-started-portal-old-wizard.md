@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 09/10/2025
 ---
 
 > [!IMPORTANT]
@@ -19,8 +19,6 @@ The wizard creates multiple objects on your search service, including a searchab
 + An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
-
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
 ### Check for network access
 
@@ -64,21 +62,13 @@ To connect to the sample data:
 
 1. Select **hotels-sample** from the list of built-in samples.
 
-1. Select **Next: Add cognitive skills (Optional)** to continue.
+1. Select **Next: Add cognitive skills (Optional)**.
 
    :::image type="content" source="../../media/search-get-started-portal/import-hotels-sample.png" alt-text="Screenshot that shows how to select the hotels-sample data source in the Import data wizard." lightbox="../../media/search-get-started-portal/import-hotels-sample.png":::
 
 ### Skip configuration for skills
 
-Although the wizard supports skillset creation and [AI enrichment](../../cognitive-search-concept-intro.md) during indexing, skills are beyond the scope of this quickstart.
-
-To skip this wizard step:
-
-1. On the **Add cognitive skills** page, ignore the AI enrichment configuration options.
-
-1. Select **Next: Customize target index** to continue.
-
-   :::image type="content" source="../../media/search-get-started-portal/skip-cognitive-skills.png" alt-text="Screenshot that shows how to Skip to the Customize target index tab in the Import data wizard." lightbox="../../media/search-get-started-portal/skip-cognitive-skills.png":::
+The wizard supports skillset creation and [AI enrichment](../../cognitive-search-concept-intro.md) during indexing, which are beyond the scope of this quickstart. Skip this step by selecting **Next: Customize target index**.
 
 > [!TIP]
 > For a similar walkthrough that focuses on AI enrichment, see [Quickstart: Create a skillset in the Azure portal](../../search-get-started-skillset.md).
@@ -93,7 +83,7 @@ To configure the index:
 
 1. Accept the system-generated values for all field attributes.
 
-1. Select **Next: Create an indexer** to continue.
+1. Select **Next: Create an indexer**.
 
    :::image type="content" source="../../media/search-get-started-portal/hotels-sample-generated-index.png" alt-text="Screenshot that shows the generated index definition for the hotels-sample data source in the Import data wizard." lightbox="../../media/search-get-started-portal/hotels-sample-generated-index.png":::
 
@@ -121,7 +111,7 @@ To configure and run the indexer:
 
 1. Accept the system-generated value for the indexer name (**hotels-sample-indexer**).
 
-1. Use the default schedule option to run the indexer once and immediately. The sample data is static, so you can't enable change tracking.
+1. Accept the default schedule option to run the indexer once and immediately. The sample data is static, so you can't enable change tracking.
 
 1. Select **Submit** to simultaneously create and run the indexer.
 

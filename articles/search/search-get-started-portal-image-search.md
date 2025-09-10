@@ -183,7 +183,7 @@ To start the wizard for multimodal search:
 
 1. On the **Overview** page, select **Import and vectorize data**.
 
-   :::image type="content" source="media/search-get-started-portal-import-vectors/command-bar.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-import-data-portal/import-vectorize-data-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 

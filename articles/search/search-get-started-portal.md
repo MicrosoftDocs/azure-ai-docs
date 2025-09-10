@@ -7,12 +7,12 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 09/08/2025
+ms.date: 09/10/2025
 ms.custom:
   - mode-ui
   - ignite-2023
   - ignite-2024
-zone_pivot_groups: search-get-started-portal
+zone_pivot_groups: azure-portal-wizards
 ---
 
 # Quickstart: Create a search index in the Azure portal

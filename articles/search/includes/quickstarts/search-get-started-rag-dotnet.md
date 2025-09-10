@@ -58,7 +58,7 @@ A search index provides grounding data for the chat model. We recommend the hote
 
 1. In the Azure portal, [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** home page, select [**Import data**](../../search-get-started-portal.md) to start the wizard.
+1. On the **Overview** page, select [**Import data**](../../search-get-started-portal.md) to start the wizard.
 
 1. On the **Connect to your data** page, select **Samples** from the dropdown list.
 

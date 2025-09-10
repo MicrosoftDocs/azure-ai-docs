@@ -54,7 +54,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Import and vectorize data wizard** to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
+You can use either the **Import data** wizard or **Import and vectorize data** wizardto automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 

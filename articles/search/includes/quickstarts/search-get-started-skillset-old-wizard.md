@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 09/10/2025
 ---
 
 > [!IMPORTANT]
@@ -22,10 +22,10 @@ Before you run the wizard, you create a few resources and upload sample files.
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
 
-+ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. Choose the same region as Azure AI Search to avoid bandwidth charges. 
++ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI transformations. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. You can complete this quickstart without having to create an Azure AI services multi-service resource.
+> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. Therefore, you don't need to create an Azure AI services multi-service resource.
 
 ## Prepare sample data
 
@@ -61,9 +61,9 @@ To create the data source:
 
 1. Enter a name for the data source.
 
-1. Select **Next: Add cognitive skills (Optional)** to continue.
-
    :::image type="content" source="../../media/search-get-started-skillset/blob-datasource.png" alt-text="Screenshot of the data source definition page." border="true" lightbox="../../media/search-get-started-skillset/blob-datasource.png":::
+
+1. Select **Next: Add cognitive skills (Optional)**.
 
 If you get `Error detecting index schema from data source`, the indexer that powers the wizard can't connect to your data source. The data source most likely has security protections. Try the following solutions, and then rerun the wizard.
 
@@ -109,7 +109,7 @@ To add the skills:
 
    :::image type="content" source="../../media/search-get-started-skillset/skillset.png" alt-text="Screenshot of the skillset definition page." border="true" lightbox="../../media/search-get-started-skillset/skillset.png":::
 
-1. Select **Next: Customer target index** to continue.
+1. Select **Next: Customer target index**.
 
 ### Step 3: Configure the index
 
@@ -127,7 +127,7 @@ For this quickstart, the wizard sets reasonable defaults:
 
   Marking a field as **Retrievable** doesn't mean that the field *must* be present in the search results. You can control search results composition by using the `select` query parameter to specify which fields to include.
       
-After you review the index schema, select **Next: Create an indexer** to continue.
+After you review the index schema, select **Next: Create an indexer**.
 
 ### Step 4: Configure the indexer
 
@@ -135,7 +135,9 @@ The indexer drives the indexing process and specifies the data source name, a ta
 
 To configure the indexer:
 
-1. On the **Create an indexer** page, accept the default name and select **Once**. 
+1. On the **Create an indexer** page, accept the default name.
+
+1. Select **Once** for the schedule.
 
    :::image type="content" source="../../media/search-get-started-skillset/indexer-def.png" alt-text="Screenshot of the indexer definition page." border="true" lightbox="../../media/search-get-started-skillset/indexer-def.png":::
 

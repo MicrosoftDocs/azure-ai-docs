@@ -136,13 +136,17 @@ In this step, specify the data source, index, and indexer.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::
 
-1. Start the **Import data** wizard to create the index and indexer.
+1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the Overview page, select **Import data**.
-   1. Select the data source you just created, and select **Next**.
-   1. Skip the **Add cognitive skills (Optional)** page.
-   1. On **Customize target index**, name the index, set the key to your primary key in the table, and then group select *Retrievable* and *Searchable* for all fields, and optionally add *Filterable* and *Sortable* for short strings or numeric values.
-   1. On **Create an indexer**, name the indexer and select **Submit**.
+   1. On the **Overview** page, select **Import data** or **Import and vectorize data**.
+
+   1. Select the data source you just created.
+
+   1. Skip the step for adding AI enrichments.
+
+   1. Name the index, set the key to your primary key in the table, attribute all fields as **Retrievable** and **Searchable**, and optionally add **Filterable** and **Sortable** for short strings or numeric values.
+
+   1. Name the indexer and finish the wizard to create the necessary objects.
 
 ### [**REST**](#tab/test-sql)
 

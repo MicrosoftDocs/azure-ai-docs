@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/09/2025
+ms.date: 09/10/2025
 ---
 
 > [!IMPORTANT]
@@ -20,9 +20,7 @@ The wizard creates multiple objects on your search service, including a searchab
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
 
-+ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. Access tiers can be hot, cool, or cold.
-
-+ Familiarity with the wizard. See [Import data wizards in the Azure portal](../../search-import-data-portal.md).
++ An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage or Azure Data Lake Storage Gen2 (storage account with a hierarchical namespace) on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 
 ### Check for network access
 
@@ -38,7 +36,7 @@ On the **Overview** page, select **Usage** to see how many indexes, indexers, an
 
 ## Prepare sample data
 
-This quickstart uses five JSON documents about ficticious hotels, but you can also use your own files.
+This quickstart uses a JSON document that contains metadata for 50 ficticious hotels, but you can also use your own files.
 
 To prepare the sample data for this quickstart:
 
@@ -48,7 +46,7 @@ To prepare the sample data for this quickstart:
 
 1. Create a container named **hotels-sample**.
 
-1. Upload the [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) to the container.
+1. Upload the [sample JSON document](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) to the container.
 
 ## Start the wizard
 
@@ -66,15 +64,17 @@ To start the wizard for this quickstart:
 
 1. Select **Keyword search**.
 
+   :::image type="content" source="../../media/search-get-started-portal/keyword-search-tile.png" alt-text="Screenshot of the keyword search tile in the Azure portal." border="true" lightbox="../../media/search-get-started-portal/keyword-search-tile.png":::
+
 ## Create and load a search index
 
 In this section, you create and load an index in five steps:
 
 1. [Connect to a data source](#connect-to-a-data-source)
 1. [Skip configuration for skills](#skip-configuration-for-skills)
-1. [Preview index mappings](#preview-index-mappings)
+1. [Configure the index](#configure-the-index)
 1. [Skip advanced settings](#skip-advanced-settings)
-1. [Review and create objects](#review-and-create-objects)
+1. [Review and create the objects](#review-and-create-the-objects)
 
 ### Connect to a data source
 
@@ -86,30 +86,28 @@ To connect to the sample data:
 
 1. Select your storage account, and then select the **hotels-sample** container.
 
-1. Select **Next** to continue.
+1. Select **JSON array** for the parsing mode.
+
+   :::image type="content" source="../../media/search-get-started-portal/connect-to-your-data.png" alt-text="Screenshot of the Connect to your data page in the Azure portal." lightbox="../../media/search-get-started-portal/connect-to-your-data.png":::
+
+1. Select **Next**.
 
 ### Skip configuration for skills
 
-Although the wizard supports skillset creation and [AI enrichment](../../cognitive-search-concept-intro.md) during indexing, skills are beyond the scope of this quickstart.
-
-To skip this wizard step:
-
-1. On the **Apply AI enrichments** page, ignore the configuration options.
-
-1. Select **Next** to continue.
+The wizard supports skillset creation and [AI enrichment](../../cognitive-search-concept-intro.md) during indexing, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
 
 > [!TIP]
 > For a similar walkthrough that focuses on AI enrichment, see [Quickstart: Create a skillset in the Azure portal](../../search-get-started-skillset.md).
 
-### Preview index mappings
+### Configure the index
 
 Based on the structure and content of the sample hotel data, the wizard infers a schema for your search index.
 
-To preview the index mappings:
+To configure the index:
 
 1. Review the system-generated index fields (**content**, **title**, and **id**).
 
-1. Select **Next** to continue.
+1. Select **Next**.
 
 At a minimum, the index requires a name and a collection of fields. The wizard scans for unique string fields and marks one as the document key, which uniquely identifies each document in the index.
 
@@ -129,22 +127,20 @@ If you want autocomplete or suggested queries, specify language **Analyzers** or
 
 ### Skip advanced settings
 
-The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Semantic ranking is enabled by default, so you must disable it.
+The wizard offers advanced settings for semantic ranking and index scheduling, which are beyond the scope of this quickstart. Skip this step by selecting **Next**.
 
-To skip this wizard step:
-
-1. On the **Advanced settings** page, deselect the **Enable semantic ranker** checkbox.
-
-1. Leave the indexing schedule as **Once**.
-
-1. Select **Next** to continue.
-
-### Review and create objects
+### Review and create the objects
 
 The last step is to review your configuration and create the index, indexer, and data source on your search service. The indexer automates the process of extracting content from your data source and loading it into the index, enabling keyword search.
 
 To review and create the objects:
 
 1. Change the object name prefix to **hotels-sample**.
+
+1. Review the object configurations.
+
+   :::image type="content" source="../../media/search-get-started-portal/review-and-create.png" alt-text="Screenshot of the object configuration page in the Azure portal." lightbox="../../media/search-get-started-portal/review-and-create.png":::
+
+   AI enrichment, semantic ranker, and indexer scheduling are either disabled or set to their default values because you skipped their wizard steps.
 
 1. Select **Create** to simultaneously create the objects and run the indexer.
