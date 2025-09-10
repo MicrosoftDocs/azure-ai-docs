@@ -46,7 +46,7 @@ To prepare the sample data for this quickstart:
 
 1. Create a container named **hotels-sample**.
 
-1. Upload the [sample JSON document](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/hotels/hotel-json-documents) to the container.
+1. Upload the [sample JSON document](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureBlobs.json) to the container.
 
 ## Start the wizard
 
@@ -105,7 +105,9 @@ Based on the structure and content of the sample hotel data, the wizard infers a
 
 To configure the index:
 
-1. Review the system-generated index fields (**content**, **title**, and **id**).
+1. Make the following field attributions.
+
+   PLACEHOLDER
 
 1. Select **Next**.
 
