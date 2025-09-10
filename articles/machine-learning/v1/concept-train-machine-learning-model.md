@@ -4,8 +4,8 @@ titleSuffix: Azure Machine Learning
 description: Learn how to train models with Azure Machine Learning (v1). Explore the different training methods and choose the right one for your project.
 services: machine-learning
 ms.service: azure-machine-learning
-author: manashgoswami
-ms.author: manashg
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ssalgado
 ms.subservice: core
 ms.topic: concept-article
