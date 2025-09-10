@@ -78,7 +78,7 @@ In this section, you create and load an index in five steps:
 
 ### Connect to a data source
 
-Azure AI Search requires a connection to a data source for content ingestion and indexing. In this case, the data source is sample hotel data in your Azure Storage account.
+Azure AI Search requires a connection to a data source for content ingestion and indexing. In this case, the data source is your Azure Storage account.
 
 To connect to the sample data:
 
