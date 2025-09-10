@@ -6,6 +6,7 @@ ms.topic: how-to
 ms.date: 07/21/2025
 ms.author: sgilley
 ms.reviewer: deeikele
+ms.service: azure-ai-foundry
 ---
 
 
