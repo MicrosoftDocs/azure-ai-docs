@@ -199,6 +199,11 @@ Custom code  grader allows you to execute arbitrary python code to grade the mod
     "image_tag": "2025-05-08"
 }
 ```
+***Technical Constraints:***
+	Your uploaded code must be less than 256kB. It will not have any network access.
+	The grading execution itself cannot exceed 2 minutes.
+	At runtime you will be given a limit of 2Gb of memory and 1Gb of disk space to use.
+	There's a limit of 1 CPU cores—any usage above this amount will result in throttling.
 
 ### Multi Grader
 
@@ -295,7 +300,7 @@ The python libraries which are supported by custom code grader are
 "source": "import json\nimport re\n\ndef extract_numbers_from_expression(expression: str):\n    return [int(num) for num in re.findall(r'-?\\d+', expression)]\n\ndef grade(sample, item) -> float:\n    expression_str = sample['output_json']['expression']\n    try:\n        math_expr_eval = eval(expression_str)\n    except Exception:\n        return 0\n    expr_nums_list = extract_numbers_from_expression(expression_str)\n    input_nums_list = [int(x) for x in json.loads(item['nums'])]\n    if sorted(expr_nums_list) != sorted(input_nums_list):\n        return 0\n    sample_result_int = int(sample['output_json']['result'])\n    item_result_int = int(item['target'])\n    if math_expr_eval != sample_result_int:\n        return 1\n    if sample_result_int == item_result_int:\n        return 5\n    if abs(sample_result_int - item_result_int) <= 1:\n        return 4\n    if abs(sample_result_int - item_result_int) <= 5:\n        return 3\n    return 2""
 	}
 ```
-If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect
+If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect.
 
 **Multi Grader** - A multigrader object combines the output of multiple graders to produce a single score.
 
