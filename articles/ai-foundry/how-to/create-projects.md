@@ -176,7 +176,7 @@ In addition, many resources are only accessible by users in your project workspa
 
 ## Delete projects
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
+1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
 
 1. Select **Management center**.
 1. Select **Overview** under the **Hub** section.

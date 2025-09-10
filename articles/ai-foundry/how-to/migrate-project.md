@@ -88,7 +88,7 @@ Most Azure AI Foundry users already have an 'AI Foundry' (formerly called 'AI Se
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1.  In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+1.  In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 1.  In the left pane, select **Management center**.
 1.  Select **Connected resources** under the **Hub** section.
 1.  Find the **AI Foundry models** connection, and select the link to view its details.
@@ -216,7 +216,7 @@ There are some reasons you might want to keep hubs and [!INCLUDE [hub-project-na
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
+1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]. 
 
 1. Select **Management center**.
 1. Select **Overview** under the **Hub** section.
