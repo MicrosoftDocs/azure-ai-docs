@@ -407,6 +407,37 @@ var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, a
 
 For a complete code sample with the Speech SDK, see [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L714).
 
+## Using live interpreter (Public Preview) for realtime speech-to-speech translation with personal voice
+
+Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. 
+
+To use the live interpreter API, please first apply for personal voice access [here](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the following regions supported by the Public Preview: 
+- West US 2
+- East US
+- Sewden Central
+- West Europe
+- Southeast Asia
+- Japan East
+
+After the granting of personal voice access permission, you can enable live interpreter with the following code: 
+
+```csharp
+// Please replace the service region with your region
+var v2EndpointInString = String.Format("wss://{0}.stt.speech.microsoft.com/speech/universal/v2", "YourRegion");
+var v2EndpointUrl = new Uri(v2EndpointInString);
+
+// Creates an instance of a speech translation config with specified subscription key and service region.
+// Please replace the service subscription key with your subscription key
+var config = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSubscriptionKey");
+
+// Translation target language and enable personal voice
+config.AddTargetLanguage("fr");
+config.VoiceName("personal-voice");
+
+// You don't need to define any candidate languages to detect.
+var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromOpenRange();
+```
+
 ## Using custom translation in speech translation
 The custom translation feature in speech translation seamlessly integrates with the Azure Custom Translation service, allowing you to achieve more accurate and tailored translations. As the integration directly harnesses the capabilities of the Azure custom translation service, you need to use a multi-service resource to ensure the correct functioning of the complete set of features. For detailed instructions, please consult the guide on [Create a multi-service resource for Azure AI services](/azure/ai-services/multi-service-resource?tabs=windows&pivots=azportal).
 
