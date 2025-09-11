@@ -407,7 +407,7 @@ var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, a
 
 For a complete code sample with the Speech SDK, see [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L714).
 
-## Using live interpreter (Public Preview) for realtime speech-to-speech translation with personal voice
+## Using live interpreter (preview) for realtime speech-to-speech translation with personal voice
 
 Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. 
 
