@@ -2,16 +2,15 @@
 title: Search over JSON blobs
 titleSuffix: Azure AI Search
 description: Extract searchable text from JSON blobs using the blob indexer in Azure AI Search. Indexers provide indexing automation for supported data sources like Azure Blob Storage.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-
 ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/16/2025
+ms.date: 07/25/2025
+ms.update-cycle: 365-days
 ---
 
 # Index JSON blobs and files in Azure AI Search

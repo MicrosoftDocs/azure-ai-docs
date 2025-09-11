@@ -28,8 +28,8 @@ Model evaluation is triggered automatically after training is completed successf
 ## Prerequisites
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor)
-* **A project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](../../../../ai-foundry/how-to/create-projects.md)
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* **A project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](../../../../ai-foundry/how-to/create-projects.md).
 * [**Your labeled utterances**](tag-utterances.md) tagged for your fine tuning task.
 
 
@@ -54,9 +54,10 @@ We recommend that you introduce casing and punctuation diversity in the training
 
 ## Data splitting
 
-Before you start the training process, labeled utterances in your project are divided into a training set and a testing set. Each one of them serves a different function.
-The **training set** is used in training the model, the set from which the model learns the labeled utterances.
-The **testing set** is a blind set that isn't introduced to the model during training but only during evaluation.
+Before you start the training process, labeled utterances in your project are divided into a training set and a testing set. Each one of them serves a different function:
+
+* The **training set** is used in training the model, the set from which the model learns the labeled utterances.
+* The **testing set** is a blind set that isn't introduced to the model during training but only during evaluation.
 
 After the model is trained successfully, the model can be used to make predictions from the utterances in the testing set. These predictions are used to calculate [evaluation metrics](../concepts/evaluation-metrics.md).
 We recommend that you make sure that all your intents and entities are adequately represented in both the training and testing set.
@@ -103,7 +104,9 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 
    :::image type="content" source="../media/select-project.png" alt-text="Screenshot of conversational language understanding tab in the Azure AI Foundry.":::
 
-1. In **Create CLU fine tuning task** window, complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
+1. In **Create CLU fine tuning task** window, select your **Connected service** from the drop-down menu, then complete the **Name** and **Language** fields. If you're using the free **Standard Training** mode, select **English** for the language field.
+
+1. Select the  **Create** button. It may take a few minutes for the create operation to complete.
 
     > [!NOTE]
     >

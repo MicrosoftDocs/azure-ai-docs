@@ -2,7 +2,6 @@
 title: Create a vector index
 titleSuffix: Azure AI Search
 description: Create or update a search index to include vector fields.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -10,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 07/07/2025
+ms.date: 08/28/2025
 ---
 
 # Create a vector index
@@ -327,7 +326,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    + `stored` can be true or false. It determines whether an extra copy of vectors is stored for retrieval. For more information, see [Reduce vector size](vector-search-how-to-storage-options.md).
    + `filterable`, `facetable`, and `sortable` must be false.
 
-1. Add filterable nonvector fields to the collection, such as `title` with `filterable` set to true, if you want to invoke [prefiltering or postfiltering](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
+1. Add filterable nonvector fields to the collection, such as `title` with `filterable` set to true, if you want to invoke [prefiltering, postfiltering, or strict postfiltering (preview)](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
 
 1. Add other fields that define the substance and structure of the textual content you're indexing. At a minimum, you need a document key.
 
@@ -437,7 +436,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    + `stored` is a new boolean property that applies to vector fields only. True stores a copy of vectors returned in search results. False discards that copy during indexing. You can search on vectors, but you can't return vectors in results.
    + `filterable`, `facetable`, and `sortable` must be false.
 
-1. Add filterable nonvector fields to the collection, such as "title" with `filterable` set to true, if you want to invoke [prefiltering or postfiltering](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
+1. Add filterable nonvector fields to the collection, such as "title" with `filterable` set to true, if you want to invoke [prefiltering, postfiltering, or strict postfiltering (preview)](vector-search-filters.md) on the [vector query](vector-search-how-to-query.md).
 
 1. Add other fields that define the substance and structure of the textual content you're indexing. At a minimum, you need a document key.
 

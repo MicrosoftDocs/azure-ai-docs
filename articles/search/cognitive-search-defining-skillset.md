@@ -7,6 +7,7 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 05/08/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
   - sfi-ropc-nochange
@@ -30,7 +31,7 @@ Rules for skillset definition include:
 Indexers drive skillset execution. You need an [indexer](search-howto-create-indexers.md), [data source](search-data-sources-gallery.md), and [index](search-what-is-an-index.md) before you can test your skillset.
 
 > [!TIP]
-> Enable [enrichment caching](cognitive-search-incremental-indexing-conceptual.md) to reuse the content you've already processed and lower the cost of development.
+> Enable [enrichment caching](enrichment-cache-how-to-configure.md) to reuse the content you've already processed and lower the cost of development.
 
 ## Add a skillset definition
 

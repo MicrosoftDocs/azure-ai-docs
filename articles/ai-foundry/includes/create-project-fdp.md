@@ -181,6 +181,19 @@ az cognitiveservices account connection show --name {my_project_name} --resource
 
 ---
 
+## Delete projects
+
+1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
+1. Select **Management center**.
+1. Select **Overview** under the **Resource** section.
+1. Select any projects you no longer want to keep.
+1. Select **Delete project**.
+
+To delete the AI Foundry resource along with all its projects:
+
+1. From the Management center, select the resource name from the Overview section to go to Azure portal.
+1. From Azure portal, select **Delete** to delete the resource and all its associated projects. 
+
 ## Related content
 
 - [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=fdp-project)

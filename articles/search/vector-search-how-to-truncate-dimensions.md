@@ -2,7 +2,6 @@
 title: Truncate dimensions
 titleSuffix: Azure AI Search
 description: Truncate dimensions on text-embedding-3 models using Matryoshka Representation Learning (MRL) compression.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search

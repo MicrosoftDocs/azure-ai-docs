@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: None
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.date: 10/21/2021
 ms.topic: how-to
 ms.custom: UpdateFrequency5, sdkv1

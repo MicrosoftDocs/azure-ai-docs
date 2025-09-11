@@ -1,8 +1,8 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 The Speech service phone set for `ja-JP` is based on the native phone [Kana](https://en.wikipedia.org/wiki/Kana) set.

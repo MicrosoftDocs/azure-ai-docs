@@ -1,63 +1,79 @@
 ---
-title: 'How to connect to Model Context Protocol Server Endpoint in Azure AI Foundry Agent Service'
+title: Connect to a Model Context Protocol Server Endpoint in Azure AI Foundry Agent Service (Preview)
 titleSuffix: Azure AI Foundry
-description: Learn how to add MCP to Foundry Agent service.
+description: Learn how to add MCP servers to Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 09/04/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
 ---
-# Connect to Model Context Protocol (MCP) Servers (Preview)
-You can extend the capabilities of your Foundry Agent by connecting it to tools hosted on remote Model Context Protocol (MCP) servers (bring your own MCP server endpoint). These servers are maintained by developers and organizations and expose tools that can be accessed by MCP-compatible clients, such as the Foundry Agent service.
 
-[Model Context Protocol](https://modelcontextprotocol.io/introduction) (MCP) is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+# Connect to Model Context Protocol servers (preview)
 
-> [!IMPORTANT]
-> * Your use of connected non-Microsoft services is subject to the terms between you and the service provider.  By connecting to a non-Microsoft service, some of your data, such as prompt content, is passed to the non-Microsoft service, and/or your application might receive data from the non-Microsoft service. You are responsible for your use (and any charges associated with your use) of non-Microsoft services and data.
-> * The remote MCP servers you decide to use with this MCP tool were created by third parties, not Microsoft, and have not been tested or verified by Microsoft. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers. We recommend carefully reviewing and tracking what MCP servers you add to Foundry Agent service and relying on servers hosted by trusted service providers themselves rather than proxies. This MCP tool also allows you to pass custom headers such as authentication keys or schema as might be needed by a remote MCP server. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
+> [!NOTE]
+> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
+
+You can extend the capabilities of your Azure AI Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Azure AI Foundry Agent Service, can access.
+
+MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
+
+## Considerations for using non-Microsoft services and servers
+
+Your use of connected non-Microsoft services is subject to the terms between you and the service provider. When you connect to a non-Microsoft service, some of your data (such as prompt content) is passed to the non-Microsoft service, or your application might receive data from the non-Microsoft service. You're responsible for your use of non-Microsoft services and data, along with any charges associated with that use.
+
+The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. Microsoft has no responsibility to you or others in relation to your use of any remote MCP servers.
+
+We recommend that you carefully review and track what MCP servers you add to Foundry Agent Service. We also recommend that you rely on servers hosted by trusted service providers themselves rather than proxies.
+
+The MCP tool allows you to pass custom headers, such as authentication keys or schemas, that a remote MCP server might need. We recommend that you review all data that's shared with remote MCP servers and that you log the data for auditing purposes. Be cognizant of non-Microsoft practices for retention and location of data.
 
 ## How it works
-You can bring multiple remote MCP servers to Foundry Agent service by adding them as tools. For each tool, you need to provide a unique `server_label` within the same agent and `server_url` that points to the remote MCP server. The MCP tool supports custom headers, allowing you to connect to these servers using the authentication scheme they require or passing other headers required by the MCP server. You can only specify headers by including in `tool_resources` at each run such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the authorization header. For more information on using MCP, see:
-* [Security best practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices)
-* [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667)
 
-> [!Note]
-> * You need to bring a remote MCP server (an existing MCP server endpoint)
-> * With current MCP tool in Foundry Agent, approval is required by default. Please review carefully what MCP server(s) you added to Foundry Agent service. We recommend reviewing all data being shared with remote MCP servers and optionally logging it for auditing purposes.
-> * Supported regions: `westus`, `westus2`, `uaenorth`, `southindia` and `switzerlandnorth`
-> * The MCP tool supports custom headers for a specific run, allowing you to pass headers as needed by MCP server, such as authentication schema. Headers you pass in will only be available for the current run and will not be persisted.
+You need to bring a remote MCP server (an existing MCP server endpoint) to Foundry Agent Service. You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `server_label` value within the same agent and a `server_url` value that points to the remote MCP server. Be sure to carefully review which MCP servers you add to Foundry Agent Service.
+
+The MCP tool supports custom headers, so you can connect to the MCP servers by using the authentication schemas that they require or by passing other headers that the MCP servers require. You can specify headers only by including them in `tool_resources` at each run. In this way, you can put API keys, OAuth access tokens, or other credentials directly in your request.
+
+The most commonly used header is the authorization header. Headers that you pass in are available only for the current run and aren't persisted.
+
+For more information on using MCP, see:
+
+* [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
+* [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
+|Azure AI foundry support  | Python SDK |  C# SDK | JavaScript SDK | REST API |Basic agent setup | Standard agent setup |
 |:---------:|:---------:|:---------:|:---------:|:---------:|:---------:|---------:|
 | - | ✔️ | - | - | ✔️ | ✔️ | ✔️ |
 
-## Setup  
-1. Create an Azure AI Foundry Agent by following the steps in the [quickstart](../../quickstart.md).
+## Setup
 
-1. Find the remote MCP server you want to connect to, such as GitHub MCP Server. Create or update a Foundry Agent with a `mcp` tool with the following information:
-   1. `server_url`: the url of the MCP server, for example, `https://api.githubcopilot.com/mcp/`
-   2. `server_label`: a unique identifier of this MCP server to the agent, for example, `github`
-   3. `allowed_tools`: optional, specify the tools that this agent can have access to and use.
+1. Create an Azure AI Foundry agent by following the steps in the [quickstart](../../quickstart.md).
+
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an `mcp` tool with the following information:
+
+   1. `server_url`: The URL of the MCP server; for example, `https://api.githubcopilot.com/mcp/`.
+   2. `server_label`: A unique identifier of this MCP server to the agent; for example, `github`.
+   3. `allowed_tools`: An optional list of tools that this agent can access and use.
   
-1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers
-   1. `tool_label`: use the identifier you provided during create/update agent
-   2. `headers`: pass a set of headers required by the MCP server
-   3. `require_approval`: optional, if not provided, `always` is the default value, meaning each time developer needs to approve before calling. Supported values:
-      1. `always` by default
-      2. `never` meaning no approval is required
-      3. `{"never":[<tool_name_1>, <tool_name_2>]}` you can also provide a list of tools without required approval
-      4. `{"always":[<tool_name_1>, <tool_name_2>]}` you can provide a list of tools with required approval
+1. Create a run and pass additional information about the `mcp` tool in `tool_resources` with headers:
 
-1. If the model is trying to invoke a tool in your MCP server with approval required, you will get Run status as `require_action`. Within `require_action` field, you can get more details on which tool in MCP server to be called, argument(s) to be passed and `call_id`. Make sur eyou review the tool, argument(s) and make an informed decision for approval. 
+   1. `tool_label`: Use the identifier that you provided when you created the agent.
+   2. `headers`: Pass a set of headers that the MCP server requires.
+   3. `require_approval`: Optionally determine whether approval is required. Supported values are:
+      * `always`: A developer needs to provide approval for every call. If you don't provide a value, this one is the default.
+      * `never`: No approval is required.
+      * `{"never":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that don't require approval.
+      * `{"always":[<tool_name_1>, <tool_name_2>]}`: You provide a list of tools that require approval.
 
-1. Submit your approval to the agent with `call_id` by setting `approve` to `true.
+1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `requires_action`. In the `requires_action` field, you can get more details on which tool in the MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
 
-## Next steps
+1. Submit your approval to the agent with `call_id` by setting `approve` to `true`.
 
-* [How to use the MCP tool](./model-context-protocol-samples.md)
+## Related content
+
+* [Code samples for the Model Context Protocol tool](./model-context-protocol-samples.md)

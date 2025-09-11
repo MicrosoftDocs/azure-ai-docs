@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.topic:  how-to
 ms.reviewer: None
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.date: 5/16/2023
 ms.custom: responsible-ml, build-2023
 ---
@@ -34,7 +34,6 @@ Responsible AI image dashboards are linked to your registered computer vision mo
 
   - [The Azure Machine Learning studio UI](how-to-responsible-ai-insights-ui.md)
   - [YAML and Python via a pipeline job](how-to-responsible-ai-insights-sdk-cli.md)
-  - A preconfigured sample Jupyter notebook like [Image Classification scenario with RAI Dashboard](https://github.com/Azure/azureml-examples/blob/main/sdk/python/responsible-ai/vision/responsibleaidashboard-image-classification-fridge.ipynb) or [Object Detection scenario with RAI Dashboard](https://github.com/Azure/azureml-examples/blob/main/sdk/python/responsible-ai/vision/responsibleaidashboard-automl-object-detection-fridge-private-data.ipynb).
 
   Some features of the RAI image dashboard require dynamic, on-the-fly, and real-time computation. For complete functionality of the image scenarios, you need to connect a running compute resource to your dashboard.
 
@@ -323,4 +322,4 @@ To learn more about the four explainability methods, see [Generate explanations 
 - Learn more about the [concepts and techniques behind the Responsible AI dashboard](concept-responsible-ai-dashboard.md).
 - View sample [YAML and Python notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/responsible-ai) to generate a Responsible AI dashboard with YAML or Python.
 - Learn more about how you can use the Responsible AI image dashboard to debug image data and models and inform better decision-making in this [tech community blog post](https://aka.ms/rai-object-detection-blog).
-- Learn about how the Responsible AI dashboard was used by Clearsight in a [real-life customer story](https://customers.microsoft.com/story/1548724923828850434-constellation-clearsight-energy-azure-machine-learning).
+

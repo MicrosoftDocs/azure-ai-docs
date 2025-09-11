@@ -58,11 +58,11 @@ Use the following code to create and run an agent which uploads [a CSV file](htt
 
 [!INCLUDE [endpoint-string-portal](endpoint-string-portal.md)]
 
-For example, your endpoint looks something like:
-
-`https://myresource.services.ai.azure.com/api/projects/myproject`
-
 Set this endpoint as an environment variable named `PROJECT_ENDPOINT` in a `.env` file.
+
+[!INCLUDE [model-name-portal](model-name-portal.md)]
+
+Save the name of your model deployment name as an environment variable named `MODEL_DEPLOYMENT_NAME`. 
 
 > [!IMPORTANT] 
 > * This quickstart code uses environment variables for sensitive configuration. Never commit your `.env` file to version control by making sure `.env` is listed in your `.gitignore` file.
@@ -243,9 +243,9 @@ export async function main(): Promise<void> {
     // Removing these references as they don't exist in this context
   });
 
-  // Delete the agent once done
-  await client.deleteAgent(agent.id);
-  console.log(`Deleted agent, agent ID: ${agent.id}`);
+  // Uncomment these lines to delete the agent once done
+  //await client.deleteAgent(agent.id);
+  //console.log(`Deleted agent, agent ID: ${agent.id}`);
 }
 
 main().catch((err) => {

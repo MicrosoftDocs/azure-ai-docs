@@ -2,12 +2,13 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 ---
 
-You can use Azure AI Foundry Models in your projects in Azure AI Foundry to create reach applications and interact/manage the models available. To use the Azure AI Foundry Models service in your project, you need to create a connection to the Azure AI Foundry resource (formerly known Azure AI Services).
+You can use Azure AI Foundry Models in your projects in Azure AI Foundry to create rich applications and interact/manage the models available. To use the Azure AI Foundry Models service in your project, you need to create a connection to the Azure AI Foundry resource (formerly known Azure AI Services).
 
 The following article explains how to create a connection to the Azure AI Foundry resource (formerly known Azure AI Services) to use Azure AI Foundry Models.
 

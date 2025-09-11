@@ -7,8 +7,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
 ms.date: 02/14/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ms.custom: build-2023, build-2023-dataai
 ---
@@ -147,4 +145,4 @@ In this guide, you learned how to make a basic analysis call using the pretraine
 > [Train a custom model for Product Recognition](../how-to/shelf-model-customization.md)
 
 * [Image Analysis overview](../overview-image-analysis.md)
-* [API reference](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview)
+* [API reference](/rest/api/computervision/operation-groups)

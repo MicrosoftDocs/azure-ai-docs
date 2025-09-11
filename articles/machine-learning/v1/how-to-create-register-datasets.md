@@ -7,7 +7,7 @@ ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
 ms.custom: UpdateFrequency5, data4ml, devx-track-arm-template
-ms.author: yogipandey
+ms.author: scottpolly
 author: ynpandey
 ms.reviewer: franksolomon
 ms.date: 03/06/2025

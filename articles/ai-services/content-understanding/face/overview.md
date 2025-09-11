@@ -3,7 +3,7 @@ title: Azure AI Content Understanding face overview
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding face solutions.
 author: PatrickFarley 
-ms.author: quentinm
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

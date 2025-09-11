@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry
 description: This quickstart guides you in how to get oriented and navigate Azure AI Foundry with a screen reader.
 author: sdgilley
 ms.author: sgilley
-manager: scottpolly
 ms.reviewer: ailsaleen
 ms.date: 07/03/2025
 ms.service: azure-ai-foundry

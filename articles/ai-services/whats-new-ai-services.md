@@ -1,29 +1,32 @@
 ﻿---
-title: "Azure AI Services docs: What's new for July 2025"
-description: Discover key changes and updates in Azure AI Services documentation for July 2025.
+title: "Azure AI Services docs: What's new for September 2025"
+description: Discover key changes and updates in Azure AI Services documentation for September 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
-ms.custom: July-2025
-ms.date: 07/02/2025
+ms.custom: September-2025
+ms.date: 09/02/2025
 ---
 
 # What's new in Azure AI Services documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Services documentation for July 2025.
+Welcome! This article highlights key changes and updates in Azure AI Services documentation for September 2025.
 
 ## New articles
-
-- [Azure AI Speech known issues](../ai-services/speech-service/known-issues.md)
-- [Configure your environment for Azure AI resources](../ai-services/language-service/question-answering/how-to/configure-azure-resources.md)
-- [Configure your environment for Azure AI resources and permissions](../ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md)
+- [Improve document output quality with confidence, grounding, and in-context learning](../ai-services/content-understanding/document/enrichments.md)
+- [Use liveness detection with network isolation (preview)](../ai-services/computer-vision/how-to/liveness-use-network-isolation.md)
+- [Voice live API supported languages (Preview)](../ai-services/speech-service/voice-live-language-support.md)
 
 ## Updated articles
-
-- [Use the Voice Live API (Preview)](../ai-services/speech-service/voice-live-how-to.md)
-- [Label your utterances in Azure AI Foundry](../ai-services/language-service/conversational-language-understanding/how-to/tag-utterances.md) 
+- [Adapt Personally Identifying Information (PII) to your domain](../ai-services/language-service/personally-identifiable-information/how-to/adapt-to-domain-pii.md) - 
+- [Document analysis: Extract structured content](../ai-services/content-understanding/document/elements.md)
+- [Document processing models](../ai-services/document-intelligence/model-overview.md)
+- [Entity Metadata](../ai-services/language-service/named-entity-recognition/concepts/entity-metadata.md)
+- [Migrate from Language Understanding (LUIS) to conversational language understanding (CLU)](../ai-services/language-service/conversational-language-understanding/how-to/migrate-from-luis.md)
+- [Named entity categories and types](../ai-services/language-service/named-entity-recognition/concepts/named-entity-categories.md) 
+- [Prebuilt API](../ai-services/language-service/question-answering/how-to/prebuilt.md)
 - [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
-- [Train a conversational language understanding model](../ai-services/language-service/conversational-language-understanding/how-to/train-model.md)
-- [Use voice Live API for real-time voice agents (Preview)](../ai-services/speech-service/voice-live.md) 
-- [Learn what's new in Azure AI Language?](../ai-services/language-service/whats-new.md) 
+- [Tutorial: Detect liveness in faces](../ai-services/computer-vision/tutorials/liveness.md)
+- [What is Azure AI Document Intelligence?](../ai-services/document-intelligence/overview.md)
+- [What is the Document Intelligence layout model?](../ai-services/document-intelligence/prebuilt/layout.md)

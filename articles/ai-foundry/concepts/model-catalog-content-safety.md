@@ -2,12 +2,12 @@
 title: Guardrails & controls for Models Sold Directly by Azure 
 titleSuffix: Azure AI Foundry
 description: Learn about content safety for models deployed using serverless API deployments, using Azure AI Foundry.
-manager: scottpolly
+manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 05/19/2025
-ms.author: mopeakande 
-author: msakande
+ms.date: 07/31/2025
+author: ssalgadodev
+ms.author: ssalgado
 ms.reviewer: ositanachi
 reviewer: ositanachi
 ms.custom: 
@@ -22,7 +22,7 @@ In this article, learn about content safety capabilities for models from the mod
 
 ## Content filter defaults
 
-Azure AI uses a default configuration of [Azure AI Content Safety](/azure/ai-services/content-safety/overview) content filters to detect harmful content across four categories including hate and fairness, self-harm, sexual, and violence for models deployed via serverless API deployments. To learn more about content filtering, see [Understand harm categories](#understand-harm-categories).
+Azure AI uses a default configuration of [Azure AI Content Safety](/azure/ai-services/content-safety/overview) content filters to detect harmful content across four categories including hate and fairness, self-harm, sexual, and violence for models deployed via [serverless API deployments](deployments-overview.md#serverless-api-endpoint). To learn more about content filtering, see [Understand harm categories](#understand-harm-categories).
 
 The default content filtering configuration for text models is set to filter at the medium severity threshold, filtering any detected content at this level or higher. For image models, the default content filtering configuration is set at the low configuration threshold, filtering at this level or higher. For models deployed using the [Azure AI Foundry Models](../../ai-foundry/model-inference/how-to/configure-content-filters.md), you can create configurable filters by selecting the **Content filters** tab within the **Guardrails & controls** page of the Azure AI Foundry portal.
 

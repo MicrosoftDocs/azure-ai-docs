@@ -2,7 +2,6 @@
 title: Create a Vector Query
 titleSuffix: Azure AI Search
 description: Learn how to build queries for vector search.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -177,6 +176,7 @@ api-key: {{admin-api-key}}
 
         }
     ]
+}
 ```
 
 ### [**Azure portal**](#tab/portal-vector-query)
@@ -525,17 +525,6 @@ POST https://[service-name].search.windows.net/indexes/[index-name]/docs/search?
       ]
     }
 ```
-
- <!-- Keep H2 as-is. Direct link from a blog post. Bulk of maxtextsizerecall has moved to hybrid query doc-->
-## MaxTextSizeRecall for hybrid search (preview)
-
-Vector queries are often used in hybrid constructs that include nonvector fields. If you discover that BM25-ranked results are over or under represented in a hybrid query results, you can [set `maxTextRecallSize`](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) to increase or decrease the BM25-ranked results provided for hybrid ranking.
-
-You can only set this property in hybrid requests that include both `search` and `vectorQueries` components.
-
-This parameter is in preview. We recommend the  [2024-05-01-preview](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2024-05-01-preview&preserve-view=true) REST API version.
-
-For more information, see [Set maxTextRecallSize - Create a hybrid query](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode).
 
 ## Next steps
 

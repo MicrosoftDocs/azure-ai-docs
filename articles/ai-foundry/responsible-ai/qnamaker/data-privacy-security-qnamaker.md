@@ -2,8 +2,8 @@
 title: Data and privacy for QnA Maker
 titleSuffix: Azure AI services
 description: This document details issues for data, privacy, and security for QnA Maker.
-author: jboback
-ms.author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

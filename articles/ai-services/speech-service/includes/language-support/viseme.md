@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 07/06/2023
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Locale (BCP-47) | Language                          |Viseme feature

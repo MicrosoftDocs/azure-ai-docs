@@ -2,14 +2,14 @@
 title: Azure AI Foundry Playgrounds
 titleSuffix: Azure AI Foundry
 description: Learn to use Azure AI Foundry playgrounds for exploration, experimentation, and iteration with different models.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 06/09/2025
-ms.reviewer: mopeakande
-reviewer: msakande
-ms.author: tgokal
-author: tgokal
+ms.author: mopeakande
+author: msakande
+ms.reviewer: tgokal
+manager: nitinme
+reviewer: tgokal
 ms.custom: build-2025 ai-assisted
 #customer intent: I'm a developer and want to use Azure AI Foundry Playground for quick experimentation and prototyping with models and agents before going to code.
 ---
@@ -245,3 +245,4 @@ By using the images playground, you can explore and validate the following as yo
 
 - [Use the chat playground in Azure AI Foundry portal](../quickstarts/get-started-playground.md)
 - [Quickstart: Create a new agent (Preview)](../../ai-services/agents/quickstart.md)
+- [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)

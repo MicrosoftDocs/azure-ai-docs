@@ -8,7 +8,7 @@ author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ms.custom: devx-track-js, devx-track-csharp
 ---
 
@@ -31,10 +31,10 @@ You use the [GenerateAnswer API](/rest/api/qnamaker/runtime/generate-answer) in 
 
 ## Publish to get GenerateAnswer endpoint
 
-After you publish your knowledge base, either from the [QnA Maker portal](https://www.qnamaker.ai), or by using the [API](/rest/api/qnamaker/knowledgebase/publish), you can get the details of your GenerateAnswer endpoint.
+After you publish your knowledge base, you can get the details of your GenerateAnswer endpoint.
 
 To get your endpoint details:
-1. Sign in to [https://www.qnamaker.ai](https://www.qnamaker.ai).
+1. Sign in to QnA Maker portal.
 1. In **My knowledge bases**, select **View Code** for your knowledge base.
     ![Screenshot of My knowledge bases](../media/qnamaker-how-to-metadata-usage/my-knowledge-bases.png)
 1. Get your GenerateAnswer endpoint details.

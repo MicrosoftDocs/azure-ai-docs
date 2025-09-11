@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.topic:  how-to
 ms.reviewer: None
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.date: 05/20/2024
 ms.custom: responsible-ml, build-2023, devx-track-python
 ---
@@ -185,7 +185,7 @@ Automated ML in Azure Machine Learning supports model training for computer visi
 
 To generate Responsible AI insights for AutoML computer vision models, register your best AutoML model in the Azure Machine Learning workspace and run it through the Responsible AI vision insights pipeline. For more information, see [Set up AutoML to train computer vision models](how-to-auto-train-image-models.md).
 
-For notebooks related to AutoML supported computer vision tasks, see [RAI vision dashboard and scorecard notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/responsible-ai/vision#directory-) and [automl-standalone-jobs](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs).
+For notebooks related to AutoML supported computer vision tasks, see [RAI vision dashboard and scorecard notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/responsible-ai) and [automl-standalone-jobs](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs).
 
 ### AutoML-specific RAI vision insights parameters
 <a name="responsible-ai-vision-insights-component-parameter-automl-specific"></a>
@@ -218,4 +218,4 @@ Once the AutoML pipeline completes and the Responsible AI vision dashboard is ge
 - Learn more about the [concepts and techniques behind the Responsible AI dashboard](concept-responsible-ai-dashboard.md).
 - View sample [YAML and Python notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/responsible-ai).
 - Learn more about how you can use the Responsible AI image dashboard to debug image data and models and inform better decision-making in this [tech community blog post](https://aka.ms/rai-object-detection-blog).
-- Learn about how the Responsible AI dashboard was used by Clearsight in a [real-life customer story](https://customers.microsoft.com/story/1548724923828850434-constellation-clearsight-energy-azure-machine-learning).
+

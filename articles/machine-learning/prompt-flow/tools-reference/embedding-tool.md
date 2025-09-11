@@ -8,8 +8,8 @@ ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
 ms.topic: reference
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: CLWAN
 ms.date: 11/02/2023
 ---

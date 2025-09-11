@@ -2,7 +2,6 @@
 title: Shape search results
 titleSuffix: Azure AI Search
 description: Modify search result composition, get a document count, sort results, and add content navigation to search results in Azure AI Search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 05/29/2025
+ms.update-cycle: 365-days
 ---
 
 # Shape search results or modify search results composition in Azure AI Search

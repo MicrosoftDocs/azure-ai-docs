@@ -6,6 +6,7 @@ description: Create an Azure AI Foundry hub inside a managed virtual network. Th
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
+  - hub-only
 ms.topic: how-to
 ms.date: 07/08/2025
 ms.reviewer: meerakurup 

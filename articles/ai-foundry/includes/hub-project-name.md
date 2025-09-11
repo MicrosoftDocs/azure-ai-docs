@@ -10,4 +10,4 @@ ms.date: 03/25/2025
 ms.custom: include
 ---
 
-hub based project
+hub-based project

@@ -4,9 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to create custom evaluators for your AI applications using code-based or prompt-based approaches.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: mithigpe
-ms.date: 05/19/2025
+ms.date: 07/31/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -28,7 +27,7 @@ Sometimes a large language model isn't needed for certain evaluation metrics. Th
 class AnswerLengthEvaluator:
     def __init__(self):
         pass
-    # A class is made a callable my implementing the special method __call__
+    # A class is made callable by implementing the special method __call__
     def __call__(self, *, answer: str, **kwargs):
         return {"answer_length": len(answer)}
 ```

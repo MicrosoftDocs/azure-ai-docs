@@ -10,9 +10,9 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 4/14/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.reviewer: lajanuar
+ms.author: lajanuar
+author: laujan
 ---
 
 # How to use Azure AI services in Azure AI Foundry portal
@@ -73,10 +73,6 @@ In the project-level playgrounds, you can try Azure AI services such as Azure AI
 
     :::image type="content" source="./media/ai-foundry/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="./media/ai-foundry/azure-ai-services-playgrounds.png":::
 
-1. Optionally, you can select a different connection to use in the playground. 
-
-    :::image type="content" source="./media/ai-foundry/speech-playground.png" alt-text="Screenshot of the Speech playground in a project." lightbox="./media/ai-foundry/speech-playground.png":::
-
 ## Fine-tune Azure AI services models
 
 In Azure AI Foundry portal, you can fine-tune some Azure AI services models. For example, you can fine-tune a model for custom speech. 
@@ -102,7 +98,7 @@ Once you have a project, several Azure AI services models are already deployed a
 
     In this example, we see six Azure AI Services deployments (such as Azure AI Speech and Azure AI Language) via the default connection. These models were already available for use when you created the project.
 
-There's no option to deploy Azure AI services models from the **Models + endpoints** page. Azure AI services models are already deployed and ready to use.
+You don't deploy Azure AI services models from the **Models + endpoints** page. Azure AI services models are already deployed and ready to use.
 
 However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-ai-services-models). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
 

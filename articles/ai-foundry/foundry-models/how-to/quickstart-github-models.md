@@ -2,13 +2,13 @@
 title: Upgrade from GitHub Models to Azure AI Foundry Models
 titleSuffix: Azure AI Foundry for GitHub
 description: Learn how to upgrade your endpoint from GitHub Models to Azure AI Foundry Models
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025
 ms.custom: ignite-2024, github-universe-2024
-manager: scottpolly
-author: ssalgadodev
-ms.author: ssalgado
+author: msakande   
+ms.author: mopeakande
 recommendations: false
 ms.reviewer: fasantia
 reviewer: santiagxf
@@ -35,7 +35,7 @@ The rate limits for the playground and free API usage are intended to help you e
 
 To obtain the key and endpoint:
 
-1. Got to [GitHub Models](https://github.com/marketplace/models) and select the model you're interested in.
+1. Go to [GitHub Models](https://github.com/marketplace/models) and select the model you're interested in.
 
 1. In the playground for your model, select **Get API key**.
 
@@ -91,7 +91,7 @@ Azure AI Foundry Models supports additional features not available in GitHub Mod
 * Configure [content filtering](../../model-inference/how-to/configure-content-filters.md).
 * Configure rate limiting (for specific models).
 * Explore additional [deployment SKUs (for specific models)](../../model-inference/concepts/deployment-types.md).
-* Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context).
+* Configure [private networking](../../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/openai/context/context).
 
 ## Got troubles?
 

@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning automated ML to train natural language processing models with the Azure Machine Learning Python SDK v1.
 services: machine-learning
 author: wenxwei
-ms.author: wenxwei
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to

@@ -4,7 +4,7 @@ description: Learn how to use reinforcement fine-tuning with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 05/11/2025
+ms.date: 08/29/2025
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom:
@@ -188,6 +188,23 @@ Models which we're supporting as grader models are:
 
 To use a score model grader, the input is a list of chat messages, each containing a role, and content. The output of the grader will be truncated to the given range, and default to 0 for all non-numeric outputs.
 
+### Custom Code Grader
+
+Custom code  grader allows you to execute arbitrary python code to grade the model output. The grader expects a grade function to be present that takes in two arguments and outputs a float value. Any other result (exception, invalid float value, etc.) will be marked as invalid and return a 0 grade.
+
+```json
+{
+    "type": "python",
+    "source": "def grade(sample, item):\n    return 1.0",
+    "image_tag": "2025-05-08"
+}
+```
+***Technical Constraints:***
+	Your uploaded code must be less than 256kB. It will not have any network access.
+	The grading execution itself cannot exceed 2 minutes.
+	At runtime you will be given a limit of 2Gb of memory and 1Gb of disk space to use.
+	There's a limit of 1 CPU cores—any usage above this amount will result in throttling.
+
 ### Multi Grader
 
 A multigrader object combines the output of multiple graders to produce a single score.	
@@ -272,6 +289,19 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 }
 ```
 
+**Custom code grader** - This is python code grader where you can use any python code to grader the training output.
+
+The python libraries which are supported by custom code grader are 
+
+```json
+{
+"type": "python", 
+"image_tag": "alpha", 
+"source": "import json\nimport re\n\ndef extract_numbers_from_expression(expression: str):\n    return [int(num) for num in re.findall(r'-?\\d+', expression)]\n\ndef grade(sample, item) -> float:\n    expression_str = sample['output_json']['expression']\n    try:\n        math_expr_eval = eval(expression_str)\n    except Exception:\n        return 0\n    expr_nums_list = extract_numbers_from_expression(expression_str)\n    input_nums_list = [int(x) for x in json.loads(item['nums'])]\n    if sorted(expr_nums_list) != sorted(input_nums_list):\n        return 0\n    sample_result_int = int(sample['output_json']['result'])\n    item_result_int = int(item['target'])\n    if math_expr_eval != sample_result_int:\n        return 1\n    if sample_result_int == item_result_int:\n        return 5\n    if abs(sample_result_int - item_result_int) <= 1:\n        return 4\n    if abs(sample_result_int - item_result_int) <= 5:\n        return 3\n    return 2""
+	}
+```
+If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect.
+
 **Multi Grader** - A multigrader object combines the output of multiple graders to produce a single score.
 
 ```json
@@ -293,9 +323,6 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 "calculate_output":"0.5 * ext_text_similarity + 0.5 * clause_string_check"
 }
 ```
-
-> [!Note]
-> : Currently we don’t support `multi` with model grader as a sub grader. `Multi` grader is supported only with `text_Similarity` and `string_check`.
 
 Example of response format which is an optional field:
 
@@ -378,6 +405,164 @@ Your fine tuned model can be deployed via the UI or REST API, just like any othe
 You can deploy the fine tuning job which is completed or any intermittent checkpoints created automatically or manually by triggering pause operation. To know more about model deployment and test with Chat Playground refer, see [fine-tuning deployment](./fine-tuning-deploy.md).
 
 When using your model, make sure to use the same instructions and structure as used during training. This keeps the model in distribution, and ensures that you see the same performance on your problems during inference as you achieved during training.
+
+## REST API
+
+### Create a RFT job
+
+#### With Score model grader
+
+```json
+{
+    "model": "o4-mini-2025-04-16",
+    "training_file": "file-c6578ee2c5194ae99e33711e677d7aa9",
+    "validation_file": "file-7ead313cc49e4e0480b9700bbd513bbc",
+    "suffix": "TEST",
+    "method": {
+        "type": "reinforcement",
+        "reinforcement": {
+            "hyperparameters": {
+                "eval_interval": 1,
+                "eval_samples": 1,
+                "compute_multiplier": 1,
+                "reasoning_effort": "medium",
+                "n_epochs": 1,
+                "batch_size": 10,
+                "learning_rate_multiplier": 1
+            },
+            "grader": {
+                "type": "score_model",
+                "name": "custom_grader",
+                "input": [
+                    {
+                        "role": "developer",
+                        "content": "You are a mathematical evaluator. Given a reference target number, a list of input numbers, and a model\u0027s output (an arithmetic expression and its reported result), your task is to evaluate the correctness and closeness of the model\u0027s answer.\n\nInput values are passed in as **strings**, including the number list and target. You must:\n1. Convert the \u0060target\u0060 string to a number.\n2. Convert the \u0060numbers\u0060 string into a list of numbers.\n3. Parse and validate the \u0060output_expression\u0060 \u2014 ensure it is a valid arithmetic expression.\n4. Evaluate the expression and confirm it matches the model\u0027s reported \u0060output_result\u0060.\n5. Check that **all input numbers are used exactly once**.\n6. Compare the evaluated result with the target and assign a score.\n\nScoring Rules:\n- 5: Valid expression, correct number usage, exact match to target\n- 4: Off by \u00B11\n- 3: Off by \u00B12 to \u00B15\n- 2: Off by \u003E5\n- 1: Minor issues (e.g., small mismatch in numbers used)\n- 0: Major issues \u2014 invalid expression or number usage\n\nOutput Format:\nScore: \u003C0 - 5\u003E\nReasoning: \u003Cbrief justification\u003E\n\nOnly respond with the score and reasoning."
+                    },
+                    {
+                        "role": "user",
+                        "content": "{ \u0022target\u0022: {{item.target}}, \u0022numbers\u0022: {{item.nums}}, \u0022output\u0022: {{sample.output_text}} }"
+                    }
+                ],
+                "pass_threshold": 5,
+                "range": [
+                    0,
+                    5
+                ],
+                "model": "o3-mini"
+            },
+            "response_format": {
+                "type": "json_schema",
+                "json_schema": {
+                    "name": "math_expression",
+                    "schema": {
+                        "type": "object",
+                        "required": [
+                            "expression",
+                            "result"
+                        ],
+                        "properties": {
+                            "expression": {
+                                "type": "string",
+                                "description": "The mathematical expression to be evaluated."
+                            },
+                            "result": {
+                                "type": "string",
+                                "description": "The result of evaluating the mathematical expression."
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    "strict": true
+                }
+            }
+        }
+    }
+}
+```
+
+#### With String Check grader
+
+```json
+{
+    "model": "o4-mini-2025-04-16",
+    "training_file": "file-c6578ee2c5194ae99e33711e677d7aa9",
+    "validation_file": "file-7ead313cc49e4e0480b9700bbd513bbc",
+    "suffix": "TEST",
+    "method": {
+        "type": "reinforcement",
+        "reinforcement": {
+            "hyperparameters": {
+                "eval_interval": 1,
+                "eval_samples": 1,
+                "compute_multiplier": 1,
+                "reasoning_effort": "medium",
+                "n_epochs": 1,
+                "batch_size": 10,
+                "learning_rate_multiplier": 1
+            },
+            "grader": {
+                "name":"answer_string_check",
+                "type":"string_check",
+                "input":"{{item.reference_answer.final_answer}}",
+                "operation":"eq",
+                "reference":"{{sample.output_json.final_answer}}"
+            }
+        }
+    }
+}
+```
+
+#### Text similarity grader
+
+```json
+{
+    "model": "o4-mini-2025-04-16",
+    "training_file": "file-c6578ee2c5194ae99e33711e677d7aa9",
+    "validation_file": "file-7ead313cc49e4e0480b9700bbd513bbc",
+    "suffix": "TEST",
+    "method": {
+        "type": "reinforcement",
+        "reinforcement": {
+            "hyperparameters": {
+                "eval_interval": 1,
+                "eval_samples": 1,
+                "compute_multiplier": 1,
+                "reasoning_effort": "medium",
+                "n_epochs": 1,
+                "batch_size": 10,
+                "learning_rate_multiplier": 1
+            },
+            "grader": {
+              "name":"solution_similarity",
+              "type":"text_similarity",
+              "input":"{{sample.output_json.solution}}",
+              "reference":"{{item.reference_answer.solution}}",
+              "evaluation_metric":"bleu"
+            }
+        }
+    }
+}
+```
+
+**Examples:** [Reference Jupyter Notebook](https://github.com/azure-ai-foundry/build-2025-demos/tree/main/Azure%20AI%20Model%20Customization/MSBuildRFTDemo).
+
+### Validate Grader
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/alpha/graders/validate \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{ "grader": { "name":"answer_string_check", "type":"string_check", "input":" {{item.reference_answer.final_answer}}", "operation":"eq", "reference":" {{sample.output_json.final_answer}}" } }' 
+```
+
+### Run Grader
+
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/alpha/graders/run \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{ "grader": { "name":"solution_similarity", "type":"string_check", "input": " {{item.reference_answer}}", "reference": " {{sample.output_text}}", "operation": "eq" }, "reference_answer": "yes", "model_sample": "yes" }'
+```
 
 ## Best practices
 

@@ -5,7 +5,7 @@ description: Learn about the model router feature in Azure OpenAI in Azure AI Fo
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/08/2025
+ms.date: 09/10/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -24,14 +24,14 @@ Model router intelligently selects the best underlying model for a given prompt 
 
 Each version of model router is associated with a specific set of underlying models and their versions. This set is fixed&mdash;only newer versions of model router can expose new underlying models.
 
-If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-services/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
+If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
 
 ## Underlying models
 
-|Model router version|Underlying models (version)|
-|---|---|
-|`2025-05-19`|GPT-4.1 (`2025-04-14`)</br>GPT-4.1-mini (`2025-04-14`)</br>GPT-4.1-nano (`2025-04-14`) </br>o4-mini (`2025-04-16`) |
-
+|Model router version|Underlying models| Model version
+|:---:|:---|:----:|
+| `2025-08-07` | `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini` </br> `gpt-5`  <br> `gpt-5-mini`  <br> `gpt-5-nano` <br> `gpt-5-chat`   | `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` <br> `2025-08-07` |
+|`2025-05-19`| `gpt-4.1` </br>`gpt-4.1-mini` </br>`gpt-4.1-nano` </br>`o4-mini`  |  `2025-04-14` <br> `2025-04-14` <br> `2025-04-14` <br> `2025-04-16` |
 
 ## Limitations
 
@@ -41,7 +41,7 @@ See the [Models](../concepts/models.md#model-router) page for the region availab
 
 ### Technical limitations
 
-See [Quotas and limits](/azure/ai-services/openai/quotas-limits) for rate limit information.
+See [Quotas and limits](/azure/ai-foundry/openai/quotas-limits) for rate limit information.
 
 > [!NOTE]
 > The context window limit listed on the [Models](../concepts/models.md#model-router) page is the limit of the smallest underlying model. Other underlying models are compatible with larger context windows, which means an API call with a larger context will succeed only if the prompt happens to be routed to the right model, otherwise the call will fail. To shorten the context window, you can do one of the following:
@@ -49,13 +49,13 @@ See [Quotas and limits](/azure/ai-services/openai/quotas-limits) for rate limit 
 > - Truncate the prompt into more relevant parts
 > - Use document embeddings and have the chat model retrieve relevant sections: see [Azure AI Search](/azure/search/search-what-is-azure-search) 
 
-Model router accepts image inputs for [Vision enabled chats](/azure/ai-services/openai/how-to/gpt-with-vision) (all of the underlying models can accept image input), but the routing decision is based on the text input only.
+Model router accepts image inputs for [Vision enabled chats](/azure/ai-foundry/openai/how-to/gpt-with-vision) (all of the underlying models can accept image input), but the routing decision is based on the text input only.
 
 Model router doesn't process audio input.
 
 ## Billing information
 
-When you use model router today, you're only billed for the use of the underlying models as they're recruited to respond to prompts: the model routing function itself doesn't incur any extra charges. Starting August 1, the model router usage will be charged as well.
+When you use model router today, you're only billed for the use of the underlying models as they're recruited to respond to prompts: the model routing function itself doesn't incur any extra charges. Starting September 1, 2025 the model router usage will be charged as well.
 
 You can monitor the costs of your model router deployment in the Azure portal.
 

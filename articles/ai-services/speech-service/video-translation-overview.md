@@ -6,9 +6,8 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 6/13/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.author: pafarley
+author: PatrickFarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
 ---

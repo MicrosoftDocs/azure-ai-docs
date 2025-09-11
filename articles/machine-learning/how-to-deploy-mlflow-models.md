@@ -29,10 +29,8 @@ For no-code deployment, Azure Machine Learning:
 
 - Ensures that all the package dependencies indicated in the MLflow model are satisfied.
 - Provides an MLflow base image or curated environment that contains the following items:
-  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/skinny/README_SKINNY.md).
+  - Packages required for Azure Machine Learning to perform inference, including [`mlflow-skinny`](https://github.com/mlflow/mlflow/blob/master/libs/skinny/README_SKINNY.md).
   - A scoring script to perform inference.
-
-[!INCLUDE [mlflow-model-package-for-workspace-without-egress](includes/mlflow-model-package-for-workspace-without-egress.md)]
 
 ### Packages and dependencies
 
@@ -238,11 +236,10 @@ Each tool has different capabilities, particularly for which type of compute it 
 | Deploy to web services like Azure Container Instances or Azure Kubernetes Service (AKS) | Legacy support<sup>2</sup> | Not supported<sup>2</sup> |
 | Deploy to web services like Container Instances or AKS with a scoring script | Not supported<sup>3</sup> | Legacy support<sup>2</sup> |
 
-<sup>1</sup> Deployment to online endpoints that are in workspaces with private link enabled requires you to [package models before deployment (preview)](how-to-package-models.md).
 
-<sup>2</sup> Switch to [managed online endpoints](concept-endpoints.md) if possible.
+<sup>1</sup> Switch to [managed online endpoints](concept-endpoints.md) if possible.
 
-<sup>3</sup> Open-source MLflow doesn't have the concept of a scoring script and doesn't support batch execution.
+<sup>2</sup> Open-source MLflow doesn't have the concept of a scoring script and doesn't support batch execution.
 
 ### Choose a deployment tool
 

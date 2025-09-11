@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's latest fine-tuning capabilities wit
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 07/02/2025
+ms.date: 09/01/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -63,9 +63,6 @@ Create and assign persistent environment variables for your key and endpoint.
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
 ```
 
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
-```
 
 # [PowerShell](#tab/powershell)
 
@@ -73,15 +70,10 @@ setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 [System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_API_KEY', 'REPLACE_WITH_YOUR_KEY_VALUE_HERE', 'User')
 ```
 
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_ENDPOINT', 'REPLACE_WITH_YOUR_ENDPOINT_HERE', 'User')
-```
-
 # [Bash](#tab/bash)
 
 ```Bash
 echo export AZURE_OPENAI_API_KEY="REPLACE_WITH_YOUR_KEY_VALUE_HERE" >> /etc/environment
-echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/environment
 
 source /etc/environment
 ```
@@ -284,12 +276,11 @@ p5 / p95: 10.7, 19.999999999999996
 # Upload fine-tuning files
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2025-02-01-preview"  
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 training_file_name = 'training_set.jsonl'
@@ -757,12 +748,11 @@ After your fine-tuned model is deployed, you can use it like any other deployed 
 # Use the deployed customized model
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-10-21"
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.chat.completions.create(
@@ -790,7 +780,7 @@ You can delete the deployment in [Azure AI Foundry portal](https://ai.azure.com/
 
 ### How do I enable fine-tuning? Create a custom model is grayed out.
 
-In order to successfully access fine-tuning you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+In order to successfully access fine-tuning you need **Cognitive Services OpenAI Contributor assigned**. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information please review the [role-based access control guidance](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
 
 ## Next steps
 

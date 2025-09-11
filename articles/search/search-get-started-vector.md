@@ -5,7 +5,6 @@ description: Learn how to call the Search REST and Azure SDK APIs for vector wor
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
@@ -18,6 +17,12 @@ zone_pivot_groups: search-get-started-vector-search
 ::: zone pivot="python"
 
 [!INCLUDE [Python quickstart](includes/quickstarts/search-get-started-vector-python.md)]
+
+::: zone-end
+
+::: zone pivot="java"
+
+[!INCLUDE [Java quickstart](includes/quickstarts/search-get-started-vector-java.md)]
 
 ::: zone-end
 

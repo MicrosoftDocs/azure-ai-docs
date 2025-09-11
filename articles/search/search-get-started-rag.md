@@ -5,7 +5,6 @@ description: Learn how to use grounding data from Azure AI Search with a chat mo
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
-ms.update-cycle: 90-days
 ms.custom:
   - ignite-2024
 ms.topic: quickstart
@@ -20,6 +19,12 @@ In this quickstart, you send queries to a chat completion model for a conversati
 ::: zone pivot="csharp"
 
 [!INCLUDE [.NET quickstart](includes/quickstarts/search-get-started-rag-dotnet.md)]
+
+::: zone-end
+
+::: zone pivot="java"
+
+[!INCLUDE [Java quickstart](includes/quickstarts/search-get-started-rag-java.md)]
 
 ::: zone-end
 

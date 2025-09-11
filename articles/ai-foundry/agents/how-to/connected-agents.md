@@ -2,9 +2,8 @@
 title: 'How to use connected agents'
 titleSuffix: Azure AI Foundry
 description: Learn how to create multi-agentic systems using connected agents in the Azure AI Foundry Agent Service.
-services: cognitive-services
 manager: nitinme
-ms.service: azure
+ms.service: azure-ai-agent-service
 ms.topic: how-to
 ms.date: 07/11/2025
 author: aahill
@@ -230,7 +229,7 @@ To create a multi-agent setup, follow these steps:
     ```python
     import os
     from azure.ai.projects import AIProjectClient
-    from azure.ai.projects.models import ConnectedAgentTool, MessageRole
+    from azure.ai.agents.models import ConnectedAgentTool, MessageRole
     from azure.identity import DefaultAzureCredential
     
     
@@ -255,7 +254,7 @@ To create a multi-agent setup, follow these steps:
     
     ```python
     connected_agent = ConnectedAgentTool(
-        id=stock_price_agent.id, name=connected_agent_name, description="Gets the stock price of a company"
+        id=stock_price_agent.id, name=stock_price_agent.name, description="Gets the stock price of a company"
     )
     ```
 
@@ -275,11 +274,11 @@ To create a multi-agent setup, follow these steps:
 1. Create a thread and add a message to it.
     
     ```python
-    thread = project_client.agents.create_thread()
+    thread = project_client.agents.threads.create()
     print(f"Created thread, ID: {thread.id}")
     
     # Create message to thread
-    message = project_client.agents.create_message(
+    message = project_client.agents.messages.create(
         thread_id=thread.id,
         role=MessageRole.USER,
         content="What is the stock price of Microsoft?",
@@ -293,7 +292,7 @@ To create a multi-agent setup, follow these steps:
     ```python
     
     # Create and process Agent run in thread with tools
-    run = project_client.agents.create_and_process_run(thread_id=thread.id, agent_id=agent.id)
+    run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
     print(f"Run finished with status: {run.status}")
     
     if run.status == "failed":
@@ -312,7 +311,7 @@ To create a multi-agent setup, follow these steps:
     
     ```python
     # Print the Agent's response message with optional citation
-    response_message = project_client.agents.list_messages(thread_id=thread.id).get_last_message_by_role(
+    response_message = project_client.agents.messages.list(thread_id=thread.id).get_last_message_by_role(
         MessageRole.AGENT
     )
     if response_message:

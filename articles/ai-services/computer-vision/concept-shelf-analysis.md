@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 10/16/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ms.custom: build-2023, build-2023-dataai
 ---
@@ -186,4 +184,4 @@ It returns a JSON response that accounts for each position in the planogram docu
 Get started with Product Recognition by trying out the stitching and rectification APIs. Then do basic analysis with the Product Understanding API.
 * [Prepare images for Product Recognition](./how-to/shelf-modify-images.md)
 * [Analyze a shelf image](./how-to/shelf-analyze.md)
-* [API reference](/rest/api/computervision/operation-groups?view=rest-computervision-2023-04-01-preview)
+* [API reference](/rest/api/computervision/operation-groups)

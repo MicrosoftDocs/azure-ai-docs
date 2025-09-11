@@ -45,7 +45,7 @@ sections:
       - question: |
           Does Azure OpenAI support VNETs and Private Endpoints?
         answer: | 
-          Yes, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [virtual networking guidance](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-services/openai/context/context). 
+          Yes, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [virtual networking guidance](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/openai/context/context). 
       - question: |
           Do the GPT-4 models currently support image input?
         answer: | 
@@ -74,7 +74,7 @@ sections:
 
           The questions, "What model are you running?" or "What is the latest model from OpenAI?" produce similar quality results to asking the model what the weather will be today. It might return the correct result, but purely by chance. On its own, the model has no real-world information other than what was part of its training/training data. In the case of GPT-4, as of August 2023 the underlying training data goes only up to September 2021. GPT-4 wasn't released until March 2023, so barring OpenAI releasing a new version with updated training data, or a new version that is fine-tuned to answer those specific questions, it's expected behavior for GPT-4 to respond that GPT-3 is the latest model release from OpenAI.
 
-          If you wanted to help a GPT based model to accurately respond to the question "what model are you running?", you would need to provide that information to the model through techniques like [prompt engineering of the model's system message](/azure/ai-services/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions), [Retrieval Augmented Generation (RAG)](/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2) which is the technique used by [Azure OpenAI on your data](/azure/ai-services/openai/concepts/use-your-data) where up-to-date information is injected to the system message at query time, or via [fine-tuning](/azure/ai-services/openai/how-to/fine-tuning?pivots=programming-language-studio) where you could fine-tune specific versions of the model to answer that question in a certain way based on model version. 
+          If you wanted to help a GPT based model to accurately respond to the question "what model are you running?", you would need to provide that information to the model through techniques like [prompt engineering of the model's system message](/azure/ai-foundry/openai/concepts/advanced-prompt-engineering?pivots=programming-language-chat-completions), [Retrieval Augmented Generation (RAG)](/azure/machine-learning/concept-retrieval-augmented-generation?view=azureml-api-2) which is the technique used by [Azure OpenAI on your data](/azure/ai-foundry/openai/concepts/use-your-data) where up-to-date information is injected to the system message at query time, or via [fine-tuning](/azure/ai-foundry/openai/how-to/fine-tuning?pivots=programming-language-studio) where you could fine-tune specific versions of the model to answer that question in a certain way based on model version. 
 
           To learn more about how GPT models are trained and work we recommend watching [Andrej Apathy's talk from Build 2023 on the state of GPT](https://www.youtube.com/watch?v=bZQun8Y4L2A).
       
@@ -184,7 +184,7 @@ sections:
       - question: |
           How do I enable fine-tuning? Create a custom model is greyed out in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).  
         answer: |
-          In order to successfully access fine-tuning, you need Cognitive Services OpenAI Contributor assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-services/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
+          In order to successfully access fine-tuning, you need Cognitive Services OpenAI Contributor assigned. Even someone with high-level Service Administrator permissions would still need this account explicitly set in order to access fine-tuning. For more information, please review the [role-based access control guidance](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-openai-contributor).
       - question: |
           What is the difference between a base model and a fine-tuned model?
         answer:
@@ -196,7 +196,7 @@ sections:
       - question: |
           Why was my fine-tuned model deployment deleted? 
         answer:
-          If a customized (fine-tuned) model is deployed for more than 15 days during which no completions or chat completions calls are made to it, the deployment is automatically deleted (and no further hosting charges are incurred for that deployment). The underlying customized model remains available and can be redeployed at any time. To learn more, check out the [how-to-article](/azure/ai-services/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).  
+          If a customized (fine-tuned) model is deployed for more than 15 days during which no completions or chat completions calls are made to it, the deployment is automatically deleted (and no further hosting charges are incurred for that deployment). The underlying customized model remains available and can be redeployed at any time. To learn more, check out the [how-to-article](/azure/ai-foundry/openai/how-to/fine-tuning?tabs=turbo%2Cpython-new&pivots=programming-language-studio#deploy-a-custom-model).  
       - question: |
           How do I deploy a model with the REST API? 
         answer:
@@ -271,7 +271,7 @@ sections:
       - question: | 
           Does the Assistants feature support customer-managed key encryption (CMK)?
         answer: |
-          Today we support CMK for Threads and Files in Assistants. See the [What's new page](./whats-new.md#customer-managed-key-cmk-support-for-assistants) for available regions for this feature.
+          Today we support CMK for Threads and Files in Assistants. 
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |
@@ -351,7 +351,7 @@ sections:
       - question: |
           Is there a token limit on the system message? 
         answer: 
-          Yes, the token limit on the system message is 400. If the system message is more than 400 tokens, the rest of the tokens beyond the first 400 will be ignored. This limitation only applies to the Azure OpenAI [on your data feature](/azure/ai-services/openai/concepts/use-your-data).
+          Yes, the token limit on the system message is 400. If the system message is more than 400 tokens, the rest of the tokens beyond the first 400 will be ignored. This limitation only applies to the Azure OpenAI [on your data feature](/azure/ai-foundry/openai/concepts/use-your-data).
       - question: |
           Does Azure OpenAI on your data support function calling?
         answer:

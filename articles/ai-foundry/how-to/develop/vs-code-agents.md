@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 07/10/2025
+ms.date: 09/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -28,7 +28,7 @@ Azure AI Foundry developers can stay productive by developing, testing, and depl
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-###    Create and edit Azure AI Agents within the designer view
+## Create and edit Azure AI Agents within the designer view
 
 Follow these steps to create an Azure AI Agent:
 
@@ -62,7 +62,7 @@ After you choose your save location, both the agent .yaml file and the Designer 
  
     1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
 
-###    Explore the Azure AI Agent YAML definition
+### Explore the Azure AI Agent YAML definition
 
 Your AI Agent .yaml file was opened at the same time the designer was. This file contains the details and setup information for your agent, similar to the following .yaml file example: 
 
@@ -88,61 +88,22 @@ instructions: Instructions for the agent
 tools: []
 ```
 
-### Add tools to the Azure AI Agent
+## Add tools to the Azure AI Agent
+
+Azure AI Agent Service has a set of tools that you can use to interact with your data sources. 
+
+#### Available tools for Azure AI Agents in the Azure AI Foundry VS Code extension
+
+The following tools are available in the Azure AI Foundry VS Code extension:
+
+  - [Grounding with Bing search](/azure/ai-foundry/agents/how-to/tools/bing-grounding)
+  - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
+  - [Code interpreter](/azure/ai-foundry/agents/how-to/tools/file-search)
+  - [OpenAPI Specified tools](/azure/ai-foundry/agents/how-to/tools/openapi-spec)
+  - [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol)
 
 
-Azure AI Agent Service has a set of knowledge and action tools that you can use to interact with your data sources. 
-
-
-#### Available tools for Azure AI Agents
-
-The following tools are available:
-
-- Knowledge tools:
-  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
-  - [File search]( /azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview)
-  - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=pythonsdk&pivots=overview)   
-  - [Microsoft Fabric](/azure/ai-services/agents/how-to/tools/fabric?pivots=portal)
-
-- Action tools:
-  - [Azure AI Agents function calling](/azure/ai-services/agents/how-to/tools/function-calling?pivots=python)
-
-Azure AI Foundry Agent Service has a set of knowledge and action tools that you can use to interact with your data sources, such as:
- - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
- - [Azure AI Search](/azure/ai-services/agents/how-to/tools/azure-ai-search?tabs=pythonsdk&pivots=overview) 
- - [Azure Functions](/azure/ai-services/agents/how-to/tools/azure-functions?tabs=python&pivots=overview) 
- - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
- - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
- - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
- - [SharePoint](/azure/ai-services/agents/how-to/tools/sharepoint?tabs=python&pivots=overview)
-
-#### Configure the tools YAML file
-
-The Agent Designer adds tools to an AI Agent via .yaml files. 
-
-Create a tool configuration .yaml file using the following steps:
-
-1. Choose a tool from the [available tools for Azure AI Agents](#available-tools-for-azure-ai-agents). Perform any setup steps that might be required. For example, [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview#setup).
-
-1. Once you complete the setup, create a yaml code file that specifies the tool's configuration. For example, this format for Grounding with Bing Search:
-
-    ```yml
-    type: bing_grounding
-    options:
-      tool_connections:
-        - >-
-          /subscriptions/<Azure Subscription ID>/resourceGroups/<Azure Resource Group name>/providers/Microsoft.MachineLearningServices/workspaces/<Azure AI Foundry Project name>/connections/<Bing connection name>
-    ```
-1. Replace the placeholders in the connection string under the `tool_connections` section with your information: 
-    
-    - Azure Subscription ID
-    - Azure Resource Group name
-    - Azure AI Foundry Project name
-    - Bing connection name
-
-1. To save the .yaml file, select **File** > **Save** in the VS Code menu bar.
-
-#### Connect the tools file to the AI Agent
+#### Add a tool to the AI Agent
 
 Add a tool to the AI Agent with the following steps:
 
@@ -150,18 +111,56 @@ Add a tool to the AI Agent with the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
 
-1. In the file explorer that appears, select the .yaml tool file to use. Select the **Select a tool file** button to add the tool to the agent.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-tool-file.png" alt-text="Screenshot of the file explorer with the selected file and the 'Select a tool file' button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-tool-file.png":::
+1. The designer displays the appropriate pane to configure the tool, as in the following images:
 
-1. The tool is displayed in the **TOOL** section. 
+    Code interpreter tool dialog box:
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
+    
+    File upload tool dialog box:
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-added-tool.png" alt-text="Screenshot of the Agent designer TOOL section with the new tool highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-added-tool.png":::
+    Grounding with Bing Search dialog box:
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png" alt-text="Screenshot of the Grounding with Bing Search tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png":::
 
-1. To save the tool .yaml file, select **File** > **Save** in the VS Code menu bar.
+    OpenAPI 3.0 Specified dialog box:
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the OpenAPI 3.0 Specified tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
+
+1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
+ 
+> [!NOTE]
+> When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+
+#### Add an existing MCP Server tool to the AI Agent
+
+You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `Server Label` value within the same agent and a `Server URL` value that points to the remote MCP server.
+
+> [!WARNING]
+> The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. For more information, see [Considerations for using non-Microsoft services and server](/azure/ai-foundry/agents/how-to/tools/model-context-protocol?branch=pr-en-us-6966#considerations-for-using-non-microsoft-services-and-servers).
+
+To add an existing MCP Server tool to your AI Agent, follow these steps:
 
 
-###    Create Azure AI Agents on the Azure AI Foundry Studio
+  1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the **MCP Server** tool.
+    
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with a mcp tool with the following information:
+
+    1. `Server URL`: The URL of the MCP server; for example, [https://gitmcp.io/Azure/azure-rest-api-specs](https://gitmcp.io/Azure/azure-rest-api-specs).
+
+    1. `Server Label`: A unique identifier of this MCP server to the agent; for example, `fetch_rest_api_docs`.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png" alt-text="Screenshot of the MCP Server tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png":::
+
+ 1. Next, select the **Allowed tools** dropdown to choose which tools the MCP server can use:
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png" alt-text="Screenshot of the MCP Server tool dialog box with the 'Allowed tools' dropdown highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png":::
+
+    > [!WARNING]
+    > When you add an allowed tool, you can also pass a set of headers that the MCP server requires. Currently, there is an issue when running an agent with MCP server that requires authentication in agent playground. For more information about this issue: https://github.com/microsoft/ai-foundry-for-vscode/issues/150
+
+1. After entering the required information, select the **Create tool** button in the bottom-left corner.
+
+### Create Azure AI Agents on the Azure AI Foundry Studio
 
 Create your agent directly on Azure AI Foundry with the following steps:
 
@@ -229,9 +228,27 @@ Open the **Agents Playground** using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** VS Code page." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
-1. Type your prompt and see the outputs. The **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
+1. Type your prompt and see the outputs. In this example, the **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
+
+### Interact with Agents using the MCP Server tool in agents playground
+
+1. Right select on your deployed agent that has an **MCP Server** tool and select the **Open Playground** option, as you did in the previous steps. This action starts a thread with your agent and lets you send messages.
+1. After the **Playground** page is displayed, type a prompt such as "Give me an example for creating a container app" and send it. 
+1. Select the authentication mode for the MCP Server tool. Choose the appropriate authentication method and proceed, as in the following image.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png" alt-text="Screenshot of the MCP Server tool authentication prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png":::
+1. Next, select the approval preference for the MCP Server tool. Choose the appropriate approval preference and proceed, as in the following image.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP Server tool approval preference in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
+
+1. If you chose `Ask every time` for your approval preference, you need to approve or reject the tool call, as in the following image.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png" alt-text="Screenshot of the MCP Server tool approval prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png":::
+
+1. The agent uses the model and the MCP Server tools you configured in the agent designer to retrieve the information. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image.
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code after using the MCP Server tool." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png":::
 
 ## Explore Threads
 

@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 02/01/2023
+ms.date: 8/1/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions
 ---
 
@@ -13,7 +13,7 @@ ms.custom: references_regions
 | `ar-OM` | Arabic (Oman)| Professional voice |
 | `ar-SA` | Arabic (Saudi Arabia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `ar-SY` | Arabic (Syria) | Professional voice |
-| `ar-TN` |  Arabic (Tunisia)| Professional voice |
+| `ar-TN` | Arabic (Tunisia)| Professional voice |
 | `bg-BG` | Bulgarian (Bulgaria) | Professional voice |
 | `ca-ES` | Catalan | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary|
 | `cs-CZ` | Czech (Czechia) | Professional voice<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary |
@@ -32,7 +32,7 @@ ms.custom: references_regions
 | `en-NZ` |English (New Zealand) | Professional voice |
 | `en-PH` | English (Philippines) | Professional voice |
 | `en-SG` | English (Singapore) | Professional voice |
-| `en-TZ` |  English (Tanzania) | Professional voice |
+| `en-TZ` | English (Tanzania) | Professional voice |
 | `en-US` | English (United States) | Professional voice<br/><br/>Custom voice lite<br/><br/>Cross-lingual voice source and target<br/><br/>Multi-style voice<br/><br/>Multi-lingual voice primary and secondary<br/><br/>HD voice |
 | `en-ZA` |English (South Africa) | Professional voice |
 | `es-AR` |Spanish (Argentina)| Professional voice |

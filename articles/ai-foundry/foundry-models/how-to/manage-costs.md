@@ -1,15 +1,15 @@
 ---
 title: Plan to manage costs for Azure AI Foundry Models
 description: Learn how to plan for and manage costs for Azure AI Foundry Models by using cost analysis in the Azure portal.
-author: ssalgadodev
-ms.author: ssalgado
+author: msakande   
+ms.author: mopeakande
 ms.custom: subject-cost-optimization
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
 ms.date: 05/19/2025
-manager: scottpolly
-ms.reviewer: fasantia
-reviewer: santiagxf
+ms.reviewer: aashishb
+reviewer: aashishb
 ---
 
 # Plan to manage costs for Azure AI Foundry Models

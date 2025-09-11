@@ -2,12 +2,11 @@
 title: Develop application with LlamaIndex and Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: This article explains how to use LlamaIndex with models deployed in Azure AI Foundry portal to build advance intelligent applications.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/26/2025
+ms.date: 08/28/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -215,6 +214,7 @@ from llama_index.embeddings.azure_inference import AzureAIEmbeddingsModel
 embed_model = AzureAIEmbeddingsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
+    model="<your-model-name>",
 )
 ```
 

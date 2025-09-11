@@ -3,11 +3,11 @@ title: Voice live API overview
 titleSuffix: Azure AI services
 description: Learn about the voice live API for real-time voice agents.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/1/2025
+ms.date: 7/31/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about the voice live API for real-time voice agents.
 ---
@@ -57,7 +57,7 @@ The voice live API is fully managed, eliminating the need for customers to handl
 
 ## API design and compatibility
 
-The voice live API is designed for compatibility with the Azure OpenAI Realtime API. The supported real-time events are mostly in parity with the [Azure OpenAI Realtime API events](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context), with some exceptions as described in the [voice live API how to guide](./voice-live-how-to.md).
+The voice live API is designed for compatibility with the Azure OpenAI Realtime API. The supported real-time events are mostly in parity with the [Azure OpenAI Realtime API events](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context), with some exceptions as described in the [voice live API how to guide](./voice-live-how-to.md).
 
 Features that are unique to the voice live API are designed to be optional and additive. You can add Azure AI Speech capabilities such as noise suppression, echo cancellation, and advanced end-of-turn detection to your existing applications without needing to change your existing architecture. 
 
@@ -189,4 +189,4 @@ You're also charged for cached audio and text inputs, including the prompt and t
 
 - Learn more about [How to use the voice live API](./voice-live-how-to.md)
 - Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)

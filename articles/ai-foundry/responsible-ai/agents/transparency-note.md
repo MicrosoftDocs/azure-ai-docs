@@ -2,8 +2,8 @@
 title: Transparency Note for Azure Agent Service
 titleSuffix: Azure AI services
 description: Transparency Note for Azure Agents Service
-author: PatrickFarley
-ms.author: pafarley
+author: aahill
+ms.author: aahi
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: article
@@ -81,7 +81,7 @@ Key features of Azure AI Agent Service include:
 
 ### Agent Catalog 
 
-Azure AI Foundry Agent Service offers a range of different Agent code samples that can get you started toward building Agents for your specific use case needs. Each Agent code sample should be deployed with [risk management considerations](#considerations-when-choosing-a-use-case) in mind. See the [list of Agent code samples](/azure/ai-services/agents/how-to/agent-catalog#view-all-available-code-samples) currently available.  
+Azure AI Foundry Agent Service offers a range of different Agent code samples that can get you started toward building Agents for your specific use case needs. Each Agent code sample should be deployed with [risk management considerations](#considerations-when-choosing-a-use-case) in mind. See the [list of Agent code samples](/azure/ai-foundry/agents/overview#agent-catalog) currently available.  
 
 ### Extensibility capabilities 
 
@@ -107,7 +107,10 @@ Developers can connect an Agent to external systems, APIs, and services through 
 * **Azure Logic Apps** (a cloud-based PaaS tool that enables automated workflows using 1,400+ built-in connectors)
 * **Azure Functions** (a tool that enables an Agent to execute serverless code for synchronous, asynchronous, long-running, and event-driven actions)
 * **OpenAPI 3.0 specified tools** (a custom function defined with OpenAPI 3.0 specification to connect an Agent to external OpenAPI-based APIs securely)
-* **Model Context Protocol tools** (a custom service connected via Model Context Protocol through an existing remote MCP server to an Agent). 
+* **Model Context Protocol tools** (a custom service connected via Model Context Protocol through an existing remote MCP server to an Agent).
+* **Deep Research tool**: (a tool that enables multi-step web-based research with the o3-deep-research model and Grounding with Bing Search.).
+* **Browser Automation Tool** (a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention in the middle) 
+
 
 #### Orchestrating multi-agent systems
 
@@ -128,8 +131,9 @@ Azure AI Agent Service is **flexible and use-case agnostic.** This presents mult
 * **Government: Citizen Request Triage and Community Event Coordination:** A city clerk uses an agent to categorize incoming service requests (for example, pothole repairs), assign them to the right departments, and compile simple status updates; officials review and finalize communications to maintain transparency and accuracy.
 * **Education: Assisting with Research and Reference Gathering:** A teacher relies on an agent to gather age-appropriate articles and resources from reputable sources for a planetary science lesson; the teacher verifies the materials for factual accuracy and adjusts them to fit the curriculum, ensuring students receive trustworthy content.
 * **Manufacturing: Inventory Oversight and Task Scheduling:** A factory supervisor deploys an agent to monitor inventory levels, schedule restocking when supplies run low, and optimize shift rosters; management confirms the agent’s suggestions and retains final decision-making authority.
+* **Deep research**: See the deep research section of the [Azure OpenAI transparency note](../openai/transparency-note.md#deep-research-use-cases) for examples of use cases for the deep research tool.
 
-Agent code samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent code samples](/azure/ai-services/agents/how-to/agent-catalog#view-all-available-code-samples).
+Agent code samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent code samples](/azure/ai-foundry/agents/overview#agent-catalog).
 
 
 #### Considerations when choosing a use case
@@ -142,6 +146,7 @@ We encourage customers to use Azure AI Agent Service in their innovative solutio
 - **Carefully consider use cases in high stakes domains or industry where Agent actions are irreversible or highly consequential**. Such industries include but are not limited to healthcare, medicine, finance, or legal domains. For example: the ability to make financial transactions or give financial advice, the ability to directly interact with outside services, the ability to administer medicine or give health-related advice, the ability to share sensitive information publicly, or the ability to grant access to critical systems.  
 - **Legal and regulatory considerations**. Microsoft takes safety and compliance with legal and regulatory obligations seriously. We always strive to abide by applicable laws, regulations, and standards in developing and deploying AI technologies, including the Microsoft Responsible AI Standard. It is your organization’s responsibility to evaluate safety implications and potential specific legal and regulatory obligations when using any AI services and solutions, including agents, Agents Catalog, and underlying Agent code samples. Certain uses and offerings may be subject to legal and regulatory requirements, may require licenses, or may not be suitable for all industries, scenarios, or use cases. Additionally, agents, Agents Catalog, and underlying Agent code samples may not be used in ways prohibited by applicable laws, regulations, terms of service, or relevant codes of conduct. 
 - Microsoft did not create, test, or verify any third-party systems, APIs, servers and services you may decide to connect to. When you connect to a third-party (non-Microsoft) system, API, server, or service, some data will be shared with that service, and your application may receive data in return. Microsoft has no responsibility to you or others in relation to your use of any remote systems, APIs, servers and services. Your use of these services is governed by your agreement with the provider. You are responsible for any usage and associated costs.
+- **Browser Automation Tool carries substantial security risks and user responsibility**. Browser Automation Tool comes with significant security risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which the browser or AI has access, including personal, financial, or enterprise systems. By using the Browser Automation Tool, you are acknowledging that you bear responsibility and liability for any use of it and of any resulting agents you create with it, including with respect to any other users to whom you make Browser Automation Tool functionality available, including through resulting agents.  
 
 ## Limitations
 
