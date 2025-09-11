@@ -411,7 +411,7 @@ For a complete code sample with the Speech SDK, see [speech translation samples 
 
 Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. 
 
-To use the live interpreter API, please first apply for personal voice access [here](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the following regions supported by the Public Preview: 
+To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the following regions supported by the public preview: 
 - West US 2
 - East US
 - Sewden Central
