@@ -340,13 +340,6 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
         }  
       ]  
     }  
-  ],  
-  "suggesters": [  
-    {  
-      "name": "sg",  
-      "searchMode": "analyzingInfixMatching",  
-      "sourceFields": [ "albumTitle", "artistName" ]  
-    }  
-  ]   
+  ]
 }  
 ```  
