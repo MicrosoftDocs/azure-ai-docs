@@ -105,12 +105,12 @@ Development tasks on the Azure AI Search side include:
 + [Call the retriever](search-agentic-retrieval-how-to-retrieve.md) and provide a query, conversation, and override parameters.
 + Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. You can also try [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) for a simpler workflow.
 
-Developments in Azure AI Agent side include:
+Developments on the Azure AI Agent side include:
 
 + Set up the AI project client and an AI agent.
 + Add a tool to coordinate calls from the AI agent to the retriever and knowledge agent.
 
-Query processing is initiated by a client app, such as a chat bot, that calls the AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the retriever on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot.
+Query processing is initiated by user interaction in a client app, such as a chat bot, that calls an AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the [retriever](search-agentic-retrieval-how-to-retrieve.md) on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot. In Azure AI Search, you can use [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) to obtain an LLM-generated response from within the query pipeline, or you can call an LLM in your code if you want more control over answer generation.
 
 ## Components of the solution
 
