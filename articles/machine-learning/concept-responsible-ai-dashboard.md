@@ -39,6 +39,9 @@ You can customize the dashboard to include only the subset of tools that are rel
 
 The Responsible AI dashboard is accompanied by a [PDF scorecard](how-to-responsible-ai-scorecard.md). The scorecard enables you to export Responsible AI metadata and insights into your data and models. You can then share them offline with the product and compliance stakeholders.
 
+> [!NOTE]
+> To use Responsible AI image and text dashboard, see the open source [Responsible AI toolkit](https://github.com/microsoft/responsible-ai-toolbox?tab=readme-ov-file).
+
 ## Responsible AI dashboard components
 
 The Responsible AI dashboard brings together, in a comprehensive view, various new and pre-existing tools. The dashboard integrates these tools with [Azure Machine Learning CLI v2, Azure Machine Learning Python SDK v2](concept-v2.md), and [Azure Machine Learning studio](overview-what-is-azure-machine-learning.md#studio). The tools include:  
