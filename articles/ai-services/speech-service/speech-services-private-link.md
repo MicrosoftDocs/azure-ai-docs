@@ -242,55 +242,18 @@ Private-endpoint-enabled endpoints communicate with Speech service via a special
 
 A "standard" endpoint URL looks like: <p/>`{region}.{speech service offering}.speech.microsoft.com/{URL path}`
 
-A private endpoint URL looks like: <p/>`{your custom name}.cognitiveservices.azure.com/{speech service offering}/{URL path}`
+A private endpoint URL looks like: <p/>`{your custom name}.cognitiveservices.azure.com/{URL path}`
 
-The Speech SDK automatically will configure the `/{URL path}` depending on the service used. Therefor only the `/{baseURL}` must be configured as described.
-
-**Example 1.** An application is communicating by using the following URL (speech recognition using the base model for US English in West Europe):
-
-```
-wss://westeurope.stt.speech.microsoft.com
-```
-
-To use it in the private-endpoint-enabled scenario when the custom domain name of the Speech resource is `my-private-link-speech.cognitiveservices.azure.com`, you must modify the URL like this:
-
-```
-wss://my-private-link-speech.cognitiveservices.azure.com
-```
-
-**Example 2.** An application uses the following URL to synthesize speech in West Europe:
-```
-wss://westeurope.tts.speech.microsoft.com
-```
-
-The following equivalent URL uses a private endpoint, where the custom domain name of the Speech resource is `my-private-link-speech.cognitiveservices.azure.com`:
-
-```
-wss://my-private-link-speech.cognitiveservices.azure.com
-```
+The Speech SDK automatically will configure the `/{URL path}` depending on the service used.
+Therefor only the `/{baseURL}` must be configured as described.
 
 #### Modifying applications
 
 Follow these steps to modify your code:
 
-1. Determine the application endpoint URL:
+1. Determine the application endpoint URL from the 'Keys and Endpoints' menu of your resource on Azure Portal. In this example it would be `my-private-link-speech.cognitiveservices.azure.com`.
 
-   - [Turn on logging for your application](how-to-use-logging.md) and run it to log activity.
-   - In the log file, search for `SPEECH-ConnectionUrl`. In matching lines, the `value` parameter contains the full URL that your application used to reach the Speech service.
-
-   Example:
-
-   ```
-   (114917): 41ms SPX_DBG_TRACE_VERBOSE:  property_bag_impl.cpp:138 ISpxPropertyBagImpl::LogPropertyAndValue: this=0x0000028FE4809D78; name='SPEECH-ConnectionUrl'; value='wss://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?traffictype=spx&language=en-US'
-   ```
-
-   So the URL that the application used in this example is:
-
-   ```
-   wss://westeurope.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-US
-   ```
-
-2. Create a `SpeechConfig` instance by using a full endpoint URL:
+2. Create a `SpeechConfig` instance by using a endpoint URL:
 
    1. Modify the endpoint that you determined, as described in the earlier [Construct endpoint URL](#construct-endpoint-url) section.
 
@@ -302,7 +265,7 @@ Follow these steps to modify your code:
 
       To make it work, modify how you instantiate the `SpeechConfig` class and use "from endpoint"/"with endpoint" initialization. Suppose we have the following two variables defined:
       - `speechKey` contains the key of the private-endpoint-enabled Speech resource.
-      - `endPoint` contains the full *modified* endpoint URL (using the type required by the corresponding programming language). In our example, this variable should contain:
+      - `endPoint` contains the *modified* endpoint URL (using the type required by the corresponding programming language). In our example, this variable should contain:
         ```
         wss://my-private-link-speech.cognitiveservices.azure.com
         ```
@@ -330,6 +293,11 @@ Follow these steps to modify your code:
       ```
 
 After this modification, your application should work with the private-endpoint-enabled Speech resources. We're working on more seamless support of private endpoint scenarios.
+
+### Speech resource with a custom domain name and without private endpoints: Usage with the Speech SDK
+
+Using the Speech SDK with custom-domain-enabled Speech resources *without* private endpoints is equivalent to the configuration described *with* private endpoints in this document.
+
 
 [!INCLUDE [](includes/speech-studio-vnet.md)]
 
@@ -378,11 +346,6 @@ In this case, usage of the Speech to text REST API for short audio and usage of 
 > When you're using the Speech to text REST API for short audio and Text to speech REST API in custom domain scenarios, use an API key passed through the `Ocp-Apim-Subscription-Key` header. (See details for [Speech to text REST API for short audio](rest-speech-to-text-short.md#request-headers) and [Text to speech REST API](rest-text-to-speech.md#request-headers))
 >
 > Using an authorization token and passing it to the special endpoint via the `Authorization` header will work *only* if you've turned on the **All networks** access option in the **Networking** section of your Speech resource. In other cases you will get either `Forbidden` or `BadRequest` error when trying to obtain an authorization token.
-
-### Speech resource with a custom domain name and without private endpoints: Usage with the Speech SDK
-
-Using the Speech SDK with custom-domain-enabled Speech resources *without* private endpoints is equivalent to the configuration described *with* private endpoints in this document.
-
 
 [!INCLUDE [](includes/speech-vnet-service-enpoints-private-endpoints-simultaneously.md)]
 
