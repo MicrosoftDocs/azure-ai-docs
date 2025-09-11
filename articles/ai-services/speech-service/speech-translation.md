@@ -59,7 +59,7 @@ For a list of the supported input (source) languages, see the [speech to text la
 For more information on multi-lingual speech translation, see [the speech translation how to guide](./how-to-translate-speech.md#multi-lingual-speech-translation-without-source-language-candidates) and [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L472).
 
 ## Live interpreter (preview)
-[Public Preview] Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. Live Interpreter helps people communicate clearly and inclusively in everyday scenarios, like in Teams meetings, customer support centers, international classrooms, or global events. 
+Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. Live Interpreter helps people communicate clearly and inclusively in everyday scenarios, like in Teams meetings, customer support centers, international classrooms, or global events. 
 
 For a list of the supported input (source) languages, see the [speech to text languages documentation](language-support.md?tabs=stt).
 
