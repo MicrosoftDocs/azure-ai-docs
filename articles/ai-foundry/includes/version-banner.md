@@ -6,7 +6,7 @@ ms.reviewer: sgilley
 ms.author: sgilley
 ms.service: azure-ai-foundry
 ms.topic: include
-ms.date: 12/27/2024
+ms.date: 09/11/2025
 ms.custom: include
 ---
 ::: moniker range="foundry-classic"
