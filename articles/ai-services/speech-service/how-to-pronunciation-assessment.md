@@ -1106,7 +1106,7 @@ This formula provides a weighted calculation based on the importance of each sco
 ## Content assessment
 
 > [!IMPORTANT]
-> Content assessment (preview) via the Speech SDK will be retired starting from version 1.46.0. Instead, you can use the Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
+> Content assessment (preview) is retired from Speech SDK versions 1.46.0 and later. As an alternative, you can use Azure OpenAI in Azure AI Foundry Models to get content assessment results as described in this section.
 
 For some recognized speech, you might also want to get content assessment results for vocabulary, grammar, and topic relevance. You can use a chat model such as Azure OpenAI `gpt-4o` to get the content assessment results. For more information about using chat models, see [Azure OpenAI models](../../ai-foundry/openai/concepts/models.md) and the Azure AI Model Inference API [chat completions reference documentation](/rest/api/aifoundry/model-inference/get-chat-completions/get-chat-completions).
 
