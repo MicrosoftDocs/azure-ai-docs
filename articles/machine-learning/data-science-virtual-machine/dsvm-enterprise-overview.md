@@ -4,10 +4,10 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Patterns for deploying the Data Science VM in an enterprise team environment.
 keywords: deep learning, AI, data science tools, data science virtual machine, geospatial analytics, team data science process
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.topic: overview
 ms.reviewer: vijetaj
 ms.date: 04/10/2024

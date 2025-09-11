@@ -5,12 +5,14 @@ description: Indexers that index from Azure Storage can pick up new and changed 
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
-
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.topic: how-to
+ms.date: 08/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: how-to
-ms.date: 08/05/2024
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 # Change and delete detection using indexers for Azure Storage in Azure AI Search
@@ -21,10 +23,10 @@ Although change detection is a given, deletion detection isn't. An indexer doesn
 
 There are two ways to implement a soft delete strategy:
 
-+ [Native blob soft delete (preview)](#native-blob-soft-delete), applies to Blob Storage only
++ [Native blob soft delete](#native-blob-soft-delete), applies to Blob Storage only
 + [Soft delete using custom metadata](#soft-delete-using-custom-metadata)
 
-The deletion detection strategy should be applied from the very first indexer run. If you didn't establish the deletion policy prior to the initial run, any documents that were deleted before the policy was implemented will remain in your index, even if you add the policy to the indexer later and reset it. If this has occurred, it is suggested that you create a new index using a new indexer, ensuring the deletion policy is in place from the beginning.
+The deletion detection strategy must be applied from the very first indexer run. If you didn't establish the deletion policy prior to the initial run, any documents that were deleted before the policy was implemented will remain in your index, even if you add the policy to the indexer later and reset it. If this has occurred, it's suggested that you create a new index using a new indexer, ensuring the deletion policy is in place from the beginning.
 
 ## Prerequisites
 
@@ -33,7 +35,7 @@ The deletion detection strategy should be applied from the very first indexer ru
 + Use consistent document keys and file structure. Changing document keys or directory names and paths (applies to ADLS Gen2) breaks the internal tracking information used by indexers to know which content was indexed, and when it was last indexed.
 
 > [!NOTE]
-> ADLS Gen2 allows directories to be renamed. When a directory is renamed, the timestamps for the blobs in that directory do not get updated. As a result, the indexer will not re-index those blobs. If you need the blobs in a directory to be reindexed after a directory rename because they now have new URLs, you will need to update the `LastModified` timestamp for all the blobs in the directory so that the indexer knows to re-index them during a future run. The virtual directories in Azure Blob Storage cannot be changed, so they do not have this issue.
+> ADLS Gen2 allows directories to be renamed. When a directory is renamed, the timestamps for the blobs in that directory don't get updated. As a result, the indexer won't reindex those blobs. If you need the blobs in a directory to be reindexed after a directory rename because they now have new URLs, you need to update the `LastModified` timestamp for all the blobs in the directory so that the indexer knows to reindex them during a future run. The virtual directories in Azure Blob Storage can't be changed, so they don't have this issue.
 
 ## Native blob soft delete
 
@@ -41,13 +43,13 @@ For this deletion detection approach, Azure AI Search depends on the [native blo
 
 ### Requirements for native soft delete
 
-+ Blobs must be in an Azure Blob Storage container. The Azure AI Search native blob soft delete policy isn't supported for blobs in ADLS Gen2 or Azure Files.
++ Blobs must be in an Azure Blob Storage container, including ADLS Gen2 Blob container. The Azure AI Search native blob soft delete policy isn't supported for Azure Files.
 
 + [Enable soft delete for blobs](/azure/storage/blobs/soft-delete-blob-enable).
 
 + Document keys for the documents in your index must be mapped to either be a blob property or blob metadata, such as "metadata_storage_path".
 
-+ You must use a preview REST API such as [`2024-05-01-preview`](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2024-05-01-preview&preserve-view=true), or the indexer Data Source configuration in the Azure portal, to configure support for soft delete.
++ You can use the [REST API](/rest/api/searchservice/data-sources/create), or the indexer Data Source configuration in the Azure portal, to configure support for soft delete.
 
 + [Blob versioning](/azure/storage/blobs/versioning-overview) must not be enabled in the storage account. Otherwise, native soft delete isn't supported by design.
 
@@ -55,7 +57,7 @@ For this deletion detection approach, Azure AI Search depends on the [native blo
 
 In Blob storage, when enabling soft delete per the requirements, set the retention policy to a value that's much higher than your indexer interval schedule. If there's an issue running the indexer, or if you have a large number of documents to index, there's plenty of time for the indexer to eventually process the soft deleted blobs. Azure AI Search indexers will only delete a document from the index if it processes the blob while it's in a soft deleted state.
 
-In Azure AI Search, set a native blob soft deletion detection policy on the data source. You can do this either from the Azure portal or by using a previewREST API (`2024-05-01-preview`). The following instructions explain how to set the delete detection policy in Azure portal or through REST APIs.
+In Azure AI Search, set a native blob soft deletion detection policy on the data source. You can do this either from the Azure portal or by using the [REST API](/rest/api/searchservice/data-sources/create). The following instructions explain how to set the delete detection policy in Azure portal or through REST APIs.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -63,7 +65,7 @@ In Azure AI Search, set a native blob soft deletion detection policy on the data
 
 1. On the Azure AI Search service Overview page, go to **New Data Source**, a visual editor for specifying a data source definition. 
 
-   The following screenshot shows where you can find this feature in the portal. 
+   The following screenshot shows where you can find this feature in the Azure portal. 
 
    :::image type="content" source="media/search-indexing-changed-deleted-blobs/new-data-source.png" alt-text="Screenshot of data source configuration in Import Data wizard." border="true":::
 
@@ -76,7 +78,7 @@ In Azure AI Search, set a native blob soft deletion detection policy on the data
 Set the soft deletion detection policy in the data source definition. Specify the API version when creating or updating the data source.
 
 ```http
-PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2024-05-01-preview
+PUT https://[service name].search.windows.net/datasources/blob-datasource?api-version=2024-07-01
 Content-Type: application/json
 api-key: [admin key]
 {

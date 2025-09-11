@@ -9,6 +9,8 @@ ms.date: 05/17/2023
 
 # Pan UK-Biobank: Pan-ancestry genetic analysis of the UK Biobank
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 The [Pan-ancestry genetic analysis of the UK Biobank(Pan-UKBB)](https://pan.ukbb.broadinstitute.org) is a resource to researchers that promotes more inclusive research practices, accelerates scientific discoveries, and improves the health of all people equitably. In genetics research, it's statistically necessary to study groups of individuals together with similar ancestries. In practice, this method has meant that most previous research has excluded individuals with non-European ancestries. The Pan-ancestry of UK-biobank is a resource using one of the most widely accessed sources of genetic data, the UK Biobank, in a manner that is more inclusive than most previous efforts--namely studying groups of individuals with diverse ancestries. The results of this research have many important limitations, which should be carefully considered when researchers use this resource in their work and when they and others interpret subsequent findings.
 
 [!INCLUDE [Open Dataset usage notice](./includes/open-datasets-usage-note.md)]
@@ -28,8 +30,6 @@ This dataset is stored in the East US Azure region. We recommend locating comput
 ## Data Access
 
 East US: 'https://datasetpanukbb.blob.core.windows.net/dataset'
-
-[SAS Token](/azure/storage/common/storage-sas-overview): ?sp=rl&st=2023-05-17T21:26:19Z&se=2050-05-18T05:26:19Z&spr=https&sv=2022-11-02&sr=c&sig=MGvVbVHbmkGKmWmfkHzpcaJEf5G0ljLnBQy6cbrmR%2FA%3D
 
 ## Use Terms
 

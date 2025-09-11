@@ -2,13 +2,12 @@
 title: What is entity linking in Azure AI Language?
 titleSuffix: Azure AI services
 description: An overview of entity linking in Azure AI services, which helps you extract entities from text, and provides links to an online knowledge base.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/04/2025
+ms.author: lajanuar
 ms.custom: language-service-entity-linking
 ---
 
@@ -29,12 +28,12 @@ This documentation contains the following types of articles:
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for entity linking](/legal/cognitive-services/language-service/transparency-note?context=/azure/ai-services/language-service/context/context) to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes not only the technology, but also the people who will use it, the people who will be affected by it, and the environment in which it is deployed. Read the [transparency note for entity linking](/azure/ai-foundry/responsible-ai/language-service/transparency-note) to learn about responsible AI use and deployment in your systems. 
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 
 ## Next steps
 
 There are two ways to get started using the entity linking feature:
-* [Language Studio](../language-studio.md), which is a web-based platform that enables you to try several Azure AI Language features without needing to write code.
+* [Language Studio](https://language.cognitive.azure.com/tryout/linkedEntities), which is a web-based platform that enables you to try several Azure AI Language features without needing to write code.
 * The [quickstart article](quickstart.md) for instructions on making requests to the service using the REST API and client library SDK.  

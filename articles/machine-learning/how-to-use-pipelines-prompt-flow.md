@@ -3,13 +3,14 @@ title:  Use Azure Machine Learning pipelines with no code to construct RAG pipel
 titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning pipelines to run Prompt Flow models (preview)
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.date: 06/20/2024
 ms.topic: how-to
+ms.collection: ce-skilling-ai-copilot 
 ms.custom: prompt
 ---
 

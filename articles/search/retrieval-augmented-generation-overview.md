@@ -2,26 +2,27 @@
 title: RAG and generative AI
 titleSuffix: Azure AI Search
 description: Learn how generative AI and retrieval augmented generation (RAG) patterns are used in Azure AI Search solutions.
-
-manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+manager: nitinme
+ms.date: 08/18/2025
+ms.service: azure-ai-search
+ms.topic: conceptual
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 09/03/2024
+  - ignite-2024
+  - build-2025
 ---
 
 # Retrieval Augmented Generation (RAG) in Azure AI Search
 
-Retrieval Augmented Generation (RAG) is an architecture that augments the capabilities of a Large Language Model (LLM) like ChatGPT by adding an information retrieval system that provides grounding data. Adding an information retrieval system gives you control over grounding data used by an LLM when it formulates a response. For an enterprise solution, RAG architecture means that you can constrain generative AI to *your enterprise content* sourced from vectorized documents and images, and other data formats if you have embedding models for that content.
+Retrieval Augmented Generation (RAG) is a design pattern that augments the capabilities of a chat completion model like ChatGPT by adding an information retrieval step, incorporating your proprietary enterprise content for answer formulation. For an enterprise solution, it's possible to fully constrain generative AI to your enterprise content.
 
 The decision about which information retrieval system to use is critical because it determines the inputs to the LLM. The information retrieval system should provide:
 
 + Indexing strategies that load and refresh at scale, for all of your content, at the frequency you require.
 
-+ Query capabilities and relevance tuning. The system should return *relevant* results, in the short-form formats necessary for meeting the token length requirements of LLM inputs.
++ Query capabilities and relevance tuning. The system should return *relevant* results, in the short-form formats necessary for meeting the token length requirements of large language model (LLM) inputs.
 
 + Security, global reach, and reliability for both data and operations.
 
@@ -36,29 +37,21 @@ Azure AI Search is a [proven solution for information retrieval](/azure/develope
 
 Microsoft has several built-in implementations for using Azure AI Search in a RAG solution.
 
-+ Azure AI Studio, [use a vector index and retrieval augmentation](/azure/ai-studio/concepts/retrieval-augmented-generation). 
-+ Azure OpenAI Studio, [use a search index with or without vectors](/azure/ai-services/openai/concepts/use-your-data).
++ Azure AI Search, [build an agentic retrieval pipeline](search-agentic-retrieval-concept.md) in a custom solution. The agentic pipeline is designed specifically for the RAG pattern. You write code that calls Azure AI Search APIs designed for chat completion model integration with your indexed contet.
++ Azure AI Foundry, [use a vector index and retrieval augmentation](/azure/ai-foundry/concepts/retrieval-augmented-generation). 
++ Azure OpenAI, [use a search index with or without vectors](/azure/ai-services/openai/concepts/use-your-data).
 + Azure Machine Learning, [use a search index as a vector store in a prompt flow](/azure/machine-learning/how-to-create-vector-index).
-
-Curated approaches make it simple to get started, but for more control over the architecture, you need a custom solution. These templates create end-to-end solutions in:
-
-+ [Python](https://aka.ms/azai/py)
-+ [.NET](https://aka.ms/azai/net)
-+ [JavaScript](https://aka.ms/azai/js)
-+ [Java](https://aka.ms/azai/java)
-
-If tools and templates don't satisfy your application requirements, you can build a custom RAG solution using Azure AI Search APIs. The remainder of this article explores how Azure AI Search fits into a custom RAG solution.
 
 ## Custom RAG pattern for Azure AI Search
 
-A high-level summary of the pattern looks like this:
+A high-level summary of a RAG pattern based on Azure AI Search looks like this:
 
 + Start with a user question or request (prompt).
 + Send it to Azure AI Search to find relevant information.
 + Return the top ranked search results to an LLM.
 + Use the natural language understanding and reasoning capabilities of the LLM to generate a response to the initial prompt.
 
-Azure AI Search provides inputs to the LLM prompt, but doesn't train the model. In RAG architecture, there's no extra training. The LLM is pretrained using public data, but it generates responses that are augmented by information from the retriever, in this case, Azure AI Search.
+Azure AI Search provides inputs to the LLM prompt, but doesn't train the model. In a traditional RAG pattern, there's no extra training. The LLM is pretrained using public data, but it generates responses that are augmented by information from the retriever, in this case, Azure AI Search.
 
 RAG patterns that include Azure AI Search have the elements indicated in the following illustration.
 
@@ -71,17 +64,17 @@ RAG patterns that include Azure AI Search have the elements indicated in the fol
 
 The web app provides the user experience, providing the presentation, context, and user interaction. Questions or prompts from a user start here. Inputs pass through the integration layer, going first to information retrieval to get the search results, but also go to the LLM to set the context and intent. 
 
-The app server or orchestrator is the integration code that coordinates the handoffs between information retrieval and the LLM. Common solutions include [LangChain](https://python.langchain.com/docs/get_started/introduction) to coordinate the workflow. LangChain [integrates with Azure AI Search](https://python.langchain.com/docs/integrations/retrievers/azure_ai_search/), making it easier to include Azure AI Search as a [retriever](https://python.langchain.com/docs/how_to/#retrievers) in your workflow. [LlamaIndex](https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch) and [Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/announcing-semantic-kernel-integration-with-azure-cognitive-search/) are other options.
+The app server or orchestrator is the integration code that coordinates the handoffs between information retrieval and the LLM. Common solutions include [Azure Semantic Kernel](/semantic-kernel/get-started/quick-start-guide) or [LangChain](https://python.langchain.com/docs/get_started/introduction) to coordinate the workflow. [LangChain integrates with Azure AI Search](https://python.langchain.com/docs/integrations/retrievers/azure_ai_search/), making it easier to include Azure AI Search as a [retriever](https://python.langchain.com/docs/how_to/#retrievers) in your workflow. [LlamaIndex](https://github.com/run-llama/llama_index/tree/main/llama-index-integrations/vector_stores/llama-index-vector-stores-azureaisearch) and [Semantic Kernel](https://devblogs.microsoft.com/semantic-kernel/announcing-semantic-kernel-integration-with-azure-cognitive-search/) are other options.
 
 The information retrieval system provides the searchable index, query logic, and the payload (query response). The search index can contain vectors or nonvector content. Although most samples and demos include vector fields, it's not a requirement. The query is executed using the existing search engine in Azure AI Search, which can handle keyword (or term) and vector queries. The index is created in advance, based on a schema you define, and loaded with your content that's sourced from files, databases, or storage.
 
-The LLM receives the original prompt, plus the results from Azure AI Search. The LLM analyzes the results and formulates a response. If the LLM is ChatGPT, the user interaction might be a back and forth conversation. If you're using Davinci, the prompt might be a fully composed answer. An Azure solution most likely uses Azure OpenAI, but there's no hard dependency on this specific service.
+The LLM receives the original prompt, plus the results from Azure AI Search. The LLM analyzes the results and formulates a response. If the LLM is ChatGPT, the user interaction might consist of multiple conversation turns. An Azure solution most likely uses Azure OpenAI, but there's no hard dependency on this specific service.
 
-Azure AI Search doesn't provide native LLM integration for prompt flows or chat preservation, so you need to write code that handles orchestration and state. You can review demo source ([Azure-Samples/azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo)) for a blueprint of what a full solution entails. We also recommend Azure AI Studio or [Azure OpenAI Studio](/azure/ai-services/openai/use-your-data-quickstart) to create RAG-based Azure AI Search solutions that integrate with LLMs.
+Except for features currently in preview, Azure AI Search doesn't provide native LLM integration for prompt flows or chat preservation, so you need to write code that handles orchestration and state. You can review demo source ([Azure-Samples/azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo)), updated for agentic retrieval, for a blueprint of what a full solution entails. We also recommend [Azure AI Foundry](/azure/ai-foundry/concepts/retrieval-augmented-generation) to create RAG-based Azure AI Search solutions that integrate with LLMs.
 
 ## Searchable content in Azure AI Search
 
-In Azure AI Search, all searchable content is stored in a search index that's hosted on your search service. A search index is designed for fast queries with millisecond response times, so its internal data structures exist to support that objective. To that end, a search index stores *indexed content*, and not whole content files like entire PDFs or images. Internally, the data structures include inverted indexes of [tokenized text](https://lucene.apache.org/core/7_5_0/test-framework/org/apache/lucene/analysis/Token.html), vector indexes for embeddings, and unaltered text for cases where verbatim matching is required (for example, in filters, fuzzy search, regular expression queries).
+In Azure AI Search, all searchable content is stored in a search index that's hosted on your search service. A search index is designed for fast queries with millisecond response times, so its internal data structures exist to support that objective. To that end, a search index stores *indexed content*, and not whole content files like entire PDFs or images. Internally, the data structures include inverted indexes of [tokenized text](https://lucene.apache.org/core/7_5_0/test-framework/org/apache/lucene/analysis/Token.html), vector indexes for embeddings, and unaltered plain text for cases where verbatim matching is required (for example, in filters, fuzzy search, regular expression queries).
 
 When you set up the data for your RAG solution, you use the features that create and load an index in Azure AI Search. An index includes fields that duplicate or represent your source content. An index field might be simple transference (a title or description in a source document becomes a title or description in a search index), or a field might contain the output of an external process, such as vectorization or skill processing that generates a representation or text description of an image.
 
@@ -91,14 +84,12 @@ Since you probably know what kind of content you want to search over, consider t
 |--------------|------------|----------|
 | text | tokens, unaltered text | [Indexers](search-indexer-overview.md) can pull plain text from other Azure resources like Azure Storage and Cosmos DB. You can also [push any JSON content](search-what-is-data-import.md) to an index. To modify text in flight, use [analyzers](search-analyzers.md) and [normalizers](search-normalizers.md) to add lexical processing during indexing. [Synonym maps](search-synonyms.md) are useful if source documents are missing terminology that might be used in a query. |
 | text | vectors <sup>1</sup> | Text can be chunked and vectorized in an indexer pipeline, or handled externally and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. |
-| image | tokens, unaltered text <sup>2</sup> | [Skills](cognitive-search-working-with-skillsets.md) for OCR and Image Analysis can process images for text recognition or image characteristics. Image information is converted to searchable text and added to the index. Skills have an indexer requirement. |
+| image | tokens, unaltered text <sup>2</sup> | [Skills](cognitive-search-working-with-skillsets.md) for OCR and Image Analysis can process images for text recognition or image characteristics. Skills have an indexer requirement. |
 | image | vectors <sup>1</sup> | Images can be vectorized in an indexer pipeline, or handled externally for a mathematical representation of image content and then [indexed as vector fields](vector-search-how-to-create-index.md) in your index. You can use [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) or an open source model like [OpenAI CLIP](https://github.com/openai/CLIP/blob/main/README.md) to vectorize text and images in the same embedding space.|
-<!-- | audio | vectors <sup>1</sup> | Vectorized audio content can be [indexed as vector fields](vector-search-how-to-create-index.md) in your index. Vectorization of audio content often requires intermediate processing that converts audio to text, and then text to vecctors. [Azure AI Speech](/azure/ai-services/speech-service/overview) and [OpenAI Whisper](https://platform.openai.com/docs/guides/speech-to-text) are two examples for this scenario. | 
-| video | vectors <sup>1</sup> | Vectorized video content can be [indexed as vector fields](vector-search-how-to-create-index.md) in your index. Similar to audio, vectorization of video content also requires extra processing, such as breaking up the video into frames or smaller chunks for vectorization. | -->
 
  <sup>1</sup> Azure AI Search provides [integrated data chunking and vectorization](vector-search-integrated-vectorization.md), but you must take a dependency on indexers and skillsets. If you can't use an indexer, Microsoft's [Semantic Kernel](/semantic-kernel/overview/) or other community offerings can help you with a full stack solution. For code samples showing both approaches, see [azure-search-vectors repo](https://github.com/Azure/azure-search-vector-samples).
 
-<sup>2</sup> [Skills](cognitive-search-working-with-skillsets.md) are built-in support for [applied AI](cognitive-search-concept-intro.md). For OCR and Image Analysis, the indexing pipeline makes an internal call to the Azure AI Vision APIs. These skills pass an extracted image to Azure AI for processing, and receive the output as text that's indexed by Azure AI Search. Skills are also used for integrated data chunking (Text Split skill) and integrated embedding (skills that call Azure AI Vision multimodal, Azure OpenAI, and models in the Azure AI Studio model catalog.)
+<sup>2</sup> Image descriptions are converted to searchable text and added to the index. The images themselves are not stored in the index. [Skills](cognitive-search-working-with-skillsets.md) are built-in support for [applied AI](cognitive-search-concept-intro.md). For OCR and Image Analysis, the indexing pipeline makes an internal call to the Azure AI Vision APIs. These skills pass an extracted image to Azure AI for processing, and receive the output as text that's indexed by Azure AI Search. Skills are also used for integrated data chunking (Text Split skill) and integrated embedding (skills that call Azure AI Vision multimodal, Azure OpenAI, and models in the Azure AI Foundry model catalog.) 
 
 Vectors provide the best accommodation for dissimilar content (multiple file formats and languages) because content is expressed universally in mathematic representations. Vectors also support similarity search: matching on the coordinates that are most similar to the vector query. Compared to keyword search (or term search) that matches on tokenized terms, similarity search is more nuanced. It's a better choice if there's ambiguity or interpretation requirements in the content or in queries.
 
@@ -119,6 +110,7 @@ There's no query type in Azure AI Search - not even semantic or vector search - 
 | [Semantic ranker](semantic-how-to-query-request.md) | Re-ranks a BM25 result set using semantic models. Produces short-form captions and answers that are useful as LLM inputs. | Easier than scoring profiles, and depending on your content, a more reliable technique for relevance tuning. |
   [Vector search](vector-search-how-to-query.md) | Query execution over vector fields for similarity search, where the query string is one or more vectors. | Vectors can represent all types of content, in any language. |
 | [Hybrid search](hybrid-search-how-to-query.md) | Combines any or all of the above query techniques. Vector and nonvector queries execute in parallel and are returned in a unified result set. | The most significant gains in precision and recall are through hybrid queries. |
+| [Agentic search (preview)](search-agentic-retrieval-how-to-create.md) | Parallel query execution pipeline of multiple subqueries, returning a response designed for RAG workloads and agent consumer. Queries can be vector or keyword search. Semantic ranking ensures the best results of subquery are included in the final response structure. **This is the recommended approach for RAG patterns based on Azure AI Search**. |
 
 ### Structure the query response
 
@@ -147,13 +139,16 @@ Here are some tips for maximizing relevance and recall:
 
   + [Semantic ranker](semantic-ranking.md) that re-ranks an initial results set, using semantic models from Bing to reorder results for a better semantic fit to the original query.
 
-  + Query parameters for fine-tuning. You can [bump up the importance of vector queries](vector-search-how-to-query.md#vector-weighting) or [adjust the amount of BM25-ranked results](vector-search-how-to-query.md#maxtextsizerecall-for-hybrid-search-preview) in a hybrid query. You can also [set minimum thresholds to exclude low scoring results](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview) from a vector query.
+  + Query parameters for fine-tuning. You can [boost the importance of vector queries](vector-search-how-to-query.md#vector-weighting) or [adjust the amount of BM25-ranked results](hybrid-search-how-to-query.md#set-maxtextrecallsize-and-countandfacetmode) in a hybrid query response. You can also [set minimum thresholds to exclude low scoring results](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview) from a vector query.
 
 In comparison and benchmark testing, hybrid queries with text and vector fields, supplemented with semantic ranking, produce the most relevant results.
 
 ### Example code for a RAG workflow
 
-The following Python code demonstrates the essential components of a RAG workflow in Azure AI Search. You need to set up the clients, define a system prompt, and provide a query. The prompt tells the LLM to use just the results from the query, and how to return the results. For more steps based on this example, see this [RAG quickstart](search-get-started-rag.md).
+The following Python code demonstrates the essential components of a basic RAG workflow in Azure AI Search. You need to set up the clients, define a system prompt, and provide a query. The prompt tells the LLM to use just the results from the query, and how to return the results. For more steps based on this example, see this [RAG quickstart](search-get-started-rag.md).
+
+> [!NOTE]
+> For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 # Set up the query for generating responses
@@ -220,30 +215,15 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 
 ## How to get started
 
+There are many ways to get started, including code-first solutions and demos.
+
+### [**Docs**](#tab/docs)
+
 + [Try this RAG quickstart](search-get-started-rag.md) for a demonstration of query integration with chat models over a search index.
 
++ [Try this agentic retrieval quickstart](search-get-started-rag.md) to walk through the new and recommended approach for RAG.
+
 + [Tutorial: How to build a RAG solution in Azure AI Search](tutorial-rag-build-solution.md) for focused coverage on the features and pattern for RAG solutions that obtain grounding data from a search index.
-
-+ Start with solution accelerators:
-
-  + [Chat with your data solution accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator)
-  
-  + [Conversational Knowledge Mining solution accelerator](https://github.com/microsoft/Customer-Service-Conversational-Insights-with-Azure-OpenAI-Services)
-
-  + [Build your own copilot solution accelerator](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
-
-    + [Client Advisor](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator/blob/main/ClientAdvisor/README.md)
-
-    + [Research Assistant](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator/blob/main/ResearchAssistant/README.md)
-
-    + [Generic copilot](https://github.com/microsoft/Generic-Build-your-own-copilot-Solution-Accelerator)
-
-+ [Use enterprise chat app templates](https://aka.ms/azai) deploy Azure resources, code, and sample grounding data using fictitious health plan documents for Contoso and Northwind. This end-to-end solution gives you an operational chat app in as little as 15 minutes. Code for these templates is the **azure-search-openai-demo** featured in several presentations. The following links provide language-specific versions:
-
-  + [.NET](https://aka.ms/azai/net)
-  + [Python](https://aka.ms/azai/py)
-  + [JavaScript](https://aka.ms/azai/js)
-  + [Java](https://aka.ms/azai/javat)
 
 + [Review indexing concepts and strategies](search-what-is-an-index.md) to determine how you want to ingest and refresh data. Decide whether to use vector search, keyword search, or hybrid search. The kind of content you need to search over, and the type of queries you want to run, determines index design.
 
@@ -252,8 +232,45 @@ A RAG solution that includes Azure AI Search can leverage [built-in data chunkin
 > [!NOTE]
 > Some Azure AI Search features are intended for human interaction and aren't useful in a RAG pattern. Specifically, you can skip features like autocomplete and suggestions. Other features like facets and orderby might be useful, but would be uncommon in a RAG scenario.
 
+### [**Demos and code**](#tab/demos)
+
+Check out the following GitHub repositories for code, documentation, and video demonstrations where applicable.
+
++ [RAG Time Journeys](https://github.com/microsoft/rag-time)
+
++ [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples)
+
+### [**Templates**](#tab/templates)
+
+[Use enterprise chat app templates](https://aka.ms/azai) deploy Azure resources, code, and sample grounding data using fictitious health plan documents for Contoso and Northwind. This end-to-end solution gives you an operational chat app in as little as 15 minutes. Code for these templates is the **azure-search-openai-demo** featured in several presentations. The following links provide language-specific versions:
+
++ [.NET](https://aka.ms/azai/net)
++ [Python](https://aka.ms/azai/py)
++ [JavaScript](https://aka.ms/azai/js)
++ [Java](https://aka.ms/azai/javat)
+
+### [**Accelerators**](#tab/accelerators)
+
++ [Chat with your data solution accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator)
+
++ [Conversational Knowledge Mining solution accelerator](https://github.com/microsoft/Customer-Service-Conversational-Insights-with-Azure-OpenAI-Services)
+
++ [Document Knowledge Mining accelerator](https://github.com/microsoft/Document-Knowledge-Mining-Solution-Accelerator)
+
++ [Build your own copilot solution accelerator](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
+
+  + [Client Advisor](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
+
+  + [Research Assistant](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator)
+
+  + [Generic copilot](https://github.com/microsoft/Generic-Build-your-own-copilot-Solution-Accelerator)
+
+---
+
 ## See also
 
++ [RAG Experiment Accelerator](https://github.com/microsoft/rag-experiment-accelerator)
+
 + [Retrieval Augmented Generation: Streamlining the creation of intelligent natural language processing models](https://ai.meta.com/blog/retrieval-augmented-generation-streamlining-the-creation-of-intelligent-natural-language-processing-models/)
-+ [Retrieval Augmented Generation using Azure Machine Learning prompt flow](/azure/machine-learning/concept-retrieval-augmented-generation)
+
 + [Azure Cognitive Search and LangChain: A Seamless Integration for Enhanced Vector Search Capabilities](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-and-langchain-a-seamless-integration-for/ba-p/3901448)

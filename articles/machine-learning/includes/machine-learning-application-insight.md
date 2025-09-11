@@ -2,8 +2,8 @@
 author: nibaccam
 ms.service: azure-machine-learning
 ms.topic: include
-ms.date: 01/04/2022
-ms.author: larryfr
+ms.date: 02/10/2025
+ms.author: scottpolly
 ---
 
 > [!TIP]

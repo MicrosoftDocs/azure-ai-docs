@@ -2,13 +2,12 @@
 title: Use Docker containers for Key Phrase Extraction on-premises
 titleSuffix: Azure AI services
 description: Learn how to use Docker containers for Key Phrase Extraction on-premises.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/21/2025
+ms.author: lajanuar
 ms.custom: language-service-key-phrase
 keywords: on-premises, Docker, container, natural language processing
 ---

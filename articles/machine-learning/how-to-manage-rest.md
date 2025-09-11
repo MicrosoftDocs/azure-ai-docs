@@ -2,8 +2,8 @@
 title: Use REST to manage ML resources
 titleSuffix: Azure Machine Learning
 description: How to use REST APIs to create, run, and delete Azure Machine Learning resources, such as a workspace, or register models.
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: deeikele
 services: machine-learning
 ms.service: azure-machine-learning
@@ -11,6 +11,7 @@ ms.subservice: enterprise-readiness
 ms.date: 08/21/2024
 ms.topic: how-to
 ms.custom:
+
 ---
 
 # Create, run, and delete Azure Machine Learning resources using REST
@@ -25,6 +26,7 @@ In this article, you learn how to:
 > * Retrieve an authorization token
 > * Create a properly-formatted REST request using service principal authentication
 > * Use GET requests to retrieve information about Azure Machine Learning's hierarchical resources
+> * Use GET requests to retrieve and manage jobs
 > * Use PUT and POST requests to create and modify resources
 > * Use PUT requests to create Azure Machine Learning workspaces
 > * Use DELETE requests to clean up resources 
@@ -102,7 +104,7 @@ The above call will result in a compacted JSON response of the form:
 {
     "value": [
         {
-            "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/RG1",
+            "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RG1",
             "name": "RG1",
             "type": "Microsoft.Resources/resourceGroups",
             "location": "westus2",
@@ -111,7 +113,7 @@ The above call will result in a compacted JSON response of the form:
             }
         },
         {
-            "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/RG2",
+            "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/RG2",
             "name": "RG2",
             "type": "Microsoft.Resources/resourceGroups",
             "location": "eastus",
@@ -128,7 +130,7 @@ The above call will result in a compacted JSON response of the form:
 
 To retrieve the set of workspaces in a resource group, run the following, replacing `<YOUR-SUBSCRIPTION-ID>`, `<YOUR-RESOURCE-GROUP>`, and `<YOUR-ACCESS-TOKEN>`: 
 
-```
+```bash
 curl https://management.azure.com/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/providers/Microsoft.MachineLearningServices/workspaces/?api-version=2023-10-01 \
 -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
 ```
@@ -137,7 +139,7 @@ Again you'll receive a JSON list, this time containing a list, each item of whic
 
 ```json
 {
-    "id": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourceGroups/DeepLearningResourceGroup/providers/Microsoft.MachineLearningServices/workspaces/my-workspace",
+    "id": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourceGroups/DeepLearningResourceGroup/providers/Microsoft.MachineLearningServices/workspaces/my-workspace",
     "name": "my-workspace",
     "type": "Microsoft.MachineLearningServices/workspaces",
     "location": "centralus",
@@ -147,10 +149,10 @@ Again you'll receive a JSON list, this time containing a list, each item of whic
         "friendlyName": "",
         "description": "",
         "creationTime": "2023-01-03T19:56:09.7588299+00:00",
-        "storageAccount": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourcegroups/DeepLearningResourceGroup/providers/microsoft.storage/storageaccounts/myworkspace0275623111",
+        "storageAccount": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/DeepLearningResourceGroup/providers/microsoft.storage/storageaccounts/myworkspace0275623111",
         "containerRegistry": null,
-        "keyVault": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourcegroups/DeepLearningResourceGroup/providers/microsoft.keyvault/vaults/myworkspace2525649324",
-        "applicationInsights": "/subscriptions/12345abc-abbc-1b2b-1234-57ab575a5a5a/resourcegroups/DeepLearningResourceGroup/providers/microsoft.insights/components/myworkspace2053523719",
+        "keyVault": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/DeepLearningResourceGroup/providers/microsoft.keyvault/vaults/myworkspace2525649324",
+        "applicationInsights": "/subscriptions/aaaa0a0a-bb1b-cc2c-dd3d-eeeeee4e4e4e/resourcegroups/DeepLearningResourceGroup/providers/microsoft.insights/components/myworkspace2053523719",
         "hbiWorkspace": false,
         "workspaceId": "cba12345-abab-abab-abab-ababab123456",
         "subscriptionState": null,
@@ -202,6 +204,50 @@ providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/mod
 -H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
 ```
 
+## Retrieve and manage jobs
+
+Jobs are a fundamental concept in Azure Machine Learning, representing training runs, batch inference, and other machine learning workloads. You can use REST API calls to retrieve job information, monitor status, and manage job lifecycle.
+
+### Get a specific job by ID
+
+To retrieve details about a specific job using its ID, you can use the management API:
+
+```bash
+curl https://management.azure.com/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/jobs/<JOB-ID>?api-version=2024-04-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
+This will return a JSON response with complete job details including status, configuration, and results.
+
+### List all jobs in a workspace
+
+To get a list of all jobs in your workspace:
+
+```bash
+curl https://management.azure.com/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/jobs?api-version=2024-04-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
+### Get job runs using regional API
+
+You can also retrieve job information using the regional API server. To list job runs:
+
+```bash
+curl https://<REGIONAL-API-SERVER>/history/v1.0/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/runs?api-version=2023-10-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
+To get details about a specific run:
+
+```bash
+curl https://<REGIONAL-API-SERVER>/history/v1.0/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP>/\
+providers/Microsoft.MachineLearningServices/workspaces/<YOUR-WORKSPACE-NAME>/runs/<RUN-ID>?api-version=2023-10-01 \
+-H "Authorization:Bearer <YOUR-ACCESS-TOKEN>"
+```
+
 Notice that to list experiments the path begins with `history/v1.0` while to list models, the path begins with `modelmanagement/v1.0`. The REST API is divided into several operational groups, each with a distinct path. 
 
 |Area|Path|
@@ -209,6 +255,7 @@ Notice that to list experiments the path begins with `history/v1.0` while to lis
 |Artifacts|/rest/api/azureml|
 |Data stores|/azure/machine-learning/how-to-access-data|
 |Hyperparameter tuning|hyperdrive/v1.0/|
+|Jobs|/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MachineLearningServices/workspaces/{workspaceName}/jobs|
 |Models|modelmanagement/v1.0/|
 |Run history|execution/v1.0/ and history/v1.0/|
 
@@ -263,7 +310,7 @@ curl -X PUT \
 ```
 
 > [!NOTE]
-> In Windows terminals you may have to escape the double-quote symbols when sending JSON data. That is, text such as `"location"` becomes `\"location\"`. 
+> In Windows terminals you might have to escape the double-quote symbols when sending JSON data. That is, text such as `"location"` becomes `\"location\"`. 
 
 A successful request will get a `201 Created` response, but note that this response simply means that the provisioning process has begun. You'll need to poll (or use the portal) to confirm its successful completion.
 

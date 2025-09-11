@@ -3,14 +3,14 @@ title: Models sweeping & selection for forecasting in AutoML
 titleSuffix: Azure Machine Learning
 description: Explore how you can use automated machine learning (AutoML) in Azure Machine Learning to search for (sweep) and select forecasting models.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: chuantian
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: concept-article
 ms.custom: automl, sdkv1
-ms.date: 10/01/2024
+ms.date: 03/11/2025
 
 #customer intent: As a developer, I want to use AutoML in Azure Machine Learning, so I can search for (sweep) and select forecasting models.
 ---

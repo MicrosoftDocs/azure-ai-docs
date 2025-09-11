@@ -5,12 +5,11 @@ description: Learn how to share custom model projects using Document Intelligenc
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
-ms.custom:
-  - ignite-2023
 ms.topic: how-to
-ms.date: 08/07/2024
+ms.date: 11/19/2024
 ms.author: jppark
 monikerRange: '>=doc-intel-3.0.0'
+ms.custom: sfi-image-nochange
 ---
 
 

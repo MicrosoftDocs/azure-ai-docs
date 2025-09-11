@@ -5,9 +5,9 @@ description: 'Learn about model management (MLOps) with Azure Machine Learning. 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.topic: conceptual
-author: msakande
-ms.author: mopeakande
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.custom: UpdateFrequency5, mktng-kw-nov2021
 ms.date: 08/12/2024
@@ -17,6 +17,10 @@ ms.date: 08/12/2024
 # MLOps: Model management, deployment, lineage, and monitoring with Azure Machine Learning v1
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
 
 In this article, learn how to apply machine learning operations (MLOps) practices in Azure Machine Learning to manage the lifecycle of your models. Machine learning operations practices can improve the quality and consistency of your machine learning solutions.
 
@@ -81,7 +85,7 @@ Name and version identify registered models. Each time you register a model with
 You can't delete a registered model that is being used in an active deployment. For more information, see [Register the model](how-to-deploy-and-where.md#registermodel).
 
 > [!IMPORTANT]
-> When you use the filter by `Tags` option on the **Models** page of Azure Machine Learning Studio, instead of using `TagName : TagValue` you should use `TagName=TagValue` (without space).
+> When you use the filter by `Tags` option on the **Models** page of Azure Machine Learning studio, instead of using `TagName : TagValue` you should use `TagName=TagValue` (without space).
 
 ### Package and debug models
 

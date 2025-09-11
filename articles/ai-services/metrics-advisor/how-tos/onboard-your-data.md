@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
@@ -115,7 +115,7 @@ Consider the following scenarios:
 
 * *"My data has already rolled up and the dimension value is represented by: NULL or Empty (Default), NULL only, Others."*
 
-    This option means Metrics Advisor doesn't need to roll up the data because the rows are already summed. For example, if you select *NULL only*, then the second data row in the below example will be seen as an aggregation of all countries and language *EN-US*; the fourth data row which has an empty value for *Country* however will be seen as an ordinary row which might indicate incomplete data.
+    This option means Metrics Advisor doesn't need to roll up the data because the rows are already summed. For example, if you select *NULL only*, then the second data row in the below example will be seen as an aggregation of all countries/regions and language *EN-US*; the fourth data row which has an empty value for *Country* however will be seen as an ordinary row which might indicate incomplete data.
     
     | Country/Region | Language | Income |
     |---------|----------|--------|

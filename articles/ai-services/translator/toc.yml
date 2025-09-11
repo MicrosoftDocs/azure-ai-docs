@@ -6,35 +6,64 @@ items:
   items:
   - name: What is Translator Service?
     displayName: features,develop,development,free
-    href: translator-overview.md
-  - name: Create a Translator resource
+    href: overview.md
+  - name: What's new?
+    displayName: release,ga,update,support, cognitive
+    href: whats-new.md
+  - name: Configure Azure AI resources
     displayName: endpoint,key,portal,azure,authentication,delete,resource
-    href: create-translator-resource.yml
+    href: create-translator-resource.md
   - name: Language Support
     displayName: iso,language code,translation,transliteration,detection,detect,pdf,document
     href: language-support.md
+  - name: Enable Microsoft Entra ID authentication
+    href: how-to/microsoft-entra-id-auth.md
   - name: Pricing
     displayName: cost,free,standard,custom,tier,S1,S2,S3,S4,C2,C3,C4,D3,hosting
     href: https://azure.microsoft.com/pricing/details/cognitive-services/translator
   - name: Service limits
     displayName: detection,detect,region,
     href: service-limits.md
-  - name: What's new?
-    displayName: release,ga,update,support, cognitive
-    href: whats-new.md
   - name: Translator Service FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
-- name: Text Translation
+
+
+
+- name: Text translation (GA)
   items:
-  - name: What is Text Translation?
+  - name: What is Text translation?
     displayName: features,develop,development,free
-    href: text-translation-overview.md
-  - name: 🆕 Text Translation SDK overview
+    href: text-translation/overview.md
+  - name: Text translation SDK
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
-  - name: Text Translation REST API guide
-    href:  reference/rest-api-guide.md
+
+  - name: HTTP requests
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/v3/reference.md
+  - name: Text Translation REST APIs (GA)
+    href:  text-translation/reference/rest-api-guide.md
+  - name: Get languages
+    href: text-translation/reference/v3/languages.md
+  - name: Translate
+    displayName: detection,detect
+    href: text-translation/reference/v3/translate.md
+  - name: Transliterate
+    href: text-translation/reference/v3/transliterate.md
+  - name: Detect
+    href: text-translation/reference/v3/detect.md
+  - name: BreakSentence
+    displayName: detection,detect
+    href: text-translation/reference/v3/break-sentence.md
+  - name: Dictionary Lookup
+    href: text-translation/reference/v3/dictionary-lookup.md
+  - name: Dictionary Examples
+    href: text-translation/reference/v3/dictionary-examples.md
+  - name: Migrate to v3 Text translation API
+    displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
+    href: text-translation/how-to/migrate-to-v3.md
+
   - name: Quickstarts
     items:
     - name: Translator Text SDK
@@ -43,32 +72,11 @@ items:
     - name:  Translator Text REST APIs
       displayName: get started,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-rest-api.md
-  - name: Samples
-    items:
-    - name: Code Sample page
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
-    - name: C# samples
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
-    - name: Java
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
-    - name: Python
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
-    - name: Node.js
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
-    - name: Go
-      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
-    - name: PHP
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-PHP
-    - name: Ruby
-      href: https://github.com/MicrosoftTranslator/Text-Translation-API-V3-Ruby
   - name: How-to guides
     items:
-    - name: Use the Text Translation APIs
+    - name: Use the Text translation APIs
       displayName: detection,detect,translation,transliteration,identification,length,sentence length,alternate,usage,headers,set up,status,401
-      href: translator-text-apis.md
-    - name: Migrate to V3 Text API
-      displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
-      href: migrate-to-v3.md
+      href: text-translation/how-to/use-rest-api.md
     - name: Add profanity filtering
       displayName: profanityMarker,marker,profanityAction,action
       href: profanity-filtering.md
@@ -83,53 +91,84 @@ items:
     - name: Translate behind firewalls
       displayName: domain,IP,filtering,tag,endpoints,CognitiveServicesManagement
       href: firewalls.md
-  - name: Reference
+  - name: V3 code samples
     items:
-    - name: v3 Translator reference
-      displayName: 401000,405000,400000
-      href: reference/v3-0-reference.md
-    - name: Text Translation REST APIs
-      href:  reference/rest-api-guide.md
-    - name: Languages
-      href: reference/v3-0-languages.md
-    - name: Translate
-      displayName: detection,detect
-      href: reference/v3-0-translate.md
-    - name: Transliterate
-      href: reference/v3-0-transliterate.md
-    - name: Detect
-      href: reference/v3-0-detect.md
-    - name: BreakSentence
-      displayName: detection,detect
-      href: reference/v3-0-break-sentence.md
-    - name: Dictionary Lookup
-      href: reference/v3-0-dictionary-lookup.md
-    - name: Dictionary Examples
-      href: reference/v3-0-dictionary-examples.md
+    - name: Code Sample page
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples
+    - name: C# samples
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/blob/main/C%23-Code-Samples
+    - name: Java
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Java-Code-Samples
+    - name: Python
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/Python-Code-Samples
+    - name: Node.js
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/NodeJS-Code-Samples
+    - name: Go
+      href: https://github.com/MicrosoftTranslator/Text-Translation-Code-Samples/tree/main/GO-Code-Samples
+    - name: PHP
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-PHP
+    - name: Ruby
+      href: https://github.com/MicrosoftTranslator/Text-Translation-API-v3-Ruby
+
+  - name: Reference (GA)
+    items:
+      - name: Status codes
+        displayName: 401000,405000,400000
+        href: text-translation/reference/status-response-codes.md
+      - name: metrics
+        displayName: document count,character count,translation duration
+        href: text-translation/reference/metrics.md
+
+
+- name: Text translation (2025-05-01-preview) 🆕
+  items:
+  - name: Overview 🆕
+    displayName: gpt, adaptive, tone, gender
+    href: text-translation/preview/overview.md
+  - name: "Migrate to 2025-05-01-preview 🆕"
+    displayName: speech,error,version,endpoint,compatibility,json,authentication,pricing
+    href: text-translation/how-to/migrate-to-preview.md
+  - name: REST API guide (2025-05-01-preview) 🆕
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/preview/rest-api-guide.md
+  - name: Get languages 🆕
+    href: text-translation/preview/get-languages.md
+  - name: Translate 🆕
+    displayName: detection,detect
+    href: text-translation/preview/translate-api.md
+  - name: Transliterate 🆕
+    href: text-translation/preview/transliterate-api.md
+  - name: Text translation authentication
+    displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/authentication.md   
+
 - name: Document translation
   items:
-  - name: What is Document Translation?
+  - name: What is Document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
-  - name: 🆕 Document Translation SDK guide
+  - name: Document translation SDK guide 🆕
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: 🆕 Document Translation REST API guide
+  - name: Document translation REST API guide 🆕
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
     items:
-    - name: "Quickstart: Document Translation client libraries"
+    - name: "Quickstart: Document translation client libraries"
       displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
       href: document-translation/quickstarts/client-library-sdks.md
-    - name: "Quickstart: Document Translation REST APIs"
+    - name: "Quickstart: Document translation REST APIs"
       displayName: get,post,cancel,delete
       href: document-translation/quickstarts/rest-api.md
   - name: How-to guides
     items:
-    - name: Use Document Translation APIs programmatically
+    - name: Use Document translation APIs programmatically
       displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
       href: document-translation/how-to-guides/use-rest-api-programmatically.md
+    - name: Create and use glossaries
+      displayName: glossary, dictionary, case-sensitive, match
+      href: document-translation/how-to-guides/create-use-glossaries.md
   - name: Authentication and authorization
     items:
     - name: Create and use managed identities
@@ -140,7 +179,7 @@ items:
       href: document-translation/how-to-guides/create-sas-tokens.md
   - name: Reference
     items:
-      - name: Document Translation operations
+      - name: Document translation operations
         href: document-translation/reference/rest-api-guide.md
       - name: Translate a single document
         href: document-translation/reference/translate-document.md
@@ -160,10 +199,7 @@ items:
         href: document-translation/reference/get-supported-document-formats.md
       - name: Get supported glossary formats
         href: document-translation/reference/get-supported-glossary-formats.md
-  - name: Create and use glossaries
-    displayName: glossary, dictionary, case-sensitive, match
-    href: document-translation/how-to-guides/create-use-glossaries.md
-  - name: Document Translation FAQ
+  - name: Document translation FAQ
     href: document-translation/faq.md
 - name: Containers
   items:
@@ -184,15 +220,80 @@ items:
       - name: "Container: Translate text"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-text-parameters.md
-      - name: "🆕 Container: Transliterate text"
+      - name: "Container: Transliterate text 🆕"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/transliterate-text-parameters.md
-      - name: "🆕 Container: Translate documents"
+      - name: "Container: Translate documents 🆕"
         displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: Custom Translator
+- name: Azure AI Foundry custom translation 🆕
+  items:
+  - name: What is Azure AI Foundry custom translation?
+    href: custom-translator/azure-ai-foundry/overview.md
+  - name: Key terms
+    href: custom-translator/azure-ai-foundry/key-terms.md
+  - name: Azure AI Foundry for beginners
+    displayName: use case,usage,train,training,bleu,tuning,tune
+    href: custom-translator/azure-ai-foundry/beginners-guide.md
+  - name: FAQ
+    href: custom-translator/azure-ai-foundry/faq.md
+  - name: How-to guides
+    items:
+    - name: Create an Azure AI Foundry project
+      displayName: models,pairs,label,edit,delete
+      href: custom-translator/azure-ai-foundry/how-to/create-project.md
+    - name: Create a language pair
+      displayName: language,language pair,language pair ID,ID
+      href: custom-translator/azure-ai-foundry/how-to/create-language-pair.md
+    - name: Upload data
+      displayName: parallel,document sets,tuning,phrase,sentence,upload
+      href: custom-translator/azure-ai-foundry/how-to/upload-data.md
+    - name: Train a custom model
+      displayName: full,dictionary,duplicate
+      href: custom-translator/azure-ai-foundry/how-to/train-model.md
+    - name: Test your model
+      displayName: bleu,baseline
+      href: custom-translator/azure-ai-foundry/how-to/test-model.md
+    - name: Deploy a custom model
+      displayName: replace
+      href: custom-translator/azure-ai-foundry/how-to/deploy-model.md
+    - name: Translate text with a custom model
+      displayName: category,ID,category ID,
+      href: custom-translator/azure-ai-foundry/how-to/translate-with-model.md
+    - name: Copy a custom model
+      displayName: copy, publish, move, workspace
+      href: custom-translator/azure-ai-foundry/how-to/copy-model.md
+  - name: Concepts
+    items:
+    - name: Customization
+      displayName: speech
+      href: custom-translator/azure-ai-foundry/concepts/customization.md
+    - name: Workspaces and projects
+      href: custom-translator/azure-ai-foundry/concepts/workspace-and-project.md
+    - name: Parallel documents
+      href: custom-translator/azure-ai-foundry/concepts/parallel-documents.md
+    - name: Dictionaries
+      displayName: phrase,sentence,recommendations
+      href: custom-translator/azure-ai-foundry/concepts/dictionaries.md
+    - name: Document formats
+      href: custom-translator/azure-ai-foundry/concepts/document-formats-naming-convention.md
+    - name: Sentence alignment
+      href: custom-translator/azure-ai-foundry/concepts/sentence-alignment.md
+    - name: Data filtering
+      displayName: deduplication,white space,punctuation,tags,invalid
+      href: custom-translator/azure-ai-foundry/concepts/data-filtering.md
+    - name: Model training
+      displayName: tuning
+      href: custom-translator/azure-ai-foundry/concepts/model-training.md
+    - name: Bilingual Evaluation Understudies (BLEU) score
+      href: custom-translator/azure-ai-foundry/concepts/bleu-score.md
+  - name: Reference
+    items:
+    - name: Release notes
+      href: custom-translator/azure-ai-foundry/release-notes.md
+- name: Custom Translator portal
   items:
   - name: What is Custom Translator?
     href: custom-translator/overview.md
@@ -259,8 +360,8 @@ items:
       href: custom-translator/concepts/model-training.md
     - name: Bilingual Evaluation Understudies (BLEU) score
       href: custom-translator/concepts/bleu-score.md
-    - name: Encrypt data at rest
-      displayName: encryption,key vault,revoke
+    - name: Use customer-managed keys
+      displayName: encryption,key vault,revoke, data at rest
       href: encrypt-data-at-rest.md
   - name: Reference
     items:
@@ -272,34 +373,51 @@ items:
     href: custom-translator/faq.md
 - name: Translator solutions
   items:
-  - name: Language Studio
+  - name: What are Azure AI Translator solutions?
+    href: solutions/overview.md
+  - name: Microsoft Translator Pro
     items:
-    - name: Translate using Language Studio (preview)
-      displayName: quickstart, how to, interface
-      href: document-translation/language-studio.md
-  - name: Translator V3 connector
+    - name: What is Microsoft Translator Pro?
+      displayName: app service, mobile app, ios, speech-to-speech
+      href: translator-pro/overview.md
+    - name: Language support
+      displayName: iso,language code, locale
+      href: translator-pro/language-support.md
+    - name: Translator Pro FAQ
+      href: translator-pro/faq.yml
+    - name: Transparency note
+      href: ../../ai-foundry/responsible-ai/translator/translator-pro-transparency-note.md
+  - name: Translate using Language Studio
+    displayName: quickstart, how to, interface
+    href: document-translation/language-studio.md
+  - name: Translator v3 connector
     items:
     - name: "Automate document translation (preview)"
       displayName: connect, power, automate, flow
       href: connector/document-translation-flow.md
     - name: Automate text translation (preview)
       displayName: connect, power, automate, flow
-      href: connector/text-translator-flow.md
+      href: solutions/connector/text-translator-flow.md
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/cognitive-services/translator/transparency-note?context=/azure/ai-services/translator/context/context
+    href: ../../ai-foundry/responsible-ai/translator/transparency-note.md
   - name: Data, privacy, and security
-    href: /legal/cognitive-services/translator/data-privacy-security?context=/azure/ai-services/translator/context/context
+    href: ../../ai-foundry/responsible-ai/translator/data-privacy-security.md
 - name: Resources
   items:
+  - name: Translator in sovereign clouds
+    displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
+    href: reference/sovereign-clouds.md
   - name: Modifications to Translator Service
     displayName: deprecation, deprecate, changes, modify, modifications
     href: modifications-deprecations.md
-  - name: Translator in sovereign clouds
-    displayName: fairfax,compliant,secret,compliance,government,government cloud,dod,china,batch,region
-    href: sovereign-clouds.md
+  - name: Known issues
+    displayName: error, bug, issue, problem, troubleshoot, troubleshooting
+    href: text-translation/reference/known-issues.md
   - name: Compliance and certification
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
+  - name: Azure AI Translator release history
+    href: reference/release-history.md

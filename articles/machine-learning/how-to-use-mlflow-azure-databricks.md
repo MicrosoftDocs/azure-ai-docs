@@ -3,14 +3,16 @@ title: MLflow tracking for Azure Databricks machine learning experiments
 titleSuffix: Azure Machine Learning
 description: Set up MLflow with Azure Machine Learning to log metrics and artifacts from Azure Databricks machine learning experiments.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.reviewer: fasantia
 ms.date: 08/16/2024
 ms.topic: how-to
-ms.custom: sdkv2
+ms.custom:
+  - sdkv2
+  - sfi-image-nochange
 #customer intent: As a data scientist, I want to integrate Azure Databricks with Azure Machine Learning to connect the products.
 ---
 
@@ -63,7 +65,7 @@ By default, when you link your Azure Databricks workspace, dual-tracking is conf
 
 Linking your Azure Databricks workspace to your Azure Machine Learning workspace enables you to track your experiment data in the Azure Machine Learning workspace and Azure Databricks workspace at the same time. This configuration is called *Dual-tracking*.
 
-Dual-tracking in a [private link enabled Azure Machine Learning workspace](how-to-configure-private-link.md) isn't currently supported. Configure [exclusive tracking with your Azure Machine Learning workspace](#track-exclusively-on-azure-machine-learning-workspace) instead.
+Dual-tracking in a [private link enabled Azure Machine Learning workspace](how-to-configure-private-link.md) isn't currently supported, regardless of outbound rules configuration or if Azure Databricks was deployed in your own network (VNet injection). Configure [exclusive tracking with your Azure Machine Learning workspace](#track-exclusively-on-azure-machine-learning-workspace) instead. Notice that this doesn't imply that VNet inject
 
 Dual-tracking isn't currently supported in Microsoft Azure operated by 21Vianet. Configure [exclusive tracking with your Azure Machine Learning workspace](#track-exclusively-on-azure-machine-learning-workspace) instead.
 

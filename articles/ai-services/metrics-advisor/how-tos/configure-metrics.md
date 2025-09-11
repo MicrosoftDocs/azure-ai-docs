@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
@@ -107,7 +107,7 @@ There are additional parameters like **Direction**, and **Valid anomaly** that c
 
 ### Tune the configuration for a specific series or group
 
-Select **Advanced configuration** below the metric level configuration options to see the group level configuration.You can add a configuration for an individual series, or group of series by clicking the **+** icon in this window. The parameters are similar to the metric-level configuration parameters, but you may need to specify at least one dimension value for a group-level configuration to identify a group of series. And specify all dimension values for series-level configuration to identify a specific series. 
+Select **Advanced configuration** below the metric level configuration options to see the group level configuration. You can add a configuration for an individual series, or group of series by clicking the **+** icon in this window. The parameters are similar to the metric-level configuration parameters, but you might need to specify at least one dimension value for a group-level configuration to identify a group of series. And specify all dimension values for series-level configuration to identify a specific series. 
 
 This configuration will be applied to the group of series or specific series instead of the metric level configuration. After setting the conditions for this group, save it.
 

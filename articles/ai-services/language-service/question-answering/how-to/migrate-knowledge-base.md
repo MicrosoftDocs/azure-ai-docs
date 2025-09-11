@@ -3,9 +3,9 @@ title: Move projects - custom question answering
 description: Moving a custom question answering project requires exporting a project from one resource, and then importing into another.
 ms.service: azure-ai-language
 ms.topic: how-to
-author: jboback
-ms.author: jboback
-ms.date: 12/19/2023
+author: laujan
+ms.author: lajanuar
+ms.date: 06/21/2025
 ms.custom: language-service-question-answering
 ---
 # Move projects and question answer pairs
@@ -14,7 +14,7 @@ ms.custom: language-service-question-answering
 
 > This article deals with the process to export and move projects and sources from one Language resource to another.
 
-You may want to create copies of your projects or sources for several reasons:
+You might want to create copies of your projects or sources for several reasons:
 
 * To implement a backup and restore process
 * Integrate with your CI/CD pipeline

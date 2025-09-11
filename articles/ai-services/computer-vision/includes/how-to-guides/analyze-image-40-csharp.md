@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: ai-services
 ms.subservice: computer-vision
 ms.topic: include
-ms.date: 08/01/2023
+ms.date: 07/10/2025
 ms.author: pafarley
 ---
 
@@ -15,11 +15,18 @@ This guide assumes you've followed the steps mentioned in the [quickstart](/azur
 * You have <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="Created a Computer Vision resource"  target="_blank">created a Computer Vision resource </a> and obtained a key and endpoint URL.
 * You have the appropriate SDK package installed and you have a running [quickstart](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40) application. You can modify this quickstart application based on code examples here.
 
+## Add import statements 
+
+Make sure your code file has the following statements:
+
+[!Code-csharp[](~/cognitive-services-quickstart-code/dotnet/ComputerVision/4-0/image-analysis-how-to/Program.cs?name=snippet_imports)]
+
+
 ## Create and authenticate the client
 
 To authenticate against the Image Analysis service, you need a Computer Vision key and endpoint URL. This guide assumes that you've defined the environment variables `VISION_KEY` and `VISION_ENDPOINT` with your key and endpoint.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 Start by creating a [ImageAnalysisClient](/dotnet/api/azure.ai.vision.imageanalysis.imageanalysisclient) object. For example:
 

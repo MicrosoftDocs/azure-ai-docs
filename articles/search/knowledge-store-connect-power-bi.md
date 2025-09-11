@@ -5,14 +5,19 @@ description: Connect an Azure AI Search knowledge store with Power BI for analys
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.topic: conceptual
+ms.date: 08/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 03/18/2024
+  - sfi-image-nochange
 ---
 
 # Connect a knowledge store with Power BI
+
+> [!NOTE]
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](search-agentic-retrieval-concept.md) workflows.
 
 In this article, learn how to connect to and query a knowledge store using Power Query in the Power BI Desktop app. You can get started faster with templates, or build a custom dashboard from scratch.
 
@@ -65,7 +70,7 @@ Follow the steps in this article using sample data and a knowledge store as [cre
 
 ## Check table relationships
 
-1. Select on the Model tile on the left navigation pane and validate that Power BI shows relationships between all three tables.
+1. Select on the Model tile on the left pane and validate that Power BI shows relationships between all three tables.
 
    ![Validate relationships](media/knowledge-store-connect-power-bi/powerbi-relationships.png "Validate relationships")
 
@@ -73,7 +78,7 @@ Follow the steps in this article using sample data and a knowledge store as [cre
 
 ## Build a report
 
-1. Select on the Report tile on the left navigation pane to explore data through visualizations. For text fields, tables and cards are useful visualizations.
+1. Select on the Report tile on the left pane to explore data through visualizations. For text fields, tables and cards are useful visualizations.
 
 1. Choose fields from each of the three tables to fill in the table or card.
 

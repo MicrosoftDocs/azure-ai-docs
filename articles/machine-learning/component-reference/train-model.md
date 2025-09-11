@@ -70,12 +70,12 @@ Currently **Train Model** component supports [using interpretability package to 
 
 - Linear Regression
 - Neural Network Regression
-- Boosted Decistion Tree Regression
+- Boosted Decision Tree Regression
 - Decision Forest Regression
 - Poisson Regression
 - Two-Class Logistic Regression
 - Two-Class Support Vector Machine
-- Two-Class Boosted Decistion Tree
+- Two-Class Boosted Decision Tree
 - Two-Class Decision Forest
 - Multi-class Decision Forest
 - Multi-class Logistic Regression

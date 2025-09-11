@@ -1,13 +1,12 @@
 ---
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom NER.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ---
 
 You can use an existing Language resource to get started with custom NER as long as this resource meets the below requirements:
@@ -51,7 +50,7 @@ Make sure to enable **Custom text classification / Custom Named Entity Recogniti
 5. Select **Apply**.
 
 >[!Important]
-> * Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you are connecting.
+> Make sure that the user making changes has **storage blob data contributor** role assigned for them.
 
 ### Add required roles
 

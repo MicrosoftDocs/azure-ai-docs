@@ -4,22 +4,22 @@ manager: nitinme
 ms.service: ai-services
 ms.subservice: computer-vision
 ms.topic: include
-ms.date: 08/01/2023
+ms.date: 06/30/2025
 ms.author: pafarley
 ---
 
 ## Prerequisites
 
-This guide assumes you have successfully followed the steps mentioned in the [quickstart](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40) page. This means:
+This guide assumes you've successfully followed the steps mentioned in the [quickstart](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library-40) page. This means:
 
-* You have <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="created a Computer Vision resource"  target="_blank">created a Computer Vision resource </a> and obtained a key and endpoint URL.
-* You have successfully made a `curl.exe` call to the service (or used an alternative tool). You modify the `curl.exe` call based on the examples here.
+* You've <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="created a Computer Vision resource"  target="_blank">created a Computer Vision resource </a> and obtained a key and endpoint URL.
+* You've successfully made a `curl.exe` call to the service (or used an alternative tool). You modify the `curl.exe` call based on the examples here.
 
 ## Authenticate against the service
 
 To authenticate against the Image Analysis service, you need a Computer Vision key and endpoint URL.
 
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/microsoft-entra-id-akv-expanded.md)]
 
 The SDK example assumes that you defined the environment variables `VISION_KEY` and `VISION_ENDPOINT` with your key and endpoint.
 
@@ -27,7 +27,7 @@ Authentication is done by adding the HTTP request header **Ocp-Apim-Subscription
 
 ## Select the image to analyze
 
-The code in this guide uses remote images referenced by URL. You may want to try different images on your own to see the full capability of the Image Analysis features.
+The code in this guide uses remote images referenced by URL. You might want to try different images on your own to see the full capability of the Image Analysis features.
 
 ### Image URL
 When analyzing a remote image, you specify the image's URL by formatting the request body like this: `{"url":"https://learn.microsoft.com/azure/cognitive-services/computer-vision/images/windows-kitchen.jpg"}`. The **Content-Type** should be `application/json`.
@@ -67,7 +67,7 @@ A populated URL might look like this:
 
 ### Set model name when using a custom model
 
-You can also do image analysis with a custom trained model. To create and train a model, see [Create a custom Image Analysis model](/azure/ai-services/computer-vision/how-to/model-customization). Once your model is trained, all you need is the model's name. You do not need to specify visual features if you use a custom model.
+You can also do image analysis with a custom trained model. To create and train a model, see [Create a custom Image Analysis model](/azure/ai-services/computer-vision/how-to/model-customization). Once your model is trained, all you need is the model's name. You don't need to specify visual features if you use a custom model.
 
 
 To use a custom model, don't use the features query parameter. Instead, set the `model-name` parameter to the name of your model as shown here. Replace `MyCustomModelName` with your custom model name.
@@ -270,7 +270,7 @@ The service returns a `200` HTTP response, and the body contains the returned da
 
 ## Error codes
 
-On error, the Image Analysis service response contains a JSON payload that includes an error code and error message. It may also include other details in the form of and inner error code and message. For example:
+On error, the Image Analysis service response contains a JSON payload that includes an error code and error message. It might also include other details in the form of and inner error code and message. For example:
 
 ```json
 {

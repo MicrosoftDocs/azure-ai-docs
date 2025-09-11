@@ -1,25 +1,26 @@
 ---
-title: Copy a custom model
+title: Copy an Azure Custom Translator model
 titleSuffix: Azure AI services
-description: This article explains how to copy a custom model to another workspace using the Azure AI Translator Custom Translator.
+description: This article explains how to copy a custom model to another Azure AI Custom Translator workspace.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/10/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Copy a custom model
+
+# Copy an Azure AI Custom Translator model
 
 Copying a model to other workspaces enables model lifecycle management (for example, development → test → production) and increases usage scalability while reducing the training cost.
 
-## Copy model to another workspace
+## Copy custom model to another workspace
 
-   > [!Note]
+   > [!NOTE]
    >
    > To copy model from one workspace to another, you must have an **Owner** role in both workspaces.
    >
-   > The copied model cannot be recopied. You can only rename, delete, or publish a copied model.
+   > The copied model can't be recopied. You can only rename, delete, or publish a copied model.
 
 1. After successful model training, select the **Model details** blade.
 
@@ -31,7 +32,7 @@ Copying a model to other workspaces enables model lifecycle management (for exam
 
    :::image type="content" source="../media/how-to/copy-model-1.png" alt-text="Screenshot illustrating the copy model dialog window.":::
 
-   > [!Note]
+   > [!NOTE]
       >
       > A dropdown list displays the list of workspaces available to use. Otherwise, select **Create a new workspace**.
       >
@@ -50,4 +51,4 @@ Copying a model to other workspaces enables model lifecycle management (for exam
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn how to publish/deploy a custom model](publish-model.md).
+> [Learn how to publish/deploy an Azure AI Custom Translator model](publish-model.md).

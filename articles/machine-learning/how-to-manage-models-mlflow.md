@@ -3,8 +3,8 @@ title: Manage models registry with MLflow
 titleSuffix: Azure Machine Learning
 description: Explore how to use MLflow in Azure Machine Learning to manage a models registry, and register, edit, query, and delete models.
 services: machine-learning
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: fasantia
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -201,7 +201,7 @@ model = mlflow.pyfunc.load_model(f"models:/{model_name}/Staging")
 Editing registered models is supported in both MLflow and Azure Machine Learning, but there are some important differences. The following sections describe some options.
 
 > [!NOTE]
-> Renaming models isn't supported in Azure Machine Learning because model objects are immmutable.
+> Renaming models isn't supported in Azure Machine Learning because model objects are immutable.
 
 ### Edit model description and tags
 

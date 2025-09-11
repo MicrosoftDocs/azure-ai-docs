@@ -2,12 +2,12 @@
 title: Speech to text REST API for short audio - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Speech to text REST API for short audio to convert speech to text.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
-ms.topic: reference
-ms.date: 9/23/2024
-ms.author: eur
+ms.topic: how-to
+ms.date: 5/25/2025
+ms.author: pafarley
 ms.devlang: csharp
 ms.custom: devx-track-csharp
 # Customer intent: As a developer, I want to learn how to use the Speech to text REST API for short audio to convert speech to text.
@@ -15,13 +15,13 @@ ms.custom: devx-track-csharp
 
 # Speech to text REST API for short audio
 
-Use cases for the Speech to text REST API for short audio are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md). 
+Use cases for the Speech to text REST API for short audio are limited. Use it only in cases where you can't use the [Speech SDK](speech-sdk.md) or [fast transcription API](fast-transcription-create.md). 
 
 Before you use the Speech to text REST API for short audio, consider the following limitations:
 
-* Requests that use the REST API for short audio and transmit audio directly can contain no more than 60 seconds of audio. The input [audio formats](#audio-formats) are more limited compared to the [Speech SDK](speech-sdk.md).
+* Requests that use the REST API for short audio and transmit audio directly can contain no more than 60 seconds of audio. For pronunciation assessment, the audio duration should be no more than 30 seconds. The input [audio formats](#audio-formats) are more limited compared to the [Speech SDK](speech-sdk.md).
 * The REST API for short audio returns only final results. It doesn't provide partial results.
-* [Speech translation](speech-translation.md) isn't supported via REST API for short audio. You need to use [Speech SDK](speech-sdk.md).
+* [Speech translation](speech-translation.md) isn't supported via REST API for short audio. You need to use the [Speech SDK](speech-sdk.md).
 * [Batch transcription](batch-transcription.md) and [custom speech](custom-speech-overview.md) aren't supported via REST API for short audio. You should always use the [Speech to text REST API](rest-speech-to-text.md) for batch transcription and custom speech.
 
 Before you use the Speech to text REST API for short audio, understand that you need to complete a token exchange as part of authentication to access the service. For more information, see [Authentication](#authentication).
@@ -49,7 +49,7 @@ Audio is sent in the body of the HTTP `POST` request. It must be in one of the f
 | OGG    | OPUS  | 256 kbps | 16 kHz, mono |
 
 > [!NOTE]
-> The preceding formats are supported through the REST API for short audio and WebSocket in the Speech service. The [Speech SDK](speech-sdk.md) supports the WAV format with PCM codec as well as [other formats](how-to-use-codec-compressed-audio-input-streams.md).
+> The preceding formats are supported through the REST API for short audio and WebSockets in the Speech service. The [Speech SDK](speech-sdk.md) supports the WAV format with PCM codec as well as [other formats](how-to-use-codec-compressed-audio-input-streams.md).
 
 ## Request headers
 
@@ -77,7 +77,6 @@ These parameters might be included in the query string of the REST request.
 | `language` | Identifies the spoken language that's being recognized. See [Supported languages](language-support.md?tabs=stt). | Required |
 | `format` | Specifies the result format. Accepted values are `simple` and `detailed`. Simple results include `RecognitionStatus`, `DisplayText`, `Offset`, and `Duration`. Detailed responses include four different representations of display text. The default setting is `simple`. | Optional |
 | `profanity` | Specifies how to handle profanity in recognition results. Accepted values are: <br><br>`masked`, which replaces profanity with asterisks. <br>`removed`, which removes all profanity from the result. <br>`raw`, which includes profanity in the result. <br><br>The default setting is `masked`. | Optional |
-| `cid` | When you're using the [Speech Studio](speech-studio-overview.md) to create [custom models](./custom-speech-overview.md), you can take advantage of the **Endpoint ID** value from the **Deployment** page. Use the **Endpoint ID** value as the argument to the `cid` query string parameter. | Optional |
 
 ### Pronunciation assessment parameters
 
@@ -90,6 +89,7 @@ This table lists required and optional parameters for pronunciation assessment:
 | `Granularity` | The evaluation granularity. Accepted values are:<br><br> `Phoneme`, which shows the score on the full-text, word, and phoneme levels.<br>`Word`, which shows the score on the full-text and word levels. <br>`FullText`, which shows the score on the full-text level only.<br><br> The default setting is `Phoneme`. | Optional |
 | `Dimension` | Defines the output criteria. Accepted values are:<br><br> `Basic`, which shows the accuracy score only. <br>`Comprehensive`, which shows scores on more dimensions (for example, fluency score and completeness score on the full-text level, and error type on the word level).<br><br> To see definitions of different score dimensions and word error types, see [Response properties](#response-properties). The default setting is `Basic`. | Optional |
 | `EnableMiscue` | Enables miscue calculation. With this parameter enabled, the pronounced words are compared to the reference text. They are marked with omission or insertion based on the comparison. Accepted values are `False` and `True`. The default setting is `False`. | Optional |
+| `EnableProsodyAssessment` | Enables prosody assessment for your pronunciation evaluation. This feature assesses aspects like stress, intonation, speaking speed, and rhythm. This feature provides insights into the naturalness and expressiveness of your speech.<br><br> If this property is set to `True`, the `ProsodyScore` result value is returned. | Optional |
 | `ScenarioId` | A GUID that indicates a customized point system. | Optional |
 
 Here's example JSON that contains the pronunciation assessment parameters:
@@ -98,15 +98,16 @@ Here's example JSON that contains the pronunciation assessment parameters:
 {
   "ReferenceText": "Good morning.",
   "GradingSystem": "HundredMark",
-  "Granularity": "FullText",
-  "Dimension": "Comprehensive"
+  "Granularity": "Word",
+  "Dimension": "Comprehensive",
+  "EnableProsodyAssessment": "True"
 }
 ```
 
 The following sample code shows how to build the pronunciation assessment parameters into the `Pronunciation-Assessment` header:
 
 ```csharp
-var pronAssessmentParamsJson = $"{{\"ReferenceText\":\"Good morning.\",\"GradingSystem\":\"HundredMark\",\"Granularity\":\"FullText\",\"Dimension\":\"Comprehensive\"}}";
+var pronAssessmentParamsJson = $"{{\"ReferenceText\":\"Good morning.\",\"GradingSystem\":\"HundredMark\",\"Granularity\":\"Word\",\"Dimension\":\"Comprehensive\",\"EnableProsodyAssessment\":\"True\"}}";
 var pronAssessmentParamsBytes = Encoding.UTF8.GetBytes(pronAssessmentParamsJson);
 var pronAssessmentHeader = Convert.ToBase64String(pronAssessmentParamsBytes);
 ```
@@ -114,7 +115,7 @@ var pronAssessmentHeader = Convert.ToBase64String(pronAssessmentParamsBytes);
 We strongly recommend streaming ([chunked transfer](#chunked-transfer)) uploading while you're posting the audio data, which can significantly reduce the latency. To learn how to enable streaming, see the [sample code in various programming languages](https://github.com/Azure-Samples/Cognitive-Speech-TTS/tree/master/PronunciationAssessment).
 
 > [!NOTE]
-> For more For more information, see [pronunciation assessment](how-to-pronunciation-assessment.md). 
+> For more For more information, see [pronunciation assessment](how-to-pronunciation-assessment.md).
 
 ## Sample request
 
@@ -193,36 +194,83 @@ Here's a typical response for recognition with pronunciation assessment:
 ```json
 {
   "RecognitionStatus": "Success",
-  "Offset": "400000",
-  "Duration": "11000000",
+  "Offset": 700000,
+  "Duration": 8400000,
+  "DisplayText": "Good morning.",
+  "SNR": 38.76819,
   "NBest": [
-      {
-        "Confidence" : "0.87",
-        "Lexical" : "good morning",
-        "ITN" : "good morning",
-        "MaskedITN" : "good morning",
-        "Display" : "Good morning.",
-        "PronScore" : 84.4,
-        "AccuracyScore" : 100.0,
-        "FluencyScore" : 74.0,
-        "CompletenessScore" : 100.0,
-        "Words": [
-            {
-              "Word" : "Good",
-              "AccuracyScore" : 100.0,
-              "ErrorType" : "None",
-              "Offset" : 500000,
-              "Duration" : 2700000
-            },
-            {
-              "Word" : "morning",
-              "AccuracyScore" : 100.0,
-              "ErrorType" : "None",
-              "Offset" : 5300000,
-              "Duration" : 900000
+    {
+      "Confidence": 0.98503506,
+      "Lexical": "good morning",
+      "ITN": "good morning",
+      "MaskedITN": "good morning",
+      "Display": "Good morning.",
+      "AccuracyScore": 100.0,
+      "FluencyScore": 100.0,
+      "ProsodyScore": 87.8,
+      "CompletenessScore": 100.0,
+      "PronScore": 95.1,
+      "Words": [
+        {
+          "Word": "good",
+          "Offset": 700000,
+          "Duration": 2600000,
+          "Confidence": 0.0,
+          "AccuracyScore": 100.0,
+          "ErrorType": "None",
+          "Feedback": {
+            "Prosody": {
+              "Break": {
+                "ErrorTypes": [
+                  "None"
+                ],
+                "BreakLength": 0
+              },
+              "Intonation": {
+                "ErrorTypes": [],
+                "Monotone": {
+                  "Confidence": 0.0,
+                  "WordPitchSlopeConfidence": 0.0,
+                  "SyllablePitchDeltaConfidence": 0.91385907
+                }
+              }
             }
-        ]
-      }
+          }
+        },
+        {
+          "Word": "morning",
+          "Offset": 3400000,
+          "Duration": 5700000,
+          "Confidence": 0.0,
+          "AccuracyScore": 100.0,
+          "ErrorType": "None",
+          "Feedback": {
+            "Prosody": {
+              "Break": {
+                "ErrorTypes": [
+                  "None"
+                ],
+                "UnexpectedBreak": {
+                  "Confidence": 3.5294118e-08
+                },
+                "MissingBreak": {
+                  "Confidence": 1.0
+                },
+                "BreakLength": 0
+              },
+              "Intonation": {
+                "ErrorTypes": [],
+                "Monotone": {
+                  "Confidence": 0.0,
+                  "WordPitchSlopeConfidence": 0.0,
+                  "SyllablePitchDeltaConfidence": 0.91385907
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
   ]
 }
 ```
@@ -237,6 +285,7 @@ Results are provided as JSON. The `simple` format includes the following top-lev
 |`DisplayText`|The recognized text after capitalization, punctuation, inverse text normalization, and profanity masking. Present only on success. Inverse text normalization is conversion of spoken text to shorter forms, such as 200 for "two hundred" or "Dr. Smith" for "doctor smith."|
 |`Offset`|The time (in 100-nanosecond units) at which the recognized speech begins in the audio stream.|
 |`Duration`|The duration (in 100-nanosecond units) of the recognized speech in the audio stream.|
+|`SNR`|The signal-to-noise ratio (SNR) of the recognized speech in the audio stream.|
 
 The `RecognitionStatus` field might contain these values:
 
@@ -265,6 +314,7 @@ The object in the `NBest` list can include:
 | `Display` | The display form of the recognized text, with punctuation and capitalization added. This parameter is the same as what `DisplayText` provides when the format is set to `simple`. |
 | `AccuracyScore` | Pronunciation accuracy of the speech. Accuracy indicates how closely the phonemes match a native speaker's pronunciation. The accuracy score at the word and full-text levels is aggregated from the accuracy score at the phoneme level. |
 | `FluencyScore` | Fluency of the provided speech. Fluency indicates how closely the speech matches a native speaker's use of silent breaks between words. |
+| `ProsodyScore` | Prosody of the given speech. Prosody indicates how natural the given speech is, including stress, intonation, speaking speed, and rhythm.<br><br> To see definitions of prosody assessment results in details, see [Result parameters](./how-to-pronunciation-assessment.md?pivots=programming-language-csharp#result-parameters). |
 | `CompletenessScore` | Completeness of the speech, determined by calculating the ratio of pronounced words to reference text input. |
 | `PronScore` | Overall score that indicates the pronunciation quality of the provided speech. This score is aggregated from `AccuracyScore`, `FluencyScore`, and `CompletenessScore` with weight. |
 | `ErrorType` | Value that indicates whether a word is omitted, inserted, or badly pronounced, compared to `ReferenceText`. Possible values are `None` (meaning no error on this word), `Omission`, `Insertion`, and `Mispronunciation`. |
@@ -309,8 +359,8 @@ using (var fs = new FileStream(audioFile, FileMode.Open, FileAccess.Read))
 
 [!INCLUDE [](includes/cognitive-services-speech-service-rest-auth.md)]
 
-## Next steps
+## Related content
 
+- [Fast transcription API](fast-transcription-create.md)
 - [Customize speech models](./how-to-custom-speech-train-model.md)
 - [Get familiar with batch transcription](batch-transcription.md)
-

@@ -2,15 +2,13 @@
 title: Azure Container Instance recipe
 titleSuffix: Azure AI services
 description: Learn how to deploy Azure AI containers on Azure Container Instance
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.custom: devx-track-azurecli
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 02/22/2024
+ms.date: 5/19/2025
 ms.author: aahi
-# https://github.com/Azure/cognitiveservices-aci
 #Customer intent: As a potential customer, I want to know more about how Azure AI services provides and supports Docker containers for each service.
 ---
 
@@ -20,11 +18,11 @@ With the following steps, scale Azure AI services applications in the cloud easi
 
 ## Prerequisites
 
-The recipe works with any Azure AI services container. The Azure AI services resource must be created before using the recipe. Each Azure AI service that supports containers has a "How to install" article for installing and configuring the service for a container. Some services require a file or set of files as input for the container, it is important that you understand and have used the container successfully before using this solution.
+The recipe works with any Azure AI services container. The Azure AI Foundry resource must be created before using the recipe. Each Azure AI service that supports containers has a "How to install" article for installing and configuring the service for a container. Some services require a file or set of files as input for the container, it is important that you understand and have used the container successfully before using this solution.
 
-* An Azure resource for the Azure AI service you're using.
-* Azure AI service resource **endpoint URL** - review your specific service's "How to install" for the container, to find where the endpoint URL is from within the Azure portal, and what a correct example of the URL looks like. The exact format can change from service to service.
-* Azure AI service resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 32 alpha-numeric characters.
+* An Azure resource for the Azure AI service that you're using.
+* Azure resource **endpoint URL** - review your specific service's "How to install" for the container, to find where the endpoint URL is from within the Azure portal, and what a correct example of the URL looks like. The exact format can change from service to service.
+* Azure resource **key** - the keys are on the **Keys** page for the Azure resource. You only need one of the two keys. The key is a string of 84 alpha-numeric characters.
 
 * A single Azure AI services container on your local host (your computer). Make sure you can:
   * Pull down the image with a `docker pull` command.
@@ -44,9 +42,9 @@ All variables in angle brackets, `<>`, need to be replaced with your own values.
 
 [!INCLUDE [Azure portal instructions for creating an ACI instance](includes/create-container-instances-resource.md)]
 
-# [CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
-[!INCLUDE [CLI instructions for creating an ACI instance](../containers/includes/create-container-instances-resource-from-azure-cli.md)]
+[!INCLUDE [Azure CLI instructions for creating an ACI instance](../containers/includes/create-container-instances-resource-from-azure-cli.md)]
 
 ---
 
@@ -68,7 +66,7 @@ All variables in angle brackets, `<>`, need to be replaced with your own values.
 
     You have successfully created and used Azure AI containers in Azure Container Instance.
 
-# [CLI](#tab/cli)
+# [Azure CLI](#tab/cli)
 
 [!INCLUDE [API documentation](../includes/cognitive-services-containers-api-documentation.md)]
 

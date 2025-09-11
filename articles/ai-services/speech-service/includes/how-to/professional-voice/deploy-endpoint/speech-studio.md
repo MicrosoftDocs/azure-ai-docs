@@ -1,32 +1,32 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 12/1/2023
+ms.date: 5/19/2025
 ms.custom: include
 ---
 
-After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom neural voice endpoint. 
+After you've successfully created and [trained](../../../../professional-voice-train-voice.md) your voice model, you deploy it to a custom voice endpoint. 
 
 > [!NOTE]
-> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom neural voice.
+> You can create up to 50 endpoints with a standard (S0) Speech resource, each with its own custom voice.
 
-To use your custom neural voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
+To use your custom voice, you must specify the voice model name, use the custom URI directly in an HTTP request, and use the same Speech resource to pass through the authentication of the text to speech service.
 
 ## Add a deployment endpoint
 
-To create a custom neural voice endpoint:
+To create a custom voice endpoint:
 
 1. Sign in to the [Speech Studio](https://aka.ms/speechstudio/customvoice).
 1. Select **Custom voice** > Your project name > **Deploy model** > **Deploy model**. 
 1. Select a voice model that you want to associate with this endpoint.  
 1. Enter a **Name** and **Description** for your custom endpoint.
 1. Select **Endpoint type** according to your scenario. If your resource is in a supported region, the default setting for the endpoint type is *High performance*. Otherwise, if the resource is in an unsupported region, the only available option is *Fast resume*.
-   - *High performance*: Optimized for scenarios with real-time and high-volume synthesis requests, such as conversational AI, call-center bots. It takes around 5 minutes to deploy or resume an endpoint. For information about regions where the *High performance* endpoint type is supported, see the footnotes in the [regions](../../../../regions.md#speech-service) table. 
-   - *Fast resume*: Optimized for audio content creation scenarios with less frequent synthesis requests. Easy and quick to deploy or resume an endpoint in under a minute. The *Fast resume* endpoint type is supported in all [regions](../../../../regions.md#speech-service) where text to speech is available.
+   - *High performance*: Optimized for scenarios with real-time and high-volume synthesis requests, such as conversational AI, call-center bots. It takes around 5 minutes to deploy or resume an endpoint. For information about regions where the *High performance* endpoint type is supported, see the footnotes in the [regions](../../../../regions.md#regions) table. 
+   - *Fast resume*: Optimized for audio content creation scenarios with less frequent synthesis requests. Easy and quick to deploy or resume an endpoint in under a minute. The *Fast resume* endpoint type is supported in all [regions](../../../../regions.md#regions) where text to speech is available.
    
 1. Select **Deploy** to create your endpoint.
 
@@ -70,9 +70,9 @@ Once you've updated your voice model to the latest engine version, or if you wan
 You can suspend or resume an endpoint, to limit spend and conserve resources that aren't in use. You won't be charged while the endpoint is suspended. When you resume an endpoint, you can continue to use the same endpoint URL in your application to synthesize speech. 
 
 > [!NOTE]
-> The suspend operation will complete almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
+> The suspend operation completes almost immediately. The resume operation completes in about the same amount of time as a new deployment. 
 
-This section describes how to suspend or resume a custom neural voice endpoint in the Speech Studio portal.
+This section describes how to suspend or resume a custom voice endpoint in the Speech Studio portal.
 
 ### Suspend endpoint
 
@@ -92,6 +92,6 @@ This section describes how to suspend or resume a custom neural voice endpoint i
 
 ## Next steps
 
-- Learn more about custom neural voice in the [overview](../../../../custom-neural-voice.md).
+- Learn more about custom voice in the [overview](../../../../custom-neural-voice.md).
 - Learn more about Speech Studio in the [overview](../../../../speech-studio-overview.md).
 

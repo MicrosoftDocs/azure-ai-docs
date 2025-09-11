@@ -5,9 +5,9 @@ description: In this article, learn how to author scoring scripts to perform bat
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
-ms.topic: conceptual
-author: msakande
-ms.author: mopeakande
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: cacrest
 ms.date: 04/15/2024
 ms.custom: how-to, update-code

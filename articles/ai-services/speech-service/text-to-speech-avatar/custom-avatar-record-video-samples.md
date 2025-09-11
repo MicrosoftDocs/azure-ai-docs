@@ -2,55 +2,55 @@
 title: How to record video samples for custom text to speech avatar - Speech service
 titleSuffix: Azure AI services
 description: Learn how to prepare high-quality video samples for creating a custom text to speech avatar.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/12/2024
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 keywords: how to record video samples for custom text to speech avatar
 ---
 
-# How to record video samples for custom text to speech avatar
+# Record video samples for custom text to speech avatar
 
-This article provides instructions on preparing high-quality video samples for creating a custom text to speech avatar.
+This article shows you how to prepare high-quality video samples for creating a custom text to speech avatar.
 
-Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](custom-avatar-create.md#get-consent-file-from-the-avatar-talent).
+Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. You must get sufficient consent under all relevant laws and regulations from the avatar talent to create a custom avatar from their talent's image or likeness. To learn about requirements of the consent statement video, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
 
 ## Recording environment
 
-We recommend recording in a professional video recording studio or a well-lit place. 
+Record in a professional video recording studio or well-lit space.
 
-### Background requirement
+### Background requirements
 
-If you need a commercial, multi-scene avatar, the background of the video should be clean, smooth, pure-colored, and a green screen is the best choice.
+For commercial, multi-scene avatars, use a clean, smooth, solid-colored background. A green screen works best.
 
-If your avatar only needs to be used in a single scene, you can select a specific scene to record (such as in your office), but the background can't be subtracted and changed.
+If your avatar will only be used in a single scene, you can record in a specific location like your office, but you can't change the background later.
 
-Here are best practices to consider when you use a pure-colored background (such as green screen) for recording:
-- A green screen is set behind your back, and if your avatar video shows the full body of the actor, including feet, there should be a green screen under the feet. And the back green screen and floor green screen should be seamlessly connected. 
-- The green screen should be flat, and the color is uniform.
-- The actor should keep 0.5 m – 1 m distance away from the back background.
-- The green screen can be properly lit to prevent shadows.
-- The full outline of the actor is within the edge of the green screen.
-- The actor shouldn't stand too close to the green screen.
-- Avoid the actor's head and hands spilling out of the green screen when speaking.
+Follow these best practices when using a solid-colored background like a green screen:
+- Position the green screen behind the actor. For full-body shots, place a green screen on the floor under the actor's feet. Connect the back and floor green screens seamlessly.
+- Keep the green screen flat with uniform color.
+- Maintain 0.5-1 meter distance between the actor and background.
+- Light the green screen properly to prevent shadows.
+- Keep the actor's full outline within the green screen edges.
+- Don't let the actor stand too close to the green screen.
+- Keep the actor's head and hands within the green screen when speaking.
 
-### Lighting requirement
+### Lighting requirements
 
-- Ensure even and bright lighting on the actor's face, avoiding shadows on the face or reflections on actor's glasses and clothes.
-- Try to avoid changes in ambient light on actors. It's recommended to turn off the projector, close the curtains to avoid daylight changes, and use a stable artificial light source, etc.
+- Use even, bright lighting on the actor's face. Avoid shadows on the face or reflections on glasses and clothing.
+- Keep ambient lighting consistent. Turn off projectors, close curtains to avoid daylight changes, and use stable artificial light sources.
 
-### Devices
+### Equipment
 
-- Camera requirement: A minimum of 1080-P resolution and 25 FPS (frames per second).
-- Don't change the position of light and camera after settling down during the whole video shooting.
-- You can use a teleprompter to remind the script during recording but ensure it doesn't affect the actor's gaze towards the camera. Provide a place to sit if the avatar needs to be in a sitting position.
-- For half-length or seated digital avatars, provide a place to sit for the actor. If you don't want the image of the chair to appear, you can choose a chair. 
+- Camera: Minimum 1080p resolution and 25 FPS (frames per second).
+- Keep lighting and camera positions fixed throughout recording.
+- You can use a teleprompter during recording, but make sure it doesn't affect the actor's gaze toward the camera. Provide seating if the avatar needs to be in a sitting position.
+- For half-length or seated avatars, provide seating for the actor. Choose an appropriate chair if you don't want it visible in the video. 
 
 ## Appearance of the actor
 
-The custom text to speech avatar doesn't support customization of clothes or looks. Therefore, it's essential to carefully design and prepare the avatar's appearance when recording the training data. Consider the following tips:
+Custom text to speech avatar doesn't support customization of clothing or appearance. It's essential to carefully design and prepare the avatar's appearance when recording training data. Consider these tips:
 
 | Categories | Dos          | Don'ts         |
 |------------|----------------------------|-------------------|
@@ -60,14 +60,23 @@ The custom text to speech avatar doesn't support customization of clothes or loo
 
 ## What video clips to record
 
-You need three types of basic video clips:
+You need these types of video clips:
 
-**Status 0 speaking:**
-   - Status 0 represents the posture you can naturally maintain most of the time while speaking. For example, arms crossed in front of the body or hanging down naturally at the sides. 
-   - Maintain a front-facing pose. The actor can move slightly to show a relaxed status, like moving the head or shoulder slightly, but don't move the body too much.
-   - Length: keep speaking in status 0 for 3-5 minutes.
+**Consent Video (Required)**
+The consent video is required for creating a custom avatar. 
+   - The consent video must show the same avatar talent speaking and follow the consent statement requirements. Make sure the statement is recorded correctly with each word spoken clearly. You can use any supported language. To learn about consent statement video requirements, see [Get consent file from the avatar talent](./custom-avatar-create.md#step-2-add-avatar-talent-consent).
+   - The avatar talent should always face the camera without large movements.
+   - Record the video in a quiet environment with clear audio at reasonable volume. Keep the signal-to-noise ratio above 20. For voice recording guidance, see the [Recording custom voice samples](../record-custom-voice-samples.md#recording-your-script) guide.
+   - Make sure the actor's head isn't blocked in any frame.
+   - Keep other objects out of the camera view, including filming equipment and mobile phones. 
+
+**Status 0 speaking (Required for gestures)**
+The status 0 speaking video clip is required for gestures with the avatar.
+   - Status 0 represents the posture you can naturally maintain most of the time while speaking. For example, arms crossed in front of the body or hanging naturally at the sides.
+   - Maintain a front-facing pose. The actor can move slightly to show a relaxed state, like moving the head or shoulder slightly, but don't move the body too much.
+   - Duration: 3-5 minutes of speaking in status 0.
      
-**Samples of status 0 speaking:**
+**Samples of status 0 speaking**
 
 ![Animated graphic depicting Lisa speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-lisa.gif) 
 
@@ -75,13 +84,14 @@ You need three types of basic video clips:
 
 ![Animated graphic depicting Lori speaking in status 0, representing the posture naturally maintained while speaking.](media/status-0-lori.gif)
 
-**Naturally speaking:**
+**Naturally speaking (Required)**
+The naturally speaking video clip is required for the avatar to speak naturally.
    - Actor speaks in status 0 but with natural hand gestures from time to time.
    - Hands should start from status 0 and return after making gestures.
    - Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
-   - Length: Minimum 5 minutes, maximum 30 minutes in total. At least one piece of 5-minute continuous video recording is required. If recording multiple video clips, keep each clip under 10 minutes.
+   - Duration: Minimum 5 minutes, maximum 30 minutes total. At least one 5-minute continuous video recording is required. If recording multiple clips, keep each under 10 minutes.
      
-**Samples of natural speaking:** 
+**Samples of natural speaking** 
 
 ![Animated graphic depicting sample of Lisa speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-lisa.gif)
 
@@ -89,17 +99,16 @@ You need three types of basic video clips:
 
 ![Animated graphic depicting sample of Lori speaking in status 0 with natural hand gestures, representing the posture naturally maintained while speaking.](media/natural-lori.gif)
 
-**Silent status:**
+**Silent status (Required)**
+The silent status video clip is required. It's important if you build a real-time conversation with the custom avatar. The video clip is used as the main template for both speaking and listening status for a chatbot.
 
-This video clip is important if you build a real-time conversation with the custom avatar. The video clip is used as the main template for both speaking and listening status for a chatbot.
-
-  - Maintain status 0, don't speak, but still feel relaxed.
-  - Even remaining in status 0, don't keep still; you can move slightly but not too much. Perform like you're waiting.
+  - Maintain status 0, don't speak, but stay relaxed.
+  - Even while remaining in status 0, don't stay completely still. You can move slightly but not too much. Act like you're waiting.
   - Maintain a smile as if listening or waiting patiently.
   - Avoid nodding frequently.
-  - Length: 1 minute.
+  - Duration: 1 minute.
     
-**Samples of silent status:** 
+**Samples of silent status** 
 
 ![Animated graphic depicting sample of Lisa maintaining silent status without speaking but still feeling relaxed.](media/silent-lisa.gif)
 
@@ -107,17 +116,17 @@ This video clip is important if you build a real-time conversation with the cust
 
 ![Animated graphic depicting sample of Lori maintaining silent status without speaking but still feeling relaxed.](media/silent-lori.gif)
 
-**Gestures (optional):**
+**Gestures (optional)**
 
-Gesture video clips are optional, and customers who have the need to insert certain gestures in the avatar speaking can follow this guideline to take gesture videos. Gesture insertion is only enabled for batch mode avatar; real-time avatar doesn't support gesture insertion at this point. Each custom avatar model can support no more than 10 gestures.
+Gesture video clips are optional. If you need to insert certain gestures in the avatar speaking, follow this guideline to record gesture videos. Gesture insertion is only available for batch mode avatar; real-time avatar doesn't support gesture insertion. Each custom avatar model can support up to 10 gestures.
 
-**Gesture tips:**
+**Gesture tips**
 - Each gesture clip should be within 10 seconds.
 - Gestures should start from status 0 and end with status 0. It's essential that the character maintains the same position as in status 0, which is in the middle of the screen, throughout the gesture. Otherwise, the gesture clip can't be smoothly inserted into the avatar video. 
 - The gesture clip only captures the body gestures; the actor doesn't have to speak during making gestures.
-- We recommend designing a list of gestures before recording; here are some examples of gesture video clips:
+- Design a list of gestures before recording. Here are some examples:
 
-**Samples of gesture:**
+**Samples of gesture**
 
 | Gestures                       | Samples                |
 |--------------------------------|------------------------|
@@ -138,28 +147,28 @@ Creating a high-quality interaction video clip is essential if you're building a
 
 Here are some tips for each phase:
 
-**Asking phase:**
+**Asking phase**
 - Maintain status 0, don't speak, but still feel relaxed.
 - Even remaining in status 0, don't keep still. Perform like you're waiting.
 - Maintain a smile as if listening or waiting patiently.
 - Avoid nodding frequently.
 - Length: Each asking slot should last around 3–5 seconds.
 
-**Answering phase:**
+**Answering phase**
 - Speak naturally with natural hand gestures from time to time.
 - Use natural and common gestures when speaking. Avoid meaningful gestures like pointing, applause, or thumbs up.
 - Begin gestures after starting to speak, and stop them before you finish.
 - Length: Each answering slot should last around 5 seconds.
 
-**Total video length:**
+**Total video length**
 - Aim for a total video length of 1–5 minutes.
 
 ## Data requirements
 
-Doing some basic processing of your video data is helpful for model training efficiency, such as: 
+Basic video processing helps improve model training efficiency:
 
-- Make sure that the character is in the middle of the screen, the size and position are consistent during the video processing. Each video processing parameter such as brightness, contrast remains the same and doesn't change. The output avatar's size, position, brightness, contrast will directly reflect those present in the training data. We don't apply any alterations during processing or model building.
-- The start and end of the clip should be kept in state 0; the actors should close their mouths and smile, and look ahead. The video should be continuous, not abrupt.
+- Keep the character centered on screen with consistent size and position throughout recording. Keep all video processing parameters like brightness and contrast consistent. The output avatar's size, position, brightness, and contrast will directly reflect those in the training data. We don't apply alterations during processing or model building.
+- Start and end clips in status 0. Actors should close their mouths, smile, and look ahead. The video should be continuous, not abrupt.
 
 **Avatar training video recording file format:** .mp4 or .mov.
 
@@ -167,7 +176,7 @@ Doing some basic processing of your video data is helpful for model training eff
 
 **Frame rate per second:** At least 25 FPS.
 
-## Next steps
+## Related content
 
 * [What is text to speech avatar](what-is-text-to-speech-avatar.md)
 * [What is custom text to speech avatar](what-is-custom-text-to-speech-avatar.md)

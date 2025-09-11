@@ -6,11 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: tutorial
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.date: 09/13/2024
-ms.custom: mlops, devx-track-python #add more custom tags
+ms.custom:
+  - mlops
+  - devx-track-python #add more custom tags
+  - sfi-image-nochange
 #Customer intent: This tutorial is intended to show users what is needed for deployment and present a high-level overview of how Azure Machine Learning handles deployment. Deployment isn't typically done by a data scientist, so the tutorial won't use Azure CLI examples. We will link to existing articles that use Azure CLI as needed. The code in the tutorial will use SDK v2. The tutorial will continue where the "Create reusable pipelines" tutorial stops.
 ---
 
@@ -451,7 +454,7 @@ If you open the metrics for the online endpoint, you can set up the page to see 
 
 :::image type="content" source="media/tutorial-deploy-model/view-endpoint-metrics-in-azure-portal.png" alt-text="Screenshot showing online endpoint metrics in the Azure portal." lightbox="media/tutorial-deploy-model/view-endpoint-metrics-in-azure-portal.png":::
 
-For more information on how to view online endpoint metrics, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#metrics).
+For more information on how to view online endpoint metrics, see [Monitor online endpoints](how-to-monitor-online-endpoints.md#use-metrics).
 
 ## Send all traffic to the new deployment
 Once you're fully satisfied with your `green` deployment, switch all traffic to it.

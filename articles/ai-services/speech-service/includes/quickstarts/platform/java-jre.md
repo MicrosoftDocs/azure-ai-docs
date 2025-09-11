@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 02/02/2024
 ms.custom: devx-track-java, linux-related-content
-ms.author: eur
+ms.author: pafarley
 ---
 
 This guide shows how to install the [Speech SDK](~/articles/ai-services/speech-service/speech-sdk.md) for Java on the Java Runtime.
@@ -52,7 +52,7 @@ Follow these steps to install the Speech SDK for Java using Apache Maven:
            <dependency>
            <groupId>com.microsoft.cognitiveservices.speech</groupId>
            <artifactId>client-sdk</artifactId>
-           <version>1.40.0</version>
+           <version>1.43.0</version>
            </dependency>
        </dependencies>
    </project>
@@ -107,7 +107,7 @@ Follow these steps to install the Speech SDK for Java using Apache Maven:
      <dependency>
        <groupId>com.microsoft.cognitiveservices.speech</groupId>
        <artifactId>client-sdk</artifactId>
-       <version>1.40.0</version>
+       <version>1.43.0</version>
      </dependency>
    </dependencies>
    ```
@@ -124,7 +124,7 @@ Gradle configurations require an explicit reference to the *.jar* dependency ext
 // build.gradle
 
 dependencies {
-    implementation group: 'com.microsoft.cognitiveservices.speech', name: 'client-sdk', version: "1.40.0", ext: "jar"
+    implementation group: 'com.microsoft.cognitiveservices.speech', name: 'client-sdk', version: "1.43.0", ext: "jar"
 }
 ```
 

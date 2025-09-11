@@ -7,12 +7,14 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.date: 04/22/2021
 ---
 
 # Deploy a model locally
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn how to use Azure Machine Learning to deploy a model as a web service on your Azure Machine Learning compute instance. Use compute instances if one of the following conditions is true:
 

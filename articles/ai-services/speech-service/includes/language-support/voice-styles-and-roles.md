@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
-ms.date: 02/01/2023
+ms.date: 8/1/2025
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Voice | Styles |Roles |
@@ -14,14 +14,19 @@ ms.author: eur
 |en-IN-NeerjaNeural|`cheerful`, `empathetic`, `newscast`|Not supported|
 |en-US-AndrewMultilingualNeural|`empathetic`, `relieved`|Not supported|
 |en-US-AriaNeural|`angry`, `chat`, `cheerful`, `customerservice`, `empathetic`, `excited`, `friendly`, `hopeful`, `narration-professional`, `newscast-casual`, `newscast-formal`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-AvaNeural|`angry`, `fearful`, `sad`|Not supported|
+|en-US-DavisMultilingualNeural<sup>1</sup>|`empathetic`, `funny`, `relieved`|Not supported|
 |en-US-DavisNeural|`angry`, `chat`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-DerekMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `relieved`, `shy`|Not supported|
 |en-US-GuyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JaneNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JasonNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-JennyNeural|`angry`, `assistant`, `chat`, `cheerful`, `customerservice`, `excited`, `friendly`, `hopeful`, `newscast`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
-|en-US-KaiNeural<sup>1</sup>|`conversation`|Not supported|
-|en-US-LunaNeural<sup>1</sup>|`conversation`|Not supported|
+|en-US-KaiNeural|`conversation`|Not supported|
+|en-US-LunaNeural|`conversation`|Not supported|
+|en-US-NancyMultilingualNeural<sup>1</sup>|`excited`, `friendly`, `funny`, `relieved`, `shy`|Not supported|
 |en-US-NancyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
+|en-US-PhoebeMultilingualNeural<sup>1</sup>|`empathetic`, `sad`, `serious`|Not supported|
 |en-US-SaraNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
 |en-US-SerenaMultilingualNeural<sup>1</sup>|`empathetic`, `excited`, `friendly`, `relieved`, `sad`, `serious`, `shy`|Not supported|
 |en-US-TonyNeural|`angry`, `cheerful`, `excited`, `friendly`, `hopeful`, `sad`, `shouting`, `terrified`, `unfriendly`, `whispering`|Not supported|
@@ -43,6 +48,8 @@ ms.author: eur
 |zh-CN-XiaomoNeural|`affectionate`, `angry`, `calm`, `cheerful`, `depressed`, `disgruntled`, `embarrassed`, `envious`, `fearful`, `gentle`, `sad`, `serious`|`Boy`, `Girl`, `OlderAdultFemale`, `OlderAdultMale`, `SeniorFemale`, `SeniorMale`, `YoungAdultFemale`, `YoungAdultMale`|
 |zh-CN-XiaoruiNeural|`angry`, `calm`, `fearful`, `sad`|Not supported|
 |zh-CN-XiaoshuangNeural|`chat`|Not supported|
+|zh-CN-Xiaoxiao:DragonHDFlashLatestNeural<sup>1</sup>|`angry`, `chat`, `cheerful`, `excited`, `fearful`, `sad`, `voiceassistant`|Not supported|
+|zh-CN-Xiaoxiao2:DragonHDFlashLatestNeural<sup>1</sup>|`affectionate`, `angry`, `cheerful`, `empathetic`, `excited`, `fearful`, `poetry-reading`, `sad`, `sentiment`, `sorry`, `story`, `whisper`|Not supported|
 |zh-CN-XiaoxiaoMultilingualNeural|`affectionate`, `cheerful`, `empathetic`, `excited`, `poetry-reading`, `sorry`, `story`|Not supported|
 |zh-CN-XiaoxiaoNeural|`affectionate`, `angry`, `assistant`, `calm`, `chat`, `chat-casual`, `cheerful`, `customerservice`, `disgruntled`, `excited`, `fearful`, `friendly`, `gentle`, `lyrical`, `newscast`, `poetry-reading`, `sad`, `serious`, `sorry`, `whispering`|Not supported|
 |zh-CN-XiaoyiNeural|`affectionate`, `angry`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `gentle`, `sad`, `serious`|Not supported|
@@ -54,6 +61,7 @@ ms.author: eur
 |zh-CN-YunxiNeural|`angry`, `assistant`, `chat`, `cheerful`, `depressed`, `disgruntled`, `embarrassed`, `fearful`, `narration-relaxed`, `newscast`, `sad`, `serious`|`Boy`, `Narrator`, `YoungAdultMale`|
 |zh-CN-YunyangNeural|`customerservice`, `narration-professional`, `newscast-casual`|Not supported|
 |zh-CN-YunyeNeural|`angry`, `calm`, `cheerful`, `disgruntled`, `embarrassed`, `fearful`, `sad`, `serious`|`Boy`, `Girl`, `OlderAdultFemale`, `OlderAdultMale`, `SeniorFemale`, `SeniorMale`, `YoungAdultFemale`, `YoungAdultMale`|
+|zh-CN-Yunyi:DragonHDFlashLatestNeural<sup>1</sup>|`assassin`, `captain`, `cavalier`, `drake`, `gamenarrator`, `geomancer`, `poet`|Not supported|
 |zh-CN-YunzeNeural|`angry`, `calm`, `cheerful`, `depressed`, `disgruntled`, `documentary-narration`, `fearful`, `sad`, `serious`|`OlderAdultMale`, `SeniorMale`|
 
 <sup>1</sup> The neural voice is available in public preview. Voices and styles in public preview are only available in three service [regions](../../regions.md): East US, West Europe, and Southeast Asia. 

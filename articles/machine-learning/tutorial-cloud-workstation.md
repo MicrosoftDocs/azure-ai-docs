@@ -5,12 +5,14 @@ description: Learn how to get started prototyping and developing machine learnin
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.custom: devx-track-python
 ms.topic: tutorial
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: lebaro
 ms.date: 08/05/2024
+ms.custom:
+  - devx-track-python
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
@@ -238,7 +240,7 @@ If you plan to continue now to other tutorials, skip to [Next steps](#next-steps
 
 If you're not going to use it now, stop the compute instance:
 
-1. In the studio, in the left navigation area, select **Compute**.
+1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.

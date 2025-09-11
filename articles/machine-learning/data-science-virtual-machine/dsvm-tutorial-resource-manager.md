@@ -3,18 +3,22 @@ title: 'Quickstart: Create a Data Science VM - Resource Manager template'
 titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to use an Azure Resource Manager template to quickly deploy a Data Science Virtual Machine
 services: machine-learning
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: franksolomon
 ms.date: 04/23/2024
 ms.topic: quickstart
-ms.service: data-science-vm
-ms.custom: subject-armqs, mode-arm, devx-track-arm-template
+ms.service: azure-data-science-virtual-machines
+ms.custom:
+  - subject-armqs
+  - mode-arm
+  - devx-track-arm-template
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create an Ubuntu Data Science Virtual Machine using an ARM template
 
-This quickstart shows how to create an Ubuntu Data Science Virtual Machine (DSVM) using an Azure Resource Manager template (ARM template). A Data Science Virtual Machines is a cloud-based resource, preloaded with a suite of data science and machine learning frameworks and tools. When deployed on GPU-powered compute resources, all tools and libraries are configured to use the GPU.
+This quickstart shows how to create an Ubuntu Data Science Virtual Machine (DSVM) using an Azure Resource Manager template (ARM template). A Data Science Virtual Machine is a cloud-based resource, preloaded with a suite of data science and machine learning frameworks and tools. When deployed on GPU-powered compute resources, all tools and libraries are configured to use the GPU.
 
 [!INCLUDE [About Azure Resource Manager](~/reusable-content/ce-skilling/azure/includes/resource-manager-quickstart-introduction.md)]
 
@@ -24,13 +28,13 @@ If your environment meets the prerequisites and you know how to use ARM template
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/services/machine-learning/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/products/machine-learning/) before you begin.
 
-* To use the CLI commands in this document from your **local environment**, you need the [Azure CLI](/cli/azure/install-azure-cli).
+* You need the [Azure CLI](/cli/azure/install-azure-cli) to use the CLI commands in this document from your **local environment**.
 
 ## Review the template
 
-You can find the template used in this quickstart at the [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/vm-ubuntu-DSVM-GPU-or-CPU/) resource.
+You can find the template used in this quickstart at the Azure Quickstart Templates resource.
 
 :::code language="json" source="~/quickstart-templates/application-workloads/datascience/vm-ubuntu-DSVM-GPU-or-CPU/azuredeploy.json":::
 
@@ -45,7 +49,7 @@ The template defines these resources:
 
 ## Deploy the template
 
-To use the template from the Azure CLI, sign in and choose your subscription (See [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli)). Then run:
+To use the template from the Azure CLI, sign in and choose your subscription. Visit [Sign in with Azure CLI](/cli/azure/authenticate-azure-cli) for more information. Then run:
 
 ```azurecli-interactive
 read -p "Enter the name of the resource group to create:" resourceGroupName &&
@@ -80,7 +84,7 @@ This displays the Resource Group information:
 
 :::image type="content" source="media/dsvm-tutorial-resource-manager/resource-group-home.png" alt-text="Screenshot showing a basic Resource Group containing a DSVM":::
 
-Select the Virtual Machine resource to go to its information page. Here you can find information about the VM, including connection details.
+Select the Virtual Machine resource to go to its information page. Here, you can find information about the VM, including connection details.
 
 ## Clean up resources
 

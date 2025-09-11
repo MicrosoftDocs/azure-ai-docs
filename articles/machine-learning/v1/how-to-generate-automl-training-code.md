@@ -10,11 +10,13 @@ ms.service: azure-machine-learning
 ms.subservice: automl
 ms.custom: UpdateFrequency5, sdkv1
 ms.topic: how-to
-ms.date: 09/07/2023
+ms.date: 12/06/2024
 monikerRange: 'azureml-api-1'
 ---
 
 #  View training code for an Automated ML model
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to view the generated training code from any automated machine learning trained model. 
 
@@ -396,7 +398,7 @@ command_job = command(
 )
  
 returned_job = ml_client.create_or_update(command_job)
-print(returned_job.studio_url) # link to naviagate to submitted run in Azure Machine Learning Studio
+print(returned_job.studio_url) # link to naviagate to submitted run in Azure Machine Learning studio
 ```
 
 ## Next steps

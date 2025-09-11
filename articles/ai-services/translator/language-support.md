@@ -2,168 +2,167 @@
 title: Language support - Translator
 titleSuffix: Azure AI services
 description: Azure AI Translator supports the following languages for text to text translation using Neural Machine Translation (NMT).
-#services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 02/16/2024
+ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 # Translator language support
 
-**Translation - Cloud:** Cloud translation is available in all languages for the `Translate` operation of Text Translation and for Document Translation.
+**Translation - Cloud:** Cloud translation is available in all languages for the `Translate` operation of Text translation and for Document translation.
 
 **Translation – Containers:** Language support for Containers.
 
-**Custom Translator:** Custom Translator can be used to create customized translation models that you can then use to customize your translated output while using the Text Translation or Document Translation features.
+**Custom Translator:** Enables you to create tailored translation models. You can use these models to customize your translated output when utilizing the Text translation or Document translation features.
 
-**Auto Language Detection:** Automatically detect the language of the source text while using Text Translation or Document Translation.
+**Auto Language Detection:** Automatically detect the language of the source text while using Text translation or Document translation.
 
-**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](reference/v3-0-dictionary-lookup.md) or [Dictionary Examples](reference/v3-0-dictionary-examples.md) operations from the Text Translation feature.
+**Dictionary:** To display alternative translations from or to English and examples of words in context, use the [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) or [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) operations from the Text translation feature.
 
 ## Translation
 
 > [!NOTE]
-> Language code `pt` will default to `pt-br`, Portuguese (Brazil).
+> Language code `pt` defaults to `pt-br`, Portuguese (Brazil).
 
-|Language|Language code|Cloud – Text Translation and Document Translation|Containers – Text Translation|Custom Translator|Auto Language Detection|Dictionary|
-|:----|:----|:----|:----|:----|:----|:----|
-|Afrikaans|`af`|✔|✔|✔|✔|✔|
-|Albanian|`sq`|✔|✔| |✔| |
-|Amharic|`am`|✔|✔| |✔| |
-|Arabic|`ar`|✔|✔|✔|✔|✔|
-|Armenian|`hy`|✔|✔| |✔| |
-|Assamese|`as`|✔|✔|✔|✔| |
-|Azerbaijani (Latin)|`az`|✔|✔| |✔| |
-|Bangla|`bn`|✔|✔|✔|✔|✔|
-|Bashkir|`ba`|✔|✔| |✔| |
-|Basque|`eu`|✔|✔| |✔| |
-|Bhojpuri|`bho`|✔|✔ | | | |
-|Bodo|brx    |✔|✔ | | | |
-|Bosnian (Latin)|`bs`|✔|✔|✔|✔|✔|
-|Bulgarian|`bg`|✔|✔|✔|✔|✔|
-|Cantonese (Traditional)|`yue`|✔|✔| |✔| |
-|Catalan|`ca`|✔|✔|✔|✔|✔|
-|Chinese (Literary)|`lzh`|✔|✔| | | |
-|Chinese Simplified|`zh-Hans`|✔|✔|✔|✔|✔|
-|Chinese Traditional|`zh-Hant`|✔|✔|✔|✔| |
-|chiShona|`sn`|✔|✔| | | |
-|Croatian|`hr`|✔|✔|✔|✔|✔|
-|Czech|`cs`|✔|✔|✔|✔|✔|
-|Danish|`da`|✔|✔|✔|✔|✔|
-|Dari|`prs`|✔|✔| |✔| |
-|Divehi|`dv`|✔|✔| |✔| |
-|Dogri|`doi`|✔| | | | |
-|Dutch|`nl`|✔|✔|✔|✔|✔|
-|English|`en`|✔|✔|✔|✔|✔|
-|Estonian|`et`|✔|✔|✔|✔| |
-|Faroese|`fo`|✔|✔| |✔| |
-|Fijian|`fj`|✔|✔|✔|✔| |
-|Filipino|`fil`|✔|✔|✔| | |
-|Finnish|`fi`|✔|✔|✔|✔|✔|
-|French|`fr`|✔|✔|✔|✔|✔|
-|French (Canada)|`fr-ca`|✔|✔|✔| | |
-|Galician|`gl`|✔|✔| |✔| |
-|Georgian|`ka`|✔|✔| |✔| |
-|German|`de`|✔|✔|✔|✔|✔|
-|Greek|`el`|✔|✔|✔|✔|✔|
-|Gujarati|`gu`|✔|✔|✔|✔| |
-|Haitian Creole|`ht`|✔|✔| |✔|✔|
-|Hausa|`ha`|✔|✔| |✔| |
-|Hebrew|`he`|✔|✔|✔|✔|✔|
-|Hindi|`hi`|✔|✔|✔|✔|✔|
-|Hmong Daw (Latin)|`mww`|✔|✔| |✔|✔|
-|Hungarian|`hu`|✔|✔|✔|✔|✔|
-|Icelandic|`is`|✔|✔|✔|✔|✔|
-|Igbo|`ig`|✔|✔| |✔| |
-|Indonesian|`id`|✔|✔|✔|✔|✔|
-|Inuinnaqtun|`ikt`|✔|✔| | | |
-|Inuktitut|`iu`|✔|✔|✔|✔| |
-|Inuktitut (Latin)|`iu-Latn`|✔|✔| |✔| |
-|Irish|`ga`|✔|✔|✔|✔| |
-|Italian|`it`|✔|✔|✔|✔|✔|
-|Japanese|`ja`|✔|✔|✔|✔|✔|
-|Kannada|`kn`|✔|✔|✔|✔| |
-|Kashmiri|`ks`|✔|✔ | | | |
-|Kazakh|`kk`|✔|✔| |✔| |
-|Khmer|`km`|✔|✔| |✔| |
-|Kinyarwanda|`rw`|✔|✔| |✔| |
-|Klingon|`tlh-Latn`|✔| | |✔|✔|
-|Klingon (plqaD)|`tlh-Piqd`|✔| | |✔| |
-|Konkani|`gom`|✔|✔| | | |
-|Korean|`ko`|✔|✔|✔|✔|✔|
-|Kurdish (Central)|`ku`|✔|✔| |✔| |
-|Kurdish (Northern)|`kmr`|✔|✔| | | |
-|Kyrgyz (Cyrillic)|`ky`|✔|✔| |✔| |
-|`Lao`|`lo`|✔|✔| |✔| |
-|Latvian|`lv`|✔|✔|✔|✔|✔|
-|Lithuanian|`lt`|✔|✔|✔|✔|✔|
-|Lingala|`ln`|✔|✔| | | |
-|Lower Sorbian|`dsb`|✔| | | | |
-|Luganda|`lug`|✔|✔| | | |
-|Macedonian|`mk`|✔|✔| |✔| |
-|Maithili|`mai`|✔|✔| | | |
-|Malagasy|`mg`|✔|✔|✔|✔| |
-|Malay (Latin)|`ms`|✔|✔|✔|✔|✔|
-|Malayalam|`ml`|✔|✔|✔|✔| |
-|Maltese|`mt`|✔|✔|✔|✔|✔|
-|Maori|`mi`|✔|✔|✔|✔| |
-|Marathi|`mr`|✔|✔|✔|✔| |
-|Mongolian (Cyrillic)|`mn-Cyrl`|✔|✔| |✔| |
-|Mongolian (Traditional)|`mn-Mong`|✔|✔| | | |
-|Myanmar|`my`|✔|✔| |✔| |
-|Nepali|`ne`|✔|✔| |✔| |
-|Norwegian|`nb`|✔|✔|✔|✔|✔|
-|Nyanja|`nya`|✔|✔| | | |
-|Odia|`or`|✔|✔|✔|✔| |
-|Pashto|`ps`|✔|✔| |✔| |
-|Persian|`fa`|✔|✔|✔|✔|✔|
-|Polish|`pl`|✔|✔|✔|✔|✔|
-|Portuguese (Brazil)|`pt`|✔|✔|✔|✔|✔|
-|Portuguese (Portugal)|pt-pt|✔|✔|✔| | |
-|Punjabi|`pa`|✔|✔|✔|✔| |
-|Queretaro Otomi|`otq`|✔|✔| |✔| |
-|Romanian|`ro`|✔|✔|✔|✔|✔|
-|Rundi|`run`|✔|✔| | | |
-|Russian|`ru`|✔|✔|✔|✔|✔|
-|Samoan (Latin)|`sm`|✔|✔|✔|✔| |
-|Serbian (Cyrillic)|`sr-Cyrl`|✔|✔| |✔| |
-|Serbian (Latin)|`sr-Latn`|✔|✔|✔|✔|✔|
-|Sesotho|`st`|✔|✔| | | |
-|Sesotho sa Leboa|`nso`|✔|✔| | | |
-|Setswana|`tn`|✔|✔| | | |
-|Sindhi|`sd`|✔|✔| |✔| |
-|Sinhala|`si`|✔|✔| |✔| |
-|Slovak|`sk`|✔|✔|✔|✔|✔|
-|Slovenian|`sl`|✔|✔|✔|✔|✔|
-|Somali (Arabic)|`so`|✔|✔| |✔| |
-|Spanish|`es`|✔|✔|✔|✔|✔|
-|Swahili (Latin)|`sw`|✔|✔|✔|✔|✔|
-|Swedish|`sv`|✔|✔|✔|✔|✔|
-|Tahitian|`ty`|✔|✔|✔|✔| |
-|Tamil|`ta`|✔|✔|✔|✔|✔|
-|Tatar (Latin)|`tt`|✔|✔| |✔| |
-|Telugu|`te`|✔|✔|✔|✔| |
-|Thai|`th`|✔|✔|✔|✔|✔|
-|Tibetan|`bo`|✔|✔| |✔| |
-|Tigrinya|`ti`|✔|✔| |✔| |
-|Tongan|`to`|✔|✔|✔|✔| |
-|Turkish|`tr`|✔|✔|✔|✔|✔|
-|Turkmen (Latin)|`tk`|✔|✔| |✔| |
-|Ukrainian|`uk`|✔|✔|✔|✔|✔|
-|Upper Sorbian|`hsb`|✔|✔| |✔| |
-|Urdu|`ur`|✔|✔|✔|✔|✔|
-|Uyghur (Arabic)|`ug`|✔|✔| |✔| |
-|Uzbek (Latin)|`uz`|✔|✔| |✔| |
-|Vietnamese|`vi`|✔|✔|✔|✔|✔|
-|Welsh|`cy`|✔|✔|✔|✔|✔|
-|Xhosa|`xh`|✔|✔| |✔| |
-|Yoruba|`yo`|✔|✔| |✔| |
-|Yucatec Maya|`yua`|✔|✔| |✔| |
-|Zulu|`zu`|✔|✔| |✔| |
+|Language|Language code|Cloud – Text translation and Document translation|Containers – Text translation|Custom Translator|Auto Language Detection|Dictionary|LLM translation|Adaptive custom translation|
+|:----|:----|:----|:----|:----|:----|:----|:----|:----|
+|Afrikaans|`af`|✔|✔|✔|✔|✔| | |
+|Albanian|`sq`|✔|✔| |✔| | | |
+|Amharic|`am`|✔|✔| |✔| | | |
+|Arabic|`ar`|✔|✔|✔|✔|✔|✔| |
+|Armenian|`hy`|✔|✔| |✔| | | |
+|Assamese|`as`|✔|✔|✔|✔| | | |
+|Azerbaijani (Latin)|`az`|✔|✔| |✔| | | |
+|Bangla|`bn`|✔|✔|✔|✔|✔|✔| |
+|Bashkir|`ba`|✔|✔| |✔| | | |
+|Basque|`eu`|✔|✔| |✔| | | |
+|Bhojpuri|`bho`|✔|✔ | | | | | |
+|Bodo|`brx`    |✔|✔ | | | | | |
+|Bosnian (Latin)|`bs`|✔|✔|✔|✔|✔| | |
+|Bulgarian|`bg`|✔|✔|✔|✔|✔|✔| |
+|Cantonese (Traditional)|`yue`|✔|✔| |✔| | | |
+|Catalan|`ca`|✔|✔|✔|✔|✔|✔| |
+|Chinese (Literary)|`lzh`|✔|✔| | | | | |
+|Chinese Simplified|`zh-Hans`|✔|✔|✔|✔|✔|✔| |
+|Chinese Traditional|`zh-Hant`|✔|✔|✔|✔| |✔| |
+|chiShona|`sn`|✔|✔| | | | | |
+|Croatian|`hr`|✔|✔|✔|✔|✔|✔| |
+|Czech|`cs`|✔|✔|✔|✔|✔|✔| |
+|Danish|`da`|✔|✔|✔|✔|✔|✔| |
+|Dari|`prs`|✔|✔| |✔| | | |
+|Divehi|`dv`|✔|✔| |✔| | | |
+|Dogri|`doi`|✔| | | | | | |
+|Dutch|`nl`|✔|✔|✔|✔|✔|✔| |
+|English|`en`|✔|✔|✔|✔|✔|✔|✔|
+|Estonian|`et`|✔|✔|✔|✔| | ✔| |
+|Faroese|`fo`|✔|✔| |✔| | | |
+|Fijian|`fj`|✔|✔|✔|✔| | | |
+|Filipino|`fil`|✔|✔|✔| | |✔| |
+|Finnish|`fi`|✔|✔|✔|✔|✔|✔| |
+|French|`fr`|✔|✔|✔|✔|✔| ✔|✔|
+|French (Canada)|`fr-ca`|✔|✔|✔| | |✔|✔|
+|Galician|`gl`|✔|✔| |✔| | | |
+|Georgian|`ka`|✔|✔| |✔| | | |
+|German|`de`|✔|✔|✔|✔|✔|✔|✔|
+|Greek|`el`|✔|✔|✔|✔|✔|✔| |
+|Gujarati|`gu`|✔|✔|✔|✔| |✔| |
+|Haitian Creole|`ht`|✔|✔| |✔|✔| | |
+|Hausa|`ha`|✔|✔| |✔| | | |
+|Hebrew|`he`|✔|✔|✔|✔|✔|✔| |
+|Hindi|`hi`|✔|✔|✔|✔|✔|✔| |
+|Hmong Daw (Latin)|`mww`|✔|✔| |✔|✔| | |
+|Hungarian|`hu`|✔|✔|✔|✔|✔|✔| |
+|Icelandic|`is`|✔|✔|✔|✔|✔|✔| |
+|Igbo|`ig`|✔|✔| |✔| | | |
+|Indonesian|`id`|✔|✔|✔|✔|✔|✔| |
+|Inuinnaqtun|`ikt`|✔|✔| | | | | |
+|Inuktitut|`iu`|✔|✔|✔|✔| | | |
+|Inuktitut (Latin)|`iu-Latn`|✔|✔| |✔| | | |
+|Irish|`ga`|✔|✔|✔|✔| | | |
+|Italian|`it`|✔|✔|✔|✔|✔|✔|✔|
+|Japanese|`ja`|✔|✔|✔|✔|✔|✔| |
+|Kannada|`kn`|✔|✔|✔|✔| |✔| |
+|Kashmiri|`ks`|✔|✔ | | | | | |
+|Kazakh|`kk`|✔|✔| |✔| | | |
+|Khmer|`km`|✔|✔| |✔| | | |
+|Kinyarwanda|`rw`|✔|✔| |✔| | | |
+|Klingon|`tlh-Latn`|✔| | |✔|✔| | |
+|Klingon (plqaD)|`tlh-Piqd`|✔| | |✔| | | |
+|Konkani|`gom`|✔|✔| | | | | |
+|Korean|`ko`|✔|✔|✔|✔|✔|✔| |
+|Kurdish (Central)|`ku`|✔|✔| |✔| | | |
+|Kurdish (Northern)|`kmr`|✔|✔| | | | | |
+|Kyrgyz (Cyrillic)|`ky`|✔|✔| |✔| | | |
+|Lao|`lo`|✔|✔| |✔| | | |
+|Latvian|`lv`|✔|✔|✔|✔|✔|✔| |
+|Lithuanian|`lt`|✔|✔|✔|✔|✔|✔| |
+|Lingala|`ln`|✔|✔| | | | | |
+|Lower Sorbian|`dsb`|✔| | | | | | |
+|Luganda|`lug`|✔|✔| | | | | |
+|Macedonian|`mk`|✔|✔| |✔| | | |
+|Maithili|`mai`|✔|✔| | | | | |
+|Malagasy|`mg`|✔|✔|✔|✔| | | |
+|Malay (Latin)|`ms`|✔|✔|✔|✔|✔| | |
+|Malayalam|`ml`|✔|✔|✔|✔| |✔| |
+|Maltese|`mt`|✔|✔|✔|✔|✔| | |
+|Maori|`mi`|✔|✔|✔|✔| | | |
+|Marathi|`mr`|✔|✔|✔|✔| |✔| |
+|Mongolian (Cyrillic)|`mn-Cyrl`|✔|✔| |✔| | | |
+|Mongolian (Traditional)|`mn-Mong`|✔|✔| | | | | |
+|Myanmar|`my`|✔|✔| |✔| | | |
+|Nepali|`ne`|✔|✔| |✔| | | |
+|Norwegian Bokmål|`nb`|✔|✔|✔|✔|✔|✔| |
+|Nyanja|`nya`|✔|✔| | | | | |
+|Odia|`or`|✔|✔|✔|✔| | | |
+|Pashto|`ps`|✔|✔| |✔| | | |
+|Persian|`fa`|✔|✔|✔|✔|✔|✔| |
+|Polish|`pl`|✔|✔|✔|✔|✔|✔| |
+|Portuguese (Brazil)|`pt`|✔|✔|✔|✔|✔|✔| |
+|Portuguese (Portugal)|pt-pt|✔|✔|✔| | |✔| |
+|Punjabi|`pa`|✔|✔|✔|✔| |✔| |
+|Queretaro Otomi|`otq`|✔|✔| |✔| | | |
+|Romanian|`ro`|✔|✔|✔|✔|✔|✔| |
+|Rundi|`run`|✔|✔| | | | | |
+|Russian|`ru`|✔|✔|✔|✔|✔|✔| |
+|Samoan (Latin)|`sm`|✔|✔|✔|✔| | | |
+|Serbian (Cyrillic)|`sr-Cyrl`|✔|✔| |✔| |✔| |
+|Serbian (Latin)|`sr-Latn`|✔|✔|✔|✔|✔| | |
+|Sesotho|`st`|✔|✔| | | | | |
+|Sesotho sa Leboa|`nso`|✔|✔| | | | | |
+|Setswana|`tn`|✔|✔| | | | | |
+|Sindhi|`sd`|✔|✔| |✔| | | |
+|Sinhala|`si`|✔|✔| |✔| | | |
+|Slovak|`sk`|✔|✔|✔|✔|✔|✔| |
+|Slovenian|`sl`|✔|✔|✔|✔|✔|✔| |
+|Somali (Arabic)|`so`|✔|✔| |✔| | | |
+|Spanish|`es`|✔|✔|✔|✔|✔|✔|✔|
+|Swahili (Latin)|`sw`|✔|✔|✔| |✔|✔| |
+|Swedish|`sv`|✔|✔|✔|✔|✔|✔| |
+|Tahitian|`ty`|✔|✔|✔|✔| | | |
+|Tamil|`ta`|✔|✔|✔|✔|✔|✔| |
+|Tatar (Latin)|`tt`|✔|✔| |✔| | | |
+|Telugu|`te`|✔|✔|✔|✔| |✔| |
+|Thai|`th`|✔|✔|✔|✔|✔|✔| |
+|Tibetan|`bo`|✔|✔| |✔| | | |
+|Tigrinya|`ti`|✔|✔| |✔| | | |
+|Tongan|`to`|✔|✔|✔|✔| | | |
+|Turkish|`tr`|✔|✔|✔|✔|✔|✔| |
+|Turkmen (Latin)|`tk`|✔|✔| |✔| | | |
+|Ukrainian|`uk`|✔|✔|✔|✔|✔|✔| |
+|Upper Sorbian|`hsb`|✔|✔| |✔| | | |
+|Urdu|`ur`|✔|✔|✔|✔|✔|✔| |
+|Uyghur (Arabic)|`ug`|✔|✔| |✔| | | |
+|Uzbek (Latin)|`uz`|✔|✔| |✔| | | |
+|Vietnamese|`vi`|✔|✔|✔|✔|✔|✔| |
+|Welsh|`cy`|✔|✔|✔|✔|✔| | |
+|Xhosa|`xh`|✔|✔| |✔| | | |
+|Yoruba|`yo`|✔|✔| |✔| | | |
+|Yucatec Maya|`yua`|✔|✔| |✔| | | |
+|Zulu|`zu`|✔|✔| |✔| |✔| |
 
-## Document Translation: scanned PDF support
+## Document translation: scanned PDF support
 
 |Language|Language Code|Supported as source language for scanned PDF?|Supported as target language for scanned PDF?|
 |:----|:----:|:----:|:----:|
@@ -174,7 +173,7 @@ ms.author: lajanuar
 |Armenian|`hy`|Yes|No|
 |Assamese|`as`|Yes|No|
 |Azerbaijani (Latin)|`az`|Yes|Yes|
-|Bangla|`bn`|Yes|No|
+|Bangla|`bn`|No|No|
 |Bashkir|`ba`|Yes|Yes|
 |Basque|`eu`|Yes|Yes|
 |Bosnian (Latin)|`bs`|Yes|Yes|
@@ -204,7 +203,7 @@ ms.author: lajanuar
 |Greek|`el`|Yes|No|
 |Gujarati|`gu`|Yes|No|
 |Haitian Creole|`ht`|Yes|Yes|
-|Hebrew|`he`|Yes|No|
+|Hebrew|`he`|No|No|
 |Hindi|`hi`|Yes|Yes|
 |Hmong Daw (Latin)|`mww`|Yes|Yes|
 |Hungarian|`hu`|Yes|Yes|
@@ -241,7 +240,7 @@ ms.author: lajanuar
 |Mongolian (Traditional)|`mn-Mong`|Yes|No|
 |Myanmar (Burmese)|`my`|Yes|No|
 |Nepali|`ne`|Yes|Yes|
-|Norwegian|`nb`|Yes|Yes|
+|Norwegian Bokmål|`nb`|Yes|Yes|
 |Odia|`or`|Yes|No|
 |Pashto|`ps`|Yes|No|
 |Persian|`fa`|Yes|No|
@@ -265,7 +264,7 @@ ms.author: lajanuar
 |Tamil|`ta`|Yes|Yes|
 |Tatar (Latin)|`tt`|Yes|Yes|
 |Telugu|`te`|Yes|Yes|
-|Thai|`th`|Yes|No|
+|Thai|`th`|No|No|
 |Tibetan|`bo`|Yes|No|
 |Tigrinya|`ti`|Yes|No|
 |Tongan|`to`|Yes|Yes|
@@ -283,7 +282,7 @@ ms.author: lajanuar
 
 ## Transliteration
 
-The [Transliterate operation](reference/v3-0-transliterate.md) in the Text Translation feature supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
+[Transliterate](text-translation/reference/v3/transliterate.md) is a Text translation operation that supports the following languages. In the `To/From`, `<-->` indicates that the language can be transliterated from or to either of the scripts listed. The `-->` indicates that the language can only be transliterated from one script to the other.
 
 | Language    | Language code | Script | To/From | Script|
 |:----------- |:-------------:|:-------------:|:-------------:|:-------------:|
@@ -337,6 +336,6 @@ View all [Azure AI services](../index.yml).
 
 ## Next steps
 
-* [Text Translation reference](reference/v3-0-reference.md)
-* [Document Translation reference](document-translation/reference/rest-api-guide.md)
+* [Text translation reference](text-translation/reference/v3/reference.md)
+* [Document translation reference](document-translation/reference/rest-api-guide.md)
 * [Custom Translator overview](custom-translator/overview.md)

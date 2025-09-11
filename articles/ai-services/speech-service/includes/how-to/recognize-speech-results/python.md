@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 03/31/2022
-ms.author: eur
+ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
 
@@ -30,9 +30,9 @@ This code snippet shows how to get the offset and duration from a `Recognizing` 
 ```python
 def recognizing_handler(e : speechsdk.SpeechRecognitionEventArgs) :
     if speechsdk.ResultReason.RecognizingSpeech == e.result.reason and len(e.result.text) > 0 :
-        print("Recognized: {}".format(result.text))
-        print("Offset in Ticks: {}".format(result.offset))
-        print("Duration in Ticks: {}".format(result.duration))
+        print("Recognized: {}".format(e.result.text))
+        print("Offset in Ticks: {}".format(e.result.offset))
+        print("Duration in Ticks: {}".format(e.result.duration))
 ```
 
 ### Recognized offset and duration

@@ -2,15 +2,15 @@
 title: Simple query syntax
 titleSuffix: Azure AI Search
 description: Reference for the simple query syntax used for full text search queries in Azure AI Search.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 01/17/2024
+ms.topic: reference
+ms.date: 12/10/2024
+ms.update-cycle: 365-days
 ---
 
 # Simple query syntax in Azure AI Search
@@ -70,7 +70,7 @@ You can embed Boolean operators in a query string to improve the precision of a 
 
 ## Prefix queries
 
-For "starts with" queries, add a suffix operator (`*`) as the placeholder for the remainder of a term. A prefix query must begin with at least one alphanumeric character before you can add the suffix operator.
+For "starts with" queries, add a suffix operator (`*`) as the placeholder for the remainder of a term. A prefix query must begin with at least one plain text character before you can add the suffix operator.
 
 | Character | Example | Usage |
 |----------- |--------|-------|

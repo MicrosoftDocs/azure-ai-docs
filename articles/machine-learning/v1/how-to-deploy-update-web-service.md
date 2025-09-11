@@ -6,16 +6,18 @@ description: Learn how to refresh a web service that is already deployed in Azur
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: bozhlin
-ms.date: 11/04/2022
+ms.date: 03/06/2025
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1
 ---
 
 # Update a deployed web service (v1)
 
 [!INCLUDE [dev v1](../includes/machine-learning-dev-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to update a web service that was deployed with Azure Machine Learning.
 

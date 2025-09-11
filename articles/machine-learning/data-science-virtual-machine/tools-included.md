@@ -4,10 +4,10 @@ titleSuffix: Azure Data Science Virtual Machine
 description: A list of tools included on the Windows and Ubuntu DSVM images
 keywords: data science tools, data science virtual machine, tools for data science, linux data science
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.topic: reference
 ms.reviewer: jcioffi
 ms.date: 05/21/2024

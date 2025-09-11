@@ -3,15 +3,15 @@ title: Export knowledge bases - QnA Maker
 description: Exporting a knowledge base requires exporting from one knowledge base, then importing into another.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Move a knowledge base using export-import
 
-You may want to create a copy of your knowledge base for several reasons:
+You might want to create a copy of your knowledge base for several reasons:
 
 * Copy a knowledge base from QnA Maker GA to Custom question answering 
 * To implement a backup and restore process 

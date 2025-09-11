@@ -2,7 +2,6 @@
 title: Container security
 titleSuffix: Azure AI services
 description: Learn how to secure your container
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
@@ -36,6 +35,10 @@ The host should allowlist **port 443** and the following domains:
 
 * `*.cognitive.microsoft.com`
 * `*.cognitiveservices.azure.com`
+
+If you are using the Azure AI Translator on-premise, you need to additionally allow the following URLs to download files
+
+* `translatoronprem.blob.core.windows.net`
 
 #### Disable deep packet inspection
 

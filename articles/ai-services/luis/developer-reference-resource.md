@@ -3,11 +3,11 @@ title: Developer resources - Language Understanding
 description: SDKs, REST APIs, CLI, help you develop Language Understanding (LUIS) apps in your programming language. Manage your Azure resources and LUIS predictions.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.devlang: csharp
 # ms.devlang: csharp, javascript
 ms.custom: devx-track-csharp
@@ -28,7 +28,7 @@ Find reference documentation based on the tool:
 
 * [Azure CLI](/cli/azure/cognitiveservices#az-cognitiveservices-list)
 
-* [Azure RM PowerShell](/powershell/module/azurerm.cognitiveservices/#cognitive_services)
+* [Azure PowerShell](/powershell/module/az.cognitiveservices/#cognitive_services)
 
 
 ## Language Understanding authoring and prediction requests

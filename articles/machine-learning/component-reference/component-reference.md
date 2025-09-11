@@ -63,7 +63,7 @@ For help with choosing algorithms, see
 
 | Functionality | Description | component |
 | --- |--- | --- |
-| Model Training | Run data through the algorithm. |  [Train Clustering Model](train-clustering-model.md) <br/> [Train Model](train-model.md) <br/> [Train Pytorch Model](train-pytorch-model.md) <br/> [Tune Model Hyperparameters](tune-model-hyperparameters.md) |
+| Model Training | Run data through the algorithm. |  [Train Clustering Model](train-clustering-model.md) <br/> [Train Model](train-model.md) <br/> [Train PyTorch Model](train-pytorch-model.md) <br/> [Tune Model Hyperparameters](tune-model-hyperparameters.md) |
 | Model Scoring and Evaluation | Measure the accuracy of the trained model. | [Apply Transformation](apply-transformation.md) <br/> [Assign Data to Clusters](assign-data-to-clusters.md) <br/> [Cross Validate Model](cross-validate-model.md) <br/> [Evaluate Model](evaluate-model.md) <br/> [Score Image Model](score-image-model.md) <br/> [Score Model](score-model.md) |
 | Python Language | Write code and embed it in a component to integrate Python with your pipeline. | [Create Python Model](create-python-model.md) <br/> [Execute Python Script](execute-python-script.md) |
 | R Language | Write code and embed it in a component to integrate R with your pipeline. | [Execute R Script](execute-r-script.md) |

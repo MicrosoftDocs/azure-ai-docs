@@ -24,8 +24,7 @@ Improve the accuracy of your machine learning models with publicly available dat
 | Dataset | Description |
 |--|--|
 | [COVID-19 Data Lake](dataset-covid-19-data-lake.md) | COVID-19 Data Lake collection is a collection of COVID-19 related datasets from various sources, covering testing and patient outcome tracking data, social distancing policy, hospital capacity, mobility, etc. |
-| [COVID-19 Open Research Dataset](dataset-covid-19-open-research.md) | A full-text and metadata dataset of COVID-19 and coronavirus-related scholarly articles, optimized for machine readability and made available for use by the global research community. |
-| [Genomics Data Lake](dataset-genomics-data-lake.md) | The Genomics Data Lake provides various public datasets available for free, ready to integrate into your genomics analysis workflows and applications. The datasets include genome sequences, variant info, and subject/sample metadata in BAM, FASTA, VCF, CSV file formats. |
+
 
 ## Labor and economics
 
@@ -56,7 +55,7 @@ Improve the accuracy of your machine learning models with publicly available dat
 | Dataset | Description |
 |--|--|
 | [Diabetes](dataset-diabetes.md) | The Diabetes dataset has 442 samples with 10 features, making it ideal for getting started with machine learning algorithms. |
-| [OJ Sales Simulated Data](dataset-oj-sales-simulated.md) | This dataset is derived from the Dominick’s OJ dataset and includes extra simulated data, with the goal of providing a dataset that makes it easy to simultaneously train thousands of models on Azure Machine Learning. |
+| [OJ Sales Simulated Data](dataset-oj-sales-simulated.md) | This dataset is derived from the Dominick's OJ dataset and includes extra simulated data, with the goal of providing a dataset that makes it easy to simultaneously train thousands of models on Azure Machine Learning. |
 | [MNIST database of handwritten digits](dataset-mnist.md) | The MNIST database of handwritten digits has a training set of 60,000 examples and a test set of 10,000 examples. The digits are size-normalized and centered in a fixed-size image. |
 | [Microsoft News recommendation dataset](dataset-microsoft-news.md) | Microsoft News Dataset (MIND) is a large-scale dataset for news recommendation research. It serves as a benchmark dataset for news recommendation, and facilitates research in news recommendation and recommender systems. |
 | [Public holidays](dataset-public-holidays.md) | Worldwide public holiday data sourced from PyPI holidays package and Wikipedia, covering 38 countries or regions from 1970 to 2099. |

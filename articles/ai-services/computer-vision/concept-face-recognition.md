@@ -1,18 +1,17 @@
 ---
 title: "Face recognition - Face"
 titleSuffix: Azure AI services
-description: Learn the concept of Face recognition, its related operations, and the underlying data structures.
-#services: cognitive-services
+description: Learn the concept of Face recognition, its operations, and data structures, including PersonGroup creation, identification, and verification.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: conceptual
-ms.date: 02/14/2024
+ms.date: 08/21/2025
 ms.author: pafarley
+feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Face recognition
@@ -50,10 +49,11 @@ Use the following tips to ensure that your input images give the most accurate r
 
 [!INCLUDE [identity-input-technical](includes/identity-input-technical.md)]
 [!INCLUDE [identity-input-composition](includes/identity-input-composition.md)]
-* You can utilize the `qualityForRecognition` attribute in the [face detection](./how-to/identity-detect-faces.md) operation when using applicable detection models as a general guideline of whether the image is likely of sufficient quality to attempt face recognition on. Only `"high"` quality images are recommended for person enrollment and quality at or above `"medium"` is recommended for identification scenarios.
+* You can use the `qualityForRecognition` attribute in the [face detection](./how-to/identity-detect-faces.md) operation when using applicable detection models as a general guideline of whether the image is likely of sufficient quality to attempt face recognition on. Only `"high"` quality images are recommended for person enrollment and quality at or above `"medium"` is recommended for identification scenarios.
 
-## Next steps
+## Next step
 
 Now that you're familiar with face recognition concepts, Write a script that identifies faces against a trained PersonGroup.
 
-* [Face quickstart](./quickstarts-sdk/identity-client-library.md)
+> [!div class="nextstepaction"]
+> [Face quickstart](./quickstarts-sdk/identity-client-library.md)

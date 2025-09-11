@@ -2,13 +2,12 @@
 title: Previous language service updates
 titleSuffix: Azure AI services
 description: An archive of previous Azure AI Language updates.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ROBOTS: NOINDEX
 ---
 

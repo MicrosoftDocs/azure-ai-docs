@@ -8,7 +8,7 @@ ms.author: aahi
 
 ## Configure an environment variable for authentication
 
-Your application must be authenticated to access Azure AI services resources. To set the environment variable for your resource key, open a console window, and follow the instructions for your operating system and development environment. To set the `COGNITIVE_SERVICE_KEY` environment variable, replace `your-key` with one of the keys for your resource.
+Your application must be authenticated to access Azure AI Foundry resources. To set the environment variable for your resource key, open a console window, and follow the instructions for your operating system and development environment. To set the `COGNITIVE_SERVICE_KEY` environment variable, replace `your-key` with one of the keys for your resource.
 
 For production, use a secure way of storing and accessing your credentials, such as a password-protected secret vault. For test, writing to an environment variable is standard practice, but keep in mind that environment variables are stored in clear text on the local machine.
 
@@ -40,7 +40,7 @@ $Env:COGNITIVE_SERVICE_KEY = your-key
 setx COGNITIVE_SERVICE_KEY your-key
 ```
 
-After you add the environment variable using `setx`, you may need to restart any running consoles or other programs that will need to read the environment variable. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example. 
+After you add the environment variable using `setx`, you might need to restart any running consoles or other programs that will need to read the environment variable. For example, if you are using Visual Studio as your editor, restart Visual Studio before running the example. 
 
 #### [Linux](#tab/linux)
 

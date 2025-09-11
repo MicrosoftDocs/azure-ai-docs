@@ -4,14 +4,16 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Through these samples and walkthroughs, learn how to handle common tasks and scenarios with the Data Science Virtual Machine.
 keywords: data science tools, data science virtual machine, tools for data science, linux data science
 services: machine-learning
-ms.service: data-science-vm
-ms.custom: devx-track-python
+ms.service: azure-data-science-virtual-machines
 
-author: fbsolo-ms1 
-ms.author: franksolomon
+author: s-polly 
+ms.author: scottpolly
 ms.topic: conceptual
 ms.reviewer: tklimmer
 ms.date: 04/16/2024
+ms.custom:
+  - devx-track-python
+  - sfi-image-nochange
 ---
 
 # Samples on Azure Data Science Virtual Machines

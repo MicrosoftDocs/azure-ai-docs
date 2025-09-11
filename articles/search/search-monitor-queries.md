@@ -2,22 +2,22 @@
 title: Monitor queries
 titleSuffix: Azure AI Search
 description: Monitor query metrics for performance and throughput. Collect and analyze query string inputs in resource logs.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 02/21/2024
+ms.topic: concept-article
+ms.date: 08/08/2025
+ms.update-cycle: 365-days
 ---
 
 # Monitor query requests in Azure AI Search
 
-This article explains how to measure query performance and volume using built-in metrics and resource logging. It also explains how to get the query strings entered by application users.
+This article explains how to measure query performance and volume using built-in metrics and diagnostic logging. It also explains how to get the query strings entered by application users.
 
-The Azure portal shows basic metrics about query latency, query load (QPS), and throttling. Historical data that feeds into these metrics can be accessed in the portal for 30 days. For longer retention, or to report on operational data and query strings, you must [add a diagnostic setting](/azure/azure-monitor/essentials/create-diagnostic-settings) that specifies a storage option for persisting logged operations and metrics. We recommend **Log Analytics workspace** as a destination for logged operations. Kusto queries and data exploration target a Log Analytics workspace.
+The Azure portal shows basic metrics about query latency, query load (QPS), and throttling. Historical data that feeds into these metrics can be accessed in the Azure portal for 30 days. For longer retention, or to report on operational data and query strings, you must [enable diagnostic logging](search-monitor-enable-logging.md) and choose a storage option for persisting logged operations and metrics. We recommend **Log Analytics workspace** as a destination for logged operations. Kusto queries and data exploration target a Log Analytics workspace.
 
 Conditions that maximize the integrity of data measurement include:
 
@@ -25,18 +25,19 @@ Conditions that maximize the integrity of data measurement include:
 
 + Use a single replica and partition, if possible, to create a contained and isolated environment. If you use multiple replicas, query metrics are averaged across multiple nodes, which can lower the precision of results. Similarly, multiple partitions mean that data is divided, with the potential that some partitions might have different data if indexing is also underway. When you tune query performance, a single node and partition gives a more stable environment for testing.
 
-> [!TIP]
-> With additional client-side code and Application Insights, you can also capture clickthrough data for deeper insight into what attracts the interest of your application users. For more information, see [Search traffic analytics](search-traffic-analytics.md).
-
 ## Query volume (QPS)
 
 Volume is measured as **Search Queries Per Second** (QPS), a built-in metric that can be reported as an average, count, minimum, or maximum values of queries that execute within a one-minute window. One-minute intervals (TimeGrain = "PT1M") for metrics is fixed within the system.
+
+Azure AI Search retains 30-days of metrics data by default. You can enable logging for longer retention. QPS is available in the Azure portal, in the **Monitoring** tab of your search service.
+
+:::image type="content" source="media/search-monitor-usage/monitoring-tab.png" alt-text="Screenshot of the Monitoring tab that shows QPS and other key metrics.":::
 
 To learn more about the SearchQueriesPerSecond metric, see [Search queries per second](monitor-azure-cognitive-search-data-reference.md#search-queries-per-second).
 
 ## Query performance
 
-Service-wide, query performance is measured as *search latency* and *throttled queries*.
+Service-wide, query performance is measured as *search latency* and *throttled queries*. These metrics are also available on the **Monitoring** tab.
 
 ### Search latency
 
@@ -54,7 +55,7 @@ In the following screenshot, the first number is the count (or number of metrics
 
 ![Throttled aggregations](./media/search-monitor-usage/metrics-throttle.png "Throttled aggregations")
 
-## Explore metrics in the portal
+## Explore metrics in the Azure portal
 
 For a quick look at the current numbers, the **Monitoring** tab on the service Overview page shows three metrics (**Search latency**, **Search queries per second (per search unit)**, **Throttled Search Queries Percentage**) over fixed intervals measured in hours, days, and weeks, with the option of changing the aggregation type.
 
@@ -87,7 +88,7 @@ When you enable resource logging, the system captures query requests in the **Az
    | project OperationName, Query_s, IndexName_s, Documents_d
    | where OperationName == "Query.Search"
    | where Query_s != "?api-version=2024-07-01&search=*"
-   | where IndexName_s != "realestate-us-sample-index"
+   | where IndexName_s != "hotels-sample-index"
    ```
 
 1. Optionally, set a Column filter on *Query_s* to search over a specific syntax or string. For example, you could filter over *is equal to* `?api-version=2024-07-01&search=*&%24filter=HotelName`.

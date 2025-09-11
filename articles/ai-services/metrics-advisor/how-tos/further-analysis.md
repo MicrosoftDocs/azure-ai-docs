@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
@@ -16,7 +16,7 @@ ms.author: mbullwin
 
 ## Metrics drill down by dimensions
 
-When you're viewing incident information, you may need to get more detailed information, for example, for different dimensions, and timestamps. If your data has one or more dimensions, you can use the drill down function to get a more detailed view. 
+When you're viewing incident information, you might need to get more detailed information, for example, for different dimensions, and timestamps. If your data has one or more dimensions, you can use the drill down function to get a more detailed view. 
 
 To use the drill down function, select the **Metric drilling** tab in the **Incident hub**. 
 

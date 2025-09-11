@@ -2,12 +2,12 @@
 title: Use Speech service containers with Kubernetes and Helm
 titleSuffix: Azure AI services
 description: Using Kubernetes and Helm to define the speech to text and text to speech container images, we create a Kubernetes package. This package is deployed to a Kubernetes cluster on-premises.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/24/2024
-ms.author: eur
+ms.date: 7/1/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn how to use Speech service containers with Kubernetes and Helm.
 ---
 
@@ -42,7 +42,7 @@ The host computer is expected to have an available Kubernetes cluster. See this 
 
 ## Configure Helm chart values for deployment
 
-Visit the [Microsoft Helm Hub][ms-helm-hub] for all the publicly available helm charts offered by Microsoft. From the Microsoft Helm Hub, you find the **Azure AI Speech On-Premises Chart**. The **Azure AI Speech On-Premises** is the chart we install, but we must first create an `config-values.yaml` file with explicit configurations. Let's start by adding the Microsoft repository to our Helm instance.
+Visit the [Microsoft Helm Hub][ms-helm-hub] for all the publicly available helm charts offered by Microsoft. From the Microsoft Helm Hub, you find the **Azure AI Speech On-Premises Chart**. The **Azure AI Speech On-Premises** is the chart we install, but we must first create a `config-values.yaml` file with explicit configurations. Let's start by adding the Microsoft repository to our Helm instance.
 
 ```console
 helm repo add microsoft https://microsoft.github.io/charts/repo

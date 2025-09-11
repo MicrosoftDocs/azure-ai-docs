@@ -12,7 +12,7 @@ ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
-ms.date: 09/12/2023
+ms.date: 11/26/2024
 ---
 
 # Custom tool package creation and usage
@@ -30,7 +30,7 @@ Your tool package should be a python package. To develop your custom tool, follo
 
 In order to add the custom tool to your tool list for use, it's necessary to prepare the compute session. Here we use [my-tools-package](https://pypi.org/project/my-tools-package/) as an example.
 
-When using compute session, you can readily install the publicly released package by adding the custom tool package name into the `requirements.txt` file in the flow folder. Then select the 'Save and install' button to start installation. After completion, you can see the custom tools displayed in the tool list. To learn more, see [How to manage compute session](./how-to-manage-compute-session.md).
+When using compute session, you can readily install the publicly released package by adding the custom tool package name into the `requirements.txt` file in the flow folder. Then to start installation select the 'Save and install' button. After completion, you can see the custom tools displayed in the tool list. To learn more, see [How to manage compute session](./how-to-manage-compute-session.md).
 :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/install-package-on-compute-session.png" alt-text="Screenshot of how to install packages on compute session."lightbox = "./media/how-to-custom-tool-package-creation-and-usage/install-package-on-compute-session.png":::
 
 Another method is applicable for not only publicly released packages, but also local or private feed packages. Firstly you should build an image following the two steps in [how to customize base image for compute session](./how-to-customize-session-base-image.md), and then [change the base image for compute session](./how-to-manage-compute-session.md#change-the-base-image-for-compute-session).
@@ -42,7 +42,7 @@ Another method is applicable for not only publicly released packages, but also l
 
 3. Add your tools.
     :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/test-customer-tool-on-ui-step-1.png" alt-text="Screenshot of flow in Azure Machine Learning studio showing more tools dropdown."lightbox ="./media/how-to-custom-tool-package-creation-and-usage/test-customer-tool-on-ui-step-1.png":::
-4. Change flow based on your requirements and run flow .
+4. Change flow based on your requirements and run flow.
     :::image type="content" source="./media/how-to-custom-tool-package-creation-and-usage/test-customer-tool-on-ui-step-2.png" alt-text="Screenshot of flow in Azure Machine Learning studio showing adding a tool."lightbox ="./media/how-to-custom-tool-package-creation-and-usage/test-customer-tool-on-ui-step-2.png":::
 
 ## FAQ

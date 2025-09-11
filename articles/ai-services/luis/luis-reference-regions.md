@@ -3,10 +3,10 @@ title: Publishing regions & endpoints - LUIS
 description: The region specified in the Azure portal is the same where you will publish the LUIS app and an endpoint URL is generated for this same region.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: references_regions
 ---
 
@@ -23,7 +23,7 @@ LUIS authoring regions are supported by the LUIS portal. To publish a LUIS app t
 
 Authoring regions are the regions where the application gets created and the training take place.
 
-LUIS has the following authoring regions available with [paired fail-over regions](/azure/availability-zones/cross-region-replication-azure):
+LUIS has the following authoring regions available with [paired fail-over regions](/azure/reliability/cross-region-replication-azure):
 	
 * Australia east
 * West Europe
@@ -109,7 +109,7 @@ Learn more about the [authoring and prediction endpoints](developer-reference-re
 
 Each region has a secondary region to fail over to. Failover will only happen in the same geographical region.
 
-Authoring regions have [paired fail-over regions](/azure/availability-zones/cross-region-replication-azure).
+Authoring regions have [paired fail-over regions](/azure/reliability/cross-region-replication-azure).
 
 The following publishing regions do not have a failover region:
 

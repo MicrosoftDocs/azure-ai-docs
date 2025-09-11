@@ -4,10 +4,10 @@ description: How to maintain your Language Understanding (LUIS) app under source
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
-author: aahill
+ms.date: 06/12/2025
+author: laujan
 manager: nitinme
-ms.author: aahi
+ms.author: lajanuar
 ---
 
 
@@ -152,7 +152,7 @@ You can support multiple developers working on the same feature branch at the sa
 
 ### Incorporating changes from one branch to another with rebase or merge
 
-Some other developers on your team working in another branch may have made updates to the `.lu` source and merged them to the main branch after you created your feature branch. You may want to incorporate their changes into your working version before you continue to make own changes within your feature branch. You can do this by [rebase or merge to main](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) in the same way as any other code asset. Since the LUIS app in LUDown format is human readable, it supports merging using standard merge tools.
+Some other developers on your team working in another branch may have made updates to the `.lu` source and merged them to the main branch after you created your feature branch. You might want to incorporate their changes into your working version before you continue to make own changes within your feature branch. You can do this by [rebase or merge to main](https://git-scm.com/book/en/v2/Git-Branching-Rebasing) in the same way as any other code asset. Since the LUIS app in LUDown format is human readable, it supports merging using standard merge tools.
 
 Follow these tips if you're rebasing your LUIS app in a feature branch:
 

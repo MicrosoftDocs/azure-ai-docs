@@ -1,14 +1,13 @@
----
+﻿---
 title: How to use autolabeling in custom named entity recognition
 titleSuffix: Azure AI services
 description: Learn how to use autolabeling in custom named entity recognition.
-#services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ---
 
 # How to use autolabeling for Custom Named Entity Recognition
@@ -32,7 +31,7 @@ Before you can use autolabeling with GPT, you need:
 * Text data that [has been uploaded](design-schema.md#data-preparation) to your storage account.
 * Entity names that are meaningful. The GPT models label entities in your documents based on the name of the entity you've provided.
 * [Labeled data](tag-data.md) isn't required.
-* An Azure OpenAI [resource and deployment](../../../openai/how-to/create-resource.md). 
+* An Azure OpenAI [resource and deployment](../../../../ai-foundry/openai/how-to/create-resource.md). 
 
 ---
 
@@ -47,7 +46,7 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 >
 > `ceil(8921/1000) = ceil(8.921)`, which is 9 text records.
 
-1.  From the left navigation menu, select **Data labeling**.
+1.  From the left pane, select **Data labeling**.
 2.  Select the **Autolabel** button under the Activity pane to the right of the page.
 
 
@@ -82,7 +81,7 @@ You should see the model used, number of documents included in the autolabeling 
 
 When you trigger an autolabeling job with GPT, you're charged to your Azure OpenAI resource as per your consumption. You're charged an estimate of the number of tokens in each document being autolabeled. Refer to the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for a detailed breakdown of pricing per token of different models.
 
-1.  From the left navigation menu, select **Data labeling**.
+1.  From the left pane, select **Data labeling**.
 2.  Select the **Autolabel** button under the Activity pane to the right of the page.
 
     :::image type="content" source="../media/trigger-autotag.png" alt-text="A screenshot showing how to trigger an autotag job from the activity pane." lightbox="../media/trigger-autotag.png":::
@@ -91,7 +90,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     :::image type="content" source="../media/choose-models.png" alt-text="A screenshot showing model choice for auto labeling." lightbox="../media/choose-models.png":::
 
-5. Choose your Azure OpenAI resource and deployment. You must [create an Azure OpenAI resource and deploy a model](../../../openai/how-to/create-resource.md) in order to proceed.
+5. Choose your Azure OpenAI resource and deployment. You must [create an Azure OpenAI resource and deploy a model](../../../../ai-foundry/openai/how-to/create-resource.md) in order to proceed.
 
     :::image type="content" source="../media/autotag-choose-open-ai.png" alt-text="A screenshot showing how to choose OpenAI resource and deployments" lightbox="../media/autotag-choose-open-ai.png":::
     

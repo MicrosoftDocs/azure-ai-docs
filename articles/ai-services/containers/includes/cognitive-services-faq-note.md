@@ -2,7 +2,6 @@
 title: Azure AI containers frequently asked questions (FAQ) note
 titleSuffix: Azure AI services
 description: Frequently asked questions note.
-#services: cognitive-services
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services

@@ -8,8 +8,8 @@ ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2
 
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.date: 10/11/2022
 ms.reviewer: rasavage
 ---
@@ -18,7 +18,7 @@ ms.reviewer: rasavage
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-The source JSON schema can be found at https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLImageObjectDetectionJob.schema.json.
+The source JSON schema can be found at https://azuremlschemasprod.azureedge.net/latest/autoMLImageObjectDetectionJob.schema.json.
 
 
 
@@ -26,7 +26,7 @@ The source JSON schema can be found at https://azuremlsdk2.blob.core.windows.net
 
 ## YAML syntax
 
-For information on all the keys in Yaml syntax, see [Yaml syntax](./reference-automl-images-cli-classification.md#yaml-syntax) of image classification task. Here we only describe the keys that have different values as compared to what's specified for image classification task.
+For information on all the keys in YAML syntax, see [YAML syntax](./reference-automl-images-cli-classification.md#yaml-syntax) of image classification task. Here we only describe the keys that have different values as compared to what's specified for image classification task.
 
 | Key | Type | Description | Allowed values | Default value |
 | --- | ---- | ----------- | -------------- | ------------- |

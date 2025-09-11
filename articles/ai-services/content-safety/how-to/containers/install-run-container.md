@@ -6,14 +6,14 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 9/11/2024
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
 
 # Install and run content safety containers with Docker (preview)
 
-By using containers, you can use a subset of the content safety service features in your own environment. In this article, you learn how to download, install, and run a content safety container.
+By using containers, you can use a subset of the Azure AI Content Safety features in your own environment. In this article, you learn how to download, install, and run a content safety container.
 
 > [!NOTE]
 > Disconnected container pricing and commitment tiers vary from standard containers. For more information, see [content safety service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
@@ -21,7 +21,6 @@ By using containers, you can use a subset of the content safety service features
 ## Prerequisites
 
 You must meet the following prerequisites before you use content safety containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. You need:
-
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure.
     * On Windows, Docker must also be configured to support Linux containers.
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
@@ -86,7 +85,7 @@ Even with identical GPUs, performance can fluctuate based on the GPU load and th
 
 ## Install the NVIDIA container toolkit
 
-The `host` is the computer that runs the docker container. The host must support Nvidia container toolkit. Follow the below guidance to install the toolkit in your environment.
+The `host` is the computer that runs the docker container. The host must support NVIDIA container toolkit. Follow the below guidance to install the toolkit in your environment.
 
 [Install the NVIDIA Container Toolkit](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html)
 
@@ -127,15 +126,15 @@ The example request URLs listed here are `http://localhost:5000`, but your speci
 
 ## Stop the container
 
-To shut down the container, in the command-line environment where the container is running, select <kbd>Ctrl+C</kbd>.
+To shut down the container, enter <kbd>Ctrl+C</kbd> in the command-line environment where the container is running.
 
 ## Run multiple containers on the same host
 
 If you intend to run multiple containers with exposed ports, make sure to run each container with a different exposed port. For example, run the first container on port 5000 and the second container on port 5001.
 
-You can have this container and a different Azure AI container running on the HOST together. You also can have multiple containers of the same Azure AI container running.
+You can have this container and a different Azure AI container running on the host together. You also can have multiple instances of the same Azure AI container running.
 
-## Host URLs 
+### Host URLs 
 
 > [!NOTE]
 > Use a unique port number if you're running multiple containers.
@@ -169,7 +168,7 @@ Logging:Console:LogLevel:Default=Information
 
 For more information about logging, see [usage records](../../../containers/disconnected-containers.md#usage-records) in the Azure AI services documentation.
 
-## Microsoft diagnostics container
+### Microsoft diagnostics container
 
 If you're having trouble running an Azure AI container, you can try using the Microsoft diagnostics container. Use this container to diagnose common errors in your deployment environment that might prevent Azure AI containers from functioning as expected.
 

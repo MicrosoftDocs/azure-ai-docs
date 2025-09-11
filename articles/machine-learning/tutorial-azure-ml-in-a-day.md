@@ -6,15 +6,16 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: quickstart
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sgilley
-ms.date: 09/03/2024
+ms.date: 12/19/2024
 ms.custom:
   - sdkv2
   - build-2023
   - devx-track-python
   - ignite-2023
+  - sfi-image-nochange
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 
@@ -205,10 +206,32 @@ def main():
     ##########################
     # Registering the model to the workspace
     print("Registering the model via MLFlow")
+
+    # pin numpy
+    conda_env = {
+        'name': 'mlflow-env',
+        'channels': ['conda-forge'],
+        'dependencies': [
+            'python=3.10.15',
+            'pip<=21.3.1',
+            {
+                'pip': [
+                    'mlflow==2.17.0',
+                    'cloudpickle==2.2.1',
+                    'pandas==1.5.3',
+                    'psutil==5.8.0',
+                    'scikit-learn==1.5.2',
+                    'numpy==1.26.4',
+                ]
+            }
+        ],
+    }
+
     mlflow.sklearn.log_model(
         sk_model=clf,
         registered_model_name=args.registered_model_name,
         artifact_path=args.registered_model_name,
+        conda_env=conda_env,
     )
 
     # Saving the model to a file
@@ -230,6 +253,7 @@ if __name__ == "__main__":
 As you can see in this script, once the model is trained, the model file is saved and registered to the workspace. Now you can use the registered model in inferencing endpoints.
 
 You might need to select **Refresh** to see the new folder and script in your **Files**.
+
 
 :::image type="content" source="media/tutorial-azure-ml-in-a-day/refresh.png" alt-text="Screenshot shows the refresh icon.":::
 
@@ -446,7 +470,7 @@ ml_client.online_endpoints.begin_delete(name=online_endpoint_name)
 
 If you're not going to use it now, stop the compute instance:
 
-1. In the studio, in the left navigation area, select **Compute**.
+1. In the studio, in the left pane, select **Compute**.
 1. In the top tabs, select **Compute instances**
 1. Select the compute instance in the list.
 1. On the top toolbar, select **Stop**.

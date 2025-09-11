@@ -19,7 +19,7 @@ This component provides the latest version of the Vowpal Wabbit framework, versi
 
 1.  Add the **Score Vowpal Wabbit Model** component to your experiment.  
   
-2.  Add a trained Vowpal Wabbit model and connect it to the left-hand input port. You can use a trained model created in the same experiment, or locate a saved model in the **Datasets** category of designer’s left navigation pane. However, the model must be available in Azure Machine Learning Designer.  
+2.  Add a trained Vowpal Wabbit model and connect it to the left-hand input port. You can use a trained model created in the same experiment, or locate a saved model in the **Datasets** category of designer’s left pane. However, the model must be available in Azure Machine Learning Designer.  
   
     > [!NOTE]
     > Only Vowpal Wabbit 8.8.1 models are supported; you cannot connect saved models that were trained by using other algorithms.
@@ -67,7 +67,7 @@ This section contains implementation details, tips, and answers to frequently as
 
 Vowpal Wabbit has many command-line options for choosing and tuning algorithms. A full discussion of these options is not possible here; we recommend that you view the [Vowpal Wabbit wiki page](https://github.com/JohnLangford/vowpal_wabbit/wiki/Command-line-arguments).  
 
-The following parameters are not supported in Azure Machine Learning Studio (classic).  
+The following parameters are not supported in Azure Machine Learning studio (classic).  
 
 -   The input/output options specified in [https://github.com/JohnLangford/vowpal_wabbit/wiki/Command-line-arguments](https://github.com/JohnLangford/vowpal_wabbit/wiki/Command-line-arguments)  
   

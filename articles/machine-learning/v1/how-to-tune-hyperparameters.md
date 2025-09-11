@@ -2,12 +2,12 @@
 title: Hyperparameter tuning a model (v1)
 titleSuffix: Azure Machine Learning
 description: Automate hyperparameter tuning for deep learning and machine learning models using Azure Machine Learning.(v1)
-ms.author: joburges
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.date: 05/30/2024
+ms.date: 08/29/2025
 ms.topic: how-to
 ms.custom: UpdateFrequency5
 ---
@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5
 [!INCLUDE [cli v1](../includes/machine-learning-cli-v1.md)]
      
 [!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Automate efficient hyperparameter tuning by using Azure Machine Learning (v1) [HyperDrive package](/python/api/azureml-train-core/azureml.train.hyperdrive). Learn how to complete the steps required to tune hyperparameters with the [Azure Machine Learning SDK](/python/api/overview/azure/ml/):
 

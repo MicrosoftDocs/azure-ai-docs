@@ -6,8 +6,9 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-metrics-advisor
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
+ms.custom: sfi-image-nochange
 ---
 
 # How-to: Create a credential entity

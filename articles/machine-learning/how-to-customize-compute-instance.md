@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: compute
 ms.topic: how-to
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: vijetaj
 ms.date: 09/23/2024
 ms.custom: update-code
@@ -103,8 +103,6 @@ In a Resource Manager [template](https://github.com/Azure/azure-quickstart-templ
 `scriptArguments` is optional and specifies the arguments for the creation script.
 
 You could instead provide the script inline for a Resource Manager template. The shell command can refer to any dependencies uploaded into the notebooks file share. When you use an inline string, the working directory for the script is `/mnt/batch/tasks/shared/LS_root/mounts/clusters/<ciname>/code/Users`, where .`<ciname>` is the name of the compute instance.
-
-```json
 
 For example, specify a base64 encoded command string for `scriptData`:
 

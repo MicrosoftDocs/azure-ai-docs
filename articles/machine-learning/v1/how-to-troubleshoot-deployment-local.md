@@ -15,6 +15,10 @@ ms.custom: UpdateFrequency5, deploy, sdkv1
 
 # Troubleshooting with a local model deployment
 
+[!INCLUDE [cli v1 deprecation](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
 Try a local model deployment as a first step in troubleshooting deployment to Azure Container Instances (ACI) or Azure Kubernetes Service (AKS).  Using a local web service makes it easier to spot and fix common Azure Machine Learning Docker web service deployment errors.
 
 ## Prerequisites
@@ -109,7 +113,7 @@ For more information on customizing your Python environment, see [Create and man
 
 ### Update the service
 
-During local testing, you may need to update the `score.py` file to add logging or attempt to resolve any problems that you've discovered. To reload changes to the `score.py` file, use `reload()`. For example, the following code reloads the script for the service, and then sends data to it. The data is scored using the updated `score.py` file:
+During local testing, you might need to update the `score.py` file to add logging or attempt to resolve any problems that you've discovered. To reload changes to the `score.py` file, use `reload()`. For example, the following code reloads the script for the service, and then sends data to it. The data is scored using the updated `score.py` file:
 
 > [!IMPORTANT]
 > The `reload` method is only available for local deployments. For information on updating a deployment to another compute target, see [how to update your webservice](how-to-deploy-update-web-service.md).

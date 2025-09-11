@@ -5,9 +5,10 @@ description: Assign analyzers to searchable string fields in an index to replace
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 05/23/2024
+ms.date: 07/11/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - ignite-2023
@@ -22,9 +23,9 @@ An *analyzer* is a component of the [full text search engine](search-lucene-quer
 + Lower-case any upper-case words
 + Reduce words into primitive root forms for storage efficiency and so that matches can be found regardless of tense
 
-Analysis applies to `Edm.String` fields that are marked as "searchable", which indicates full text search. 
+The output of a lexical analyzer is a sequence of [tokens](https://suif.stanford.edu/dragonbook/lecture-notes/Stanford-CS143/03-Lexical-Analysis.pdf).
 
-For fields of this configuration, analysis occurs during indexing when tokens are created, and then again during query execution when queries are parsed and the engine scans for matching tokens. A match is more likely to occur when the same analyzer is used for both indexing and queries, but you can set the analyzer for each workload independently, depending on your requirements.
+Lexical analysis applies to `Edm.String` fields that are marked as "searchable", which indicates full text search. For fields of this configuration, analysis occurs during indexing when tokens are created, and then again during query execution when queries are parsed and the engine scans for matching tokens. A match is more likely to occur when the same analyzer is used for both indexing and queries, but you can set the analyzer for each workload independently, depending on your requirements.
 
 Query types that are *not* full text search, such as filters or fuzzy search, don't go through the analysis phase on the query side. Instead, the parser sends those strings directly to the search engine, using the pattern that you provide as the basis for the match. Typically, these query forms require whole-string tokens to make pattern matching work. To ensure whole term tokens are preserved during indexing, you might need [custom analyzers](index-add-custom-analyzers.md). For more information about when and why query terms are analyzed, see [Full text search in Azure AI Search](search-lucene-query-architecture.md).
 
@@ -329,10 +330,10 @@ Custom analyzers are similarly specified on the field definition, but for this t
     public partial class Hotel
     {
        . . . 
-        [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.EnLucene)]
+        [SearchableField(AnalyzerName = LexicalAnalyzerName.EnLucene)]
         public string Description { get; set; }
 
-        [SearchableField(AnalyzerName = LexicalAnalyzerName.Values.FrLucene)]
+        [SearchableField(AnalyzerName = LexicalAnalyzerName.FrLucene)]
         [JsonPropertyName("Description_fr")]
         public string DescriptionFr { get; set; }
 
@@ -362,9 +363,9 @@ private static void CreateIndex(string indexName, SearchIndexClient adminClient)
    FieldBuilder fieldBuilder = new FieldBuilder();
    var searchFields = fieldBuilder.Build(typeof(Hotel));
 
-   var analyzer = new CustomAnalyzer("url-analyze", "uax_url_email")
+   var analyzer = new CustomAnalyzer("url-analyze", LexicalTokenizerName.UaxUrlEmail)
    {
-         TokenFilters = { TokenFilterName.Lowercase }
+         TokenFilters = { LexicalTokenFilterName.Lowercase }
    };
 
    var definition = new SearchIndex(indexName, searchFields);

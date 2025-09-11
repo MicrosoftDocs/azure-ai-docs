@@ -1,16 +1,16 @@
 ---
-title: Create and manage a project
+title: Create and manage an Azure AI Custom Translator project
 titleSuffix: Azure AI services
-description: How to create and manage a project in the Azure AI Translator Custom Translator.
+description: How to create and manage a project in the Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/10/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Create and manage a project
+# Create and manage an Azure AI Custom Translator project
 
 A project contains translation models for one language pair. Each project includes all documents that were uploaded into that workspace with the correct language pair.
 
@@ -30,7 +30,7 @@ Creating a project is the first step in building and publishing a model.
 
     - **Domain (required):** Select the domain from the dropdown list that's most appropriate for your project. The domain describes the terminology and style of the documents you intend to translate.
 
-      >[!Note]
+      >[!NOTE]
       >Select **Show advanced options** to add project label, project description, and domain description
 
     - **Project label:** The project label distinguishes between projects with the same language pair and domain. As a best practice, here are a few tips:
@@ -77,8 +77,8 @@ To modify the project name, project description, or domain description:
 
    :::image type="content" source="../media/how-to/delete-project-1.png" alt-text="Screenshot illustrating delete project fields.":::
 
-   >[!Note]
-   >If your project has a published model or a model that is currently in training, you will only be able to delete your project once your model is no longer published or training.
+   > [!NOTE]
+   > If your project has a published model or a model that is currently in training, you can only delete your project once your model is no longer published or training.
    >
    > :::image type="content" source="../media/how-to/delete-project-2.png" alt-text="Screenshot illustrating the unable to delete message.":::
 

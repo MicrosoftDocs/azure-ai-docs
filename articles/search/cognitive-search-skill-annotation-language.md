@@ -2,15 +2,15 @@
 title: Skill context and input annotation reference language
 titleSuffix: Azure AI Search
 description: Annotation syntax reference for annotation in the context, inputs, and outputs of a skillset in an AI enrichment pipeline in Azure AI Search.
-
 author: BertrandLeRoy
 ms.author: beleroy
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 08/20/2024
+ms.date: 07/14/2025
+ms.update-cycle: 365-days
 ---
 # Skill context and input annotation language
 
@@ -106,8 +106,14 @@ Specific elements of an array can be referenced by using their numeric index lik
 
 ### Escape sequences
 
-There are two characters that have special meaning and need to be escaped if they appear in an expression and must be interpreted as is instead of as their special meaning: `'/'` and `'~'`.
-Those characters must be escaped respectively as `'~0'` and `'~1'`. 
+There are several characters that have a special meaning and need to be escaped if they are to be interpreted as-is instead of a syntax element. These characters include `#`, `/`, and `~` among others.
+
+| Escape sequence | Special meaning (usage in path syntax)  | Example |
+|---|---|
+| `~0` | Used for escaping `~` | "~0" for `~`, where "~/documents" becomes "~0~1documents"|
+| `~1` | Used for escaping `/` | "~1" for `/`, where "~/documents" becomes "~0~1documents" |
+| `~2` | Used for generically to escape arbitrary sequences (including but not limited to `#` and `*`) | "~2#~2" where "readme#requirements" becomes "readme~2#~2requirements" |
+
 
 ## Array enumeration
 
@@ -232,6 +238,13 @@ When used inside an expression, paths should be enclosed between `"$("` and `")"
 |---|---|
 |`=15%4`|`3`|
 |`=$(/document/merged_content/entities/0/offset)%2`|`1`|
+
+### String concatenation `'+'`
+
+|Expression|Value|
+|---|---|
+|`="Hello," + "world!"`|`"Hello, world!"`|
+|`=$(/document/merged_content/entities/0/text) + $(/document/merged_content/entities/0/category)`|`"BMN Organization"`|
 
 ### Less than, less than or equal, greater than and greater than or equal `'<'` `'<='` `'>'` `'>='`
 

@@ -8,7 +8,9 @@ ms.date: 04/16/2021
 
 # Illumina Platinum Genomes
 
-Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina has generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina has called variants in each genome using a range of currently available algorithms.
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
+Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This effort requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina called variants in each genome using a range of currently available algorithms.
 
 For more information on the data, see the official [Illumina site](https://www.illumina.com/platinumgenomes.html).
 
@@ -53,7 +55,7 @@ For any questions or feedback about the dataset, contact platinumgenomes@illumin
 
 ## Getting the Illumina Platinum Genomes from Azure Open Datasets and Doing Initial Analysis 
 
-Use Jupyter notebooks, GATK, and Picard to do the following:
+Use Jupyter notebooks, GATK, and Picard to complete the following tasks:
 
 1. Annotate genotypes using VariantFiltration
 2. Select Specific Variants
@@ -75,7 +77,7 @@ This notebook requires the following libraries:
 
 ## Getting the Genomics data from Azure Open Datasets
 
-Several public genomics data has been uploaded as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Dataset for `Illumina Platinum Genomes` datasets in below:
+Several public genomics data are available as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Dataset for `Illumina Platinum Genomes` datasets as follows:
 
 ### Downloading the specific 'Illumina Platinum Genomes'
 
@@ -108,7 +110,7 @@ There are many different options for selecting subsets of variants from a larger
 Extract one or more samples from a call set based on either a complete sample name or a pattern match.
 Specify criteria for inclusion that place thresholds on annotation values, **for example "DP > 1000" (depth of coverage greater than 1000x), "AF < 0.25" (sites with allele frequency less than 0.25)**. These criteria are written as "JEXL expressions", which are documented in the article about using JEXL expressions.
 Provide concordance or discordance tracks in order to include or exclude variants that are also present in other given call sets.
-Select variants based on criteria like their type (for example, INDELs only), evidence of mendelian violation, filtering status, allelicity, etc.
+Select variants based on criteria like their type (for example, INDELs only), evidence of Mendelian violation, filtering status, allelicity, etc.
 There are also several options for recording the original values of certain annotations, which are recalculated when one subsets the new call set, trims alleles, etc.
 
 Input: A variant call set in VCF format from which a subset can be selected.
@@ -123,7 +125,7 @@ run gatk SelectVariants -R Homo_sapiens_assembly38.fasta -V outputannot.vcf --se
 
 Running SelectVariants with --set-filtered-gt-to-nocall will further transform the flagged genotypes with a null genotype call. 
 
-This conversion is necessary because downstream tools do not parse the FORMAT-level filter field.
+This conversion is necessary because downstream tools don't parse the FORMAT-level filter field.
 
 How can we filter the variants with **'No call'**
 

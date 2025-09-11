@@ -2,13 +2,14 @@
 title: Text split skill
 titleSuffix: Azure AI Search
 description: Break text into chunks or pages of text based on length in an AI enrichment pipeline in Azure AI Search.
-author: careyjmac
-ms.author: chalton
-ms.service: cognitive-search
+author: gmndrg
+ms.author: gimondra
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 10/01/2024
+ms.date: 05/01/2025
+ms.update-cycle: 365-days
 ---
 
 # Text split cognitive skill
@@ -16,7 +17,7 @@ ms.date: 10/01/2024
 > [!IMPORTANT] 
 > Some parameters are in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [preview REST API](/rest/api/searchservice/index-preview) supports these parameters.
 
-The **Text Split** skill breaks text into chunks of text. You can specify whether you want to break the text into sentences or into pages of a particular length. This skill is useful if there are maximum text length requirements in other skills downstream, such as embedding skills that pass data chunks to embedding models on Azure OpenAI and other model providers. For more information about this scenario, see [Chunk documents for vector search](vector-search-how-to-chunk-documents.md).
+The **Text Split** skill breaks text into chunks of text. You can specify whether you want to break the text into sentences or into pages of a particular length. Positional metadata like offset and ordinal position are also available as outputs. This skill is useful if there are maximum text length requirements in other skills downstream, such as embedding skills that pass data chunks to embedding models on Azure OpenAI and other model providers. For more information about this scenario, see [Chunk documents for vector search](vector-search-how-to-chunk-documents.md).
 
 Several parameters are version-specific. The skills parameter table notes the API version in which a parameter was introduced so that you know whether a [version upgrade](search-api-migration.md) is required. To use version-specific features such as *token chunking* in **2024-09-01-preview**, you can use the Azure portal, or target a REST API version, or check an Azure SDK change log to see if it supports the feature.
 
@@ -40,7 +41,7 @@ Parameters are case-sensitive.
 | `pageOverlapLength` | [2024-07-01](/rest/api/searchservice/skillsets/create-or-update) | Only applies if `textSplitMode` is set to `pages`. Each page starts with this number of characters or tokens from the end of the previous page. If this parameter is set to 0, there's no overlapping text on successive pages. This [example](#example-for-chunking-and-vectorization) includes the parameter. |
 | `maximumPagesToTake` | [2024-07-01](/rest/api/searchservice/skillsets/create-or-update) | Only applies if `textSplitMode` is set to `pages`. Number of pages to return. The default is 0, which means to return all pages. You should set this value if only a subset of pages are needed. This [example](#example-for-chunking-and-vectorization) includes the parameter.|
 | `unit` | [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | **New**. Only applies if `textSplitMode` is set to `pages`. Specifies whether to chunk by `characters` (default) or `azureOpenAITokens`. Setting the unit affects `maximumPageLength` and `pageOverlapLength`. |
-| `azureOpenAITokenizerParameters` | [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | **New**. An object providing extra parameters for the `azureOpenAITokens` unit. <br><br>`encoderModelName` is a designated tokenizer used for converting text into tokens, essential for natural language processing (NLP) tasks. Different models use different tokenizers. Valid values include cl100k_base (default) used by GPT-35-Turbo and GPT-4. Other valid values are r50k_base, p50k_base, and p50k_edit. The skill implements the tiktoken library by way of [SharpToken](https://www.nuget.org/packages/SharpToken) and `Microsoft.ML.Tokenizers` but doesn't support every encoder. For example, there's currently no support for o200k_base encoding used by GPT-4o. <br><br>`allowedSpecialTokens` defines a collection of special tokens that are permitted within the tokenization process. Special tokens are  string that you want to treat uniquely, ensuring they aren't split during tokenization. For example ["[START"], "[END]"].|
+| `azureOpenAITokenizerParameters` | [2024-09-01-preview](/rest/api/searchservice/skillsets/create-or-update?view=rest-searchservice-2024-09-01-preview&preserve-view=true) | **New**. An object providing extra parameters for the `azureOpenAITokens` unit. <br><br>`encoderModelName` is a designated tokenizer used for converting text into tokens, essential for natural language processing (NLP) tasks. Different models use different tokenizers. Valid values include cl100k_base (default) used by GPT-35-Turbo and GPT-4. Other valid values are r50k_base, p50k_base, and p50k_edit. The skill implements the tiktoken library by way of [SharpToken](https://www.nuget.org/packages/SharpToken) and `Microsoft.ML.Tokenizers` but doesn't support every encoder. For example, there's currently no support for o200k_base encoding used by GPT-4o. <br><br>`allowedSpecialTokens` defines a collection of special tokens that are permitted within the tokenization process. Special tokens are  string that you want to treat uniquely, ensuring they aren't split during tokenization. For example ["[START"], "[END]"]. For languages in which the tiktoken library is not performing the tokenization as expected, it's recommended to use text splitting instead.|
 
 ## Skill Inputs
 
@@ -54,6 +55,9 @@ Parameters are case-sensitive.
 | Parameter name	 | Description |
 |--------------------|-------------|
 | `textItems` | Output is an array of substrings that were extracted. `textItems` is the default name of the output. <br><br>`targetName` is optional, but if you have multiple Text Split skills, make sure to set `targetName` so that you don't overwrite the data from the first skill with the second one. If `targetName` is set, use it in output field mappings or in downstream skills that consume the skill output, such as an embedding skill.|
+| `offsets` | Output is an array of offsets that were extracted. The value at each index is an object containing the offset of the text item at that index in three encodings: UTF-8, UTF-16, and CodePoint. `offsets` is the default name of the output. <br><br>`targetName` is optional, but if you have multiple Text Split skills, make sure to set `targetName` so that you don't overwrite the data from the first skill with the second one. If `targetName` is set, use it in output field mappings or in downstream skills that consume the skill output, such as an embedding skill.|
+| `lengths` | Output is an array of lengths that were extracted. The value at each index is an object containing the offset of the text item at that index in three encodings: UTF-8, UTF-16, and CodePoint. `lengths` is the default name of the output. <br><br>`targetName` is optional, but if you have multiple Text Split skills, make sure to set `targetName` so that you don't overwrite the data from the first skill with the second one. If `targetName` is set, use it in output field mappings or in downstream skills that consume the skill output, such as an embedding skill.|
+| `ordinalPositions` | Output is an array of ordinal positions corresponding to the position of the text item within the source text. `ordinalPositions` is the default name of the output. <br><br>`targetName` is optional, but if you have multiple Text Split skills, make sure to set `targetName` so that you don't overwrite the data from the first skill with the second one. If `targetName` is set, use it in output field mappings or in downstream skills that consume the skill output, such as an embedding skill.|
 
 ## Sample definition
 
@@ -67,7 +71,7 @@ Parameters are case-sensitive.
     "textSplitMode": "pages", 
     "unit": "azureOpenAITokens", 
     "azureOpenAITokenizerParameters":{ 
-        "encoderModelName":"cl100k", 
+        "encoderModelName":"cl100k_base", 
         "allowedSpecialTokens": [ 
             "[START]", 
             "[END]" 
@@ -124,24 +128,86 @@ Parameters are case-sensitive.
         {
             "recordId": "1",
             "data": {
-                "textItems": [
+                "pages": [
                     "This is the loan...",
                     "In the next section, we continue..."
+                ],
+                "offsets": [
+                    {
+                        "utf8": 0,
+                        "utf16": 0,
+                        "codePoint": 0
+                    },
+                    {
+                        "utf8": 146,
+                        "utf16": 146,
+                        "codePoint": 146
+                    }
+                ],
+                "lengths": [
+                    {
+                        "utf8": 146,
+                        "utf16": 146,
+                        "codePoint": 146
+                    },
+                    {
+                        "utf8": 211,
+                        "utf16": 211,
+                        "codePoint": 211
+                    }
+                ],
+                "ordinalPositions" : [
+                    1,
+                    2
                 ]
             }
         },
         {
             "recordId": "2",
             "data": {
-                "textItems": [
+                "pages": [
                     "This is the second document...",
                     "In the next section of the second doc..."
+                ],
+                "offsets": [
+                    {
+                        "utf8": 0,
+                        "utf16": 0,
+                        "codePoint": 0
+                    },
+                    {
+                        "utf8": 115,
+                        "utf16": 115,
+                        "codePoint": 115
+                    }
+                ],
+                "lengths": [
+                    {
+                        "utf8": 115,
+                        "utf16": 115,
+                        "codePoint": 115
+                    },
+                    {
+                        "utf8": 209,
+                        "utf16": 209,
+                        "codePoint": 209
+                    }
+                ],
+                 "ordinalPositions" : [
+                    1,
+                    2
                 ]
             }
         }
     ]
 }
 ```
+
+
+> [!NOTE]
+> This example sets `textItems` to `pages` through `targetName`. Because `targetName` is set, `pages` is the value you should use to select the output from the Text Split skill. Use `/document/pages/*` in downstream skills, indexer [output field mappings](cognitive-search-concept-annotations-syntax.md), [knowledge store projections](knowledge-store-projection-overview.md), and [index projections](index-projections-concept-intro.md).
+> This example doesn't set `offsets`, `lengths`, or `ordinalPosition` to any other name, so the value you should use in downstream skills would be unchanged.
+> `offsets` and `lengths` are complex types rather than primitives, because they contain the values for multiple encoding types. The value you should use to obtain a specific encoding, for example UTF-8, would look like this: `/document/offsets/*/utf8`.
 
 ## Example for chunking and vectorization
 
@@ -157,7 +223,7 @@ This definition adds `pageOverlapLength` of 100 characters and `maximumPagesToTa
 
 Assuming the `maximumPageLength` is 5,000 characters (the default), then `"maximumPagesToTake": 1` processes the first 5,000 characters of each source document.
 
-This example sets `textItems` to `myPages` through `targetName`. Because `targetName` is set, `myPages` is the value you should use to select the output from the Text Split skill. Use `/document/mypages/*` in downstream skills, indexer [output field mappings](cognitive-search-concept-annotations-syntax.md), [knowledge store projections](knowledge-store-projection-overview.md), and [index projections](index-projections-concept-intro.md).
+This example sets `textItems` to `myPages` through `targetName`. Because `targetName` is set, `myPages` is the value you should use to select the output from the Text Split skill. Use `/document/myPages/*` in downstream skills, indexer [output field mappings](cognitive-search-concept-annotations-syntax.md), [knowledge store projections](knowledge-store-projection-overview.md), and [index projections](index-projections-concept-intro.md).
 
 ```json
 {
@@ -180,7 +246,7 @@ This example sets `textItems` to `myPages` through `targetName`. Because `target
     "outputs": [
         {
             "name": "textItems",
-            "targetName": "mypages"
+            "targetName": "myPages"
         }
     ]
 }
@@ -219,7 +285,7 @@ Within each "textItems" array, trailing text from the first item is copied into 
         {
             "recordId": "1",
             "data": {
-                "textItems": [
+                "myPages": [
                     "This is the loan...Here is the overlap part",
                     "Here is the overlap part...In the next section, we continue..."
                 ]
@@ -228,7 +294,7 @@ Within each "textItems" array, trailing text from the first item is copied into 
         {
             "recordId": "2",
             "data": {
-                "textItems": [
+                "myPages": [
                     "This is the second document...Here is the overlap part...",
                     "Here is the overlap part...In the next section of the second doc..."
                 ]

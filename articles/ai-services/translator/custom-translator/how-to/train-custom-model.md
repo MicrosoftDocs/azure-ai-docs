@@ -1,19 +1,20 @@
 ---
-title: Train model
+title: Train an Azure AI Custom Translator model
 titleSuffix: Azure AI services
 description: How to train a custom model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/09/2024
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Train a custom model
 
-A model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+# Train an Azure AI Custom Translator model
 
-## Create model
+An Azure AI Custom Translator model provides translations for a specific language pair. The outcome of a successful training is a model. To train a custom model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and exclude these sentences from the training data itself. A minimum of 10,000 parallel training sentences are required to train a full model.
+
+## Create custom model
 
 1. Select the **Train model** blade.
 
@@ -21,7 +22,7 @@ A model provides translations for a specific language pair. The outcome of a suc
 
 1. Keep the default **Full training** selected or select **Dictionary-only training**.
 
-   >[!Note]
+   >[!NOTE]
    >Full training displays all uploaded document types. Dictionary-only displays dictionary documents only.
 
 1. Under **Select documents**, select the documents you want to use to train the model, for example, `sample-English-German` and review the training cost associated with the selected number of sentences.
@@ -30,8 +31,8 @@ A model provides translations for a specific language pair. The outcome of a suc
 
 1. Select **Train** to confirm.
 
-    >[!Note]
-    >**Notifications** displays model training in progress, e.g., **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
+    >[!NOTE]
+    >**Notifications** displays model training in progress, for example, **Submitting data** state. Training model takes few hours, subject to the number of selected sentences.
 
    :::image type="content" source="../media/quickstart/train-model.png" alt-text="Screenshot illustrating the train model blade.":::
 
@@ -39,8 +40,8 @@ A model provides translations for a specific language pair. The outcome of a suc
 
 For better results, we recommended letting the system learn from your training data. However, when you don't have enough parallel sentences to meet the 10,000 minimum requirements, or sentences and compound nouns must be rendered as-is, use dictionary-only training. Your model typically completes training faster than with full training. The resulting models use the baseline models for translation along with the dictionaries you added. You don't see `BLEU` scores or get a test report.
 
-> [!Note] 
->Custom Translator doesn't sentence-align dictionary files. Therefore, it is important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they are precisely aligned. If not, the document upload will fail.
+> [!NOTE] 
+>Custom Translator doesn't sentence-align dictionary files. Therefore, it's important that there are an equal number of source and target phrases/sentences in your dictionary documents and that they're precisely aligned. If not, the document upload fails.
 
 ## Model details
 
@@ -66,11 +67,11 @@ For better results, we recommended letting the system learn from your training d
 
 1. Select **Save**
 
-   > [!Note]
+   > [!NOTE]
    >
    > If you save the model as `Draft`, **Model details** is updated with the model name in `Draft` status.
    >
-   > To add more documents, select on the model name and follow the steps in the [Create model](#create-model) section.
+   > To add more documents, select on the model name and follow the steps in the [Create model](#create-custom-model) section.
 
    :::image type="content" source="../media/how-to/duplicate-model.png" alt-text="Screenshot illustrating the duplicate model blade.":::
 

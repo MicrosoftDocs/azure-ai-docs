@@ -6,8 +6,8 @@ ms.author: lagayhar
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
 ms.reviewer: nhudo
-ms.topic: conceptual 
-ms.date: 12/30/2023
+ms.topic: concept-article 
+ms.date: 03/17/2025
 ms.custom: responsible-ml 
 ---
 # What is "human data" and why is it important to source responsibly?

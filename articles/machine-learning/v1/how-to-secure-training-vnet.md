@@ -7,9 +7,9 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
-ms.date: 07/26/2024
+ms.author: scottpolly
+author: s-polly
+ms.date: 06/12/2025
 ms.custom: UpdateFrequency5, tracking-python, references_regions, build-2023
 ---
 
@@ -17,6 +17,7 @@ ms.custom: UpdateFrequency5, tracking-python, references_regions, build-2023
 
 [!INCLUDE [SDK v1](../includes/machine-learning-sdk-v1.md)]
 
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this article, you learn how to secure training environments with a virtual network in Azure Machine Learning using the Python SDK v1.
 
@@ -144,7 +145,7 @@ Use the following information to create a compute instance or cluster with no pu
 To create a compute instance or compute cluster with no public IP, use the Azure Machine Learning studio UI to create the resource:
 
 1. Sign in to the [Azure Machine Learning studio](https://ml.azure.com), and then select your subscription and workspace.
-1. Select the **Compute** page from the left navigation bar.
+1. Select the **Compute** page from the left pane.
 1. Select the **+ New** from the navigation bar of compute instance or compute cluster.
 1. Configure the VM size and configuration you need, then select **Next**.
 1. From the **Advanced Settings**, Select **Enable virtual network**, your virtual network and subnet, and finally select the **No Public IP** option under the VNet/subnet section.
@@ -159,7 +160,7 @@ To create a compute instance or compute cluster with no public IP, use the Azure
 
 The following configurations are in addition to those listed in the [Prerequisites](#prerequisites) section, and are specific to **creating** compute instances/clusters that have a public IP:
 
-+ If you put multiple compute instances/clusters in one virtual network, you may need to request a quota increase for one or more of your resources. The Machine Learning compute instance or cluster automatically allocates networking resources __in the resource group that contains the virtual network__. For each compute instance or cluster, the service allocates the following resources:
++ If you put multiple compute instances/clusters in one virtual network, you might need to request a quota increase for one or more of your resources. The Machine Learning compute instance or cluster automatically allocates networking resources __in the resource group that contains the virtual network__. For each compute instance or cluster, the service allocates the following resources:
 
     * A network security group (NSG) is automatically created. This NSG allows inbound TCP traffic on port 44224 from the `AzureMachineLearning` service tag.
 

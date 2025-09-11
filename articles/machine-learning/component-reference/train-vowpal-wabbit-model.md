@@ -77,7 +77,7 @@ Vowpal Wabbit supports incremental training by adding new data to an existing mo
 
 + Use the output of another **Train Vowpal Wabbit Model** component in the same pipeline.  
   
-+ Locate a saved model in the **Datasets** category of designer’s left navigation pane, and drag it in to your pipeline.  
++ Locate a saved model in the **Datasets** category of designer’s left pane, and drag it in to your pipeline.  
 
 1. Add the **Train Vowpal Wabbit Model** component to your pipeline.  
 2. Connect the previously trained model to the **Pre-trained Vowpal Wabbit Model** input port of the component.

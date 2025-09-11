@@ -2,8 +2,8 @@
 title: Prepare data for computer vision tasks v1
 titleSuffix: Azure Machine Learning
 description: Image data preparation for Azure Machine Learning automated ML to train computer vision models on classification, object detection,  and segmentation v1
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: how-to
@@ -17,6 +17,8 @@ ms.date: 04/01/2024
 
   
 [!INCLUDE [cli-version-info](../includes/machine-learning-cli-v1-deprecation.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 > [!IMPORTANT]
 > Support for training computer vision models with automated ML in Azure Machine Learning is an experimental public preview feature. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).

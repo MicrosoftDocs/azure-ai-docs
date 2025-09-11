@@ -4,10 +4,10 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to create & deploy a shared pool of Data Science Virtual Machines (DSVMs) as a shared resource for a team.
 keywords: deep learning, AI, data science tools, data science virtual machine, geospatial analytics, team data science process
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 
-author: fbsolo-ms1
-ms.author: franksolomon 
+author: s-polly
+ms.author: scottpolly 
 ms.topic: conceptual
 ms.reviewer: vijetaj
 ms.date: 04/11/2024

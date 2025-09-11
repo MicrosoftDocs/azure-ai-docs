@@ -5,14 +5,19 @@ description: A knowledge store is enriched content created by an Azure AI Search
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.topic: conceptual
+ms.date: 08/21/2025
+ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
-ms.date: 06/25/2024
+  - sfi-ropc-nochange
 ---
 
 # Knowledge store in Azure AI Search
+
+> [!NOTE]
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](search-agentic-retrieval-concept.md) workflows.
 
 Knowledge store is secondary storage for [AI-enriched content created by a skillset](cognitive-search-concept-intro.md) in Azure AI Search. In Azure AI Search, an indexing job always sends output to a search index, but if you attach a skillset to an indexer, you can optionally also send AI-enriched output to a container or table in Azure Storage. A knowledge store can be used for independent analysis or downstream processing in non-search scenarios like knowledge mining. 
 
@@ -59,7 +64,7 @@ A knowledge store is defined inside a skillset definition and it has two compone
    }
    ```
 
-The type of projection you specify in this structure determines the type of storage used by knowledge store, but not its structure. Fields in tables, objects, and files are determined by Shaper skill output if you're creating the knowledge store programmatically, or by the Import data wizard if you're using the portal.
+The type of projection you specify in this structure determines the type of storage used by knowledge store, but not its structure. Fields in tables, objects, and files are determined by Shaper skill output if you're creating the knowledge store programmatically, or by the Import data wizard if you're using the Azure portal.
 
 + `tables` project enriched content into Table Storage. Define a table projection when you need tabular reporting structures for inputs to analytical tools or export as data frames to other data stores. You can specify multiple `tables` within the same projection group to get a subset or cross section of enriched documents. Within the same projection group, table relationships are preserved so that you can work with all of them.
 
@@ -73,11 +78,11 @@ The type of projection you specify in this structure determines the type of stor
 
 ## Create a knowledge store
 
-To create knowledge store, use the portal or an API. 
+To create knowledge store, use the Azure portal or an API. 
 
-You need [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an index definition.
+You need [Azure Storage](/azure/storage/), a [skillset](cognitive-search-working-with-skillsets.md), and an [indexer](search-indexer-overview.md). Because indexers require a search index, you also need to provide an [index definition](search-how-to-create-search-index.md).
 
-Go with the portal approach for the fastest route to a finished knowledge store. Or, choose the REST API for a deeper understanding of how objects are defined and related.
+Go with the Azure portal approach for the fastest route to a finished knowledge store. Or, choose the REST API for a deeper understanding of how objects are defined and related.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -91,7 +96,7 @@ Go with the portal approach for the fastest route to a finished knowledge store.
 
 1. Complete the wizard. Data extraction, enrichment, and knowledge store creation occur in this last step.
 
-The wizard automates several tasks. Specifically, both shaping and projections (definitions of physical data structures in Azure Storage) are created for you. 
+The wizard automates several tasks. Specifically, both data shaping and projections (definitions of physical data structures in Azure Storage) are created for you. 
 
 ### [**REST**](#tab/kstore-rest)
 
@@ -137,7 +142,7 @@ For data sources that support change tracking, an indexer will process new and c
 
 ### Changes to a skillset
 
-If you're making changes to a skillset, you should [enable caching of enriched documents](cognitive-search-incremental-indexing-conceptual.md) to reuse existing enrichments where possible.
+If you're making changes to a skillset, you should [enable caching of enriched documents](enrichment-cache-how-to-configure.md) to reuse existing enrichments where possible.
 
 Without incremental caching, the indexer will always process documents in order of the high water mark, without going backwards. For blobs, the indexer would process blobs sorted by `lastModified`, regardless of any changes to indexer settings or the skillset. If you change a skillset, previously processed documents aren't updated to reflect the new skillset. Documents processed after the skillset change will use the new skillset, resulting in index documents being a mix of old and new skillsets.
 
@@ -151,7 +156,7 @@ Although an indexer creates and updates structures and content in Azure Storage,
 
 Knowledge store offers persistence of enriched documents, useful when designing a skillset, or the creation of new structures and content for consumption by any client applications capable of accessing an Azure Storage account.
 
-The simplest approach for creating enriched documents is [through the portal](knowledge-store-create-portal.md), but a REST client and REST APIs can provide more insight into how objects are created and referenced programmatically.
+The simplest approach for creating enriched documents is [through the Azure portal](knowledge-store-create-portal.md), but a REST client and REST APIs can provide more insight into how objects are created and referenced programmatically.
 
 > [!div class="nextstepaction"]
 > [Create a knowledge store using REST](knowledge-store-create-rest.md)

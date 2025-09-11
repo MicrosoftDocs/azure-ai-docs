@@ -5,12 +5,14 @@ description: The prompt flow Open Model LLM tool enables you to utilize various 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom: ignite-2023
 ms.topic: reference
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: GEWOODS
 ms.date: 11/02/2023
+ms.custom:
+  - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Open Model LLM tool
@@ -41,7 +43,7 @@ This prompt flow tool supports two different LLM API types:
 
 - Pick the model that matched your scenario from the [Azure Machine Learning model catalog](https://ml.azure.com/model/catalog).
 - Use the **Deploy** button to deploy the model to an Azure Machine Learning online inference endpoint.
-   - Use one of the Pay as you go deployment options.
+   - Use one of the standard deployment options.
 
 To learn more, see [Deploy foundation models to endpoints for inferencing](../../how-to-use-foundation-models.md#deploying-foundation-models-to-endpoints-for-inferencing).
 
@@ -51,9 +53,9 @@ In order for prompt flow to use your deployed model, you need to connect to it. 
 
 ### Endpoint connections
 
-Once your flow is associated to an Azure Machine Learning or Azure AI Studio workspace, the Open Model LLM tool can use the endpoints on that workspace.
+Once your flow is associated to an Azure Machine Learning or Azure AI Foundry workspace, the Open Model LLM tool can use the endpoints on that workspace.
 
-- **Using Azure Machine Learning or Azure AI Studio workspaces**: If you're using prompt flow in one of the web page based browsers workspaces, the online endpoints available on that workspace who up automatically.
+- **Using Azure Machine Learning or Azure AI Foundry workspaces**: If you're using prompt flow in one of the web page based browsers workspaces, the online endpoints available on that workspace who up automatically.
 
 - **Using VS Code or code first**: If you're using prompt flow in VS Code or one of the Code First offerings, you need to connect to the workspace. The Open Model LLM tool uses the azure.identity DefaultAzureCredential client for authorization. One way is through [setting environment credential values](/python/api/azure-identity/azure.identity.environmentcredential).
 

@@ -2,8 +2,8 @@
 title: Inference router and connectivity requirements
 description: Learn about what is Azure Machine Learning inference router, how autoscaling works, and how to configure and meet inference requests performance (# of requests per second and latency)
 titleSuffix: Azure Machine Learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -77,7 +77,7 @@ utilization_percentage = (The number of replicas that are busy processing a requ
 ```
 If this number exceeds `target_utilization_percentage`, then more replicas are created. If it's lower, then replicas are reduced. By default, the target utilization is 70%.
 
-Decisions to add replicas are eager and fast (around 1 second). Decisions to remove replicas are conservative (around 1 minute).
+Decisions to add replicas are eager and fast. Decisions to remove replicas are conservative (around 20 times of the scale up refresh interval).
 
 For example, if you want to deploy a model service and want to know many instances (pods/replicas) should be configured for target requests per second (RPS) and target response time. You can calculate the required replicas by using the following code:
 
@@ -121,7 +121,7 @@ AKS cluster is deployed with one of the following two network models:
 
 For Kubenet networking, the network is created and configured properly for Azure Machine Learning service. For the CNI networking, you need to understand the connectivity requirements and ensure DNS resolution and outbound connectivity for AKS inferencing. For example, you may require additional steps if you are using a firewall to block network traffic.
 
-The following diagram shows the connectivity requirements for AKS inferencing. Black arrows represent actual communication, and blue arrows represent the domain names. You may need to add entries for these hosts to your firewall or to your custom DNS server.
+The following diagram shows the connectivity requirements for AKS inferencing. Black arrows represent actual communication, and blue arrows represent the domain names. You might need to add entries for these hosts to your firewall or to your custom DNS server.
 
 ![Diagram of the connectivity requirements for inferencing with Azure Kubernetes Services.](./media/how-to-attach-kubernetes-to-workspace/azureml-kubernetes-network.png)
 

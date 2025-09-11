@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: tutorial
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sgilley
 ms.date: 04/02/2024
 ms.custom: UpdateFrequency5, sdkv1, devx-track-python
@@ -17,6 +17,8 @@ ms.custom: UpdateFrequency5, sdkv1, devx-track-python
 # Tutorial: Train and deploy an image classification model with an example Jupyter Notebook
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 In this tutorial, you train a machine learning model on remote compute resources. You use the training and deployment workflow for Azure Machine Learning in a Python Jupyter Notebook. You can then use the notebook as a template to train your own machine learning model with your own data. 
 

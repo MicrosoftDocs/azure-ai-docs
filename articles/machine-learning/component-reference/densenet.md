@@ -21,7 +21,7 @@ This classification algorithm is a supervised learning method, and requires a la
 > [!NOTE]
 > This component does not support labeled dataset generated from *Data Labeling* in the studio, but only support labeled image directory generated from [Convert to Image Directory](convert-to-image-directory.md) component. 
 
-You can train the model by providing the model and the labeled image directory as inputs to [Train Pytorch Model](train-pytorch-model.md). The trained model can then be used to predict values for the new input examples using [Score Image Model](score-image-model.md).
+You can train the model by providing the model and the labeled image directory as inputs to [Train PyTorch Model](train-pytorch-model.md). The trained model can then be used to predict values for the new input examples using [Score Image Model](score-image-model.md).
 
 ### More about DenseNet
 
@@ -37,14 +37,14 @@ For more information on DenseNet, see the research paper, [Densely Connected Con
 
 4.  For **Memory efficient**, specify whether to use checkpointing, which is much more memory-efficient but slower. For more information, see the research paper, [Memory-Efficient Implementation of DenseNets](https://arxiv.org/pdf/1707.06990.pdf).
 
-5.  Connect the output of **DenseNet** component, training, and validation image dataset component to the [Train Pytorch Model](train-pytorch-model.md). 
+5.  Connect the output of **DenseNet** component, training, and validation image dataset component to the [Train PyTorch Model](train-pytorch-model.md). 
 
 6. Submit the pipeline.
 
 
 ## Results
 
-After pipeline run is completed, to use the model for scoring, connect the [Train Pytorch Model](train-pytorch-model.md) to [Score Image Model](score-image-model.md), to predict values for new input examples.
+After pipeline run is completed, to use the model for scoring, connect the [Train PyTorch Model](train-pytorch-model.md) to [Score Image Model](score-image-model.md), to predict values for new input examples.
 
 ## Technical notes  
 
@@ -60,7 +60,7 @@ After pipeline run is completed, to use the model for scoring, connect the [Trai
 
 | Name            | Type                    | Description                              |
 | --------------- | ----------------------- | ---------------------------------------- |
-| Untrained model | UntrainedModelDirectory | An untrained DenseNet model that can be connected to Train Pytorch Model. |
+| Untrained model | UntrainedModelDirectory | An untrained DenseNet model that can be connected to Train PyTorch Model. |
 
 ## Next steps
 

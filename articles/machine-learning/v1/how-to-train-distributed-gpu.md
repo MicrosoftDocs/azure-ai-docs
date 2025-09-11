@@ -2,12 +2,12 @@
 title: Distributed GPU training guide (SDK v1)
 titleSuffix: Azure Machine Learning
 description: Learn the best practices for performing distributed training with Azure Machine Learning SDK (v1) supported frameworks, such as MPI, Horovod, DeepSpeed, PyTorch, PyTorch Lightning, Hugging Face Transformers, TensorFlow, and InfiniBand.
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: ratanase
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
+ms.topic: concept-article
 ms.date: 10/21/2021
 ms.custom: UpdateFrequency5, sdkv1
 ---
@@ -15,6 +15,8 @@ ms.custom: UpdateFrequency5, sdkv1
 # Distributed GPU training guide (SDK v1)
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 Learn more about how to use distributed GPU training code in Azure Machine Learning (ML). This article will not teach you about distributed training.  It will help you run your existing distributed training code on Azure Machine Learning. It offers tips and examples for you to follow for each framework:
 
@@ -192,7 +194,7 @@ run = Experiment(ws, 'experiment_name').submit(run_config)
 > arguments=['--epochs', 50, '--local_rank', $LOCAL_RANK]
 > ```
 
-### Pytorch per-process-launch example
+### PyTorch per-process-launch example
 
 - [azureml-examples: Distributed training with PyTorch on CIFAR-10](https://github.com/Azure/azureml-examples/tree/v1-archive/v1/python-sdk/workflows/train/pytorch/cifar-distributed)
 

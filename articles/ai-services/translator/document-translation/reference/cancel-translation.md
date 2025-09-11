@@ -2,19 +2,18 @@
 title: Cancel translation method
 titleSuffix: Azure AI services
 description: The cancel translation method cancels a current processing or queued operation.
-#services: cognitive-services
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 01/31/2024
+ms.date: 04/14/2025
 ---
 
 # Cancel translation
 
 Reference</br>
-Feature: **Azure AI Translator → Document Translation**</br>
+Feature: **Azure AI Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **DELETE**
 
@@ -26,7 +25,7 @@ HTTP method: **DELETE**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document Translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X  DELETE "{document-translation-endpoint}/translator/document/batches/{id}?api-version={date}"
@@ -95,7 +94,7 @@ The following information is returned in a successful response.
 
 |Name|Type|Description|
 |--- |--- |--- |
-|code|string|Enums containing high-level error codes. Possible values:<br>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
+|code|string|Enums containing high-level error codes. Accepted values:<br>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
 |target|string|Gets the source of the error. For example, it would be "documents" or `document id` for an invalid document.|
 |innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|
@@ -151,7 +150,7 @@ Status code: 500
 
 ## Next steps
 
-Follow our quickstart to learn more about using Document Translation and the client library.
+Follow our quickstart to learn more about using Document translation and the client library.
 
 > [!div class="nextstepaction"]
-> [Get started with Document Translation](../how-to-guides/use-rest-api-programmatically.md)
+> [Get started with Document translation](../how-to-guides/use-rest-api-programmatically.md)

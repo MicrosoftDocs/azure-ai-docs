@@ -5,11 +5,12 @@ description: Learn how to schedule Azure AI Search indexers to index content at 
 author: HeidiSteen
 manager: nitinme
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 10/02/2024
+ms.date: 03/11/2025
+ms.update-cycle: 365-days
 ---
 
 # Schedule an indexer in Azure AI Search
@@ -28,7 +29,7 @@ Once an indexer is on a schedule, it remains on the schedule until you clear the
 
 + A valid indexer configured with a data source and index.
 
-+ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-howto-connecting-azure-sql-database-to-azure-search-using-indexers.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
++ [Change detection](search-howto-create-indexers.md#change-detection-and-internal-state) in the data source. Azure Storage and SharePoint have built-in change detection. Other data sources, such as [Azure SQL](search-how-to-index-sql-database.md) and [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be enabled manually.
 
 ## Schedule definition
 
@@ -56,7 +57,7 @@ Schedules are specified in an indexer definition. To set up a schedule, you can 
 ### [**Azure portal**](#tab/portal)
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and open the search service page.
-1. On the left navigation pane, select **Indexers**.
+1. On the left pane, select **Indexers**.
 1. Open an indexer.
 1. Select **Settings**.
 1. Scroll down to **Schedule**, and then choose Hourly, Daily, or Custom to set a specific date, time, or custom interval.
@@ -111,7 +112,7 @@ You can run multiple indexers simultaneously, but each indexer is single instanc
 
 For text-based indexing, the scheduler can kick off as many indexer jobs as the search service supports, which is determined by the number of [search units](search-capacity-planning.md#concepts-search-units-replicas-partitions). For example, if the service has three replicas and four partitions, you can have 12 indexer jobs in active execution, whether initiated on demand or on a schedule.
 
-For skills-based indexing, indexers run in a specific [execution environment](search-howto-run-reset-indexers.md#indexer-execution). For this reason, the number of service units has no bearing on the number of skills-based indexer jobs you can run. Multiple skills-based indexers can run in parallel, but doing so depends on content processor availability within the execution environment.
+For skills-based indexing, indexers run in a specific [execution environment](search-howto-run-reset-indexers.md#indexer-execution-environment). For this reason, the number of service units has no bearing on the number of skills-based indexer jobs you can run. Multiple skills-based indexers can run in parallel, but doing so depends on content processor availability within the execution environment.
 
 **Do scheduled jobs always start at the designated time?**
 
@@ -138,6 +139,6 @@ If an indexer is set to a certain schedule but repeatedly fails on the same docu
 
 For indexers that run on a schedule, you can monitor operations by retrieving status from the search service, or obtain detailed information by enabling resource logging.
 
-+ [Monitor search indexer status](search-howto-monitor-indexers.md)
++ [Monitor search indexer status](search-monitor-indexers.md)
 + [Collect and analyze log data](monitor-azure-cognitive-search.md)
 + [Index large data sets](search-howto-large-index.md)

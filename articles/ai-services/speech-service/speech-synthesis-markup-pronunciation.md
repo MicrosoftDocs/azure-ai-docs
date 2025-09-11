@@ -2,12 +2,12 @@
 title: Pronunciation with Speech Synthesis Markup Language (SSML) - Speech service
 titleSuffix: Azure AI services
 description: Learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/24/2024
-ms.author: eur
+ms.date: 08/07/2025
+ms.author: pafarley
 #Customer intent: As a developer, I want to learn about Speech Synthesis Markup Language (SSML) elements and improve pronunciation.
 ---
 
@@ -94,7 +94,7 @@ Usage of the `lexicon` element's attributes are described in the following table
 
 The supported values for attributes of the `lexicon` element were [described previously](#custom-lexicon).
 
-After you publish your custom lexicon, you can reference it from your SSML. The following SSML example references a custom lexicon that was uploaded to `https://www.example.com/customlexicon.xml`. We support lexicon URLs from Azure Blob Storage, Advanced Media Services (AMS) Storage, and GitHub. However, note that other public URLs may not be compatible.
+After you publish your custom lexicon, you can reference it from your SSML. The following SSML example references a custom lexicon that was uploaded to `https://www.example.com/customlexicon.xml`. We support lexicon URLs from Azure Blob Storage. However, note that other public URLs may not be compatible.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"

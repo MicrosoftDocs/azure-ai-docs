@@ -6,15 +6,21 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.reviewer: None
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.date: 08/16/2022
 ms.topic: how-to
-ms.custom: UpdateFrequency5, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 ---
 # Collect data from models in production
 
 [!INCLUDE [sdk v1](../includes/machine-learning-sdk-v1.md)]
+
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
 
 This article shows how to collect data from an Azure Machine Learning model deployed on an Azure Kubernetes Service (AKS) cluster. The collected data is then stored in Azure Blob storage.
 
@@ -39,7 +45,6 @@ Once collection is enabled, the data you collect helps you:
 > The MDC feature is incompatible with any other image than Ubuntu 18.04, which is no available after the Ubuntu 18.04 image is deprecated.
 >
 > mMore information you can refer to:
-> * [openmpi3.1.2-ubuntu18.04 release-notes](https://github.com/Azure/AzureML-Containers/blob/master/base/cpu/openmpi3.1.2-ubuntu18.04/release-notes.md)
 > * [data science virtual machine release notes](../data-science-virtual-machine/release-notes.md#september-20-2022)
 
 >[!NOTE]

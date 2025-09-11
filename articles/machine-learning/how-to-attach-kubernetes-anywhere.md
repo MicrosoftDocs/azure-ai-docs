@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: concept-article
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.custom: devplatv2
 ms.date: 10/04/2024
@@ -73,6 +73,9 @@ A `KubernetesCompute` target in Azure Machine Learning workloads (training and m
 
 - The availability of **Preview features** in Azure Machine Learning isn't guaranteed.
 - Models (including the foundational model) from the **Model Catalog** and **Registry** aren't supported on Kubernetes online endpoints.
+- The process of creating a model inference deployment inside the cluster has a timeout limit of **20 minutes**. This includes downloading the image, downloading the model, and initializing the user scripts.
+- Azure Machine Learning extension supports Kubernetes Baseline Pod Security Standard. 
+- Training on Kubernetes compute doesn't support auto scale nodes.
 
 ## Recommended best practices
 

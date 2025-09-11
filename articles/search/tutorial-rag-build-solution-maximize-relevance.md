@@ -2,14 +2,15 @@
 title: 'RAG tutorial: Tune relevance'
 titleSuffix: Azure AI Search
 description: Learn how to use the relevance tuning capabilities to return high quality results for generative search.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
-ms.service: cognitive-search
+ms.service: azure-ai-search
+ms.update-cycle: 180-days
+ms.custom:
+  - ignite-2024
 ms.topic: tutorial
-ms.date: 10/05/2024
-
+ms.date: 06/11/2025
 ---
 
 # Tutorial: Maximize relevance (RAG in Azure AI Search)
@@ -33,9 +34,9 @@ This tutorial updates the search index created by the [indexing pipeline](tutori
 
 - [Visual Studio Code](https://code.visualstudio.com/download) with the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and the [Jupyter package](https://pypi.org/project/jupyter/).
 
-- [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking, in the same region as Azure OpenAI and Azure AI Services.
+- [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking.
 
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo, in the same region as Azure AI Search.
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo.
 
 ## Download the sample
 
@@ -46,6 +47,8 @@ The [sample notebook](https://github.com/Azure-Samples/azure-search-python-sampl
 Let's start with a new query, "Are there any cloud formations specific to oceans and large bodies of water?".
 
 To compare outcomes after adding relevance features, run the query against the existing index schema, before you add semantic ranking or a scoring profile.
+
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
 
 ```python
 from azure.search.documents import SearchClient
@@ -200,6 +203,8 @@ In a previous tutorial, you [ran queries](tutorial-rag-build-solution-query.md) 
 
 This example modifies the query request to include the semantic configuration and scoring profile.
 
+For the Azure Government cloud, modify the API endpoint on the token provider to `"https://cognitiveservices.azure.us/.default"`.
+
 ```python
 # Import libraries
 from azure.search.documents import SearchClient
@@ -322,8 +327,7 @@ Semantic ranking and scoring profiles operate on nonvector content, but you can 
 - analyzers and normalizers
 - advanced query formats (regular expressions, fuzzy search) -->
 
-<!-- ## Next step
+## Next step
 
 > [!div class="nextstepaction"]
-> [Reduce vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)
- -->
+> [Minimize vector storage and costs](tutorial-rag-build-solution-minimize-storage.md)

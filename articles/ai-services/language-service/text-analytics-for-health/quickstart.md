@@ -3,12 +3,12 @@ title: "Quickstart: Use the Text Analytics for health REST API and client librar
 titleSuffix: Azure AI services
 description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 08/20/2025
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-health, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
@@ -18,7 +18,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 # Quickstart: Using Text Analytics for health client library and REST API
 
-This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python as well as with using the REST API.
+This article contains Text Analytics for health quickstarts that help with using the supported client libraries, C#, Java, NodeJS, and Python and the REST API.
 
 [!INCLUDE [Use Language Studio](../includes/use-language-studio.md)]
 ::: zone pivot="programming-language-csharp"
@@ -35,7 +35,7 @@ This article contains Text Analytics for health quickstarts that help with using
 
 ::: zone pivot="programming-language-javascript"
 
-[!INCLUDE [NodeJS quickstart](includes/quickstarts/nodejs-sdk.md)]
+[!INCLUDE [Node.js quickstart](includes/quickstarts/nodejs-sdk.md)]
 
 ::: zone-end
 
@@ -48,6 +48,12 @@ This article contains Text Analytics for health quickstarts that help with using
 ::: zone pivot="rest-api"
 
 [!INCLUDE [REST API quickstart](includes/quickstarts/rest-api.md)] 
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 

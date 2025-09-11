@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: build-2023
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 09/12/2024
 # Customer Intent: As an admin, I want to understand how to secure Azure Machine Learning resources and workflows so that I can comply with my organization's security policies.
@@ -52,6 +52,8 @@ The system-assigned managed identity is used for internal service-to-service aut
 
 We don't recommend that admins revoke the access of the managed identity to the resources mentioned in the preceding table. You can restore access by using the [resync keys operation](how-to-change-storage-access-key.md).
 
+You should not grant users to have permission on the workspace's storage account to users that you do not want to be able to access workspace computes or identities. The workspace's storage account contains code and executables that will be run on your workspace computes. Users that have access to that storage account can edit or change code that will be executed in the context of the workspace, allowing access to workspace data and credentials.
+
 > [!NOTE]
 > If your Azure Machine Learning workspace has compute targets (for example, compute cluster, compute instance, or Azure Kubernetes Service [AKS] instance) that were created _before May 14, 2021_, you might have an additional Microsoft Entra account. The account name starts with `Microsoft-AzureML-Support-App-` and has contributor-level access to your subscription for every workspace region.
 >
@@ -90,19 +92,9 @@ You don't have to choose one or the other. For example, you can use an Azure Mac
   * Managed online endpoint
   * Batch online endpoint
 
-  For more information, see [Workspace managed virtual network isolation](how-to-managed-network.md).
-
 * __Azure Virtual Network instance__: Provides a more customizable virtual network offering. However, you're responsible for configuration and management. You might need to use network security groups, user-defined routes, or a firewall to restrict outbound communication.
 
-  For more information, see the following articles:
-
-  * [Secure Azure Machine Learning workspace resources using virtual networks](how-to-network-security-overview.md)
-  * [Secure an Azure Machine Learning workspace with virtual networks](how-to-secure-workspace-vnet.md)
-  * [Secure an Azure Machine Learning training environment with virtual networks](how-to-secure-training-vnet.md)
-  * [Secure an Azure Machine Learning inferencing environment with virtual networks](./how-to-secure-inferencing-vnet.md)
-  * [Use Azure Machine Learning studio in an Azure virtual network](how-to-enable-studio-virtual-network.md)
-  * [Use your workspace with a custom DNS server](how-to-custom-dns.md)
-  * [Configure inbound and outbound network traffic](how-to-access-azureml-behind-firewall.md)
+For more information, visit the [Compare network isolation configurations](concept-network-isolation-configurations.md) article.
 
 <a id="encryption-at-rest"></a><a id="azure-blob-storage"></a>
 

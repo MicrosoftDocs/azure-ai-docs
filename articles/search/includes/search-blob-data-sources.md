@@ -1,6 +1,6 @@
 ---
 author: mgottein
-ms.service: cognitive-search
+ms.service: azure-ai-search
 ms.topic: include
 ms.date: 05/02/2019
 ms.author: magottei

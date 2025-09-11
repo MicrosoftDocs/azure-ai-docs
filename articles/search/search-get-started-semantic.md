@@ -1,69 +1,69 @@
 ---
-title: 'Quickstart: semantic ranking'
+title: 'Quickstart: Semantic Ranking'
 titleSuffix: Azure AI Search
-description: Change an existing index to use semantic ranker.
-author: HeidiSteen
+description: Learn how to change an existing index to use semantic ranker, which helps rescore search results and promote the most semantically relevant matches.
 manager: nitinme
-ms.author: heidist
-ms.service: cognitive-search
+author: haileytap
+ms.author: haileytapia
+ms.service: azure-ai-search
 ms.custom:
   - devx-track-dotnet
   - devx-track-python
   - ignite-2023
 ms.topic: quickstart
-ms.date: 03/11/2024
+ms.date: 07/09/2025
+zone_pivot_groups: search-get-started-semantic
 ---
 
-# Quickstart: Semantic ranking with .NET or Python
+# Quickstart: Semantic ranking
 
-In Azure AI Search, [semantic ranker](semantic-search-overview.md) is query-side functionality that uses machine reading comprehension from Microsoft to rescore search results, promoting the most semantically relevant matches to the top of the list. Depending on the content and the query, semantic ranking can [significantly improve search relevance](https://techcommunity.microsoft.com/t5/azure-ai-services-blog/azure-cognitive-search-outperforming-vector-search-with-hybrid/ba-p/3929167), with minimal work for the developer.
+::: zone pivot="csharp"
 
-This quickstart walks you through the index and query modifications that invoke semantic ranker.
+[!INCLUDE [C# quickstart](includes/quickstarts/semantic-ranker-csharp.md)]
 
-> [!NOTE]
-> Looking for an Azure AI Search solution with ChatGPT interaction? See [this demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) or [this accelerator](https://github.com/Azure-Samples/chat-with-your-data-solution-accelerator) for details.
+::: zone-end
 
-## Prerequisites
+::: zone pivot="javascript"
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
+[!INCLUDE [JavaScript quickstart](includes/quickstarts/semantic-ranker-javascript.md)]
 
-+ Azure AI Search, at Basic tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+::: zone-end
 
-+ An API key and search service endpoint. Sign in to the [Azure portal](https://portal.azure.com) and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
+::: zone pivot="java"
 
-  In **Overview**, copy the URL and save it to Notepad for a later step. An example endpoint might look like `https://mydemo.search.windows.net`.
+[!INCLUDE [Java quickstart](includes/quickstarts/semantic-ranker-java.md)]
 
-  In **Keys**, copy and save an admin key for full rights to create and delete objects. There are two interchangeable primary and secondary keys. Choose either one.
+::: zone-end
 
-  ![Get an HTTP endpoint and access key](media/search-get-started-rest/get-url-key.png "Get an HTTP endpoint and access key")
+::: zone pivot="python"
 
-## Add semantic ranking
+[!INCLUDE [Python quickstart](includes/quickstarts/semantic-ranker-python.md)]
 
-To use semantic ranker, add a *semantic configuration* to a search index, and add parameters to a query. If you have an existing index, you can make these changes without having to reindex your content because there's no impact on the structure of your searchable content.
+::: zone-end
 
-+ A semantic configuration sets a priority order for fields that contribute a title, keywords, and content used in semantic reranking. Field prioritization allows for faster processing.
+::: zone pivot="rest"
 
-+ Queries that invoke semantic ranker include parameters for query type and whether captions and answers are returned. You can add these parameters to your existing query logic. There's no conflict with other parameters.
+[!INCLUDE [REST quickstart](includes/quickstarts/semantic-ranker-rest.md)]
 
-### [**.NET**](#tab/dotnet)
+::: zone-end
 
-[!INCLUDE [dotnet-sdk-semantic-quickstart](includes/quickstarts/dotnet-semantic.md)]
+::: zone pivot="typescript"
 
-### [**Python**](#tab/python)
+[!INCLUDE [TypeScript quickstart](includes/quickstarts/semantic-ranker-typescript.md)]
 
-[!INCLUDE [python-sdk-semantic-quickstart](includes/quickstarts/python-semantic.md)]
-
----
+::: zone-end
 
 ## Clean up resources
 
 When you're working in your own subscription, it's a good idea at the end of a project to identify whether you still need the resources you created. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
 
-You can find and manage resources in the portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
+You can find and manage resources in the Azure portal, using the **All resources** or **Resource groups** link in the left-navigation pane.
 
-## Next steps
+## Related content
 
-In this quickstart, you learned how to invoke semantic ranker on an existing index. We recommend trying semantic ranker on your own indexes as a next step. However, if you want to continue with demos, visit the following link.
+In this quickstart, you learned how to invoke semantic ranking on an existing index. We recommend trying semantic ranking on your own indexes as a next step. The following articles can help you get started.
 
-> [!div class="nextstepaction"]
-> [Tutorial: Add search to web apps](tutorial-csharp-overview.md)
++ [Semantic ranking overview](semantic-search-overview.md)
++ [Configure semantic ranker ](semantic-how-to-configure.md)
++ [Add query rewrite to semantic ranking](semantic-how-to-query-rewrite.md)
++ [Use scoring profiles and semantic ranking together](semantic-how-to-enable-scoring-profiles.md)

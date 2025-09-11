@@ -4,9 +4,9 @@ description: This quickstart shows you how to create and manage your knowledge b
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: quickstart
-author: jboback
-ms.author: jboback
-ms.date: 01/19/2024
+author: laujan
+ms.author: lajanuar
+ms.date: 06/12/2025
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: devx-track-python, devx-track-js, devx-track-csharp, mode-api, devx-track-dotnet, devx-track-extended-java
@@ -14,9 +14,6 @@ zone_pivot_groups: qnamaker-quickstart
 ---
 
 # Quickstart: QnA Maker client library
-
-> [!NOTE]
-> [Azure OpenAI On Your Data](../../openai/concepts/use-your-data.md) utilizes large language models (LLMs) to produce similar results to QnA Maker. If you wish to migrate your QnA Maker project to Azure OpenAI On Your Data, please check out our [guide](../How-To/migrate-to-openai.md).
 
 Get started with the QnA Maker client library. Follow these steps to install the package and try out the example code for basic tasks.
 

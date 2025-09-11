@@ -3,7 +3,7 @@ title: Experiment tracking and deploying models
 titleSuffix: Azure Data Science Virtual Machine
 description: Learn how to track and log experiments from the Data Science Virtual Machine with Azure Machine Learning and/or MLFlow.
 services: machine-learning
-ms.service: data-science-vm
+ms.service: azure-data-science-virtual-machines
 ms.custom: sdkv1
 author: samkemp
 ms.author: samkemp
@@ -152,7 +152,7 @@ Select __Create__.
 When we registered the model in our code using `register_model`, we specified the framework as **sklearn**. Azure Machine Learning supports no code deployments for these frameworks:
 
 * scikit-learn
-* Tensorflow SaveModel format
+* TensorFlow SaveModel format
 * ONNX model format
 
 No-code deployment means that you can deploy straight from the model artifact. You don't need to specify any specific scoring script.

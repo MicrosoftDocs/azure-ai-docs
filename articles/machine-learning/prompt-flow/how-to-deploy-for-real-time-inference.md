@@ -5,14 +5,15 @@ description: Learn how to deploy in prompt flow a flow as a managed online endpo
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
-ms.custom:
-  - ignite-2023
-  - build-2024
 ms.topic: how-to
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 05/08/2024
+ms.custom:
+  - ignite-2023
+  - build-2024
+  - sfi-image-nochange
 ---
 
 
@@ -288,7 +289,7 @@ You can view various metrics (request numbers, request latency, network bytes, C
 
 :::image type="content" source="./media/how-to-deploy-for-real-time-inference/view-metrics.png" alt-text="Screenshot of the endpoint detail page with view metrics highlighted. " lightbox = "./media/how-to-deploy-for-real-time-inference/view-metrics.png":::
 
-For more information on how to view online endpoint metrics, see [Monitor online endpoints](../how-to-monitor-online-endpoints.md#metrics).
+For more information on how to view online endpoint metrics, see [Monitor online endpoints](../how-to-monitor-online-endpoints.md#use-metrics).
 
 ### View prompt flow endpoints specific metrics and tracing data (optional)
 

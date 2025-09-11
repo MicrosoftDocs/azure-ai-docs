@@ -6,10 +6,10 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: andyaviles
-ms.date: 06/28/2024
+ms.date: 06/12/2025
 monikerRange: 'azureml-api-2'
 ---
 
@@ -25,9 +25,9 @@ Microsoft strives to ensure that Azure services are always available. However, u
 * Initiate a failover to another region.
 
 > [!IMPORTANT]
-> Azure Machine Learning itself does not provide automatic failover or disaster recovery. Backup and restore of workspace metadata such as run history is unavailable.
+> Azure Machine Learning itself doesn't provide automatic failover or disaster recovery. Backup and restore of workspace metadata such as run history is unavailable.
 
-In case you have accidentally deleted your workspace or corresponding components, this article also provides you with currently supported recovery options.
+In case you accidentally deleted your workspace or corresponding components, this article also provides you with currently supported recovery options.
 
 ## Understand Azure services for Azure Machine Learning
 
@@ -80,7 +80,7 @@ A multi-regional deployment relies on creation of Azure Machine Learning and oth
     * __Hot/cold__: Primary region active, secondary region has Azure Machine Learning and other resources deployed, along with needed data. Resources such as models, model deployments, or pipelines would need to be manually deployed.
 
 > [!TIP]
-> Depending on your business requirements, you may decide to treat different Azure Machine Learning resources differently. For example, you may want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
+> Depending on your business requirements, you might decide to treat different Azure Machine Learning resources differently. For example, you might want to use hot/hot for deployed models (inference), and hot/cold for experiments (training).
 
 Azure Machine Learning builds on top of other services. Some services can be configured to replicate to other regions. Others you must manually create in multiple regions. The following table provides a list of services, who is responsible for replication, and an overview of the configuration:
 
@@ -127,7 +127,7 @@ __Data services__
 
 Certain Azure services support availability zones. For regions that support availability zones, if a zone goes down any workload pauses and data should be saved. However, the data is unavailable to refresh until the zone is back online.
 
-For more information, see [Availability zone service and regional support](/azure/reliability/availability-zones-service-support).
+For more information, see [Availability zone service support](/azure/reliability/availability-zones-service-support).
 
 ### Deploy critical components to multiple regions
 
@@ -143,7 +143,7 @@ By keeping your data storage isolated from the default storage the workspace use
 ### Manage machine learning assets as code
 
 > [!NOTE]
-> Backup and restore of workspace metadata such as run history, models and environments is unavailable. Specifying assets and configurations as code using YAML specs, will help you re-recreate assets across workspaces in case of a disaster.
+> Backup and restore of workspace metadata such as run history, models and environments is unavailable. Specifying assets and configurations as code using YAML specs, helps you re-recreate assets across workspaces in case of a disaster.
 
 Jobs in Azure Machine Learning are defined by a job specification. This specification includes dependencies on input artifacts that are managed on a workspace-instance level, including environments and compute. For multi-region job submission and deployments, we recommend the following practices:
 
@@ -167,11 +167,11 @@ Azure Machine Learning can't sync or recover artifacts or metadata between works
 :::image type="content" source="./media/how-to-high-availability-machine-learning/bcdr-resource-configuration-v2.png" alt-text="Diagram of failover between paired regions." lightbox="./media/how-to-high-availability-machine-learning/bcdr-resource-configuration-v2.png":::
 
 > [!NOTE]
-> Any jobs that are running when a service outage occurs will not automatically transition to the secondary workspace. It is also unlikely that the jobs will resume and finish successfully in the primary workspace once the outage is resolved. Instead, these jobs must be resubmitted, either in the secondary workspace or in the primary (once the outage is resolved).
+> Any jobs that are running when a service outage occurs won't automatically transition to the secondary workspace. It's also unlikely that the jobs will resume and finish successfully in the primary workspace once the outage is resolved. Instead, these jobs must be resubmitted, either in the secondary workspace or in the primary (once the outage is resolved).
 
 ### Moving artifacts between workspaces
 
-Depending on your recovery approach, you may need to copy artifacts between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
+Depending on your recovery approach, you might need to copy artifacts between the workspaces to continue your work. Currently, the portability of artifacts between workspaces is limited. We recommend managing artifacts as code where possible so that they can be recreated in the failover instance.
 
 The following artifacts can be exported and imported between workspaces by using the [Azure CLI extension for machine learning](reference-azure-machine-learning-cli.md):
 

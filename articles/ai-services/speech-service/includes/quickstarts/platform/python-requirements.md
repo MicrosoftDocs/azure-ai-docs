@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 02/02/2024
-ms.author: eur
+ms.author: pafarley
 ---
 
 The Speech SDK for Python is compatible with Windows, Linux, and macOS.
@@ -24,6 +24,8 @@ The Speech SDK for Python supports the following distributions on the x64 and AR
 
 - Ubuntu 20.04/22.04/24.04
 - Debian 11/12
+- Amazon Linux 2023
+- Azure Linux 3.0
 
 [!INCLUDE [Linux distributions](linux-distributions.md)]
 

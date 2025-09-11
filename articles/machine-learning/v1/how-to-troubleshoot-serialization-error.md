@@ -5,22 +5,24 @@ description: Troubleshooting steps when you get the "cannot import name 'Seriali
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: larryfr
 ms.topic: troubleshooting 
-ms.date: 11/04/2022
+ms.date: 03/10/2025
 ---
 
 
 # Troubleshoot "cannot import name 'SerializationError'"
 
-When using Azure Machine Learning, you may receive one of the following errors:
+[!INCLUDE [v1 deprecation](../includes/sdk-v1-deprecation.md)]
+
+When using Azure Machine Learning, you might receive one of the following errors:
 
 * `cannot import name 'SerializationError'`
 * `cannot import name 'SerializationError' from 'azure.core.exceptions'`
 
-This error may occur when using an Azure Machine Learning environment. For example, when submitting a training job or using AutoML.
+This error might occur when using an Azure Machine Learning environment. For example, when submitting a training job or using AutoML.
 
 ## Cause
 

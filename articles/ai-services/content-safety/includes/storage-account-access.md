@@ -10,7 +10,9 @@ ms.author: pafarley
 ---
 
 
-Next, you need to give your Content Safety resource access to read from the Azure Storage resource. Enable system-assigned Managed identity for the Azure AI Content Safety instance and assign the role of **Storage Blob Data Contributor/Owner/Reader** to the identity:
+Next, you need to give your Content Safety resource access to read from the Azure Storage resource. Enable system-assigned Managed identity for the Azure AI Content Safety instance and assign the role of **Storage Blob Data Contributor/Owner** to the identity:
+> [!IMPORTANT]
+> **Only Storage Blob Data Contributor or Storage Blob Data Owner are valid roles to proceed.**
 
 1. Enable managed identity for the Azure AI Content Safety instance. 
 

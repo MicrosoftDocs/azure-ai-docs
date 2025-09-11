@@ -1,14 +1,14 @@
 ---
 title: "Tag images faster with Smart Labeler"
 titleSuffix: Azure AI services
-description: In this guide, you'll learn how to use Smart Labeler to generate suggested tags for images. This lets you label a large number of images more quickly when training a Custom Vision model.
-#services: cognitive-services
+description: Learn how to use Smart Labeler to generate suggested tags for images, allowing you to label a large number of images more quickly when training a Custom Vision model.
 author: PatrickFarley
 manager: nitinme
+#customer intent: As a developer, I want to use Smart Labeler to tag images faster so that I can train my Custom Vision model more efficiently.
 
 ms.service: azure-ai-custom-vision
 ms.topic: how-to
-ms.date: 01/21/2024
+ms.date: 01/22/2025
 ms.author: pafarley
 ---
 
@@ -20,9 +20,7 @@ When you tag images for a Custom Vision model, the service uses the latest train
 
 ## When to use Smart Labeler
 
-Keep the following limitations in mind:
-
-* You should only request suggested tags for images whose tags have already been trained on once. Don't get suggestions for a new tag that you're just beginning to train on.
+You should only request suggested tags for images whose tags have already been trained on once. Don't get suggestions for a new tag that you're just beginning to train on.
 
 > [!IMPORTANT]
 > The Smart Labeler feature uses the same [pricing model](https://azure.microsoft.com/pricing/details/cognitive-services/custom-vision-service/) as regular predictions. The first time you trigger suggested tags for a set of images, you'll be charged the same as for prediction calls. After that, the service stores the results for the selected images in a database for 30 days, and you can access them anytime for free within that period. After 30 days, you'll be charged if you request their suggested tags again.
@@ -60,9 +58,9 @@ Follow these steps to use Smart Labeler:
 1. Start the training process again.
 1. Repeat the preceding steps until you're satisfied with the suggestion quality.
 
-## Next steps
+## Next step
 
 Follow a quickstart to get started creating and training a Custom Vision project.
 
-* [Build a classifier](getting-started-build-a-classifier.md)
-* [Build an object detector](get-started-build-detector.md)
+> [!div class="nextstepaction"]
+> [Build a classifier](getting-started-build-a-classifier.md)
