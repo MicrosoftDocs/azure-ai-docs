@@ -4464,6 +4464,27 @@
         "source_path_from_root": "/articles/machine-learning/prompt-flow/how-to-trace-local-sdk.md",
         "redirect_url": "/azure/ai-foundry/how-to/develop/trace-application",
         "redirect_document_id": false
+    },
+        {
+        "source_path_from_root": "/articles/machine-learning/how-to-responsible-ai-image-dashboard.md",
+        "redirect_url": "/azure/machine-learning/concept-responsible-ai-dashboard",
+        "redirect_document_id": false
+    },
+        {
+        "source_path_from_root": "/articles/machine-learning/how-to-responsible-ai-text-dashboard.md",
+        "redirect_url": "/azure/machine-learning/concept-responsible-ai-dashboard",
+        "redirect_document_id": false
+    },
+        {
+        "source_path_from_root": "/articles/machine-learning/how-to-responsible-ai-text-insights.md",
+        "redirect_url": "/azure/machine-learning/concept-responsible-ai-dashboard",
+        "redirect_document_id": false
+    },
+        {
+        "source_path_from_root": "/articles/machine-learning/how-to-responsible-ai-vision-insights.md",
+        "redirect_url": "/azure/machine-learning/concept-responsible-ai-dashboard",
+        "redirect_document_id": false
     }
+
 ]
 }
