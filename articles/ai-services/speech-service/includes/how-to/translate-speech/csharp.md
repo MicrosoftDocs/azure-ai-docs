@@ -419,7 +419,7 @@ To use the Live Interpreter API, first [apply for personal voice access](https:/
 - Southeast Asia
 - Japan East
 
-After the granting of personal voice access permission, you can enable live interpreter with the following code: 
+After personal voice access permission is granted, you can enable Live Interpreter with the following code: 
 
 ```csharp
 // Please replace the service region with your region
