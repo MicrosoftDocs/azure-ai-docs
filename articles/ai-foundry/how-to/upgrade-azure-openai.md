@@ -44,6 +44,7 @@ Your existing resource configurations and state remain preserved including:
 Backend limitations:
 
 * Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
+* [Modified Abuse Monitoring](../responsible-ai/openai/data-privacy?tabs=azure-portal#prerequisites) isn't supported on Azure AI Foundry resource.
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
 
 Foundry portal limitations:
