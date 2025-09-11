@@ -244,7 +244,7 @@ A "standard" endpoint URL looks like: <p/>`{region}.{speech service offering}.sp
 
 A private endpoint URL looks like: <p/>`{your custom name}.cognitiveservices.azure.com/{speech service offering}/{URL path}`
 
-The Speech SDK automatically will configure the <p/>`/{URL path}` depending on the service used. Therefor only the <p/>`/{baseURL}` must be configured as described.
+The Speech SDK automatically will configure the `/{URL path}` depending on the service used. Therefor only the `/{baseURL}` must be configured as described.
 
 **Example 1.** An application is communicating by using the following URL (speech recognition using the base model for US English in West Europe):
 
