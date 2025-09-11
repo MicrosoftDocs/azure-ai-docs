@@ -31,11 +31,25 @@ You can also use [Search Explorer](search-get-started-portal-import-vectors.md#c
 
 ## How filtering works in vector queries
 
-Filters apply to `filterable` *nonvector* fields, either string or numeric, to include or exclude search documents based on filter criteria. Although vector fields aren't filterable, you can use filters on nonvector fields in the same index to include or exclude documents that contain vector fields you're searching on.
+When performing Approximate Nearest Neighbor (ANN) search using **Hierarchical Navigable Small World (HNSW)** algorithm, Azure AI Search stores HNSW graphs across multiple shards. Each shard contains a portion of the entire index. The different filtering options control where filter operations are applied within the stages of search, which will affect how the results are filtered down to a subset of items (e.g., by category, tag, or other attributes) and impact latency, recall, and throughput.
+
+Filters apply to `filterable` *nonvector* fields, either string or numeric, to include or exclude search documents based on filter criteria. Although vector fields themselves aren't filterable, you can use filters on nonvector fields in the same index to include or exclude documents that contain vector fields you're searching on.
 
 If your index lacks suitable text or numeric fields, check for document metadata that might be useful in filtering, such as `LastModified` or `CreatedBy` properties.
 
 The `vectorFilterMode` parameter controls when the filter is applied in the vector search process, with `k` setting the maximum number of nearest neighbors to return. Depending on the filter mode and how selective your filter is, fewer than `k` results might be returned.
+
+Azure AI Search supports three types of filtering during vector search: `preFilter` (default), `postFilter`, and `strictPostFilter`. 
+
+> [!NOTE]
+> On older indexes created before approximately October 15, 2023, `preFilter` is not available. For these indexes, `postFilter` will be the default. In order to use `preFilter` and other advanced vector features, such as vector compression, you will need to recreate your index. You can test compatibility by sending a vector query with `vectorFilterMode: preFilter` on API version later than `2023-10-01-preview` and observe whether it fails.
+
+In summary, the three approaches are described below:
+* **Pre-filter:** apply the predicate *during* HNSW traversal on each shard. Highest recall for filtered queries, but may traverse more of the graph (higher CPU/latency) when the filter has high selectivity.
+* **Post-filter:** run the HNSW traversal and the filtering independently on each shard, then intersect results at shard level, and aggregate top-k from each shard into a global top-k. For higher selectivity filters or small `k`, this can create false negatives.
+* **Strict post-filter:** run HNSW traversal to find the unfiltered global top-k, then apply the filter. Highest chance of returning false negatives when `k` is small or the filter has high selectivity.
+
+For both *post-filtering* options, instead of controlling the number of results only using `k`, it is recommended to control it using `top` and increase `k`, because this reduces the likelihood of false negatives. It is also recommended to avoid both post-filtering options for high-selectivity filters (which match very few documents) because the initial set of candidates may not surface enough documents which satisfy the filter.
 
 ## Define a filter
 
@@ -44,71 +58,93 @@ Filters determine the scope of vector queries and are defined using [Documents -
 This REST API provides:
 
 + `filter` for the criteria.
-+ `vectorFilterMode` for pre-query or post-query filtering. For supported modes, see the [next section](#set-the-filter-mode).
++ `vectorFilterMode` to specify when the filter should be applied during the query. For supported modes, see the next section.
 
 ```http
 POST https://{search-endpoint}/indexes/{index-name}/docs/search?api-version={api-version}
 Content-Type: application/json
 api-key: {admin-api-key}
     
-    {
-        "count": true,
-        "select": "title, content, category",
-        "filter": "category eq 'Databases'",
-        "vectorFilterMode": "preFilter",
-        "vectorQueries": [
-            {
-                "kind": "vector",
-                "vector": [
-                    -0.009154141,
-                    0.018708462,
-                    . . . // Trimmed for readability
-                    -0.02178128,
-                    -0.00086512347
-                ],
-                "exhaustive": true,
-                "fields": "contentVector",
-                "k": 5
-            }
-        ]
-    }
+{
+    "count": true,
+    "select": "title, content, category",
+    "filter": "category eq 'Databases'",
+    "vectorFilterMode": "preFilter",
+    "vectorQueries": [
+        {
+            "kind": "vector",
+            "vector": [
+                -0.009154141,
+                0.018708462,
+                . . . // Trimmed for readability
+                -0.02178128,
+                -0.00086512347
+            ],
+            "fields": "contentVector",
+            "k": 50
+        }
+    ]
+}
 ```
 
 In this example, the vector embedding targets the `contentVector` field, and the filter criteria apply to `category`, a filterable text field. Because the `preFilter` mode is used, the filter is applied before the search engine runs the query, so only documents in the `Databases` category are considered during the vector search.
 
-## Set the filter mode
+## Understanding Pre-Filter, Post-Filter, and Strict Post-Filter in HNSW Vector Search
 
 The `vectorFilterMode` parameter determines when and how the filter is applied relative to vector query execution. There are three modes:
 
-+ `preFilter` (default)
-+ `postFilter`
++ `preFilter` (default for indexes created after approximately October 15, 2023) - **recommended**
++ `postFilter` (default for indexes created before approximately October 15, 2023)
 + `strictPostFilter` (preview)
 
-### [preFilter](#tab/prefilter-mode)
+### Pre-filter
 
-Prefiltering applies filters before query execution, which reduces the candidate set for the vector search algorithm. The top-`k` results are then selected from this filtered set.
+Pre-filtering applies filters before query execution, which reduces the candidate set for the vector search algorithm. The top-`k` results are then selected from this filtered set. In a vector query, `preFilter` is the default mode because it favors recall and quality over latency.
 
-In a vector query, `preFilter` is the default mode because it favors recall and quality over latency.
+1. On each shard, during HNSW traversal, apply the filter predicate when considering candidates, expanding the graph traversal until `k` candidates are found.
+1. Pre-filtered local top-k results are produced per shard, which are aggregated into the global top-k. 
 
-:::image type="content" source="media/vector-search-filters/pre-filter.svg" alt-text="Diagram of prefilters." border="true" lightbox="media/vector-search-filters/pre-filter.png":::
+**Effect:** Traversal expands the search surface to find more filtered candidates (especially if filter is selective), producing the most similar top-k results across all shards. Each shard will identify `k` number of results which satisfy the filter predicate. Pre-filter guarantees `k` results are returned if they exist in the index. For high selectivity filters, this could cause a significant portion of the graph to be traversed, increasing computation cost and latency and reducing throughput. If your filter has a very high selectivity (very few matches), consider using `exhaustive: true` to perform exhaustive search.
 
-### [postFilter](#tab/postfilter-mode)
+:::image type="content" source="media/vector-search-filters/vector-filter-modes-prefilter.svg" alt-text="Diagram of prefilters." border="true" lightbox="media/vector-search-filters/vector-filter-modes-prefilter.png":::
 
-Postfiltering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
+### Post-filter
+
+Post-filtering applies filters after query execution, which narrows the search results. This mode processes results within each shard and then merges the filtered results from all shards to produce the top-`k` results. As a result, you might receive documents that match the filter but aren't among the global top-`k` results.
 
 To use this option in a vector query, use `"vectorFilterMode": "postFilter"`.
 
-:::image type="content" source="media/vector-search-filters/post-filter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/post-filter.png":::
+1. On each shard, run HNSW traversal *without considering the filter* to identify the unfiltered local top-k.
+1. Apply the filter predicate on the unfiltered top-k result for each shard. Note this will reduce the contribution from each shard to be potentially fewer than `k` results.
+1. Aggregate into the global top-k results.
 
-### [strictPostFilter (preview)](#tab/strictpostfilter-mode)
+**Effect:** Traversal is performed independently of the filter expression, but because the intersection happens *after* the top-k results are identified, some matching documents that are less similar than the best unfiltered top-k documents will never surface in the search results. For highly selective filters, this can reduce recall or produce false negatives (fewer matching documents returned than actually exist within the index). Latency and throughput is more predictable because traversal cost is not correlated to filter selectivity but rather filter execution cost.
 
-Strict postfiltering applies filters after identifying the global top-`k` results. This mode guarantees that the filtered results are always a subset of the unfiltered top `k`.
+:::image type="content" source="media/vector-search-filters/vector-filter-modes-postfilter.svg" alt-text="Diagram of post-filters." border="true" lightbox="media/vector-search-filters/vector-filter-modes-postfilter.png":::
+
+### Strict Post-filter (preview)
+
+Strict post-filtering applies filters after identifying the global top-`k` results. This mode guarantees that the filtered results are always a subset of the unfiltered top `k`.
 
 With strict postfiltering, highly selective filters or small `k` values can return zero results (even if matches exist) because only documents that match the filter within the global top `k` are returned. Don't use this mode if missing relevant results could have serious consequences, such as in healthcare or patent searches.
 
 To use this option in a vector query, use `"vectorFilterMode": "strictPostFilter"` with the latest preview version of the [Search Service REST APIs](/rest/api/searchservice/search-service-api-versions).
 
----
+1. On each shard, run HNSW traversal *without considering the filter* to identify the unfiltered local top-k.
+1. Aggregate the local top-k results per shard into an unfiltered global top-k result set.
+1. Apply the filter to this global top-k. Return the subset that satisfies the filter predicate.
+
+**Effect:** Applying a filter will *always* reduce the set of results to be fewer than `k` if some documents don't satisfy the filter. If qualifying items are not present in the global top-k, this mode will never surface them. This option can be useful when building a facet and filter navigation experience to prevent additional results from surfacing after applying increasingly selective filters and increase consistency of facet bucket counts and search counts, at the expense of potential false negatives or zero results.
+
+:::image type="content" source="media/vector-search-filters/vector-filter-modes-strictpostfilter.svg" alt-text="Diagram of strict post-filters." border="true" lightbox="media/vector-search-filters/vector-filter-modes-strictpostfilter.png":::
+
+## Comparison table
+
+| Mode | Recall (filtered results) | Computational cost | Risk of false negatives | When to use |
+| -------- | -------------: | ------------: | ---------------------: | ----------------------------------- |
+| Pre-filter  |  Very high | Higher (increases with filter selectivity and complexity) | No false negatives | **(recommended as the default in order to favor recall over speed)** Especially when recall for filtered queries is critical (sensitive search domains), filter is selective, or k is small |
+| Post-filter |  Medium-high, reduces with filter selectivity | Similar to unfiltered but increases with filter complexity | Moderate (per-shard misses possible) | Can be an option for higher `k` queries and filters which are not too selective |
+| Strict post-filter | Lowest (degrades the fastest with filter selectivity) | Similar to unfiltered | Highest - can return zero results for small k or selective filters | For faceted search applications where surfacing additional results after applying a filter impacts the user experience. Do not use with small `k`. | 
 
 ### Benchmark testing of prefiltering and postfiltering
 

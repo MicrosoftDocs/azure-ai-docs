@@ -244,6 +244,92 @@ You can generate a video with the Sora model by creating a video generation job,
     else:
         raise Exception(f"Job didn't succeed. Status: {status}")
     ```
+
+
+
+    ## [Video prompt](#tab/video-prompt)
+
+    Replace the `"file_name"` field in `"inpaint_items"` with the name of your input video file. Also replace the construction of the `files` array, which associates the path to the actual file with the filename that the API uses.
+
+    Use the `"crop_bounds"` data (image crop distances, from each direction, as a fraction of the total frame dimensions) to specify which part of the video frame should be used in video generation.
+
+    You can optionally set the `"frame_index"` to the frame in the generated video where your input video should start (the default is 0, the beginning).
+
+
+    ```python
+    # 1. Create a video generation job with video inpainting (multipart upload)
+    create_url = f"{endpoint}/openai/v1/video/generations/jobs?api-version=preview"
+    
+    # Flatten the body for multipart/form-data
+    data = {
+        "prompt": "A serene forest scene transitioning into autumn",
+        "height": str(1080),
+        "width": str(1920),
+        "n_seconds": str(10),
+        "n_variants": str(1),
+        "model": "sora",
+        # inpaint_items must be JSON string
+        "inpaint_items": json.dumps([
+            {
+                "frame_index": 0,
+                "type": "video",
+                "file_name": "dog_swimming.mp4",
+                "crop_bounds": {
+                    "left_fraction": 0.1,
+                    "top_fraction": 0.1,
+                    "right_fraction": 0.9,
+                    "bottom_fraction": 0.9
+                }
+            }
+        ])
+    }
+    
+    # Replace with your own video file path
+    with open("dog_swimming.mp4", "rb") as video_file:
+        files = [
+            ("files", ("dog_swimming.mp4", video_file, "video/mp4"))
+        ]
+        multipart_headers = {k: v for k, v in headers.items() if k.lower() != "content-type"}
+        response = requests.post(
+            create_url,
+            headers=multipart_headers,
+            data=data,
+            files=files
+        )
+    
+    if not response.ok:
+        print("Error response:", response.status_code, response.text)
+        response.raise_for_status()
+    print("Full response JSON:", response.json())
+    job_id = response.json()["id"]
+    print(f"Job created: {job_id}")
+    
+    # 2. Poll for job status
+    status_url = f"{endpoint}/openai/v1/video/generations/jobs/{job_id}?api-version=preview"
+    status = None
+    while status not in ("succeeded", "failed", "cancelled"):
+        time.sleep(5)
+        status_response = requests.get(status_url, headers=headers).json()
+        status = status_response.get("status")
+        print(f"Job status: {status}")
+    
+    # 3. Retrieve generated video
+    if status == "succeeded":
+        generations = status_response.get("generations", [])
+        if generations:
+            generation_id = generations[0].get("id")
+            video_url = f"{endpoint}/openai/v1/video/generations/{generation_id}/content/video?api-version=preview"
+            video_response = requests.get(video_url, headers=headers)
+            if video_response.ok:
+                output_filename = "output.mp4"
+                with open(output_filename, "wb") as file:
+                    file.write(video_response.content)
+                    print(f'✅ Generated video saved as "{output_filename}"')
+        else:
+            raise Exception("No generations found in job result.")
+    else:
+        raise Exception(f"Job didn't succeed. Status: {status}")
+    ```
     ---
 
 
