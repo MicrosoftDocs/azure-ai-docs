@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 04/14/2025
+ms.date: 09/11/2025
 ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
@@ -72,11 +72,13 @@ Fields that use [custom analyzers](index-add-custom-analyzers.md) or [built-in a
 
 ## Create using the Azure portal
 
-When using **Add Index** or the **Import data** wizard to create an index, you have the option of enabling a suggester:
+Using the Azure portal, you can specify a suggester in the index JSON definition. For syntax, see the REST example in the next section.
 
-1. In the index definition, enter a name for the suggester.
 
-1. In each field definition for new fields, select a checkbox in the **Suggester** column. A checkbox is available on string fields only. 
+
+
+
+
 
 As previously noted, analyzer choice impacts tokenization and prefixing. Consider the entire field definition when enabling suggesters. 
 
