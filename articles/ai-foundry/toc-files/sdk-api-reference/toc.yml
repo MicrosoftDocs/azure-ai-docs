@@ -51,38 +51,38 @@ items:
       href: /rest/api/aifoundry/get-image-embeddings/get-image-embeddings
 - name: Azure OpenAI
   items:
-  - name: v1 APIs
+  - name: v1 API
     items:
       - name: v1 API
-        items:
-        - name: v1 API
-          href: ../../openai/latest.md 
-        - name: Chat
-          href: ../../openai/latest.md#create-chat-completion
-        - name: Embeddings
-          href: ../../openai/latest.md#create-embedding   
-        - name: Evals (preview)
-          href: ../../openai/latest.md#list-evals
-        - name: Files
-          href: ../../openai/latest.md#create-file
-        - name: Fine-tuning
-          href: ../../openai/latest.md#create-fine-tuning-job
-        - name: Models
-          href: ../../openai/latest.md#list-models
-        - name: Responses
-          href: ../../openai/latest.md#create-response   
-        - name: Vector stores
-          href: ../../openai/latest.md#list-vector-stores
-      - name: v1 Preview API
-        href: ../../openai/reference-preview-latest.md
-  - name: Pre v1 API
+        href: ../../openai/latest.md 
+      - name: Chat
+        href: ../../openai/latest.md#create-chat-completion
+      - name: Embeddings
+        href: ../../openai/latest.md#create-embedding   
+      - name: Evals (preview)
+        href: ../../openai/latest.md#list-evals
+      - name: Files
+        href: ../../openai/latest.md#create-file
+      - name: Fine-tuning
+        href: ../../openai/latest.md#create-fine-tuning-job
+      - name: Models
+        href: ../../openai/latest.md#list-models
+      - name: Responses
+        href: ../../openai/latest.md#create-response   
+      - name: Vector stores
+        href: ../../openai/latest.md#list-vector-stores
+  - name: Previous versions
     items:
-    - name:  2024-10-21 API reference
-      href: ../../openai/reference.md
-    - name: 2025-04-01-preview - Authoring 
-      href: ../../openai/authoring-reference-preview.md
-    - name: 2025-04-01-preview - Inference 
-      href: ../../openai/reference-preview.md
+       - name:  2024-10-21 API reference
+         href: ../../openai/reference.md
+       - name: Preview APIs
+         items:
+          - name: v1 Preview API
+            href: ../../openai/reference-preview-latest.md
+          - name: 2025-04-01-preview - Authoring 
+            href: ../../openai/authoring-reference-preview.md
+          - name: 2025-04-01-preview - Inference 
+            href: ../../openai/reference-preview.md
   - name: Assistants API Reference
     items:
       - name: REST

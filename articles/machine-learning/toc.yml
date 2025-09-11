@@ -783,20 +783,12 @@ items:
       href: how-to-responsible-ai-insights-ui.md
     - name: Generate responsible AI insights (SDK, CLI)
       href: how-to-responsible-ai-insights-sdk-cli.md
-    - name: Generate responsible AI image insights
-      href: how-to-responsible-ai-vision-insights.md
-    - name: Generate responsible AI text insights
-      href: how-to-responsible-ai-text-insights.md
   - name: Configure Responsible AI dashboards
     items:
     - name: Responsible AI dashboard overview
       href: concept-responsible-ai-dashboard.md
     - name: Use the Responsible AI dashboard in studio
       href: how-to-responsible-ai-dashboard.md
-    - name: Use the Responsible AI text dashboard
-      href: how-to-responsible-ai-text-dashboard.md
-    - name: Use the Responsible AI image dashboard
-      href: how-to-responsible-ai-image-dashboard.md
   - name: View a Responsible AI scorecard
     items:
       - name: Responsible AI scorecard
