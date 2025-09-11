@@ -19,7 +19,7 @@ monikerRange: foundry-classic || foundry
 
 # Azure AI Foundry SDK client libraries
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 The Azure AI Foundry SDK is a comprehensive toolchain designed to simplify the development of AI applications on Azure. It enables developers to:
 

@@ -16,7 +16,7 @@ monikerRange: foundry-classic || foundry
 
 # Get started with an AI template
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
