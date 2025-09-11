@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 08/12/2025
+ms.date: 09/10/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
@@ -105,9 +105,6 @@ az cognitiveservices account deployment create \
 ## model-router
 
 A model that intelligently selects from a set of underlying chat models to respond to a given prompt.
-
-> [!NOTE]
-> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
 
 ### Region availability
 
