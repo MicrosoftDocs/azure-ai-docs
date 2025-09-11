@@ -21,9 +21,9 @@ In Azure AI Search, typeahead or "search-as-you-type" is enabled by using a *sug
 
 Matches on partial terms can be either an autocompleted query or a suggested match. The same suggester supports both experiences.
 
-## Typeahead experiences in Azure AI Search
+## Typeahead experiences
 
-Typeahead can be either *autocomplete*, which completes a partial input for a whole term query, or *suggestions* that invite click through to a particular match. Autocomplete produces a query. Suggestions produce a matching document.
+Typeahead  in Azure AI Search can be either *autocomplete*, which completes a partial input for a whole term query, or *suggestions* that invite click through to a particular match. Autocomplete produces a query. Suggestions produce a matching document.
 
 The following screenshot illustrates both. Autocomplete anticipates a potential term, finishing *tw* with *in*. Suggestions are mini search results, where a field like `hotel name` represents a matching hotel search document from the index. For suggestions, you can surface any field that provides descriptive information.
 
@@ -45,7 +45,7 @@ To create a suggester, add one to an [index definition](/rest/api/searchservice/
 
 + If the string field is part of a complex type (for example, a City field within Address), include the parent in the field path: `"Address/City"` (REST, C#, and Python), or `["Address"]["City"]` (JavaScript).
 
-+ Use the default standard Lucene analyzer (`"analyzer": null`) or a [language analyzer](index-add-language-analyzers.md) (for example, `"analyzer": "en.Microsoft"`) on the field.
++ Use the default standard Lucene analyzer (`"analyzer": null`) or a [language analyzer](index-add-language-analyzers.md) (for example, `"analyzer": "fr.microsoft"`) on the field.
 
 If you try to create a suggester using preexisting fields, the API disallows it. Prefixes are generated during indexing, when partial terms in two or more character combinations are tokenized alongside whole terms. Given that existing fields are already tokenized, you have to rebuild the index if you want to add them to a suggester. For more information, see [Update or rebuild an index in Azure AI Search](search-howto-reindex.md).
 
@@ -68,23 +68,21 @@ When evaluating analyzers, consider using the [Analyze Text API](/rest/api/searc
 Fields that use [custom analyzers](index-add-custom-analyzers.md) or [built-in analyzers](index-add-custom-analyzers.md#built-in-analyzers), (except for standard Lucene) are explicitly disallowed to prevent poor outcomes.
 
 > [!NOTE]
-> If you need to work around the analyzer constraint, for example if you need a keyword or ngram analyzer for certain query scenarios, you should use two separate fields for the same content. This allows one of the fields to have a suggester, while the other can be set up with a custom analyzer configuration.
+> If you need to work around the analyzer constraint, for example if you need a keyword or ngram analyzer for certain query scenarios, you should use two separate fields for the same content. This allows one of the fields to have a suggester, while the other can be set up with a custom analyzer configuration. If you're using an indexer, you can map a source field to two different index fields to support multiple configuations.
 
 ## Create using the Azure portal
 
-Using the Azure portal, you can specify a suggester in the index JSON definition. For syntax, see the REST example in the next section.
+In the Azure portal, you can specify a suggester when you select **Add index**.
 
-
-
-
-
-
-
-As previously noted, analyzer choice impacts tokenization and prefixing. Consider the entire field definition when enabling suggesters. 
+1. Select **Add index** and add a string field.
+1. Set field attribution to **Searchable**.
+1. Select an analyzer.
+1. Once fields are defined, select **Autocomplete settings**.
+1. Select the searchable string fields for which you want to enable an autocomplete experience.
 
 ## Create using REST
 
-In the REST API, add suggesters by using [Create Index](/rest/api/searchservice/indexes/create) or [Update Index](/rest/api/searchservice/indexes/create-or-update). 
+In the REST API, add suggesters by using [Create Index](/rest/api/searchservice/indexes/create). 
 
   ```json
   {
