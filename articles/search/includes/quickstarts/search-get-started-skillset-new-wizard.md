@@ -8,7 +8,7 @@ ms.date: 09/10/2025
 ---
 
 > [!IMPORTANT]
-> The **Import and vectorize data** wizard now supports keyword search, which was previously limited to the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
+> The **Import and vectorize data** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
 In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text merging, and entity recognition to generate text-searchable content in an index.
 
@@ -117,7 +117,7 @@ To add the skills:
 
 ### Step 3: Configure the index
 
-An index contains your searchable content. The wizard can usually create the schema by sampling the data source. In this step, you review the generated schema and potentially revise any settings. 
+An index contains your searchable content. The wizard can usually create the schema by sampling the data source. In this step, you review the generated schema and potentially revise any settings.
 
 For this quickstart, the wizard sets reasonable defaults:  
 
@@ -129,10 +129,10 @@ For this quickstart, the wizard sets reasonable defaults:
 
 + Default field attributes are **Retrievable** and **Searchable**. To view and change these attributes, select a field, and then select **Configure field**.
 
-  **Retrievable** means field values can be returned in results, while **Searchable** allows full-text search on a field. The wizard assumes you want `persons`, `locations`, `organizations`, `text`, and `layoutText` to be retrievable and searchable because you created these fields via a skillset. Use **Filterable** if you want to use fields in a filter expression. 
+  **Retrievable** means field values can be returned in results, while **Searchable** allows full-text search on a field. The wizard assumes you want `persons`, `locations`, `organizations`, `text`, and `layoutText` to be retrievable and searchable because you created these fields via a skillset. Use **Filterable** if you want to use fields in a filter expression.
   
   Marking a field as **Retrievable** doesn't mean that the field *must* be present in the search results. You can control search results composition by using the `select` query parameter to specify which fields to include.
-      
+
 After you review the index schema, select **Next**.
 
 ### Step 4: Skip advanced settings

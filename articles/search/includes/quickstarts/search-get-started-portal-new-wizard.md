@@ -8,7 +8,7 @@ ms.date: 09/10/2025
 ---
 
 > [!IMPORTANT]
-> The **Import and vectorize data** wizard now supports keyword search, which was previously limited to the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
+> The **Import and vectorize data** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
 In this quickstart, you use the **Import and vectorize data** wizard and sample data about ficticious hotels to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
