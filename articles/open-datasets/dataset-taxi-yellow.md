@@ -3,7 +3,7 @@ title: NYC Taxi and Limousine yellow dataset
 description: Learn how to use the NYC Taxi and Limousine yellow dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 09/12/2025
 ---
 
 # NYC Taxi & Limousine Commission - yellow taxi trip records
