@@ -11,7 +11,7 @@ ms.custom: include
 ---
 ::: moniker range="foundry-classic"
 > [!NOTE]
-> This document refers to [Azure] AI Foundry (classic)](https://ai.azure.com/?cid=learnDocs), which supports hub-based projects and other resource types.
+> This document refers to [Azure AI Foundry (classic)](https://ai.azure.com/?cid=learnDocs), which supports hub-based projects and other resource types.
 > 
 > Switch to [Azure AI Foundry documentation](../what-is-azure-ai-foundry.md?view=foundry&preserve-view=true) for more streamlined access to models, agents, and tools with Foundry projects.
 >
