@@ -125,13 +125,18 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
 1. On the navigation pane under **Manage**, select **API permissions**, then **Add a permission**, then **Microsoft Graph**.
 
-    + If the indexer is using application API permissions, select **Application permissions**, and then select **Application.Read.All**.
+    + If the indexer is using application API permissions, then select **Application permissions** and add the following:
+        + **Application - Files.Read.All**
+        + **Application - Sites.Read.All**
 
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
       Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret is also required for authentication. Setting up the client secret is described later in this article.
 
-    + If the indexer is using delegated API permissions, select **Delegated permissions** and then select  **Application.Read.All**.
+    +  If the indexer is using delegated API permissions, select **Delegated permissions** and add the following:
+        + **Delegated - Files.Read.All**
+        + **Delegated - Sites.Read.All**
+        + **Delegated - User.Read**
 
       :::image type="content" source="media/search-howto-index-sharepoint-online/delegated-api-permissions.png" alt-text="Screenshot showing delegated API permissions." lightbox="media/search-howto-index-sharepoint-online/delegated-api-permissions.png":::
 
