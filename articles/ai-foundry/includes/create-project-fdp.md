@@ -13,9 +13,6 @@ ms.custom:
   - build-2025
 ---
 
-> [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
-
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
 * This project type gives you the best support for:
