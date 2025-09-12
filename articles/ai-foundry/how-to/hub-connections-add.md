@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 # Create and manage connections in Azure AI Foundry hubs
 
 > [!NOTE]
-> An alternate Foundry (fdp) project connections article is available: [Add a new connection to your project (Foundry projects)](connections-add.md).
+> An alternate Foundry project connections article is available: [Add a new connection to your project (Foundry projects)](connections-add.md).
 
 Connections in Azure AI Foundry hubs allow you to securely integrate external resources and services, such as Azure AI services and other Azure data services. This article covers hub-scoped connection tasks.
 
@@ -75,5 +75,4 @@ Prefer managed identity wherever possible for keyless and rotated credential man
 
 ## Next steps
 
-- Learn about project-scoped connections in the project variant of this article.
-- Secure network traffic with [Private Link](./hub-configure-private-link.md).
+Secure network traffic with [Private Link](./hub-configure-private-link.md).

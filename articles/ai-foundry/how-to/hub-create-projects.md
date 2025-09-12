@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 # Create a hub project for Azure AI Foundry
 
 > [!NOTE]
-> An alternate Foundry (fdp) project creation article is available: [Create a project for Azure AI Foundry (Foundry projects)](create-projects.md).
+> An alternate Foundry project creation article is available: [Create a project for Azure AI Foundry (Foundry projects)](create-projects.md).
 
 This article describes how to create a hub-based project in Azure AI Foundry. Use a hub project when you need prompt flow, managed compute, Azure Machine Learning compatibility, or advanced development features.
 
@@ -110,5 +110,5 @@ Delete hub (with all projects): In Hub properties, select Delete hub to open Azu
 
 ## Related content
 
-- Quickstart: Chat playground
-- Learn more about hubs
+- [Quickstart: Get started with Azure AI Foundry (Hub projects)](../quickstarts/hub-get-started-code.md)
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)

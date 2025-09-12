@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 # Manage and increase quotas for hub resources
 
 > [!NOTE]
-> An alternate Foundry (fdp) project-focused quota article is available: [Manage and increase quotas for resources with Azure AI Foundry](quota.md).
+> An alternate Foundry project-focused quota article is available: [Manage and increase quotas for resources with Azure AI Foundry](quota.md).
 
 Quota provides flexibility to manage rate limits across deployments within your subscription. This article focuses on hub-level quotas (virtual machines and models) and how to view and request increases.
 

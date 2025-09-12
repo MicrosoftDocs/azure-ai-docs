@@ -111,7 +111,5 @@ Using CMKs may incur extra subline cost items due to dedicated hosting of certai
 
 ## Related content
 
-* Hub CMK article: hub-encryption-keys-portal.md
 * [Disable local authorization](../how-to/disable-local-auth.md)
 * [What is Azure Key Vault?](/azure/key-vault/general/overview)
-* Bicep samples repository

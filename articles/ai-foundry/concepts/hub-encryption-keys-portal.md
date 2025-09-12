@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 # Customer-managed keys for hub projects
 
 > [!NOTE]
-> An alternate Foundry (fdp) project CMK article is available: [Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)](encryption-keys-portal.md).
+> An alternate Foundry project article is available: [Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)](encryption-keys-portal.md).
 
 Hub-based projects require configuring CMK on each underlying service (Azure AI Hub, Storage) for end-to-end encryption control.
 
@@ -75,6 +75,5 @@ Dedicated hosting of certain back-end services under CMK results in extra sublin
 
 ## Related content
 
-- Hub creation
-- Project encryption (see encryption-keys-portal.md)
-- Key Vault overview
+* [Disable local authorization](../how-to/disable-local-auth.md)
+* [What is Azure Key Vault?](/azure/key-vault/general/overview)

@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 # Role-based access control for Azure AI Foundry (hub-focused)
 
 > [!NOTE]
-> An alternate Foundry (fdp) project-focused RBAC article is available: [Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md).
+> An alternate Foundry project-focused RBAC article is available: [Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md).
 
 In this article, you learn how to manage access at the hub and project levels of Azure AI Foundry. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources. Azure provides built-in roles and lets you create custom roles.
 

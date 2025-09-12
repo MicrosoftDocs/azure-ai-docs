@@ -18,7 +18,7 @@ ai-usage: ai-assisted
 # How to configure a private link for Azure AI Foundry
 
 > [!NOTE]
-> An alternate Foundry (fdp) project-focused version is available: [How to configure a private link for Azure AI Foundry projects](configure-private-link.md).
+> An alternate Foundry project-focused version is available: [How to configure a private link for Azure AI Foundry projects](configure-private-link.md).
 
 When using a [!INCLUDE [hub-projects](../includes/hub-project-name.md)], there are two network isolation aspects to consider:
 

@@ -16,9 +16,7 @@ ai-usage: ai-assisted
 # Quickstart: Get started with Azure AI Foundry (Hub projects)
 
 > [!NOTE]
-> An alternate Foundry (fdp) project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).
-> [!NOTE]
-> An alternate Foundry (fdp) project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).
+> An alternate Foundry project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).
 
 This quickstart sets up your local environment for hub-based projects, deploys a model, and builds a simple traced/evaluable chat script.
 
@@ -71,4 +69,4 @@ Delete deployment or project when done to avoid charges.
 ## Next step
 
 > [!div class="nextstepaction"]
-> Add data and use RAG (tutorial link)
+> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
