@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Get started with Azure AI Foundry"
+title: "Azure AI Foundry SDK Quickstart - Build Your First AI App"
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
+description: Get started with Azure AI Foundry SDK to build AI applications. Learn to deploy models, create chat apps, trace LLM calls, and run evaluations with Python code examples.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -18,6 +18,7 @@ ms.custom:
   - build-2025
   - peer-review-program
 zone_pivot_groups: project-type
+ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
 
@@ -26,7 +27,7 @@ zone_pivot_groups: project-type
 
 ::: zone pivot="hub-project"
 
-In this quickstart, we walk you through setting up your local development environment with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. We write a prompt, run it as part of your app code, trace the LLM calls being made, and run a basic evaluation on the outputs of the LLM.
+In this quickstart, learn to build AI applications with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. Set up your development environment, write prompts, trace LLM calls, and run evaluations to create robust AI solutions with Python.
 
 > [!TIP]
 > The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.  [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
