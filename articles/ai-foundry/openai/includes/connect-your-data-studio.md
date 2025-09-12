@@ -33,12 +33,12 @@ To add your data using the portal:
     1. Under **Select data source**, select **Upload files (preview)**.
 
         > [!TIP]
-        > + This option requires an Azure Blob Storage resource and Azure AI Search service to access and index your data. For more information, see [Data source options](../concepts/use-your-data.md#supported-data-sources) and [Supported file types and formats](../concepts/use-your-data.md#data-formats-and-file-types).
+        > + This option requires an Azure Blob Storage resource and Azure AI Search resource to access and index your data. For more information, see [Data source options](../concepts/use-your-data.md#supported-data-sources) and [Supported file types and formats](../concepts/use-your-data.md#data-formats-and-file-types).
         > + For documents and datasets with long text, we recommend that you use the [data preparation script](https://go.microsoft.com/fwlink/?linkid=2244395). 
 
     1. [Cross-origin resource sharing](https://go.microsoft.com/fwlink/?linkid=2237228) (CORS) is required for Azure OpenAI to access your storage account. If CORS isn't already enabled for your Azure Blob Storage resource, select **Turn on CORS**. 
 
-    1. Select your Azure AI Search service.
+    1. Select your Azure AI Search resource.
     
     1. Enter a name for your new index.
 
@@ -61,7 +61,7 @@ To add your data using the portal:
     1. Choose whether to enable [semantic search or vector search](../concepts/use-your-data.md#search-types) for your index.
     
         > [!IMPORTANT]
-        > * [Semantic search](/azure/search/semantic-search-overview#availability-and-pricing) and [vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) are subject to additional pricing. Your search service must be on the Basic tier or higher to enable semantic search or vector search. For more information, see [Choose a tier](/azure/search/search-sku-tier) and [Service limits](/azure/search/search-limits-quotas-capacity).
+        > * [Semantic search](/azure/search/semantic-search-overview#availability-and-pricing) and [vector search](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) are subject to additional pricing. Your Azure AI Search resource must be on the Basic tier or higher to enable semantic search or vector search. For more information, see [Choose a tier](/azure/search/search-sku-tier) and [Service limits](/azure/search/search-limits-quotas-capacity).
         > * To help improve the quality of the information retrieval and model response, we recommend that you enable [semantic search](/azure/search/semantic-search-overview) for the following data source languages: English, French, Spanish, Portuguese, Italian, Germany, Chinese(Zh), Japanese, Korean, Russian, and Arabic.
     
     1. Select **Next**.

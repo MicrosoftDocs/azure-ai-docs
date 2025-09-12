@@ -30,7 +30,7 @@ This article describes how to set up the Azure AI Search tool, including creatin
     + One or more `Collection(Edm.Single)` (vector) fields attributed as searchable.
 
 > [!TIP]
-> Instead of using an existing index, you can create an index without leaving the Azure AI Foundry portal. For more information, see the [Add the tool to an agent](#add-the-azure-ai-search-tool-to-an-agent) section.
+> Instead of using an existing index, you can create an index without leaving the Azure AI Foundry portal. For more information, see the [Add the tool to an agent](#add-the-tool-to-an-agent) section.
 
 ## Usage support
 
@@ -215,7 +215,7 @@ To add the tool through the portal:
 
 1. Under **Connect to an index**, select **Indexes that are not part of this project**.
 
-1. Under **Azure AI Search resource connection**, select the connection you created in the previous section.
+1. Under **Azure AI Search resource connection**, select the project connection you created in the previous section.
 
 1. Under **Azure AI Search index**, select your vector index.
 
@@ -235,8 +235,6 @@ To add the tool through the portal:
     + **Hybrid + semantic**
 
     By default, the Azure AI Search tool runs a hybrid search (vector + keyword) on all text fields.
-
-1. (Optional) Specify the number of top-scoring documents to use for response generation and enable field mapping.
 
 1. Select **Connect** to add the Azure AI Search tool to your agent.
 
