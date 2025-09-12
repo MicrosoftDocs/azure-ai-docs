@@ -153,6 +153,7 @@ The response from a successful image generation API call looks like the followin
 You can stream image generation requests to `gpt-image-1` by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
 
 ```python
+import base64
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -163,7 +164,7 @@ token_provider = get_bearer_token_provider(
 client = OpenAI(  
   base_url = "https://RESOURCE-NAME-HERE/openai/v1/",  
   api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
+  default_headers={"api_version":"preview"}
 )
 
 stream = client.images.generate(
