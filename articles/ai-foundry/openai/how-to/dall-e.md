@@ -71,43 +71,6 @@ The following is a sample request body. You specify a number of options, defined
 }
 ```
 
-### Streaming
-
-You can stream image generation requests by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
-
-```python
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = OpenAI(  
-  base_url = "https://RESOURCE-NAME-HERE/openai/v1/",  
-  api_key=token_provider,
-  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
-)
-
-stream = client.images.generate(
-    model="gpt-image-1",
-    prompt="A cute baby sea otter",
-    n=1,
-    size="1024x1024",
-    stream=True,
-    partial_images = 2
-)
-
-for event in stream:
-    if event.type == "image_generation.partial_image":
-        idx = event.partial_image_index
-        image_base64 = event.b64_json
-        image_bytes = base64.b64decode(image_base64)
-        with open(f"river{idx}.png", "wb") as f:
-            f.write(image_bytes)
- 
-```
-
 #### [DALL-E 3](#tab/dalle-3)
 
 Send a POST request to:
@@ -182,7 +145,45 @@ The response from a successful image generation API call looks like the followin
     ]
 } 
 ```
+
 ---
+
+### Streaming
+
+You can stream image generation requests to `gpt-image-1` by setting the `stream` parameter to `true`, and setting the `partial_images` parameter to a value between 0 and 3.
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://RESOURCE-NAME-HERE/openai/v1/",  
+  api_key=token_provider,
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
+)
+
+stream = client.images.generate(
+    model="gpt-image-1",
+    prompt="A cute baby sea otter",
+    n=1,
+    size="1024x1024",
+    stream=True,
+    partial_images = 2
+)
+
+for event in stream:
+    if event.type == "image_generation.partial_image":
+        idx = event.partial_image_index
+        image_base64 = event.b64_json
+        image_bytes = base64.b64decode(image_base64)
+        with open(f"river{idx}.png", "wb") as f:
+            f.write(image_bytes)
+ 
+```
 
 
 ### API call rejection
