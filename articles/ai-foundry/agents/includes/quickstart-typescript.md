@@ -14,7 +14,7 @@ ms.custom: devx-track-ts
 ## Prerequisites
 
 [!INCLUDE [universal-prerequisites](universal-prerequisites.md)]
-    * [Node.js LTS](https://nodejs.org/)
+* [Node.js LTS](https://nodejs.org/)
 
 ## Configure and run an agent
 
@@ -69,10 +69,10 @@ Save the name of your model deployment name as an environment variable named `MO
 
 Create a tsconfig.json file with the following content:
 
-:::code language="json" source="~/reusable-content/samples/foundry/azure-ai-agents-quickstart-math/tsconfig.json":::
+:::code language="json" source="~/azure-sdk-for-js-docs/samples/foundry/azure-ai-agents-quickstart-math/tsconfig.json":::
 
 Next, create an `index.ts` file and paste in the following code:
 
-:::code language="typescript" source="~/reusable-content/samples/foundry/azure-ai-agents-quickstart-math/index.ts":::
+:::code language="typescript" source="~/azure-sdk-for-js-docs/samples/foundry/azure-ai-agents-quickstart-math/index.ts":::
 
 Run the code using `npx tsx -r dotenv/config index.ts`. This code answers the question `I need to solve the equation '3x + 11 = 14'. Can you help me?`. Full [sample source code](https://github.com/Azure-Samples/azure-sdk-for-js-docs/blob/main/samples/foundry/azure-ai-agents-quickstart-math) available.
