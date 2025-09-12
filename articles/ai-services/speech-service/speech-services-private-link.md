@@ -34,7 +34,7 @@ This article describes the usage of the private endpoints with Speech service. U
 
 ## Create a custom domain name
 > [!CAUTION]
-> an AI Foundry resource for Speech with a custom domain name enabled uses a different way to interact with Speech service. You might have to adjust your application code for both of these scenarios: [with private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-with-a-private-endpoint) and [*without* private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-without-private-endpoints).
+> An AI Foundry resource for Speech with a custom domain name enabled uses a different way to interact with Speech service. You might have to adjust your application code for both of these scenarios: [with private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-with-a-private-endpoint) and [*without* private endpoint](#adjust-an-application-to-use-an-ai-foundry-resource-for-speech-without-private-endpoints).
 >
 
 [!INCLUDE [Custom Domain include](includes/how-to/custom-domain.md)]
@@ -245,15 +245,15 @@ A "standard" endpoint URL looks like: <p/>`{region}.{speech service offering}.sp
 A private endpoint URL looks like: <p/>`{your custom name}.cognitiveservices.azure.com/{URL path}`
 
 The Speech SDK automatically will configure the `/{URL path}` depending on the service used.
-Therefor only the `/{baseURL}` must be configured as described.
+Therefore only the `/{baseURL}` must be configured as described.
 
 #### Modifying applications
 
 Follow these steps to modify your code:
 
-1. Determine the application endpoint URL from the 'Keys and Endpoints' menu of your resource on Azure Portal. In this example it would be `my-private-link-speech.cognitiveservices.azure.com`.
+1. Determine the application endpoint URL from the 'Keys and Endpoints' menu of your resource on Azure portal. In this example it would be `my-private-link-speech.cognitiveservices.azure.com`.
 
-2. Create a `SpeechConfig` instance by using a endpoint URL:
+2. Create a `SpeechConfig` instance by using an endpoint URL:
 
    1. Modify the endpoint that you determined, as described in the earlier [Construct endpoint URL](#construct-endpoint-url) section.
 
