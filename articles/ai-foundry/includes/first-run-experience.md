@@ -25,4 +25,4 @@ In the portal, you can explore a rich catalog of cutting-edge models from Micros
 1. Select **Open in playground** from the deployment page after it's deployed.
 1. You land in the Chat playground with the model pre-deployed and ready to use.
 
-If you're building an agent, you can instead start with **Create an agent**. The steps are similar, but in a different order.  Once the project is created, you arrive at the Agent playground instead of the Crewordhat playground.
+If you're building an agent, you can instead start with **Create an agent**. The steps are similar, but in a different order.  Once the project is created, you arrive at the Agent playground instead of the Chat playground.
