@@ -170,9 +170,9 @@ Understanding the built-in metrics is vital for assessing the performance and ef
 
 ## Next steps
 
-- Improve low metrics via prompt iteration or [fine-tuning](../concepts/fine-tuning-overview).
-- [Add tracing to diagnose latency or unexpected tool steps](./develop/trace-application).
-- [Run evaluations in the cloud with the Azure AI Foundry SDK](./develop/cloud-evaluation).
+- Improve low metrics via prompt iteration or [fine-tuning](../concepts/fine-tuning-overview.md).
+- [Add tracing to diagnose latency or unexpected tool steps](./develop/trace-application.md).
+- [Run evaluations in the cloud with the Azure AI Foundry SDK](./develop/cloud-evaluation.md).
 
 ## Related content
 

@@ -54,8 +54,8 @@ In this article, you learn how to:
 
 ## Related content
 
-- [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune)
-- [Model catalog & regional availability](../concepts/models)
-- [Quotas and limits](../quotas-limits)
-- [View and interpret evaluation results](../../how-to/evaluate-results)
-- [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application)
+- [Fine-tuning tutorial (step-by-step)](../tutorials/fine-tune.md)
+- [Model catalog & regional availability](../concepts/models.md)
+- [Quotas and limits](../quotas-limits.md)
+- [View and interpret evaluation results](../../how-to/evaluate-results.md)
+- [Trace AI application usage (OpenAI SDK)](../../how-to/develop/trace-application.md)
