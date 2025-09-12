@@ -51,6 +51,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azure-sdk-for-js-docs",
+      "url": "https://github.com/Azure-samples/azure-sdk-for-js-docs",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "samples-luis",
       "url": "https://github.com/Azure-Samples/cognitive-services-language-understanding",
       "branch": "master",
