@@ -33,7 +33,7 @@ The Document Intelligence tax model uses powerful Optical Character Recognition 
 * 1098
 * 1098-E
 * 1098-T
-* 1099 and variations (added 1099-SSA)
+* 1099 and variations (added 1099-SSA, 1099-DA)
 * 1040 and variations
 * 1095A, 1095C
 * W-4
