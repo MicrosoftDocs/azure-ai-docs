@@ -19,15 +19,23 @@ ai-usage: ai-assisted
 
 # Customer-managed keys for encryption with Azure AI Foundry
 
-Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides enhanced control over encryption of your data. Learn how to use customer-managed keys to add an extra layer of protection and meet compliance requirements more effectively with Azure Key Vault integration.
+Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+
+In this article, you learn how to:
+
+- Understand Microsoft-managed encryption versus CMK.
+- Identify data storage patterns for hub-based and project-based resources.
+- Choose a data storage architecture option for hub projects.
+- Configure required Key Vault settings and permissions.
+- Plan rotation and revocation.
 
 ## About encryption in Azure AI Foundry
 
-Azure AI Foundry is a service in the Azure cloud. By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest.
+Azure AI Foundry is a service in the Azure cloud. By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Your data is always encrypted; CMKs add customer ownership and rotation control.
 
 ::: zone pivot="hub-project"
 
-When you use hub-based projects, the Azure AI Hub resource acts as a gateway to multiple Azure services, including Azure AI Hub, Azure Storage, and Azure AI Foundry resources. You must configure CMK encryption on each of these services to use CMK encryption throughout with Azure AI Foundry.
+When you use hub-based projects, the Azure AI Hub resource acts as a gateway to multiple Azure services, including Azure AI Hub, Azure Storage, and Azure AI Foundry resources. You must configure CMK encryption on each of these services for consistent CMK coverage.
 
 * Azure AI Hub resources and [!INCLUDE [hub](../includes/hub-project-name.md)] resources are implementations of the Azure Machine Learning workspace and encrypt data in transit and at rest. For more information, see [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md).
 * Azure AI Foundry resources data is encrypted and decrypted by using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2)-compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, which means that encryption and access are managed for you. Your data is secure by default, and you don't need to modify your code or applications to take advantage of encryption.
@@ -49,25 +57,18 @@ On your Azure AI Foundry resource, data is encrypted and decrypted by using [FIP
 
 Two architecture options are available when you use CMKs with Azure AI Hub:
 
-* **(Recommended) Encrypted data is stored in a Microsoft subscription**
+1. **(Recommended) Service-side encrypted data in a Microsoft subscription**  
+  Data is stored service side on Microsoft-managed infrastructure. Metadata is stored in multitenant resources with document-level CMK encryption. An Azure AI Search instance is hosted per hub (isolation boundary) to isolate encrypted data. Choose this model for new deployments.
+2. **(Legacy) Data stored in a managed resource group in your subscription**  
+  Retained for backward compatibility. Not recommended for new workloads.
 
-   Data is stored service side on Microsoft-managed resources instead of in managed resources in your subscription. Metadata is stored in multitenant resources by using document-level CMK encryption. An Azure AI Search instance is hosted in the Microsoft-subscription per customer, for each hub, to provide data isolation of encrypted data. We recommend that you use this option for any new deployments.
-* **(Legacy) Encrypted data is stored in your subscription**
+All projects that use the same hub store data on the managed resource group (`azureml-rg-hubworkspacename_GUID`). If your hub has a private link endpoint, network access to the managed resources is restricted. The managed resource group is deleted when the hub is deleted.
 
-   Traditionally, on the Machine Learning platform (on which the Azure AI Hub resource is built), data is stored in your subscription by using a Microsoft-managed resource group. The group includes an Azure Storage account, an Azure Cosmos DB resource, and Azure AI Search. You can't modify the configuration of these resources because the changes aren't supported.
-
-  > [!IMPORTANT]
-  > This option is available for backward compatibility. We don't recommend it for new workloads.
-
-  All projects that use the same hub store data on the resources in a managed resource group identified by the name `azureml-rg-hubworkspacename_GUID`. Projects use Microsoft Entra ID authentication when they interact with these resources. If your hub has a private link endpoint, network access to the managed resources is restricted. The managed resource group is deleted when the hub is deleted.
-
-  The following data is stored on the managed resources.
-
-  |Service|What it's used for|Example|
-  |-----|-----|-----|
-  |Azure Cosmos DB|Stores metadata for your Azure AI projects and tools.|Index names and tags, flow creation timestamps, deployment tags, evaluation metrics|
-  |Azure AI Search|Stores indices that are used to help query your Azure AI Foundry content.|An index based off your model deployment names|
-  |Azure Storage account|Stores instructions for how customization tasks are orchestrated.|JSON representation of flows that you create in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs)|
+| Service | Purpose | Example |
+|---------|---------|---------|
+| Azure Cosmos DB | Metadata for Azure AI projects and tools | Index names, flow timestamps, deployment tags, evaluation metrics |
+| Azure AI Search | Indices to query Azure AI Foundry content | Index based on model deployment names |
+| Azure Storage account | Orchestration instructions and configuration assets | JSON representations of flows created in the portal |
 
 ::: zone-end
 
@@ -75,10 +76,16 @@ Two architecture options are available when you use CMKs with Azure AI Hub:
 
 You must use Azure Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. Your Azure resources and the Key Vault resources must be in the same region and in the same Microsoft Entra tenant. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-- Enable both the **Soft-delete** and **Purge protection** properties on the key vault.
-- Allow trusted Microsoft services to access the key vault if you use the [key vault firewall](/azure/key-vault/general/access-behind-firewall).
-- Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity the following permissions on your key vault: Get key, Wrap key, Unwrap key.
-- Note that only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
+- Enable **Soft-delete** and **Purge protection** on the key vault.
+- Allow trusted Microsoft services to access the key vault if you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall).
+- Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity these key permissions: **get**, **wrapKey**, **unwrapKey**.
+- Use RSA or RSA-HSM keys of size 2048. Other key types/sizes aren't supported. See the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
+
+## Next steps
+
+- Review related: [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md)
+- Plan key [rotation policies in Key Vault](/azure/key-vault/secrets/tutorial-rotation-dual).
+- Assess migration from legacy storage architecture if applicable.
 
 ### Enable the managed identity for your Azure AI Foundry resource
 

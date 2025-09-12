@@ -27,7 +27,13 @@ ai-usage: ai-assisted
 
 ::: zone pivot="hub-project"
 
-In this quickstart, learn to build AI applications with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. Set up your development environment, write prompts, trace LLM calls, and run evaluations to create robust AI solutions with Python.
+In this quickstart, build an AI application with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. Set up your environment, deploy a model, create a chat app, trace calls, and run evaluations in Python.
+
+You will:
+- Deploy a model.
+- Send a chat prompt and receive a response.
+- Refactor the script to use a prompt template.
+- (Optional) Add tracing and evaluations.
 
 > [!TIP]
 > The rest of this article shows how to use a **[!INCLUDE [hub](../includes/hub-project-name.md)]**.  Select **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [fdp](../includes/fdp-project-name.md)] instead.  [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
@@ -91,15 +97,15 @@ Run the script to see the response from the model.
 python chat.py
 ```
 
-## Generate prompt from user input and a prompt template
+## Generate a prompt from user input and a prompt template
 
 The script uses hardcoded input and output messages. In a real app you'd take input from a client application, generate a system message with internal instructions to the model, and then call the LLM with all of the messages.
 
-Let's change the script to take input from a client application and generate a system message using a prompt template.
+Change the script to take input from a client application and generate a system message using a prompt template.
 
 1. Remove the last line of the script that prints a response.
 
-1. Now define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model.  Add this code to your  existing **chat.py** file:
+1. Define a `get_chat_response` function that takes messages and context, generates a system message using a prompt template, and calls a model. Add this code to your existing **chat.py** file. Include basic exception handling for timeouts or rate limits.
 
     :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="chat_function":::
 
@@ -108,7 +114,13 @@ Let's change the script to take input from a client application and generate a s
 
     The get_chat_response function could be easily added as a route to a FastAPI or Flask app to enable calling this function from a front-end web application.
 
-1. Now simulate passing information from a frontend application to this function.  Add the following code to the end of your **chat.py** file.  Feel free to play with the message and add your own name.
+1. Simulate passing information from a frontend application to this function. Add the following code to the end of **chat.py**.
+
+## Next steps
+
+- Add tracing to inspect latency.
+- Run evaluations to measure groundedness and safety.
+- Fine-tune a model for domain-specific responses.
 
     :::code language="python" source="~/azureai-samples-main/scenarios/projects/basic/chat-template.py" id="create_response":::
 
