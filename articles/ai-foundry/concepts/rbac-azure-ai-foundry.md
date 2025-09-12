@@ -23,8 +23,6 @@ In this article, you learn how to manage access to your [Azure AI Foundry](https
 
 If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
 
-Azure AI Foundry supports two project types: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. This (project-focused) article now describes RBAC for Foundry projects only. Hub RBAC details have moved to `hub-rbac-azure-ai-foundry.md`.
-
 > [!WARNING]
 > Applying some roles might limit UI functionality in the Azure AI Foundry portal for other users. For example, if a user's role doesn't have permission to create a compute instance, the option to create one isn't available in the portal. This behavior is expected and prevents the user from starting actions that return an access denied error.
 

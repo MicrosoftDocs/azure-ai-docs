@@ -60,7 +60,7 @@ With a project selected, you can use the __Users__ entry in the left menu to vie
 > [!NOTE]
 > You can only assign built-in roles for Azure AI Foundry in the management center.
 
-For more information, see [Role-based access control](rbac-azure-ai-foundry.md#assigning-roles-in-azure-ai-foundry-portal).
+For more information, see [Role-based access control](rbac-azure-ai-foundry.md#azure-ai-foundry-project-roles).
 
 ## Related content
 
