@@ -56,11 +56,11 @@ The following steps show how to configure your resource:
 
     1. Once the connection is configured, you're ready to use tracing in any project within the resource.
 
-         > [!TIP]
-         > After you connect to your Application Insights resource, make sure you have [Log Analytics Reader role](/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned.
-        > 1. Go to your connected Application Insights resource, select **Access control (IAM)** then **Add Role Assignment**.
-        > 1. Under *Role* select **Log Analytics Reader** then under *Members* add the necessary members.
-        > 1. Select **Review and Assign**.
+    > [!TIP]
+    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in you Application Insights resource.
+    > 1. Go to your connected Application Insights resource, select **Access control (IAM)** then **Add Role Assignment**.
+    > 1. Under *Role* select **Log Analytics Reader** then under *Members* add the necessary members.
+    > 1. Select **Review and Assign**.
 
 1. Go to the landing page of your project and copy the project's endpoint URI. You need it later.
 
