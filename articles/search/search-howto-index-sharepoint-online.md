@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 09/12/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -125,14 +125,16 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
 1. On the navigation pane under **Manage**, select **API permissions**, then **Add a permission**, then **Microsoft Graph**.
 
-    + If the indexer is using application API permissions, select **Application permissions**, and then select **Application.Read.All**.
+    + If the indexer is using application API permissions, select **Application permissions**, and then select `Files.Read.All` and `Sites.Read.All`.
 
+      <!-- RESTORE THIS SCREENSHOT -->
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
       Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret is also required for authentication. Setting up the client secret is described later in this article.
 
-    + If the indexer is using delegated API permissions, select **Delegated permissions** and then select  **Application.Read.All**.
+    + If the indexer is using delegated API permissions, select **Delegated permissions** and then select `Delegated - Files.Read.All`, `Delegated - Sites.Read.All`, and `Delegated - User.Read`.
 
+      <!-- RESTORE THIS SCREENSHOT -->
       :::image type="content" source="media/search-howto-index-sharepoint-online/delegated-api-permissions.png" alt-text="Screenshot showing delegated API permissions." lightbox="media/search-howto-index-sharepoint-online/delegated-api-permissions.png":::
 
       Delegated permissions allow the search client to connect to SharePoint under the security identity of the current user.
@@ -141,21 +143,21 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
     Tenant admin consent is required when using application API permissions. Some tenants are locked down in such a way that tenant admin consent is required for delegated API permissions as well. If either of these conditions apply, you’ll need to have a tenant admin grant consent for this Microsoft Entra application before creating the indexer.
 
+    <!-- RESTORE THIS SCREENSHOT -->
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png" alt-text="Screenshot showing Microsoft Entra app grant admin consent." lightbox="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png":::
 
-1. From the menu, select **Authentication (Preview)**.
+1. Select the **Authentication** tab.
 
-1. On the **Redirect URI configuration** tab, select **+ Add Redirect URI**, then **Mobile and desktop applications**, then check `https://login.microsoftonline.com/common/oauth2/nativeclient`, then **Configure**.
+1. Set **Allow public client flows** to **Yes** then select **Save**.
 
+    <!-- RESTORE THIS SCREENSHOT -->
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-authentication-configuration.png" alt-text="Screenshot showing Microsoft Entra app authentication configuration." lightbox="media/search-howto-index-sharepoint-online/aad-app-authentication-configuration.png" :::
 
-1. Select the **Settings** tab. 
-
-1. Enable **Allow public client flows**. Save your changes.
+1. Select **+ Add a platform**, then **Mobile and desktop applications**, then check `https://login.microsoftonline.com/common/oauth2/nativeclient`, then **Configure**.
 
 1. (Application API Permissions only) To authenticate to the Microsoft Entra application using application permissions, the indexer requires a client secret.
 
-    + From the menu, select **Certificates & Secrets**, then **Client secrets**, then **New client secret**.
+    + Select **Certificates & Secrets** from the menu on the left, then **Client secrets**, then **New client secret**.
 
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-client-secret.png" alt-text="Screenshot showing new client secret." lightbox="media/search-howto-index-sharepoint-online/application-client-secret.png" :::
 
@@ -165,6 +167,7 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
     + The new client secret appears in the secret list. Once you navigate away from the page, the secret is no longer be visible, so copy the value using the copy button and save it in a secure location.
 
+      <!-- RESTORE THIS SCREENSHOT -->
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-client-secret-copy.png" alt-text="Screenshot showing where to copy a client secret.":::
 
 <a name="create-data-source"></a>
@@ -265,6 +268,7 @@ There are a few steps to creating the indexer:
         "parameters": {
         "batchSize": null,
         "maxFailedItems": null,
+        "base64EncodeKeys": null,
         "maxFailedItemsPerBatch": null,
         "configuration": {
             "indexedFileNameExtensions" : ".pdf, .docx",
