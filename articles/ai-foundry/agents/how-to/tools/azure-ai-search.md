@@ -6,7 +6,7 @@ services: azure-ai-agent-service
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 09/11/2025
+ms.date: 09/12/2025
 author: haileytap
 ms.author: haileytapia
 ms.reviewer: aahi
@@ -15,7 +15,7 @@ ms.custom: azure-ai-agents
 
 # Azure AI Search tool
 
-The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Azure AI Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your own content.
+The [Azure AI Search](/azure/search/search-what-is-azure-search) tool in Azure AI Foundry Agent Service connects an agent to a new or existing search index. You can use this tool to retrieve and summarize your indexed documents, grounding the agent's responses in your proprietary content.
 
 This article describes how to set up the Azure AI Search tool, including creating a project connection and adding the tool to your agent.
 
@@ -23,11 +23,11 @@ This article describes how to set up the Azure AI Search tool, including creatin
 
 + An [Azure AI Foundry agent](../../quickstart.md).
 
-+ An [Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors.md). The index must include one or more of the following fields:
++ An [Azure AI Search index configured for vector search](../../../../search/search-get-started-portal-import-vectors.md). The index must include:
 
-    + `Edm.String` text field attributed as searchable and retrievable.
+    + One or more `Edm.String` (text) fields attributed as searchable and retrievable.
 
-    + `Collection(Edm.Single)` vector field attributed as searchable.
+    + One or more `Collection(Edm.Single)` (vector) fields attributed as searchable.
 
 > [!TIP]
 > Instead of using an existing index, you can create an index without leaving the Azure AI Foundry portal. For more information, see the [Add the tool to an agent](#add-the-azure-ai-search-tool-to-an-agent) section.
@@ -226,7 +226,7 @@ To add the tool through the portal:
 
 1. Under **Display name**, enter the name of your index.
 
-1. Depending on your index configuration, choose one of the following search types:
+1. Depending on your index configuration, choose one of the following [search types](../../../openai/concepts/use-your-data.md#search-types):
 
     + **Simple**
     + **Semantic**
