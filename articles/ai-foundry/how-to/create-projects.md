@@ -5,7 +5,7 @@ description: This article describes how to create an Azure AI Foundry project so
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 07/03/2025
+ms.date: 09/12/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -14,15 +14,18 @@ ms.custom:
   - ignite-2024
   - build-aifnd
   - build-2025
-zone_pivot_groups: project-type
+ai-usage: ai-assisted
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---
 
-# Create a project for Azure AI Foundry
+# Create a project for Azure AI Foundry (Foundry projects)
+
+> [!NOTE]
+> An alternate hub project creation article is available: [Create a hub project for Azure AI Foundry](hub-create-projects.md).
 
 This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work for exploring new ideas and as you prototype on a particular use case.
 
-Azure AI Foundry supports two types of projects: a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** and a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. For more information about the differences between these two project types, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
+Azure AI Foundry provides **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** projects (this article) and hub-based projects (see hub-create-projects.md for details). For differences, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
 ::: zone pivot="hub-project"
 
@@ -197,8 +200,5 @@ To delete the hub along with all its projects:
 
 ::: zone-end
 
-::: zone pivot="fdp-project"
-
 [!INCLUDE [create-project-fdp](../includes/create-project-fdp.md)]
 
-::: zone-end
