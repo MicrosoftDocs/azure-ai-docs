@@ -32,7 +32,7 @@ This quickstart sets up your local environment for hub-based projects, deploys a
 ```bash
 pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
 ```
-> Different project types need distinct azure-ai-projects versions; isolate environments.
+> Different project types need distinct azure-ai-projects versions. Keep each project in its own isolated environment to avoid conflicts.
 
 ## Deploy a model
 
