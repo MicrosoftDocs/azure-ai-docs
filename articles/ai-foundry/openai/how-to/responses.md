@@ -1271,18 +1271,17 @@ Use the Responses API if you want to build conversational image experiences with
 
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
+  api_key=token_provider,
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
 )
 
 response = client.responses.create(
