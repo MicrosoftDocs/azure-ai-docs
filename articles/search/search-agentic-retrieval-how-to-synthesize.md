@@ -144,6 +144,8 @@ Depending on your agent's configuration, the response might include other inform
 
 ## Related content
 
++ [Quickstart: Agentic retrieval in Azure AI Search (uses answer synthesis)](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Agentic-Retrieval/quickstart-agentic-retrieval.ipynb)
++ [Azure AI Search Blob knowledge source Python sample (uses answer synthesis)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
 + [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
 + [Create a search index knowledge source](search-knowledge-source-how-to-index.md)
