@@ -1,20 +1,21 @@
 ---
-title: How to trace AI applications using OpenAI SDK
+title: View Trace Results for AI Applications using OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
+description: View trace results for AI applications using OpenAI SDK with OpenTelemetry in Azure AI Foundry. See execution traces, diagnose issues, and monitor application performance.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 08/29/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
-# Trace AI applications using OpenAI SDK
+# View trace results for AI applications using OpenAI SDK
 
-Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. This helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
+Learn how to view trace results that provide deep visibility into AI application execution. See detailed telemetry captured at each step to diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, and low-quality evaluation scores.  
 
-This article explains how to implement tracing for AI applications using **OpenAI SDK** with OpenTelemetry in Azure AI Foundry.
+This article explains how to view trace results for AI applications using **OpenAI SDK** with OpenTelemetry in Azure AI Foundry.
 
 ## Prerequisites
 
@@ -65,6 +66,28 @@ The following steps show how to configure your resource:
 
     > [!IMPORTANT]
     > Using a project's endpoint requires configuring Microsoft Entra ID in your application. If you don't have Entra ID configured, use the Azure Application Insights connection string as indicated in step 3 of the tutorial.
+
+## View trace results in Azure AI Foundry portal
+
+Once you have tracing configured and your application is instrumented, you can view trace results in the Azure AI Foundry portal:
+
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your project.
+
+1. On the side navigation bar, select **Tracing**.
+
+1. You'll see a list of trace results from your instrumented applications. Each trace shows:
+   - **Trace ID**: Unique identifier for the trace
+   - **Start time**: When the trace began
+   - **Duration**: How long the operation took
+   - **Status**: Success or failure status
+   - **Operations**: Number of spans in the trace
+
+1. Select any trace to view detailed trace results including:
+   - Complete execution timeline
+   - Input and output data for each operation
+   - Performance metrics and timing
+   - Error details if any occurred
+   - Custom attributes and metadata
 
 ## Instrument the OpenAI SDK
 
@@ -126,7 +149,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     )
     ```
 
-1. If you go back to Azure AI Foundry portal, you should see the trace displayed:
+1. If you go back to Azure AI Foundry portal, you can view the trace results:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="A screenshot showing how a simple chat completion request is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
@@ -167,7 +190,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         return responses
     ```
 
-1. Traces look as follows:
+1. Trace results look as follows:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-decorator.png" alt-text="A screenshot showing how a method using a decorator is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-decorator.png":::
 
