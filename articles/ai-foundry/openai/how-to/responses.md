@@ -1265,14 +1265,9 @@ Compared to the standalone Image API, the Responses API offers several advantage
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`.
+> The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
 
-Use the Responses API if you want to:
-
-* Build conversational image experiences with GPT Image.
-* Stream partial image results during generation for a smoother user experience.
-
-Generate an image
+Use the Responses API if you want to build conversational image experiences with GPT Image.
 
 
 ```python
@@ -1307,41 +1302,6 @@ if image_data:
     image_base64 = image_data[0]
     with open("otter.png", "wb") as f:
         f.write(base64.b64decode(image_base64))
-```
-
-### Streaming
-
-You can stream partial images using Responses API. The `partial_images` can be used to receive 1-3 partial images
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
-)
-
-stream = client.responses.create(
-    model="gpt-4.1",
-    input="Draw a gorgeous image of a river made of white owl feathers, snaking its way through a serene winter landscape",
-    stream=True,
-    tools=[{"type": "image_generation", "partial_images": 2}],
-)
-
-for event in stream:
-    if event.type == "response.image_generation_call.partial_image":
-        idx = event.partial_image_index
-        image_base64 = event.partial_image_b64
-        image_bytes = base64.b64decode(image_base64)
-        with open(f"river{idx}.png", "wb") as f:
-            f.write(image_bytes)
 ```
 
 ## Reasoning models
