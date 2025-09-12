@@ -45,8 +45,28 @@ pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
 
 Create chat.py with sample code:
 ```python
-# minimal outline referencing deployed model
-# (Full sample in azureai-samples repository path scenarios/projects/basic/chat-simple.py)
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+project_connection_string = "<your-connection-string-goes-here>"
+
+project = AIProjectClient.from_connection_string(
+    conn_str=project_connection_string, credential=DefaultAzureCredential()
+)
+
+chat = project.inference.get_chat_completions_client()
+response = chat.complete(
+    model="gpt-4o-mini",
+    messages=[
+        {
+            "role": "system",
+            "content": "You are an AI assistant that speaks like a techno punk rocker from 2350. Be cool but not too cool. Ya dig?",
+        },
+        {"role": "user", "content": "Hey, can you help me with my taxes? I'm a freelancer."},
+    ],
+)
+
+print(response.choices[0].message.content)
 ```
 
 Insert your project connection string from the project Overview page (copy, replace placeholder in code).
