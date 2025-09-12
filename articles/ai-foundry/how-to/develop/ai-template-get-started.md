@@ -16,7 +16,7 @@ monikerRange: foundry-classic || foundry
 
 # Get started with an AI template
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
 
@@ -52,7 +52,7 @@ Available templates include:
 
 ::: moniker range="foundry"
 
-1. Sign in to [Azure AI Foundry portal]().
+1. Sign in to [Azure AI Foundry portal](https://aka.ms/nextgen-canary).
 1. On the top right, select **Discover**.
 1. On the left pane, select **Templates**.
 1. Select **Open in Github** to view the entire sample application.

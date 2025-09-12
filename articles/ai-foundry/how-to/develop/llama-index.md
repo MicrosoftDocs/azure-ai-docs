@@ -16,7 +16,7 @@ author: sdgilley
 
 # Develop applications with LlamaIndex and Azure AI Foundry
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 In this article, you learn how to use [LlamaIndex](https://github.com/run-llama/llama_index) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 

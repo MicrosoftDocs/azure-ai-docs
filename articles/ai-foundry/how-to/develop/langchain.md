@@ -17,7 +17,7 @@ ai-usage: ai-assisted
 
 # Develop applications with LangChain and Azure AI Foundry
 
-[!INCLUDE [classic-banner](../../includes/classic-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
