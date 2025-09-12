@@ -3,7 +3,7 @@ title: NYC Taxi and Limousine yellow dataset
 description: Learn how to use the NYC Taxi and Limousine yellow dataset in Azure Open Datasets.
 ms.service: azure-open-datasets
 ms.topic: sample
-ms.date: 04/16/2021
+ms.date: 09/12/2025
 ---
 
 # NYC Taxi & Limousine Commission - yellow taxi trip records
@@ -14,9 +14,9 @@ The yellow taxi trip records include fields capturing pick-up and drop-off dates
 
 ## Volume and retention
 
-This dataset is stored in Parquet format. There are about 1.5B rows (50 GB) in total as of 2018.
+This dataset is stored in Parquet format. There are about 1.5B rows (50 GB) in total as of 2018. Beginning in 2019, high volume trip records are recorded separately. 
 
-This dataset contains historical records accumulated from 2009 to 2018. You can use parameter settings in our SDK to fetch data within a specific time range.
+This dataset contains historical records accumulated from 2009 to 2025. You can use parameter settings in our SDK to fetch data within a specific time range.
 
 ## Storage location
 
@@ -48,7 +48,7 @@ View the [original dataset location](https://www1.nyc.gov/site/tlc/about/tlc-tri
 | rateCodeId           | int       | 56          | 1 2                                     | The final rate code in effect at the end of the trip. 1= Standard rate; 2= JFK; 3= Newark; 4= Nassau or Westchester; 5= Negotiated fare; 6= Group ride.                                                                                                |
 | startLat             | double    | 833,016     | 41.366138 40.7741                       |                                                                                                                                                                                                                                                        |
 | startLon             | double    | 957,428     | -73.137393 -73.9821                     |                                                                                                                                                                                                                                                        |
-| storeAndFwdFlag      | string    | 8           | N 0                                     | This flag indicates whether the trip record was held in vehicle memory before sending to the vendor, also known as “store and forward,” because the vehicle did not have a connection to the server. Y= store and forward trip; N= not a store and forward trip. |
+| storeAndFwdFlag      | string    | 8           | N 0                                     | This flag indicates whether the trip record was held in vehicle memory before sending to the vendor, also known as "store and forward," because the vehicle did not have a connection to the server. Y= store and forward trip; N= not a store and forward trip. |
 | tipAmount            | double    | 12,121      | 1.0 2.0                                 | This field is automatically populated for credit card tips. Cash tips are not included.                                                                                                                                                                |
 | tollsAmount          | double    | 6,634       | 5.33 4.8                                | Total amount of all tolls paid in trip.                                                                                                                                                                                                                |
 | totalAmount          | double    | 39,707      | 7.0 7.8                                 | The total amount charged to passengers. Does not include cash tips.                                                                                                                                                                                    |
