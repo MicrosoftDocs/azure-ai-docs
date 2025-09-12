@@ -56,6 +56,9 @@ The following steps show how to configure your resource:
 
     1. Once the connection is configured, you're ready to use tracing in any project within the resource.
 
+    > [!TIP]
+    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+
 1. Go to the landing page of your project and copy the project's endpoint URI. You need it later.
 
     :::image type="content" source="../../media/how-to/projects/fdp-project-overview.png" alt-text="A screenshot showing how to copy the project endpoint URI." lightbox="../../media/how-to/projects/fdp-project-overview.png":::
