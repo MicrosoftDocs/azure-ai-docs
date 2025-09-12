@@ -23,7 +23,7 @@ This quickstart sets up your local environment for hub-based projects, deploys a
 ## Prerequisites
 
 - Azure subscription.
-- Existing hub project (or [create one](hub-create-projects.md)). If not, consider using a Foundry project quickstart.
+- Existing hub project (or [create one](../how-to/hub-create-projects.md)). If not, consider using a Foundry project quickstart.
 
 ## Set up your development environment
 
