@@ -4,7 +4,7 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 1/21/2024
 ms.author: pafarley
-ms.custom: devx-track-csharp
+ms.custom: devx-track-csharp, references_regions
 ---
 
 [!INCLUDE [Header](../../common/csharp.md)]
@@ -407,14 +407,14 @@ var translationRecognizer = new TranslationRecognizer(speechTranslationConfig, a
 
 For a complete code sample with the Speech SDK, see [speech translation samples on GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/translation_samples.cs#L714).
 
-## Using live interpreter (preview) for realtime speech-to-speech translation with personal voice
+## Using live interpreter (preview) for real-time speech-to-speech translation with personal voice
 
 Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker’s style and tone. 
 
 To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the following regions supported by the public preview: 
 - West US 2
 - East US
-- Sewden Central
+- Sweden Central
 - West Europe
 - Southeast Asia
 - Japan East
