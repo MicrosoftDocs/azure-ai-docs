@@ -16,7 +16,7 @@ ms.date: 08/29/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a large language model (LLM) for query planning. It generates subqueries that broaden the scope of what's searchable and relevant. It incorporates chat history for context. The LLM studies the query and subdivides it into more targeted queries, using different phrases and terminology for subquery composition.
 
-This article explains how to use the [**retrieve method**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. It's updated for the new 2025-08-01-preview, which introduces breaking changes from the 2025-05-01-preview. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md).
+This article explains how to use the [**retrieve action**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. It's updated for the new 2025-08-01-preview, which introduces breaking changes from the 2025-05-01-preview. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md).
 
 This article also explains the three components of the retrieval response: 
 
@@ -27,7 +27,9 @@ This article also explains the three components of the retrieval response:
 The retrieve request can include instructions for query processing that override the defaults set on the knowledge agent.
 
 > [!NOTE]
-> By default, there's no model-generated "answer" in the response and you should pass the extracted response to an LLM so that it can ground its answer based on the search results. For an end-to-end example that includes this step, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo). Alternatively, you can use [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) to bring answer formulation into the agentic pipeline. In this workflow, the knowledge agent output consists of LLM-formulated answers instead of the raw search results.
+> By default, there's no model-generated "answer" in the response and you should pass the extracted response to an LLM so that it can ground its answer based on the search results. For an end-to-end example that includes this step, see [Build an agent-to-agent retrieval solution ](search-agentic-retrieval-how-to-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
+>
+>Alternatively, you can use [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) to bring answer formulation into the agentic pipeline. In this workflow, the retriever response consists of LLM-formulated answers instead of the raw search results.
 
 ## Prerequisites
 
