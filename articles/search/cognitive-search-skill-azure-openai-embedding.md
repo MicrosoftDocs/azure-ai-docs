@@ -27,7 +27,7 @@ The [Import and vectorize data wizard](search-get-started-portal-import-vectors.
 
   + Your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://<resourcename>.openai.azure.com`. If you created the resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
-  + Your Azure AI Foundry project should have an Azure AI services endpoint with the `cognitiveservices.azure.com` domain. After you deploy an Azure OpenAI embedding model to the project, you can change the endpoint to use the `openai.azure.com` domain. For example, change the endpoint from `https://<resourcename>.cognitiveservices.azure.com` to `https://<resourcename>.openai.azure.com`. You can then use this updated endpoint for the `resourceUri` property in this skill.
+  + Your Azure AI Foundry project should have an Azure AI services endpoint with the `cognitiveservices.azure.com` domain. After you deploy an Azure OpenAI embedding model to the project, you must change the endpoint to use the `openai.azure.com` domain. For example, change the endpoint from `https://<resourcename>.cognitiveservices.azure.com` to `https://<resourcename>.openai.azure.com`. You can then use this updated endpoint for the `resourceUri` property in this skill.
 
 + An [Azure OpenAI embedding model](/azure/ai-services/openai/concepts/models) deployed to your resource or project.
 
