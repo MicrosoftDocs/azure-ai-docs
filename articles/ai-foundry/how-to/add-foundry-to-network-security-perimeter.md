@@ -1,5 +1,5 @@
 ---
-title: Add Azure AI Foundry to Network Security Perimeter
+title: Add Azure AI Foundry to Network Security Perimeter (preview)
 description: Discover how to secure your Azure AI Foundry resource by joining it to a network security perimeter, ensuring enhanced data protection and controlled access.
 author: jonburchel
 ms.author: jburchel
@@ -10,7 +10,7 @@ ms.service: azure-ai-foundry
 ai.usage: ai-assisted
 ---
 
-# Add Azure AI Foundry to a network security perimeter
+# Add Azure AI Foundry to a network security perimeter (preview)
 
 > [!NOTE]
 > Azure AI Foundry support for network security perimeter is in public preview under supplemental terms of use. It's available in regions providing the feature. This preview version is provided without a service level agreement, and it's not recommended for production workloads. Certain features might not be supported or might have constrained capabilities. Review the limitations and considerations section before you start.
@@ -44,6 +44,8 @@ You can add an Azure AI Foundry resource to a network security perimeter in the 
 - Consider securing with a network security perimeter when configuring Azure Blob Storage for Azure AI Foundry. Azure AI Foundry now supports using Azure Blob Storage for Azure AI Foundry Batch input and output files. Secure communications with Blob Storage and Azure OpenAI by placing both resources in the same perimeter. For more on the Azure OpenAI Batch and Blob Storage scenario, see Configuring Azure Blob Storage for Azure OpenAI.
 
 - The Foundry Agent Service supports [Network security perimeter](/azure/private-link/network-security-perimeter-concepts). However, in Secured Standard Agents with network isolation, NSP is neither required nor supported, as all resources connect securely via Private Link within the customer's virtual network, eliminating the need for public IP or FQDN definitions.
+
+- If you implemented Private Endpoints to another PaaS resource through Azure Private Link Service, the network traffic has a preference to check for Private Link and send traffic through that pathway first before NSP. Network traffic follows the order of Private Link before NSP. 
 
 ## Prerequisites
 
