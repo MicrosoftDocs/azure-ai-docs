@@ -574,11 +574,6 @@
       "source_path": "articles/machine-learning/known-issues/workspace-move-compute-instance-same-name.md",
       "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
       "redirect_document_id": false
-    },
-    {
-      "source_path": "articles/ai-foundry/how-to/configure-private-link.md?tabs=pivots=hub-project",
-      "redirect_url": "/azure/ai-foundry/how-to/hub-configure-private-link",
-      "redirect_document_id": true
-    }  
+    }
   ]
 }
