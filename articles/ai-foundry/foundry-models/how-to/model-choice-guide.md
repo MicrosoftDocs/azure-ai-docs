@@ -3,6 +3,8 @@ title: GPT-5 vs GPT-4.1 - choosing the right model for your use case
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for your use case, covering reasoning depth, latency, cost, and ideal scenarios for each
 manager: nitinme
+author: mrbullwinkle
+ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.topic: include
 ms.date: 09/15/2025
@@ -60,7 +62,7 @@ Choose GPT-5 if your application requires:
 
 - **Deep, multistep reasoning** for hard problems (planning, analysis, complex synthesis and summarization).
 - **Reliability over raw speed**—GPT-5 delivers higher quality and fewer mistakes than prior generations in many tasks, particularly when reasoning is enabled.
-- **Agentic workflows** for Copilot-style tools that must plan, call multiple tools, and act—benefiting from GPT-5’s planning ("preamble") and robust tool use.
+- **Agentic workflows** for Copilot-style tools that must plan, call multiple tools, and act, benefit from GPT-5’s planning ("preamble") and robust tool use.
 - **Nuanced intent understanding and structured follow-ups**: use **structured outputs** for predictable formats and **verbosity** to control response length.
 
 _Example Use Cases:_
