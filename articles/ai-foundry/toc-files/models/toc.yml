@@ -12,7 +12,7 @@ items:
 - name: Data, privacy, and security for Model Catalog
   href: ../../how-to/concept-data-privacy.md
 - name: Foundry Models quotas and limits
-  href: ../..foundry-models/how-to/quotas-limits.md
+  href: ../../foundry-models/quotas-limits.md
 - name: Choose a model for your use case
   items:
   - name: Model leaderboards
@@ -22,7 +22,7 @@ items:
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
   - name: GPT-5 vs GPT-4.1
-    href: ../../how-to/model-choice-guide.md
+    href: ../../foundry-models/how-to/model-choice-guide.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Azure AI Foundry portal
