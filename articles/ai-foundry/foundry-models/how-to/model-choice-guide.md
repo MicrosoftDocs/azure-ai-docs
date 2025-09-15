@@ -1,8 +1,16 @@
-# GPT-5 vs GPT-4.1: Choosing the Right Model for Your Use Case
+---
+title: GPT-5 vs GPT-4.1 - choosing the right model for your use case
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
+description: Compare GPT-5 and GPT-4.1 to choose the best Azure OpenAI model for your use case, covering reasoning depth, latency, cost, and ideal scenarios for each
+manager: nitinme
+ms.service: azure-ai-openai
+ms.topic: include
+ms.date: 09/15/2025
+---
 
-## Overview
+# GPT-5 vs GPT-4.1: choosing the right model for your use case
 
-GPT-5 is the first model from OpenAI that introduces 4 adjustable levels of thinking, controlling the amount of time and tokens the model uses when responding to a prompt. When selecting which model to use—or whether to use a reasoning model at all—it is important to consider what is most important for your application or scenario.
+GPT-5 is the first model from OpenAI that introduces four adjustable levels of thinking, controlling the amount of time and tokens the model uses when responding to a prompt. When selecting which model to use, or whether to use a reasoning model at all, it is important to consider your application’s priorities.
 
 Scenarios like researching and producing a report involve the collection, processing, and generation of large amounts of data. Customers in these scenarios are typically willing to wait many minutes for a high-quality report to be generated. A reasoning model like GPT-5 with medium or high thinking is great for this use case.
 
@@ -19,8 +27,6 @@ Azure AI Foundry offers multiple variants of generative AI models to meet divers
 
 This guide helps you understand the differences and choose the right model for your use case.
 
----
-
 ## GPT-5 vs GPT-4.1 Comparison
 
 | **Feature**      | **GPT-5**                              | **GPT-4.1**                                 |
@@ -29,14 +35,12 @@ This guide helps you understand the differences and choose the right model for y
 | **Best For**     | Complex reasoning, multi-hop logic, thinking | Real-time chat, short factual queries, high-throughput workloads |
 | **Latency**      | Higher (due to deeper reasoning and longer outputs) | Lower (optimized for speed and responsiveness) |
 | **Throughput**   | Moderate                               | High                                        |
-| **Token Length** | 272K tokens in, 128K tokens out (400K total) | 128K (short context), up to 1M (long-context) |
+| **Token Length** | 272K tokens in, 128K tokens out (400K total) | 128 K (short context), up to 1M (long-context) |
 | **Perspective**  | Structured, analytical, step-by-step   | Concise, fast, conversational               |
-| **Cost**         | Per 1M tokens (Global Standard):<br>Input price: $1.25<br>Output price: $10<br>Cached input price: $0.125<br>[See more details](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) | Per 1M tokens (Global Standard):<br>Input price: $2<br>Output price: $8<br>Cached input price: $0.5<br>[See more details](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) |
+| **Cost**         |[Cost](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) | [Cost](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/)  |
 | **Variants**     | GPT-5<br>GPT-5-mini<br>GPT-5-nano      | GPT-4.1<br>GPT-4.1-mini<br>GPT-4.1-nano     |
 
----
-
-## GPT-5 Thinking Levels Trade-offs
+## GPT-5 thinking levels trade-offs
 
 | **Reasoning Effort** | **Description** | **Depth of Reasoning** | **Latency** | **Cost** | **Accuracy / Reliability** | **Typical Use Cases** |
 |----------------------|-----------------|-----------------------|-------------|----------|---------------------------|----------------------|
@@ -46,36 +50,37 @@ This guide helps you understand the differences and choose the right model for y
 | **High**             | Deep, multistep “think-through” for hardest problems | Deep | Slowest | Highest | Highest | Complex planning, analysis, multihop reasoning |
 
 **Notes:**
+
 - The pattern above applies to GPT-5, GPT-5-mini, and GPT-5-nano; absolute latency and cost scale down with _mini_ and _nano_ but the tradeoffs are the same.
 - **Parallel tool calls are not supported at Minimal reasoning_effort.** If you need parallel tool use, choose **Low/Medium/High**.
 
----
-
-## When to Use GPT-5
+## When to use GPT-5
 
 Choose GPT-5 if your application requires:
+
 - **Deep, multistep reasoning** for hard problems (planning, analysis, complex synthesis and summarization).
 - **Reliability over raw speed**—GPT-5 delivers higher quality and fewer mistakes than prior generations in many tasks, particularly when reasoning is enabled.
-- **Agentic workflows** for Copilot-style tools that must plan, call multiple tools, and act—benefiting from GPT-5’s planning (“preamble”) and robust tool use.
+- **Agentic workflows** for Copilot-style tools that must plan, call multiple tools, and act—benefiting from GPT-5’s planning ("preamble") and robust tool use.
 - **Nuanced intent understanding and structured follow-ups**: use **structured outputs** for predictable formats and **verbosity** to control response length.
 
 _Example Use Cases:_
+
 - Legal or financial document analysis
 - Technical troubleshooting assistants
 - Enterprise Copilots with multi-turn logic
 - Research summarization and synthesis
 
----
-
-## When to Use GPT-4.1
+## When to use GPT-4.1
 
 Choose GPT-4.1 if your application needs:
+
 - **Low latency**: Ideal for real-time interactions or user-facing chatbots.
 - **High throughput**: Supports large-scale deployments with cost efficiency.
 - **Long-context handling**: Use GPT-4.1 long-context for inputs up to 1M tokens.
 - **Short, factual responses**: Great for Q&A, search, and summarization of short content.
 
 _Example Use Cases:_
+
 - Customer support chatbots
 - Real-time product recommendation engines
 - High-volume summarization pipelines
@@ -83,9 +88,9 @@ _Example Use Cases:_
 
 If you're unsure which model to choose, try [Model Router](https://ai.azure.com/explore/models/model-router/version/2025-08-07/registry/azureml-routers?wsid=/subscriptions/6a6fff00-4464-4eab-a6b1-0b533c7202e0/resourceGroups/suriyak-platform/providers/Microsoft.CognitiveServices/accounts/ai-services-shasham-euap&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) in Azure AI Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with no loss in fidelity. [How to use model router for Azure AI Foundry (preview) – Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/model-router)
 
----
 
-## Latency Considerations
+
+## Latency considerations
 
 Understanding the latency differences between GPT-5 and GPT-4.1 is key to selecting the right model for your needs. GPT-5 delivers powerful reasoning and deeper analysis, but this comes with slightly longer wait times before you see your first response, especially for shorter prompts. You may notice that interactions feel slower when accuracy and complex problem-solving are prioritized.
 
