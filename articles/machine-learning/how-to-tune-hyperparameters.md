@@ -17,7 +17,7 @@ ms.topic: how-to
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 
-In this article, you learn to automate efficient hyperparameter tuning using Azure Machine Learning SDK v2 and CLI v2 by using the [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob?view=azure-python) class.
+In this article, you learn to automate efficient hyperparameter tuning using Azure Machine Learning SDK v2 and CLI v2 by using the [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob) class.
 
 - Define the parameter search space for your trial
 - Specify the sampling algorithm for your sweep job
@@ -62,7 +62,7 @@ command_job_for_sweep = command_job(
 ```
 
 References:
-- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice.md)
+- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice)
 
 In this case, `batch_size` one of the values [16, 32, 64, 128] and `number_of_hidden_layers` takes one of the values [1, 2, 3, 4].
 
@@ -94,8 +94,8 @@ command_job_for_sweep = command_job(
 ```
 
 References:
-- [Normal](/python/api/azure-ai-ml/azure.ai.ml.sweep.normal.md)
-- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform.md)
+- [Normal](/python/api/azure-ai-ml/azure.ai.ml.sweep.normal)
+- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform)
 
 This code defines a search space with two parameters - `learning_rate` and `keep_probability`. `learning_rate` has a normal distribution with mean value 10 and a standard deviation of 3. `keep_probability` has a uniform distribution with a minimum value of 0.05 and a maximum value of 0.1.
 
@@ -148,16 +148,16 @@ from azure.ai.ml.sweep import RandomSamplingAlgorithm, SweepJob, SweepJobLimits
    )
 ```
 References: 
-- [CommandJob](/python/api/azure-ai-ml/azure.ai.ml.entities.commandjob.md)
-- [RandomSamplingAlgorithm](/python/api/azure-ai-ml/azure.ai.ml.sweep.randomsamplingalgorithm.md)
-- [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob.md)
-- [SweepJobLimits](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjoblimits.md)
-- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice.md)
+- [CommandJob](/python/api/azure-ai-ml/azure.ai.ml.entities.commandjob)
+- [RandomSamplingAlgorithm](/python/api/azure-ai-ml/azure.ai.ml.sweep.randomsamplingalgorithm)
+- [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob)
+- [SweepJobLimits](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjoblimits)
+- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice)
 
 #### Sobol
 Sobol is a type of random sampling supported by sweep job types. You can use sobol to reproduce your results using seed and cover the search space distribution more evenly. 
 
-To use sobol, use the [RandomSamplingAlgorithm](/python/api/azure-ai-ml/azure.ai.ml.sweep.randomsamplingalgorithm?view=azure-python) class to add the seed and rule as shown in the example below. 
+To use sobol, use the [RandomSamplingAlgorithm](/python/api/azure-ai-ml/azure.ai.ml.sweep.randomsamplingalgorithm) class to add the seed and rule as shown in the example below. 
 
 ```Python
 from azure.ai.ml.sweep import  RandomSamplingAlgorithm
@@ -169,7 +169,7 @@ sweep_job = command_job_for_sweep.sweep(
 )
 ```
 References: 
-[RandomSamplingAlgorithm](/python/api/azure-ai-ml/azure.ai.ml.sweep.randomsamplingalgorithm.md)
+[RandomSamplingAlgorithm](/python/api/azure-ai-ml/azure.ai.ml.sweep.randomsamplingalgorithm)
 
 ### Grid sampling
 
@@ -192,7 +192,7 @@ sweep_job = command_job_for_sweep.sweep(
 )
 ```
 References: 
-[Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice.md)
+[Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice)
 
 ### Bayesian sampling
 
@@ -219,8 +219,8 @@ sweep_job = command_job_for_sweep.sweep(
 )
 ```
 References: 
-- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform.md)
-- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice.md)
+- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform)
+- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice)
 
 
 ## <a name="specify-objective-to-optimize"></a> Specify the objective of the sweep
@@ -246,8 +246,8 @@ sweep_job = command_job_for_sweep.sweep(
 )
 ```
 References: 
-- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform.md)
-- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice.md)
+- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform)
+- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice)
 
 This sample maximizes "accuracy".
 
@@ -303,7 +303,7 @@ from azure.ai.ml.sweep import BanditPolicy
 sweep_job.early_termination = BanditPolicy(slack_factor = 0.1, delay_evaluation = 5, evaluation_interval = 1)
 ```
 References: 
-[BanditPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.banditpolicy.md)
+[BanditPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.banditpolicy)
 
 In this example, the early termination policy is applied at every interval when metrics are reported, starting at evaluation interval 5. Any jobs whose best metric is less than (1/(1+0.1) or 91% of the best performing jobs will be terminated.
 
@@ -321,7 +321,7 @@ from azure.ai.ml.sweep import MedianStoppingPolicy
 sweep_job.early_termination = MedianStoppingPolicy(delay_evaluation = 5, evaluation_interval = 1)
 ```
 References: 
-[MedianStoppingPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy.md)
+[MedianStoppingPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy)
 
 In this example, the early termination policy is applied at every interval starting at evaluation interval 5. A job is stopped at interval 5 if its best primary metric is worse than the median of the running averages over intervals 1:5 across all training jobs.
 
@@ -342,7 +342,7 @@ from azure.ai.ml.sweep import TruncationSelectionPolicy
 sweep_job.early_termination = TruncationSelectionPolicy(evaluation_interval=1, truncation_percentage=20, delay_evaluation=5, exclude_finished_jobs=true)
 ```
 References: 
-[TruncationSelectionPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.truncationselectionpolicy.md)
+[TruncationSelectionPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.truncationselectionpolicy)
 
 In this example, the early termination policy is applied at every interval starting at evaluation interval 5. A job terminates at interval 5 if its performance at interval 5 is in the lowest 20% of performance of all jobs at interval 5 and will exclude finished jobs when applying the policy.
 
@@ -354,7 +354,7 @@ If no policy is specified, the hyperparameter tuning service lets all training j
 sweep_job.early_termination = None
 ```
 References: 
-[SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob.md)
+[SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob)
 
 ### Picking an early termination policy
 
@@ -380,7 +380,7 @@ Control your resource budget by setting limits for your sweep job.
 sweep_job.set_limits(max_total_trials=20, max_concurrent_trials=4, timeout=1200)
 ```
 References: 
-[SweepJob.set_limits](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob.md#azure_ai_ml_sweep_SweepJob_set_limits)
+[SweepJob.set_limits](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob#azure_ai_ml_sweep_SweepJob_set_limits)
 
 This code configures the hyperparameter tuning experiment to use a maximum of 20 total trial jobs, running four trial jobs at a time with a timeout of 1,200 seconds for the entire sweep job.
 
@@ -452,13 +452,13 @@ sweep_job.early_termination = MedianStoppingPolicy(
 )
 ```
 References: 
-- [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient.md) 
+- [MLClient](/python/api/azure-ai-ml/azure.ai.ml.mlclient) 
 - [command](/python/api/azure-ai-ml/azure.ai.ml.dsl#azure_ai_ml_dsl_command)
-- [Input](/python/api/azure-ai-ml/azure.ai.ml.input.md)
-- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice.md)
-- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform.md)
-- [MedianStoppingPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy.md)
-- [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential.md)
+- [Input](/python/api/azure-ai-ml/azure.ai.ml.input)
+- [Choice](/python/api/azure-ai-ml/azure.ai.ml.sweep.choice)
+- [Uniform](/python/api/azure-ai-ml/azure.ai.ml.sweep.uniform)
+- [MedianStoppingPolicy](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy)
+- [DefaultAzureCredential](/python/api/azure-identity/azure.identity.defaultazurecredential)
 
 The `command_job` is called as a function so we can apply the parameter expressions to the sweep inputs. The `sweep` function is then configured with `trial`, `sampling-algorithm`, `objective`, `limits`, and `compute`. The above code snippet is taken from the sample notebook [Run hyperparameter sweep on a Command or CommandComponent](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/single-step/lightgbm/iris/lightgbm-iris-sweep.ipynb). In this sample, the `learning_rate` and `boosting` parameters are tuned. Early stopping of jobs are determined by a `MedianStoppingPolicy`, which stops a job whose primary metric value is worse than the median of the averages across all training jobs.(see [MedianStoppingPolicy class reference](/python/api/azure-ai-ml/azure.ai.ml.sweep.medianstoppingpolicy)).
 
@@ -480,7 +480,7 @@ returned_sweep_job.services["Studio"].endpoint
 ```
 References: 
 - [MLClient.create_or_update](/python/api/azure-ai-ml/azure.ai.ml.mlclient#azure_ai_ml_mlclient_create_or_update) 
-- [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob.md)
+- [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob)
 
 ## Visualize hyperparameter tuning jobs
 
