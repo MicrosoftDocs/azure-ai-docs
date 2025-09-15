@@ -1,7 +1,8 @@
 ---
 title: Hyperparameter tuning a model (v2)
 titleSuffix: Azure Machine Learning
-description: Automate hyperparameter tuning for deep learning and machine learning models using Azure Machine Learning.
+description: Discover how to define search spaces, choose sampling algorithms, and configure early termination policies for hyperparameter tuning in Azure ML.
+#customer intent: As a data scientist, I want to automate hyperparameter tuning using Azure Machine Learning so that I can optimize model performance efficiently.
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: amipatel
@@ -11,6 +12,7 @@ ms.subservice: training
 ms.date: 09/15/2025
 ms.topic: how-to
 ---
+
 
 # Hyperparameter tuning a model (v2)
 
