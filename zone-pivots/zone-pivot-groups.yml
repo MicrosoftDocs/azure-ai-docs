@@ -1642,7 +1642,7 @@ groups:
   title: Azure portal wizards
   prompt: Choose a wizard
   pivots:
-  - id: import-and-vectorize-data
-    title: Import and vectorize data (recommended)
+  - id: import-data-new
+    title: Import data (new)
   - id: import-data
     title: Import data

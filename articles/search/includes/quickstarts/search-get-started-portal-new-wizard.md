@@ -4,13 +4,13 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/10/2025
+ms.date: 09/15/2025
 ---
 
 > [!IMPORTANT]
-> The **Import and vectorize data** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
+> The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
-In this quickstart, you use the **Import and vectorize data** wizard and sample data about ficticious hotels to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
+In this quickstart, you use the **Import data (new)** wizard and sample data about ficticious hotels to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
 The wizard creates multiple objects on your search service, including a searchable [index](../../search-what-is-an-index.md), an [indexer](../../search-indexer-overview.md), and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
 
@@ -54,9 +54,9 @@ To start the wizard for this quickstart:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your search service.
 
-1. On the **Overview** page, select **Import and vectorize data**.
+1. On the **Overview** page, select **Import data (new)**.
 
-   :::image type="content" source="../../media/search-import-data-portal/import-vectorize-data-button.png" alt-text="Screenshot that shows how to open the Import and vectorize data wizard in the Azure portal.":::
+   :::image type="content" source="../../media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot that shows how to open the new import wizard in the Azure portal.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 
@@ -105,15 +105,28 @@ Based on the structure and content of the sample hotel data, the wizard infers a
 
 To configure the index:
 
-1. Make the following field attributions.
+1. For each of the following fields, select **Configure field**, and then set the respective attributes.
 
-   PLACEHOLDER
+   | Fields | Attributes |
+   |-------|------------|
+   | `HotelId` | Key, Retrievable, Filterable, Sortable, Searchable |
+   | `HotelName`, `Category` | Retrievable, Filterable, Sortable, Searchable |
+   | `Description`, `Description_fr` | Retrievable |
+   | `Tags` | Retrievable, Filterable, Searchable |
+   | `ParkingIncluded`, `IsDeleted`, `LastRenovationDate`, `Rating`, `Location` | Retrievable, Filterable, Sortable |
+   | `Address.StreetAddress`, `Rooms.Description`, `Rooms.Description_fr` | Retrievable, Searchable |
+   | `Address.City`, `Address.StateProvince`, `Address.PostalCode`, `Address.Country`, `Rooms.Type`, `Rooms.BedOptions`, `Rooms.Tags` | Retrievable, Filterable, Facetable, Searchable |
+   | `Rooms.BaseRate`, `Rooms.SleepsCount`, `Rooms.SmokingAllowed` | Retrievable, Filterable, Facetable |
+
+   :::image type="content" source="../../media/search-get-started-portal/configure-index.gif" alt-text="GIF that shows how to configure attributes for fields in the index." lightbox="../../media/search-get-started-portal/configure-index.gif":::
+
+1. Delete the `AzureSearch_DocumentKey` field.
 
 1. Select **Next**.
 
 At a minimum, the index requires a name and a collection of fields. The wizard scans for unique string fields and marks one as the document key, which uniquely identifies each document in the index.
 
-Each field has a name, a data type, and attributes that control how the field is used in the index. You can select **Configure field** to enable or disable the following attributes:
+Each field has a name, data type, and attributes that control how the field is used in the index. You can enable or disable the following attributes:
 
 | Attribute | Description | Applicable data types |
 |-----------|-------------|------------------------|

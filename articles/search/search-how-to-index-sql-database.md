@@ -138,7 +138,7 @@ In this step, specify the data source, index, and indexer.
 
 1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the **Overview** page, select **Import data** or **Import and vectorize data**.
+   1. On the **Overview** page, select **Import data** or **Import data (new)**.
 
    1. Select the data source you just created.
 

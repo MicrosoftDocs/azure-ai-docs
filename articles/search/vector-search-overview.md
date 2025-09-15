@@ -68,7 +68,7 @@ Vector search is available in [all regions](search-region-support.md) and on [al
 
 For portal and programmatic access to vector search, you can use:
 
-+ The [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
++ The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 + The [Search Service REST APIs](/rest/api/searchservice).
 + The Azure SDKs for [.NET](https://www.nuget.org/packages/Azure.Search.Documents), [Python](https://pypi.org/project/azure-search-documents), and [JavaScript](https://www.npmjs.com/package/@azure/search-documents).
 + [Other Azure offerings](#azure-integration-and-related-services), such as Azure AI Foundry.

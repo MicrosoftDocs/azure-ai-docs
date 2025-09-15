@@ -4,11 +4,11 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/10/2025
+ms.date: 09/15/2025
 ---
 
 > [!IMPORTANT]
-> The **Import data** wizard will eventually be deprecated. Most of its functionality is available in the **Import and vectorize data** wizard, which we recommend for most search scenarios. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
+> The **Import data** wizard will eventually be deprecated. Most of its functionality is available in the **Import data (new)** wizard, which we recommend for most search scenarios. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
 In this quickstart, you use the **Import data** wizard and a built-in sample of fictitious hotel data to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
@@ -89,7 +89,7 @@ To configure the index:
 
 At a minimum, the index requires a name and a collection of fields. The wizard scans for unique string fields and marks one as the document key, which uniquely identifies each document in the index.
 
-Each field has a name, a data type, and attributes that control how the field is used in the index. You can use the checkboxes to enable or disable the following attributes:
+Each field has a name, data type, and attributes that control how the field is used in the index. You can use the checkboxes to enable or disable the following attributes:
 
 | Attribute | Description | Applicable data types |
 |-----------|-------------|------------------------|

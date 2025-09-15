@@ -13,7 +13,7 @@ ms.custom:
 
 # Quickstart: Search for multimodal content in the Azure portal
 
-In this quickstart, you use the **Import and vectorize data** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
+In this quickstart, you use the **Import data (new)** wizard in the Azure portal to get started with [multimodal search](multimodal-search-overview.md). The wizard simplifies the process of extracting, chunking, vectorizing, and loading both text and images into a searchable index.
 
 Unlike [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md), which processes simple text-containing images, this quickstart supports advanced image processing for multimodal RAG scenarios.
 
@@ -179,9 +179,9 @@ To start the wizard for multimodal search:
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Search service.
 
-1. On the **Overview** page, select **Import and vectorize data**.
+1. On the **Overview** page, select **Import data (new)**.
 
-   :::image type="content" source="media/search-import-data-portal/import-vectorize-data-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
+   :::image type="content" source="media/search-import-data-portal/import-data-new-button.png" alt-text="Screenshot of the command to open the wizard for importing and vectorizing data.":::
 
 1. Select your data source: **Azure Blob Storage** or **Azure Data Lake Storage Gen2**.
 
@@ -460,7 +460,7 @@ This quickstart uses billable Azure resources. If you no longer need the resourc
 
 ## Next steps
 
-This quickstart introduced you to the **Import and vectorize data** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
+This quickstart introduced you to the **Import data (new)** wizard, which creates all of the necessary objects for multimodal search. To explore each step in detail, see the following tutorials:
 
 + [Tutorial: Verbalize images using generative AI](tutorial-document-extraction-image-verbalization.md)
 + [Tutorial: Verbalize images from a structured document layout](tutorial-document-layout-image-verbalization.md)

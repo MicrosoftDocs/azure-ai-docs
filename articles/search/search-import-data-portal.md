@@ -5,7 +5,7 @@ description: Learn about the Azure portal wizards that create and load an index 
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/08/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -17,19 +17,24 @@ ms.custom:
 # Import data wizards in the Azure portal
 
 > [!IMPORTANT]
-> We're consolidating the Azure AI Search wizards by moving the **Import data** workflow into the **Import and vectorize data** workflow. For now, you can still use the **Import data** wizard, but we recommend the **Import and vectorize data** wizard for an improved search experience that uses the latest frameworks.
+> We're consolidating the Azure AI Search wizards. Key changes include:
 >
-> The wizards don't have identical keyword search workflows. Certain skills and capabilities are only available in the **Import data** wizard. For more information about their similarities and differences, continue reading this article.
+> + The **Import and vectorize data** wizard is now called **Import data (new)**.
+> + The **Import data** workflow is now available in **Import data (new)**.
+>
+> The **Import data** wizard will eventually be deprecated. For now, you can still use this wizard, but we recommend the new wizard for an improved search experience that uses the latest frameworks.
+>
+> The wizards don't have identical keyword search workflows. Certain skills and capabilities are only available in the old wizard. For more information about their similarities and differences, continue reading this article.
 
 Azure AI Search has two wizards that automate indexing, enrichment, and object creation for various search scenarios:
 
 + The **Import data** wizard supports keyword (nonvector) search. You can extract text and numbers from raw documents. You can also configure applied AI and built-in skills to infer structure and generate searchable text from image files and unstructured data.
 
-+ The **Import and vectorize data** wizard supports keyword search, RAG, and multimodal RAG. For keyword search, it modernizes the **Import data** workflow but lacks some functionality, such as automatic metadata field creation. For RAG and multimodal RAG, it connects to your embedding model deployment, sends requests, and generates vectors from text or images.
++ The **Import data (new)** wizard supports keyword search, RAG, and multimodal RAG. For keyword search, it modernizes the **Import data** workflow but lacks some functionality, such as automatic metadata field creation. For RAG and multimodal RAG, it connects to your embedding model deployment, sends requests, and generates vectors from text or images.
 
 Despite their differences, the wizards follow similar workflows for content ingestion and indexing. The following table summarizes their capabilities.
 
-| Capability | Import data wizard | Import and vectorize data wizard |
+| Capability | Import data wizard | Import data (new) wizard |
 |--|--|--|
 | Index creation | ✅ | ✅ |
 | Indexer pipeline creation | ✅ | ✅ |
@@ -50,7 +55,7 @@ This section describes the available options in each wizard.
 
 The wizards support the following data sources, most of which use [built-in indexers](search-indexer-overview.md#supported-data-sources). Exceptions are noted in the table's footnotes.
 
-| Data source | Import data wizard | Import and vectorize data wizard |
+| Data source | Import data wizard | Import data (new) wizard |
 |--|--|--|
 | [ADLS Gen2](search-howto-index-azure-data-lake-storage.md) | ✅ | ✅ |
 | [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
@@ -77,7 +82,7 @@ The wizards support the following data sources, most of which use [built-in inde
 
 Microsoft hosts the following sample data so that you can skip the wizard step for data source configuration.
 
-| Sample data | Import data wizard | Import and vectorize data wizard |
+| Sample data | Import data wizard | Import data (new) wizard |
 |--|--|--|
 | Hotels      | ✅ | ❌ |
 | Real estate | ✅ | ❌ |
@@ -88,7 +93,7 @@ Each wizard generates a skillset and outputs field mappings based on options you
 
 The following skills might appear in a wizard-generated skillset.
 
-| Skill | Import data wizard | Import and vectorize data wizard |
+| Skill | Import data wizard | Import data (new) wizard |
 |--|--|--|
 | [Azure AI Vision multimodal](cognitive-search-skill-vision-vectorize.md)  | ❌ | ✅ <sup>1</sup> |
 | [Azure OpenAI embedding](cognitive-search-skill-azure-openai-embedding.md)  | ❌ | ✅ <sup>1</sup> |
@@ -118,7 +123,7 @@ The following skills might appear in a wizard-generated skillset.
 
 You can [configure semantic ranking](semantic-how-to-configure.md) to improve the relevance of search results.
 
-| Capability | Import data wizard | Import and vectorize data wizard |
+| Capability | Import data wizard | Import data (new) wizard |
 |--|--|--|
 | Semantic ranker | ❌ | ✅ |
 
@@ -126,7 +131,7 @@ You can [configure semantic ranking](semantic-how-to-configure.md) to improve th
 
 You can [generate a knowledge store](knowledge-store-create-portal.md) for secondary storage of enriched (skills-generated) content. A knowledge store is useful for information retrieval workflows that don't require a search engine.
 
-| Capability | Import data wizard | Import and vectorize data wizard |
+| Capability | Import data wizard | Import data (new) wizard |
 |--|--|--|
 | Knowledge store | ✅ | ❌ |
 
@@ -187,11 +192,11 @@ You can use the wizards over restricted public connections, but not all function
 
 + On connections to an Azure AI services multi-service account that you provide, or on connections to embedding models deployed in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or Azure OpenAI, public internet access must be enabled unless your search service meets the creation date, tier, and region requirements for private connections. For more information, see [Make outbound connections through a shared private link](search-indexer-howto-access-private.md).
 
-  Connections to Azure AI services multi-service accounts are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import and vectorize data** wizard) and integrated vectorization (in the **Import and vectorize data** wizard) exceed the free transaction count (20 per indexer run).
+  Connections to Azure AI services multi-service accounts are for [billing purposes](cognitive-search-attach-cognitive-services.md). You're billed when API calls for built-in skills (in the **Import data** wizard or the keyword search workflow in the **Import data (new)** wizard) and integrated vectorization (in the **Import data (new)** wizard) exceed the free transaction count (20 per indexer run).
 
   If Azure AI Search can't connect:
 
-  + In the **Import and vectorize data** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`.
+  + In the **Import data (new)** wizard, the error is `"Access denied due to Virtual Network/Firewall rules."`.
 
   + In the **Import data** wizard, there's no error, but the skillset won't be created.
 
@@ -217,7 +222,7 @@ To start the wizards:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. On the **Overview** page, select **Import data** or **Import and vectorize data**.
+1. On the **Overview** page, select **Import data** or **Import data (new)**.
 
     :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the import wizard options." border="true":::
 

@@ -4,11 +4,11 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/10/2025
+ms.date: 09/15/2025
 ---
 
 > [!IMPORTANT]
-> The **Import data** wizard will eventually be deprecated. Most of its functionality is available in the **Import and vectorize data** wizard, which we recommend for most search scenarios. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
+> The **Import data** wizard will eventually be deprecated. Most of its functionality is available in the **Import data (new)** wizard, which we recommend for most search scenarios. For more information, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
 In this quickstart, you learn how a skillset in Azure AI Search adds optical character recognition (OCR), image analysis, language detection, text merging, and entity recognition to generate text-searchable content in an index.
 
@@ -121,11 +121,11 @@ For this quickstart, the wizard sets reasonable defaults:
 
 + Default document key is `metadata_storage_path`, which is selected because the field contains unique values.
 
-+ Default attributes are **Retrievable** and **Searchable**. **Retrievable** means field values can be returned in results, while **Searchable** allows full-text search on a field. The wizard assumes you want these fields to be retrievable and searchable because you created them via a skillset. Select **Filterable** if you want to use fields in a filter expression.
++ Default attributes are **Retrievable** and **Searchable**. **Retrievable** fields can be returned in results, while **Searchable** fields support full-text search. The wizard assumes you want these fields to be retrievable and searchable because you created them via a skillset. Select **Filterable** if you want to use fields in a filter expression.
 
   :::image type="content" source="../../media/search-get-started-skillset/index-fields-old-wizard.png" alt-text="Screenshot of the index definition page." border="true" lightbox="../../media/search-get-started-skillset/index-fields-old-wizard.png":::
 
-  Marking a field as **Retrievable** doesn't mean that the field *must* be present in the search results. You can control search results composition by using the `select` query parameter to specify which fields to include.
+  Marking a field as **Retrievable** doesn't mean that the field *must* appear in search results. You can control which fields are returned by using the `select` query parameter.
       
 After you review the index schema, select **Next: Create an indexer**.
 
