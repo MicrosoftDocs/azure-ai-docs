@@ -16,7 +16,7 @@ Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up 
 
 ## August 2025
 
-**Release of new PII and NER model (2025-08-01-preview)**. This new preview model version introduces broader functionality and expanded capabilities for personal information identification (PII) and named entity recognition (NER):
+**Release of new Text PII and NER model (2025-08-01-preview)**. This new preview model version introduces broader functionality and expanded capabilities for Text personal information identification (PII) and named entity recognition (NER) services:
 
 * **Expanded language support for DateOfBirth entity**. The **DateOfBirth** entity, which initially supported English only, now includes Tier 1 language coverage. This expansion supports French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch, ensuring broader international applicability.
 

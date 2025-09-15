@@ -46,7 +46,7 @@ If the number of extracted sentences doesn't match the two files with the same b
 
 ## I tried uploading my Translation Memory Exchange (TMX) file, but it says "document processing failed"
 
-Ensure that the TMX conforms to the [TMX 1.4b Specification](https://www.gala-global.org/tmx-14b).
+Ensure that the TMX conforms to the [TMX 1.4b Specification](https://www.ttt.org/oscarStandards/tmx/tmx14b.html).
 
 ## Next steps
 

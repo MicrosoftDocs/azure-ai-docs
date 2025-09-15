@@ -1,11 +1,11 @@
 ---
 title: Build an agentic retrieval solution
 titleSuffix: Azure AI Search
-description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents.
+description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents in AI Foundry.
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/29/2025
+ms.date: 09/10/2025
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -53,9 +53,9 @@ Use one of the following chat completion models with your AI agent:
 Use a package version that provides preview functionality. See the [`requirements.txt`](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/agentic-retrieval-pipeline-example/requirements.txt) file for more packages used in the example solution.
 
 ```
-azure-ai-projects==1.0.0b11
-azure-ai-agents==1.0.0
-azure-search-documents==11.6.0b12
+azure-ai-projects==1.1.0b3
+azure-ai-agents==1.2.0b3
+azure-search-documents==11.7.0b1
 ```
 
 ### Configure access
@@ -100,9 +100,17 @@ Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure 
 
 Development tasks on the Azure AI Search side include:
 
-+ Create a knowledge agent on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
-+ Call the retriever and provide a query, conversation, and override parameters.
-+ Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. 
++ [Create a knowledge source](search-knowledge-source-overview.md) that maps to a [searchable index](search-agentic-retrieval-how-to-index.md).
++ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md) on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
++ [Call the retriever](search-agentic-retrieval-how-to-retrieve.md) and provide a query, conversation, and override parameters.
++ Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. You can also try [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) for a simpler workflow.
+
+Developments on the Azure AI Agent side include:
+
++ Set up the AI project client and an AI agent.
++ Add a tool to coordinate calls from the AI agent to the retriever and knowledge agent.
+
+Query processing is initiated by user interaction in a client app, such as a chat bot, that calls an AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the [retriever](search-agentic-retrieval-how-to-retrieve.md) on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot. In Azure AI Search, you can use [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) to obtain an LLM-generated response from within the query pipeline, or you can call an LLM in your code if you want more control over answer generation.
 
 ## Components of the solution
 
@@ -169,20 +177,20 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 ### Add an agentic retrieval tool to AI Agent
 
-An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool calls the Azure AI Search knowledge retrieval client and the Azure AI agent, and it drives the conversations with the user.
+An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent on Azure AI Search. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool is configured in the AI agent and it calls the Azure AI Search knowledge retrieval client and sends back responses that drive the conversation with the user.
 
 ```python
 from azure.ai.agents.models import FunctionTool, ToolSet, ListSortOrder
 
 from azure.search.documents.agent import KnowledgeAgentRetrievalClient
-from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, KnowledgeAgentIndexParams
+from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent
 
 agent_client = KnowledgeAgentRetrievalClient(endpoint=endpoint, agent_name=agent_name, credential=credential)
 
 thread = project_client.agents.threads.create()
 retrieval_results = {}
 
-# AGENTIC RETRIEVAL DEFINITION DEFERRED TO NEXT SECTION
+# AGENTIC RETRIEVAL DEFINITION "LIFTED AND SHIFTED" TO NEXT SECTION
 
 functions = FunctionTool({ agentic_retrieval })
 toolset = ToolSet()
@@ -194,30 +202,66 @@ project_client.agents.enable_auto_function_calls(toolset)
 
 The messages sent to the agent tool include instructions for chat history and using the results obtained from [knowledge retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) on Azure AI Search. The response is passed as a large single string with no serialization or structure.
 
+This code snippet is the agentic retrieval definition mentioned in the previous code snippet.
+
 ```python
 def agentic_retrieval() -> str:
     """
         Searches a NASA e-book about images of Earth at night and other science related facts.
         The returned string is in a JSON format that contains the reference id.
         Be sure to use the same format in your agent's response
+        You must refer to references by id number
     """
     # Take the last 5 messages in the conversation
     messages = project_client.agents.messages.list(thread.id, limit=5, order=ListSortOrder.DESCENDING)
     # Reverse the order so the most recent message is last
-    messages.data.reverse()
-    retrieval_result = retrieval_result = agent_client.retrieve(
+    messages = list(messages)
+    messages.reverse()
+    retrieval_result = agent_client.retrieve(
         retrieval_request=KnowledgeAgentRetrievalRequest(
-            messages=[KnowledgeAgentMessage(role=msg["role"], content=[KnowledgeAgentMessageTextContent(text=msg.content[0].text)]) for msg in messages.data],
-            target_index_params=[KnowledgeAgentIndexParams(index_name=index_name, reranker_threshold=2.5)]
+            messages=[
+                    KnowledgeAgentMessage(
+                        role=m["role"],
+                        content=[KnowledgeAgentMessageTextContent(text=m["content"])]
+                    ) for m in messages if m["role"] != "system"
+            ]
         )
     )
 
     # Associate the retrieval results with the last message in the conversation
-    last_message = messages.data[-1]
+    last_message = messages[-1]
     retrieval_results[last_message.id] = retrieval_result
 
     # Return the grounding response to the agent
     return retrieval_result.response[0].content[0].text
+```
+
+## How to start the conversation
+
+To start the chat, use the standard Azure AI agent tool calling APIs. Send the message with questions, and the agent decides when to retrieve knowledge from your search index using agentic retrieval.
+
+```python
+from azure.ai.agents.models import AgentsNamedToolChoice, AgentsNamedToolChoiceType, FunctionName
+
+message = project_client.agents.messages.create(
+    thread_id=thread.id,
+    role="user",
+    content="""
+        Why do suburban belts display larger December brightening than urban cores even though absolute light levels are higher downtown?
+        Why is the Phoenix nighttime street grid is so sharply visible from space, whereas large stretches of the interstate between midwestern cities remain comparatively dim?
+    """
+)
+
+run = project_client.agents.runs.create_and_process(
+    thread_id=thread.id,
+    agent_id=agent.id,
+    tool_choice=AgentsNamedToolChoice(type=AgentsNamedToolChoiceType.FUNCTION, function=FunctionName(name="agentic_retrieval")),
+    toolset=toolset)
+if run.status == "failed":
+    raise RuntimeError(f"Run failed: {run.last_error}")
+output = project_client.agents.messages.get_last_message_text_by_role(thread_id=thread.id, role="assistant").text.value
+
+print("Agent response:", output.replace(".", "\n"))
 ```
 
 ## How to improve data quality
@@ -240,11 +284,17 @@ The LLM determines the quantity of subqueries based on these factors:
 + Chat history
 + Semantic ranker input constraints
 
-As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the knowledge agent definition or as an override on the retrieve action. 
+As the developer, the best way to control the number of subqueries is by setting the [maxSubQueries](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview#knowledgesourcereference&preserve-view=true) property in a knowledge agent. 
+
+The semantic ranker processes up to 50 documents as an input, and the system creates subqueries to accommodate all of the inputs to semantic ranker. For example, if you only wanted two subqueries, you could set `maxSubQueries` to 100 to accommodate all documents in two batches.
+
+The [semantic configuration](semantic-how-to-configure.md) in the index determines whether the input is 50 or not. If the value is less, the query plan specifies however many subqueries are necessary to meet the smaller input size. 
+
+<!-- As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the knowledge agent definition or as an override on the retrieve action. 
 
 The semantic ranker processes up to 50 documents as an input, and the system creates subqueries to accommodate all of the inputs to semantic ranker. For example, if you only wanted two subqueries, you could set `defaultMaxDocsForReranker` to 100 to accommodate all documents in two batches.
 
-The [semantic configuration](semantic-how-to-configure.md) in the index determines whether the input is 50 or not. If the value is less, the query plan specifies however many subqueries are necessary to meet the `defaultMaxDocsForReranker` threshold.
+The [semantic configuration](semantic-how-to-configure.md) in the index determines whether the input is 50 or not. If the value is less, the query plan specifies however many subqueries are necessary to meet the `defaultMaxDocsForReranker` threshold. -->
 
 ## Control the number of threads in chat history
 

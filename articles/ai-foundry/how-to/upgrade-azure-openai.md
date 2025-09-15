@@ -44,6 +44,7 @@ Your existing resource configurations and state remain preserved including:
 Backend limitations:
 
 * Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
+* [Modified Abuse Monitoring](../responsible-ai/openai/data-privacy.md?tabs=azure-portal#prerequisites) isn't supported on Azure AI Foundry resource.
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
 
 Foundry portal limitations:
@@ -56,7 +57,7 @@ The upgrade converts your Azure OpenAI resource type to Azure AI Foundry resourc
 
 ## How to upgrade
 
-As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via the Azure AI Foundry portal or using Azure Bicep or Resource Manager templates.
+As a prerequisite to upgrade, managed identity must be enabled on your Azure OpenAI resource. Upgrade can be completed via the Azure AI Foundry portal, or using Azure Bicep or Resource Manager templates (recommended for resource configurations with custom security settings such as private networking).
 
 # [Foundry portal](#tab/portal)
 
@@ -134,6 +135,12 @@ After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to 
 
    Your project overview page includes your previous Azure OpenAI endpoint, and a new Azure AI Foundry endpoint. Foundry API and SDK grant access to the broader set of models and features including agent service.
 
+## Understanding pricing
+
+There are no pricing differences for existing Azure OpenAI functionality when upgrading to Azure AI Foundry—your current usage patterns and costs remain unchanged. However, Azure AI Foundry unlocks access to additional features such as expanded model catalogs, agent services, and evaluation tools, which may have their own pricing structures depending on the models and services used.
+
+For estimating costs of new features available in Azure AI Foundry, use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/).
+
 ## Roll back to Azure OpenAI
 
 In case you run into any issues, a roll back option is available. As prerequisite to roll back, you're required to delete any of the following configurations first:
@@ -182,6 +189,19 @@ To rollback, convert your template configuration back to 'OpenAI' as kind.
   Run the template using Azure CLI options or your VS Code extension for Bicep as a patch operation on your current resource.
 
 ---
+
+## Troubleshooting Common Issues
+
+Azure resource limits and organizational configurations may require additional steps to complete the upgrade. The table below outlines some of the most common issues along with recommended solutions to help troubleshooting.
+
+|Issue|Solution/mitigation|
+|---|---|
+|User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resources e.g. Owner, Contributor, Azure AI Administrator.| 
+|Managed identity is not enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure portal.|
+|No permissions to create agents, while you are the owner/contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include Azure AI User or Azure AI Project Manager role. Owner and Contributor roles only grant access to management operations in Azure such as managing deployments.|
+|An Azure Policy conflict occurred.|Your organization may have put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
+|Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Azure AI Foundry. Then retry rolling back your current resource.|
+|Exceeded number of AIServices instances of 100 per subscription per region.|Delete an Azure AI Foundry resource you may not use in this subscription. Then retry upgrading your current resource.|
 
 ## How to inspect whether a resource has been upgraded
 

@@ -80,8 +80,6 @@ items:
             href: how-to-custom-speech-human-labeled-transcriptions.md
           - name: Structured text phonetic pronunciation
             href: customize-pronunciation.md
-          - name: Online transcription editor
-            href: how-to-custom-speech-transcription-editor.md
           - name: Display text format training data
             href: how-to-custom-speech-display-text-format.md
         - name: Custom speech model lifecycle
@@ -504,6 +502,8 @@ items:
             href: get-started-intent-recognition-clu.md
           - name: Recognize speech intents with LUIS (deprecated)
             href: get-started-intent-recognition.md
+      - name: Online transcription editor
+        href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
     - name: From Speech to text v3.2 to 2024-11-15

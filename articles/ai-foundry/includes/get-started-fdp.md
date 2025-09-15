@@ -34,7 +34,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 [!INCLUDE [feature-preview](feature-preview.md)]
 
-[!INCLUDE [feature-preview](first-run-experience.md)]
+[!INCLUDE [first-run](first-run-experience.md)]
 
 ## Set up your environment  
 
@@ -250,7 +250,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 [!INCLUDE [clean-up-resources](clean-up-resources.md)]
 
-## Next step
+## Related content
 
-> [!div class="nextstepaction"]
-> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+* [Quickstart: Create a new agent](../agents/quickstart.md)
+* [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)

@@ -121,16 +121,16 @@ The following sections list the supported models for managed compute deployment 
 
 | Model | Task |
 |--|--|
-| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige) | Image Feature Extraction |
-| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige) | Image Feature Extraction |
+| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
+| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 
 ### Cohere
 
 | Model | Task |
 |--|--|
-| [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere) | Chat completion |
-| [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere) | Embeddings |
-| [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere) | Text classification |
+| [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere/?cid=learnDocs) | Chat completion |
+| [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | Embeddings |
+| [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
 
 ### NVIDIA
 
@@ -145,19 +145,19 @@ Some special things to note about NIMs are:
 
 | Model | Task |
 |--|--|
-| [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia) | Chat completion |
-| [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Embeddings |
-| [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Text classification |
-| [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
-| [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia) | Protein Binder |
-| [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
-| [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia) | Protein Binder |
+| [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Embeddings |
+| [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Text classification |
+| [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
 
 #### Consume NVIDIA NIM deployments
 

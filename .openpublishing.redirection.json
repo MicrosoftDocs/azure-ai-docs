@@ -544,6 +544,36 @@
       "source_path": "articles/ai-foundry/foundry-models/how-to/inference.md",
       "redirect_url": "/azure/ai-foundry/foundry-models/concepts/endpoints",
       "redirect_document_id": true
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/application-sharing-policy-not-supported.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace?view=azureml-api-2",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/compute-a10-sku-not-supported.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/compute-idleshutdown-bicep.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/compute-slowness-terminal-mounted-path.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/jupyter-r-kernel-not-starting.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
+    },
+    {
+      "source_path": "articles/machine-learning/known-issues/workspace-move-compute-instance-same-name.md",
+      "redirect_url": "/azure/machine-learning/how-to-troubleshoot-secure-connection-workspace",
+      "redirect_document_id": false
     }
   ]
 }
