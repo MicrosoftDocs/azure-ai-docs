@@ -83,7 +83,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     urllib3==2.4.0
     websocket-client==1.8.0
     azure-ai-voicelive==1.0.0b1
-    pyaudio
     ```
 
 1. Install the packages:
