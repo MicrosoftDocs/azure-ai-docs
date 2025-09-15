@@ -87,6 +87,39 @@ xAI's Grok models in Azure AI Foundry Models include a diverse set of models des
 See [the xAI model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=xAI/?cid=learnDocs).
 
 
+## Model summary table and region availability
+
+### Models by deployment type
+
+Foundry Models provides customers with choices on the hosting structure that fits their business and usage patterns. The service offers two main types of deployment:
+
+- **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
+- **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
+
+All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about deployment types, see [Deployment types in Azure AI Foundry Models](../concepts/deployment-types.md).
+
+# [Global Standard](#tab/global-standard)
+
+### Global Standard model availability
+
+[!INCLUDE [global-standard](model-matrix/global-standard.md)]
+
+
+# [Global Provisioned managed](#tab/global-ptum)
+
+### Global Provisioned managed model availability
+
+[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
+
+# [Data Zone Standard](#tab/datazone-standard)
+
+### Data Zone Standard model availability
+
+[!INCLUDE [datazone-standard](model-matrix/datazone-standard.md)]
+
+---
+
+
 [!INCLUDE [models-open-and-custom](models-open-custom.md)]
 
 
