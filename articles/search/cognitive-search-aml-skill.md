@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 08/04/2025
+ms.date: 09/15/2025
 ms.update-cycle: 180-days
 ---
 
@@ -42,7 +42,7 @@ We recommend using the [**Import and vectorize data wizard**](search-get-started
 
 ## Prerequisites
 
-* An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=fdp-project) for an embedding model deployed from the catalog, or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
+* An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry) for an embedding model deployed from the catalog, or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
 * The model endpoint for an embedding model deployed from the catalog, or an [online endpoint (real-time)](../machine-learning/concept-endpoints-online.md) of your AML workspace for a custom model.
 
 ## @odata.type

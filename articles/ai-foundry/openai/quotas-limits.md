@@ -190,6 +190,8 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
+| `o3` | Default | 10M | 10K |
+| `o4-mini` | Default | 10M | 10K |
 | `o3-mini` | Enterprise and MCA-E | 20M | 2K  |
 | `o3-mini` | Default | 2M | 200 |
 | `o1` | Enterprise and MCA-E | 6M | 1K |
@@ -245,6 +247,8 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
 |`gpt-4o-mini-audio-preview` | Default | 2M | 1K |
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
+|`gpt-audio` |   Default | 100K | 30 |
+|`gpt-realtime` | Default | 100K | 30 |
 
 ## GPT-image-1 rate limits
 

@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 05/19/2025
+ms.date: 07/31/2025
 ms.author: lajanuar
 ---
 
@@ -22,11 +22,27 @@ Text translation documentation contains the following article types:
 
 ## Text translation features
 
- Text translation supports the following methods:
+### [Latest preview version](#tab/linux)
+
+With the latest preview release, you now can optionally select either the standard neural machine (NMT) translation or a Large Language Model (LLM) deployment (GPT-4o-mini or GPT-4o). However, using an LLM model requires you to have an Azure AI Foundry resource. For more information, *see* [configure Azure resources](../how-to/create-translator-resource.md).
+
+* [**Languages**](preview/get-languages.md). Returns a list of languages supported by the [**Translate**](preview/translate-api.md) and [**Transliterate**](preview/transliterate-api.md) APIs. This request doesn't require authentication; just copy and paste the following `GET` request into your preferred REST API tool or browser:
+
+    ```bash
+        https://api.cognitive.microsofttranslator.com/languages?api-version=2025-05-01-preview
+
+    ```
+
+* [**Translate**](preview/translate-api.md). Renders single source-language text to multiple target-language texts with a single `POST` request:
+
+
+* [**Transliterate**](preview/transliterate-api.md). Converts characters or letters of a source language to the corresponding characters or letters of a target language with a single `POST` request.
+
+### [Latest GA version](#tab/windows)
 
 * [**Languages**](reference/v3/languages.md). Returns a list of languages supported by **Translate**, **Transliterate**, and **Dictionary Lookup** operations. This request doesn't require authentication; just copy and paste the following GET request into your favorite REST API tool or browser:
 
-    ```http
+    ```bash
     https://api.cognitive.microsofttranslator.com/languages?api-version=3.0
     ```
 
@@ -41,6 +57,8 @@ Text translation documentation contains the following article types:
 
 * [**Dictionary lookup**](reference/v3/dictionary-lookup.md). Returns equivalent words for the source term in the target language.
 * [**Dictionary example**](reference/v3/dictionary-examples.md) Returns grammatical structure and context examples for the source term and target term pair.
+
+---
 
 ## Text translation deployment options
 
@@ -98,7 +116,7 @@ Ready to begin?
 
 * [**Get your access keys and API endpoint**](../how-to/create-translator-resource.md#authentication-keys-and-endpoint-url). An endpoint URL and read-only key are required for authentication.
 
-* Explore our [**Quickstart**](quickstart/rest-api.md) "Learn to use Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages: 
+* Explore our [**Quickstart**](quickstart/rest-api.md) "Learn to use Translator via REST and a preferred programming language.") and view use cases and code samples for the following programming languages:
   * [**C#/.NET**](quickstart/rest-api.md?tabs=csharp)
   * [**Go**](quickstart/rest-api.md?tabs=go)
   * [**Java**](quickstart/rest-api.md?tabs=java)

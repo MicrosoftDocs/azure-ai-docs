@@ -44,7 +44,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Canada Central​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Canada East​​ ​|  |  | ✅ | ✅ |  |
 | ​Central US​​ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| East US​ <sup>1</sup> | ✅ | ✅ | ✅ | ✅ |  |
+| East US​ | ✅ | ✅ | ✅ | ✅ |  |
 | East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Mexico Central |  | ✅ |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ | ✅ | ✅ |
@@ -53,8 +53,6 @@ You can create an Azure AI Search service in any of the following Azure public r
 | West US 2​ ​| ✅ | ✅ | ✅ | ✅ | ✅ |
 | West US 3​ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | West Central US​ ​ | ✅ |  | ✅ | ✅ |  |
-
-<sup>1</sup> This region has capacity constraints on all tiers.
 
 ### Europe
 
@@ -107,7 +105,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Japan West​ | ✅ |  | ✅ | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ | ✅ |  |
-| Malaysia West |  | ✅ |  |  |  |  |
+| Malaysia West |  | ✅ |  |  |  |  
 | New Zealand North |  | ✅ |  |  |  |
 | South India |  | ✅ |  |  |  |
 | Southeast Asia​​ | ✅ | ✅ | ✅ | ✅ | ✅ |

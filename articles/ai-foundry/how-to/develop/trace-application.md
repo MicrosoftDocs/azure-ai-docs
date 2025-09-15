@@ -1,20 +1,21 @@
 ---
-title: How to trace AI applications using OpenAI SDK
+title: View Trace Results for AI Applications using OpenAI SDK
 titleSuffix: Azure AI Foundry
-description: Learn how to trace applications that use OpenAI SDK in Azure AI Foundry
+description: View trace results for AI applications using OpenAI SDK with OpenTelemetry in Azure AI Foundry. See execution traces, diagnose issues, and monitor application performance.
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: amibp
-ms.date: 05/19/2025
+ms.reviewer: ychen
+ms.date: 08/29/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
+ai-usage: ai-assisted
 ---
 
-# Trace AI applications using OpenAI SDK
+# View trace results for AI applications using OpenAI SDK
 
-Tracing provides deep visibility into execution of your application by capturing detailed telemetry at each execution step. Such helps diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, low-quality evaluation scores, and more.  
+Learn how to view trace results that provide deep visibility into AI application execution. See detailed telemetry captured at each step to diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, and low-quality evaluation scores.  
 
-This article explains how to implement tracing for AI applications using **OpenAI SDK** with OpenTelemetry in Azure AI Foundry.
+This article explains how to view trace results for AI applications using **OpenAI SDK** with OpenTelemetry in Azure AI Foundry.
 
 ## Prerequisites
 
@@ -24,46 +25,69 @@ You need the following to complete this tutorial:
 
 * An AI application that uses **OpenAI SDK** to make calls to models hosted in Azure AI Foundry.
 
-
 ## Enable tracing in your project
 
-Azure AI Foundry stores traces in Azure Application Insight resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect projects to an existing Azure Application Insights resource or create a new one from within the project. You do such configuration once per each Azure AI Foundry resource.
+Azure AI Foundry stores traces in Azure Application Insights resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect projects to an existing Azure Application Insights resource or create a new one from within the project. You do this configuration once per each Azure AI Foundry resource.
 
 The following steps show how to configure your resource:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com) and navigate to your project.
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your project.
 
-2. On the side navigation bar, select **Tracing**.
+1. On the side navigation bar, select **Tracing**.
 
-3. If an Azure Application Insights resource isn't associated with your Azure AI Foundry resource, associate one.
+1. If an Azure Application Insights resource isn't associated with your Azure AI Foundry resource, associate one. If you already have an Application Insights resource associated, you won't see the enable page below and you can skip this step.
 
     :::image type="content" source="../../media/how-to/develop/trace-application/configure-app-insight.png" alt-text="A screenshot showing how to configure Azure Application Insights to the Azure AI Foundry resource." lightbox="../../media/how-to/develop/trace-application/configure-app-insight.png":::
 
-4. To reuse an existing Azure Application Insights, use the drop-down **Application Insights resource name** to locate the resource and select **Connect**.
-
-    > [!TIP]
-    > To connect to an existing Azure Application Insights, you need at least contributor access to the Azure AI Foundry resource (or Hub). 
-
-5. To connect to a new Azure Application Insights resource, select the option **Create new**.
-
-    1. Use the configuration wizard to configure the new resource's name.
-
-    2. By default, the new resource is created in the same resource group where the Azure AI Foundry resource was created. Use the **Advance settings** option to configure a different resource group or subscription.
+    1. To reuse an existing Azure Application Insights, use the drop-down **Application Insights resource name** to locate the resource and select **Connect**.
 
         > [!TIP]
-        > To create a new Azure Application Insight resource, you also need contributor role to the resource group you selected (or the default one).
+        > To connect to an existing Azure Application Insights, you need at least contributor access to the Azure AI Foundry resource (or Hub).
 
-    3. Select **Create** to create the resource and connect it to the Azure AI Foundry resource.
+    1. To connect to a new Azure Application Insights resource, select the option **Create new**.
 
-4. Once the connection is configured, you are ready to use tracing in any project within the resource.
+        1. Use the configuration wizard to configure the new resource's name.
 
-5. Go to the landing page of your project and copy the project's endpoint URI. You need it later in the tutorial.
+        1. By default, the new resource is created in the same resource group where the Azure AI Foundry resource was created. Use the **Advance settings** option to configure a different resource group or subscription.
+
+            > [!TIP]
+            > To create a new Azure Application Insights resource, you also need contributor role to the resource group you selected (or the default one).
+
+        1. Select **Create** to create the resource and connect it to the Azure AI Foundry resource.
+
+    1. Once the connection is configured, you're ready to use tracing in any project within the resource.
+
+    > [!TIP]
+    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+
+1. Go to the landing page of your project and copy the project's endpoint URI. You need it later.
 
     :::image type="content" source="../../media/how-to/projects/fdp-project-overview.png" alt-text="A screenshot showing how to copy the project endpoint URI." lightbox="../../media/how-to/projects/fdp-project-overview.png":::
 
     > [!IMPORTANT]
     > Using a project's endpoint requires configuring Microsoft Entra ID in your application. If you don't have Entra ID configured, use the Azure Application Insights connection string as indicated in step 3 of the tutorial.
 
+## View trace results in Azure AI Foundry portal
+
+Once you have tracing configured and your application is instrumented, you can view trace results in the Azure AI Foundry portal:
+
+1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and navigate to your project.
+
+1. On the side navigation bar, select **Tracing**.
+
+1. You'll see a list of trace results from your instrumented applications. Each trace shows:
+   - **Trace ID**: Unique identifier for the trace
+   - **Start time**: When the trace began
+   - **Duration**: How long the operation took
+   - **Status**: Success or failure status
+   - **Operations**: Number of spans in the trace
+
+1. Select any trace to view detailed trace results including:
+   - Complete execution timeline
+   - Input and output data for each operation
+   - Performance metrics and timing
+   - Error details if any occurred
+   - Custom attributes and metadata
 
 ## Instrument the OpenAI SDK
 
@@ -125,11 +149,11 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     )
     ```
 
-1. If you go back to Azure AI Foundry portal, you should see the trace displayed:
+1. If you go back to Azure AI Foundry portal, you can view the trace results:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="A screenshot showing how a simple chat completion request is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
-1. It may be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
+1. It might be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
 
     ```python
     from opentelemetry import trace
@@ -137,7 +161,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
     tracer = trace.get_tracer(__name__)
     ```
 
-1. Then, use decorators in your method to capture specific scenarios in your code that you are interested in. Such decorators generate spans automatically. The following code example instruments a method called `assess_claims_with_context` with iterates over a list of claims and verify if the claim is supported by the context using an LLM. All the calls made in this method are captured within the same span:
+1. Then, use decorators in your method to capture specific scenarios in your code that you're interested in. These decorators generate spans automatically. The following code example instruments a method called `assess_claims_with_context` that iterates over a list of claims and verifies if the claim is supported by the context using an LLM. All the calls made in this method are captured within the same span:
 
     ```python
     def build_prompt_with_context(claim: str, context: str) -> str:
@@ -158,7 +182,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         responses = []
         for claim, context in zip(claims, contexts):
             response = client.chat.completions.create(
-                model="gpt-4.5-preview",
+                model="gpt-4.1",
                 messages=build_prompt_with_context(claim=claim, context=context),
             )
             responses.append(response.choices[0].message.content.strip('., '))
@@ -166,11 +190,11 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
         return responses
     ```
 
-1. Traces look as follows:
+1. Trace results look as follows:
 
     :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-decorator.png" alt-text="A screenshot showing how a method using a decorator is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-decorator.png":::
 
-1. You may also want to add extra information to the current span. OpenTelemetry uses the concept of **attributes** for that. Use the `trace` object to access them and include extra information. See how the `assess_claims_with_context` method has been modified to include an attribute:
+1. You might also want to add extra information to the current span. OpenTelemetry uses the concept of **attributes** for that. Use the `trace` object to access them and include extra information. See how the `assess_claims_with_context` method has been modified to include an attribute:
 
     ```python
     @tracer.start_as_current_span("assess_claims_with_context")
@@ -182,18 +206,17 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
         for claim, context in zip(claims, contexts):
             response = client.chat.completions.create(
-                model="gpt-4.5-preview",
+                model="gpt-4.1",
                 messages=build_prompt_with_context(claim=claim, context=context),
             )
             responses.append(response.choices[0].message.content.strip('., '))
 
         return responses
-    ``` 
-
+    ```
 
 ## Trace to console
 
-It may be useful to also trace your application and send the traces to the local execution console. Such approach may be beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool to further analysis.
+It might be useful to also trace your application and send the traces to the local execution console. This approach might be beneficial when running unit tests or integration tests in your application using an automated CI/CD pipeline. Traces can be sent to the console and captured by your CI/CD tool for further analysis.
 
 Configure tracing as follows:
 
@@ -271,6 +294,6 @@ Configure tracing as follows:
     }
     ```
 
-## Next steps
+## Related content
 
 * [Trace agents using Azure AI Foundry SDK](trace-agents-sdk.md)

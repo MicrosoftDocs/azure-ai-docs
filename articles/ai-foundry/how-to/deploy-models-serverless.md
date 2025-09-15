@@ -4,10 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Learn to deploy models as serverless API deployments, using Azure AI Foundry.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 07/29/2025
-ms.author: mopeakande
+ms.date: 09/15/2025
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
-author: msakande
 ms.reviewer: fasantia
 reviewer: santiagxf
 ms.custom: build-2024, serverless, devx-track-azurecli, ignite-2024
@@ -28,7 +28,7 @@ Although serverless API deployment is one option for deploying Azure AI Foundry 
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
 
 - Ensure that the **Deploy models to Azure AI Foundry resources** (preview) feature is turned off in the Azure AI Foundry portal. When this feature is on, serverless API deployments aren't available from the portal.
 
@@ -495,7 +495,9 @@ Furthermore, models offered through Azure Marketplace are available for deployme
     param modelId string = 'azureml://registries/azureml-cohere/models/Cohere-command-r-08-2024'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
-    var subscriptionName = '${modelName}-subscription'
+    // Replace period character which is used in some model names (and is not valid in the subscription name)
+    var sanitizedModelName = replace(modelName, '.', '')
+    var subscriptionName = '${sanitizedModelName}-subscription'
     
     resource projectName_subscription 'Microsoft.MachineLearningServices/workspaces/marketplaceSubscriptions@2024-04-01-preview' = if (!startsWith(
       modelId,
@@ -541,7 +543,9 @@ In this section, you create an endpoint for your model. Name the endpoint **myse
     param modelId string = 'azureml://registries/azureml-deepseek/models/DeepSeek-R1'
     
     var modelName = substring(modelId, (lastIndexOf(modelId, '/') + 1))
-    var subscriptionName = '${modelName}-subscription'
+    // Replace period character which is used in some model names (and is not valid in the subscription name)
+    var sanitizedModelName = replace(modelName, '.', '')
+    var subscriptionName = '${sanitizedModelName}-subscription'
     
     resource projectName_endpoint 'Microsoft.MachineLearningServices/workspaces/serverlessEndpoints@2024-04-01-preview' = {
       name: '${projectName}/${endpointName}'

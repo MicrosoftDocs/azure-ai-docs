@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 08/19/2025
+ms.date: 09/15/2025
 ms.reviewer: fasantia 
 reviewer: santiagxf
 ms.author: mopeakande
@@ -30,7 +30,7 @@ In this article, you learn to deploy models with the managed compute deployment 
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](hub-create-projects.md).
 
 - Foundry [Models from Partners and Community](../model-inference/concepts/models.md#models-from-partners-and-community) require access to Azure Marketplace, while Foundry [Models Sold Directly by Azure](../model-inference/concepts/models.md#models-sold-directly-by-azure) don't have this requirement. Ensure your Azure subscription has the permissions required to subscribe to model offerings in Azure Marketplace. See [Enable Azure Marketplace purchases](/azure/cost-management-billing/manage/enable-marketplace-purchases) to learn more.
 

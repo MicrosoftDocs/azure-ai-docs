@@ -1,7 +1,7 @@
 ---
-title: View Evaluation Results in the Azure AI Foundry Portal
+title: See Evaluation Results in Azure AI Foundry Portal
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to view evaluation results in the Azure AI Foundry portal.
+description: See and analyze AI model evaluation results in Azure AI Foundry portal. Learn to view performance metrics, compare results, and interpret evaluation data for model optimization.
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
@@ -12,21 +12,23 @@ ms.date: 05/19/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
+ai-usage: ai-assisted
 ---
 
-# View evaluation results in the Azure AI Foundry portal
+# See evaluation results in the Azure AI Foundry portal
 
-You can use the Azure AI Foundry portal evaluation page to visualize and assess your results. You can use it as a control center to optimize, troubleshoot, and select the ideal AI model for your deployment needs. The portal can help you with data-driven decision-making and performance enhancement in your Azure AI Foundry projects. You can access and interpret the results from various sources, including your flow, the playground quick test session, evaluation submission UI, and SDK. You have the flexibility to interact with your results in a way that best suits your workflow and preferences.
+Learn how to see evaluation results in the Azure AI Foundry portal. This guide shows you how to view and interpret AI model evaluation data, performance metrics, and quality assessments. Access evaluation results from flows, playground sessions, and SDK to make data-driven decisions about your AI models.
 
 After you visualize your evaluation results, you can dive into a thorough examination. You can view individual results and compare these results across multiple evaluation runs. You can identify trends, patterns, and discrepancies, which helps you gain invaluable insights into the performance of your AI system under various conditions.
 
 In this article, you learn how to:
 
-- View evaluation result and metrics.
-- Compare evaluation results.
-- Improve performance.
+- See evaluation results and metrics.
+- View detailed evaluation data.
+- Compare evaluation results across runs.
+- Interpret performance indicators.
 
-## Find your evaluation results
+## See your evaluation results
 
 After you submit your evaluation, you can locate the submitted evaluation run within the run list. Go to the **Evaluation** page.
 

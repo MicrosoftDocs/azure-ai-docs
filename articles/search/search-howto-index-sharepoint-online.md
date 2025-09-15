@@ -6,7 +6,7 @@ author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/13/2025
+ms.date: 09/12/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
@@ -105,7 +105,7 @@ We recommend app-based permissions. See [limitations](#limitations-and-considera
 
 + Application permissions (recommended), where the indexer runs under the [identity of the SharePoint tenant](/sharepoint/dev/solution-guidance/security-apponly-azureacs) with access to all sites and files. The indexer requires a [client secret](/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow). The indexer will also require [tenant admin approval](/azure/active-directory/manage-apps/grant-admin-consent) before it can index any content.
 
-+ Delegated permissions, where the indexer runs under the identity of the user or app sending the request. Data access is limited to the sites and files to which the caller has access. To support delegated permissions, the indexer requires a [device code prompt](/azure/active-directory/develop/v2-oauth2-device-code) to sign in on behalf of the user. User-delegated permissions enforce token expiration every 75 minutes, per the most recent security libraries used to implement this authentication type. This isn't a behavior that can be adjusted. An expired token requires manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true). For this reason, you should use app-based permissions instead.
++ Delegated permissions, where the indexer runs under the identity of the user or app sending the request. Data access is limited to the sites and files to which the caller has access. To support delegated permissions, the indexer requires a [device code prompt](/azure/active-directory/develop/v2-oauth2-device-code) to sign in on behalf of the user. User-delegated permissions enforce token expiration every 75 minutes, per the most recent security libraries used to implement this authentication type. This isn't a behavior that can be adjusted. An expired token requires manual indexing using [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true). For this reason, you should use app-based permissions instead.
 
 <a name='step-3-create-an-azure-ad-application'></a>
 
@@ -125,14 +125,16 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
 1. On the navigation pane under **Manage**, select **API permissions**, then **Add a permission**, then **Microsoft Graph**.
 
-    + If the indexer is using application API permissions, select **Application permissions**, and then select **Application.Read.All**.
+    + If the indexer is using application API permissions, select **Application permissions**, and then select `Files.Read.All` and `Sites.Read.All`.
 
+      <!-- RESTORE THIS SCREENSHOT -->
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-api-permissions.png" alt-text="Screenshot of application API permissions." lightbox="media/search-howto-index-sharepoint-online/application-api-permissions.png":::
 
       Using application permissions means that the indexer accesses the SharePoint site in a service context. So when you run the indexer, it has access to all content in the SharePoint tenant, which requires tenant admin approval. A client secret is also required for authentication. Setting up the client secret is described later in this article.
 
-    + If the indexer is using delegated API permissions, select **Delegated permissions** and then select  **Application.Read.All**.
+    + If the indexer is using delegated API permissions, select **Delegated permissions** and then select `Delegated - Files.Read.All`, `Delegated - Sites.Read.All`, and `Delegated - User.Read`.
 
+      <!-- RESTORE THIS SCREENSHOT -->
       :::image type="content" source="media/search-howto-index-sharepoint-online/delegated-api-permissions.png" alt-text="Screenshot showing delegated API permissions." lightbox="media/search-howto-index-sharepoint-online/delegated-api-permissions.png":::
 
       Delegated permissions allow the search client to connect to SharePoint under the security identity of the current user.
@@ -141,21 +143,21 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
     Tenant admin consent is required when using application API permissions. Some tenants are locked down in such a way that tenant admin consent is required for delegated API permissions as well. If either of these conditions apply, you’ll need to have a tenant admin grant consent for this Microsoft Entra application before creating the indexer.
 
+    <!-- RESTORE THIS SCREENSHOT -->
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png" alt-text="Screenshot showing Microsoft Entra app grant admin consent." lightbox="media/search-howto-index-sharepoint-online/aad-app-grant-admin-consent.png":::
 
-1. From the menu, select **Authentication (Preview)**.
+1. Select the **Authentication** tab.
 
-1. On the **Redirect URI configuration** tab, select **+ Add Redirect URI**, then **Mobile and desktop applications**, then check `https://login.microsoftonline.com/common/oauth2/nativeclient`, then **Configure**.
+1. Set **Allow public client flows** to **Yes** then select **Save**.
 
+1. Select **+ Add a platform**, then **Mobile and desktop applications**, then check `https://login.microsoftonline.com/common/oauth2/nativeclient`, then **Configure**.
+
+    <!-- RESTORE THIS SCREENSHOT -->
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-authentication-configuration.png" alt-text="Screenshot showing Microsoft Entra app authentication configuration." lightbox="media/search-howto-index-sharepoint-online/aad-app-authentication-configuration.png" :::
-
-1. Select the **Settings** tab. 
-
-1. Enable **Allow public client flows**. Save your changes.
 
 1. (Application API Permissions only) To authenticate to the Microsoft Entra application using application permissions, the indexer requires a client secret.
 
-    + From the menu, select **Certificates & Secrets**, then **Client secrets**, then **New client secret**.
+    + Select **Certificates & Secrets** from the menu on the left, then **Client secrets**, then **New client secret**.
 
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-client-secret.png" alt-text="Screenshot showing new client secret." lightbox="media/search-howto-index-sharepoint-online/application-client-secret.png" :::
 
@@ -165,6 +167,7 @@ The SharePoint Online indexer uses a Microsoft Entra application for authenticat
 
     + The new client secret appears in the secret list. Once you navigate away from the page, the secret is no longer be visible, so copy the value using the copy button and save it in a secure location.
 
+      <!-- RESTORE THIS SCREENSHOT -->
       :::image type="content" source="media/search-howto-index-sharepoint-online/application-client-secret-copy.png" alt-text="Screenshot showing where to copy a client secret.":::
 
 <a name="create-data-source"></a>
@@ -182,10 +185,10 @@ For SharePoint indexing, the data source must have the following required proper
 + **credentials** provide the SharePoint endpoint and the Microsoft Entra application (client) ID. An example SharePoint endpoint is `https://microsoft.sharepoint.com/teams/MySharePointSite`. You can get the endpoint by navigating to the home page of your SharePoint site and copying the URL from the browser.
 + **container** specifies which document library to index. Properties [control which documents are indexed](#controlling-which-documents-are-indexed).
 
-To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
+To create a data source, call [Create Data Source (preview)](/rest/api/searchservice/data-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -218,10 +221,10 @@ You can get tenant ID from the overview page in the Microsoft Entra admin center
 
 The index specifies the fields in a document, attributes, and other constructs that shape the search experience.
 
-To create an index, call [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-05-01-preview&preserve-view=true):
+To create an index, call [Create Index (preview)](/rest/api/searchservice/indexes/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true):
 
 ```http
-POST https://[service name].search.windows.net/indexes?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/indexes?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 
@@ -251,10 +254,10 @@ If you're using delegated permissions, during this step, you’re asked to sign 
 
 There are a few steps to creating the indexer:
 
-1. Send a [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) request:
+1. Send a [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) request:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2025-05-01-preview
+    POST https://[service name].search.windows.net/indexers?api-version=2025-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     
@@ -265,6 +268,7 @@ There are a few steps to creating the indexer:
         "parameters": {
         "batchSize": null,
         "maxFailedItems": null,
+        "base64EncodeKeys": null,
         "maxFailedItemsPerBatch": null,
         "configuration": {
             "indexedFileNameExtensions" : ".pdf, .docx",
@@ -287,17 +291,17 @@ There are a few steps to creating the indexer:
 
    If you're using application permissions, it's necessary to wait until the initial run is complete before starting to query your index. The following instructions provided in this step pertain specifically to delegated permissions, and aren't applicable to application permissions.
 
-1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
+1. When you create the indexer for the first time, the [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) request waits until you complete the next step. You must call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) to get the link and enter your new device code. 
 
     ```http
-    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-05-01-preview
+    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
 
-    If you don’t run the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) within 10 minutes, the code expires and you’ll need to recreate the [data source](#create-data-source).
+    If you don’t run the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) within 10 minutes, the code expires and you’ll need to recreate the [data source](#create-data-source).
 
-1. Copy the device login code from the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) response. The device login can be found in the "errorMessage".
+1. Copy the device login code from the [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) response. The device login can be found in the "errorMessage".
 
     ```http
     {
@@ -320,7 +324,7 @@ There are a few steps to creating the indexer:
 
     :::image type="content" source="media/search-howto-index-sharepoint-online/aad-app-approve-api-permissions.png" alt-text="Screenshot showing how to approve API permissions.":::
 
-1. The [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) initial request completes if all the permissions provided above are correct and within the 10 minute timeframe.
+1. The [Create Indexer (preview)](/rest/api/searchservice/indexers/create-or-update?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) initial request completes if all the permissions provided above are correct and within the 10 minute timeframe.
 
 > [!NOTE]
 > If the Microsoft Entra application requires admin approval and was not approved before logging in, you may see the following screen. [Admin approval](/azure/active-directory/manage-apps/grant-admin-consent) is required to continue.
@@ -328,10 +332,10 @@ There are a few steps to creating the indexer:
 
 ### Step 7: Check the indexer status
 
-After the indexer has been created, you can call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true):
+After the indexer has been created, you can call [Get Indexer Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true):
 
 ```http
-GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-05-01-preview
+GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 ```
@@ -344,18 +348,18 @@ However, if you modify the data source object while the device code is expired, 
 
 Here are the steps for updating a data source, assuming an expired device code:
 
-1. Call [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true) to manually start [indexer execution](search-howto-run-reset-indexers.md).
+1. Call [Run Indexer (preview)](/rest/api/searchservice/indexers/run?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true) to manually start [indexer execution](search-howto-run-reset-indexers.md).
 
     ```http
-    POST https://[service name].search.windows.net/indexers/sharepoint-indexer/run?api-version=2025-05-01-preview  
+    POST https://[service name].search.windows.net/indexers/sharepoint-indexer/run?api-version=2025-08-01-preview  
     Content-Type: application/json
     api-key: [admin key]
     ```
 
-1. Check the [indexer status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-05-01-preview&tabs=HTTP&preserve-view=true). 
+1. Check the [indexer status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&tabs=HTTP&preserve-view=true). 
 
     ```http
-    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-05-01-preview
+    GET https://[service name].search.windows.net/indexers/sharepoint-indexer/status?api-version=2025-08-01-preview
     Content-Type: application/json
     api-key: [admin key]
     ```
@@ -398,7 +402,7 @@ You can control which files are indexed by setting inclusion and exclusion crite
 Include specific file extensions by setting `"indexedFileNameExtensions"` to a comma-separated list of file extensions (with a leading dot). Exclude specific file extensions by setting `"excludedFileNameExtensions"` to the extensions that should be skipped. If the same extension is in both lists, it's excluded from indexing.
 
 ```http
-PUT /indexers/[indexer name]?api-version=2025-05-01-preview
+PUT /indexers/[indexer name]?api-version=2025-08-01-preview
 {
     "parameters" : { 
         "configuration" : { 
@@ -449,7 +453,7 @@ The "query" parameter of the data source is made up of keyword/value pairs. The 
 By default, the SharePoint Online indexer stops as soon as it encounters a document with an unsupported content type (for example, an image). You can use the `excludedFileNameExtensions` parameter to skip certain content types. However, you might need to index documents without knowing all the possible content types in advance. To continue indexing when an unsupported content type is encountered, set the `failOnUnsupportedContentType` configuration parameter to false:
 
 ```http
-PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2025-05-01-preview
+PUT https://[service name].search.windows.net/indexers/[indexer name]?api-version=2025-08-01-preview
 Content-Type: application/json
 api-key: [admin key]
 

@@ -1,21 +1,21 @@
 ---
-title: How to trace your AI application
+title: View Trace Results for AI Agents in Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
+description: View trace results for AI agents using Azure AI Foundry SDK and OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: amibp
 ms.date: 08/21/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-
+ai-usage: ai-assisted
 ---
 
-# Trace your AI agents using Azure AI Foundry portal and SDK (preview)
+# View trace results for AI agents in Azure AI Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-This article walks you through how to instrument tracing in agents using Azure AI Foundry SDK with OpenTelemetry and Azure Monitor for enhanced observability and debugging.
+Learn how to view trace results for AI agents in Azure AI Foundry. This article shows you how to see execution traces, analyze agent behavior, and debug performance issues using Azure AI Foundry SDK with OpenTelemetry and Azure Monitor for enhanced observability.
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for a number of reasons:
 * There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
@@ -23,11 +23,11 @@ Determining the reasoning behind your agent's executions is important for troubl
 * The inputs/outputs at each stage might be long and deserve more detailed inspection.
 * Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
 
-Tracing solves this by allowing you to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked.
+Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-## Tracing in the Azure AI Foundry Agents playground
+## View trace results in the Azure AI Foundry Agents playground
 
-The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread info** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
+The Agents playground in the Azure AI Foundry portal lets you view trace results for threads and runs that your agents produce. To see trace results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
 > Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
@@ -39,14 +39,14 @@ The Agents playground in the Azure AI Foundry portal lets you trace threads and 
 
 :::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
 
-After selecting **Thread info**, the screen that appears will let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
+After selecting **Thread logs**, you can view trace results including: thread details, run information, run steps and any tool calls that were made. The trace results show you the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
 > [!TIP]
-> If you want to view the trace of a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
+> If you want to view trace results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 > :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
-> You will be able to see the **Thread info** button at the top of the screen to view the trace.
+> You will be able to see the **Thread logs** button at the top of the screen to view the trace results.
 
 
 > [!NOTE]

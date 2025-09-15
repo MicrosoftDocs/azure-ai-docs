@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's latest fine-tuning capabilities wit
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: tutorial
-ms.date: 07/02/2025
+ms.date: 09/01/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -63,9 +63,6 @@ Create and assign persistent environment variables for your key and endpoint.
 setx AZURE_OPENAI_API_KEY "REPLACE_WITH_YOUR_KEY_VALUE_HERE"
 ```
 
-```CMD
-setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
-```
 
 # [PowerShell](#tab/powershell)
 
@@ -73,15 +70,10 @@ setx AZURE_OPENAI_ENDPOINT "REPLACE_WITH_YOUR_ENDPOINT_HERE"
 [System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_API_KEY', 'REPLACE_WITH_YOUR_KEY_VALUE_HERE', 'User')
 ```
 
-```powershell
-[System.Environment]::SetEnvironmentVariable('AZURE_OPENAI_ENDPOINT', 'REPLACE_WITH_YOUR_ENDPOINT_HERE', 'User')
-```
-
 # [Bash](#tab/bash)
 
 ```Bash
 echo export AZURE_OPENAI_API_KEY="REPLACE_WITH_YOUR_KEY_VALUE_HERE" >> /etc/environment
-echo export AZURE_OPENAI_ENDPOINT="REPLACE_WITH_YOUR_ENDPOINT_HERE" >> /etc/environment
 
 source /etc/environment
 ```
@@ -284,12 +276,11 @@ p5 / p95: 10.7, 19.999999999999996
 # Upload fine-tuning files
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2025-02-01-preview"  
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 training_file_name = 'training_set.jsonl'
@@ -757,12 +748,11 @@ After your fine-tuned model is deployed, you can use it like any other deployed 
 # Use the deployed customized model
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
-  api_key = os.getenv("AZURE_OPENAI_API_KEY"),
-  api_version = "2024-10-21"
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.chat.completions.create(

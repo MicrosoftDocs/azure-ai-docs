@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 07/21/2025
+ms.date: 08/27/2025
 ---
 
 # Relevance scoring in hybrid search using Reciprocal Rank Fusion (RRF)
@@ -18,7 +18,7 @@ Reciprocal Rank Fusion (RRF) is an algorithm that evaluates the search scores fr
 RRF is based on the concept of *reciprocal rank*, which is the inverse of the rank of the first relevant document in a list of search results. The goal of the technique is to take into account the position of the items in the original rankings, and give higher importance to items that are ranked higher in multiple lists. This can help improve the overall quality and reliability of the final ranking, making it more useful for the task of fusing multiple ordered search results.
 
 > [!NOTE]
-> [Preview APIs](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&preserve-view=true) can deconstruct an RRF-ranked search score into its component subscores. This gives you transparency into all-up score composition. For more information, see [unpack search scores (preview)](#unpack-a-search-score-into-subscores-preview) in this article.
+> The [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true) can deconstruct an RRF-ranked search score into its component subscores. This gives you transparency into all-up score composition. For more information, see [Unpack search scores (preview)](#unpack-a-search-score-into-subscores-preview) in this article.
 
 ## How RRF ranking works
 
@@ -61,20 +61,20 @@ Semantic ranking occurs after RRF merging of results. Its score (`@search.rerank
 
 ## Unpack a search score into subscores (preview)
 
-Using the [latest preview API version](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&preserve-view=true), you can deconstruct a search score to view its subscores.
+Using the [latest preview REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true), you can deconstruct a search score to view its subscores.
 
 For vector queries, this information can help you determine an appropriate value for [vector weighting](vector-search-how-to-query.md#vector-weighting) or [setting minimum thresholds](vector-search-how-to-query.md#set-thresholds-to-exclude-low-scoring-results-preview).
 
 To get subscores:
 
-+ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-05-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
++ Use the [latest preview Search Documents REST API](/rest/api/searchservice/documents/search-post?view=rest-searchservice-2025-08-01-preview&preserve-view=true#request-body) or an Azure SDK beta package that provides the feature.
 
 + Modify a query request, adding a new `debug` parameter set to either `vector`, `semantic` if using semantic ranker, or `all`.
 
 Here's an example of hybrid query that returns subscores in debug mode:
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-05-01=preview
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2025-08-01-preview
 
 {
     "vectorQueries": [

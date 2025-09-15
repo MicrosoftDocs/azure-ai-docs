@@ -34,18 +34,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 [!INCLUDE [feature-preview](feature-preview.md)]
 
-## Start with a project and model
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
-1. In the portal, you can explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. For this tutorial, search and then 
-select the **gpt-4o** model. 
-    
-    :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start building an Agent in Azure AI Foundry portal.":::
-
-1. On the model details page, select **Use this model**.
-1. Fill in a name to use for your project and select **Create**. 
-1. Review the deployment information then select **Deploy**.
-1. Once your resources are created, you are in the chat playground. 
+[!INCLUDE [first-run](first-run-experience.md)]
 
 ## Set up your environment  
 
@@ -261,7 +250,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 [!INCLUDE [clean-up-resources](clean-up-resources.md)]
 
-## Next step
+## Related content
 
-> [!div class="nextstepaction"]
-> [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+* [Quickstart: Create a new agent](../agents/quickstart.md)
+* [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)

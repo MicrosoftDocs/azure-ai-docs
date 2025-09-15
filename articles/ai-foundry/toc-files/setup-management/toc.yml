@@ -30,8 +30,26 @@ items:
       href: ../../how-to/develop/create-hub-project-sdk.md
     - name: Create a hub using Terraform
       href: ../../how-to/create-hub-terraform.md
+    - name: Vulnerability management
+      href: ../../concepts/vulnerability-management.md     
+  - name: Connect and manage data
+    href: ../../how-to/data-add.md
   - name: Create and manage compute
     href: ../../how-to/create-manage-compute.md
+  - name: Role-based access control for Azure AI Foundry
+    href: ../../concepts/hub-rbac-azure-ai-foundry.md
+  - name: Customer-managed keys
+    href: ../../concepts/hub-encryption-keys-portal.md
+  - name: How to configure a private link
+    href: ../../how-to/hub-configure-private-link.md
+  - name: Manage and increase quotas
+    href: ../../how-to/hub-quota.md
+  - name: Create and manage connections
+    href: ../../how-to/hub-connections-add.md
+  - name: Create a hub project
+    href: ../../how-to/hub-create-projects.md
+  - name: "Quickstart: Get started with Azure AI Foundry using a hub"
+    href: ../../quickstarts/hub-get-started-code.md
 - name: Manage projects
   items:
   - name: Create a project
@@ -47,8 +65,8 @@ items:
   - name: Create a connection
     href: ../../how-to/connections-add.md
     displayName: code
-  - name: Connect and manage data
-    href: ../../how-to/data-add.md
+  - name: Create a Key Vault
+    href: ../../how-to/set-up-key-vault-connection.md
 - name: Costs and quotas
   items:
   - name: Plan and manage costs for AI Foundry resources

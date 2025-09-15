@@ -5,7 +5,7 @@ description: Learn how to create your own customized model with Azure OpenAI by 
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 04/30/2025
+ms.date: 09/01/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -18,7 +18,7 @@ ms.custom:
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
-- The OpenAI Python library **should be at least version 0.28.1**.
+- The OpenAI Python library.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
@@ -106,12 +106,11 @@ The following Python example uploads local training and validation files by usin
 # Upload fine-tuning files
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"  # This API version or later is required to access seed/events/checkpoint capabilities
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 training_file_name = 'training_set.jsonl'
@@ -174,12 +173,11 @@ The current supported hyperparameters for fine-tuning are:
 To set custom hyperparameters with the 1.x version of the OpenAI Python API:
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"  # This API version or later is required
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 client.fine_tuning.jobs.create(
@@ -329,12 +327,12 @@ Once you have created a fine-tuned model you might want to continue to refine th
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```python
-from openai import AzureOpenAI
+import os
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"  
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.fine_tuning.jobs.create(

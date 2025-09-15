@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/18/2025
+ms.date: 09/02/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -21,13 +21,13 @@ In Azure AI Search, *agentic retrieval* is a new multi-query pipeline designed f
 
 + Uses a large language model (LLM) to break down a complex query into smaller, focused subqueries for better coverage over your indexed content. Subqueries can include chat history for extra context.
 
-+ Runs the multiple subqueries in parallel. Each subquery is semantically reranked to find the most relevant matches.
++ Runs subqueries in parallel. Each subquery is semantically reranked to promote the most relevant matches.
 
-+ Combines the best results into a unified response that your LLM can use to generate answers with your proprietary content.
++ Combines the best results into a unified response that an LLM can use to generate answers with your proprietary content.
 
 This high-performance pipeline helps you generate high quality grounding data for your chat application, with the ability to answer complex questions quickly.
 
-Programmatically, agentic retrieval is supported through a new [Knowledge Agents object](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) in the 2025-05-01-preview data plane REST API and in Azure SDK preview packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
+Programmatically, agentic retrieval is supported through a new [Knowledge Agents object](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-08-01-preview&preserve-view=true) in the 2025-08-01-preview and 2025-05-01-preview data plane REST APIs and in Azure SDK preview packages that provide the feature. A knowledge agent's retrieval response is designed for downstream consumption by other agents and chat apps.
 
 ## Why use agentic retrieval
 
@@ -67,7 +67,7 @@ The agentic retrieval process follows three main phases:
 
 1. **Query planning**: A knowledge agent sends your query and conversation history to an LLM (gpt-4o or gpt-4.1 series), which analyzes the context and breaks down complex questions into focused subqueries. This step is automated and not customizable. The number of subqueries depends on what the LLM decides and whether the `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50-document batch sent to semantic ranker.
 
-2. **Query execution**: All subqueries run simultaneously against your search index, using keyword, vector, and hybrid search. Each subquery undergoes semantic reranking to find the most relevant matches. References are extracted and retained for citation purposes.
+2. **Query execution**: All subqueries run simultaneously against your knowledge sources, using keyword, vector, and hybrid search. Each subquery undergoes semantic reranking to find the most relevant matches. References are extracted and retained for citation purposes.
 
 3. **Result synthesis**: The system merges and ranks all results, then returns a unified response containing grounding data, source references, and execution metadata.
 
@@ -81,6 +81,7 @@ Your search index determines query execution and any optimizations that occur du
 | **Knowledge agent** | Azure AI Search | Orchestrates the pipeline, connecting to your LLM and managing query parameters |
 | **Search index** | Azure AI Search | Stores your searchable content (text and vectors) with semantic configuration |
 | **Semantic ranker** | Azure AI Search | Required component that reranks results for relevance (L2 reranking) |
+| **Knowledge source** | Azure AI Search | Wraps the search index with properties pertaining to knowledge agent usage |
 
 ### Integration requirements
 
@@ -106,11 +107,16 @@ Choose any of these options for your next step.
 
 + How-to guides for a focused look at development tasks:
 
+  + [Create a search index knowledge source](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md)
   + [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
   + [Use a knowledge agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
-  + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
+  + [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md)
 
-+ REST API reference, [Knowledge Agents](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-05-01-preview&preserve-view=true) and [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
++ REST API reference:
+
+  + [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-08-01-preview&preserve-view=true)
+  + [Knowledge Agents](/rest/api/searchservice/knowledge-agents?view=rest-searchservice-2025-08-01-preview&preserve-view=true)
+  + [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true)
 
 + [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo), updated to use agentic retrieval.
 
@@ -120,7 +126,7 @@ Agentic retrieval is available in [all regions that provide semantic ranker](sea
 
 Billing for agentic retrieval has two parts:
 
-+ Billing for query planning is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the knowledge agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
++ Billing for query planning and [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) (optional) is pay-as-you-go in Azure OpenAI. It's token based for both input and output tokens. The model you assign to the knowledge agent is the one charged for token usage. For example, if you use gpt-4o, the token charge appears in the bill for gpt-4o.
 
 + Billing for semantic ranking during query execution. Billing is suspended during the initial roll-out phase but then transitions to pay-as-you-go on the Azure AI Search side through the semantic ranker. Semantic ranker, which is a premium billable feature, is an integral part of agentic retrieval. You're charged on the Azure AI Search side for token inputs to the semantic ranking models.
 
@@ -138,9 +144,9 @@ Semantic ranking is performed for every subquery in the plan. Semantic ranking c
 
 ### Example: Estimate costs
 
-Agentic retrieval has two billing models: billing from Azure OpenAI (query planning) and billing from Azure AI Search for semantic ranking (query execution).
+Agentic retrieval has two billing models: billing from Azure OpenAI (query planning and, if enabled, answer synthesis) and billing from Azure AI Search for semantic ranking (query execution).
 
-The prices shown in this article are hypothetical. They're used to illustrate the estimation process. Your costs could be lower. For the actual price of transactions, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing). For query execution, there's no charge for semantic ranking for agentic retrieval in the initial public preview.
+This example omits answer synthesis and uses hypothetical prices to illustrate the estimation process. Your costs could be lower. For the actual price of transactions, see [Azure OpenAI pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing). For query execution, there's no charge for semantic ranking for agentic retrieval in the initial public preview.
 
 #### Estimated billing costs for query planning
 

@@ -1,15 +1,19 @@
 ---
 title: Supported programming languages for models in Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about supported programming languages for models in Azure AI Foundry Models
+description: Learn how to choose the right programming languages and SDKs for deploying and using models in Azure AI Foundry Models.
 author: msakande
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.custom: ignite-2024, github-universe-2024
 ms.topic: concept-article
-ms.date: 05/19/2025
+ms.date: 08/29/2025
 ms.author: mopeakande
 ms.reviewer: fasantia
 reviewer: santiagxf
+ai-usage: ai-assisted
+
+#CustomerIntent: As a developer building AI applications with Azure AI Foundry Models, I want to know which programming languages and SDKs are supported for Azure AI Foundry Models so that I can choose the right tools for my application development.
 ---
 
 # Supported programming languages for Azure AI Inference SDK
@@ -20,7 +24,7 @@ To use these SDKs, connect them to the [Azure AI model inference URI](how-to/inf
 
 ## Azure AI Inference package
 
-The Azure AI Inference package allows you to consume all models deployed to the Azure AI Foundry resource and easily change among them. Azure AI Inference package is part of the Azure AI Foundry SDK.
+The Azure AI Inference package allows you to consume all models deployed to the Azure AI Foundry resource and easily switch the model deployment from one to another. The Azure AI Inference package is part of the Azure AI Foundry SDK.
 
 | Language   | Documentation | Package | Examples |
 |------------|---------|-----|-------|
@@ -42,9 +46,8 @@ The Azure AI Inference package allows you to consume all models deployed to the 
 
 ## Limitations
 
-> [!WARNING]
-> Cohere SDK and Mistral SDK aren't supported in Azure AI Foundry.
+Azure AI Foundry doesn't support the Cohere SDK or the Mistral SDK.
 
-## Next steps
+## Next step
 
-- To see what models are currently supported, check out the [Models](../model-inference/concepts/models.md) section
+- To see what models are currently supported, see [Foundry Models and capabilities](concepts/models.md).

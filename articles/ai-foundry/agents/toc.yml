@@ -61,6 +61,13 @@ items:
               displayName: code interpreter
             - name: How to use code interpreter
               href: how-to/tools/code-interpreter-samples.md
+        - name: Computer Use (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/computer-use.md
+              displayName: computer use, computer-capable models
+            - name: How to use Computer Use
+              href: how-to/tools/computer-use-samples.md
         - name: Deep Research (preview)
           items:
             - name: Overview

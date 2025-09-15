@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 07/17/2025
+ms.date: 07/21/2025
 ms.author: lajanuar
 ---
 
@@ -30,7 +30,7 @@ In this quickstart, learn to use the Document Intelligence REST API to analyze a
 
 * Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
 
-* cURL command-line tool installed.
+* The `cURL` command line tool installed.
 
 * **PowerShell version 7.*+** (or a similar command-line application.):
   * [Windows](/powershell/scripting/install/installing-powershell-on-windows)
