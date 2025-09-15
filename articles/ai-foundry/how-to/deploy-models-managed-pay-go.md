@@ -5,7 +5,7 @@ description: Learn how to deploy protected models from partners and community on
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 06/24/2025
+ms.date: 09/15/2025
 ms.reviewer: tinaem
 reviewer: tinaem
 ms.author: mopeakande
@@ -20,13 +20,13 @@ Azure AI Foundry Models include a comprehensive catalog of models organized into
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
 
 - [Azure Marketplace purchases enabled](/azure/cost-management-billing/manage/enable-marketplace-purchases) for your Azure subscription.
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 
 - On the Azure subscription— **to subscribe the workspace/project to the Azure Marketplace offering**:
@@ -81,10 +81,10 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
-1. From the model's page, select **Use this model** to open the deployment wizard.
+1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
+1. From the model's page, select **Use this model** to open the deployment wizard.
 1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
-1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
+1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/deployment-configuration.png":::
 

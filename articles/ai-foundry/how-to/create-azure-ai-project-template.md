@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom: 
   - subject-bicepqs
-ms.date: 08/14/2025
+ms.date: 09/15/2025
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
@@ -114,4 +114,4 @@ Remove-AzResourceGroup -Name exampleRG
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
+- [Get started with the SDK](../quickstarts//get-started-code.md)
