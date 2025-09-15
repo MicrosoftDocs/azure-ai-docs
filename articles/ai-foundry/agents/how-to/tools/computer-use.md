@@ -15,7 +15,7 @@ ms.custom: references_regions
 # Azure AI Foundry Agent Service Computer Use Tool
 
 > [!WARNING]
-> The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md).
+> The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#computer-use-in-azure-openai-service-preview).
 
 
 
@@ -88,7 +88,7 @@ If you don't use this parameter, you should make sure to include all the items r
 > [!WARNING] 
 > Computer Use carries substantial security and privacy risks and user responsibility. Computer Use comes with significant security and privacy risks. Both errors in judgment by the AI and the presence of malicious or confusing instructions on web pages, desktops, or other operating environments which the AI encounters may cause it to execute commands you or others do not intend, which could compromise the security of your or other users’ browsers, computers, and any accounts to which AI has access, including personal, financial, or enterprise systems.
 > 
-> We strongly recommend using the Computer Use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md).
+> We strongly recommend using the Computer Use tool on virtual machines with no access to sensitive data or critical resources. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../../../responsible-ai/openai/transparency-note.md#computer-use-in-azure-openai-service-preview).
 
 The API has safety checks to help protect against prompt injection and model mistakes. These checks include: 
 
