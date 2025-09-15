@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/15/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -50,13 +50,13 @@ Select a run to open details (dataset, task type, prompt, parameters) plus per-s
 
 In the **Metric dashboard** section, aggregate views are broken down by metrics that include **AI quality (AI Assisted)**, **Risk and safety (preview)**, **AI Quality (NLP)**, and **Custom** (when applicable). Results are measured as percentages of pass/fail based on the criteria selected when the evaluation was created. For more in-depth information on metric definitions and how they're calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
 
--- For **AI quality (AI Assisted)** metrics, results are aggregated by averaging all scores per metric. If you use **Groundedness Pro**, output is binary and the aggregated score is passing rate: `(#trues / #instances) × 100`.
+- For **AI quality (AI Assisted)** metrics, results are aggregated by averaging all scores per metric. If you use **Groundedness Pro**, output is binary and the aggregated score is passing rate: `(#trues / #instances) × 100`.
     :::image type="content" source="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png" alt-text="Screenshot that shows the AI quality (AI Assisted) metrics dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png":::
--- For **Risk and safety (preview)** metrics, results are aggregated by defect rate.
+- For **Risk and safety (preview)** metrics, results are aggregated by defect rate.
   - Content harm: percentage of instances exceeding severity threshold (default `Medium`).
   - For protected material and indirect attack, the defect rate is calculated as the percentage of instances where the output is `true` by using the formula `(Defect Rate = (#trues / #instances) × 100)`.
     :::image type="content" source="../media/evaluations/view-results/risk-and-safety-chart.png" alt-text="Screenshot that shows the risk and safety metrics dashboard tab." lightbox="../media/evaluations/view-results/risk-and-safety-chart.png":::
--- For **AI quality (NLP)** metrics, results are aggregated by averaging scores per metric.
+- For **AI quality (NLP)** metrics, results are aggregated by averaging scores per metric.
      :::image type="content" source="../media/evaluations/view-results/ai-quality-nlp-chart.png" alt-text="Screenshot that shows the AI quality (NLP) dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-nlp-chart.png":::
 
 ### Detailed metrics result table

@@ -50,12 +50,6 @@ You must use Azure Key Vault to store your CMKs. You can either create your own 
 - Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity these key permissions: **get**, **wrapKey**, **unwrapKey**.
 - Use RSA or RSA-HSM keys of size 2048. Other key types/sizes aren't supported. See the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
-## Next steps
-
-- Review related: [Data encryption with Azure Machine Learning](../../machine-learning/concept-data-encryption.md)
-- Plan key [rotation policies in Key Vault](/azure/key-vault/secrets/tutorial-rotation-dual).
-- Assess migration from legacy storage architecture if applicable.
-
 ### Enable the managed identity for your Azure AI Foundry resource
 
 Managed identity must be enabled as a prerequisite for using CMKs.

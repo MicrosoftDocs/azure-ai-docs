@@ -5,7 +5,7 @@ description: View trace results for AI agents using Azure AI Foundry SDK and Ope
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: amibp
-ms.date: 08/21/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -70,25 +70,19 @@ After selecting **Thread logs**, review:
 Here's a brief overview of key concepts before getting started:
 
 | Key concepts             | Description            |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|---------------------|-----------------------------------------------------------------|
 | Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/). |
+| Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, allowing you to see the full call stack and sequence of operations.                                                                                         |
+| Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data making it more informative and useful for analysis.                                                                                                 |
+| Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
+| Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.   |
 
 ### Best practices
 
 - Use consistent span attributes.
 - Correlate evaluation run IDs for quality + performance analysis.
 - Redact sensitive content; avoid storing secrets in attributes.
-
-### Next steps
-
-- Run evaluations to quantify quality/safety.
-- Add application tracing for non-agent components.
-- Configure alerts on latency or defect metrics in Azure Monitor.
-| Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, allowing you to see the full call stack and sequence of operations.                                                                                         |
-| Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data making it more informative and useful for analysis.                                                                                                 |
-| Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
-| Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.                                                                               |
-
+                                                                          |
 ## Setup
 
 For chat completions or building agents with Azure AI Foundry, install:

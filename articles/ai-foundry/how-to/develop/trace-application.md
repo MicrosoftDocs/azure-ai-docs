@@ -5,7 +5,7 @@ description: View trace results for AI applications using OpenAI SDK with OpenTe
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 08/29/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
