@@ -111,7 +111,6 @@ Developers can connect an Agent to external systems, APIs, and services through 
 * **Deep Research tool**: (a tool that enables multi-step web-based research with the o3-deep-research model and Grounding with Bing Search.).
 * **Computer Use**: (a tool to perform tasks by interacting with computer systems and applications through their UIs)   
 * **Browser Automation Tool** (a tool that can perform real-world browser tasks through natural language prompts, enabling automated browsing activities without human intervention in the middle) 
-*  **Image Generation** (a tool to generate and edit images)
 
 #### Orchestrating multi-agent systems
 
@@ -134,7 +133,6 @@ Azure AI Agent Service is **flexible and use-case agnostic.** This presents mult
 * **Manufacturing: Inventory Oversight and Task Scheduling:** A factory supervisor deploys an agent to monitor inventory levels, schedule restocking when supplies run low, and optimize shift rosters; management confirms the agent’s suggestions and retains final decision-making authority.
 * **Deep Research Tool**: Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model with deep research technology in the [Azure OpenAI transparency note](../openai/transparency-note.md?tabs=text).
 * **Computer Use**:  The Computer Use tool comes with additional significant security and privacy risks, including prompt injection attacks. Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case in the [Azure OpenAI transparency note](../openai/transparency-note.md?tabs=image). 
-* **Image Generation Tool**:  The Image Generation tool is empowered by the gpt-image-1 model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](../openai/transparency-note.md?tabs=image).
 
 Agent code samples have specific intended uses that are configurable by developers to carefully build upon, implement, and deploy agents. See [list of Agent code samples](/azure/ai-foundry/agents/overview#agent-catalog).
 
