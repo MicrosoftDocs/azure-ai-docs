@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Get started with Azure AI Foundry"
+title: "Azure AI Foundry SDK Quickstart - Build Your First AI App"
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to start using the Azure AI Foundry portal and the Azure AI Foundry SDK.
+description: Get started with Azure AI Foundry SDK to build AI applications. Learn to deploy models, create chat apps, trace LLM calls, and run evaluations with Python code examples.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -20,7 +20,6 @@ ms.custom:
 ai-usage: ai-assisted
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
-
 
 # Quickstart: Get started with Azure AI Foundry (Foundry projects)
 

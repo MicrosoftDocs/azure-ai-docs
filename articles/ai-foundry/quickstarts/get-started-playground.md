@@ -1,7 +1,7 @@
 ---
-title: Use the chat playground in Azure AI Foundry portal
+title: Get Answers in Chat Playground - Azure AI Foundry Quickstart
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
+description: Get answers using the chat playground in Azure AI Foundry portal. Learn how to deploy models, ask questions, and get AI responses quickly with this step-by-step tutorial.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -11,12 +11,13 @@ ms.date: 08/25/2025
 ms.reviewer: zuramir
 ms.author: sgilley
 author: sdgilley
+ai-usage: ai-assisted
 # customer intent: As a developer, I want use the chat playground in Azure AI Foundry portal so I can work with generative AI.
 ---
 
-# Quickstart: Use the chat playground in Azure AI Foundry portal
+# Quickstart: Get answers in the chat playground
 
-In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to deploy a chat model and use it in the chat playground in Azure AI Foundry portal.
+Learn how to get answers using the chat playground in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). This quickstart shows you how to deploy chat models and get AI-powered responses to your questions quickly and easily in the Azure AI Foundry portal.
 
 For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
@@ -25,11 +26,11 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 [!INCLUDE [feature-preview](../includes/first-run-experience.md)]
 
-## Chat in the playground without your data
+## Get answers in the playground
 
-In the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground, you can observe how your model responds with and without your data. In this quickstart, you test your model without your data.
+Use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground to get answers from AI models. In this quickstart, you'll learn how to ask questions and get responses from deployed chat models.
 
-To chat with your deployed model in the chat playground, follow these steps:
+To get answers from your deployed model in the chat playground, follow these steps:
 
 1. In the **System message** text box, provide this prompt to guide the assistant: "You're an AI assistant that helps people find information." You can tailor the prompt for your scenario.
 1. Optionally, add a safety system message by selecting the **Add section** button, then **Safety system messages**. Choose from the prebuilt messages, and then edit them to your needs.

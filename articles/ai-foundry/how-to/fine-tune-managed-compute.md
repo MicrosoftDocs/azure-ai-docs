@@ -1,7 +1,7 @@
 ---
-title: Fine-tune models using a managed compute with Azure AI Foundry portal (preview)
+title: Deploy Fine-Tuned Models with Managed Compute in Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to fine-tune models using a managed compute with Azure AI Foundry.
+description: Deploy fine-tuned models using managed compute in Azure AI Foundry portal. Step-by-step guide to fine-tune, train, and deploy custom models with GPU compute resources.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 08/15/2025
@@ -13,7 +13,7 @@ author: ssalgadodev
 ms.custom: 
   - references_regions
   - hub-only
-
+ai-usage: ai-assisted
 #customer intent: As a data scientist using a managed compute, I want to learn how to fine-tune models to improve model performance for specific tasks. 
 ---
 
@@ -21,7 +21,7 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-This article explains how to use a managed compute to fine-tune a model in the Azure AI Foundry portal. Fine-tuning involves adapting a pretrained model to a new, related task or domain. When you use a managed compute for fine-tuning, you use your computational resources to adjust training parameters such as learning rate, batch size, and number of training epochs to optimize the model's performance for a specific task. 
+Learn how to deploy fine-tuned models using managed compute in Azure AI Foundry portal. This guide walks you through the complete process of fine-tuning and deploying custom models by adjusting training parameters such as learning rate, batch size, and training epochs to optimize performance for your specific use cases. 
 
 Fine-tuning a pretrained model to use for a related task is more efficient than building a new model, as fine-tuning builds upon the pretrained model's existing knowledge and reduces the time and data needed for training.
 
