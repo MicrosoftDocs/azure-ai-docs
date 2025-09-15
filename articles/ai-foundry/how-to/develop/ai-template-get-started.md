@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/10/2025
+ms.date: 09/15/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
@@ -32,7 +32,7 @@ Available templates include:
 ## Prerequisites
 
 - [Azure subscription](https://azure.microsoft.com/free)
-- Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
+- Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 
 ## Start with a sample application
 
