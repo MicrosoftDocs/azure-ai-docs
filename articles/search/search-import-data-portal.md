@@ -166,7 +166,7 @@ Overall, the advantages of the wizards are clear: as long as requirements are me
 
 The wizards have the following limitations:
 
-+ The wizards don't support iteration or reuse. Each pass through the wizards creates a new index, skillset, and indexer configuration. You can reuse data sources only in the **Import data** wizard. To edit other objects, either delete them and start over or use the REST APIs or Azure SDKs to modify their structures.
++ The wizards don't support iteration or reuse. Each pass through the wizards creates an index, skillset, and indexer configuration. You can reuse data sources only in the **Import data** wizard. After you finish the wizards, you can edit the created objects by using other portal tools, the REST APIs, or the Azure SDKs.
 
 + Source content must reside in a [supported data source](search-indexer-overview.md#supported-data-sources).
 
