@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 07/03/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -193,5 +193,5 @@ To delete the AI Foundry resource along with all its projects:
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=fdp-project)
+- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)

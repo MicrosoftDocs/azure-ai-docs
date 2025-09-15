@@ -5,7 +5,7 @@ description: Learn how to use a Bicep file (template) to create an Azure AI Foun
 ms.author: sgilley
 author: sdgilley
 reviewer: deeikele
-ms.date: 07/22/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom:
@@ -120,4 +120,4 @@ See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-s
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
+- [Get started with the SDK](../quickstarts//get-started-code.md)
