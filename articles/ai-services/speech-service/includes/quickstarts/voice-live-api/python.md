@@ -68,7 +68,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```txt
     aiohttp==3.11.18
-    azure-core==1.34.0
+    azure-core==1.35.0
     azure-identity==1.22.0
     certifi==2025.4.26
     cffi==1.17.1
@@ -76,23 +76,20 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     numpy==2.2.5
     pycparser==2.22
     python-dotenv==1.1.0
+    pyaudio
     requests==2.32.3
     sounddevice==0.5.1
     typing_extensions==4.13.2
     urllib3==2.4.0
     websocket-client==1.8.0
+    azure-ai-voicelive==1.0.0b1
+    pyaudio
     ```
 
 1. Install the packages:
 
     ```bash
     pip install -r requirements.txt
-    ```
-
-1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `azure-identity` package with:
-
-    ```console
-    pip install azure-identity
     ```
 
 ## Retrieve resource information
