@@ -24,7 +24,7 @@ Use this article to find code samples for connecting Azure AI Foundry Agent Serv
 Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 > [!NOTE]
-> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample26_PersistentAgents_MCP.md)
+> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples)
 
 ```csharp
 var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
