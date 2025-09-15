@@ -5,7 +5,7 @@ ms.topic: include
 ms.date: 09/15/2025
 ---
 
-## GlobalProvisionedManaged.md
+<!-- ## GlobalProvisionedManaged.md -->
 
 | **Region**         | **DeepSeek-R1-0528** | **DeepSeek-V3-0324** | **DeepSeek-R1** |
 |:-------------------|:--------------------:|:--------------------:|:---------------:|
