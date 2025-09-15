@@ -68,7 +68,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```txt
     aiohttp==3.11.18
-    azure-core==1.34.0
+    azure-core==1.35.0
     azure-identity==1.22.0
     certifi==2025.4.26
     cffi==1.17.1
@@ -76,6 +76,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     numpy==2.2.5
     pycparser==2.22
     python-dotenv==1.1.0
+    pyaudio
     requests==2.32.3
     sounddevice==0.5.1
     typing_extensions==4.13.2
@@ -90,12 +91,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     pip install -r requirements.txt
     ```
 
-1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `azure-identity` package with:
-
-    ```console
-    pip install azure-identity
-    ```
-
 ## Retrieve resource information
 
 [!INCLUDE [resource authentication](resource-authentication.md)]
@@ -107,7 +102,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 
 1. Create the `voice-live-quickstart.py` file with the following code:
 
-    ```python
     ```python
     import os
     import sys
@@ -576,30 +570,30 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
         parser.add_argument(
             "--api-key",
-            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.",
+            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICE_LIVE_API_KEY environment variable.",
             type=str,
-            default=os.environ.get("AZURE_VOICELIVE_API_KEY"),
+            default=os.environ.get("AZURE_VOICE_LIVE_API_KEY"),
         )
     
         parser.add_argument(
             "--endpoint",
             help="Azure VoiceLive endpoint",
             type=str,
-            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
+            default=os.environ.get("AZURE_VOICE_LIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
         )
     
         parser.add_argument(
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("VOICELIVE_MODEL", "gpt-4o-realtime-preview"),
+            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-4o-realtime-preview"),
         )
     
         parser.add_argument(
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("VOICELIVE_VOICE", "en-US-AvaNeural"),
+            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-AvaNeural"),
             choices=[
                 "alloy",
                 "echo",
@@ -618,7 +612,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="System instructions for the AI assistant",
             type=str,
             default=os.environ.get(
-                "VOICELIVE_INSTRUCTIONS",
+                "VOICE_LIVE_INSTRUCTIONS",
                 "You are a helpful AI assistant. Respond naturally and conversationally. "
                 "Keep your responses concise but engaging.",
             ),
@@ -644,7 +638,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         # Validate credentials
         if not args.api_key and not args.use_token_credential:
             print("❌ Error: No authentication provided")
-            print("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,")
+            print("Please provide an API key using --api-key or set AZURE_VOICE_LIVE_API_KEY environment variable,")
             print("or use --use-token-credential for Azure authentication.")
             sys.exit(1)
     
