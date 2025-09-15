@@ -61,7 +61,7 @@ In the **Metric dashboard** section, aggregate views are broken down by metrics 
 
 ### Detailed metrics result table
 
-Use the table under the dashboard to inspect each data sample. Sort by a metric to surface worst‑performing samples and identify systematic gaps (hallucination, safety failures, latency). Use search to cluster related failure topics. Apply column customization to focus on key metrics.
+Use the table under the dashboard to inspect each data sample. Sort by a metric to surface worst‑performing samples and identify systematic gaps (incorrect results, safety failures, latency). Use search to cluster related failure topics. Apply column customization to focus on key metrics.
 
 Typical actions:
 - Filter for low scores to detect recurring patterns.
