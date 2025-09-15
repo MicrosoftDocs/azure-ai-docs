@@ -17,7 +17,7 @@ ms.topic: how-to
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
 
-In this article, you learn to automate efficient hyperparameter tuning using Azure Machine Learning SDK v2 and CLI v2 by using the [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob.md) class.
+In this article, you learn to automate efficient hyperparameter tuning using Azure Machine Learning SDK v2 and CLI v2 by using the [SweepJob](/python/api/azure-ai-ml/azure.ai.ml.sweep.sweepjob?view=azure-python) class.
 
 - Define the parameter search space for your trial
 - Specify the sampling algorithm for your sweep job
