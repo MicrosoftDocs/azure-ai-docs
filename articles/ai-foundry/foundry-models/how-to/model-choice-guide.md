@@ -37,7 +37,7 @@ This guide helps you understand the differences and choose the right model for y
 | **Throughput**   | Moderate                               | High                                        |
 | **Token Length** | 272K tokens in, 128K tokens out (400K total) | 128 K (short context), up to 1M (long-context) |
 | **Perspective**  | Structured, analytical, step-by-step   | Concise, fast, conversational               |
-| **Cost**         |[Cost](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/) | [Cost](https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/)  |
+| **Cost**         |[Cost](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) | [Cost](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/)  |
 | **Variants**     | GPT-5<br>GPT-5-mini<br>GPT-5-nano      | GPT-4.1<br>GPT-4.1-mini<br>GPT-4.1-nano     |
 
 ## GPT-5 thinking levels trade-offs
@@ -86,7 +86,7 @@ _Example Use Cases:_
 - High-volume summarization pipelines
 - Lightweight assistants for internal tools
 
-If you're unsure which model to choose, try [Model Router](https://ai.azure.com/explore/models/model-router/version/2025-08-07/registry/azureml-routers?wsid=/subscriptions/6a6fff00-4464-4eab-a6b1-0b533c7202e0/resourceGroups/suriyak-platform/providers/Microsoft.CognitiveServices/accounts/ai-services-shasham-euap&tid=72f988bf-86f1-41af-91ab-2d7cd011db47) in Azure AI Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with no loss in fidelity. [How to use model router for Azure AI Foundry (preview) – Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/model-router)
+If you're unsure which model to choose, try [Model Router](https://ai.azure.com/catalog/models/model-router) in Azure AI Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with no loss in fidelity. [How to use model router for Azure AI Foundry (preview) – Microsoft Learn](/azure/ai-foundry/openai/how-to/model-router)
 
 
 
@@ -102,4 +102,4 @@ In contrast, GPT-4.1 offers a snappier and more responsive experience, making it
 | **TBT (Time Between Tokens)**  | Moderate to high                          | Low                        |
 | **User Perception**           | May feel slower, especially for short prompts | Feels snappy and responsive |
 
-If you wish to utilize the advanced features of GPT-5 while ensuring consistent latency, we recommend selecting the [Provisioned Throughput](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/concepts/provisioned-throughput?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&tabs=global-ptum) deployment type. This option provides specific latency service level agreements (SLAs) for latency and is well-suited to use cases where latency sensitivity is critical. [Get started with Provisioned Throughput.](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/provisioned-get-started?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext)
+If you wish to utilize the advanced features of GPT-5 while ensuring consistent latency, we recommend selecting the [Provisioned Throughput](/azure/ai-foundry/openai/concepts/provisioned-throughput?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext&tabs=global-ptum) deployment type. This option provides specific latency service level agreements (SLAs) for latency and is well-suited to use cases where latency sensitivity is critical. [Get started with Provisioned Throughput.](/azure/ai-foundry/openai/how-to/provisioned-get-started?context=%2Fazure%2Fai-foundry%2Fcontext%2Fcontext)
