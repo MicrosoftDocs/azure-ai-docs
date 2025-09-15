@@ -7,7 +7,7 @@ manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 09/15/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -126,7 +126,7 @@ Use one of the following methods to add a private endpoint to an existing hub:
 1. From the [Azure portal](https://portal.azure.com), select your hub.
 1. From the left side of the page, select __Settings__, __Networking__, and then select the __Private endpoint connections__ tab. Select __+ Private endpoint__.
 
-    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab":::
+    :::image type="content" source="../media/how-to/network/add-private-endpoint.png" alt-text="Screenshot of the private endpoint connections tab.":::
 
 1. When going through the forms to create a private endpoint, be sure to:
 

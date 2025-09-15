@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 09/15/2025
 ms.reviewer: haakar
 ms.author: mopeakande
 author: msakande 
@@ -85,7 +85,7 @@ Use quotas to manage compute and model quota across hubs in the same subscriptio
 1. In Azure AI Foundry portal, select **Management center**.
 1. Select **Quota**.
 
-:::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the management center link.":::
+   :::image type="content" source="../media/management-center/management-center.png" alt-text="Screenshot of the management center link.":::
 
 1. Expand groupings to view model deployments and details.
 
