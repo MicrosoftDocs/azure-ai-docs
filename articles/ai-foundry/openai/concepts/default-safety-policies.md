@@ -5,7 +5,7 @@ description: Learn about the default Guidelines & controls policies that Azure O
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/31/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-openai
 ms.topic: conceptual
 ms.custom:
@@ -15,7 +15,7 @@ ms.custom:
 # Default Guidelines & controls policies
 
 
-Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models, excluding Azure OpenAI Whisper. These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and others.
+Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
 
 Default safety aims to mitigate risks in different categories such as hate and fairness, sexual, violence, self-harm, protected material content, and user prompt injection attacks. To learn more about content filtering, visit our documentation describing [categories and severity levels](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new).
 
