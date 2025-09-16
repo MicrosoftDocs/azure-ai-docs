@@ -17,6 +17,9 @@ ms.custom: references_regions
 > [!NOTE]
 > Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
+> [!NOTE]
+> When using a [Network Secured Azure AI Foundry](../../how-to/virtual-networks.md), private MCP servers deployed in the same virual network is not supported, only publicly accessible MCP servers are supported.
+
 You can extend the capabilities of your Azure AI Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Azure AI Foundry Agent Service, can access.
 
 MCP is an open standard that defines how applications provide tools and contextual data to large language models (LLMs). It enables consistent, scalable integration of external tools into model workflows.
