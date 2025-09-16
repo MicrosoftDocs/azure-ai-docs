@@ -151,11 +151,6 @@ procedureSection:
           input="This is a test."
       )
 
-      completion = client.completions.create(
-          model="gpt-35-turbo-instruct", # This must match the custom deployment name you chose for your model.
-          prompt="<prompt>"
-      )
-
       chat_completion = client.chat.completions.create(
           model="gpt-4o", # model = "deployment_name".
           messages="<messages>"
