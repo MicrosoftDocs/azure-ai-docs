@@ -73,7 +73,8 @@ The voice live API supports the following models. For supported regions, see the
 
 | Model | Description |
 | ------------------------------ | ----------- |
-| `gpt-realtime`      | GPT real-time + option to use Azure text to speech voices including custom voice for audio. || `gpt-4o-realtime`      | GPT-4o real-time + option to use Azure text to speech voices including custom voice for audio. |
+| `gpt-realtime`      | GPT real-time + option to use Azure text to speech voices including custom voice for audio. |
+| `gpt-4o-realtime`      | GPT-4o real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o-mini-realtime` | GPT-4o mini real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
