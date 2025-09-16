@@ -3,11 +3,11 @@ title: How to use the voice live API (Preview)
 titleSuffix: Azure AI services
 description: Learn how to use the voice live API for real-time voice agents.
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/31/2025
+ms.date: 9/16/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the voice live API for real-time voice agents.
 ---
@@ -129,7 +129,7 @@ The voice live API offers conversational enhancements to provide robustness to t
 
 ### Turn Detection Parameters
 
-Turn detection is the process of detecting when the end-user started or stopped speaking. The voice live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the voice live API and the Azure OpenAI Realtime API.
+Turn detection is the process of detecting when the end-user started or stopped speaking. The voice live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type and the advanced `end_of_utterance_detection` are key differentiators between the voice live API and the Azure OpenAI Realtime API.
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
