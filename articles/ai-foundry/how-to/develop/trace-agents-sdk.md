@@ -82,7 +82,7 @@ Here's a brief overview of key concepts before getting started:
 - Use consistent span attributes.
 - Correlate evaluation run IDs for quality + performance analysis.
 - Redact sensitive content; avoid storing secrets in attributes.
-                                                                          |
+                                                                          
 ## Setup
 
 For chat completions or building agents with Azure AI Foundry, install:
