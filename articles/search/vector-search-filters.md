@@ -178,9 +178,9 @@ Strict postfiltering is useful for faceted navigation because it ensures that ap
 
 | Mode | Recall (filtered results) | Computational cost | Risk of false negatives | When to use |
 |--|--|--|--|--|
-| `preFilter` | Very high | Higher (increases with filter selectivity and complexity) | No risk | **Recommended default.** Use when recall is preferred over speed, such as for sensitive search domains, selective filters, or small `k`. |
-| `postFilter` | Medium to high (decreases with filter selectivity) | Similar to unfiltered but increases with filter complexity | Moderate (can miss matches per shard) | Use when speed is preferred over recall, such as for less selective filters or higher `k`. |
-| `strictPostFilter` | Lowest (decreases most quickly with filter selectivity) | Similar to unfiltered | Highest (can return zero results for selective filters or small `k`) | Use for faceted search applications where surfacing more results after filter application impacts the user experience. Don't use with small `k`. |
+| `preFilter` | Very high | Higher (increases with filter selectivity and complexity) | No risk | **Recommended default for all scenarios**, especially when recall is critical (sensitive search domains), when using selective filters, or when using small `k`. |
+| `postFilter` | Medium to high (decreases with filter selectivity) | Similar to unfiltered but increases with filter complexity | Moderate (can miss matches per shard) | An option for filters that aren't too selective and for higher-`k` queries. |
+| `strictPostFilter` | Lowest (decreases most quickly with filter selectivity) | Similar to unfiltered | Highest (can return zero results for selective filters or small `k`) | An option for faceted search applications where surfacing more results after filter application impacts the user experience more than the risk of false negatives. Don't use with small `k`. |
 
 ### Benchmark testing of prefiltering and postfiltering
 
