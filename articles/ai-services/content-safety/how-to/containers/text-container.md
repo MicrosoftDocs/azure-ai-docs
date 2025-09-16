@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
@@ -66,7 +66,7 @@ Billing={ENDPOINT_URI} \
 ApiKey={API_KEY}
 ```
 
-Command details:
+This command:
 * Runs a `content safety` container from the container image.
 * Uses all available GPU resources (by specifying `--gpus all`). Content safety container requires CUDA for optimal performance. See more in  [host requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations). Also make sure your host install [NVIDIA container toolkit](./install-run-container.md#install-the-nvidia-container-toolkit)
 * Exposes TCP port 5000 and allocates a pseudo-TTY for the container.

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 09/16/2025
+ms.date: 02/21/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---
@@ -26,7 +26,7 @@ You must meet the following prerequisites before you use content safety containe
     * You should have a basic understanding of [Docker concepts](https://docs.docker.com/get-started/overview/). 
 * A <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicescontent safetyServices"  title="Create a content safety service resource"  target="_blank">content safety service resource </a> with the standard (S) [pricing tier](https://azure.microsoft.com/pricing/details/cognitive-services/content-safety/).
 
-## Billing information
+## Billing arguments
 
 Content safety containers aren't licensed to run without being connected to Azure for metering. You must configure your container to always communicate billing information with the metering service. 
 
@@ -112,7 +112,7 @@ IMAGE ID         REPOSITORY                TAG
 <image-id>       <repository-path/name>    <tag-name>
 ```
 
-## Validate the container
+## Validate that a container is running
 
 There are several ways to validate that the container is running. Locate the *External IP* address and exposed port of the container in question, and open your preferred web browser. Use the various request URLs that follow to validate the container is running. 
 
@@ -193,7 +193,7 @@ The container tests for network connectivity to the billing endpoint.
 
 To run disconnected containers (not connected to the internet), you must submit [this request form](https://aka.ms/csdisconnectedcontainers) and wait for approval. For more information about applying and purchasing a commitment plan to use containers in disconnected environments, see [Use containers in disconnected environments](../../../containers/disconnected-containers.md) in the Azure AI services documentation.
 
-## Related content
+## Next steps
 
 * Review [analyze text container](./text-container.md) for text container configuration settings.
 *  Review [analyze image container](./image-container.md) for image container configuration settings.
