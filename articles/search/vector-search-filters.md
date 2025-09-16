@@ -172,6 +172,8 @@ Strict postfiltering is useful for faceted navigation because it ensures that ap
 
 :::image type="content" source="media/vector-search-filters/vector-filter-modes-strictpostfilter.svg" alt-text="Diagram of strict postfilters." border="true" lightbox="media/vector-search-filters/vector-filter-modes-strictpostfilter.png":::
 
+---
+
 ### Comparison table
 
 | Mode | Recall (filtered results) | Computational cost | Risk of false negatives | When to use |
