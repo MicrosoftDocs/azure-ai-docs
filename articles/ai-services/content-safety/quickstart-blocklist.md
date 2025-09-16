@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: devx-track-python, devx-track-dotnet
 ms.topic: quickstart
-ms.date: 09/16/2025
+ms.date: 02/22/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-3
 ---

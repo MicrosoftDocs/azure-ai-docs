@@ -5,7 +5,7 @@ ms.service: azure-ai-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/16/2025
+ms.date: 05/08/2025
 recommendations: false
 ---
 

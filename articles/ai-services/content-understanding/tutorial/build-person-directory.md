@@ -5,7 +5,7 @@ description: Learn to build a person directory with Content Understanding Face A
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.custom:
@@ -153,7 +153,7 @@ The API returns a `faceId` that uniquely identifies the created face with the de
 }
 ```
 
-## Use the person directory
+## Search
 
 After creating your person directory and adding face images with optional person associations, you can perform two key tasks:
 
@@ -251,6 +251,6 @@ The API returns the detected bounding box of the face along with the most simila
 - `similarFaces`: A list of similar faces, each with a `faceId`, `boundingBox`, `confidence` score, and an `imageReferenceId` indicating the source image.
 
 
-## Next step
+## Next steps
 
 Explore how to identify individuals in video content using the [Azure AI Content Understanding video solutions (preview)](../video/overview.md).

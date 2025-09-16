@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 09/16/2025
+ms.date: 03/26/2025
 ms.author: pafarley
 keywords: on-premises, Docker, container
 ---

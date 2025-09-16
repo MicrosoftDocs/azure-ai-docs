@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/16/2025
+ms.date: 04/17/2019
 ---
 
 # Azure AI Vision 86-category taxonomy
