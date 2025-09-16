@@ -123,7 +123,7 @@ List only required FQDNs (principle of least privilege). Keep dependent Azure se
 Use REST or CLI to audit and reconcile:
 - REST reference (perimeter core): [Network security perimeter REST API](/rest/api/network-security-perimeter/)
 - (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/azure/cli/azure/network/perimeter)
-- Configuration reconciliation APIs (preview) for perimeter profiles and associations. Use the latest published preview or stable version. [TO VERIFY: correct preview version for configuration APIs formerly cited as `2024-10-01`]
+- Configuration reconciliation APIs (preview) for perimeter profiles and associations. Use the latest published preview or stable version. Use the correct preview version for configuration APIs, currently `2024-10-01`.
 
 Always confirm the latest API version in the reference before scripting.
 
