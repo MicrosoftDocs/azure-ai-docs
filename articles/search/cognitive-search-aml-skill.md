@@ -38,7 +38,7 @@ Starting in the 2024-05-01-preview REST API and the Azure portal, which also tar
 
 During indexing, the **AML** skill can connect to the model catalog to generate vectors for the index. At query time, queries can use a vectorizer to connect to the same model to vectorize text strings for a vector query. In this workflow, you should use the **AML** skill and the model catalog vectorizer together so that the same embedding model is used for indexing and queries. For more information, including a list of supported embedding models, see [Use embedding models from Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md).
 
-We recommend using the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md) to generate a skillset that includes an AML skill for deployed embedding models in Azure AI Foundry. The wizard generates the AML skill definition for inputs, outputs, and mappings, providing an easy way to test a model before writing any code.
+We recommend using the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) to generate a skillset that includes an AML skill for deployed embedding models in Azure AI Foundry. The wizard generates the AML skill definition for inputs, outputs, and mappings, providing an easy way to test a model before writing any code.
 
 ## Prerequisites
 
