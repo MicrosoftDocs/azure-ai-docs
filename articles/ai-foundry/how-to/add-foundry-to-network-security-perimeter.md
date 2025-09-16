@@ -98,7 +98,7 @@ Within the profile, choose:
 
 Rule creation steps (portal screenshots, CLI parameters, examples):
 - [A walkthrough of configuring inbound and outbound rules](/azure/ai-foundry/openai/how-to/network-security-perimeter#add-an-access-rule-for-your-azure-openai-service) using Azure OpenAI NSP (which applies to Foundry data‑plane scenarios).
-- Azure CLI reference (access rules): [az network perimeter profile access-rule](/azure/cli/azure/network/perimeter/profile/access-rule)
+- Azure CLI reference (access rules): [az network perimeter profile access-rule](/cli/azure/network/perimeter/profile/access-rule?view=azure-cli-latest)
 
 Implicit trust: Resources inside the same NSP can reach each other when requests are authenticated via managed identity or role assignment; explicit rules are needed only for external sources/destinations or API key patterns.
 
@@ -122,7 +122,7 @@ List only required FQDNs (principle of least privilege). Keep dependent Azure se
 
 Use REST or CLI to audit and reconcile:
 - REST reference (perimeter core): [Network security perimeter REST API](/rest/api/network-security-perimeter/)
-- (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/azure/cli/azure/network/perimeter)
+- (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/cli/azure/network/perimeter?view=azure-cli-latest)
 - Configuration reconciliation APIs (preview) for perimeter profiles and associations. Use the latest published preview or stable version. Use the correct preview version for configuration APIs, currently `2024-10-01`.
 
 Always confirm the latest API version in the reference before scripting.
@@ -133,5 +133,5 @@ Always confirm the latest API version in the reference before scripting.
 - [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md)
 - [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
 - [Azure OpenAI NSP article](/azure/ai-foundry/openai/how-to/network-security-perimeter)
-- [Azure CLI network perimeter reference](/azure/cli/azure/network/perimeter)
+- [Azure CLI network perimeter reference](/cli/azure/network/perimeter?view=azure-cli-latest)
 - [What is Azure AI Foundry Agent Service?](../agents/overview.md)
