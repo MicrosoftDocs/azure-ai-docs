@@ -164,23 +164,20 @@ Here's an example of end of utterance detection in a session object:
 
 ## Audio input through Azure speech to text
 
-### Phrase list
+Azure speech to text will automatically be active when you are using a non-multimodal model like gpt-4o-realtime.
 
-Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
+In order to explicitly configure it you can set the `model` to `azure-speech` in `input_audio_transcription`. This can be useful to improve the recognition quality for specific language situations. See [How to customize voice live input and output](./voice-live-how-to-customize) learn more about speech input customization configuration.
 
 ```json
 {
     "session": {
         "input_audio_transcription": {
             "model": "azure-speech",
-            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"]
+            "language": "en"
         }
     }
 }
 ```
-
-> [!NOTE]
-> Phrase list currently doesn't support gpt-realtime, gpt-4o-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ## Audio output through Azure text to speech
 
@@ -193,6 +190,8 @@ The `voice` object has the following properties:
 | `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
+
+See [How to customize voice live input and output](./voice-live-how-to-customize) learn more about speech input customization configuration.
 
 ### Azure standard voices
 
@@ -225,35 +224,8 @@ Here's an example `session.update` message for a standard high definition voice:
 
 For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
 
-### Azure custom voices
-
-You can use a custom voice for audio output. For information about how to create a custom voice, see [What is custom voice](./custom-neural-voice.md).
-
-```json
-{
-  "voice": {
-    "name": "en-US-CustomNeural",
-    "type": "azure-custom",
-    "endpoint_id": "your-endpoint-id", // a guid string
-    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
-  }
-}
-```
-
-### Custom lexicon
-
-Use the `custom_lexicon_url` string property to customize pronunciation for both standard Azure text to speech voices and custom voices. To learn more about how to format the custom lexicon (the same as Speech Synthesis Markup Language (SSML)), see [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon).
-
-```json
-{
-  "voice": {
-    "name": "en-US-Ava:DragonHDLatestNeural",
-    "type": "azure-standard",
-    "temperature": 0.8, // optional
-    "custom_lexicon_url": "<custom lexicon url>"
-  }
-}
-```
+> [!NOTE]
+> High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2
 
 ### Speaking rate
 
@@ -439,6 +411,9 @@ And the service responds with the server SDP.
 ```
 
 Then you can connect the avatar with the server SDP.
+
+> [!NOTE]
+> Azure text to speech avatar is currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus2, westus2
 
 ## Related content
 

@@ -41,7 +41,7 @@ Azure AI voice live API is ideal for scenarios where voice-driven interactions i
 The voice live API includes a comprehensive set of features to support diverse use cases and ensure superior voice interactions:
 
 - **Broad locale coverage**: Supports over 15 locales for speech to text and offers over 600 standard voices across 140+ locales for text to speech, ensuring global accessibility.
-- **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input. Use custom voice to create unique, brand-aligned voices for audio output.
+- **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input or custom speech models for advanced speech recognizion fine-tuning. Use custom voice to create unique, brand-aligned voices for audio output. See [How to customize voice live input and output](./voice-live-how-to-customize) to learn more.
 - **Flexible generative AI model options**: [Choose from multiple models](#supported-models-and-regions), including GPT-5, GPT-4.1, GPT-4o, Phi, and more tailored to conversational requirements.
 - **Advanced conversational features**:
     - Noise suppression: Reduces environmental noise for clearer communication.
