@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/15/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -17,33 +17,32 @@ ai-usage: ai-assisted
 
 # See evaluation results in the Azure AI Foundry portal
 
-Learn how to see evaluation results in the Azure AI Foundry portal. This guide shows you how to view and interpret AI model evaluation data, performance metrics, and quality assessments. Access evaluation results from flows, playground sessions, and SDK to make data-driven decisions about your AI models.
+Learn how to see evaluation results in the Azure AI Foundry portal. View and interpret AI model evaluation data, performance metrics, and quality assessments. Access results from flows, playground sessions, and SDK to make data-driven decisions.
 
 After you visualize your evaluation results, you can dive into a thorough examination. You can view individual results and compare these results across multiple evaluation runs. You can identify trends, patterns, and discrepancies, which helps you gain invaluable insights into the performance of your AI system under various conditions.
 
 In this article, you learn how to:
 
-- See evaluation results and metrics.
-- View detailed evaluation data.
-- Compare evaluation results across runs.
-- Interpret performance indicators.
+- Locate and open evaluation runs.
+- View aggregate and sample-level metrics.
+- Compare results across runs.
+- Interpret metric categories and calculations.
+- Troubleshoot missing or partial metrics.
 
 ## See your evaluation results
 
-After you submit your evaluation, you can locate the submitted evaluation run within the run list. Go to the **Evaluation** page.
-
-You can monitor and manage your evaluation runs within the run list. You have the flexibility to modify the columns by using the column editor and implement filters, and you can customize and create your own version of the run list. Additionally, you can swiftly review the aggregated evaluation metrics across the runs and perform quick comparisons.
+After you submit an evaluation, locate the run on the **Evaluation** page. Filter or adjust columns to focus on runs of interest. Review high‑level metrics at a glance before drilling in.
 
 :::image type="content" source="../media/evaluations/view-results/evaluation-run-list.png" alt-text="Screenshot that shows the evaluation run list." lightbox="../media/evaluations/view-results/evaluation-run-list.png":::
 
 > [!TIP]
 > You can view an evaluation run with any version of the `promptflow-evals` SDK or `azure-ai-evaluation` versions 1.0.0b1, 1.0.0b2, 1.0.0b3. Enable the **Show all runs** toggle to locate the run.
 
-For a deeper understanding of how evaluation metrics are derived, you can access a comprehensive explanation by selecting the **Learn more about metrics** option. This detailed resource provides insights into the calculation and interpretation of the metrics that are used in the evaluation process.
+Select **Learn more about metrics** for definitions and formulas.
 
 :::image type="content" source="../media/evaluations/view-results/learn-more-metrics.png" alt-text="Screenshot that shows details of the evaluation metrics." lightbox="../media/evaluations/view-results/learn-more-metrics.png":::
 
-When you review the table of evaluation runs, you can select a specific one, which takes you to the run detail page. Here, you can access comprehensive information, including evaluation details such as test dataset, task type, prompt, temperature, and more. You can also view the metrics associated with each data sample. The metrics dashboard provides a visual representation of the pass rate for a dataset across each metric tested.
+Select a run to open details (dataset, task type, prompt, parameters) plus per-sample metrics. The metrics dashboard visualizes pass rate or aggregate score per metric.
 
 [!INCLUDE [FDP-backward-compatibility-azure-openai](../includes/fdp-backward-compatibility-azure-openai.md)]
 
@@ -51,27 +50,23 @@ When you review the table of evaluation runs, you can select a specific one, whi
 
 In the **Metric dashboard** section, aggregate views are broken down by metrics that include **AI quality (AI Assisted)**, **Risk and safety (preview)**, **AI Quality (NLP)**, and **Custom** (when applicable). Results are measured as percentages of pass/fail based on the criteria selected when the evaluation was created. For more in-depth information on metric definitions and how they're calculated, see [What are evaluators?](../concepts/observability.md#what-are-evaluators).
 
-- For **AI quality (AI Assisted)** metrics, results are aggregated by calculating an average across all the scores for each metric. If you calculate by using the **Groundedness Pro** metric, the output is binary and the aggregated score is passing rate, which is calculated by `(#trues / #instances) × 100`.
+- For **AI quality (AI Assisted)** metrics, results are aggregated by averaging all scores per metric. If you use **Groundedness Pro**, output is binary and the aggregated score is passing rate: `(#trues / #instances) × 100`.
     :::image type="content" source="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png" alt-text="Screenshot that shows the AI quality (AI Assisted) metrics dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-ai-assisted-chart.png":::
-- For **Risk and safety (preview)** metrics, results are aggregated by calculating a defect rate for each metric.
-  - For content harm metrics, the defect rate is defined as the percentage of instances in your test dataset that surpass a threshold on the severity scale over the whole dataset size. By default, the threshold value is `Medium`.
+- For **Risk and safety (preview)** metrics, results are aggregated by defect rate.
+  - Content harm: percentage of instances exceeding severity threshold (default `Medium`).
   - For protected material and indirect attack, the defect rate is calculated as the percentage of instances where the output is `true` by using the formula `(Defect Rate = (#trues / #instances) × 100)`.
     :::image type="content" source="../media/evaluations/view-results/risk-and-safety-chart.png" alt-text="Screenshot that shows the risk and safety metrics dashboard tab." lightbox="../media/evaluations/view-results/risk-and-safety-chart.png":::
-- For **AI quality (NLP)** metrics, results are aggregated by calculating an average across all the scores for each metric.
+- For **AI quality (NLP)** metrics, results are aggregated by averaging scores per metric.
      :::image type="content" source="../media/evaluations/view-results/ai-quality-nlp-chart.png" alt-text="Screenshot that shows the AI quality (NLP) dashboard tab." lightbox="../media/evaluations/view-results/ai-quality-nlp-chart.png":::
 
 ### Detailed metrics result table
 
-Within the data section, you can conduct a comprehensive examination of each individual data sample and the associated metrics. Here, you can scrutinize the generated output and its corresponding evaluation metric score. You can also see if it passed based on the passing grade when the test was run. With this level of detail, you can make data-driven decisions and take specific actions to improve your model's performance.
+Use the table under the dashboard to inspect each data sample. Sort by a metric to surface worst‑performing samples and identify systematic gaps (incorrect results, safety failures, latency). Use search to cluster related failure topics. Apply column customization to focus on key metrics.
 
-Some potential action items based on the evaluation metrics could include:
-
-- **Pattern recognition**: By filtering for numerical values and metrics, you can drill down to samples with lower scores. Investigate these samples to identify recurring patterns or issues in your model's responses. For one example, you might notice that low scores often occur when the model generates content on a certain topic.
-- **Model refinement**: Use the insights from lower-scoring samples to improve the system prompt instruction or fine-tune your model. If you observe consistent issues with, for example, coherence or relevance, you can also adjust the model's training data or parameters accordingly.
-- **Column customization**: You can use the column editor to create a customized view of the table, focusing on the metrics and data that are most relevant to your evaluation goals. The column editor can streamline your analysis and help you spot trends more effectively.
-- **Keyword search**: You can use the search box to look for specific words or phrases in the generated output, and to pinpoint issues or patterns related to particular topics or keywords. Then, you can address them specifically.
-
-The metrics detail table offers a wealth of data that can guide your model improvement efforts. You can recognize patterns, customize your view for efficient analysis, and refine your model based on identified issues.
+Typical actions:
+- Filter for low scores to detect recurring patterns.
+- Adjust prompts or fine-tune when systemic gaps appear.
+- Export for offline analysis.
 
 Here are some examples of the metrics results for the question-answering scenario:
 
@@ -140,7 +135,7 @@ By using these comparison features, you can make an informed decision to select 
 - **Numerical value assessment**: Enabling the **Show delta** option helps you understand the extent of the differences between the baseline and other runs. This information can help you evaluate how various runs perform in terms of specific evaluation metrics.
 - **Difference isolation**: The **Show only difference** feature streamlines your analysis by highlighting only the areas where there are discrepancies between runs. This information can be instrumental in pinpointing where improvements or adjustments are needed.
 
-By using these comparison tools effectively, you can identify which version of your model or system performs the best in relation to your defined criteria and metrics, ultimately assisting you in selecting the most optimal option for your application.
+Use comparison tools to pick the best performing configuration while avoiding regressions in safety or groundedness.
 
 :::image type="content" source="../media/evaluations/view-results/comparison-table.png" alt-text="Screenshot that shows side-by-side evaluation results." lightbox="../media/evaluations/view-results/comparison-table.png":::
 
@@ -163,6 +158,21 @@ Understanding the built-in metrics is vital for assessing the performance and ef
 - How it's calculated
 - Its role in evaluating different aspects of your model
 - How to interpret the results to make data-driven improvements
+
+## Troubleshooting
+
+| Symptom | Possible cause | Action |
+|---------|----------------|-------|
+| Run stays Pending | High service load / queued jobs | Refresh; verify quota; resubmit if prolonged |
+| Metrics missing | Not selected at creation | Re-run selecting required metrics |
+| All safety metrics zero | Category disabled or unsupported model | Confirm model + metric support matrix |
+| Groundedness unexpectedly low | Retrieval/context incomplete | Verify context construction / retrieval latency |
+
+## Next steps
+
+- Improve low metrics via prompt iteration or [fine-tuning](../concepts/fine-tuning-overview.md).
+- [Add tracing to diagnose latency or unexpected tool steps](./develop/trace-application.md).
+- [Run evaluations in the cloud with the Azure AI Foundry SDK](./develop/cloud-evaluation.md).
 
 ## Related content
 

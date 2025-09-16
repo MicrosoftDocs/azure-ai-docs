@@ -136,13 +136,17 @@ In this step, specify the data source, index, and indexer.
 
    :::image type="content" source="media/search-how-to-index-sql-database/search-data-source.png" alt-text="Screenshot of the data source creation page in the Azure portal.":::
 
-1. Start the **Import data** wizard to create the index and indexer.
+1. Use an [import wizard](search-import-data-portal.md) to create the index and indexer.
 
-   1. On the Overview page, select **Import data**.
-   1. Select the data source you just created, and select **Next**.
-   1. Skip the **Add cognitive skills (Optional)** page.
-   1. On **Customize target index**, name the index, set the key to your primary key in the table, and then group select *Retrievable* and *Searchable* for all fields, and optionally add *Filterable* and *Sortable* for short strings or numeric values.
-   1. On **Create an indexer**, name the indexer and select **Submit**.
+   1. On the **Overview** page, select **Import data** or **Import data (new)**.
+
+   1. Select the data source you just created.
+
+   1. Skip the step for adding AI enrichments.
+
+   1. Name the index, set the key to your primary key in the table, attribute all fields as **Retrievable** and **Searchable**, and optionally add **Filterable** and **Sortable** for short strings or numeric values.
+
+   1. Name the indexer and finish the wizard to create the necessary objects.
 
 ### [**REST**](#tab/test-sql)
 
@@ -363,7 +367,7 @@ For Azure SQL indexers, there are two change detection policies:
 
 + "HighWaterMarkChangeDetectionPolicy" (works for views)
 
-### SQL Integrated Change Tracking Policy
+### SQL integrated change tracking policy
 
 We recommend using "SqlIntegratedChangeTrackingPolicy" for its efficiency and its ability to identify deleted rows.
 
@@ -401,7 +405,7 @@ When using SQL integrated change tracking policy, don't specify a separate data 
 
 <a name="HighWaterMarkPolicy"></a>
 
-### High Water Mark Change Detection policy
+### High water mark change detection policy
 
 This change detection policy relies on a "high water mark" column in your table or view that captures the version or time when a row was last updated. If you're using a view, you must use a high water mark policy. 
 
@@ -484,7 +488,7 @@ You can also disable the `ORDER BY [High Water Mark Column]` clause. However, th
     }
 ```
 
-### Soft Delete Column Deletion Detection policy
+### Soft delete column deletion detection policy
 
 When rows are deleted from the source table, you probably want to delete those rows from the search index as well. If you use the SQL integrated change tracking policy, this is taken care of for you. However, the high water mark change tracking policy doesn’t help you with deleted rows. What to do?
 
