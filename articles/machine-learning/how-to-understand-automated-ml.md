@@ -8,8 +8,8 @@ ms.author: scottpolly
 ms.reviewer: manashg
 ms.service: azure-machine-learning
 ms.subservice: automl
-ms.date: 08/05/2024
-ms.topic: how-to
+ms.date: 09/16/2025
+ms.topic: concept-article
 ms.custom: automl
 ---
 
