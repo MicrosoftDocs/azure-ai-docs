@@ -3,7 +3,7 @@ title: "Quickstart: custom question answering"
 description: This quickstart shows you how to create and manage your  custom question answering projects.
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 08/29/2025
+ms.date: 09/15/2025
 author: laujan
 ms.author: lajanuar
 recommendations: false
@@ -34,7 +34,7 @@ zone_pivot_groups: custom-cqa-quickstart
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
 
 * [Azure portal](../../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../../multi-service-resource.md?pivots=azcli#clean-up-resources)
