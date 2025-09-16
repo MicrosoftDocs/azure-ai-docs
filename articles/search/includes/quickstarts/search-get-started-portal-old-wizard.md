@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/15/2025
+ms.date: 09/16/2025
 ---
 
 > [!IMPORTANT]
@@ -42,15 +42,9 @@ To start the wizard for this quickstart:
 
    :::image type="content" source="../../media/search-import-data-portal/import-data-button.png" alt-text="Screenshot that shows how to open the Import data wizard in the Azure portal.":::
 
-
 ## Create and load a search index
 
-In this section, you create and load an index in four steps:
-
-1. [Connect to a data source](#connect-to-a-data-source)
-1. [Skip configuration for skills](#skip-configuration-for-skills)
-1. [Configure the index](#configure-the-index)
-1. [Configure and run the indexer](#configure-and-run-the-indexer)
+In this section, you create and load an index in four steps.
 
 ### Connect to a data source
 

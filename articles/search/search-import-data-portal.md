@@ -5,7 +5,7 @@ description: Learn about the Azure portal wizards that create and load an index 
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/15/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:

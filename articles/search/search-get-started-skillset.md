@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: quickstart
-ms.date: 09/10/2025
+ms.date: 09/16/2025
 zone_pivot_groups: azure-portal-wizards
 ---
 

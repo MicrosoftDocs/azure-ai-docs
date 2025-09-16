@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/15/2025
+ms.date: 09/16/2025
 ---
 
 > [!IMPORTANT]

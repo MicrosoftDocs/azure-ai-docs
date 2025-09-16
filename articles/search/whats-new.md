@@ -4,7 +4,7 @@ description: Announcements of new and enhanced features, including a service ren
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 09/15/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-search
 ms.topic: overview
 ms.custom:

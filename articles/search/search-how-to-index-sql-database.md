@@ -367,7 +367,7 @@ For Azure SQL indexers, there are two change detection policies:
 
 + "HighWaterMarkChangeDetectionPolicy" (works for views)
 
-### SQL Integrated Change Tracking Policy
+### SQL integrated change tracking policy
 
 We recommend using "SqlIntegratedChangeTrackingPolicy" for its efficiency and its ability to identify deleted rows.
 
@@ -405,7 +405,7 @@ When using SQL integrated change tracking policy, don't specify a separate data 
 
 <a name="HighWaterMarkPolicy"></a>
 
-### High Water Mark Change Detection policy
+### High water mark change detection policy
 
 This change detection policy relies on a "high water mark" column in your table or view that captures the version or time when a row was last updated. If you're using a view, you must use a high water mark policy. 
 
@@ -488,7 +488,7 @@ You can also disable the `ORDER BY [High Water Mark Column]` clause. However, th
     }
 ```
 
-### Soft Delete Column Deletion Detection policy
+### Soft delete column deletion detection policy
 
 When rows are deleted from the source table, you probably want to delete those rows from the search index as well. If you use the SQL integrated change tracking policy, this is taken care of for you. However, the high water mark change tracking policy doesn’t help you with deleted rows. What to do?
 

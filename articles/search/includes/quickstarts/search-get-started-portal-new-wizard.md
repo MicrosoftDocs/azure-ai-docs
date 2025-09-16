@@ -4,13 +4,13 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/15/2025
+ms.date: 09/16/2025
 ---
 
 > [!IMPORTANT]
 > The **Import data (new)** wizard now supports keyword search, which was previously only available in the **Import data** wizard. We recommend the new wizard for an improved search experience. For more information about how we're consolidating the wizards, see [Import data wizards in the Azure portal](../../search-import-data-portal.md).
 
-In this quickstart, you use the **Import data (new)** wizard and sample data about ficticious hotels to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
+In this quickstart, you use the **Import data (new)** wizard and sample data about fictitious hotels to create your first search index. The wizard requires no code to create an index, helping you write interesting queries within minutes.
 
 The wizard creates multiple objects on your search service, including a searchable [index](../../search-what-is-an-index.md), an [indexer](../../search-indexer-overview.md), and a data source connection for automated data retrieval. At the end of this quickstart, you review each object.
 
@@ -36,7 +36,7 @@ On the **Overview** page, select **Usage** to see how many indexes, indexers, an
 
 ## Prepare sample data
 
-This quickstart uses a JSON document that contains metadata for 50 ficticious hotels, but you can also use your own files.
+This quickstart uses a JSON document that contains metadata for 50 fictitious hotels, but you can also use your own files.
 
 To prepare the sample data for this quickstart:
 
@@ -68,13 +68,7 @@ To start the wizard for this quickstart:
 
 ## Create and load a search index
 
-In this section, you create and load an index in five steps:
-
-1. [Connect to a data source](#connect-to-a-data-source)
-1. [Skip configuration for skills](#skip-configuration-for-skills)
-1. [Configure the index](#configure-the-index)
-1. [Skip advanced settings](#skip-advanced-settings)
-1. [Review and create the objects](#review-and-create-the-objects)
+In this section, you create and load an index in five steps.
 
 ### Connect to a data source
 

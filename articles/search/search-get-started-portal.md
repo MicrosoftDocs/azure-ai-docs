@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 09/10/2025
+ms.date: 09/16/2025
 ms.custom:
   - mode-ui
   - ignite-2023
