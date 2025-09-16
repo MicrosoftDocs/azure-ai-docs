@@ -17,7 +17,13 @@ ai-usage: ai-assisted
 
 # Quickstart: Get answers in the chat playground
 
-Learn how to get answers using the chat playground in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). This quickstart shows you how to deploy chat models and get AI-powered responses to your questions quickly and easily in the Azure AI Foundry portal.
+Learn how to get answers using the chat playground in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Deploy (or reuse) a chat model and send prompts to receive AI-generated responses.
+
+In this quickstart, you learn how to:
+- Configure a system message.
+- Send a user question.
+- Interpret the model response.
+- Add safety system messages.
 
 For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
@@ -30,7 +36,7 @@ If you don't have an Azure subscription, <a href="https://azure.microsoft.com/fr
 
 Use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) playground to get answers from AI models. In this quickstart, you'll learn how to ask questions and get responses from deployed chat models.
 
-To get answers from your deployed model in the chat playground, follow these steps:
+To get answers from your deployed model in the chat playground:
 
 1. In the **System message** text box, provide this prompt to guide the assistant: "You're an AI assistant that helps people find information." You can tailor the prompt for your scenario.
 1. Optionally, add a safety system message by selecting the **Add section** button, then **Safety system messages**. Choose from the prebuilt messages, and then edit them to your needs.
@@ -41,9 +47,24 @@ To get answers from your deployed model in the chat playground, follow these ste
 
     :::image type="content" source="../media/tutorials/chat/chat-without-data.png" alt-text="Screenshot of the first chat question without grounding data." lightbox="../media/tutorials/chat/chat-without-data.png":::
 
-1. The assistant either replies that it doesn't know the answer or provides a generic response. For example, the assistant might say, "The price of TrailWalker hiking shoes can vary depending on the brand, model, and where you purchase them." The model doesn't have access to current product information about the TrailWalker hiking shoes. 
+1. The assistant either replies that it doesn't know the answer or provides a generic response (for example, noting price variability). The model doesn't have access to current product data yet.
 
-Next, you can add your data to the model to help it answer questions about your products. Try the [Deploy an enterprise chat web app](../tutorials/deploy-chat-web-app.md) tutorial to learn more.
+Next, add your data so the model can answer domain-specific questions. Try the enterprise chat web app tutorial.
+
+### Troubleshooting
+
+| Issue | Action |
+|-------|--------|
+| No deployed models listed | Deploy a model from the model catalog first |
+| Repeated generic answers | Refine system message or add domain data |
+| Safety message overrides tone | Adjust or remove conflicting safety sections |
+| Slow first response | Allow for cold start; subsequent prompts are faster |
+
+## Next steps
+
+- Build a custom chat app with the SDK.
+- Add evaluations to measure response quality.
+- Fine-tune a model for improved intent handling.
 
 ## Related content
 

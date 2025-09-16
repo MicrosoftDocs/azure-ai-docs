@@ -33,13 +33,13 @@ For more information, see [Data import strategies](search-what-is-data-import.md
 
 ## Use the Azure portal
 
-In the Azure portal, use the [import wizards](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
+In the Azure portal, use an [import wizard](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** page, select **Import data** or **Import and vectorize data wizard** on the command bar to create and populate a search index.
+1. On the **Overview** page, select **Import data** or **Import data (new)** on the command bar to create and populate a search index.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
+   :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the Import data command." border="true":::
 
     You can follow these links to review the workflow: [Quickstart: Create an Azure AI Search index](search-get-started-portal.md) and [Quickstart: Integrated vectorization](search-get-started-portal-import-vectors.md).
 

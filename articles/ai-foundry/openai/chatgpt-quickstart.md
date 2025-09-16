@@ -16,7 +16,14 @@ ai-usage: ai-assisted
 
 # Quickstart: Get answers using Azure OpenAI chat completions
 
-Learn how to get answers using Azure OpenAI chat completions. This guide shows you how to ask questions and receive AI-powered responses from GPT models.
+Learn how to get answers using Azure OpenAI chat completions. Ask questions and receive AI-generated responses from GPT models.
+
+In this quickstart, you learn how to:
+
+- Create a chat completion request.
+- Send messages with different SDKs or REST.
+- Inspect the model response.
+- (Optional) Optimize prompts and measure latency.
 
 ::: zone pivot="programming-language-studio"
 
