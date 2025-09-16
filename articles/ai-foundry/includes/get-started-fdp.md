@@ -11,6 +11,8 @@ ms.custom:
   - build-aifnd
   - build-2025
   - update-code-4
+monikerRange: foundry-classic || foundry
+ai-usage: ai-assisted
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
@@ -24,8 +26,10 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDo
 
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
+::: moniker range="foundry-classic"
 > [!TIP]
 > The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+::: moniker-end
 
 ## Prerequisites
 
@@ -133,8 +137,17 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
+::: moniker range="foundry-classic"
 1. In the chat playground, fill in the prompt and select the **Send** button.
 1. The model returns a response in the **Response** pane.
+::: moniker-end
+
+::: moniker range="foundry"
+1. On the top right, select **Build** if you're not already there.
+1. On the left pane, select **Models**.
+1. Select your **gpt-40** model.
+1. Use the area on the right to chat with your model.  
+::: moniker-end
 
 # [Python](#tab/python)
 
@@ -168,12 +181,21 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
+::: moniker range="foundry-classic"
 When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
 1. On the left pane, select **Playgrounds**.
 1. In the **Agents playground** card, select **Let's go**.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
+::: moniker-end
+
+::: moniker range="foundry"
+1. On the left pane, select **Agents**.
+1. Select your agent.
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. Start chatting with your agent, for example, "Write me a poem about flowers."
+::: moniker-end
 
 # [Python](#tab/python)
 
@@ -210,6 +232,7 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
+::: moniker range="foundry-classic"
 1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
 1. Select **Add**.
 1. Select **Files** to upload the **product_info_1.md** file.
@@ -218,6 +241,15 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
 1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
+::: moniker-end
+
+::: moniker range="foundry"
+1. Scroll down if necessary to find **Tools**.
+1. Select **Add**.
+1. Select **File search**, then **Add tool**.
+1. Select **Choose files** and browse to your **product_info_1.md** file. 
+1. Select **Attach**.
+::: moniker-end
 
 # [Python](#tab/python)
 
