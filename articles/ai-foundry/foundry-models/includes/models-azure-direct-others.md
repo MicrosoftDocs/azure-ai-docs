@@ -105,17 +105,18 @@ All deployments can perform the exact same inference operations, but the billing
 [!INCLUDE [global-standard](model-matrix/global-standard.md)]
 
 
-# [Global Provisioned managed](#tab/global-ptum)
-
-### Global Provisioned managed model availability
-
-[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
-
 # [Data Zone Standard](#tab/datazone-standard)
 
 ### Data Zone Standard model availability
 
 [!INCLUDE [datazone-standard](model-matrix/datazone-standard.md)]
+
+
+# [Global Provisioned managed](#tab/global-ptum)
+
+### Global Provisioned managed model availability
+
+[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
 
 ---
 
