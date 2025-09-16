@@ -105,6 +105,14 @@ Custom named entity recognition is only available in some Azure regions. Some re
 | West US 2          | ✓         | ✓           |
 | West US 3          | ✓         | ✓           |
 
+### Data augmentation feature in Custom Named Entity Recognition
+The data augmentation feature which allows users to integrate LLM support while training a custom named entity recognition model is only supported in the following regions. Note also that for the data augmentation feature, all entity data will need description text.
+
+| Region             | Data augmentation support in CNER |
+|--------------------|------------------------|
+| East US            | ✓                     |
+| Switzerland North  | ✓                     |
+| Australia East     | ✓                     |
 
 ## Custom text classification
 
