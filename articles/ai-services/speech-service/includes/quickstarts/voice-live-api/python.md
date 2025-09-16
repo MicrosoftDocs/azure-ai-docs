@@ -127,7 +127,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     try:
         from dotenv import load_dotenv
     
-        load_dotenv()
+        load_dotenv('.\.env', override=True)
     except ImportError:
         print("Note: python-dotenv not installed. Using existing environment variables.")
     
@@ -150,9 +150,25 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     )
     
     # Set up logging
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-    logger = logging.getLogger(__name__)
+    ## Change to the directory where this script is located
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
+    ## Add folder for logging
+    if not os.path.exists('logs'):
+        os.makedirs('logs')
+    
+    ## Add timestamp for logfiles
+    from datetime import datetime
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    
+    ## Set up logging
+    logging.basicConfig(
+        filename=f'logs/{timestamp}_voicelive.log',
+        filemode="w",
+        format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+        level=logging.INFO
+    )
+    logger = logging.getLogger(__name__)
     
     class AudioProcessor:
         """
@@ -594,17 +610,17 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="Voice to use for the assistant",
             type=str,
             default=os.environ.get("VOICE_LIVE_VOICE", "en-US-AvaNeural"),
-            choices=[
-                "alloy",
-                "echo",
-                "fable",
-                "onyx",
-                "nova",
-                "shimmer",
-                "en-US-AvaNeural",
-                "en-US-JennyNeural",
-                "en-US-GuyNeural",
-            ],
+            # choices=[
+            #     "alloy",
+            #     "echo",
+            #     "fable",
+            #     "onyx",
+            #     "nova",
+            #     "shimmer",
+            #     "en-US-AvaNeural",
+            #     "en-US-JennyNeural",
+            #     "en-US-GuyNeural",
+            # ],
         )
     
         parser.add_argument(
@@ -646,7 +662,8 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             # Create client with appropriate credential
             credential: Union[AzureKeyCredential, TokenCredential]
             if args.use_token_credential:
-                credential = InteractiveBrowserCredential()  # or DefaultAzureCredential() if needed
+                # credential = InteractiveBrowserCredential()  # or DefaultAzureCredential() if needed
+                credential = DefaultAzureCredential()
                 logger.info("Using Azure token credential")
             else:
                 credential = AzureKeyCredential(args.api_key)
@@ -734,7 +751,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         print("=" * 50)
     
         # Run the assistant
-        asyncio.run(main())    
+        asyncio.run(main())
     ```
 
 1. Sign in to Azure with the following command:
