@@ -35,47 +35,47 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 # [Global standard](#tab/global-standard)
 
 
-| **Region**       | **gpt-4o**, **2024-05-13** | **gpt-4o**, **2024-08-06** | **gpt-4o**, **2024-11-20** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **0613** | **gpt-4**, **turbo-2024-04-09** |
-|:-----------------|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:-------------------------------:|
-| australiaeast    | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| brazilsouth      | ✅                         | ✅                         | ✅                         | ✅                              | -                    | ✅                               |
-| canadaeast       | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| eastus           | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
+| **Region**       | **gpt-5**, **2025-08-07** | **gpt-5-mini**, **2025-08-07** | **gpt-5-nano**, **2025-08-07** | **gpt-4o**, **2024-05-13** | **gpt-4o**, **2024-08-06** | **gpt-4o**, **2024-11-20** | **gpt-4o-mini**, **2024-07-18** | **gpt-4**, **0613** | **gpt-4**, **turbo-2024-04-09** |
+|:-----------------|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:-------------------:|:-------------------------------:|
+| australiaeast    | ✅                         | ✅                         |                            | ✅                              | ✅                  | ✅                              |
+| brazilsouth      |                             |                            |                            | ✅                              | -                    | ✅                               |
+| canadaeast       | ✅                         |                            |                             | ✅                              | ✅                  | ✅                              |
+| eastus           | ✅                         | ✅                         |                            | ✅                              | ✅                  | ✅                              |
 | eastus2          | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| francecentral    | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| germanywestcentral| ✅                        | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
+| francecentral    |                            |                             |                            | ✅                              | ✅                  | ✅                              |
+| germanywestcentral|                           |                             |                            | ✅                              | ✅                  | ✅                              |
 | italynorth       |  -                          |  -                         | ✅                         | ✅                              |  -                   | -                               |
-| japaneast        | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| norwayeast       | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| southcentralus   | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| southindia       | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
+| japaneast        | ✅                         | ✅                         |                            | ✅                              | ✅                  | ✅                              |
+| norwayeast       |                            |                             |                            | ✅                              | ✅                  | ✅                              |
+| southcentralus   |                            |                             |                            | ✅                              | ✅                  | ✅                              |
+| southindia       | ✅                         | ✅                         |                            | ✅                              | ✅                  | ✅                              |
 | swedencentral    | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| switzerlandnorth | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| uksouth          | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| westus           | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
-| westus3          | ✅                         | ✅                         | ✅                         | ✅                              | ✅                  | ✅                              |
+| switzerlandnorth | ✅                         | ✅                         |                            | ✅                              | ✅                  | ✅                              |
+| uksouth          | ✅                         | ✅                         |                            | ✅                              | ✅                  | ✅                              |
+| westus           |                             |                            |                            | ✅                              | ✅                  | ✅                              |
+| westus3          |                             |                            |                            | ✅                              | ✅                  | ✅                              |
 
 # [Global provisioned managed](#tab/ptu-global)
 
-| **Region**     | **gpt-4o**, **2024-05-13** | **gpt-4o**, **2024-08-06** | **gpt-4o**, **2024-11-20** | **gpt-4o-mini**, **2024-07-18** |
-|:-------------------|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|
-| australiaeast      | ✅                       | ✅                       | ✅                       | ✅                            |
-| brazilsouth        | ✅                       | ✅                       | ✅                       | ✅                            |
-| canadaeast         | ✅                       | ✅                       | ✅                       | ✅                            |
-| eastus             | ✅                       | ✅                       | ✅                       | ✅                            |
-| eastus2            | ✅                       | ✅                       | ✅                       | ✅                            |
-| francecentral      | ✅                       | ✅                       | ✅                       | ✅                            |
-| germanywestcentral|  ✅                       | ✅                       | ✅                       | ✅                            |
-| italynorth         | ✅                       | ✅                       | ✅                       | ✅                            |
-| japaneast          | ✅                       | ✅                       | ✅                       | ✅                            |
-| southcentralus     | ✅                       | ✅                       | ✅                       | ✅                            |
-| southeastasia      | ✅                       | ✅                       | ✅                       | ✅                            |
-| southindia         | ✅                       | ✅                       | ✅                       | ✅                            |
-| swedencentral      | ✅                       | ✅                       | ✅                       | ✅                            |
-| switzerlandnorth   | ✅                       | ✅                       | ✅                       | ✅                            |
-| uksouth            | ✅                       | ✅                       | ✅                       | ✅                            |
-| westus             | ✅                       | ✅                       | ✅                       | ✅                            |
-| westus3            | ✅                       | ✅                       | ✅                       | ✅                            |
+| **Region**         | **gpt-5**, **2025-08-07** | **gpt-4o**, **2024-05-13** | **gpt-4o**, **2024-08-06** | **gpt-4o**, **2024-11-20** | **gpt-4o-mini**, **2024-07-18** |
+|:-------------------|:--------------------------:|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|
+| australiaeast      | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| brazilsouth        | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| canadaeast         | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| eastus             | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| eastus2            | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| francecentral      | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| germanywestcentral | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| italynorth         | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| japaneast          | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| southcentralus     | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| southeastasia      | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| southindia         | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| swedencentral      | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| switzerlandnorth   | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| uksouth            | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| westus             | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
+| westus3            | ✅                       | ✅                       | ✅                       | ✅                       | ✅                            |
 
 # [Standard](#tab/standard)
 
