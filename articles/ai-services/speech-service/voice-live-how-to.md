@@ -33,7 +33,7 @@ An [Azure AI Foundry resource](../multi-service-resource.md) is required to acce
 The WebSocket endpoint for the voice live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-05-01-preview` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Agent service, the `agent_id` and `project_id` parameters.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime`
 
 ### Credentials
 
@@ -133,12 +133,12 @@ Turn detection is the process of detecting when the end-user started or stopped 
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. Type `azure_semantic_vad_multilingual` is also available to support a wider variety of languages: English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Azure semantic voice activity detection (VAD) can improve turn detection by removing filler words to reduce the false alarm rate. The `remove_filler_words` property must be set to `true` (it is `false` by default). The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove feature words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
+| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. It primarily supports English. Type `azure_semantic_vad_multilingual` is also available to support a wider variety of languages: English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Azure semantic voice activity detection (VAD) can improve turn detection by removing filler words to reduce the false alarm rate. The `remove_filler_words` property must be set to `true` (it is `false` by default). The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove filler words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
-| `remove_filler_words` | boolean | Determines whether to remove filler words to reduce the false alarm rate. This property must be set to `true` when using `azure_semantic_vad`.<br/><br/>The default value is `false`. |
-| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The voice live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection can be used with either VAD selection.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds.|
+| `remove_filler_words` | boolean | Optional |  Determines whether to remove filler words to reduce the false alarm rate. This property must be set to `true` when using `azure_semantic_vad`.<br/><br/>The default value is `false`. |
+| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The voice live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection can be used with either VAD selection.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported values are:<br/>&nbsp;&nbsp;`semantic_detection_v1` supporting English.<br/>&nbsp;&nbsp;`semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi.<br/>Other languages will be bypassed.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds. <br/><br/>End of utterance detection currently doesn't support gpt-realtime, gpt-4o-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime.|
 
 Here's an example of end of utterance detection in a session object:
 
@@ -180,7 +180,7 @@ Use phrase list for lightweight just-in-time customization on audio input. To co
 ```
 
 > [!NOTE]
-> Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
+> Phrase list currently doesn't support gpt-realtime, gpt-4o-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ## Audio output through Azure text to speech
 
