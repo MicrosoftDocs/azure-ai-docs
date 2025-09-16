@@ -22,9 +22,19 @@ ai-usage: ai-assisted
 > [!NOTE]
 > An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
 
-Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides enhanced control over encryption of your data. Learn how to use customer-managed keys to add an extra layer of protection and meet compliance requirements more effectively with Azure Key Vault integration.
+Customer-managed key (CMK) encryption in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) gives you control over encryption of your data. Use CMKs to add an extra protection layer and help meet compliance requirements with Azure Key Vault integration.
+
+In this article, you learn how to:
+
+- Understand Microsoft-managed encryption versus CMK.
+- Identify data storage patterns for hub-based and project-based resources.
+- Choose a data storage architecture option for hub projects.
+- Configure required Key Vault settings and permissions.
+- Plan rotation and revocation.
 
 ## About encryption in Azure AI Foundry
+
+Azure AI Foundry is a service in the Azure cloud. By default, Azure services use Microsoft-managed encryption keys to encrypt data in transit and at rest. Your data is always encrypted; CMKs add customer ownership and rotation control.
 
 On your Azure AI Foundry resource, data is encrypted and decrypted by using [FIPS 140-2](https://en.wikipedia.org/wiki/FIPS_140-2)-compliant [256-bit AES](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) encryption. Encryption and decryption are transparent, which means that encryption and access are managed for you. Your data is secure by default, and you don't need to modify your code or applications to take advantage of encryption.
 
@@ -35,10 +45,10 @@ On your Azure AI Foundry resource, data is encrypted and decrypted by using [FIP
 
 You must use Azure Key Vault to store your CMKs. You can either create your own keys and store them in a key vault or use the Key Vault APIs to generate keys. Your Azure resources and the Key Vault resources must be in the same region and in the same Microsoft Entra tenant. You can use different subscriptions for the resources. For more information about Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-- Enable both the **Soft-delete** and **Purge protection** properties on the key vault.
-- Allow trusted Microsoft services to access the key vault if you use the [key vault firewall](/azure/key-vault/general/access-behind-firewall).
-- Grant your project system-assigned managed identity the following permissions on your key vault: Get key, Wrap key, Unwrap key.
-- Only RSA and RSA-HSM keys of size 2048 are supported. For more information about keys, see the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
+- Enable **Soft-delete** and **Purge protection** on the key vault.
+- Allow trusted Microsoft services to access the key vault if you use the [Key Vault firewall](/azure/key-vault/general/access-behind-firewall).
+- Grant your [!INCLUDE [fdp](../includes/fdp-project-name.md)] system-assigned managed identity these key permissions: **get**, **wrapKey**, **unwrapKey**.
+- Use RSA or RSA-HSM keys of size 2048. Other key types/sizes aren't supported. See the "Key Vault keys" section in [About Azure Key Vault keys, secrets, and certificates](/azure/key-vault/general/about-keys-secrets-certificates).
 
 ### Enable the managed identity for your Azure AI Foundry resource
 
