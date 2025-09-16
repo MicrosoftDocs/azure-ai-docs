@@ -31,7 +31,7 @@ This article gives only the Foundry-specific pointers you need. All procedural d
 
 Summarized highlights (see linked docs for evolving preview limitations):
 
-- Some Azure AI Foundry capabilities (for example fine-tuning and Assistants APIs) may be unavailable inside an enforced NSP boundary. [TO VERIFY] Confirm current feature gaps before production planning.
+- Some Azure AI Foundry capabilities (for example fine-tuning and Assistants APIs) may be unavailable inside an enforced NSP boundary. 
 - NSP governs data plane traffic. Control plane (management) operations may still succeed unless separately restricted.
 - Use a managed identity (system or user‑assigned) with appropriate role assignments for any data source access (for example Azure Blob Storage used for batch inputs/outputs).
 - Co-locate dependent services (Azure OpenAI, Azure Storage, Azure AI Search, etc.) in the same NSP when you need mutual access with minimal outbound allow rules.
