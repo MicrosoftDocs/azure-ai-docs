@@ -9,7 +9,7 @@ ms.topic: include
 ---
 
 > [!NOTE]
-> Models sold directly by Azure also include select models from the following top model providers:
+> Foundry Models sold directly by Azure also include select models from the following top model providers:
 > 
 > - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
 > - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`

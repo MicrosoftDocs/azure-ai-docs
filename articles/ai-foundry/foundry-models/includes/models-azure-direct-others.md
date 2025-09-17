@@ -10,7 +10,7 @@ author: msakande
 ---
 
 > [!NOTE]
-> Models sold directly by Azure also include all Azure OpenAI models. To learn about these models, switch to the [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai) collection at the top of this article. 
+> Foundry Models sold directly by Azure also include all Azure OpenAI models. To learn about these models, switch to the [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai) collection at the top of this article. 
 
 ## Black Forest Labs models sold directly by Azure
 
