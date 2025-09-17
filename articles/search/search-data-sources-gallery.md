@@ -264,15 +264,15 @@ New data sources are issued as preview features. [Sign up](https://aka.ms/azure-
 
 ---
 
-<!-- ### Microsoft OneLake files
+### Azure Files
 
-By [Azure AI Search](search-how-to-index-onelake-files.md)
+By [Azure AI Search](search-what-is-azure-search.md)
 
-Connect to a OneLake lakehouse to extract supported files content from a hierarchy of directories and nested subdirectories.
+Connect to Azure Storage through Azure Files share to extract content serialized into JSON documents, and imported into a search index as search documents.
 
-[More details](search-how-to-index-onelake-files.md)
+[More details](search-file-storage-integration.md)
 
-:::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png"::: -->
+:::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
 
 :::column-end:::
 :::column span="":::
@@ -344,21 +344,6 @@ Connect to MySQL database on Azure to extract rows in a table, serialized into J
 [More details](search-howto-index-mysql.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/azure_mysql.png":::
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Azure Files
-
-By [Azure AI Search](search-what-is-azure-search.md)
-
-Connect to Azure Storage through Azure Files share to extract content serialized into JSON documents, and imported into a search index as search documents.
-
-[More details](search-file-storage-integration.md)
-
-:::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
 
 :::column-end:::
 :::row-end:::
