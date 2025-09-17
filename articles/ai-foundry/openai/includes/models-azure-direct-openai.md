@@ -8,6 +8,19 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ---
 
+> [!NOTE]
+> Models sold directly by Azure also include select models from the following top model providers:
+> 
+> - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
+> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
+> - Microsoft: `MAI-DS-R1`
+> - Mistral: `mistral-document-ai-2505`
+> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`
+> 
+> To learn about these models, switch to the [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) pivot at the top of this article 
+> These models include Black Forest Labs models, DeepSeek models, DeepSeek models, Mistral models, and xAI models
+
 ## Azure OpenAI in Azure AI Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
