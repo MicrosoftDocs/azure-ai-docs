@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 09/12/2025
+ms.date: 09/15/2025
 ms.reviewer: deeikele
 ms.author: jburchel 
 author: jonburchel 
@@ -37,7 +37,10 @@ The Azure AI Foundry resource has built-in roles that are available by default f
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Azure AI User**            | Grants reader access to AI projects, reader access to AI accounts, and data actions for an AI project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. |
 | **Azure AI Project Manager** | Lets you perform management actions on Azure AI Foundry projects, build and develop with projects, and conditionally assign the Azure AI User role to other user principals.          |
-| **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts, and lets you conditionally assign the Azure AI User role to other user principals.                                                       |
+| **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts, and lets you conditionally assign the Azure AI User role to other user principals.      
+
+>[!NOTE]
+>To view and purge deleted AI Foundry accounts, you must have Contributor role assigned at the subscription scope.
 
 The key differences between **Azure AI Project Manager** and **Azure AI Account Owner** are the abilities to:
 

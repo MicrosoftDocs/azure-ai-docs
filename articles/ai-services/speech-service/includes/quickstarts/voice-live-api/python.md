@@ -610,17 +610,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="Voice to use for the assistant",
             type=str,
             default=os.environ.get("VOICE_LIVE_VOICE", "en-US-AvaNeural"),
-            # choices=[
-            #     "alloy",
-            #     "echo",
-            #     "fable",
-            #     "onyx",
-            #     "nova",
-            #     "shimmer",
-            #     "en-US-AvaNeural",
-            #     "en-US-JennyNeural",
-            #     "en-US-GuyNeural",
-            # ],
+            help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
         parser.add_argument(
@@ -662,8 +652,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             # Create client with appropriate credential
             credential: Union[AzureKeyCredential, TokenCredential]
             if args.use_token_credential:
-                # credential = InteractiveBrowserCredential()  # or DefaultAzureCredential() if needed
-                credential = DefaultAzureCredential()
+                credential = InteractiveBrowserCredential()  # or DefaultAzureCredential() if needed
                 logger.info("Using Azure token credential")
             else:
                 credential = AzureKeyCredential(args.api_key)
