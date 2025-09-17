@@ -22,7 +22,7 @@ The following steps assume that you've already created a [Computer Vision resour
 
 
 
-## Determine how to process your data (optional)
+## Determine how to process the data (optional)
 
 ### Specify the OCR model
 
