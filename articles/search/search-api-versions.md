@@ -66,7 +66,7 @@ The following table provides links to more recent SDK versions.
 | SDK version | Status | Change log | Description |
 |-------------|--------|------------|-----------------|
 | [azure-search-documents 11](/java/api/overview/azure/search-documents-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md) Use the `azure-search-documents` client library for data plane operations. |
-| [azure-resourcemanager-search 2](/java/api/overview/azure/resourcemanager-search-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/resourcemanager/azure-resourcemanager/CHANGELOG.md) | Use the `azure-resourcemanager-search` client library for control plane operations. |
+| [azure-resourcemanager-search 2](/java/api/overview/azure/resourcemanager-search-readme) | Active | [Change Log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-resourcemanager-search/CHANGELOG.md) | Use the `azure-resourcemanager-search` client library for control plane operations. |
 
 ## Azure SDK for JavaScript
 
