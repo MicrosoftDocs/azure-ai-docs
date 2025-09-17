@@ -11,7 +11,6 @@ ms.custom:
   - build-aifnd
   - build-2025
   - update-code-4
-monikerRange: foundry-classic || foundry
 ai-usage: ai-assisted
 ---
 

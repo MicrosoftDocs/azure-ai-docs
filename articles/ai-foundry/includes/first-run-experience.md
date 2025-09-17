@@ -8,8 +8,8 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 08/27/2025
 ms.custom: include
-monikerRange: 'foundry-classic || foundry'
 ---
+
 ## First run experience
 
 Use this fast path when you don't have any projects yet.
