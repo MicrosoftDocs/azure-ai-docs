@@ -31,6 +31,7 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 > * The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the following regions:
 >     * Italy north
 >     * Brazil south 
+> * gpt-5 models, o4-mini model, and o3 model can only be attached to your agents using the SDKs or REST API. 
 
 # [Global standard](#tab/global-standard)
 

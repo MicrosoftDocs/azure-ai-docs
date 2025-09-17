@@ -15,6 +15,21 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
 
+## September 2025
+
+### Computer Use tool
+
+The [Computer Use](./how-to/tools/computer-use.md) tool is now available in preview. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces.
+
+### Additional model support
+
+The Agent Service supports the following [models](./concepts/model-region-support.md):
+* gpt-5
+* gpt-5-mini
+* gpt-5-nano
+* o3
+* o4-mini
+
 ## August 2025
 
 ### Java SDK Availability
