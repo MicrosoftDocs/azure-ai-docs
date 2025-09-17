@@ -151,6 +151,7 @@ Here's an example of end of utterance detection in a session object:
             "type": "azure_semantic_vad",
             "threshold": 0.3,
             "prefix_padding_ms": 300,
+            "speech_duration_ms":80,
             "silence_duration_ms": 500,
             "remove_filler_words": false,
             "end_of_utterance_detection": {
