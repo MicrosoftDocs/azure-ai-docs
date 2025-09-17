@@ -1,5 +1,5 @@
 ---
-title: Datazone standard availability for Azure Direct models
+title: Data zone standard availability for Azure Direct models
 manager: nitinme
 ms.topic: include
 ms.date: 09/15/2025
