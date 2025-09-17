@@ -45,47 +45,6 @@ Extract blob metadata and content, serialized into JSON documents, and imported 
 
 ---
 
-### Azure Cosmos DB for NoSQL
-
-By [Azure AI Search](search-what-is-azure-search.md)
-
-Connect to Azure Cosmos DB through the SQL API to extract items from a container, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
-
-[More details](search-howto-index-cosmosdb.md)
-
-:::image type="icon" source="media/search-data-sources-gallery/azure_cosmos_db_logo_small.png":::
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Azure SQL Database
-
-By [Azure AI Search](search-what-is-azure-search.md)
-
-Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
-
-[More details](search-how-to-index-sql-database.md)
-
-:::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
-
-:::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
-:::column span="":::
-
----
-
 ### Azure Table Storage
 
 By [Azure AI Search](search-what-is-azure-search.md)
@@ -110,6 +69,47 @@ Connect to Azure Storage through Azure Data Lake Storage Gen2 to extract content
 [More details](search-howto-index-azure-data-lake-storage.md)
 
 :::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
+
+:::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
+:::column span="":::
+
+---
+
+### Azure Cosmos DB for NoSQL
+
+By [Azure AI Search](search-what-is-azure-search.md)
+
+Connect to Azure Cosmos DB through the SQL API to extract items from a container, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
+
+[More details](search-howto-index-cosmosdb.md)
+
+:::image type="icon" source="media/search-data-sources-gallery/azure_cosmos_db_logo_small.png":::
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Azure SQL Database
+
+By [Azure AI Search](search-what-is-azure-search.md)
+
+Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
+
+[More details](search-how-to-index-sql-database.md)
+
+:::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
 
 :::column-end:::
 :::column span="":::
@@ -254,7 +254,7 @@ New data sources are issued as preview features. [Sign up](https://aka.ms/azure-
 
 ---
 
-### Fabric OneLake files
+### Microsoft OneLake files
 
 By [Azure AI Search](search-how-to-index-onelake-files.md)
 
