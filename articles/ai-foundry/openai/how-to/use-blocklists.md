@@ -5,7 +5,7 @@ description: Learn how to use blocklists with Azure OpenAI
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/31/2025
+ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
 ---

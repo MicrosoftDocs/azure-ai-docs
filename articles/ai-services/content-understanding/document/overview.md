@@ -5,7 +5,7 @@ description: Learn about Azure AI Content Understanding document solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
 ms.topic: overview
 ms.custom:
@@ -28,6 +28,18 @@ Document analyzers can process complex documents in various formats and template
 * **Financial services:** Analyze complex documents like financial reports and asset management reports.
 * **Expense management:** Parse receipts and invoices from various retailers to validate expenses across different formats and templates.
 * **Document sets and knowledge base scenarios:** Extract key fields from document sets as a whole. Add reference data that handles tasks like validation and enrichment by applying multistep reasoning.
+
+
+## Key benefits
+
+Content Understanding delivers powerful document analysis capabilities that are designed to address critical enterprise and business scenarios, such as RAG and robotic process automation. Key benefits include:
+
+- **Intelligent search enablement:** Transform unstructured documents into structured, searchable data assets to improve information discoverability and accessibility across your organization.
+- **Grounded data extraction:** Maintain clear traceability and localization of extracted data to facilitate efficient human-in-the-loop review processes and ensure transparency and compliance.
+- **Confidence-driven automation:** Use built-in confidence scoring to intelligently automate document processing tasks to help you optimize resource allocation, reduce operational costs, and enhance decision-making accuracy.
+- **Flexible customization:** Easily adapt and tailor document analyzers to align with specific business processes and workflows. Customization enables precise extraction and classification tailored to your organization's specific requirements.
+- **Enhanced accuracy and reliability:** Achieve precise extraction and classification of critical business data to reduce errors and improve operational efficiency across automated workflows.
+- **Agents ready:** Process your diverse input and deliver output in a standard format that's ready for an agent's workflow. Outputs can give your application an understanding of user intent, with data supported by a `strongly-typed` schema that makes it easier to quickly get data in a format ready for your code.
 
 ## Document analyzer capabilities
 
@@ -66,16 +78,6 @@ Content Understanding provides versatile methods for field extraction, which ena
 - **Classify**: Categorize document content into predefined categories, such as classifying sentiment in customer call transcripts or classifying hotel receipt items.
 - **Generate**: Produce new insights or summaries from your documents, including document summaries, and chapter overviews to enhance content accessibility and comprehension.
 
-## Key benefits
-
-Content Understanding delivers powerful document analysis capabilities that are designed to address critical enterprise and business scenarios, such as RAG and robotic process automation. Key benefits include:
-
-- **Intelligent search enablement:** Transform unstructured documents into structured, searchable data assets to improve information discoverability and accessibility across your organization.
-- **Grounded data extraction:** Maintain clear traceability and localization of extracted data to facilitate efficient human-in-the-loop review processes and ensure transparency and compliance.
-- **Confidence-driven automation:** Use built-in confidence scoring to intelligently automate document processing tasks to help you optimize resource allocation, reduce operational costs, and enhance decision-making accuracy.
-- **Flexible customization:** Easily adapt and tailor document analyzers to align with specific business processes and workflows. Customization enables precise extraction and classification tailored to your organization's specific requirements.
-- **Enhanced accuracy and reliability:** Achieve precise extraction and classification of critical business data to reduce errors and improve operational efficiency across automated workflows.
-- **Agents ready:** Process your diverse input and deliver output in a standard format that's ready for an agent's workflow. Outputs can give your application an understanding of user intent, with data supported by a `strongly-typed` schema that makes it easier to quickly get data in a format ready for your code.
 
 ## Input requirements
 
@@ -85,9 +87,9 @@ For more information on supported input document formats, see [Service quotas an
 
 For a list of supported languages and regions, see [Language and region support](../language-region-support.md).
 
-## Data privacy and security
+## Data, privacy, and security
 
-Developers who use Content Understanding should review the Microsoft policies on customer data. For more information, see [Data, protection, and privacy](https://www.microsoft.com/trust-center/privacy).
+Developers who use Content Understanding should review the Microsoft policies on customer data. For more information, see [Data, privacy, and security](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy).
 
 ## Related content
 
