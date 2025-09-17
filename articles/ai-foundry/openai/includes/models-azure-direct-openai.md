@@ -19,7 +19,6 @@ ms.topic: include
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`
 > 
 > To learn about these models, switch to the [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) pivot at the top of this article 
-> These models include Black Forest Labs models, DeepSeek models, DeepSeek models, Mistral models, and xAI models
 
 ## Azure OpenAI in Azure AI Foundry models
 
