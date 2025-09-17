@@ -4,7 +4,6 @@ titleSuffix: Azure AI services
 description: Learn about concepts related to image vectorization and search/retrieval using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme
-
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 09/16/2025
@@ -13,7 +12,7 @@ ms.author: pafarley
 
 # Multimodal embeddings (version 4.0)
 
-Multimodal embedding is the process of generating a vector representation of an image that captures its features and characteristics. These vectors encode the content and context of an image in a way that is compatible with text search over the same vector space.
+Multimodal embedding is the process of generating a vector representation of an image that captures its features and characteristics. These vectors encode the content and context of an image in a way that's compatible with text search over the same vector space.
 
 Image retrieval systems have traditionally used features extracted from the images, such as content labels, tags, and image descriptors, to compare images and rank them by similarity. However, vector similarity search offers a number of benefits over traditional keyword-based search and is becoming a vital component in popular content search services.
 
@@ -34,7 +33,7 @@ Multimodal embedding has a variety of applications in different fields, includin
 - **Fashion and design**: Vectorization can be used in fashion and design to search for images based on their visual features, such as color, pattern, or texture. This can help designers or retailers to identify similar products or trends.
 
 > [!CAUTION]
-> Multimodal embedding is not designed analyze medical images for diagnostic features or disease patterns. Please do not use Multimodal embedding for medical purposes.
+> Multimodal embedding isn't designed to analyze medical images for diagnostic features or disease patterns. Please don't use Multimodal embedding for medical purposes.
 
 ## What are vector embeddings? 
 
@@ -53,7 +52,7 @@ The following are the main steps of the image retrieval process using Multimodal
 
 1. Vectorize Images and Text: the Multimodal embeddings APIs, **VectorizeImage** and **VectorizeText**, can be used to extract feature vectors out of an image or text respectively. The APIs return a single feature vector representing the entire input.
    > [!NOTE]
-   > Multimodal embedding does not do any biometric processing of human faces. For face detection and identification, see the [Azure AI Face service](./overview-identity.md).
+   > Multimodal embedding doesn't do any biometric processing of human faces. For face detection and identification, see the [Azure AI Face service](./overview-identity.md).
 1. Measure similarity: Vector search systems typically use distance metrics, such as cosine distance or Euclidean distance, to compare vectors and rank them by similarity. The [Vision studio](https://portal.vision.cognitive.azure.com/) demo uses [cosine distance](./how-to/image-retrieval.md#calculate-vector-similarity) to measure similarity.  
 1. Retrieve Images: Use the top _N_ vectors similar to the search query and retrieve images corresponding to those vectors from your photo library to  provide as the final result.
 
