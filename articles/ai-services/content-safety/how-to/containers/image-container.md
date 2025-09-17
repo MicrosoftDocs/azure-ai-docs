@@ -52,8 +52,8 @@ The following table represents the various `docker run` parameters and their cor
 
 | Parameter | Description |
 |---------|---------|
-| `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
-| `{API_KEY}` | The API key is required. For more information, see [billing arguments](./install-run-container.md#billing-arguments). |
+| `{ENDPOINT_URI}` | The endpoint is required for metering and billing. For more information, see [billing arguments](./install-run-container.md#billing-information). |
+| `{API_KEY}` | The API key is required. For more information, see [billing arguments](./install-run-container.md#billing-information). |
 
 When you run the content safety analyze image container, configure the port, memory, and CPU according to the [requirements and recommendations](./install-run-container.md#host-computer-requirements-and-recommendations).
 

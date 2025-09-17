@@ -1,18 +1,18 @@
 ---
-title: 'How to use the GPT Realtime API via WebSockets'
+title: 'Use the GPT Realtime API via WebSockets'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT Realtime API for speech and audio via WebSockets.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 6/7/2025
+ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT Realtime API via WebSockets
+# Use the GPT Realtime API via WebSockets
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -121,7 +121,7 @@ Events can be sent and received in parallel and applications should generally ha
 
 ## Try the quickstart
 
-Now that you have the prerequisites, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets.
+Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets.
 
 ## Related content
 

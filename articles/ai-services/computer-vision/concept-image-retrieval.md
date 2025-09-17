@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/25/2024
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -45,7 +45,7 @@ Each dimension of the vector corresponds to a different feature or attribute of 
 > [!IMPORTANT]
 > Vector embeddings can only be compared and matched if they're from the same model type. Images vectorized by one model won't be searchable through a different model. The latest Image Analysis API offers two models, version `2023-04-15` which supports text search in many languages, and the legacy `2022-04-11` model which supports only English.
 
-## How does it work? 
+## The image retrieval process
 
 The following are the main steps of the image retrieval process using Multimodal embeddings.
 
@@ -75,7 +75,7 @@ The image retrieval service returns a field called "relevance." The term "releva
 **Text input**
 - The text string must be between (inclusive) one word and 70 words.
 
-## Next steps
+## Next step
 
 Enable Multimodal embeddings for your search service and follow the steps to generate vector embeddings for text and images.  
 * [Call the Multimodal embeddings APIs](./how-to/image-retrieval.md)

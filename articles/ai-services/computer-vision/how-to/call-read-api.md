@@ -7,20 +7,22 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 09/23/2024
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
 # Call the Azure AI Vision v3.2 GA Read API
 
+[!INCLUDE [read-editions](../includes/read-editions.md)]
+
+
 This guide shows you how to call the v3.2 GA Read API to extract text from images. You'll learn the different ways you can configure the behavior of this API to meet your needs.
 
 The following steps assume that you've already created a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) and obtained a key and endpoint URL. If you haven't, see the [quickstart](../quickstarts-sdk/client-library.md) to get started.
 
-[!INCLUDE [read-editions](../includes/read-editions.md)]
 
 
-## Determine how to process the data (optional)
+## Determine how to process your data (optional)
 
 ### Specify the OCR model
 
