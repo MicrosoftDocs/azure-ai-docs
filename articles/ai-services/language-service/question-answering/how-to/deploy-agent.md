@@ -68,7 +68,7 @@ An OpenAI model serves as the foundational source of intelligence and advanced r
 
    :::image type="content" source="../media/agents/deploy-gpt-4.png" alt-text="Screenshot of the gpt-4 deployment window in Azure AI Foundry.":::
 
-1. Great! The model deployment step is complete
+1. Great! The model deployment step is complete.
 
 ## Step 3: Connect a custom key (required)
 
