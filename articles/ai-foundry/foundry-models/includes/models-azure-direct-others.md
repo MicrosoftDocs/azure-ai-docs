@@ -115,7 +115,7 @@ All deployments perform the same inference operations, but the billing, scale, a
 
 ### Data Zone Standard model availability
 
-[!INCLUDE [datazone-standard](model-matrix/data-zone-standard.md)]
+[!INCLUDE [data-zone-standard](model-matrix/data-zone-standard.md)]
 
 ---
 
