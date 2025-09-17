@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 08/08/2025
+ms.date: 09/15/2025
 ---
 
 # Choose a service tier for Azure AI Search
@@ -99,21 +99,20 @@ This billing model is based on the concept of applying the billing rate to the n
 
 ## Tier changes
 
-Existing services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
+> [!NOTE]
+> Existing search services can switch between Basic and Standard (S1, S2, and S3) tiers. Your current service configuration can't exceed the limits of the target tier, and your region can't have capacity constraints on the target tier. For more information, see [Change your pricing tier](search-capacity-planning.md#change-your-pricing-tier).
 
-If you want to switch to a different tier than those previously listed, the approach is:
+To switch to a different tier than those previously listed:
 
-1. Create a new search service at the new tier.
+1. [Create a search service](search-create-service-portal.md) on the new tier.
+1. Deploy your search content onto the new service. [Follow this checklist](search-howto-move-across-regions.md#prepare-and-move) to ensure you have all the content.
+1. Delete the old service when you're sure it's no longer needed.
 
-1. Deploy your search content onto the new service. [Follow this checklist](search-howto-move-across-regions.md#prepare-and-move) to make sure you have all of the content.
-
-1. Delete the old search service when you're sure it's no longer needed.
-
-For large indexes that you don't want to rebuild from scratch, consider using one of the backup and restore samples to move them:
+For large indexes that you don't want to rebuild from scratch, use one of the following backup and restore samples:
 
 + [Backup and restore sample (C#)](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/index-backup-restore/README.md)
 + [Backup and restore sample (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/index-backup-restore/azure-search-backup-and-restore.ipynb)
-+ [Largest index backup and restore (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb)
++ [Backup and restore sample for very large indexes (Python)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb)
 
 ## Next steps
 
