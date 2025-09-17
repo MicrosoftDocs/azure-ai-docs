@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2024
 ms.topic: how-to
-ms.date: 01/29/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 #customer intent: As a developer, I want to use the custom categories (rapid) API so that I can mitigate harmful content incidents quickly and flexibly.
 
