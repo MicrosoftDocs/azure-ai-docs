@@ -19,6 +19,7 @@ ms.custom:
   - peer-review-program
 zone_pivot_groups: project-type
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
 
@@ -26,6 +27,8 @@ ai-usage: ai-assisted
 # Quickstart: Get started with Azure AI Foundry
 
 ::: zone pivot="hub-project"
+
+::: moniker range="foundry-classic"
 
 In this quickstart, learn to build AI applications with the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. Set up your development environment, write prompts, trace LLM calls, and run evaluations to create robust AI solutions with Python.
 
@@ -126,6 +129,13 @@ python chat.py
 
 > [!div class="nextstepaction"]
 > [Add data and use retrieval augmented generation (RAG) to build a custom chat app](../tutorials/copilot-sdk-create-resources.md)
+
+::: moniker-end
+::: moniker range="foundry"
+
+Hub-based projects are not supported in the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).  
+
+::: moniker-end
 
 ::: zone-end
 
