@@ -346,6 +346,11 @@ Connect to MySQL database on Azure to extract rows in a table, serialized into J
 :::image type="icon" source="media/search-data-sources-gallery/azure_mysql.png":::
 
 :::column-end:::
+:::column span="":::
+
+---
+
+:::column-end:::
 :::row-end:::
 :::row:::
 :::column span="":::
@@ -355,9 +360,6 @@ Connect to MySQL database on Azure to extract rows in a table, serialized into J
    :::column-end:::
 
 :::row-end:::
-
-<!-- :::row:::
-:::column span=""::: -->
 
 ---
 
