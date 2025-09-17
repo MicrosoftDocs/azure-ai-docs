@@ -18,8 +18,8 @@ ms.topic: include
 > - Mistral: `mistral-document-ai-2505`
 > - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`
 > 
-> To learn about these models, switch to the [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) pivot at the top of this article 
-> These models include Black Forest Labs models, DeepSeek models, DeepSeek models, Mistral models, and xAI models
+> To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
+
 
 ## Azure OpenAI in Azure AI Foundry models
 
@@ -529,6 +529,7 @@ For the latest information on model retirements, refer to the [model retirement 
 
 ## Related content
 
+- [Foundry Models from partners and community](models-from-partners.md)
 - [Model retirement and deprecation](../concepts/model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Learn more about Azure OpenAI](../overview.md)

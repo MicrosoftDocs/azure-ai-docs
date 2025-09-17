@@ -28,8 +28,6 @@ Models sold directly by Azure include all Azure OpenAI models and specific, sele
 
 To learn more about attributes of Foundry Models sold directly by Azure, see [Explore Azure AI Foundry Models](../../concepts/foundry-models-overview.md#models-sold-directly-by-azure).
 
-> [!NOTE]
-> For a list of models from partners and community, see [Foundry Models from partners and community](models-from-partners.md).
 
 ::: zone pivot="azure-openai"
 
