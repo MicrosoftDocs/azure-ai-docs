@@ -9,11 +9,14 @@ ms.topic: include
 ms.date: 08/27/2025
 ms.custom: include
 ---
+
 ## First run experience
 
 Use this fast path when you don't have any projects yet.
 
 In the portal, you can explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. For this tutorial, search and then select the **gpt-4o** model.
+
+::: moniker range="foundry-classic"
 
 1. From the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or **[Model catalog](https://ai.azure.com/explore/models)**, select **gpt-4o** (or **gpt-4o-mini**).
 
@@ -26,3 +29,16 @@ In the portal, you can explore a rich catalog of cutting-edge models from Micros
 1. You land in the Chat playground with the model pre-deployed and ready to use.
 
 If you're building an agent, you can instead start with **Create an agent**. The steps are similar, but in a different order.  Once the project is created, you arrive at the Agent playground instead of the Chat playground.
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Sign in to the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
+1. Create a new project.
+1. Select **Build** on the homepage, then **Blank agent**.
+1. Give your agent a name or keep the default name.
+1. Select **Create**.
+1. A **gpt-40** is deployed into your project, and you can now interact with your agent.
+
+
+::: moniker-end
