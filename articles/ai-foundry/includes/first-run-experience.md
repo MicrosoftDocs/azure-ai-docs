@@ -35,7 +35,7 @@ If you're building an agent, you can instead start with **Create an agent**. The
 
 1. Sign in to the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
 1. Create a new project.
-1. select **Build** then **Blank agent**.
+1. Select **Build** on the hompepage, then **Blank agent**.
 1. Give your agent a name or keep the default name.
 1. Select **Create**.
 1. A **gpt-40** is deployed into your project, and you can now interact with your agent.
