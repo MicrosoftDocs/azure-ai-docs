@@ -24,6 +24,10 @@ npm install openai
 
 # [Microsoft Entra ID](#tab/secure)
 
+```cmd
+npm install @azure/identity
+```
+
 In order to authenticate the `OpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
 
 ```typescript
