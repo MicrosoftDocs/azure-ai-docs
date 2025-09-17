@@ -106,7 +106,7 @@ Custom named entity recognition is only available in some Azure regions. Some re
 | West US 3          | ✓         | ✓           |
 
 ### Data augmentation feature in Custom Named Entity Recognition
-The data augmentation feature which allows users to integrate LLM support while training a custom named entity recognition model is only supported in the following regions. Note also that for the data augmentation feature, all entity data will need description text. Note that the supported AOAI model types for this feature are: gpt-4o, gpt-4 32k, and the language resource must have the Azure OpenAI Contributor role on the AOAI resource.
+The data augmentation feature, which allows users to integrate an Azure Open AI model to generate additional training data support while training a custom named entity recognition model, is only supported in the following regions. Note also that for the data augmentation feature, all entity data will need description text. Note that the supported AOAI model types for this feature are: gpt-4o, gpt-4 32k, and the language resource must have the Azure OpenAI Contributor role on the AOAI resource.
 
 | Region             | Data augmentation support in CNER |
 |--------------------|------------------------|
