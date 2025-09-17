@@ -45,7 +45,7 @@ Before you get started, you need the following resources and permissions:
 In the Azure AI Foundry, a fine-tuning task serves as your workspace for your CQA solutions. Previously, a **fine-tuning task** was referred to as a **CQA project**. You might encounter both terms used interchangeably in older CQA documentation.
 
 1. After you select the Azure AI Foundry project to use for this project, select **fine-tuning** from the left navigation menu.
-1. 
+
      :::image type="content" source="../media/agents/fine-tuning-selection.png" alt-text="Screenshot of the fine-tuning menu selection in the Azure AI Foundry.":::
 
 1. From the main window, select the **AI Service fine-tuning** tab and then the **+ Fine-tune button**.
@@ -105,7 +105,7 @@ A CQA knowledge base is a structured set of question-and-answer pairs optimized 
 1. In the main window,  Enter the question **How do I set up my Surface Book?** and then select the **Run** button. Answers are returned using the question-and-answer pairs that were automatically detected and taken from the source URL:
 
 
-    :::image type="content" source="../media/agents/test-knowledge-base.png" alt-text="Screenshot of the inspection interface response in the Azure AI Foundry" lightbox="../media/agents/test-knowledge-base.png":::
+    :::image type="content" source="../media/agents/test-knowledge-base.png" alt-text="Screenshot of the inspection interface response in the Azure AI Foundry." lightbox="../media/agents/test-knowledge-base.png":::
 
 
 ## Deploy your knowledge base

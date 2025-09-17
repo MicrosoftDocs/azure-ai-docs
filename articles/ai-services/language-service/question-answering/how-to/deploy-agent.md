@@ -147,7 +147,7 @@ The agents playground provides a sandbox to test and configure a deployed agentâ
 
 1. Once the agent is successfully uploaded to the playground, you can test it by sending test queries.
 
-      :::image type="content" source="../media/agents/agents-playground.png" alt-text="Screenshot of the agents playground in Azure AI Foundry":::
+      :::image type="content" source="../media/agents/agents-playground.png" alt-text="Screenshot of the agents playground in Azure AI Foundry.":::
 
 
 That's it! The agent creation and deployment processes are complete. You now know how to deploy a CQA agent using your own custom knowledge base.
