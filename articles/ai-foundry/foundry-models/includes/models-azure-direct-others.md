@@ -10,7 +10,7 @@ author: msakande
 ---
 
 > [!NOTE]
-> Models sold directly by Azure also include all Azure OpenAI models. To learn about these models, switch to the [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) collection at the top of this article. 
+> Models sold directly by Azure also include all Azure OpenAI models. To learn about these models, switch to the [Azure OpenAI models](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai) collection at the top of this article. 
 
 ## Black Forest Labs models sold directly by Azure
 
@@ -128,7 +128,7 @@ All deployments perform the same inference operations, but the billing, scale, a
 
 ## Related content
 
-- [Foundry Models from partners and community](models-from-partners.md)
+- [Foundry Models from partners and community](../concepts/models-from-partners.md)
 - [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
 - [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Azure AI Foundry Models](../concepts/deployment-types.md)
