@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Create a Demo App in the Azure Portal"
+title: "Quickstart: Create a Demo App in the Azure portal"
 titleSuffix: Azure AI Search
 description: Run the Create demo app wizard to generate HTML pages and script for an operational web app. The page includes a search box, results area, sidebar, and typeahead support.
 manager: nitinme
