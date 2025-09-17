@@ -63,7 +63,7 @@ See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
-| [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral/?cid=learnDocs) | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions) <br> - Data zone standard (US)  | Foundry |
+| [mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral/?cid=learnDocs) | Image-to-Text | - **Input:** image or PDF pages (30 pages, max 30MB PDF file) <br /> - **Output:** text  <br /> - **Languages:** en <br />  - **Tool calling:** no  <br /> - **Response formats:** Text, JSON, Markdown  |- Global standard (all regions)  | Foundry |
 
 See [the Mistral model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs).  You can also find several Mistral models available [from partners and community](../concepts/models-from-partners.md#mistral-ai).
 
@@ -104,19 +104,17 @@ All deployments can perform the exact same inference operations, but the billing
 
 [!INCLUDE [global-standard](model-matrix/global-standard.md)]
 
+# [Global Provisioned managed](#tab/global-ptum)
+
+### Global Provisioned managed model availability
+
+[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
 
 # [Data Zone Standard](#tab/datazone-standard)
 
 ### Data Zone Standard model availability
 
 [!INCLUDE [datazone-standard](model-matrix/datazone-standard.md)]
-
-
-# [Global Provisioned managed](#tab/global-ptum)
-
-### Global Provisioned managed model availability
-
-[!INCLUDE [global-provisioned-managed](model-matrix/global-provisioned-managed.md)]
 
 ---
 
