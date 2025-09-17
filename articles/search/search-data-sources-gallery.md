@@ -116,6 +116,16 @@ Extract field values from a single table or view, serialized into JSON documents
 
 ---
 
+### Microsoft OneLake files
+
+By [Azure AI Search](search-how-to-index-onelake-files.md)
+
+Connect to a OneLake lakehouse to extract supported files content from a hierarchy of directories and nested subdirectories.
+
+[More details](search-how-to-index-onelake-files.md)
+
+:::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png":::
+
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -254,7 +264,7 @@ New data sources are issued as preview features. [Sign up](https://aka.ms/azure-
 
 ---
 
-### Microsoft OneLake files
+<!-- ### Microsoft OneLake files
 
 By [Azure AI Search](search-how-to-index-onelake-files.md)
 
@@ -262,7 +272,7 @@ Connect to a OneLake lakehouse to extract supported files content from a hierarc
 
 [More details](search-how-to-index-onelake-files.md)
 
-:::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png":::
+:::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png"::: -->
 
 :::column-end:::
 :::column span="":::
