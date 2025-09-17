@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/08/2025
+ms.date: 09/16/2025
 zone_pivot_groups: openai-video-generation
 ---
 

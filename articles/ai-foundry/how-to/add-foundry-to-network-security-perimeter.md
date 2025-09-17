@@ -1,6 +1,6 @@
 ---
-title: Add Azure AI Foundry to Network Security Perimeter (preview)
-description: Discover how to secure your Azure AI Foundry resource by joining it to a network security perimeter, ensuring enhanced data protection and controlled access.
+title: Add Azure AI Foundry to a network security perimeter (preview)
+description: Quickly learn how to associate an Azure AI Foundry resource with a network security perimeter and where to find detailed guidance for access rules, logging, and management.
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
@@ -17,184 +17,121 @@ ai.usage: ai-assisted
 
 ## Overview
 
-This article explains how to join an Azure AI Foundry resource to a network security perimeter to control network access to your Azure AI Foundry resource. By joining a network security perimeter, you can:
+Use a network security perimeter (NSP) to restrict data‑plane access to your Azure AI Foundry resource and group it with other protected PaaS resources. An NSP lets you:
 
-- Log all access to your account in context with other Azure resources
-  in the same perimeter.
+- Enforce inbound and outbound access rules instead of broad public exposure.
+- Reduce data exfiltration risk by containing traffic within a logical boundary.
+- Centrally log network access decisions across associated resources.
 
-- Block any data exfiltration from the account to other services outside
-  the perimeter.
-
-- Allow access to your account using inbound and outbound access
-  capabilities of the network security perimeter.
-
-You can add an Azure AI Foundry resource to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the Azure Virtual Network Manager REST API to join a service and use the Management REST APIs to view and synchronize the configuration settings.
+This article gives only the Foundry-specific pointers you need. All procedural detail for creating perimeters, defining access rules, enabling logging, and using APIs lives in existing Azure networking documentation. Follow the links in each section for the authoritative steps.
 
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)]
 
-## Limitations and considerations
+## Limitations and considerations (preview)
 
-- Azure AI Foundry customer-managed keys might not behave as expected. The Azure AI Foundry resources in the Azure subscription might not be able to use the fine-tune API or assistants API.
+Summarized highlights (see linked docs for evolving preview limitations):
 
-- Network security perimeter controls only data plane operations within Azure AI Foundry, not control plane operations. For example, users can deploy a model within their Azure OpenAI resource secured by the perimeter, but cannot use fine-tuned models, upload files, or start a session in the Chat Playground. In these data plane scenarios, an
-  error message will show that access is blocked by the Network Security Perimeter, as expected.
+- Some Azure AI Foundry capabilities (for example fine-tuning and Assistants APIs) may be unavailable inside an enforced NSP boundary. 
+- NSP governs data plane traffic. Control plane (management) operations may still succeed unless separately restricted.
+- Use a managed identity (system or user‑assigned) with appropriate role assignments for any data source access (for example Azure Blob Storage used for batch inputs/outputs).
+- Co-locate dependent services (Azure OpenAI, Azure Storage, Azure AI Search, etc.) in the same NSP when you need mutual access with minimal outbound allow rules.
+- Foundry Agent Service: Supported; Secured Standard Agents with full network isolation rely on Private Link and do not require or support NSP.
+- Private Link takes precedence over NSP evaluation when both are configured; traffic resolves through Private Link first.
 
-- For an Azure AI Foundry service within a network security perimeter, the resource must use a system or user-assigned managed identity and have a role assignment that permits read-access to data sources.
-
-- Consider securing with a network security perimeter when configuring Azure Blob Storage for Azure AI Foundry. Azure AI Foundry now supports using Azure Blob Storage for Azure AI Foundry Batch input and output files. Secure communications with Blob Storage and Azure OpenAI by placing both resources in the same perimeter. For more on the Azure OpenAI Batch and Blob Storage scenario, see Configuring Azure Blob Storage for Azure OpenAI.
-
-- The Foundry Agent Service supports [Network security perimeter](/azure/private-link/network-security-perimeter-concepts). However, in Secured Standard Agents with network isolation, NSP is neither required nor supported, as all resources connect securely via Private Link within the customer's virtual network, eliminating the need for public IP or FQDN definitions.
-
-- If you implemented Private Endpoints to another PaaS resource through Azure Private Link Service, the network traffic has a preference to check for Private Link and send traffic through that pathway first before NSP. Network traffic follows the order of Private Link before NSP. 
+For more information, see [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts).
 
 ## Prerequisites
 
-> [!CAUTION]
-> Make sure you fully understand the limitations and impact to your Azure Subscription listed in the previous section before registering the preview feature.
+1. Register the preview feature flag `OpenAI.NspPreview` (Azure portal Preview features or CLI).
+  ```azurecli-interactive
+  az feature registration create --name OpenAI.NspPreview --namespace Microsoft.CognitiveServices
+  az provider register --namespace Microsoft.CognitiveServices
+  az provider register --namespace Microsoft.Network
+  ```
+2. Wait for the feature to reach the `Registered` state (poll with `az feature registration list --namespace Microsoft.CognitiveServices`).
+3. Review the current NSP concepts and limitations in [NSP concepts](/azure/private-link/network-security-perimeter-concepts).
+4. Have an existing Azure AI Foundry resource (or plan to create one) and required managed identity assignments.
 
-Register the network security perimeter feature from the Azure portal preview features. The feature names are the following:
+If any prerequisite behavior is unclear or changes, consult the latest Azure OpenAI + NSP article for parity details in [Azure OpenAI NSP guidance](/azure/ai-foundry/openai/how-to/network-security-perimeter).
 
-- `OpenAI.NspPreview`
+## Associate your Azure AI Foundry resource
 
-Or use the following CLI commands to register the two Preview features
+Portal (summary):
+1. Open the Azure portal and navigate to your Network security perimeter resource.
+2. Select **Associated resources** (or **Resources** depending on UI iteration) > **Add / Associate**.
+3. Choose the target profile, pick your Azure AI Foundry resource, set access mode (start with Learning), and confirm.
 
-```azurecli-interactive
-az feature registration create --name OpenAI.NspPreview --namespace
-  Microsoft.CognitiveServices
-```
+CLI (for automation) and full creation steps: see the NSP quickstarts (CLI or PowerShell):
+- [Create a network security perimeter (CLI)](/azure/private-link/create-network-security-perimeter-cli)
+- [Create a network security perimeter (PowerShell)](/azure/private-link/create-network-security-perimeter-powershell)
 
-Ensure the `Microsoft.CognitiveServices` and `Microsoft.Network` providers are registered. To check if the feature flags are allowlisted, use `command az feature registration list`.
-
-## Assign an Azure AI Foundry account to a network security perimeter
-
-Azure Network Security Perimeter allows administrators to define a logical network isolation boundary for PaaS resources (for example, Azure Storage and Azure SQL Database) that are deployed outside virtual networks. It restricts communication to resources within the perimeter, and it allows non-perimeter public traffic through inbound and outbound access rules.
-
-You can add Azure AI Foundry to a network security perimeter so that all requests occur within the security boundary.
-1. In the Azure portal, find the network security perimeter service for your subscription.
-1. Select Associated Resources from the left-hand menu. 
-1. Select Add > Associate resources with an existing profile.
-1. Select the profile you created when you created the network security perimeter for a profile.
-1. Select Associate, and then select the Azure AI Foundry resource you created.
-1. Select Associate in the bottom left-hand section of the screen to create the association.
+After association, traffic evaluation begins per the selected access mode.
 
 
-## Network security perimeter access modes
+## Access modes (Learning vs Enforced)
 
-Network security perimeter supports two different access modes for associated resources:
+Start in Learning to observe would‑be denies. Switch to Enforced once required inbound/outbound rules are defined. Reference [NSP access modes](/azure/private-link/network-security-perimeter-concepts#access-modes) for more details.
 
-|Mode |Description  |
-|---------|---------|
-|Learning mode     | This is the default access mode. In learning mode, network security perimeter logs all traffic to the Azure AI Foundry resource that would have been denied if the perimeter was in enforced mode. This allows network administrators to understand the existing access patterns of the Azure AI Foundry resource service before implementing enforcement of access rules. |
-|Enforced mode   | In Enforced mode, network security perimeter logs and denies all traffic that isn't explicitly allowed by access rules.        |
+## Interaction with `publicNetworkAccess`
 
-## Network security perimeter and Azure AI Foundry resource networking settings
+- Learning mode: `publicNetworkAccess` still governs exposure while you assess logs.
+- Enforced mode: NSP rules take precedence; `publicNetworkAccess` is effectively overridden by allowed inbound rules.
 
-The `publicNetworkAccess` setting determines the Azure AI Foundry resource's association with a network security perimeter.
-- In Learning mode, the `publicNetworkAccess` setting controls public access to the resource.
-- In Enforced mode, the `publicNetworkAccess` setting is overridden by the network security perimeter rules. For example, if an Azure AI Foundry resource with a `publicNetworkAccess` setting of `enabled` is associated with a network security perimeter in Enforced mode, access to the Azure AI Foundry resource is still controlled by network security perimeter access rules.
+## Change access mode
 
-## Change the network security perimeter access mode
+In the portal, locate the association entry for your Foundry resource and choose **Change access mode**. Use automation via `az network perimeter association update` (see Azure CLI reference) when scripting.
 
-1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Resources** in the left-hand menu. 
-1. Find your Azure AI Foundry resource in the table.
-1. Select the three dots in the far right of the Azure Foundry resource row. Select **Change access mode** in the popup.
-1. Select the desired access mode and select Apply. 
+## Enable logging
 
-## Enable logging network access
+Configure diagnostic settings on the NSP resource to send `allLogs` to Log Analytics, Storage, or Event Hubs. For detailed steps and more information about rule context, refer [Enable NSP logging](/azure/azure-monitor/fundamentals/network-security-perimeter#add-a-network-security-perimeter-inbound-access-rule).
 
-1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Diagnostic settings** in the left-hand menu.
-1. Select **Add diagnostic setting**.
-1. Enter any name such as "diagnostic" for Diagnostic setting name.
-1. Under Logs, select `allLogs`. `allLogs` ensures all inbound and outbound network access to resources in your network security perimeter is logged.
-1. Under Destination details, select Archive to a storage account or Send to Log Analytics workspace. The storage account must be in the same region as the network security perimeter. You can either use an existing storage account or create a new one. A Log Analytics workspace can be in a different region than the one used by the network security perimeter. You can also select any of the other applicable destinations. 
-1. Select Save to create the diagnostic setting and start logging network access.
+## Interpret logs
 
-## Reading network access logs
-
-The `network-security-perimeterAccessLogs` table contains all the logs for every log category (for example `network-security-perimeterPublicInboundResourceRulesAllowed`). Every log contains a record of the network security perimeter network access that matches the log category.
-Here's an example of the `network-security-perimeterPublicInboundResourceRulesAllowed` log format:
-
-| **Column Name**       | **Meaning**                                                                 | **Example Value**                              |
-|------------------------|-----------------------------------------------------------------------------|------------------------------------------------|
-| Profile                | Which network security perimeter the Azure AI Foundry resource was associated with | `defaultProfile`                                 |
-| Matched Rule           | JSON description of the rule that was matched by the log                  | `{ "accessRule": "IP firewall" }`               |
-| SourceIPAddress        | Source IP of the inbound network access, if applicable                    | `1.1.1.1`                                       |
-| AccessRuleVersion      | Version of the network-security-perimeter access rules used to enforce the network access rules | 0                                              |
+Query the `network-security-perimeterAccessLogs` table in your Log Analytics workspace to validate allow/deny decisions and finalize required sources or destinations before enforcing. Use KQL filters on `MatchedRule` or `Profile` to isolate Foundry traffic.
 
 
-## Add an access rule for your Azure AI Foundry resource
+## Define access rules
 
-A network security perimeter profile specifies rules that allow or deny access through the perimeter.
-Within the perimeter, all resources have mutual access at the network level. You must still set up authentication and authorization, but at the network level, connection requests from inside the perimeter are accepted.
+Within the profile, choose:
+- Inbound rules: IP ranges or subscription (managed identity) sources.
+- Outbound rules: FQDN destinations needed beyond co-located perimeter resources.
 
-For resources outside of the network security perimeter, you must specify inbound and outbound access rules. Inbound rules specify which connections to allow in, and outbound rules specify which requests are allowed out.
+Rule creation steps (portal screenshots, CLI parameters, examples):
+- [A walkthrough of configuring inbound and outbound rules](/azure/ai-foundry/openai/how-to/network-security-perimeter#add-an-access-rule-for-your-azure-openai-service) using Azure OpenAI NSP (which applies to Foundry data‑plane scenarios).
+- Azure CLI reference (access rules): [az network perimeter profile access-rule](/cli/azure/network/perimeter/profile/access-rule?view=azure-cli-latest&preserve-view=true)
 
-> [!NOTE] 
-> Any service associated with a network security perimeter implicitly allows inbound and outbound access to any other service associated with the same network security perimeter when that access is authenticated using managed identities and role assignments. Access rules only need to be created when allowing access outside of the network security perimeter, or for authenticated access using API keys.
+Implicit trust: Resources inside the same NSP can reach each other when requests are authenticated via managed identity or role assignment; explicit rules are needed only for external sources/destinations or API key patterns.
 
-## Add an inbound access rule
+### Inbound rules
 
+Choose IP range (CIDR) or subscription scope. Prefer subscription + managed identity for internal service‑to‑service traffic; fall back to IP range only when identity‑based access isn't feasible.
 
-Inbound access rules can allow the internet and resources outside the perimeter to connect with resources inside the perimeter. Network security perimeter supports two types of inbound access rules:
-- IP address ranges. IP addresses or ranges must be in the Classless Inter-Domain Routing (CIDR) format. An example of CIDR notation is `192.0.2.0/24`, which represents the IPs that range from `192.0.2.0` to `192.0.2.255`. This type of rule allows inbound requests from any IP address within the range.
-- Subscriptions. This type of rule allows inbound access authenticated using any managed identity from the subscription.
-To add an inbound access rule in the Azure portal:
-1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Profiles** in the left-hand menu.
-1. Select the profile you're using with your network security perimeter. 
-1. Select **Inbound access rules** in the left-hand menu.
-1. Select **Add**.
-1. Enter or select the following values:
-    
-    | Setting | Value |
-    |---------|-------|
-    | Rule name | The name for the inbound access rule (for example, `MyInboundAccessRule`). |
-    | Source Type | Valid values are IP address ranges or subscriptions. |
-    | Allowed Sources | If you selected IP address ranges, enter the IP address range in a CIDR format that you want to allow inbound access from. Azure IP ranges are available at this link. If you selected **Subscriptions**, use the subscription you want to allow inbound access from. |
-    
-1. Select **Add** to create the inbound access rule.
+### Outbound rules
 
-## Add an outbound access rule
-Recall that in public preview, Azure AI Foundry can connect to Azure Storage, Azure Cosmos DB, Azure Monitor, and Azure AI Search within the security perimeter. If you want to use other data sources, you need an outbound access rule to support that connection.
-Network security perimeter supports outbound access rules based on the Fully Qualified Domain Name (FQDN) of the destination. For example, you can allow outbound access from any service associated with your network security perimeter to an FQDN such as `mystorageaccount.blob.core.windows.net`.
+List only required FQDNs (principle of least privilege). Keep dependent Azure services in the same NSP to minimize outbound allow entries.
 
-To add an outbound access rule in the Azure portal:
+## Validate before enforcement
 
-1. Navigate to your network security perimeter resource in the Azure portal.
-1. Select **Profiles** in the left-hand menu.
-1. Select the profile you're using with your network security perimeter.
-1. Select **Outbound access rules** in the left-hand menu.
-1. Select **Add**.
-1. Enter or select the following values:
-    
-    | Setting | Value |
-    |---------|-------|
-    | Rule name | The name for the outbound access rule (for example, "MyOutboundAccessRule") |
-    | Destination Type | Leave as FQDN |
-    | Allowed Destinations | Enter a comma-separated list of FQDNs you want to allow outbound access to |
-    
-1. Select **Add** to create the outbound access rule.
+1. Stay in Learning mode initially; review access logs for denies affecting required traffic.
+2. Add or refine inbound/outbound rules.
+3. Switch to Enforced mode.
+4. Open Azure AI Foundry (portal) and perform a model deployment or chat test. Success indicates required traffic is permitted.
+5. If blocked, revert to Learning or add rules and retry.
 
-## Test your connection through network security perimeter
+## View and manage configuration
 
+Use REST or CLI to audit and reconcile:
+- REST reference (perimeter core): [Network security perimeter REST API](/rest/api/network-security-perimeter/)
+- (Example) Profile and association operations (CLI): [Azure CLI network perimeter commands](/cli/azure/network/perimeter?view=azure-cli-latest&preserve-view=true)
+- Configuration reconciliation APIs (preview) for perimeter profiles and associations. Use the latest published preview or stable version. Use the correct preview version for configuration APIs, currently `2024-10-01`.
 
-To test your connection through network security perimeter, you need access to a web browser, either on a local computer with an internet connection or an Azure VM.
-1. Change your network security perimeter association to __enforced mode__ to start enforcing network security perimeter requirements for network access to your Azure AI Foundry resource.
-1. Decide if you want to use a local computer or an Azure VM.
-    - If you're using a local computer, you need to know your public IP address.
-    - If you're using an Azure virtual machine, you can either use a [private link](/azure/private-link/private-link-overview) or [check the IP address using the Azure portal](/azure/virtual-network/ip-services/virtual-network-network-interface-addresses).
-1. Using the IP address, you can create an __inbound access rule__ for that IP address to allow access. You can skip this step if you're using private link.
-1. Finally, try navigating to the Azure AI Foundry resource in the Azure portal. Open the Azure AI Foundry portal. Deploy a model and chat with the model in the Chat Playground. If you receive a response, then the network security perimeter is configured correctly.
-
-## View and manage network security perimeter configuration
-
-
-You can use the Network Security Perimeter Configuration REST APIs to review and reconcile perimeter configurations. **Be sure to use preview API version** `2024-10-01`.
+Always confirm the latest API version in the reference before scripting.
 
 
 ## Related content
 
-- [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md) 
+- [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md)
+- [Network security perimeter concepts](/azure/private-link/network-security-perimeter-concepts)
+- [Azure OpenAI NSP article](/azure/ai-foundry/openai/how-to/network-security-perimeter)
+- [Azure CLI network perimeter reference](/cli/azure/network/perimeter?view=azure-cli-latest&preserve-view=true)
 - [What is Azure AI Foundry Agent Service?](../agents/overview.md)

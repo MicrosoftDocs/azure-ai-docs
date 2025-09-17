@@ -6,13 +6,13 @@ author: PatrickFarley
 ms.author: pafarley 
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/31/2025
+ms.date: 09/16/2025
 manager: nitinme
 ---
 
 # Use Risks & Safety monitoring in Azure AI Foundry (preview) 
 
-When you use an Azure OpenAI model deployment with a content filter, you might want to check the results of the filtering activity. You can use that information to further adjust your [filter configuration](/azure/ai-foundry/openai/how-to/content-filters) to serve your specific business needs and Responsible AI principles.  
+When you use an Azure OpenAI model deployment with a content filter, you might want to check the results of the filtering activity. You can use that information to further adjust your [filter configuration](/azure/ai-foundry/openai/how-to/content-filters) to serve your specific business needs and Responsible AI principles.
 
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) provides a Risks & Safety monitoring dashboard for each of your deployments that uses a content filter configuration.
 

@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 08/03/2025
+ms.date: 09/15/2025
 ms.author: lajanuar
 ---
 
@@ -21,7 +21,7 @@ Use this article to get started with Conversational Language understanding using
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
-*  [Azure AI Foundry multi-service resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../how-to/configure-azure-resources.md#option-1-configure-an-azure-ai-foundry-resource). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+*  [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../how-to/configure-azure-resources.md#option-1-configure-an-azure-ai-foundry-resource). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * A Foundry project created in the Azure AI Foundry. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Get started with Azure AI Foundry
@@ -36,7 +36,7 @@ Let's begin:
 1. If you aren't already signed in, the portal prompts you to do so with your Azure credentials.
 1. Once signed in, you can create or access your existing projects within Azure AI Foundry.
 1. If you're not already at your project for this task, select it.
-1. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground card**, and then choose the **Try the Language playground** button.
+1. On the left side navigation pane, select **Playgrounds**, navigate to the **Language playground tile**, and then choose the **Try the Language playground** button.
 
   :::image type="content" source="../../media/quickstarts/try-playground.png" alt-text="Screenshot of the Try Language Playground selection in Azure AI Foundry.":::
 
@@ -44,7 +44,7 @@ Let's begin:
 
 The top section of the Language playground is where you can view and select the available Language services. 
 
-1. Select the **Conversational language understanding** card.
+1. Select the **Conversational language understanding** tile.
 
     :::image type="content" source="../../media/quickstarts/language-playground.png" alt-text="Screenshot of the language playground homepage in Azure AI Foundry.":::
 
@@ -54,7 +54,7 @@ The top section of the Language playground is where you can view and select the 
 
 1. From **Create service fine-tuning** window, choose the **Conversational language understanding** card. Then select **Next**.
 
-    :::image type="content" source="../../media/quickstarts/select-project.png" alt-text="Screenshot of conversational language understanding selection card in the Azure AI Foundry.":::
+    :::image type="content" source="../../media/quickstarts/select-project.png" alt-text="Screenshot of conversational language understanding selection tile in the Azure AI Foundry.":::
 
 1. In **Create CLU fine tuning task** window, select **Import an existing project**, then choose your **Connected service** from the drop-down menu and complete the **Name** field.
 
