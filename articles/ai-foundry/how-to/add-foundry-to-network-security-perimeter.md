@@ -83,7 +83,7 @@ In the portal, locate the association entry for your Foundry resource and choose
 
 ## Enable logging
 
-Configure diagnostic settings on the NSP resource to send `allLogs` to Log Analytics, Storage, or Event Hub. For detailed steps and more information about rule context, refer [Enable NSP logging](/azure/azure-monitor/fundamentals/network-security-perimeter#add-a-network-security-perimeter-inbound-access-rule).
+Configure diagnostic settings on the NSP resource to send `allLogs` to Log Analytics, Storage, or Event Hubs. For detailed steps and more information about rule context, refer [Enable NSP logging](/azure/azure-monitor/fundamentals/network-security-perimeter#add-a-network-security-perimeter-inbound-access-rule).
 
 ## Interpret logs
 
