@@ -1,13 +1,13 @@
 ---
-title: OneLake indexer (preview)
+title: OneLake indexer
 titleSuffix: Azure AI Search
-description: Set up a OneLake indexer to automate indexing of content and metadata from OneLake files and shortcuts.
+description: Set up a OneLake indexer to automate indexing of content and metadata from Microsoft OneLake files and shortcuts.
 author: gmndrg
 ms.author: gimondra
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025
+ms.date: 09/17/2025
 ms.custom:
   - build-2024
   - ignite-2024
@@ -17,13 +17,13 @@ ms.custom:
 
 # Index data from OneLake files and shortcuts
   
-In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [OneLake](/fabric/onelake/onelake-overview).
+In this article, learn how to configure a OneLake files indexer for extracting searchable data and metadata data from a [lakehouse](/fabric/onelake/create-lakehouse-onelake) on top of [Microsoft OneLake](/fabric/onelake/onelake-overview).
 
 To configure and run the indexer, you can use:
 
-+ [2024-05-01-preview REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) or a newer preview REST API.
-+ An Azure SDK beta package that provides the feature.
-+ [**Import data** wizard](search-get-started-portal.md) in the Azure portal.
++ [Data Source REST API](/rest/api/searchservice/data-sources/create-or-update) with an [Indexer REST API](/rest/api/searchservice/indexers/create-or-update)
++ An Azure SDK package that provides the feature
++ [**Import data** wizard](search-get-started-portal.md) in the Azure portal
 + [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal.
 
 This article uses the REST APIs to illustrate each step.
@@ -36,13 +36,13 @@ This article uses the REST APIs to illustrate each step.
 
 + Textual data. If you have binary data, you can use [AI enrichment](cognitive-search-concept-intro.md) image analysis to extract text or generate descriptions of images. File content can't exceed the [indexer limits](search-limits-quotas-capacity.md#indexer-limits) for your search service tier.
 
-+ Content in the **Files** location of your lakehouse. You can add data by:
++ Unstructured content in the **Files** location of your lakehouse. You can add data by:
 
   + [Upload into a lakehouse directly](/fabric/onelake/create-lakehouse-onelake#load-data-into-a-lakehouse)
   + [Use data pipelines](/fabric/data-engineering/tutorial-lakehouse-data-ingestion) from [Microsoft Fabric](https://fabric.microsoft.com/)
   + [Add shortcuts](/fabric/onelake/create-onelake-shortcut) from external data sources like [Amazon S3](/fabric/onelake/create-s3-shortcut) or [Google Cloud Storage](/fabric/onelake/create-gcs-shortcut).  
 
-+ An AI Search service configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
++ An AI Search service, basic pricing tier or higher, configured for either a [system managed identity](search-how-to-managed-identities.md#create-a-system-managed-identity) or [user-assigned assigned managed identity](search-how-to-managed-identities.md#create-a-user-assigned-managed-identity). The AI Search service must reside within the same tenant as the Microsoft Fabric workspace.
   
 + A Contributor role assignment in the Microsoft Fabric workspace where the lakehouse is located. Steps are outlined in the [Grant permissions](#assign-service-permissions) section of this article.
 
@@ -54,7 +54,7 @@ You can use this indexer for the following tasks:
   
 + **Data indexing and incremental indexing:** The indexer can index files and associated metadata from data paths within a lakehouse. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
 + **Deletion detection:** The indexer can [detect deletions via custom metadata](#detect-deletions-via-custom-metadata) for most files and shortcuts. This requires adding metadata to files to signify that they have been "soft deleted", enabling their removal from the search index. Currently, it's not possible to detect deletions in Google Cloud Storage or Amazon S3 shortcut files because custom metadata isn't supported for those data sources.
-+ **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the OneLake files indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
++ **Applied AI enrichment through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the OneLake files indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
 + **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
 + **Compatibility with other features:** The OneLake indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
@@ -78,7 +78,7 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 
 + [Google Cloud Storage shortcut](/fabric/onelake/create-gcs-shortcut)
 
-## Limitations in this preview
+## Limitations
 
 + Parquet (including delta parquet) file types aren't currently supported.
 
@@ -92,13 +92,13 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 
 ## Prepare data for indexing
 
-Before you set up indexing, review your source data to determine whether any changes should be made up front. An indexer can index content from one container at a time. By default, all files in the container are processed. You have several options for more selective processing:
+Before you set up indexing, review your source data to determine whether any changes should be made to your data in the lakehouse. An indexer can index content from one container at a time. By default, all files in the container are processed. You have several options for more selective processing:
 
 + Place files in a virtual folder. An indexer [data source definition](#define-the-data-source) includes a "query" parameter that can be either a lakehouse subfolder or shortcut. If this value is specified, only those files in the subfolder or shortcut within the lakehouse are indexed.
 
 + Include or exclude files by file type. The [supported document formats list](#SupportedFormats) can help you determine which files to exclude. For example, you might want to exclude image or audio files that don't provide searchable text. This capability is controlled through [configuration settings](#configure-and-run-the-onelake-files-indexer) in the indexer.
 
-+ Include or exclude arbitrary files. If you want to skip a specific file for whatever reason, you can add metadata properties and values to files in your OneLake lakehouse. When an indexer encounters this property, it skips the file or its content in the indexing run.
++ Include or exclude arbitrary files. If you want to skip a specific file for whatever reason, you can add metadata properties and values to files in your lakehouse. When an indexer encounters this property, it skips the file or its content in the indexing run.
 
 File inclusion and exclusion are covered in the [indexer configuration](#configure-and-run-the-onelake-files-indexer) step. If you don't set criteria, the indexer reports an ineligible file as an error and moves on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-onelake-files-indexer).
 
@@ -164,15 +164,15 @@ The minimum role assignment for your search service identity is Contributor.
 
 ## Define the data source  
   
-A data source is defined as an independent resource so that it can be used by multiple indexers. You must use the 2024-05-01-preview REST API to create the data source.
+A data source is defined as an independent resource so that it can be used by multiple indexers. Use the latest stable REST API version or a recent preview version..
 
-1. Use the [Create or update a data source REST API](/rest/api/searchservice/data-sources/create-or-update?view=rest-searchservice-2024-05-01-preview&tabs=HTTP&preserve-view=true) to set its definition. These are the most significant steps of the definition.
+1. Use the [Create or update a data source REST API](/rest/api/searchservice/data-sources/create-or-update) to set its definition. These are the most significant steps of the definition.
 
 1. Set `"type"` to `"onelake"` (required).
 
 1. Get the Microsoft Fabric workspace GUID and the lakehouse GUID:
 
-   + Go to the lakehouse you'd like to import data from its URL. It should look similar to this example: "https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111?experience=power-bi". Copy the following values that are used in the data source definition:
+   + Go to the lakehouse you'd like to import data from its URL. It should look similar to this example: "https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111". Remove any query parameters, such as `?experience=power-bi`. Copy the following values that are used in the data source definition:
 
    + Copy the workspace GUID, that we'll call `{FabricWorkspaceGuid}`, which is listed right after "groups" in the URL. In this example, it would be 00000000-0000-0000-0000-000000000000.
 
@@ -404,7 +404,7 @@ Once the index and data source are created, you're ready to create the indexer. 
 
    + "contentAndMetadata" is the default. It specifies that all metadata and textual content extracted from the file are indexed.
 
-   + "storageMetadata" specifies that only the [standard file properties and user-specified metadata](/azure/storage/blobs/storage-blob-container-properties-metadata) are indexed. Although the properties are documented for Azure blobs, the file properties are the same for OneLkae, except for the SAS related metadata.
+   + "storageMetadata" specifies that only the [standard file properties and user-specified metadata](/azure/storage/blobs/storage-blob-container-properties-metadata) are indexed. Although the properties are documented for Azure blobs, the file properties are the same for OneLake, except for the SAS related metadata.
 
    + "allMetadata" specifies that standard file properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the file content and indexed.
 
@@ -416,7 +416,7 @@ Once the index and data source are created, you're ready to create the indexer. 
 
 For more information about other properties, [Create an indexer](search-howto-create-indexers.md). For the full list of parameter descriptions, see [Create Indexer (REST)](/rest/api/searchservice/indexers/create#definitions) in the REST API. The parameters are the same for Microsoft OneLake.
 
-By default, an indexer runs automatically when you create it. You can change this behavior by setting "disabled" to true. To control indexer execution, [run an indexer on demand](search-howto-run-reset-indexers.md) or [put it on a schedule](search-howto-schedule-indexers.md).
+By default, an indexer runs automatically when you create it. You can change this behavior by setting "disabled" to true. If you create an indexer in a disabled state, [run an indexer on demand](search-howto-run-reset-indexers.md) when you're ready to use it, or [put it on a schedule](search-howto-schedule-indexers.md).
 
 ## Check indexer status
  

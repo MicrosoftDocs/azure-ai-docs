@@ -173,7 +173,7 @@ This section points you to the content that works for this quickstart. Before yo
 
    1. On the **Home** tab of your lakehouse, select **Upload files**, and then upload the [health-plan PDF documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) used for this quickstart.
 
-1. At the top of your browser, copy the lakehouse URL, which has the following format: `https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111?experience=power-bi`. You specify this URL later in [Connect to your data](#connect-to-your-data).
+1. At the top of your browser, copy the lakehouse URL, which has the following format: `https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111`. Remove any query parameters, such as `?experience=power-bi`. You specify this URL later in [Connect to your data](#connect-to-your-data).
 
 ---
 
