@@ -77,7 +77,7 @@ ChatClient client = new(
     credential: new ApiKeyCredential(keyFromEnvironment),
     options: new OpenAIClientOptions() { 
     
-        Endpoint = new Uri("https://france-central-test-001.openai.azure.com/openai/v1")
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
    }
 );
 
