@@ -6,15 +6,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 07/22/2025
+ms.date: 09/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, mode-other
-zone_pivot_groups: usage-custom-language-features
+zone_pivot_groups: foundry-rest-api
 ---
 
 # Quickstart: Custom named entity recognition
 
-Use this article to get started with creating a custom NER project where you can train custom models for custom entity recognition. A model artificial intelligence software trained to achieve a specific task. For this system, the models extract named entities and are trained by learning from tagged data.
+Named Entity Recognition (NER) is one of the features offered by Azure AI Language, a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. The NER feature can identify and categorize entities in unstructured text. For example: people, places, organizations, and quantities. The custom NER feature allows you to train the model to recognize specialized entities specific to your use case.Use this article to get started with creating a custom NER project where you can train custom models for custom entity recognition. A model artificial intelligence software trained to achieve a specific task. For this system, the models extract named entities and are trained by learning from tagged data.
 
 In this article, we use Azure AI Foundry to demonstrate key concepts of custom Named Entity Recognition (NER). As an example, let's build a custom NER model to extract the following relevant entities from loan agreements:
 
@@ -23,7 +23,7 @@ In this article, we use Azure AI Foundry to demonstrate key concepts of custom N
 * Lender's name, address, city, and state
 * Loan and interest amounts
 
-::: zone pivot="language-studio"
+::: zone pivot="foundry-rest-api"
 
 [!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
 

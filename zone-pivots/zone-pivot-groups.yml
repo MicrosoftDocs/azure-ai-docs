@@ -1620,7 +1620,7 @@ groups:
   - id: rest
     title: REST
  # Owner: laujan
-- id: language-clu-quickstart
+- id: foundry-rest-api
   title: API methods and platforms
   prompt: Choose an API
   pivots:
