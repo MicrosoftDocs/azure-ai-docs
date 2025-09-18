@@ -441,27 +441,34 @@ items:
   items:
     - name: SDK reference
       items:
-        - name: C++
-          displayName: 'C++ SDK,C++ dev kit,reference,reference docs,ref documentation'
-          href: /cpp/cognitive-services/speech/
-        - name: 'C#'
-          displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
-          href: /dotnet/api/microsoft.cognitiveservices.speech
-        - name: 'Go'
-          displayName: Go SDK, Go dev kit,reference,reference docs,ref documentation
-          href: https://pkg.go.dev/github.com/Microsoft/cognitive-services-speech-sdk-go
-        - name: Java
-          displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
-          href: /java/api/com.microsoft.cognitiveservices.speech
-        - name: JavaScript
-          displayName: Node, Node.js, NodeJS, JS SDK,JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
-          href: /javascript/api/microsoft-cognitiveservices-speech-sdk/
-        - name: Objective-C
-          displayName: Objective-C SDK,Objective-C dev kit,reference,reference docs,ref documentation
-          href: /objectivec/cognitive-services/speech/
-        - name: Python
-          displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
-          href: /python/api/azure-cognitiveservices-speech/
+      - name: Speech SDK
+        items:
+          - name: C++
+            displayName: 'C++ SDK,C++ dev kit,reference,reference docs,ref documentation'
+            href: /cpp/cognitive-services/speech/
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/microsoft.cognitiveservices.speech
+          - name: 'Go'
+            displayName: Go SDK, Go dev kit,reference,reference docs,ref documentation
+            href: https://pkg.go.dev/github.com/Microsoft/cognitive-services-speech-sdk-go
+          - name: Java
+            displayName: 'Java SDK,Java dev kit,reference,reference docs,ref documentation'
+            href: /java/api/com.microsoft.cognitiveservices.speech
+          - name: JavaScript
+            displayName: Node, Node.js, NodeJS, JS SDK,JavaScript SDK,JavaScript dev kit,reference,reference docs,ref documentation
+            href: /javascript/api/microsoft-cognitiveservices-speech-sdk/
+          - name: Objective-C
+            displayName: Objective-C SDK,Objective-C dev kit,reference,reference docs,ref documentation
+            href: /objectivec/cognitive-services/speech/
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/azure-cognitiveservices-speech/
+      - name: Voice Live SDK (Preview)
+        items:
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-voicelive-readme
     - name: REST API reference
       items:
         - name: Speech to text REST API

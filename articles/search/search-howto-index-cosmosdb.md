@@ -67,7 +67,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Import and vectorize data wizard** to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
+You can use either the **Import data** wizard or the **Import data (new)** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -81,7 +81,7 @@ You can use either the **Import data** wizard or **Import and vectorize data wiz
 
    If you [configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md), and you create a [role assignment on Cosmos DB](/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions) that grants **Cosmos DB Account Reader** and **Cosmos DB Built-in Data Reader** permissions to the identity, your indexer can connect to Cosmos DB using Microsoft Entra ID and roles.
 
-1. For the **Import and vectorize data wizard**, you can specify options for change and deletion tracking.
+1. For the **Import data (new)** wizard, you can specify options for change and deletion tracking.
 
    [Change detection](#incremental-indexing-and-custom-queries) is supported by default through a `_ts` field (timestamp). If you upload content using the approach described in [Try with sample data](#try-with-sample-data), the collection is created with a `_ts` field.
 
@@ -89,9 +89,9 @@ You can use either the **Import data** wizard or **Import and vectorize data wiz
 
 1. Continue with the remaining steps to complete the wizard:
 
-   + [Import data wizard](search-get-started-portal.md)
+   + [**Import data** wizard](search-get-started-portal.md)
 
-   + [Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
+   + [**Import data (new)** wizard](search-get-started-portal-import-vectors.md)
 
 ## Use the REST APIs
 

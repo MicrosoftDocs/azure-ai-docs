@@ -414,7 +414,6 @@ Live Interpreter continuously identifies the language being spoken without requi
 To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the following regions supported by the public preview: 
 - West US 2
 - East US
-- Sweden Central
 - West Europe
 - Southeast Asia
 - Japan East

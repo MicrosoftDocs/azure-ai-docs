@@ -21,6 +21,8 @@ items:
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
+  - name: GPT-5 vs GPT-4.1
+    href: ../../foundry-models/how-to/model-choice-guide.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Azure AI Foundry portal

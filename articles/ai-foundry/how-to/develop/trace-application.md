@@ -5,7 +5,7 @@ description: View trace results for AI applications using OpenAI SDK with OpenTe
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 08/29/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -13,7 +13,15 @@ ai-usage: ai-assisted
 
 # View trace results for AI applications using OpenAI SDK
 
-Learn how to view trace results that provide deep visibility into AI application execution. See detailed telemetry captured at each step to diagnose issues and enhance performance by identifying problems such as inaccurate tool calls, misleading prompts, high latency, and low-quality evaluation scores.  
+Learn how to view trace results that provide visibility into AI application execution. Use traces to diagnose inaccurate tool calls, misleading prompts, latency bottlenecks, and low-quality evaluation scores.
+
+In this article, you learn how to:
+
+- Enable tracing for a project.
+- Instrument the OpenAI SDK.
+- Capture message content (optional).
+- View trace timelines and spans.
+- Connect tracing with evaluation loops.
 
 This article explains how to view trace results for AI applications using **OpenAI SDK** with OpenTelemetry in Azure AI Foundry.
 
@@ -27,7 +35,7 @@ You need the following to complete this tutorial:
 
 ## Enable tracing in your project
 
-Azure AI Foundry stores traces in Azure Application Insights resources using OpenTelemetry. By default, new Azure AI Foundry resources don't provision these resources. You can connect projects to an existing Azure Application Insights resource or create a new one from within the project. You do this configuration once per each Azure AI Foundry resource.
+Azure AI Foundry stores traces in Azure Application Insights using OpenTelemetry. New resources don't provision Application Insights automatically. Associate (or create) a resource once per Azure AI Foundry resource.
 
 The following steps show how to configure your resource:
 
@@ -93,65 +101,54 @@ Once you have tracing configured and your application is instrumented, you can v
 
 When developing with the OpenAI SDK, you can instrument your code so traces are sent to Azure AI Foundry. Follow these steps to instrument your code:
 
-1. Install `azure-ai-projects`, `azure-monitor-opentelemetry`, and `opentelemetry-instrumentation-openai-v2` in your environment. The following example uses `pip`:
+1. Install packages:
 
-    ```console
+    ```bash
     pip install azure-ai-projects azure-monitor-opentelemetry opentelemetry-instrumentation-openai-v2
     ```
 
-1. Instrument the OpenAI SDK by using `OpenAIInstrumentor()`:
+2. (Optional) Capture message content:
 
-    ```python
-    from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
+    - PowerShell: `setx OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT true`
+    - Bash: `export OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true`
 
-    OpenAIInstrumentor().instrument()
-    ```
-
-1. Get the connection string to the Azure Application Insights resource associated with your project. The following line uses the Azure AI Project client, which requires the use of Microsoft Entra ID for authentication:
+3. Get the connection string for the linked Application Insights resource (Project > Tracing > Manage data source > Connection string):
 
     ```python
     from azure.ai.projects import AIProjectClient
     from azure.identity import DefaultAzureCredential
 
     project_client = AIProjectClient(
-        credential=DefaultAzureCredential(),
-        endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
+         credential=DefaultAzureCredential(),
+         endpoint="https://<your-resource>.services.ai.azure.com/api/projects/<your-project>",
     )
-
     connection_string = project_client.telemetry.get_application_insights_connection_string()
     ```
 
-    > [!TIP]
-    > Connection strings to Azure Application Insights looks like `InstrumentationKey=aaaa0a0a-bb1b-cc2c-dd3d-eeeee4e4e4e;...`. You can also access the connection string used in your project from the section **Tracing** in Azure AI Foundry portal. In the top navigation bar, select **Manage data source** and copy the **Connection string**. Configure your connection string in an environment variable.
-    >
-    > :::image type="content" source="../../media/how-to/develop/trace-application/tracing-copy-connection-string.png" alt-text="A screenshot showing how to copy the connection string to the underlying Azure Application Insights resource from a project." lightbox="../../media/how-to/develop/trace-application/tracing-copy-connection-string.png":::
-
-1. Configure OpenTelemetry to send traces to the Azure Application Insights:
+4. Configure Azure Monitor and instrument OpenAI SDK:
 
     ```python
     from azure.monitor.opentelemetry import configure_azure_monitor
+    from opentelemetry.instrumentation.openai_v2 import OpenAIInstrumentor
 
     configure_azure_monitor(connection_string=connection_string)
+    OpenAIInstrumentor().instrument()
     ```
 
-1. By default, OpenTelemetry doesn't capture inputs and outputs. Use the environment variable `OTEL_INSTRUMENTATION_GENAI_CAPTURE_MESSAGE_CONTENT=true` to capture them. Ensure this environment variable is configured in the environment level where your code is running.
-
-1. Use the OpenAI SDK as usual:
+5. Send a request:
 
     ```python
     client = project_client.get_openai_client()
-
     response = client.chat.completions.create(
-        model="deepseek-v3-0324",
-        messages=[
-            {"role": "user", "content": "Write a short poem on open telemetry."},
-        ],
+         model="gpt-4o-mini", 
+         messages=[{"role": "user", "content": "Write a short poem on open telemetry."}],
     )
+    print(response.choices[0].message.content)
     ```
 
-1. If you go back to Azure AI Foundry portal, you can view the trace results:
+6. Return to **Tracing** in the portal to view new traces.
 
-    :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="A screenshot showing how a simple chat completion request is displayed in the trace." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
+    :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="Screenshot that shows a trace view of a chat completion request showing spans and latency." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
 1. It might be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
 

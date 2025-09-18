@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 03/26/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 ---

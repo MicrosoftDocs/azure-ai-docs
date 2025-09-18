@@ -59,15 +59,14 @@ pip install azure-identity
 ```python
 import os
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import AzureOpenAI
+from openai import OpenAI
 
 #from openai import OpenAI
 token_provider = get_bearer_token_provider(DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default")
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+  api_key=token_provider,
 )
 
 response = client.responses.create(
@@ -108,7 +107,7 @@ print(response.output)
 ## [REST API](#tab/rest-api)
 
 ```bash
-curl ${MY_ENDPOINT}/openai/v1/responses?api-version=preview \ 
+curl ${MY_ENDPOINT}/openai/v1/responses \ 
   -H "Content-Type: application/json" \ 
   -H "api-key: $MY_API_KEY" \ 
   -d '{ 
@@ -244,7 +243,7 @@ response_2 = client.responses.create(
 ## [REST API](#tab/rest-api)
 
 ```bash
-curl ${MY_ENDPOINT}/openai/v1/responses?api-version=preview \ 
+curl ${MY_ENDPOINT}/openai/v1/responses \ 
   -H "Content-Type: application/json" \ 
   -H "api-key: $MY_API_KEY" \ 
   -d '{ 
@@ -385,7 +384,7 @@ First, we import the necessary libraries and define our configuration parameters
 import os
 import asyncio
 import base64
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
@@ -400,7 +399,6 @@ BASE_URL = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 MODEL = "computer-use-preview" # Set to model deployment name
 DISPLAY_WIDTH = 1024
 DISPLAY_HEIGHT = 768
-API_VERSION = "preview" #Use this API version or later
 ITERATIONS = 5 # Max number of iterations before returning control to human supervisor
 ```
 
@@ -726,10 +724,9 @@ The main function coordinates the entire process:
 
 ```python
     # Initialize OpenAI client
-    client = AzureOpenAI(
+    client = OpenAI(
         base_url=BASE_URL,
-        azure_ad_token_provider=token_provider,
-        api_version=API_VERSION
+        api_key=token_provider,
     )
     
     # Initialize Playwright
@@ -811,7 +808,7 @@ if __name__ == "__main__":
 
 The main function:
 
-- Initializes the AzureOpenAI client.
+- Initializes the OpenAI client.
 - Sets up the Playwright browser.
 - Starts at Bing.com.
 - Enters a loop to accept user tasks.
@@ -830,7 +827,7 @@ The main function:
 import os
 import asyncio
 import base64
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from playwright.async_api import async_playwright, TimeoutError
 
@@ -845,7 +842,6 @@ BASE_URL = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 MODEL = "computer-use-preview"
 DISPLAY_WIDTH = 1024
 DISPLAY_HEIGHT = 768
-API_VERSION = "preview"
 ITERATIONS = 5 # Max number of iterations before forcing the model to return control to the human supervisor
 
 # Key mapping for special keys in Playwright
@@ -1107,10 +1103,9 @@ async def process_model_response(client, response, page, max_iterations=ITERATIO
         
 async def main():    
     # Initialize OpenAI client
-    client = AzureOpenAI(
+    client = OpenAI(
         base_url=BASE_URL,
-        azure_ad_token_provider=token_provider,
-        api_version=API_VERSION
+        api_key=token_provider
     )
     
     # Initialize Playwright

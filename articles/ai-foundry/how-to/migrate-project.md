@@ -3,7 +3,7 @@ title: Migrate From Hub-based to Foundry Projects
 description: Learn how to migrate from existing hub-based projects to new Azure AI Foundry projects to access the latest platform capabilities, unified workflows, and enhanced governance features.
 author: sdgilley
 ms.topic: how-to
-ms.date: 07/21/2025
+ms.date: 09/15/2025
 ms.author: sgilley
 ms.reviewer: deeikele
 ms.service: azure-ai-foundry
@@ -170,7 +170,7 @@ If your [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] used conn
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
- In the **Management center**, [add any connections](/azure/ai-foundry/how-to/connections-add?pivots=fdp-project) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
+ In the **Management center**, [add any connections](/azure/ai-foundry/how-to/connections-add) to tools and data you used before in your initial [!INCLUDE [hub-project-name](../includes/hub-project-name.md)].
 
 # [Azure portal](#tab/azure)
 
