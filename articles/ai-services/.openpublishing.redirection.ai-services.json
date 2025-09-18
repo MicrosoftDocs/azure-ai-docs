@@ -171,16 +171,6 @@
       "redirect_document_id": false
     },
     {
-      "source_path_from_root": "/articles/ai-services/content-safety/concepts/task-adherence.md",
-      "redirect_url": "/azure/ai-services/content-safety/overview",
-      "redirect_document_id": false
-    },
-    {
-      "source_path_from_root": "/articles/ai-services/content-safety/quickstart-task-adherence.md",
-      "redirect_url": "/azure/ai-services/content-safety/overview",
-      "redirect_document_id": false
-    },
-    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-create-voice.md",
       "redirect_url": "/azure/ai-services/speech-service/professional-voice-train-voice",
       "redirect_document_id": true
