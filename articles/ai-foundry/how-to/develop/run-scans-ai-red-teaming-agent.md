@@ -34,7 +34,7 @@ This article guides you through the process of
 First install the `redteam` package as an extra from Azure AI Evaluation SDK, this provides the PyRIT functionality:
 
 ```python
-uv pip install "azure-ai-evaluation[redteam]
+uv pip install "azure-ai-evaluation[redteam]"
 ```
 
 > [!NOTE]
