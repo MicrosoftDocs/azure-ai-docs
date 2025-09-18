@@ -172,13 +172,13 @@ A data source is defined as an independent resource so that it can be used by mu
 
 1. Get the Microsoft Fabric workspace GUID and the lakehouse GUID:
 
-   + Go to the lakehouse you'd like to import data from its URL. It should look similar to this example: "https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111". Remove any query parameters, such as `?experience=power-bi`. Copy the following values that are used in the data source definition:
+   + In Power BI, open the lakehouse you'd like to import data from. Notice the lakehouse URL in the browser. It should look similar to this example: "https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111". The URL contains both the workspace GUID and the lakehouse GUID.
 
-   + Copy the workspace GUID, that we'll call `{FabricWorkspaceGuid}`, which is listed right after "groups" in the URL. In this example, it would be 00000000-0000-0000-0000-000000000000.
+   + Copy the workspace GUID, which is listed to the right of "groups" in the URL. In this example, it would be 00000000-0000-0000-0000-000000000000. In your REST file, create an environment variable for `{FabricWorkspaceGuid}` and set it to the workspace GUID.
 
      :::image type="content" source="media/search-how-to-index-onelake-files/fabric-guid.png" alt-text="Screenshot of the Fabric workspace GUID in the Azure portal." lightbox="media/search-how-to-index-onelake-files/fabric-guid.png" :::
 
-   + Copy the lakehouse GUID that we'll call `{lakehouseGuid}`, which is listed right after "lakehouses" in the URL. In this example, it would be 11111111-1111-1111-1111-111111111111.
+   + Copy the lakehouse GUID, which is listed right after "lakehouses" in the URL. In this example, it would be 11111111-1111-1111-1111-111111111111. In your REST file, create an environment variable for `{LakehouseGuid}`and set it to the lakehouse GUID.
 
      :::image type="content" source="media/search-how-to-index-onelake-files/lakehouse-guid.png" alt-text="Screenshot of the lakehouse GUID in the Azure portal." lightbox="media/search-how-to-index-onelake-files/lakehouse-guid.png" :::
 
@@ -190,11 +190,11 @@ A data source is defined as an independent resource so that it can be used by mu
     }
     ```
 
-1. Set `"container.name"` to the lakehouse GUID, replacing `{lakehouseGuid}` with the value you copied in the previous step. Use `"query"` to optionally specify a lakehouse subfolder or shortcut.
+1. Set `"container.name"` to the lakehouse GUID, replacing `{LakehouseGuid}` with the value you copied in the previous step. Use `"query"` to optionally specify a lakehouse subfolder or shortcut.
 
     ```json
       "container": {  
-        "name": "{lakehouseGuid}",  
+        "name": "{LakehouseGuid}",  
         "query": "{optionalLakehouseFolderOrShortcut}"  
       }
     ```
@@ -210,7 +210,7 @@ A data source is defined as an independent resource so that it can be used by mu
         "connectionString": "ResourceId={FabricWorkspaceGuid}"  
       },  
       "container": {  
-        "name": "{lakehouseGuid}",  
+        "name": "{LakehouseGuid}",  
         "query": "{optionalLakehouseFolderOrShortcut}"  
       },  
       "identity": {  
@@ -256,7 +256,7 @@ A data source is defined as an independent resource so that it can be used by mu
         "connectionString": "ResourceId={FabricWorkspaceGuid}"  
       },  
       "container": {  
-        "name": "{lakehouseGuid}",  
+        "name": "{LakehouseGuid}",  
         "query": "{optionalLakehouseFolderOrShortcut}"  
       }  
     }
@@ -312,7 +312,7 @@ There are steps to follow in both OneLake and Azure AI Search, but there are no 
             "connectionString": "ResourceId={FabricWorkspaceGuid}"  
         },  
         "container": {  
-            "name": "{lakehouseGuid}",  
+            "name": "{LakehouseGuid}",  
             "query": "{optionalLakehouseFolderOrShortcut}"  
         },  
         "dataDeletionDetectionPolicy" : {
