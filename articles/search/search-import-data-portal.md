@@ -113,7 +113,7 @@ The following skills might appear in a wizard-generated skillset.
 
 <sup>1</sup> This skill is available for RAG and multimodal RAG workflows only. Keyword search isn't supported.
 
-<sup>2</sup> This skill is available for Azure Storage blobs and OneLake files, assuming the default parsing mode. Images can be an image content type (such as PNG or JPG) or an embedded image in an application file (such as PDF).
+<sup>2</sup> This skill is available for Azure Storage blobs and Microsoft OneLake files, assuming the default parsing mode. Images can be an image content type (such as PNG or JPG) or an embedded image in an application file (such as PDF).
 
 <sup>3</sup> This skill is added when you configure a knowledge store.
 

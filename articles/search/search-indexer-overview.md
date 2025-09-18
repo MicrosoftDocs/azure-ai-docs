@@ -56,13 +56,13 @@ Indexers crawl data stores on Azure and outside of Azure.
 + [Azure SQL Database](search-how-to-index-sql-database.md)
 + [Azure Table Storage](search-howto-indexing-azure-tables.md)
 + [Azure SQL Managed Instance](search-how-to-index-sql-managed-instance.md)
++ [Microsoft OneLake](search-how-to-index-onelake-files.md)
 + [SQL Server on Azure Virtual Machines](search-how-to-index-sql-server.md)
 + [Azure Files](search-file-storage-integration.md) (in preview)
 + [Azure MySQL](search-howto-index-mysql.md) (in preview)
 + [SharePoint in Microsoft 365](search-howto-index-sharepoint-online.md) (in preview)
 + [Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) (in preview)
 + [Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) (in preview)
-+ [OneLake](search-how-to-index-onelake-files.md) (in preview)
 
 Azure Cosmos DB for Cassandra is not supported.
 

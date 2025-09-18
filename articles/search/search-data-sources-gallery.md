@@ -45,47 +45,6 @@ Extract blob metadata and content, serialized into JSON documents, and imported 
 
 ---
 
-### Azure Cosmos DB for NoSQL
-
-By [Azure AI Search](search-what-is-azure-search.md)
-
-Connect to Azure Cosmos DB through the SQL API to extract items from a container, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
-
-[More details](search-howto-index-cosmosdb.md)
-
-:::image type="icon" source="media/search-data-sources-gallery/azure_cosmos_db_logo_small.png":::
-
-:::column-end:::
-:::column span="":::
-
----
-
-### Azure SQL Database
-
-By [Azure AI Search](search-what-is-azure-search.md)
-
-Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
-
-[More details](search-how-to-index-sql-database.md)
-
-:::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
-
-:::column-end:::
-:::row-end:::
-:::row:::
-:::column span="":::
-
-   :::column-end:::
-   :::column span="":::
-   :::column-end:::
-
-:::row-end:::
-
-:::row:::
-:::column span="":::
-
----
-
 ### Azure Table Storage
 
 By [Azure AI Search](search-what-is-azure-search.md)
@@ -112,9 +71,60 @@ Connect to Azure Storage through Azure Data Lake Storage Gen2 to extract content
 :::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
 
 :::column-end:::
+:::row-end:::
+:::row:::
+:::column span="":::
+
+   :::column-end:::
+   :::column span="":::
+   :::column-end:::
+
+:::row-end:::
+
+:::row:::
 :::column span="":::
 
 ---
+
+### Azure Cosmos DB for NoSQL
+
+By [Azure AI Search](search-what-is-azure-search.md)
+
+Connect to Azure Cosmos DB through the SQL API to extract items from a container, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
+
+[More details](search-howto-index-cosmosdb.md)
+
+:::image type="icon" source="media/search-data-sources-gallery/azure_cosmos_db_logo_small.png":::
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Azure SQL Database
+
+By [Azure AI Search](search-what-is-azure-search.md)
+
+Extract field values from a single table or view, serialized into JSON documents, and imported into a search index as search documents. Configure change tracking to refresh the search index with the latest changes in your database.
+
+[More details](search-how-to-index-sql-database.md)
+
+:::image type="icon" source="media/search-data-sources-gallery/azuresqlconnectorlogo_medium.png":::
+
+:::column-end:::
+:::column span="":::
+
+---
+
+### Microsoft OneLake files
+
+By [Azure AI Search](search-how-to-index-onelake-files.md)
+
+Connect to a OneLake lakehouse to extract supported files content from a hierarchy of directories and nested subdirectories.
+
+[More details](search-how-to-index-onelake-files.md)
+
+:::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png":::
 
 :::column-end:::
 :::row-end:::
@@ -254,15 +264,15 @@ New data sources are issued as preview features. [Sign up](https://aka.ms/azure-
 
 ---
 
-### Fabric OneLake files
+### Azure Files
 
-By [Azure AI Search](search-how-to-index-onelake-files.md)
+By [Azure AI Search](search-what-is-azure-search.md)
 
-Connect to a OneLake lakehouse to extract supported files content from a hierarchy of directories and nested subdirectories.
+Connect to Azure Storage through Azure Files share to extract content serialized into JSON documents, and imported into a search index as search documents.
 
-[More details](search-how-to-index-onelake-files.md)
+[More details](search-file-storage-integration.md)
 
-:::image type="icon" source="media/search-data-sources-gallery/fabric_onelake_logo.png":::
+:::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
 
 :::column-end:::
 :::column span="":::
@@ -340,16 +350,6 @@ Connect to MySQL database on Azure to extract rows in a table, serialized into J
 
 ---
 
-### Azure Files
-
-By [Azure AI Search](search-what-is-azure-search.md)
-
-Connect to Azure Storage through Azure Files share to extract content serialized into JSON documents, and imported into a search index as search documents.
-
-[More details](search-file-storage-integration.md)
-
-:::image type="icon" source="media/search-data-sources-gallery/azure_storage.png":::
-
 :::column-end:::
 :::row-end:::
 :::row:::
@@ -360,9 +360,6 @@ Connect to Azure Storage through Azure Files share to extract content serialized
    :::column-end:::
 
 :::row-end:::
-
-<!-- :::row:::
-:::column span=""::: -->
 
 ---
 
