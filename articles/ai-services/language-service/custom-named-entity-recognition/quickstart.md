@@ -16,7 +16,7 @@ zone_pivot_groups: usage-custom-language-features
 
 Use this article to get started with creating a custom NER project where you can train custom models for custom entity recognition. A model artificial intelligence software trained to achieve a specific task. For this system, the models extract named entities and are trained by learning from tagged data.
 
-In this article, we use Language Studio to demonstrate key concepts of custom Named Entity Recognition (NER). As an example, let's build a custom NER model to extract the following relevant entities from loan agreements:
+In this article, we use Azure AI Foundry to demonstrate key concepts of custom Named Entity Recognition (NER). As an example, let's build a custom NER model to extract the following relevant entities from loan agreements:
 
 * Date of the agreement
 * Borrower's name, address, city, and state

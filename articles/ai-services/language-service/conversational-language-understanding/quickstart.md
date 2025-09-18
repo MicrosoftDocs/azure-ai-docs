@@ -9,7 +9,7 @@ ms.topic: quickstart
 ms.date: 05/01/2025
 ms.author: lajanuar
 ms.custom: language-service-clu, mode-other
-zone_pivot_groups: language-clu-quickstart
+zone_pivot_groups: foundry-rest-api
 ---
 
 # Quickstart: Conversational language understanding 

@@ -42,7 +42,16 @@ When you're ready to start [using your model to make predictions](#how-do-i-use-
 
 ## What is the recommended CI/CD process?
 
-You can train multiple models on the same dataset within the same project. After you have trained your model successfully, you can [view its performance](how-to/view-model-evaluation.md). You can [deploy and test](quickstart.md#deploy-your-model) your model within [Language studio](https://aka.ms/languageStudio). You can add or remove labels from your data and train a **new** model and test it as well. View [service limits](service-limits.md) to learn about maximum number of trained models with the same project. When you [train a model](how-to/train-model.md), you can determine how your dataset is split into training and testing sets. You can also have your data split randomly into training and testing set where there is no guarantee that the reflected model evaluation is about the same test set, and the results are not comparable. It's recommended that you develop your own test set and use it to evaluate both models so you can measure improvement.
+Within the [Azure AI Foundry](https://ai.azure.com/) you can do the following:
+
+* Train multiple models on the same dataset within a single project.
+* View your model's performance.
+* Deploy and test your model and add or remove labels from your data.
+* Choose how your dataset is split into training and testing sets.<br><br> 
+
+Your data can be split randomly into training and testing sets, but this means model evaluation may not be based on the same test set, making results non-comparable. It is recommended to develop your own test set and use it to evaluate both models so you can accurately measure improvements.<br><br> 
+
+Make sure to review service limits to understand the maximum number of trained models allowed per project.
 
 ## Does a low or high model score guarantee bad or good performance in production?
 
@@ -83,7 +92,7 @@ After deploying your model, you [call the prediction API](how-to/call-api.md), u
 
 ## Data privacy and security
 
-Custom NER is a data processor for General Data Protection Regulation (GDPR) purposes. In compliance with GDPR policies, Custom NER users have full control to view, export, or delete any user content either through the [Language Studio](https://aka.ms/languageStudio) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob).
+Custom NER is a data processor for General Data Protection Regulation (GDPR) purposes. In compliance with GDPR policies, Custom NER users have full control to view, export, or delete any user content either through the [Azure AI Foundry](https://ai.azure.com/) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob).
 
 Your data is only stored in your Azure Storage account. Custom NER only has access to read from it during training.
 

@@ -314,7 +314,7 @@ items:
       - name: Integrate Power BI
         href: key-phrase-extraction/tutorials/integrate-power-bi.md
         displayName: business intelligence, data visualization
-  - name: Named Entity Recognition (NER)
+  - name: Named Entity Recognition
     items:
     - name: Overview
       href: named-entity-recognition/overview.md
@@ -365,48 +365,48 @@ items:
       - name: Extract information in Excel using Power Automate
         href: named-entity-recognition/tutorials/extract-excel-information.md
         displayName: excel integration, power automate, ner automation, extract entities
-    - name: Custom
+  - name: Custom Named Entity Recognition
+    items:
+    - name: Overview
+      href: custom-named-entity-recognition/overview.md
+    - name: Quickstart
+      href: custom-named-entity-recognition/quickstart.md
+    - name: Language support
+      href: custom-named-entity-recognition/language-support.md
+    - name: FAQ
+      href: custom-named-entity-recognition/faq.md
+    - name: How-to guides
       items:
-      - name: Overview
-        href: custom-named-entity-recognition/overview.md
-      - name: Quickstart
-        href: custom-named-entity-recognition/quickstart.md
-      - name: Language support
-        href: custom-named-entity-recognition/language-support.md
-      - name: FAQ
-        href: custom-named-entity-recognition/faq.md
-      - name: How-to guides
+      - name: Create projects
+        href: custom-named-entity-recognition/how-to/create-project.md
+      - name: Data selection and schema design
+        href: custom-named-entity-recognition/how-to/design-schema.md
+      - name: Label data
+        href: custom-named-entity-recognition/how-to/tag-data.md
+      - name: Auto label your data (preview)
+        href: custom-named-entity-recognition/how-to/use-autolabeling.md
+      - name: Label data with Azure Machine Learning
+        href: custom/azure-machine-learning-labeling.md
+      - name: Train a model
+        href: custom-named-entity-recognition/how-to/train-model.md
+      - name: Model performance (preview)
+        href: custom-named-entity-recognition/how-to/view-model-evaluation.md
+      - name: Deploy a model
+        href: custom-named-entity-recognition/how-to/deploy-model.md
+      - name: Extract entities from text
+        href: custom-named-entity-recognition/how-to/call-api.md
+      - name: Back up and recover your models
+        href: custom-named-entity-recognition/fail-over.md
+      - name: Use Custom NER containers
         items:
-        - name: Create projects
-          href: custom-named-entity-recognition/how-to/create-project.md
-        - name: Data selection and schema design
-          href: custom-named-entity-recognition/how-to/design-schema.md
-        - name: Label data
-          href: custom-named-entity-recognition/how-to/tag-data.md
-        - name: Auto label your data (preview)
-          href: custom-named-entity-recognition/how-to/use-autolabeling.md
-        - name: Label data with Azure Machine Learning
-          href: custom/azure-machine-learning-labeling.md
-        - name: Train a model
-          href: custom-named-entity-recognition/how-to/train-model.md
-        - name: Model performance (preview)
-          href: custom-named-entity-recognition/how-to/view-model-evaluation.md
-        - name: Deploy a model
-          href: custom-named-entity-recognition/how-to/deploy-model.md
-        - name: Extract entities from text
-          href: custom-named-entity-recognition/how-to/call-api.md
-        - name: Back up and recover your models
-          href: custom-named-entity-recognition/fail-over.md
-        - name: Use Custom NER containers
-          items:
-          - name: Use Custom NER Docker containers
-            href: custom-named-entity-recognition/how-to/use-containers.md
-          - name: Configure containers
-            href: concepts/configure-containers.md
-          - name: Use container instances
-            href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
-          - name: Azure AI containers overview
-            href: ../cognitive-services-container-support.md
+        - name: Use Custom NER Docker containers
+          href: custom-named-entity-recognition/how-to/use-containers.md
+        - name: Configure containers
+          href: concepts/configure-containers.md
+        - name: Use container instances
+          href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
+        - name: Azure AI containers overview
+          href: ../cognitive-services-container-support.md
       - name: Concepts
         items:
           - name: Evaluation metrics
@@ -473,7 +473,7 @@ items:
         href: orchestration-workflow/service-limits.md
       - name: Glossary
         href: orchestration-workflow/glossary.md
-  - name: Personally Identifiable Information (PII) detection
+  - name: Personally Identifiable Information detection
     items:
     - name: Overview
       href: personally-identifiable-information/overview.md
@@ -712,7 +712,7 @@ items:
         href: text-analytics-for-health/concepts/relation-extraction.md
       - name: Assertion detection
         href: text-analytics-for-health/concepts/assertion-detection.md
-      - name: Fast Healthcare Interoperability Resources (FHIR) structuring
+      - name: Fast Healthcare Interoperability Resources structuring
         href: text-analytics-for-health/concepts/fhir.md
   - name: Summarization
     items:
