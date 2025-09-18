@@ -23,8 +23,6 @@ items:
     href: concepts/groundedness.md
   - name: Protected material detection
     href: concepts/protected-material.md
-  - name: Task Adherence
-    href: concepts/task-adherence.md
   - name: Custom categories (preview)
     href: concepts/custom-categories.md
   - name: Harm categories
@@ -41,8 +39,6 @@ items:
     href: quickstart-protected-material.md
   - name: Protected material detection for code (preview)
     href: quickstart-protected-material-code.md
-  - name: Task adherence (preview)
-    href: quickstart-task-adherence.md
   - name: Custom categories (preview)
     href: quickstart-custom-categories.md
   - name: Text moderation
