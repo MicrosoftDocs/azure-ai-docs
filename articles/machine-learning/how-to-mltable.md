@@ -485,6 +485,7 @@ MLTable supports these path types:
 > `mltable` handles user credential passthrough for paths on Azure Storage and Azure Machine Learning datastores. If you don't have permission to the data on the underlying storage, you can't access the data.
 
 #### A note on defining paths for Delta Lake Tables
+
 Compared to the other file types, defining paths to read Delta Lake tables is different. For Delta Lake tables, the path points to a *single* folder (typically on ADLS gen2) that contains the "_delta_log" folder and data files. *time travel* is supported. The following code shows how to define a path for a Delta Lake table:
 
 ```python
@@ -626,6 +627,7 @@ To share this MLTable with team members, you can create a data asset in Azure Ma
 The [Azure Machine Learning Tables Quickstart](#azure-machine-learning-tables-quickstart) explains how to read parquet files.
 
 ### Paths: Create a table of image files 
+
 You can create a table containing the paths on cloud storage. This example has several dog and cat images located in cloud storage, in the following folder structure:
 
 ```
