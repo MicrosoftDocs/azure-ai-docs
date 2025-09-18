@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/25/2024
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -35,7 +35,7 @@ The following table lists the OCR supported languages for handwritten text by th
 |German |`de`|Spanish |`es`|
 |Italian |`it`|
 
-### Print text
+### Printed text
 
 The following table lists the OCR supported languages for print text by the most recent `Read` GA model.
 

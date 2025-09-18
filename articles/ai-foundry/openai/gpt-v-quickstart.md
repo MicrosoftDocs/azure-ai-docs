@@ -9,7 +9,7 @@ ms.custom: devx-track-python, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 05/31/2025
+ms.date: 09/16/2025
 zone_pivot_groups: openai-quickstart-gpt-v
 ---
 

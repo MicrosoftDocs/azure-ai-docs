@@ -37,7 +37,7 @@ Multimodal search is ideal for [retrieval-augmented generation (RAG)](retrieval-
 
 ## How multimodal search works in Azure AI Search
 
-To simplify the creation of a multimodal pipeline, Azure AI Search offers the **Import and vectorize data** wizard in the Azure portal. The wizard helps you configure a data source, define extraction and enrichment settings, and generate a multimodal index that contains text, embedded image references, and vector embeddings. For more information, see [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
+To simplify the creation of a multimodal pipeline, Azure AI Search offers the **Import data (new)** wizard in the Azure portal. The wizard helps you configure a data source, define extraction and enrichment settings, and generate a multimodal index that contains text, embedded image references, and vector embeddings. For more information, see [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
 
 The wizard follows these steps to create a multimodal pipeline:
 

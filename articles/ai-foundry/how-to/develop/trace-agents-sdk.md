@@ -5,7 +5,7 @@ description: View trace results for AI agents using Azure AI Foundry SDK and Ope
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: amibp
-ms.date: 08/21/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -15,7 +15,15 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Learn how to view trace results for AI agents in Azure AI Foundry. This article shows you how to see execution traces, analyze agent behavior, and debug performance issues using Azure AI Foundry SDK with OpenTelemetry and Azure Monitor for enhanced observability.
+Learn how to view trace results for AI agents in Azure AI Foundry. See execution traces, analyze behavior, and debug performance issues using the SDK with OpenTelemetry and Azure Monitor.
+
+In this article, you learn how to:
+
+- View agent traces in the Agents playground.
+- Interpret spans (steps, tool calls, nested operations).
+- Enable metrics for AI quality and safety.
+- Retrieve traces for past threads.
+- Plan optimization next steps.
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for a number of reasons:
 * There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
@@ -39,7 +47,12 @@ The Agents playground in the Azure AI Foundry portal lets you view trace results
 
 :::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
 
-After selecting **Thread logs**, you can view trace results including: thread details, run information, run steps and any tool calls that were made. The trace results show you the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
+After selecting **Thread logs**, review:
+- Thread details
+- Run information
+- Ordered run steps and tool calls
+- Inputs / outputs between user and agent
+- Linked evaluation metrics (if enabled)
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
@@ -57,13 +70,19 @@ After selecting **Thread logs**, you can view trace results including: thread de
 Here's a brief overview of key concepts before getting started:
 
 | Key concepts             | Description            |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes during execution, such as function calls, variable values, and system events. To learn more, see [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/).                                                      |
+|---------------------|-----------------------------------------------------------------|
+| Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/). |
 | Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, allowing you to see the full call stack and sequence of operations.                                                                                         |
 | Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data making it more informative and useful for analysis.                                                                                                 |
 | Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
-| Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.                                                                               |
+| Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.   |
 
+### Best practices
+
+- Use consistent span attributes.
+- Correlate evaluation run IDs for quality + performance analysis.
+- Redact sensitive content; avoid storing secrets in attributes.
+                                                                          
 ## Setup
 
 For chat completions or building agents with Azure AI Foundry, install:

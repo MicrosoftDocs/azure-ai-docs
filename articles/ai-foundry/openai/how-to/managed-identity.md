@@ -43,16 +43,15 @@ az login
 
 ```python
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-from openai import AzureOpenAI
+from openai import OpenAI
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
 client = AzureOpenAI(
-    api_version="2024-04-01-preview",
-    azure_endpoint="https://{your-custom-endpoint}.openai.azure.com/",
-    azure_ad_token_provider=token_provider
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=token_provider
 )
 
 response = client.chat.completions.create(

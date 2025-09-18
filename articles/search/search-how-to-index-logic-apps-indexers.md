@@ -17,9 +17,9 @@ ms.custom:
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Support for Azure Logic Apps integration is now in public preview, available in the Azure portal [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) only. In Azure AI Search, a logic app workflow is used for indexing and vectorization, and it's equivalent to an indexer and data source in Azure AI Search. 
+Support for Azure Logic Apps integration is currently in public preview and only available through the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal. In Azure AI Search, a logic app workflow is used for indexing and vectorization, and it's equivalent to an indexer and data source in Azure AI Search. 
 
-You can create a workflow in Azure AI Search using the Import and vectorize data wizard, and then manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
+You can create a workflow in Azure AI Search using the **Import data (new)** wizard, and then manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
 
 > [!NOTE]
 > A logic app workflow is a billable resource. For more information, see [Azure Logic Apps pricing](/azure/logic-apps/logic-apps-pricing).
@@ -33,7 +33,7 @@ Azure Logic Apps integration in Azure AI Search adds support for:
 + Scheduled or on-demand indexing
 + Change detection of new and existing documents
 
-Import and vectorize data wizard inputs include:
+The **Import data (new)** wizard inputs include:
 
 + A supported data source
 + A supported text embedding model
@@ -77,7 +77,8 @@ End-to-end functionality is available in the following regions, which provide th
 
 ### Supported models
 
-The logic app path through the **Import and vectorize data** wizard supports a selection of embedding models.
+The logic app path through the **Import data (new)** wizard supports a selection of embedding models.
+
 Deploy one of the following [embedding models](/azure/ai-services/openai/concepts/models#embeddings) on Azure OpenAI for your end-to-end workflow.
 
 + text-embedding-3-small
@@ -109,11 +110,11 @@ Currently, the public preview has these limitations:
 
 Follow these steps to create a logic app workflow for indexing content in Azure AI Search.
 
-1. Start the Import and vectorize data wizard in the Azure portal.
+1. Start the **Import data (new)** wizard in the Azure portal.
 
 1. Choose a [supported Azure Logic Apps connector](#supported-connectors).
 
-   :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the chosen data source page in the Import and vectorize data wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
+   :::image type="content" source="media/logic-apps-connectors/choose-data-source.png" alt-text="Screenshot of the chosen data source page in the Import data (new) wizard." lightbox="media/logic-apps-connectors/choose-data-source.png" :::
 
 1. In **Connect to your data**, provide a name prefix used for the search index and workflow. Having a common name helps you manage them together.
 

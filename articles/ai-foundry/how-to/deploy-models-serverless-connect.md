@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to consume serverless APIs from a different project or hub.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/15/2025
 manager: nitinme
 author: ssalgadodev
 ms.author: ssalgado
@@ -35,7 +35,7 @@ The need to consume a serverless APIs endpoint in a different project or hub tha
 
 - An [Azure AI Foundry hub](create-azure-ai-resource.md), if you're using a **[!INCLUDE [hub](../includes/hub-project-name.md)]**. A **[!INCLUDE [fdp](../includes/fdp-project-name.md)]** does not use a hub. For more information, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
 
 - A model [deployed to a serverless APIs](deploy-models-serverless.md). This article assumes that you previously deployed the **Meta-Llama-3-8B-Instruct** model. To learn how to deploy this model as a serverless API, see [Deploy models as serverless APIs](deploy-models-serverless.md).
 
