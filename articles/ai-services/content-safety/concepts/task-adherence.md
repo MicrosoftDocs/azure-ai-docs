@@ -13,12 +13,6 @@ manager: nitinme
 
 Ensure your AI agents consistently align with user instructions and task objectives. The Task Adherence signal identifies discrepancies, such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input. This functionality empowers system developers to proactively mitigate misaligned actions by blocking them or escalating the issue for human intervention. 
 
-The primary objectives of the Task Adherence feature are: 
-- To detect tool actions that are misaligned with user goals or input intent, or improper tool input/output relative to user intent, or inconsistencies between agent responses and customer input. 
-- To provide reasoning when tool calls are misaligned 
-- To provide a signal for downstream tool invocation blocking and escalation to human-in-the-loop (HITL) review when task alignment is at risk 
-- To promote user trust in agentic systems by reinforcing behavioral consistency, transparency, and control 
-
 ## User scenarios 
 
 ### Customer Support 
