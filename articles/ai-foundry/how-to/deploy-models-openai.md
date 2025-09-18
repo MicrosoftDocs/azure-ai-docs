@@ -29,7 +29,7 @@ To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](http
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
 - An [[!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](create-projects.md?pivots=fdp-project).
 

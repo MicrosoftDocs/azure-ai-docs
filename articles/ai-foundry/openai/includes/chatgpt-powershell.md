@@ -12,7 +12,7 @@ ms.date: 3/21/2025
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - <a href="https://aka.ms/installpowershell" target="_blank">You can use either the latest version, PowerShell 7, or Windows PowerShell 5.1.</a>
 - An Azure OpenAI in Azure AI Foundry Models resource with a model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 - An Azure OpenAI resource with the `gpt-4o` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).

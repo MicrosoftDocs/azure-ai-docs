@@ -12,7 +12,7 @@ ms.custom:
 
 ## Prerequisites
 
-* [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
 * Python 3.8 or later version
 * The following Python library: `openai`
 * [Jupyter Notebooks](https://jupyter.org/)

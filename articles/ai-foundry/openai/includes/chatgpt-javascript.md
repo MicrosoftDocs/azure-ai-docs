@@ -17,7 +17,7 @@ ms.date: 04/30/2025
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI in Azure AI Foundry Models resource with a `gpt-4` series model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).

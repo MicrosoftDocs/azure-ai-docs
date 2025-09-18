@@ -25,7 +25,7 @@ In this article, you learn to streamline your model selection process in the Azu
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
 - An [Azure AI Foundry project](create-projects.md).
 
