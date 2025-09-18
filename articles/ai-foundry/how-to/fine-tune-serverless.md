@@ -1,7 +1,7 @@
 ---
-title: Fine-tune models using serverless API deployments in Azure AI Foundry portal
+title: Deploy Fine-Tuned Models with Serverless API in Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to fine-tune models deployed via serverless API deployments in Azure AI Foundry.
+description: Deploy fine-tuned models using serverless API in Azure AI Foundry. Complete guide to fine-tune, train, and deploy custom large language models with cost-effective serverless options.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.date: 04/14/2025
@@ -12,13 +12,14 @@ manager: nitinme
 author: ssalgadodev
 ms.custom: references_regions
 zone_pivot_groups: azure-ai-model-fine-tune
+ai-usage: ai-assisted
 ---
 
 # Fine-tune models using serverless API deployments in Azure AI Foundry
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Azure AI Foundry enables you to customize large language models to your specific datasets through a process called fine-tuning. This process offers significant benefits by allowing for customization and optimization tailored to specific tasks and applications. The advantages include improved performance, cost efficiency, reduced latency, and tailored outputs.
+Learn how to deploy fine-tuned models using serverless API deployments in Azure AI Foundry. This comprehensive guide shows you how to fine-tune large language models to your specific datasets and deploy them with serverless infrastructure, offering improved performance, cost efficiency, reduced latency, and tailored outputs.
 
 **Cost Efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
 

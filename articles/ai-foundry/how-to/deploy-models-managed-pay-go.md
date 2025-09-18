@@ -5,7 +5,7 @@ description: Learn how to deploy protected models from partners and community on
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 06/24/2025
+ms.date: 09/15/2025
 ms.reviewer: tinaem
 reviewer: tinaem
 ms.author: mopeakande
@@ -20,13 +20,13 @@ Azure AI Foundry Models include a comprehensive catalog of models organized into
 
 ## Prerequisites
 
-- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
+- An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
 
 - [Azure Marketplace purchases enabled](/azure/cost-management-billing/manage/enable-marketplace-purchases) for your Azure subscription.
 
-- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
+- Azure role-based access controls (Azure RBAC) are used to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned a *custom role* with the following permissions. User accounts assigned the *Owner* or *Contributor* role for the Azure subscription can also create deployments. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](/azure/ai-foundry/concepts/rbac-azure-ai-foundry).
 
 
 - On the Azure subscription— **to subscribe the workspace/project to the Azure Marketplace offering**:
@@ -81,10 +81,10 @@ The consumption-based surcharge is accrued to the associated SaaS subscription a
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
 1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
-1. From the model's page, select **Use this model** to open the deployment wizard.
+1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
+1. From the model's page, select **Use this model** to open the deployment wizard.
 1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
-1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
+1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, we specify an instance count of **1** and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/deployment-configuration.png":::
 
@@ -121,16 +121,16 @@ The following sections list the supported models for managed compute deployment 
 
 | Model | Task |
 |--|--|
-| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige) | Image Feature Extraction |
-| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige) | Image Feature Extraction |
+| [Virchow2G](https://ai.azure.com/explore/models/Virchow2G/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
+| [Virchow2G-Mini](https://ai.azure.com/explore/models/Virchow2G-Mini/version/1/registry/azureml-paige/?cid=learnDocs) | Image Feature Extraction |
 
 ### Cohere
 
 | Model | Task |
 |--|--|
-| [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere) | Chat completion |
-| [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere) | Embeddings |
-| [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere) | Text classification |
+| [Command A](https://ai.azure.com/explore/models/cohere-command-a/version/3/registry/azureml-cohere/?cid=learnDocs) | Chat completion |
+| [Embed v4](https://ai.azure.com/explore/models/embed-v-4-0/version/4/registry/azureml-cohere/?cid=learnDocs) | Embeddings |
+| [Rerank v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/2/registry/azureml-cohere/?cid=learnDocs) | Text classification |
 
 ### NVIDIA
 
@@ -145,19 +145,19 @@ Some special things to note about NIMs are:
 
 | Model | Task |
 |--|--|
-| [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia) | Chat completion |
-| [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia) | Chat completion |
-| [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Embeddings |
-| [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia) | Text classification |
-| [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
-| [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia) | Protein Binder |
-| [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia) | Protein Binder |
-| [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia) | Protein Binder |
+| [Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-Nemotron-Super-49B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-Nemotron-Nano-8B-v1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Deepseek-R1-Distill-Llama-8B-NIM-microservice](https://ai.azure.com/explore/models/Deepseek-R1-Distill-Llama-8B-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.3-70B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.3-70B-Instruct-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.1-8B-Instruct-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.1-8B-Instruct-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Mistral-7B-Instruct-v0.3-NIM-microservice](https://ai.azure.com/explore/models/Mistral-7B-Instruct-v0.3-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Mixtral-8x7B-Instruct-v0.1-NIM-microservice](https://ai.azure.com/explore/models/Mixtral-8x7B-Instruct-v0.1-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Llama-3.2-NV-embedqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-embedqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Embeddings |
+| [Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice](https://ai.azure.com/explore/models/Llama-3.2-NV-rerankqa-1b-v2-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Text classification |
+| [Openfold2-NIM-microservice](https://ai.azure.com/explore/models/Openfold2-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
 
 #### Consume NVIDIA NIM deployments
 

@@ -99,13 +99,13 @@ In addition to the common terms from prebuilt neural voice, custom neural voice,
 |---|---|
 | Avatar talent | Custom text to speech avatar model building requires training on a video recording of a real human speaking. This person is the avatar talent. Customers must get sufficient consent under all relevant laws and regulations from the avatar talent to use their image/likeness to create a custom avatar. |
 
-#### [Video translation (preview)](#tab/video)
+#### [Video translation](#tab/video)
 
 ### Introduction
 
 Video translation can efficiently localize your video content to cater to diverse audiences around the globe. This service empowers you to create immersive, localized content efficiently and effectively across various use cases such as vlogs, education, news, advertising, and more.
 
-Video translation using prebuilt neural voices is available in preview for all users. Video translation with personal voice is a Limited Access feature in preview and is subject to use case and eligibility restrictions.
+Video translation using prebuilt neural voices is available for all users.
 
 ### Key terms
 
@@ -169,7 +169,7 @@ Text to speech avatar adopts Coalition for Content Provenance and Authenticity (
 In addition, avatar outputs are automatically watermarked. Watermarks allow approved users to identify whether a video is synthesized using the avatar feature of Azure AI Speech.  To request watermark detection, please contact [avatarvoice[at]microsoft.com](mailto:avatarvoice@microsoft.com).
 
 
-### Video translation (preview)
+### Video translation
 
 Video translation can efficiently localize your video content to cater to diverse audiences around the globe. Video translation will automatically extract dialogue audio, transcribe, translate and dub the content with prebuilt or personal voice to the target language, with accurate subtitles for better accessibility. Multi-speaker features will help identify the number of individuals speaking and recommend suitable voices. Content editing with human in the loop allows for precise alignment with customer preference. Enhanced translation quality ensures precise audio and video alignment with GPT integration. Video translation enables authentic and personalized dubbing experiences with personal voice.
 
@@ -209,7 +209,7 @@ All other uses of custom neural voice, including Custom Neural Voice Pro, Custom
 
 Prebuilt neural voice may also be used for the custom neural voice use cases above, as well as additional use cases selected by customers and consistent with the Azure Acceptable Use Policy and the [Code of conduct for Azure AI Speech text to speech](/legal/ai-code-of-conduct?context=%2Fazure%2Fai-services%2Fspeech-service%2Fcontext%2Fcontext). No registration or pre-approval is required for additional use cases for prebuilt neural voice that meet all applicable terms and conditions. 
 
-### Intended use cases for video translation (preview)
+### Intended use cases for video translation
 
 Video translation could be used for films, TV, and other visual (including but not limited to video or animation) and audio applications, where customers maintain sole control over the creation of, access to, and use of the voice models and their output. Personal voice and lip syncing are subject to the Limited Access framework, and eligible customers may use these capabilities with Video translation. The following are the approved use cases for Video translation service:
 - **Education & learning**: To translate audio in educational visuals, online courses, training modules, simulation-based learning, or guided museum tour visuals for multilingual learners.  
@@ -301,7 +301,7 @@ Technical limitations to consider are the accuracy of lip sync alignment with th
 - **Gestures**: Avatars may use hand gestures during speaking to deliver a natural speaking experience, but the gestures are not pre-programmed. Instead, they are learned from video clips in the training data and are included in synthetic video regardless of the input text. Also, avatars cannot make gestures that were not made by the avatar talent and captured in the training data. Avatars are not able to tailor gestures according to contextual information and emotions, so customers should be mindful of the avatar system’s inability to automatically play a gesture appropriate for the context.  
 - **Privacy and data protection**: When utilizing text to speech avatars, customers should adhere to all applicable privacy laws and regulations and ensure that sensitive or personal information is handled securely. It is important to be cautious when processing and storing data, and to follow best practices for data protection and consent management.
 
-#### [Video translation (preview)](#tab/video)
+#### [Video translation](#tab/video)
 
 * **Translation quality**: Translation quality will depend on the transcription accuracy and translation accuracy. If the input video is mixed with background music or noise, this will impact the quality of the translation. Translation results will be dependent on context.
 * **Dubbing voice similarity and intonation**: When you choose prebuilt neural voices for dubbing, the voice output characteristics may not be similar to the original voice characteristics. If you use the personal voice feature, the voice output will more closely resemble the original voice, but the speaking style may not closely resemble the user’s speaking style including tones and prosodies. It’s also possible the voice output will not sound equally natural across all supported languages. 
@@ -395,7 +395,7 @@ The quality of the resulting avatar heavily depends on the recorded video used f
 
 The appearance and performance of the avatar talent are also key factors impacting the system performance; please see our guidance [How to record video samples for custom text to speech avatar](/azure/ai-services/speech-service/text-to-speech-avatar/custom-avatar-record-video-samples).
 
-#### [Video translation (preview)](#tab/video)
+#### [Video translation](#tab/video)
 ---
 
 ## Evaluation of text to speech  

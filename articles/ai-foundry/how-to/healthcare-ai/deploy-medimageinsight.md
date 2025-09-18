@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use MedImageInsight Healthcare AI Model with Azure AI Foundry.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 08/13/2025
+ms.date: 09/15/2025
 ms.reviewer: itarapov
 reviewer: ivantarapov
 ms.author: mopeakande
@@ -35,7 +35,7 @@ An embedding model can serve as the basis of many different solutions—from cla
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 
 
 - Azure role-based access controls (Azure RBAC) to grant access to operations in Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the __Azure AI Developer role__ on the resource group. For more information on permissions, see [Role-based access control in Azure AI Foundry portal](../../concepts/rbac-ai-foundry.md).

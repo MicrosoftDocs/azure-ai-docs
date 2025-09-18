@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 07/03/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -12,9 +12,6 @@ ms.custom:
   - build-aifnd
   - build-2025
 ---
-
-> [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
@@ -183,7 +180,7 @@ az cognitiveservices account connection show --name {my_project_name} --resource
 
 ## Delete projects
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
+1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
 1. Select **Management center**.
 1. Select **Overview** under the **Resource** section.
 1. Select any projects you no longer want to keep.
@@ -196,5 +193,5 @@ To delete the AI Foundry resource along with all its projects:
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=fdp-project)
+- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)

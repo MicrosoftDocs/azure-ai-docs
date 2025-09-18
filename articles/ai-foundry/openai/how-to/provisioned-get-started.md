@@ -6,9 +6,9 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: openai
 ms.topic: how-to
-author: aahill
-ms.author: aahi
-ms.date: 06/30/2025
+author: msakande
+ms.author: mopeakande
+ms.date: 09/03/2025
 recommendations: false
 ---
 

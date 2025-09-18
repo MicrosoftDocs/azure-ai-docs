@@ -7,7 +7,7 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 09/15/2025
 manager: nitinme
 ---
 
@@ -71,15 +71,14 @@ First we will demonstrate a simple toy function call that can check the time in 
 ```python
 import os
 import json
-from openai import AzureOpenAI
+from openai import OpenAI
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 # Initialize the Azure OpenAI client
-client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-02-01-preview"
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 # Define the deployment you want to use for your chat completions API calls
@@ -250,15 +249,14 @@ Now we will demonstrate another toy function calling example this time with two 
 ```python
 import os
 import json
-from openai import AzureOpenAI
+from openai import OpenAI
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 # Initialize the Azure OpenAI client
-client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-02-01-preview"
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 # Provide the model deployment name you want to use for this example

@@ -8,7 +8,7 @@ ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 # Customer intent: As a language learner, I want to use the pronunciation assessment tool in the Azure AI Foundry portal to get feedback on my speech.
 ---
@@ -17,12 +17,14 @@ ms.author: pafarley
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Pronunciation assessment uses the speech to text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments driven by experienced teachers can take much time and effort and makes a high-quality assessment expensive for learners. Pronunciation assessment can help make the language assessment more engaging and accessible to learners of all backgrounds.
+Pronunciation assessment uses the speech-to-text capability to provide subjective and objective feedback for language learners. Practicing pronunciation and getting timely feedback are essential for improving language skills. Assessments conducted by experienced teachers can take much time and can be expensive for learners. Pronunciation assessment can help make the process more engaging and accessible to learners of all backgrounds.
+
+This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
+
 
 > [!NOTE]
 > For information about availability of pronunciation assessment, see [supported languages](language-support.md?tabs=pronunciation-assessment) and [available regions](regions.md#regions).
 
-This article describes how to use the pronunciation assessment tool without writing any code through the [Azure AI Foundry portal](https://ai.azure.com/explore/models/aiservices/Azure-AI-Speech/version/1/registry/azureml-cogsvc/tryout#pronunciationassessment). For information about how to integrate pronunciation assessment in your speech applications, see [How to use pronunciation assessment](how-to-pronunciation-assessment.md).
 
 
 ## Reading, speaking and gaming scenarios

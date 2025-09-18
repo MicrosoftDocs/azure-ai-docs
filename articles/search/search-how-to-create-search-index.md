@@ -96,7 +96,7 @@ Setting a field as searchable, filterable, sortable, or facetable has an effect 
 
 If a field isn't set to be searchable, filterable, sortable, or facetable, the field can't be referenced in any query expression. This is desirable for fields that aren't used in queries, but are needed in search results.
 
-The REST APIs have default attribution based on [data types](/rest/api/searchservice/supported-data-types), which is also used by the [Import wizards](search-import-data-portal.md) in the Azure portal. The Azure SDKs don't have defaults, but they have field subclasses that incorporate properties and behaviors, such as [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) for strings and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) for primitives.
+The REST APIs have default attribution based on [data types](/rest/api/searchservice/supported-data-types), which is also used by the [import wizards](search-import-data-portal.md) in the Azure portal. The Azure SDKs don't have defaults, but they have field subclasses that incorporate properties and behaviors, such as [SearchableField](/dotnet/api/azure.search.documents.indexes.models.searchablefield) for strings and [SimpleField](/dotnet/api/azure.search.documents.indexes.models.simplefield) for primitives.
 
 Default field attributions for the REST APIs are summarized in the following table.
 
@@ -113,7 +113,7 @@ Default field attributions for the REST APIs are summarized in the following tab
 
 String fields can also be optionally associated with [analyzers](search-analyzers.md) and [synonym maps](search-synonyms.md). Fields of type `Edm.String` that are filterable, sortable, or facetable can be at most 32 kilobytes in length. This is because values of such fields are treated as a single search term, and the maximum length of a term in Azure AI Search is 32 kilobytes. If you need to store more text than this in a single string field, you should explicitly set filterable, sortable, and facetable to `false` in your index definition.
 
-Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable is true by default if you add the vector field using the [Import and vectorize data wizard](search-get-started-portal-import-vectors.md) in the Azure portal. If you use the REST API, it's false.
+Vector fields must be associated with [dimensions and vector profiles](vector-search-how-to-create-index.md). Retrievable is true by default if you add the vector field using the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal. If you use the REST API, it's false.
 
 Field attributes are described in the following table.
 
@@ -154,7 +154,7 @@ Index design through the Azure portal enforces requirements and schema rules for
 
    The wizard is an end-to-end workflow that creates an indexer, a data source, and a finished index. It also loads the data. If this is more than what you want, use **Add index** instead.
 
-The following screenshot highlights where **Add index**, **Import data**, and **Import and vectorize data wizard** appear on the command bar.
+The following screenshot highlights where the **Add index**, **Import data**, and **Import data (new)** wizards appear on the command bar.
 
 :::image type="content" source="media/search-what-is-an-index/add-index.png" alt-text="Screenshot of the options to add an index." border="true":::
 

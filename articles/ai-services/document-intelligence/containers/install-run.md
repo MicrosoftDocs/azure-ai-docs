@@ -1214,4 +1214,3 @@ That's it! In this article, you learned concepts and workflows for downloading, 
 * [Document Intelligence container configuration settings](configuration.md)
 
 * [Azure container instance recipe](../../../ai-services/containers/azure-container-instance-recipe.md)
-

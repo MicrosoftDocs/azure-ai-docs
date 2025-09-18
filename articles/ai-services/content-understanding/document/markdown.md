@@ -1,5 +1,5 @@
 ---
-title: Content Understanding Document Modality Supported Markdown Elements
+title: "Document analysis: Markdown representation"
 titleSuffix: Azure AI services
 description: Description of the supported Markdown elements returned as part of the Content Understanding Document response and how to use the response in your applications.
 author: PatrickFarley 
@@ -91,7 +91,7 @@ This is a footnote.
 :::column-end:::
 :::column:::
 
-```md
+
 <table>
 <caption>Table 1. Example</caption>
 <tr><th>Header A</th><th>Header B</th></tr>
@@ -99,7 +99,7 @@ This is a footnote.
 <tr><td>Cell 2A</td><td>Cell 2B</td></tr>
 </table>
 This is a footnote.
-```
+
 :::column-end:::
 :::row-end:::
 

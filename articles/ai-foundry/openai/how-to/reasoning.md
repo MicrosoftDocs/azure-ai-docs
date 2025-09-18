@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1,
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 08/27/2025
+ms.date: 09/08/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -28,9 +28,9 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5` | East US2 & Sweden Central (Global Standard & Data Zones)  |  Request access: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
-| `gpt-5-mini` | East US2 & Sweden Central (Global Standard  & Data Zones)  |  No access request needed.    |
-| `gpt-5-nano` | East US2 & Sweden Central (Global Standard  & Data Zones)  |  No access request needed. |
+| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed.    |
+| `gpt-5-nano` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed. |
 | `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [o3 limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
 | `codex-mini`  | East US2 & Sweden Central (Global Standard)    | No access request needed.    |
 | `o4-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
@@ -158,17 +158,16 @@ pip install openai --upgrade
 If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 response = client.chat.completions.create(
@@ -371,17 +370,16 @@ pip install openai --upgrade
 If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 response = client.chat.completions.create(

@@ -49,6 +49,12 @@ sections:
           Is there a mapping between Viseme IDs and mouth shape?
         answer: |
           Yes. See [Get facial position with viseme](how-to-speech-synthesis-viseme.md?tabs=visemeid#map-phonemes-to-visemes).
+      - question: |
+          Why am I getting HTTP 429 (Too Many Requests) errors when using Text-to-Speech Standard Voice?
+        answer: |
+          The default quota of 200 transactions per second (TPS) for Text-to-Speech (TTS) Standard Voice is designed to accommodate the needs of most customers. In most cases, HTTP 429 errors are not caused by quota limitations, but by insufficient backend service capacity in the selected region for the specified voice. Increasing the quota does not resolve these capacity constraints. To address this issue effectively:
+          - Use native regions: Deploy the voice in a region where it is natively supported and better resourced (for example, use the Japan region for Japanese voices).
+          - Select popular voices: Choose a more commonly used voice within your current region to reduce the likelihood of hitting capacity limits.
 
   - name: Audio Content Creation
     questions:

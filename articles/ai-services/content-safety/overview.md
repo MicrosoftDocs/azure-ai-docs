@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 02/27/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
 ms.custom: references_regions, build-2023, build-2023-dataai
@@ -52,6 +52,7 @@ This service makes several different types of analysis available. The following 
 | Custom categories (rapid) API (preview) | Lets you define emerging harmful content patterns and scan text and images for matches. | [Custom categories concepts](/azure/ai-services/content-safety/concepts/custom-categories)| [How-to guide](./how-to/custom-categories-rapid.md) |
 | [Analyze text](/rest/api/contentsafety/text-operations/analyze-text) API   | Scans text for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-text) |
 | [Analyze image](/rest/api/contentsafety/image-operations/analyze-image) API  | Scans images for sexual content, violence, hate, and self harm with multi-severity levels. | [Harm categories](/azure/ai-services/content-safety/concepts/harm-categories)| [Quickstart](/azure/ai-services/content-safety/quickstart-image) |
+| Task adherence API  | Detects when tool use by AI agents is misaligned, unintended, or premature in the context of a user interaction. | [Task adherence concepts](/azure/ai-services/content-safety/concepts/task-adherence)| [Quickstart](/azure/ai-services/content-safety/quickstart-task-adherence) |
 
 
 ## Content Safety Studio
@@ -89,8 +90,6 @@ For enhanced security, you can use Microsoft Entra ID or Managed Identity (MI) t
 * Microsoft Entra ID is supported in both API and SDK scenarios. Refer to the general AI services guideline of [Authenticating with Microsoft Entra ID](/azure/ai-services/authentication?tabs=powershell#authenticate-with-azure-active-directory). You can also grant access to other users within your organization by assigning them the roles of **Cognitive Services Users** and **Reader**. To learn more about granting user access to Azure resources using the Azure portal, refer to the [Role-based access control guide](/azure/role-based-access-control/quickstart-assign-role-user-portal).
 
 ### Encryption of data at rest
-
-### Encryption
 
 Learn how Azure AI Content Safety handles the [encryption and decryption of your data](./how-to/encrypt-data-at-rest.md). Customer-managed keys (CMK), also known as Bring Your Own Key (BYOK), offer greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data.
 
@@ -141,7 +140,8 @@ See the following list for the input requirements for each feature.
   - Default minimum length: 110 characters (for scanning LLM completions, not user prompts).
 - **Custom categories (standard) API (preview)**:
   - Maximum inference input length: 1K characters.
-
+- **Task adherence (preview)**:
+  - Maximum input length: 100K characters.
 
 ### Language support
 

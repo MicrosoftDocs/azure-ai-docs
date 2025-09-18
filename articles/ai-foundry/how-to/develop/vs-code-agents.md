@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 09/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -96,10 +96,11 @@ Azure AI Agent Service has a set of tools that you can use to interact with your
 
 The following tools are available in the Azure AI Foundry VS Code extension:
 
-  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+  - [Grounding with Bing search](/azure/ai-foundry/agents/how-to/tools/bing-grounding)
   - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
-  - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
-  - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
+  - [Code interpreter](/azure/ai-foundry/agents/how-to/tools/file-search)
+  - [OpenAPI Specified tools](/azure/ai-foundry/agents/how-to/tools/openapi-spec)
+  - [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol)
 
 
 #### Add a tool to the AI Agent
@@ -129,6 +130,35 @@ Add a tool to the AI Agent with the following steps:
  
 > [!NOTE]
 > When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+
+#### Add an existing MCP Server tool to the AI Agent
+
+You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `Server Label` value within the same agent and a `Server URL` value that points to the remote MCP server.
+
+> [!WARNING]
+> The remote MCP servers that you decide to use with the MCP tool described in this article were created by third parties, not Microsoft. Microsoft hasn't tested or verified these servers. For more information, see [Considerations for using non-Microsoft services and server](/azure/ai-foundry/agents/how-to/tools/model-context-protocol?branch=pr-en-us-6966#considerations-for-using-non-microsoft-services-and-servers).
+
+To add an existing MCP Server tool to your AI Agent, follow these steps:
+
+
+  1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the **MCP Server** tool.
+    
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with a mcp tool with the following information:
+
+    1. `Server URL`: The URL of the MCP server; for example, [https://gitmcp.io/Azure/azure-rest-api-specs](https://gitmcp.io/Azure/azure-rest-api-specs).
+
+    1. `Server Label`: A unique identifier of this MCP server to the agent; for example, `fetch_rest_api_docs`.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png" alt-text="Screenshot of the MCP Server tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-mcp-tool-dialog.png":::
+
+ 1. Next, select the **Allowed tools** dropdown to choose which tools the MCP server can use:
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png" alt-text="Screenshot of the MCP Server tool dialog box with the 'Allowed tools' dropdown highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-select-mcp-tool.png":::
+
+    > [!WARNING]
+    > When you add an allowed tool, you can also pass a set of headers that the MCP server requires. Currently, there is an issue when running an agent with MCP server that requires authentication in agent playground. For more information about this issue: https://github.com/microsoft/ai-foundry-for-vscode/issues/150
+
+1. After entering the required information, select the **Create tool** button in the bottom-left corner.
 
 ### Create Azure AI Agents on the Azure AI Foundry Studio
 
@@ -198,9 +228,27 @@ Open the **Agents Playground** using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** VS Code page." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
-1. Type your prompt and see the outputs. The **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
+1. Type your prompt and see the outputs. In this example, the **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
+
+### Interact with Agents using the MCP Server tool in agents playground
+
+1. Right select on your deployed agent that has an **MCP Server** tool and select the **Open Playground** option, as you did in the previous steps. This action starts a thread with your agent and lets you send messages.
+1. After the **Playground** page is displayed, type a prompt such as "Give me an example for creating a container app" and send it. 
+1. Select the authentication mode for the MCP Server tool. Choose the appropriate authentication method and proceed, as in the following image.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png" alt-text="Screenshot of the MCP Server tool authentication prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png":::
+1. Next, select the approval preference for the MCP Server tool. Choose the appropriate approval preference and proceed, as in the following image.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP Server tool approval preference in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
+
+1. If you chose `Ask every time` for your approval preference, you need to approve or reject the tool call, as in the following image.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png" alt-text="Screenshot of the MCP Server tool approval prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png":::
+
+1. The agent uses the model and the MCP Server tools you configured in the agent designer to retrieve the information. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image.
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code after using the MCP Server tool." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png":::
 
 ## Explore Threads
 
