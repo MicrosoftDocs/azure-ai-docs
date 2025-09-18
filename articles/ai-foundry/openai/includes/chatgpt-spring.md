@@ -12,7 +12,7 @@ ms.date: 11/27/2023
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
 - The [Spring Boot CLI tool](https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started.installing.cli)
 - An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md). This example assumes that your deployment name matches the model name `gpt-4`

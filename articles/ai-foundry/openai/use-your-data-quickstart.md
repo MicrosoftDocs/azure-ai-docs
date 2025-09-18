@@ -43,7 +43,7 @@ The following resources:
 ## Prerequisites
 
 The following resources: 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
 
@@ -79,7 +79,7 @@ The following resources:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
 - An Azure OpenAI resource deployed in a [supported region and with a supported model](./concepts/use-your-data.md#regional-availability-and-model-support).
@@ -106,7 +106,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Prerequisites
 
-- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)

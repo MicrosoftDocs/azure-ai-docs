@@ -9,7 +9,7 @@ ms.author: mbullwin
 ---
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+* [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 * An Azure OpenAI resource with the **text-embedding-ada-002 (Version 2)** model deployed. This model is currently only available in [certain regions](../concepts/models.md#model-summary-table-and-region-availability). If you don't have a resource the process of creating one is documented in our [resource deployment guide](../how-to/create-resource.md).
 * <a href="https://www.python.org/" target="_blank">Python 3.8 or later version</a>
 * The following Python libraries: `openai`, `num2words`, `matplotlib`, `plotly`, `scipy`, `scikit-learn`, `pandas`, `tiktoken`.

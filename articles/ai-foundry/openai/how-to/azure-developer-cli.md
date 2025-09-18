@@ -17,7 +17,7 @@ Use this article to learn how to automate resource deployment for Azure OpenAI O
 
 ## Prerequisites
 
-- An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - The Azure Developer CLI [installed](/azure/developer/azure-developer-cli/install-azd) on your machine.
 - Ability to assign permissions at the Subscription level (Owner or User Access Administrator).
 

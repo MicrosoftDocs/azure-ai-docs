@@ -20,7 +20,7 @@ The following guide walks you through key steps in creating a provisioned deploy
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - Azure Contributor or Cognitive Services Contributor role 
 
 ## Obtain/verify PTU quota availability.

@@ -14,7 +14,7 @@ ms.date: 3/21/2025
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 * The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
 - The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 - An Azure OpenAI in Azure AI Foundry Models resource with the `gpt-4` model deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
