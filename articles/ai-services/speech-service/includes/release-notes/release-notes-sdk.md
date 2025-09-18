@@ -476,10 +476,10 @@ This table shows the previous and new object names for real-time diarization and
 * New Pronunciation Assessment samples on how to specify a learning language in your own application
   - **C#**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#LL1086C13-L1086C98).
   - **C++**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#L624).
-  - **JavaScript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentContinue.js#LL37C4-L37C52).
+  - **JavaScript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
   - **Objective-C**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L862).
   - **Python**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#LL937C1-L937C1).
-  - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/swift/ios/speech-samples/speech-samples/ViewController.swift#L224). 
+  - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios). 
 
 ### Speech SDK 1.29.0: June 2023 release
 
