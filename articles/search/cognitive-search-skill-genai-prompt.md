@@ -39,7 +39,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 - For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
-- For GPT-5 model, the `temperature` parameter is not supported in the same way as previous models. If defined, it must be set to `1.0`, as other values will result in validation errors or be ignored.
+- For GPT-5 model, the `temperature` parameter is not supported in the same way as previous models. If defined, it must be set to `1.0`, as other values will result in errors.
 
 - Billing is based on the pricing of the model you use.
 
