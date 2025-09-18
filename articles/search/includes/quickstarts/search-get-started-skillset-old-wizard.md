@@ -47,7 +47,7 @@ To run the wizard:
 
 1. On the **Overview** page, select **Import data**.
 
-   :::image type="content" source="../../media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command." border="true" lightbox="../../media/search-import-data-portal/import-data-button.png":::
+   :::image type="content" source="../../media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command." border="true"":::
 
 ### Step 1: Create a data source
 
