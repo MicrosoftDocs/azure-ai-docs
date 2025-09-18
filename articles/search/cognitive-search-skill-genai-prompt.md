@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 08/27/2025
+ms.date: 09/18/2025
 ---
 
 # GenAI Prompt skill
@@ -35,11 +35,13 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 ## Supported models
 
-You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
+- You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
 
-For image verbalization, the model you use to analyze the image determines what image formats are supported.
+- For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
-Billing is based on the pricing of the model you use.
+- For GPT-5 model, the `temperature` parameter is not supported in the same way as previous models. If defined, it must be set to `1.0`, as other values will result in validation errors or be ignored.
+
+- Billing is based on the pricing of the model you use.
 
 > [!NOTE]
 > The search service connects to your model over a public endpoint, so there are no region location requirements, but if you're using an all-up Azure solution, you should check the [Azure AI Search regions](search-region-support.md) and the [Azure OpenAI model regions](/azure/ai-services/openai/concepts/models) to find suitable pairs, especially if you have data residency requirements.
@@ -58,6 +60,7 @@ Billing is based on the pricing of the model you use.
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
   - For AI Foundry models, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user).
+
 
 ## @odata.type  
 
