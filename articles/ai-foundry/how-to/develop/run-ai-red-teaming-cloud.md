@@ -172,7 +172,7 @@ curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https
 
 ---
 
-Once your AI red teaming run is finished running, you can [view your results](../view-ai-red-teaming-results.md) in your Azure AI Foundry project.
+[!INCLUDE [view-ai-red-teaming-results](../../includes/view-ai-red-teaming-results.md)]
 
 ## Related content
 
