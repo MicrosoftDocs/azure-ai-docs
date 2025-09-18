@@ -4,8 +4,8 @@ titleSuffix: Azure AI Foundry
 description: View trace results for AI agents using Azure AI Foundry SDK and OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
 author: lgayhardt
 ms.author: lagayhar
-ms.reviewer: amibp
-ms.date: 09/15/2025
+ms.reviewer: ychen
+ms.date: 09/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -25,47 +25,16 @@ In this article, you learn how to:
 - Retrieve traces for past threads.
 - Plan optimization next steps.
 
-Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for a number of reasons:
-* There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
-* The sequence of steps might vary based on user input.
-* The inputs/outputs at each stage might be long and deserve more detailed inspection.
-* Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
+Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
+
+- There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
+- The sequence of steps might vary based on user input.
+- The inputs/outputs at each stage might be long and deserve more detailed inspection.
+- Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
 
 Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-## View trace results in the Azure AI Foundry Agents playground
-
-The Agents playground in the Azure AI Foundry portal lets you view trace results for threads and runs that your agents produce. To see trace results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
-
-> [!NOTE]
-> Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
-> * Evaluations are not available in the following regions.
->     * `australiaeast`
->     * `japaneast`
->     * `southindia`
->     * `uksouth`
-
-:::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
-
-After selecting **Thread logs**, review:
-- Thread details
-- Run information
-- Ordered run steps and tool calls
-- Inputs / outputs between user and agent
-- Linked evaluation metrics (if enabled)
-
-:::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
-
-> [!TIP]
-> If you want to view trace results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
-> :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
-> You will be able to see the **Thread logs** button at the top of the screen to view the trace results.
-
-
-> [!NOTE]
-> Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
-
-## Trace agents using the Azure AI Foundry SDK
+## Trace key concepts overview
 
 Here's a brief overview of key concepts before getting started:
 
@@ -83,7 +52,8 @@ Here's a brief overview of key concepts before getting started:
 - Correlate evaluation run IDs for quality + performance analysis.
 - Redact sensitive content; avoid storing secrets in attributes.
                                                                           
-## Setup
+
+## Setup tracing in Azure AI Foundry SDK
 
 For chat completions or building agents with Azure AI Foundry, install:
 
@@ -232,9 +202,7 @@ For detailed instructions and advanced usage, refer to the [OpenTelemetry docume
 
 ## Attach user feedback to traces
 
-To attach user feedback to traces and visualize it in the Azure AI Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions. 
-
-
+To attach user feedback to traces and visualize it in the Azure AI Foundry portal, you can instrument your application to enable tracing and log user feedback using OpenTelemetry's semantic conventions.
 
 By correlating feedback traces with their respective chat request traces using the response ID or thread ID, you can view and manage these traces in Azure AI Foundry portal. OpenTelemetry's specification allows for standardized and enriched trace data, which can be analyzed in Azure AI Foundry portal for performance optimization and user experience insights. This approach helps you use the full power of OpenTelemetry for enhanced observability in your applications.
 
@@ -272,6 +240,39 @@ pip install opentelemetry-instrumentation-langchain
 ```
 
 Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](#instrument-tracing-in-your-code).
+
+## View trace results in the Azure AI Foundry Agents playground
+
+The Agents playground in the Azure AI Foundry portal lets you view trace results for threads and runs that your agents produce. To see trace results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
+
+> [!NOTE]
+> Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+> - Evaluations aren't available in the following regions.
+>     - `australiaeast`
+>     - `japaneast`
+>     - `southindia`
+>     - `uksouth`
+
+:::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
+
+After selecting **Thread logs**, review:
+
+- Thread details
+- Run information
+- Ordered run steps and tool calls
+- Inputs / outputs between user and agent
+- Linked evaluation metrics (if enabled)
+
+:::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
+
+> [!TIP]
+> If you want to view trace results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
+> :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
+> You'll be able to see the **Thread logs** button at the top of the screen to view the trace results.
+
+
+> [!NOTE]
+> Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
 
 ## View traces in Azure AI Foundry portal
 
