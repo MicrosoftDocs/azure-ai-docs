@@ -1282,6 +1282,11 @@
           "source_path_from_root": "/articles/ai-foundry/openai/how-to/chat-markup-language.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
           "redirect_document_id": false
+        },
+      {
+          "source_path_from_root": "/articles/ai-foundry/how-to/view-ai-red-teaming-results.md",
+          "redirect_url": "/azure/ai-foundry/how-to/develop/run-scans-ai-red-teaming-agent#viewing-ai-red-teaming-results-in-azure-ai-foundry-project-preview",
+          "redirect_document_id": false
         }
     ]
 }
