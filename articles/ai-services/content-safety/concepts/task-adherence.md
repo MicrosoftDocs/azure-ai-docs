@@ -11,7 +11,7 @@ manager: nitinme
 
 # Agent Workflows: Task Adherence (preview) 
 
-Ensure your AI agents consistently align with user instructions and task objectives. The Task Adherence feature identifies discrepancies such as misaligned tool invocations, improper tool input or output relative to user intent, and inconsistencies between responses and customer input. This feature lets system developers proactively mitigate misaligned actions by blocking them or escalating the issue for human intervention.
+Ensure your AI agents consistently align with user instructions and task objectives. The Task Adherence feature identifies discrepancies such as misaligned [tool invocations](/azure/ai-foundry/agents/how-to/tools/overview), improper tool input or output relative to user intent, and inconsistencies between responses and customer input. This feature lets system developers proactively mitigate misaligned actions by blocking them or escalating the issue for human intervention.
 
 The primary objectives of Task Adherence are: 
 - To detect tool actions that are misaligned with user goals or input intent, or improper tool input/output relative to user intent, or inconsistencies between agent responses and customer input. 
