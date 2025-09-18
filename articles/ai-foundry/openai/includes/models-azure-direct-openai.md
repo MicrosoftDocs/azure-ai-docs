@@ -32,10 +32,10 @@ ms.topic: include
 
 | Model | Region |
 |---|---|
-| `gpt-5` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-mini` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-nano` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-chat` (2025-08-07) | East US 2 (Global Standard), Sweden Central (Global Standard)|
+| `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 
 - **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
 
