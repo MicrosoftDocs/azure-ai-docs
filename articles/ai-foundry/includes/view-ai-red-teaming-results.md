@@ -1,24 +1,19 @@
 ---
-title: View AI red teaming results in Azure AI Foundry
-titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to view the results of the AI red teaming agent's scan of a Generative AI application in Azure AI Foundry.
-ms.service: azure-ai-foundry
-ms.custom:
-  - references_regions
-ms.topic: how-to
-ms.date: 08/29/2025
-ms.reviewer: minthigpen
-ms.author: lagayhar
+title: Include file
+description: Include file
 author: lgayhardt
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 9/18/2025
+ms.author: lagayhar
+ms.custom: include file
 ---
 
-# Viewing AI red teaming results in Azure AI Foundry project (preview)
+## Viewing AI red teaming results in Azure AI Foundry project (preview)
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+After your automated scan is finished running, the results also get logged to your Azure AI Foundry project which you specified in the creation of your AI red teaming agent.
 
-After your automated scan is finished running [locally](./develop/run-scans-ai-red-teaming-agent.md) or [remotely](./develop/run-ai-red-teaming-cloud.md), the results also get logged to your Azure AI Foundry project which you specified in the creation of your AI red teaming agent.
-
-## View report of each scan
+### View report of each scan
 
 In your Azure AI Foundry project or hub-based project, navigate to the **Evaluations** page and select the **AI red teaming** tab to view the comprehensive report with a detailed drill-down of each scan.
 
@@ -40,6 +35,3 @@ To view each conversation, selecting **View more** opens up the full conversatio
 
 :::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team-data-conversation.png" alt-text="Screenshot of AI Red Teaming data page with a conversation history opened in Azure AI Foundry." lightbox="../media/evaluations/red-teaming-agent/ai-red-team-data-conversation.png":::
 
-## Related content
-
-Try out an [example workflow](https://aka.ms/airedteamingagent-sample) in our GitHub samples.
