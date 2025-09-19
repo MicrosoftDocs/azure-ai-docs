@@ -51,11 +51,11 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 # [Python SDK](#tab/python)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - [Azure Machine Learning SDK v2](https://aka.ms/sdk-v2-install).
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 - [Azure CLI](/cli/azure/install-azure-cli) 
@@ -64,7 +64,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure CLI](#tab/azurecli)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - [Azure CLI and the machine learning extension](/azure/machine-learning/how-to-configure-cli). If you don't have the Azure CLI and machine learning extension installed, follow the steps in the [Install and set up the machine learning extension](/azure/machine-learning/how-to-configure-cli) article.
 - An Azure AI Foundry hub. If you don't have a hub, see [Create a hub using the Azure Machine Learning SDK and CLI](develop/create-hub-project-sdk.md).
 
