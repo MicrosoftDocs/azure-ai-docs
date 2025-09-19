@@ -47,7 +47,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, select **Import data** on the command bar to create a knowledge store in four steps.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command" border="true":::
 
 ### Step 1: Create a data source
 

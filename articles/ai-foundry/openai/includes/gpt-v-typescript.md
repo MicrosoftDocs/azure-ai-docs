@@ -10,7 +10,7 @@ ms.custom: references_regions
 ms.date: 10/23/2024
 ---
 
-Use this article to get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model. 
+Use this article to get started using the OpenAI JavaScript SDK to deploy and use a vision-enabled chat model. 
 
 This SDK is provided by OpenAI with Azure specific types provided by Azure. 
 
@@ -79,7 +79,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images). Use the image URL in the code below or set the `IMAGE_URL` environment variable to the image URL.
 
 > [!TIP]
-> You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
+> You can also use a base 64 encoded image data instead of a URL. For more information, see the [Vision chats how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
 
 ## [Microsoft Entra ID](#tab/typescript-keyless)
 
@@ -147,7 +147,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       }
     }
     export async function main() {
-      console.log("== Get GPT-4 Turbo with vision Sample ==");
+      console.log("== Get Vision chat Sample ==");
     
       const client = getClient();
       const messages = createMessages();
@@ -251,7 +251,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       }
     }
     export async function main() {
-      console.log("== Get GPT-4 Turbo with vision Sample ==");
+      console.log("== Get Vision chat Sample ==");
     
       const client = getClient();
       const messages = createMessages();

@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: how-to
-ms.date: 03/26/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 #customer intent: As a user, I want to improve the performance of Azure AI Content Safety so that I can ensure accurate content moderation.
 ---

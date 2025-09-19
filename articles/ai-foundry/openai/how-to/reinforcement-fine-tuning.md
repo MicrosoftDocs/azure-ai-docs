@@ -195,8 +195,7 @@ Custom code  grader allows you to execute arbitrary python code to grade the mod
 ```json
 {
     "type": "python",
-    "source": "def grade(sample, item):\n    return 1.0",
-    "image_tag": "2025-05-08"
+    "source": "def grade(sample, item):\n    return 1.0"
 }
 ```
 ***Technical Constraints:***
@@ -291,14 +290,31 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 
 **Custom code grader** - This is python code grader where you can use any python code to grader the training output.
 
-The python libraries which are supported by custom code grader are 
+The following third-party packages are available at execution time for the image tag 2025-05-08
+
+numpy==2.2.4
+scipy==1.15.2
+sympy==1.13.3
+pandas==2.2.3
+rapidfuzz==3.10.1
+scikit-learn==1.6.1
+rouge-score==0.1.2
+deepdiff==8.4.2
+jsonschema==4.23.0
+pydantic==2.10.6
+pyyaml==6.0.2
+nltk==3.9.1
+sqlparse==0.5.3
+rdkit==2024.9.6
+scikit-bio==0.6.3
+ast-grep-py==0.36.2
 
 ```json
 {
-"type": "python", 
-"image_tag": "alpha", 
-"source": "import json\nimport re\n\ndef extract_numbers_from_expression(expression: str):\n    return [int(num) for num in re.findall(r'-?\\d+', expression)]\n\ndef grade(sample, item) -> float:\n    expression_str = sample['output_json']['expression']\n    try:\n        math_expr_eval = eval(expression_str)\n    except Exception:\n        return 0\n    expr_nums_list = extract_numbers_from_expression(expression_str)\n    input_nums_list = [int(x) for x in json.loads(item['nums'])]\n    if sorted(expr_nums_list) != sorted(input_nums_list):\n        return 0\n    sample_result_int = int(sample['output_json']['result'])\n    item_result_int = int(item['target'])\n    if math_expr_eval != sample_result_int:\n        return 1\n    if sample_result_int == item_result_int:\n        return 5\n    if abs(sample_result_int - item_result_int) <= 1:\n        return 4\n    if abs(sample_result_int - item_result_int) <= 5:\n        return 3\n    return 2""
-	}
+
+    "type": "python",
+    "source": "import json,re,ast\n\ndef safe_eval(e):\n    return _eval(ast.parse(e,mode='eval').body)\n\ndef _eval(n):\n    if isinstance(n,ast.Constant):return n.value\n    if isinstance(n,ast.BinOp) and type(n.op) in {ast.Add:lambda a,b:a+b,ast.Sub:lambda a,b:a-b,ast.Mult:lambda a,b:a*b,ast.Div:lambda a,b:a/b,ast.FloorDiv:lambda a,b:a//b,ast.Mod:lambda a,b:a%b,ast.Pow:lambda a,b:a**b}:return {ast.Add:lambda a,b:a+b,ast.Sub:lambda a,b:a-b,ast.Mult:lambda a,b:a*b,ast.Div:lambda a,b:a/b,ast.FloorDiv:lambda a,b:a//b,ast.Mod:lambda a,b:a%b,ast.Pow:lambda a,b:a**b}[type(n.op)](_eval(n.left),_eval(n.right))\n    if isinstance(n,ast.UnaryOp) and type(n.op) in {ast.UAdd:lambda a:+a,ast.USub:lambda a:-a}:return {ast.UAdd:lambda a:+a,ast.USub:lambda a:-a}[type(n.op)](_eval(n.operand))\n    raise ValueError('bad expr')\n\ndef grade(sample,item)->float:\n    try:\n        expr=sample['output_json']['expression'];expr_val=safe_eval(expr)\n        if sorted(map(int,re.findall(r'-?\\d+',expr)))!=sorted(map(int,json.loads(item['nums']))):return 0\n        sr,it=int(float(sample['output_json']['result'])),int(float(item['target']))\n        if expr_val!=sr:return 1\n        if sr==it:return 5\n        if abs(sr-it)<=1:return 4\n        if abs(sr-it)<=5:return 3\n        return 2\n    except: return 0"
+}
 ```
 If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect.
 

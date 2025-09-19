@@ -7,7 +7,7 @@ ms.custom:
 - build-2025
 - references_regions
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 09/15/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
@@ -89,10 +89,10 @@ toolset.add(functions)
 AGENT_NAME = "Seattle Tourist Assistant"
 ```
 
-If you're using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry&pivots=fdp-project), create an agent with the toolset as follows:
+If you're using [Azure AI Foundry (non-Hub) project](../create-projects.md?tabs=ai-foundry), create an agent with the toolset as follows:
 
 > [!NOTE]
-> If you're using a [Foundry Hub-based project](../create-projects.md?tabs=ai-foundry&pivots=hub-project) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
+> If you're using a [Foundry Hub-based project](../hub-create-projects.md?tabs=ai-foundry) (which only supports lower versions of `azure-ai-projects<1.0.0b10 azure-ai-agents<1.0.0b10`), we strongly recommend migrating to [the latest Foundry Agent Service SDK Python client library](../../agents/quickstart.md?pivots=programming-language-python-azure) with a [Foundry project set up for logging batch evaluation results](../../how-to/develop/evaluate-sdk.md#prerequisite-set-up-steps-for-azure-ai-foundry-projects).
 
 ```python
 import os

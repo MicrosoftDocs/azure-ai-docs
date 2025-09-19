@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Azure Role-Based Access (RBAC) metadata on Azure blobs.
 ms.service: azure-ai-search  
 ms.topic: how-to
-ms.date: 09/01/2025
+ms.date: 09/18/2025
 author: vaishalishah
 ms.author: vaishalishah
 ---  
@@ -39,7 +39,7 @@ The indexer approach is built on this foundation:
 
 + You should understand how indexers work and how to create an index. This article explains the configuration settings for the data source and indexer, but doesn't provide steps for creating the index. For more information about indexes designed for permission filters, see [Create an index with permission filter fields](search-index-access-control-lists-and-rbac-push-api.md#create-an-index-with-permission-filter-fields).
 
-Permission filters aren't supported in the indexers and indexes created through the [Import wizards](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access.
++ This functionality is currently not supported in the Azure portal, this includes Permission filters created through the [Import wizards](search-import-data-portal.md). Use a programmatic approach to create or modify existing objects for document-level access. 
 
 ## Configure Blob storage
 

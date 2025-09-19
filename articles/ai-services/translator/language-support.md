@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 09/16/2025
 ms.author: lajanuar
 ---
 # Translator language support
@@ -44,6 +44,7 @@ ms.author: lajanuar
 |Bulgarian|`bg`|✔|✔|✔|✔|✔|✔| |
 |Cantonese (Traditional)|`yue`|✔|✔| |✔| | | |
 |Catalan|`ca`|✔|✔|✔|✔|✔|✔| |
+|Chhattisgarhi|`hne`|✔|✔| | | | | |
 |Chinese (Literary)|`lzh`|✔|✔| | | | | |
 |Chinese Simplified|`zh-Hans`|✔|✔|✔|✔|✔|✔| |
 |Chinese Traditional|`zh-Hant`|✔|✔|✔|✔| |✔| |
@@ -107,6 +108,7 @@ ms.author: lajanuar
 |Malay (Latin)|`ms`|✔|✔|✔|✔|✔| | |
 |Malayalam|`ml`|✔|✔|✔|✔| |✔| |
 |Maltese|`mt`|✔|✔|✔|✔|✔| | |
+|Manipuri|`mni`|✔|✔| | | | | |
 |Maori|`mi`|✔|✔|✔|✔| | | |
 |Marathi|`mr`|✔|✔|✔|✔| |✔| |
 |Mongolian (Cyrillic)|`mn-Cyrl`|✔|✔| |✔| | | |

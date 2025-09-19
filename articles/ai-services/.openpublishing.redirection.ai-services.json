@@ -171,6 +171,16 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/content-safety/concepts/task-adherence.md",
+      "redirect_url": "/azure/ai-services/content-safety/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/content-safety/quickstart-task-adherence.md",
+      "redirect_url": "/azure/ai-services/content-safety/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-custom-voice-create-voice.md",
       "redirect_url": "/azure/ai-services/speech-service/professional-voice-train-voice",
       "redirect_document_id": true
@@ -468,6 +478,46 @@
      {
       "source_path_from_root": "/articles/ai-services/computer-vision/includes/video-retrieval-input.md",
        "redirect_url": "/azure/ai-services/content-understanding/video/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-analyze.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-modify-images.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/shelf-planogram.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/coco-verification.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/how-to/model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-model-customization.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
+       "redirect_document_id": false
+     },
+     {
+      "source_path_from_root": "/articles/ai-services/computer-vision/concept-shelf-analysis.md",
+       "redirect_url": "/azure/ai-services/computer-vision/overview",
        "redirect_document_id": false
      },
     {

@@ -5,7 +5,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: conceptual
-ms.date: 05/07/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -16,17 +16,17 @@ This guide describes the Azure OpenAI content streaming experience and options. 
 
 ## Default filtering behavior
 
-The content filtering system is integrated and enabled by default for all customers. In the default streaming scenario, completion content is buffered, the content filtering system runs on the buffered content, and – depending on the content filtering configuration – content is either returned to the user if it doesn't violate the content filtering policy (Microsoft's default or a custom user configuration), or it is immediately blocked and a content filtering error is returned instead. This process is repeated until the end of the stream. Content is fully vetted according to the content filtering policy before it's returned to the user. Content isn't returned token-by-token in this case, but in "content chunks" of the respective buffer size.
+The content filtering system is integrated and enabled by default for all customers. In the default streaming scenario, completion content is buffered, the content filtering system runs on the buffered content, and – depending on the content filtering configuration – content is either returned to the user if it doesn't violate the content filtering policy (Microsoft's default or a custom user configuration), or it is immediately blocked and a content filtering error is returned instead. This process repeats until the end of the stream. Content is fully vetted according to the content filtering policy before it's returned to the user. Content isn't returned token-by-token in this case, but in "content chunks" of the respective buffer size.
 
 ## Asynchronous filtering
 
-Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters are run asynchronously, and completion content is returned immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content filtering.
+Customers can choose the Asynchronous Filter as an extra option, providing a new streaming experience. In this case, content filters run asynchronously, and completion content is returned immediately with a smooth token-by-token streaming experience. No content is buffered, which allows for a fast streaming experience with zero latency associated with content filtering.
 
 Customers must understand that while the feature improves latency, it's a trade-off against the safety and real-time vetting of smaller sections of model output. Because content filters are run asynchronously, content moderation messages and policy violation signals are delayed, which means some sections of harmful content that would otherwise have been filtered immediately could be displayed to the user.
  
 **Annotations**: Annotations and content moderation messages are continuously returned during the stream. We strongly recommend you consume annotations in your app and implement other AI Guidelines & control mechanisms, such as redacting content or returning other safety information to the user.
 
-**Content filtering signal**: The content filtering error signal is delayed. If there is a policy violation, it’s returned as soon as it’s available, and the stream is stopped. The content filtering signal is guaranteed within a ~1,000-character window of the policy-violating content. 
+**Content filtering signal**: The content filtering error signal is delayed. If there is a policy violation, it’s returned as soon as it’s available, and the stream stops. The content filtering signal is guaranteed within a ~1,000-character window of the policy-violating content. 
 
 **Customer Copyright Commitment**: Content that is retroactively flagged as protected material might not be eligible for Customer Copyright Commitment coverage. 
 
@@ -48,7 +48,7 @@ To enable Asynchronous Filter in [Azure AI Foundry portal](https://ai.azure.com/
 
 ### Prompt annotation message
 
-This is the same as default annotations.
+This message is the same as default annotations.
 
 ```json
 data: { 
@@ -69,7 +69,7 @@ data: {
 
 ### Completion token message
 
-Completion messages are forwarded immediately. No moderation is performed first, and no annotations are provided initially. 
+Completion messages are forwarded immediately. The service doesn't perform moderation or provide annotations initially. 
 
 ```json
 data: { 
@@ -92,11 +92,11 @@ data: {
 
 ### Annotation message
 
-The text field is always an empty string, indicating no new tokens. Annotations are only relevant to already-sent tokens. There might be multiple annotation messages referring to the same tokens.  
+The text field is always an empty string, indicating no new tokens. Annotations only apply to tokens that are already sent. Multiple annotation messages can refer to the same tokens.  
 
-`"start_offset"` and `"end_offset"` are low-granularity offsets in text (with 0 at beginning of prompt) to mark which text the annotation is relevant to. 
+`"start_offset"` and `"end_offset"` are low-granularity offsets in text (with 0 at the beginning of the prompt) that mark which text the annotation applies to. 
 
-`"check_offset"` represents how much text has been fully moderated. It's an exclusive lower bound on the `"end_offset"` values of future annotations. It's non-decreasing.
+`"check_offset"` shows how much text is fully moderated. It's an exclusive lower bound on the `"end_offset"` values of future annotations. It never decreases.
 
 ```json
 data: { 
@@ -124,7 +124,7 @@ data: {
 
 ### Sample response stream (passes filters)
 
-Below is a real chat completion response using Asynchronous Filter. Note how the prompt annotations aren't changed, completion tokens are sent without annotations, and new annotation messages are sent without tokens&mdash;they're instead associated with certain content filter offsets. 
+The following example shows a real chat completion response that uses Asynchronous Filter. The prompt annotations don't change, completion tokens are sent without annotations, and new annotation messages are sent without tokens. Instead, these new annotation messages link to certain content filter offsets. 
 
 `{"temperature": 0, "frequency_penalty": 0, "presence_penalty": 1.0, "top_p": 1.0, "max_tokens": 800, "messages": [{"role": "user", "content": "What is color?"}], "stream": true}`
 

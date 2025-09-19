@@ -1,18 +1,18 @@
 ---
-title: 'How to use the GPT Realtime API via WebRTC'
+title: 'Use the GPT Realtime API via WebRTC'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT Realtime API for speech and audio via WebRTC.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 6/7/2025
+ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT Realtime API via WebRTC
+# Use the GPT Realtime API via WebRTC
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -77,7 +77,7 @@ the WebRTC URL should be:
 
 The sessions URL includes the Azure OpenAI resource URL, deployment name, the `/realtime/sessions` path, and the API version. The Azure OpenAI resource region isn't part of the sessions URL.
 
-### Ephemeral API key
+### Get ephemeral API key
 
 You can use the ephemeral API key to authenticate a WebRTC session with the Realtime API. The ephemeral key is valid for one minute and is used to establish a secure WebRTC connection between the client and the Realtime API.
 

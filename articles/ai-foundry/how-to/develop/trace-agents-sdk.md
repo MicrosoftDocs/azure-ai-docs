@@ -1,21 +1,29 @@
 ---
-title: How to trace your AI application
+title: View Trace Results for AI Agents in Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to trace your application with Azure AI Inference SDK.
+description: View trace results for AI agents using Azure AI Foundry SDK and OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: amibp
-ms.date: 08/21/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
-
+ai-usage: ai-assisted
 ---
 
-# Trace your AI agents using Azure AI Foundry portal and SDK (preview)
+# View trace results for AI agents in Azure AI Foundry (preview)
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-This article walks you through how to instrument tracing in agents using Azure AI Foundry SDK with OpenTelemetry and Azure Monitor for enhanced observability and debugging.
+Learn how to view trace results for AI agents in Azure AI Foundry. See execution traces, analyze behavior, and debug performance issues using the SDK with OpenTelemetry and Azure Monitor.
+
+In this article, you learn how to:
+
+- View agent traces in the Agents playground.
+- Interpret spans (steps, tool calls, nested operations).
+- Enable metrics for AI quality and safety.
+- Retrieve traces for past threads.
+- Plan optimization next steps.
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for a number of reasons:
 * There could be a high number of steps involved in generating a response, making it hard to keep track of all of them.
@@ -23,11 +31,11 @@ Determining the reasoning behind your agent's executions is important for troubl
 * The inputs/outputs at each stage might be long and deserve more detailed inspection.
 * Each step of an agent's runtime might also involve nesting. For example, an agent might invoke a tool, which uses another process, which then invokes another tool. If you notice strange or incorrect output from a top-level agent run, it might be difficult to determine exactly where in the execution the issue was introduced.
 
-Tracing solves this by allowing you to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked.
+Trace results solve this by allowing you to view the inputs and outputs of each primitive involved in a particular agent run, displayed in the order they were invoked, making it easy to understand and debug your AI agent's behavior.
 
-## Tracing in the Azure AI Foundry Agents playground
+## View trace results in the Azure AI Foundry Agents playground
 
-The Agents playground in the Azure AI Foundry portal lets you trace threads and runs that your agents produce. To open a trace, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
+The Agents playground in the Azure AI Foundry portal lets you view trace results for threads and runs that your agents produce. To see trace results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
 > Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
@@ -39,14 +47,19 @@ The Agents playground in the Azure AI Foundry portal lets you trace threads and 
 
 :::image type="content" source="../../media/trace/trace-agent-playground.png" alt-text="A screenshot of the agent playground in the Azure AI Foundry portal." lightbox="../../media/trace/trace-agent-playground.png":::
 
-After selecting **Thread logs**, the screen that appears will let you view the: thread, run, run steps and any tool calls that were made. You can view the inputs and outputs between the agent and user, as well the associated metadata and any evaluations you selected.
+After selecting **Thread logs**, review:
+- Thread details
+- Run information
+- Ordered run steps and tool calls
+- Inputs / outputs between user and agent
+- Linked evaluation metrics (if enabled)
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
 > [!TIP]
-> If you want to view the trace of a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
+> If you want to view trace results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 > :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
-> You will be able to see the **Thread logs** button at the top of the screen to view the trace.
+> You will be able to see the **Thread logs** button at the top of the screen to view the trace results.
 
 
 > [!NOTE]
@@ -57,13 +70,19 @@ After selecting **Thread logs**, the screen that appears will let you view the: 
 Here's a brief overview of key concepts before getting started:
 
 | Key concepts             | Description            |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes during execution, such as function calls, variable values, and system events. To learn more, see [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/).                                                      |
+|---------------------|-----------------------------------------------------------------|
+| Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/). |
 | Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, allowing you to see the full call stack and sequence of operations.                                                                                         |
 | Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data making it more informative and useful for analysis.                                                                                                 |
 | Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
-| Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.                                                                               |
+| Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.   |
 
+### Best practices
+
+- Use consistent span attributes.
+- Correlate evaluation run IDs for quality + performance analysis.
+- Redact sensitive content; avoid storing secrets in attributes.
+                                                                          
 ## Setup
 
 For chat completions or building agents with Azure AI Foundry, install:

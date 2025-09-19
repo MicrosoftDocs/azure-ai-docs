@@ -7,7 +7,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: quickstart
-ms.date: 04/29/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 zone_pivot_groups: programming-languages-content-safety-foundry-rest
 #customer intent: As a developer, I want to learn how to use the groundedness detection API so that I can ensure generated content is aligned with factual references.

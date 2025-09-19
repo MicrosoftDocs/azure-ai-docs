@@ -3,10 +3,23 @@ title: Azure OpenAI in Azure AI Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 09/10/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
+
+> [!NOTE]
+> Foundry Models sold directly by Azure also include select models from the following top model providers:
+> 
+> - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
+> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
+> - Microsoft: `MAI-DS-R1`
+> - Mistral: `mistral-document-ai-2505`
+> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`
+> 
+> To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
+
 
 ## Azure OpenAI in Azure AI Foundry models
 
@@ -19,10 +32,10 @@ ms.topic: include
 
 | Model | Region |
 |---|---|
-| `gpt-5` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-mini` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-nano` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-chat` (2025-08-07) | East US 2 (Global Standard), Sweden Central (Global Standard)|
+| `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 
 - **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
 
@@ -52,7 +65,7 @@ ms.topic: include
 | `gpt-oss-120b` (Preview)   | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available for deployment<sup>1</sup> and via [managed compute](../../how-to/deploy-models-managed.md)  | 131,072 | 131,072 | May 31, 2024 |
 | `gpt-oss-20b` (Preview) | - Text in/text out only <br> - Chat Completions API <br> - Streaming <br> - Function calling <br> - Structured outputs <br> - Reasoning <br> - Available via [managed compute](../../how-to/deploy-models-managed.md) and [Foundry Local](../../foundry-local/get-started.md#run-the-latest-openai-open-source-model) | 131,072 | 131,072 | May 31, 2024 |
 
-<sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires an [Azure AI Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry&pivots=fdp-project) to deploy the model.
+<sup>1</sup> Unlike other Azure OpenAI models `gpt-oss-120b` requires an [Azure AI Foundry project](/azure/ai-foundry/quickstarts/get-started-code?tabs=azure-ai-foundry) to deploy the model.
 
 ### Deploy with code
 
@@ -516,6 +529,7 @@ For the latest information on model retirements, refer to the [model retirement 
 
 ## Related content
 
+- [Foundry Models from partners and community](../../foundry-models/concepts/models-from-partners.md)
 - [Model retirement and deprecation](../concepts/model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Learn more about Azure OpenAI](../overview.md)

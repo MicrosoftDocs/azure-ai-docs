@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 08/29/2025
+ms.date: 09/15/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -17,14 +17,6 @@ recommendations: false
 Stored completions allow you to capture the conversation history from chat completions sessions to use as datasets for [evaluations](./evaluations.md) and [fine-tuning](./fine-tuning.md).
 
 ## Stored completions support
-
-### API support
-
-Support first added in `2024-10-01-preview`, use `2025-02-01-preview` or later for access to the latest features.
-
-### Deployment type
-
-Stored completions is supported for all Azure OpenAI Deployment types: standard, global, datazone, and provisioned.
 
 ### Model & region availability
 
@@ -38,17 +30,16 @@ To enable stored completions for your Azure OpenAI deployment set the `store` pa
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
 )
 
 completion = client.chat.completions.create(
@@ -318,17 +309,16 @@ Additional parameters:
 * `order`: Order of the results by index (ascending or descending).
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
 )
 
 response = client.chat.completions.list()
@@ -432,17 +422,16 @@ Get stored completion by ID.
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider
 )
 
 response = client.chat.completions.retrieve("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
@@ -542,17 +531,16 @@ Additional parameters:
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-02-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
 )
 
 response = client.chat.completions.messages.list("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u", limit=2)
@@ -634,7 +622,7 @@ Add metadata key:value pairs to an existing stored completion.
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
@@ -642,9 +630,8 @@ token_provider = get_bearer_token_provider(
 )
 
 client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-02-01-preview"
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider,
 )
 
 response = client.chat.completions.update(
@@ -757,17 +744,16 @@ Delete stored completion by completion ID.
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-02-01-preview"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=token_provider
 )
 
 response = client.chat.completions.delete("chatcmpl-A1bC2dE3fH4iJ5kL6mN7oP8qR9sT0u")
