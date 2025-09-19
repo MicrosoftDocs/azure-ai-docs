@@ -155,7 +155,7 @@ Your DNS configuration must be able to resolve each of the above FQDNs in order 
 
 * If you are using a custom DNS implementation, you will need to implement a conditional forwarder for each of the above configurations. 
 
-After this, [create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
+After this, delete and [re-create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
 
 > [!IMPORTANT] 
 > When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the 'services.ai.azure.com' and 'cognitive.microsoft.com' IP configurations to be created.
