@@ -11,6 +11,8 @@ reviewer: scottpolly
 ms.author: jburchel
 author: jonburchel
 ai-usage: ai-assisted
+ms.custom:
+  - hub-only
 ---
 
 # Create and manage connections in Azure AI Foundry hubs
