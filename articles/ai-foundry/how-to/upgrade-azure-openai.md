@@ -153,7 +153,7 @@ Your DNS configuration must be able to resolve each of the above FQDNs in order 
 
 * If you are using Azure DNS, you will need to create an Azure DNS Zones for each of the above domains.
 
-* If you are custom DNS implementation, you will need to implement a conditional forwarder for each of the above configurations. 
+* If you are using a custom DNS implementation, you will need to implement a conditional forwarder for each of the above configurations. 
 
 After this, create a private link endpoint on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
 
