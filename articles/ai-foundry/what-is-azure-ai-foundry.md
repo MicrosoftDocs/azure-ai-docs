@@ -5,7 +5,7 @@ description: Azure AI Foundry is a trusted platform that empowers developers to 
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: sgilley
-ms.date: 07/01/2025
+ms.date: 09/19/2025
 ms.service: azure-ai-foundry
 ms.topic: overview
 ai-usage: ai-assisted
@@ -82,9 +82,9 @@ This table summarizes features available in the two project types:
 | Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc. | ✅ | Available via connections |
 | Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. | ✅ | Available via connections |
 | Open source models such as HuggingFace  |  | ✅ |
+| Prompt flow |  | ✅ |
 | Evaluations | ✅ (preview) | ✅ |
 | Playground | ✅ | ✅ |
-| Prompt flow |  | ✅ |
 | Content understanding  | ✅ | ✅ |
 | Model router  | ✅ | ✅ |
 | Project files (directly upload files and start experimenting) | ✅ | |
