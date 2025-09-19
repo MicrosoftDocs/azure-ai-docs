@@ -43,7 +43,7 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 
 ## Doc samples
 
-Code samples from the Azure AI Search team demonstrate features and workflows. The following samples are referenced in tutorials, quickstarts, and how-to articles that explain the code in detail. You can find these samples in [Azure-Samples/azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) and [Azure-Samples/search-dotnet-getting-started](https://github.com/Azure-Samples/search-dotnet-getting-started/) on GitHub.
+Code samples from the Azure AI Search team demonstrate features and workflows. Many of the following samples are referenced in tutorials, quickstarts, and how-to articles that explain the code in detail. You can find these samples in [Azure-Samples/azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) and [Azure-Samples/search-dotnet-getting-started](https://github.com/Azure-Samples/search-dotnet-getting-started/) on GitHub.
 
 | Sample | Description |
 |--|--|
@@ -54,7 +54,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. T
 | [quickstart-vector-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) | Source code for the C# portion of [Quickstart: Vector search](search-get-started-vector.md). Index and query vector content. |
 | [create-mvc-app](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/create-mvc-app) | Source code for [Tutorial: Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md). Add basic search, pagination, and other server-side behaviors to an MVC web app, unlike the console applications used in most samples. |
 | [search-website](https://github.com/Azure-Samples/azure-search-static-web-app) | Source code for [Tutorial: Add search to web apps](tutorial-csharp-overview.md). Build an end-to-end search app that uses the push API for bulk upload and a rich client for hosting the app and handling search requests. |
-| [tutorial-ai-enrichment](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/tutorial-ai-enrichment) | Source code for [Tutorial: AI-generated searchable content from Azure blobs](tutorial-skillset.md). Configure an indexer and skillset for AI enrichment. |
+| [tutorial-ai-enrichment](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/tutorial-ai-enrichment) | Source code for [Tutorial: AI-generated searchable content from Azure blobs](tutorial-skillset.md). Create a skillset that iterates over Azure blobs to extract information and infer structure. |
 | [multiple-data-sources](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/multiple-data-sources) | Source code for [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md). Merge content from two data sources into one index. |
 | [optimize-data-indexing](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/optimize-data-indexing) | Source code for [Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md). Use optimization techniques for pushing data into an index. |
 | [DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) | Source code for [Use the .NET client library](search-howto-dotnet-sdk.md). Create and manage multiple search objects while learning about the APIs. |

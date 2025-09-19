@@ -43,7 +43,7 @@ Code samples from the Azure AI Search team demonstrate features and workflows. M
 | [Quickstart-Vector-Search](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Quickstart-Vector-Search) | Source code for the Python portion of [Quickstart: Vector search](search-get-started-vector.md). Index and query vector content. |
 | [Tutorial-RAG](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/Tutorial-RAG) | Source code for the Python portion of [Build a RAG solution using Azure AI Search](tutorial-rag-build-solution.md).|
 | [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) | Source code for the Python portion of [Build an agent-to-agent retrieval solution using Azure AI Search](search-agentic-retrieval-how-to-pipeline.md). Unlike [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md), this sample incorporates Azure AI Agent for request orchestration. |
-| [azure-function-search](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/azure-function-search) | Python example of an Azure function that sends queries to a search service. You can substitute this Python version of the `api` code used in the [Add search to web sites](tutorial-csharp-overview.md) C# sample. |
+| [azure-function-search](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/azure-function-search) | Python example of an Azure function that sends queries to a search service. You can substitute this Python version for the `api` code used in the [Add search to web sites](tutorial-csharp-overview.md) C# sample. |
 | [bulk-insert](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/bulk-insert) | Python example of how to [use the push APIs](search-how-to-load-search-index.md) to upload and index documents. |
 
 ## Accelerators
@@ -52,7 +52,7 @@ An accelerator is an end-to-end solution that includes code and documentation yo
 
 | Sample | Description |
 |--|--|
-| [rag-experiment-accelerator](https://github.com/microsoft/rag-experiment-accelerator) | Conduct experiments and evaluations using Azure AI Search and the RAG pattern. This accelerator has code for loading multiple data sources, using various models, and creating various search indexes and queries. |
+| [rag-experiment-accelerator](https://github.com/microsoft/rag-experiment-accelerator) | Conduct experiments and evaluations using Azure AI Search and the RAG pattern. This sample has code for loading multiple data sources, using various models, and creating various search indexes and queries. |
 
 ## Demos
 
@@ -61,8 +61,8 @@ A demo repo provides proof-of-concept source code for examples or scenarios show
 | Sample | Description |
 |--|--|
 | [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples/blob/main) | Comprehensive collection of samples for vector search scenarios, organized by scenario or technology. |
-| [azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main) | ChatGPT-like experience over enterprise data with Azure OpenAI Python code showing how to use Azure AI Search with the large language models in Azure OpenAI. For background, see this [blog post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w-azure-openai-and/3762087). |
-| [aisearch-openai-rag-audio](https://github.com/Azure-Samples/aisearch-openai-rag-audio) | "Voice to RAG." This sample demonstrates a simple architecture for voice-based generative AI applications that enables Azure AI Search RAG on top of the real-time audio API with full-duplex audio streaming from client devices, while securely handling access to both the model and retrieval system. Backend code is written in Python, while frontend code is written in JavaScript. For an introduction, watch this [video](https://www.youtube.com/watch?v=vXJka8xZ9Ko). |
+| [azure-search-openai-demo](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main) | ChatGPT-like experience over enterprise data with Azure OpenAI Python code showing how to use Azure AI Search with large language models in Azure OpenAI. For background, see this [blog post](https://techcommunity.microsoft.com/blog/azure-ai-services-blog/revolutionize-your-enterprise-data-with-chatgpt-next-gen-apps-w-azure-openai-and/3762087). |
+| [aisearch-openai-rag-audio](https://github.com/Azure-Samples/aisearch-openai-rag-audio) | "Voice to RAG." This sample demonstrates a simple architecture for voice-based generative AI applications that enables Azure AI Search RAG on top of the real-time audio API with full-duplex audio streaming from client devices. It also securely handles access to both the model and the retrieval system. Backend code is written in Python, while frontend code is written in JavaScript. For an introduction, watch this [video](https://www.youtube.com/watch?v=vXJka8xZ9Ko). |
 
 ## Other samples
 
@@ -70,8 +70,8 @@ The following samples are also published by the Azure AI Search team but aren't 
 
 | Sample | Description |
 |--|--|
-| [index-backup-and-restore.ipynb](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) | Uses the azure.search.documents library in the Azure SDK for Python to make a local copy of the retrievable fields of an index and push those fields to a new index. |
-| [resumable-index-backup-restore](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb) | Supports larger indexes that exceed 100,000 documents.|
+| [index-backup-and-restore.ipynb](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) | Make a local copy of retrievable fields in an index and push those fields to a new index. |
+| [resumable-index-backup-restore](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb) | Back up and restore larger indexes that exceed 100,000 documents.|
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?languages=python&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.
