@@ -14,13 +14,13 @@ ms.custom: references_regions
 
 # Try Azure AI Search for free
 
-If you're new to Azure, you can set up an Azure Free account to explore Azure AI Search and other services at no charge. Information retrieval over your own content is useful for many scenarios including AI generative search.
+If you're new to Azure, you can set up an Azure free account to explore Azure AI Search and other services at no charge. Information retrieval over your own content is useful for many scenarios including AI generative search.
 
-This article explains how to get the most value from your Azure Free Account so that you can complete your evaluation of Azure AI Search quickly and efficiently.
+This article explains how to get the most value from your Azure free account so that you can complete your evaluation of Azure AI Search quickly and efficiently.
 
-## Step one: Sign up for an Azure Free account
+## Step one: Sign up for an Azure free account
 
-To try Azure AI Search for free, [sign up for an Azure Free Account]((https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)). The Free Account is active for 30 days, and comes with free credits so that you can create billable services at no charge. 
+To try Azure AI Search for free, [sign up for an Azure free account]((https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge. 
 
 At this point in time, the credit is equivalent to USD 200. As always, the exact amount is subject to change, but you can verify the credit on the Azure sign-up page.
 
@@ -140,7 +140,7 @@ Review the [service limits](search-limits-quotas-capacity.md) for other constrai
 
 ## Next steps
 
-Sign up for an Azure Free Account:
+Sign up for an Azure free account:
 
 > [!div class="nextstepaction"]
 > [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
