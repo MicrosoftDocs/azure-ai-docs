@@ -157,7 +157,8 @@ Your DNS configuration must be able to resolve each of the above FQDNs in order 
 
 After this, create a private link endpoint on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
 
-> [!IMPORTANT] When upgrading to Azure AI Foundry, you must recreate your private link endpoint for the services.ai.azure.com and cognitive.microsoft IP configurations to be created.
+> [!IMPORTANT] 
+> When upgrading to Azure AI Foundry, you must recreate your private link endpoint for the services.ai.azure.com and cognitive.microsoft IP configurations to be created.
 
 ## Roll back to Azure OpenAI
 
