@@ -10,4 +10,4 @@ ms.date: 09/18/2025
 ms.custom: include
 ---
 
-An Azure account with an active subscription. If you don't have one, create a [free Azure account which includes a free trial subscription](https://azure.microsoft.com/free/). 
+An Azure account with an active subscription. If you don't have one, create a [free Azure account, which includes a free trial subscription](https://azure.microsoft.com/free/). 
