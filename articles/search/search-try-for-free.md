@@ -20,12 +20,12 @@ This article explains how to get the most value from your Azure free account so 
 
 ## Step one: Sign up for an Azure free account
 
-To try Azure AI Search for free, [sign up for an Azure free account]((https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge. 
+To try Azure AI Search for free, [Sign up for an Azure free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). The free account is active for 30 days, and comes with free credits so that you can create billable services at no charge. 
 
 At this point in time, the credit is equivalent to USD 200. As always, the exact amount is subject to change, but you can verify the credit on the Azure sign-up page.
 
 > [!div class="nextstepaction"]
-> [Try Azure for free]((https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+> [Try Azure for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 Once you sign up, you can immediately use either of these links to access Azure resources and experiences:
 
