@@ -9,6 +9,7 @@ ms.date: 09/18/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
+ms.custom: references_regions
 ---
 
 # View trace results for AI agents in Azure AI Foundry (preview)
