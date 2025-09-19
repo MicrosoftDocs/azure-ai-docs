@@ -151,11 +151,11 @@ AI Foundry resource is a superset of Azure OpenAI resource and its capabilities 
 
 Your DNS configuration must be able to resolve each of the above FQDNs in order to use the full set of Foundry capabilities. 
 
-* If you are using Azure DNS, you will need to create an Azure DNS Zones for each of the above domains.
+* If you are using Azure DNS, you will need to create an [Azure DNS Zone](/azure/dns/dns-zones-records) for each of the above domains.
 
 * If you are using a custom DNS implementation, you will need to implement a conditional forwarder for each of the above configurations. 
 
-After this, create a private link endpoint on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
+After this, [create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
 
 > [!IMPORTANT] 
 > When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the 'services.ai.azure.com' and 'cognitive.microsoft.com' IP configurations to be created.
