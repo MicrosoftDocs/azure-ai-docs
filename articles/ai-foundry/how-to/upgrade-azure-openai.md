@@ -45,6 +45,7 @@ Backend limitations:
 
 * Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
+* Private network setups require [re-configuration of private link endpoints and additional DNS configurations](#private-network-configuration) before all Foundry capabilities can be used.
 
 Foundry portal limitations:
 
@@ -139,6 +140,24 @@ After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to 
 There are no pricing differences for existing Azure OpenAI functionality when upgrading to Azure AI Foundry—your current usage patterns and costs remain unchanged. However, Azure AI Foundry unlocks access to additional features such as expanded model catalogs, agent services, and evaluation tools, which may have their own pricing structures depending on the models and services used.
 
 For estimating costs of new features available in Azure AI Foundry, use the [Azure Pricing Calculator](https://azure.microsoft.com/pricing/calculator/).
+
+## Private network configuration
+
+AI Foundry resource is a superset of Azure OpenAI resource and its capabilities are exposed over three FQDNs:
+
+1. {custom-domain}.openai.azure.com
+1. {custom-domain}.services.ai.azure.com
+1. {custom-domain}.cognitive.microsoft.com
+
+Your DNS configuration must be able to resolve each of the above FQDNs in order to use the full set of Foundry capabilities. 
+
+* If you are using Azure DNS, you will need to create an Azure DNS Zones for each of the above domains.
+
+* If you are custom DNS implementation, you will need to implement a conditional forwarder for each of the above configurations. 
+
+After this, create a private link endpoint on your resource. Your private link endpoint will create an IP address in your Azure Virtual Network to map to each endpoint.
+
+> [!IMPORTANT] When upgrading to Azure AI Foundry, you must recreate your private link endpoint for the services.ai.azure.com and cognitive.microsoft IP configurations to be created.
 
 ## Roll back to Azure OpenAI
 
