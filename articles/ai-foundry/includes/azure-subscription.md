@@ -10,4 +10,4 @@ ms.date: 09/18/2025
 ms.custom: include
 ---
 
-An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/free/). Your Azure account lets you access the Azure AI Foundry portal.
+An Azure account with an active subscription. If you don't have one, create a [free Azure account which includes a free trial subscription](https://azure.microsoft.com/free/). 
