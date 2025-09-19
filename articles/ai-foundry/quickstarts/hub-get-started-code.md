@@ -10,6 +10,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
   - build-2025
+  - hub-only
 ai-usage: ai-assisted
 ---
 
@@ -44,6 +45,7 @@ pip install azure-ai-inference azure-identity azure-ai-projects==1.0.0b10
 ## Build your chat app
 
 Create chat.py with sample code:
+
 ```python
 from azure.ai.projects import AIProjectClient
 from azure.identity import DefaultAzureCredential
