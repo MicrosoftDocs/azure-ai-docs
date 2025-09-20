@@ -345,19 +345,19 @@ curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/assistants?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
-  -d "{
+  -d '{
     "instructions": "You are a customer support chatbot. Use the tools provided and your knowledge base to best respond to customer queries.",
     "tools": [
-          {
-              "type": "mcp",
-              "server_label": "<unique name for your MCP server>",
-              "server_url": "<your MCP server URL>",
-              "allowed_tools": ["<tool_name>"], # optional
-          }
-      ],
-  "name": "my-assistant",
-  "model": "gpt-4o",
-}"
+      {
+        "type": "mcp",
+        "server_label": "<unique name for your MCP server>",
+        "server_url": "<your MCP server URL>",
+        "allowed_tools": ["<tool_name>"] # optional
+      }
+    ],
+    "name": "my-assistant",
+    "model": "gpt-4o"
+  }'
 ```
 
 ## Create a thread
@@ -402,17 +402,16 @@ curl --request POST \
   -d '{
       "assistant_id": "<agent_id>",
       "tool_resources": {
-          "mcp": [
-            {
-                "server_label": "<the same unique name you provided during agent creation>",
-    "require_approval": "always" #always by default
-                "headers": {
-                    "Authorization": "Bearer <token>",
-                }
-
+        "mcp": [
+          {
+            "server_label": "<the same unique name you provided during agent creation>",
+            "require_approval": "always" #always by default
+            "headers": {
+              "Authorization": "Bearer <token>"
             }
-          ]
-      },
+          }
+        ]
+      }
     }'
 ```
 
@@ -472,15 +471,15 @@ curl --request POST \
   -H "Authorization: Bearer $AGENT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
-  "tool_approvals": [
-        {
-            "tool_call_id": "call_abc123",
-            "approve": true,
-            "headers": {
-            }
+    "tool_approvals": [
+      {
+        "tool_call_id": "call_abc123",
+        "approve": true,
+        "headers": {
         }
+      }
     ]
-}
+  }'
 ```
 
 ## Retrieve the agent response
