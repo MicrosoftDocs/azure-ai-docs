@@ -41,7 +41,7 @@ In this tutorial, you learn how to use the packages `langchain-azure-ai` to buil
 To run this tutorial, you need:
 
 * [!INCLUDE [subscription](../../includes/subscription.md)]
-* [!INCLUDE [portal-link](../../includes/portal-link.md)]
+* [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
 
 * A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2411` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
