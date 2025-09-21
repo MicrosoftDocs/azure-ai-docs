@@ -405,7 +405,7 @@ curl --request POST \
         "mcp": [
           {
             "server_label": "<the same unique name you provided during agent creation>",
-            "require_approval": "always" #always by default
+            "require_approval": "always", #always by default
             "headers": {
               "Authorization": "Bearer <token>"
             }
