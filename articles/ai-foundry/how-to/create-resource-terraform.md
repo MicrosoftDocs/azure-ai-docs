@@ -33,7 +33,7 @@ The examples used in article use the [AzAPI](/azure/developer/terraform/overview
 
 ## Prerequisites
 
-- Create an Azure account with an active subscription. You can [create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - [Install and configure Terraform](/azure/developer/terraform/quickstart-configure).
 

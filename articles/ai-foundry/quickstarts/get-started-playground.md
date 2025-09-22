@@ -29,7 +29,7 @@ In this quickstart, you learn how to:
 For this quickstart, you can use either a [!INCLUDE [hub](../includes/hub-project-name.md)] or a [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information about the differences between these two project types, see [Project types](../what-is-azure-ai-foundry.md#project-types).
 
 
-If you don't have an Azure subscription, <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">create one for free</a>.
+[!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 [!INCLUDE [feature-preview](../includes/first-run-experience.md)]
 

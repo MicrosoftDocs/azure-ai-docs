@@ -32,8 +32,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Prerequisites
 
-- [!INCLUDE [subscription](subscription.md)]
-
+- [!INCLUDE [azure-subscription](azure-subscription.md)]
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
 
 [!INCLUDE [feature-preview](feature-preview.md)]
