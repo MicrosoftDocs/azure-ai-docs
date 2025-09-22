@@ -5,7 +5,7 @@ description: This article describes how to create an Azure AI Foundry project so
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 09/12/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
