@@ -32,6 +32,8 @@ items:
     href: ../../how-to/disable-local-auth.md
 - name: Azure policies
   items:
+  - name: Manage model deployment policy
+    href: ../../how-to/model-deployment-policy.md
   - name: Audit and manage hubs
     href: ../../how-to/azure-policy.md
     displayName: Azure Policy
