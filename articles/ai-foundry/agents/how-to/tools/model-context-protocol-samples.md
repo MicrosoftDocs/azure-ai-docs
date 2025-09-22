@@ -157,6 +157,8 @@ agentClient.Administration.DeleteAgent(agentId: agent.Id);
 
 The following code sample begins by setting up the necessary imports, getting the relevant MCP server configuration, and initializing the AI Project client. It then creates an agent, adds a message to a thread, and runs the agent.
 
+> [!NOTE]
+> To run the following code, `azure.ai.projects==1.1.0b4` and `azure.ai.agents==1.2.0b4` are required.
 
 ```python
 # Import necessary libraries
