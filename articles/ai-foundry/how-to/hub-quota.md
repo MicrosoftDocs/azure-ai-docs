@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 09/22/2025
 ms.reviewer: haakar
 ms.author: mopeakande
 author: msakande 
@@ -110,5 +110,6 @@ Use quotas to manage compute and model quota across hubs in the same subscriptio
 
 ## Related content
 
+- [Manage and increase quotas for Azure AI Foundry projects](./quota.md)
 - [Plan to manage costs](./costs-plan-manage.md)
 - [How to create compute](./create-manage-compute.md)
