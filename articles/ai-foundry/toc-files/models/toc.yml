@@ -1,8 +1,10 @@
 items:
 - name: Explore Foundry Models
   href: ../../concepts/foundry-models-overview.md
-- name: Models and capabilities 
-  href: ../../foundry-models/concepts/models.md
+- name: Foundry Models sold directly by Azure 
+  href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+- name: Foundry Models from partners and community
+  href: ../../foundry-models/concepts/models-from-partners.md
 - name: Model versions
   href: ../../foundry-models/concepts/model-versions.md
 - name: Model lifecycle and retirement
@@ -19,6 +21,8 @@ items:
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
+  - name: GPT-5 vs GPT-4.1
+    href: ../../foundry-models/how-to/model-choice-guide.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Azure AI Foundry portal

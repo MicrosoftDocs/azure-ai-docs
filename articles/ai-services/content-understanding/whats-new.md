@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 05/19/2025
+ms.date: 09/16/2025
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
 ms.custom:
@@ -23,14 +23,11 @@ The Azure AI Content Understanding [**`2025-05-01-preview`**](/rest/api/contentu
 
 ### Processing modes
 
-With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) release, we introduce two modes: `standard` and `pro`.
-The default mode for all analyzers is `standard`.
-Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation.
-These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
+With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) release, we introduce two modes: `standard` and `pro`. The default mode for all analyzers is `standard`.
 
-The `pro` mode is currently limited to documents as inputs, with support other types of content types coming soon!
-Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema.
-Learn more about the [pro mode](concepts/standard-pro-modes.md).
+Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation. These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
+
+The `pro` mode is currently limited to documents as inputs, with support other types of content types coming soon! Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode](concepts/standard-pro-modes.md).
 
 ### AI Foundry experience
 

@@ -14,13 +14,11 @@ ms.update-cycle: 365-days
 
 # Custom Web API vectorizer
 
-The **custom web API** vectorizer allows you to configure your search queries to call out to a Web API endpoint to generate embeddings at query time. The structure of the JSON payload required to be implemented in the provided endpoint is described further down in this document. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed. 
+The **custom web API** vectorizer allows you to configure your search queries to call out to a Web API endpoint to generate embeddings at query time. The structure of the JSON payload required to be implemented in the provided endpoint is described further down in this document. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
-Vectorizers are used at query time, but specified in index definitions, and referenced on vector fields through a vector profile. The custom web API vectorizer is called `WebApiVectorizer` in the API. 
+Although vectorizers are used at query time, you specify them in index definitions and reference them on vector fields through a vector profile. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
 
-+ Use the [**2024-07-01**](/rest/api/searchservice/indexes/create) REST API or an Azure SDK package that's been updated to provide the feature.
-
-+ [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)provides usage instructions.
+The custom web API vectorizer is called `WebApiVectorizer` in the REST API. Use the latest stable version of [Indexes - Create (REST API)](/rest/api/searchservice/indexes/create) or an Azure SDK package that provides the feature.
 
 ## Vectorizer parameters
 

@@ -1,7 +1,7 @@
 ---
-title: 'Quickstart - Get started using chat completions with Azure OpenAI in Azure AI Foundry Models'
+title: 'Get Answers with Azure OpenAI Chat Completions'
 titleSuffix: Azure OpenAI
-description: Walkthrough on how to get started using chat completions with Azure OpenAI.
+description: Get answers using Azure OpenAI chat completions in Azure AI Foundry Models. Learn how to ask questions and get AI responses with GPT models and API integration.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-js, devx-track-go
@@ -11,11 +11,19 @@ ms.author: mbullwin
 ms.date: 07/02/2025
 zone_pivot_groups: openai-quickstart-new
 recommendations: false
+ai-usage: ai-assisted
 ---
 
-# Quickstart: Get started using chat completions with Azure OpenAI in Azure AI Foundry Models
+# Quickstart: Get answers using Azure OpenAI chat completions
 
-Use this article to get started using Azure OpenAI.
+Learn how to get answers using Azure OpenAI chat completions. Ask questions and receive AI-generated responses from GPT models.
+
+In this quickstart, you learn how to:
+
+- Create a chat completion request.
+- Send messages with different SDKs or REST.
+- Inspect the model response.
+- (Optional) Optimize prompts and measure latency.
 
 ::: zone pivot="programming-language-studio"
 

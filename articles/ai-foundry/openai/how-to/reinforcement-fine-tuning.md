@@ -188,6 +188,22 @@ Models which we're supporting as grader models are:
 
 To use a score model grader, the input is a list of chat messages, each containing a role, and content. The output of the grader will be truncated to the given range, and default to 0 for all non-numeric outputs.
 
+### Custom Code Grader
+
+Custom code  grader allows you to execute arbitrary python code to grade the model output. The grader expects a grade function to be present that takes in two arguments and outputs a float value. Any other result (exception, invalid float value, etc.) will be marked as invalid and return a 0 grade.
+
+```json
+{
+    "type": "python",
+    "source": "def grade(sample, item):\n    return 1.0"
+}
+```
+***Technical Constraints:***
+	Your uploaded code must be less than 256kB. It will not have any network access.
+	The grading execution itself cannot exceed 2 minutes.
+	At runtime you will be given a limit of 2Gb of memory and 1Gb of disk space to use.
+	There's a limit of 1 CPU cores—any usage above this amount will result in throttling.
+
 ### Multi Grader
 
 A multigrader object combines the output of multiple graders to produce a single score.	
@@ -272,6 +288,36 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 }
 ```
 
+**Custom code grader** - This is python code grader where you can use any python code to grader the training output.
+
+The following third-party packages are available at execution time for the image tag 2025-05-08
+
+numpy==2.2.4
+scipy==1.15.2
+sympy==1.13.3
+pandas==2.2.3
+rapidfuzz==3.10.1
+scikit-learn==1.6.1
+rouge-score==0.1.2
+deepdiff==8.4.2
+jsonschema==4.23.0
+pydantic==2.10.6
+pyyaml==6.0.2
+nltk==3.9.1
+sqlparse==0.5.3
+rdkit==2024.9.6
+scikit-bio==0.6.3
+ast-grep-py==0.36.2
+
+```json
+{
+
+    "type": "python",
+    "source": "import json,re,ast\n\ndef safe_eval(e):\n    return _eval(ast.parse(e,mode='eval').body)\n\ndef _eval(n):\n    if isinstance(n,ast.Constant):return n.value\n    if isinstance(n,ast.BinOp) and type(n.op) in {ast.Add:lambda a,b:a+b,ast.Sub:lambda a,b:a-b,ast.Mult:lambda a,b:a*b,ast.Div:lambda a,b:a/b,ast.FloorDiv:lambda a,b:a//b,ast.Mod:lambda a,b:a%b,ast.Pow:lambda a,b:a**b}:return {ast.Add:lambda a,b:a+b,ast.Sub:lambda a,b:a-b,ast.Mult:lambda a,b:a*b,ast.Div:lambda a,b:a/b,ast.FloorDiv:lambda a,b:a//b,ast.Mod:lambda a,b:a%b,ast.Pow:lambda a,b:a**b}[type(n.op)](_eval(n.left),_eval(n.right))\n    if isinstance(n,ast.UnaryOp) and type(n.op) in {ast.UAdd:lambda a:+a,ast.USub:lambda a:-a}:return {ast.UAdd:lambda a:+a,ast.USub:lambda a:-a}[type(n.op)](_eval(n.operand))\n    raise ValueError('bad expr')\n\ndef grade(sample,item)->float:\n    try:\n        expr=sample['output_json']['expression'];expr_val=safe_eval(expr)\n        if sorted(map(int,re.findall(r'-?\\d+',expr)))!=sorted(map(int,json.loads(item['nums']))):return 0\n        sr,it=int(float(sample['output_json']['result'])),int(float(item['target']))\n        if expr_val!=sr:return 1\n        if sr==it:return 5\n        if abs(sr-it)<=1:return 4\n        if abs(sr-it)<=5:return 3\n        return 2\n    except: return 0"
+}
+```
+If you don't want to manually put your grading function in a string, you can also load it from a Python file using importlib and inspect.
+
 **Multi Grader** - A multigrader object combines the output of multiple graders to produce a single score.
 
 ```json
@@ -293,9 +339,6 @@ Models which we're supporting as grader models are `gpt-4o-2024-08-06`and `o3-mi
 "calculate_output":"0.5 * ext_text_similarity + 0.5 * clause_string_check"
 }
 ```
-
-> [!Note]
-> : Currently we don’t support `multi` with model grader as a sub grader. `Multi` grader is supported only with `text_Similarity` and `string_check`.
 
 Example of response format which is an optional field:
 

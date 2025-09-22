@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 07/11/2025
+ms.date: 09/09/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-bing-grounding-code
@@ -173,8 +173,8 @@ using Azure.AI.Agents.Persistent;
 using Azure.Identity;
 
 var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
-var projectEndpoint = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
-var projectEndpoint = System.Environment.GetEnvironmentVariable("BingConnectionId");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
+var bingConnectionId = System.Environment.GetEnvironmentVariable("BingConnectionId");
 
 // Create the Agent Client
 PersistentAgentsClient agentClient = new(projectEndpoint, new DefaultAzureCredential());

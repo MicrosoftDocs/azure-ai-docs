@@ -17,28 +17,16 @@ ms.date: 11/15/2023
 - An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - [Python 3.8 or later version](https://www.python.org?azure-portal=true).
 - The following Python libraries: os.
-- An Azure OpenAI in Azure AI Foundry Models resource with either the `gpt-35-turbo` or the `gpt-4` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
-
+- An Azure AI Foundry resource with the `gpt-4.1` models deployed. For more information about model deployment, see the [resource deployment guide](../how-to/create-resource.md).
 
 ## Set up
 
 Install the OpenAI Python client library with:
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 ```console
 pip install openai
 ```
 
-# [OpenAI Python 0.28.1](#tab/python)
-
-[!INCLUDE [Deprecation](../includes/deprecation.md)]
-
-```console
-pip install openai==0.28.1
-```
-
----
 
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-python/releases) to track the latest updates to the library.
@@ -54,22 +42,19 @@ pip install openai==0.28.1
 
 2. Replace the contents of quickstart.py with the following code.
 
-# [OpenAI Python 1.x](#tab/python-new)
-
 You need to set the `model` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"
+client = OpenAI(
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 response = client.chat.completions.create(
-    model="gpt-35-turbo", # model = "deployment_name".
+    model="gpt-4.1", # model = "deployment_name".
     messages=[
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
@@ -80,34 +65,6 @@ response = client.chat.completions.create(
 
 print(response.choices[0].message.content)
 ```
-
-# [OpenAI Python 0.28.1](#tab/python)
-
-You need to set the `engine` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
-
-```python
-import os
-import openai
-openai.api_type = "azure"
-openai.api_base = os.getenv("AZURE_OPENAI_ENDPOINT") 
-openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
-openai.api_version = "2024-02-01"
-
-response = openai.ChatCompletion.create(
-    engine="gpt-35-turbo", # engine = "deployment_name".
-    messages=[
-        {"role": "system", "content": "You are a helpful assistant."},
-        {"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},
-        {"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},
-        {"role": "user", "content": "Do other Azure services support this too?"}
-    ]
-)
-
-print(response)
-print(response['choices'][0]['message']['content'])
-```
-
----
 
 > [!IMPORTANT]
 > For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information about credential security, see this [security](../../../ai-services/security-features.md) article.
@@ -134,7 +91,7 @@ print(response['choices'][0]['message']['content'])
   ],
   "created": 1679001781,
   "id": "chatcmpl-6upLpNYYOx2AhoOYxl9UgJvF4aPpR",
-  "model": "gpt-3.5-turbo-0301",
+  "model": "gpt-4.1",
   "object": "chat.completion",
   "usage": {
     "completion_tokens": 39,
@@ -147,7 +104,7 @@ Yes, most of the Azure services support customer managed keys. However, not all 
 
 ### Understanding the message structure
 
-The GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation.  The `messages` variable passes an array of dictionaries with different roles in the conversation delineated by system, user, and assistant. The system message can be used to prime the model by including context or instructions on how the model should respond.
+The chat models are optimized to work with inputs formatted as a conversation.  The `messages` variable passes an array of dictionaries with different roles in the conversation delineated by system, user, and assistant. The system message can be used to prime the model by including context or instructions on how the model should respond.
 
 The [GPT-35-Turbo & GPT-4 how-to guide](../how-to/chatgpt.md) provides an in-depth introduction into the options for communicating with these new models.
 
@@ -160,6 +117,6 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Next steps
 
-* Learn more about how to work with GPT-35-Turbo and the GPT-4 models with [our how-to guide](../how-to/chatgpt.md).
+* Learn more about how to work with chat completion models with [our how-to guide](../how-to/chatgpt.md).
 * [Get started with the chat using your own data sample for Python](/azure/developer/python/get-started-app-chat-template?toc=/azure/ai-foundry/openai/toc.json&bc=/azure/ai-foundry/openai/breadcrumb/toc.json&tabs=github-codespaces)
 * For more examples, check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure-Samples/openai)

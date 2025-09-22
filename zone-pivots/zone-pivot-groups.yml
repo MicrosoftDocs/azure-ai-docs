@@ -831,6 +831,15 @@ groups:
       title: Python
     - id: programming-language-rest
       title: REST
+- id: models-sold-directly-by-azure
+# Owner: mopeakande
+  title: Azure direct models
+  prompt: Choose a collection from Foundry Models sold directly by Azure
+  pivots:
+    - id: azure-openai
+      title: Azure OpenAI models
+    - id: azure-direct-others
+      title: Other model collections
 - id: azure-ai-model-fine-tune
 # Owner: ssalgadodev
   title: Programming languages
@@ -1188,6 +1197,14 @@ groups:
     title: Python
   - id: programming-language-typescript
     title: TypeScript
+- id: openai-video-generation
+  title: Programming languages
+  prompt: Choose your preferred usage method
+  pivots:
+  - id: ai-foundry-portal
+    title: Foundry portal
+  - id: rest-api
+    title: REST API
 - id: agents-quickstart
   title: Usage methods
   prompt: Choose a usage method
@@ -1544,12 +1561,14 @@ groups:
   title: Programming languages
   prompt: Choose a usage method
   pivots:
+  - id: dotnet
+    title: C#
+  - id: java
+    title: Java
   - id: javascript
     title: JavaScript
   - id: python
     title: Python
-  - id: dotnet
-    title: C#
   - id: rest
     title: REST
   - id: typescript
@@ -1618,3 +1637,12 @@ groups:
     title: Azure AI Foundry portal
   - id: bicep
     title: Bicep
+# Owner: haileytapia
+- id: azure-portal-wizards
+  title: Azure portal wizards
+  prompt: Choose a wizard
+  pivots:
+  - id: import-data-new
+    title: Import data (new)
+  - id: import-data
+    title: Import data

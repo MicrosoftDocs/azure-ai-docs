@@ -4,7 +4,7 @@ description: Include file
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 07/03/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ms.custom:
@@ -12,9 +12,6 @@ ms.custom:
   - build-aifnd
   - build-2025
 ---
-
-> [!TIP]
-> The rest of this article shows how to create a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**.  Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to create a [!INCLUDE [hub](../includes/hub-project-name.md)] instead.
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
@@ -36,13 +33,13 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](azure-subscription.md)]
 - You must be **Owner** of the subscription to have appropriate access control necessary to create the Azure AI Foundry resource that is the parent of the project.  If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use.  Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
 
 
 # [Python SDK](#tab/python)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](azure-subscription.md)]
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 - [Set up your development environment](../how-to/develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
@@ -72,7 +69,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Azure CLI](#tab/azurecli)
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](azure-subscription.md)]
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
 - [Azure CLI](/cli/azure/install-azure-cli) 
 
@@ -183,7 +180,7 @@ az cognitiveservices account connection show --name {my_project_name} --resource
 
 ## Delete projects
 
-1. In [Azure AI Foundry portal](https://ai.azure.com), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
+1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
 1. Select **Management center**.
 1. Select **Overview** under the **Resource** section.
 1. Select any projects you no longer want to keep.
@@ -196,5 +193,5 @@ To delete the AI Foundry resource along with all its projects:
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md?pivots=fdp-project)
+- [Quickstart: Get started with Azure AI Foundry](../quickstarts/get-started-code.md)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)

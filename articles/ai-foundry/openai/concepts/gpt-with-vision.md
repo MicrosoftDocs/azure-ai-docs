@@ -6,7 +6,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-openai
 ms.topic: conceptual 
-ms.date: 05/31/2025
+ms.date: 09/16/2025
 manager: nitinme
 ---
 
@@ -90,7 +90,7 @@ Additionally, there's a one-time indexing cost of $0.15 to generate the Video Re
 - **Language support**: The service primarily supports English for grounding with transcripts. Transcripts don't provide accurate information on lyrics in songs.
 -->
 
-## Next steps
+## Related content
 
 - Get started using vision-enabled models by following the [quickstart](/azure/ai-foundry/openai/gpt-v-quickstart).
 - For a more in-depth look at the APIs, follow the [how-to guide](../how-to/gpt-with-vision.md).

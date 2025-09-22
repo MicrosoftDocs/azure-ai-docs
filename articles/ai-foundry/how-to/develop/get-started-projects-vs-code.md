@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 09/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -138,22 +138,22 @@ You can create a new Azure AI Foundry project from the Azure AI Foundry Extensio
 
 1. Select the **plus** icon next to **Resources** in the **Resources** section of the Azure AI Foundry Extension view.
 
+    You can either create a new resource group or select an existing one.
+1. To create a new resource group:
+    1. In the top center, select **Create new resource group** and press Enter.
+
+        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the Create new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::
+
+    1. In the top center, enter the Azure Resource Group name to use in the **Enter new resource group** textbox and press Enter.
+
+    1. In the top center, select the location you want to use from the list of available locations and press Enter.
+
+1. To use an existing resource group:
+    - In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
+
 1. In the top center, enter the Azure AI Foundry Project name to use in the **Enter project name** textbox and press Enter.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/enter-project-name.png" alt-text="Screenshot of the Enter project name textbox." lightbox="../../media/how-to/get-started-projects-vs-code/enter-project-name.png":::
-
-You can either create a new resource group or select an existing one.
-- To create a new resource group:
-    1. In the top center, select **Create new resource group** and press Enter.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/select-resource-group.png" alt-text="Screenshot of the Choose resource group dropdown with the Create new resource group item highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/select-resource-group.png":::
-    
-    2. In the top center, enter the Azure Resource Group name to use in the **Enter new resource group** textbox and press Enter.
-
-    3. In the top center, select the location you want to use from the list of available locations and press Enter.
-
-- To use an existing resource group:
-    1. In the top center, select the resource group you want to use from the list of available resource groups and press Enter.
 
 After project deployment, a popup appears with the message **Project deployed successfully**.
 

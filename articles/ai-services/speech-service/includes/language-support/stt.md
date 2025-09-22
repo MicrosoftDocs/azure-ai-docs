@@ -34,7 +34,7 @@ ms.author: pafarley
 | `bn-IN` | Bengali (India) | No | Plain text |
 | `bs-BA` | Bosnian (Bosnia and Herzegovina) | No | Plain text |
 | `ca-ES` | Catalan | No | Plain text<br/><br/>Pronunciation |
-| `cs-CZ` | Czech (Czechia) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
+| `cs-CZ` | Czech (Czechia) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |
 | `cy-GB` | Welsh (United Kingdom) | No | Plain text |
 | `da-DK` | Danish (Denmark) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Pronunciation |
 | `de-AT` | German (Austria) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Pronunciation |

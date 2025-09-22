@@ -5,7 +5,7 @@ description: This article introduces concepts about Azure AI Foundry hubs for yo
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 08/11/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -36,7 +36,7 @@ Hubs group one or more projects together with common settings including data acc
 
 ## Create a hub-based project
 
-To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project). Hub-based projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
+To start developing, [create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md). Hub-based projects can be accessed in [AI Foundry Portal](https://ai.azure.com/?cid=learnDocs) to build with generative AI tools, and [ML Studio](https://ml.azure.com) to build with tools designed for custom machine learning model training.
 
 ## Project concepts
 
@@ -88,7 +88,7 @@ If not provided by you, the following dependent resources are automatically crea
 
 ## Next steps
 
-- [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/create-projects.md?pivots=hub-project)
+- [Create a [!INCLUDE [hub-project-name](../includes/hub-project-name.md)]](../how-to/hub-create-projects.md)
 - [Quickstart: Analyze images and video in the chat playground](/azure/ai-foundry/openai/gpt-v-quickstart)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
-- [Learn more about projects](../how-to/create-projects.md?pivots=hub-project)
+- [Learn more about hub projects](../how-to/hub-create-projects.md)

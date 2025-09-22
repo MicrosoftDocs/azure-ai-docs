@@ -163,11 +163,11 @@ When you're ready to create an indexer on a remote search service, you need a se
 
 ### [**Azure portal**](#tab/portal)
 
-1. Sign in to the [Azure portal](https://portal.azure.com), then find your search service.
+1. Sign in to the [Azure portal](https://portal.azure.com) and select your search service.
 
-1. On the search service **Overview** page, choose from two options:
+1. Choose from the following options:
 
-   + [**Import data** wizard](search-import-data-portal.md): The wizard is unique in that it creates all of the required elements. Other approaches require a predefined data source and index.
+   + [**Import wizards**](search-import-data-portal.md): The wizards are unique in that they create all of the required elements. Other approaches require a predefined data source and index.
 
        :::image type="content" source="media/search-how-to-create-indexers/portal-indexer-client.png" alt-text="Screenshot that shows the Import data wizard." border="true":::
 
