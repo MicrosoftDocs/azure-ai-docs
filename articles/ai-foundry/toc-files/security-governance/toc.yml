@@ -41,7 +41,7 @@ items:
     - name: Custom policies for model deployment
       href: ../../foundry-models/how-to/configure-deployment-policies.md
       displayName: Azure Policy
-  - name: Hub network security
+  - name: Network security
     items:
     - name: Managed network for hubs
       href: ../../how-to/configure-managed-network.md
