@@ -8,6 +8,7 @@ ms.reviewer: aashishb
 ms.date: 09/22/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
+ai-usage: ai-assisted
 ---
 
 # Control AI model deployment with built-in policy in Azure AI Foundry portal
