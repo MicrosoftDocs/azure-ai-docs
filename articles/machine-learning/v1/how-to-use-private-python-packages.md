@@ -4,7 +4,7 @@ titleSuffix: Azure Machine Learning
 description: Learn how to securely work with private Python packages from your Azure Machine Learning environments.
 services: machine-learning
 author: rastala
-ms.author: roastala
+ms.author: jturuk
 ms.reviewer: laobri
 ms.service: azure-machine-learning
 ms.subservice: core
