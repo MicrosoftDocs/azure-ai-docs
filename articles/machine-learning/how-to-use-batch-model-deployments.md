@@ -23,16 +23,16 @@ ms.custom:
 
 [!INCLUDE [cli v2](includes/machine-learning-dev-v2.md)]
 
-Batch endpoints provide a convenient way to deploy models that run inference over large volumes of data. These endpoints simplify the process of hosting your models for batch scoring, so that your focus is on machine learning, rather than the infrastructure.
+Batch endpoints let you deploy models that run inference over large volumes of data. These endpoints simplify hosting models for batch scoring, so you can focus on machine learning instead of infrastructure.
 
-Use batch endpoints for model deployment when:
+Use batch endpoints to deploy models when:
 
-- You have expensive models that require a longer time to run inference.
-- You need to perform inference over large amounts of data that is distributed in multiple files.
-- You don't have low latency requirements.
-- You can take advantage of parallelization.
+- You use expensive models that take longer to run inference.
+- You perform inference over large amounts of data distributed in multiple files.
+- You don't need low latency.
+- You take advantage of parallelization.
 
-In this article, you use a batch endpoint to deploy a machine learning model that solves the classic MNIST (Modified National Institute of Standards and Technology) digit recognition problem. Your deployed model then performs batch inferencing over large amounts of data—in this case, image files. You begin by creating a batch deployment of a model that was created using Torch. This deployment becomes the default one in the endpoint. Later, you [create a second deployment](#add-deployments-to-an-endpoint) of a mode that was created with TensorFlow (Keras), test the second deployment, and then set it as the endpoint's default deployment.
+This article shows how to use a batch endpoint to deploy a machine learning model that solves the classic MNIST (Modified National Institute of Standards and Technology) digit recognition problem. The deployed model performs batch inferencing over large amounts of data, such as image files. The process begins with creating a batch deployment of a model built using Torch. This deployment becomes the default in the endpoint. Later, [create a second deployment](#add-deployments-to-an-endpoint) of a model built with TensorFlow (Keras), test the second deployment, and set it as the endpoint's default deployment.
 
 
 ## Prerequisites
@@ -51,7 +51,7 @@ In this article, you use a batch endpoint to deploy a machine learning model tha
 
 First, connect to the Azure Machine Learning workspace where you work.
 
-If you haven't already set the defaults for the Azure CLI, save your default settings. To avoid passing in the values for your subscription, workspace, resource group, and location multiple times, run this code:
+If you haven't already set the defaults for the Azure CLI, save your default settings. To avoid entering the values for your subscription, workspace, resource group, and location multiple times, run this code:
 
 ```azurecli
 az account set --subscription <subscription>
@@ -60,7 +60,7 @@ az configure --defaults workspace=<workspace> group=<resource-group> location=<l
 
 # [Python](#tab/python)
 
-The workspace is the top-level resource for Azure Machine Learning, providing a centralized place to work with all the artifacts you create when you use Azure Machine Learning. In this section, you connect to the workspace in which you perform deployment tasks.
+The workspace is the top-level resource for Azure Machine Learning, providing a centralized location to manage all the artifacts you create when using Azure Machine Learning. In this section, you connect to the workspace in which you perform deployment tasks.
 
 1. Import the required libraries:
 
@@ -95,7 +95,7 @@ Open the [Azure Machine Learning studio portal](https://ml.azure.com) and sign i
 
 Batch endpoints run on compute clusters and support both [Azure Machine Learning compute clusters (AmlCompute)](./how-to-create-attach-compute-cluster.md) and [Kubernetes clusters](./how-to-attach-kubernetes-anywhere.md). Clusters are a shared resource, therefore, one cluster can host one or many batch deployments (along with other workloads, if desired).
 
-Create a compute named `batch-cluster`, as shown in the following code. You can adjust as needed and reference your compute using `azureml:<your-compute-name>`.
+Create a compute named `batch-cluster`, as shown in the following code. Adjust as needed and reference your compute using `azureml:<your-compute-name>`.
 
 # [Azure CLI](#tab/cli)
 
@@ -112,20 +112,20 @@ Follow the steps in the tutorial [Create an Azure Machine Learning compute clust
 ---
 
 > [!NOTE]
-> You're not charged for the compute at this point, as the cluster remains at 0 nodes until a batch endpoint is invoked and a batch scoring job is submitted. For more information about compute costs, see [Manage and optimize cost for AmlCompute](./how-to-manage-optimize-cost.md#use-azure-machine-learning-compute-cluster-amlcompute).
+> You're not charged for the compute at this point because the cluster remains at 0 nodes until a batch endpoint is invoked and a batch scoring job is submitted. For more information about compute costs, see [Manage and optimize cost for AmlCompute](./how-to-manage-optimize-cost.md#use-azure-machine-learning-compute-cluster-amlcompute).
 
 ## Create a batch endpoint
 
-A __batch endpoint__ is an HTTPS endpoint that clients can call to trigger a _batch scoring job_. A __batch scoring job__ is a job that scores multiple inputs. A __batch deployment__ is a set of compute resources hosting the model that does the actual batch scoring (or batch inferencing). One batch endpoint can have multiple batch deployments. For more information on batch endpoints, see [What are batch endpoints?](concept-endpoints-batch.md).
+A __batch endpoint__ is an HTTPS endpoint that clients call to trigger a _batch scoring job_. A __batch scoring job__ scores multiple inputs. A __batch deployment__ is a set of compute resources hosting the model that performs batch scoring (or batch inferencing). One batch endpoint can have multiple batch deployments. For more information about batch endpoints, see [What are batch endpoints?](concept-endpoints-batch.md).
 
 > [!TIP]
-> One of the batch deployments serves as the default deployment for the endpoint. When the endpoint is invoked, the default deployment does the actual batch scoring. For more information on batch endpoints and deployments, see [batch endpoints and batch deployment](concept-endpoints-batch.md).
+> One of the batch deployments serves as the default deployment for the endpoint. When the endpoint is invoked, the default deployment performs batch scoring. For more information about batch endpoints and deployments, see [batch endpoints and batch deployment](concept-endpoints-batch.md).
 
-1. Name the endpoint. The __endpoint's name must be unique within an Azure region__, since the name is included in the endpoint's URI. For example, there can be only one batch endpoint with the name `mybatchendpoint` in `westus2`.
+1. Name the endpoint. The __endpoint's name must be unique within an Azure region__ because the name is included in the endpoint's URI. For example, there can be only one batch endpoint with the name `mybatchendpoint` in `westus2`.
 
     # [Azure CLI](#tab/cli)
 
-    Place the endpoint's name in a variable so you can easily reference it later.
+    Place the endpoint's name in a variable to reference it easily later.
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="name_endpoint" :::
 
@@ -143,13 +143,13 @@ A __batch endpoint__ is an HTTPS endpoint that clients can call to trigger a _ba
 
     # [Azure CLI](#tab/cli)
 
-    The following YAML file defines a batch endpoint. You can use this file with the CLI command for [batch endpoint creation](#create-a-batch-endpoint).
+    The following YAML file defines a batch endpoint. Use this file with the CLI command for [batch endpoint creation](#create-a-batch-endpoint).
 
     _endpoint.yml_
 
     :::code language="yaml" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/endpoint.yml":::
 
-    The following table describes the key properties of the endpoint. For the full batch endpoint YAML schema, see [CLI (v2) batch endpoint YAML schema](./reference-yaml-endpoint-batch.md).
+    The following table describes the key properties of the endpoint. For the complete batch endpoint YAML schema, see [CLI (v2) batch endpoint YAML schema](./reference-yaml-endpoint-batch.md).
 
     | Key | Description |
     | --- | ----------- |
@@ -177,7 +177,7 @@ A __batch endpoint__ is an HTTPS endpoint that clients can call to trigger a _ba
 
     # [Azure CLI](#tab/cli)
 
-    Run the following code to create a batch endpoint.
+    Run this code to create a batch endpoint.
 
     :::code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="create_endpoint" :::
 
@@ -264,9 +264,9 @@ A model deployment is a set of resources required for hosting the model that doe
     
     In the [Azure Machine Learning studio](https://ml.azure.com), follow these steps:
     
-    1. Navigate to the __Environments__ tab on the side menu.
+1. Go to the **Environments** tab in the side menu.
 
-    1. Select the tab __Custom environments__ > __Create__.
+1. Select **Custom environments** > **Create**.
 
     1. Enter the name of the environment, in this case `torch-batch-env`.
 
@@ -278,9 +278,9 @@ A model deployment is a set of resources required for hosting the model that doe
 
     1. Copy the content of the file _deployment-torch/environment/conda.yaml_ from the GitHub repo into the portal.
 
-    1. Select __Next__ until you get to the "Review page".
+1. Select **Next** until you reach the "Review page."
 
-    1. Select __Create__ and wait until the environment is ready for use.
+1. Select **Create** and wait for the environment to be ready.
 
     ---
 
@@ -348,7 +348,7 @@ A model deployment is a set of resources required for hosting the model that doe
 
     In the studio, follow these steps:
 
-    1. Navigate to the __Endpoints__ tab on the side menu.
+1. Go to the __Endpoints__ tab in the side menu.
 
     1. Select the tab __Batch endpoints__ > __Create__.
 
@@ -362,7 +362,7 @@ A model deployment is a set of resources required for hosting the model that doe
 
     1. Give the deployment a name.
 
-    1. For __Output action__, ensure __Append row__ is selected.
+1. For **Output action**, make sure **Append row** is selected.
 
     1. For __Output file name__, ensure the batch scoring output file is the one you need. Default is `predictions.csv`.
 
@@ -438,7 +438,7 @@ A model deployment is a set of resources required for hosting the model that doe
 
     1. Navigate to the __Endpoints__ tab on the side menu.
 
-    1. Select the tab __Batch endpoints__.
+1. Select the __Batch endpoints__ tab.
 
     1. Select the batch endpoint you want to view.
 
@@ -450,27 +450,27 @@ A model deployment is a set of resources required for hosting the model that doe
 
 ### Understanding the data flow
 
-Before running your batch endpoint, it's important to understand how data flows through the system:
+Before running your batch endpoint, understand how data flows through the system:
 
-__Inputs__: Data you want to process (score). This can be:
+__Inputs__: Data to process (score). This includes:
 - Files stored in Azure Storage (blob storage, data lake)
-- Folders containing multiple files
+- Folders with multiple files
 - Registered datasets in Azure Machine Learning
 
-__Processing__: Your deployed model processes the input data in batches (mini-batches) and generates predictions.
+__Processing__: The deployed model processes the input data in batches (mini-batches) and generates predictions.
 
-__Outputs__: Results from your model, stored as files in Azure Storage. By default, outputs are saved to your workspace's default blob storage, but you can specify a different location.
+__Outputs__: Results from the model, stored as files in Azure Storage. By default, outputs are saved to the workspace's default blob storage, but you can specify a different location.
 
 ### Invoke a batch endpoint
 
-Invoking a batch endpoint triggers a batch scoring job. The job `name` is returned from the invoke response and can be used to track the batch scoring progress. When running models for scoring in batch endpoints, you need to specify the path to the input data so that the endpoints can find the data you want to score. The following example shows how to start a new job over a sample data of the MNIST dataset stored in an Azure Storage Account.
+Invoking a batch endpoint triggers a batch scoring job. The job `name` is returned in the invoke response and tracks the batch scoring progress. Specify the input data path so the endpoints can locate the data to score. The following example shows how to start a new job over a sample data of the MNIST dataset stored in an Azure Storage Account.
 
 You can run and invoke a batch endpoint using Azure CLI, Azure Machine Learning SDK, or REST endpoints. For more information about these options, see [Create jobs and input data for batch endpoints](how-to-access-data-batch-endpoints-jobs.md).
 
 > [!NOTE]
 > __How does parallelization work?__
 > 
-> Batch deployments distribute work at the file level, which means that a folder containing 100 files with mini-batches of 10 files will generate 10 batches of 10 files each. Notice that this happens regardless of the size of the files involved. If your files are too large to be processed in large mini-batches, we suggest that you either split the files into smaller files to achieve a higher level of parallelism or you decrease the number of files per mini-batch. Currently, batch deployments can't account for skews in a file's size distribution.
+> Batch deployments distribute work at the file level. For example, a folder with 100 files and mini-batches of 10 files generates 10 batches of 10 files each. This happens regardless of file size. If files are too large for processing in mini-batches, split them into smaller files to increase parallelism or reduce the number of files per mini-batch. Batch deployments currently don't account for skews in file size distribution.
 
 # [Azure CLI](#tab/cli)
     
@@ -522,7 +522,7 @@ Batch endpoints support reading files or folders that are located in different l
 
 ### Monitor batch job execution progress
 
-Batch scoring jobs usually take some time to process the entire set of inputs.
+Batch scoring jobs take time to process all inputs.
 
 # [Azure CLI](#tab/cli)
 
@@ -576,7 +576,7 @@ The job outputs are stored in cloud storage, either in the workspace's default b
 
 ### Configure the output location
 
-By default, the batch scoring results are stored in the workspace's default blob store within a folder named by job name (a system-generated GUID). You can configure where to store the scoring outputs when you invoke the batch endpoint.
+By default, batch scoring results are stored in the workspace's default blob store in a folder named after the job (a system-generated GUID). Configure the output location when invoking the batch endpoint.
 
 # [Azure CLI](#tab/cli)
     
@@ -623,7 +623,7 @@ Once you've identified the data store you want to use, configure the output as f
 
 1. Select __Next__.
 
-1. On the "Select data source" page, select the data input you want to use.
+1. On the "Select data source" page, select the data input to use.
 
 1. Select __Next__.
 
@@ -631,7 +631,7 @@ Once you've identified the data store you want to use, configure the output as f
 
     :::image type="content" source="./media/how-to-use-batch-model-deployments/configure-output-location.png" alt-text="Screenshot of optionally configuring output location." lightbox="media/how-to-use-batch-model-deployments/configure-output-location.png":::
 
-1. Configure the __Blob datastore__ where the outputs should be placed.
+1. Configure the __Blob datastore__ where the outputs are placed.
 
 ---
 
@@ -643,7 +643,7 @@ Once you've identified the data store you want to use, configure the output as f
 
 ## Overwrite deployment configuration for each job
 
-When you invoke a batch endpoint, some settings can be overwritten to make best use of the compute resources and improve performance. This capability is useful when you need different settings for different jobs without permanently modifying the deployment.
+When you invoke a batch endpoint, you can overwrite some settings to make the best use of compute resources and improve performance. This feature is useful when you need different settings for different jobs without permanently modifying the deployment.
 
 ### Which settings can be overridden?
 
@@ -651,8 +651,8 @@ You can configure the following settings on a per-job basis:
 
 | Setting | When to use | Example scenario |
 |---------|-------------|-------------------|
-| __Instance count__ | When you have varying data volumes | Use more instances for larger datasets (10 instances for 1M files vs. 2 instances for 100K files) |
-| __Mini-batch size__ | When you need to balance throughput and memory usage | Smaller batches (10-50 files) for large images; larger batches (100-500 files) for small text files |
+| __Instance count__ | When you have varying data volumes | Use more instances for larger datasets (10 instances for 1 million files vs. 2 instances for 100,000 files). |
+| __Mini-batch size__ | When you need to balance throughput and memory usage | Use smaller batches (10–50 files) for large images and larger batches (100–500 files) for small text files. |
 | __Max retries__ | When data quality varies | Higher retries (5-10) for noisy data; lower retries (1-3) for clean data |
 | __Timeout__ | When processing time varies by data type | Longer timeout (300s) for complex models; shorter timeout (30s) for simple models |
 | __Error threshold__ | When you need different failure tolerance levels | Strict threshold (-1) for critical jobs; lenient threshold (10%) for experimental jobs |
@@ -703,7 +703,7 @@ In this example, you add a second deployment that uses a __model built with Kera
 
 ### Add a second deployment
 
-1. Create an environment where your batch deployment will run. Include in the environment any dependency your code requires for running. You also need to add the library `azureml-core`, as it's required for batch deployments to work. The following environment definition has the required libraries to run a model with TensorFlow.
+1. Create an environment for your batch deployment. Include any dependencies your code needs to run. Add the library `azureml-core`, as it's required for batch deployments. The following environment definition includes the required libraries to run a model with TensorFlow.
 
     # [Azure CLI](#tab/cli)
    
@@ -731,7 +731,7 @@ In this example, you add a second deployment that uses a __model built with Kera
 
     1. Select **Next** to go to the "Customize" section.
 
-    1. Copy the content of the file _deployment-keras/environment/conda.yaml_ from the GitHub repo into the portal.
+1. Copy the content of the file *deployment-keras/environment/conda.yaml* from the GitHub repo into the portal.
 
     1. Select __Next__ until you get to the "Review page".
 
@@ -793,7 +793,7 @@ In this example, you add a second deployment that uses a __model built with Kera
     
     1. For __Max concurrency per instance__, configure the number of executors you want to have for each compute instance you get in the deployment. A higher number here guarantees a higher degree of parallelization but it also increases the memory pressure on the compute instance. Tune this value altogether with __Mini batch size__.
     
-    1. Select __Next__ to go to the "Code + environment" page.
+1. Select **Next** to proceed to the "Code + environment" page.
     
     1. For __Select a scoring script for inferencing__, browse to select the scoring script file *deployment-keras/code/batch_driver.py*.
     
@@ -888,21 +888,21 @@ Although you can invoke a specific deployment inside an endpoint, you'll typical
 
 1. For __Select default deployment__, select the name of the deployment you want to set as the default.
 
-1. Select __Update__.
+1. Select **Update**.
 
 1. The selected deployment is now the default one.
 
 ---
 
-## Delete the batch endpoint and the deployment
+## Delete the batch endpoint and deployment
 
 # [Azure CLI](#tab/cli)
 
-If you won't be using the old batch deployment, delete it by running the following code. `--yes` is used to confirm the deletion.
+If you don't need the old batch deployment, delete it by running the following code. The `--yes` flag confirms the deletion.
 
 ::: code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="delete_deployment" :::
 
-Run the following code to delete the batch endpoint and all its underlying deployments. Batch scoring jobs won't be deleted.
+Run the following code to delete the batch endpoint and its underlying deployments. Batch scoring jobs aren't deleted.
 
 ::: code language="azurecli" source="~/azureml-examples-main/cli/endpoints/batch/deploy-models/mnist-classifier/deploy-and-run.sh" ID="delete_endpoint" :::
 
@@ -926,15 +926,15 @@ Run the following code to delete the batch endpoint and all its underlying deplo
 
 1. Select __Delete__.
 
-1. The endpoint all along with its deployments will be deleted.
+1. The endpoint and its deployments are deleted.
 
-1. Notice that this won't affect the compute cluster where the deployment(s) run.
+1. This doesn't affect the compute cluster where the deployments run.
 
 ---
 
 ## Related content
 
-* [Accessing data from batch endpoints jobs](how-to-access-data-batch-endpoints-jobs.md).
-* [Authentication on batch endpoints](how-to-authenticate-batch-endpoint.md).
-* [Network isolation in batch endpoints](how-to-secure-batch-endpoint.md).
-* [Troubleshooting batch endpoints](how-to-troubleshoot-batch-endpoints.md).
+* [Accessing data from batch endpoints jobs](how-to-access-data-batch-endpoints-jobs.md)
+* [Authentication on batch endpoints](how-to-authenticate-batch-endpoint.md)
+* [Network isolation in batch endpoints](how-to-secure-batch-endpoint.md)
+* [Troubleshooting batch endpoints](how-to-troubleshoot-batch-endpoints.md)
