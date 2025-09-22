@@ -135,7 +135,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2024-10-
 }'
 ```
 
-If you are fine tuning a model that supports [Global Training](./fine-tune-models.md), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
+If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-01-preview \
