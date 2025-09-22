@@ -40,7 +40,7 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
-::: moniker range="classic"
+::: moniker range="foundry-classic"
 * [Create a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) if you don't have one already.
 * [!INCLUDE [find-endpoint](../../includes/find-endpoint.md)]
 ::: moniker-end
