@@ -244,7 +244,7 @@ items:
       href: voice-live-how-to.md
     - name: Voice live language support
       href: voice-live-language-support.md
-    - name: Voice Live API Reference
+    - name: Voice live API reference
       href: voicelive-api-reference.md
 - name: Keyword recognition
   items:
