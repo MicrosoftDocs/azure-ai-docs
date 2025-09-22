@@ -1,14 +1,14 @@
 ---
 title: Deployment options for Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
-description: Learn about deployment options for Azure AI Foundry Models.
+description: Learn about deployment options for Azure AI Foundry Models including standard, serverless API, and managed compute deployments.
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 09/22/2025
 ms.author: mopeakande
 author: msakande
 manager: nitinme
-author: msakande
+#CustomerIntent: As a developer or AI practitioner, I want to understand the different deployment options available for Azure AI Foundry Models so that I can choose the most appropriate deployment method for my specific use case, requirements, and infrastructure needs.
 ---
 
 # Deployment overview for Azure AI Foundry Models
