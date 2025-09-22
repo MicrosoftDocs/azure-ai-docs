@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: article
-ms.date: 05/04/2021
+ms.date: 09/22/2025
 ---
 
 
@@ -41,6 +41,6 @@ The "Get Analyze Results" operation is authenticated against the same API key th
 
 **For customer trained models**: The Custom model feature allows customers to build custom models from training data stored in customer’s Azure blob storage locations. The interim outputs after analysis and labeling are stored in the same location. The trained custom models are stored in Azure storage in the same region and logically isolated with their Azure subscription and API credentials.
 
-**Deletes data**: For all features, the input data and results are deleted within 24 hours and not used for any other purpose. For customer trained models, the customers can delete their models and associated metadata at any time by using the API.
+**Deletes data**: Customers can delete their models and associated metadata at any time by using the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&tabs=HTTP) API. 
 
 To learn more about privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx).
