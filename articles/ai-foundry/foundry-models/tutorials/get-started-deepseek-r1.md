@@ -1,24 +1,24 @@
 ---
 title: "Tutorial: Getting started with DeepSeek-R1 reasoning model in Azure AI Foundry Models"
 titleSuffix: Azure AI Foundry
-description: Learn about the reasoning capabilities of DeepSeek-R1 in Azure AI Foundry Models.
+description: Learn how to deploy and use DeepSeek-R1 reasoning model in Azure AI Foundry Models with step-by-step guidance and code examples.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: tutorial
-ms.date: 06/26/2025
-ms.reviewer: fasantia
+ms.date: 09/22/2025
 ms.author: mopeakande
 author: msakande
+#CustomerIntent: As a developer or data scientist, I want to learn how to deploy and use the DeepSeek-R1 reasoning model in Azure AI Foundry Models so that I can build applications that leverage advanced reasoning capabilities for complex problem-solving tasks.
 ---
 
 # Tutorial: Get started with DeepSeek-R1 reasoning model in Azure AI Foundry Models
 
-In this tutorial, you learn:
+In this tutorial, you learn how to:
 
-* How to create and configure the Azure resources to use DeepSeek-R1 in Azure AI Foundry Models.
-* How to configure the model deployment.
-* How to use DeepSeek-R1 with the Azure AI Inference SDK or REST APIs.
-* How to use DeepSeek-R1 with other SDKs.
+* Create and configure the Azure resources to use DeepSeek-R1 in Azure AI Foundry Models.
+* Configure the model deployment.
+* Use DeepSeek-R1 with the Azure AI Inference SDK or REST APIs.
+* Use DeepSeek-R1 with other SDKs.
 
 ## Prerequisites
 
@@ -72,38 +72,38 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 ## Deploy the model
 
-1. Once the project and resources are created, a deployment wizard appears. DeepSeek-R1 is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](../../../ai-studio/how-to/concept-data-privacy.md). 
+1. Once you create the project and resources, a deployment wizard appears. DeepSeek-R1 is offered as a Microsoft first party consumption service. You can review our privacy and security commitments under [Data, privacy, and Security](../../../ai-studio/how-to/concept-data-privacy.md). 
 
 1. Review the pricing details for the model by selecting the [Pricing and terms tab](https://aka.ms/DeepSeekPricing).
 
 1. Select **Agree and Proceed** to continue with the deployment.
 
-1. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This allows you to also configure specific names for your models when you attach specific configurations.
+1. You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup allows you to configure specific names for your models when you attach specific configurations.
 
-1. Azure AI Foundry automatically selects the Foundry resource created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type, which offers higher throughput and performance.
+1. Azure AI Foundry automatically selects the Foundry resource you created earlier with your project. Use the **Customize** option to change the connection based on your needs. DeepSeek-R1 is currently offered under the **Global Standard** deployment type, which offers higher throughput and performance.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png" alt-text="Screenshot showing how to deploy the model." lightbox="../media/quickstart-get-started-deepseek-r1/deployment-wizard.png":::
 
 1. Select **Deploy**.
 
-1. Once the deployment completes, the deployment **Details** page opens up. Now the new model is ready to be used.
+1. When the deployment completes, the deployment **Details** page opens. Now the new model is ready for use.
 
 
 ## Use the model in the playground
 
-You can get started by using the model in the playground to have an idea of the model's capabilities.
+You can get started by using the model in the playground to get an idea of the model's capabilities.
 
 1. On the deployment details page, select **Open in playground** in the top bar. This action opens the chat playground.
 
-2. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
+1. In the **Deployment** drop down of the chat playground, the deployment you created is already automatically selected.
 
-3. Configure the system prompt as needed. In general, reasoning models don't use system messages in the same way as other types of models.
+1. Configure the system prompt as needed. In general, reasoning models don't use system messages in the same way as other types of models.
 
    :::image type="content" source="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground, configure the system message, and test it out." lightbox="../media/quickstart-get-started-deepseek-r1/playground-chat-models.png":::
 
-4. Type your prompt and see the outputs.
+1. Type your prompt and see the outputs.
 
-5. Additionally, you can use **View code** to see details about how to access the model deployment programmatically.
+1. Additionally, you can use **View code** to see details about how to access the model deployment programmatically.
 
 [!INCLUDE [best-practices](../../foundry-models/includes/use-chat-reasoning/best-practices.md)]
 
@@ -120,11 +120,11 @@ You can use the Azure AI Model Inference package to consume the model in code:
 
 [!INCLUDE [code-chat-reasoning](../../foundry-models/includes/code-create-chat-reasoning.md)]
 
-Reasoning might generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits being applied. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
+Reasoning might generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
 ### Reasoning content
 
-Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model might select the scenarios for which to generate reasoning content. The following example shows how to generate the reasoning content, using Python:
+Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind them. The reasoning associated with the completion is included in the response's content within the tags `<think>` and `</think>`. The model might select the scenarios for which to generate reasoning content. The following example shows how to generate the reasoning content, using Python:
 
 ```python
 import re
