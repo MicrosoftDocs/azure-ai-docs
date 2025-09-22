@@ -31,28 +31,27 @@ Before you start this tutorial, you need:
 
 1. **Install Open Web UI** by following the instructions from the [Open Web UI GitHub repository](https://github.com/open-webui/open-webui).
 
-2. **Launch Open Web UI** with this command in your terminal:
+1. **Launch Open Web UI** with this command in your terminal:
 
    ```bash
    open-webui serve
    ```
 
-3. Open your web browser and go to [http://localhost:8080](http://localhost:8080).
+1. Open your web browser and go to [http://localhost:8080](http://localhost:8080).
 
-4. **Connect Open Web UI to Foundry Local**:
+1. **Connect Open Web UI to Foundry Local**:
 
    1. Select **Settings** in the navigation menu
-   2. Select **Connections**
-   3. Select **Manage Direct Connections**
-   4. Select the **+** icon to add a connection
-   5. For the **URL**, enter `http://localhost:PORT/v1` where `PORT` is replaced with the port of the Foundry Local endpoint, which you can find using the CLI command `foundry service status`. Note, that Foundry Local dynamically assigns a port, so it's not always the same.
-   6. Type any value (like `test`) for the API Key, since it can't be empty.
-   7. Save your connection
+   1. Select **External Tools** or **Connections** (depending on your Open WebUI version).
+   1. Select **+** by **Manage Tool Servers**.
+   1. For the **Base URL (or URL)**, enter `http://localhost:PORT/v1` where `PORT` is the Foundry Local endpoint port (use the CLI command `foundry service status` to find it). Note that Foundry Local dynamically assigns a port, so it isn't always the same.
+   1. Enter any non-empty value for the **API key** (for example, `test`)
+   1. Select **Save**
 
-5. **Start chatting with your model**:
+1. **Start chatting with your model**:
    1. Your loaded models appear in the dropdown at the top
-   2. Select any model from the list
-   3. Type your message in the input box at the bottom
+   1. Select any model from the list
+   1. Type your message in the input box at the bottom
 
 That's it! You're now chatting with an AI model running entirely on your local device.
 
