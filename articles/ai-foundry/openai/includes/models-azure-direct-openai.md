@@ -353,7 +353,7 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 
 All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../how-to/deployment-types.md).
 
-# [Global Standard](#tab/global-standard)
+# [Global Standard](#tab/global-standard-aoai)
 
 
 ### Global Standard model availability
@@ -363,7 +363,7 @@ All deployments can perform the exact same inference operations, but the billing
 > [!NOTE]
 > `o3-deep-research` is currently only available with Azure AI Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
 
-# [Global Provisioned managed](#tab/global-ptum)
+# [Global Provisioned managed](#tab/global-ptum-aoai)
 
 ### Global Provisioned managed model availability
 
