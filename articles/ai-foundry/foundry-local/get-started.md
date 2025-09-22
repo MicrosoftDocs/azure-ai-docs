@@ -25,7 +25,7 @@ keywords:
 
 [!INCLUDE [foundry-local-preview](./includes/foundry-local-preview.md)]
 
-This guide walks you through setting up Foundry Local to run AI models on your device. 
+This guide walks you through setting up Foundry Local to run AI models on your device.
 
 ## Prerequisites
 
@@ -44,32 +44,26 @@ Get started with Foundry Local quickly with these options:
 
 ### Option 1: Quick CLI setup
 
-1. **Install Foundry Local** 
-    - **Windows**: Open a terminal and run the following command:
-        ```bash
-        winget install Microsoft.FoundryLocal
-        ```
-    - **macOS**: Open a terminal and run the following command:
-        ```bash
-        brew tap microsoft/foundrylocal
-        brew install foundrylocal
-        ```
-    Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
+1. **Install Foundry Local**
 
-1. **Run your first model** Open a terminal window and run the following command to run a model: 
+   - **Windows**: Open a terminal and run the following command:
+     ```bash
+     winget install Microsoft.FoundryLocal
+     ```
+   - **macOS**: Open a terminal and run the following command:
+     `bash
+    brew tap microsoft/foundrylocal
+    brew install foundrylocal
+    `
+     Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
 
-    ```bash
-    foundry model run phi-3.5-mini 
-    ```
-    
-    The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
+1. **Run your first model** Open a terminal window and run the following command to run a model:
 
-    ```text
-    Why is the sky blue?
-    ```
+   ```bash
+   foundry model run qwen2.5-0.5b
+   ```
 
-    You should see a response from the model in the terminal:
-    :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from foundry local run command." lightbox="media/get-started-output.png":::
+   The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
 
 ### Option 2: Download starter projects
 
@@ -89,7 +83,7 @@ Each project includes:
 > These starter projects align with scenarios covered in our [how-to guides](how-to/how-to-chat-application-with-open-web-ui.md) and provide immediate practical value.
 
 > [!TIP]
-> You can replace `phi-3.5-mini` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+> You can replace `qwen2.5-0.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
 
 ## Run the latest OpenAI open-source model
 
@@ -126,6 +120,7 @@ To view available **model** commands, run:
 ```bash
 foundry model --help
 ```
+
 To view available **service** commands, run:
 
 ```bash
@@ -146,28 +141,28 @@ foundry cache --help
 To upgrade Foundry Local to the latest version, use the following commands based on your operating system:
 
 - **Windows**: Open a terminal and run:
-    ```bash
-    winget upgrade --id Microsoft.FoundryLocal
-    ```
+  ```bash
+  winget upgrade --id Microsoft.FoundryLocal
+  ```
 - **macOS**: Open a terminal and run:
-    ```bash
-    brew upgrade foundrylocal
-    ```
+  ```bash
+  brew upgrade foundrylocal
+  ```
 
 ## Uninstalling Foundry Local
 
 If you wish to uninstall Foundry Local, use the following commands based on your operating system:
 
 - **Windows**: Open a terminal and run:
-    ```bash
-    winget uninstall Microsoft.FoundryLocal
-    ```
+  ```bash
+  winget uninstall Microsoft.FoundryLocal
+  ```
 - **macOS**: Open a terminal and run:
-    ```bash
-    brew rm foundrylocal
-    brew untap microsoft/foundrylocal
-    brew cleanup --scrub
-    ```
+  ```bash
+  brew rm foundrylocal
+  brew untap microsoft/foundrylocal
+  brew cleanup --scrub
+  ```
 
 ## Related content
 
@@ -185,4 +180,3 @@ If you wish to uninstall Foundry Local, use the following commands based on your
 
 > [!div class="nextstepaction"]
 > [Learn Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
-

@@ -37,7 +37,7 @@ using OpenAI.Chat;
 using System.ClientModel;
 using System.Diagnostics.Metrics;
 
-var alias = "phi-3.5-mini";
+var alias = "qwen2.5-0.5b";
 
 var manager = await FoundryLocalManager.StartModelAsync(aliasOrModelId: alias);
 
@@ -67,4 +67,3 @@ Run the code using the following command:
 ```bash
 dotnet run
 ```
-
