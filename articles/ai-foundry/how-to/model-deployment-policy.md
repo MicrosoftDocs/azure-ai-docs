@@ -29,15 +29,15 @@ these policies to control what models your developers can deploy in Azure AI Fou
 1. From the [Azure portal](https://portal.azure.com/), select **Policy** from the left side of the page. You can also
    search for **Policy** in the search bar at the top of the page.
 
-1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for "\[Preview\]: Cognitive Services Deployments should only use approved Registry Models" in the search bar within the page. You can also directly navigate to [policy definition creation page](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Faafe3651-cb78-4f68-9f81-e7e41509110f/version/1.0.0-preview/scopes~/%5B%22%2Fsubscriptions%2Fa4393d89-7e7f-4b0b-826e-72fc42c33d1f%22%2C%22%2Fsubscriptions%2Fd128f140-94e6-4175-87a7-954b9d27db16%22%2C%22%2Fsubscriptions%2F562da9fc-fd6e-4f24-a6aa-99827a7f6f91%22%5D/contextRender~/false).
+1. From the left side of the Azure Policy Dashboard, select **Authoring**, **Definition**, and then search for `\[Preview\]: Cognitive Services Deployments should only use approved Registry Models` in the search bar within the page. You can also directly navigate to [policy definition creation page](https://ms.portal.azure.com/#view/Microsoft_Azure_Policy/PolicyDetail.ReactView/id/%2Fproviders%2FMicrosoft.Authorization%2FpolicyDefinitions%2Faafe3651-cb78-4f68-9f81-e7e41509110f/version/1.0.0-preview/scopes~/%5B%22%2Fsubscriptions%2Fa4393d89-7e7f-4b0b-826e-72fc42c33d1f%22%2C%22%2Fsubscriptions%2Fd128f140-94e6-4175-87a7-954b9d27db16%22%2C%22%2Fsubscriptions%2F562da9fc-fd6e-4f24-a6aa-99827a7f6f91%22%5D/contextRender~/false).
 
 1. Select on **Assign** to assign the policy:
 
    - **Scope**: Select the scope where you want to assign the policy. The scope can be a management group, subscription, or resource group.
-   - **Policy definition**: this section should already have a value of \[Preview\]: Cognitive Services Deployments should only use approved Registry Models".
+   - **Policy definition**: this section should already have a value of `\[Preview\]: Cognitive Services Deployments should only use approved Registry Models`.
    - **Assignment name**: Enter a unique name for the assignment.
 
-   The rest of the fields can be left as their default values or you cancustomize as needed for your organization.
+   The rest of the fields can be left as their default values or you can customize as needed for your organization.
 
 1. Select **Next** at the bottom of the page or the **Parameters** tab at the top of the page.
 
@@ -48,11 +48,11 @@ these policies to control what models your developers can deploy in Azure AI Fou
      > [!NOTE]
      > Using the [**audit**](/azure/governance/policy/concepts/effect-audit) option allows you to configure the policy to log information to your own compliance dashboard.
 
-   - **Allowed Models Publishers**: This field expects a list of **publisher's name** in quotation and separated by commas. Here is an example that shows where to find a publisher name:
+   - **Allowed Models Publishers**: This field expects a list of **publisher's name** in quotation and separated by commas. Here's an example that shows where to find a publisher name:
 
      1. Go to [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Foundry Portal
      1. Select a model (for example, GPT-5).
-     1. You will find publisher name on the model card as shown in the image below, for ex. in this case it is “OpenAI”
+     1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
         :::image type="content" source="media/model-deployment-policy/gpt-5-model-card.png" alt-text="Screenshot of Azure AI Foundry model catalog showing a model card with the publisher name highlighted.":::
 
@@ -64,7 +64,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]
-        > The model ID value must be an exact match for the model. If the model ID is not an exact match, policy will not work as expected.
+        > The model ID value must be an exact match for the model. If the model ID isn't an exact match, policy doesn't work as expected.
 
      1. Select **Review + create** tab and verify that the policy assignment is correct. When ready, select **Create** to assign the policy.
      1. Notify your developers that the policy is in place. They receive an error message if they try to deploy a model that isn't on the list of allowed models.
