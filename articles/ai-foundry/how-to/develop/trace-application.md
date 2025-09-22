@@ -5,7 +5,7 @@ description: View trace results for AI applications using OpenAI SDK with OpenTe
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 09/15/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -290,6 +290,15 @@ Configure tracing as follows:
         }
     }
     ```
+
+## Trace locally with AI Toolkit
+
+AI Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it perfect for development and debugging without needing cloud access.
+
+The toolkit supports the OpenAI SDK and other AI frameworks through OpenTelemetry. You can see traces instantly in your development environment.
+
+For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+
 
 ## Related content
 

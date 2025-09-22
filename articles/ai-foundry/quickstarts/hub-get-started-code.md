@@ -5,7 +5,7 @@ description: Set up SDK, deploy a model, and build a simple chat app for hub-bas
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 09/12/2025 
+ms.date: 09/22/2025 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -92,3 +92,7 @@ Delete deployment or project when done to avoid charges.
 
 > [!div class="nextstepaction"]
 > [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
+
+## Related content
+
+[Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).

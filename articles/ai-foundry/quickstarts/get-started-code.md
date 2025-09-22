@@ -5,7 +5,7 @@ description: Get started with Azure AI Foundry SDK to build AI applications. Lea
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 09/12/2025 
+ms.date: 09/22/2025 
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
