@@ -247,7 +247,7 @@ Once necessary packages are installed, you can easily begin to [Instrument traci
 The Agents playground in the Azure AI Foundry portal lets you view trace results for threads and runs that your agents produce. To see trace results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
-> Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+> Evaluation in the playground is billed as outlined under Trust and Azure AI Foundry Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42). Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
 > - Evaluations aren't available in the following regions.
 >     - `australiaeast`
 >     - `japaneast`
