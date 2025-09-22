@@ -7,7 +7,6 @@ ms.date: 08/14/2025
 ms.author: lajanuar
 ---
 
-Use this article to get started with Conversational Language Understanding (CLU) using Azure AI Foundry or the REST API.
 
 ## Prerequisites
 

@@ -21,11 +21,11 @@ Azure AI Language supports Azure role-based access control (Azure RBAC), an auth
 
 To use Azure RBAC, you must enable Microsoft Entra authentication. You can [create a new resource with a custom subdomain](../../authentication.md#create-a-resource-with-a-custom-subdomain) or [create a custom subdomain for your existing resource](../../cognitive-services-custom-subdomains.md#how-does-this-impact-existing-resources).
 
-## Add role assignment to Language resource
+## Add role assignment to Azure resource
 
-Azure RBAC can be assigned to a Language resource. To grant access to an Azure resource, you add a role assignment.
+Azure RBAC can be assigned to an Azure resource. To do so, you can add a role assignment.
 1. In the [Azure portal](https://portal.azure.com/), select **All services**. 
-1. Select **Azure AI services**, and navigate to your specific Language resource. 
+1. Select **Azure AI services**, and navigate to your specific Azure resource. 
    > [!NOTE]
    > You can also set up Azure RBAC for whole resource groups, subscriptions, or management groups. Do this by selecting the desired scope level and then navigating to the desired item. For example, selecting **Resource groups** and then navigating to a specific resource group.
 
@@ -51,7 +51,7 @@ These custom roles only apply to Language resources.
 
 ### Cognitive Services Language Reader
 
-A user that should only be validating and reviewing the Language apps, typically a tester to ensure the application is performing well before deploying the project. They might want to review the application’s assets to notify the app developers of any changes that need to be made, but do not have direct access to make them. Readers will have access to view the evaluation results.
+A user that should only be validating and reviewing the Language apps, typically a tester to ensure the application is performing well before deploying the project. They might want to review the application's assets to notify the app developers of any changes that need to be made, but do not have direct access to make them. Readers will have access to view the evaluation results.
 
 
 :::row:::
@@ -85,7 +85,7 @@ A user that should only be validating and reviewing the Language apps, typically
 
 ### Cognitive Services Language Writer
 
-A user that is responsible for building and modifying an application, as a collaborator in a larger team. The collaborator can modify the Language apps in any way, train those changes, and validate/test those changes in the portal. However, this user shouldn’t have access to deploying this application to the runtime, as they might accidentally reflect their changes in production. They also shouldn’t be able to delete the application or alter its prediction resources and endpoint settings (assigning or unassigning prediction resources, making the endpoint public). This restricts this role from altering an application currently being used in production. They might also create new applications under this resource, but with the restrictions mentioned.
+A user that is responsible for building and modifying an application, as a collaborator in a larger team. The collaborator can modify the Language apps in any way, train those changes, and validate/test those changes in the portal. However, this user shouldn't have access to deploying this application to the runtime, as they might accidentally reflect their changes in production. They also shouldn't be able to delete the application or alter its prediction resources and endpoint settings (assigning or unassigning prediction resources, making the endpoint public). This restricts this role from altering an application currently being used in production. They might also create new applications under this resource, but with the restrictions mentioned.
 
 :::row:::
     :::column span="":::

@@ -22,6 +22,9 @@ items:
   - name: Quotas and limits
     href: concepts/data-limits.md
     displayName: service limits, rate, usage
+  - name: Configure Azure resources
+    href: conversational-language-understanding/how-to/configure-azure-resources.md
+    displayName: configuration, fine-tuning, azure ai foundry, azure portal
 - name: Azure AI Language capabilities
   items:
   - name: Custom text classification
@@ -149,9 +152,6 @@ items:
             href: ../containers/azure-container-instance-recipe.md?context=/azure/ai-services/language-service/context/context
           - name: Azure AI containers overview
             href: ../cognitive-services-container-support.md
-        - name: Configure Azure resources
-          href: conversational-language-understanding/how-to/configure-azure-resources.md
-          displayName: configuration, fine-tuning, azure ai foundry, azure portal     
         - name: Create a fine-tuning task project
           href: conversational-language-understanding/how-to/create-project.md
           displayName: creation, clu project, setup
@@ -569,7 +569,7 @@ items:
         href: question-answering/how-to/change-default-answer.md
       - name: Configure your environment and Azure resources
         href: question-answering/how-to/configure-azure-resources.md
-        displayName: configuration, fine-tuning, azure ai foundry, azure portal 
+        displayName: configuration, fine-tuning, azure ai foundry, azure portal
       - name: Analytics
         href: question-answering/how-to/analytics.md
       - name: Manage projects

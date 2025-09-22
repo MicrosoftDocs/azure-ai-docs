@@ -11,7 +11,7 @@ ms.custom: language-service-question-answering
 
 # Configure your environment for Azure AI resources and permissions
 
-In this guide, we walk you through configuring your Azure AI resources and permissions for conversational language understanding (CLU) projects. We present two options:
+In this guide, we walk you through configuring your Azure AI resources and permissions for Azure AI Foundry tasks. We present two options:
 
 * [**Option 1: Configure an Azure AI Foundry resource**](#option-1-configure-an-azure-ai-foundry-resource). Azure AI Foundry offers a unified environment for building generative AI applications and using Azure AI services. All essential tools are together in one environment for all stages of AI app development.
 
@@ -37,7 +37,7 @@ Before you can set up your resources, you need:
 
 ## Option 1: Configure an Azure AI Foundry resource
 
-Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. With this integration, you gain access to features like **Quick Deploy** for rapid model **fine-tuning** and **suggest utterances** to expand your training data with generative AI. New features are continually added, making Azure AI Foundry the recommended choice for scalable CLU solutions.
+Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. With this integration, you gain access to features like **Quick Deploy** for rapid model **fine-tuning** and **suggest utterances** to expand your training data with generative AI. New features are continually added, making Azure AI Foundry is the recommended choice for scalable solutions.
 
 1. Navigate to the [Azure portal](https://azure.microsoft.com/#home).
 
@@ -55,11 +55,11 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
    :::image type="content" source="../media/configure-resources/managed-identity.png" alt-text="Screenshot of assign member access selector in the Azure portal.":::
 
-1. Select **Select members**, then in the right panel, search for and choose your Azure AI Foundry resource (the one you're using for this project), and choose **Select**.
+1. Choose **Select members**, then in the right panel, search for and choose your Azure AI Foundry resource (the one you're using for this project), and choose **Select**.
 
 1. Finally, select **Review + assign** to confirm your selection.
 
-1. Your resources are now set up properly. Continue with setting up the fine-tuning task and continue customizing your CLU project.
+1. Your resources are now set up properly. Proceed with initializing the fine-tuning process and optimizing your AI models and solutions for advanced customization and deployment.
 
 ## Option 2: Configure Azure Language resource and Azure OpenAI resources
 
@@ -126,7 +126,7 @@ To import an existing Azure AI services project with Azure AI Foundry, you need 
 
 ## Export a project
 
-You can download a CLU project as a **config.json** file:
+You can download a project as a **config.json** file:
 
 1. Navigate to your project home page.
 1. At the top of the page, select your project from the right page ribbon area.
@@ -140,5 +140,5 @@ That's it! Your resources are now set up properly. Continue with setting up the 
 
 ## Next Steps
 
-[Create a CLU fine-tuning task](train-model.md#train-your-model)
+[Model lifecycle](.)
 

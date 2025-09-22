@@ -14,6 +14,10 @@ zone_pivot_groups: foundry-rest-api
 
 # Quickstart: Conversational language understanding 
 
+Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. Azure AI Foundry playgrounds are interactive environments within the Azure AI Foundry portal designed for exploring, testing, and prototyping with various AI models and tools.
+
+Use this article to get started with Conversational Language understanding using Azure AI Foundry or the REST API.
+
 ::: zone pivot="azure-ai-foundry"
 
 [!INCLUDE [Azure AI Foundry quickstart](includes/quickstarts/azure-ai-foundry.md)]

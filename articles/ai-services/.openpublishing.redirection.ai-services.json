@@ -2819,6 +2819,11 @@
       "source_path_from_root": "/articles/ai-services/qnamaker/tutorials/integrate-with-power-virtual-assistant-fallback-topic.md",
       "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
       "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/how-to-guides",
+      "redirect_document_id": true
     }
 
   ]

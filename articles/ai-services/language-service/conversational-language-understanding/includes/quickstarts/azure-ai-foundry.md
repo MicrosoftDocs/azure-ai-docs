@@ -7,10 +7,6 @@ ms.date: 09/15/2025
 ms.author: lajanuar
 ---
 
-Azure AI Foundry offers a unified platform for building, managing, and deploying AI solutions with a wide array of models and tools. Azure AI Foundry playgrounds are interactive environments within the Azure AI Foundry portal designed for exploring, testing, and prototyping with various AI models and tools.
-
-Use this article to get started with Conversational Language understanding using Azure AI Foundry or the REST API.
-
 > [!NOTE]
 >
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. 
@@ -21,8 +17,8 @@ Use this article to get started with Conversational Language understanding using
 
 * **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
-*  [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../how-to/configure-azure-resources.md#option-1-configure-an-azure-ai-foundry-resource). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
-* A Foundry project created in the Azure AI Foundry. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
+*  [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). For more information, *see* [Configure an Azure AI Foundry resource](../../../concepts/configure-azure-resources.md). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **A Foundry project created in the Azure AI Foundry**. For more information, *see* [Create an AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
 ## Get started with Azure AI Foundry
 
@@ -86,7 +82,7 @@ After project creation, the next steps are [schema construction](../../how-to/bu
 
     :::image type="content" source="../../media/quickstarts/review-selections.png" alt-text="Screenshot of the review selections window in the Azure AI Foundry.":::
 
-## Deploy model
+## Deploy your model
 
 Typically, after training a model, you review its evaluation details. For this quickstart, you can just deploy your model and make it available to test in the Language playground, or by calling the [prediction API](https://aka.ms/clu-apis). However, if you wish, you can take a moment to select **Evaluate your model** from the left-side menu and explore the in-depth telemetry for your model. Complete the following steps to deploy your model within Azure AI Foundry:
 
