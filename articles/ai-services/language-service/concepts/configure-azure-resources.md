@@ -26,8 +26,8 @@ In addition, we show you how to assign the correct roles and permissions within 
 Before you can set up your resources, you need:
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
-* An [Azure AI Foundry resource](/azure/multi-service-resource.md) or an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
+* An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) or an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 
 * An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) (optional but required for [option 2](#option-2-configure-azure-language-resource-and-azure-openai-resources))
 
@@ -122,7 +122,7 @@ Azure AI Foundry offers a unified platform where you can easily build, manage, a
 
 Azure AI Foundry allows you to connect to your existing Azure AI services resources. This means you can establish a connection within your Azure AI Foundry project to the Azure AI Language resource where your custom models are stored.
 
-To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](/azure/ai-services/connect-services-ai-foundry-portal.md)
+To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](/azure/ai-services/connect-services-ai-foundry-portal)
 
 ## Export a project
 
@@ -140,5 +140,5 @@ That's it! Your resources are now set up properly. Continue with setting up the 
 
 ## Next Steps
 
-[Model lifecycle](.)
+[Model lifecycle](../concepts/model-lifecycle.md)
 

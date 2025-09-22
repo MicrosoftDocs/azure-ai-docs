@@ -25,9 +25,9 @@ To get start, [a sample loan agreement](https://go.microsoft.com/fwlink/?linkid=
 
 
 
-::: zone pivot="foundry-rest-api"
+::: zone pivot="azure-ai-foundry"
 
-[!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
+[!INCLUDE [Azure AI Foundry](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
