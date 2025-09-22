@@ -6,10 +6,11 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 08/07/2025
-author: PatrickFarley
-ms.author: pafarley
-ms.reviewer: jagoerge
+ms.date: 09/22/2025
+author: goergenj
+reviewer: PatrickFarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ---
 
 # Set up the Bring your own storage (BYOS) Speech resource
@@ -21,6 +22,9 @@ In BYOS scenarios, all traffic between the Speech resource and the Storage accou
 There's one exception: if you use Text to speech, and your Speech resource and the associated Storage account are located in different Azure regions, then public internet is used for the operations, involving [User delegation SAS](/azure/storage/common/storage-sas-overview#user-delegation-sas). See details in [this section](#configure-storage-account-security-settings-for-text-to-speech).
 
 BYOS can be used with several Azure AI services. For Speech, it can be used in the following scenarios:
+
+> [!NOTE]
+> Speech services BYOS is currently only supported with resource kind `SpeechServices`. Support with Foundry resources is coming soon!
 
 **Speech to text**
 
@@ -51,98 +55,6 @@ Consider the following rules when planning BYOS-enabled Speech resource configur
 
 This section describes how to create a BYOS enabled Speech resource. 
 
-
-### Request access to BYOS for your Azure subscriptions
-
-You need to request access to BYOS functionality for each of the Azure subscriptions you plan to use. To request access, fill and submit [Cognitive Services & Applied AI Customer Managed Keys and Bring Your Own Storage access request form](https://aka.ms/cogsvc-cmk). Wait for the request to be approved.
-
-### (Optional) Check whether Azure subscription has access to BYOS
-
-You can quickly check whether your Azure subscription has access to BYOS. This check uses [preview features](/azure/azure-resource-manager/management/preview-features) functionality of Azure.
-
-# [Azure portal](#tab/portal)
-
-This functionality isn't available through Azure portal.
-
-> [!NOTE]
-> You may view the list of preview features for a given Azure subscription as explained in [this article](/azure/azure-resource-manager/management/preview-features), however note that not all preview features, including BYOS are visible this way.
-
-# [PowerShell](#tab/powershell)
-
-To check whether an Azure subscription has access to BYOS with PowerShell, we use [Get-AzProviderFeature](/powershell/module/az.resources/get-azproviderfeature) command.
-
-You can [install PowerShell locally](/powershell/azure/install-azure-powershell) or use [Azure Cloud Shell](/azure/cloud-shell/overview).
-
-If you use local installation of PowerShell, connect to your Azure account using `Connect-AzAccount` command before trying the following script.
-
-```azurepowershell
-# Target subscription parameters
-# REPLACE WITH YOUR CONFIGURATION VALUES
-$azureSubscriptionId = "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-
-# Select the right subscription
-Set-AzContext -SubscriptionId $azureSubscriptionId 
-
-# Check whether the Azure subscription has access to BYOS
-Get-AzProviderFeature -ListAvailable -ProviderNamespace "Microsoft.CognitiveServices" | where-object FeatureName -Match byox
-```
-
-If you get the response like this, your subscription has access to BYOS.
-```powershell
-FeatureName ProviderName                RegistrationState
------------ ------------                -----------------
-byoxPreview Microsoft.CognitiveServices Registered
-```
-
-If you get empty response or `RegistrationState` value is `NotRegistered` then your Azure subscription doesn't have access to BYOS and you need to [request it](#request-access-to-byos-for-your-azure-subscriptions).
-
-# [Azure CLI](#tab/azure-cli)
-
-To check whether an Azure subscription has access to BYOS with Azure CLI, we use [az feature show](/cli/azure/feature) command.
-
-You can [install Azure CLI locally](/cli/azure/install-azure-cli) or use [Azure Cloud Shell](/azure/cloud-shell/overview).
-
-> [!NOTE]
-> The following script doesn't use variables because variable usage differs, depending on the platform where Azure CLI runs. See information on Azure CLI variable usage in [this article](/cli/azure/azure-cli-variables).
-
-If you use local installation of Azure CLI, connect to your Azure account using `az login` command before trying the following script.
-
-```azurecli
-az account set --subscription "XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
-
-az feature show --name byoxPreview --namespace  Microsoft.CognitiveServices --output table
-```
-
-If you get the response like this, your subscription has access to BYOS.
-```dos
-Name                                     RegistrationState
----------------------------------------  -------------------
-Microsoft.CognitiveServices/byoxPreview  Registered
-```
-If you get empty response or `RegistrationState` value is `NotRegistered` then your Azure subscription doesn't have access to BYOS and you need to [request it](#request-access-to-byos-for-your-azure-subscriptions).
-
-> [!Tip]
-> See additional commands related to listing Azure subscription preview features in [this article](/azure/azure-resource-manager/management/preview-features).
-
-# [REST](#tab/rest)
-
-To check through REST API whether an Azure subscription has access to BYOS use [Features - List](/rest/api/resources/features/list) request from Azure Resource Manager REST API.
-
-If your subscription has access to BYOS, the REST response will contain the following element:
-```json
-{
-  "properties": {
-    "state": "Registered"
-  },
-  "id": "/subscriptions/XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX/providers/Microsoft.Features/providers/Microsoft.CognitiveServices/features/byoxPreview",
-  "type": "Microsoft.Features/providers/features",
-  "name": "Microsoft.CognitiveServices/byoxPreview"
-}
-```
-If the REST response doesn't contain the reference to `byoxPreview` feature or its state is `NotRegistered` then your Azure subscription doesn't have access to BYOS and you need to [request it](#request-access-to-byos-for-your-azure-subscriptions).
-***
-
-
 ### Plan and prepare your Storage account
 
 If you use Azure portal to create a BYOS-enabled Speech resource, an associated Storage account can be created automatically. For all other provisioning methods (Azure CLI, PowerShell, REST API Request) you need to use existing Storage account.
@@ -156,8 +68,6 @@ If you want to use existing Storage account and don't intend to use Azure portal
 > Storage account *Resource Owner* right or higher is not required to use a BYOS-enabled Speech resource. However it is required during the one-time initial configuration of the Storage account for the usage in BYOS scenario. See details in [this section](#configure-byos-associated-storage-account).
 
 ### Create BYOS-enabled Speech resource
-
-Make sure your Azure subscription is enabled for using BYOS before attempting to create the Speech resource. See [this section](#request-access-to-byos-for-your-azure-subscriptions).
 
 There are two ways of creating a BYOS-enabled Speech resource:
 
