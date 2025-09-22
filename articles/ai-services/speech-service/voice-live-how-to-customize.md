@@ -22,7 +22,7 @@ Voice live provides multiple options to optimize performance and quality by usin
     - Phrase-list: A lightweight just-in-time customization based on a list of words or phrases provided as part of the session configuration to help improve recognition quality. See [Improve recognition accuracy with phrase list](./improve-accuracy-phrase-list) to learn more.
     - Custom Speech: With custom speech, you can evaluate and improve the accuracy of speech recognition for your applications and products and fine-tune the recognition quality to your business needs. See [What is custom speech?](./custom-speech-overview) to learn more.
 - Speech output customization:
-    - Custom Lexicon: Custom Lexicon allows you to easily customize pronunciation for both standard Azure text to speech voices and custom voices to improve speech output synthesization quality. See [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon) to learn more.
+    - Custom lexicon: Custom lexicon allows you to easily customize pronunciation for both standard Azure text to speech voices and custom voices to improve speech synthesis accuracy for your use case. See [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon) to learn more.
     - Custom voice: Custom voice lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as fine-tuning data. See [What is custom voice?](./custom-neural-voice) to learn more.
     - Custom avatar: Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. See [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar) to learn more.
 
@@ -69,7 +69,8 @@ Example session configuration with custom speech models. In this case, if the de
 ```
 
 > [!NOTE]
-> In order to use a custom speech model with voice live API the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> In order to use a custom speech model with voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> You pay separately for custom speech training and model hosting. 
 
 ## Speech output customization
 
@@ -103,11 +104,20 @@ You can use a custom voice for audio output. For information about how to create
 }
 ```
 
+> [!NOTE]
+> In order to use a custom voice model with voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> You pay separately for custom voice training and model hosting. 
+
 ### Azure custom avatar
 
 [Text to speech avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)) speaking with a natural-sounding voice.
 
 The configuration for a custom avatar does not differ from the configuration of a standard avatar. Please refer to [How to use the voice live API - Azure text to speech avatar](./voice-live-how-to#azure-text-to-speech-avatar) for a detailed example.
+
+> [!NOTE]
+> In order to use a custom voice model with voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> You pay separately for custom avatar training and model hosting. 
+
 
 ## Related content
 
