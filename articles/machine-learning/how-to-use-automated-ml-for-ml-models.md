@@ -8,7 +8,7 @@ ms.subservice: automl
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: manashg
-ms.date: 07/15/2024
+ms.date: 09/22/2025
 ms.topic: how-to
 ms.custom:
   - automl
@@ -21,7 +21,7 @@ ms.custom:
 
 In this article, you set up automated machine learning training jobs by using Azure Machine Learning Automated ML in [Azure Machine Learning studio](overview-what-is-azure-machine-learning.md#studio). This approach lets you set up the job without writing a single line of code. Automated ML is a process where Azure Machine Learning selects the best machine learning algorithm for your specific data. The process enables you to generate machine learning models quickly. For more information, see the [Overview of the Automated ML process](concept-automated-ml.md).
 
-This tutorial provides a high-level overview for working with Automated ML in the studio. The following articles provide detailed instructions for working with specific machine learning models: 
+This article provides a high-level overview for working with Automated ML in the studio. The following articles provide detailed instructions for working with specific machine learning models: 
 - **Classification**: [Tutorial: Train a classification model with Automated ML in the studio](tutorial-first-experiment-automated-ml.md)
 - **Time series forecasting**: [Tutorial: Forecast demand with Automated ML in the studio](tutorial-automated-ml-forecast.md)
 - **Natural Language Processing (NLP)**: [Set up Automated ML to train an NLP model (Azure CLI or Python SDK)](how-to-auto-train-nlp-models.md)
@@ -34,7 +34,7 @@ This tutorial provides a high-level overview for working with Automated ML in th
 
 - An Azure Machine Learning workspace or compute instance. To prepare these resources, see [Quickstart: Get started with Azure Machine Learning](quickstart-create-resources.md).
 
-- The data asset to use for the Automated ML training job. This tutorial describes how to select an existing data asset or create a data asset from a data source, such as a local file, web url, or datastore. For more information, see [Create and manage data assets](how-to-create-data-assets.md).
+- A data asset to use for the Automated ML training job. This article describes how to select an existing data asset or create a data asset from a data source, such as a local file, web url, or datastore. For more information, see [Create and manage data assets](how-to-create-data-assets.md).
 
    > [!IMPORTANT]
    > There are two requirements for the training data:
@@ -49,7 +49,7 @@ Create and run an experiment by following these steps:
 
 1. Sign in to [Azure Machine Learning studio](https://ml.azure.com), and select your subscription and workspace. 
 
-1. On the left menu, select **Automated ML** under the **Authoring** section:
+1. Under the **Authoring** section on the left menu, select **Automated ML**:
 
    :::image type="content" source="media/how-to-use-automated-ml-for-ml-models/automated-ml-overview.png" border="false" alt-text="Screenshot that shows the Authoring overview page for Automated ML in Azure Machine Learning studio." lightbox="media/how-to-use-automated-ml-for-ml-models/automated-ml-overview-large.png":::
 
@@ -67,7 +67,7 @@ Create and run an experiment by following these steps:
 
 On the **Task type & data** tab, you specify the data asset for the experiment and the machine learning model to use to train the data.
 
-In this tutorial, you can use an existing data asset, or create a new data asset from a file on your local computer. The studio UI pages change based on your selection for the data source and type of training model.
+In this article, you can use an existing data asset, or create a new data asset from a file on your local computer. The studio UI pages change based on your selection for the data source and type of training model.
 
 If you choose to use an existing data asset, you can continue to the [Configure training model](#configure-training-model) section.
 
