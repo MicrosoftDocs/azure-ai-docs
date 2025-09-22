@@ -14,7 +14,11 @@ author: msakande
 
 ## Black Forest Labs models sold directly by Azure
 
-The Black Forest Labs collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation.  You can run these models via images/generations and images/edits endpoints https://learn.microsoft.com/en-us/azure/ai-foundry/openai/reference-preview and through our service provider API. 
+The Black Forest Labs collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation.  
+
+You can run these models via our service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
+
+To learn more about how to use additional parameters from the model provider, see [FLUX.1 Kontext Text-to-Image Parameters](https://docs.bfl.ai/kontext/kontext_text_to_image#flux-1-kontext-text-to-image-parameters).
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type | 
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |
