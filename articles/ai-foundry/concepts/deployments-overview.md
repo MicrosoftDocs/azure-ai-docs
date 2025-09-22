@@ -85,7 +85,7 @@ Models that support multiple deployment options default to Azure AI Foundry reso
 ## Related content
 
 * [Configure your AI project to use Foundry Models](../../ai-foundry/foundry-models/how-to/quickstart-ai-project.md)
-* [Add and configure models to Foundry Models](../foundry-models/how-to/create-model-deployments.md)
+* [Deployment types in Azure AI Foundry Models](../foundry-models/concepts/deployment-types.md)
 * [Deploy Azure OpenAI models with Azure AI Foundry](../how-to/deploy-models-openai.md)
 * [Deploy open models with Azure AI Foundry](../how-to/deploy-models-managed.md)
 * [Explore Azure AI Foundry Models](../how-to/model-catalog-overview.md)
