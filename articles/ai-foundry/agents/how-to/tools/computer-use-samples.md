@@ -44,7 +44,7 @@ python -m venv env
 You can install the package with the following command:
 
 ```console
-pip install --pre azure-ai-projects, azure-identity, azure-ai-agents 
+pip install --pre azure-ai-projects azure-identity azure-ai-agents 
 ```
 
 ## Code example
