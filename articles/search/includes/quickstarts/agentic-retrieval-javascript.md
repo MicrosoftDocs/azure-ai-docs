@@ -28,7 +28,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
-## Setup
+## Set up the code
 
 1. Create a new folder `quickstart-agentic-retrieval` to contain the application and open Visual Studio Code in that folder with the following command:
 
@@ -65,7 +65,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     npm install @azure/identity
     ```
 
-## Create the index and knowledge agent
+## Run the code
 
 1. Create a new file named `.env` in the `quickstart-agentic-retrieval` folder and add the following environment variables:
 
@@ -572,7 +572,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     node index.js
     ```
 
-## Output
+### Output
 
 The output of the application should look similar to the following:
 
@@ -749,7 +749,7 @@ To find lava at night, satellite instruments like the VIIRS Day/Night Band (DNB)
 ✅ Quickstart completed successfully!
 ```
 
-## Explaining the code
+## Understand the code
 
 Now that you have the code, let's break down the key components:
 
