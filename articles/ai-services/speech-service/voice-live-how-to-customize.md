@@ -44,7 +44,7 @@ Use phrase list for lightweight just-in-time customization on audio input. To co
 ```
 
 > [!NOTE]
-> Phrase list currently doesn't support gpt-realtime, gpt-4o-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
+> Phrase list currently doesn't support gpt-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ### Custom speech configuration
 

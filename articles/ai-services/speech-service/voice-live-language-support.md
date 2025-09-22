@@ -22,7 +22,7 @@ The voice live API supports multiple languages and configuration options. In thi
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-4o-mini-realtime`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
 ### Azure speech to text supported languages
 
@@ -78,11 +78,11 @@ To configure a single or multiple languages not supported by the multimodal mode
 }
 ```
 
-### gpt-4o-realtime-preview and gpt-4o-mini-realtime-preview supported languages
+### gpt-realtime and gpt-4o-mini-realtime supported languages
 
 While the underlying model was trained on 98 languages, OpenAI only lists the languages that exceeded <50% word error rate (WER) which is an industry standard benchmark for speech to text model accuracy. The model returns results for languages not listed but the quality will be low.
 
-The following languages are supported by `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview`:
+The following languages are supported by `gpt-realtime` and `gpt-4o-mini-realtime`:
 - Afrikaans
 - Arabic
 - Armenian
@@ -175,7 +175,7 @@ Multimodal models don't require a language configuration for the general process
 
 ## [Speech output](#tab/speechoutput)
 
-Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview` or by `azure text to speech` voices.
+Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-4o-mini-realtime` or by `azure text to speech` voices.
 
 ### Azure text to speech supported languages
 

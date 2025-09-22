@@ -74,13 +74,11 @@ The voice live API supports the following models. For supported regions, see the
 | Model | Description |
 | ------------------------------ | ----------- |
 | `gpt-realtime`      | GPT real-time + option to use Azure text to speech voices including custom voice for audio. |
-| `gpt-4o-realtime`      | GPT-4o real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o-mini-realtime` | GPT-4o mini real-time + option to use Azure text to speech voices including custom voice for audio. |
 | `gpt-4o` | GPT-4o + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4o-mini` | GPT-4o mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4.1` | GPT-4.1 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-4.1-mini` | GPT-4.1 mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
-| `gpt-4.1-nano` | GPT-4.1 nano + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5` | GPT-5 + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5-mini` | GPT-5 mini + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
 | `gpt-5-nano` | GPT-5 nano + audio input through Azure speech to text + audio output through Azure text to speech voices including custom voice. |
@@ -113,9 +111,9 @@ You don't select a tier. You choose a generative AI model and the corresponding 
 
 | Pricing category | Models |
 | ----- | ------ |
-| Voice live pro | `gpt-realtime`, `gpt-4o-realtime`, `gpt-4o`, `gpt-4.1`, `gpt-5` |
+| Voice live pro | `gpt-realtime`, `gpt-4o`, `gpt-4.1`, `gpt-5` |
 | Voice live basic | `gpt-4o-mini-realtime`, `gpt-4o-mini`, `gpt-4.1-mini`, `gpt-5-mini` |
-| Voice live lite | `gpt-4.1-nano`, `gpt-5-nano`,`phi4-mm-realtime`, `phi4-mini` |
+| Voice live lite | `gpt-5-nano`,`phi4-mm-realtime`, `phi4-mini` |
 
 If you choose to use custom voice for your speech output, you're charged separately for custom voice model training and hosting. Refer to the [Text to Speech – Custom Voice – Professional](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services) pricing for details. Custom voice is a limited access feature. [Learn more about how to create custom voices.](https://aka.ms/CNVPro)
 
@@ -142,11 +140,11 @@ You're charged separately for the training and model hosting of:
 
 #### Scenario 2
 
-A learning agent built with `gpt-4o-realtime` native audio input and standard Azure AI Speech output. 
+A learning agent built with `gpt-realtime` native audio input and standard Azure AI Speech output. 
 
 You're charged at the voice live pro rate for:
 - Text
-- Native audio with `gpt-4o-realtime`
+- Native audio with `gpt-realtime`
 - Audio with Azure AI Speech - Standard
 
 #### Scenario 3

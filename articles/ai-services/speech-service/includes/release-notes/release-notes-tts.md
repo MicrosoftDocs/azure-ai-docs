@@ -15,9 +15,9 @@ Our new “DragonV2.1” model brings improvements to the naturalness of speech,
 ### June 2025 release
 
 #### VoiceLive API update 
-- Support more GenAI models: GPT-4.1, GPT-4.1 Mini and GPT-4.1 Nano, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
+- Support more GenAI models: GPT-4.1, GPT-4.1 Mini, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
 - Support more customization capabilities
-- Azure Semantic VAD is extended to support GPT-4o-Realtime and GPT-4o-Mini-Realtime.
+- Azure Semantic VAD is extended to support GPT-Realtime and GPT-4o-Mini-Realtime.
 - Availability in more regions
 
 #### Public preview of Voice Conversion feature on selected en-US voices
