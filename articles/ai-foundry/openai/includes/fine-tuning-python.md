@@ -159,7 +159,7 @@ print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
-If you are fine tuning a model that supports [Global Training](../includes/fine-tune-models.md), you can specify the training type by using the `extra_body` named argument:
+If you are fine tuning a model that supports [Global Training](./fine-tune-models.md), you can specify the training type by using the `extra_body` named argument:
 
 ```python
 response = client.fine_tuning.jobs.create(

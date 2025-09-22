@@ -119,7 +119,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/files?api-version=2024-10-21 \
 
 ## Create a customized model
 
-After you uploaded your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) with the REST API.
+After you uploaded your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP&preserve-view=true) with the REST API.
 
 In this example we are also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed is not specified, one will be generated for you.
 
@@ -135,7 +135,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2024-10-
 }'
 ```
 
-If you are fine tuning a model that supports [Global Training](../includes/fine-tune-models.md), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
+If you are fine tuning a model that supports [Global Training](./fine-tune-models.md), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
 
 ```bash
 curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-01-preview \
@@ -150,7 +150,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-
 }'
 ```
 
-You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP#finetuninghyperparameters&preserve-view=true) to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters.
+You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP#finetuninghyperparameters&preserve-view=true) to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters.
 
 The current supported hyperparameters for Supervised Fine-Tuning are:
 
