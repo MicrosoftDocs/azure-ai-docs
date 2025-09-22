@@ -23,6 +23,9 @@ Azure AI Foundry provides several deployment options depending on the type of mo
 - Deployment to serverless API endpoints
 - Deployment to managed computes
 
+Azure AI Foundry portal might automatically pick a deployment option based on your environment and configuration. Use Azure AI Foundry resources for deployment whenever possible. 
+Models that support multiple deployment options default to Azure AI Foundry resources for deployment. To access other deployment options, use the Azure CLI or Azure Machine Learning SDK for deployment.
+
 ### Standard deployment in Azure AI Foundry resources
 
 Azure AI Foundry resources (formerly referred to as Azure AI Services resources), is **the preferred deployment option** in Azure AI Foundry. It offers the widest range of capabilities, including regional, data zone, or global processing, and it offers standard and [provisioned throughput (PTU)](../../ai-services/openai/concepts/provisioned-throughput.md) options. Flagship models in Azure AI Foundry Models support this deployment option.
@@ -77,10 +80,6 @@ Use [Standard deployments in Azure AI Foundry resources](#standard-deployment-in
 
 <sup>3</sup> Billing is on a per-minute basis, depending on the product tier and the number of instances used in the deployment since the moment of creation. After you delete the endpoint, no further charges accrue.
 
-## Configure Azure AI Foundry portal for deployment options
-
-Azure AI Foundry portal might automatically pick a deployment option based on your environment and configuration. Use Azure AI Foundry resources for deployment whenever possible. 
-Models that support multiple deployment options default to Azure AI Foundry resources for deployment. To access other deployment options, use the Azure CLI or Azure Machine Learning SDK for deployment.
 
 ## Related content
 
