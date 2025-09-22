@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-c
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The JavaScript version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the REST or Python version.
+> The JavaScript version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the C#, Python, or REST version.
 
 ## Prerequisites
 
