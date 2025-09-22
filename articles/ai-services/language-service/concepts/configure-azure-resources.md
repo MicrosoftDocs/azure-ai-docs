@@ -26,8 +26,8 @@ In addition, we show you how to assign the correct roles and permissions within 
 Before you can set up your resources, you need:
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
-* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
-* An [Azure AI Foundry resource](../../../multi-service-resource.md) or an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* An [Azure AI Foundry resource](/azure/multi-service-resource.md) or an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 
 * An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) (optional but required for [option 2](#option-2-configure-azure-language-resource-and-azure-openai-resources))
 
@@ -45,15 +45,15 @@ Azure AI Foundry offers a unified platform for building, managing, and deploying
 
 1. Next, select **Access Control (IAM)** on the left panel, then select **Add role assignment**.
 
-   :::image type="content" source="../media/configure-resources/add-role-assignment.png" alt-text="Screenshot of add role assignment selector in the Azure portal.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/add-role-assignment.png" alt-text="Screenshot of add role assignment selector in the Azure portal.":::
 
 1. Search and select the **Cognitive Services User** role. Select **Next**.
 
-   :::image type="content" source="../media/configure-resources/cognitive-services-user.png" alt-text="Screenshot of Cognitive Services User from the job function roles list in the Azure portal.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/cognitive-services-user.png" alt-text="Screenshot of Cognitive Services User from the job function roles list in the Azure portal.":::
 
 1. Navigate to the **Members** tab and then select **Managed Identity**.
 
-   :::image type="content" source="../media/configure-resources/managed-identity.png" alt-text="Screenshot of assign member access selector in the Azure portal.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/managed-identity.png" alt-text="Screenshot of assign member access selector in the Azure portal.":::
 
 1. Choose **Select members**, then in the right panel, search for and choose your Azure AI Foundry resource (the one you're using for this project), and choose **Select**.
 
@@ -73,15 +73,15 @@ Azure OpenAI is a cloud-based solution that brings the advanced capabilities of 
 
 1. Next, select **Access Control (IAM)** on the left panel, then select **Add role assignment**.
 
-   :::image type="content" source="../media/configure-resources/add-role-assignment.png" alt-text="Screenshot of add role assignment selector in the Azure portal.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/add-role-assignment.png" alt-text="Screenshot of add role assignment selector in the Azure portal.":::
 
 1. Search and select the **Cognitive Services User** role, then select **Next**.
 
-   :::image type="content" source="../media/configure-resources/cognitive-services-user.png" alt-text="Screenshot of Cognitive Services User from the job function roles list in the Azure portal.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/cognitive-services-user.png" alt-text="Screenshot of Cognitive Services User from the job function roles list in the Azure portal.":::
 
 1. Navigate to the **Members** tab and then select **Managed Identity**.
 
-   :::image type="content" source="../media/configure-resources/managed-identity.png" alt-text="Screenshot of assign member access selector in the Azure portal.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/managed-identity.png" alt-text="Screenshot of assign member access selector in the Azure portal.":::
 
 1. Select **Select members**, then in the right panel, search for and choose your Azure AI Foundry resource (the one you're using for this project), and choose **Select**.
 
@@ -98,12 +98,12 @@ Azure AI Foundry offers a unified platform where you can easily build, manage, a
 
 1. Scroll to the **Connected resources** section of the Management center.
 
-    :::image type="content" source="../media/configure-resources/ai-foundry-management-center.png" alt-text="Screenshot of the management center selector in the Azure AI Foundry.":::
+    :::image type="content" source="../conversational-language-understanding/media/configure-resources/ai-foundry-management-center.png" alt-text="Screenshot of the management center selector in the Azure AI Foundry.":::
 
 
 1. Select the  **+ New connection** button.
 
-   :::image type="content" source="../media/configure-resources/new-connection.png" alt-text="Screenshot of the new connection button in the Azure AI Foundry.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/new-connection.png" alt-text="Screenshot of the new connection button in the Azure AI Foundry.":::
 
 
 1. In the new window, select **Azure AI Language** as the resource type, then find your Azure AI Language resource.
@@ -116,13 +116,13 @@ Azure AI Foundry offers a unified platform where you can easily build, manage, a
 
 1. Select **Add connection**, then select **Close**.
 
-   :::image type="content" source="../media/configure-resources/connect-language-resource.png" alt-text="Screenshot of connect search resource selector in the Azure AI Foundry.":::
+   :::image type="content" source="../conversational-language-understanding/media/configure-resources/connect-language-resource.png" alt-text="Screenshot of connect search resource selector in the Azure AI Foundry.":::
 
 ## Import an existing Azure AI project
 
 Azure AI Foundry allows you to connect to your existing Azure AI services resources. This means you can establish a connection within your Azure AI Foundry project to the Azure AI Language resource where your custom models are stored.
 
-To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](../../../../ai-services/connect-services-ai-foundry-portal.md)
+To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](/azure/ai-services/connect-services-ai-foundry-portal.md)
 
 ## Export a project
 
@@ -132,7 +132,7 @@ You can download a project as a **config.json** file:
 1. At the top of the page, select your project from the right page ribbon area.
 1. Select **Download config file**.
 
-    :::image type="content" source="../media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
+    :::image type="content" source="../conversational-language-understanding/media/create-project/download-config-json.png" alt-text="Screenshot of project drop-down menu with the download config file hyperlink in the Azure AI Foundry.":::
 
 
 

@@ -2822,7 +2822,7 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
-      "redirect_url": "/azure/ai-services/language-service/how-to-guides",
+      "redirect_url": "/azure/ai-services/language-service/concepts/",
       "redirect_document_id": true
     }
 
