@@ -14,16 +14,6 @@ items:
     href: ../../how-to/configure-private-link.md
   - name: Network security perimeter (preview)
     href: ../../how-to/add-foundry-to-network-security-perimeter.md
-  - name: Managed network for hubs
-    items:
-    - name: Configure managed network
-      href: ../../how-to/configure-managed-network.md
-    - name: Secure playground chat
-      href: ../../how-to/secure-data-playground.md
-    - name: Securely access on-premises resources
-      href: ../../how-to/access-on-premises-resources.md
-    - name: Troubleshoot secure project connectivity
-      href: ../../how-to/troubleshoot-secure-connection-project.md
 - name: Data protection & encryption
   items:
   - name: Configure customer-managed keys
@@ -34,14 +24,6 @@ items:
   items:
   - name: Manage model deployment policy
     href: ../../how-to/model-deployment-policy.md
-  - name: Audit and manage hubs
-    href: ../../how-to/azure-policy.md
-    displayName: Azure Policy
-  - name: Built-in policies for model deployment
-    href: ../../how-to/built-in-policy-model-deployment.md
-    displayName: Azure Policy
-  - name: Custom policies for model deployment
-    href: ../../foundry-models/how-to/configure-deployment-policies.md
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
@@ -49,3 +31,25 @@ items:
   href: ../../how-to/disaster-recovery.md
 - name: Security baseline
   href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+- name: Hub Security & Governance
+  items:
+  - name: Azure policies
+    items: 
+    - name: Audit and manage hubs
+      href: ../../how-to/azure-policy.md
+    - name: Built-in policies for model deployment
+      href: ../../how-to/built-in-policy-model-deployment.md
+      displayName: Azure Policy
+    - name: Custom policies for model deployment
+      href: ../../foundry-models/how-to/configure-deployment-policies.md
+      displayName: Azure Policy
+  - name: Network security
+    items:
+    - name: Managed network for hubs
+      href: ../../how-to/configure-managed-network.md
+    - name: Secure playground chat
+      href: ../../how-to/secure-data-playground.md
+    - name: Securely access on-premises resources
+      href: ../../how-to/access-on-premises-resources.md
+    - name: Troubleshoot secure project connectivity
+      href: ../../how-to/troubleshoot-secure-connection-project.md
