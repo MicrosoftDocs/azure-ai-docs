@@ -244,8 +244,8 @@ items:
       href: voice-live-how-to.md
     - name: Voice live language support
       href: voice-live-language-support.md
-    - name: Audio events reference
-      href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
+    - name: Voice Live API Reference
+      href: voicelive-api-reference.md
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
