@@ -260,6 +260,7 @@ To create and run the agentic retrieval pipeline:
                 // Set up messages
                 string instructions = @"A Q&A agent that can answer questions about the Earth at night.
                 If you don't have the answer, respond with ""I don't know"".";
+
                 var messages = new List<Dictionary<string, string>>
                 {
                     new Dictionary<string, string>
@@ -771,6 +772,7 @@ The following code creates a system message, which instructs `earth-knowledge-ag
 // Set up messages
 string instructions = @"A Q&A agent that can answer questions about the Earth at night.
 If you don't have the answer, respond with ""I don't know"".";
+
 var messages = new List<Dictionary<string, string>>
 {
     new Dictionary<string, string>
@@ -783,9 +785,7 @@ var messages = new List<Dictionary<string, string>>
 
 ### Run the retrieval pipeline
 
-You're ready to run agentic retrieval. The following code sends a two-part user query to `earth-knowledge-agent`.
-
-Given the conversation history and retrieval parameters, the agent:
+You're ready to run agentic retrieval by sending a two-part user query to `earth-knowledge-agent`. Given the conversation history and retrieval parameters, the agent:
 
 1. Analyzes the entire conversation to infer the user's information need.
 1. Decomposes the compound query into focused subqueries.
@@ -953,8 +953,6 @@ Console.WriteLine($"Knowledge source '{knowledgeSourceName}' deleted successfull
 ```
 
 ### Delete the search index
-
-The search index created in this quickstart was deleted using the following code snippet from *Program.cs*:
 
 ```csharp
 await indexClient.DeleteIndexAsync(indexName);
