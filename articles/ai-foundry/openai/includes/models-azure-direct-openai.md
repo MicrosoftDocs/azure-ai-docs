@@ -123,8 +123,10 @@ A model that intelligently selects from a set of underlying chat models to respo
 
 | Model | Region |
 |---|---|
-| `model-router` (2025-08-07) | East US 2 (Global Standard), Sweden Central (Global Standard) |
-| `model-router` (2025-05-19) | East US 2 (Global Standard), Sweden Central (Global Standard) |
+| `model-router` (2025-08-07) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+| `model-router` (2025-05-19) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+
+*Billing for Data Zone Standard model router deployments will begin no earlier than November 1, 2025.*
 
 ### Capabilities
 
