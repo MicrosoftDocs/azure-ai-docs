@@ -5,7 +5,7 @@ description: This article provides instructions on how to trace your application
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: amibp
-ms.date: 08/21/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 
@@ -181,6 +181,14 @@ with tracer.start_as_current_span("example-tracing"):
     )
     run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
+
+### Alternative: AI Toolkit for VS Code
+
+AI Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it great for development and debugging. 
+
+The toolkit supports AI frameworks like Azure AI Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
+
+For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
 
 ## Trace custom functions
 
