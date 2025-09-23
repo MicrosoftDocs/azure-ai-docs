@@ -10,7 +10,7 @@ ms.custom:
   - devx-track-dotnet
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/19/2025
+ms.date: 09/23/2025
 ---
 
 # C# samples for Azure AI Search
@@ -43,25 +43,23 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 
 ## Doc samples
 
-Code samples from the Azure AI Search team demonstrate features and workflows. Many of the following samples are referenced in tutorials, quickstarts, and how-to articles that explain the code in detail. You can find these samples in [Azure-Samples/azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) and [Azure-Samples/search-dotnet-getting-started](https://github.com/Azure-Samples/search-dotnet-getting-started/) on GitHub.
+Code samples from the Azure AI Search team demonstrate features and workflows. The following samples are referenced in tutorials, quickstarts, and how-to articles that explain the code in detail. You can find these samples in [Azure-Samples/azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples) and [Azure-Samples/search-dotnet-getting-started](https://github.com/Azure-Samples/search-dotnet-getting-started/) on GitHub.
 
-| Sample | Description |
-|--|--|
-| [quickstart](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart) | Source code for the C# portion of [Quickstart: Full-text search](search-get-started-text.md). Create, load, and query an index using sample data. |
-| [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) | Source code for the C# portion of [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md). Integrate semantic ranking with LLM-powered query planning and answer generation. |
-| [quickstart-rag](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-rag) | Source code for the C# portion of [Quickstart: Generative search (RAG)](search-get-started-rag.md). Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
-| [quickstart-semantic-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-semantic-search/) | Source code for the C# portion of [Quickstart: Semantic ranking](search-get-started-semantic.md). Add semantic ranking to an index schema and run semantic queries. |
-| [quickstart-vector-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) | Source code for the C# portion of [Quickstart: Vector search](search-get-started-vector.md). Index and query vector content. |
-| [create-mvc-app](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/create-mvc-app) | Source code for [Tutorial: Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md). Add basic search, pagination, and other server-side behaviors to an MVC web app, unlike the console applications used in most samples. |
-| [search-website](https://github.com/Azure-Samples/azure-search-static-web-app) | Source code for [Tutorial: Add search to web apps](tutorial-csharp-overview.md). Build an end-to-end search app that uses the push API for bulk upload and a rich client for hosting the app and handling search requests. |
-| [tutorial-ai-enrichment](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/tutorial-ai-enrichment) | Source code for [Tutorial: AI-generated searchable content from Azure blobs](tutorial-skillset.md). Create a skillset that iterates over Azure blobs to extract information and infer structure. |
-| [multiple-data-sources](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/multiple-data-sources) | Source code for [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md). Merge content from two data sources into one index. |
-| [optimize-data-indexing](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/optimize-data-indexing) | Source code for [Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md). Use optimization techniques for pushing data into an index. |
-| [DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) | Source code for [Use the .NET client library](search-howto-dotnet-sdk.md). Create and manage multiple search objects while learning about the APIs. |
-| [DotNetToIndexers](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToIndexers) | Source code for [Tutorial: Index Azure SQL data](search-indexer-tutorial.md). Configure an Azure SQL indexer with a schedule, field mappings, and parameters. |
-| [DotNetHowToEncryptionUsingCMK](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToEncryptionUsingCMK) | Source code for [Configure customer-managed keys for data encryption](search-security-manage-encryption-keys.md). Create objects that are encrypted with a customer-managed key. |
-| [DotNetVectorDemo](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet/DotNetVectorDemo) | Create, load, and query a vector index. |
-| [DotNetIntegratedVectorizationDemo](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet/DotNetIntegratedVectorizationDemo) | Extend the vector workflow to include skills-based automation for data chunking and embedding. |
+| Sample | Article | Description |
+|--|--|--|
+| [quickstart](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart/AzureSearchQuickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query an index using sample data. |
+| [quickstart-agentic-retrieval](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-agentic-retrieval) | [Quickstart: Agentic retrieval](search-get-started-agentic-retrieval.md) | Integrate semantic ranking with LLM-powered query planning and answer generation. |
+| [quickstart-rag](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-rag) | [Quickstart: Generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
+| [quickstart-semantic-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/quickstart-semantic-search/) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
+| [quickstart-vector-search](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/quickstart-vector-search) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
+| [create-mvc-app](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/create-mvc-app) | [Tutorial: Add search to an ASP.NET Core (MVC) app](tutorial-csharp-create-mvc-app.md) | Add basic search, pagination, and other server-side behaviors to an MVC web app, unlike the console applications used in most samples. |
+| [search-website](https://github.com/Azure-Samples/azure-search-static-web-app) | [Tutorial: Add search to web apps](tutorial-csharp-overview.md) | Build an end-to-end search app that uses the push API for bulk upload and a rich client for hosting the app and handling search requests. |
+| [tutorial-ai-enrichment](https://github.com/Azure-Samples/azure-search-dotnet-samples/tree/main/tutorial-ai-enrichment) | [Tutorial: AI-generated searchable content from Azure blobs](tutorial-skillset.md) | Create a skillset that iterates over Azure blobs to extract information and infer structure. |
+| [multiple-data-sources](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/multiple-data-sources) | [Tutorial: Index from multiple data sources](tutorial-multiple-data-sources.md) | Merge content from two data sources into one index. |
+| [optimize-data-indexing](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/optimize-data-indexing) | [Tutorial: Optimize indexing with the push API](tutorial-optimize-indexing-push-api.md) | Use optimization techniques for pushing data into an index. |
+| [DotNetHowTo](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowTo) | [Use the .NET client library](search-howto-dotnet-sdk.md) | Create and manage multiple search objects while learning about the APIs. |
+| [DotNetToIndexers](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToIndexers) | [Tutorial: Index Azure SQL data](search-indexer-tutorial.md) | Configure an Azure SQL indexer with a schedule, field mappings, and parameters. |
+| [DotNetHowToEncryptionUsingCMK](https://github.com/Azure-Samples/search-dotnet-getting-started/tree/master/DotNetHowToEncryptionUsingCMK) | [Configure customer-managed keys for data encryption](search-security-manage-encryption-keys.md) | Create objects that are encrypted with a customer-managed key. |
 
 ## Accelerators
 
@@ -93,6 +91,8 @@ The following samples are also published by the Azure AI Search team but aren't 
 | [multiple-search-services](https://github.com/Azure-Samples/azure-search-dotnet-scale/tree/main/multiple-search-services) | Query multiple search services and combine results into a single page. |
 | [search-aggregations](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/search-aggregations) | Obtain and filter aggregations from an index. |
 | [azure-search-power-skills](https://github.com/Azure-Samples/azure-search-power-skills/blob/main) | Incorporate consumable custom skills into your own solutions. |
+| [DotNetVectorDemo](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet/DotNetVectorDemo) | Create, load, and query a vector index. |
+| [DotNetIntegratedVectorizationDemo](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-dotnet/DotNetIntegratedVectorizationDemo) | Extend the vector workflow to include skills-based automation for data chunking and embedding. |
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?languages=csharp&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.
