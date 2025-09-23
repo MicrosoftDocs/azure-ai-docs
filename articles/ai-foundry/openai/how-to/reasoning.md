@@ -443,8 +443,9 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. 
 
-> [!NOTE]
-> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
+> [!IMPORTANT]
+> Attempting to extract raw reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
 
 # [Python](#tab/py)
 
@@ -569,6 +570,9 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
   "store": true
 }
 ```
+
+> [!NOTE]
+> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
 
 ## Python lark
 
