@@ -25,6 +25,10 @@ recommendations: false
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-api/python.md)]
 ::: zone-end
 
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-api/csharp.md)]
+::: zone-end
+
 ## Related content
 
 - Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)

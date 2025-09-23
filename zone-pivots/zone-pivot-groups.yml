@@ -1431,6 +1431,8 @@ groups:
     title: Foundry portal
   - id: programming-language-python
     title: Python
+  - id: programming-language-csharp
+    title: C#
 - id: structured-outputs
   title: Programming languages
   prompt: Choose a language or API
