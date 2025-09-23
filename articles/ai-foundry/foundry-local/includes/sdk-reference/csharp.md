@@ -46,13 +46,16 @@ Represents the type of device used for model execution.
 
 Represents the execution provider for model inference.
 
-| Value                   | Description            |
-| ----------------------- | ---------------------- |
-| Invalid                 | Invalid provider       |
-| CPUExecutionProvider    | CPU execution          |
-| WebGpuExecutionProvider | WebGPU execution       |
-| CUDAExecutionProvider   | CUDA GPU execution     |
-| QNNExecutionProvider    | Qualcomm NPU execution |
+| Value                          | Description               |
+| ------------------------------ | ------------------------- |
+| Invalid                        | Invalid provider          |
+| CPUExecutionProvider           | CPU execution             |
+| WebGpuExecutionProvider        | WebGPU execution          |
+| CUDAExecutionProvider          | CUDA GPU execution        |
+| QNNExecutionProvider           | Qualcomm NPU execution    |
+| OpenVINOExecutionProvider      | Intel OpenVINO execution  |
+| NvTensorRTRTXExecutionProvider | NVIDIA TensorRT execution |
+| VitisAIExecutionProvider       | AMD Vitis AI execution    |
 
 ### `FoundryLocalManager` Class
 

@@ -47,17 +47,17 @@ The following table summarizes the commands related to managing and running mode
 >
 > If you have an Intel NPU on Windows, ensure you have installed the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
 
-| **Command**                                 | **Description**                                                                  |
-| ------------------------------------------- | -------------------------------------------------------------------------------- |
-| `foundry model --help`                      | Displays all available model-related commands and their usage.                   |
-| `foundry model run <model>`                 | Runs a specified model, downloading it if not cached, and starts an interaction. |
-| `foundry model list`                        | Lists all available models for local use. On first run, downloads execution providers (EPs) for your hardware.                                        |
-| `foundry model list --filter <key>=<value>` | Lists models filtered by the specified criteria (device, task, alias, provider). |
-| `foundry model info <model>`                | Displays detailed information about a specific model.                            |
-| `foundry model info <model> --license`      | Displays the license information for a specific model.                           |
-| `foundry model download <model>`            | Downloads a model to the local cache without running it.                         |
-| `foundry model load <model>`                | Loads a model into the service.                                                  |
-| `foundry model unload <model>`              | Unloads a model from the service.                                                |
+| **Command**                                 | **Description**                                                                                                |
+| ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `foundry model --help`                      | Displays all available model-related commands and their usage.                                                 |
+| `foundry model run <model>`                 | Runs a specified model, downloading it if not cached, and starts an interaction.                               |
+| `foundry model list`                        | Lists all available models for local use. On first run, downloads execution providers (EPs) for your hardware. |
+| `foundry model list --filter <key>=<value>` | Lists models filtered by the specified criteria (device, task, alias, provider).                               |
+| `foundry model info <model>`                | Displays detailed information about a specific model.                                                          |
+| `foundry model info <model> --license`      | Displays the license information for a specific model.                                                         |
+| `foundry model download <model>`            | Downloads a model to the local cache without running it.                                                       |
+| `foundry model load <model>`                | Loads a model into the service.                                                                                |
+| `foundry model unload <model>`              | Unloads a model from the service.                                                                              |
 
 ### Model list filtering
 
@@ -92,6 +92,9 @@ Filters models by their execution provider/runtime.
 - `CUDAExecutionProvider` - NVIDIA CUDA GPU execution
 - `WebGpuExecutionProvider` - WebGPU execution
 - `QNNExecutionProvider` - Qualcomm Neural Network execution (NPU)
+- `OpenVINOExecutionProvider` - Intel OpenVINO execution
+- `NvTensorRTRTXExecutionProvider` - NVIDIA TensorRT execution
+- `VitisAIExecutionProvider` - AMD Vitis AI execution
 
 #### task - Model Task Type
 

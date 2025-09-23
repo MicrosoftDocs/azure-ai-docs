@@ -96,6 +96,9 @@ The hardware abstraction layer ensures that Foundry Local can run on various dev
 > [!NOTE]
 > For Intel NPU support on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable hardware acceleration.
 
+> [!NOTE]
+> For Qualcomm NPU support, you need to install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND). If you encounter the error `Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`, this typically indicates an outdated driver or NPU resource conflicts. Try rebooting to clear NPU resource conflicts, especially after using Windows Copilot+ features.
+
 ### Developer experiences
 
 The Foundry Local architecture is designed to provide a seamless developer experience, enabling easy integration and interaction with AI models.

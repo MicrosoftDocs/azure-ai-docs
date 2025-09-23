@@ -49,7 +49,13 @@ No - Foundry Local doesn't require an Azure subscription. It runs on your local 
 
 ### Do I need special drivers for NPU acceleration?
 
-Yes, if you have an Intel NPU on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration with Foundry Local. Foundry Local automatically detects and uses available NPU hardware once the proper drivers are installed.
+Yes, depending on your NPU hardware, you need to install the appropriate drivers:
+
+- **Intel NPU**: Install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration on Windows.
+
+- **Qualcomm NPU**: Install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND) to enable NPU acceleration. If you encounter the error `Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`, this typically indicates an outdated driver or NPU resource conflicts. Try rebooting to clear NPU resource conflicts, especially after using Windows Copilot+ features.
+
+Foundry Local automatically detects and uses available NPU hardware once the proper drivers are installed.
 
 ## Getting started
 
