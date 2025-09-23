@@ -44,6 +44,8 @@ The following table summarizes the commands related to managing and running mode
 > - Allow you to use a shorter name without needing to remember the model ID.
 >
 > If you want to run a specific model, you can use the model ID. For example, to run the `qwen2.5-0.5b` on CPU - irrespective of your available hardware - use: `foundry model run qwen2.5-0.5b-instruct-generic-cpu`.
+>
+> If you have an Intel NPU on Windows, ensure you have installed the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
 
 | **Command**                                 | **Description**                                                                  |
 | ------------------------------------------- | -------------------------------------------------------------------------------- |

@@ -46,6 +46,9 @@ Many methods outlined in this reference have an `alias_or_model_id` parameter in
 > [!TIP]
 > We recommend passing into the `alias_or_model_id` parameter an **alias** because when you deploy your application, Foundry Local acquires the best model for the end user's machine at run-time.
 
+> [!NOTE]
+> If you have an Intel NPU on Windows, ensure you have installed the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
+
 ### Service Management
 
 | Method                 | Signature          | Description                                     |

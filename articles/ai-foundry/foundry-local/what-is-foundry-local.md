@@ -45,6 +45,12 @@ Foundry Local is ideal for scenarios where:
 
 No - Foundry Local doesn't require an Azure subscription. It runs on your local hardware, allowing you to use your existing infrastructure without the need for cloud services.
 
+## Frequently asked questions
+
+### Do I need special drivers for NPU acceleration?
+
+Yes, if you have an Intel NPU on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration with Foundry Local. Foundry Local automatically detects and uses available NPU hardware once the proper drivers are installed.
+
 ## Getting started
 
 Install and run your first model by following the [Get started with Foundry Local](get-started.md) guide. This guide helps you set up Foundry Local, discover available models, and launch your first local AI model.
