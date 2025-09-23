@@ -75,17 +75,20 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model       | Global Default<br>Tokens per minute (TPM)  | Global Enterprise and MCA-E <br>Tokens per minute (TPM)  | Data Zone Default <br>Tokens per minute (TPM)  | Data Zone Enterprise and MCA-E <br>Tokens per minute (TPM) |
 |-------------|----------------|-------------------|-------------------|----------------------|
-| gpt-5       | 1 M             | 10 M               | 300 K              | 3 M                   |
-| gpt-5-mini  | 1 M             | 10 M               | 300 K              | 3 M                   |
-| gpt-5-nano  | 5 M             | 150 M              | 2 M                | 50 M                  |
-| gpt-5-chat  | 1 M             | 5 M                | N/A              |    N/A                  |
+| `gpt-5`       | 1 M             | 10 M               | 300 K              | 3 M                   |
+| `gpt-5-mini`  | 1 M             | 10 M               | 300 K              | 3 M                   |
+| `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
+| `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
+| `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
 
 | Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
 |-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
-| gpt-5       | 10 K                                         | 100 K                                                      | 3 K                                              | 30 K                   |
-| gpt-5-mini  | 1 K                                          | 10 K                                                       | 300                                              | 3 K                   |
-| gpt-5-nano  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
-| gpt-5-chat  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
+| `gpt-5`       | 10 K                                         | 100 K                                                      | 3 K                                              | 30 K                   |
+| `gpt-5-mini`  | 1 K                                          | 10 K                                                       | 300                                              | 3 K                   |
+| `gpt-5-nano`  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
+| `gpt-5-chat`  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
+| `gpt-5-codex` | 1 K                                          | 10 K                                                      | N/A                | N/A  | 
+
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
