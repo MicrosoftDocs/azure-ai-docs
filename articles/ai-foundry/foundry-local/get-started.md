@@ -181,12 +181,8 @@ If you wish to uninstall Foundry Local, use the following commands based on your
 
 ## Related content
 
-> [!div class="nextstepaction"] > [Integrate inferencing SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
-
-> [!div class="nextstepaction"] > [Explore the Foundry Local documentation](index.yml)
-
-> [!div class="nextstepaction"] > [Learn about best practices and troubleshooting](reference/reference-best-practice.md)
-
-> [!div class="nextstepaction"] > [Explore the Foundry Local API reference](reference/reference-catalog-api.md)
-
-> [!div class="nextstepaction"] > [Learn Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
+- [Integrate inferencing SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
+- [Explore the Foundry Local documentation](index.yml)
+- [Learn about best practices and troubleshooting](reference/reference-best-practice.md)
+- [Explore the Foundry Local API reference](reference/reference-catalog-api.md)
+- [Learn Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
