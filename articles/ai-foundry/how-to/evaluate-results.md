@@ -8,7 +8,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 09/22/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
@@ -32,8 +32,6 @@ In this article, you learn how to:
 ## See your evaluation results
 
 After you submit an evaluation, locate the run on the **Evaluation** page. Filter or adjust columns to focus on runs of interest. Review high‑level metrics at a glance before drilling in.
-
-:::image type="content" source="../media/evaluations/view-results/evaluation-run-list.png" alt-text="Screenshot that shows the evaluation run list." lightbox="../media/evaluations/view-results/evaluation-run-list.png":::
 
 > [!TIP]
 > You can view an evaluation run with any version of the `promptflow-evals` SDK or `azure-ai-evaluation` versions 1.0.0b1, 1.0.0b2, 1.0.0b3. Enable the **Show all runs** toggle to locate the run.
@@ -64,6 +62,7 @@ In the **Metric dashboard** section, aggregate views are broken down by metrics 
 Use the table under the dashboard to inspect each data sample. Sort by a metric to surface worst‑performing samples and identify systematic gaps (incorrect results, safety failures, latency). Use search to cluster related failure topics. Apply column customization to focus on key metrics.
 
 Typical actions:
+
 - Filter for low scores to detect recurring patterns.
 - Adjust prompts or fine-tune when systemic gaps appear.
 - Export for offline analysis.
