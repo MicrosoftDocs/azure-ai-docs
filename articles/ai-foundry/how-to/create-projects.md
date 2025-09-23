@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 # Create a project for Azure AI Foundry (Foundry projects)
 
-This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work, such as agents, evaluations and files, as you build statefull apps and explore new ideas.
+This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work, such as agents, evaluations, and files, as you build stateful apps and explore new ideas.
 
 [!INCLUDE [create-project-fdp](../includes/create-project-fdp.md)]
 

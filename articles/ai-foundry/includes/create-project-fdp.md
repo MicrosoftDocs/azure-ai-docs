@@ -15,7 +15,7 @@ ms.custom:
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project types gives you access to the latest generative AI features in AI Foundry, including:
+* This project type gives you access to the latest generative AI features in AI Foundry, including:
 
     * Agents 
     * Foundry SDK and API to build agents and switch easily between models
