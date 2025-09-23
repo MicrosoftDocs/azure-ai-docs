@@ -30,7 +30,7 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 
 1. Go to [Azure AI Foundry](https://ai.azure.com) and create a new project.
 2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
-3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select deploy model.
+3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select **deploy model**.
 4. Copy the endpoint **URL** and the **API Key**.
 
 ## Install the Codex CLI
@@ -130,7 +130,7 @@ You can give Codex extra instructions and guidance using `AGENTS.md` files. Code
 - `~/.codex/AGENTS.md`– personal global guidance.
 - `AGENTS.md` at your repository’s root – shared project notes.
 - `AGENTS.md` in the current working directory – subfolder/feature specifics.
- 
+
 For example, to help Codex understand how to write code for Azure AI Foundry Agents, you could create an `AGENTS.md` in your project root with the following content, derived from the Azure AI Agents SDK documentation:
 
 ```markdown
