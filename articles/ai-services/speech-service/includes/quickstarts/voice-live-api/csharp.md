@@ -16,7 +16,7 @@ In this article, you learn how to use Azure AI Speech voice live with Azure AI F
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
-- [.NET SDK](https://dotnet.microsoft.com/download) installed
+- [.NET SDK](https://dotnet.microsoft.com/download) version 6.0 or later installed.
 
 ## Microsoft Entra ID prerequisites
 
@@ -47,7 +47,7 @@ Follow these steps to create a console application and install the Speech SDK.
 1. Install the Voice Live SDK in your new project with the .NET CLI.
 
     ```dotnetcli
-    dotnet add package Microsoft.CognitiveServices.Speech TBD
+    dotnet add package Azure.AI.VoiceLive --prerelease
     ```
 
 1. Replace the contents of `Program.cs` with the following code.
