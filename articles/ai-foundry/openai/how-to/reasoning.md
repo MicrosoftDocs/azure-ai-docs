@@ -70,7 +70,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | Feature | Description |
 |----|----|
 |`reasoning_effort` | `minimal` is now supported with GPT-5 series reasoning models<sup>*</sup> <br><br> **Options**: `minimal`, `low`, `medium`, `high`|
-|`verbosity` | A new parameter giving you more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
+|`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
 | **custom tool type** | Enables raw text (non-json) outputs |
