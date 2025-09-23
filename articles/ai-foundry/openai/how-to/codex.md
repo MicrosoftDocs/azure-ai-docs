@@ -3,7 +3,7 @@ title: Codex with Azure OpenAI in AI Foundry Models
 description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and AI Foundry with gpt-5-codex
 manager: nitinme
 ms.service: azure-ai-openai
-ms.topic: include
+ms.topic: how-to
 ms.date: 09/23/2025
 author: mrbullwinkle    
 ms.author: mbullwin
@@ -225,4 +225,4 @@ jobs:
 | `ENOTFOUND`, `DNS error`, or `404 Not Found` |Verify `base_url` in `config.toml` uses your resource name, correct domain, and contains `/v1`. <br> For example, `base_url = "https://<your-resource>.openai.azure.com/openai/v1"`.|
 | CLI ignores Azure settings | Open `~/.codex/config.toml` and ensure: <br> - `model_provider = "azure"` is set. <br> - The `[model_providers.azure]` section exists. <br> - `env_key = "AZURE_OPENAI_API_KEY"` matches your environment variable name. |
 | Entra ID support | Entra ID support is currently not available for Codex. To track the status of this feature refer to this [pull request which adds support](https://github.com/openai/codex/pull/1778).|
-| `401 Unauthorized` only with the WSL + VS Code Codex extension | When running VS Code from inside WSL with the Codex extension the extension may check for the API key environment variable on the local windows host rather than within the terminal shell that launched VS Code. To mitigate this issue, set the environment variable on the local windows host as well, then launch a new terminal from WSL and launch VS code with `code .`.|
+| `401 Unauthorized` only with the WSL + VS Code Codex extension | When running VS Code from inside WSL with the Codex extension the extension may check for the API key environment variable on the local windows host rather than within the terminal shell that launched VS Code. To mitigate this issue, set the environment variable on the local windows host as well, then launch a new terminal from WSL and launch VS Code with `code .`.|
