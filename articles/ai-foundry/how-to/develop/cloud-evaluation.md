@@ -29,6 +29,9 @@ In this article, you learn how to run evaluations in the cloud (preview) in pre-
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
+> [!NOTE]
+> Virtual Network (VNet) configurations are currently not supported for cloud-based evaluations. Please ensure that public network access is enabled for your Azure OpenAI resource.
+
 ## Get started
 
 1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud:
