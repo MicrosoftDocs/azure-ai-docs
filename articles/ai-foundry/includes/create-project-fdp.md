@@ -15,17 +15,19 @@ ms.custom:
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you the best support for:
+* This project types gives you access to the latest generative AI features in AI Foundry, including:
 
     * Agents 
-    * AI Foundry API to work with agents and across models
-    * Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc.
+    * Foundry SDK and API to build agents and switch easily between models
+    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
     * Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. 
-    * Project files (directly upload files and start experimenting)
-    * Project-level isolation of files and outputs 
+    * Content understanding 
     * Evaluations
     * Fine-tuning
-    * Playgrounds
+    * OpenAI SDK and API incl. Batch and Stored Completions
+    * AI Services
+
+* Do you need access to Open Source models, or PromptFlow? [Create a hub project type](hub-create-projects.md) instead.
 
 ## Prerequisites
 
