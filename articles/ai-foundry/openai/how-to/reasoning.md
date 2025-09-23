@@ -44,10 +44,9 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-
 | **Feature**  | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:--------------------------:||:--------------------------:|:------:|:--------:|
-| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
+|:-------------------|:--------------------------:|:--------------------------:|:------:|:--------:|
+| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ |
 | **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
