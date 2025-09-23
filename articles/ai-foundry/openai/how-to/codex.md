@@ -16,9 +16,9 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 
 ## Prerequisites
 
-- An active Azure subscription with access to Azure OpenAI models.
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
 - Contributor permissions in [Azure AI Foundry](https://ai.azure.com/).
-- `homebrew` or `npm` for installing the CLI or VS Code with Codex extension.
+- [`homebrew`](https://brew.sh/) or [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for installing the Codex CLI or VS Code with the Codex extension.
 
 | Requirements      | Details      |
 |-------------------|--------------|
@@ -29,7 +29,7 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 ## Deploy a model in Azure AI Foundry
 
 1. Go to [Azure AI Foundry](ai.azure.com) and create a new project.
-2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as [`gpt-5-codex](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
+2. From the [model catalog](https://ai.azure.com/catalog/) select a [reasoning model](./reasoning.md) such as [`gpt-5-codex`](https://ai.azure.com/catalog/models/gpt-5-codex), [`gpt-5`](https://ai.azure.com/catalog/models/gpt-5), [`gpt-5-mini`](https://ai.azure.com/catalog/models/gpt-5-mini), or [`gpt-5-nano`](https://ai.azure.com/catalog/models/gpt-5-nano).
 3. To deploy the model from the model catalog select **Use this model**, or if using the Azure OpenAI **Deployments** pane select deploy model.
 4. Copy the endpoint **URL** and the **API Key**.
 
