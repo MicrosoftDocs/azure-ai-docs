@@ -68,10 +68,10 @@ The following samples are also published by the Azure AI Search team but aren't 
 
 | Sample | Description |
 |--|--|
-| [azure-function-search](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/azure-function-search) | Azure function that sends queries to a search service. You can substitute this Python version for the `api` code used in [Add search to web sites with .NET](tutorial-csharp-overview.md). |
+| [azure-function-search](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/azure-function-search) | Use an Azure function to send queries to a search service. You can substitute this Python version for the `api` code used in [Add search to web sites with .NET](tutorial-csharp-overview.md). |
 | [bulk-insert](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/bulk-insert) | [Use the push APIs](search-how-to-load-search-index.md) to upload and index documents. |
 | [index-backup-and-restore.ipynb](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) | Make a local copy of retrievable fields in an index and push those fields to a new index. |
-| [resumable-index-backup-restore](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb) | Back up and restore larger indexes that exceed 100,000 documents.|
+| [resumable-index-backup-restore](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/utilities/resumable-index-backup-restore/backup-and-restore.ipynb) | Back up and restore larger indexes that exceed 100,000 documents. |
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?languages=python&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.
