@@ -27,7 +27,7 @@ ms.custom:
     * OpenAI SDK and API incl. Batch and Stored Completions
     * AI Services
 
-* Do you need access to Open Source models, or PromptFlow? [Create a hub project type](hub-create-projects.md) instead.
+* Do you need access to Open Source models, or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
 
 ## Prerequisites
 
