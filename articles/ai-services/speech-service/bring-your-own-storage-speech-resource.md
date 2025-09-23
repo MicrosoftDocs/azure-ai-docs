@@ -24,7 +24,7 @@ There's one exception: if you use Text to speech, and your Speech resource and t
 BYOS can be used with several Azure AI services. For Speech, it can be used in the following scenarios:
 
 > [!NOTE]
-> Speech services BYOS is currently only supported with resource kind `SpeechServices`. Support with Foundry resources is coming soon!
+> Speech services BYOS is currently only supported with resource kind `SpeechServices`.
 
 **Speech to text**
 
