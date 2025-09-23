@@ -55,9 +55,9 @@ Get started with Foundry Local quickly with these options:
      ```
    - **macOS**: Open a terminal and run the following command:
      `bash
-    brew tap microsoft/foundrylocal
-    brew install foundrylocal
-    `
+brew tap microsoft/foundrylocal
+brew install foundrylocal
+`
      Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
 
 1. **Run your first model** Open a terminal window and run the following command to run a model:
