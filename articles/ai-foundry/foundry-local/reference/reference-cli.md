@@ -51,7 +51,7 @@ The following table summarizes the commands related to managing and running mode
 | ------------------------------------------- | -------------------------------------------------------------------------------- |
 | `foundry model --help`                      | Displays all available model-related commands and their usage.                   |
 | `foundry model run <model>`                 | Runs a specified model, downloading it if not cached, and starts an interaction. |
-| `foundry model list`                        | Lists all available models for local use.                                        |
+| `foundry model list`                        | Lists all available models for local use. On first run, downloads execution providers (EPs) for your hardware.                                        |
 | `foundry model list --filter <key>=<value>` | Lists models filtered by the specified criteria (device, task, alias, provider). |
 | `foundry model info <model>`                | Displays detailed information about a specific model.                            |
 | `foundry model info <model> --license`      | Displays the license information for a specific model.                           |
@@ -66,6 +66,9 @@ The `foundry model list` command supports filtering models using the `--filter` 
 ```bash
 foundry model list --filter <key>=<value>
 ```
+
+> [!NOTE]
+> When you run `foundry model list` for the first time after installation, Foundry Local automatically downloads the relevant execution providers (EPs) for your machine's hardware configuration. You'll see a progress bar indicating the download completion before the model list is displayed.
 
 **Supported filter keys:**
 

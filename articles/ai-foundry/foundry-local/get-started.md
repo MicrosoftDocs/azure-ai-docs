@@ -95,6 +95,8 @@ Each project includes:
 
 > [!TIP]
 > You can replace `qwen2.5-0.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+>
+> **Note**: When you run `foundry model list` for the first time, you'll see a download progress bar as Foundry Local downloads the execution providers for your machine's hardware.
 
 ## Run the latest OpenAI open-source model
 
