@@ -119,9 +119,9 @@ Approval modes determine how much autonomy and interaction you want to have with
 
 | Approval mode | Description |
 |---------------|-------------|
-| Chat          | To chat and plan with the model |
-| Agent         | Codex can read files, make edits, and run commands in the working directory automatically. Codex will need approval for activities outside the working directory or to access the internet |
-| Agent (full access) | All the capabilities of Agent mode without the need for step-by-step approval. Full access mode shouldn't be used without full understanding of the potential risks as well as implementing additional guardrails |
+| Chat          | To chat and plan with the model. |
+| Agent         | Codex can read files, make edits, and run commands in the working directory automatically. Codex will need approval for activities outside the working directory or to access the internet. |
+| Agent (full access) | All the capabilities of Agent mode without the need for step-by-step approval. Full access mode shouldn't be used without full understanding of the potential risks as well as implementing additional guardrails. |
 
 ## Persistent guidance with AGENTS.md
 
@@ -130,7 +130,7 @@ You can give Codex extra instructions and guidance using `AGENTS.md` files. Code
 - `~/.codex/AGENTS.md`– personal global guidance.
 - `AGENTS.md` at your repository’s root – shared project notes.
 - `AGENTS.md` in the current working directory – subfolder/feature specifics.
-- 
+ 
 For example, to help Codex understand how to write code for Azure AI Foundry Agents, you could create an `AGENTS.md` in your project root with the following content, derived from the Azure AI Agents SDK documentation:
 
 ```markdown
@@ -222,3 +222,4 @@ jobs:
 | `ENOTFOUND`, `DNS error`, or `404 Not Found` |Verify `base_url` in `config.toml` uses your resource name, correct domain, and contains `/v1`. <br> For example, `base_url = "https://<your-resource>.openai.azure.com/openai/v1"`.|
 | CLI ignores Azure settings | Open `~/.codex/config.toml` and ensure: <br> - `model_provider = "azure"` is set. <br> - The `[model_providers.azure]` section exists. <br> - `env_key = "AZURE_OPENAI_API_KEY"` matches your environment variable name. |
 | Entra ID support | Entra ID support is currently not available for Codex. To track the status of this feature refer to this [pull request which adds support](https://github.com/openai/codex/pull/1778).|
+| `401 Unauthorized` only with the WSL + VS Code Codex extension | When running VS Code from inside WSL with the Codex extension the extension may check for the API key environment variable on the local windows host rather than within the terminal shell that launched VS Code. To mitigate this issue, set the environment variable on the local windows host as well, then launch a new terminal from WSL and launch VS code with `code .`.|
