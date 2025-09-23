@@ -129,7 +129,7 @@ All model endpoints are integrated with **Azure AI Content Safety**. As a result
 You can use the video playground with the **Azure OpenAI Sora** model.
 
 > [!TIP]  
-> See the DevBlog for [Go from prompt to playback with Sora from Azure OpenAI in the video playground in Azure AI Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
+> See the DevBlog for [Sora and video playground in Azure AI Foundry](https://devblogs.microsoft.com/foundry/sora-in-video-playground/).
 
 Follow these steps to use the video playground:
 
@@ -137,24 +137,29 @@ Follow these steps to use the video playground:
 > Videos you generate are retained for 24 hours due to data privacy. Download videos to your local computer for longer retention.
 
 1. Select **Try the Video playground** to open it.
+
 1. If you don't have a deployment already, select **Deploy now** from the top right side of the homepage and deploy the `sora` model.
+
 1. On the homepage of the video playground, get inspired by **pre-built prompts** sorted by the **industry** filter. From here, you can view the videos in full display and copy the prompt from the bottom right corner of a video to build from it.
 
 1. Copy the prompt to paste it in the prompt bar. Adjust key controls (for example, aspect ratio or resolution) to deeply understand specific model responsiveness and constraints.
+
 1. Select **Generate** to generate a video based on the copied prompt.
+
 1. Rewrite your text prompt syntax with gpt-4o by using **Re-write with AI**. 
+
 1. Switch on the **Start with an industry system prompt** capability, choose an industry, and specify the change required for your original prompt.
+
 1. Select **Update** to update the prompt, and then select **Generate** to create a new video.
 
-    :::image type="content" source="../media/concept-playgrounds/video-playground-rewrite-prompt-with-ai.png" alt-text="Screenshot showing the controls used to rewrite a prompt with AI and generate an updated image." lightbox="../media/concept-playgrounds/video-playground-rewrite-prompt-with-ai.png":::
-
 1. Go to the **Generation history** tab to review your generations as a grid or list view. When you select the videos, you open them in full screen mode for full immersion. Visually observe outputs across prompt tweaks or parameter changes.
+
 1. In full screen mode, edit the prompt and submit it for regeneration.
+
 1. Either in full screen mode or through the options button that shows up when you hover across the video, download the videos to your local computer, view the video generation information tag, view code, or delete the video.
 
-    :::image type="content" source="../media/concept-playgrounds/options-menu-for-generated-video.png" alt-text="Screenshot showing the options button for downloading, viewing details, and deleting a generated image." lightbox="../media/concept-playgrounds/options-menu-for-generated-video.png":::
-
 1. Select **View code**  from the options menu to view contextual sample code for your video generations in several languages, including Python, JavaScript, C#, JSON, Curl, and Go.  
+
 1. Port the code samples to production by copying them into VS Code.
 
    
@@ -194,14 +199,13 @@ When you use the video playground to plan your production workload, explore and 
 The images playground is ideal for developers who build image generation flows. This playground is a full-featured, controlled environment for high-fidelity experiments designed for model-specific APIs to generate and edit images.
 
 > [!TIP]  
-> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for how to transform your [Rapidly prototype with gpt-image-1 from Azure OpenAI Service in the Images Playground in Azure AI Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
+> See the [60-second reel of the Images playground for gpt-image-1](https://youtu.be/btA8njJjLXY) and our DevBlog for [Images Playground in Azure AI Foundry.](https://devblogs.microsoft.com/foundry/images-playground-may-2025/)
 
 You can use the images playground with these models:
 
-- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) from Azure OpenAI.
+- [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai) and [dall-e-3](https://ai.azure.com/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs) from Azure OpenAI.
 - [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai), [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai), [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai) from Stability AI.
 - [Bria 2.3 Fast](https://ai.azure.com/explore/models/Bria-2.3-Fast/version/1/registry/azureml-bria) from Bria AI.
-- [dall-e-3](https://ai.azure.com/resource/models/dall-e-3/version/3.0/registry/azure-openai/?cid=learnDocs)
 - [FLUX.1-Kontext-pro](https://ai.azure.com/explore/models/FLUX.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) and [FLUX-1.1-pro](https://ai.azure.com/explore/models/FLUX-1.1-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) from Black Forest Labs.
 
 Follow these steps to use the images playground:
