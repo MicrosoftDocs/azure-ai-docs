@@ -113,7 +113,7 @@ Filters models by their alias identifier. Supports wildcard matching with `*` su
 - `deepseek-r1-distill-qwen-1.5b-generic-cpu`
 - `Phi-4-mini-instruct-generic-cpu`
 
-### Special Filter Features
+### Special filter features
 
 **Negation Support:** Prefix any value with `!` to exclude matching models.
 

@@ -125,8 +125,6 @@ const loaded = await manager.listLoadedModels();
 await manager.unloadModel(alias);
 ```
 
----
-
 ## Integration with OpenAI Client
 
 Install the OpenAI package:

@@ -34,12 +34,15 @@ Your system must meet the following requirements to run Foundry Local:
 - **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
 - **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
 - **Network**: Internet connection for initial model download (optional for offline use)
-- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), Intel iGPU, Qualcomm Snapdragon X Elite (8GB or more of memory), or Apple silicon.
+- **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), AMD NPU, Intel iGPU, Intel NPU (32GB or more of memory), Qualcomm Snapdragon X Elite (8GB or more of memory), Qualcomm NPU, or Apple silicon.
 
 > [!NOTE]
-> If you have an Intel NPU on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration with Foundry Local.
+> New NPUs are only supported on systems running Windows version 24H2 or later. If you have an Intel NPU on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration with Foundry Local.
 
 Also, ensure you have administrative privileges to install software on your device.
+
+> [!TIP]
+> If you encounter service connection issues after installation (such as "Request to local service failed" errors), try running `foundry service restart` to resolve the issue.
 
 ## Quickstart
 
@@ -96,7 +99,7 @@ Each project includes:
 > [!TIP]
 > You can replace `qwen2.5-0.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
 >
-> **Note**: When you run `foundry model list` for the first time, you'll see a download progress bar as Foundry Local downloads the execution providers for your machine's hardware.
+> Note that when you run `foundry model list` for the first time, you'll see a download progress bar as Foundry Local downloads the execution providers for your machine's hardware.
 
 ## Run the latest OpenAI open-source model
 
@@ -178,6 +181,32 @@ If you wish to uninstall Foundry Local, use the following commands based on your
   brew untap microsoft/foundrylocal
   brew cleanup --scrub
   ```
+
+## Troubleshooting
+
+### Service connection issues
+
+If you encounter the following error when running `foundry model list` or other commands:
+
+```
+>foundry model list
+
+🟢 Service is Started on http://127.0.0.1:0/, PID 11192!
+
+Exception: Request to local service failed. Uri:http://127.0.0.1:0/foundry/list
+
+The requested address is not valid in its context. (127.0.0.1:0)
+
+Please check service status with 'foundry service status'.
+```
+
+**Solution**: Run the following command to restart the service:
+
+```bash
+foundry service restart
+```
+
+This resolves issues where the service is running but not properly accessible due to port binding problems.
 
 ## Related content
 
