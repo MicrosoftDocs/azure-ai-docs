@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 09/19/2025
 ---
 
 # Truncate dimensions using MRL compression (preview)
@@ -21,7 +21,10 @@ Exercise the ability to use fewer dimensions on text-embedding-3 models. On Azur
 
 In Azure AI Search, MRL support supplements [scalar and binary quantization](vector-search-how-to-quantization.md). When you use either quantization method, you can specify a `truncationDimension` property on your vector fields to reduce the dimensionality of text embeddings.
 
-MRL multilevel compression saves on vector storage and improves query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is only offered together with another method of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL and set `stored` to false.
+MRL multilevel compression saves on vector storage and improves query response times for vector queries based on text embeddings. In Azure AI Search, MRL support is only offered together with another method of quantization. Using binary quantization with MRL provides the maximum vector index size reduction. To achieve maximum storage reduction, use binary quantization with MRL and set `stored` to `false`.
+
+> [!WARNING]
+> If you set `stored` to `false`, vector data is lost during partial document updates unless you provide the entire vector in each update. Set `stored` to `true` to avoid this issue. For more information, see [Eliminate optional vector instances from storage](vector-search-how-to-storage-options.md).
 
 ## Prerequisites
 
