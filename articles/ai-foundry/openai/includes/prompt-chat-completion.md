@@ -98,6 +98,10 @@ One simple way to use an affordance is to stop generation once the affordance ca
 
 ## Chain of thought prompting
 
+> [!IMPORTANT]
+> This technique is only applicable non-reasoning models. Attempting to extract model reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
+
 This is a variation on the **break the task down** technique. Instead of splitting a task into smaller steps, in this approach, the model response is instructed to proceed step-by-step and present all the steps involved. Doing so reduces the possibility of inaccuracy of outcomes and makes assessing the model response easier.
 
 | System message |User     | Assistant  |
