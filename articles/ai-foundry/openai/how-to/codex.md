@@ -121,7 +121,10 @@ Approval modes determine how much autonomy and interaction you want to have with
 |---------------|-------------|
 | Chat          | To chat and plan with the model. |
 | Agent         | Codex can read files, make edits, and run commands in the working directory automatically. Codex will need approval for activities outside the working directory or to access the internet. |
-| Agent (full access) | All the capabilities of Agent mode without the need for step-by-step approval. Full access mode shouldn't be used without full understanding of the potential risks as well as implementing additional guardrails. |
+| Agent (full access) | All the capabilities of Agent mode without the need for step-by-step approval. Full access mode shouldn't be used without full understanding of the potential risks as well as implementing additional guardrails such as running in a controlled sandbox environment. |
+
+> [!IMPORTANT]
+> We recommend reviewing OpenAI's guidance on [Codex security](https://developers.openai.com/codex/security).
 
 ## Persistent guidance with AGENTS.md
 
