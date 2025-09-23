@@ -1,3 +1,14 @@
+---
+title: Codex with Azure OpenAI in AI Foundry Models
+description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and AI Foundry with gpt-5-codex
+manager: nitinme
+ms.service: azure-ai-openai
+ms.topic: include
+ms.date: 09/23/2025
+author: mrbullwinkle    
+ms.author: mbullwin
+---
+
 
 # Codex with Azure OpenAI in Azure AI Foundry Models
 
@@ -210,3 +221,4 @@ jobs:
 | `401 Unauthorized` or `403 Forbidden` | Export your AZURE_OPENAI_API_KEY environment variable correctly. Confirm that your key has project/deployment access. <br> Make sure you aren't passing the API Key as a string directly to the `env_key` in the `config.toml` file. You must pass a valid environment variable.    |
 | `ENOTFOUND`, `DNS error`, or `404 Not Found` |Verify `base_url` in `config.toml` uses your resource name, correct domain, and contains `/v1`. <br> For example, `base_url = "https://<your-resource>.openai.azure.com/openai/v1"`.|
 | CLI ignores Azure settings | Open `~/.codex/config.toml` and ensure: <br> - `model_provider = "azure"` is set. <br> - The `[model_providers.azure]` section exists. <br> - `env_key = "AZURE_OPENAI_API_KEY"` matches your environment variable name. |
+| Entra ID support | Entra ID support is currently not available for Codex. To track the status of this feature refer to this [pull request which adds support](https://github.com/openai/codex/pull/1778).|
