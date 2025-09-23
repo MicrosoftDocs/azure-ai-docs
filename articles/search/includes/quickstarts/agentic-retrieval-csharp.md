@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/22/2025
+ms.date: 09/23/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
@@ -30,7 +30,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
-## Set up the code
+## Set up the environment
 
 To set up the console application for this quickstart:
 
