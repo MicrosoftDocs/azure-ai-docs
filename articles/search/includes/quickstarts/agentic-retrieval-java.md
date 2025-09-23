@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-c
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The Java version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the REST or Python version.
+> The Java version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the C#, Python, or REST version.
 
 ## Prerequisites
 
@@ -27,7 +27,8 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 + The [Azure CLI](/cli/azure/install-azure-cli) for keyless authentication with Microsoft Entra ID.
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
-## Set up
+
+## Set up the environment
 
 The sample in this quickstart works with the Java Runtime. Install a Java Development Kit such as [Azul Zulu OpenJDK](https://www.azul.com/downloads/?package=jdk). The [Microsoft Build of OpenJDK](https://www.microsoft.com/openjdk) or your preferred JDK should also work.
 
@@ -110,7 +111,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
    mvn clean dependency:copy-dependencies
    ```
 
-## Create the index and knowledge agent
+## Run the code
 
 1. Create a new file named `.env` in the `quickstart-agentic-retrieval` folder and add the following environment variables:
 
@@ -802,7 +803,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
     java -cp ".;target\dependency\*" App
     ```
 
-## Output
+### Output
 
 The output of the application should look similar to the following:
 
@@ -1005,7 +1006,7 @@ References: [1], [2], [3], [4], [5]
 [DONE] Quickstart completed successfully!
 ```
 
-## Explaining the code
+## Understand the code
 
 Now that you have the code, let's break down the key components:
 
