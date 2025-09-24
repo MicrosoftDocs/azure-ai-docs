@@ -242,6 +242,8 @@ items:
       href: voice-live-agents-quickstart.md
     - name: How to use voice live
       href: voice-live-how-to.md
+    - name: Use function calling in a voice conversation
+      href: how-to-voice-live-function-calling.md
     - name: Voice live language support
       href: voice-live-language-support.md
     - name: Audio events reference
