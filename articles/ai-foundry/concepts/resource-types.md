@@ -26,7 +26,7 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
  
   Get started by [creating a first AI Foundry resource](../../ai-services/multi-service-resource.md?context=/azure/ai-foundry/context/context).
 
-  :::image type="content" source="../media/concepts/foundry-resource.png" alt-text="Screenshot shows how AI Foundry resource type provided access to the supser of Azure AI capabilities including agent service, a wide selection of models, and Azure OpenAI capabilities.":::
+  :::image type="content" source="../media/concepts/foundry-resource.png" alt-text="Screenshot shows how AI Foundry resource type provided access to the superset of Azure AI capabilities including agent service, a wide selection of models, and Azure OpenAI capabilities.":::
 
 * **Azure AI Search** – A resource used to index and retrieve data for grounding AI applications. It can be [connected](../how-to/connections-add.md) to Azure AI Foundry agents to enable retrieval-augmented generation (RAG) and semantic search experiences.
 
