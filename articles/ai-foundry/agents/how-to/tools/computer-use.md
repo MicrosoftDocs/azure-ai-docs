@@ -23,7 +23,7 @@ Use this article to learn how to work with the Computer Use Tool in Azure AI Fou
 
 ## Features 
 
-* Autonomous navigation: For example, Computer Use can open applications, clicking buttons, filling out forms, and navigating multi-page workflows. 
+* Autonomous navigation: For example, Computer Use can open applications, click buttons, fill out forms, and navigate multi-page workflows. 
 
 * Dynamic adaptation: Interpreting UI changes and adjusting actions accordingly. 
 
