@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-agent-service
 ms.topic: how-to
-ms.date: 09/09/2025
+ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
 ms.custom: references_regions
@@ -23,13 +23,13 @@ Use this article to learn how to work with the Computer Use Tool in Azure AI Fou
 
 ## Features 
 
-* Autonomous navigation: For example opening applications, clicking buttons, filling out forms, and navigating multi-page workflows. 
+* Autonomous navigation: For example, Computer Use can open applications, clicking buttons, filling out forms, and navigating multi-page workflows. 
 
 * Dynamic adaptation: Interpreting UI changes and adjusting actions accordingly. 
 
 * Cross-application task execution: Can operate across web-based and desktop applications. 
 
-* Natural language interface: Users can describe a task in plain language, and the Computer Use model determines the correct UI interactions to execute. 
+* Natural language interface: Users can describe a task in plain language, and the Computer Use model determines which UI interactions to execute. 
 
 ## Request access 
 
@@ -64,7 +64,7 @@ In order to use the Computer Use Tool, you need to have a [Computer Use model](.
 
 When working with the Computer Use tool, you typically would perform the following to integrate it into your application. 
 
-1. Send a request to the model that includes a call to the computer use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
+1. Send a request to the model that includes a call to the Computer Use tool, and the display size and environment. You can also include a screenshot of the initial state of the environment in the first API request. 
 
 1. Receive a response from the model. If the response has action items, those items contain suggested actions to make progress toward the specified goal. For example an action might be screenshot so the model can assess the current state with an updated screenshot, or click with X/Y coordinates indicating where the mouse should be moved. 
 
