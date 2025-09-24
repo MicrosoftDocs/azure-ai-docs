@@ -7,7 +7,7 @@ ms.service: azure-ai-openai
 ms.topic: quickstart
 author: aahill
 ms.author: aahi
-ms.date: 07/16/2025
+ms.date: 09/24/2025
 recommendations: false
 ms.custom: references_regions, ignite-2024
 ---
@@ -105,7 +105,7 @@ Azure OpenAI On Your Data provides the following search types you can use when y
 * [Keyword search](/azure/search/search-lucene-query-architecture)
 
 * [Semantic search](/azure/search/semantic-search-overview)
-* [Vector search](/azure/search/vector-search-overview) using Ada [embedding](./understand-embeddings.md) models, available in [selected regions](models.md#embeddings-models) 
+* [Vector search](/azure/search/vector-search-overview) using the `text-embedding-ada-002` [embedding](./understand-embeddings.md) model, available in [selected regions](models.md#embeddings-models) 
 
     To enable vector search, you need an existing embedding model deployed in your Azure OpenAI resource. Select your embedding deployment when connecting your data, then select one of the vector search types under **Data management**. If you're using Azure AI Search as a data source, make sure you have a vector column in the index.
 
@@ -713,11 +713,12 @@ Each user message can translate to multiple search queries, all of which get sen
 ## Regional availability and model support
 
 > [!NOTE]
-> The following models are not supported by Azure OpenAI On Your Data:
-> * o1 models
-> * o3 models
-> * model-router
-> * GPT 4.1 models
+> * The following models are not supported by Azure OpenAI On Your Data:
+>     * o1 models
+>     * o3 models
+>     * model-router
+>     * GPT 4.1 models
+> * Azure OpenAI On Your Data only supports the `text-embedding-ada-002` embedding model for vector search. See the [Azure OpenAI documentation](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-openai&tabs=global-standard-aoai.md#model-summary-table-and-region-availability) for a list of suported regions. 
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|

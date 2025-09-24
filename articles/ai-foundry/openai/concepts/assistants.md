@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models Assistants API concepts
 titleSuffix: Azure OpenAI
 description: Learn about the concepts behind the Azure OpenAI Assistants API.
 ms.topic: conceptual
-ms.date: 05/20/2025
+ms.date: 09/24/2025
 ms.service: azure-ai-openai
 manager: nitinme
 author: aahill
@@ -15,7 +15,7 @@ recommendations: false
 
 [!INCLUDE [agent-service](../includes/agent-service.md)]
 
-Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is available in public preview starting in the `2024-02-15-preview` API version. Assistants API makes it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
+Assistants, a feature of Azure OpenAI in Azure AI Foundry Models, is designed to make it easier for developers to create applications with sophisticated copilot-like experiences that can sift through data, suggest solutions, and automate tasks.
 
 * Assistants can call Azure OpenAI’s [models](../concepts/models.md) with specific instructions to tune their personality and capabilities.
 * Assistants can access **multiple tools in parallel**. These can be both Azure OpenAI-hosted tools like [code interpreter](../how-to/code-interpreter.md) and [file search](../how-to/file-search.md), or tools you build, host, and access through [function calling](../how-to/function-calling.md).
