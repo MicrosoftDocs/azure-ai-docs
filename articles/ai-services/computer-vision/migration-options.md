@@ -1,8 +1,21 @@
-# Migration Guidance for Transitioning from Computer Vision - Image Analysis
+---
+title: Migrate from Azure AI Vision - Image Analysis
+description: Guidance for migrating from Azure Computer Vision - Image Analysis API to alternative solutions before its retirement in September 2028.
+author: pafarley
+ms.author: pafarley
+ms.date: 09/24/2025
+ms.topic: article
+ms.service: cognitive-services
+ms.subservice: computer-vision
+ms.custom: ai-migration, vision
+---
 
-The Azure Computer Vision - Image Analysis API will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Image Analysis customers until 9/25/2028, but to ensure business continuity and minimize disruption, customers are encouraged to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
+# Migrate from Azure AI Vision - Image Analysis
 
-## Migration Preparation Checklist
+The Azure AI Vision - Image Analysis API will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Image Analysis customers until 9/25/2028, but to ensure business continuity and minimize disruption, we encourage customers to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
+
+## Migration preparation checklist
+
 1.	Assess current usage and dependencies on Image Analysis API.
 2.	Identify business scenarios and technical requirements for your image analysis scenarios.
 3.	Evaluate alternative solutions based on capabilities, integration, cost, and support.
@@ -10,10 +23,10 @@ The Azure Computer Vision - Image Analysis API will be retired on September 25, 
 5.	Test new solution(s) in a staging environment.
 6.	Update production workflows and retrain stakeholders.
 
-## Alternative Options Based on Scenario Needs
+## Alternative options based on scenario needs
 There are several alternative platforms and services that can be considered depending on your specific use case, technical requirements, and integration needs. The following options are recommended for each set of features under Image Analysis.
 
-### For OCR and Read capabilities try Document Intelligence
+### For OCR and Read capabilities, try Document Intelligence
 
 The Document Intelligence service provides support for OCR text in images.
 * **Features**: Azure AI Document Intelligence is a cloud-based Azure AI service that you can use to build intelligent document processing solutions.
@@ -21,7 +34,7 @@ The Document Intelligence service provides support for OCR text in images.
     * [What is Azure AI Document Intelligence?]()
     * [Document Intelligence Read model]()
 
-### For Face scenarios: try the Face API
+### For Face scenarios, try the Face API
 
 The Face service offers Face detection capabilities, as well as a more comprehensive portfolio of face-related features. 
 * **Features**: Full support for all Face scenarios under the Image Analysis API.
@@ -29,9 +42,9 @@ The Face service offers Face detection capabilities, as well as a more comprehen
     * [What is the Azure AI Face Service?]()
     * [Face detection, attributes, and input data]()
 
-### For image embeddings scenarios:
+### Image embeddings scenarios:
 
-#### Cohere Embed v3 in the Azure AI Foundry
+#### Cohere Embed v3 in Azure AI Foundry
 * **Best for**: Customers who need image + text embeddings supported on Azure.
 * **Features**: A multilingual multimodal embedding model supported in the Azure AI Foundry portal. It is capable of transforming different modalities such as images, texts, and interleaved images and texts into a single vector representation.
 * **Learn more** about Cohere Embed v4:
@@ -44,11 +57,11 @@ The Face service offers Face detection capabilities, as well as a more comprehen
     * [Sigmoid Loss for Language Image Pre-Training]()
     * [SigLP on Hugging Face]()
 
-### For other Computer Vision scenarios:
+### Other AI Vision scenarios
 
 There are multiple additional alternative services that can support the remaining scenarios supported in the Image Analysis API. 
 
-#### GPT Model Series in the Azure AI Foundry
+#### GPT model series in the Azure AI Foundry
 
 * **Best for**: Customers who are flexible in their approach to creating a solution for customized vision capabilities.
 * **Features**: Flexibility to build custom solutions based on different Generative AI models.
@@ -64,7 +77,6 @@ There are multiple additional alternative services that can support the remainin
     * [Azure AI Content Understanding image solutions (preview)]()
     * [Content Understanding classifier]()
 
-## Next steps & required actions
-* Make a plan to transition away from Azure Computer Vision – Image Analysis by September 25, 2026
-* Azure Computer Vision – Image Analysis will be retired on 25 September 2028, please transition to alternative options by that date
-
+## Next steps and required actions
+* Make a plan to transition away from Azure Computer Vision – Image Analysis by September 25, 2026.
+* Azure Computer Vision – Image Analysis will be retired on 25 September 2028, please transition to alternative options by that date.
