@@ -115,19 +115,14 @@ If you no longer need your project, you can delete it from the Azure AI Foundry.
 1. Select **Management center**.
 1. Select **Delete project**.
 
-   :::image type="content" source="../media/create-project/delete-project.png" alt-text="Screenshot of the Delete project button in the Azure AI Foundry.":::
-
 To delete the hub along with all its projects:
 
 1. Navigate to the **Overview** tab inn the **Hub** section.
 
-   :::image type="content" source="../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
-
 1. On the right, select **Delete hub**.
 1. The link opens the Azure portal for you to delete the hub.
 
-   :::image type="content" source="../media/create-project/delete-hub.png" alt-text="Screenshot of the Delete hub button in the Azure AI Foundry.":::
-
+   
 # [REST APIs](#tab/rest-api)
 
 [!INCLUDE [Unassign resource](../../custom-text-classification/includes/rest-api/unassign-resources.md)]

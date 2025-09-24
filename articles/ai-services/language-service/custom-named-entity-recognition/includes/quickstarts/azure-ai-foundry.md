@@ -9,14 +9,14 @@ ms.author: lajanuar
 
 > [!NOTE]
 >
-> * This project requires that you have an **Azure AI Foundry hub-based project with an Azure storage account** (not a Foundry project). For more information, *see* [How to create and manage an Azure AI Foundry hub](/azure/ai-foundry/how-to/create-azure-ai-resource.)
+> * This project requires that you have an **Azure AI Foundry hub-based project with an Azure storage account** (not a Foundry project). For more information, *see* [How to create and manage an Azure AI Foundry hub](/azure/ai-foundry/how-to/create-azure-ai-resource)
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. For more information, see [How to use Azure AI services in the Azure AI Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
 
 ## Prerequisites
 
 * An **Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/free/cognitive-services).
 
-* The **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](../../../openai/how-to/role-based-access-control.md#cognitive-services-contributor).
+* The **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control).
 
 *  An [**Azure AI Language resource with a storage account**](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics). On the **select additional features** page, select the **Custom text classification, Custom named entity recognition, Custom sentiment analysis & Custom Text Analytics for health** box to link a required storage account with this resource:
 
@@ -166,7 +166,7 @@ Now, we're ready to create a  custom NER fine-tune model.
 
   * **Description**. You can optionally provide a description or leave this field empty.
 
-   * **Blob store container**. Select the workspace blob storage container from [Step 1](#step-1-upload-your-dataset-to-your-storage-container) and choose the **Connect** button.
+   * **Blob store container**. Select the workspace blob storage container from [Step 2](#step-2-upload-your-dataset-to-your-storage-container) and choose the **Connect** button.
 
 1. Finally, select the  **Create** button. It can take a few minutes for the *creating* operation to complete.
 
