@@ -41,11 +41,12 @@ Before you start this tutorial, you need:
 
 1. **Connect Open Web UI to Foundry Local**:
 
-   1. Select **Settings** in the navigation menu
-   1. Select **External Tools** or **Connections** (depending on your Open WebUI version).
-   1. Select **+** by **Manage Tool Servers**.
-   1. For the **Base URL (or URL)**, enter `http://localhost:PORT/v1` where `PORT` is the Foundry Local endpoint port (use the CLI command `foundry service status` to find it). Note that Foundry Local dynamically assigns a port, so it isn't always the same.
-   1. Enter any non-empty value for the **API key** (for example, `test`)
+   1. Select **Settings** and **Admin Settings** in the profile menu.
+   1. Select **Connections** in the navigation menu.
+   1. Select **+** by **Manage OpenAI API Connections**.
+   1. For the **Connection Type**, select **Local**.
+   1. For the **URL**, enter `http://localhost:PORT/v1` where `PORT` is the Foundry Local endpoint port (use the CLI command `foundry service status` to find it). Note that Foundry Local dynamically assigns a port, so it isn't always the same.
+   1. For the **Auth**, select **None**.
    1. Select **Save**
 
 1. **Start chatting with your model**:
