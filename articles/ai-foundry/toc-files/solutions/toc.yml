@@ -17,6 +17,8 @@ items:
     href: ../../how-to/develop/get-started-projects-vs-code.md
   - name: Use the Azure AI Foundry Agent Service in VS Code (Preview)
     href: ../../how-to/develop/vs-code-agents.md
+  - name: Use MCP tools with the Azure AI Foundry Agent Service in VS Code (Preview)
+    href: ../../how-to/develop/vs-code-agents-mcp.md
   - name: Start with an AI template
     href: ../../how-to/develop/ai-template-get-started.md
   - name: Develop with LangChain
