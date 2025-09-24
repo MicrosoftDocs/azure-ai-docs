@@ -6,7 +6,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 09/24/2025
 author: aahill
 ms.author: aahi
 recommendations: false
@@ -38,7 +38,7 @@ API versions starting with `2024-02-15-preview`.
 > * Runs expire ten minutes after creation. Be sure to submit your tool outputs before this expiration.
 > * You can also perform function calling [with Azure Logic apps](./assistants-logic-apps.md)
 
-# [Python 1.x](#tab/python)
+# [Python](#tab/python)
 
 ```python
 from openai import AzureOpenAI
@@ -135,7 +135,7 @@ When you initiate a **Run** with a user Message that triggers the function, the 
 You can then complete the **Run** by submitting the tool output from the function(s) you call. Pass the `tool_call_id` referenced in the `required_action` object to match output to each function call.
 
 
-# [Python 1.x](#tab/python)
+# [Python](#tab/python)
 
 ```python
 
