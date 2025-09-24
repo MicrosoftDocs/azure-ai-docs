@@ -4,9 +4,8 @@ titleSuffix: Azure AI services
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-custom-vision
-ms.custom: build-2023
 ms.topic: include
-ms.date: 09/04/2025
+ms.date: 09/24/2025
 ms.author: pafarley
 ---
 
@@ -22,4 +21,4 @@ ms.author: pafarley
 > - For a managed generative solution for image classification, Azure AI Content Understanding (currently in public preview) offers the ability to create custom classification workflows. It also supports processing unstructured data of any type (image, documents, audio, video) and extract structured insights based on pre-defined or user-defined formats.
 > - [Learn more about Azure AI Foundry Models]() and [Azure AI Content Understanding (public preview)]() and explore how they can offer alternative paths for your custom needs.
 >
-> For more detailed guidance on migration, see the (Azure Custom Vision Migration Guide)[https://aka.ms/custom-vision-migration].
+> For more detailed guidance on migration, see the [Azure Custom Vision Migration Guide](https://aka.ms/custom-vision-migration).
