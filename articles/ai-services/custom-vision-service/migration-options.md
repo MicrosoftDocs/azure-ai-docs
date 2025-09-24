@@ -45,7 +45,7 @@ Microsoft is also investing in Generative AI-based solutions that increase accur
 *	**Features**: Flexibility to build custom solutions based on different Generative AI models.
 *	**Learn more** about Generative AI models in the Azure AI Foundry: 
     *	[Explore Azure AI Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
-    *	[Azure OpenAI in Azure AI Foundry models](../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
+    *	[Azure OpenAI in Azure AI Foundry models](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#azure-openai-in-azure-ai-foundry-models)
 
 #### Azure AI Content Understanding (preview)
 * **Best for**: Customers who want a managed generative solution for image classification
