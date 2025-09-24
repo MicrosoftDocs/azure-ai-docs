@@ -32,9 +32,7 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
 
 * **Azure OpenAI** – A specialized resource type that provides access to OpenAI models such as GPT-4 and GPT-4o. It offers a subset of the capabilities available in Azure AI Foundry and provides solely access to Azure OpenAI models and APIs. [Upgrade from Azure OpenAI to Azure AI Foundry](../how-to/upgrade-azure-openai.md) to gain access to more capabilities while keeping the existing Azure OpenAI API endpoint, state of work, and security configurations.
 
-* **Azure AI Hub** – Use this resource type in combination with your Azure AI Foundry resource to additionally access open-source model hosting and customization capabilities via the Azure Machine Learning APIs. 
-
-  In June 2025, we started to move most of Hub's capabilities under "Azure AI Foundry" resource type. This change brings the management of agents, models and tools together for management and governance, and a more cohesive developer experience, under a dedicated Azure resource type for AI Foundry. New features will only release on Azure AI Foundry resource. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md).
+* **Azure AI Hub** - In June 2025, we started to move most of Hub's capabilities under "Azure AI Foundry" resource type. This change brings the management of agents, models and tools together for management and governance, and a more cohesive developer experience, under a dedicated Azure resource type for AI Foundry. New features will only release on Azure AI Foundry resource. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need), including open source model deployments,  currently still require a hub resource.
 
 ## References
 
