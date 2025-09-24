@@ -73,9 +73,9 @@ There are multiple additional alternative services that can support the remainin
 * **Best for**: Customers wanting a managed generative solution for image analysis scenarios.
 * **Features**: Content Understanding supports processing unstructured image data, as well as documents, audio, and video. It enables you to extract structured insights based on pre-defined or user-defined formats.
 * **Learn more** about Content Understanding:
-    * [What is Azure AI Content Understanding?]()
-    * [Azure AI Content Understanding image solutions (preview)]()
-    * [Content Understanding classifier]()
+    * [What is Azure AI Content Understanding?](../content-understanding/overview.md)
+    * [Azure AI Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
+    * [Content Understanding classifier](../content-understanding/concepts/classifier.md)
 
 ## Next steps and required actions
 * Make a plan to transition away from Azure Computer Vision – Image Analysis by September 25, 2026.
