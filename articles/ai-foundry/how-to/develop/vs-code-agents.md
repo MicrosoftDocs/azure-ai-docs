@@ -103,7 +103,7 @@ The following tools are available in the Azure AI Foundry VS Code extension:
   - [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol)
 
 > [!NOTE]
-> For more information about using MCP tools, see [Use Model Context Protocol (MCP) tools with Azure AI Agents](./vs-code-agents-mcp).
+> For more information about using MCP tools, see [Use Model Context Protocol (MCP) tools with Azure AI Agents](./vs-code-agents-mcp.md).
 
 #### Add a tool to the AI Agent
 
