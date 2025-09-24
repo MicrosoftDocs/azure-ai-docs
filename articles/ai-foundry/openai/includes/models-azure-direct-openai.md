@@ -16,7 +16,7 @@ ms.topic: include
 > - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
 > - Microsoft: `MAI-DS-R1`
 > - Mistral: `mistral-document-ai-2505`
-> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`
+> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`
 > 
 > To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
 

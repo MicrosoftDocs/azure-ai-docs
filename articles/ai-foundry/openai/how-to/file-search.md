@@ -62,7 +62,7 @@ File search is available in [regions](../concepts/models.md#assistants-preview) 
 
 ## Enable file search
 
-# [Python 1.x](#tab/python)
+# [Python](#tab/python)
 
 ```python
 from openai import AzureOpenAI
