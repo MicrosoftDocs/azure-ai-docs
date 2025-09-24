@@ -287,12 +287,59 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 </speak>
 ```
 
-## Pronunciation with MathML
+## Mathematical expressions reading
+There are two ways to read a mathematical expression:
+- With math domain tag
 
-The Mathematical Markup Language (MathML) is an XML-compliant markup language that describes mathematical content and structure. The Speech service can use the MathML as input text to properly pronounce mathematical notations in the output audio.
+    Embed the plain text mathematical expression directly in SSML and specify the math domain using <mstts:prompt domain="math" />.
+
+    See the section: [Reading plain text mathematical expressions](#reading-plain-text-mathematical-expressions)
+- With MathML 
+
+    Represent the mathematical expression with MathML tags.
+
+    See the section: [Reading mathematical expressions with MathML](#reading-mathematical-expressions-with-mathml)
+
 
 > [!NOTE]
-> The MathML elements (tags) are currently supported in the following locales: `de-DE`, `en-AU`, `en-GB`, `en-US`, `es-ES`, `es-MX`, `fr-CA`, `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN`.
+> The two features above are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR and zh-CN. 
+
+### Reading plain text mathematical expressions
+To improve the accuracy of mathematical expression pronunciation, you can specify math domain using the SSML tag `<mstts:prompt domain="math" />` to enable math-specific pronunciation rules.
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+    <voice name="en-US-AvaMultilingualNeural">
+       <mstts:prompt domain="Math" />
+       x = (-b ± √(b² - 4ac)) / 2a
+    </voice>
+</speak>
+```
+
+If you'd like the expression read out in other language with a multilingual voice, please specify lang tag in SSML.
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US"> 
+   <voice name="en-US-AvaMultilingualNeural"> 
+      <mstts:prompt domain="Math" /> 
+      <lang xml:lang="es-ES">x = (-b ± √(b² - 4ac)) / 2a</lang>
+    </voice>
+ </speak>
+```
+By default, parentheses are not read out in mathematical expressions.
+If you'd like the parentheses read out, you can specify `<mstts:mathspeechverbosity level="verbose" />` in SSML
+
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
+    <voice name="en-US-AvaMultilingualNeural">
+       <mstts:prompt domain="Math" /><mstts:mathspeechverbosity level="verbose" />
+       x = (-b ± √(b² - 4ac)) / 2a
+    </voice>
+</speak>
+```
+
+### Reading mathematical expressions with MathML
+
+The Mathematical Markup Language (MathML) is an XML-compliant markup language that describes mathematical content and structure. The Speech service can use the MathML as input text to properly pronounce mathematical notations in the output audio.
 
 All elements from the [MathML 2.0](https://www.w3.org/TR/MathML2/) and [MathML 3.0](https://www.w3.org/TR/MathML3/) specifications are supported, except the MathML 3.0 [Elementary Math](https://www.w3.org/TR/MathML3/chapter3.html#presm.elementary) elements. 
 
@@ -303,7 +350,7 @@ Take note of these MathML elements and attributes:
 
 The XML syntax doesn't support the MathML entities, so you must use the corresponding [unicode characters](https://www.w3.org/2003/entities/2007/htmlmathml.json) to represent the entities, for example, the entity `&copy;` should be represented by its unicode characters `&#x00A9;`, otherwise an error occurs.
 
-### MathML examples
+#### MathML examples
 
 The text to speech output for this example is "a squared plus b squared equals c squared".
 
@@ -329,6 +376,7 @@ The text to speech output for this example is "a squared plus b squared equals c
     </voice>
 </speak>
 ```
+
 
 ## Next steps
 
