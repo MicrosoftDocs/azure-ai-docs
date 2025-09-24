@@ -289,14 +289,14 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 
 ## Mathematical expressions reading
 There are two ways to read a mathematical expression:
-- With math domain tag
+- With Math domain element
 
-    Embed the plain text mathematical expression directly in SSML and specify the math domain using <mstts:prompt domain="math" />.
+    Embed the plain text mathematical expression directly in SSML and specify the math domain using <mstts:prompt domain="Math" />.
 
     See the section: [Reading plain text mathematical expressions](#reading-plain-text-mathematical-expressions)
-- With MathML 
+- With MathML elements  
 
-    Represent the mathematical expression with MathML tags.
+    Represent the mathematical expression with MathML elements.
 
     See the section: [Reading mathematical expressions with MathML](#reading-mathematical-expressions-with-mathml)
 
@@ -305,7 +305,7 @@ There are two ways to read a mathematical expression:
 > The two features above are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR and zh-CN. 
 
 ### Reading plain text mathematical expressions
-To improve the accuracy of mathematical expression pronunciation, you can specify math domain using the SSML tag `<mstts:prompt domain="math" />` to enable math-specific pronunciation rules.
+To enable complex mathematical expression reading, you can add `<mstts:prompt domain="math" />` element to enable math-specific pronunciation rules.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
@@ -316,15 +316,6 @@ To improve the accuracy of mathematical expression pronunciation, you can specif
 </speak>
 ```
 
-If you'd like the expression read out in other language with a multilingual voice, please specify lang tag in SSML.
-```xml
-<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US"> 
-   <voice name="en-US-AvaMultilingualNeural"> 
-      <mstts:prompt domain="Math" /> 
-      <lang xml:lang="es-ES">x = (-b ± √(b² - 4ac)) / 2a</lang>
-    </voice>
- </speak>
-```
 By default, parentheses are not read out in mathematical expressions.
 If you'd like the parentheses read out, you can specify `<mstts:mathspeechverbosity level="verbose" />` in SSML
 
@@ -335,6 +326,16 @@ If you'd like the parentheses read out, you can specify `<mstts:mathspeechverbos
        x = (-b ± √(b² - 4ac)) / 2a
     </voice>
 </speak>
+```
+
+If you'd like the expression read out in other language with a multilingual voice, please specify lang element in SSML.
+```xml
+<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US"> 
+   <voice name="en-US-AvaMultilingualNeural"> 
+      <mstts:prompt domain="Math" /> 
+      <lang xml:lang="es-ES">x = (-b ± √(b² - 4ac)) / 2a</lang>
+    </voice>
+ </speak>
 ```
 
 ### Reading mathematical expressions with MathML
