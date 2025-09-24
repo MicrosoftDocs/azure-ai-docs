@@ -35,7 +35,7 @@ Azure AI Foundry developers can stay productive by developing, testing, and depl
 
 Follow these steps to create an Azure AI Agent to add MCP tools:
 
-1. First, finish the [Create and edit Azure AI Agents within the designer view](./vs-code-agents.md#create-and-edit-azure-ai-agents-within-the-designer-view) section to sign in to and create your Azure resources and agent.
+- Finish the [Create and edit Azure AI Agents within the designer view](./vs-code-agents.md#create-and-edit-azure-ai-agents-within-the-designer-view) section to sign in to and create your Azure resources and agent.
 
 After creating your agent, you can add tools to it, including MCP tools.
 
