@@ -40,6 +40,8 @@ items:
     href: ../../ai-foundry/responsible-ai/custom-vision/custom-vision-cvs-data-privacy-security.md
 - name: How-to guides
   items:
+  - name: Migrate from Custom Vision
+    href: migration-options.md
   - name: Test your model
     href: test-your-model.md
   - name: Improve your model
