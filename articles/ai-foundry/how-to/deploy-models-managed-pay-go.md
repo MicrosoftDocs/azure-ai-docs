@@ -6,8 +6,8 @@ ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
 ms.date: 09/24/2025
-ms.reviewer: tinaem
-reviewer: tinaem
+ms.reviewer: ambadal
+reviewer: AmarBadal
 ms.author: mopeakande
 manager: nitinme
 author: msakande
