@@ -718,7 +718,7 @@ Each user message can translate to multiple search queries, all of which get sen
 >     * o3 models
 >     * model-router
 >     * GPT 4.1 models
-> * Azure OpenAI On Your Data only supports the `text-embedding-ada-002` embedding model. See the [Azure OpenAI documentation](../../foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai.md#model-summary-table-and-region-availability) for a list of suported regions. 
+> * Azure OpenAI On Your Data only supports the `text-embedding-ada-002` embedding model for vector search. See the [Azure OpenAI documentation](../../foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai.md#model-summary-table-and-region-availability) for a list of suported regions. 
 
 | Region | `gpt-35-turbo-16k (0613)` | `gpt-35-turbo (1106)` | `gpt-4-32k (0613)` | `gpt-4 (1106-preview)` | `gpt-4 (0125-preview)` | `gpt-4 (0613)`  | `gpt-4o`\*\* | `gpt-4 (turbo-2024-04-09)` |
 |------|---|---|---|---|---|----|----|----|
