@@ -6,8 +6,8 @@ keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
-ms.date: 07/03/2025
-ms.author: jburchel
+ms.date: 09/24/2025
+ms.author: shunishii
 ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
@@ -39,12 +39,16 @@ Before you start this tutorial, you need:
 
 1. Open your web browser and go to [http://localhost:8080](http://localhost:8080).
 
-1. **Connect Open Web UI to Foundry Local**:
-
+1. Enable Direct Connections:
    1. Select **Settings** and **Admin Settings** in the profile menu.
    1. Select **Connections** in the navigation menu.
-   1. Select **+** by **Manage OpenAI API Connections**.
-   1. For the **Connection Type**, select **Local**.
+   1. Enable **Direct Connections** by turning on the toggle. This allows users to connect to their own OpenAI compatible API endpoints.
+
+1. **Connect Open Web UI to Foundry Local**:
+
+   1. Select **Settings** in the profile menu.
+   1. Select **Connections** in the navigation menu.
+   1. Select **+** by **Manage Direct Connections**.
    1. For the **URL**, enter `http://localhost:PORT/v1` where `PORT` is the Foundry Local endpoint port (use the CLI command `foundry service status` to find it). Note that Foundry Local dynamically assigns a port, so it isn't always the same.
    1. For the **Auth**, select **None**.
    1. Select **Save**
