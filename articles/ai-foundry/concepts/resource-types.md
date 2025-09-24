@@ -30,9 +30,15 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
 
 * **Azure AI Search** – A resource used to index and retrieve data for grounding AI applications. It can be [connected](../how-to/connections-add.md) to Azure AI Foundry agents to enable retrieval-augmented generation (RAG) and semantic search experiences.
 
-* **Azure OpenAI** – A specialized resource type that provides access to OpenAI models such as GPT-4 and GPT-4o. It offers a subset of the capabilities available in Azure AI Foundry and provides solely access to Azure OpenAI models and APIs. [Upgrade from Azure OpenAI to Azure AI Foundry](../how-to/upgrade-azure-openai.md) to gain access to more capabilities while keeping the existing Azure OpenAI API endpoint, state of work, and security configurations.
+* **Azure OpenAI** – A specialized resource type that provides access to OpenAI models and APIs only. For most use cases, it is recommended to use the Azure AI Foundry resource which offers backwards compatibility with all Azure OpenAI APIs.
 
-* **Azure AI Hub** - In June 2025, we started to move most of Hub's capabilities under "Azure AI Foundry" resource type. This change brings the management of agents, models and tools together for management and governance, and a more cohesive developer experience, under a dedicated Azure resource type for AI Foundry. New features will only release on Azure AI Foundry resource. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need), including open source model deployments,  currently still require a hub resource.
+  If your IT security team has not yet enabled the superset of Foundry capabilities in your environment, then the standalone Azure OpenAI resource may still be required for you.
+
+  [An upgrade option from Azure OpenAI to AI Foundry](../how-to/upgrade-azure-openai.md) is available to access all Foundry capabilities and models while keeping your existing Azure OpenAI API endpoint, state of work, and security configurations.
+
+* **Azure AI Hub** - In June 2025, we started to move most of Hub's capabilities under "Azure AI Foundry" resource type. This change brings the management of agents, models and tools together for management and governance, and a more cohesive developer experience, under a dedicated Azure resource type for AI Foundry.
+
+  New features will only release on Azure AI Foundry resource. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need), including open source model deployments, currently still require a hub resource.
 
 ## References
 
