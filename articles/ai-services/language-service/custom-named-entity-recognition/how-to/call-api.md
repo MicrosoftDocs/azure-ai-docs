@@ -20,25 +20,11 @@ You can query the deployment programmatically using the [Prediction API](/rest/a
 
 ## Test deployed model
 
-You can use Language Studio to submit the custom entity recognition task and visualize the results. 
+You can retrieve up-to-date information about your projects, make any necessary changes, and oversee project management tasks efficiently through the Azure AI Foundry
 
 [!INCLUDE [Test model](../../includes/custom/language-studio/test-model.md)]
 
 :::image type="content" source="../media/test-model-results.png" alt-text="A screenshot showing the model test results." lightbox="../media/test-model-results.png":::
-
-
-## Send an entity recognition request to your model
-
-# [Language Studio](#tab/language-studio)
-
-[!INCLUDE [Get prediction URL](../../includes/custom/language-studio/get-prediction-url.md)]
-
-# [REST API](#tab/rest-api)
-
-First you need to get your resource key and endpoint:
-
-[!INCLUDE [Get keys and endpoint Azure Portal](../../includes/key-endpoint-page-azure-portal.md)]
-
 
 ### Submit a custom NER task
 

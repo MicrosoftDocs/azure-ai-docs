@@ -21,23 +21,12 @@ To use custom named entity recognition, you'll need to [create an Azure storage 
 
 ## Enable identity management for your resource
 
-# [Azure portal](#tab/portal)
-
 Your Language resource must have identity management, to enable it using the [Azure portal](https://portal.azure.com):
 
 1. Go to your Language resource
 2. From left hand menu, under **Resource Management** section, select **Identity**
 3. From **System assigned** tab, make sure to set **Status** to **On**
 
-# [Language Studio](#tab/studio)
-
-Your Language resource must have identity management, to enable it using [Language Studio](https://aka.ms/languageStudio):
-
-1. Select the settings icon in the top right corner of the screen
-2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure AI Language resource.
-
----
 
 ### Enable custom named entity recognition feature
 

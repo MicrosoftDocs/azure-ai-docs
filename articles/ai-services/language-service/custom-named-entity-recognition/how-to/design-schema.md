@@ -61,7 +61,7 @@ As a prerequisite for creating a project, your training data needs to be uploade
 
 You can only use `.txt` documents. If your data is in other format, you can use [CLUtils parse command](https://github.com/microsoft/CognitiveServicesLanguageUtilities/blob/main/CustomTextAnalytics.CLUtils/Solution/CogSLanguageUtilities.ViewLayer.CliCommands/Commands/ParseCommand/README.md) to change your document format.
 
-You can upload an annotated dataset, or you can upload an unannotated one and [label your data](../how-to/tag-data.md) in Language studio. 
+You can upload an annotated dataset, or you can upload an unannotated one and label your data.
  
 ## Test set
 

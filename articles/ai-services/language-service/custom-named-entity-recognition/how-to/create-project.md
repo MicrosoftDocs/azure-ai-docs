@@ -36,7 +36,6 @@ You also will need an Azure storage account where you will upload your `.txt` do
 You can create a resource in the following ways:
 
 * The Azure portal
-* Language Studio
 * PowerShell
 
 > [!Note]

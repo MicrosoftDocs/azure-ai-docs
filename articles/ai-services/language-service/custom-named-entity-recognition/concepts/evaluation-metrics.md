@@ -15,7 +15,7 @@ ms.custom: language-service-custom-ner
 
 Your [dataset is split](../how-to/train-model.md#data-splitting) into two parts: a set for training, and a set for testing. The training set is used to train the model, while the testing set is used as a test for model after training to calculate the model performance and evaluation. The testing set is not introduced to the model through the training process, to make sure that the model is tested on new data.
 
-Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined entities for documents in the test set, and compares them with the provided data tags (which establishes a baseline of truth). The results are returned so you can review the model’s performance. For evaluation, custom NER uses the following metrics:
+Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to predict user defined entities for documents in the test set, and compares them with the provided data tags (which establishes a baseline of truth). The results are returned so you can review the model's performance. For evaluation, custom NER uses the following metrics:
 
 * **Precision**: Measures how precise/accurate your model is. It is the ratio between the correctly identified positives (true positives) and all identified positives. The precision metric reveals how many of the predicted entities are correctly labeled. 
 
@@ -111,13 +111,13 @@ After you trained your model, you will see some guidance and recommendation on h
 
 * Training set has enough data: When an entity type has fewer than 15 labeled instances in the training data, it can lead to lower accuracy due to the model not being adequately trained on these cases. In this case, consider adding more labeled data in the training set. You can check the *data distribution* tab for more guidance.
 
-* All entity types are present in test set: When the testing data lacks labeled instances for an entity type, the model’s test performance may become less comprehensive due to untested scenarios. You can check the *test set data distribution* tab for more guidance.
+* All entity types are present in test set: When the testing data lacks labeled instances for an entity type, the model's test performance may become less comprehensive due to untested scenarios. You can check the *test set data distribution* tab for more guidance.
 
-* Entity types are balanced within training and test sets: When sampling bias causes an inaccurate representation of an entity type’s frequency, it can lead to lower accuracy due to the model expecting that entity type to occur too often or too little. You can check the *data distribution* tab for more guidance.
+* Entity types are balanced within training and test sets: When sampling bias causes an inaccurate representation of an entity type's frequency, it can lead to lower accuracy due to the model expecting that entity type to occur too often or too little. You can check the *data distribution* tab for more guidance.
 
-* Entity types are evenly distributed between training and test sets: When the mix of entity types doesn’t match between training and test sets, it can lead to lower testing accuracy due to the model being trained differently from how it’s being tested. You can check the *data distribution* tab for more guidance.
+* Entity types are evenly distributed between training and test sets: When the mix of entity types doesn't match between training and test sets, it can lead to lower testing accuracy due to the model being trained differently from how it's being tested. You can check the *data distribution* tab for more guidance.
 
-* Unclear distinction between entity types in training set: When the training data is similar for multiple entity types, it can lead to lower accuracy because the entity types may be frequently misclassified as each other. Review the following entity types and consider merging them if they’re similar. Otherwise, add more examples to better distinguish them from each other. You can check the *confusion matrix* tab for more guidance.
+* Unclear distinction between entity types in training set: When the training data is similar for multiple entity types, it can lead to lower accuracy because the entity types may be frequently misclassified as each other. Review the following entity types and consider merging them if they're similar. Otherwise, add more examples to better distinguish them from each other. You can check the *confusion matrix* tab for more guidance.
 
 
 ## Confusion matrix
@@ -146,5 +146,4 @@ Similarly,
 
 ## Next steps
 
-* [View a model's performance in Language Studio](../how-to/view-model-evaluation.md)
-* [Train a model](../how-to/train-model.md)
+[Train a model](../how-to/train-model.md)

@@ -160,7 +160,7 @@ To delete the hub along with all its projects:
    :::image type="content" source="../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
 
 1. On the right, select **Delete hub**.
-1. The link opens the Azure portal for you to delete the hub there.
+1. The link opens the Azure portal for you to delete the hub.
 
    :::image type="content" source="../media/create-project/delete-hub.png" alt-text="Screenshot of the Delete hub button in the Azure AI Foundry.":::
 

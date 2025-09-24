@@ -28,9 +28,9 @@ See [project development lifecycle](../overview.md#project-development-lifecycle
 
 After you've reviewed your model's performance and decided it can be used in your environment, you need to assign it to a deployment. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger). It is recommended to create a deployment named *production* to which you assign the best model you have built so far and use it in your system. You can create another deployment called *staging* to which you can assign the model you're currently working on to be able to test it. You can have a maximum of 10 deployments in your project. 
 
-# [Language Studio](#tab/language-studio)
+# [Azure AI Foundry](#tab/azure-ai-foundry)
 
-[!INCLUDE [Deploy a model using Language Studio](../includes/language-studio/deploy-model.md)]
+For information on how to deploy your custom model in the Azure AI Foundry, *see* [Deploy your fine-tuned model ](/azure/ai-foundry/openai/how-to/fine-tuning-deploy?tabs=portal#deploy-your-fine-tuned-model).
    
 # [REST APIs](#tab/rest-api)
 
@@ -48,9 +48,15 @@ After you've reviewed your model's performance and decided it can be used in you
 
 After you are done testing a model assigned to one deployment and you want to assign this model to another deployment you can swap these two deployments. Swapping deployments involves taking the model assigned to the first deployment, and assigning it to the second deployment. Then taking the model assigned to second deployment, and assigning it to the first deployment. You can use this process to swap your *production* and *staging* deployments when you want to take the model assigned to *staging* and assign it to *production*. 
 
-# [Language Studio](#tab/language-studio)
+# [Azure AI Foundry](#tab/azure-ai-foundry)
 
-[!INCLUDE [Swap deployments](../includes/language-studio/swap-deployment.md)]
+To replace a deployed model, you can exchange the deployed model with a different model in the same region:
+
+1. Select the model name under **Name** then select **Deploy model**.
+
+1. Select **Swap model**.
+
+   The redeployment takes several minutes to complete. In the meantime, deployed model continues to be available for use with the Translator API until this process is complete.
 
 # [REST APIs](#tab/rest-api)
 
@@ -61,9 +67,20 @@ After you are done testing a model assigned to one deployment and you want to as
 
 ## Delete deployment
 
-# [Language Studio](#tab/language-studio)
+# [Azure AI Foundry](#tab/azure-ai-foundry)
+If you no longer need your project, you can delete it from the Azure AI Foundry.
 
-[!INCLUDE [Delete deployment](../includes/language-studio/delete-deployment.md)]
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
+1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
+1. Select **Management center**.
+1. Select **Delete project**.
+
+To delete the hub along with all its projects:
+
+1. Navigate to the **Overview** tab inn the **Hub** section.
+
+1. On the right, select **Delete hub**.
+1. The link opens the Azure portal for you to delete the hub.
 
 # [REST APIs](#tab/rest-api)
 
@@ -75,9 +92,9 @@ After you are done testing a model assigned to one deployment and you want to as
 
 You can [deploy your project to multiple regions](../../concepts/custom-features/multi-region-deployment.md) by assigning different Language resources that exist in different regions.
 
-# [Language Studio](#tab/language-studio)
+# [Azure AI Foundry](#tab/azure-ai-foundry)
 
-[!INCLUDE [Assign resource](../../conversational-language-understanding/includes/language-studio/assign-resources.md)]
+For more information on how to deploy you custom model, *see* [Deploy your fine-tuned model](/azure/ai-foundry/openai/how-to/fine-tuning-deploy?tabs=python#deploy-your-fine-tuned-model)
 
 # [REST APIs](#tab/rest-api)
 
@@ -87,11 +104,29 @@ You can [deploy your project to multiple regions](../../concepts/custom-features
 
 ## Unassign deployment resources
 
-When unassigning or removing a deployment resource from a project, you will also delete all the deployments that have been deployed to that resource's region.
+To unassign or remove a deployment resource from a project, you also delete all the deployments for to that resource's region.
 
-# [Language Studio](#tab/language-studio)
+# [Azure AI Foundry](#tab/azure-ai-foundry)
 
-[!INCLUDE [Unassign resource](../../conversational-language-understanding/includes/language-studio/unassign-resources.md)]
+If you no longer need your project, you can delete it from the Azure AI Foundry.
+
+1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
+1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
+1. Select **Management center**.
+1. Select **Delete project**.
+
+   :::image type="content" source="../media/create-project/delete-project.png" alt-text="Screenshot of the Delete project button in the Azure AI Foundry.":::
+
+To delete the hub along with all its projects:
+
+1. Navigate to the **Overview** tab inn the **Hub** section.
+
+   :::image type="content" source="../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
+
+1. On the right, select **Delete hub**.
+1. The link opens the Azure portal for you to delete the hub.
+
+   :::image type="content" source="../media/create-project/delete-hub.png" alt-text="Screenshot of the Delete hub button in the Azure AI Foundry.":::
 
 # [REST APIs](#tab/rest-api)
 

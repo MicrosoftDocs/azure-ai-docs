@@ -11,7 +11,7 @@ ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
 
-# Label your data in Language Studio
+# Label your data in Azure Language Studio
 
 Before training your model you need to label your documents with the custom entities you want to extract. Data labeling is a crucial step in development lifecycle. In this step you can create the entity types you want to extract from your data and label these entities within your documents. This data will be used in the next step when training your model so that your model can learn from the labeled data. If you already have labeled data, you can directly [import](create-project.md#import-project) it into your project but you need to make sure that your data follows the [accepted data format](../concepts/data-formats.md). See [create project](create-project.md#import-project) to learn more about importing labeled data into your project.
 
