@@ -431,7 +431,7 @@ var config = SpeechTranslationConfig.FromEndpoint(v2EndpointUrl, "YourSubscripti
 
 // Translation target language and enable personal voice
 config.AddTargetLanguage("fr");
-config.VoiceName("personal-voice");
+config.VoiceName = "personal-voice";
 
 // You don't need to define any candidate languages to detect.
 var autoDetectSourceLanguageConfig = AutoDetectSourceLanguageConfig.FromOpenRange();
