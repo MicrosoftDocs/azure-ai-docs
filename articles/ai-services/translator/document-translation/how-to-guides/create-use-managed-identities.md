@@ -11,7 +11,7 @@ ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
-# Managed identities for Azure AI Document translation
+# Managed identities 
 
 Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 
