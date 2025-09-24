@@ -42,6 +42,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 - **Region availability**:
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
+- **Private MCP Server**: using private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 ## Prerequisites
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
