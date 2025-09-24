@@ -29,18 +29,19 @@ There are several alternative platforms and services that can be considered depe
 ### For OCR and Read capabilities, try Document Intelligence
 
 The Document Intelligence service provides support for OCR text in images.
+
 * **Features**: Azure AI Document Intelligence is a cloud-based Azure AI service that you can use to build intelligent document processing solutions.
 * **Learn more** about Document Intelligence:
-    * [What is Azure AI Document Intelligence?]()
-    * [Document Intelligence Read model]()
+    * [What is Azure AI Document Intelligence?](../document-intelligence/overview.md)
+    * [Document Intelligence Read model](../document-intelligence/prebuilt/read.md)
 
 ### For Face scenarios, try the Face API
 
 The Face service offers Face detection capabilities, as well as a more comprehensive portfolio of face-related features. 
 * **Features**: Full support for all Face scenarios under the Image Analysis API.
 * **Learn more** about the Face API:
-    * [What is the Azure AI Face Service?]()
-    * [Face detection, attributes, and input data]()
+    * [What is the Azure AI Face Service?](./overview-identity.md)
+    * [Face detection, attributes, and input data](./concept-face-detection.md)
 
 ### Image embeddings scenarios:
 
@@ -48,14 +49,14 @@ The Face service offers Face detection capabilities, as well as a more comprehen
 * **Best for**: Customers who need image + text embeddings supported on Azure.
 * **Features**: A multilingual multimodal embedding model supported in the Azure AI Foundry portal. It is capable of transforming different modalities such as images, texts, and interleaved images and texts into a single vector representation.
 * **Learn more** about Cohere Embed v4:
-    * [Embed-v-4-0]()
+    * [Embed-v-4-0](https://ai.azure.com/resource/models/embed-v-4-0/version/5/registry/azureml-cohere)
 
 #### SigLIP (Sigmoid Loss for Language Image Pre training)
 * **Best for**: Customers who need strong zero shot classification and image text retrieval abilities.
 * **Features**: A CLIP‐style vision‐language model from Google that replaces the standard contrastive (softmax) loss with a pairwise sigmoid loss. It trains on large scale image text pairs.
 * **Learn more** about SigLIP:
-    * [Sigmoid Loss for Language Image Pre-Training]()
-    * [SigLP on Hugging Face]()
+    * [Sigmoid Loss for Language Image Pre-Training](https://arxiv.org/abs/2303.15343?utm_source=chatgpt.com)
+    * [SigLP on Hugging Face](https://huggingface.co/docs/transformers/main/model_doc/siglip)
 
 ### Other AI Vision scenarios
 
@@ -66,8 +67,8 @@ There are multiple additional alternative services that can support the remainin
 * **Best for**: Customers who are flexible in their approach to creating a solution for customized vision capabilities.
 * **Features**: Flexibility to build custom solutions based on different Generative AI models.
 * **Learn more** about Generative AI models in the Azure AI Foundry:
-    * [Explore Azure AI Foundry Models]()
-    * [Azure OpenAI in Azure AI Foundry models]()
+    *	[Explore Azure AI Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
+    *	[Azure OpenAI in Azure AI Foundry models](../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
 
 #### Azure AI Content Understanding (preview)
 * **Best for**: Customers wanting a managed generative solution for image analysis scenarios.
