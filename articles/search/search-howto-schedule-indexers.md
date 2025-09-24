@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 03/11/2025
+ms.date: 09/24/2025
 ms.update-cycle: 365-days
 ---
 
@@ -125,6 +125,8 @@ Let’s consider an example to make this more concrete. Suppose we configure an 
 1. The second execution starts at or around January 1, 2024 9:00 AM UTC. Suppose that this execution takes 70 minutes - more than an hour – and it will not complete until 10:10 AM UTC.
 
 1. The third execution is scheduled to start at 10:00 AM UTC, but at that time the previous execution is still running. This scheduled execution is then skipped. The next execution of the indexer won't start until 11:00 AM UTC.
+
+In rare cases, such as during maintenance or transient conditions, multiple indexer runs may be queued. When this occurs, the indexer may execute pending workloads sequentially within the scheduled window. For example, if an indexer is scheduled to run hourly and several runs were delayed or triggered on-demand, those runs may execute back-to-back to catch up within that period. These are not additional runs, but they represent previously scheduled or requested executions. While this behavior is uncommon in most scenarios, the indexer is designed to eventually process all queued tasks to maintain consistency and data freshness.
 
 > [!NOTE]
 > If you have strict indexer execution requirements that are time-sensitive, you should consider using the [push API model](search-what-is-data-import.md#pushing-data-to-an-index) so you can control the indexing pipeline directly.
