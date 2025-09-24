@@ -18,7 +18,7 @@ ms.custom:
 
 This article describes an approach or pattern for building a solution that uses Azure AI Search for knowledge retrieval, and how to integrate knowledge retrieval into a custom solution that includes Azure AI Agent. This pattern uses an agent tool to invoke an agentic retrieval pipeline in Azure AI Search.
 
-:::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.png" alt-text="Diagram of Azure AI Search integration with Azure AI Agent service." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
+:::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Azure AI Agent service." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
 
 This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
@@ -47,6 +47,7 @@ Use one of the following chat completion models with your AI agent:
 + `gpt-4.1`
 + `gpt-4.1-nano`
 + `gpt-4.1-mini`
++ `gpt-5`
 
 ### Package version requirements
 

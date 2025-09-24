@@ -28,13 +28,14 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5-codex` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access)  |
+| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
 | `gpt-5-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed.    |
 | `gpt-5-nano` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed. |
-| `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [o3 limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
+| `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
 | `codex-mini`  | East US2 & Sweden Central (Global Standard)    | No access request needed.    |
 | `o4-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
-| `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [o3 limited access model application](https://aka.ms/oai/o3access)     |
+| `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/o3access)     |
 | `o3-mini` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
 |`o1` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
 | `o1-mini` | [Model availability](../concepts/models.md#global-standard-model-availability). | No access request needed for Global Standard deployments.<br><br>Standard (regional) deployments are currently only available to select customers who were previously granted access as part of the `o1-preview` release.|
@@ -43,39 +44,39 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-
-| **Feature**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:--------------------------:|:------:|:--------:|
-| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | 
-| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
-| **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
-| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ |
-| Chat Completions API | ✅ | ✅ | ✅ |
-| Responses API | ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ |
-| `max_completion_tokens` <sup>2</sup> |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) |  ✅ | ✅ | ✅ |
-| Streaming   | ✅ | ✅ | ✅|
+| **Feature**  | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:--------------------------:|:--------------------------:|:------:|:--------:|
+| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ |
+| **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | - | ✅ | ✅ | ✅ |
+| Responses API | ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> | - |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) |✅ | ✅ | ✅ | ✅ |
+| Streaming  | ✅ | ✅ | ✅ | ✅|
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
 
-
 ### NEW GPT-5 reasoning features
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `minimal` is now supported with GPT-5 series reasoning models <br><br> **Options**: `minimal`, `low`, `medium`, `high`|
-|`verbosity` | A new parameter giving you more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
+|`reasoning_effort` | `minimal` is now supported with GPT-5 series reasoning models<sup>*</sup> <br><br> **Options**: `minimal`, `low`, `medium`, `high`|
+|`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
 | **custom tool type** | Enables raw text (non-json) outputs |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
+
+<sup>*</sup> `gpt-5-codex` does not support `reasoning_effort` minimal.
 
 For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model).
 
@@ -442,8 +443,9 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. 
 
-> [!NOTE]
-> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
+> [!IMPORTANT]
+> Attempting to extract raw reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
 
 # [Python](#tab/py)
 
@@ -568,6 +570,9 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
   "store": true
 }
 ```
+
+> [!NOTE]
+> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
 
 ## Python lark
 
