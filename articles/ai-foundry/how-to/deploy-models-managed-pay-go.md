@@ -5,7 +5,7 @@ description: Learn how to deploy protected AI models from partners and community
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 09/22/2025
+ms.date: 09/24/2025
 ms.reviewer: tinaem
 reviewer: tinaem
 ms.author: mopeakande
@@ -16,14 +16,14 @@ author: msakande
 
 # Deploy Azure AI Foundry Models to managed compute with pay-as-you-go billing 
 
-Azure AI Foundry Models include a comprehensive catalog of models organized into two categories—Models sold directly by Azure, and [Models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
+Azure AI Foundry Models include a comprehensive catalog of models organized into two categories—models sold directly by Azure, and [models from partners and community](../concepts/foundry-models-overview.md#models-from-partners-and-community). The models from partners and community, which you can deploy on managed compute, are either open or protected models. In this article, you learn how to use protected models from partners and community, offered through Azure Marketplace, for deployment on managed compute with pay-as-you-go billing. 
 
 
 ## Prerequisites
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, [create a paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
+- If you don't have one, [create a hub project for Azure AI Foundry](hub-create-projects.md). You can deploy to managed compute using a hub project. An Azure AI Foundry project won't work for this purpose.
 
 - [Azure Marketplace purchases enabled](/azure/cost-management-billing/manage/enable-marketplace-purchases) for your Azure subscription.
 
@@ -81,10 +81,11 @@ The consumption-based surcharge goes to the associated SaaS subscription and bil
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. If you're not already in your project, select it. 
 1. Select **Model catalog** from the left pane.
-1. Select the **Deployment options** filter in the model catalog and choose **Managed compute**.
-1. Filter the list further by selecting the **Collection** and model of your choice. In this article, we use **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
+1. Filter the models list by selecting the **Collection** and model of your choice. This article uses **Cohere Command A** from the [list of supported models](#supported-models) for illustration.
 1. From the model's page, select **Use this model** to open the deployment wizard.
-1. Choose from one of the supported VM SKUs for the model. You need to have Azure Machine Learning Compute quota for that SKU in your Azure subscription.
+1. If presented purchase options, select **Managed Compute**.
+1. If you don't have dedicated quota, select the checkbox next to the statement: *I want to use shared quota and I acknowledge that this endpoint will be deleted in 168 hours*.
+1. Choose from one of the supported virtual machine (VM) SKUs for the model. You need to have Azure Machine Learning compute quota for that SKU in your Azure subscription. 
 1. Select **Customize** to specify your deployment configuration for parameters such as the instance count. You can also select an existing endpoint for the deployment or create a new one. For this example, specify an instance count of **1** and create a new endpoint for the deployment.
 
     :::image type="content" source="../media/deploy-models-managed-pay-go/deployment-configuration.png" alt-text="Screenshot of the deployment configuration screen for a protected model in Azure AI Foundry." lightbox="../media/deploy-models-managed-pay-go/deployment-configuration.png":::
@@ -162,11 +163,11 @@ Some special things to note about NIMs are:
 
 #### Consume NVIDIA NIM deployments
 
-After your deployment is successfully created, you can follow the steps in [Consume deployments](#consume-deployments) to consume it.
+After you create your deployment, follow the steps in [Consume deployments](#consume-deployments) to consume it.
 
-NVIDIA NIMs on Azure AI Foundry expose an OpenAI compatible API. See the [API reference](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#) to learn more about the payload supported. The `model` parameter for NIMs on Azure AI Foundry is set to a default value within the container and isn't required to be passed in to the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Azure AI Foundry includes code samples for inference with the target URL of your deployment. 
+NVIDIA NIMs on Azure AI Foundry expose an OpenAI compatible API. See the [API reference](https://docs.nvidia.com/nim/large-language-models/latest/api-reference.html#) to learn more about the supported payload. The `model` parameter for NIMs on Azure AI Foundry is set to a default value within the container and isn't required in the request payload to your online endpoint. The **Consume** tab of the NIM deployment on Azure AI Foundry includes code samples for inference with the target URL of your deployment. 
 
-You can also consume NIM deployments using the [Azure AI Foundry Models SDK](/python/api/overview/azure/ai-inference-readme), with limitations that include:
+You can also consume NIM deployments by using the [Azure AI Foundry Models SDK](/python/api/overview/azure/ai-inference-readme), with limitations that include:
 
 - No support for [creating and authenticating clients using `load_client`](/python/api/overview/azure/ai-inference-readme#create-and-authenticate-clients-using-load_client).
 - You should call client method `get_model_info` to [retrieve model information](/python/api/overview/azure/ai-inference-readme#get-ai-model-information).
@@ -175,7 +176,7 @@ You can also consume NIM deployments using the [Azure AI Foundry Models SDK](/py
 
 The following NVIDIA NIMs of **chat completions** task type in the model catalog can be used to [create and run agents using Agent Service](/python/api/overview/azure/ai-projects-readme#agents-preview) with various supported tools, with the following two extra requirements: 
 
-1. Create a _Serverless Connection_ to the project using the NIM endpoint and Key. The target URL for the NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
+1. Create a _Serverless Connection_ to the project by using the NIM endpoint and key. The target URL for the NIM endpoint in the connection should be `https://<endpoint-name>.region.inference.ml.azure.com/v1/`. 
 1. Set the _model parameter_ in the request body to be of the form, `https://<endpoint>.region.inference.ml.azure.com/v1/@<parameter value per table below>` while creating and running agents.
 
 
