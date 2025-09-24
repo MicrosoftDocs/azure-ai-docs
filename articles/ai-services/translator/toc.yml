@@ -27,8 +27,9 @@ items:
   - name: Translator Service FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
-
-
+  - name: Secure deployment guide
+    displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
+    href: secure-deployment.md  
 
 - name: Text translation (GA)
   items:
