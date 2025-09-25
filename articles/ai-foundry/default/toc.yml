@@ -18,8 +18,8 @@ items:
   href: toc-files/model-operations/toc.yml
 
 - name: Fine-tuning
-  href: toc=files/fine-tuning/toc.yml
-  
+  href: toc-files/fine-tuning/toc.yml
+
 - name: Integration & orchestration
   href: toc-files/integrations-orchestration/toc.yml
 
@@ -45,7 +45,7 @@ items:
   href: toc-files/security-governance/toc.yml
 
 - name: Configuration
-  href: toc-files/conficuration/toc.yml
+  href: toc-files/configuration/toc.yml
 
 - name: Operate & support
   href: toc-files/operate-support/toc.yml
