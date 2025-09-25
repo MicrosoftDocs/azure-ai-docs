@@ -237,7 +237,7 @@ To delete the hub along with all its projects:
 1. The link opens the Azure portal for you to delete the hub there.
 
 
-## Next Steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Learn how to use autolabeling](../../how-to/use-autolabeling.md)

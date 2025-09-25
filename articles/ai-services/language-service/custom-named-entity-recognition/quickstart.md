@@ -37,7 +37,7 @@ To get start, [a sample loan agreement](https://go.microsoft.com/fwlink/?linkid=
 
 ::: zone-end
 
-## Next steps
+## Related content
 
 After you create your entity extraction model, you can [use the runtime API to extract entities](how-to/call-api.md).
 
