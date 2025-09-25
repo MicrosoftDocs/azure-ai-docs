@@ -5,7 +5,7 @@ description: Complete reference for the Voice live API events, models, and confi
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 9/22/2025
+ms.date: 9/25/2025
 author: goergenj
 ms.author: jagoerge
 ---
@@ -596,69 +596,33 @@ The Voice live API sends the following server events to communicate status, resp
 | [conversation.item.retrieved](#conversationitemretrieved) | Response to conversation.item.retrieve request |
 | [conversation.item.truncated](#conversationitemtruncated) | Confirms item truncation |
 | [conversation.item.deleted](#conversationitemdeleted) | Confirms item deletion |
-| [conversation.item.input_audio_transcription.completed](#conversationiteminputaudiotranscriptioncompleted) | Input audio transcription is complete |
-| [conversation.item.input_audio_transcription.delta](#conversationiteminputaudiotranscriptiondelta) | Streaming input audio transcription |
-| [conversation.item.input_audio_transcription.failed](#conversationiteminputaudiotranscriptionfailed) | Input audio transcription failed |
-| [input_audio_buffer.committed](#inputaudiobuffercommitted) | Input audio buffer has been committed for processing |
-| [input_audio_buffer.cleared](#inputaudiobuffercleared) | Input audio buffer has been cleared |
-| [input_audio_buffer.speech_started](#inputaudiobufferspeechstarted) | Speech detected in input audio buffer (VAD) |
-| [input_audio_buffer.speech_stopped](#inputaudiobufferspeechstopped) | Speech ended in input audio buffer (VAD) |
+| [conversation.item.input_audio_transcription.completed](#conversationiteminput_audio_transcriptioncompleted) | Input audio transcription is complete |
+| [conversation.item.input_audio_transcription.delta](#conversationiteminput_audio_transcriptiondelta) | Streaming input audio transcription |
+| [conversation.item.input_audio_transcription.failed](#conversationiteminput_audio_transcriptionfailed) | Input audio transcription failed |
+| [input_audio_buffer.committed](#input_audio_buffercommitted) | Input audio buffer has been committed for processing |
+| [input_audio_buffer.cleared](#input_audio_buffercleared) | Input audio buffer has been cleared |
+| [input_audio_buffer.speech_started](#input_audio_bufferspeech_started) | Speech detected in input audio buffer (VAD) |
+| [input_audio_buffer.speech_stopped](#input_audio_bufferspeech_stopped) | Speech ended in input audio buffer (VAD) |
 | [response.created](#responsecreated) | New response generation has started |
 | [response.done](#responsedone) | Response generation is complete |
-| [response.output_item.added](#responseoutputitemadded) | New output item added to response |
-| [response.output_item.done](#responseoutputitemdone) | Output item is complete |
-| [response.content_part.added](#responsecontentpartadded) | New content part added to output item |
-| [response.content_part.done](#responsecontentpartdone) | Content part is complete |
+| [response.output_item.added](#responseoutput_itemadded) | New output item added to response |
+| [response.output_item.done](#responseoutput_itemdone) | Output item is complete |
+| [response.content_part.added](#responsecontent_partadded) | New content part added to output item |
+| [response.content_part.done](#responsecontent_partdone) | Content part is complete |
 | [response.text.delta](#responsetextdelta) | Streaming text content from the model |
 | [response.text.done](#responsetextdone) | Text content is complete |
-| [response.audio_transcript.delta](#responseaudiotranscriptdelta) | Streaming audio transcript |
-| [response.audio_transcript.done](#responseaudiotranscriptdone) | Audio transcript is complete |
+| [response.audio_transcript.delta](#responseaudio_transcriptdelta) | Streaming audio transcript |
+| [response.audio_transcript.done](#responseaudio_transcriptdone) | Audio transcript is complete |
 | [response.audio.delta](#responseaudiodelta) | Streaming audio content from the model |
 | [response.audio.done](#responseaudiodone) | Audio content is complete |
-| [response.animation_blendshapes.delta](#responseanimationblendshapesdelta) | Streaming animation blendshapes data |
-| [response.animation_blendshapes.done](#responseanimationblendshapesdone) | Animation blendshapes data is complete |
-| [response.audio_timestamp.delta](#responseaudiotimestampdelta) | Streaming audio timestamp information |
-| [response.audio_timestamp.done](#responseaudiotimestampdone) | Audio timestamp information is complete |
-| [response.animation_viseme.delta](#responseanimationvisemedelta) | Streaming animation viseme data |
-| [response.animation_viseme.done](#responseanimationvisemedone) | Animation viseme data is complete |
-| [response.function_call_arguments.delta](#responsefunctioncallargumentsdelta) | Streaming function call arguments |
-| [response.function_call_arguments.done](#responsefunctioncallargumentsdone) | Function call arguments are complete |
-
-### error
-
-Indicates that an error occurred during processing. Most errors are recoverable and the session remains open.
-
-#### Event Structure
-
-```json
-{
-  "type": "error",
-  "error": {
-    "type": "invalid_request_error",
-    "code": "invalid_event_type",
-    "message": "Unknown event type 'invalid.event'",
-    "param": "type",
-    "event_id": "event_ABC123"
-  }
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | Must be `"error"` |
-| error | [RealtimeErrorDetails](#realtimeerrordetails) | Error information object |
-
-#### Error Details Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The error type (e.g., "invalid_request_error", "server_error") |
-| code | string | Specific error code |
-| message | string | Human-readable error description |
-| param | string | Parameter related to the error, if applicable |
-| event_id | string | ID of the client event that caused the error, if applicable |
+| [response.animation_blendshapes.delta](#responseanimation_blendshapesdelta) | Streaming animation blendshapes data |
+| [response.animation_blendshapes.done](#responseanimation_blendshapesdone) | Animation blendshapes data is complete |
+| [response.audio_timestamp.delta](#responseaudio_timestampdelta) | Streaming audio timestamp information |
+| [response.audio_timestamp.done](#responseaudio_timestampdone) | Audio timestamp information is complete |
+| [response.animation_viseme.delta](#responseanimation_visemedelta) | Streaming animation viseme data |
+| [response.animation_viseme.done](#responseanimation_visemedone) | Animation viseme data is complete |
+| [response.function_call_arguments.delta](#responsefunction_call_argumentsdelta) | Streaming function call arguments |
+| [response.function_call_arguments.done](#responsefunction_call_argumentsdone) | Function call arguments are complete |
 
 ### session.created
 
@@ -806,6 +770,63 @@ Sent when a new item is added to the conversation, either through a client `conv
   }
 }
 ```
+
+### conversation.item.retrieved
+
+Sent in response to a `conversation.item.retrieve` client event, providing the requested conversation item.
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"conversation.item.created"` |
+| item | [RealtimeConversationItem](#realtimeconversationitem) | The created conversation item |
+
+### conversation.item.truncated
+
+The server `conversation.item.truncated` event is returned when the client truncates an earlier assistant audio message item with a `conversation.item.truncate` event. This event is used to synchronize the server's understanding of the audio with the client's playback.
+
+This event truncates the audio and removes the server-side text transcript to ensure there's no text in the context that the user doesn't know about.
+
+#### Event structure
+
+```json
+{
+  "type": "conversation.item.truncated",
+  "item_id": "<item_id>",
+  "content_index": 0,
+  "audio_end_ms": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `conversation.item.truncated`. |
+| item_id | string | The ID of the assistant message item that was truncated. |
+| content_index | integer | The index of the content part that was truncated. |
+| audio_end_ms | integer | The duration up to which the audio was truncated, in milliseconds. |
+
+### conversation.item.deleted
+
+Sent in response to a `conversation.item.delete` client event, confirming that the specified item has been removed from the conversation.
+
+#### Event Structure
+
+```json
+{
+  "type": "conversation.item.deleted",
+  "item_id": "item_ABC123"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"conversation.item.deleted"` |
+| item_id | string | ID of the deleted item |
 
 ### response.created
 
@@ -961,7 +982,7 @@ Sent when an output item is complete.
 
 ### response.content_part.added
 
-Sent when a new content part is added to an output item.
+The server `response.content_part.added` event is returned when a new content part is added to an assistant message item during response generation.
 
 #### Event Structure
 
@@ -992,7 +1013,9 @@ Sent when a new content part is added to an output item.
 
 ### response.content_part.done
 
-Sent when a content part is complete.
+The server `response.content_part.done` event is returned when a content part is done streaming in an assistant message item.
+
+This event is also returned when a response is interrupted, incomplete, or canceled.
 
 #### Event Structure
 
@@ -1215,6 +1238,29 @@ Realtime API models accept audio natively, and thus input transcription is a sep
 | content_index | integer | The index of the content part containing the audio. |
 | transcript | string | The transcribed text. |
 
+### conversation.item.input_audio_transcription.delta
+The server `conversation.item.input_audio_transcription.delta` event is returned when input audio transcription is configured, and a transcription request for a user message is in progress. This event provides partial transcription results as they become available.
+
+#### Event structure
+
+```json
+{
+  "type": "conversation.item.input_audio_transcription.delta",
+  "item_id": "<item_id>",
+  "content_index": 0,
+  "delta": "<delta>"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `conversation.item.input_audio_transcription.delta`.
+| item_id | string | The ID of the user message item. |
+| content_index | integer | The index of the content part containing the audio. |
+| delta | string | The incremental transcription text. |
+
 ### conversation.item.input_audio_transcription.failed
 
 The server `conversation.item.input_audio_transcription.failed` event is returned when input audio transcription is configured, and a transcription request for a user message failed. This event is separate from other `error` events so that the client can identify the related item.
@@ -1252,20 +1298,24 @@ The server `conversation.item.input_audio_transcription.failed` event is returne
 | message | string | A human-readable error message. |
 | param | string | Parameter related to the error, if any. |
 
-### conversation.item.truncated
+### response.animation_blendshapes.delta
 
-The server `conversation.item.truncated` event is returned when the client truncates an earlier assistant audio message item with a `conversation.item.truncate` event. This event is used to synchronize the server's understanding of the audio with the client's playback.
-
-This event truncates the audio and removes the server-side text transcript to ensure there's no text in the context that the user doesn't know about.
+The server `response.animation_blendshapes.delta` event is returned when the model generates animation blendshapes data as part of a response. This event provides incremental blendshapes data as it becomes available.
 
 #### Event structure
 
 ```json
 {
-  "type": "conversation.item.truncated",
-  "item_id": "<item_id>",
+  "type": "response.animation_blendshapes.delta",
+  "response_id": "resp_ABC123",
+  "item_id": "item_DEF456",
+  "output_index": 0,
   "content_index": 0,
-  "audio_end_ms": 0
+  "frame_index": 0,
+  "frames": [
+    [0.0, 0.1, 0.2, ..., 1.0]
+    ...
+  ]
 }
 ```
 
@@ -1273,10 +1323,156 @@ This event truncates the audio and removes the server-side text transcript to en
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | string | The event type must be `conversation.item.truncated`. |
-| item_id | string | The ID of the assistant message item that was truncated. |
-| content_index | integer | The index of the content part that was truncated. |
-| audio_end_ms | integer | The duration up to which the audio was truncated, in milliseconds. |
+| type | string | The event type must be `response.animation_blendshapes.delta`. |
+| response_id | string | ID of the response |
+| item_id | string | ID of the item |
+| output_index | integer | Index of the item in the response |
+| content_index | integer | Index of the content part |
+| frame_index | integer | Index of the first frame in this batch of frames |
+| frames | array of array of float | Array of blendshape frames, each frame is an array of blendshape values |
+
+### response.animation_blendshapes.done
+
+The server `response.animation_blendshapes.done` event is returned when the model has finished generating animation blendshapes data as part of a response.
+
+#### Event structure
+
+```json
+{
+  "type": "response.animation_blendshapes.done",
+  "response_id": "resp_ABC123",
+  "item_id": "item_DEF456",
+  "output_index": 0,
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.animation_blendshapes.done`. |
+| response_id | string | ID of the response |
+| item_id | string | ID of the item |
+| output_index | integer | Index of the item in the response |
+
+### response.audio_timestamp.delta
+
+The server `response.audio_timestamp.delta` event is returned when the model generates audio timestamp data as part of a response. This event provides incremental timestamp data for output audio and text alignment as it becomes available.
+
+#### Event structure
+
+```json
+{
+  "type": "response.audio_timestamp.delta",
+  "response_id": "resp_ABC123",
+  "item_id": "item_DEF456",
+  "output_index": 0,
+  "content_index": 0,
+  "audio_offset_ms": 0,
+  "audio_duration_ms": 500,
+  "text": "Hello",
+  "timestamp_type": "word"
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.audio_timestamp.delta`. |
+| response_id | string | ID of the response |
+| item_id | string | ID of the item |
+| output_index | integer | Index of the item in the response |
+| content_index | integer | Index of the content part |
+| audio_offset_ms | integer | Audio offset in milliseconds from the start of the audio |
+| audio_duration_ms | integer | Duration of the audio segment in milliseconds |
+| text | string | The text segment corresponding to this audio timestamp |
+| timestamp_type | string | The type of timestamp, currently only "word" is supported |
+
+
+### response.audio_timestamp.done
+
+Sent when audio timestamp generation is complete.
+
+#### Event Structure
+
+```json
+{
+  "type": "response.audio_timestamp.done",
+  "response_id": "resp_ABC123",
+  "item_id": "item_DEF456",
+  "output_index": 0,
+  "content_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.audio_timestamp.done`. |
+| response_id | string | ID of the response |
+| item_id | string | ID of the item |
+| output_index | integer | Index of the item in the response |
+| content_index | integer | Index of the content part |
+
+### response.animation_viseme.delta
+
+The server `response.animation_viseme.delta` event is returned when the model generates animation viseme data as part of a response. This event provides incremental viseme data as it becomes available.
+
+#### Event Structure
+
+```json
+{
+  "type": "response.animation_viseme.delta",
+  "response_id": "resp_ABC123",
+  "item_id": "item_DEF456",
+  "output_index": 0,
+  "content_index": 0,
+  "audio_offset_ms": 0,
+  "viseme_id": 1
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.animation_viseme.delta`. |
+| response_id | string | ID of the response |
+| item_id | string | ID of the item |
+| output_index | integer | Index of the item in the response |
+| content_index | integer | Index of the content part |
+| audio_offset_ms | integer | Audio offset in milliseconds from the start of the audio |
+| viseme_id | integer | The viseme ID corresponding to the mouth shape for animation |
+
+### response.animation_viseme.done
+
+The server `response.animation_viseme.done` event is returned when the model has finished generating animation viseme data as part of a response.
+
+#### Event Structure
+
+```json
+{
+  "type": "response.animation_viseme.done",
+  "response_id": "resp_ABC123",
+  "item_id": "item_DEF456",
+  "output_index": 0,
+  "content_index": 0
+}
+```
+
+#### Properties
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | The event type must be `response.animation_viseme.done`. |
+| response_id | string | ID of the response |
+| item_id | string | ID of the item |
+| output_index | integer | Index of the item in the response |
+| content_index | integer | Index of the content part |
+
+The server `response.animation_viseme.delta` event is returned when the model generates animation viseme data as part of a response. This event provides incremental viseme data as it becomes available.
 
 ### error
 
@@ -1546,112 +1742,6 @@ This event is also returned when a response is interrupted, incomplete, or cance
 | output_index | integer | The index of the output item in the response. |
 | content_index | integer | The index of the content part in the item's content array. |
 | transcript | string | The final transcript of the audio. |
-
-### response.content_part.added
-
-The server `response.content_part.added` event is returned when a new content part is added to an assistant message item during response generation.
-
-#### Event structure
-
-```json
-{
-  "type": "response.content_part.added",
-  "response_id": "<response_id>",
-  "item_id": "<item_id>",
-  "output_index": 0,
-  "content_index": 0
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.content_part.added`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item to which the content part was added. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
-| part | [RealtimeContentPart](#realtimecontentpart) | The content part that was added. |
-
-#### Part properties
-
-| Field | Type | Description |
-|------|------|-------------|
-| type | [RealtimeContentPartType](#realtimecontentparttype) |  |
-
-### response.content_part.done
-
-The server `response.content_part.done` event is returned when a content part is done streaming in an assistant message item.
-
-This event is also returned when a response is interrupted, incomplete, or canceled.
-
-#### Event structure
-
-```json
-{
-  "type": "response.content_part.done",
-  "response_id": "<response_id>",
-  "item_id": "<item_id>",
-  "output_index": 0,
-  "content_index": 0
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.content_part.done`. |
-| response_id | string | The ID of the response. |
-| item_id | string | The ID of the item. |
-| output_index | integer | The index of the output item in the response. |
-| content_index | integer | The index of the content part in the item's content array. |
-| part | [RealtimeContentPart](#realtimecontentpart) | The content part that is done. |
-
-#### Part properties
-
-| Field | Type | Description |
-|------|------|-------------|
-| type | [RealtimeContentPartType](#realtimecontentparttype) |  |
-
-### response.created
-
-The server `response.created` event is returned when a new response is created. This is the first event of response creation, where the response is in an initial state of `in_progress`.
-
-#### Event structure
-
-```json
-{
-  "type": "response.created"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.created`. |
-| response | [RealtimeResponse](#realtimeresponse) | The response object. |
-
-### response.done
-
-The server `response.done` event is returned when a response is done streaming. This event is always emitted, no matter the final state. The response object included in the `response.done` event includes all output items in the response, but omits the raw audio data.
-
-#### Event structure
-
-```json
-{
-  "type": "response.done"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `response.done`. |
-| response | [RealtimeResponse](#realtimeresponse) | The response object. |
 
 ### response.function_call_arguments.delta
 
