@@ -44,7 +44,7 @@ productDirectory:
       links:
         - url: /azure/developer/ai/intelligent-app-templates
           text: Start with an AI template
-        - url: ./quickstarts/get-started-code.md
+        - url: ./how-to/develop/ai-template-get-started.md
           text: Quickstart for Azure AI Foundry
     # Card
     - title: Azure AI Foundry Models
