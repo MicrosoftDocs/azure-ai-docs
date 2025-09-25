@@ -1,13 +1,38 @@
 ---
-author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/21/2025
-ms.author: pafarley
+ms.date: 9/24/2025
+author: goergenj
+ms.author: jagoerge
+reviewer: PatrickFarley
+ms.reviewer: pafarley
 ---
 
 > [!IMPORTANT]
 > Content assessment (preview) via the Speech SDK is being retired in July 2025. Instead, you can use Azure OpenAI models to get content assessment results as described in the [content assessment documentation](../../how-to-pronunciation-assessment.md#content-assessment).
+
+### Speech SDK 1.46: 2025-September release
+
+#### New features:
+  * Added support for speech start event sensitivity with `Speech_StartEventSensitivity` property. 
+  * Deprecated `SpeechServiceConnection_EndSilenceTimeoutMs` property. 
+  * Retired the content assessment functionality in pronunciation assessment.
+  * Updated Android OpenSSL to 3.0.17.
+  * Added a size limit to the telemetry queue in order to prevent growth in memory usage. 
+  * Added a timeout guard for cache reading in TTS in order to prevents potential IO hangs. 
+  * Added configurable properties to control URL redirection cache behavior. 
+  * [C#] Added support for **EventSource** based logging.
+  * [Python] Added support for *AzureKeyCredential* authentication. 
+
+#### Bug fixes 
+  * Fixed a ja-JP pronunciation issue in embedded text-to-speech.
+  * Fixed a notable increase in memory usage over a long period of time in embedded speech-to-text. 
+  * Fixed crash caused by race condition during timeout stopping recognition. 
+  * [JavaScript] Fixed an issue where `fromHost` did not work with Docker container service. 
+
+#### Samples
+  * Updated samples to demonstrate the usage of `AzureKeyCredential` and `AAD token credential` authentications. 
+  * [JavaScript, Python] Updated samples to use `fromEndpoint`. 
 
 ### Speech SDK 1.45: 2025-July release
 
@@ -25,7 +50,7 @@ ms.author: pafarley
   * Fixed custom domain resolution not working with Node.js v22 or newer.
 
 #### Samples
-  * [Java ] Added sample code to demonstrate AAD token credential authentication.
+  * [Java] Added sample code to demonstrate AAD token credential authentication.
 
 ### Speech SDK 1.44.1: Patch release
 

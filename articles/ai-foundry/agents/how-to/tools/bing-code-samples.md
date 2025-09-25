@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Find code samples to ground Azure AI Agents using Bing Search results.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 09/09/2025
 author: aahill
