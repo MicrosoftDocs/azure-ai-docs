@@ -174,7 +174,7 @@ An index `description` field is exposed programmatically, which means you can pa
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 
 + String length is 4,000 characters maximum.
-+ Content must be human-readable, in Unicode. Your use-case should determine which language to use.
++ Content must be human-readable, in Unicode. Your use case should determine which language to use (for example, English or another language).
 
 ## Add a semantic configuration
 

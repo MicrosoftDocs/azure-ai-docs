@@ -33,7 +33,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Rescoring options for HNSW compressed vectors](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) | Vector search | Generally available. |
 | [Scoring profiles for semantically ranked results](semantic-how-to-enable-scoring-profiles.md) | Relevance | Generally available. |
 | [Truncate dimensions](vector-search-how-to-truncate-dimensions.md) | Vector search  | Generally available. |
-| [Unpack `@search.score` to view subscores in hybrid search results](hybrid-search-ranking.md#unpack-a-search-score-into-subscores) | Hybrid search Generally available. |
+| [Unpack `@search.score` to view subscores in hybrid search results](hybrid-search-ranking.md#unpack-a-search-score-into-subscores) | Hybrid search | Generally available. |
 | [Updates to import wizards (Phase 1)](search-import-data-portal.md) | Portal | The Azure portal is undergoing a three-phase rollout to unify the two import wizards. For Phase 1, the **Import and vectorize data** wizard has been renamed to **Import data (new)** and redeveloped to support keyword search, modernizing the legacy **Import data** workflow with an improved interface and user experience. <p>**Import data (new)** isn't a direct replacement for the old wizard. For example, it supports fewer skills for keyword search and doesn't offer built-in sample data.<p>Both wizards are currently available, but **Import data** will be deprecated in a future phase. |
 
 ## August 2025
