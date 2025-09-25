@@ -17,8 +17,8 @@ Use this fast path when you don't have any projects yet.
 In the portal, you can explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. For this tutorial, search and then select the **gpt-4o** model.
 
 ::: moniker range="foundry-classic"
-
-1. From the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) or **[Model catalog](https://ai.azure.com/explore/models)**, select **gpt-4o** (or **gpt-4o-mini**).
+1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1.  From the overview page or **[Model catalog](https://ai.azure.com/explore/models)**, select **gpt-4o** (or **gpt-4o-mini**).
 
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start with a model in Azure AI Foundry portal.":::
 

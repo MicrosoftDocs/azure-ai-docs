@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 02/19/2025
+ms.date: 09/21/2025
 ms.update-cycle: 180-days
 ---
 
@@ -423,3 +423,13 @@ This error usually happens in Azure SQL indexers when the source column type use
 For example, if the column used for change detection is of type datetime, but the indexer expects a rowversion type because convertHighWaterMarkToRowVersion is enabled, the mismatch will cause an error.
 
 Check the data type for the 'High Water Mark' column in the source and update the indexer configuration accordingly. Once verified and updated, reset and rerun the indexer to process the column values.
+
+## `Error: Access denied to Virtual Network/Firewall rules.`
+
+This error typically occurs due to one of the following:
+- Firewall restrictions on Azure resources required by your indexer, depending on your configuration. These resources may include: the [data source](search-data-sources-gallery.md#generally-available-data-sources-by-azure-ai-search), Azure Storage account (used for [debug sessions](cognitive-search-debug-session.md), [incremental enrichment](cognitive-search-incremental-indexing-conceptual.md) or [knowledge store](knowledge-store-concept-intro.md)), Azure Function (used for [web API custom skills](cognitive-search-custom-skill-web-api.md)) or AI Services / AI Foundry deployments used during [AI enrichment](cognitive-search-concept-intro.md).
+- Private endpoint configurations that block access from the indexer to those resources.
+
+Ensure that the indexer has access to your setup components by reviewing your resource configurations to confirm they allow traffic to all required services:
+- [Firewall and IP restriction settings](search-indexer-howto-access-ip-restricted.md)
+- [Shared private link setup](search-indexer-howto-access-private.md)

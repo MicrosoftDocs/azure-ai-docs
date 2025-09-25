@@ -15,6 +15,7 @@ ms.date: 09/02/2025
 Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for September 2025.
 
 ## New articles
+- [Azure AI Foundry status dashboard](../ai-foundry/azure-ai-foundry-status-dashboard-documentation.md)
 - [Azure OpenAI in Azure AI Foundry Models v1 REST API reference](../ai-foundry/openai/latest.md)
 - [Browser Automation (preview)](../ai-foundry/agents/how-to/tools/browser-automation.md)
 - [How to use the Browser Automation tool (preview)](../ai-foundry/agents/how-to/tools/browser-automation-samples.md)

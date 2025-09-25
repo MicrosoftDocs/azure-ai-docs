@@ -10,6 +10,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
   - build-2025
+  - hub-only
 ai-usage: ai-assisted
 ---
 

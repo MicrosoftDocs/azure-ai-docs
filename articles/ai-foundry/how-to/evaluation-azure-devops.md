@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 07/25/2025
+ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt

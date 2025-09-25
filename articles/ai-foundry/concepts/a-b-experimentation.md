@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: concept-article
-ms.date: 07/02/2025
+ms.date: 09/18/2025
 
 #CustomerIntent: As an AI application developer, I want to learn about A/B experiments so that I can evaluate and improve my applications.
 ---
