@@ -16,7 +16,7 @@ ms.date: 09/25/2025
 
 ## Configure and run an agent
 
-First, create a New Java console project. You will need the following dependencies to run the code:
+First, create a New Java console project. You'll need the following dependencies to run the code:
     
 ```xml
 <dependencies>
@@ -39,7 +39,7 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to get the endpoint for your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you'll need to get the endpoint for your project. This string is in the format:
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 
