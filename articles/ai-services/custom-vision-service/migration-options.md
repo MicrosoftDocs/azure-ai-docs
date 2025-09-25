@@ -13,7 +13,7 @@ ms.custom: ai-migration, vision
 
 The Custom Vision Service will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Azure Custom Vision customers until 9/25/2028, but to ensure business continuity and minimize disruption, customers are encouraged to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
 
-## Migration Preparation Checklist
+## Migration preparation checklist
 
 1.	Assess current usage and dependencies on Custom Vision Service.
 2.	Identify business scenarios and technical requirements for image classification and object detection.

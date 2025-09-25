@@ -42,7 +42,7 @@ The Face service offers Face detection capabilities, as well as a more comprehen
     * [What is the Azure AI Face Service?](./overview-identity.md)
     * [Face detection, attributes, and input data](./concept-face-detection.md)
 
-### Image embeddings scenarios:
+### Image embeddings scenarios
 
 #### Cohere Embed v3 in Azure AI Foundry
 * **Best for**: Customers who need image + text embeddings supported on Azure.
