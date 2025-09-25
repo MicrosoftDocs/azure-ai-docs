@@ -5,7 +5,8 @@ description: Learn about the components used in the Azure AI Foundry Agent Servi
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 09/24/2025
 ms.custom: azure-ai-agents

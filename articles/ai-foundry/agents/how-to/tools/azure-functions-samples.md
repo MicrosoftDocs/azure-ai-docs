@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Azure functions with Azure AI Agents.
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 08/07/2025
 author: aahill
