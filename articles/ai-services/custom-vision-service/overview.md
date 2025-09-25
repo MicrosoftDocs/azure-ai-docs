@@ -14,10 +14,9 @@ ms.custom: FY25Q1-Linter
 #Customer intent: As a data scientist/developer, I want to understand what the Custom Vision service does so that I can determine if it's suitable for my project.
 ---
 
-[!INCLUDE [Retirement notice](./includes/custom-vision-retirement.md)]
-
-
 # What is Custom Vision?
+
+[!INCLUDE [Retirement notice](./includes/custom-vision-retirement.md)]
 
 Azure AI Custom Vision is an image recognition service that lets you build, deploy, and improve your own **image identifier** models. An image identifier applies labels to images according to their visual characteristics. Each label represents a classification or object. Custom Vision allows you to specify your own labels and train custom models to detect them.
 
