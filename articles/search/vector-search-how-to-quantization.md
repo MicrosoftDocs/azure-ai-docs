@@ -68,7 +68,8 @@ The generalized process for rescoring is:
 
 1. The vector query executes over compressed vector fields.
 1. The vector query returns the top k oversampled candidates.
-1. Oversampled k candidates are rescored using either the uncompressed original vectors, or the dot product of binary quantization. 1. After rescoring, results are adjusted so that more relevant matches appear first.
+1. Oversampled k candidates are rescored using either the uncompressed original vectors, or the dot product of binary quantization.
+1. After rescoring, results are adjusted so that more relevant matches appear first.
 
 ## Add "compressions" to a search index
 
