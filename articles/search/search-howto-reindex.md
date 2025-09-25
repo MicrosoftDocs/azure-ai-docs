@@ -255,7 +255,7 @@ To minimize disruption to application code, consider [creating an index alias](s
 
 ## Add an index description
 
-An index has a `decription` property that you can specify and use when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be  based on the description rather than on the index name alone.
+An index has a `description` property that you can specify and use when a system must access several indexes and make a decision based on the description. Consider a Model Context Protocol (MCP) server that must pick the correct index at run time. The decision can be based on the description rather than on the index name alone.
 
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 
