@@ -69,7 +69,7 @@ For more information, *see* [Use Azure AI Translator behind firewalls](/azure/ai
 
 ## Data protection
 
-Azure AI Translator processes sensitive text and document content, making data protection measures crucial for maintaining confidentiality and compliance.
+Azure AI Translator processes sensitive text and document content. Because of the confidential nature of this information, implementing robust data protection measures is essential. These safeguards are vital not only to maintain the privacy and confidentiality of the data being processed but also to ensure compliance with relevant regulations and industry standards.
 
 * **Enable data encryption at rest**: Ensure your data is automatically encrypted with Federal Information Processing Standard (FIPS) 140-2 compliant 256-bit Advanced Encryption Standard (AES) when stored by the service.<br>
 For more information, *see* [Microsoft compliance](/compliance/regulatory/offering-fips-140-2).
