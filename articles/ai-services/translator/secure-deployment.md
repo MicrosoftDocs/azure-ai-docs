@@ -49,7 +49,8 @@ For more information, *see* [Authentication and authorization](/azure/ai-service
 For more information, *see* [About Azure Key Vault](/azure/key-vault/general/overview).<br>
 For Custom Translator implementation, *see* [Encryption key management](/azure/ai-services/translator/custom-translator/concepts/encrypt-data-at-rest)<br><br>
 
-  ✔️ **Rotate API keys regularly**: Keys in Azure Key Vault can be configured with rotation policies that automatically generate new key versions at specified frequencies. Regularly rotating your Translator service API keys mitigates the risk of compromised credentials being used to access your services. For more information, *see* [Key autorotation](/azure/key-vault/general/autorotation).
+   > [!TIP]
+   > ✔️ **Rotate API keys regularly**: Keys in Azure Key Vault can be configured with rotation policies that automatically generate new key versions at specified frequencies. Regularly rotating your Translator service API keys mitigates the risk of compromised credentials being used to access your services. For more information, *see* [Key autorotation](/azure/key-vault/general/autorotation).
 
 ## Network security
 
