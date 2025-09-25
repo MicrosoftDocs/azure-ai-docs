@@ -69,7 +69,7 @@ codex --version # verify installation
     ```text
     model = "gpt-5-codex"  # Replace with your actual Azure model deployment name
     model_provider = "azure"
-    model_reasoning_effort = "high"
+    model_reasoning_effort = "medium"
     
     [model_providers.azure]
     name = "Azure OpenAI"
