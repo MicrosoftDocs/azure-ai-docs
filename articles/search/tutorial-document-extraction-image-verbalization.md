@@ -10,7 +10,7 @@ ms.update-cycle: 180-days
 ms.custom:
 ms.topic: tutorial
 ms.date: 08/27/2025
-9
+
 ---
 
 # Tutorial: Verbalize images using generative AI
