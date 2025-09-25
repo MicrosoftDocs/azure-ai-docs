@@ -146,6 +146,9 @@ The response is as follows, where you can see the model's usage statistics:
 
 ### Reasoning content
 
+> [!NOTE]
+> This information on reasoning content does not apply to Azure OpenAI models. Azure OpenAI reasoning models use the [reasoning summaries feature](../../../openai/how-to/reasoning.md#reasoning-summary).
+
 Some reasoning models, like DeepSeek-R1, generate completions and include the reasoning behind it. 
 
 # [OpenAI API](#tab/openai)
