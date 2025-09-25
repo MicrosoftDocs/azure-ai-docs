@@ -5,7 +5,7 @@ description: Use this article to import and use your data in Azure OpenAI.
 author: aahill
 ms.author: aahi
 manager: nitinme
-ms.date: 08/15/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-openai
 ms.topic: quickstart
 ms.custom:
@@ -21,16 +21,16 @@ zone_pivot_groups: openai-use-your-data
 
 # Quickstart: Chat with Azure OpenAI models using your own data
 
-In this quickstart, you can use your own data with Azure OpenAI models. Using Azure OpenAI's models on your data can provide you with a powerful conversational AI platform that enables faster and more accurate communication.
+In this quickstart, you use your own data with Azure OpenAI models to create a powerful, conversational AI platform that enables faster and more accurate communication.
+
+> [!IMPORTANT]
+> There are new ways to build conversational solutions with your own data. For the latest recommended approach, see [Quickstart: Use agentic retrieval in Azure AI Search](../../search/search-get-started-agentic-retrieval.md).
 
 ::: zone pivot="ai-foundry-portal"
 
 ## Prerequisites
 
-The following resources: 
-- 
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
-
 
 [!INCLUDE [Connect your data to OpenAI](includes/connect-your-data-studio.md)]
 
@@ -42,7 +42,6 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - Download the example data from [GitHub](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/openai/contoso_benefits_document_example.pdf) if you don't have your own data.
 - The [.NET 8 SDK](https://dotnet.microsoft.com/download/dotnet/8.0)
@@ -59,7 +58,6 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -107,7 +105,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 ## Prerequisites
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
-
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
@@ -133,7 +130,6 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -156,7 +152,6 @@ These links reference the OpenAI API for Python. There's no Azure-specific OpenA
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -175,7 +170,6 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)
@@ -196,7 +190,6 @@ The following resources:
 
 ## Prerequisites
 
-The following resources: 
 - [Azure OpenAI](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI)
 - [Azure Blob Storage](https://portal.azure.com/#create/Microsoft.StorageAccount-ARM)
 - [Azure AI Search](https://portal.azure.com/#create/Microsoft.Search)

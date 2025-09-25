@@ -5,7 +5,7 @@ description: Learn how to create a hub-based project in Azure AI Foundry.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 09/12/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -111,5 +111,6 @@ Delete hub (with all projects): In Hub properties, select Delete hub to open Azu
 
 ## Related content
 
-- [Quickstart: Get started with Azure AI Foundry (Hub projects)](../quickstarts/hub-get-started-code.md)
-- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
+- [Create an Azure AI Foundry project](create-projects.md).
+- [Quickstart: Get started with Azure AI Foundry (Hub projects)](../quickstarts/hub-get-started-code.md).
+- [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md).

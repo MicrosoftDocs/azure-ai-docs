@@ -15,17 +15,19 @@ ms.custom:
 
 * [!INCLUDE [fdp-description](../includes/fdp-description.md)]
 
-* This project type gives you the best support for:
+* This project type gives you access to the latest generative AI features in AI Foundry, including:
 
     * Agents 
-    * AI Foundry API to work with agents and across models
-    * Models sold directly by Azure - Azure OpenAI, DeepSeek, xAI, etc.
+    * Foundry SDK and API to build agents and switch easily between models
+    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
     * Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc. 
-    * Project files (directly upload files and start experimenting)
-    * Project-level isolation of files and outputs 
+    * Content understanding 
     * Evaluations
     * Fine-tuning
-    * Playgrounds
+    * OpenAI SDK and API incl. Batch and Stored Completions
+    * AI Services
+
+* Do you need access to Open Source models, or PromptFlow? [Create a hub project type](../how-to/hub-create-projects.md) instead.
 
 ## Prerequisites
 
@@ -58,7 +60,7 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
         DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
         ```
             
-    1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure China 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
+    1. (Optional) If you're working on in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region into which you want to authenticate. You can specify the region with `DefaultAzureCredential`. The following example authenticates to the Azure Government - US region:
             
         ```python
         from azure.identity import AzureAuthorityHosts

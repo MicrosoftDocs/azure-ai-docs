@@ -14,7 +14,7 @@ In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-c
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
 > [!TIP]
-> The JavaScript version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the REST or Python version.
+> The JavaScript version of this quickstart uses the 2025-05-01-preview REST API version, which doesn't support knowledge sources and other agentic retrieval features introduced in the 2025-08-01-preview. To use these features, see the C#, Python, or REST version.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 [!INCLUDE [Setup](./agentic-retrieval-setup.md)]
 
-## Setup
+## Set up the environment
 
 1. Create a new folder `quickstart-agentic-retrieval` to contain the application and open Visual Studio Code in that folder with the following command:
 
@@ -65,7 +65,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     npm install @azure/identity
     ```
 
-## Create the index and knowledge agent
+## Run the code
 
 1. Create a new file named `.env` in the `quickstart-agentic-retrieval` folder and add the following environment variables:
 
@@ -572,7 +572,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
     node index.js
     ```
 
-## Output
+### Output
 
 The output of the application should look similar to the following:
 
@@ -749,7 +749,7 @@ To find lava at night, satellite instruments like the VIIRS Day/Night Band (DNB)
 ✅ Quickstart completed successfully!
 ```
 
-## Explaining the code
+## Understand the code
 
 Now that you have the code, let's break down the key components:
 

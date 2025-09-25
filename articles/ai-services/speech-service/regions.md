@@ -122,7 +122,7 @@ The regions in these tables support most of the core features of the Speech serv
 | northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |  |  |
 | northeurope        | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | norwayeast         | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| qatarcentral       | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
+| qatarcentral       | ✅ |  |  |  |  |  |  |  |  |  |  |
 | southafricanorth   | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | southcentralus     | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | southeastasia      | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |

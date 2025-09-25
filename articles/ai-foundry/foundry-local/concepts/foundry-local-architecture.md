@@ -93,6 +93,12 @@ The hardware abstraction layer ensures that Foundry Local can run on various dev
 - **multiple _execution providers_**, such as NVIDIA CUDA, AMD, Qualcomm, Intel.
 - **multiple _device types_**, such as CPU, GPU, NPU.
 
+> [!NOTE]
+> For Intel NPU support on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable hardware acceleration.
+
+> [!NOTE]
+> For Qualcomm NPU support, you need to install the [Qualcomm NPU driver](https://softwarecenter.qualcomm.com/catalog/item/QHND). If you encounter the error `Qnn error code 5005: "Failed to load from EpContext model. qnn_backend_manager."`, this typically indicates an outdated driver or NPU resource conflicts. Try rebooting to clear NPU resource conflicts, especially after using Windows Copilot+ features.
+
 ### Developer experiences
 
 The Foundry Local architecture is designed to provide a seamless developer experience, enabling easy integration and interaction with AI models.
@@ -123,19 +129,22 @@ Foundry Local supports integration with various SDKs in most languages, such as 
 The AI Toolkit for Visual Studio Code provides a user-friendly interface for developers to interact with Foundry Local. It allows users to run models, manage the local cache, and visualize results directly within the IDE.
 
 **Features**:
-  - Model management: Download, load, and run models from within the IDE.
-  - Interactive console: Send requests and view responses in real-time.
-  - Visualization tools: Graphical representation of model performance and results.
+
+- Model management: Download, load, and run models from within the IDE.
+- Interactive console: Send requests and view responses in real-time.
+- Visualization tools: Graphical representation of model performance and results.
 
 **Prerequisites:**
-  - You have installed [Foundry Local](../get-started.md) and have a model service running.
-  - You have installed the [AI Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension.
- 
+
+- You have installed [Foundry Local](../get-started.md) and have a model service running.
+- You have installed the [AI Toolkit for Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=ms-windows-ai-studio.windows-ai-studio) extension.
+
 **Connect Foundry Local model to AI Toolkit:**
-  1. **Add model in AI Toolkit**: Open AI Toolkit from the activity bar of Visual Studio Code. In the 'My Models' panel, click the 'Add model for remote interface' button and then select 'Add a custom model' from the dropdown menu.
-  2. **Enter the chat compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions` where PORT is replaced with the port number of your Foundry Local service endpoint. You can see the port of your locally running service using the CLI command `foundry service status`. Foundry Local dynamically assigns a port, so it might not always the same.
-  3. **Provide model name**: Enter the exact model name you which to use from Foundry Local, for example `phi-3.5-mini`. You can list all previously downloaded and locally cached models using the CLI command `foundry cache list` or use `foundry model list` to see all available models for local use. You’ll also be asked to enter a display name, which is only for your own local use, so to avoid confusion it’s recommended to enter the same name as the exact model name.
-  4. **Authentication**: If your local setup doesn't require authentication *(which is the default for a Foundry Local setup)*, you can leave the authentication headers field blank and press Enter.
+
+1. **Add model in AI Toolkit**: Open AI Toolkit from the activity bar of Visual Studio Code. In the 'My Models' panel, select the 'Add model for remote interface' button and then select 'Add a custom model' from the dropdown menu.
+2. **Enter the chat compatible endpoint URL**: Enter `http://localhost:PORT/v1/chat/completions` where PORT is replaced with the port number of your Foundry Local service endpoint. You can see the port of your locally running service using the CLI command `foundry service status`. Foundry Local dynamically assigns a port, so it might not always be the same.
+3. **Provide model name**: Enter the exact model name you which to use from Foundry Local, for example `phi-3.5-mini`. You can list all previously downloaded and locally cached models using the CLI command `foundry cache list` or use `foundry model list` to see all available models for local use. You’ll also be asked to enter a display name, which is only for your own local use, so to avoid confusion it’s recommended to enter the same name as the exact model name.
+4. **Authentication**: If your local setup doesn't require authentication _(which is the default for a Foundry Local setup)_, you can leave the authentication headers field blank and press Enter.
 
 After completing these steps, your Foundry Local model will appear in the 'My Models' list in AI Toolkit and is ready to be used by right-clicking on your model and select 'Load in Playground'.
 
