@@ -69,7 +69,7 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 ## Deploy the model
 
-1. When you create the project and resources, a deployment wizard appears. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Azure AI Foundry Models pricing page](https://azure.microsoft.com/en-us/pricing/details/phi-3/).
+1. When you create the project and resources, a deployment wizard appears. DeepSeek-R1 is available as a Foundry Model sold directly by Azure. You can review the pricing details for the model by selecting the DeepSeek tab on the [Azure AI Foundry Models pricing page](https://azure.microsoft.com/pricing/details/phi-3/).
 
 1. Configure the deployment settings. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for requests to route to this particular model deployment. This setup allows you to configure specific names for your models when you attach specific configurations.
 
