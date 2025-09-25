@@ -246,7 +246,7 @@ To create a custom role, use one of the following articles:
 
 For more information about custom roles, see the [Azure custom roles](/azure/role-based-access-control/custom-roles) article.
 
-##  Use Microsoft Entra groups with Azure AI Foundry
+## Use Microsoft Entra groups with Azure AI Foundry
 
 Microsoft Entra ID provides several ways to manage access to resources, applications, and tasks. With Microsoft Entra groups, you can grant access and permissions to a group of users instead of to each individual user. Microsoft Entra groups can be created in the Azure portal for enterprise IT admins to simplify the role assignment process for developers. When you create an Microsoft Entra group, you can minimize the number of role assignments required for new developers working on Foundry projects by assigning the group the required role assignment on the necessary resource.
 
