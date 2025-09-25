@@ -5,7 +5,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
-ms.date: 08/07/2025
+ms.date: 09/25/2025
 ---
 
 | [Reference documentation](/java/api/overview/azure/ai-agents-persistent-readme) | [Samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents-persistent/src/samples/java/com/azure/ai/agents/persistent) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-agents-persistent) | [Package (Maven)](https://central.sonatype.com/artifact/com.azure/azure-ai-agents-persistent) |
@@ -16,15 +16,7 @@ ms.date: 08/07/2025
 
 ## Configure and run an agent
 
-| Component | Description                                                                                                                                                                                                                               |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent     | Custom AI that uses AI models in conjunction with tools.                                                                                                                                                                                  |
-| Tool      | Tools help extend an agent’s ability to reliably and accurately respond during conversation. Such as connecting to user-defined knowledge bases to ground the model, or enabling web search to provide current information.               |
-| Thread    | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.                                                                                     |
-| Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
-| Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
-
-First, create a New Java console project. You will need the following dependencies to run the code:
+First, create a New Java console project. You'll need the following dependencies to run the code:
     
 ```xml
 <dependencies>
@@ -47,7 +39,7 @@ Next, to authenticate your API requests and run the program, use the [az login](
 az login
 ```
 
-Use the following code to create and run an agent. To run this code, you will need to get the endpoint for your project. This string is in the format:
+Use the following code to create and run an agent. To run this code, you'll need to get the endpoint for your project. This string is in the format:
 
 `https://<AIFoundryResourceName>.services.ai.azure.com/api/projects/<ProjectName>`
 

@@ -8,7 +8,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: quickstart
-ms.date: 08/29/2025
+ms.date: 09/25/2025
 ms.custom:
   - azure-ai-agents
   - build-2025
