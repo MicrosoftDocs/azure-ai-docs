@@ -2342,6 +2342,7 @@ Function call request item.
 #### RealtimeConversationFunctionCallOutputItem
 
 Function call response item.
+
 | Field | Type | Description |
 |-------|------|-------------|
 | id | string | The unique ID of the item. |
@@ -2472,6 +2473,7 @@ Error information object.
 | param | string | Optional. Parameter related to the error |
 | event_id | string | Optional. ID of the client event that caused the error |
 
+| Field | Type | Description |
 |-------|------|-------------|
 | type | [RealtimeContentPartType](#realtimecontentparttype) | The content type.<br><br>A property of the `function` object.<br/><br>Allowed values: `input_text`, `input_audio`, `item_reference`, `text`. |
 | text | string | The text content. This property is applicable for the `input_text` and `text` content types. |
