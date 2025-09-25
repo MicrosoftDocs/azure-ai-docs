@@ -6,26 +6,28 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 07/22/2025
+ms.date: 09/18/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, mode-other
-zone_pivot_groups: usage-custom-language-features
+zone_pivot_groups: foundry-rest-api
 ---
 
 # Quickstart: Custom named entity recognition
 
-Use this article to get started with creating a custom NER project where you can train custom models for custom entity recognition. A model artificial intelligence software trained to achieve a specific task. For this system, the models extract named entities and are trained by learning from tagged data.
+This guide provides step-by-step instructions for using custom named entity recognition (NER) with Azure AI Foundry or the REST API. NER lets you detect and categorize entities in unstructured text—like people, places, organizations, and numbers. With custom NER, you can train models to identify entities specific to your business and adapt them as needs evolve.
 
-In this article, we use Language Studio to demonstrate key concepts of custom Named Entity Recognition (NER). As an example, let's build a custom NER model to extract the following relevant entities from loan agreements:
+To get start, [a sample loan agreement](https://go.microsoft.com/fwlink/?linkid=2175226) is provided as a dataset to build a custom NER model and extract these key entities:
 
-* Date of the agreement
-* Borrower's name, address, city, and state
-* Lender's name, address, city, and state
-* Loan and interest amounts
+*    Date of the agreement
+*    Borrower's name, address, city, and state
+*    Lender's name, address, city, and state
+*    Loan and interest amounts
 
-::: zone pivot="language-studio"
 
-[!INCLUDE [Language Studio quickstart](includes/quickstarts/language-studio.md)]
+
+::: zone pivot="azure-ai-foundry"
+
+[!INCLUDE [Azure AI Foundry](includes/quickstarts/azure-ai-foundry.md)]
 
 ::: zone-end
 
@@ -35,7 +37,7 @@ In this article, we use Language Studio to demonstrate key concepts of custom Na
 
 ::: zone-end
 
-## Next steps
+## Related content
 
 After you create your entity extraction model, you can [use the runtime API to extract entities](how-to/call-api.md).
 

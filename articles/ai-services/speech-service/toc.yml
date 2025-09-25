@@ -466,6 +466,9 @@ items:
             href: /python/api/azure-cognitiveservices-speech/
       - name: Voice Live SDK (Preview)
         items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.voicelive-readme      
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/overview/azure/ai-voicelive-readme

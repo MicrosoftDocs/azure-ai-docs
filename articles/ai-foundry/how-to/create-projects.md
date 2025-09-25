@@ -5,7 +5,7 @@ description: This article describes how to create an Azure AI Foundry project so
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
-ms.date: 09/12/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -20,10 +20,7 @@ ai-usage: ai-assisted
 
 # Create a project for Azure AI Foundry (Foundry projects)
 
-> [!NOTE]
-> An alternate hub project creation article is available: [Create a hub project for Azure AI Foundry](hub-create-projects.md).
-
-This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work for exploring new ideas and as you prototype on a particular use case.
+This article describes how to create a project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Projects let you organize your work, such as agents, evaluations, and files, as you build stateful apps and explore new ideas.
 
 [!INCLUDE [create-project-fdp](../includes/create-project-fdp.md)]
 

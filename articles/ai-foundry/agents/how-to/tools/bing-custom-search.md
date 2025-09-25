@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to ground Azure AI Agents using Custom Bing Search results.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 08/15/2025
 author: aahill

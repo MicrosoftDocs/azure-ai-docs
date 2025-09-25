@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 09/19/2025
 ---
 
 # Eliminate optional vector instances from storage
@@ -46,18 +46,18 @@ To mitigate the loss in information, you can [enable "rescoring" and "oversampli
 
 ## Remove source vectors (JSON data)
 
-The `stored` property is a boolean property on a vector field definition that determines whether storage is allocated for retrievable vector field content obtained during indexing (the source instance). The `stored` property is true by default. If you don't need raw vector content in a query response, you can save up to 50 percent storage per field by changing `stored` to false.
+In a vector field definition, `stored` is a boolean property that determines whether storage is allocated for retrievable vector content obtained during indexing (the source instance). By default, `stored` is set to `true`. If you don't need raw vector content in a query response, changing `stored` to `false` can save up to 50% storage per field.
 
-Considerations for setting `stored` to false:
+Considerations for setting `"stored": false`:
 
-- Because vectors aren't human readable, you can omit them from results sent to LLMs in RAG scenarios, and from results that are rendered on a search page. Keep them, however, if you're using vectors in a downstream process that consumes vector content.
+- Because vectors aren't human readable, you can omit them from results sent to LLMs in RAG scenarios or from results rendered on a search page. However, keep them if you're using vectors in a downstream process that consumes vector content.
 
-- However, if your indexing strategy includes [partial document updates](search-howto-reindex.md#update-content), such as "merge" or "mergeOrUpload" on an existing document, setting `stored=false` prevents content updates to those fields during the merge. On each "merge" or "mergeOrUpload" operation to a search document, you must provide the vector fields in its entirety, along with the nonvector fields that you're updating, or the vector is dropped.
+- If your indexing strategy uses [partial document updates](search-howto-reindex.md#update-content), such as `merge` or `mergeOrUpload` on an existing document, setting `"stored": false` prevents content updates to those fields during the merge. You must include the entire vector field (and nonvector fields you're updating) in each reindexing operation. Otherwise, the vector data is lost without an error or warning. To avoid this risk altogether, set `"stored": true`.
 
 > [!IMPORTANT]
-> Setting the `stored=false` attribution is irreversible. This property can only be set when you create the index and is only allowed on vector fields. Updating an existing index with new vector fields can't set this property to `false`. If you want retrievable vector content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
+> Setting the `"stored": false` attribution is irreversible. This property can only be set when you create the index and is only allowed on vector fields. Updating an existing index with new vector fields can't set this property to `false`. If you want retrievable vector content later, you must drop and rebuild the index or create and load a new field that has the new attribution.
 
-For new vector fields in a search index, set `stored` to false to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
+For new vector fields in a search index, set `"stored": false` to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
 
 ```http
 PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2024-07-01 
@@ -81,13 +81,13 @@ PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=202
 
 ### Summary of key points
 
-- Applies to fields having a [vector data type](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields).
+- Applies to fields that have a [vector data type](/rest/api/searchservice/supported-data-types#edm-data-types-for-vector-fields).
 
-- Affects storage on disk, not memory, and it has no effect on queries. Query execution uses a separate vector index that's unaffected by the `stored` property because that copy of the vector is always stored.
+- Affects storage on disk, not memory, and has no effect on queries. Query execution uses a separate vector index that's unaffected by the `stored` property because that copy of the vector is always stored.
 
-- The `stored` property is set during index creation on vector fields and is irreversible. If you want retrievable content later, you must drop and rebuild the index, or create and load a new field that has the new attribution.
+- The `stored` property is set during index creation on vector fields and is irreversible. If you want retrievable content later, you must drop and rebuild the index or create and load a new field that has the new attribution.
 
-- Defaults are `stored` set to true and `retrievable` set to false. In a default configuration, a retrievable copy is stored, but it's not automatically returned in results. When `stored` is true, you can toggle `retrievable` between true and false at any time without having to rebuild an index. When `stored` is false, `retrievable` must be false and can't be changed.
+- Defaults are `"stored": true` and `"retrievable": false`. In a default configuration, a retrievable copy is stored but isn't automatically returned in results. When `stored` is `true`, you can toggle `retrievable` between `true` and `false` at any time without having to rebuild an index. When `stored` is `false`, `retrievable` must be `false` and can't be changed.
 
 ## Remove full-precision vectors (binary data)
 
@@ -102,10 +102,10 @@ The `rescoreStorageMethod` property controls whether full-precision vectors are 
 - For scalar quantization, preserve original full-precision vectors in the index because they're required for rescore.
 - For binary quantization, preserve original full-precision vectors for the highest quality of rescoring, or discard full-precision vectors (requires 2025-03-01-preview) if you want to rescore based on the dot product of the binary embeddings.
 
-Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options. 
+Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options.
 
 | API version | Applies to | Remove full-precision vectors |
-|-------------|-------------------------------|
+|--|--|--|
 | 2024-07-01 and earlier | Not applicable. | There's no mechanism for removing full-precision vectors. |
 | 2024-11-01-preview | Binary embeddings | Use `rescoreStorageMethod.discardOriginals` to remove full-precision vectors, but doing so prevents rescoring. `enableRescoring` must be false if originals are gone.|
 | 2025-03-01-preview | Binary embeddings | Use `rescoreStorageMethod.discardOriginals` to remove full-precision vectors in the index while still retaining rescore options. In this preview, rescoring is possible because the technique changed. The dot product of the binary embeddings is used on the rescore, producing high quality search results equivalent to or better than earlier techniques based on full-precision vectors. |

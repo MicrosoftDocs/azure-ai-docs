@@ -6,7 +6,8 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.date: 08/11/2025
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - azure-ai-agents-code

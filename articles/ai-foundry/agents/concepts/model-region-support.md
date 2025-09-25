@@ -5,7 +5,8 @@ description: Learn about the models you can use with Azure AI Foundry Agent Serv
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 08/04/2025
 ms.custom: azure-ai-agents, references_regions

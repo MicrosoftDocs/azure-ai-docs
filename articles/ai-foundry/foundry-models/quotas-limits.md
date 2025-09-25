@@ -68,25 +68,7 @@ The Usage Limit determines the level of usage above which customers might see la
 
 ## Request increases to the default limits
 
-You can submit limit increase requests, which we evaluate one at a time. [Open an online customer support request](https://portal.azure.com/#blade/Microsoft_Azure_Support/HelpAndSupportBlade/newsupportrequest/). When you request an endpoint limit increase, provide the following information:
-
-1. Select **Service and subscription limits (quotas)** as the **Issue type** when you open the support request.
-
-1. Select the subscription you want to use.
-
-1. Select **Cognitive Services** as **Quota type**.
-
-1. Select **Next**.
-
-1. On the **Additional details** tab, provide detailed reasons for the limit increase so that your request can be processed. Be sure to add the following information to the reason for limit increase:
-
-   * Model name, model version (if applicable), and deployment type (SKU).
-   * Description of your scenario and workload.
-   * Rationale for the requested increase.
-   * Target throughput: Tokens per minute, requests per minute, and other relevant metrics.
-   * Planned time plan (by when you need increased limits).
-
-1. Select **Save and continue**.
+[!INCLUDE [quota-increase- request](../openai/includes/quota-increase-request.md)]
 
 ## General best practices to stay within rate limits
 

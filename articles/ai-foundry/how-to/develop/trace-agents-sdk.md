@@ -172,6 +172,14 @@ with tracer.start_as_current_span("example-tracing"):
     run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
+### Alternative: AI Toolkit for VS Code
+
+AI Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it great for development and debugging. 
+
+The toolkit supports AI frameworks like Azure AI Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
+
+For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+
 ## Trace custom functions
 
 To trace your custom functions, use the OpenTelemetry SDK to instrument your code.
@@ -247,7 +255,7 @@ Once necessary packages are installed, you can easily begin to [Instrument traci
 The Agents playground in the Azure AI Foundry portal lets you view trace results for threads and runs that your agents produce. To see trace results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
 > [!NOTE]
-> Evaluation results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
+> Evaluation in the playground is billed as outlined under Trust and Azure AI Foundry Observability on [the pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/?msockid=1f44c87dd9fa6d1e257fdd6dd8406c42). Results are available for 24 hours before expiring. To get evaluation results, select your desired metrics and chat with your agent.
 > - Evaluations aren't available in the following regions.
 >     - `australiaeast`
 >     - `japaneast`
