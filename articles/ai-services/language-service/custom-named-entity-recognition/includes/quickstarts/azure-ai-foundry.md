@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 09/22/2025
+ms.date: 09/24/2025
 ms.author: lajanuar
 ---
 
@@ -36,7 +36,7 @@ ms.author: lajanuar
 
 Let's begin by configuring your resources.
 
-##### Enable custom named entity recognition feature
+### Enable custom named entity recognition feature
 
 Make sure the **Custom text classification / Custom Named Entity Recognition** feature is enabled in the [Azure portal](https://portal.azure.com/).
 
@@ -46,7 +46,7 @@ Make sure the **Custom text classification / Custom Named Entity Recognition** f
 1. If your storage account isn't assigned, select and connect your storage account.
 1. Select **Apply**.
 
-##### Add required roles for your Azure AI Language resource
+### Add required roles for your Azure AI Language resource
 
 1. Go to your storage account or Language resource in the [Azure portal](https://portal.azure.com/).
 1. Select **Access Control (IAM)** in the left pane.
@@ -54,22 +54,22 @@ Make sure the **Custom text classification / Custom Named Entity Recognition** f
 
     * You should have the **Cognitive Services Language Owner** or **Cognitive Services Contributor** role assignment for your Language resource.
 
-1. Within **Assign access to**, select **User, group, or service principal**
-1. Select **Select members**
+1. Within **Assign access to**, select **User, group, or service principal**.
+1. Select **Select members**.
 1. Select ***your user name***. You can search for user names in the **Select** field. Repeat this step for all roles.
 1. Repeat these steps for all the user accounts that need access to this resource.
 
 
-##### Add required roles for your storage account
+### Add required roles for your storage account
 
 1. Go to your storage account page in the [Azure portal](https://portal.azure.com/).
 1. Select **Access Control (IAM)** in the left pane.
 1. Select **Add** to **Add Role Assignments**, and choose the **Storage blob data contributor** role on the storage account.
 1. Within **Assign access to**, select **Managed identity**.
-1. Select **Select members**
+1. Select **Select members**.
 1. Select your subscription, and **Language** as the managed identity. You can search for your language resource in the **Select** field.
 
-##### Add required user roles
+### Add required user roles
 
 > [!IMPORTANT]
 > If you skip this step, you get a 403 error when you try to connect to your custom project. It's important that your current user has this role to access storage account blob data, even if you're the owner of the storage account.
@@ -79,7 +79,7 @@ Make sure the **Custom text classification / Custom Named Entity Recognition** f
 1. Select **Access Control (IAM)** in the left pane.
 1. Select **Add** to **Add Role Assignments**, and choose the **Storage blob data contributor** role on the storage account.
 1. Within **Assign access to**, select **User, group, or service principal**.
-1. Select **Select members**
+1. Select **Select members**.
 1. Select your User. You can search for user names in the **Select** field.
 
 > [!IMPORTANT]
@@ -146,7 +146,7 @@ Next we create a connection to your Azure AI Language resource so Azure AI Found
 
 Now, we're ready to create a  custom NER fine-tune model.
 
-1. From the **Project** section of the **Management center** menu, select **Go to project** .
+1. From the **Project** section of the **Management center** menu, select **Go to project**.
 
 1. From the **Overview** menu, select **Fine-tuning**.
 
@@ -158,15 +158,15 @@ Now, we're ready to create a  custom NER fine-tune model.
 
 1. In the **Create service fine-tuning task** window, complete the fields as follows:
 
-  * **Connected service**. The name of your language service resource should already appear in this field by default. if not, add it from the drop-down menu.
+    * **Connected service**. The name of your language service resource should already appear in this field by default. if not, add it from the drop-down menu.
 
-  * **Name**. Give your fine-tuning task project a name.
+    * **Name**. Give your fine-tuning task project a name.
 
-  * **Language**. English is set as the default and already appears in the field.
+    * **Language**. English is set as the default and already appears in the field.
 
-  * **Description**. You can optionally provide a description or leave this field empty.
+    * **Description**. You can optionally provide a description or leave this field empty.
 
-   * **Blob store container**. Select the workspace blob storage container from [Step 2](#step-2-upload-your-dataset-to-your-storage-container) and choose the **Connect** button.
+     * **Blob store container**. Select the workspace blob storage container from [Step 2](#step-2-upload-your-dataset-to-your-storage-container) and choose the **Connect** button.
 
 1. Finally, select the  **Create** button. It can take a few minutes for the *creating* operation to complete.
 
@@ -212,7 +212,7 @@ The Language playground provides a sandbox to test and configure your fine-tuned
 1. From the top menu bar, select **Try in playground**.
 1. In the Language Playground window, select the **Custom named entity recognition** tile.
 1. In the **Configuration** section, select your **Project name** and **Deployment name** from the drop-down menus.
-1. Enter an entity and select **Run**
+1. Enter an entity and select **Run**.
 1. You can evaluate the results in the **Details** window.
 
 
@@ -225,13 +225,13 @@ In this quickstart, you created a fine-tuned custom NER model, deployed it in Az
 If you no longer need your project, you can delete it from the Azure AI Foundry.
 
 1. Navigate to the [Azure AI Foundry](https://ai.azure.com/) home page. Initiate the authentication process by signing in, unless you already completed this step and your session is active.
-1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**
+1. Select the project that you want to delete from the **Keep building with Azure AI Foundry**.
 1. Select **Management center**.
 1. Select **Delete project**.
 
 To delete the hub along with all its projects:
 
-1. Navigate to the **Overview** tab inn the **Hub** section.
+1. Navigate to the **Overview** tab in the **Hub** section.
 
 1. On the right, select **Delete hub**.
 1. The link opens the Azure portal for you to delete the hub there.

@@ -375,6 +375,8 @@ items:
       href: custom-named-entity-recognition/language-support.md
     - name: FAQ
       href: custom-named-entity-recognition/faq.md
+    - name: Glossary
+      href: custom-named-entity-recognition/glossary.md  
     - name: How-to guides
       items:
       - name: Create projects

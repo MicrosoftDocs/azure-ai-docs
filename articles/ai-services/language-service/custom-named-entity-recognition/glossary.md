@@ -46,7 +46,7 @@ Measures how precise/accurate your model is. It's the ratio between the correctl
 A project is a work area for building your custom ML models based on your data. Your project is only accessible by you and others who have access to the Azure resource being used.
 As a prerequisite to creating a custom entity extraction project, you have to connect your resource to a storage account with your dataset when you [create a new project](how-to/create-project.md). Your project automatically includes all the `.txt` files available in your container.
 
-, you can do the following actions:
+Here's a list of actions you can take:
 
 * **Label your data**: The process of labeling your data so that when you train your model it learns what you want to extract.
 * **Build and train your model**: The core step of your project, where your model starts learning from your labeled data. 

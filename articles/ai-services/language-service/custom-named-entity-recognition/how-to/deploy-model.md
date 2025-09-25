@@ -1,32 +1,32 @@
 ---
-title: How to deploy a custom NER model
+title: How to deploy a custom named entity recognition (NER) model
 titleSuffix: Azure AI services
 description: Learn how to deploy a model for custom NER.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 09/24/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
 
 # Deploy a model and extract entities from text using the runtime API
 
-Once you are satisfied with how your model performs, it is ready to be deployed and used to recognize entities in text. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).
+Once you're satisfied with how your model performs, it's ready to be deployed and used to recognize entities in text. Deploying a model makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).
 
 ## Prerequisites
 
 * A successfully [created project](create-project.md) with a configured Azure storage account.
-* Text data that has [been uploaded](design-schema.md#data-preparation) to your storage account.
+* Text data that is [uploaded](design-schema.md#data-preparation) to your storage account.
 * [Labeled data](tag-data.md) and successfully [trained model](train-model.md)
 * Reviewed the [model evaluation details](view-model-evaluation.md) to determine how your model is performing.
 
-See [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+ For more information, *see* [project development lifecycle](../overview.md#project-development-lifecycle).
 
 ## Deploy model
 
-After you've reviewed your model's performance and decided it can be used in your environment, you need to assign it to a deployment. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger). It is recommended to create a deployment named *production* to which you assign the best model you have built so far and use it in your system. You can create another deployment called *staging* to which you can assign the model you're currently working on to be able to test it. You can have a maximum of 10 deployments in your project. 
+After you review your model's performance and decided it can be used in your environment, you need to assign it to a deployment. Assigning the model to a deployment makes it available for use through the [prediction API](https://aka.ms/ct-runtime-swagger).  We recommend that you create a deployment named *production* to which you assign the best model you built so far and use it in your system. You can create another deployment called *staging* to which you can assign the model you're currently working on to be able to test it. You can have a maximum of 10 deployments in your project. 
 
 # [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -46,7 +46,7 @@ For information on how to deploy your custom model in the Azure AI Foundry, *see
 
 ## Swap deployments
 
-After you are done testing a model assigned to one deployment and you want to assign this model to another deployment you can swap these two deployments. Swapping deployments involves taking the model assigned to the first deployment, and assigning it to the second deployment. Then taking the model assigned to second deployment, and assigning it to the first deployment. You can use this process to swap your *production* and *staging* deployments when you want to take the model assigned to *staging* and assign it to *production*. 
+After you're done testing a model assigned to one deployment and you want to assign this model to another deployment, you can swap these two deployments. Swapping deployments involves taking the model assigned to the first deployment, and assigning it to the second deployment. Then taking the model assigned to second deployment, and assigning it to the first deployment. You can use this process to swap your *production* and *staging* deployments when you want to take the model assigned to *staging* and assign it to *production*. 
 
 # [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -104,7 +104,7 @@ For more information on how to deploy you custom model, *see* [Deploy your fine-
 
 ## Unassign deployment resources
 
-To unassign or remove a deployment resource from a project, you also delete all the deployments for to that resource's region.
+To unassign or remove a deployment resource from a project, you also delete all the deployments for to that resource region.
 
 # [Azure AI Foundry](#tab/azure-ai-foundry)
 
