@@ -164,7 +164,7 @@ The minimum role assignment for your search service identity is Contributor.
 
 ## Define the data source  
   
-A data source is defined as an independent resource so that it can be used by multiple indexers. Use the latest stable REST API version or a recent preview version..
+A data source is defined as an independent resource so that it can be used by multiple indexers.
 
 1. Use the [Create or update a data source REST API](/rest/api/searchservice/data-sources/create-or-update) to set its definition. These are the most significant steps of the definition.
 
@@ -304,7 +304,7 @@ There are steps to follow in both OneLake and Azure AI Search, but there are no 
 1. In Azure AI Search, edit the data source definition to include a "dataDeletionDetectionPolicy" property. For example, the following policy considers a file to be deleted if it has a metadata property "IsDeleted" with the value true:
 
     ```https
-    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2024-05-01-preview
+    PUT https://[service name].search.windows.net/datasources/file-datasource?api-version=2025-09-01
     {
         "name" : "onelake-datasource",
         "type" : "onelake",
