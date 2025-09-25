@@ -87,7 +87,7 @@ For more information, *see* [Use Azure AI Translator behind firewalls](/azure/ai
 Establishing robust logging and monitoring is critical for identifying potential security threats and resolving issues within your Azure AI Translator deployment. By ensuring that all relevant activities and anomalies are thoroughly tracked, you can enhance your overall security posture and streamline troubleshooting processes throughout your cloud-based translation environment.
 
 * **Enable diagnostic logging**: Configure Azure Monitor to collect and analyze logs from your Translator service to identify potential security issues, track usage patterns, and troubleshoot problems.<br>
-For more information, *see* [Azure Monitor for Azure AI services](/azure/ai-services/monitor-cognitive-services).
+For more information, *see* [Azure Monitor for Azure AI services](/azure/azure-monitor/platform/monitor-azure-resource).
 
 * **Set up alerts for unusual activity**: Create Azure Monitor alerts to notify you of abnormal usage patterns, potential security breaches, or service disruptions affecting your Translator resources.<br>
 For more information, *see* [Create, view, and manage metric alerts using Azure Monitor](/azure/azure-monitor/alerts/alerts-metric).
