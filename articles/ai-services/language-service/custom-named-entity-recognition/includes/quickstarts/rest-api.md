@@ -111,8 +111,3 @@ After your model is deployed, you can start using it to extract entities from yo
 ## Clean up resources
 
 [!INCLUDE [Delete project using the REST API](../rest-api/delete-project.md)]
-
-## Next step
-
-> [!div class="nextstepaction"]
-> [Learn how to use autolabeling](../../how-to/use-autolabeling.md)
