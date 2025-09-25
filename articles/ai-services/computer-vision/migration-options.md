@@ -1,12 +1,11 @@
 ---
 title: Migrate from Azure AI Vision - Image Analysis
 description: Guidance for migrating from Azure Computer Vision - Image Analysis API to alternative solutions before its retirement in September 2028.
-author: pafarley
+author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/24/2025
 ms.topic: article
-ms.service: cognitive-services
-ms.subservice: computer-vision
+ms.service: azure-ai-vision
 ms.custom: ai-migration, vision
 ---
 

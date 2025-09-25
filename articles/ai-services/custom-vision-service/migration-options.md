@@ -1,7 +1,7 @@
 ---
 title: Migrate from Custom Vision Service
 description: Guidance for migrating from Azure Custom Vision Service to alternative solutions before its retirement in September 2028.
-author: pafarley
+author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/24/2025
 ms.topic: how-to
