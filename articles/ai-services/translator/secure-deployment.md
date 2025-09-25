@@ -36,7 +36,7 @@ For more information, *see* [Azure AI Custom Translator for beginners](/azure/ai
 
 Effectively overseeing identities and access permissions is crucial for protecting your Azure AI Translator deployments from unauthorized use and possible credential compromise. By enforcing secure access management, you guarantee that only approved users and devices are able to interact with your Translator resource. The following list identifies ways you can support secure access management:
 
-* **Access**. Enable Microsoft Entra ID to manage user identities and control access to your Azure AI Translator resources.<br>
+* **Access**. To effectively manage user identities and securely control access permissions for your Azure AI Translator resources, enable Microsoft Entra ID. By integrating Microsoft Entra ID, you can streamline the administration of user accounts and ensure that only authorized individuals have access to your Azure AI Translator services.<br>
 For more information, *see* [Enable Microsoft Entra ID authentication](/azure/ai-services/translator/how-to/microsoft-entra-id-auth)
 
 * **Authorization**. Grant only the permissions that are essential for each role using role-based access control (RBAC). By utilizing RBAC-managed identities, you uphold the principle of least privilege, ensuring that users receive only the access required to perform their specific tasks. This approach greatly minimizes the possibility of unauthorized access to sensitive information or critical functions within your API.<br>
