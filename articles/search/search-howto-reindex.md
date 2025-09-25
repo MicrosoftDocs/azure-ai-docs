@@ -290,7 +290,7 @@ The Azure portal supports the latest preview API.
 
 1. Provide the *full* JSON of the existing schema, plus the new `description` field. The field must be a top-level field, on the same level as `name` or `fields`. The value must be less than 4,000 characters and in Unicode.
 
-1. To confirm the change, issue another [GET](//rest/api/searchservice/indexes/get).
+1. To confirm the change, issue another [GET](/rest/api/searchservice/indexes/get).
 
 ---
 
