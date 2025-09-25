@@ -3,75 +3,46 @@ items:
 - name: What is Azure AI Foundry?
   href: ../what-is-azure-ai-foundry.md
 - name: Get started
-  items:
-  - name: Ask the Foundry agent
-    href: ../foundry-agent/ask-foundry-agent.md
+  href: toc-files/get-started/toc.yml
+  
 - name: Agent development
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/agent-development/toc.yml
+
 - name: Agent tools & integration
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/agent-tools/toc.yml
+
 - name: Model catalog
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/model-catalog/toc.yml
+
 - name: Model operations
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/model-operations/toc.yml
+
 - name: Integration & orchestration
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/integrations-orchestration/toc.yml
+
 - name: Observability, evaluation, & tracing
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/observability-evaluation-tracing/toc.yml
+
 - name: Developer environment 
-  items:
-    - name: Start with an AI template
-      href: ../how-to/develop/ai-template-get-started.md
-    - name: Work in VS Code
-      href: ../how-to/develop/get-started-projects-vs-code.md
-    - name: Develop with LangChain
-      href: ../how-to/develop/langchain.md
-    - name: Develop with Llama-Index
-      href: ../how-to/develop/llama-index.md
+  href: toc-files/developer-environment/toc.yml
+
 - name: API & SDK
-  items:
-    - name: Azure AI Foundry client libraries
-      href: ../how-to/develop/sdk-overview.md
+  href: toc-files/api-sdk/toc.yml
+
 - name: Responsible AI
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/responsible-ai/toc.yml
+
 - name: Best practices
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/best-practices/toc.yml
+
 - name: Architecture & design
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/architecture-design/toc.yml
+
 - name: Security & governance
-  items:
-    - name: Article placeholder
-      href: concepts/new-article.md
+  href: toc-files/security-governance/toc.yml
+
 - name: Configuration
-  items:
-  - name: Region support
-    href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+  href: toc-files/conficuration/toc.yml
 
 - name: Operate & support
-  items:
-    - name: Pricing calculator
-      href: https://azure.microsoft.com/pricing/calculator/
-    - name: Compliance
-      href: https://azure.microsoft.com/support/legal/cognitive-services-compliance-and-privacy/
-    # - name: Service Level Agreement (SLA)
-    #   href: https://azure.microsoft.com/support/legal/sla/cognitive-services/v1_1/
-    - name: Azure Government
-      href: /azure/azure-government/compare-azure-government-global-azure
+  href: toc-files/operate-support/toc.yml
