@@ -115,10 +115,9 @@ For more information, *see* [Azure AI Translator Transparency Note](/azure/ai-fo
 For more information, *see* [Azure AI Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note#evaluating-and-integrating-azure-ai-translator-for-your-use).
 
 
+## Related content
 
-## Learn more
-
+* [Azure AI Translator documentation](/azure/ai-services/translator/)
 * [Microsoft Cloud Security Benchmark – Azure AI services](/security/benchmark/azure/baselines/azure-openai-security-baseline)
 * [Well-Architected Framework – AI workloads](/azure/well-architected/ai/design-principles)
 * [Security documentation for Azure AI services](/azure/ai-services/security-features)
-* [Azure AI Translator documentation](/azure/ai-services/translator/)
