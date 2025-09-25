@@ -443,4 +443,4 @@ Then you can connect the avatar with the server SDP.
 ## Related content
 
 - Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [voice live api reference](./voicelive-api-reference.md)

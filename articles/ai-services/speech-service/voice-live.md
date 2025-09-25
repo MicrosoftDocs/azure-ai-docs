@@ -189,4 +189,4 @@ You're also charged for cached audio and text inputs, including the prompt and t
 
 - Learn more about [How to use the voice live API](./voice-live-how-to.md)
 - Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [voice live api reference](./voicelive-api-reference.md)

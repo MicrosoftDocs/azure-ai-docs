@@ -2772,8 +2772,6 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 
 ## Related Resources
 
-- [Voice live API Quickstart Guide](./quickstart.md)
-- [Audio Processing Best Practices](./audio-processing.md)
-- [Avatar Integration Guide](./avatar-integration.md)
-- [Function Calling Tutorial](./function-calling.md)
-- [WebRTC Setup Guide](./webrtc-setup.md)
+- Trz the [Voice live quickstart](./voice-live-quickstart.md)
+- Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
+- Learn more about [How to use the voice live API](./voice-live-how-to.md)

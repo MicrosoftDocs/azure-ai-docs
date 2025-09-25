@@ -209,4 +209,4 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 - Learn more about [How to use the voice live API](./voice-live-how-to.md)
 - Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- See the [voice live api reference](./voicelive-api-reference.md)
