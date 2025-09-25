@@ -17,25 +17,23 @@ ms.date: 09/25/2025
 
 ## Configure and run an agent
 
-## API call information
-
 To authenticate your API requests, use the [az login](/cli/azure/authenticate-azure-cli-interactively) command to sign into your Azure subscription.
 
 ```azurecli
 az login
 ```
 
-Next, you will need to fetch the Entra ID token to provide as authorization to the API calls. Fetch the token using the CLI command:
+Next, you'll need to fetch the Entra ID token to provide as authorization to the API calls. Fetch the token using the CLI command:
 ```azurecli
 az account get-access-token --resource 'https://ai.azure.com' | jq -r .accessToken | tr -d '"'
 ```
 Set the access token as an environment variable named `AGENT_TOKEN`.
 
-To successfully make REST API calls to Azure AI Foundry Agent Service, you will need to use the endpoint as below:
+To successfully make REST API calls to Azure AI Foundry Agent Service, you will need to use your project's endpoint:
 
 `https://<your_ai_service_name>.services.ai.azure.com/api/projects/<your_project_name>`
 
-For example, your endpoint may look something like:
+For example, your endpoint will look something like:
 
 `https://exampleaiservice.services.ai.azure.com/api/projects/project`
 
@@ -48,7 +46,7 @@ Set this endpoint as an environment variable named `AZURE_AI_FOUNDRY_PROJECT_END
 ### Create an agent
 
 > [!NOTE]
-> With Azure AI Agents Service the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
+> With Azure AI Agents Service the `model` parameter requires model deployment name. If your model deployment name is different than the underlying model name, then you would adjust your code to ` "model": "{your-custom-model-deployment-name}"`.
 
 ```console
 curl --request POST \
