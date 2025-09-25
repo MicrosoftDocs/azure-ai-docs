@@ -22,7 +22,7 @@ Voice live provides multiple options to optimize performance and quality by usin
     - Phrase-list: A lightweight just-in-time customization based on a list of words or phrases provided as part of the session configuration to help improve recognition quality. See [Improve recognition accuracy with phrase list](./improve-accuracy-phrase-list.md) to learn more.
     - Custom Speech: With custom speech, you can evaluate and improve the accuracy of speech recognition for your applications and products and fine-tune the recognition quality to your business needs. See [What is custom speech?](./custom-speech-overview.md) to learn more.
 - Speech output customization:
-    - Custom lexicon: Custom lexicon allows you to easily customize pronunciation for both standard Azure text to speech voices and custom voices to improve speech synthesis accuracy for your use case. See [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon.md) to learn more.
+    - Custom lexicon: Custom lexicon allows you to easily customize pronunciation for both standard Azure text to speech voices and custom voices to improve speech synthesis accuracy for your use case. See [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon) to learn more.
     - Custom voice: Custom voice lets you create a one-of-a-kind, customized, synthetic voice for your applications. With custom voice, you can build a highly natural-sounding voice for your brand or characters by providing human speech samples as fine-tuning data. See [What is custom voice?](./custom-neural-voice.md) to learn more.
     - Custom avatar: Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. See [What is custom text to speech avatar?](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md) to learn more.
 
@@ -76,7 +76,7 @@ Example session configuration with custom speech models. In this case, if the de
 
 ### Custom lexicon
 
-Use the `custom_lexicon_url` string property to customize pronunciation for both standard Azure text to speech voices and custom voices. To learn more about how to format the custom lexicon (the same as Speech Synthesis Markup Language (SSML)), see [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon.md).
+Use the `custom_lexicon_url` string property to customize pronunciation for both standard Azure text to speech voices and custom voices. To learn more about how to format the custom lexicon (the same as Speech Synthesis Markup Language (SSML)), see [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon).
 
 ```json
 {
@@ -121,5 +121,5 @@ The configuration for a custom avatar does not differ from the configuration of 
 
 ## Related content
 
-- Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference.md?context=/azure/ai-services/speech-service/context/context)
+- Try out the [Voice live API quickstart](./voice-live-quickstart.md)
+- Learn more about [How to use the voice live API](./voice-live-how-to.md)
