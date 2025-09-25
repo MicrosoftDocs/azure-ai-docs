@@ -168,7 +168,7 @@ Here's an example of end of utterance detection in a session object:
 
 Azure speech to text will automatically be active when you are using a non-multimodal model like gpt-4o.
 
-In order to explicitly configure it you can set the `model` to `azure-speech` in `input_audio_transcription`. This can be useful to improve the recognition quality for specific language situations. See [How to customize voice live input and output](./voice-live-how-to-customize) learn more about speech input customization configuration.
+In order to explicitly configure it you can set the `model` to `azure-speech` in `input_audio_transcription`. This can be useful to improve the recognition quality for specific language situations. See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
 
 ```json
 {
@@ -193,7 +193,7 @@ The `voice` object has the following properties:
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
 
-See [How to customize voice live input and output](./voice-live-how-to-customize) learn more about speech input customization configuration.
+See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
 
 ### Azure standard voices
 
