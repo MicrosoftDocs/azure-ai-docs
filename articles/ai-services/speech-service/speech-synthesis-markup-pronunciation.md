@@ -291,7 +291,7 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 There are two ways to read a mathematical expression:
 - With Math domain element
 
-    Embed the plain text mathematical expression directly in SSML and specify the math domain using <mstts:prompt domain="Math" />.
+    Embed the plain text mathematical expression directly in SSML and specify the math domain using `<mstts:prompt domain="Math" />`.
 
     See the section: [Reading plain text mathematical expressions](#reading-plain-text-mathematical-expressions)
 - With MathML elements  
@@ -305,7 +305,7 @@ There are two ways to read a mathematical expression:
 > The two features above are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR and zh-CN. 
 
 ### Reading plain text mathematical expressions
-To enable complex mathematical expression reading, you can add `<mstts:prompt domain="math" />` element to enable math-specific pronunciation rules.
+To enable complex mathematical expression reading, you can add `<mstts:prompt domain="Math" />` element to enable math-specific pronunciation rules.
 
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US">
