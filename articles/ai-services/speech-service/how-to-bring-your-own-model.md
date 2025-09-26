@@ -75,7 +75,7 @@ When using the Voice live Python SDK, configure the query parameter:
 }
 ```
 
-For a complete implementation example, refer to the sample code below:
+For a complete implementation example, refer to the sample code below. Get the model value from the AI Foundry portal. It corresponds to the name you gave the model at deployment time.
 
 ```python
 import os
