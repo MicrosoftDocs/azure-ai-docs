@@ -12,7 +12,7 @@ ms.reviewer: dantaylo
 
 # Developer journey stage 1: Idea to prototype - Build and evaluate an enterprise agent
 
-This tutorial covers the first stage of the developer journey from an initial idea to a working prototype. You create a working agent using the Azure AI Foundry SDK. The tutorial covers the following critical steps:
+This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You create a working agent using the Azure AI Foundry SDK. The tutorial covers the following critical steps:
 
 > [!div class="checklist"]
 > - Scaffold a new agent repository structure (code-first)
