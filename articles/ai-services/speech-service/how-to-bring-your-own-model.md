@@ -5,7 +5,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/26/2025
 ms.topic: how-to
-ms.service: azure-ai-voice
+ms.service: azure-ai-speech
 ms.custom: ai-speech, voice-live, byom, preview
 ---
 
