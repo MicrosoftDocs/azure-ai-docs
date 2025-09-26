@@ -82,7 +82,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     typing_extensions==4.13.2
     urllib3==2.4.0
     websocket-client==1.8.0
-    azure-ai-voicelive==1.0.0b1
+    azure-ai-voicelive
     ```
 
 1. Install the packages:
