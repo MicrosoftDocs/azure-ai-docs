@@ -13,9 +13,9 @@ ai-usage: ai-assisted
 ---
 
 ::: moniker range="foundry-classic"
-[!INCLUDE [classic-sign-in](classic-sign-in.md)]
+[!INCLUDE [classic-link](classic-link.md)]
 ::: moniker-end
 
 ::: moniker range="foundry"
-[!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
+[!INCLUDE [foundry-link](../default/includes/foundry-link.md)]
 ::: moniker-end

@@ -12,10 +12,4 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
-::: moniker range="foundry-classic"
-[!INCLUDE [classic-sign-in](classic-sign-in.md)]
-::: moniker-end
-
-::: moniker range="foundry"
-[!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
-::: moniker-end
+Sign in to the [Azure AI Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
