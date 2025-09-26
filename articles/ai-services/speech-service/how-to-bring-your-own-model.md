@@ -17,7 +17,7 @@ The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 - **Provisioned throughput**: Leverage your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
-You can integrate any model deployed in your Azure Foundry resource with the Voice Live API.
+You can integrate any LLM model that's deployed in the Azure Foundry resource you're using to call the Voice Live API.
 
 
 ## Authentication setup
