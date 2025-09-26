@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 7/31/2025
 author: PatrickFarley
 ms.author: pafarley
-zone_pivot_groups: voice-live-quickstart
+zone_pivot_groups: voice-live-quickstart-agents
 ms.custom: build-2025
 recommendations: false
 ---
@@ -25,9 +25,7 @@ recommendations: false
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-agents/python.md)]
 ::: zone-end
 
-::: zone pivot="programming-language-csharp"
-[!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
-::: zone-end
+
 
 ## Related content
 
