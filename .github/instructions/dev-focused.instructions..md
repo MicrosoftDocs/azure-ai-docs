@@ -1,3 +1,8 @@
+---
+description: 'Instructions file for dev-focused edits using the related prompt and chat mode.'
+applyTo: '*/articles/**/*.md'
+---
+
 Instructions for Foundry Dev-Focused Chat Mode
 
 # Accelerate time to first success
