@@ -28,9 +28,7 @@ This prototype helps you de-risk data access, tool orchestration, and evaluation
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
-
-- An Azure AI Foundry **project** (with a deployed model such as `gpt-4o-mini` or `gpt-4o`) [TO VERIFY preferred baseline model]
+- An Azure AI Foundry **project** (with a deployed model such as `gpt-5-mini` or `gpt-4o`) 
 - Python 3.10 or later
 - Docker installed (for container packaging)
 - Access to a SharePoint site and required Microsoft 365 Copilot license per SharePoint tool prerequisites
@@ -372,12 +370,12 @@ Delete unnecessary threads, and remove model deployments or the entire resource 
 
 ## Related content
 
-- [What is Azure AI Foundry Agent Service?](../agents/overview.md)  [TO VERIFY relative path]
-- [Tools overview](../agents/how-to/tools/overview.md) [TO VERIFY path]
-- [SharePoint tool usage](../agents/how-to/tools/sharepoint.md) [TO VERIFY path]
-- [Connected agents](../agents/how-to/connected-agents.md) [TO VERIFY path]
-- [Evaluation results overview](../how-to/evaluate-results.md) [TO VERIFY path]
-- [Tracing agents](../how-to/develop/trace-agents-sdk.md) [TO VERIFY path]
+- [What is Azure AI Foundry Agent Service?](../../agents/overview.md)  [TO VERIFY relative path]
+- [Tools overview](../../agents/how-to/tools/overview.md) [TO VERIFY path]
+- [SharePoint tool usage](../../agents/how-to/tools/sharepoint.md) [TO VERIFY path]
+- [Connected agents](../../agents/how-to/connected-agents.md) [TO VERIFY path]
+- [Evaluation results overview](../../how-to/evaluate-results.md) [TO VERIFY path]
+- [Tracing agents](../../how-to/develop/trace-agents-sdk.md) [TO VERIFY path]
 
 > [!IMPORTANT]
 > Replace all `[TO VERIFY]` placeholders with confirmed values (package names, method signatures, relative links) before publishing.
