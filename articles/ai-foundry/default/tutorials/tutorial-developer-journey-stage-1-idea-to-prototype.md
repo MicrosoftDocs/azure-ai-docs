@@ -28,6 +28,7 @@ This prototype helps you de-risk data access, tool orchestration, and evaluation
 
 ## Prerequisites
 
+[!INCLUDE [foundry-sign-in](../includes/foundry-sign-in.md)]
 - An Azure AI Foundry **project** (with a deployed model such as `gpt-5-mini` or `gpt-4o`) 
 - Python 3.10 or later
 - Docker installed (for container packaging)
