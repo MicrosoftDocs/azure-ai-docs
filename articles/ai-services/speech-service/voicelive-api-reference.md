@@ -1256,7 +1256,7 @@ The server `conversation.item.input_audio_transcription.delta` event is returned
 
 | Field | Type | Description |
 |-------|------|-------------|
-| type | string | The event type must be `conversation.item.input_audio_transcription.delta`.
+| type | string | The event type must be `conversation.item.input_audio_transcription.delta`. |
 | item_id | string | The ID of the user message item. |
 | content_index | integer | The index of the content part containing the audio. |
 | delta | string | The incremental transcription text. |
@@ -2438,7 +2438,7 @@ A system message item.
 | type | string | The type of the item.<br><br>Allowed values: `message` |
 | role | string | The role of the message.<br><br>Allowed values: `system` |
 | content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) | The content of the message. |
-｜ id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
+| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 #### RealtimeUserMessageItem
 
