@@ -7,7 +7,6 @@ ms.service: azure-ai-translator
 ms.topic: conceptual
 ms.custom: horz-security
 ms.date: 09/25/2025
-ai-usage: ai-assisted
 ---
 
 # Security guidelines for Azure AI Translator
