@@ -118,18 +118,18 @@ Start with the [environment setup](environment-setup.md) and [quickstart](quicks
 
 ## Business Continuity and Disaster Recovery (BCDR) for Agents
 
-To support service resilience, the Azure AI Foundry Agent service relies on customer-provisioned CosmosDB accounts. This ensures that your agent state can be preserved and recovered in the event of a regional outage.
+To support service resilience, the Azure AI Foundry Agent service relies on customer-provisioned Cosmos DB accounts. This ensures that your agent state can be preserved and recovered in the event of a regional outage.
 
-### Use your own CosmosDB account
+### Use your own Cosmos DB account
 
-* As an Azure Standard customer, you provision and manage your own single-tenant CosmosDB account. All agent state is stored in your CosmosDB.
-* Backup and recovery rely on CosmosDB’s native capabilities, which you control.
-* If the primary region becomes unavailable, the agent will automatically become available in the secondary region by connecting to the same CosmosDB account.
-* Since all history is preserved in CosmosDB, the agent can continue operation with minimal disruption.
+* As an Azure Standard customer, you provision and manage your own single-tenant Cosmos DB account. All agent state is stored in your Cosmos DB.
+* Backup and recovery rely on Cosmos DB’s native capabilities, which you control.
+* If the primary region becomes unavailable, the agent will automatically become available in the secondary region by connecting to the same Cosmos DB account.
+* Since all history is preserved in Cosmos DB, the agent can continue operation with minimal disruption.
 
 ### Current guidance
 
-We recommend customers provision and maintain their CosmosDB account and ensure appropriate backup and recovery policies are configured. This ensures seamless continuity if the primary region becomes unavailable.
+We recommend customers provision and maintain their Cosmos DB account and ensure appropriate backup and recovery policies are configured. This ensures seamless continuity if the primary region becomes unavailable.
 
 ## Next steps
 
