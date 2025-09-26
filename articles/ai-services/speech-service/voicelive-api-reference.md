@@ -2230,16 +2230,6 @@ Session configuration object used in `session.update` events.
 | temperature | number | Optional. Sampling temperature |
 | max_response_output_tokens | integer or "inf" | Optional. Maximum output tokens |
 
-#### RealtimeResponseSession
-
-Session object returned in server events, extends RequestSession.
-
-| Field | Type | Description |
-|-------|------|-------------|
-| id | string | Optional. Session ID |
-| agent | [RealtimeAgentConfig](#realtimeagentconfig) | Optional. Agent configuration |
-| ...RealtimeRequestSession | | All fields from RealtimeRequestSession |
-
 #### RealtimeModality
 
 Supported session modalities.
@@ -2280,9 +2270,7 @@ This can be:
 - `"required"` - Must use a tool
 - `{ "type": "function", "name": "function_name" }` - Use specific function
 
-### Conversation Items
-
-#### RealtimeConversationItem
+### RealtimeConversationResponseItem
 
 This is a union type that can be one of the following:
 
@@ -2342,7 +2330,6 @@ Function call request item.
 #### RealtimeConversationFunctionCallOutputItem
 
 Function call response item.
-
 | Field | Type | Description |
 |-------|------|-------------|
 | id | string | The unique ID of the item. |
@@ -2353,7 +2340,7 @@ Function call response item.
 | call_id | string | The unique ID of the function call. |
 | status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
 
-#### RealtimeItemStatus
+### RealtimeItemStatus
 
 Status of conversation items.
 
@@ -2362,11 +2349,11 @@ Status of conversation items.
 * `completed` - Successfully completed
 * `incomplete` - Incomplete (interrupted or failed)
 
-#### RealtimeContentPart
+### RealtimeContentPart
 
 Content part within a message.
 
-##### RealtimeInputTextContentPart
+#### RealtimeInputTextContentPart
 
 Text content part.
 
@@ -2375,7 +2362,7 @@ Text content part.
 | type | string | Must be  `"input_text"` |
 | text | string | The text content |
 
-##### RealtimeOutputTextContentPart
+#### RealtimeOutputTextContentPart
 
 Text content part.
 
@@ -2384,7 +2371,7 @@ Text content part.
 | type | string | Must be `"text"` |
 | text | string | The text content |
 
-##### RealtimeInputAudioContentPart
+#### RealtimeInputAudioContentPart
 
 Audio content part.
 
@@ -2394,7 +2381,7 @@ Audio content part.
 | audio | string | Optional. Base64-encoded audio data |
 | transcript | string | Optional. Audio transcript |
 
-##### RealtimeOutputAudioContentPart
+#### RealtimeOutputAudioContentPart
 
 Audio content part.
 
@@ -2417,7 +2404,7 @@ Response object representing a model inference response.
 | object | string | Optional. Always `"realtime.response"` |
 | status | [RealtimeResponseStatus](#realtimeresponsestatus) | Optional. Response status |
 | status_details | [RealtimeResponseStatusDetails](#realtimeresponsestatusdetails) | Optional. Status details |
-| output | [RealtimeConversationItem](#realtimeconversationitem)[] | Optional. Output items |
+| output | [RealtimeConversationResponseItem](#realtimeconversationresponseitem)[] | Optional. Output items |
 | usage | [RealtimeUsage](#realtimeusage) | Optional. Token usage statistics |
 | conversation_id | string | Optional. Associated conversation ID |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice used for response |
@@ -2437,7 +2424,7 @@ Response status values.
 * `incomplete` - Response incomplete (interrupted)
 * `failed` - Response failed with error
 
-#### Usage
+#### RealtimeUsage
 
 Token usage statistics.
 
@@ -2473,17 +2460,9 @@ Error information object.
 | param | string | Optional. Parameter related to the error |
 | event_id | string | Optional. ID of the client event that caused the error |
 
-| Field | Type | Description |
-|-------|------|-------------|
-| type | [RealtimeContentPartType](#realtimecontentparttype) | The content type.<br><br>A property of the `function` object.<br/><br>Allowed values: `input_text`, `input_audio`, `item_reference`, `text`. |
-| text | string | The text content. This property is applicable for the `input_text` and `text` content types. |
-| id | string | ID of a previous conversation item to reference in both client and server created items. This property is applicable for the `item_reference` content type in `response.create` events. |
-| audio | string | The base64-encoded audio bytes. This property is applicable for the `input_audio` content type. |
-| transcript | string | The transcript of the audio. This property is applicable for the `input_audio` content type. |
-
 ### RealtimeConversationRequestItem
 
-You use the `RealtimeConversationRequestItem` object to create a new item in the conversation via the [conversation.item.create](#realtimeclienteventconversationitemcreate) event.
+You use the `RealtimeConversationRequestItem` object to create a new item in the conversation via the [conversation.item.create](#conversationitemcreate) event.
 
 This is a union type that can be one of the following:
 
@@ -2495,7 +2474,7 @@ A system message item.
 |-------|------|-------------|
 | type | string | The type of the item.<br><br>Allowed values: `message` |
 | role | string | The role of the message.<br><br>Allowed values: `system` |
-| content | array of [RealtimeRequestTextContentPart](#realtimerequesttextcontentpart) | The content of the message. |
+| content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) | The content of the message. |
 ｜ id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 #### RealtimeUserMessageItem
@@ -2506,7 +2485,7 @@ A user message item.
 |-------|------|-------------|
 | type | string | The type of the item.<br><br>Allowed values: `message` |
 | role | string | The role of the message.<br><br>Allowed values: `user` |
-| content | array of [RealtimeRequestTextContentPart](#realtimerequesttextcontentpart) or [RealtimeRequestAudioContentPart](#realtimerequestaudiocontentpart) | The content of the message. |
+| content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) or [RealtimeInputAudioContentPart](#realtimeinputaudiocontentpart) | The content of the message. |
 | id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one. |
 
 #### RealtimeAssistantMessageItem
@@ -2541,23 +2520,6 @@ A function call output item.
 | call_id | string | The ID of the function call item. |
 | output | string | The output of the function call, this is a free-form string with the function result, also could be empty. |
 | id | string | The unique ID of the item. If the client doesn't provide an ID, the server generates one. |
-
-
-### RealtimeConversationResponseItem
-
-The `RealtimeConversationResponseItem` object represents an item in the conversation. It's used in some of the server events, such as:
-
-- [conversation.item.created](#conversationitemcreated)
-- [response.output_item.added](#responseoutputitemadded)
-- [response.output_item.done](#responseoutputitemdone)
-- [`response.created`](#responsecreated) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
-- [`response.done`](#responsedone) (via the `response` property type [`RealtimeResponse`](#realtimeresponse))
-
-| Field | Type | Description |
-|-------|------|-------------|
-| object | string | The identifier for the returned API object.<br><br>Allowed values: `realtime.item` |
-| type | [RealtimeItemType](#realtimeitemtype) | The type of the item.<br><br>Allowed values: `message`, `function_call`, `function_call_output` |
-| id | string | The unique ID of the item. The client can specify the ID to help manage server-side context. If the client doesn't provide an ID, the server generates one.<br><br>This property is nullable. |
 
 ### RealtimeFunctionTool
 
@@ -2659,15 +2621,6 @@ You use the `RealtimeRequestSession` object when you want to update the session 
 | type | string | The type of the item.<br><br>Allowed values: `function_call_output` |
 | call_id | string | The ID of the function call item. |
 | output | string | The output of the function call item. |
-
-### RealtimeResponseMessageItem
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The type of the item.<br><br>Allowed values: `message` |
-| role | [RealtimeMessageRole](#realtimemessagerole) | The role of the message. |
-| content | array | The content of the message.<br><br>Array items: [RealtimeResponseTextContentPart](#realtimeresponsetextcontentpart) |
-| status | [RealtimeItemStatus](#realtimeitemstatus) | The status of the item. |
 
 ### RealtimeResponseOptions
 
