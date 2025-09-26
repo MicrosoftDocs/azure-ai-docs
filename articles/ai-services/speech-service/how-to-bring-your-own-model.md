@@ -67,16 +67,77 @@ Get the `<your-model-deployment>` value from the AI Foundry portal. It correspon
 
 #### [Python SDK](#tab/sdk)
 
-When using the Voice live Python SDK, configure the query parameter:
+Use the [Python SDK quickstart code](/azure/ai-services/speech-service/voice-live-quickstart?tabs=windows%2Ckeyless&pivots=programming-language-python) to start a voice conversation, and make the following changes to enable BYOM:
 
-```json
-{
-  "profile": "<your-byom-mode>"
-}
-```
+1. In the `parse_arguments()` function, add a new argument for the BYOM profile type:
+   
+   ```python
+   parser.add_argument(
+        "--byom",
+        help="BYOM (Bring Your Own Model) profile type",
+        type=str,
+        choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"],
+        default=os.environ.get("VOICELIVE_BYOM_MODE", "byom-azure-openai-chat-completion"),
 
-For a complete implementation example, refer to the sample code below. Get the model value from the AI Foundry portal. It corresponds to the name you gave the model at deployment time.
+    )
+   ```
 
+1. In the `BasicVoiceAssistant` class, add the byom field:
+
+    ```python
+    class BasicVoiceAssistant:
+    """Basic voice assistant implementing the VoiceLive SDK patterns."""
+
+    def __init__(
+        self,
+        endpoint: str,
+        credential: Union[AzureKeyCredential, TokenCredential],
+        model: str,
+        voice: str,
+        instructions: str,
+        byom: Literal["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"] | None = None
+    ):
+
+        self.endpoint = endpoint
+        self.credential = credential
+        self.model = model
+        self.voice = voice
+        self.instructions = instructions
+        self.connection: Optional["VoiceLiveConnection"] = None
+        self.audio_processor: Optional[AudioProcessor] = None
+        self.session_ready = False
+        self.conversation_started = False
+        self.byom = byom
+
+    async def start(self):
+        """Start the voice assistant session."""
+        try:
+            logger.info(f"Connecting to VoiceLive API with model {self.model}")
+
+            # Connect to VoiceLive WebSocket API
+            async with connect(
+                endpoint=self.endpoint,
+                credential=self.credential,
+                model=self.model,
+                connection_options={
+                    "max_msg_size": 10 * 1024 * 1024,
+                    "heartbeat": 20,
+                    "timeout": 20,
+                },
+                query={
+                    "profile": self.byom
+                } if self.byom else None
+            ) as connection:
+            ...
+    ```
+1. When you run the code, specify the `--byom` argument along with the `--model` argument to indicate the BYOM profile and model deployment you want to use. For example:
+
+    ```shell
+    python voice-live-quickstart.py --byom "byom-azure-openai-chat-completion" --model "gpt-4o"
+    ```
+
+---
+<!--
 ```python
 import os
 import sys
@@ -607,7 +668,8 @@ def parse_arguments():
         help="BYOM (Bring Your Own Model) profile type",
         type=str,
         choices=["byom-azure-openai-realtime", "byom-azure-openai-chat-completion"],
-        default=None
+        default=os.environ.get("VOICELIVE_BYOM_MODE", "byom-azure-openai-chat-completion"),
+
     )
 
     parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
@@ -726,4 +788,4 @@ if __name__ == "__main__":
     # Run the assistant
     asyncio.run(main())
 ```
-
+-->
