@@ -4,7 +4,7 @@ items:
   href: ../what-is-azure-ai-foundry.md
 - name: Get started
   href: toc-files/get-started/toc.yml
-- name: "Developer journey: Stage 1 - Idea to prototype"
+- name: "Developer journey stage 1: Idea to prototype"
   href: "tutorials/tutorial-developer-journey-stage-1-idea-to-prototype.md"  
 
 - name: Agent development

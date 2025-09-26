@@ -1,6 +1,6 @@
 ---
-title: "Tutorial: Stage 1 (Idea → Prototype) - Build and evaluate a code-first enterprise agent"
-description: "Prototype a code-first enterprise agent: scaffold a repo, add SharePoint grounding and an MCP tool, run local batch evaluation, extend to multi-agent, and package for container deployment to Azure AI Foundry."
+title: "Developer journey stage 1: Idea to prototype - Build and evaluate an enterprise agent"
+description: "Prototype an enterprise agent: scaffold a repo, add SharePoint grounding and an MCP tool, run local batch evaluation, extend to multiple agents, and package for container deployment to Azure AI Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 09/26/2025
@@ -10,9 +10,9 @@ ms.reviewer: dantaylo
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
 ---
 
-# Tutorial: Stage 1 (Idea → Prototype) - Build and evaluate a code-first enterprise agent
+# Developer journey stage 1: Idea to prototype - Build and evaluate an enterprise agent
 
-In this tutorial, Stage 1 (Idea → Prototype), you create a working agent prototype using the Azure AI Foundry SDK. The tutorial covers the following critical steps:
+This tutorial covers the first stage of the developer journey from an initial idea to a working prototype. You create a working agent using the Azure AI Foundry SDK. The tutorial covers the following critical steps:
 
 > [!div class="checklist"]
 > - Scaffold a new agent repository structure (code-first)

@@ -22,3 +22,6 @@ _repo.*/
 .github/patterns/*.md
 
 articles/ai-foundry/includes/get-started-fdp.md
+ 
+# Stage 1 prototype sample (local-only scaffold; exclude from PRs)
+articles/ai-foundry/default/tutorials/stage1-prototype-sample/
