@@ -246,8 +246,8 @@ items:
       href: voice-live-how-to.md
     - name: How to customize voice live input and output
       href: voice-live-how-to-customize.md
-    - name: Audio events reference
-      href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
+    - name: Voice live API reference
+      href: voice-live-api-reference.md
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
