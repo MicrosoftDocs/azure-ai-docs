@@ -6,7 +6,8 @@ manager: nitinme
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda 
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 06/18/2025
 ms.custom: azure-ai-agents

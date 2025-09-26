@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Find code samples to connect Azure AI Foundry Agent Service with MCP servers.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 09/04/2025
 author: aahill
@@ -31,7 +32,7 @@ Use this article to find code samples for connecting Azure AI Foundry Agent Serv
 Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 > [!NOTE]
-> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample26_PersistentAgents_MCP.md)
+> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples)
 
 ```csharp
 var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");
@@ -334,7 +335,7 @@ with project_client:
 
 :::zone pivot="rest"
 
-Follow the [REST API quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
+Follow the [REST API quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
 
 ## Create an agent with the MCP tool enabled
 

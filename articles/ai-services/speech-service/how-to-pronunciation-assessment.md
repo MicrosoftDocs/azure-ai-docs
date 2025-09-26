@@ -420,7 +420,7 @@ speechRecognizer.recognizeOnceAsync((speechRecognitionResult: SpeechSDK.SpeechRe
 {});
 ```
 
-To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessmentContinue.js#LL37C4-L37C52).
+To learn how to specify the learning language for pronunciation assessment in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
 
 ::: zone-end
 
