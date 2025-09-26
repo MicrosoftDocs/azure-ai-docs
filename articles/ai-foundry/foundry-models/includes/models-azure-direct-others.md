@@ -4,7 +4,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 09/17/2025
+ms.date: 09/26/2025
 ms.author: mopeakande
 author: msakande
 ---
@@ -16,7 +16,7 @@ author: msakande
 
 The Black Forest Labs (BFL) collection of image generation models includes FLUX.1 Kontext [pro] for in-context generation and editing and FLUX1.1 [pro] for text-to-image generation.  
 
-You can run these models via the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
+You can run these models through the BFL service provider API and through the [images/generations and images/edits endpoints](../../openai/reference-preview.md). 
 
 
 | Model  | Type & API endpoint| Capabilities | Deployment type (region availability) | Project type | 
@@ -82,12 +82,11 @@ xAI's Grok models in Azure AI Foundry Models include a diverse set of models des
  
 - Grok 3 Mini is a lightweight reasoning model trained to tackle agentic, coding, mathematical, and deep science problems with test-time compute. It also supports a 131,072 token context window for understanding codebases and enterprise documents, and excels at using tools to solve complex logical problems in novel environments, offering raw reasoning traces for user inspection with adjustable thinking budgets. 
 
-- Grok Code Fast 1, a fast and efficient reasoning model designed for use in agentic coding applications. It was pre-trained on a coding-focused data mixture, then post-trained on demonstrations of various coding tasks and tool use as well as demonstrations of correct refusal behaviors based on xAI's safety policy. 
-
-    > [!NOTE]
-    > [Registration is required for access to the grok-code-fast-1 model](https://aka.ms/xai/grok-code-fast-1).
+- Grok Code Fast 1, a fast and efficient reasoning model designed for use in agentic coding applications. It was pretrained on a coding-focused data mixture, then post-trained on demonstrations of various coding tasks and tool use as well as demonstrations of correct refusal behaviors based on xAI's safety policy. 
+[Registration is required for access to the grok-code-fast-1 model](https://aka.ms/xai/grok-code-fast-1).
 
 - Grok 4 Fast, an efficiency-optimized language model that delivers near-Grok 4 reasoning capabilities with significantly lower latency and cost, and can bypass reasoning entirely for ultra-fast applications. It is trained for safe and effective tool use, with built-in refusal behaviors, a fixed safety-enforcing system prompt, and input filters to prevent misuse.
+[Registration is required for access to grok-4-fast-reasoning](https://aka.ms/xai/grok-4-fast-reasoning) and  [grok-4-fast-non-reasoning](https://aka.ms/xai/grok-4-fast-non-reasoning).
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |

@@ -335,7 +335,7 @@ with project_client:
 
 :::zone pivot="rest"
 
-Follow the [REST API quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
+Follow the [REST API quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION`.
 
 ## Create an agent with the MCP tool enabled
 
