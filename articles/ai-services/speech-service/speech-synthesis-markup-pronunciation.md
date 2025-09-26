@@ -82,7 +82,7 @@ You can define how single entities (such as company, a medical term, or an emoji
 > [!NOTE]
 > For a list of locales that support custom lexicon, see footnotes in the [language support](language-support.md?tabs=tts) table.
 > 
-> The `lexicon` element is not supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) (Preview) instead.
+> The `lexicon` element isn't supported by the [Long Audio API](migrate-to-batch-synthesis.md#text-inputs). For long-form text to speech, use the [batch synthesis API](batch-synthesis.md) (Preview) instead.
 
 Usage of the `lexicon` element's attributes are described in the following table.
 
@@ -113,7 +113,7 @@ After you publish your custom lexicon, you can reference it from your SSML. The 
 To define how multiple entities are read, you can define them in a custom lexicon XML file with either the `.xml` or `.pls` file extension.
 
 > [!NOTE]
-> The custom lexicon file is a valid XML document, but it cannot be used as an SSML document. 
+> The custom lexicon file is a valid XML document, but it can't be used as an SSML document. 
 
 Here are some limitations of the custom lexicon file:
 
@@ -302,7 +302,7 @@ There are two ways to read a mathematical expression:
 
 
 > [!NOTE]
-> The two features are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR and zh-CN. 
+> The two features are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN. 
 
 ### Reading plain text mathematical expressions
 To enable complex mathematical expression reading, you can add `<mstts:prompt domain="Math" />` element to enable math-specific pronunciation rules.
@@ -347,7 +347,7 @@ All elements from the [MathML 2.0](https://www.w3.org/TR/MathML2/) and [MathML 3
 Take note of these MathML elements and attributes:
 - The `xmlns` attribute in `<math xmlns="http://www.w3.org/1998/Math/MathML">` is optional.
 - The `semantics`, `annotation`, and `annotation-xml` elements don't output speech, so they're ignored.
-- If an element isn't recognized, it's ignored, and the child elements within it are still processed.
+- If an element isn't recognized, it'll be ignored, but the child elements within it will still be processed.
 
 The XML syntax doesn't support the MathML entities, so you must use the corresponding [unicode characters](https://www.w3.org/2003/entities/2007/htmlmathml.json) to represent the entities, for example, the entity `&copy;` should be represented by its unicode characters `&#x00A9;`, otherwise an error occurs.
 
