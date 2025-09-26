@@ -59,12 +59,15 @@ The Voice live API supports two BYOM integration modes:
 Update the endpoint URL in your API call to include your BYOM configuration:
 
 ```curl
-wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&profile=<your-byom-mode>&model=<your-model-deployment>
+wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01&profile=<your-byom-mode>&model=<your-model-deployment>
 ```
 
-#### [Voice live SDK](#tab/sdk)
+Get the `<your-model-deployment>` value from the AI Foundry portal. It corresponds to the name you gave the model at deployment time.
 
-When using the Voice live SDK, configure the query parameter:
+
+#### [Python SDK](#tab/sdk)
+
+When using the Voice live Python SDK, configure the query parameter:
 
 ```json
 {
