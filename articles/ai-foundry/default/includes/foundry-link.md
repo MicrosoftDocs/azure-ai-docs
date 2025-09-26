@@ -10,4 +10,4 @@ ms.date: 09/26/2025
 ms.custom: include
 ---
 
-[Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs).
+[Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs)
