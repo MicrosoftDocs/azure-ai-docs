@@ -38,7 +38,7 @@ Learn more about [keyless authentication](/azure/ai-services/authentication) and
 | `AZURE_VOICE_LIVE_API_VERSION`| The API version you want to use. For example, `2025-05-01-preview`. |
 | `AZURE_VOICE_LIVE_API_KEY` | This value can be found in the **Keys and Endpoint** section when examining your resource from the Azure portal. You can use either `KEY1` or `KEY2`.|
 
-Learn more about [finding API keys](/azure/ai-services/cognitive-services-environment-variables) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
+Learn more about finding API keys and setting environment variables in the [Environment variables guide](/azure/ai-services/cognitive-services-environment-variables).
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
