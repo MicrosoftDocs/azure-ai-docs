@@ -36,7 +36,7 @@ items:
     href: ../../how-to/data-add.md
   - name: Costs and quotas for hubs
     items:
-    - name: Plan and manage costs for AI Foundry resources
+    - name: Plan and manage costs for hubs
       href: ../../how-to/costs-plan-manage.md
       displayName: pricing, budget, estimate, hub
     - name: Manage and increase quotas
