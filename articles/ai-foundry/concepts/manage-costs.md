@@ -162,5 +162,4 @@ For more information, see the [Azure pricing calculator](https://azure.microsoft
 ## Related content
 
 - [Azure AI Foundry management center](management-center.md)
-- [Consolidated view in the Azure AI Foundry portal](ai-foundry-consolidated-view.md)
 - [Azure AI Foundry status dashboard](../azure-ai-foundry-status-dashboard-documentation.md)
