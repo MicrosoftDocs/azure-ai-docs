@@ -86,7 +86,7 @@ xAI's Grok models in Azure AI Foundry Models include a diverse set of models des
 [Registration is required for access to the grok-code-fast-1 model](https://aka.ms/xai/grok-code-fast-1).
 
 - Grok 4 Fast, an efficiency-optimized language model that delivers near-Grok 4 reasoning capabilities with significantly lower latency and cost, and can bypass reasoning entirely for ultra-fast applications. It is trained for safe and effective tool use, with built-in refusal behaviors, a fixed safety-enforcing system prompt, and input filters to prevent misuse.
-[Registration is required for access to grok-4-fast-reasoning](https://aka.ms/xai/grok-4-fast-reasoning) and  [grok-4-fast-non-reasoning](https://aka.ms/xai/grok-4-fast-non-reasoning).
+
 
 | Model  | Type | Capabilities | Deployment type (region availability) | Project type |
 | ------ | ---- | ------------ | ------------------------------------- | ------------ |

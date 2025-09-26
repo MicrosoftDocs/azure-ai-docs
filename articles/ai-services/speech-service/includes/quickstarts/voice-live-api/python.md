@@ -609,7 +609,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-AvaNeural"),
+            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
             help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
