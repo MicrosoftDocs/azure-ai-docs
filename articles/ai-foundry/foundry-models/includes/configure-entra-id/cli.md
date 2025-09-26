@@ -4,7 +4,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.date: 08/29/2025
+ms.date: 09/26/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -17,9 +17,9 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Foundry (formerly known Azure AI Services) resource name.
+  * Your Azure AI Foundry resource (formerly known as Azure AI Services resource) name.
 
-  * The resource group where you deployed the Azure AI Foundry resource (formerly known Azure AI Services resource).
+  * The resource group where you deployed the Azure AI Foundry resource.
 
 
 ## Configure Microsoft Entra ID for inference
@@ -27,26 +27,26 @@ zone_pivot_groups: azure-ai-models-deployment
 Follow these steps to configure Microsoft Entra ID for inference:
 
 
-1. Sign in to your Azure subscription:
+1. Sign in to your Azure subscription.
 
     ```azurecli
     az login
     ```
 
-1. If you have more than one subscription, select the subscription where your resource is located:
+1. If you have more than one subscription, select the subscription where your resource is located.
 
     ```azurecli
     az account set --subscription "<subscription-id>"
     ```
 
-1. Set the following environment variables with the name of the Azure AI Foundry (formerly known Azure AI Services) resource you plan to use and resource group.
+1. Set the following environment variables with the name of the Azure AI Foundry resource you plan to use and resource group.
 
     ```azurecli
     ACCOUNT_NAME="<ai-services-resource-name>"
     RESOURCE_GROUP="<resource-group>"
     ```
 
-1. Get the full name of your resource:
+1. Get the full name of your resource.
 
     ```azurecli
     RESOURCE_ID=$(az resource show -g $RESOURCE_GROUP -n $ACCOUNT_NAME --resource-type "Microsoft.CognitiveServices/accounts" --query id --output tsv)

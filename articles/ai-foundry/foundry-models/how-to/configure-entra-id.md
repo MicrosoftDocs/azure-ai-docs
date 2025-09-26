@@ -5,7 +5,7 @@ description: Learn how to configure key-less authorization to use Azure AI Found
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 09/26/2025
 ms.custom: ignite-2024, github-universe-2024
 author: msakande
 ms.author: mopeakande

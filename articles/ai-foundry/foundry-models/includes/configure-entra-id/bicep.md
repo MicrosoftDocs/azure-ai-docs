@@ -4,7 +4,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.date: 08/29/2025
+ms.date: 09/26/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -19,7 +19,7 @@ zone_pivot_groups: azure-ai-models-deployment
 
 ## About this tutorial
 
-The example in this article is based on code samples contained in the [Azure-Samples/azureai-model-inference-bicep](https://github.com/Azure-Samples/azureai-model-inference-bicep) repository. To run the commands locally without having to copy or paste file content, use the following commands to clone the repository and go to the folder for your coding language:
+The example in this article is based on code samples in the [Azure-Samples/azureai-model-inference-bicep](https://github.com/Azure-Samples/azureai-model-inference-bicep) repository. To run the commands locally without copying or pasting file content, use the following commands to clone the repository and go to the folder for your coding language:
 
 ```azurecli
 git clone https://github.com/Azure-Samples/azureai-model-inference-bicep
@@ -36,12 +36,12 @@ cd azureai-model-inference-bicep/infra
 In this tutorial, you create the following resources:
 
 
-* An Azure AI Foundry (formerly known Azure AI Services) resource with key access disabled. For simplicity, this template doesn't deploy models.
+* An Azure AI Foundry resource (formerly known as Azure AI Services resource) with key access disabled. For simplicity, this template doesn't deploy models.
 * A role-assignment for a given security principal with the role **Cognitive Services User**.
 
 To create these resources, use the following assets:
 
-1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Foundry (formerly known Azure AI Services) resource:
+1. Use the template `modules/ai-services-template.bicep` to describe your Azure AI Foundry resource:
 
     __modules/ai-services-template.bicep__
 
@@ -107,7 +107,7 @@ After you configure Microsoft Entra ID in your resource, update your code to use
 
 ## Disable key-based authentication in the resource
 
-We advise that you disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication:
+Disable key-based authentication when you implement Microsoft Entra ID and fully address compatibility or fallback concerns in all the applications that consume the service. Change the `disableLocalAuth` property to disable key-based authentication:
 
 __modules/ai-services-template.bicep__
 
