@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use your own virtual network with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 08/01/2025
 author: aahill

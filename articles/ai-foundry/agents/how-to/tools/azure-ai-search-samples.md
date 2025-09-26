@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to ground Azure AI Agents with content indexed in Azure AI Search.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 09/11/2025
 author: haileytap
@@ -463,7 +464,7 @@ for await (const m of messagesIterator) {
 
 :::zone pivot="rest"
 
-+ Completion of the [REST API quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to get values for the `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION` environment variables.
++ Completion of the [REST API quickstart](../../quickstart.md?pivots=rest-api) to get values for the `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION` environment variables.
 
 ## Get the connection ID for the Azure AI Search resource
 
