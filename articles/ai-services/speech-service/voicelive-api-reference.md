@@ -135,7 +135,7 @@ Establish an avatar connection by providing the client's SDP (Session Descriptio
 
 ### input_audio_buffer.append
 
-* support event* - Append audio bytes to the input audio buffer. This is maintained for compatibility with OpenAI Realtime API clients. New integrations should use the `input_audio.turn.*` events instead.
+Append audio bytes to the input audio buffer.
 
 #### Event Structure
 
@@ -155,7 +155,7 @@ Establish an avatar connection by providing the client's SDP (Session Descriptio
 
 ### input_audio_buffer.commit
 
-Commit the input audio buffer for processing. This is maintained for compatibility with OpenAI Realtime API clients.
+Commit the input audio buffer for processing.
 
 #### Event Structure
 
@@ -173,7 +173,7 @@ Commit the input audio buffer for processing. This is maintained for compatibili
 
 ### input_audio_buffer.clear
 
-Clear the input audio buffer. This is maintained for compatibility with OpenAI Realtime API clients.
+Clear the input audio buffer.
 
 #### Event Structure
 
@@ -542,7 +542,6 @@ The client `response.create` event is used to instruct the server to create a re
 A response includes at least one `item`, and can have two, in which case the second is a function call. These items are appended to the conversation history.
 
 The server responds with a [`response.created`](#responsecreated) event, one or more item and content events (such as `conversation.item.created` and `response.content_part.added`), and finally a [`response.done`](#responsedone) event to indicate the response is complete.
-
 
 #### Event structure
 
@@ -1239,6 +1238,7 @@ Realtime API models accept audio natively, and thus input transcription is a sep
 | transcript | string | The transcribed text. |
 
 ### conversation.item.input_audio_transcription.delta
+
 The server `conversation.item.input_audio_transcription.delta` event is returned when input audio transcription is configured, and a transcription request for a user message is in progress. This event provides partial transcription results as they become available.
 
 #### Event structure
@@ -1388,7 +1388,6 @@ The server `response.audio_timestamp.delta` event is returned when the model gen
 | audio_duration_ms | integer | Duration of the audio segment in milliseconds |
 | text | string | The text segment corresponding to this audio timestamp |
 | timestamp_type | string | The type of timestamp, currently only "word" is supported |
-
 
 ### response.audio_timestamp.done
 
@@ -1916,6 +1915,7 @@ This event is also returned when a response is interrupted, incomplete, or cance
 Base audio format used for input audio.
 
 **Allowed Values:**
+
 * `pcm16` - 16-bit PCM audio format
 * `g711_ulaw` - G.711 μ-law audio format
 * `g711_alaw` - G.711 A-law audio format
@@ -1925,6 +1925,7 @@ Base audio format used for input audio.
 Audio format used for output audio with specific sampling rates.
 
 **Allowed Values:**
+
 * `pcm16` - 16-bit PCM audio format at default sampling rate (24kHz)
 * `pcm16_8000hz` - 16-bit PCM audio format at 8kHz sampling rate
 * `pcm16_16000hz` - 16-bit PCM audio format at 16kHz sampling rate
@@ -1965,7 +1966,7 @@ Echo cancellation configuration for server-side audio processing.
 Union of all supported voice configurations.
 
 This can be:
-- A simple string (OpenAI voice name)
+
 - An [RealtimeOpenAIVoice](#realtimeopenaivoice) object
 - An [RealtimeAzureVoice](#realtimeazurevoice) object
 
@@ -2354,7 +2355,6 @@ Audio content part.
 | audio | string | Base64-encoded audio data |
 | transcript | string | Optional. Audio transcript |
 
-
 ### Response Objects
 
 #### RealtimeResponse
@@ -2503,28 +2503,6 @@ The definition of a function tool as used by the realtime endpoint.
 * `completed`
 * `incomplete`
 
-### RealtimeResponse
-
-| Field | Type | Description |
-|-------|------|-------------|
-| object | string | The response object.<br><br>Allowed values: `realtime.response` |
-| id | string | The unique ID of the response. |
-| status | [RealtimeResponseStatus](#realtimeresponsestatus) | The status of the response.<br><br>The default status value is `in_progress`. |
-| status_details | [RealtimeResponseStatusDetails](#realtimeresponsestatusdetails) | The details of the response status.<br><br>This property is nullable. |
-| output | array of [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The output items of the response. |
-| usage | object | Usage statistics for the response. Each Realtime API session maintains a conversation context and appends new items to the conversation. Output from previous turns (text and audio tokens) is input for later turns.<br><br>See nested properties next.|
-| + total_tokens | integer | The total number of tokens in the Response including input and output text and audio tokens.<br><br>A property of the `usage` object. |
-| + input_tokens | integer | The number of input tokens used in the response, including text and audio tokens.<br><br>A property of the `usage` object. |
-| + output_tokens | integer | The number of output tokens sent in the response, including text and audio tokens.<br><br>A property of the `usage` object. |
-| + input_token_details | object | Details about the input tokens used in the response.<br><br>A property of the `usage` object.<br><br>See nested properties next.|
-| + cached_tokens | integer | The number of cached tokens used in the response.<br><br>A property of the `input_token_details` object. |
-| + text_tokens | integer | The number of text tokens used in the response.<br><br>A property of the `input_token_details` object. |
-| + audio_tokens | integer | The number of audio tokens used in the response.<br><br>A property of the `input_token_details` object. |
-| + output_token_details | object | Details about the output tokens used in the response.<br><br>A property of the `usage` object.<br><br>See nested properties next.|
-| + text_tokens | integer | The number of text tokens used in the response.<br><br>A property of the `output_token_details` object. |
-| + audio_tokens | integer | The number of audio tokens used in the response.<br><br>A property of the `output_token_details` object. |
-
-
 ### RealtimeResponseAudioContentPart
 
 | Field | Type | Description |
@@ -2565,7 +2543,6 @@ The definition of a function tool as used by the realtime endpoint.
 | conversation | string | Controls which conversation the response is added to. The supported values are `auto` and `none`.<br><br>The `auto` value (or not setting this property) ensures that the contents of the response are added to the session's default conversation.<br><br>Set this property to `none` to create an out-of-band response where items won't be added to the default conversation. <br><br>Defaults to `"auto"` |
 | metadata | map | Set of up to 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format. Keys can be a maximum of 64 characters long and values can be a maximum of 512 characters long.<br/><br/>For example: `metadata: { topic: "classification" }` |
 
-
 ### RealtimeResponseSession
 
 The `RealtimeResponseSession` object represents a session in the Realtime API. It's used in some of the server events, such as:
@@ -2589,28 +2566,12 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
 | max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`. |
 
-### RealtimeResponseStatus
-
-**Allowed Values:**
-
-* `in_progress`
-* `completed`
-* `cancelled`
-* `incomplete`
-* `failed`
-
 ### RealtimeResponseStatusDetails
 
 | Field | Type | Description |
 |-------|------|-------------|
 | type | [RealtimeResponseStatus](#realtimeresponsestatus) | The status of the response. |
 
-#### RealtimeServerEvent
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | [RealtimeServerEventType](#realtimeservereventtype) | The type of the server event. |
-| event_id | string | The unique ID of the server event. |
 
 #### RealtimeRateLimitsItem
 
@@ -2620,39 +2581,6 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | limit | integer | The maximum configured limit for this rate limit property. |
 | remaining | integer | The remaining quota available against the configured limit for this rate limit property. |
 | reset_seconds | number | The remaining time, in seconds, until this rate limit property is reset. |
-
-#### RealtimeServerEventType
-
-**Allowed Values:**
-
-* `session.created`
-* `session.updated`
-* `conversation.created`
-* `conversation.item.created`
-* `conversation.item.deleted`
-* `conversation.item.truncated`
-* `response.created`
-* `response.done`
-* `rate_limits.updated`
-* `response.output_item.added`
-* `response.output_item.done`
-* `response.content_part.added`
-* `response.content_part.done`
-* `response.audio.delta`
-* `response.audio.done`
-* `response.audio_transcript.delta`
-* `response.audio_transcript.done`
-* `response.text.delta`
-* `response.text.done`
-* `response.function_call_arguments.delta`
-* `response.function_call_arguments.done`
-* `input_audio_buffer.speech_started`
-* `input_audio_buffer.speech_stopped`
-* `conversation.item.input_audio_transcription.completed`
-* `conversation.item.input_audio_transcription.failed`
-* `input_audio_buffer.committed`
-* `input_audio_buffer.cleared`
-* `error`
 
 ## Related Resources
 
