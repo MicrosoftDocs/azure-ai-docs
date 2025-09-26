@@ -194,9 +194,9 @@ Follow these steps to create a console application and install the Speech SDK.
             /// </summary>
             public string zip_code { get; set; } = string.Empty;
             /// <summary>
-            /// Country for shipping address.
+            /// Country/region for shipping address.
             /// </summary>
-            public string country { get; set; } = "US";
+            public string country_region { get; set; } = "US";
         }
     
         /// <summary>
@@ -714,7 +714,7 @@ Follow these steps to create a console application and install the Speech SDK.
                         args.new_address.city,
                         args.new_address.state,
                         args.new_address.zip_code,
-                        args.new_address.country
+                        args.new_address.country_region
                     },
                     estimated_delivery = order.EstimatedDelivery?.AddDays(1).ToString("yyyy-MM-dd") // Adjust delivery date
                 },
@@ -1145,7 +1145,7 @@ Follow these steps to create a console application and install the Speech SDK.
                             city = new { type = "string", description = "City name" },
                             state = new { type = "string", description = "State or province" },
                             zip_code = new { type = "string", description = "ZIP or postal code" },
-                            country = new { type = "string", description = "Country code", @default = "US" }
+                            country_region = new { type = "string", description = "Country/region code", @default = "US" }
                         },
                         required = new[] { "street", "city", "state", "zip_code" },
                         description = "New shipping address information"
