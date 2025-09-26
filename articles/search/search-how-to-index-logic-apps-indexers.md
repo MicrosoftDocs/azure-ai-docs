@@ -15,12 +15,9 @@ ms.custom:
 
 # Use an Azure Logic Apps workflow for automated indexing in Azure AI Search
 
-In Azure AI Search, you can use the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to create a logic app workflow that indexes and vectorizes your content. This capability is equivalent to an [indexer](search-indexer-overview.md) and data source that generates an indexing pipelines and creates indexed content.
+In Azure AI Search, you can use the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to create a logic app workflow that indexes and vectorizes your content. This capability is equivalent to an [indexer](search-indexer-overview.md) and data source that generates an indexing pipeline and creates searchable content.
 
 After you create a workflow in the wizard, you can manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
-
-> [!NOTE]
-> A logic app workflow is a billable resource. For more information, see [Azure Logic Apps pricing](/azure/logic-apps/logic-apps-pricing).
 
 ## Key features
 
@@ -56,9 +53,12 @@ Review the following requirements before you start:
 
 + Azure Logic Apps is a [supported region](#supported-regions). It should have a [system-assigned managed identity](/azure/logic-apps/authenticate-with-managed-identity) if you want to use Microsoft Entra ID authentication on connections rather than API keys.
 
+> [!NOTE]
+> A logic app workflow is a billable resource. For more information, see [Azure Logic Apps pricing](/azure/logic-apps/logic-apps-pricing).
+
 ### Supported regions
 
-End-to-end functionality is available in the following regions, which provide the data source connection, document cracking, document chunks, support for Azure OpenAI embedding models, and the Azure AI indexer support for pulling the data. The following regions for Azure Logic Apps provide the `ParseDocument` action upon which Azure AI Search integration is based.
+End-to-end functionality is available in the following regions, which provide the data source connection, document cracking, document chunks, support for Azure OpenAI embedding models, and the built-in indexing support for pulling the data. The following regions for Azure Logic Apps provide the `ParseDocument` action upon which indexing integration is based.
 
 + East US
 + East US 2
