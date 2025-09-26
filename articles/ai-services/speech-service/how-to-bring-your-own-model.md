@@ -1,6 +1,6 @@
 ---
-title: Bring Your Own Model (BYOM) with Voice Live API (Preview)
-description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure AI Speech Service.
+title: Bring Your Own Model (BYOM) with Voice live API (Preview)
+description: Learn how to integrate your own models with the Voice live API using Bring Your Own Model (BYOM) capabilities in Azure AI Speech Service.
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/26/2025
@@ -11,19 +11,19 @@ ms.custom: ai-speech, voice-live, byom, preview
 
 # Bring Your Own Model (BYOM) with Voice Live API (Preview)
 
-The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is particularly useful for the following scenarios:
+The Voice live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is particularly useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
 - **Provisioned throughput**: Leverage your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
 > [!IMPORTANT]
-> You can integrate any model that's deployed in the same Azure Foundry resource you're using to call the Voice Live API.
+> You can integrate any model that's deployed in the same Azure Foundry resource you're using to call the Voice live API.
 
 
 ## Authentication setup
 
-When using Microsoft Entra ID authentication with Voice Live API, you need to configure proper permissions for your Foundry resource. Since tokens may expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM modes.
+When using Microsoft Entra ID authentication with Voice live API, you need to configure proper permissions for your Foundry resource. Since tokens may expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM modes.
 
 Run the following Azure CLI commands to configure the necessary permissions:
 
@@ -45,7 +45,7 @@ az role assignment create --assignee-object-id ${identity_principal_id} --role "
 
 ## Choose BYOM integration mode
 
-The Voice Live API supports two BYOM integration modes:
+The Voice live API supports two BYOM integration modes:
 
 | Mode     | Description           | Example Models |
 | ------- | ------------------ | ------------- |
@@ -62,9 +62,9 @@ Update the endpoint URL in your API call to include your BYOM configuration:
 wss://<your-foundry-resource>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&profile=<your-byom-mode>&model=<your-model-deployment>
 ```
 
-#### [Voice Live SDK](#tab/sdk)
+#### [Voice live SDK](#tab/sdk)
 
-When using the Voice Live SDK, configure the query parameter:
+When using the Voice live SDK, configure the query parameter:
 
 ```json
 {
