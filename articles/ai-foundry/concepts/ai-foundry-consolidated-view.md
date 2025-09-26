@@ -25,11 +25,11 @@ The **AI Foundry consolidated view** shows key insights about your AI workloads 
 
 - **Accumulated costs**
 
-   View spend over time by subscription or resource type. Identify trends, track experiments, and drill into **Cost management** for deeper analysis.
+   View your costs over time by subscription or resource type. Identify trends, track experiments, and drill into **Cost management** for deeper analysis.
 
 - **Active resources by cost**
 
-  See which active resources are driving the most spend. This helps you optimize usage and clean up idle resources quickly.
+  You can see which active resources are driving the most spend to help you optimize usage and clean up idle resources quickly.
 
 - **Model utilization**
 
