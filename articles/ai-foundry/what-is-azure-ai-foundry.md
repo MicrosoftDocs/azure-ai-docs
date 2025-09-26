@@ -34,7 +34,7 @@ keywords:
 
 ::: moniker range="foundry"
 
-[!INCLUDE [foundry-link](includes/foundry-link.md)] is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+[!INCLUDE [foundry-link](default/includes/foundry-link.md)] is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
 
 ::: moniker-end
 
