@@ -242,6 +242,8 @@ items:
       href: voice-live-agents-quickstart.md
     - name: How to use voice live
       href: voice-live-how-to.md
+    - name: How to use telephony integration
+      href: how-to-voice-live-telephony.md
     - name: Voice live language support
       href: voice-live-language-support.md
     - name: Audio events reference
