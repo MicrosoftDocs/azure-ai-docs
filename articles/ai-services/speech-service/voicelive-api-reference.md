@@ -2174,23 +2174,23 @@ Session configuration object used in `session.update` events.
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | Optional. Model name to use |
-| modalities | [RealtimeModality](#realtimemodality)[] | Optional. Supported modalities |
+| modalities | [RealtimeModality](#realtimemodality)[] | Optional. The supported modalities for the session. <br><br> For example, "modalities": ["text", "audio"] is the default setting that enables both text and audio modalities. To enable only text, set "modalities": ["text"]. To enable avatar output, set "modalities": ["text", "audio", "avatar"]. You can't enable only audio. |
 | animation | [RealtimeAnimation](#realtimeanimation) | Optional. Animation configuration |
 | voice | [RealtimeVoice](#realtimevoice) | Optional. Voice configuration |
-| instructions | string | Optional. System instructions for the model |
-| input_audio_sampling_rate | integer | Optional. Input audio sampling rate in Hz (default: 24000) |
+| instructions | string | Optional. System instructions for the model. The instructions could guide the output audio if OpenAI voices are used but may not apply to Azure voices. |
+| input_audio_sampling_rate | integer | Optional. Input audio sampling rate in Hz (default: 24000 for `pcm16`, 8000 for `g711_ulaw` and `g711_alaw`) |
 | input_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | Optional. Input audio format (default: `pcm16`) |
 | output_audio_format | [RealtimeOutputAudioFormat](#realtimeoutputaudioformat) | Optional. Output audio format (default: `pcm16`) |
-| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | Optional. Turn detection configuration |
-| input_audio_noise_reduction | [RealtimeAudioNoiseReduction](#realtimeaudionoisereduction) | Optional. Noise reduction settings |
-| input_audio_echo_cancellation | [RealtimeAudioEchoCancellation](#realtimeaudioechocancellation) | Optional. Echo cancellation settings |
+| input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br><br>This property is nullable.|
+| input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation. This can be set to null to turn off. This service side echo cancellation can help improve the quality of the input audio by reducing the impact of echo and reverberation.<br><br>This property is nullable. |
+| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br><br>This property is nullable. |
+| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. <br><br>This property is nullable. |
+| tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
+| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
+| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
+| max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
 | avatar | [RealtimeAvatarConfig](#realtimeavatarconfig) | Optional. Avatar configuration |
-| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | Optional. Transcription settings |
 | output_audio_timestamp_types | [RealtimeAudioTimestampType](#realtimeaudiotimestamptype)[] | Optional. Timestamp types for output audio |
-| tools | [RealtimeTool](#realtimetool)[] | Optional. Available tools |
-| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | Optional. Tool selection strategy |
-| temperature | number | Optional. Sampling temperature |
-| max_response_output_tokens | integer or "inf" | Optional. Maximum output tokens |
 
 #### RealtimeModality
 
@@ -2502,41 +2502,6 @@ The definition of a function tool as used by the realtime endpoint.
 * `in_progress`
 * `completed`
 * `incomplete`
-
-### RealtimeRequestSession
-
-You use the `RealtimeRequestSession` object when you want to update the session configuration via the [session.update](#realtimeclienteventsessionupdate) event.
-
-| Field | Type | Description |
-|-------|------|-------------|
-| modalities | array | The modalities that the session supports.<br><br>Allowed values: `text`, `audio`<br/><br/>For example, `"modalities": ["text", "audio"]` is the default setting that enables both text and audio modalities. To enable only text, set `"modalities": ["text"]`. You can't enable only audio. |
-| instructions | string | The instructions (the system message) to guide the model's text and audio responses.<br><br>Here are some example instructions to help guide content and format of text and audio responses:<br>`"instructions": "be succinct"`<br>`"instructions": "act friendly"`<br>`"instructions": "here are examples of good responses"`<br><br>Here are some example instructions to help guide audio behavior:<br>`"instructions": "talk quickly"`<br>`"instructions": "inject emotion into your voice"`<br>`"instructions": "laugh frequently"`<br><br>While the model might not always follow these instructions, they provide guidance on the desired behavior. |
-| voice | [RealtimeVoice](#realtimevoice) | The voice used for the model response for the session.<br><br>Once the voice is used in the session for the model's audio response, it can't be changed. |
-| input_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the input audio. |
-| output_audio_format | [RealtimeAudioFormat](#realtimeaudioformat) | The format for the output audio. |
-| input_audio_noise_reduction | [RealtimeInputAudioNoiseReductionSettings](#realtimeinputaudionoisereductionsettings) | Configuration for input audio noise reduction. This can be set to null to turn off. Noise reduction filters audio added to the input audio buffer before it is sent to VAD and the model. Filtering the audio can improve VAD and turn detection accuracy (reducing false positives) and model performance by improving perception of the input audio.<br><br>This property is nullable.|
-| input_audio_echo_cancellation | [RealtimeInputAudioEchoCancellationSettings](#realtimeinputaudioechocancellationsettings) | Configuration for input audio echo cancellation. This can be set to null to turn off. This service side echo cancellation can help improve the quality of the input audio by reducing the impact of echo and reverberation.<br><br>This property is nullable. |
-| input_audio_transcription | [RealtimeAudioInputTranscriptionSettings](#realtimeaudioinputtranscriptionsettings) | The configuration for input audio transcription. The configuration is null (off) by default. Input audio transcription isn't native to the model, since the model consumes audio directly. Transcription runs asynchronously through the `/audio/transcriptions` endpoint and should be treated as guidance of input audio content rather than precisely what the model heard. For additional guidance to the transcription service, the client can optionally set the language and prompt for transcription.<br><br>This property is nullable. |
-| turn_detection | [RealtimeTurnDetection](#realtimeturndetection) | The turn detection settings for the session. This can be set to null to turn off. <br><br>This property is nullable. |
-| tools | array of [RealtimeTool](#realtimetool) | The tools available to the model for the session. |
-| tool_choice | [RealtimeToolChoice](#realtimetoolchoice) | The tool choice for the session.<br><br>Allowed values: `auto`, `none`, and `required`. Otherwise, you can specify the name of the function to use. |
-| temperature | number | The sampling temperature for the model. The allowed temperature values are limited to [0.6, 1.2]. Defaults to 0.8. |
-| max_response_output_tokens | integer or "inf" | The maximum number of output tokens per assistant response, inclusive of tool calls.<br><br>Specify an integer between 1 and 4096 to limit the output tokens. Otherwise, set the value to "inf" to allow the maximum number of tokens.<br><br>For example, to limit the output tokens to 1000, set `"max_response_output_tokens": 1000`. To allow the maximum number of tokens, set `"max_response_output_tokens": "inf"`.<br><br>Defaults to `"inf"`. |
-
-### RealtimeRequestSystemMessageItem
-
-| Field | Type | Description |
-|-------|------|-------------|
-| role | string | The role of the message.<br><br>Allowed values: `system` |
-| content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) | The content of the message. |
-
-
-### RealtimeRequestUserMessageItem
-
-| Field | Type | Description |
-|-------|------|-------------|
-| role | string | The role of the message.<br><br>Allowed values: `user` |
-| content | array of [RealtimeInputTextContentPart](#realtimeinputtextcontentpart) or [RealtimeInputAudioContentPart](#realtimeinputaudiocontentpart) | The content of the message. |
 
 ### RealtimeResponse
 
