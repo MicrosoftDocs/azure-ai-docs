@@ -19,7 +19,7 @@ After you've fine-tuned a model, you may want to test its quality via the Chat C
 A Developer Tier deployment allows you to deploy your new model without the hourly hosting fee incurred by Standard or Global deployments. The only charges incurred are per-token. Consult the [pricing page](https://aka.ms/aoaipricing) for the most up-to-date pricing.
 
 > [!IMPORTANT]
-> Developer Tier offers no availability SLA and no [data residency](https://aka.ms/data-residency) guarantees. If you require an SLA or data residency, choose an alternative [deployment type](./deployment-types.md) for testing your model.
+> Developer Tier offers no availability SLA and no [data residency](https://aka.ms/data-residency) guarantees. If you require an SLA or data residency, choose an alternative [deployment type](../../foundry-models/concepts/deployment-types.md) for testing your model.
 >
 > Developer Tier deployments have a fixed lifetime of **24 hours**. Learn more [below](#clean-up-your-deployment) about the deployment lifecycle.
 
@@ -212,4 +212,4 @@ curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resour
 
 - [Deploy for production](./fine-tuning-deploy.md)
 - Understand [Azure OpenAI Quotas & limits](./quota.md)
-- Read more about other [Azure OpenAI deployment types](./deployment-types.md)
+- Read more about other [Azure OpenAI deployment types](../../foundry-models/concepts/deployment-types.md)
