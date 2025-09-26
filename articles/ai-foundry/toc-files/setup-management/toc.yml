@@ -34,6 +34,13 @@ items:
       href: ../../concepts/vulnerability-management.md     
   - name: Connect and manage data
     href: ../../how-to/data-add.md
+  - name: Costs and quotas for hubs
+    items:
+    - name: Plan and manage costs for AI Foundry resources
+      href: ../../how-to/costs-plan-manage.md
+      displayName: pricing, budget, estimate, hub
+    - name: Manage and increase quotas
+      href: ../../how-to/hub-quota.md      
   - name: Create and manage compute
     href: ../../how-to/create-manage-compute.md
   - name: Role-based access control for Azure AI Foundry
@@ -42,8 +49,6 @@ items:
     href: ../../concepts/hub-encryption-keys-portal.md
   - name: How to configure a private link
     href: ../../how-to/hub-configure-private-link.md
-  - name: Manage and increase quotas
-    href: ../../how-to/hub-quota.md
   - name: Create and manage connections
     href: ../../how-to/hub-connections-add.md
   - name: Create a hub project
@@ -72,7 +77,7 @@ items:
 - name: Costs and quotas
   items:
   - name: Plan and manage costs for AI Foundry resources
-    href: ../../how-to/costs-plan-manage.md
+    href: ../../concepts/manage-costs.md
     displayName: pricing, budget, estimate
   - name: Manage quotas
     href: ../../how-to/quota.md
