@@ -1,11 +1,11 @@
 ---
 title: Connect to Azure Logic Apps
 titleSuffix: Azure AI Search
-description: Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search.
+description: Use an Azure Logic Apps workflow for automated indexing in Azure AI Search.
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 08/27/2025
+ms.date: 09/28/2025
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.custom:
@@ -13,13 +13,11 @@ ms.custom:
   - build-2025
 ---
 
-# Use an Azure Logic Apps workflow for indexer-based indexing in Azure AI Search
+# Use an Azure Logic Apps workflow for automated indexing in Azure AI Search
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+In Azure AI Search, you can use the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal to create a logic app workflow that indexes and vectorizes your content. This capability is equivalent to an [indexer](search-indexer-overview.md) and data source that generates an indexing pipelines and creates indexed content.
 
-Support for Azure Logic Apps integration is currently in public preview and only available through the [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal. In Azure AI Search, a logic app workflow is used for indexing and vectorization, and it's equivalent to an indexer and data source in Azure AI Search. 
-
-You can create a workflow in Azure AI Search using the **Import data (new)** wizard, and then manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
+After you create a workflow in the wizard, you can manage the workflow in Azure Logic Apps alongside your other workflows. Behind the scenes, the wizard follows a workflow template that pulls in (ingests) content from a source for indexing in AI Search. The connectors used in this scenario are prebuilt and already exist in Azure Logic Apps, so the workflow template just provides details for those connectors to create connections to the data source, AI Search, and other items to complete the ingestion workflow. 
 
 > [!NOTE]
 > A logic app workflow is a billable resource. For more information, see [Azure Logic Apps pricing](/azure/logic-apps/logic-apps-pricing).
@@ -28,7 +26,7 @@ You can create a workflow in Azure AI Search using the **Import data (new)** wiz
 
 Azure Logic Apps integration in Azure AI Search adds support for:
 
-+ More data sources from Microsoft and other providers
++ [More data sources](search-data-sources-gallery.md) from Microsoft and other providers
 + Integrated vectorization
 + Scheduled or on-demand indexing
 + Change detection of new and existing documents
@@ -96,15 +94,43 @@ The following connectors are useful for indexing unstructured data, as a complem
 + [Azure Queues](/connectors/azurequeues/)
 + [Service Bus](/connectors/servicebus/)
 
-## Limitations
+### Supported actions
 
-Currently, the public preview has these limitations:
+Logic apps integration includes the following indexing actions. For more information, see [Connect to Azure AI services from workflows in Azure Logic Apps](/azure/logic-apps/connectors/azure-ai#ingest-data-workflow).
+
++ Check for new data.
++ Get the data. An HTTP action that retrieves the uploaded document using the file URL from the trigger output.
++ Compose document details. A Data Operations action that concatenates various items.
++ Create token string. A Data Operations action that produces a token string using the output from the Compose action.
++ Create content chunks. A Data Operations action that splits the token string into pieces, based on either the number of characters or tokens per content chunk.
++ Convert tokenized data to JSON. A Data Operations action that converts the token string chunks into a JSON array.
++ Select JSON array items. A Data Operations action that selects multiple items from the JSON array.
++ Generate the embeddings. An Azure OpenAI action that creates embeddings for each JSON array item.
++ Select embeddings and other information. A Data Operations action that selects embeddings and other document information.
++ Index the data. An Azure AI Search action that indexes the data based on each selected embedding.
+
+It also supports the following query actions:
+
++ Wait for input prompt. A trigger that either polls or waits for new data to arrive, either based on a scheduled recurrence or in response to specific events respectively.
++ Input system message for the model. A Data Operations action that provides input to train the model.
++ Input sample questions and responses. A Data Operations action that provides sample customer questions and associated roles to train the model.
++ Input system message for search query. A Data Operations action that provides search query input to train the model.
++ Generate search query. An Inline Code action that uses JavaScript to create a search query for the vector store, based on the outputs from the preceding Compose actions.
++ Convert query to embedding. An Azure OpenAI action that connects to the chat completion API, which guarantees reliable responses in chat conversations.
++ Get an embedding. An Azure OpenAI action that gets a single vector embedding.
++ Search the vector database. An Azure AI Search action that executes searches in the vector store.
++ Create prompt. An Inline Code action that uses JavaScript to build prompts.
++ Perform chat completion. An Azure OpenAI action that connects to the chat completion API, which guarantees reliable responses in chat conversations.
++ Return a response. A Request action that returns the results to the caller when you use the Request trigger.
+
+## Limitations
 
 + The search index is generated using a fixed schema (document ID, content, and vectorized content), with text extraction only. You can [modify the index](#modify-existing-objects) as long as the update doesn't affect existing fields.
 + Vectorization supports text embedding only.
 + Deletion detection isn't supported. You must manually [delete orphaned documents](search-howto-reindex.md#delete-orphan-documents) from the index.
 + Duplicate documents in the search index are a known issue in this preview. Consider deleting objects and starting over if this becomes an issue.
-+ No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow. Use the [latest preview REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or a prerelease Azure SDK package that provides the feature.
++ No support for private endpoints in the logic app workflow created by the portal wizard. The workflow is hosted using the [**Consumption** hosting option](/azure/logic-apps/single-tenant-overview-compare) and is subject to its constraints. To use the **Standard** hosting option, use a programmatic approach to creating the workflow.
++ All actions are generally available except for 
 
 ## Create a logic app workflow
 
