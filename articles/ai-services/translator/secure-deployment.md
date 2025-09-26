@@ -14,9 +14,20 @@ ai-usage: ai-assisted
 
 Azure AI Translator is a powerful cloud-based service designed to deliver real-time translation capabilities for a wide range of scenarios, including applications, websites, and business workflows. When organizations integrate this service, they can enhance global communication and user engagement across multiple languages and dialects. It's essential for users of any service to prioritize the protection of sensitive data, safeguard user privacy, and ensure deployment reliability.
 
+* **Security within Azure is grounded in a collaborative model, where the responsibility for protecting resources and data is shared between Microsoft and our customers.**
+
+* **Microsoft is dedicated to securing the core infrastructure that underpins all Azure services, providing a reliable and robust foundation for cloud operations.** 
+
+* **Our customers also play a crucial role in this security partnership by ensuring that Azure AI Translator is properly configured and managed, thereby protecting sensitive information and adhering to all relevant regulatory requirements.**
+
+* **By clearly understanding and fulfilling their respective responsibilities, both Microsoft and our customers work together to achieve a comprehensive and resilient security posture in the Azure environment.**<br>
+
+For more information, *see* [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility)
+
 This document offers detailed guidelines and practical recommendations for establishing and maintaining a secure environment when using Azure AI Translator. Adhering to these best practices help you reduce risks and guarantee that your translation solutions remain secure and effective across all platforms.
 
-## Service-specific security
+
+ ## Service-specific security
 
 Azure AI Translator service requires careful consideration of specific security challenges and requirements to maintain the confidentiality and integrity of translation workflows. By taking a proactive approach to these security concerns, you can protect sensitive information during translation and reduce the risk of unauthorized access or data breaches.
 
@@ -24,7 +35,7 @@ Azure AI Translator service requires careful consideration of specific security 
 For more information, *see* [Prevent translation with the Translator service](/azure/ai-services/translator/prevent-translation).
 
 * **Document translation**: When translating documents, ensure secure workflows are established. Utilize secure storage containers with appropriate access controls and encryption to safeguard both the original documents and the translated outputs.<br>
-For more information, *see* [What is Azure AI Translator?](/azure/ai-services/translator/overview#azure-ai-translator-features-and-development-options).
+For more information, *see* [What is Azure AI Document Translation?](/azure/ai-services/translator/document-translation/how-to-guides/use-rest-api-programmatically).
 
 * **Custom translation**: To ensure the security of proprietary terminology and domain-specific language, it's important to set up robust access controls for custom translation models. By restricting access to both the models and their underlying training data, organizations can effectively protect sensitive linguistic assets.<br>
 For more information, *see* [Azure AI Custom Translator for beginners](/azure/ai-services/translator/custom-translator/beginners-guide).
