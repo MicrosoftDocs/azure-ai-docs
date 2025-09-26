@@ -340,7 +340,7 @@ chain.invoke({"topic": "living in a foreign country"})
 To see traces:
 
 ::: moniker range="foundry-classic"
-1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
 1. Navigate to **Tracing** section.
 
@@ -351,7 +351,7 @@ To see traces:
 ::: moniker-end
 
 ::: moniker range="foundry"
-1. Go to [Azure AI Foundry portal](https://aka.ms/nextgen-canary).
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 
 1. Navigate to **Tracing** section.
 
