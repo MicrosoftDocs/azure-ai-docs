@@ -12,6 +12,8 @@ ms.date: 09/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+monikerRange: foundry-classic || foundry
+
 # customer intent: As an AI app developer, I want to learn how to use the Azure AI Foundry for Visual Studio Code extension so that I can create projects and deploy Large Language Models using Azure AI Foundry capabilities directly in VS Code.
 ---
 

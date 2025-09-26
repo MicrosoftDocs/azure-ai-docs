@@ -8,6 +8,7 @@ ms.reviewer: sgilley
 ms.author: jeomhove
 author: jfomhover
 ms.topic: concept-article
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Ask the Foundry agent for help (preview)
