@@ -50,16 +50,16 @@ Two types of quantization are supported:
 
 ## Supported rescoring techniques
 
-Rescoring is an optional technique used to offset information loss due to vector compression. It uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors - or for binary quantization only - you have the option of rescoring using the binary quantized document candidates against the query vector. 
+Rescoring is an optional technique used to offset information loss due to vector compression. During query execution, it uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors - or for binary quantization only - you have the option of rescoring using the binary quantized document candidates against the query vector. 
 
-Only HNSW graphs allow rescoring. Exhaustive KNN doesn't support rescoring.
+Only HNSW graphs allow rescoring. Exhaustive KNN doesn't support rescoring because by definition, all vectors are scanned at query time, which makes oversampling irrelevant.
 
-Rescoring options are specified in the index, but you can invoke rescoring at query time if the index supports it.
+Rescoring options are specified in the index, but you can invoke rescoring at query time by adding the oversampling query parameter.
 
 | Object | Properties |
 |--------|------------|
-| Index | [`RescoringOptions`](/rest/api/searchservice/indexes/create-or-update#rescoringoptions) with these properties: `rescoringOptions.enableRescoring`  `rescoringOptions.defaultOversampling`, `rescoringOptions.escoreStorageMethod` |
-| Query | `oversampling` on [`RawVectorQuery`](/rest/api/searchservice/documents/search-post#rawvectorquery) and [`VectorizableTextQuery`](/rest/api/searchservice/documents/search-post#vectorizabletextquery) |
+| Index | Add [`RescoringOptions`](/rest/api/searchservice/indexes/create-or-update#rescoringoptions) to the vector compressions section: `rescoringOptions.enableRescoring` (true or false), `rescoringOptions.defaultOversampling` (an integer), `rescoringOptions.rescoreStorageMethod` (preserveOriginals or discardOriginals). We recommend preserveOriginals for scalar quantization and discardOriginals for binary quantization. |
+| Query | Add `oversampling` on [`RawVectorQuery`](/rest/api/searchservice/documents/search-post#rawvectorquery) or [`VectorizableTextQuery`](/rest/api/searchservice/documents/search-post#vectorizabletextquery) definitions. |
 
 > [!NOTE]
 > Rescoring parameter names have changed over the last several releases. If you're using an older preview API, review the [upgrade instructions](search-api-migration.md#upgrade-to-2024-11-01-preview) for addressing breaking changes.
@@ -143,7 +143,7 @@ POST https://[servicename].search.windows.net/indexes?api-version=2025-09-01
 
 - `rescoringOptions` are a collection of properties used to offset lossy compression by rescoring query results using the original full-precision vectors that exist prior to quantization. For rescoring to work, you must have the vector instance that provides this content. Setting `rescoreStorageMethod` to `discardOriginals` prevents you from using `enableRescoring` or `defaultOversampling`. For more information about vector storage, see [Eliminate optional vector instances from storage](vector-search-how-to-storage-options.md).
 
-- `"rescoreStorageMethod": "preserveOriginals"` rescores vector search results with the original full-precision vectors can result in adjustments to search score and rankings, promoting the more relevant matches as determined by the rescoring step. For binary quantization, you can set `rescoreStorageMethod` to `discardOriginals` to further reduce storage, without reducing quality. These aren't needed for binary quantization.
+- `"rescoreStorageMethod": "preserveOriginals"` rescores vector search results with the original full-precision vectors can result in adjustments to search score and rankings, promoting the more relevant matches as determined by the rescoring step. For binary quantization, you can set `rescoreStorageMethod` to `discardOriginals` to further reduce storage, without reducing quality. Original vectors aren't needed for binary quantization.
 
 - `defaultOversampling` considers a broader set of potential results to offset the reduction in information from quantization. The formula for potential results consists of the `k` in the query, with an oversampling multiplier. For example, if the query specifies a `k` of 5, and oversampling is 20, then the query effectively requests 100 documents for use in reranking, using the original uncompressed vector for that purpose. Only the top `k` reranked results are returned. This property is optional. Default is 4.
 
