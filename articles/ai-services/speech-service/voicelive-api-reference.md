@@ -2585,4 +2585,4 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 
 - Try the [Voice live quickstart](./voice-live-quickstart.md)
 - Try the [Voice live agents quickstart](./voice-live-agents-quickstart.md)
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
