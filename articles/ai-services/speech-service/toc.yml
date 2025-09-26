@@ -242,6 +242,8 @@ items:
       href: voice-live-agents-quickstart.md
     - name: How to use voice live
       href: voice-live-how-to.md
+    - name: Bring your own model with Voice Live
+      href: how-to-bring-your-own-model.md
     - name: Voice live language support
       href: voice-live-language-support.md
     - name: Audio events reference
