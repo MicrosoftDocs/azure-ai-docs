@@ -22,7 +22,7 @@ items:
     href: ../../how-to/disable-local-auth.md
 - name: Azure policies
   items:
-  - name: Manage model deployment policy (Preview)
+  - name: Built-in policy for model management (Preview)
     href: ../../how-to/model-deployment-policy.md
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
