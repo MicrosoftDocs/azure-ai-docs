@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/21/2025
+ms.date: 09/28/2025
 ---
 
 # Data sources gallery
@@ -139,7 +139,7 @@ Connect to a OneLake lakehouse to extract supported files content from a hierarc
 
 ---
 
-## Logic app connectors (preview)
+## Logic app connectors
 
 Pull in content [using logic app workflows](search-how-to-index-logic-apps-indexers.md) and the following supported data sources.
 

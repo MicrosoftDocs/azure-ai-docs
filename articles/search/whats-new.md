@@ -25,6 +25,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | Item | Type | Description |
 |--|--|--|
 | [Search Service 2025-09-01](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-09-01&preserve-view=true) | REST | New stable REST API version supports general availability for Microsoft OneLake indexer, Document Layout skill, and other APIs. |
+| [Logic app worklow integration](search-how-to-index-logic-apps-indexers.md) | Indexer | Generally available. |
 | [OneLake indexer](search-how-to-index-onelake-files.md) | Indexer | Generally available. |
 | [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) | Indexer | Generally available. |
 | [Normalizers](search-normalizers.md) | Keyword search | Generally available. |
