@@ -67,7 +67,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
     Replace the `ApiKey` value with your AI Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
 
-1. Replace the contents of `Program.cs` with the following code.
+1. Replace the contents of `Program.cs` with the following code. This code creates a sample customer service bot. For more details, see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/CustomerServiceBot).
     
     ```csharp
     // Copyright (c) Microsoft Corporation. All rights reserved.
@@ -2040,3 +2040,62 @@ Follow these steps to create a console application and install the Speech SDK.
 
 The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
 
+```console
+info: SampleProgram[0]
+      Audio system check passed (default input/output initialized).
+info: SampleProgram[0]
+      Using API key credential
+
+� Welcome to TechCorp Customer Service
+======================================
+
+I can help you with:
+• � Order status and tracking
+• � Account information and history
+• � Returns and exchanges
+• � Scheduling technical support calls
+• � Updating shipping addresses
+
+Sample data available:
+• Orders: ORD-2024-001, ORD-2024-002, ORD-2024-003
+• Customers: john.smith@email.com, sarah.johnson@email.com
+• Products: LAPTOP-001, MOUSE-001, MONITOR-001
+
+Try saying things like:
+• "What's the status of order ORD-2024-001?"
+• "I need to return a defective laptop"
+• "Can you look up my account info for john.smith@email.com?"
+• "I need to schedule a technical support call"
+
+info: CustomerServiceBot[0]
+      Connecting to VoiceLive API with model gpt-4o
+info: AudioProcessor[0]
+      AudioProcessor initialized with 24000Hz PCM16 mono audio
+info: CustomerServiceBot[0]
+      Setting up customer service session with function calling...
+info: CustomerServiceBot[0]
+      Session configuration sent with 5 customer service tools
+info: AudioProcessor[0]
+      Audio playback system ready
+
+======================================================================
+� CUSTOMER SERVICE BOT READY
+I can help you with orders, returns, account info, and scheduling support calls
+Start speaking to begin your customer service session
+Press Ctrl+C to exit
+======================================================================
+
+info: AudioProcessor[0]
+      Started audio capture
+info: CustomerServiceBot[0]
+      Customer service bot ready! Start speaking...
+info: CustomerServiceBot[0]
+      Session ready: sess_2Ti2YGckoXIN71yMJMW265
+info: CustomerServiceBot[0]
+      Session updated successfully with function tools
+� Listening...
+info: CustomerServiceBot[0]
+      � Customer started speaking - stopping playback
+info: AudioProcessor[0]
+      Stopped audio playback
+```
