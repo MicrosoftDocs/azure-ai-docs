@@ -1,15 +1,15 @@
 ---
 title: Voice live API language support
 titleSuffix: Azure AI services
-description: Learn about the languages supported by voice live API and how to configure them.
+description: Learn about the languages supported by Voice live API and how to configure them.
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 8/11/2025
+ms.date: 9/26/2025
 ms.custom: languages
-# Customer intent: As a developer, I want to learn about which languages are supported by the voice live API and how to configure them.
+# Customer intent: As a developer, I want to learn about which languages are supported by the Voice live API and how to configure them.
 ---
 
 # Voice live API supported languages (Preview)
@@ -18,7 +18,7 @@ ms.custom: languages
 
 ## Introduction
 
-The voice live API supports multiple languages and configuration options. In this document, you learn which languages the voice live API supports and how to configure them.
+The Voice live API supports multiple languages and configuration options. In this document, you learn which languages the Voice live API supports and how to configure them.
 
 ## [Speech input](#tab/speechinput)
 
@@ -207,6 +207,6 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 ## Related content
 
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
-- Try out the [voice live API quickstart](./voice-live-quickstart.md)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- Try out the [Voice live API quickstart](./voice-live-quickstart.md)
 - See the [Voice live API reference](./voicelive-api-reference.md)

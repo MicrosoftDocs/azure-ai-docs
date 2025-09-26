@@ -6,7 +6,7 @@ author: goergenj
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/16/2025
+ms.date: 9/26/2025
 ms.author: jagoerge
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
@@ -187,9 +187,9 @@ The regions in these tables support most of the core features of the Speech serv
 |uksouth| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
 |westeurope| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - |
 
-<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The voice live API uses Sweden Central as needed for generative AI load balancing.
+<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
 
-<sup>2</sup> The Azure AI Foundry resource must be in West US 2. Azure AI Speech features remain in West US 2. The voice live API uses East US 2 as needed for generative AI load balancing.
+<sup>2</sup> The Azure AI Foundry resource must be in West US 2. Azure AI Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
 
 # [Intent recognition](#tab/intent-recognition)
 

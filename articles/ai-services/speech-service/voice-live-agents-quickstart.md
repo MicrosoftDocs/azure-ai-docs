@@ -28,5 +28,5 @@ recommendations: false
 ## Related content
 
 - Try the [Voice live quickstart](./voice-live-quickstart.md)
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
 - See the [Voice live API reference](./voicelive-api-reference.md)
