@@ -169,7 +169,7 @@ All `searchable` fields are included in query execution. There's no support for 
 
 ## Add a description
 
-An index `description` field is exposed programmatically, which means you can pass this description to LLMs and Model Context Protocol (MCP) servers as an input when deciding to use a specific index for a query. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. 
+An index `description` field is a user-defined string that you can use to provide guidance to LLMs and Model Context Protocol (MCP) servers when deciding to use a specific index for a query. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. 
 
 An index description is a schema update, and you can add it without having to rebuild the entire index.
 

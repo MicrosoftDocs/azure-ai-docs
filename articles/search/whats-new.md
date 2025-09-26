@@ -30,7 +30,7 @@ Learn about the latest updates to Azure AI Search functionality, docs, and sampl
 | [Normalizers](search-normalizers.md) | Keyword search | Generally available. |
 | [Index description](search-agentic-retrieval-how-to-index.md#add-a-description) | Agentic search | Generally available. |
 | [Rescoring of binary quantized vectors](vector-search-how-to-quantization.md#supported-rescoring-techniques) | Vector search | Generally available. |
-| [Rescoring options for HNSW compressed vectors](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) | Vector search | Generally available. |
+| [Rescoring options for scalar compressed vectors](vector-search-how-to-quantization.md#supported-rescoring-techniques) | Vector search | Generally available. |
 | [Scoring profiles for semantically ranked results](semantic-how-to-enable-scoring-profiles.md) | Relevance | Generally available. |
 | [Truncate dimensions](vector-search-how-to-truncate-dimensions.md) | Vector search  | Generally available. |
 | [Unpack `@search.score` to view subscores in hybrid search results](hybrid-search-ranking.md#unpack-a-search-score-into-subscores) | Hybrid search | Generally available. |
