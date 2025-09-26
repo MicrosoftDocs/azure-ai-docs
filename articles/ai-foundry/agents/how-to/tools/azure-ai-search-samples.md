@@ -464,7 +464,7 @@ for await (const m of messagesIterator) {
 
 :::zone pivot="rest"
 
-+ Completion of the [REST API quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to get values for the `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION` environment variables.
++ Completion of the [REST API quickstart](../../quickstart.md?pivots=rest-api) to get values for the `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT`, and `API_VERSION` environment variables.
 
 ## Get the connection ID for the Azure AI Search resource
 
