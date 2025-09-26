@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how to use the REST API for indexing documents with ACLs and RBAC metadata.  
 ms.service: azure-ai-search  
 ms.topic: how-to 
-ms.date: 08/27/2025 
+ms.date: 09/18/2025 
 author: admayber
 ms.author: admayber  
 ---  
@@ -42,6 +42,8 @@ This article explains how to use the push REST API to index document-level permi
 - Only one field of each `permissionFilter` type (one each of `groupIds`, `usersIds`, and `rbacScope`) can exist in an index.
 
 - Each permissionFilter field should have `filterable` set to true.
+
+- This functionality is currently not supported in the Azure portal.
 
 ## Create an index with permission filter fields
 

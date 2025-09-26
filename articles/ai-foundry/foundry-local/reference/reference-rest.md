@@ -127,7 +127,7 @@ _---Standard OpenAI Properties---_
 - Request body
   ```json
   {
-    "model": "Phi-4-mini-instruct-generic-cpu",
+    "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "messages": [
       {
         "role": "user",
@@ -155,7 +155,7 @@ _---Standard OpenAI Properties---_
     "id": "chatcmpl-1234567890",
     "object": "chat.completion",
     "created": 1677851234,
-    "model": "Phi-4-mini-instruct-generic-cpu",
+    "model": "qwen2.5-0.5b-instruct-generic-cpu",
     "choices": [
       {
         "index": 0,
@@ -170,69 +170,6 @@ _---Standard OpenAI Properties---_
       "prompt_tokens": 10,
       "completion_tokens": 20,
       "total_tokens": 30
-    }
-  }
-  ```
-
-### POST /v1/embeddings
-
-Handles embedding generation requests.  
-Compatible with the [OpenAI Embeddings API](https://platform.openai.com/docs/api-reference/embeddings/create)
-
-**Request Body:**
-
-- `model` (string)  
-  The embedding model to use (e.g., `"text-embedding-ada-002"`).
-- `input` (string or array)  
-  Input text to embed. Can be a single string or an array of strings/tokens.
-- `encoding_format` (string, optional)  
-  The encoding format (`"base64"` or `"float"`).
-
-**Response body:**
-
-- `object` (string)  
-  Always `"list"`.
-- `data` (array)  
-  List of embedding objects, each containing:
-  - `object` (string)  
-    Always `"embedding"`.
-  - `embedding` (array)  
-    The vector representation of the input text.
-  - `index` (integer)  
-    The position of this embedding in the input array.
-- `model` (string)  
-  The model used for embedding generation.
-- `usage` (object)  
-  Token usage statistics:
-  - `prompt_tokens` (integer)  
-    Number of tokens in the prompt.
-  - `total_tokens` (integer)  
-    Total tokens used.
-
-**Example:**
-
-- Request body
-  ```json
-  {
-    "model": "qwen_w_embeddings",
-    "input": "Hello, how are you?"
-  }
-  ```
-- Response body
-  ```json
-  {
-    "object": "list",
-    "data": [
-      {
-        "object": "embedding",
-        "embedding": [0.1, 0.2, 0.3, ...],
-        "index": 0
-      }
-    ],
-    "model": "qwen_w_embeddings",
-    "usage": {
-      "prompt_tokens": 10,
-      "total_tokens": 10
     }
   }
   ```
@@ -436,7 +373,7 @@ Downloads a model to local storage.
 
 **Request Body:**
 
-- `model` (`WorkspaceInferenceModel` object)  
+- `model` (`WorkspaceInferenceModel` object)
   - `Uri` (string)  
     The model URI to download.
   - `Name` (string)
@@ -456,7 +393,7 @@ Downloads a model to local storage.
     - `prompt` (string, optional)  
       The template for the user-assistant interaction.
   - `Publisher` (string, optional)  
-      The publisher of the model.
+     The publisher of the model.
 - `token` (string, optional)  
   Authentication token for protected models (GitHub or Hugging Face).
 - `progressToken` (object, optional)  
@@ -490,15 +427,15 @@ During download, the server streams progress updates in the format:
 
 ```json
 {
-  "model":{
+  "model": {
     "Uri": "azureml://registries/azureml/models/Phi-4-mini-instruct-generic-cpu/versions/4",
     "ProviderType": "AzureFoundryLocal",
     "Name": "Phi-4-mini-instruct-generic-cpu",
     "Publisher": "",
-    "promptTemplate" : {
+    "promptTemplate": {
       "system": "<|system|>{Content}<|end|>",
-      "user": "<|user|>{Content}<|end|>", 
-      "assistant": "<|assistant|>{Content}<|end|>", 
+      "user": "<|user|>{Content}<|end|>",
+      "assistant": "<|assistant|>{Content}<|end|>",
       "prompt": "<|user|>{Content}<|end|><|assistant|>"
     }
   }

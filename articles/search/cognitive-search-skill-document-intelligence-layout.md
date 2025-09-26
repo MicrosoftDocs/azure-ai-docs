@@ -9,7 +9,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: reference
-ms.date: 07/10/2025
+ms.date: 09/19/2025
 ms.update-cycle: 365-days
 ---
 
@@ -34,9 +34,10 @@ This skill is bound to a [billable Azure AI multi-service resource](cognitive-se
 
 ## Limitations
 
-During the public preview, this skill has the following restrictions:
+This skill has the following limitations:
 
 + The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ Since this skill calls the Azure AI Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
 
 ## Supported regions
 

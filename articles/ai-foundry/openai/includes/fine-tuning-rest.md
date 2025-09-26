@@ -119,7 +119,7 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/files \
 
 ## Create a customized model
 
-After you uploaded your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP&preserve-view=true) with the REST API.
+After you uploaded your training and validation files, you're ready to start the fine-tuning job. The following code shows an example of how to [create a new fine-tuning job](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP&preserve-view=true) with the REST API.
 
 In this example we are also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but can differ in rare cases. If a seed is not specified, one will be generated for you.
 
@@ -129,15 +129,30 @@ curl -X POST $AZURE_OPENAI_ENDPOINT/openai/v1/fine_tuning/jobs \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
     "model": "gpt-4.1-2025-04-14",
-    "training_file": "<TRAINING_FILE_ID>", 
+    "training_file": "<TRAINING_FILE_ID>",
     "validation_file": "<VALIDATION_FILE_ID>",
     "seed": 105
 }'
 ```
 
-You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2023-12-01-preview&tabs=HTTP#finetuninghyperparameters&preserve-view=true) to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters.
+If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument and using api-version `2025-04-01-preview`:
 
-The current supported hyperparameters for fine-tuning are:
+```bash
+curl -X POST $AZURE_OPENAI_ENDPOINT/openai/fine_tuning/jobs?api-version=2025-04-01-preview \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+    "model": "gpt-4.1-2025-04-14",
+    "training_file": "<TRAINING_FILE_ID>",
+    "validation_file": "<VALIDATION_FILE_ID>",
+    "seed": 105,
+    "trainingType": "globalstandard"
+}'
+```
+
+You can also pass additional optional parameters like [hyperparameters](/rest/api/azureopenai/fine-tuning/create?view=rest-azureopenai-2024-10-21&tabs=HTTP#finetuninghyperparameters&preserve-view=true) to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters.
+
+The current supported hyperparameters for Supervised Fine-Tuning are:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
@@ -145,6 +160,9 @@ The current supported hyperparameters for fine-tuning are:
 | `learning_rate_multiplier` | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pre-training multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate can be useful to avoid overfitting. |
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 |`seed` | integer | The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
+
+> [!NOTE]
+> See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
 
 ## Check the status of your customized model
 

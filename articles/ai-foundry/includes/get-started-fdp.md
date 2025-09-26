@@ -29,7 +29,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Prerequisites
 
-- An [Azure subscription](https://azure.microsoft.com/free/). If you don't have an Azure subscription, create a free account before you begin.
+- [!INCLUDE [azure-subscription](azure-subscription.md)]
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
 
 [!INCLUDE [feature-preview](feature-preview.md)]

@@ -3,11 +3,11 @@ title: How to use the voice live API (Preview)
 titleSuffix: Azure AI services
 description: Learn how to use the voice live API for real-time voice agents.
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 7/31/2025
+ms.date: 9/16/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the voice live API for real-time voice agents.
 ---
@@ -30,10 +30,10 @@ An [Azure AI Foundry resource](../multi-service-resource.md) is required to acce
 
 ### WebSocket endpoint
 
-The WebSocket endpoint for the voice live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-05-01-preview` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview`.
+The WebSocket endpoint for the voice live API is `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01` or, for older resources, `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-10-01`.
 The endpoint is the same for all models. The only difference is the required `model` query parameter, or, when using the Agent service, the `agent_id` and `project_id` parameters.
 
-For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.cognitiveservices.azure.com/voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o-mini-realtime-preview`
+For example, an endpoint for a resource with a custom domain would be `wss://<your-ai-foundry-resource-name>.services.ai.azure.com/voice-live/realtime?api-version=2025-10-01&model=gpt-realtime`
 
 ### Credentials
 
@@ -129,16 +129,22 @@ The voice live API offers conversational enhancements to provide robustness to t
 
 ### Turn Detection Parameters
 
-Turn detection is the process of detecting when the end-user started or stopped speaking. The voice live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type is one differentiator between the voice live API and the Azure OpenAI Realtime API.
+Turn detection is the process of detecting when the end-user started or stopped speaking. The voice live API builds on the Azure OpenAI Realtime API `turn_detection` property to configure turn detection. The `azure_semantic_vad` type and the advanced `end_of_utterance_detection` are key differentiators between the voice live API and the Azure OpenAI Realtime API.
 
 | Property | Type | Required or optional | Description |
 |----------|----------|----------|------------|
-| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. Type `azure_semantic_vad_multilingual` is also available to support a wider variety of languages: English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Azure semantic voice activity detection (VAD) can improve turn detection by removing filler words to reduce the false alarm rate. The `remove_filler_words` property must be set to `true` (it is `false` by default). The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove feature words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
+| `type` | string   | Optional | The type of turn detection system to use. Type `server_vad` detects start and end of speech based on audio volume.<br/><br/>Type `azure_semantic_vad` detects start and end of speech based on semantic meaning. It primarily supports English. Type `azure_semantic_vad_multilingual` is also available to support a wider variety of languages: English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Azure semantic voice activity detection (VAD) can improve turn detection by removing filler words to reduce the false alarm rate. The `remove_filler_words` property must be set to `true` (it is `false` by default). The detected filler words in English are `['ah', 'umm', 'mm', 'uh', 'huh', 'oh', 'yeah', 'hmm']`. The service ignores these words when there's an ongoing response. Remove filler words feature assumes the client plays response audio as soon as it receives them.<br/><br/>The default value is `server_vad`. |
 | `threshold` | number | Optional | A higher threshold requires a higher confidence signal of the user trying to speak. |
 | `prefix_padding_ms` | integer | Optional  | The amount of audio, measured in milliseconds, to include before the start of speech detection signal. |
+| `speech_duration_ms` | integer | Optional | The duration of user's speech audio required to start detection. If not set or under 80 ms, the detector uses a default value of 80 ms. |
 | `silence_duration_ms` | integer  | Optional | The duration of user's silence, measured in milliseconds, to detect the end of speech. |
+<<<<<<< HEAD
 | `remove_filler_words` | boolean | Optional | Determines whether to remove filler words to reduce the false alarm rate. This property must be set to `true` when using `azure_semantic_vad`.<br/><br/>The default value is `false`. |
 | `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The voice live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection can be used with either VAD selection.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported value is `semantic_detection_v1`.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds.|
+=======
+| `remove_filler_words` | boolean | Optional |  Determines whether to remove filler words to reduce the false alarm rate. This property must be set to `true` when using `azure_semantic_vad`.<br/><br/>The default value is `false`. |
+| `end_of_utterance_detection` | object | Optional | Configuration for end of utterance detection. The voice live API offers advanced end-of-turn detection to indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency. End of utterance detection can be used with either VAD selection.<br/><br/>Properties of `end_of_utterance_detection` include:<br/>-`model`: The model to use for end of utterance detection. The supported values are:<br/>&nbsp;&nbsp;`semantic_detection_v1` supporting English.<br/>&nbsp;&nbsp;`semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi.<br/>Other languages will be bypassed.<br/>- `threshold`: Threshold to determine the end of utterance (0.0 to 1.0). The default value is 0.01.<br/>- `timeout`: Timeout in seconds. The default value is 2 seconds. <br/><br/>End of utterance detection currently doesn't support gpt-realtime, gpt-4o-mini-realtime, and phi4-mm-realtime.|
+>>>>>>> 58e387c085f4e7de42163d24fb29c544d5e57e56
 
 Here's an example of end of utterance detection in a session object:
 
@@ -150,6 +156,7 @@ Here's an example of end of utterance detection in a session object:
             "type": "azure_semantic_vad",
             "threshold": 0.3,
             "prefix_padding_ms": 300,
+            "speech_duration_ms":80,
             "silence_duration_ms": 500,
             "remove_filler_words": false,
             "end_of_utterance_detection": {
@@ -164,23 +171,20 @@ Here's an example of end of utterance detection in a session object:
 
 ## Audio input through Azure speech to text
 
-### Phrase list
+Azure speech to text will automatically be active when you are using a non-multimodal model like gpt-4o.
 
-Use phrase list for lightweight just-in-time customization on audio input. To configure phrase list, you can set the phrase_list in the `session.update` message.
+In order to explicitly configure it you can set the `model` to `azure-speech` in `input_audio_transcription`. This can be useful to improve the recognition quality for specific language situations. See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
 
 ```json
 {
     "session": {
         "input_audio_transcription": {
             "model": "azure-speech",
-            "phrase_list": ["Neo QLED TV", "TUF Gaming", "AutoQuote Explorer"]
+            "language": "en"
         }
     }
 }
 ```
-
-> [!NOTE]
-> Phrase list currently doesn't support gpt-4o-realtime-preview, gpt-4o-mini-realtime-preview, and phi4-mm-realtime. To learn more about phrase list, see [phrase list for speech to text](./improve-accuracy-phrase-list.md).
 
 ## Audio output through Azure text to speech
 
@@ -193,6 +197,8 @@ The `voice` object has the following properties:
 | `name` | string   | Required | Specifies the name of the voice. For example, `en-US-AvaNeural`. |
 | `type` | string   | Required | Configuration of the type of Azure voice between `azure-standard` and `azure-custom`. |
 | `temperature` | number   | Optional | Specifies temperature applicable to Azure HD voices. Higher values provide higher levels of variability in intonation, prosody, etc. |
+
+See [How to customize voice live input and output](./voice-live-how-to-customize.md) learn more about speech input customization configuration.
 
 ### Azure standard voices
 
@@ -225,35 +231,8 @@ Here's an example `session.update` message for a standard high definition voice:
 
 For the full list of standard high definition voices, see [high definition voices documentation](high-definition-voices.md#supported-azure-ai-speech-hd-voices).
 
-### Azure custom voices
-
-You can use a custom voice for audio output. For information about how to create a custom voice, see [What is custom voice](./custom-neural-voice.md).
-
-```json
-{
-  "voice": {
-    "name": "en-US-CustomNeural",
-    "type": "azure-custom",
-    "endpoint_id": "your-endpoint-id", // a guid string
-    "temperature": 0.8 // optional, value range 0.0-1.0, only take effect when using HD voices
-  }
-}
-```
-
-### Custom lexicon
-
-Use the `custom_lexicon_url` string property to customize pronunciation for both standard Azure text to speech voices and custom voices. To learn more about how to format the custom lexicon (the same as Speech Synthesis Markup Language (SSML)), see [custom lexicon for text to speech](./speech-synthesis-markup-pronunciation.md#custom-lexicon).
-
-```json
-{
-  "voice": {
-    "name": "en-US-Ava:DragonHDLatestNeural",
-    "type": "azure-standard",
-    "temperature": 0.8, // optional
-    "custom_lexicon_url": "<custom lexicon url>"
-  }
-}
-```
+> [!NOTE]
+> High definition voices are currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus, eastus2, westus2
 
 ### Speaking rate
 
@@ -440,7 +419,10 @@ And the service responds with the server SDP.
 
 Then you can connect the avatar with the server SDP.
 
+> [!NOTE]
+> Azure text to speech avatar is currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus2, westus2
+
 ## Related content
 
-- Try out the [voice live API quickstart](./voice-live-quickstart.md)
+- Try out the [Voice live API quickstart](./voice-live-quickstart.md)
 - See the [Voice live API reference](./voicelive-api-reference.md)

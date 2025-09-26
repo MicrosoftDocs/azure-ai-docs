@@ -177,6 +177,9 @@ items:
       - name: Chat completions API
         href: ../../openai/how-to/chatgpt.md
         displayName: ChatGPT, chatgpt
+      - name: Codex
+        href: ../../openai/how-to/codex.md
+        displayName: codex, CODEX, codex cli, codex ide extension, gpt-5-codex
       - name: Computer Use
         href: ../../openai/how-to/computer-use.md
         displayName: cua, computer using model

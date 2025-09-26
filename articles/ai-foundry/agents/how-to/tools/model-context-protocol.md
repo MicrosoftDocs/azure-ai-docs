@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to add MCP servers to Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 09/04/2025
 author: aahill
@@ -16,6 +17,9 @@ ms.custom: references_regions
 
 > [!NOTE]
 > Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
+
+> [!NOTE]
+> When using a [Network Secured Azure AI Foundry](../../how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 You can extend the capabilities of your Azure AI Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Azure AI Foundry Agent Service, can access.
 

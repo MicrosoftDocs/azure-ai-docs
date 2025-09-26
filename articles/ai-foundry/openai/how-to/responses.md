@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 09/08/2025
+ms.date: 09/19/2025
 ms.service: azure-ai-openai
 ms.topic: include
 ms.custom:
@@ -48,6 +48,7 @@ The responses API is currently available in the following regions:
 - `gpt-5-mini` (Version: `2025-08-07`)
 - `gpt-5-nano` (Version: `2025-08-07`)
 - `gpt-5-chat` (Version: `2025-08-07`)
+- `gpt-5-codex` (Version: `2025-09-15`)
 - `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
 - `gpt-4o-mini` (Version: `2024-07-18`)
 - `computer-use-preview`
@@ -762,9 +763,9 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
 >
-> - You can upload up to 100 pages and 32MB of total content in a single request to the API, across multiple file inputs.
+> - In a single API request, the size of content uploaded across multiple inputs (files) should be within the model's context length.
 >
-> - Only models that support both text and image inputs, such as `gpt-4o`, `gpt-4o-mini`, or `o1`, can accept PDF files as input.
+> - Only models that support both text and image inputs can accept PDF files as input.
 >
 > - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
 

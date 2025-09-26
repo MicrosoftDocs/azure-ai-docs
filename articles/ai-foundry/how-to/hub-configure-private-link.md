@@ -5,9 +5,14 @@ titleSuffix: Azure AI Foundry
 description: Learn how to configure a private link for Azure AI Foundry hubs. A private link is used to secure communication with the Azure AI Foundry hub.
 manager: mcleans
 ms.service: azure-ai-foundry
-ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
+ms.custom: 
+    - ignite-2023
+    - devx-track-azurecli
+    - build-2024
+    - ignite-2024
+    - hub-only
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 09/22/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
@@ -389,6 +394,7 @@ To find the private IP addresses for your A records, see the [Azure Machine Lear
 
 ## Next steps
 
+- [Configure a private link for a Foundry project](configure-private-link.md)
 - [Create an Azure AI Foundry project](create-projects.md)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about Azure AI Foundry hubs](../concepts/ai-resources.md)

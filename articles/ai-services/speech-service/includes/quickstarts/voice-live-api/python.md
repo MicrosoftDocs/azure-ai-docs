@@ -82,7 +82,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     typing_extensions==4.13.2
     urllib3==2.4.0
     websocket-client==1.8.0
-    azure-ai-voicelive==1.0.0b1
+    azure-ai-voicelive
     ```
 
 1. Install the packages:
@@ -602,14 +602,14 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-4o-realtime-preview"),
+            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-realtime"),
         )
     
         parser.add_argument(
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-AvaNeural"),
+            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
             help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
