@@ -21,7 +21,7 @@ Azure AI Translator is a powerful cloud-based service designed to deliver real-t
 
 * **By clearly understanding and fulfilling their respective responsibilities, both Microsoft and our customers work together to achieve a comprehensive and resilient security posture in the Azure environment.** 
 
-* For more information, *see* [Shared responsibility in the cloud](/azure/security/fundamentals/shared-responsibility)
+* For more information, *see* [**Shared responsibility in the cloud**](/azure/security/fundamentals/shared-responsibility)
 
 This document offers detailed guidelines and practical recommendations for establishing and maintaining a secure environment when using Azure AI Translator.  It's essential for users of any service to prioritize the protection of sensitive data, safeguard user privacy, and ensure deployment reliability. By adhering to these best practices you help reduce risks and guarantee that your translation solutions remain secure and effective across all platforms.
 
