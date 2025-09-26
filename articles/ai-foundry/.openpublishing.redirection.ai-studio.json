@@ -206,6 +206,11 @@
             "redirect_document_id": true
           },
           {
+            "source_path_from_root": "/articles/ai-foundry/open-ai/how-to/deployment-types.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
+            "redirect_document_id": true
+          },
+          {
             "source_path_from_root": "/articles/ai-foundry/how-to/deploy-models-llama.md",
             "redirect_url": "/azure/ai-foundry/concepts/models-featured#meta",
             "redirect_document_id": false
