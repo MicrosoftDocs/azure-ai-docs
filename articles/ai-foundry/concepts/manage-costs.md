@@ -63,7 +63,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your project, then select **Management center** from the left menu.
 1. Under the **Resource** heading, select **Overview**.
-1. Under the **Resource properties**, click on the resource group link. The [Azure portal](https://portal.azure.com/) opens to the resource group for your Foundry resource.
+1. Under the **Resource properties**, select on the resource group link. The [Azure portal](https://portal.azure.com/) opens to the resource group for your Foundry resource.
 
    :::image type="content" source="../media/manage-costs/azure-cost-analysis-overview.png" alt-text="Screenshot showing the AI Foundry portal with the resource Overview section and resource group highlighted." lightbox="../media/manage-costs/azure-cost-analysis-overview.png":::
 
@@ -71,7 +71,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
    :::image type="content" source="../media/manage-costs/azure-cost-overview-filters.png" alt-text="Screenshot of the Azure portal showing the Cost Analysis section under Cost Management.":::
 
-1. You will see the cost overview. You can also add filters like the deployment level tags shown below to see the costs based on model deployment.
+1. You see the cost overview. You can also add filters like the deployment level tags to see the costs based on model deployment, as shown in the following screenshot.
 
    :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview with deployment level tags." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
 
@@ -83,7 +83,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
    :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
 
-### Monitor costs for models in the Azure Marketplace
+### Monitor costs for models in Azure Marketplace
 
 Azure Marketplace offers serverless API deployments. Model publishers might apply different costs depending on the offering. Each project in the Azure AI Foundry portal has its own subscription with the offering, which you can use to monitor the costs and consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
