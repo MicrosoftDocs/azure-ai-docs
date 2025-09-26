@@ -5,7 +5,7 @@ description: Complete reference for the Voice live API events, models, and confi
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: reference
-ms.date: 9/25/2025
+ms.date: 9/26/2025
 author: goergenj
 ms.author: jagoerge
 ---
@@ -2510,7 +2510,6 @@ The definition of a function tool as used by the realtime endpoint.
 | type | string | The type of the content part.<br><br>Allowed values: `audio` |
 | transcript | string | The transcript of the audio.<br><br>This property is nullable. |
 
-
 ### RealtimeResponseFunctionCallItem
 
 | Field | Type | Description |
@@ -2571,7 +2570,6 @@ The `RealtimeResponseSession` object represents a session in the Realtime API. I
 | Field | Type | Description |
 |-------|------|-------------|
 | type | [RealtimeResponseStatus](#realtimeresponsestatus) | The status of the response. |
-
 
 #### RealtimeRateLimitsItem
 
