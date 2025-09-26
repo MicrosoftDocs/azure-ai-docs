@@ -236,14 +236,16 @@ items:
   items:
     - name: Voice live overview
       href: voice-live.md
+    - name: Voice live language support
+      href: voice-live-language-support.md
     - name: Voice live with Foundry models quickstart
       href: voice-live-quickstart.md
     - name: Voice live with Foundry agents quickstart
       href: voice-live-agents-quickstart.md
     - name: How to use voice live
       href: voice-live-how-to.md
-    - name: Voice live language support
-      href: voice-live-language-support.md
+    - name: How to customize voice live input and output
+      href: voice-live-how-to-customize.md
     - name: Audio events reference
       href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
 - name: Keyword recognition
