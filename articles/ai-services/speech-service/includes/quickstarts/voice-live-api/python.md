@@ -15,7 +15,7 @@ In this article, you learn how to use Azure AI Speech voice live with [Azure AI 
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Azure AI Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -602,7 +602,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-4o-realtime-preview"),
+            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-realtime"),
         )
     
         parser.add_argument(
