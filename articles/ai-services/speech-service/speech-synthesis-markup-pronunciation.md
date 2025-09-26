@@ -289,12 +289,12 @@ The speech synthesis engine speaks the following example as "World Wide Web Cons
 
 ## Mathematical expressions reading
 There are two ways to read a mathematical expression:
-- With Math domain element
+- With Math domain element,
 
     Embed the plain text mathematical expression directly in SSML and specify the math domain using `<mstts:prompt domain="Math" />`.
 
     See the section: [Reading plain text mathematical expressions](#reading-plain-text-mathematical-expressions)
-- With MathML elements  
+- With MathML elements
 
     Represent the mathematical expression with MathML elements.
 
@@ -302,7 +302,7 @@ There are two ways to read a mathematical expression:
 
 
 > [!NOTE]
-> The two features above are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR and zh-CN. 
+> The two features are currently supported in the following locales: de-DE, en-AU, en-GB, en-US, all the sibling locales of English, es-ES, es-MX, all the sibling locales of Spanish, fr-CA, fr-FR, it-IT, ja-JP, ko-KR, pt-BR and zh-CN. 
 
 ### Reading plain text mathematical expressions
 To enable complex mathematical expression reading, you can add `<mstts:prompt domain="Math" />` element to enable math-specific pronunciation rules.
@@ -316,7 +316,7 @@ To enable complex mathematical expression reading, you can add `<mstts:prompt do
 </speak>
 ```
 
-By default, parentheses are not read out in mathematical expressions.
+By default, parentheses aren't read out in mathematical expressions.
 If you'd like the parentheses read out, you can specify `<mstts:mathspeechverbosity level="verbose" />` in SSML
 
 ```xml
@@ -328,7 +328,7 @@ If you'd like the parentheses read out, you can specify `<mstts:mathspeechverbos
 </speak>
 ```
 
-If you'd like the expression read out in other language with a multilingual voice, please specify lang element in SSML.
+If you'd like the expression read out in other language with a multilingual voice, specify lang element in SSML.
 ```xml
 <speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="en-US"> 
    <voice name="en-US-AvaMultilingualNeural"> 
