@@ -219,7 +219,7 @@ Add a new item to the conversation context. This can include messages, function 
 |-------|------|-------------|
 | type | string | Must be `"conversation.item.create"` |
 | previous_item_id | string | Optional. ID of the item after which to insert this item. If not provided, appends to end |
-| item | [RealtimeConversationItem](#realtimeconversationitem) | The item to add to the conversation |
+| item | [RealtimeConversationRequestItem](#realtimeconversationrequestitem) | The item to add to the conversation |
 
 #### Example with Audio Content
 
@@ -748,7 +748,7 @@ Sent when a new item is added to the conversation, either through a client `conv
 |-------|------|-------------|
 | type | string | Must be `"conversation.item.created"` |
 | previous_item_id | string | ID of the item after which this item was inserted |
-| item | [RealtimeConversationItem](#realtimeconversationitem) | The created conversation item |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The created conversation item |
 
 #### Example with Audio Item
 
@@ -780,7 +780,7 @@ Sent in response to a `conversation.item.retrieve` client event, providing the r
 | Field | Type | Description |
 |-------|------|-------------|
 | type | string | Must be `"conversation.item.created"` |
-| item | [RealtimeConversationItem](#realtimeconversationitem) | The created conversation item |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The created conversation item |
 
 ### conversation.item.truncated
 
@@ -942,7 +942,7 @@ Sent when a new output item is added to the response during generation.
 | type | string | Must be `"response.output_item.added"` |
 | response_id | string | ID of the response this item belongs to |
 | output_index | integer | Index of the item in the response's output array |
-| item | [RealtimeConversationItem](#realtimeconversationitem) | The output item that was added |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The output item that was added |
 
 ### response.output_item.done
 
@@ -978,7 +978,7 @@ Sent when an output item is complete.
 | type | string | Must be `"response.output_item.done"` |
 | response_id | string | ID of the response this item belongs to |
 | output_index | integer | Index of the item in the response's output array |
-| item | [RealtimeConversationItem](#realtimeconversationitem) | The completed output item |
+| item | [RealtimeConversationResponseItem](#realtimeconversationresponseitem) | The completed output item |
 
 ### response.content_part.added
 
@@ -1906,44 +1906,6 @@ This event is also returned when a response is interrupted, incomplete, or cance
 | output_index | integer | The index of the output item in the response. |
 | content_index | integer | The index of the content part in the item's content array. |
 | text | string | The final text content. |
-
-### session.created
-
-The server `session.created` event is the first server event when you establish a new connection to the Realtime API. This event creates and returns a new session with the default session configuration.
-
-#### Event structure
-
-```json
-{
-  "type": "session.created"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `session.created`. |
-| session | [RealtimeResponseSession](#realtimeresponsesession) | The session object. |
-
-### session.updated
-
-The server `session.updated` event is returned when a session is updated by the client. If there's an error, the server sends an `error` event instead.
-
-#### Event structure
-
-```json
-{
-  "type": "session.updated"
-}
-```
-
-#### Properties
-
-| Field | Type | Description |
-|-------|------|-------------|
-| type | string | The event type must be `session.updated`. |
-| session | [RealtimeResponseSession](#realtimeresponsesession) | The session object. |
 
 ## Components
 
