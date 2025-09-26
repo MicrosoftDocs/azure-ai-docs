@@ -247,7 +247,7 @@ items:
     - name: How to customize voice live input and output
       href: voice-live-how-to-customize.md
     - name: Voice live API reference
-      href: voicelive-api-reference.md
+      href: voice-live-api-reference.md
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
