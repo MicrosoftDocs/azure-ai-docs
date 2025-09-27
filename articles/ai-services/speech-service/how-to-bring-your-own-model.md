@@ -20,6 +20,8 @@ The Voice live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 > [!IMPORTANT]
 > You can integrate any model that's deployed in the same Azure Foundry resource you're using to call the Voice live API.
 
+> [!TIP]
+> When you use your own model deployment with Voice live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ## Authentication setup
 
