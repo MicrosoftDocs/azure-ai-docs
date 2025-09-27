@@ -201,15 +201,15 @@ A data source is defined as an independent resource so that it can be used by mu
 
 For your setup with [shared private link](search-indexer-howto-access-private.md), setup the managed identities using the following connection string, that varies from the setup using the internet for communication. Note that not only the URL is different, but also `WorkspaceEndpoint` is used, instead of `ResourceId`. Take this into consideration when configuring either the system-managed identity or user-managed identity setups.
 
-    ```json
+   ```json
     "credentials": {  
     "connectionString": "WorkspaceEndpoint=https://{FabricWorkspaceGuid}.z{xy}.blob.fabric.microsoft.com"
     }
-    ```
+   ```
 
 1. Set `"container.name"` to the lakehouse GUID, replacing `{LakehouseGuid}` with the value you copied in the previous step. Use `"query"` to optionally specify a lakehouse subfolder or shortcut.
 
-    ```json
+   ```json
       "container": {  
         "name": "{LakehouseGuid}",  
         "query": "{optionalLakehouseFolderOrShortcut}"  
