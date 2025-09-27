@@ -7,7 +7,7 @@ ms.author: gimondra
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/17/2025
+ms.date: 09/26/2025
 ms.custom:
   - build-2024
   - ignite-2024
@@ -88,7 +88,12 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 
 + This indexer doesn't support SQL queries, but the query used in the data source configuration is exclusively to add optionally the folder or shortcut to access.
 
-+ There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.  
++ There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
+
++ Microsoft Purview Sensitivity Labels applied via Data Map are not currently supported. If sensitivity labels are applied to artifacts in OneLake using [Microsoft Purview Data Map](/purview/data-map-sensitivity-labels-apply), the indexer may fail to execute properly. To bypass this restriction, an exception must be granted by your organization’s IT team responsible for managing Purview sensitivity labels and Data Map configurations.
+  
++ Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
+
 
 ## Prepare data for indexing
 
@@ -162,9 +167,13 @@ The minimum role assignment for your search service identity is Contributor.
 
    :::image type="content" source="media/search-how-to-index-onelake-files/add-user-assigned-managed-identity.png" alt-text="Screenshot showing a Contributor role assignment for a search service user-assigned managed identity in the Azure portal." lightbox="media/search-how-to-index-onelake-files/add-user-assigned-managed-identity.png":::
 
+## Configure a shared private link (required if using Fabric workspace-level private link)
+
+If your Fabric workspace is secured with a [private link](/fabric/security/security-workspace-level-private-links-overview), Azure AI Search won't be able to access your lakehouse data over the public internet, and you won't be able to configure the indexer or its required dependencies, such as the data source. To enable access, you must configure a [shared private link](search-indexer-howto-access-private.md) between Azure AI Search and your Fabric workspace. 
+
 ## Define the data source  
   
-A data source is defined as an independent resource so that it can be used by multiple indexers.
+A data source is defined as an independent resource so that it can be used by multiple indexers. 
 
 1. Use the [Create or update a data source REST API](/rest/api/searchservice/data-sources/create-or-update) to set its definition. These are the most significant steps of the definition.
 
@@ -172,9 +181,9 @@ A data source is defined as an independent resource so that it can be used by mu
 
 1. Get the Microsoft Fabric workspace GUID and the lakehouse GUID:
 
-   + In Power BI, open the lakehouse you'd like to import data from. Notice the lakehouse URL in the browser. It should look similar to this example: "https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111". The URL contains both the workspace GUID and the lakehouse GUID.
+   + In Power BI, open the lakehouse you'd like to import data from. Notice the lakehouse URL in the browser. It should look similar to this example: "https://msit.powerbi.com/groups/00000000-0000-0000-0000-000000000000/lakehouses/11111111-1111-1111-1111-111111111111". The URL contains both the workspace GUID and the lakehouse GUID. If the Fabric workspace is secured with a private link, the URL would start with "https://{FabricWorkspaceGuid}.z{xy}.blob.fabric.microsoft.com".
 
-   + Copy the workspace GUID, which is listed to the right of "groups" in the URL. In this example, it would be 00000000-0000-0000-0000-000000000000. In your REST file, create an environment variable for `{FabricWorkspaceGuid}` and set it to the workspace GUID.
+    + Copy the workspace GUID, which is listed to the right of "groups" in the URL. In this example, it would be 00000000-0000-0000-0000-000000000000. In your REST file, create an environment variable for `{FabricWorkspaceGuid}` and set it to the workspace GUID. If your workspace uses a private link, the workspace GUID will appear in a different location in the URL. Be sure to reference the correct part of the URL based on your setup.
 
      :::image type="content" source="media/search-how-to-index-onelake-files/fabric-guid.png" alt-text="Screenshot of the Fabric workspace GUID in the Azure portal." lightbox="media/search-how-to-index-onelake-files/fabric-guid.png" :::
 
@@ -190,6 +199,14 @@ A data source is defined as an independent resource so that it can be used by mu
     }
     ```
 
+For your setup with [shared private link](search-indexer-howto-access-private.md), setup the managed identities using the following connection string, that varies from the setup using the internet for communication. Note that not only the URL is different, but also `WorkspaceEndpoint` is used, instead of `ResourceId`. Take this into consideration when configuring either the system-managed identity or user-managed identity setups.
+
+    ```json
+    "credentials": {  
+    "connectionString": "WorkspaceEndpoint=https://{FabricWorkspaceGuid}.z{xy}.blob.fabric.microsoft.com"
+    }
+    ```
+
 1. Set `"container.name"` to the lakehouse GUID, replacing `{LakehouseGuid}` with the value you copied in the previous step. Use `"query"` to optionally specify a lakehouse subfolder or shortcut.
 
     ```json
@@ -199,7 +216,7 @@ A data source is defined as an independent resource so that it can be used by mu
       }
     ```
 
-1. Set the authentication method using the user-assigned managed identity, or skip to the next step for system-managed identity.
+1. Set the authentication method using the user-assigned managed identity, or skip to the next step for system-managed identity. 
 
     ```json  
     {    
