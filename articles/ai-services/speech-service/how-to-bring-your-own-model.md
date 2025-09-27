@@ -25,7 +25,7 @@ The Voice live API provides Bring Your Own Model (BYOM) capabilities, allowing y
 
 ## Authentication setup
 
-When using Microsoft Entra ID authentication with Voice live API, you need to configure proper permissions for your Foundry resource. Since tokens may expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM modes.
+When using Microsoft Entra ID authentication with Voice live API, in `byom-azure-openai-chat-completion` mode specifically, you need to configure proper permissions for your Foundry resource. Since tokens may expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM mode.
 
 Run the following Azure CLI commands to configure the necessary permissions:
 
