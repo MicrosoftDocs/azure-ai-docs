@@ -17,6 +17,10 @@ zone_pivot_groups: programming-languages-entity-linking
 
 # Quickstart: Entity Linking using the client library and REST API
 
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. Following this date, support for the Entity Linking service is discontinued. During this support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](../named-entity-recognition/overview.md) or consider other alternative solutions.
+
+
 ::: zone pivot="programming-language-csharp"
 
 [!INCLUDE [C# quickstart](includes/quickstarts/csharp-sdk.md)]

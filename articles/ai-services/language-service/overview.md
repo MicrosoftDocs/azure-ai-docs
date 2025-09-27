@@ -105,6 +105,10 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 
 ### Entity linking
 
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. Following this date, support for the Entity Linking service is discontinued. During this support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](../named-entity-recognition/overview.md) or consider other alternative solutions.
+
+
 :::row:::
    :::column span="":::
       :::image type="content" source="media/studio-examples/entity-linking.png" alt-text="A screenshot of an entity linking example." lightbox="media/studio-examples/entity-linking.png":::
