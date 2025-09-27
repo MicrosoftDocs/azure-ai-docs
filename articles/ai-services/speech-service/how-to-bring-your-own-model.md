@@ -11,10 +11,10 @@ ms.custom: ai-speech, voice-live, byom, preview
 
 # Bring Your Own Model (BYOM) with Voice Live API (Preview)
 
-The Voice live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is particularly useful for the following scenarios:
+The Voice live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
-- **Provisioned throughput**: Leverage your PTU (Provisioned Throughput Units) deployments for consistent performance
+- **Provisioned throughput**: Use your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
 > [!IMPORTANT]
@@ -84,7 +84,7 @@ Use the [Python SDK quickstart code](/azure/ai-services/speech-service/voice-liv
     )
    ```
 
-1. In the `BasicVoiceAssistant` class, add the byom field:
+1. In the `BasicVoiceAssistant` class, add the `byom` field:
 
     ```python
     class BasicVoiceAssistant:
