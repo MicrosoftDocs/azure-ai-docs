@@ -77,7 +77,7 @@ If you get `Error detecting index schema from data source`, the indexer that pow
 
 The next step is to configure AI enrichment to invoke OCR, image analysis, and natural-language processing. 
 
-OCR and image analysis are available for blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2 and for image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+OCR and image analysis are available for blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2 and for image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 To add the skills:
 

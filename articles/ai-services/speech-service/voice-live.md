@@ -67,7 +67,7 @@ The API is supported through WebSocket events, allowing for an easy server-to-se
 
 To power the intelligence of your voice agent, you have flexibility and choice in the generative AI model between GPT-4o, GPT-4o-mini, and Phi. Different generative AI models provide different types of capabilities, levels of intelligence, speed/latency of inferencing, and cost. Depending on what matters most for your business and use case, you can choose the model that best suits your needs.
 
-All natively supported models – GPT-4o, GPT-4o-mini, and Phi – are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughputs. You can use the model you need, and the Voice live API takes care of the rest.
+All natively supported models – GPT-4o, GPT-4o-mini, and Phi – are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughput. You can use the model you need, and the Voice live API takes care of the rest.
 
 The Voice live API supports the following models. For supported regions, see the [Azure AI Speech service regions](./regions.md?tabs=voice-live#regions).
 

@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: reference
-ms.date: 07/11/2024
+ms.date: 09/17/2025
 ---
 
 # Image Analysis cognitive skill
@@ -21,7 +21,7 @@ This skill uses the machine learning models provided by [Azure AI Vision](/azure
 + The file size of the image must be less than 4 megabytes (MB)
 + The dimensions of the image must be greater than 50 x 50 pixels
 
-Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+Supported data sources for OCR and image analysis are blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2, and image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 This skill is implemented using the [AI Image Analysis API](/azure/ai-services/computer-vision/overview-image-analysis) version 3.2. If your solution requires calling a newer version of that service API (such as version 4.0), consider implementing through [Web API custom skill](cognitive-search-custom-skill-web-api.md) or use the [ImageAnalysisV4 power skill](https://github.com/Azure-Samples/azure-search-power-skills/blob/main/Vision/ImageAnalysisV4/README.md).
 
