@@ -93,7 +93,7 @@ az cognitiveservices account deployment create \
 --sku-name "Standard"
 ```
 
-`--sku-name` accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`.  Learn more about [deployment type options](../how-to/deployment-types.md).
+`--sku-name` accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`.  Learn more about [deployment type options](../../foundry-models/concepts/deployment-types.md).
 
 
 > [!IMPORTANT]
