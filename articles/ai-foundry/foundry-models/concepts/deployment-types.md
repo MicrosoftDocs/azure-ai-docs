@@ -49,7 +49,7 @@ For any deployment type labeled as **DataZone**, prompts and responses might be 
 For both **Global** and **DataZone** deployment types, any data stored at rest, such as uploaded data, is stored in the customer-designated geography. Only the location of processing is affected when a customer uses a **Global** or **DataZone** deployment type in an Azure AI Foundry resource; Azure data processing and compliance commitments remain applicable.
 
 > [!NOTE]
-> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic that is initially routed to this region is affected. To learn more, consult the [business continuity and disaster recovery guide](../../open-ai/how-to/business-continuity-disaster-recovery.md).
+> With Global Standard and Data Zone Standard deployment types, if the primary region experiences an interruption in service, all traffic that is initially routed to this region is affected. To learn more, consult the [business continuity and disaster recovery guide](../../openai/how-to/business-continuity-disaster-recovery.md).
 
 ## Global Standard
 
@@ -78,7 +78,7 @@ Global deployments are available in the same Azure AI Foundry resources as non-g
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-[Global Batch](../../open-ai/batch.md) is designed to efficiently handle large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at [50% less cost than Global Standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.  
+[Global Batch](../../openai/batch.md) is designed to efficiently handle large-scale and high-volume processing tasks. You can process asynchronous groups of requests with separate quota and a 24-hour target turnaround, at [50% less cost than Global Standard](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). With batch processing, rather than sending one request at a time, you send a large number of requests in a single file. Global Batch requests have a separate enqueued token quota, which avoids any disruption of your online workloads.  
 
 Key use cases include:
 
@@ -117,7 +117,7 @@ Data Zone Provisioned deployments are available in the same Azure AI Foundry res
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location within the Microsoft-specified data zone. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Data Zone Batch deployments provide all the same functionality as [Global Batch deployments](../../open-ai/batch.md). However, they allow you to use the global infrastructure of Azure to dynamically route traffic to only datacenters within the Microsoft-defined data zone with the best availability for each request.
+Data Zone Batch deployments provide all the same functionality as [Global Batch deployments](../../openai/batch.md). However, they allow you to use the global infrastructure of Azure to dynamically route traffic to only datacenters within the Microsoft-defined data zone with the best availability for each request.
 
 ## Standard
 
@@ -166,13 +166,13 @@ You can use the following policy to disable access to any Azure AI Foundry deplo
 > [!IMPORTANT]
 > Data stored at rest remains in the designated Azure geography. However, data might be processed for inferencing in any Azure AI Foundry location. [Learn more about data residency](https://azure.microsoft.com/explore/global-infrastructure/data-residency/).
 
-Fine-tuned models support a `Developer` deployment designed to support custom model evaluation. It doesn't offer data residency guarantees or an SLA. To learn more about using the `Developer` deployment type, see the [fine-tuning guide](../../open-ai/how-to/fine-tune-test.md).
+Fine-tuned models support a `Developer` deployment designed to support custom model evaluation. It doesn't offer data residency guarantees or an SLA. To learn more about using the `Developer` deployment type, see the [fine-tuning guide](../../openai/how-to/fine-tune-test.md).
 
 ## Deploy models
 
 :::image type="content" source="../media/deployment-types/deploy-models-new.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with a deployment type highlighted.":::
 
-To learn about creating resources and deploying models, refer to the [Resource creation guide](../../open-ai/how-to/create-resource.md).
+To learn about creating resources and deploying models, refer to the [Resource creation guide](../../openai/how-to/create-resource.md).
 
 ## Related content
 
