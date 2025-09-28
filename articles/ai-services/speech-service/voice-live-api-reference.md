@@ -1940,8 +1940,9 @@ Configuration for input audio transcription.
 |-------|------|-------------|
 | model | string | The transcription model. Supported: `whisper-1`, `gpt-4o-transcribe`, `gpt-4o-mini-transcribe`, `azure-speech` |
 | language | string | Optional language code in BCP-47 (e.g., `en-US`), or ISO-639-1 (e.g., `en`), or multi languages with auto detection, (e.g., `en,zh`). |
-| custom_speech | object | Optional configuration for custom speech models |
-| phrase_list | string[] | Optional list of phrase hints to bias recognition |
+| custom_speech | object | Optional configuration for custom speech models, only valid for `azure-speech` model. |
+| phrase_list | string[] | Optional list of phrase hints to bias recognition, only valid for `azure-speech` model. |
+| prompt | string | Optional prompt text to guide transcription, only valid for `whisper-1`, `gpt-4o-transcribe`, and `gpt-4o-mini-transcribe` models. |
 
 #### RealtimeInputAudioNoiseReductionSettings
 
@@ -2080,19 +2081,15 @@ Azure semantic VAD (default variant).
 | languages | string[] | Optional. Supported languages |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
-#### RealtimeEOUDetection
+### RealtimeEOUDetection
 
-End-of-utterance semantic detection configuration.
-
-##### RealtimeAzureSemanticDetection
-
-Azure semantic end-of-utterance detection (default).
+Azure End-of-Utterance (EOU) could indicate when the end-user stopped speaking while allowing for natural pauses. End of utterance detection can significantly reduce premature end-of-turn signals without adding user-perceivable latency.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| model | string | Must be `"semantic_detection_v1"` |
-| threshold | number | Optional. Detection threshold |
-| timeout | number | Optional. Detection timeout |
+| model | string | Could be `semantic_detection_v1` supporting English or `semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi |
+| threshold_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default is `default` |
+| timeout_ms | number | Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
 
 ### Avatar Configuration
 
