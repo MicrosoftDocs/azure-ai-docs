@@ -11,7 +11,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 08/27/2025
+ms.date: 09/27/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -22,7 +22,7 @@ Here are the most recent versions of the REST APIs:
 
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
-| Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
+| Data plane | [`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) | Stable |
 | Data plane | [`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
@@ -90,6 +90,12 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
 
+### Upgrade to 2025-09-01
+
+[`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) is the latest stable REST API version and it adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
+
+There are no breaking changes if you're upgrading from `2024-07-01` and not using any preview features. To use the new stable release, change the API version and test your code.
+
 ### Upgrade to 2025-08-01-preview
 
 [`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview) introduces the following breaking changes to knowledge agents created using `2025-05-01-preview`:
@@ -136,7 +142,7 @@ There are breaking changes if you upgrade directly from `2023-11-01`. Follow the
 
 ### Upgrade to 2024-05-01-preview
 
-[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds OneLake index, support for binary vectors, and support for more embedding models.
+[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds an indexer for Microsoft OneLake, binary vectors, and more embedding models.
 
 If you're upgrading from `2024-03-01-preview`, the AzureOpenAIEmbedding skill now requires a model name and dimensions property.
 
