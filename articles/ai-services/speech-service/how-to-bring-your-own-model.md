@@ -1,6 +1,6 @@
 ---
-title: Bring Your Own Model (BYOM) with Voice live API (Preview)
-description: Learn how to integrate your own models with the Voice live API using Bring Your Own Model (BYOM) capabilities in Azure AI Speech Service.
+title: Bring Your Own Model (BYOM) with Voice Live API (Preview)
+description: Learn how to integrate your own models with the Voice Live API using Bring Your Own Model (BYOM) capabilities in Azure AI Speech Service.
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/26/2025
@@ -11,21 +11,21 @@ ms.custom: ai-speech, voice-live, byom, preview
 
 # Bring Your Own Model (BYOM) with Voice Live API (Preview)
 
-The Voice live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
+The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
 - **Provisioned throughput**: Use your PTU (Provisioned Throughput Units) deployments for consistent performance
 - **Content safety**: Apply customized content safety configurations with your LLM
 
 > [!IMPORTANT]
-> You can integrate any model that's deployed in the same Azure Foundry resource you're using to call the Voice live API.
+> You can integrate any model that's deployed in the same Azure Foundry resource you're using to call the Voice Live API.
 
 > [!TIP]
-> When you use your own model deployment with Voice live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Azure AI Foundry portal](https://ai.azure.com/).
+> When you use your own model deployment with Voice Live, we recommend you set its content filtering configuration to [Asynchronous filtering](/azure/ai-foundry/openai/concepts/content-streaming#asynchronous-filtering) to reduce latency. Content filtering settings can be configured in the [Azure AI Foundry portal](https://ai.azure.com/).
 
 ## Authentication setup
 
-When using Microsoft Entra ID authentication with Voice live API, in `byom-azure-openai-chat-completion` mode specifically, you need to configure proper permissions for your Foundry resource. Since tokens may expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM mode.
+When using Microsoft Entra ID authentication with Voice Live API, in `byom-azure-openai-chat-completion` mode specifically, you need to configure proper permissions for your Foundry resource. Since tokens may expire during long sessions, the system-assigned managed identity of the Foundry resource requires access to model deployments for the `byom-azure-openai-chat-completion` BYOM mode.
 
 Run the following Azure CLI commands to configure the necessary permissions:
 
@@ -47,7 +47,7 @@ az role assignment create --assignee-object-id ${identity_principal_id} --role "
 
 ## Choose BYOM integration mode
 
-The Voice live API supports two BYOM integration modes:
+The Voice Live API supports two BYOM integration modes:
 
 | Mode     | Description           | Example Models |
 | ------- | ------------------ | ------------- |
