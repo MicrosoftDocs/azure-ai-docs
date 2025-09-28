@@ -355,7 +355,7 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../how-to/deployment-types.md).
+All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
 # [Global Standard](#tab/global-standard-aoai)
 
