@@ -60,7 +60,7 @@ Considerations for setting `"stored": false`:
 For new vector fields in a search index, set `"stored": false` to permanently remove retrievable storage for the vector field. The following example shows a vector field definition with the `stored` property.
 
 ```http
-PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=2024-07-01 
+PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=@search.rerankerBoostedScore 
   Content-Type: application/json  
   api-key: [admin key]  
 
