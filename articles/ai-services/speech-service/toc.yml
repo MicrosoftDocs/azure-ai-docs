@@ -248,7 +248,7 @@ items:
       items:
       - name: How to use voice live
         href: voice-live-how-to.md
-      - name: Bring your own model with Voice live
+      - name: Bring your own model with Voice live (preview)
         href: how-to-bring-your-own-model.md
       - name: How to customize voice live input and output
         href: voice-live-how-to-customize.md
