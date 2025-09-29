@@ -33,7 +33,7 @@ A native document refers to the file format used to create the original document
 |File type|File extension|Description|
 |---------|--------------|-----------|
 |Text| `.txt`|An unformatted text document.|
-|Adobe PDF| `.pdf`|A portable document file formatted document.|
+|PDF| `.pdf`|A portable document file formatted document and scanned PDFs.|
 |Microsoft Word| `.docx`|A Microsoft Word document file.|
 
 ## Input guidelines
@@ -42,7 +42,6 @@ A native document refers to the file format used to create the original document
 
 |Type|support and limitations|
 |---|---|
-|**PDFs**| Fully scanned PDFs are supported.|
 |**Text within images**| Digital images with embedded text aren't supported.|
 |**Digital tables**| Tables in scanned documents aren't supported.|
 
