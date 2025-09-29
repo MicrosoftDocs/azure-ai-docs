@@ -276,7 +276,7 @@ You can enable tracing for LangChain that follows OpenTelemetry standards as per
 Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](#instrument-tracing-in-your-code).
 
 > [!NOTE]
-> LangChain and LangGraph "v1" releases are planned for late October. API surface and tracing behavior may evolve as part of this release. Track updates at the LangChain issue: https://github.com/langchain-ai/langchain/issues/32794
+> LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1)
 
 #### Sample: LangChain v1 agent with Azure AI tracing
 
