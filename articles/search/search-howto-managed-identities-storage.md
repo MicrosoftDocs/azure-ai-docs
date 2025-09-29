@@ -74,7 +74,7 @@ For connections made using a system-assigned managed identity, the only change t
 Provide a connection string that contains a `ResourceId`, with no account key or password. The `ResourceId` must include the subscription ID of the storage account, the resource group of the storage account, and the storage account name.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=@search.rerankerBoostedScore
+POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
 
 {
     "name" : "blob-datasource",

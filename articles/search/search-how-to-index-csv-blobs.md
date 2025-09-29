@@ -73,7 +73,7 @@ Putting it all together, here are the complete payload examples.
 Datasource: 
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=@search.rerankerBoostedScore
+POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
 Content-Type: application/json
 api-key: [admin key]
 {
@@ -87,7 +87,7 @@ api-key: [admin key]
 Indexer:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=@search.rerankerBoostedScore
+POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
 Content-Type: application/json
 api-key: [admin key]
 {
