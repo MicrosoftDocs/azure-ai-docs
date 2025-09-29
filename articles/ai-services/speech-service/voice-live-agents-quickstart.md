@@ -30,5 +30,5 @@ recommendations: false
 ## Related content
 
 - Try the [Voice live quickstart](./voice-live-quickstart.md)
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
-- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- See the [Voice live API reference](./voice-live-api-reference.md)

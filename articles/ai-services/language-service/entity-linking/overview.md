@@ -13,6 +13,10 @@ ms.custom: language-service-entity-linking
 
 # What is entity linking in Azure AI Language?
 
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](../named-entity-recognition/overview.md) or consider other alternative solutions.
+
+
 Entity linking is one of the features offered by [Azure AI Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. Entity linking identifies and disambiguates the identity of entities found in text. For example, in the sentence "*We went to Seattle last week.*", the word "*Seattle*" would be identified, with a link to more information on Wikipedia.
 
 This documentation contains the following types of articles:

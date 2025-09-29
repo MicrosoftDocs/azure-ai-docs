@@ -1,15 +1,15 @@
 ﻿---
 title: How to customize voice live input and output
 titleSuffix: Azure AI services
-description: Learn how to use the voice live API with customized models.
+description: Learn how to use the Voice live API with customized models.
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/25/2025
+ms.date: 9/26/2025
 ms.custom: custom speech, custom voice, custom avatar, fine-tuning
-# Customer intent: As a developer, I want to learn how to use custom models with the voice live API for real-time voice agents.
+# Customer intent: As a developer, I want to learn how to use custom models with the Voice live API for real-time voice agents.
 ---
 
 # How to customize voice live input and output
@@ -69,7 +69,7 @@ Example session configuration with custom speech models. In this case, if the de
 ```
 
 > [!NOTE]
-> In order to use a custom speech model with voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> In order to use a custom speech model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the Voice live API.
 > You pay separately for custom speech training and model hosting. 
 
 ## Speech output customization
@@ -105,21 +105,21 @@ You can use a custom voice for audio output. For information about how to create
 ```
 
 > [!NOTE]
-> In order to use a custom voice model with voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> In order to use a custom voice model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the Voice live API.
 > You pay separately for custom voice training and model hosting. 
 
 ### Azure custom avatar
 
 [Text to speech avatar](./text-to-speech-avatar/what-is-text-to-speech-avatar.md) converts text into a digital video of a photorealistic human (either a standard avatar or a [custom text to speech avatar](./text-to-speech-avatar/what-is-custom-text-to-speech-avatar.md)) speaking with a natural-sounding voice.
 
-The configuration for a custom avatar does not differ from the configuration of a standard avatar. Please refer to [How to use the voice live API - Azure text to speech avatar](./voice-live-how-to.md#azure-text-to-speech-avatar) for a detailed example.
+The configuration for a custom avatar does not differ from the configuration of a standard avatar. Please refer to [How to use the Voice live API - Azure text to speech avatar](./voice-live-how-to.md#azure-text-to-speech-avatar) for a detailed example.
 
 > [!NOTE]
-> In order to use a custom voice model with voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the voice live API.
+> In order to use a custom voice model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the Voice live API.
 > You pay separately for custom avatar training and model hosting. 
 
 
 ## Related content
 
 - Try out the [Voice live API quickstart](./voice-live-quickstart.md)
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
