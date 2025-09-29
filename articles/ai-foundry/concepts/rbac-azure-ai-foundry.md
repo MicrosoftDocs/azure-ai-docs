@@ -18,7 +18,7 @@ ai.usage: ai-assisted
 
 # Role-based access control for Azure AI Foundry
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!NOTE]
 > An alternate hub-focused RBAC article is available: [Role-based access control for Azure AI Foundry (Hubs and Projects)](hub-rbac-azure-ai-foundry.md).

@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!NOTE]
 > An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).
