@@ -1,5 +1,5 @@
 ---
-title: Consolidated view for AI services in the Azure Portal
+title: Consolidated View for AI Services in the Azure Portal
 description: Discover how the AI Foundry consolidated view in the Azure portal simplifies AI workload management with cost, usage, and quota insights in one place.
 #customer intent: As an Azure user managing AI workloads, I want to monitor costs and resource usage in a single view so that I can optimize spending and performance.
 author: jonburchel
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.service: azure-ai-foundry
 ---
 
-# Consolidated view for AI services in the Azure Portal
+# Consolidated view for AI services in the Azure portal
 
 The [AI Foundry consolidated view](https://portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/overview) shows key insights about your AI workloads in the Azure portal. Instead of switching between tools, you see in one place how your AI resources perform, what they cost, and whether you’re nearing usage limits.
 
