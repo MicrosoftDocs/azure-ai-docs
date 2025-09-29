@@ -178,7 +178,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store blob content and metadata:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexes?api-version=2025-09-01
     {
         "name" : "my-search-index",
         "fields": [
@@ -214,7 +214,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
     {
       "name" : "my-blob-indexer",
       "dataSourceName" : "my-blob-datasource",
@@ -271,7 +271,7 @@ To illustrate, let's consider an example of two indexers, pulling data from two 
 First indexer definition example:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
 {
   "name" : "my-blob-indexer1",
   "dataSourceName" : "my-blob-datasource1",
@@ -294,7 +294,7 @@ POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
 Second indexer definition that runs in parallel example:
 
 ```http
-POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
 {
   "name" : "my-blob-indexer2",
   "dataSourceName" : "my-blob-datasource2",
@@ -320,7 +320,7 @@ POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -372,7 +372,7 @@ By default, the blob indexer stops as soon as it encounters a blob with an unsup
 There are five indexer properties that control the indexer's response when errors occur. 
 
 ```http
-PUT /indexers/[indexer name]?api-version=2024-07-01
+PUT /indexers/[indexer name]?api-version=2025-09-01
 {
   "parameters" : { 
     "maxFailedItems" : 10, 

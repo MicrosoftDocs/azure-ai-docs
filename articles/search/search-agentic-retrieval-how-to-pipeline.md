@@ -48,6 +48,8 @@ Use one of the following chat completion models with your AI agent:
 + `gpt-4.1-nano`
 + `gpt-4.1-mini`
 + `gpt-5`
++ `gpt-5-nano`
++ `gpt-5-mini`
 
 ### Package version requirements
 

@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 08/27/2025
+ms.date: 09/27/2025
 ms.update-cycle: 180-days
 ---
 
@@ -16,16 +16,6 @@ ms.update-cycle: 180-days
 In a query operation, the relevance of any given result is determined by a ranking algorithm that evaluates the strength of a match based on how closely the query corresponds to an indexed document. When a match is found, an algorithm assigns a score, and results are ranked by that score and the topmost results are returned in the response. 
 
 Ranking occurs whenever the query request includes full text or vector queries. It doesn't occur if the query invokes strict pattern matching, such as a filter-only query or a specialized query form like autocomplete, suggestions, geospatial search, fuzzy search, or regular expression search. A uniform search score of 1.0 indicates the absence of a ranking algorithm.
-
-## Relevance tuning
-
-***Relevance tuning*** is a technique for boosting search scores based on extra criteria such as weighted fields, freshness, or proximity. In Azure AI Search, relevance tuning options vary based on query type:
-
-+ For textual and numeric (nonvector) content in keyword or hybrid search, you can tune relevance through [scoring profiles](#custom-boosting-logic-using-scoring-profiles) or invoking the [semantic ranker](semantic-search-overview.md).
-
-+ For vector content in a hybrid query, you can [weight a vector field](hybrid-search-ranking.md#weighted-scores) to boost the importance of the vector component relative to the text component of the hybrid query.
-
-+ For pure vector queries, you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results. Finally, remember that a hybrid query or a vector query on documents that include nonvector fields are in-scope for relevance tuning, so it's just the vector fields themselves that can't participate in a relevance tuning effort.
 
 ## Levels of ranking
 
@@ -38,6 +28,16 @@ This section describes the levels of scoring operations. For an illustration of 
 | Level&nbsp;1&nbsp;(L1) | Initial search score (`@search.score`). <br>For text queries matching on tokenized strings, results are always initially ranked using the [BM25 ranking algorithm](index-similarity-and-scoring.md). <br>For vector queries, results are ranked using either [Hierarchical Navigable Small World (HNSW) or exhaustive K-nearest neighbor (KNN)](vector-search-ranking.md). Image search or multimodal searches are based on vector queries and scored using the L1 vector ranking algorithms. |
 | Fused&nbsp;L1 | Scoring from multiple queries using the [Reciprocal Ranking Fusion (RRF) algorithm](hybrid-search-ranking.md). RRF is used for hybrid queries that include text and vector components. RRF is also used when multiple vector queries execute in parallel. A search score from RRF is reflected in `@search.score` [over a different range](#types-of-search-scores).|
 | Level&nbsp;2&nbsp;(L2) | [Semantic ranking score (`@search.reRankerScore`)](semantic-search-overview.md) applies machine reading comprehension to the textual content retrieved by L1 ranking, rescoring the L1 results to better match the semantic intent of the query. L2 reranks L1 results because doing so saves time and money; it would be prohibitive to use semantic ranking as an L1 ranking system. Semantic ranking is a premium feature that bills for usage of the semantic ranking models. It's optional for text queries and vector queries that contain text, but required for [agentic retrieval (preview)](search-agentic-retrieval-concept.md). Although agentic retrieval sends multiple queries to the query engine, the ranking algorithm for agentic retrieval is the semantic ranker. |
+
+## Relevance tuning
+
+***Relevance tuning*** is a technique for boosting search scores based on extra criteria such as weighted fields, freshness, or proximity. In Azure AI Search, relevance tuning options vary based on query type:
+
++ For textual and numeric (nonvector) content in keyword or hybrid search, you can tune relevance through [scoring profiles](#custom-boosting-logic-using-scoring-profiles) or invoking the [semantic ranker](semantic-search-overview.md).
+
++ For vector content in a hybrid query, you can [weight a vector field](hybrid-search-ranking.md#weighted-scores) to boost the importance of the vector component relative to the text component of the hybrid query.
+
++ For pure vector queries, you can experiment between Hierarchical Navigable Small World (HNSW) and exhaustive K-nearest neighbors (KNN) to see if one algorithm outperforms the other for your scenario. HNSW graphing with an exhaustive KNN override at query time is the most flexible approach for comparison testing. You can also experiment with various embedding models to see which ones produce higher quality results. Finally, remember that a hybrid query or a vector query on documents that include nonvector fields are in-scope for relevance tuning, so it's just the vector fields themselves that can't participate in a relevance tuning effort.
 
 ## Custom boosting logic using scoring profiles
 
@@ -68,7 +68,7 @@ Scored results are indicated for each match in the query response. This table li
 | `@search.score` | 0.333 - 1.00 | [HNSW or exhaustive KNN algorithm](vector-search-ranking.md#scores-in-a-vector-search-results) for vector search |
 | `@search.score` | 0 through an upper limit determined by the number of queries | [RRF algorithm](hybrid-search-ranking.md#scores-in-a-hybrid-search-results) |
 | `@search.rerankerScore` | 0.00 - 4.00 | [Semantic ranking algorithm](semantic-search-overview.md#how-results-are-scored) for L2 ranking |
-| `@search.rerankerScoreBoosted` | 0 through unlimited  | [Semantic ranking with scoring profile boosting](semantic-how-to-enable-scoring-profiles.md) (scores can be significantly higher than 4) |
+| `@search.rerankerBoostedScore` | 0 through unlimited  | [Semantic ranking with scoring profile boosting](semantic-how-to-enable-scoring-profiles.md) (scores can be significantly higher than 4) |
 
 ## Diagram of ranking algorithms
 
@@ -77,7 +77,7 @@ The following diagram illustrates how the ranking algorithms work together.
 :::image type="content" source="media/scoring-profiles/scoring-over-ranked-results.png" alt-text="Diagram showing which fields have a scoring profile and when ranking occurs.":::
 
 > [!NOTE]
-> This workflow diagram currently omits `@search.rerankerScoreBoosted` and a step for semantic ranking with boosting from a scoring profile. If you use semantic ranking with scoring profile, the scoring profile is applied after L2 ranking, and the final score is based on `@search.rerankerScoreBoosted`.
+> This workflow diagram currently omits `@search.rerankerBoostedScore` and a step for semantic ranking with boosting from a scoring profile. If you use semantic ranking with scoring profile, the scoring profile is applied after L2 ranking, and the final score is based on `@search.rerankerBoostedScore`.
 
 ## Example query inclusive of all ranking algorithms
 

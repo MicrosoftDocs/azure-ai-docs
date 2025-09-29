@@ -1,15 +1,15 @@
 ---
 title: Voice live API language support
 titleSuffix: Azure AI services
-description: Learn about the languages supported by voice live API and how to configure them.
+description: Learn about the languages supported by Voice live API and how to configure them.
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 8/11/2025
+ms.date: 9/26/2025
 ms.custom: languages
-# Customer intent: As a developer, I want to learn about which languages are supported by the voice live API and how to configure them.
+# Customer intent: As a developer, I want to learn about which languages are supported by the Voice live API and how to configure them.
 ---
 
 # Voice live API supported languages (Preview)
@@ -18,11 +18,11 @@ ms.custom: languages
 
 ## Introduction
 
-The voice live API supports multiple languages and configuration options. In this document, you learn which languages the voice live API supports and how to configure them.
+The Voice live API supports multiple languages and configuration options. In this document, you learn which languages the Voice live API supports and how to configure them.
 
 ## [Speech input](#tab/speechinput)
 
-Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, and `phi4-mm-realtime`) or by `azure speech to text` models.
+Depending on which model is being used voice live speech input is processed either by one of the multimodal models (for example, `gpt-realtime`, `gpt-4o-mini-realtime-preview`, and `phi4-mm-realtime`) or by `azure speech to text` models.
 
 ### Azure speech to text supported languages
 
@@ -78,11 +78,11 @@ To configure a single or multiple languages not supported by the multimodal mode
 }
 ```
 
-### gpt-4o-realtime-preview and gpt-4o-mini-realtime-preview supported languages
+### gpt-realtime and gpt-4o-mini-realtime-preview supported languages
 
 While the underlying model was trained on 98 languages, OpenAI only lists the languages that exceeded <50% word error rate (WER) which is an industry standard benchmark for speech to text model accuracy. The model returns results for languages not listed but the quality will be low.
 
-The following languages are supported by `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview`:
+The following languages are supported by `gpt-realtime` and `gpt-4o-mini-realtime-preview`:
 - Afrikaans
 - Arabic
 - Armenian
@@ -175,7 +175,7 @@ Multimodal models don't require a language configuration for the general process
 
 ## [Speech output](#tab/speechoutput)
 
-Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-4o-realtime-preview` and `gpt-4o-mini-realtime-preview` or by `azure text to speech` voices.
+Depending on which model is being used voice live speech output is processed either by one of the multimodal OpenAI voices integrated into `gpt-realtime` and `gpt-4o-mini-realtime-preview` or by `azure text to speech` voices.
 
 ### Azure text to speech supported languages
 
@@ -207,6 +207,6 @@ If *Multilingual Voices* are used, the language output can optionally be control
 
 ## Related content
 
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
-- Try out the [voice live API quickstart](./voice-live-quickstart.md)
-- See the [audio events reference](/azure/ai-services/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- Try out the [Voice live API quickstart](./voice-live-quickstart.md)
+- See the [Voice live API reference](./voice-live-api-reference.md)
