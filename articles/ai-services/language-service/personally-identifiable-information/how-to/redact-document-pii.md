@@ -42,7 +42,7 @@ A native document refers to the file format used to create the original document
 
 |Type|support and limitations|
 |---|---|
-|**PDFs**| Fully scanned PDFs aren't supported.|
+|**PDFs**| Fully scanned PDFs are supported.|
 |**Text within images**| Digital images with embedded text aren't supported.|
 |**Digital tables**| Tables in scanned documents aren't supported.|
 
@@ -50,7 +50,7 @@ A native document refers to the file format used to create the original document
 
 |Attribute|Input limit|
 |---|---|
-|**Total number of documents per request** |**≤ 20**|
+|**Total number of documents per request** |**≤ 40**|
 |**Total content size per request**| **≤ 10 MB**|
 
 ## Include native documents with an HTTP request
