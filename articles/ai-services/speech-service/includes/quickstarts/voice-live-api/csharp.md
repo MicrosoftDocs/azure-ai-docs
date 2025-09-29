@@ -50,7 +50,7 @@ Follow these steps to create a console application and install the Speech SDK.
     ```json
     {
       "VoiceLive": {
-        "ApiKey": "YOUR_VOICE_LIVE_API_KEY",
+        "ApiKey": "YOUR_VOICELIVE_API_KEY",
         "Endpoint": "wss://api.voicelive.com/v1",
         "Model": "gpt-realtime",
         "Voice": "en-US-Ava:DragonHDLatestNeural",
@@ -1792,7 +1792,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
             var apiKeyOption = new Option<string?>(
                 "--api-key",
-                "Azure VoiceLive API key. If not provided, will use AZURE_VOICE_LIVE_API_KEY environment variable.");
+                "Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.");
     
             var endpointOption = new Option<string>(
                 "--endpoint",
@@ -1868,7 +1868,7 @@ Follow these steps to create a console application and install the Speech SDK.
                 .Build();
     
             // Override with command line values if provided
-            apiKey ??= configuration["VoiceLive:ApiKey"] ?? Environment.GetEnvironmentVariable("AZURE_VOICE_LIVE_API_KEY");
+            apiKey ??= configuration["VoiceLive:ApiKey"] ?? Environment.GetEnvironmentVariable("AZURE_VOICELIVE_API_KEY");
             endpoint = configuration["VoiceLive:Endpoint"] ?? endpoint;
             model = configuration["VoiceLive:Model"] ?? model;
             voice = configuration["VoiceLive:Voice"] ?? voice;
@@ -1894,7 +1894,7 @@ Follow these steps to create a console application and install the Speech SDK.
             if (string.IsNullOrEmpty(apiKey) && !useTokenCredential)
             {
                 Console.WriteLine("❌ Error: No authentication provided");
-                Console.WriteLine("Please provide an API key using --api-key or set AZURE_VOICE_LIVE_API_KEY environment variable,");
+                Console.WriteLine("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,");
                 Console.WriteLine("or use --use-token-credential for Azure authentication.");
                 return;
             }

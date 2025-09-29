@@ -586,30 +586,30 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
         parser.add_argument(
             "--api-key",
-            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICE_LIVE_API_KEY environment variable.",
+            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.",
             type=str,
-            default=os.environ.get("AZURE_VOICE_LIVE_API_KEY"),
+            default=os.environ.get("AZURE_VOICELIVE_API_KEY"),
         )
     
         parser.add_argument(
             "--endpoint",
             help="Azure VoiceLive endpoint",
             type=str,
-            default=os.environ.get("AZURE_VOICE_LIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
+            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
         )
     
         parser.add_argument(
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("AZURE_VOICE_LIVE_MODEL", "gpt-realtime"),
+            default=os.environ.get("AZURE_VOICELIVE_MODEL", "gpt-realtime"),
         )
     
         parser.add_argument(
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("AZURE_VOICE_LIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
+            default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
             help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
@@ -618,7 +618,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="System instructions for the AI assistant",
             type=str,
             default=os.environ.get(
-                "AZURE_VOICE_LIVE_INSTRUCTIONS",
+                "AZURE_VOICELIVE_INSTRUCTIONS",
                 "You are a helpful AI assistant. Respond naturally and conversationally. "
                 "Keep your responses concise but engaging.",
             ),
@@ -644,7 +644,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         # Validate credentials
         if not args.api_key and not args.use_token_credential:
             print("❌ Error: No authentication provided")
-            print("Please provide an API key using --api-key or set AZURE_VOICE_LIVE_API_KEY environment variable,")
+            print("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,")
             print("or use --use-token-credential for Azure authentication.")
             sys.exit(1)
     
