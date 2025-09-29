@@ -137,7 +137,7 @@ with tracer.start_as_current_span("example-tracing"):
     run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
-After running your agent, you can begin to [view traces in Azure AI Foundry Portal](#view-traces-in-azure-ai-foundry-portal).
+After running your agent, you can begin to [view traces in Azure AI Foundry Portal](#view-traces-in-azure-the-ai-foundry-portal).
 
 ### Log traces locally
 
