@@ -189,7 +189,7 @@ To trace your custom functions, use the OpenTelemetry SDK to instrument your cod
 3. **Add attributes**: Enrich spans with attributes to provide more context for the trace data.
 4. **Configure an exporter**: Send the trace data to a backend for analysis and visualization.
 
-Here’s an example of tracing a custom function:
+Here's an example of tracing a custom function:
 
 ```python
 from opentelemetry import trace
