@@ -12,7 +12,7 @@ ms.date: 09/29/2025
 
 # Use cases for Voice live
 
-[!INCLUDE [Non-English translation disclaimer](./includes/non-english-translation.md)]
+[!INCLUDE [Non-English translation disclaimer](../../includes/non-english-translation.md)]
 
 ## What is a Transparency Note? 
 
@@ -22,11 +22,11 @@ Microsoft’s Transparency Notes are part of a broader effort at Microsoft to pu
 
 ## The basics of Voice Live API 
 
-# Introduction
+### Introduction
 
 The Voice Live API enables developers to build low-latency speech-to-speech experiences. It supports text and audio modalities for both input and output. The API is composed of multiple AI systems, including language models (both large and small), speech to text models, text to speech models, and more. Developers can build conversational experiences to power scenarios including, but not limited to, customer support, education and learning, automotive assistants, and voice-based public services. The API is fully managed and orchestrated, allowing developers to build their end-user experiences without managing underlying models, compute, and bespoke integration of multiple individual components.  
 
-## Key terms 
+### Key terms 
 
 |Term | Definition |
 |--|--|
@@ -106,8 +106,8 @@ If you choose to bring your own Foundry Agent to Voice Live, learn about the [ev
 
 ## Learn more about responsible AI 
 
-- [Microsoft AI principles](/ai/responsible-ai) 
-- [Microsoft responsible AI resources](/ai/responsible-ai-resources) 
+- [Microsoft AI principles](https://www.microsoft.com/ai/responsible-ai) 
+- [Microsoft responsible AI resources](https://www.microsoft.com/ai/responsible-ai-resources) 
 - [Microsoft Azure Learning courses on responsible AI](/learn/paths/responsible-ai-business-principles/) 
 
 ## Learn more about Voice Live API 
