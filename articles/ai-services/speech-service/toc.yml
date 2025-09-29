@@ -232,7 +232,7 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
-- name: Voice live (preview)
+- name: Voice live
   items:
     - name: Voice live overview
       href: voice-live.md
@@ -468,7 +468,7 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/azure-cognitiveservices-speech/
-      - name: Voice Live SDK (Preview)
+      - name: Voice Live SDK
         items:
           - name: 'C#'
             displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
