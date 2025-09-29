@@ -1,5 +1,5 @@
 ---
-title: Consolidated view in the AI Foundry portal
+title: Consolidated view for AI services in the Azure Portal
 description: Discover how the AI Foundry consolidated view in the Azure portal simplifies AI workload management with cost, usage, and quota insights in one place.
 #customer intent: As an Azure user managing AI workloads, I want to monitor costs and resource usage in a single view so that I can optimize spending and performance.
 author: jonburchel
@@ -10,7 +10,7 @@ ms.topic: concept-article
 ms.service: azure-ai-foundry
 ---
 
-# Consolidated view in the Azure AI Foundry portal
+# Consolidated view for AI services in the Azure Portal
 
 The **AI Foundry consolidated view** shows key insights about your AI workloads in the Azure portal. Instead of switching between tools, you see in one place how your AI resources perform, what they cost, and whether you’re nearing usage limits.
 
@@ -18,10 +18,13 @@ The **AI Foundry consolidated view** shows key insights about your AI workloads 
 
 - **Faster visibility**: Check cost, quota, and resource usage at a glance.
 - **Built-in governance**: Spot early warning signs like quota thresholds and cost spikes before they become blockers.
-- **Seamless integration**: Deep link into familiar Azure blades like **Cost management** and **Quota management** without losing context.
 - **Lightweight experience**: No new resource types or complex setup required. It surfaces what you already use.
 
 ## Key features
+
+- **Alerts and service health**
+
+  View key alerts for your AI resources so you can investigate and fix issues without leaving the dashboard.
 
 - **Accumulated costs**
 
@@ -43,10 +46,6 @@ The **AI Foundry consolidated view** shows key insights about your AI workloads 
 
   Monitor quota usage by model and region. Stay ahead of capacity issues with quick links to **Quota management** for requesting increases.
 
-- **Alerts and service health**
-
-  View key alerts for your AI resources so you can investigate and fix issues without leaving the dashboard.
-
 ## Visual layout of the consolidated view
 
 The dashboard shows tiles for each visibility area:
@@ -54,6 +53,8 @@ The dashboard shows tiles for each visibility area:
 - **Top row**: Alerts, active resources by cost, and accumulated costs
 - **Middle row**: Model utilization over time
 - **Bottom row**: Resource breakdown by type and quota utilization
+
+:::image type="content" source="../media/ai-foundry-consolidated-view/consolidated-view-dashboard.png" alt-text="Screenshot of a dashboard with tiles for alerts, resource costs, model utilization, resource breakdown, and quota utilization." lightbox="../media/ai-foundry-consolidated-view/consolidated-view-dashboard.png":::
 
 ## What you can do next
 
