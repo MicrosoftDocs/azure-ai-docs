@@ -1,5 +1,5 @@
 ﻿---
-title: How to use the Voice live API (Preview)
+title: How to use the Voice live API
 titleSuffix: Azure AI services
 description: Learn how to use the Voice live API for real-time voice agents.
 manager: nitinme
@@ -12,9 +12,7 @@ ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice live API for real-time voice agents.
 ---
 
-# How to use the Voice live API (Preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# How to use the Voice live API 
 
 The Voice live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 

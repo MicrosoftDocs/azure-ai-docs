@@ -12,9 +12,7 @@ ms.custom: languages
 # Customer intent: As a developer, I want to learn about which languages are supported by the Voice live API and how to configure them.
 ---
 
-# Voice live API supported languages (Preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Voice live API supported languages
 
 ## Introduction
 
