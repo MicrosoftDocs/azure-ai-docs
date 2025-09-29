@@ -30,7 +30,7 @@ Like other built-in skills, a custom **AML** skill has inputs and outputs. The i
 > * `503 Service Unavailable`
 > * `429 Too Many Requests`
 
-You can call the **AML** skill with the 2024-07-01 stable API version or an equivalent Azure SDK. For connections to the model catalog in the Azure AI Foundry portal, use the 2024-05-01-preview API version or later.
+You can call the **AML** skill with the stable REST API version or an equivalent Azure SDK. For connections to the model catalog in the Azure AI Foundry portal, use a preview API version.
 
 ## AML skill for models in Azure AI Foundry
 

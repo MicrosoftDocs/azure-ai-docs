@@ -237,7 +237,7 @@ Vector fields are characterized by [their data type](/rest/api/searchservice/sup
    The following example shows the fields collection:
 
     ```http
-    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2024-07-01&allowIndexDowntime=true
+    PUT https://my-search-service.search.windows.net/indexes/my-index?api-version=2025-09-01&allowIndexDowntime=true
     Content-Type: application/json
     api-key: {{admin-api-key}}
     {
