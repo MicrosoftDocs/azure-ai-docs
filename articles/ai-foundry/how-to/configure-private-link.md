@@ -19,8 +19,6 @@ ai-usage: ai-assisted
 
 # How to configure a private link for Azure AI Foundry (Foundry projects)
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
-
 > [!NOTE]
 > An alternate hub-focused version of this article is available: [How to configure a private link for an Azure AI Foundry hub](hub-configure-private-link.md).
 

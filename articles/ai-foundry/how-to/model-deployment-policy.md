@@ -56,7 +56,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry-classic"
 
-     1. Go to [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Foundry Portal
+     1. Go to the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Azure AI Foundry Portal:
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
@@ -66,7 +66,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry"
 
-     1. Go to [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in Foundry Portal
+     1. Go to the[Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) in the Azure AI Foundry Portal:
      1. Select a model (for example, GPT-5).
      1. You find publisher name on the model card as shown in the following screenshot. For example, in this case it's `OpenAI`.
 
@@ -80,7 +80,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry-classic"
 
-     1. Go to the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview).
+     1. Go to the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]
@@ -90,7 +90,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
      ::: moniker range="foundry"
 
-     1. Go to the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview).
+     1. Go to the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models).
      1. For each model you want to allow, select the model to view the details. In the model detail information, copy the **Model ID** value. For example, the value might look like `azureml://registries/azure-openai/models/gpt-35-turbo/versions/3` for GPT-3.5-Turbo model.
 
         > [!IMPORTANT]

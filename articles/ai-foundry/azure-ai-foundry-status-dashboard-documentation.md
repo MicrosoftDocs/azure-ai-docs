@@ -1,6 +1,8 @@
 ---
 title: Azure AI Foundry Status Dashboard (Preview)
 description: Discover the Azure AI Foundry Status Dashboard (Preview) for real-time updates on service health, incident reports.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: nisi
@@ -10,6 +12,8 @@ ms.service: azure-ai-foundry
 ---
 
 # Azure AI Foundry status dashboard
+
+[!INCLUDE [version-banner](includes/version-banner.md)]
 
 The [Azure AI Foundry Status Dashboard](https://status.ai.azure.com/) provides visibility into the
 health and availability of key Foundry services. It's intended to help
