@@ -137,7 +137,7 @@ with tracer.start_as_current_span("example-tracing"):
     run = project_client.agents.runs.create_and_process(thread_id=thread.id, agent_id=agent.id)
 ```
 
-After running your agent, you can begin to [view traces in Azure AI Foundry Portal](#view-traces-in-azure-the-ai-foundry-portal).
+After running your agent, you can begin to [view traces in Azure AI Foundry Portal](#view-traces-in-the-azure-ai-foundry-portal).
 
 ### Log traces locally
 
@@ -263,7 +263,7 @@ Azure AI Foundry makes it easy to log traces with minimal changes by using our t
 Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Azure AI Foundry Observability.
 
 - Learn more about tracing in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability)
-- Learn more about tracing in [Microsoft Agent Framework](/agent-framework/user-guide/workflows/observability)
+- Learn more about tracing in [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability)
 
 ### Enable tracing for Agents built on LangChain & LangGraph
 
