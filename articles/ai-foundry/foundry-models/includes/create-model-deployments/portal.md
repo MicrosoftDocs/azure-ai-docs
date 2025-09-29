@@ -59,9 +59,6 @@ You can manage the existing model deployments in the resource by using the Azure
 
 You can interact with the new model in Azure AI Foundry portal by using the playground:
 
-> [!NOTE]
-> You can use the playground only when working with AI projects in Azure AI Foundry. Create an AI project to get full access to all the capabilities in Azure AI Foundry.
-
 1. From the model's deployment page, select **Open in playground**. This action opens the chat playground with the name of your deployment already selected.
 
    :::image type="content" source="../../media/add-model-deployments/playground-chat-models.png" alt-text="Screenshot showing how to select a model deployment to use in playground." lightbox="../../media/add-model-deployments/playground-chat-models.png":::
