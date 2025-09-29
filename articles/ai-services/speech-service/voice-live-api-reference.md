@@ -635,7 +635,7 @@ Sent when a new session is successfully established. This is the first event rec
   "session": {
     "id": "sess_ABC123DEF456",
     "object": "realtime.session",
-    "model": "gpt-4o-realtime-preview",
+    "model": "gpt-realtime",
     "modalities": ["text", "audio"],
     "instructions": "You are a helpful assistant.",
     "voice": {
