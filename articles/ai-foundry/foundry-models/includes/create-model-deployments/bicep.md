@@ -70,4 +70,18 @@ cd azureai-model-inference-bicep/infra
 
 ## Use the model
 
-You can use the deployed models with the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When you build your request, include the `model` parameter and enter the model deployment name you created.
+Deployed models in can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created. You can programmatically get the URI for the inference endpoint using the following code:
+
+__Inference endpoint__
+
+```azurecli
+az cognitiveservices account show  -n $accountName -g $resourceGroupName | jq '.properties.endpoints["Azure AI Model Inference API"]'
+```
+
+To make requests to the Azure AI Foundry Models endpoint, append the route `models`, for example `https://<resource>.services.ai.azure.com/models`. You can see the API reference for the endpoint at [Azure AI Model Inference API reference page](https://aka.ms/azureai/modelinference).
+
+__Inference keys__
+
+```azurecli
+az cognitiveservices account keys list  -n $accountName -g $resourceGroupName
+```
