@@ -109,7 +109,7 @@ The index schema in this example is organized around hotel content. Sample data 
 
     ```http
     ### Create a new index
-    POST  {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST  {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -402,7 +402,7 @@ In Azure AI Search, the index contains all searchable data and queries run on th
 
     ```http
     ### Upload documents
-    POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-quickstart-vectors/docs/index?api-version=@search.rerankerBoostedScore  HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 
@@ -673,7 +673,7 @@ The vector query string is semantically similar to the search string, but it inc
 
     ```http
     ### Run a single vector query
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
         
@@ -784,7 +784,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 
     ```http
     ### Run a vector query with a filter
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -847,7 +847,7 @@ You can add filters, but the filters are applied to the nonvector content in you
 
     ```http
     ### Run a vector query with a geo filter
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -917,7 +917,7 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
     ```http
     ### Run a hybrid query
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
         
@@ -1033,7 +1033,7 @@ Here's the last query in the collection. This hybrid query adds L2 semantic rank
 
     ```http
     ### Run a hybrid query with semantic reranking
-    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-vector-quickstart/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
 
@@ -1127,7 +1127,7 @@ If you want to keep the search service, but delete the index and documents, you 
 
 ```http
 ### Delete an index
-DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=2024-07-01 HTTP/1.1
+DELETE  {{baseUrl}}/indexes/hotels-vector-quickstart?api-version=@search.rerankerBoostedScore HTTP/1.1
     Content-Type: application/json
     Authorization: Bearer {{token}}
 ```

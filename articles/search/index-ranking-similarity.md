@@ -43,7 +43,7 @@ BM25 ranking provides two parameters for tuning the relevance score calculation.
 1. Use a [Create or Update Index](/rest/api/searchservice/indexes/create) request to set BM25 parameters:
 
     ```http
-    PUT [service-name].search.windows.net/indexes/[index-name]?api-version=2024-07-01&allowIndexDowntime=true
+    PUT [service-name].search.windows.net/indexes/[index-name]?api-version=@search.rerankerBoostedScore&allowIndexDowntime=true
     {
         "similarity": {
             "@odata.type": "#Microsoft.Azure.Search.BM25Similarity",
@@ -84,7 +84,7 @@ The following links describe the Similarity property in the Azure SDKs.
 You can also use the [REST API](/rest/api/searchservice/indexes/create). The following example creates a new index with the "similarity" property set to BM25:
 
 ```http
-PUT [service-name].search.windows.net/indexes/[index name]?api-version=2024-07-01
+PUT [service-name].search.windows.net/indexes/[index name]?api-version=@search.rerankerBoostedScore
 {
     "name": "indexName",
     "fields": [

@@ -67,7 +67,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
 
@@ -101,7 +101,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
     ```http
     ### Load documents
-    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/phone-numbers-index/docs/index?api-version=@search.rerankerBoostedScore  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -155,7 +155,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
     ```http  
     ### Search for a phone number
-    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2024-07-01&search=(425) 555-0100  HTTP/1.1
+    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=@search.rerankerBoostedScore&search=(425) 555-0100  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     ```
@@ -193,7 +193,7 @@ A valid API key establishes trust, on a per-request basis, between the applicati
 
    ```http  
     ### Search for a phone number
-    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=2024-07-01&search=4255550100  HTTP/1.1
+    GET {{baseUrl}}/indexes/phone-numbers-index/docs/search?api-version=@search.rerankerBoostedScore&search=4255550100  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     ```
@@ -255,7 +255,7 @@ Azure AI Search provides an [Analyze API](/rest/api/searchservice/indexes/analyz
 Call the Analyze API using the following request:
 
 ```http
-POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/phone-numbers-index/analyze?api-version=@search.rerankerBoostedScore  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 
@@ -440,7 +440,7 @@ All of the tokens in the output column exist in the index. If your query include
 
    ```http
     ### Delete the index
-    DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=2024-07-01 HTTP/1.1
+    DELETE {{baseUrl}}/indexes/phone-numbers-index?api-version=@search.rerankerBoostedScore HTTP/1.1
         api-key: {{apiKey}}
     ```
 
@@ -448,7 +448,7 @@ All of the tokens in the output column exist in the index. If your query include
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -517,7 +517,7 @@ All of the tokens in the output column exist in the index. If your query include
 After you recreate the index, test the analyzer using the following request:
 
 ```http
-POST {{baseUrl}}/indexes/tutorial-first-analyzer/analyze?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes/tutorial-first-analyzer/analyze?api-version=@search.rerankerBoostedScore  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}} 
 
