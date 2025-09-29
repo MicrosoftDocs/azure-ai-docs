@@ -13,7 +13,7 @@ ms.custom:
   - ignite-2023
   - build-aifnd
   - build-2025
-ai-usage: ai-assisted
+ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
