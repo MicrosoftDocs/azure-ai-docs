@@ -14,6 +14,8 @@ items:
   items:
   - name: Configure customer-managed keys
     href: ../../../concepts/encryption-keys-portal.md
+  - name: Disable shared key access to storage
+    href: ../../../how-to/disable-local-auth.md
 - name: Azure policies
   items:
   - name: Built-in policy for model deployment (Preview)

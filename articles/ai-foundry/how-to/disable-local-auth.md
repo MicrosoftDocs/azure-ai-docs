@@ -2,6 +2,8 @@
 title: Disable Shared Key Access to the Hub Storage Account
 titleSuffix: Azure AI Foundry
 description: Disable shared-key access to the default storage account used by your Azure AI Foundry hub and projects.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.author: jburchel 
 author: jonburchel 
 ms.service: azure-ai-foundry
@@ -15,10 +17,22 @@ ms.reviewer: meerakurup
 
 # Disable shared-key access for your hub's storage account (preview)
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 > [!NOTE]
 > The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
+::: moniker range="foundry-classic"
+
 An [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+An [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+
+::: moniker-end
 
 To reduce the risk of unauthorized access, you can disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in Azure Machine Learning studio or to run a notebook while authenticated with the user's identity. Machine Learning uses a managed identity to access the storage account. An example is when the managed identity runs a training job.
 
