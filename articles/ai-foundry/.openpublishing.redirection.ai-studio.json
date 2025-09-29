@@ -29,7 +29,7 @@
           "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/github/create-model-deployments.md",
           "redirect_url": "/azure/ai-foundry/foundry-models/how-to/create-model-deployments",
           "redirect_document_id": false
-        }
+        },
         {
           "source_path_from_root": "/articles/ai-foundry/concepts/rbac-ai-foundry.md",
           "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
