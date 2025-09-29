@@ -64,7 +64,7 @@ It's particularly effective for embeddings with dimensions greater than 1024. Fo
 
 Rescoring is an optional technique used to offset information loss due to vector quantization. During query execution, it uses oversampling to pick up extra vectors, and supplemental information to rescore initial results found by the query. Supplemental information is either uncompressed original full-precision vectors - or for binary quantization only - you have the option of rescoring using the binary quantized document candidates against the query vector. 
 
-Only HNSW graphs allow rescoring. Exhaustive KNN doesn't support rescoring because by definition, all vectors are scanned at query time, which makes oversampling irrelevant.
+Only HNSW graphs allow rescoring. Exhaustive KNN doesn't support rescoring because by definition, all vectors are scanned at query time, which makes rescoring and oversampling irrelevant.
 
 Rescoring options are specified in the index, but you can invoke rescoring at query time by adding the oversampling query parameter.
 
