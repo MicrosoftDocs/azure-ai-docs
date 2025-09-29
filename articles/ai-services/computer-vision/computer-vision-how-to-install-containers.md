@@ -1,19 +1,19 @@
 ---
-title: Azure AI Vision 3.2 GA Read OCR container
-titleSuffix: Azure AI services
-description: Use the Read 3.2 OCR containers from Azure AI Vision to extract text from images and documents, on-premises.
+title: Azure Vision in Foundry Tools 3.2 GA Read OCR container
+titleSuffix: Azure AI Foundry Tools
+description: Use the Read 3.2 OCR containers from Azure Vision in Foundry Tools to extract text from images and documents, on-premises.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 09/26/2025
 ms.author: pafarley
 keywords: on-premises, OCR, Docker, container
 ---
 
-# Install Azure AI Vision 3.2 GA Read OCR container
+# Install Azure Vision in Foundry Tools 3.2 GA Read OCR container
 
-Containers let you run the Azure AI Vision APIs in your own environment and can help you meet specific security and data governance requirements. In this article you learn how to download, install, and run the Azure AI Vision Read (OCR) container.
+Containers let you run the Azure Vision in Foundry Tools APIs in your own environment and can help you meet specific security and data governance requirements. In this article you learn how to download, install, and run the Azure Vision Read (OCR) container.
 
 The Read container allows you to extract printed and handwritten text from images and documents in JPEG, PNG, BMP, PDF, and TIFF file formats. For more information on the Read service, see the [Read API how-to guide](how-to/call-read-api.md).
 
@@ -314,7 +314,7 @@ For an example use-case, see the <a href="https://aka.ms/ts-read-api-types" targ
 
 If you run the container with an output [mount](./computer-vision-resource-container-config.md#mount-settings) and logging enabled, the container generates log files that are helpful to troubleshoot issues that happen while starting or running the container.
 
-[!INCLUDE [Azure AI services FAQ note](../containers/includes/cognitive-services-faq-note.md)]
+[!INCLUDE [Azure AI Foundry Tools FAQ note](../containers/includes/cognitive-services-faq-note.md)]
 
 [!INCLUDE [Diagnostic container](../containers/includes/diagnostics-container.md)]
 

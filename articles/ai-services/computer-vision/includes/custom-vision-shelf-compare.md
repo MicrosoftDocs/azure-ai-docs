@@ -1,6 +1,6 @@
 ---
 title: "Custom Vision Shelf Analysis comparison table"
-titleSuffix: "Azure AI services"
+titleSuffix: "Azure AI Foundry Tools"
 services: cognitive-services
 author: PatrickFarley
 manager: nitinme

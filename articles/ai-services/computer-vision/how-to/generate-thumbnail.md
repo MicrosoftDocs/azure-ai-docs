@@ -1,6 +1,6 @@
 ---
 title: "Generate a smart-cropped thumbnail - Image Analysis 3.2"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use the Image Analysis 3.2 REST API to generate a thumbnail with smart cropping.
 author: PatrickFarley
 manager: nitinme
