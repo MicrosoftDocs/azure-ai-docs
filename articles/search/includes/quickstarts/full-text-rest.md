@@ -89,7 +89,7 @@ To set up your request file:
     @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
 
     ### List existing indexes by name
-    GET {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    GET {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
         Authorization: Bearer {{token}}
     ```
 
@@ -111,7 +111,7 @@ To create an index:
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -169,7 +169,7 @@ To upload documents to your index:
 
     ```http
     ### Upload documents
-    POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -275,7 +275,7 @@ To run a full-text query against your index:
 
     ```http
     ### Run a query
-    POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       Authorization: Bearer {{token}}
     

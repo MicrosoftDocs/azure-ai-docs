@@ -71,7 +71,7 @@ Switch to the **Indexer Definition (JSON)** tab at the top of the index to view 
 1. Set the schedule property in the body of the request:
 
     ```http
-    PUT /indexers/<indexer-name>?api-version=@search.rerankerBoostedScore
+    PUT /indexers/<indexer-name>?api-version=2025-09-01
     {
         "dataSourceName" : "myazuresqldatasource",
         "targetIndexName" : "my-target-index-name",

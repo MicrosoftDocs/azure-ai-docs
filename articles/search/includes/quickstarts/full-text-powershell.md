@@ -92,7 +92,7 @@ To connect to your search service:
 1. Create a `$url` object that targets the indexes collection on your search service. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = "<YOUR-SEARCH-SERVICE>/indexes?api-version=@search.rerankerBoostedScore&`$select=name"
+    $url = "<YOUR-SEARCH-SERVICE>/indexes?api-version=2025-09-01&`$select=name"
     ```
 
 1. Run `Invoke-RestMethod` to send a GET request to your search service. Include `ConvertTo-Json` to view responses from the service.
@@ -152,7 +152,7 @@ To create an index:
 2. Update the `$url` object to target the new index. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart?api-version=@search.rerankerBoostedScore"
+    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart?api-version=2025-09-01"
     ```
 
 3. Run `Invoke-RestMethod` to create the index on your search service.
@@ -275,7 +275,7 @@ To upload documents to your index:
 2. Update the `$url` object to target the indexing endpoint. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs/index?api-version=@search.rerankerBoostedScore"
+    $url = "<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs/index?api-version=2025-09-01"
     ```
 
 3. Run `Invoke-RestMethod` to send the upload request to your search service.
@@ -301,7 +301,7 @@ To run a full-text query against your index:
 1. Update the `$url` object to specify search parameters. Replace `<YOUR-SEARCH-SERVICE>` with the value you obtained in [Get endpoint](#get-endpoint).
 
     ```powershell
-    $url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=@search.rerankerBoostedScore&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
+    $url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
     ```
 
 2. Run `Invoke-RestMethod` to send the query request to your search service.
@@ -344,20 +344,20 @@ Run the following commands to explore the query syntax. You can perform string s
 # Query example 1
 # Search the index for the terms 'restaurant' and 'wifi'
 # Return only the HotelName, Description, and Tags fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=@search.rerankerBoostedScore&search=restaurant wifi&$count=true&$select=HotelName,Description,Tags'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=restaurant wifi&$count=true&$select=HotelName,Description,Tags'
 
 # Query example 2 
 # Use a filter to find hotels rated 4 or higher
 # Return only the HotelName and Rating fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=@search.rerankerBoostedScore&search=*&$filter=Rating gt 4&$select=HotelName,Rating'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=*&$filter=Rating gt 4&$select=HotelName,Rating'
 
 # Query example 3
 # Take the top two results
 # Return only the HotelName and Category fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=@search.rerankerBoostedScore&search=boutique&$top=2&$select=HotelName,Category'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=boutique&$top=2&$select=HotelName,Category'
 
 # Query example 4
 # Sort by a specific field (Address/City) in ascending order
 # Return only the HotelName, Address/City, Tags, and Rating fields
-$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=@search.rerankerBoostedScore&search=pool&$orderby=Address/City asc&$select=HotelName, Address/City, Tags, Rating'
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=pool&$orderby=Address/City asc&$select=HotelName, Address/City, Tags, Rating'
 ```

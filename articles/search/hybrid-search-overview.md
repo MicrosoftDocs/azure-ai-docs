@@ -34,7 +34,7 @@ Hybrid search is predicated on having a search index that contains fields of var
 A representative hybrid query might be as follows (notice that the vector queries have placeholder values for brevity):
 
 ```http
-POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=@search.rerankerBoostedScore
+POST https://{{searchServiceName}}.search.windows.net/indexes/hotels-vector-quickstart/docs/search?api-version=2025-09-01
   content-type: application/JSON
 {
     "count": true,

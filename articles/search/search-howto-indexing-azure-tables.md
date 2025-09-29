@@ -89,7 +89,7 @@ The data source definition specifies the source data to index, credentials, and 
 1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update) to set its definition:
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=@search.rerankerBoostedScore 
+    POST https://[service name].search.windows.net/datasources?api-version=2025-09-01 
     {
         "name": "my-table-storage-ds",
         "description": null,
@@ -175,7 +175,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store content from entities:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=@search.rerankerBoostedScore 
+    POST https://[service name].search.windows.net/indexes?api-version=2025-09-01 
     {
       "name" : "my-search-index",
       "fields": [
@@ -215,7 +215,7 @@ Once you have an index and data source, you're ready to create the indexer. Inde
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=@search.rerankerBoostedScore
+    POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
     {
         "name" : "my-table-indexer",
         "dataSourceName" : "my-table-storage-ds",
@@ -264,7 +264,7 @@ To monitor the indexer status and execution history, check the indexer execution
 ### [**REST**](#tab/rest-check-indexer)
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=@search.rerankerBoostedScore
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
   Content-Type: application/json  
   api-key: [admin key]
 ```

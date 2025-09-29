@@ -92,7 +92,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -124,7 +124,7 @@ A valid API key establishes trust, on a per request basis, between the applicati
 
     ```http
     ### Create a data source
-    POST {{baseUrl}}/datasources?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       api-key: {{apiKey}}
     
@@ -155,7 +155,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
     ```http
     ### Create a skillset
-    POST {{baseUrl}}/skillsets?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -322,7 +322,7 @@ A skillset defines enrichments (skills) and your knowledge store. [Create Skills
 
     ```http
     ### Create indexer
-    POST {{baseUrl}}/indexers?api-version=@search.rerankerBoostedScore  HTTP/1.1
+    POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         api-key: {{apiKey}}
     
@@ -370,7 +370,7 @@ After you send each request, the search service should respond with a 201 succes
 
 ```http
 ### Get Indexer Status (wait several minutes for the indexer to complete)
-GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=@search.rerankerBoostedScore  HTTP/1.1
+GET {{baseUrl}}/indexers/hotel-reviews-kstore-idxr/status?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
 ```
@@ -379,7 +379,7 @@ After several minutes, you can query the index to inspect the content. Even if y
 
 ```http
 ### Query the index (indexer status must be "success" before querying the index)
-POST {{baseUrl}}/indexes/hotel-reviews-kstore-idxr/docs/search?api-version=@search.rerankerBoostedScore  HTTP/1.1
+POST {{baseUrl}}/indexes/hotel-reviews-kstore-idxr/docs/search?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{apiKey}}
   

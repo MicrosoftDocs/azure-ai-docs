@@ -109,7 +109,7 @@ In the [search index](search-what-is-an-index.md), add fields to accept the cont
 1. [Create or update an index](/rest/api/searchservice/indexes/create-or-update) to define search fields that will store file content and metadata.
 
     ```http
-    POST /indexes?api-version=@search.rerankerBoostedScore
+    POST /indexes?api-version=2025-09-01
     {
       "name" : "my-search-index",
       "fields": [
@@ -150,7 +150,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create-or-update) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST /indexers?api-version=@search.rerankerBoostedScore
+    POST /indexers?api-version=2025-09-01
     {
       "name" : "my-file-indexer",
       "dataSourceName" : "my-file-datasource",
@@ -186,7 +186,7 @@ An indexer runs automatically when it's created. You can prevent this by setting
 To monitor the indexer status and execution history, send a [Get Indexer Status](/rest/api/searchservice/indexers/get-status) request:
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=@search.rerankerBoostedScore
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
   Content-Type: application/json  
   api-key: [admin key]
 ```

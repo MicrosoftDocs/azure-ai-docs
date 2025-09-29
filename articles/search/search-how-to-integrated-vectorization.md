@@ -332,7 +332,7 @@ In this section, you specify the connection information for your Azure AI Search
 
    ```HTTP
    ### List existing indexes by name
-   GET {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
+   GET {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
    ```
@@ -379,7 +379,7 @@ In this section, you connect to a [supported data source](#supported-data-source
 
    ```HTTP
    ### Create a data source
-   POST {{baseUrl}}/datasources?api-version=@search.rerankerBoostedScore  HTTP/1.1
+   POST {{baseUrl}}/datasources?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -454,7 +454,7 @@ For built-in data chunking, Azure AI Search offers the [Text Split skill](cognit
 
    ```HTTP
    ### Create a skillset
-   POST {{baseUrl}}/skillsets?api-version=@search.rerankerBoostedScore  HTTP/1.1
+   POST {{baseUrl}}/skillsets?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -632,7 +632,7 @@ In addition to vector fields, the sample index in the following steps contains n
 
    ```HTTP
    ### Create a vector index
-   POST {{baseUrl}}/indexes?api-version=@search.rerankerBoostedScore  HTTP/1.1
+   POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -810,7 +810,7 @@ In this section, you create an [indexer](search-indexer-overview.md) to drive th
 
    ```HTTP
    ### Create an indexer
-   POST {{baseUrl}}/indexers?api-version=@search.rerankerBoostedScore  HTTP/1.1
+   POST {{baseUrl}}/indexers?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
@@ -847,7 +847,7 @@ In this section, you verify that your content was successfully indexed by [creat
 
    ```HTTP
    ### Run a vector query
-   POST {{baseUrl}}/indexes('my-vector-index')/docs/search.post.search?api-version=@search.rerankerBoostedScore  HTTP/1.1
+   POST {{baseUrl}}/indexes('my-vector-index')/docs/search.post.search?api-version=2025-09-01  HTTP/1.1
      Content-Type: application/json
      Authorization: Bearer {{token}}
 
