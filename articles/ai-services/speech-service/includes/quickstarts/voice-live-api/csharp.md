@@ -52,8 +52,8 @@ Follow these steps to create a console application and install the Speech SDK.
       "VoiceLive": {
         "ApiKey": "YOUR_VOICE_LIVE_API_KEY",
         "Endpoint": "wss://api.voicelive.com/v1",
-        "Model": "gpt-4o",
-        "Voice": "en-US-JennyNeural",
+        "Model": "gpt-realtime",
+        "Voice": "en-US-Ava:DragonHDLatestNeural",
         "Instructions": "You are a professional customer service representative for TechCorp. You have access to customer databases and order systems. Always be polite, helpful, and efficient. When customers ask about orders, accounts, or need to schedule service, use the available tools to provide accurate, real-time information. Keep your responses concise but thorough."
       },
       "Logging": {
@@ -1801,12 +1801,12 @@ Follow these steps to create a console application and install the Speech SDK.
     
             var modelOption = new Option<string>(
                 "--model",
-                () => "gpt-4o",
+                () => "gpt-realtime",
                 "VoiceLive model to use");
     
             var voiceOption = new Option<string>(
                 "--voice",
-                () => "en-US-JennyNeural",
+                () => "en-US-Ava:DragonHDLatestNeural",
                 "Voice to use for the customer service bot");
     
             var instructionsOption = new Option<string>(

@@ -602,14 +602,14 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-realtime"),
+            default=os.environ.get("AZURE_VOICE_LIVE_MODEL", "gpt-realtime"),
         )
     
         parser.add_argument(
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
+            default=os.environ.get("AZURE_VOICE_LIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
             help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
@@ -618,7 +618,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="System instructions for the AI assistant",
             type=str,
             default=os.environ.get(
-                "VOICE_LIVE_INSTRUCTIONS",
+                "AZURE_VOICE_LIVE_INSTRUCTIONS",
                 "You are a helpful AI assistant. Respond naturally and conversationally. "
                 "Keep your responses concise but engaging.",
             ),
