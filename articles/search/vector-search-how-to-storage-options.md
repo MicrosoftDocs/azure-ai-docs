@@ -88,22 +88,17 @@ Original full-precision vectors are used in rescoring operations over compressed
 
 Rescoring requirements by quantization approach:
 
-- Rscoring of scalar quantized vectors requires retention of the original full-precision vectors.
+- Rescoring of scalar quantized vectors requires retention of the original full-precision vectors.
 
-- Rescoring of binary quantized vectors can use original full-precision vectors, or the dot product of the binary embedding, which produces high quality search results, without having to reference full-precision vectors in the index.
+- Rescoring of binary quantized vectors can use either the original full-precision vectors, or the dot product of the binary embedding, which produces high quality search results, without having to reference full-precision vectors in the index.
 
-The `rescoreStorageMethod` property controls whether full-precision vectors are stored. 
-
-Recommendations:
+Rescoring recommendations:
 
 - For scalar quantization, preserve original full-precision vectors in the index because they're required for rescore.
 
-- For binary quantization, preserve original full-precision vectors for the highest quality of rescoring, or discard full-precision vectors if you want to rescore based on the dot product of the binary embeddings.
+- For binary quantization, either preserve original full-precision vectors for the highest quality of rescoring, or discard full-precision vectors if you want to rescore based on the dot product of the binary embeddings.
 
-> [!NOTE]
-> Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options. For example, in the 2024-11-01-preview, if you set discardOriginals to remove full-precision vectors, there was no rescoring for binary quantization because the dot product approach wasn't available. We recommend using the latest APIs for the best mitigation options.
-
-In `vectorSearch.compressions`, the `rescoreStorageMethod` property is set to `preserveOriginals` by default, which retains full-precision vectors for [oversampling and rescoring capabilities](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) to reduce the effect of lossy compression on the HNSW graph. If you don't need rescoring, of if you used binary quantization and the dot product for rescoring, you can reduce vector storage by setting `rescoreStorageMethod` to `discardOriginals`.
+The `rescoreStorageMethod` property controls whether full-precision vectors are stored. In `vectorSearch.compressions`, the `rescoreStorageMethod` property is set to `preserveOriginals` by default, which retains full-precision vectors for [oversampling and rescoring capabilities](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) to reduce the effect of lossy compression on the HNSW graph. If you don't need rescoring, of if you used binary quantization and the dot product for rescoring, you can reduce vector storage by setting `rescoreStorageMethod` to `discardOriginals`.
 
 > [!IMPORTANT]
 > Setting the `rescoreStorageMethod` property is irreversible and can adversely affect search quality, although the degree depends on the compression method and any mitigations you apply.
@@ -177,3 +172,5 @@ To set this property:
         }
     }
     ```
+> [!NOTE]
+> Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options. For example, in the 2024-11-01-preview, if you set `discardOriginals` to remove full-precision vectors, there was no rescoring for binary quantization because the dot product approach wasn't available. We recommend using the latest APIs for the best mitigation options.
