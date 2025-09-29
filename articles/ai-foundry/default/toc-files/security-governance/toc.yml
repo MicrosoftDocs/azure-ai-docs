@@ -3,6 +3,10 @@ items:
   items:
   - name: Role-based access control
     href: ../../../concepts/rbac-azure-ai-foundry.md
+- name: Network security
+  items:
+  - name: Network security perimeter (preview)
+    href: ../../how-to/add-foundry-to-network-security-perimeter.md    
 - name: Data protection & encryption
   items:
   - name: Configure customer-managed keys
