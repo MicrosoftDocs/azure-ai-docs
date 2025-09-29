@@ -5,7 +5,7 @@ monikerRange: 'foundry-classic || foundry'
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: meerakurup
-ms.date: 08/28/2025
+ms.date: 09/29/2025
 ms.topic: concept-article
 ms.service: azure-ai-foundry
 ai-usage: ai-assisted

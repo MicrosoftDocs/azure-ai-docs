@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 09/22/2025
+ms.date: 09/29/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
