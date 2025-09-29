@@ -34,7 +34,7 @@ Voice Live API stores and processes data to provide the service and to monitor f
 >
 > With Voice Live API, your fine-tuned speech models are available exclusively for your use.
 
-The language models provided with Voice Live API are operated by Microsoft as an Azure service. If you choose to bring your own agent created with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) or bring your deployed model in [Azure AI Foundry Models](/azure/ai-foundry/concepts/foundry-models-overview) to Voice Live API, additional information on data, privacy, and security is available at [Data, privacy, and security for Azure AI Foundry Agent Service](https://learn.microsoft.com/azure/ai-foundry/responsible-ai/agents/data-privacy-security) and [Data, privacy, and security for use of models through the model catalog in Azure AI Foundry](/azure/ai-foundry/how-to/concept-data-privacy).
+The language models provided with Voice Live API are operated by Microsoft as an Azure service. If you choose to bring your own agent created with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) or bring your deployed model in [Azure AI Foundry Models](/azure/ai-foundry/concepts/foundry-models-overview) to Voice Live API, additional information on data, privacy, and security is available at [Data, privacy, and security for Azure AI Foundry Agent Service](/azure/ai-foundry/responsible-ai/agents/data-privacy-security) and [Data, privacy, and security for use of models through the model catalog in Azure AI Foundry](/azure/ai-foundry/how-to/concept-data-privacy).
 
 ## What data does Azure AI Voice live API process?
 
@@ -45,7 +45,7 @@ Voice Live API processes the following types of data:
 - **External data**. When you use the tools that support function calling, the service processes the outputs of those tools. 
 
 > [!IMPORTANT]
-> Custom neural voice ("custom voice") and custom avatar are available with [limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access?tabs=cnv). Learn more about data processing, storage and retention for [custom text to speech (custom voice)](https://learn.microsoft.com/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-neural-voice#recorded-acknowledgement-statement-verification) and [custom avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-avatar#video-acknowledgement-statement-verification).  
+> Custom neural voice ("custom voice") and custom avatar are available with [limited access](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access?tabs=cnv). Learn more about data processing, storage and retention for [custom text to speech (custom voice)](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-neural-voice#recorded-acknowledgement-statement-verification) and [custom avatar](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security?tabs=custom-avatar#video-acknowledgement-statement-verification).  
 
 ## How does Azure AI Voice live API process data?
 
