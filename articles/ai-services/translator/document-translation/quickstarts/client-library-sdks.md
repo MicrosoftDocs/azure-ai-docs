@@ -35,7 +35,7 @@ To get started, you need:
 
     * After your resource deploys, select **Go to resource** and retrieve your key and endpoint.
 
-     * You need the key and endpoint from the resource to connect your application to the Azure AI Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
+    * You need the key and endpoint from the resource to connect your application to the Azure AI Translator service. You paste your key and endpoint into the code later in the quickstart. You can find these values on the Azure portal **Keys and Endpoint** page.
 
       :::image type="content" source="../media/document-translation-key-endpoint.png" alt-text="Screenshot to document translation key and endpoint location in the Azure portal.":::
 
