@@ -52,9 +52,9 @@ Use the following tabs to select the method you plan to use to create a [!INCLUD
 
 # [Python SDK](#tab/python)
 
-- [!INCLUDE [azure-subscription](azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to receive the appropriate access control needed to use the project.
-- [Set up your development environment](../develop/install-cli-sdk.md?tabs=python)
+- [Set up your development environment](develop/install-cli-sdk.md?tabs=python)
 - Authenticate with `az login` or `az login --use-device-code` in your environment before running code.
 - Complete these steps to start your Python script:
     1. Install packages: `pip install azure-identity azure-mgmt-cognitiveservices~=13.7.0b1
@@ -103,7 +103,7 @@ To create a Foundry project in [Azure AI Foundry](https://ai.azure.com/?cid=lear
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
-1. [!INCLUDE [create-project-access](includes/create-project-access.md)]
+1. [!INCLUDE [create-project-access](../includes/create-project-access.md)]
 
 1. Select **Azure AI Foundry resource**, then select **Next**.
 1. Provide a name for your project and select **Create**.  Or see next section for advanced options.
@@ -193,7 +193,7 @@ az cognitiveservices account connection show --name {my_project_name} --resource
 
 ## Delete projects
 
-1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your [!INCLUDE [fdp-project-name](fdp-project-name.md)]. 
+1. In [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), open your project. 
 1. Select **Management center**.
 1. Select **Overview** under the **Resource** section.
 1. Select any projects you no longer want to keep.
