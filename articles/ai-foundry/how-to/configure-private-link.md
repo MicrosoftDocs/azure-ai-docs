@@ -11,12 +11,15 @@ ms.date: 09/12/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
+monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 
 ---
 
 # How to configure a private link for Azure AI Foundry (Foundry projects)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 > [!NOTE]
 > An alternate hub-focused version of this article is available: [How to configure a private link for an Azure AI Foundry hub](hub-configure-private-link.md).

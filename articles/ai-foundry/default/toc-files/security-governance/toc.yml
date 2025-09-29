@@ -5,8 +5,11 @@ items:
     href: ../../../concepts/rbac-azure-ai-foundry.md
 - name: Network security
   items:
+  - name: Configure private link
+    displayName: custom dns
+    href: ../../../how-to/configure-private-link.md
   - name: Network security perimeter (preview)
-    href: ../../how-to/add-foundry-to-network-security-perimeter.md    
+    href: ../../../how-to/add-foundry-to-network-security-perimeter.md    
 - name: Data protection & encryption
   items:
   - name: Configure customer-managed keys
