@@ -13,9 +13,7 @@ ms.custom: build-2025
 recommendations: false
 ---
 
-# Quickstart: Create a voice live real-time voice agent (Preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Quickstart: Create a voice live real-time voice agent
 
 ::: zone pivot="ai-foundry-portal"
 [!INCLUDE [Foundry portal include](./includes/quickstarts/voice-live-api/ai-foundry.md)]
@@ -23,6 +21,10 @@ recommendations: false
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-api/python.md)]
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-api/csharp.md)]
 ::: zone-end
 
 ## Related content
