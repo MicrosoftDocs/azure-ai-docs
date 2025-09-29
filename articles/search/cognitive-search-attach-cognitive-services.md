@@ -235,7 +235,7 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 1. Remove the key in the body of the definition, and then send the request:
 
     ```http
-    PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-07-01
+    PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=@search.rerankerBoostedScore
     api-key: [admin key]
     Content-Type: application/json
     {

@@ -105,7 +105,7 @@ The following example shows a hybrid query request using the REST API.
 This example is from the [vector quickstart](https://raw.githubusercontent.com/Azure-Samples/azure-search-rest-samples/refs/heads/main/Quickstart-vectors/az-search-quickstart-vectors.rest) that has vector and nonvector content, and several query examples. For brevity, the vector is truncated in this article. 
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=@search.rerankerBoostedScore
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -240,7 +240,7 @@ This section has multiple query examples that illustrate hybrid query patterns.
 This example adds a filter, which is applied to the `filterable` nonvector fields of the search index.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=@search.rerankerBoostedScore
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -324,7 +324,7 @@ Assuming that you [have semantic ranker](semantic-how-to-enable-disable.md) and 
 Whenever you use semantic ranking with vectors, make sure `k` is set to 50. Semantic ranker uses up to 50 matches as input. Specifying less than 50 deprives the semantic ranking models of necessary inputs.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=@search.rerankerBoostedScore
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
@@ -365,7 +365,7 @@ api-key: {{admin-api-key}}
 Here's the last query in the collection. It's the same semantic hybrid query as the previous example, but with a filter.
 
 ```http
-POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=2024-07-01
+POST https://{{search-service-name}}.search.windows.net/indexes/{{index-name}}/docs/search?api-version=@search.rerankerBoostedScore
 Content-Type: application/json
 api-key: {{admin-api-key}}
 {
