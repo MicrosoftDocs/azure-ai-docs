@@ -29,6 +29,6 @@ reviewer: santiagxf
 [!INCLUDE [bicep](../../foundry-models/includes/create-model-deployments/bicep.md)]
 ::: zone-end
 
-## Next steps
+## Next step
 
 * [Develop applications using Azure AI Foundry Models](../../model-inference/supported-languages.md)

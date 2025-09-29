@@ -4,7 +4,7 @@ author: santiagxf
 ms.author: fasantia 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
-ms.date: 1/21/2025
+ms.date: 09/29/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
 ---
@@ -17,11 +17,11 @@ zone_pivot_groups: azure-ai-models-deployment
 
   * Your Azure subscription ID.
 
-  * Your Azure AI Foundry (formerly known Azure AI Services) resource name.
+  * Your Azure AI Foundry resource (formerly known as Azure AI Services resource) name.
 
   * The resource group where the Azure AI Foundry resource is deployed.
 
-  * The model name, provider, version, and SKU you would like to deploy. You can use the Azure AI Foundry portal or the Azure CLI to identify it. In this example we deploy the following model:
+  * The model name, provider, version, and SKU you want to deploy. You can use the Azure AI Foundry portal or the Azure CLI to find this information. In this example, you deploy the following model:
 
     * **Model name:**: `Phi-3.5-vision-instruct`
     * **Provider**: `Microsoft`
@@ -52,7 +52,7 @@ cd azureai-model-inference-bicep/infra
 
     :::code language="bicep" source="~/azureai-model-inference-bicep/infra/modules/ai-services-deployment-template.bicep":::
 
-2. Run the deployment:
+1. Run the deployment:
 
     ```azurecli
     RESOURCE_GROUP="<resource-group-name>"
@@ -70,4 +70,4 @@ cd azureai-model-inference-bicep/infra
 
 ## Use the model
 
-Deployed models can be consumed using the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When constructing your request, indicate the parameter `model` and insert the model deployment name you have created.
+You can use the deployed models with the [Azure AI model's inference endpoint](../../concepts/endpoints.md) for the resource. When you build your request, include the `model` parameter and enter the model deployment name you created.
