@@ -1,13 +1,13 @@
 ---
 title: OCR - Optical Character Recognition
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how the optical character recognition (OCR) services extract print and handwritten text from images and documents in global languages.
 author: PatrickFarley
 manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: overview
-ms.date: 10/16/2024
+ms.date: 09/26/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
 ---
@@ -80,7 +80,7 @@ The **Read** API takes images and documents as input. The images and documents m
 
 ## OCR data privacy and security
 
-As with all of the Azure AI services, developers using the Azure AI Vision service should be aware of Microsoft's policies on customer data. See the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
+As with all of the Azure AI Foundry Tools, developers using the Azure AI Vision service should be aware of Microsoft's policies on customer data. See the [Azure AI services page](https://www.microsoft.com/trustcenter/cloudservices/cognitiveservices) on the Microsoft Trust Center to learn more.
 
 ## Next steps
 
