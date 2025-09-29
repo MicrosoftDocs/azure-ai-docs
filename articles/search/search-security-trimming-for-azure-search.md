@@ -77,7 +77,7 @@ In the search index, within the fields collection, you need one field that conta
    The following index schema satisfies the field requirements. Documents that you index on Azure AI Search should have values for all of these fields, including the "group_ids". For the document with `file_name` "secured_file_b", only users that belong to group IDs "group_id1" or "group_id2" have read access to the file.
 
    ```https
-   POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2024-07-01
+   POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=@search.rerankerBoostedScore
    {
         "name": "securedfiles",  
         "fields": [
@@ -101,7 +101,7 @@ In Azure AI Search, the approaches for loading data are:
 The following example shows a single HTTP POST request to the docs collection of your index's URL endpoint (see [Documents - Index](/rest/api/searchservice/documents/)). The body of the HTTP request is a JSON rendering of the documents to be indexed:
 
 ```http
-POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=2024-07-01
+POST https://[search service].search.windows.net/indexes/securedfiles/docs/index?api-version=@search.rerankerBoostedScore
 {
     "value": [
         {
@@ -155,7 +155,7 @@ This sample shows how to set up query using a POST request.
 Issue the HTTP POST request, specifying the filter in the request body:
 
 ```http
-POST https://[service name].search.windows.net/indexes/securedfiles/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/securedfiles/docs/search?api-version=@search.rerankerBoostedScore
 
 {
    "filter":"group_ids/any(g:search.in(g, 'group_id1, group_id2'))"  
