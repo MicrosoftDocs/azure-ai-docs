@@ -1,1 +1,9 @@
 items:
+- name: Identity & access management
+  items:
+  - name: Role-based access control
+    href: ../../concepts/rbac-azure-ai-foundry.md
+- name: Data protection & encryption
+  items:
+  - name: Configure customer-managed keys
+    href: ../../concepts/encryption-keys-portal.md
