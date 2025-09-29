@@ -188,7 +188,7 @@ You can also [export your cost data](/azure/cost-management-billing/costs/tutori
 
 Enabling capabilities such as sending data to Azure Monitor Logs and alerting incurs extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Azure AI services resource.
 
-## Next steps
+## Related content
 
 - Learn [how to optimize your cloud investment with cost management](/azure/cost-management-billing/costs/cost-mgt-best-practices?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 - Learn more about managing costs with [cost analysis](/azure/cost-management-billing/costs/quick-acm-cost-analysis?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
