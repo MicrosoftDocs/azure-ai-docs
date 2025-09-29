@@ -237,19 +237,13 @@ For example, to use a new Azure Blob Storage account, add the AI Foundry account
 If you're an owner of an Azure AI Foundry account resource, add or remove roles.
 
 ::: moniker range="foundry-classic"
+In the Azure Foundry AI portal, you can manage permissions by:
 
 1. On the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select your Azure AI Foundry resource.
 1. Select **Users** to add or remove users for the resource.
-
 ::: moniker-end
 
-::: moniker range="foundry"
-
-1. Insert NextGen content
-
-::: moniker-end
-
-Also manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or by using Azure CLI.
+You can manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or by using Azure CLI.
 
 For example, the following command assigns the Azure AI User role to `joe@contoso.com` for the resource group `this-rg` in the subscription with ID `00000000-0000-0000-0000-000000000000`:
 

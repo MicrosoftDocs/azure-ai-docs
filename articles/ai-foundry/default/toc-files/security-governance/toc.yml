@@ -21,5 +21,4 @@ items:
   - name: Built-in policy for model deployment (Preview)
     href: ../../../how-to/model-deployment-policy.md  
 - name: Disaster recovery
-  href: ../../how-to/disaster-recovery.md
-  
+  href: ../../../how-to/disaster-recovery.md

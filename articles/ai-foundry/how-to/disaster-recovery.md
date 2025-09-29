@@ -140,14 +140,7 @@ If you connect data to customize your AI application, you can use those datasets
 
 In the Azure AI Foundry portal, create a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you can point to the same storage account because connections work across regions.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
- 
+::: moniker-end 
 
 ## Initiate a failover
 
