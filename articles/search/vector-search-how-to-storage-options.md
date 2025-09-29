@@ -32,10 +32,10 @@ Removing storage is irreversible and requires reindexing if you want it back.
 | Instance | Usage | Required for search | How removed |
 |----------|-------|---------------------|-------------|
 | Source vectors received during document indexing (JSON data) | Used for incremental data refresh with `merge` or `mergeOrUpload` indexing actions. Also used to return "retrievable" vectors in the query response. | No | Set `stored` property to false. |
+| Original full-precision vectors (binary data) <sup>1</sup> | For compressed vectors, it's used for `preserveOriginals` rescoring on an oversampled candidate set of results from ANN search. This applies to vector fields that undergo [scalar or binary quantization](vector-search-how-to-quantization.md), and it applies to queries using the HNSW graph. If you're using eKNN, all vectors are in scope for the query, so rescoring has no effect and thus not supported. | No | Set `rescoringOptions.rescoreStorageMethod` property to `discardOriginals` in `vectorSearch.compressions`. |
 | Vectors in the [HNSW graph for Approximate Nearest Neighbors (ANN) search](vector-search-overview.md) (HNSW graph) or vectors for exhaustive K-Nearest Neighbors (eKNN index) | Used for query execution. Consists of either full-precision vectors (when no compression is applied) or quantized vectors. | Essential | There are no parameters for removing this instance. |
-| Original full-precision vectors (binary data) <sup>1</sup> | For compressed vectors, it's used for `preserveOriginals` rescoring on an oversampled candidate set of results from ANN search. This applies to vector fields that undergo [scalar or binary quantization](vector-search-how-to-quantization.md), and it applies to queries using the HNSW graph. If you're using eKNN, all vectors are in scope so rescoring is ineffective and thus not supported. | No | Set `rescoringOptions.rescoreStorageMethod` property to `discardOriginals` in `vectorSearch.compressions`. |
 
-<sup>1</sup> This copy is also for internal index operations and for exhaustive KNN search in older API versions, on indexes created using the 2023 APIs. On newer indexes, 
+<sup>1</sup> This copy is also for internal index operations and for exhaustive KNN search in older API versions, on indexes created using the 2023 APIs. On newer indexes, an eKNN-configured field consists of full-precision vectors so no extra copy is needed.
 
 <!-- 
 Depending on when your index was created, for every vector field, there can be up to three copies of the vectors, each serving a different purpose.
@@ -105,32 +105,40 @@ PUT https://[service-name].search.windows.net/indexes/demo-index?api-version=202
 
 - Defaults are `"stored": true` and `"retrievable": false`. In a default configuration, a retrievable copy is stored but isn't automatically returned in results. When `stored` is `true`, you can toggle `retrievable` between `true` and `false` at any time without having to rebuild an index. When `stored` is `false`, `retrievable` must be `false` and can't be changed.
 
-## Remove full-precision vectors (binary data)
+## Remove full-precision vectors
+
+Original full-precision vectors are used in rescoring operations over compressed (quantized) vectors. The intent of rescoring is to mitigate the loss in information due to compression. The effect of rescoring is retrieval of a larger set of candidate documents from the compressed index, with recomputation of similarity scores using the original vectors or the dot product. For rescoring to work, original vectors must be retained in storage for certain scenarios. As a result, while quantization reduces memory usage (vector index size usage), it slightly increases storage requirements since both compressed and original vectors are stored. The extra storage is approximately equal to the size of the compressed index.
+
+Rescoring of scalar quantized vectors requires retention of the original full-precision vectors.
+
+Rescoring of binary quantized vectors can use original full-precision vectors, or the dot product of the binary embedding, which produces high quality search results, without having to reference full-precision vectors in the index.
 
 <!-- If you choose [vector compression](vector-search-how-to-configure-compression-storage.md), AI Search compresses (quantizes) the in-memory portion of the vector index. Since memory is often a primary constraint for vector indexes, this practice allows you to store more vectors within the same search service. However, lossy compression equates to less information in the index, which can affect search quality.
 
 To mitigate the loss in information, you can [enable "rescoring" and "oversampling" options](vector-search-how-to-quantization.md#supported-rescoring-techniques) to help maintain quality. The effect is retrieval of a larger set of candidate documents from the compressed index, with recomputation of similarity scores using the original vectors or the dot product. For rescoring to work, original vectors must be retained in storage for certain scenarios. As a result, while quantization reduces memory usage (vector index size usage), it slightly increases storage requirements since both compressed and original vectors are stored. The extra storage is approximately equal to the size of the compressed index. -->
 
-When you compress vectors using either scalar or binary quantization, query execution is over the quantized vectors. In this case, you only need the original full-precision vectors (binary data) if you want to rescore. For rescoring, ehe effect is retrieval of a larger set of candidate documents from the compressed index, with recomputation of similarity scores using the original vectors or the dot product. For rescoring to work, original vectors must be retained in storage for certain scenarios. As a result, while quantization reduces memory usage (vector index size usage), it slightly increases storage requirements since both compressed and original vectors are stored. The extra storage is approximately equal to the size of the compressed index.
+<!-- When you compress vectors using either scalar or binary quantization, query execution is over the quantized vectors. In this case, you only need the original full-precision vectors (binary data) if you want to rescore. For rescoring, ehe effect is retrieval of a larger set of candidate documents from the compressed index, with recomputation of similarity scores using the original vectors or the dot product. For rescoring to work, original vectors must be retained in storage for certain scenarios. As a result, while quantization reduces memory usage (vector index size usage), it slightly increases storage requirements since both compressed and original vectors are stored. The extra storage is approximately equal to the size of the compressed index.
 
-If you use newer APIs *and* binary quantization, you can safely discard full-precision vectors because rescoring strategies now use the dot product of a binary embedding, which produces high quality search results, without having to reference full-precision vectors in the index.
+If you use newer APIs *and* binary quantization, you can safely discard full-precision vectors because rescoring strategies now use the dot product of a binary embedding, which produces high quality search results, without having to reference full-precision vectors in the index. -->
 
 The `rescoreStorageMethod` property controls whether full-precision vectors are stored. The guidance for whether to retain full-precision vectors is:
 
 - For scalar quantization, preserve original full-precision vectors in the index because they're required for rescore.
-- For binary quantization, preserve original full-precision vectors for the highest quality of rescoring, or discard full-precision vectors (requires 2025-03-01-preview) if you want to rescore based on the dot product of the binary embeddings.
 
-Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options.
+- For binary quantization, preserve original full-precision vectors for the highest quality of rescoring, or discard full-precision vectors if you want to rescore based on the dot product of the binary embeddings.
 
-| API version | Applies to | Remove full-precision vectors |
+> [!NOTE]
+> Vector storage strategies have been evolving over the last several releases. Index creation date and API version determine your storage options. For example, in the 2024-11-01-preview, if you set discardOriginals to remove full-precision vectors, there was no rescoring for binary quantization because the dot product approach wasn't available. We recommend using the latest APIs for the best mitigation options.
+
+<!-- | API version | Applies to | Remove full-precision vectors |
 |--|--|--|
 | 2024-07-01 and earlier | Not applicable. | There's no mechanism for removing full-precision vectors. |
 | 2024-11-01-preview | Binary embeddings | Use `rescoreStorageMethod.discardOriginals` to remove full-precision vectors, but doing so prevents rescoring. `enableRescoring` must be false if originals are gone.|
 | 2025-03-01-preview | Binary embeddings | Use `rescoreStorageMethod.discardOriginals` to remove full-precision vectors in the index while still retaining rescore options. In this preview, rescoring is possible because the technique changed. The dot product of the binary embeddings is used on the rescore, producing high quality search results equivalent to or better than earlier techniques based on full-precision vectors. |
 
-Notice that scalar isn't listed in the table. If you use scalar quantization, you must retain original full-precision vectors if you want to rescore.
+Notice that scalar isn't listed in the table. If you use scalar quantization, you must retain original full-precision vectors if you want to rescore. -->
 
-In `vectorSearch.compressions`, the `rescoreStorageMethod` property is set to `preserveOriginals` by default, which retains full-precision vectors for [oversampling and rescoring capabilities](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) to reduce the effect of lossy compression on the HNSW graph. If you don't need full-precision vectors, you can reduce vector storage by setting `rescoreStorageMethod` to `discardOriginals`.
+In `vectorSearch.compressions`, the `rescoreStorageMethod` property is set to `preserveOriginals` by default, which retains full-precision vectors for [oversampling and rescoring capabilities](vector-search-how-to-quantization.md#add-compressions-to-a-search-index) to reduce the effect of lossy compression on the HNSW graph. If you don't need rescoring, of if you used binary quantization and the dot product for rescoring, you can reduce vector storage by setting `rescoreStorageMethod` to `discardOriginals`.
 
 > [!IMPORTANT]
 > Setting the `rescoreStorageMethod` property is irreversible and can adversely affect search quality, although the degree depends on the compression method and any mitigations you apply.
