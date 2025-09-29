@@ -12,15 +12,28 @@ ms.date: 09/25/2025
 ms.reviewer: deeikele
 ms.author: jburchel 
 author: jonburchel 
+monikerRange: 'foundry-classic || foundry'
 ai.usage: ai-assisted
 ---
 
 # Role-based access control for Azure AI Foundry
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 > [!NOTE]
 > An alternate hub-focused RBAC article is available: [Role-based access control for Azure AI Foundry (Hubs and Projects)](hub-rbac-azure-ai-foundry.md).
 
+::: moniker range="foundry-classic"
+
 In this article, you learn how to manage access to your [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resources. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources, like creating new resources or using existing ones. In Microsoft Entra ID, assign users roles that grant access to resources. Azure provides built-in roles and lets you create custom roles.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+In this article, you learn how to manage access to your [Azure AI Foundry](https://aka.ms/nextgen-canary) resources. Use Azure role-based access control (Azure RBAC) to manage access to Azure resources, like creating new resources or using existing ones. In Microsoft Entra ID, assign users roles that grant access to resources. Azure provides built-in roles and lets you create custom roles.
+
+::: moniker-end
 
 If the built-in Azure AI Developer role doesn't meet your needs, you can create a [custom role](#create-custom-roles-for-projects).
 
@@ -38,7 +51,7 @@ The Azure AI Foundry resource has built-in roles that are available by default f
 |--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Azure AI User**            | Grants reader access to AI projects, reader access to AI accounts, and data actions for an AI project. If you can assign roles, this role is assigned to you automatically. Otherwise, your subscription Owner or a user with role assignment permissions grants it. |
 | **Azure AI Project Manager** | Lets you perform management actions on Azure AI Foundry projects, build and develop with projects, and conditionally assign the Azure AI User role to other user principals.          |
-| **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts, and lets you conditionally assign the Azure AI User role to other user principals.      
+| **Azure AI Account Owner**   | Grants full access to manage AI projects and accounts, and lets you conditionally assign the Azure AI User role to other user principals.      |
 
 >[!NOTE]
 >To view and purge deleted AI Foundry accounts, you must have Contributor role assigned at the subscription scope.
@@ -221,8 +234,22 @@ For example, to use a new Azure Blob Storage account, add the AI Foundry account
 
 ## Manage access with roles for projects
 
-If you're an owner of an Azure AI Foundry account resource, add or remove roles. 1. On the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select your Azure AI Foundry resource.
-1. Select **Users** to add or remove users for the resource. Also manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or by using Azure CLI.
+If you're an owner of an Azure AI Foundry account resource, add or remove roles.
+
+::: moniker range="foundry-classic"
+
+1. On the **Home** page in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select your Azure AI Foundry resource.
+1. Select **Users** to add or remove users for the resource.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
+
+Also manage permissions in the [Azure portal](https://portal.azure.com) under **Access Control (IAM)** or by using Azure CLI.
 
 For example, the following command assigns the Azure AI User role to `joe@contoso.com` for the resource group `this-rg` in the subscription with ID `00000000-0000-0000-0000-000000000000`:
 
@@ -274,5 +301,15 @@ To learn more about Entra ID groups, prerequisites, and limitations, refer to:
 
 ## Related content
 
+::: moniker range="foundry-classic"
+
 - [Create a project](../how-to/create-projects.md).
 - [Add a connection in Azure AI Foundry portal](../how-to/connections-add.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+[Create a project](../how-to/create-projects.md).
+
+::: moniker-end
