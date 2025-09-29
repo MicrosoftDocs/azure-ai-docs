@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 08/01/2025
+ms.date: 09/25/2025
 ms.update-cycle: 365-days
 ---
 
@@ -22,6 +22,8 @@ The Management REST API is available in stable and preview versions. Be sure to 
 > * [Create or update a service](#create-or-update-a-service)
 > * [Upgrade a service](#upgrade-a-service)
 > * [Change pricing tiers](#change-pricing-tiers)
+> * [Configure role-based access control for data plane](#configure-role-based-access-for-data-plane)
+> * [Configure confidential computing](#configure-confidential-computing)
 > * [Enable Azure role-based access control for data plane](#enable-rbac)
 > * [Enforce a customer-managed key policy](#enforce-cmk)
 > * [Disable semantic ranker](#disable-semantic-ranker)
@@ -235,6 +237,32 @@ PATCH https://management.azure.com/subscriptions/{{subscription-id}}/resourcegro
                     "aadAuthFailureMode": "http401WithBearerChallenge"
                 }
             }
+        }
+    }
+```
+
+## Configure confidential computing
+
+[Confidential computing](search-security-overview.md#data-in-use) is an optional compute type for data-in-use protection. When configured, your search service is deployed on confidential VMs (DCasv5 or DCesv5) instead of standard VMs. This compute type also incurs a 10% surcharge for billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/).
+
+For daily usage, confidential computing isn't necessary. We only recommend this compute type for stringent regulatory, compliance, or security requirements. For more information, see [Confidential computing use cases](/azure/confidential-computing/use-cases-scenarios).
+
+The compute type is fixed for the lifetime of your search service. To permanently configure confidential computing, set the `computeType` property to `confidential` on a new service.
+
+```http
+### Configure confidential computing
+@resource-group = PUT-YOUR-RESOURCE-GROUP-NAME-HERE
+@search-service = PUT-YOUR-SEARCH-SERVICE-NAME-HERE
+PUT https://management.azure.com/subscriptions/{{subscription-id}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service}}?api-version=2025-05-01  HTTP/1.1
+    Content-type: application/json
+    Authorization: Bearer {{token}}
+    {
+        "location": "{{region}}",
+        "sku": {
+            "name": "basic"
+        },
+        "properties": {
+            "computeType": "confidential"
         }
     }
 ```
