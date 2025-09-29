@@ -2,7 +2,7 @@
 title: Trace and Observe AI Agents in Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Trace and Observe AI Agents in Azure AI Foundry using OpenTelemetry. Learn to see execution traces, debug performance, and monitor AI agent behavior step-by-step.
-author: lgayhardt, ychen
+author: yanchen-ms
 ms.author: lagayhar
 ms.reviewer: ychen
 ms.date: 09/29/2025
@@ -19,10 +19,10 @@ ms.custom: references_regions
 In this article, you learn how to:
 
 - Trace key concepts
-- Trace and observe AI agents in Azure AI Foundry
+- Trace and observe AI agents in AI Foundry
 - Interpret spans (steps, tool calls, nested operations).
 - View agent threads in the Agents playground.
-- View traces in the Azure AI Foundry portal and Azure Monitor
+- View traces in the AI Foundry portal and Azure Monitor
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
@@ -41,7 +41,7 @@ Here's a brief overview of key concepts before getting started:
 |---------------------|-----------------------------------------------------------------|
 | Traces              | Traces capture the journey of a request or workflow through your application by recording events and state changes (function calls, values, system events). See [OpenTelemetry Traces](https://opentelemetry.io/docs/concepts/signals/traces/). |
 | Spans               | Spans are the building blocks of traces, representing single operations within a trace. Each span captures start and end times, attributes, and can be nested to show hierarchical relationships, allowing you to see the full call stack and sequence of operations.                                                                                         |
-| Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data, making it more informative and useful for analysis.                                                                                                 |
+| Attributes          | Attributes are key-value pairs attached to traces and spans, providing contextual metadata such as function parameters, return values, or custom annotations. These enrich trace data making it more informative and useful for analysis.                                                                                                 |
 | Semantic conventions| OpenTelemetry defines semantic conventions to standardize names and formats for trace data attributes, making it easier to interpret and analyze across tools and platforms. To learn more, see [OpenTelemetry's Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/gen-ai/).                  |
 | Trace exporters     | Trace exporters send trace data to backend systems for storage and analysis. Azure AI supports exporting traces to Azure Monitor and other OpenTelemetry-compatible platforms, enabling integration with various observability tools.   |
 
@@ -58,23 +58,19 @@ These advancements have been integrated into Azure AI Foundry, Microsoft Agent F
 
 | New Span/Trace/Attributes             | Name            | Purpose |
 |---------------------|-----------------------------------------------------------------|-----------------------------------------------------------------|
-|New span|execute_task|Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed.|
-|New child spans under "invoke_agent"|agent_to_agent_interaction|Traces communication between agents|
-|New child spans under "invoke_agent"|agent.state.management|Effective context, short or long term memory management|
-|New child spans under "invoke_agent"|agent_planning|Logs the agent's internal planning steps|
-|New child spans under "invoke_agent"|agent orchestration|Capture agent-to-agent orchestration|
-|New attributes in invoke_agent span|tool_definitions|Describes the tool's purpose or configuration|
-|New attributes in invoke_agent span|llm_spans|Records model call spans|
-|New attributes in "execute_tool" span|tool.call.arguments|Logs the arguments passed during tool invocation|
-|New attributes in "execute_tool" span|tool.call.results|Records the results returned by the tool|        
-|New event|Evaluation - attributes (name, error.type, label)|Enables structured evaluation of agent performance and decision-making|            
-        
-More details can be found in the following pull requests merged into OpenTelemetry:
-*    Add tool definition plus tool-related attributes in invoke-agent, inference, and execute-tool spans 
-*    Capture evaluation results for GenAI applications
+|New span|execute_task              |Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed.|
+|New child spans under "invoke_agent"              |agent_to_agent_interaction|Traces communication between agents|
+|New child spans under "invoke_agent"              |agent.state.management|Effective context, short or long term memory management|
+|New child spans under "invoke_agent"              |agent_planning|Logs the agent's internal planning steps|
+|New child spans under "invoke_agent"              |agent orchestration|Capture agent-to-agent orchestration|
+|New attributes in invoke_agent span              |tool_definitions|Describes the tool's purpose or configuration|
+|New attributes in invoke_agent span              |llm_spans|Records model call spans|
+|New attributes in "execute_tool" span              |tool.call.arguments|Logs the arguments passed during tool invocation|
+|New attributes in "execute_tool" span              |tool.call.results|Records the results returned by the tool|        
+|New event|Evaluation - attributes (name, error.type, label)              |Enables structured evaluation of agent performance and decision-making|            
                                                                           
 
-## Set up tracing in Azure AI Foundry SDK
+## Setup tracing in Azure AI Foundry SDK
 
 For chat completions or building agents with Azure AI Foundry, install:
 
@@ -96,13 +92,13 @@ To view traces in Azure AI Foundry, you need to connect an Application Insights 
 
 ## Instrument tracing in your code
 
-To trace the content of chat messages, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable to true (case insensitive). Keep in mind that this might contain personal data. To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/python/api/overview/azure/core-tracing-opentelemetry-readme).
+To trace the content of chat messages, set the `AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED` environment variable to true (case insensitive). Keep in mind this might contain personal data. To learn more, see [Azure Core Tracing OpenTelemetry client library for Python](/python/api/overview/azure/core-tracing-opentelemetry-readme).
 
 ```python
 import os
 os.environ["AZURE_TRACING_GEN_AI_CONTENT_RECORDING_ENABLED"] = "true" # False by default
 ```
-Let's begin instrumenting our agent with OpenTelemetry tracing, by starting off with authenticating and connecting to your Azure AI Project using the `AIProjectClient`.
+Let's begin instrumenting our agent with OpenTelemetry tracing by starting with authenticating and connecting to your Azure AI Project using the `AIProjectClient`.
 
 ```python
 from azure.ai.projects import AIProjectClient
@@ -145,7 +141,7 @@ After running your agent, you can begin to [view traces in Azure AI Foundry Port
 
 ### Log traces locally
 
-To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another OpenTelemetry-compatible backend, install the OpenTelemetry Protocol (OTLP) exporter. This enables you to print traces to the console or use a local viewer such as Aspire Dashboard.
+To connect to [Aspire Dashboard](https://aspiredashboard.com/#start) or another OpenTelemetry compatible backend, install the OpenTelemetry Protocol (OTLP) exporter. This enables you to print traces to the console or use a local viewer such as Aspire Dashboard.
 
 ```bash
 pip install azure-core-tracing-opentelemetry opentelemetry-exporter-otlp opentelemetry-sdk
@@ -194,7 +190,7 @@ with tracer.start_as_current_span("example-tracing"):
 
 ### Alternative: AI Toolkit for VS Code
 
-AI Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it great for development and debugging. 
+AI Toolkit gives you a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it ideal for development and debugging. 
 
 The toolkit supports AI frameworks like Azure AI Foundry Agents Service, OpenAI, Anthropic, and LangChain through OpenTelemetry. You can see traces instantly in VS Code without needing cloud access.
 
@@ -250,7 +246,7 @@ The user feedback event body has the following structure:
 
 To identify your service via a unique ID in Application Insights, you can use the service name OpenTelemetry property in your trace data. This is useful if you're logging data from multiple applications to the same Application Insights resource, and you want to differentiate between them.
 
-For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application` when monitoring your application in Azure AI Foundry Portal.
+For example, let's say you have two applications: **App-1** and **App-2**, with tracing configured to log data to the same Application Insights resource. Perhaps you'd like to set up **App-1** to be evaluated continuously by **Relevance** and **App-2** to be evaluated continuously by **Relevance**. You can use the service name to filter by `Application` when monitoring your application in AI Foundry Portal.
 
 To set up the service name property, you can do so directly in your application code by following the steps, see [Using multiple tracer providers with different Resource](https://opentelemetry.io/docs/languages/python/cookbook/#using-multiple-tracer-providers-with-different-resource). Alternatively, you can set the environment variable `OTEL_SERVICE_NAME` before deploying your app. To learn more about working with the service name, see [OTEL Environment Variables](https://opentelemetry.io/docs/specs/otel/configuration/sdk-environment-variables/#general-sdk-configuration) and [Service Resource Semantic Conventions](https://opentelemetry.io/docs/specs/semconv/resource/#service).
 
@@ -261,10 +257,13 @@ To query trace data for a given service name, query for the `cloud_roleName` pro
 ```
 
 ## Integrations
-Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph and OpenAI Agent SDK.
+Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
-### Agents built on Microsoft Agent Framework and Semantic Kernel
-Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing and evaluations support in Foundry Observability. 
+### Tracing agents built on Microsoft Agent Framework and Semantic Kernel
+Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Azure AI Foundry Observability.
+
+- Learn more about tracing in [Semantic Kernel](semantic-kernel/concepts/enterprise-readiness/observability)
+- Learn more about tracing in [Microsoft Agent Framework](/agent-framework/user-guide/workflows/observability)
 
 ### Enable tracing for Agents built on LangChain & LangGraph
 
@@ -301,7 +300,7 @@ pip install \
 - `AZURE_OPENAI_ENDPOINT`: Your Azure OpenAI endpoint URL.
 - `AZURE_OPENAI_CHAT_DEPLOYMENT`: The chat model deployment name.
 - `AZURE_OPENAI_VERSION`: API version, for example `2024-08-01-preview`.
-- Azure credentials are resolved via `DefaultAzureCredential` (supports env vars, managed identity, VS Code sign-in, etc.).
+- Azure credentials are resolved via `DefaultAzureCredential` (supports environment variables, managed identity, VS Code sign-in, etc.).
 
 You can store these in a `.env` file for local development.
 
@@ -641,7 +640,7 @@ Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure Lan
 
 ### Enable tracing for Agents built on OpenAI Agents SDK
 
-Use this snippet to configure OpenTelemetry tracing for the OpenAI Agents SDK and instrument the framework. It exports to Azure Monitor if `APPLICATION_INSIGHTS_CONNECTION_STRING` is set; otherwise it falls back to console.
+Use this snippet to configure OpenTelemetry tracing for the OpenAI Agents SDK and instrument the framework. It exports to Azure Monitor if `APPLICATION_INSIGHTS_CONNECTION_STRING` is set; otherwise, it falls back to the console.
 
 ```python
 import os
@@ -698,7 +697,7 @@ After selecting **Thread logs**, review:
 - Thread details
 - Run information
 - Ordered run steps and tool calls
-- Inputs / outputs between user and agent
+- Inputs and outputs between user and agent
 - Linked evaluation metrics (if enabled)
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
@@ -722,7 +721,7 @@ By selecting a trace, you can step through each span and identify issues while o
 
 If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
 
-For more information on how to send Azure AI Inference traces to Azure Monitor and create an Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
+For more information on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
 
 ## Related content
 
