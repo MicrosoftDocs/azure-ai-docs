@@ -47,6 +47,7 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
 ```json
 {
   "name": "earth_at_night",
+  "description": "Contains images an descriptions of our planet in darkness as captured from space by Earth-observing satellites and astronauts on the International Space Station over the past 25 years.",
   "fields": [
     {
       "name": "id", "type": "Edm.String",
@@ -165,6 +166,15 @@ All `searchable` fields are included in query execution. There's no support for 
 > + Vector fields that are queried are fields having a vectorizer
 > + Fields selected in the response string are semantic fields (title, terms, content)
 > + Fields in reference source data are all `retrievable` fields, assuming reference source data is true -->
+
+## Add a description
+
+An index `description` field is a user-defined string that you can use to provide guidance to LLMs and Model Context Protocol (MCP) servers when deciding to use a specific index for a query. This human-readable text is invaluable when a system must access several indexes and make a decision based on the description. 
+
+An index description is a schema update, and you can add it without having to rebuild the entire index.
+
++ String length is 4,000 characters maximum.
++ Content must be human-readable, in Unicode. Your use case should determine which language to use (for example, English or another language).
 
 ## Add a semantic configuration
 

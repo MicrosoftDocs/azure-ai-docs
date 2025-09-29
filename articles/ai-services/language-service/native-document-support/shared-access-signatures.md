@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 03/05/2025
+ms.date: 09/27/2025
 ---
 
 # SAS tokens for your storage containers
@@ -125,7 +125,7 @@ Here's a sample REST API request:
 
 That's it! You learned how to create SAS tokens to authorize how clients access your data.
 
-## Next steps
+## Next step
 
 > [!div class="nextstepaction"]
 > [Learn more about native document support](overview.md "Learn how to process and analyze native documents.") [Learn more about granting access with SAS ](/azure/storage/common/storage-sas-overview "Grant limited access to Azure Storage resources using shared access SAS.")
