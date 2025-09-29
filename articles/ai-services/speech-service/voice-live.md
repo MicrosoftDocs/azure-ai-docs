@@ -12,9 +12,7 @@ ms.custom: references_regions
 # Customer intent: As a developer, I want to learn about the Voice live API for real-time voice agents.
 ---
 
-# Voice live API for real-time voice agents (Preview)
-
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+# Voice live API for real-time voice agents
 
 ## What is the Voice live API?
 
