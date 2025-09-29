@@ -62,7 +62,7 @@ To make the resources work correctly in a web app, set up the correct permission
 
 First, identify the resources you need to set up in the Azure AI Foundry portal.
 
-1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), then select the project you used to deploy the Azure OpenAI chat model.
+1. Open the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), then select the hub-baased project you used to deploy the Azure OpenAI chat model.
 1. Select **Management center** from the left pane.
 1. Select **Connected resources** under your project.
 1. Identify the three resources you need to configure:  the **Azure OpenAI**, the **Azure AI Search**, and the **Azure Blob storage** that corresponds to your **workspaceblobstore**.
@@ -71,6 +71,8 @@ First, identify the resources you need to set up in the Azure AI Foundry portal.
 
     > [!TIP]
     > If you have multiple **Azure OpenAI** resources, use the one that contains your deployed chat model.
+    > If you don't see **Type** in the table, select **Columns** in the upper right corner and add to or reorder the **Selected columns**.
+
 
 1. Search for each of these names in the [Azure portal](https://portal.azure.com). Open each one in a new browser tab so that you can switch between them.
 1. When you're done, you have three new browser tabs open: **Search service**, **Azure AI Foundry**, and **blobstore Container**. Keep all three tabs open because you switch between them to set up the resources.
