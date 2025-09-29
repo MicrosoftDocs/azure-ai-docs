@@ -159,7 +159,7 @@ The data source definition specifies the data to index, credentials, and policie
 1. [Create Data Source](/rest/api/searchservice/data-sources/create) or [Create or Update Data Source](/rest/api/searchservice/data-sources/create-or-update) to set its definition: 
 
    ```http
-    POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+    POST https://myservice.search.windows.net/datasources?api-version=@search.rerankerBoostedScore
     Content-Type: application/json
     api-key: admin-key
 
@@ -201,7 +201,7 @@ In a [search index](search-what-is-an-index.md), add fields that correspond to t
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that store data:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexes?api-version=@search.rerankerBoostedScore
     Content-Type: application/json
     api-key: [Search service admin key]
     {
@@ -254,7 +254,7 @@ Once the index and data source have been created, you're ready to create the ind
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexers?api-version=@search.rerankerBoostedScore
     Content-Type: application/json
     api-key: [search service admin key]
     {
@@ -310,7 +310,7 @@ To monitor the indexer status and execution history, check the indexer execution
 ### [**REST**](#tab/rest-check-indexer)
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=@search.rerankerBoostedScore
   Content-Type: application/json  
   api-key: [admin key]
 ```
@@ -384,7 +384,7 @@ Database requirements:
 Change detection policies are added to data source definitions. To use this policy, edit the data source definition in the Azure portal, or use REST to update your data source like this:
 
 ```http
-POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+POST https://myservice.search.windows.net/datasources?api-version=@search.rerankerBoostedScore
 Content-Type: application/json
 api-key: admin-key
     {
@@ -422,7 +422,7 @@ The high water mark column must meet the following requirements:
 Change detection policies are added to data source definitions. To use this policy, create or update your data source like this:
 
 ```http
-POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+POST https://myservice.search.windows.net/datasources?api-version=@search.rerankerBoostedScore
 Content-Type: application/json
 api-key: admin-key
     {
