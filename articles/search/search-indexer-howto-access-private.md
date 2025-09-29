@@ -7,7 +7,7 @@ author: mrcarter8
 ms.author: mcarter
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 07/31/2025
+ms.date: 09/26/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
@@ -134,7 +134,7 @@ You can create a shared private link for the following resources.
 
 <sup>8</sup> Shared private links are now supported (as of November 2024) for connections to Azure AI services multi-service accounts. Azure AI Search connects to Azure AI services multi-service for [billing purposes](cognitive-search-attach-cognitive-services.md). These connections can now be private through a shared private link. Shared private link is only supported when configuring [a managed identity (keyless configuration)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) in the skillset definition. 
 
-<sup>9</sup> Shared private link is supported for connections to OneLake workspace. To create a `privateLinkServicesForFabric` resource specific to a workspace, [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) `Microsoft.Fabric` namespace to your subscription and refer to step 2 as documented in [Create the private link service in Azure](/fabric/security/security-workspace-level-private-links-set-up#step-2-create-the-private-link-service-in-azure).
+<sup>9</sup> Shared private link is supported for connections to OneLake workspace. To create a `privateLinkServicesForFabric` resource specific to a workspace, [register](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) `Microsoft.Fabric` namespace to your subscription and refer to step 2 as documented in [Create the private link service in Azure](/fabric/security/security-workspace-level-private-links-set-up#step-2-create-the-private-link-service-in-azure). Note that when using a shared private link, the OneLake data source configuration must be defined with a specific connection string as outlined in the [OneLake indexer documentation](search-how-to-index-onelake-files.md#define-the-data-source).
 
 ## 1 - Create a shared private link
 
@@ -313,7 +313,7 @@ Approval of the private endpoint connection is granted on the Azure PaaS side. E
 + On Azure Storage, use [Private Endpoint Connections - Put](/rest/api/storagerp/private-endpoint-connections/put)
 + On Azure Cosmos DB, use [Private Endpoint Connections - Create Or Update](/rest/api/cosmos-db-resource-provider/private-endpoint-connections/create-or-update)
 + On Azure OpenAI, use [Private Endpoint Connections - Create Or Update](/rest/api/aiservices/accountmanagement/private-endpoint-connections/create-or-update?view=rest-aiservices-accountmanagement-2023-05-01&preserve-view=true)
-+ On Onelake, use [Private Endpoints - Approve via CLI](/cli/azure/network/private-endpoint-connection?view=azure-cli-latest#az-network-private-endpoint-connection-approve) or [Private Endpoints - Approve via Portal](/azure/private-link/manage-private-endpoint?tabs=manage-private-link-powershell#manage-private-endpoint-connections-on-azure-paas-resources)
++ On Microsoft Onelake, use [Private Endpoints - Approve via CLI](/cli/azure/network/private-endpoint-connection#az-network-private-endpoint-connection-approve) or [Private Endpoints - Approve via Portal](/azure/private-link/manage-private-endpoint#manage-private-endpoint-connections-on-azure-paas-resources)
 
 Using the Azure portal, perform the following steps:
 

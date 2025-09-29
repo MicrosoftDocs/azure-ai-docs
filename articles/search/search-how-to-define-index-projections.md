@@ -295,7 +295,7 @@ If you add new content to your data source, new chunks or child documents are ad
 
 If you modify existing content in the data source, chunks are updated incrementally in the search index if the data source you're using supports change tracking and deletion detection. For example, if a word or sentence changes in a document, the chunk in the target index that contains that word or sentence is updated on the next indexer run. Other types of updates, such as changing a field type and some attributions, aren't supported for existing fields. For more information about allowed updates, see [Update an index schema](search-howto-reindex.md#update-an-index-schema).
 
-Some data sources like [Azure Storage](search-howto-index-changed-deleted-blobs.md) support change and deletion tracking by default, based on the timestamp. Other data sources such as [OneLake](search-how-to-index-onelake-files.md), [Azure SQL](search-how-to-index-sql-database.md), or [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be configured for change tracking.
+Some data sources like [Azure Storage](search-howto-index-changed-deleted-blobs.md) support change and deletion tracking by default, based on the timestamp. Other data sources such as [Microsoft OneLake](search-how-to-index-onelake-files.md), [Azure SQL](search-how-to-index-sql-database.md), or [Azure Cosmos DB](search-howto-index-cosmosdb.md) must be configured for change tracking.
 
 ### Deleted content
 
