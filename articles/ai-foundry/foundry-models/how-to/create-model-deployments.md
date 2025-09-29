@@ -1,11 +1,11 @@
 ---
 title: Add and configure models to Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Learn how to add and configure new models to the Azure AI Foundry's inference endpoint.
+description: Learn how to add and configure AI models to Azure AI Foundry Models inference endpoint for deployment and inference in your applications.
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/29/2025
 ms.custom: ignite-2024, github-universe-2024
 author: msakande   
 ms.author: mopeakande
@@ -13,6 +13,9 @@ recommendations: false
 zone_pivot_groups: azure-ai-models-deployment
 ms.reviewer: fasantia
 reviewer: santiagxf
+ai.usage: ai-assisted
+
+#CustomerIntent: As a developer or AI practitioner, I want to deploy and configure AI models to Azure AI Foundry Models endpoint so that I can integrate these models into my applications and generate predictions through inference requests.
 ---
 
 # Add and configure models to Azure AI Foundry Models
