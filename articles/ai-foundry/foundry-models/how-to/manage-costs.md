@@ -1,6 +1,6 @@
 ---
 title: Plan to manage costs for Azure AI Foundry Models
-description: Learn how to plan for and manage costs for Azure AI Foundry Models by using cost analysis in the Azure portal.
+description: Learn how to plan for and manage costs for Azure AI Foundry Models using cost analysis, budgets, and monitoring in the Azure portal.
 author: msakande   
 ms.author: mopeakande
 ms.custom: subject-cost-optimization
@@ -10,6 +10,7 @@ ms.topic: how-to
 ms.date: 09/29/2025
 ms.reviewer: aashishb
 reviewer: aashishb
+#CustomerIntent: As a developer or IT administrator using Azure AI Foundry Models, I want to understand how billing works and learn to monitor and manage costs effectively so that I can optimize my spending, avoid unexpected charges, and maintain budget control for my AI workloads.
 ---
 
 # Plan to manage costs for Azure AI Foundry Models
@@ -173,7 +174,7 @@ If you try to add a filter by service, you can't find Azure OpenAI in the list. 
 
 ## Create budgets
 
-Create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to manage costs and create [alerts](/azure/cost-management-billing/csots/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. You create budgets and alerts for Azure subscriptions and resource groups. They're useful as part of an overall cost monitoring strategy.
+Create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) to manage costs and create [alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn) that notify stakeholders of spending anomalies and overspending risks. Alerts are based on spending compared to budget and cost thresholds. You create budgets and alerts for Azure subscriptions and resource groups. They're useful as part of an overall cost monitoring strategy.
 
 Create budgets with filters for specific resources or services in Azure if you want more granularity in your monitoring. Filters help ensure that you don't accidentally create new resources that cost you more money. For more information about the filter options available when you create a budget, see [Group and filter options](/azure/cost-management-billing/costs/group-filter?WT.mc_id=costmanagementcontent_docsacmhorizontal_-inproduct-learn).
 
