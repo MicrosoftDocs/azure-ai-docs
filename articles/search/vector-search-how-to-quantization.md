@@ -83,7 +83,7 @@ The generalized process for rescoring is:
 1. Oversampled k candidates are rescored using either the uncompressed original vectors for scalar quantization, or the dot product of binary quantization.
 1. After rescoring, results are adjusted so that more relevant matches appear first.
 
-Oversampling for scalar quantized vectors requires the availability of the original full precision vectors. Oversampling for binary quantized vectors can use either full precision vectors (`preserveOriginals`) or the dot product of the binary vector (`discardOriginals`). If you're optimizing vector storage, make sure to keep the full precision vectors in the index for rescoring purposes. For more information, see [Eliminate optional vector instances from storage](vector-search-how-to-storage-options.md).
+Oversampling for scalar quantized vectors requires the availability of the original full precision vectors. Oversampling for binary quantized vectors can use either full precision vectors (`preserveOriginals`) or the dot product of the binary vector (`discardOriginals`). If you're optimizing vector storage, make sure to keep the full precision vectors in the index if you need them for rescoring purposes. For more information, see [Eliminate optional vector instances from storage](vector-search-how-to-storage-options.md).
 
 ## Add "compressions" to a search index
 
