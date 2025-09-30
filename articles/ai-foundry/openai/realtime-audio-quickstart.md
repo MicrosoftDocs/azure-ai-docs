@@ -3,7 +3,8 @@ title: 'How to use GPT Realtime API for speech and audio with Azure OpenAI in Az
 titleSuffix: Azure OpenAI
 description: Learn how to use GPT Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 author: PatrickFarley

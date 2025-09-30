@@ -2,7 +2,8 @@
 title: How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication
 titleSuffix: Azure OpenAI
 description: Provides guidance on how to set managed identity with Microsoft Entra ID
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to 
 ms.date: 07/31/2025
 author: mrbullwinkle

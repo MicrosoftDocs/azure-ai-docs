@@ -3,7 +3,8 @@ title: Standard image model availability
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Standard image model availability
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
 ms.date: 02/06/2025

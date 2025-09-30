@@ -2,7 +2,8 @@
 title: Fine-tuning function calls with Azure OpenAI in Azure AI Foundry Models
 description: Learn how to improve tool calling performance with Azure OpenAI fine-tuning
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 08/29/2025
 author: mrbullwinkle
