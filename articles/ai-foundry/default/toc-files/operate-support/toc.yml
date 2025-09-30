@@ -5,8 +5,6 @@ items:
       href: https://azure.microsoft.com/updates/?filters=%5B%22Azure+AI+Foundry%22%5D#
     - name: Pricing calculator
       href: https://azure.microsoft.com/pricing/calculator/
-    - name: Region support
-      href: /azure/ai-foundry/reference/region-support
     - name: Compliance
       href: https://aka.ms/AzureCompliance
     - name: Service Level Agreement (SLA)
