@@ -1,4 +1,6 @@
 items:
+- name: Plan rollout
+  href: ../../concepts/planning.md
 - name: Status dashboard
   href: ../../../azure-ai-foundry-status-dashboard-documentation.md  
 - name: Region support
