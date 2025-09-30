@@ -4647,7 +4647,7 @@ Creates a model response.
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and conversation state.<br> | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel.<br> | No | True |
 | previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. Learn more about conversation state.<br> | No |  |
-| reasoning | [Reasoning](#reasoning) | **o-series models only**<br><br>Configuration options for reasoning models.<br> | No |  |
+| reasoning | [Reasoning](#reasoning) |Configuration options for reasoning models. | No |  |
 | store | boolean | Whether to store the generated model response for later retrieval via API.<br> | No | True |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format).<br>See the Streaming section below for more information.<br> | No | False |
 | text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. Learn more:<br>- Text inputs and outputs<br>- Structured Outputs | No |  |
@@ -8408,7 +8408,7 @@ An x/y coordinate pair, e.g. `{ x: 100, y: 200 }`.
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and reasoning tokens.<br> | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel.<br> | No | True |
 | previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations.  | No |  |
-| reasoning | [Reasoning](#reasoning) | **o-series models only**<br><br>Configuration options for reasoning models.<br> | No |  |
+| reasoning | [Reasoning](#reasoning) | Configuration options for reasoning models. | No |  |
 | store | boolean | Whether to store the generated model response for later retrieval via API.<br> | No | True |
 | stream | boolean | If set to true, the model response data will be streamed to the client as it is generated using [server-sent events](https://developer.mozilla.org/docs/Web/API/Server-sent_events/Using_server-sent_events#Event_stream_format). | No | False |
 | text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. Learn more:<br>- text inputs and outputs<br>- Structured Outputs<br> | No |  |
@@ -8922,16 +8922,13 @@ When a session is created on the server via REST API, the session object also co
 
 ### Reasoning
 
-**o-series models only**
-
-Configuration options for 
-reasoning models.
+Configuration options for reasoning models.
 
 
 | Name | Type | Description | Required | Default |
 |------|------|-------------|----------|---------|
-| effort | [ReasoningEffort](#reasoningeffort) | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br> | Yes | medium |
-| summary | enum | **o-series models only** <br><br>A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `concise` or `detailed`.<br><br>Possible values: `concise`, `detailed` | No |  |
+| effort | [ReasoningEffort](#reasoningeffort) | Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br> | Yes | medium |
+| summary | enum | A summary of the reasoning performed by the model. This can be useful for debugging and understanding the model's reasoning process.<br>One of `concise` or `detailed`.<br><br>Possible values: `concise`, `detailed` | No |  |
 
 ### ReasoningItem
 
@@ -8974,7 +8971,7 @@ A refusal from the model.
 | output_text | string | SDK-only convenience property that contains the aggregated text output from all `output_text` items in the `output` array, if any are present. <br>Supported in the Python and JavaScript SDKs.<br> | No |  |
 | parallel_tool_calls | boolean | Whether to allow the model to run tool calls in parallel.<br> | Yes | True |
 | previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations. | No |  |
-| reasoning | [Reasoning](#reasoning) | **o-series models only**<br><br>Configuration options for reasoning models.<br> | No |  |
+| reasoning | [Reasoning](#reasoning) | Configuration options for reasoning models.<br> | No |  |
 | status | enum | The status of the response generation. One of `completed`, `failed`, `in_progress`, or `incomplete`.<br><br>Possible values: `completed`, `failed`, `in_progress`, `incomplete` | No |  |
 | temperature | number | What sampling temperature to use, between 0 and 2. Higher values like 0.8 will make the output more random, while lower values like 0.2 will make it more focused and deterministic.<br>We generally recommend altering this or `top_p` but not both.<br> | Yes | 1 |
 | text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. Learn more:<br>- text inputs and outputs<br>- Structured Outputs<br> | No |  |
@@ -9295,7 +9292,7 @@ Emitted when an output item is marked done.
 | instructions | string | Inserts a system (or developer) message as the first item in the model's context.<br><br>When using along with `previous_response_id`, the instructions from a previous response will be not be carried over to the next response. This makes it simple to swap out system (or developer) messages in new responses.<br> | No |  |
 | max_output_tokens | integer | An upper bound for the number of tokens that can be generated for a response, including visible output tokens and conversation state.<br> | No |  |
 | previous_response_id | string | The unique ID of the previous response to the model. Use this to create multi-turn conversations.  | No |  |
-| reasoning | [Reasoning](#reasoning) | **o-series models only**<br><br>Configuration options for reasoning models.<br> | No |  |
+| reasoning | [Reasoning](#reasoning) | Configuration options for reasoning models.<br> | No |  |
 | text | object | Configuration options for a text response from the model. Can be plain text or structured JSON data. Learn more:<br>- text inputs and outputs<br>- Structured Outputs<br> | No |  |
 | └─ format | [TextResponseFormatConfiguration](#textresponseformatconfiguration) | An object specifying the format that the model must output.<br><br>Configuring `{ "type": "json_schema" }` enables Structured Outputs, which ensures the model matches your supplied JSON schema. The default format is `{ "type": "text" }` with no additional options.<br><br>**Not recommended for gpt-4o and newer models:**<br><br>Setting to `{ "type": "json_object" }` enables the older JSON mode, which ensures the message the model generates is valid JSON. Using `json_schema` is preferred for models that support it.<br> | No |  |
 | tool_choice | [ToolChoiceOptions](#toolchoiceoptions) or [ToolChoiceTypes](#toolchoicetypes) or [ToolChoiceFunction](#toolchoicefunction) | How the model should select which tool (or tools) to use when generating a response. See the `tools` parameter to see how to specify which tools the model can call.<br> | No |  |
@@ -9618,18 +9615,12 @@ A wait action.
 
 ### ReasoningEffort
 
-**o-series models only** 
-
-Constrains effort on reasoning for 
-reasoning models.
-Currently supported values are `low`, `medium`, and `high`. Reducing
-reasoning effort can result in faster responses and fewer tokens used
-on reasoning in a response.
+Constrains effort on reasoning for reasoning models. Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.
 
 
 | Property | Value |
 |----------|-------|
-| **Description** | **o-series models only** <br><br>Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br> |
+| **Description** | Constrains effort on reasoning for reasoning models.<br>Currently supported values are `low`, `medium`, and `high`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response.<br> |
 | **Type** | string |
 | **Default** | medium |
 | **Values** | `low`<br>`medium`<br>`high` |
