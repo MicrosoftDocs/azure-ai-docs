@@ -5,7 +5,7 @@ description: Learn how to test your fine-tuned model with Azure OpenAI in Azure 
 author: voutilad
 ms.author: davevoutila
 manager: nitinme
-ms.date: 05/20/2025
+ms.date: 09/30/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
@@ -49,7 +49,7 @@ resource_group = "<YOUR_RESOURCE_GROUP_NAME>"
 resource_name = "<YOUR_AZURE_OPENAI_RESOURCE_NAME>"
 model_deployment_name = "gpt41-mini-candidate-01" # custom deployment name that you will use to reference the model when making inference calls.
 
-deploy_params = {'api-version': "2025-04-01-preview"} 
+deploy_params = {'api-version': "2025-07-01-preview"} 
 deploy_headers = {'Authorization': 'Bearer {}'.format(token), 'Content-Type': 'application/json'}
 
 deploy_data = {
@@ -91,7 +91,7 @@ The following example shows how to use the REST API to create a model deployment
 
 
 ```bash
-curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2025-04-01-preview" \
+curl -X POST "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2025-07-01-preview" \
   -H "Authorization: Bearer <TOKEN>" \
   -H "Content-Type: application/json" \
   -d '{
@@ -157,12 +157,11 @@ You can also use the [Evaluations](./evaluations.md) service to create and run m
 
 ```python
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
+client = OpenAI(
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/", 
   api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-02-01"
 )
 
 response = client.chat.completions.create(
@@ -181,11 +180,12 @@ print(response.choices[0].message.content)
 ## [REST](#tab/rest)
 
 ```bash
-curl $AZURE_OPENAI_ENDPOINT/openai/deployments/<deployment_name>/chat/completions?api-version=2025-04-01-preview \
+curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
+  -d '"model": "YOUR-MODEL-DEPLOYMENT_NAME", {"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
 ```
+
 ---
 
 ## Clean up your deployment
