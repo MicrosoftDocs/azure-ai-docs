@@ -7,7 +7,7 @@ ms.author: mbullwin #delegenz
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 09/30/2025
 manager: nitinme
 ---
 
@@ -31,9 +31,6 @@ At a high level you can break down working with functions into three steps:
 
 * `gpt-35-turbo` (`1106`)
 * `gpt-35-turbo` (`0125`)
-* `gpt-4` (`1106-Preview`)
-* `gpt-4` (`0125-Preview`)
-* `gpt-4` (`vision-preview`)
 * `gpt-4` (`2024-04-09`)
 * `gpt-4o` (`2024-05-13`)
 * `gpt-4o` (`2024-08-06`)
@@ -44,6 +41,7 @@ At a high level you can break down working with functions into three steps:
 * `gpt-5` (`2025-08-07`)
 * `gpt-5-mini` (`2025-08-07`)
 * `gpt-5-nano` (`2025-08-07`)
+* `gpt-5-codex` (`2025-0-11`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
