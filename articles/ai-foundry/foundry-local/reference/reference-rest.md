@@ -10,7 +10,7 @@ ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
-ms.date: 07/03/2025
+ms.date: 10/01/2025
 ---
 
 # Foundry Local REST API Reference
@@ -25,7 +25,7 @@ ms.date: 07/03/2025
 ### POST /v1/chat/completions
 
 This endpoint processes chat completion requests.  
-Fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create)
+It's fully compatible with the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat/create).
 
 **Request Body:**
 
@@ -52,8 +52,8 @@ _---Standard OpenAI Properties---_
   Up to 4 sequences that will cause the model to stop generating further tokens.
 - `max_tokens` (integer, optional)  
   Maximum number of tokens to generate. For newer models, use `max_completion_tokens` instead.
-- `max_completion_token` (integer, optional)  
-  Maximum token limit for generation, including both visible output and reasoning tokens.
+- `max_completion_tokens` (integer, optional)  
+  Maximum number of tokens the model can generate, including visible output and reasoning tokens.
 - `presence_penalty` (number, optional)  
   Value between -2.0 and 2.0. Positive values encourage the model to discuss new topics by penalizing tokens that have already appeared.
 - `frequency_penalty` (number, optional)  
@@ -73,7 +73,7 @@ _---Standard OpenAI Properties---_
       Function parameters described as a JSON Schema object.
 - `function_call` (string or object, optional)  
   Controls how the model responds to function calls.
-  - If object, may include:
+  - If object, can include:
     - `name` (string, optional)  
       The name of the function to call.
     - `arguments` (object, optional)  
@@ -178,25 +178,25 @@ _---Standard OpenAI Properties---_
 
 ### GET /foundry/list
 
-Retrieves a list of all available Foundry Local models in the catalog.
+Get a list of available Foundry Local models in the catalog.
 
 **Response:**
 
 - `models` (array)  
-  List of model objects, each containing:
+  Array of model objects. Each model includes:
   - `name`: The unique identifier for the model.
   - `displayName`: A human-readable name for the model, often the same as the name.
-  - `providerType`: The type of provider hosting the model (e.g., AzureFoundry).
+  - `providerType`: The type of provider hosting the model (for example, AzureFoundry).
   - `uri`: The resource URI pointing to the model's location in the registry.
   - `version`: The version number of the model.
-  - `modelType`: The format or type of the model (e.g., ONNX).
+  - `modelType`: The format or type of the model (for example, ONNX).
   - `promptTemplate`:
     - `assistant`: The template for the assistant's response.
     - `prompt`: The template for the user-assistant interaction.
   - `publisher`: The entity or organization that published the model.
-  - `task`: The primary task the model is designed to perform (e.g., chat-completion).
+  - `task`: The primary task the model is designed to perform (for example, chat completion).
   - `runtime`:
-    - `deviceType`: The type of hardware the model is designed to run on (e.g., CPU).
+    - `deviceType`: The type of hardware the model is designed to run on (for example, CPU).
     - `executionProvider`: The execution provider used for running the model.
   - `fileSizeMb`: The size of the model file in megabytes.
   - `modelSettings`:
@@ -238,7 +238,7 @@ Registers an external model provider for use with Foundry Local.
 
 ### GET /openai/models
 
-Retrieves all available models, including both local models and registered external models.
+Get all available models, including local and registered external models.
 
 **Response:**
 
@@ -254,7 +254,7 @@ Retrieves all available models, including both local models and registered exter
 
 ### GET /openai/load/{name}
 
-Loads a model into memory for faster inference.
+Load a model into memory for faster inference.
 
 **URI Parameters:**
 
@@ -266,7 +266,7 @@ Loads a model into memory for faster inference.
 - `unload` (boolean, optional)  
   Whether to automatically unload the model after idle time. Defaults to `true`.
 - `ttl` (integer, optional)  
-  Time to live in seconds. If greater than 0, overrides `unload` parameter.
+  Time to live in seconds. If it's greater than 0, this value overrides the `unload` parameter.
 - `ep` (string, optional)  
   Execution provider to run this model. Supports: `"dml"`, `"cuda"`, `"qnn"`, `"cpu"`, `"webgpu"`.  
   If not specified, uses settings from `genai_config.json`.
@@ -279,13 +279,13 @@ Loads a model into memory for faster inference.
 **Example:**
 
 - Request URI
-  ```
-  GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
-  ```
+  ```http
+GET /openai/load/Phi-4-mini-instruct-generic-cpu?ttl=3600&ep=dml
+```
 
 ### GET /openai/unload/{name}
 
-Unloads a model from memory.
+Unload a model from memory.
 
 **URI Parameters:**
 
@@ -305,9 +305,9 @@ Unloads a model from memory.
 **Example:**
 
 - Request URI
-  ```
-  GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
-  ```
+  ```http
+GET /openai/unload/Phi-4-mini-instruct-generic-cpu?force=true
+```
 
 ### GET /openai/unloadall
 
@@ -320,7 +320,7 @@ Unloads all models from memory.
 
 ### GET /openai/loadedmodels
 
-Retrieves a list of currently loaded models.
+Get the list of currently loaded models.
 
 **Response:**
 
@@ -336,7 +336,7 @@ Retrieves a list of currently loaded models.
 
 ### GET /openai/getgpudevice
 
-Retrieves the currently selected GPU device ID.
+Get the current GPU device ID.
 
 **Response:**
 
@@ -345,7 +345,7 @@ Retrieves the currently selected GPU device ID.
 
 ### GET /openai/setgpudevice/{deviceId}
 
-Sets the active GPU device.
+Set the active GPU device.
 
 **URI Parameters:**
 
@@ -360,16 +360,16 @@ Sets the active GPU device.
 **Example:**
 
 - Request URI
-  ```
-  GET /openai/setgpudevice/1
-  ```
+  ```http
+GET /openai/setgpudevice/1
+```
 
 ### POST /openai/download
 
-Downloads a model to local storage.
+Download a model to local storage.
 
 > [!NOTE]
-> Model downloads can take significant time, especially for large models. We recommend setting a high timeout for this request to avoid premature termination.
+> Large model downloads can take a long time. Set a high timeout for this request to avoid early termination.
 
 **Request Body:**
 
@@ -379,11 +379,11 @@ Downloads a model to local storage.
   - `Name` (string)
     The model name.
   - `ProviderType` (string, optional)  
-    The provider type (e.g., `"AzureFoundryLocal"`,`"HuggingFace"`).
+    The provider type (for example, `"AzureFoundryLocal"`, `"HuggingFace"`).
   - `Path` (string, optional)  
-    The remote path where the model is located stored. For example, in a Hugging Face repository, this would be the path to the model files.
+    Remote path to the model files. For example, in a Hugging Face repository, this is the path to the model files.
   - `PromptTemplate` (`Dictionary<string, string>`, optional)  
-    Contains:
+    Includes:
     - `system` (string, optional)  
       The template for the system message.
     - `user` (string, optional)
@@ -410,7 +410,7 @@ Downloads a model to local storage.
 
 During download, the server streams progress updates in the format:
 
-```
+```text
 ("file name", percentage_complete)
 ```
 
@@ -444,14 +444,14 @@ During download, the server streams progress updates in the format:
 
 - Response stream
 
-  ```
-  ("genai_config.json", 0.01)
-  ("genai_config.json", 0.2)
-  ("model.onnx.data", 0.5)
-  ("model.onnx.data", 0.78)
-  ...
-  ("", 1)
-  ```
+  ```text
+("genai_config.json", 0.01)
+("genai_config.json", 0.2)
+("model.onnx.data", 0.5)
+("model.onnx.data", 0.78)
+...
+("", 1)
+```
 
 - Final response
   ```json
@@ -463,7 +463,7 @@ During download, the server streams progress updates in the format:
 
 ### GET /openai/status
 
-Retrieves server status information.
+Get server status information.
 
 **Response body:**
 
