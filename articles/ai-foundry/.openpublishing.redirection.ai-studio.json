@@ -1278,6 +1278,11 @@
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
           "redirect_document_id": false
         },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/chatgpt-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
      {
           "source_path_from_root": "/articles/ai-foundry/openai/how-to/work-with-code.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",

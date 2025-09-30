@@ -1,7 +1,8 @@
 ---
 ms.topic: include
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 10/22/2024
 ms.author: pafarley

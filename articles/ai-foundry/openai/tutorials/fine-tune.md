@@ -3,7 +3,8 @@ title: Azure OpenAI in Azure AI Foundry Models fine-tuning gpt-4o-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's latest fine-tuning capabilities with gpt-4o-mini-2024-07-18
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
 ms.date: 09/01/2025
 author: mrbullwinkle

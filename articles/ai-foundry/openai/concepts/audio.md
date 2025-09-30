@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn about the audio capabilities of Azure OpenAI.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
 ms.date: 7/12/2025
 ms.custom: template-concept

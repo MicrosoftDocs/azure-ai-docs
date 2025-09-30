@@ -3,7 +3,8 @@ title: Azure OpenAI in Azure AI Foundry Models API version lifecycle
 description: Learn more about API version retirement in Azure OpenAI.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
 ms.date: 09/05/2025
 author: mrbullwinkle
