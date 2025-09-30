@@ -1,21 +1,27 @@
 ---
-title: Azure AI Translator 2025-05-01-preview translate method
+title: Azure AI Translator 2025-10-01-preview translate method
 titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate method.
+description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-10-01-preview translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/02/2025
+ms.date: 09/30/2025
 ms.author: lajanuar
 ---
 
-# Translate (2025-05-01-preview)
+# Translate (2025-10-01-preview)
+
+> [!IMPORTANT]
+>
+> * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
+> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 The Text translation API enables you to translate your source language text into a specified target language text.
 
 >[!IMPORTANT]
-> * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
+> * Azure AI Translator REST API `2025-10-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
 > * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
@@ -29,7 +35,7 @@ The Text translation API enables you to translate your source language text into
 ***Windows***
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview"^
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview"^
  -H "Ocp-Apim-Subscription-Key:<your-key>" ^
  -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
  -H "Content-Type: application/json" ^
@@ -39,7 +45,7 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-versio
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-05-01-preview" \
+curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-version=2025-10-01-preview" \
 -H "Ocp-Apim-Subscription-Key:<your-key>" \
 -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
 -H "Content-Type: application/json" \
@@ -56,7 +62,7 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/translate?api-versio
 ***Windows***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate?api-version=2025-05-01-preview"^
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate?api-version=2025-10-01-preview"^
     -H "Ocp-Apim-Subscription-Key:<your-key>"^
     -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
     -H "Content-Type: application/json"^
@@ -65,7 +71,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate?api-version=2025-05-01-preview" \
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translate?api-version=2025-10-01-preview" \
     -H "Ocp-Apim-Subscription-Key:<your-key>" \
     -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
     -H "Content-Type: application/json" \
@@ -93,7 +99,7 @@ Request parameters passed with the request are as follows:
 
 | Parameter | Type | Required | Description |
 | --- | --- | --- | --- |
-|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
+|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-10-01-preview.|
 |**text** | string | **True** | Source text for translation. |
 |**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
 | **script** | string | False | Specifies the script of the source text. |
@@ -587,4 +593,4 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-05-01-preview migration guide](../how-to/migrate-to-preview.md)
+> [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)

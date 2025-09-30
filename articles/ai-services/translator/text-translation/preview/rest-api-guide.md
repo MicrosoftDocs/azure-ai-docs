@@ -6,11 +6,17 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 09/30/2025
 ms.author: lajanuar
 ---
 
 # Text translation REST API (preview)
+
+> [!IMPORTANT]
+>
+> * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
+> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 Text translation is a cloud-based feature of the Azure AI Translator service and is part of the Azure AI service family of REST APIs. The Text translation API translates text between language pairs across all [supported languages and dialects](../../../language-support.md). If you already have an Azure AI Translator or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Translator resources within the Azure AI Foundry portal for NMT deployment. 
 
@@ -24,7 +30,47 @@ The available preview methods are listed in the following table:
 |[**translate**](translate-api.md) | **POST**| Translate specified source language text into the target language text.|
 |[**transliterate**](transliterate-api.md) |  **POST** | Map source language script or alphabet to a target language script or alphabet.
 
+## REST API code sample: translate
+
+***Request***
+```json
+{
+  "inputs": [
+    {
+      "text": "Ciao",
+      "language": "it",
+      "targets": [
+        {
+          "language": "en"
+        }
+      ]
+    }
+  ]
+}
+
+```
+
+***Response***
+```json
+{
+  "value": [
+    {
+      "translations": [
+        {
+          "language": "en",
+          "sourceCharacters": 4,
+          "text": "Hello"
+        }
+      ]
+    }
+  ]
+}
+```
+
+
+
+
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-05-01-preview migration guide](../how-to/migrate-to-preview.md)
+> [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)

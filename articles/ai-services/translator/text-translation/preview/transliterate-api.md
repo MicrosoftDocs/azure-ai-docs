@@ -1,16 +1,22 @@
 ---
-title: Azure AI Translator 2025-05-01-preview transliterate method
+title: Azure AI Translator 2025-10-01-preview transliterate method
 titleSuffix: Azure AI services
-description: Convert text from one script to another script with the Azure AI Translator 2025-05-01-preview transliterate method.
+description: Convert text from one script to another script with the Azure AI Translator 2025-10-01-preview transliterate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/04/2025
+ms.date: 09/30/2025
 ms.author: lajanuar
 ---
 
-# Transliterate (2025-05-01-preview)
+# Transliterate (2025-10-01-preview)
+
+> [!IMPORTANT]
+>
+> * Azure AI text translation is available in preview. Public preview releases provide early access to features that are in active development.
+> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
+> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 The Text transliteration API maps your source language script or alphabet to a target language script or alphabet. Unlike translation, transliteration doesn't return the meaning, only the way the text is written.
 
@@ -21,7 +27,7 @@ The Text transliteration API maps your source language script or alphabet to a t
 **Send a `POST` request to**:
 
 ```bash
-curl -X POST https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview
+curl -X POST https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview
  -H "Ocp-Apim-Subscription-Key:<your-key>" ^
  -H "Ocp-Apim-Subscription-Region:<your-resource-region>" ^
  -H "Content-Type: application/json" ^
@@ -31,7 +37,7 @@ curl -X POST https://api.cognitive.microsofttranslator.com/transliterate?api-ver
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview" \
+curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview" \
 -H "Ocp-Apim-Subscription-Key:<your-key>" \
 -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
 -H "Content-Type: application/json" \
@@ -46,7 +52,7 @@ curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-ve
 ***Windows***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-05-01-preview"^
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-10-01-preview"^
     -H "Ocp-Apim-Subscription-Key:<your-key>"^
     -H "Ocp-Apim-Subscription-Region:<your-resource-region>"^
     -H "Content-Type: application/json"^
@@ -55,7 +61,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//translit
 ***Linux or macOS***
 
 ```bash
-curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-05-01-preview" \
+curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com//transliterate?api-version=2025-10-01-preview" \
     -H "Ocp-Apim-Subscription-Key:<your-key>" \
     -H "Ocp-Apim-Subscription-Region:<your-resource-region>" \
     -H "Content-Type: application/json" \
@@ -81,7 +87,7 @@ Request parameters passed on the query string areas are as follows:
 
 | Parameter |Type| Required | Description |
 | --- | --- |---|---|
-|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-05-01-preview.|
+|**api-version**|string|**True**|Version of the API requested by the client. Accepted value is 2025-10-01-preview.|
 | **fromScript**| string|**True**| Specifies the script used by the input text. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find input scripts available for the selected language. |
 | **toScript** |string| **True**| Specifies the output script. Look up [supported languages](get-languages.md) using the `transliteration` scope, to find output scripts available for the selected combination of input language and input script. |
 |**language** | string | False | Specifies the language code for the `source` text. If not specified, the system autodetects the language of the source text. Accepted values are list of language code supported by the specified model. |
@@ -131,7 +137,7 @@ An example JSON response is:
 The following example shows how to convert two Japanese strings into Romanized Japanese.
 
 ```bash
-  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-05-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
+  curl -X POST "https://api.cognitive.microsofttranslator.com/transliterate?api-version=2025-10-01-preview&language=ja&fromScript=Jpan&toScript=Latn" -H "X-ClientTraceId: 875030C7-5380-40B8-8A03-63DACCF69C11" -H "Ocp-Apim-Subscription-Key: <client-secret>" -H "Content-Type: application/json" -d @request.txt
 ```
 
 The JSON payload for the request in this example:
@@ -160,5 +166,5 @@ If an error occurs, the request also returns a JSON error response. The error co
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [View 2025-05-01-preview migration guide](../how-to/migrate-to-preview.md)
+> [View 2025-10-01-preview migration guide](../how-to/migrate-to-preview.md)
 
