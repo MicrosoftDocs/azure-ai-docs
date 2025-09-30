@@ -8,6 +8,7 @@ ms.topic: concept-article
 ms.date: 09/15/2025
 ms.author: sgilley
 ms.reviewer: deeikele
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Azure AI Foundry rollout across my organization
