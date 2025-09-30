@@ -25,6 +25,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## Supported models
 
+- `gpt-5-codex` version `2025-09-11`
 - `gpt-5` version `2025-08-07`
 - `gpt-5-mini` version `2025-08-07`
 - `gpt-5-nano` version `2025-08-07`
@@ -43,7 +44,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## API support
 
-Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `2024-10-21`.
+Support for structured outputs was first added in API version `2024-08-01-preview`. It is available in the latest preview APIs as well as the latest GA API: `v1`.
 
 
 ::: zone pivot="programming-language-python"

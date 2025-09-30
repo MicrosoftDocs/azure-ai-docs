@@ -12,10 +12,11 @@ zone_pivot_groups: structured-outputs
 `response_format` is set to `json_schema` with `strict: true` set.
 
 ```bash
-curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_MODEL_DEPLOYMENT_NAME/chat/completions?api-version=2024-10-21 \
+curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/chat/completions \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
     -d '{
+        "model": "YOUR_MODEL_DEPLOYMENT_NAME",
         "messages": [
                 {"role": "system", "content": "Extract the event information."},
                 {"role": "user", "content": "Alice and Bob are going to a science fair on Friday."}
@@ -85,10 +86,11 @@ Output:
 ## Function calling with structured outputs
 
 ```bash
-curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_MODEL_DEPLOYMENT_NAME/chat/completions?api-version=2024-10-21 \
+curl -X POST  https://YOUR_RESOURCE_NAME.openai.azure.com/openai/v1/chat/completions \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -H "Content-Type: application/json" \
   -d '{
+  "model": "YOUR_MODEL_DEPLOYMENT_NAME",
   "messages": [
     {
       "role": "system",
