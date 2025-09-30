@@ -50,7 +50,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    { "Text": "Ich würde wirklich gerne Ihr Auto ein paar Mal um den Block fahren." }
+    { "text": "Ich würde wirklich gerne Ihr Auto ein paar Mal um den Block fahren." }
 ]
 ```
 

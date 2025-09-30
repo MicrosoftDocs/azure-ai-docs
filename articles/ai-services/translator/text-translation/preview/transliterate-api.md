@@ -94,13 +94,16 @@ Request parameters passed on the query string areas are as follows:
 
 ## Request body
 
-The body of the request is a JSON array. Each array element is a JSON object with a string property named `Text`, which represents the string to convert.
+The body of the request is a JSON array named `inputs`. Each array element is a JSON object with a string property named `Text`, which represents the string to convert.
 
 ```json
-[
-    {"Text":"こんにちは"},
-    {"Text":"さようなら"}
-]
+
+{
+    "inputs": [
+        {"text":"こんにちは"},
+        {"text":"さようなら"}
+    ]
+}
 ```
 
 The following limitations apply:
@@ -111,7 +114,7 @@ The following limitations apply:
 
 ## Response body
 
-A successful response is a JSON array with one result for each element in the input array. A result object includes the following properties:
+A successful response is a JSON array named `value` with one result for each element in the input array. A result object includes the following properties:
 
 * `text`: A string that results from converting the input string to the output script.
 
@@ -120,10 +123,12 @@ A successful response is a JSON array with one result for each element in the in
 An example JSON response is:
 
 ```json
-[
-    {"text":"konnnichiha","script":"Latn"},
-    {"text":"sayounara","script":"Latn"}
-]
+{
+  "value": [
+      {"text":"konnnichiha","script":"Latn"},
+      {"text":"sayounara","script":"Latn"}
+  ]
+}
 ```
 
 ## Response headers
@@ -143,7 +148,18 @@ The following example shows how to convert two Japanese strings into Romanized J
 The JSON payload for the request in this example:
 
 ```json
-[{"text":"こんにちは","script":"jpan"},{"text":"さようなら","script":"jpan"}]
+{
+  "inputs": [
+      {
+      "text": "こんにちは",
+      "script": "jpan"
+      },
+      {
+      "text": "さようなら",
+      "script": "jpan"
+      }
+  ]
+}
 ```
 
 ## Response status codes

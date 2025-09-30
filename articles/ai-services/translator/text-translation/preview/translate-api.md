@@ -139,26 +139,28 @@ The following table shows gender-specific translations with the optional targets
 
 ## Request body
 
-The request body is formatted as a JSON array, where each element is a JSON object. Each object contains a required property named `text`, representing the string to be translated, and a required `targets` array. The `targets` array includes the required `language` property that specifies the language code for the translation.
+The request body is formatted as a JSON array named `inputs`, where each element is a JSON object. Each object contains a required property named `text`, representing the string to be translated, and a required `targets` array. The `targets` array includes the required `language` property that specifies the language code for the translation.
 
 ```json
-[
-  {
-    "text": "I would really like to drive your car around the block a few times.",
-    "language": "en",
-    "targets": [
+{
+ "inputs": [
       {
-        "language": "es"
+        "text": "I would really like to drive your car around the block a few times.",
+        "language": "en",
+        "targets": [
+          {
+            "language": "es"
+          }
+        ]
       }
     ]
-  }
-]
+}
 ```
 For information on character and array limits, _see_ [Request limits](../../service-limits.md#character-and-array-limits-per-request).
 
 ## Response body
 
-A successful response is a JSON array with one result for each string in the input array. A result object includes the following properties:
+A successful response is a JSON array named `value` with one result for each string in the input array. A result object includes the following properties:
 
 * `detectedLanguage`: An object describing the detected language through the following properties:
 
@@ -202,37 +204,41 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 ***Request***
 
 ```json
- [
-  {
-    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "language": "en",
-    "targets": [
+{
+  "inputs": [
       {
-        "language": "es"
+        "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+        "language": "en",
+        "targets": [
+          {
+            "language": "es"
+          }
+        ]
       }
     ]
-  }
-]
+}
 ```
 
 ***Response***
 
-```JSON
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
+```json
+{
+ "value": [
       {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "sourceCharacters": 72
+        "detectedLanguage": {
+          "language": "en",
+          "score": 1
+        },
+        "translations": [
+          {
+            "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+            "language": "es",
+            "sourceCharacters": 72
+          }
+        ]
       }
     ]
-  }
-]
+}
 ```
 
 ***Response Header***
@@ -246,45 +252,49 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 ***Request***
 
 ```json
-[
-  {
-    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "language": "en",
-    "targets": [
+{
+    "inputs": [
       {
-        "language": "es"
-      },
-      {
-        "language": "de"
+        "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+        "language": "en",
+        "targets": [
+          {
+            "language": "es"
+          },
+          {
+            "language": "de"
+          }
+        ]
       }
     ]
-  }
-]
+}
 ```
 
 ***Response***
 
 ```json
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
-      {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "sourceCharacters": 72
+{
+  "value": [
+    {
+      "detectedLanguage": {
+        "language": "en",
+        "score": 1
       },
-      {
-        "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
-        "language": "de",
-        "sourceCharacters": 72
-      }
-    ]
-  }
-]
+      "translations": [
+        {
+          "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+          "language": "es",
+          "sourceCharacters": 72
+        },
+        {
+          "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
+          "language": "de",
+          "sourceCharacters": 72
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response Header***
@@ -298,17 +308,19 @@ Examples of JSON responses are provided in the [examples](#examples) section.
 This request uses a gpt-4o-mini model instance with a user defined name (contoso-gpt-4o-mini). When the source language isn't indicated, the system detects it automatically. 
 
 ```json
-[
-  {
-    "Text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "targets": [
-      {
-        "language": "es",
-        "deploymentName": "contoso-gpt-4o-mini"
-      }
-    ]
-  }
-]
+{
+ "inputs": [
+   {
+     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+     "targets": [
+       {
+         "language": "es",
+         "deploymentName": "contoso-gpt-4o-mini"
+       }
+     ]
+   }
+ ]
+}
 
 ```
 
@@ -322,7 +334,8 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 ***Request***
 
 ```json
- [
+{
+ "inputs": [
   {
     "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
     "language": "en",
@@ -337,33 +350,36 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
     ]
   }
 ]
+}
 ```
 
 ***Response***
 
 ```json
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
+{
+  "value": [
       {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "instructionTokens": 12,
-        "sourceTokens": 14,
-        "targetTokens": 16
-      },
-      {
-        "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
-        "language": "de",
-        "sourceCharacters": 72
+        "detectedLanguage": {
+          "language": "en",
+          "score": 1
+        },
+        "translations": [
+          {
+            "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+            "language": "es",
+            "instructionTokens": 12,
+            "sourceTokens": 14,
+            "targetTokens": 16
+          },
+          {
+            "text": "Der Arzt ist nächsten Montag verfügbar. Möchten Sie einen Termin vereinbaren?",
+            "language": "de",
+            "sourceCharacters": 72
+          }
+        ]
       }
     ]
-  }
-]
+}
 
 ```
 
@@ -382,55 +398,60 @@ Using an `LLM` model requires you to have an Azure AI Foundry resource. For more
 ***Request***
 
 ```json
-[
-  {
-    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "language": "en",
-    "targets": [
-      {
-        "language": "es",
-        "deploymentName": "your-gpt-4omini-deployment-name",
-        "tone": "formal",
-        "gender": "female"
-      },
-      {
-        "language": "es",
-        "deploymentName": "your-gpt-4omini-deployment-name",
-        "tone": "formal",
-        "gender": "male"
-      }
-    ]
-  }
-]
+{
+
+  "inputs": [
+    {
+      "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es",
+          "deploymentName": "your-gpt-4omini-deployment-name",
+          "tone": "formal",
+          "gender": "female"
+        },
+        {
+          "language": "es",
+          "deploymentName": "your-gpt-4omini-deployment-name",
+          "tone": "formal",
+          "gender": "male"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response***
 
 ```json
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
-      {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "promptTokens": 12,
-        "sourceTokens": 14,
-        "targetTokens": 16
+{
+  "value": [
+    {
+      "detectedLanguage": {
+        "language": "en",
+        "score": 1
       },
-      {
-        "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "instructionTokens": 12,
-        "sourceTokens": 14,
-        "targetTokens": 16
-      }
-    ]
-  }
-]
+      "translations": [
+        {
+          "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+          "language": "es",
+          "promptTokens": 12,
+          "sourceTokens": 14,
+          "targetTokens": 16
+        },
+        {
+          "text": "El médico estará disponible el próximo lunes. ¿Desea programar una cita?",
+          "language": "es",
+          "instructionTokens": 12,
+          "sourceTokens": 14,
+          "targetTokens": 16
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response Header***
@@ -447,40 +468,43 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 ***Request***
 
 ```json
-[
-  {
-    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "language": "en",
-    "targets": [
+{
+    "inputs": [
       {
-        "language": "es",
-        "adaptiveDatasetId": "TMS-en-es-hr-020"
+        "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+        "language": "en",
+        "targets": [
+          {
+            "language": "es",
+            "adaptiveDatasetId": "TMS-en-es-hr-020"
+          }
+        ]
       }
     ]
-  }
-]
-
+}
 ```
 
 ***Response***
 
 ```json
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
+{
+    "value": [
       {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "sourceCharacters": 72,
-        "targetChaaracters": 72
+        "detectedLanguage": {
+          "language": "en",
+          "score": 1
+        },
+        "translations": [
+          {
+            "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+            "language": "es",
+            "sourceCharacters": 72,
+            "targetChaaracters": 72
+          }
+        ]
       }
     ]
-  }
-]
+}
 ```
 
 ***Response Header***
@@ -494,48 +518,52 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 ***Request***
 
 ```json
-[
-  {
-    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "language": "en",
-    "targets": [
-      {
-        "language": "es",
-        "referenceTextPairs": [
-          {
-            "source": "text_in_en",
-            "target": " text_in_es"
-          },
-          {
-            "source": " text_in_en",
-            "target": " text_in_es"
-          }
-        ]
-      }
-    ]
-  }
-]
+{
+  "inputs": [
+    {
+      "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es",
+          "referenceTextPairs": [
+            {
+              "source": "text_in_en",
+              "target": " text_in_es"
+            },
+            {
+              "source": " text_in_en",
+              "target": " text_in_es"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response***
 
 ```json
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
-      {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "sourceCharacters": 72,
-        "targetCharacters": 72
-      }
-    ]
-  }
-]
+{
+  "value": [
+    {
+      "detectedLanguage": {
+        "language": "en",
+        "score": 1
+      },
+      "translations": [
+        {
+          "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+          "language": "es",
+          "sourceCharacters": 72,
+          "targetCharacters": 72
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response Header***
@@ -550,38 +578,43 @@ Adaptive custom translation deploys on Translator service infrastructure. Charge
 ***Request***
 
 ```json
-[
-  {
-    "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
-    "language": "en",
-    "targets": [
-      {
-        "language": "es",
-        "deploymentName": "f16e83fb-3af8-4d45-9290-10a516f9dfc4-GENERAL"
-      }
-    ]
-  }
-]
+{
+  "inputs": [
+    {
+      "text": "Doctor is available next Monday. Do you want to schedule an appointment?",
+      "language": "en",
+      "targets": [
+        {
+          "language": "es",
+          "deploymentName": "f16e83fb-3af8-4d45-9290-10a516f9dfc4-GENERAL"
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response***
 
 ```json
-[
-  {
-    "detectedLanguage": {
-      "language": "en",
-      "score": 1
-    },
-    "translations": [
-      {
-        "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
-        "language": "es",
-        "sourceCharacters": 72
-      }
-    ]
-  }
-]
+
+{
+  "value": [
+    {
+      "detectedLanguage": {
+        "language": "en",
+        "score": 1
+      },
+      "translations": [
+        {
+          "text": "La médica estará disponible el próximo lunes. ¿Desea programar una cita?",
+          "language": "es",
+          "sourceCharacters": 72
+        }
+      ]
+    }
+  ]
+}
 ```
 
 ***Response Header***

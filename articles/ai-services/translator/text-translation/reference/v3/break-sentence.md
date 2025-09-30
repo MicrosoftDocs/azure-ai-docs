@@ -51,7 +51,7 @@ The body of the request is a JSON array. Each array element is a JSON object wit
 
 ```json
 [
-    { "Text": "How are you? I am fine. What did you do today?" }
+    { "text": "How are you? I am fine. What did you do today?" }
 ]
 ```
 
