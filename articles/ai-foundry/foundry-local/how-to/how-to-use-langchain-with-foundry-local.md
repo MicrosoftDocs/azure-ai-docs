@@ -16,11 +16,11 @@ zone_pivot_groups: foundry-local-langchain
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
-# Build a translation application with LangChain
+# Build a translation app with LangChain
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-This tutorial shows you how to create an application using the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain). In this tutorial, you build a translation application that translates text from one language to another that uses a local model.
+This tutorial shows you how to build a translation app with the Foundry Local SDK and [LangChain](https://www.langchain.com/langchain) using a local model to translate text between languages.
 
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/use-langchain/python.md)]
@@ -32,5 +32,5 @@ This tutorial shows you how to create an application using the Foundry Local SDK
 
 ## Next steps
 
-- Explore the [LangChain documentation](https://python.langchain.com/docs/introduction) for more advanced features and capabilities.
+- Explore the [LangChain documentation](https://python.langchain.com/docs/introduction) for advanced features.
 - [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)
