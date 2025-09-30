@@ -38,7 +38,7 @@ OpenAI released a new version of the [OpenAI Python API library](https://github.
 ## Test before you migrate
 
 > [!IMPORTANT]
-> Automatic migration of your code using `openai migrate` is not supported with Azure OpenAI.
+> Automatic migration of your code using `openai migrate` isn't supported with Azure OpenAI.
 
 As this is a new version of the library with breaking changes, you should test your code extensively against the new release before migrating any production applications to rely on version 1.x. You should also review your code and internal processes to make sure that you're following best practices and pinning your production code to only versions that you have fully tested.
 
@@ -64,7 +64,7 @@ This provides context for what has changed and allows you to test the new librar
 
 # [OpenAI Python 1.x](#tab/python-new)
 
-You need to set the `model` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name results in an error unless you chose a deployment name that is identical to the underlying model name.
+You need to set the `model` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name results in an error unless you chose a deployment name that's identical to the underlying model name.
 
 ```python
 import os
@@ -93,7 +93,7 @@ Additional examples can be found in our [in-depth Chat Completion article](chatg
 
 # [OpenAI Python 0.28.1](#tab/python)
 
-You need to set the `engine` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that is identical to the underlying model name.
+You need to set the `engine` variable to the deployment name you chose when you deployed the GPT-3.5-Turbo or GPT-4 models. Entering the model name will result in an error unless you chose a deployment name that's identical to the underlying model name.
 
 ```python
 import os
@@ -539,7 +539,7 @@ asyncio.run(dall_e())
 ## Name changes
 
 > [!NOTE]
-> All a* methods have been removed; the async client must be used instead.
+> All `a*` methods have been removed; the async client must be used instead.
 
 | OpenAI Python 0.28.1 | OpenAI Python 1.x |
 | --------------- | --------------- |
