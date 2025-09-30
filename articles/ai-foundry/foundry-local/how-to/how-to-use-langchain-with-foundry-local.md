@@ -13,6 +13,7 @@ author: jonburchel
 reviewer: eneros
 ms.custom: build-2025
 zone_pivot_groups: foundry-local-langchain
+ai-usage: ai-assisted
 #customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 

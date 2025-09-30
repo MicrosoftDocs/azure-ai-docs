@@ -11,6 +11,7 @@ ms.author: jburchel
 author: jonburchel
 reviewer: maanavdalal
 ms.reviewer: maanavd
+ai-usage: ai-assisted
 ---
 
 # Best practices and troubleshooting guide for Foundry Local
