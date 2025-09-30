@@ -8,7 +8,7 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom: references_regions, azuregovernment
-ms.date: 05/30/2025
+ms.date: 09/30/2025
 recommendations: false
 ---
 
