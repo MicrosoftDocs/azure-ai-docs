@@ -15,9 +15,9 @@ recommendations: false
 
 # Upgrade from GitHub Models to Azure AI Foundry Models
 
-In this article, you learn to develop a generative AI application by starting from GitHub Models and then upgrading your experience by deploying an Azure AI Services resource with Azure AI Foundry Models.
+In this article, you learn to develop a generative AI application by starting from GitHub Models and then upgrade your experience by deploying an Azure AI Services resource with Azure AI Foundry Models.
 
-[GitHub Models](https://docs.github.com/en/github-models/) are useful when you want to find and experiment with AI models for free as you develop a generative AI application. When you're ready to bring your application to production, upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using Azure AI Foundry Models service. You don't need to change anything else in your code.
+[GitHub Models](https://docs.github.com/en/github-models/) are useful when you want to find and experiment with AI models for free as you develop a generative AI application. When you're ready to bring your application to production, upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using Foundry Models. You don't need to change anything else in your code.
 
 The playground and free API usage for GitHub Models are [rate limited](https://docs.github.com/en/github-models/prototyping-with-ai-models#rate-limits) by requests per minute, requests per day, tokens per request, and concurrent requests. If you get rate limited, you need to wait for the rate limit that you hit to reset before you can make more requests.
 
@@ -25,16 +25,18 @@ The playground and free API usage for GitHub Models are [rate limited](https://d
 
 To complete this tutorial, you need:
 
-* A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
-* An Azure subscription. If you don't have one, you're prompted to create or update your Azure account to a Standard account when you're ready to deploy your model to production.
-
+- A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
+- An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. Alternatively, you can wait until you're ready to deploy your model to production, at which point you'll be prompted to create or update your Azure account to a standard account.
+- 
 ## Upgrade to Azure AI Foundry Models
 
 The rate limits for the playground and free API usage help you experiment with models and develop your AI application. When you're ready to bring your application to production, use a key and endpoint from a paid Azure account. You don't need to change anything else in your code.
 
 To get the key and endpoint:
 
-1. Go to [GitHub Models](https://github.com/marketplace/models) and select the model you're interested in.
+1. Go to [GitHub Models](https://github.com/marketplace/models) and select a model to land on its playground. This article uses Mistral Large 24.11.
+
+1. Select **Use this model** from the playground
 
 1. In the playground for your model, select **Get API key**.
 
