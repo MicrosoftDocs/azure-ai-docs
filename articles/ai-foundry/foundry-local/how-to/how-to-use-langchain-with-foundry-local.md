@@ -6,7 +6,7 @@ keywords: Azure AI services, cognitive, AI models, local inference
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: how-to
-ms.date: 07/03/2025
+ms.date: 10/01/2025
 ms.reviewer: eneros
 ms.author: jburchel
 author: jonburchel

@@ -1,8 +1,0 @@
-# Stage 1 prototype requirements
-# NOTE: Replace placeholders with pinned versions after verification.
-azure-ai-projects[agents]  # [TO VERIFY] exact package name/version
-azure-identity
-azure-ai-evaluation[remote]  # [TO VERIFY] evaluation support for agents
-python-dotenv
-httpx
-rich
