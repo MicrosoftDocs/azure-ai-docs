@@ -38,34 +38,39 @@ To get the key and endpoint:
 
 1. Go to [GitHub Models](https://github.com/marketplace/models) and select a model to land on its playground. This article uses Mistral Large 24.11.
 
-1. Select **Use this model** from the playground
+1. Type in some prompts or use some of the suggested prompts to interact with the model in the playground.
 
-1. In the playground for your model, select **Use this model**. This action opens up a window to "Get started with Models in your codebase".
+1. Select **Use this model** from the playground. This action opens up a window to "Get started with Models in your codebase".
 
 1. In the "Configure authentication" step, select **Get Azure AI key** from the "Azure AI" section.
 
     :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="A screenshot showing how to get the Azure AI production key from the playground of a GitHub Model." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
 
-1. The Azure AI Foundry homepage opens up if you're already signed in to your Azure account, otherwise you land on the Azure AI Foundry sign in page.
+1. If you're already signed in to your Azure account, skip this step. However, if you don't have an Azure account or you're not signed in to your account, follow these steps:
 
-1. If you're not yet signed in to your Azure account, select **Sign in to get started** to open the sign in window.
+    1. If you don't have an Azure account, select **Create my account** and follow the steps to create one.
 
-    - If you don't have an Azure account, select **Create one** and follow the steps to create a paid account. 
+    1. Alternatively, if you have an Azure account, select **Sign back in**. If your existing account is a free account, you first have to upgrade to a standard plan. 
 
-    - Alternatively, if you have an existing account, sign in. If your existing account is a free account, you first have to upgrade to a standard plan. 
+    1. Return to the model's playground and select **Get Azure AI key** again. 
+
+    1. Sign in to your Azure account.
     
-    - Return to the model's playground and select **Get Azure AI key** again. This time, you land on the Azure AI Foundry homepage.
+1.  You're taken to [Azure AI Foundry > GitHub](https://ai.azure.com/GitHub), and the page loads with your model's details. It might take one or two minutes to load your model details in Azure AI Foundry.
 
-1. Go to the "Explore models and capabilities" section of the homepage to search for and select the **Mistral Large 24.11** model. This action opens up the model card where you can see the model's details.
+1. For [Foundry Models from partners and community](../../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to Mistral-Large-2411, for example. Select **Agree and Proceed** to accept the terms.
 
-1. Select **Use this model** to deploy the model to your account. This process begins by creating an Azure AI Foundry project to use for your deployment.
+1. Select the **Deploy** button to deploy the model to your account.
 
-1. When your deployment is ready, the endpoint's target URI and API key appear in the deployment's details page. Use these values in your code to use the model in your production environment.
+1. When your deployment is ready, you land on your project's **Overview** page, where you can see the Azure AI Foundry project's endpoint. 
 
+1. Go to the **Models + endpoints** tab in the left pane of the Azure AI Foundry portal and select the deployed model. The endpoint's target URI and API key are visible on the deployment's details page. Use these values in your code to use the model in your production environment.
+
+    :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
 
 ## Use the new endpoint
 
-You can use any of the supported SDKs to get predictions from the endpoint. The following SDKs are officially supported:
+To use your deployed model with code, you need the model's endpoint URL and key, which you saw in the previous section. You can use any of the supported SDKs to get predictions from the endpoint. The following SDKs are officially supported:
 
 * OpenAI SDK
 * Azure OpenAI SDK
@@ -86,7 +91,7 @@ Use the parameter `model="<deployment-name>` to route your request to this deplo
 
 ## Explore additional features
 
-Azure AI Foundry Models supports additional features that aren't available in GitHub Models, including:
+Azure AI Foundry Models supports extra features that aren't available in GitHub Models, including:
 
 * [Explore the model catalog](https://ai.azure.com/github/models) to see more models.
 * Configure [key-less authentication](../../model-inference/how-to/configure-entra-id.md).
@@ -97,7 +102,7 @@ Azure AI Foundry Models supports additional features that aren't available in Gi
 
 ## Troubleshooting
 
-See the [FAQ section](../../foundry-models/faq.yml) for more help.
+For more help, see the [FAQ section](../../foundry-models/faq.yml).
 
 ## Related content
 
