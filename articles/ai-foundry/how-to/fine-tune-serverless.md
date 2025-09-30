@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Deploy fine-tuned models using serverless API in Azure AI Foundry. Complete guide to fine-tune, train, and deploy custom large language models with cost-effective serverless options.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 09/25/2025
 ms.reviewer: rasavage
 reviewer: RSavage2
 ms.author: ssalgado
