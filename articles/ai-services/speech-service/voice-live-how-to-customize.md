@@ -14,8 +14,6 @@ ms.custom: custom speech, custom voice, custom avatar, fine-tuning
 
 # How to customize voice live input and output
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
-
 Voice live provides multiple options to optimize performance and quality by using custom models. The following customization options are currently available:
 
 - Speech input customization:
