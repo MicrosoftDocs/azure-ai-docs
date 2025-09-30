@@ -146,7 +146,8 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         ServerVad,
         AzureStandardVoice,
         Modality,
-        AudioFormat,
+        InputAudioFormat,
+        OutputAudioFormat
     )
     
     # Set up logging
