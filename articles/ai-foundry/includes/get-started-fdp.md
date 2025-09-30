@@ -10,7 +10,7 @@ ms.custom:
   - include file
   - build-aifnd
   - build-2025
-  - update-code-4
+  - update-code-5
 ---
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
@@ -69,6 +69,9 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Set these environment variables to use in your scripts:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
+
+    > [!TIP]
+    > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
