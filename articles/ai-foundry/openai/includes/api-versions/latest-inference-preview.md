@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Latest preview data plane inference documentation generated from OpenAPI 3.0 spec
 manager: nitinme
 ms.date: 04/23/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025

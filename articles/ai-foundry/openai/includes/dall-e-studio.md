@@ -3,7 +3,8 @@ title: 'Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to generate images with Azure OpenAI in the DALL-E playground (Preview) in Azure AI Foundry.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2023
 ms.topic: include

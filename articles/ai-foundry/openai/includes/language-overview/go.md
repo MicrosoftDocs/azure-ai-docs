@@ -3,7 +3,8 @@ title: Azure OpenAI Go support
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI Go support
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 03/27/2025
 ---

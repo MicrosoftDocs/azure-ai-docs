@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn more about the concepts behind customizing an LLM with Azure OpenAI.
 ms.topic: conceptual
 ms.date: 09/30/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin

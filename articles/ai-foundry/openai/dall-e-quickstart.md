@@ -3,7 +3,8 @@ title: 'Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to get started generating images with Azure OpenAI by using the Python SDK, the REST APIs, or Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python, devx-track-dotnet, devx-track-extended-java, devx-track-go, devx-track-js, devx-track-ts
 ms.topic: quickstart
 author: PatrickFarley
