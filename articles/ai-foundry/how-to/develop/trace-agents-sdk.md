@@ -70,7 +70,7 @@ These advancements have been integrated into Azure AI Foundry, Microsoft Agent F
 | Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
                                                                           
 
-## Setup tracing in Azure AI Foundry SDK
+## Set up tracing in Azure AI Foundry SDK
 
 For chat completions or building agents with Azure AI Foundry, install:
 
