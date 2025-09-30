@@ -2,7 +2,7 @@ items:
     - name: Code of conduct
       href: /legal/ai-code-of-conduct
     - name: Azure updates
-      href: https://azure.microsoft.com/en-us/updates/?filters=%5B%22Azure+AI+Foundry%22%5D#
+      href: https://azure.microsoft.com/updates/?filters=%5B%22Azure+AI+Foundry%22%5D#
     - name: Pricing calculator
       href: https://azure.microsoft.com/pricing/calculator/
     - name: Region support
