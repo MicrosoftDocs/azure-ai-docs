@@ -430,11 +430,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                     endpoint=self.endpoint,
                     credential=self.credential,
                     model=self.model,
-                    connection_options={
-                        "max_msg_size": 10 * 1024 * 1024,
-                        "heartbeat": 20,
-                        "timeout": 20,
-                    },
                 ) as connection:
                     conn = connection
                     self.connection = conn
