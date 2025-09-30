@@ -32,7 +32,7 @@ The Translator service is an optimal solution for managing extensive multilingua
 
 ## What's new for 2025-10-01-preview?
 
-* **Revised request and response JSOn structure**. The REST API structure has been revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide (preview)](rest-api-guide.md#rest-api-code-sample-translate).
+* **Revised request and response JSON format**. The REST API structure has been revised to add specific key names for both the request and response arrays. The request array now uses "inputs" as its key name, while the response array uses "value" as its key name. For more information, *see* [REST API guide (preview)](rest-api-guide.md#rest-api-code-sample-translate).
 
 * **`LLM` choice**. By default, Azure AI Translator uses neural Machine Translation (NMT) technology. With the newest preview release, you now can optionally select either the standard NMT translation or Large Language Model (LLM) models—GPT-4o-mini or GPT-4o. You can choose a large language model for translation based on factors such as quality, cost, and other considerations. However, **using an LLM model requires you to have an Azure AI Foundry resource**. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md)
 
