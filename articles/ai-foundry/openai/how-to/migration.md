@@ -7,13 +7,16 @@ ms.author: mbullwin
 ms.service: azure-ai-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 09/30/2025
 manager: nitinme
 ---
 
 # Migrating to the OpenAI Python API library 1.x
 
 OpenAI released a new version of the [OpenAI Python API library](https://github.com/openai/openai-python/). This guide is supplemental to [OpenAI's migration guide](https://github.com/openai/openai-python/discussions/742) and will help bring you up to speed on the changes specific to Azure OpenAI.
+
+> [!NOTE]
+> This guidance is no longer recommended. To take advantage of the latest v1 API refer to the [Python programming language guide](../supported-languages.md).
 
 ## Updates
 
