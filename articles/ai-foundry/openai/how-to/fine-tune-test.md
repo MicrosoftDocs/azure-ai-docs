@@ -183,7 +183,7 @@ print(response.choices[0].message.content)
 curl $AZURE_OPENAI_ENDPOINT/openai/v1/chat/completions \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '"model": "YOUR-MODEL-DEPLOYMENT_NAME", {"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
+  -d '"model": "YOUR_MODEL_DEPLOYMENT_NAME", {"messages":[{"role": "system", "content": "You are a helpful assistant."},{"role": "user", "content": "Does Azure OpenAI support customer managed keys?"},{"role": "assistant", "content": "Yes, customer managed keys are supported by Azure OpenAI."},{"role": "user", "content": "Do other Azure AI services support this too?"}]}'
 ```
 
 ---
@@ -204,7 +204,7 @@ To use the [Deployments - Delete REST API](/rest/api/aiservices/accountmanagemen
 Below is the REST API example to delete a deployment:
 
 ```bash
-curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2025-04-01-preview" \
+curl -X DELETE "https://management.azure.com/subscriptions/<SUBSCRIPTION>/resourceGroups/<RESOURCE_GROUP>/providers/Microsoft.CognitiveServices/accounts/<RESOURCE_NAME>/deployments/<MODEL_DEPLOYMENT_NAME>?api-version=2025-07-01-preview" \
   -H "Authorization: Bearer <TOKEN>"
 ```
 
