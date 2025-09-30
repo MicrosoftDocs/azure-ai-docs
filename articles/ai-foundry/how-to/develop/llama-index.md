@@ -41,8 +41,8 @@ In this example, we're working with the **Model Inference API**.
 To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
-* An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
-* A model supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
+* A [Foundry project](../create-projects.md).
+* A model supporting the [Model Inference API](/rest/api/aifoundry/modelinference/) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
     * You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
 

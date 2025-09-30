@@ -19,19 +19,19 @@ ai-usage: ai-assisted
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-LangChain is a development ecosystem that makes as easy possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
+LangChain is a development ecosystem that makes it as easy as possible for developers to build applications that reason. The ecosystem is composed by multiple components. Most of the them can be used by themselves, allowing you to pick and choose whichever components you like best.
 
 ::: moniker range="foundry-classic"
-Models deployed to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) can be used with LangChain in two ways:
+Models deployed to [!INCLUDE [classic-link](../../includes/classic-link.md)] can be used with LangChain in two ways:
 ::: moniker-end
 
 ::: moniker range="foundry"
-Models deployed to [Azure AI Foundry](https://aka.ms/nextgen-canary) can be used with LangChain in two ways:
+Models deployed to [!INCLUDE [foundry-link](../../default/includes/foundry-link.md)] can be used with LangChain in two ways:
 ::: moniker-end
 
-- **Using the Azure AI Model Inference API:** All models deployed to Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
+- **Use the Azure AI Model Inference API:** All models deployed to Azure AI Foundry support the [Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md), which offers a common set of functionalities that can be used for most of the models in the catalog. The benefit of this API is that, since it's the same for all the models, changing from one to another is as simple as changing the model deployment being use. No further changes are required in the code. When working with LangChain, install the extensions `langchain-azure-ai`.
 
-- **Using the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
+- **Use the model's provider specific API:** Some models, like OpenAI, Cohere, or Mistral, offer their own set of APIs and extensions for LangChain. Those extensions might include specific functionalities that the model support and hence are suitable if you want to exploit them. When working with LangChain, install the extension specific for the model you want to use, like `langchain-openai` or `langchain-cohere`.
 
 
 In this tutorial, you learn how to use the packages `langchain-azure-ai` to build applications with LangChain.
@@ -42,7 +42,7 @@ To run this tutorial, you need:
 
 * [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
-* A model deployment supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large-2411` deployment in the [Foundry Models](../../../ai-foundry/model-inference/overview.md).
+* A model deployment supporting the [Model Inference API](/rest/api/aifoundry/modelinference/) deployed. In this example, we use a `Mistral-Large-2411` deployment in the [Foundry Models](../../foundry-models/concepts/models-sold-directly-by-azure.md).
 * Python 3.9 or later installed, including pip.
 * LangChain installed. You can do it with:
 
