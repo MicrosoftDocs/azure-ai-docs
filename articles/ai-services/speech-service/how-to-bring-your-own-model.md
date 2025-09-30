@@ -11,6 +11,8 @@ ms.custom: ai-speech, voice-live, byom, preview
 
 # Bring Your Own Model (BYOM) with Voice Live API (Preview)
 
+[!INCLUDE [preview-generic](includes/previews/preview-generic.md)]
+
 The Voice Live API provides Bring Your Own Model (BYOM) capabilities, allowing you to integrate your custom models into the voice interaction workflow. BYOM is useful for the following scenarios:
 
 - **Fine-tuned models**: Use your custom Azure OpenAI or Azure Foundry models
