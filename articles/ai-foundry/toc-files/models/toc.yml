@@ -114,9 +114,6 @@ items:
   - name: Quotas and limits
     href: ../../openai/quotas-limits.md
     displayName: openai 
-  - name: Deployment types
-    href: ../../foundry-models/concepts/deployment-types.md
-    displayName: global, Global, globalstandard, global-standard, Global-Standard, standard, provisioned 
   - name: Azure OpenAI Models
     href: ../../openai/concepts/models.md
     displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
