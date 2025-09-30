@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/04/2025
+ms.date: 09/30/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-mcp-code
@@ -15,9 +15,6 @@ ms.custom: azure-ai-agents-code
 ---
 
 # How to use the Model Context Protocol tool (preview)
-
-> [!NOTE]
-> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
 Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
 
