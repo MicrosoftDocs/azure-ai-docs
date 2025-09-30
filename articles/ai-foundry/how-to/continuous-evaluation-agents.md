@@ -33,6 +33,7 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 Since the evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
 
+[!div class="mx-tdBreakAll"]
 | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
 |--|--|
 | East US | Supported | 
