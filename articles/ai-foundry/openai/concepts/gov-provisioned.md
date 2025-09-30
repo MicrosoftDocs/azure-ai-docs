@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI Provisioned Managed Deployments in the Azure Government cloud.
 author: challenp
 ms.author: chaparker
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom: references_regions, azuregovernment
 ms.date: 05/30/2025

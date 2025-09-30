@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
 ms.date: 09/30/2025

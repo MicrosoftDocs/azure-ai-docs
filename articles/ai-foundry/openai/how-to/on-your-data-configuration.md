@@ -3,7 +3,8 @@ title: 'Network and access configuration for Azure OpenAI On Your Data'
 titleSuffix: Azure OpenAI
 description: Use this article to learn about configuring Azure OpenAI when using your data for text generation.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi

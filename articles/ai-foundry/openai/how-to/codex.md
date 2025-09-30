@@ -2,7 +2,8 @@
 title: Codex with Azure OpenAI in AI Foundry Models
 description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and AI Foundry with gpt-5-codex
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/23/2025
 author: mrbullwinkle    

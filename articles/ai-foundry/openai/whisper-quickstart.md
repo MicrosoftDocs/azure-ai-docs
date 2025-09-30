@@ -3,7 +3,8 @@ title: Convert speech to text with Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure OpenAI Whisper model for speech to text conversion.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: quickstart
 ms.date: 8/13/2025

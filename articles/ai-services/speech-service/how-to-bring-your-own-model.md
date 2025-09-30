@@ -123,11 +123,6 @@ Use the [Python SDK quickstart code](/azure/ai-services/speech-service/voice-liv
                 endpoint=self.endpoint,
                 credential=self.credential,
                 model=self.model,
-                connection_options={
-                    "max_msg_size": 10 * 1024 * 1024,
-                    "heartbeat": 20,
-                    "timeout": 20,
-                },
                 query={
                     "profile": self.byom
                 } if self.byom else None
@@ -456,11 +451,6 @@ class BasicVoiceAssistant:
                 endpoint=self.endpoint,
                 credential=self.credential,
                 model=self.model,
-                connection_options={
-                    "max_msg_size": 10 * 1024 * 1024,
-                    "heartbeat": 20,
-                    "timeout": 20,
-                },
                 query={
                     "profile": self.byom
                 } if self.byom else None
