@@ -5,7 +5,7 @@ description: "Learn how to use custom Azure Policies to control Azure AI Foundry
 manager: mcleans
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 07/31/2025
+ms.date: 10/01/2025
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: aashishb
