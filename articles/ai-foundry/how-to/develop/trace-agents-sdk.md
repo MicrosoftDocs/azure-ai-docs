@@ -54,20 +54,20 @@ Here's a brief overview of key concepts before getting started:
 ## Extending OpenTelemetry with multi-agent observability
 
 Microsoft is enhancing multi-agent observability by introducing new semantic conventions to [OpenTelemetry](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/), developed collaboratively with Outshift, Cisco's incubation engine. These additions—built upon OpenTelemetry and W3C Trace Context—establish standardized practices for tracing and telemetry within multi-agent systems, facilitating consistent logging of key metrics for quality, performance, safety, and cost. This systematic approach enables more comprehensive visibility into multi-agent workflows, including tool invocations and collaboration.
-These advancements have been integrated into Azure AI Foundry, Microsoft Agent Framework, Semantic Kernel, and Azure AI packages for LangChain, LangGraph, and the OpenAI Agents SDK, enabling customers to get unified observability for agentic systems built using any of these frameworks with Azure AI Foundry. The additional semantic conventions and integration across different frameworks equip developers to monitor, troubleshoot, and optimize their AI agents in a unified solution with increased efficiency and valuable insights.
+These advancements have been integrated into Azure AI Foundry, Microsoft Agent Framework, Semantic Kernel, and Azure AI packages for LangChain, LangGraph, and the OpenAI Agents SDK, enabling customers to get unified observability for agentic systems built using any of these frameworks with Azure AI Foundry. Learn more about [tracing integrations](#integrations).
 
-| New Span/Trace/Attributes             | Name            | Purpose |
-|---------------------|-----------------------------------------------------------------|-----------------------------------------------------------------|
-|New span|execute_task              |Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed.|
-|New child spans under "invoke_agent"              |agent_to_agent_interaction|Traces communication between agents|
-|New child spans under "invoke_agent"              |agent.state.management|Effective context, short or long term memory management|
-|New child spans under "invoke_agent"              |agent_planning|Logs the agent's internal planning steps|
-|New child spans under "invoke_agent"              |agent orchestration|Capture agent-to-agent orchestration|
-|New attributes in invoke_agent span              |tool_definitions|Describes the tool's purpose or configuration|
-|New attributes in invoke_agent span              |llm_spans|Records model call spans|
-|New attributes in "execute_tool" span              |tool.call.arguments|Logs the arguments passed during tool invocation|
-|New attributes in "execute_tool" span              |tool.call.results|Records the results returned by the tool|        
-|New event|Evaluation - attributes (name, error.type, label)              |Enables structured evaluation of agent performance and decision-making|            
+| Type         | Context/Parent Span   | Name/Attribute/Event           | Purpose |
+|--------------|----------------------|-------------------------------|---------|
+| Span         | —                    | execute_task                  | Captures task planning and event propagation, providing insights into how tasks are decomposed and distributed. |
+| Child Span   | invoke_agent         | agent_to_agent_interaction    | Traces communication between agents. |
+| Child Span   | invoke_agent         | agent.state.management        | Effective context, short or long term memory management. |
+| Child Span   | invoke_agent         | agent_planning                | Logs the agent's internal planning steps. |
+| Child Span   | invoke_agent         | agent orchestration           | Captures agent-to-agent orchestration. |
+| Attribute    | invoke_agent         | tool_definitions              | Describes the tool's purpose or configuration. |
+| Attribute    | invoke_agent         | llm_spans                     | Records model call spans. |
+| Attribute    | execute_tool         | tool.call.arguments           | Logs the arguments passed during tool invocation. |
+| Attribute    | execute_tool         | tool.call.results             | Records the results returned by the tool. |
+| Event        | —                    | Evaluation (name, error.type, label) | Enables structured evaluation of agent performance and decision-making. |
                                                                           
 
 ## Setup tracing in Azure AI Foundry SDK
@@ -257,13 +257,15 @@ To query trace data for a given service name, query for the `cloud_roleName` pro
 ```
 
 ## Integrations
+
 Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
 ### Tracing agents built on Microsoft Agent Framework and Semantic Kernel
+
 Azure AI Foundry has native integrations with Microsoft Agent Framework and Semantic Kernel. Agents built on these two frameworks get out-of-the-box tracing in Azure AI Foundry Observability.
 
-- Learn more about tracing in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability)
-- Learn more about tracing in [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability)
+- Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel/concepts/enterprise-readiness/observability) and [Microsoft Agent Framework](https://learn.microsoft.com/agent-framework/user-guide/workflows/observability).
+
 
 ### Enable tracing for Agents built on LangChain & LangGraph
 
