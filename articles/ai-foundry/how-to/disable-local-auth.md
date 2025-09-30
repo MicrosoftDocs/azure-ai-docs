@@ -217,7 +217,7 @@ For information about how to deploy an Azure Resource Manager template (ARM temp
 - [Tutorial: Deploy a local ARM template by using the Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
 - [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
-After you create the hub, identify all the users who'll use it, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure role-based access control (RBAC) for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see [Role assignments](#scenarios-for-hub-storage-account-role-assignments).
+After you create the hub, identify all the users who need to use it, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure role-based access control (RBAC) for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see [Role assignments](#scenarios-for-hub-storage-account-role-assignments).
 
 ---
 
