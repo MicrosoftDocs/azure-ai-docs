@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to improve your model responses with structured outputs
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 06/17/2025
 author: mrbullwinkle

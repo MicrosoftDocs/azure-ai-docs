@@ -3,7 +3,8 @@ title: Quickstart - Getting started with Azure OpenAI audio generation
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with audio generation using Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 8/13/2025
 author: PatrickFarley

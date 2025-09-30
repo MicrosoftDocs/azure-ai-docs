@@ -3,7 +3,8 @@ title: 'Fine-tuning cost management'
 titleSuffix: Azure OpenAI
 description: Learn about the training and hosting costs associated with fine-tuning
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 07/08/2025
 author: mrbullwinkle

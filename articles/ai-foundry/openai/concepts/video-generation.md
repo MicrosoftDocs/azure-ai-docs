@@ -4,7 +4,8 @@ description: Learn about Sora, an AI model for generating realistic and imaginat
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
 ---
