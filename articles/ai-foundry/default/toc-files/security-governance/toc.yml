@@ -1,0 +1,24 @@
+items:
+- name: Identity & access management
+  items:
+  - name: Role-based access control
+    href: ../../../concepts/rbac-azure-ai-foundry.md
+- name: Network security
+  items:
+  - name: Configure private link
+    displayName: custom dns
+    href: ../../../how-to/configure-private-link.md
+  - name: Network security perimeter (preview)
+    href: ../../../how-to/add-foundry-to-network-security-perimeter.md    
+- name: Data protection & encryption
+  items:
+  - name: Configure customer-managed keys
+    href: ../../../concepts/encryption-keys-portal.md
+  - name: Disable shared key access to storage
+    href: ../../../how-to/disable-local-auth.md
+- name: Azure policies
+  items:
+  - name: Built-in policy for model deployment (Preview)
+    href: ../../../how-to/model-deployment-policy.md  
+- name: Disaster recovery
+  href: ../../../how-to/disaster-recovery.md

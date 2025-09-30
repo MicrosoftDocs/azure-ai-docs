@@ -1,4 +1,0 @@
-{"id": 0, "question": "Summarize the remote work policy", "expected_contains": ["remote", "policy"]}
-{"id": 1, "question": "List security training requirements", "expected_contains": ["security", "training"]}
-{"id": 2, "question": "What external API data can you enrich?", "expected_contains": ["API"]}
-{"id": 3, "question": "Summarize last quarter financials", "expected_contains": ["quarter"]}

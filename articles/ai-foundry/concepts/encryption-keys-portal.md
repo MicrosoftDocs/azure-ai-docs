@@ -6,20 +6,20 @@ monikerRange: 'foundry-classic || foundry'
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 09/22/2025
+ms.date: 09/29/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
   - ignite-2023
   - build-aifnd
   - build-2025
-ai-usage: ai-assisted
+ai-usage: ai-assisted 
 # Customer intent: As an admin, I want to understand how I can use my own encryption keys with Azure AI Foundry.
 ---
 
 # Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!NOTE]
 > An alternate hub-focused CMK article is available: [Customer-managed keys for hub projects](hub-encryption-keys-portal.md).

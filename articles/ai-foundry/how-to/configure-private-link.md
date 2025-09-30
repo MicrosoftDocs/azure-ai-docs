@@ -7,10 +7,11 @@ manager: mcleans
 ms.service: azure-ai-foundry
 ms.custom: ignite-2023, devx-track-azurecli, build-2024, ignite-2024
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 09/29/2025
 ms.reviewer: meerakurup
 ms.author: jburchel 
 author: jonburchel 
+monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 # Customer intent: As an admin, I want to configure a private link for hub so that I can secure my hubs.
 

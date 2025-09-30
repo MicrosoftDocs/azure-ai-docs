@@ -18,6 +18,7 @@ ms.custom:
   - build-2025
   - peer-review-program
 ai-usage: ai-assisted
+monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
 

@@ -1,4 +1,51 @@
+monikerRange: 'foundry'
 items:
-  - name: "Tutorial: Stage 1 - Idea to prototype"
-    href: "tutorials/tutorial-developer-journey-stage-1-idea-to-prototype.md"
+- name: What is Azure AI Foundry?
+  href: ../what-is-azure-ai-foundry.md
+- name: Get started
+  href: toc-files/get-started/toc.yml
 
+- name: Agent development
+  href: toc-files/agent-development/toc.yml
+
+- name: Agent tools & integration
+  href: toc-files/agent-tools/toc.yml
+
+- name: Model catalog
+  href: toc-files/model-catalog/toc.yml
+
+- name: Model operations
+  href: toc-files/model-operations/toc.yml
+
+- name: Fine-tuning
+  href: toc-files/fine-tuning/toc.yml
+
+- name: Integration & orchestration
+  href: toc-files/integrations-orchestration/toc.yml
+
+- name: Observability, evaluation, & tracing
+  href: toc-files/observability-evaluation-tracing/toc.yml
+
+- name: Developer environment 
+  href: toc-files/developer-environment/toc.yml
+
+- name: API & SDK
+  href: toc-files/api-sdk/toc.yml
+
+- name: Responsible AI
+  href: toc-files/responsible-ai/toc.yml
+
+- name: Best practices
+  href: toc-files/best-practices/toc.yml
+
+- name: Architecture & design
+  href: toc-files/architecture-design/toc.yml
+
+- name: Security & governance
+  href: toc-files/security-governance/toc.yml
+
+- name: Configuration
+  href: toc-files/configuration/toc.yml
+
+- name: Operate & support
+  href: toc-files/operate-support/toc.yml
