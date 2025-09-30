@@ -81,24 +81,7 @@ Run the code using `npx tsx -r dotenv/config index.ts`. This code answers the qu
 Created agent, agent ID : asst_X4yDNWrdWKb8LN0SQ6xlzhWk
 Created thread, thread ID : thread_TxqZcHL2BqkNWl9dFzBYMIU6
 Threads for agent asst_X4yDNWrdWKb8LN0SQ6xlzhWk:
-Thread ID: thread_TxqZcHL2BqkNWl9dFzBYMIU6 created at: Fri Sep 12 2025 14:31:49 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_e3QMF9BqMyo0lI3fti6vw2cL created at: Fri Sep 12 2025 11:50:58 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_ns89NllYfdd8nxlVJqQ1yQt1 created at: Fri Sep 12 2025 11:48:23 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_kDM0m1F0OPqfxG4VbJZ3qz2u created at: Fri Sep 12 2025 10:36:28 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_IL2YEzPzF0YJAQOytU68clPL created at: Fri Sep 12 2025 10:30:56 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_oYuxGjdE5SdmTTwqCc8upOI5 created at: Fri Sep 12 2025 10:21:31 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_5Pcpl9TtS17fTrtF1kfPFG9l created at: Fri Sep 12 2025 10:18:42 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_fJUin6rgX4yeBUAhc7U3aS8O created at: Fri Sep 12 2025 10:12:20 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_aYa57scnqCzYMLnzY2dXpQqh created at: Fri Sep 12 2025 10:11:37 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_j5pHWrhQmM2HvAaJWn2c0sjy created at: Fri Sep 12 2025 10:10:22 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_sEztfhDVeR5ELiv8uYzs35Ng created at: Fri Sep 12 2025 10:06:37 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_rZ4rBrBq23GjYKspx5y0IyME created at: Fri Sep 12 2025 10:00:42 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_ZC2t71yhumF5B3wiyOFhuP8o created at: Fri Sep 12 2025 09:59:01 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_Z6kDHoHRp9kjZve7jYrdJSzW created at: Fri Sep 12 2025 09:56:54 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_y6vngbEX5zajCdgQDm22kS7G created at: Fri Sep 12 2025 09:47:10 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_Wkkv4qd4uIwSOB6am56TDmak created at: Fri Sep 12 2025 09:38:14 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_KNsyxN2A7hWynbIKpGYceCo0 created at: Fri Sep 12 2025 09:23:02 GMT-0700 (Pacific Daylight Time)
-Thread ID: thread_P4941rTZ4ir14PovwSLxEMeN created at: Fri Sep 12 2025 09:11:37 GMT-0700 (Pacific Daylight Time)
+...
 Created message, message ID : msg_R0zDsXdc2UbfsNXvS1zeS6hk
 Creating run...
 Received response with status: queued
