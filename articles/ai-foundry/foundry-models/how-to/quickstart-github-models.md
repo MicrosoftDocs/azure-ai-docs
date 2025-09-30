@@ -15,7 +15,7 @@ recommendations: false
 
 # Upgrade from GitHub Models to Azure AI Foundry Models
 
-In this article, learn to develop a generative AI application by starting from GitHub Models and then deploying upgrading your experience by deploying an Azure AI Services resource with Azure AI Foundry Models.
+In this article, you learn to develop a generative AI application by starting from GitHub Models and then upgrading your experience by deploying an Azure AI Services resource with Azure AI Foundry Models.
 
 [GitHub Models](https://docs.github.com/en/github-models/) are useful when you want to find and experiment with AI models for free as you develop a generative AI application. When you're ready to bring your application to production, upgrade your experience by deploying an Azure AI Services resource in an Azure subscription and start using Azure AI Foundry Models service. You don't need to change anything else in your code.
 
