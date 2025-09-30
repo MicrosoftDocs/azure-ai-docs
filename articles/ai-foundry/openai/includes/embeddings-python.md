@@ -3,7 +3,7 @@ services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 09/01/2025
+ms.date: 09/30/2025
 author: mrbullwinkle #noabenefraim
 ms.author: mbullwin
 ---

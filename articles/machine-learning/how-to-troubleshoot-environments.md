@@ -2065,7 +2065,7 @@ This issue can happen when apt-get fails to run.
 
 **Resources**
 * [Package management with APT](https://help.ubuntu.com/community/AptGet/Howto)
-* [Ubuntu Apt-Get](https://manpages.ubuntu.com/manpages/xenial/man8/apt-get.8.html)
+* [Ubuntu Apt-Get](https://manpages.ubuntu.com/manpages/questing/en/man8/apt-get.8.html)
 * [What to do when apt-get fails](https://www.linux.com/news/what-do-when-apt-get-fails/#:~:text=Check%20the%20broken%20dependencies%E2%80%99%20availability.%20Run%20apt-get%20update,adding%20another%20source%2C%20then%20run%20apt-get%20install%20again)
 * [apt-get command in Linux with Examples](https://www.geeksforgeeks.org/apt-get-command-in-linux-with-examples/)
 
