@@ -57,8 +57,8 @@ Available templates include:
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. Select your project.
-1. On the top right, select **Discover**.
-1. On the left pane, select **Templates**.
+1. Select **Discover** from the upper-right navigation.
+1. Select **Templates** from the left pane.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
