@@ -12,7 +12,7 @@ ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice live API for real-time voice agents.
 ---
 
-# How to use the Voice live API
+# How to use the Voice live API 
 
 The Voice live API provides a capable WebSocket interface compared to the [Azure OpenAI Realtime API](../../ai-foundry/openai/how-to/realtime-audio.md).
 
