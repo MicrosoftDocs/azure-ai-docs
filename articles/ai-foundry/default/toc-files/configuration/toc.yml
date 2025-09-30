@@ -1,3 +1,5 @@
 items:
 - name: Region support
   href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+- name: Status dashboard
+  href: ../../../azure-ai-foundry-status-dashboard-documentation.md  
