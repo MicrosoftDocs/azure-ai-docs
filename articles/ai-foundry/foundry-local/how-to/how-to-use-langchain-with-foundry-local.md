@@ -30,8 +30,7 @@ This tutorial shows you how to build a translation app with the Foundry Local SD
 [!INCLUDE [JavaScript](../includes/use-langchain/javascript.md)]
 ::: zone-end
 
-
-## Next steps
+## Related content
 
 - Explore the [LangChain documentation](https://python.langchain.com/docs/introduction) for advanced features.
 - [Compile Hugging Face models to run on Foundry Local](../how-to/how-to-compile-hugging-face-models.md)

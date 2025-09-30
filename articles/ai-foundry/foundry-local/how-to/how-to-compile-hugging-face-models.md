@@ -301,7 +301,7 @@ After you finish using the custom model, reset the model cache to the default di
 foundry cache cd ./foundry/cache/models
 ```
 
-## Next steps
+## Related content
 
 - [Olive documentation](https://microsoft.github.io/Olive/)
 - [Integrate inferencing SDKs with Foundry Local](how-to-integrate-with-inference-sdks.md)

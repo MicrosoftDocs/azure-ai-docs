@@ -11,6 +11,7 @@ ms.date: 10/01/2025
 ms.reviewer: meerakurup 
 ms.author: jburchel 
 author: jonburchel 
+ai-usage: ai-assisted
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure AI Foundry.
 ---
 

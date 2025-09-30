@@ -12,6 +12,7 @@ ms.date: 10/01/2025
 zone_pivot_groups: foundry-local-sdk
 reviewer: maanavdalal
 ms.reviewer: maanavd
+ai-usage: ai-assisted
 ---
 
 # Foundry Local SDK reference

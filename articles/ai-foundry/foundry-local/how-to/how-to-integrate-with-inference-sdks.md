@@ -12,6 +12,7 @@ ms.date: 10/01/2025
 zone_pivot_groups: foundry-local-sdk
 author: jonburchel
 reviewer: samuel100
+ai-usage: ai-assisted
 ---
 
 # Integrate inferencing SDKs with Foundry Local
@@ -37,7 +38,7 @@ Foundry Local integrates with inference SDKs such as OpenAI, Azure OpenAI, and L
 [!INCLUDE [Rust](../includes/integrate-examples/rust.md)]
 ::: zone-end
 
-## Next steps
+## Related content
 
 - [Compile Hugging Face models to run on Foundry Local](how-to-compile-hugging-face-models.md)
 - [Explore the Foundry Local CLI reference](../reference/reference-cli.md)

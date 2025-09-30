@@ -10,6 +10,7 @@ ms.author: jburchel
 author: jonburchel 
 ms.reviewer: aashishb
 reviewer: aashishb_microsoft
+ai-usage: ai-assisted
 ---
 
 # Control model deployment with custom policies

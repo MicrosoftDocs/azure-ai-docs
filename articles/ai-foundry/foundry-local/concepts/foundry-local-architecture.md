@@ -11,6 +11,7 @@ ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
 ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Foundry Local architecture

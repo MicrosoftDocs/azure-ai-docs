@@ -11,6 +11,7 @@ author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
 ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Foundry Local CLI Reference

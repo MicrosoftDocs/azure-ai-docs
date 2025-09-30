@@ -18,6 +18,7 @@ keywords:
   - cognitive
   - AI models
   - local inference
+ai-usage: ai-assisted
 # customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
