@@ -814,6 +814,8 @@ To use Hugging Face models with the hub, add outbound FQDN rules to allow traffi
 * `*.docker.com`
 * `production.cloudflare.docker.com`
 * `cdn.auth0.com`
+* `huggingface.co`
+* `cas-bridge.xethub.hf.co`
 * `cdn-lfs.huggingface.co`
 
 ### Scenario: Models sold directly by Azure

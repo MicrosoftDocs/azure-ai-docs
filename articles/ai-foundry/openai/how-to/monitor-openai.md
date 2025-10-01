@@ -1,12 +1,13 @@
 ---
 title: Monitor Azure OpenAI in Azure AI Foundry Models
 description: Start here to learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for your Azure OpenAI.
-ms.date: 07/02/2025
+ms.date: 09/30/2025
 ms.custom: horz-monitor, subject-monitoring
 ms.topic: conceptual
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Monitor Azure OpenAI

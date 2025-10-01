@@ -3,7 +3,8 @@ title: Azure OpenAI in Azure AI Foundry Models v1 REST API reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's v1 REST API. 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 08/26/2025
 author: mrbullwinkle 

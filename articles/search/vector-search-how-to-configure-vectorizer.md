@@ -197,7 +197,7 @@ Use a search client to send a query through a vectorizer. This example assumes V
 
    ```http
     ### Run a query
-    POST {{baseUrl}}/indexes/vector-nasa-ebook-txt/docs/search?api-version=2024-07-01 HTTP/1.1
+    POST {{baseUrl}}/indexes/vector-nasa-ebook-txt/docs/search?api-version=2025-09-01 HTTP/1.1
         Content-Type: application/json
         api-key: {{queryApiKey}}
     
