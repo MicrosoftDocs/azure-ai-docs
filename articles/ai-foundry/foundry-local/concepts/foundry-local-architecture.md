@@ -10,26 +10,27 @@ ms.author: jburchel
 ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
-ms.date: 7/3/2025
+ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Foundry Local architecture
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local enables efficient, secure, and scalable AI model inference directly on your devices. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
+Foundry Local enables efficient, secure, and scalable AI model inference directly on your device. This article explains the core components of Foundry Local and how they work together to deliver AI capabilities.
 
-Key benefits of Foundry Local include:
+Foundry Local offers these key benefits:
 
 > [!div class="checklist"]
 >
-> - **Low Latency**: Run models locally to minimize processing time and deliver faster results.
-> - **Data Privacy**: Process sensitive data locally without sending it to the cloud, helping meet data protection requirements.
+> - **Low latency**: Run models locally to minimize processing time and deliver faster results.
+> - **Data privacy**: Process sensitive data locally without sending it to the cloud, helping meet data protection requirements.
 > - **Flexibility**: Support for diverse hardware configurations lets you choose the optimal setup for your needs.
 > - **Scalability**: Deploy across various devices, from laptops to servers, to suit different use cases.
-> - **Cost-Effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
-> - **Offline Operation**: Work without an internet connection in remote or disconnected environments.
-> - **Seamless Integration**: Easily incorporate into existing development workflows for smooth adoption.
+> - **Cost-effectiveness**: Reduce cloud computing costs, especially for high-volume applications.
+> - **Offline operation**: Work without an internet connection in remote or disconnected environments.
+> - **Seamless integration**: Easily incorporate into existing development workflows for smooth adoption.
 
 ## Key components
 
@@ -148,7 +149,7 @@ The AI Toolkit for Visual Studio Code provides a user-friendly interface for dev
 
 After completing these steps, your Foundry Local model will appear in the 'My Models' list in AI Toolkit and is ready to be used by right-clicking on your model and select 'Load in Playground'.
 
-## Next Steps
+## Related content
 
 - [Get started with Foundry Local](../get-started.md)
 - [Integrate inferencing SDKs with Foundry Local](../how-to/how-to-integrate-with-inference-sdks.md)

@@ -5,7 +5,7 @@ description: Learn how to use customer-managed keys (CMK) for enhanced encryptio
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 09/22/2025
+ms.date: 10/01/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
