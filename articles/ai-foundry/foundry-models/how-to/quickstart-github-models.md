@@ -27,7 +27,7 @@ To complete this tutorial, you need:
 
 - A GitHub account with access to [GitHub Models](https://docs.github.com/en/github-models/).
 - An Azure subscription with a valid payment method. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin. Alternatively, you can wait until you're ready to deploy your model to production, at which point you'll be prompted to create or update your Azure account to a standard account.
-- [Models from partners and community](../../concepts/models.md#models-from-partners-and-community) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Models sold directly by Azure](../../concepts/models.md#models-sold-directly-by-azure) don't have this requirement.
+- [Foundry Models from partners and community](../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](configure-marketplace.md). [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md) don't have this requirement.
  
 
 ## Upgrade to Azure AI Foundry Models
@@ -64,7 +64,7 @@ To get the key and endpoint:
 
 1. When your deployment is ready, you land on your project's **Overview** page, where you can see the Azure AI Foundry project's endpoint. 
 
-1. Go to the **Models + endpoints** tab in the left pane of the Azure AI Foundry portal and select the deployed model. The endpoint's target URI and API key are visible on the deployment's details page. Use these values in your code to use the model in your production environment.
+1. To get the specific model's endpoint URL and API key, go to the **Models + endpoints** tab in the left pane of the Azure AI Foundry portal and select the deployed model. The endpoint's target URI and API key are visible on the deployment's details page. Use these values in your code to use the model in your production environment.
 
     :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
 
@@ -74,9 +74,9 @@ To use your deployed model with code, you need the model's endpoint URL and key,
 
 * OpenAI SDK
 * Azure OpenAI SDK
-* Azure AI Foundry SDK
+* Azure AI Inference SDK
 
-For more details and examples, see [supported languages and SDKs](../supported-languages.md). The following example shows how to use the Azure AI Foundry SDK with the newly deployed model:
+For more details and examples, see [supported languages and SDKs](../supported-languages.md). The following example shows how to use the Azure AI Inference SDK with the newly deployed model:
 
 [!INCLUDE [code-create-chat-client](../../foundry-models/includes/code-create-chat-client.md)]
 
@@ -84,7 +84,7 @@ Generate your first chat completion:
 
 [!INCLUDE [code-create-chat-completion](../../foundry-models/includes/code-create-chat-completion.md)]
 
-Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*. See [Routing](inference.md#routing) concept page to learn how Azure AI Services route deployments.
+Use the parameter `model="<deployment-name>` to route your request to this deployment. *Deployments work as an alias of a given model under certain configurations*.
 
 > [!IMPORTANT]
 > Unlike GitHub Models where all the models are already configured, the Azure AI Services resource allows you to control which models are available in your endpoint and under which configuration. Add as many models as you plan to use before indicating them in the `model` parameter. Learn how to [add more models](../../model-inference/how-to/create-model-deployments.md) to your resource.
