@@ -87,9 +87,13 @@ To achieve the fastest possible response times, follow these best practices:
 
    + Retain `knowledgeSource.includeReferences` set to true (default setting) for details about each individually scored result.
 
-   + Set `knowledgeSource.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
+   + Set `knowledgeSources.alwaysQuerySource` to true.
 
-1. In the [retrieve action](search-agentic-retrieval-how-to-retrieve.md), provide a query that's fewer than 512 characters.
+   + Set `knowledgeSources.retrievalInstructions` to false.
+
+   + Set `knowledgeSources.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
+
+1. In the [retrieve action](search-agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
 
 ## Delete a knowledge source
 
