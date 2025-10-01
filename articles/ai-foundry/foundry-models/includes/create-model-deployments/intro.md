@@ -21,4 +21,4 @@ To complete this article, you need:
 * An Azure AI Foundry project. This kind of project is managed under an Azure AI Foundry resource (formerly known as Azure AI Services resource). If you don't have a Foundry project, see [Create a project for Azure AI Foundry (Foundry projects)](../../../how-to/create-projects.md).
 
 
-* [Models from Partners and Community](../../concepts/models.md#models-from-partners-and-community) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Models Sold Directly by Azure](../../concepts/models.md#models-sold-directly-by-azure) don't have this requirement.
+* [Foundry Models from partners and community](../../concepts/models-from-partners.md) require access to **Azure Marketplace**. Ensure you have the [permissions required to subscribe to model offerings](../../how-to/configure-marketplace.md). [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md) don't have this requirement.
