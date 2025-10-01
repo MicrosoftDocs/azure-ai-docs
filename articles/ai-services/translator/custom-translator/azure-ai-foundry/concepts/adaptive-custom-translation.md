@@ -56,8 +56,8 @@ Here's the base URL for all adaptive custom translation API requests:
 
 Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. You can choose one of the following methods for authentication:
 
-* Authenticate with a [single-service regional](../../../text-translation/reference/authentication.md#authenticating-with-a-regional-resource), [single-service-global](#authenticating-with-a-global-resource), or [multi-service](./../../text-translation/reference/authentication.md#authenticating-with-a-multi-service-resource) resource key.
-* Authenticate with a [bearer token](./../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
+* Authenticate with a [single-service regional](../../../text-translation/reference/authentication.md#authenticating-with-a-regional-resource), [single-service-global](../../../text-translation/reference/authentication.md#authenticating-with-a-global-resource), or [multi-service](../../../text-translation/reference/authentication.md#authenticating-with-a-multi-service-resource) resource key.
+* Authenticate with a [bearer token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
 * Authenticate with [Microsoft Entra ID](../../../how-to/microsoft-entra-id-auth.md) is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys.
 
 Form more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
