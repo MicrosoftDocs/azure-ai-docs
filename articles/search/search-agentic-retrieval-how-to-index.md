@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 10/01/2025
 ---
 
 # Design an index for agentic retrieval in Azure AI Search
@@ -16,13 +16,13 @@ ms.date: 08/29/2025
 
 In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a chat completion model for query planning, generating subqueries that broaden the scope of what's searchable and relevant.
 
-Subqueries are created internally. Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on agentic retrieval. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
+Subqueries are created internally. Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on the query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
-A search index that's used in agentic retrieval is specified as *knowledge source* and is either:
+A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge agent*, and is either:
 
 + An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](search-knowledge-source-how-to-index.md) definition.
 
-+ A generated index created from a generated blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](search-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
++ A generated index created from a blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](search-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
 
 ## Criteria for agentic retrieval
 
@@ -64,7 +64,7 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
       "synonymMaps": []
     },
     {
-      "name": "page_chunk_text_3_large", "type": "Collection(Edm.Single)",
+      "name": "page_chunk_vector_text_3_large", "type": "Collection(Edm.Single)",
       "searchable": true, "retrievable": false, "filterable": false, "sortable": false, "facetable": false,
       "dimensions": 3072,
       "vectorSearchProfile": "hnsw_text_3_large",
@@ -91,9 +91,7 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
   "tokenizers": [],
   "tokenFilters": [],
   "charFilters": [],
-  "similarity": {
-    "@odata.type": "#Microsoft.Azure.Search.BM25Similarity"
-  },
+  "similarity": {},
   "semantic": {
     "defaultConfiguration": "semantic_config",
     "configurations": [
@@ -152,20 +150,13 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
 
 In agentic retrieval, a large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed and search results are generated, those results are passed to the LLM again, this time as grounding data that's used to formulate an answer. 
 
-LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you must have `searchable` fields that provide plain text strings, and are `retrievable` in the response. Vector fields and vector search are also important because they add similarity search to information retrieval. Vectors enhance and improve the quality of search, but aren't otherwise strictly required. Azure AI Search has built-in capabilities that [simplify and automate vectorization](vector-search-overview.md).
+LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you must have `searchable` fields that provide plain text strings, and are `retrievable` in the response. Vector fields and vector search are also important because they add similarity search to information retrieval. Vectors enhance and improve the quality of search that produces grounding data, but aren't otherwise strictly required. Azure AI Search has built-in capabilities that [simplify and automate vectorization](vector-search-overview.md).
 
 The previous example index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but notice that its `searchable` for vector search. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
 
-The vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
+The vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes string subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
 
 All `searchable` fields are included in query execution. There's no support for a `select` statement that explicitly states which fields to query.
-
-<!-- 
-> [!div class="checklist"]
-> + A fields collection with `searchable` text and vetor fields, and `retrievable` text fields
-> + Vector fields that are queried are fields having a vectorizer
-> + Fields selected in the response string are semantic fields (title, terms, content)
-> + Fields in reference source data are all `retrievable` fields, assuming reference source data is true -->
 
 ## Add a description
 
