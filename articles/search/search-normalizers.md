@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 10/01/2025
 ms.update-cycle: 365-days
 ---
 
@@ -89,6 +89,40 @@ Azure AI Search provides built-in normalizers for common use-cases along with th
 |[Custom normalizers](#add-custom-normalizers) <sup>1</sup> | For advanced scenarios. Requires user-defined configuration of a combination of existing elements, consisting of char and token filters.|
 
 <sup>(1)</sup> Custom normalizers don't specify tokenizers since normalizers always produce a single token.
+
+## Test a normalizer
+
+You can use the [Test Analyzer (REST)](/rest/api/searchservice/indexes/analyze) to see how a normalizer processes an input.
+
+**Request**
+
+```http
+  POST https://[search service name].search.windows.net/indexes/[index name]/analyze?api-version=[api-version]
+    Content-Type: application/json
+    api-key: [admin key]
+
+  {
+     "normalizer":"asciifolding",
+     "text": "Vis-à-vis means Opposite"
+  }
+```
+
+**Response**
+
+```http
+HTTP/1.1 200 OK
+
+{
+  "tokens": [
+    {
+      "token": "Vis-a-vis means Opposite",
+      "startOffset": 0,
+      "endOffset": 24,
+      "position": 0
+    }
+  ]
+}
+```
 
 ## Normalizers reference
 
