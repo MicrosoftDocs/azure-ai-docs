@@ -1,5 +1,5 @@
 items:
-- name: Azure Vision Documentation
+- name: Azure Vision documentation
   href: index.yml
 - name: Overview
   expanded: true

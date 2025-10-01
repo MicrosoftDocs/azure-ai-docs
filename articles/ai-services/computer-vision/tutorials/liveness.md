@@ -1061,15 +1061,13 @@ Optionally, you can do further face operations after the liveness check, such as
 1. You can now either download the session-image (referenced in [Liveness Get Session Image Operation API](/rest/api/face/liveness-session-operations/get-session-image)), or provide the "sessionImageId" in the [Detect from Session Image ID API](/rest/api/face/face-detection-operations/detect-from-session-image-id) operation to continue to perform other face analysis or face identity operations. 
 For more information on these operations, see [Face detection concepts](../concept-face-detection.md) and [Face Recognition concepts](../concept-face-recognition.md). 
 
-
 ## Support options
 
 In addition to using the main [Azure AI Foundry Tools support options](../../cognitive-services-support-options.md), you can also post your questions in the [issues](https://github.com/Azure-Samples/azure-ai-vision-sdk/issues) section of the SDK repo. 
 
-
 ## Related content
 
-To learn how to integrate the liveness solution into your existing application, see Azure Vision SDK reference.
+To learn how to integrate the liveness solution into your existing application, see the Azure Vision SDK reference.
 
 - [Kotlin (Android)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme)
 - [Swift (iOS)](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme)
@@ -1078,4 +1076,3 @@ To learn how to integrate the liveness solution into your existing application, 
 To learn more about the features available to orchestrate the liveness solution, see the Session REST API reference.
 
 - [Liveness Session Operations](/rest/api/face/liveness-session-operations)
-
