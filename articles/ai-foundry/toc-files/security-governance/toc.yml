@@ -46,4 +46,4 @@ items:
 - name: Disaster recovery
   href: ../../how-to/disaster-recovery.md
 - name: Security baseline
-  href: /security/benchmark/azure/baselines/azure-ai-studio-security-baseline
+  href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
