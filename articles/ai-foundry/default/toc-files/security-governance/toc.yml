@@ -18,3 +18,5 @@ items:
   href: ../../../how-to/model-deployment-policy.md  
 - name: Disaster recovery
   href: ../../../how-to/disaster-recovery.md
+- name: Security baseline
+  href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
