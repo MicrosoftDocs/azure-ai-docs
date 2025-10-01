@@ -80,7 +80,7 @@ The Adaptive custom translation API is organized into three main operation categ
 * [Get Import Job Status](#get-import-job-status)
 
 ### 3. Dataset Index Operations
-* [Create Dataset Index](#create-index)
+* [Create Dataset Index](#create-dataset-index)
 * [Get Dataset Index](#get-dataset-index)
 * [Get All Dataset Indexes](#get-all-dataset-indexes))
 * [Delete Dataset Index](#delete-dataset-index)
