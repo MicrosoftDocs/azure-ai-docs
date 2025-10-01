@@ -66,7 +66,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. [!INCLUDE [find-endpoint](find-endpoint.md)]
 
-1. Set these environment variables to use in your scripts:
+1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
 
