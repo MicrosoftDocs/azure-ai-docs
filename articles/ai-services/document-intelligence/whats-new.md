@@ -1,7 +1,7 @@
 ---
 title: What's new in Document Intelligence
 titleSuffix: Azure AI services
-description: Learn the latest updates to the Document Intelligence API.
+description: Learn the latest updates to the Azure AI Document Intelligence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
