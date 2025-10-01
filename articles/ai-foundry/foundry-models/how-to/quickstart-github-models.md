@@ -66,7 +66,7 @@ To get the key and endpoint:
 
 1. To get the specific model's endpoint URL and API key, go to the **Models + endpoints** tab in the left pane of the Azure AI Foundry portal and select the deployed model. The endpoint's target URI and API key are visible on the deployment's details page. Use these values in your code to use the model in your production environment.
 
-    :::image type="content" source="../media/quickstart-github-models/github-models-get-production-key.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/quickstart-github-models/github-models-get-production-key.png":::
+    :::image type="content" source="../media/quickstart-github-models/deployment-endpoint-and-key.png" alt-text="Screenshot showing how to get the URL and key associated with the deployment." lightbox="../media/quickstart-github-models/deployment-endpoint-and-key.png":::
 
 ## Use the new endpoint
 
