@@ -1,7 +1,7 @@
 ---
 title: Brand detection - Azure Vision in Foundry Tools
 titleSuffix: Azure AI Foundry Tools
-description: Learn about brand and logo detection, a specialized mode of object detection, using the Azure Vision in Foundry Tools API.
+description: Learn about brand and logo detection, a specialized mode of object detection, using Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
@@ -17,7 +17,7 @@ Brand detection is a specialized mode of [object detection](concept-object-detec
 
 ## How it works
 
-The Azure Vision in Foundry Tools service detects whether there are brand logos in a given image. If a brand logo is detected, the service returns the brand name, a confidence score, and the coordinates of a bounding box around the logo.
+Azure Vision in Foundry Tools service detects whether there are brand logos in a given image. If a brand logo is detected, the service returns the brand name, a confidence score, and the coordinates of a bounding box around the logo.
 
 The built-in logo database covers popular brands in consumer electronics, clothing, and more. If you find that the Vision service doesn't detect the brand you're looking for, you can also try creating and training your own logo detector using the [Custom Vision](../custom-vision-service/index.yml) service.
 

@@ -16,7 +16,7 @@ ms.author: pafarley
 >
 > To extract text from PDFs, Office files, HTML documents, and document images, use the [Document Intelligence Read OCR model](../document-intelligence/prebuilt/read.md). It's optimized for text-heavy digital and scanned documents and uses an asynchronous API that makes it easy to power your intelligent document processing scenarios.
 
-OCR is a machine-learning-based technique for extracting text from in-the-wild and non-document images like product labels, user-generated images, screenshots, street signs, and posters. The Azure Vision in Foundry Tools OCR provides a fast, synchronous API for lightweight scenarios where images aren't text-heavy. This approach lets you embed OCR in near real-time user experiences to enrich content understanding and follow-up user actions with fast turn-around times.
+OCR is a machine-learning-based technique for extracting text from in-the-wild and non-document images like product labels, user-generated images, screenshots, street signs, and posters. Azure Vision in Foundry Tools OCR provides a fast, synchronous API for lightweight scenarios where images aren't text-heavy. This approach lets you embed OCR in near real-time user experiences to enrich content understanding and follow-up user actions with fast turn-around times.
 
 ## What is Azure Vision v4.0 Read OCR?
 

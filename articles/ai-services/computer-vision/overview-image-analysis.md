@@ -14,7 +14,7 @@ keywords: Azure Vision in Foundry Tools, Azure Vision in Foundry Tools applicati
 
 # What is Image Analysis?
 
-The Azure Vision in Foundry Tools Image Analysis service can extract a wide variety of visual features from your images. For example, it can determine whether an image contains adult content, find specific brands or objects, or find human faces.
+Azure Vision in Foundry Tools Image Analysis service can extract a wide variety of visual features from your images. For example, it can determine whether an image contains adult content, find specific brands or objects, or find human faces.
 
 The latest version of Image Analysis, 4.0, which is now generally available, has new features like synchronous OCR and people detection. Use this version going forward.
 

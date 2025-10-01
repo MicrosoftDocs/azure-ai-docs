@@ -13,11 +13,11 @@ ms.custom: sfi-ropc-nochange
 
 # Migrate to v3.x of the Read OCR container
 
-If you're using version 2 of the Azure Vision in Foundry Tools Read OCR container, use this article to learn how to upgrade your application to use version 3.x of the container.
+If you're using version 2 of Azure Vision in Foundry Tools Read OCR container, use this article to learn how to upgrade your application to use version 3.x of the container.
 
 ## API changes
 
-The Read v3.2 container uses version 3 of the Azure Vision API and has the following endpoints:
+The Read v3.2 container uses version 3 of Azure Vision API and has the following endpoints:
 
 * `/vision/v3.2/read/analyzeResults/{operationId}`
 * `/vision/v3.2/read/analyze`

@@ -1,7 +1,7 @@
 ---
 title: Smart-cropped thumbnails - Azure Vision in Foundry Tools
 titleSuffix: Azure AI Foundry Tools
-description: Concepts related to generating thumbnails for images using the Azure Vision in Foundry Tools API.
+description: Concepts related to generating thumbnails for images using Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 
@@ -13,9 +13,9 @@ ms.author: pafarley
 
 # Smart-cropped thumbnails
 
-A thumbnail is a reduced-size representation of an image. Thumbnails are used to represent images and other data in a more economical, layout-friendly way. The Azure Vision 3.2 API uses smart cropping to create intuitive image thumbnails that include the most important regions of an image, with priority given to any detected faces.
+A thumbnail is a reduced-size representation of an image. Thumbnails are used to represent images and other data in a more economical, layout-friendly way. Azure Vision 3.2 API uses smart cropping to create intuitive image thumbnails that include the most important regions of an image, with priority given to any detected faces.
 
-The Azure Vision thumbnail generation algorithm works as follows:
+Azure Vision thumbnail generation algorithm works as follows:
 
 1. Remove distracting elements from the image and identify the _area of interest_&mdash;the area of the image in which the main object(s) appears.
 1. Crop the image based on the identified _area of interest_.
@@ -23,7 +23,7 @@ The Azure Vision thumbnail generation algorithm works as follows:
 
 ## Area of interest
 
-When you upload an image, the Azure Vision API analyzes it to determine the *area of interest*. It can then use this region to determine how to crop the image. The cropping operation, however, will always match the desired aspect ratio if one is specified.
+When you upload an image, Azure Vision API analyzes it to determine the *area of interest*. It can then use this region to determine how to crop the image. The cropping operation, however, will always match the desired aspect ratio if one is specified.
 
 You can also get the raw bounding box coordinates of this same *area of interest* by calling the **areaOfInterest** API instead. You can then use this information to modify the original image however you wish.
 

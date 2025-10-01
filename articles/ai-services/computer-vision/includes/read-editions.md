@@ -21,4 +21,4 @@ ms.author: pafarley
 >
 > **About Azure Vision v3.2 GA Read**
 >
-> Looking for the most recent Azure Vision v3.2 GA Read? All future Read OCR enhancements are part of the two services listed previously. There are no further updates to the Azure Vision v3.2. For more information, see [Call the Azure Vision 3.2 GA Read API](../how-to/call-read-api.md) and [Quickstart: Azure Vision v3.2 GA Read](../quickstarts-sdk/client-library.md).
+> Looking for the most recent Azure Vision v3.2 GA Read? All future Read OCR enhancements are part of the two services listed previously. There are no further updates to Azure Vision v3.2. For more information, see [Call Azure Vision 3.2 GA Read API](../how-to/call-read-api.md) and [Quickstart: Azure Vision v3.2 GA Read](../quickstarts-sdk/client-library.md).

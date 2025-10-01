@@ -13,7 +13,7 @@ keywords: on-premises, OCR, Docker, container
 
 # Install Azure Vision in Foundry Tools 3.2 GA Read OCR container
 
-Containers let you run the Azure Vision in Foundry Tools APIs in your own environment and can help you meet specific security and data governance requirements. In this article you learn how to download, install, and run the Azure Vision Read (OCR) container.
+Containers let you run Azure Vision in Foundry Tools APIs in your own environment and can help you meet specific security and data governance requirements. In this article you learn how to download, install, and run the Azure Vision Read (OCR) container.
 
 The Read container allows you to extract printed and handwritten text from images and documents in JPEG, PNG, BMP, PDF, and TIFF file formats. For more information on the Read service, see the [Read API how-to guide](how-to/call-read-api.md).
 

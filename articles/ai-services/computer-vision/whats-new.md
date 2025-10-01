@@ -191,7 +191,7 @@ As part of the Image Analysis 4.0 API, the [Background removal API](./concept-ba
 
 ### Azure Vision 3.0 & 3.1 previews deprecation
 
-The preview versions of the Azure Vision 3.0 and 3.1 APIs are scheduled to be retired on September 30, 2023. Customers won't be able to make any calls to these APIs past this date. Customers are encouraged to migrate their workloads to the generally available (GA) 3.2 API instead. Mind the following changes when migrating from the preview versions to the 3.2 API:
+The preview versions of Azure Vision 3.0 and 3.1 APIs are scheduled to be retired on September 30, 2023. Customers won't be able to make any calls to these APIs past this date. Customers are encouraged to migrate their workloads to the generally available (GA) 3.2 API instead. Mind the following changes when migrating from the preview versions to the 3.2 API:
 - The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls take an optional _model-version_ parameter that you can use to specify which AI model to use. By default, they use the latest model.
 - The [Analyze Image](/rest/api/computervision/analyze-image) and [Read](/rest/api/computervision/recognize-printed-text) API calls also return a `model-version` field in successful API responses. This field reports which model was used.
 - Azure Vision 3.2 API uses a different error-reporting format. See the [API reference documentation](/rest/api/computervision/operation-groups) to learn how to adjust any error-handling code.
@@ -206,7 +206,7 @@ Image Analysis 4.0 has been released in public preview. The new API includes ima
 
 ### Azure Vision 3.0/3.1 Read previews deprecation
 
-The preview versions of the Azure Vision 3.0 and 3.1 Read API are scheduled to be retired on January 31, 2023. Customers are encouraged to refer to the [How-To](./how-to/call-read-api.md) and [QuickStarts](./quickstarts-sdk/client-library.md?tabs=visual-studio&pivots=programming-language-csharp) to get started with the generally available (GA) version of the Read API instead. The latest GA versions provide the following benefits:
+The preview versions of Azure Vision 3.0 and 3.1 Read API are scheduled to be retired on January 31, 2023. Customers are encouraged to refer to the [How-To](./how-to/call-read-api.md) and [QuickStarts](./quickstarts-sdk/client-library.md?tabs=visual-studio&pivots=programming-language-csharp) to get started with the generally available (GA) version of the Read API instead. The latest GA versions provide the following benefits:
 * 2022 latest generally available OCR model
 * Significant expansion of OCR language coverage including support for handwritten text
 * Improved OCR quality 
@@ -327,7 +327,7 @@ A new version of the [Spatial Analysis container](spatial-analysis-container.md)
 
 ### Azure Vision v3.2 GA
 
-The Azure Vision API v3.2 is now generally available with the following updates:
+Azure Vision API v3.2 is now generally available with the following updates:
 
 * Improved image tagging model: analyzes visual content and generates relevant tags based on objects, actions, and content displayed in the image. This model is available through the [Tag Image API](/rest/api/computervision/operation-groups). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
 * Updated content moderation model: detects presence of adult content and provides flags to filter images containing adult, racy, and gory visual content. This model is available through the [Analyze API](/rest/api/computervision/analyze-image). See the Image Analysis [how-to guide](./how-to/call-analyze-image.md) and [overview](./overview-image-analysis.md) to learn more.
@@ -346,7 +346,7 @@ The Azure Vision API v3.2 is now generally available with the following updates:
 
 ### Azure Vision 3.2 Public Preview update
 
-The Azure Vision API v3.2 public preview has been updated. The preview release has all Azure Vision features along with updated Read and Analyze APIs.
+Azure Vision API v3.2 public preview has been updated. The preview release has all Azure Vision features along with updated Read and Analyze APIs.
 
 > [!div class="nextstepaction"]
 > [See Azure Vision v3.2 public preview 3](/rest/api/computervision/operation-groups)
@@ -355,7 +355,7 @@ The Azure Vision API v3.2 public preview has been updated. The preview release h
 
 ### Read API v3.2 Public Preview with OCR support for 73 languages
 
-The Azure Vision Read API v3.2 public preview, available as cloud service and Docker container, includes these updates:
+Azure Vision Read API v3.2 public preview, available as cloud service and Docker container, includes these updates:
 
 * [OCR for 73 languages](./language-support.md#optical-character-recognition-ocr) including Simplified and Traditional Chinese, Japanese, Korean, and Latin languages.
 * Natural reading order for the text line output (Latin languages only)
@@ -407,7 +407,7 @@ A new version of the [Spatial Analysis container](spatial-analysis-container.md)
 
 ### Azure Vision API v3.1 GA
 
-The Azure Vision API in General Availability has been upgraded to v3.1.
+Azure Vision API in General Availability has been upgraded to v3.1.
 
 ## September 2020
 
@@ -417,7 +417,7 @@ The [Spatial Analysis container](spatial-analysis-container.md) is now in previe
 
 ### Read API v3.1 Public Preview adds OCR for Japanese
 
-The Azure Vision Read API v3.1 public preview adds these capabilities:
+Azure Vision Read API v3.1 public preview adds these capabilities:
 
 * OCR for Japanese language
 * For each text line, indicate whether the appearance is Handwriting or Print style, along with a confidence score (Latin languages only).

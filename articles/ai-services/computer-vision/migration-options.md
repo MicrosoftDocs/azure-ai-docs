@@ -1,5 +1,5 @@
 ---
-title: Migrate from Azure Vision in Foundry Tools - Image Analysis
+title: MAzure Vision in Foundry Tools - Image Analysis API will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Image Analysis customers until 9/25/2028, but to ensure business continuity and minimize disruption, we encourage customers to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to...grate from Azure Vision in Foundry Tools - Image Analysis
 description: Guidance for migrating from Azure Computer Vision - Image Analysis API to alternative solutions before its retirement in September 2028.
 author: PatrickFarley
 ms.author: pafarley

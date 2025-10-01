@@ -24,7 +24,7 @@ Use the optical character recognition (OCR) client library to read printed and h
 - [Python 3.x](https://www.python.org/).
 - Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check whether you have pip installed, run `pip --version` on the command line. Get pip by installing the latest version of Python.
 - <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision" title="create a Vision resource" target="_blank">An Azure Vision in Foundry Tools resource</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- The key and endpoint from the resource you create to connect your application to the Azure Vision.
+- The key and endpoint from the resource you create to connect your application to Azure Vision.
   1. After your Azure Vision resource deploys, select **Go to resource**.
   1. In the left pane, select **Keys and Endpoint**.
   1. Copy one of the keys and the **Endpoint** for use later in the quickstart.

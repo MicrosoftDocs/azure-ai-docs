@@ -27,7 +27,7 @@ Use the Image Analysis client library for Python to analyze a remote image for c
 * [Python 3.x](https://www.python.org/).
   * Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check if you have pip installed by running `pip --version` on the command line. Get pip by installing the latest version of Python.
 * Once you have your Azure subscription, create a [Computer Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.
-    * You need the key and endpoint from the resource you create to connect your application to the Azure Vision in Foundry Tools.
+    * You need the key and endpoint from the resource you create to connect your application to Azure Vision in Foundry Tools.
     * You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 [!INCLUDE [create environment variables](../environment-variables.md)]

@@ -55,7 +55,7 @@ Use the Image Analysis client library for Java to analyze a remote image for tag
 
     This quickstart uses the Gradle dependency manager. You can find the client library and information for other dependency managers on the [Maven Central Repository](https://search.maven.org/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-computervision).
 
-    Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy and paste the following build configuration into the file. This configuration defines the project as a Java application whose entry point is the class `ImageAnalysisQuickstart`. It imports the Azure Vision library.
+    Locate *build.gradle.kts* and open it with your preferred IDE or text editor. Then copy and paste the following build configuration into the file. This configuration defines the project as a Java application whose entry point is the class `ImageAnalysisQuickstart`. It imports Azure Vision library.
 
     ```kotlin
     plugins {

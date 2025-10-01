@@ -1,7 +1,7 @@
 ---
 title: Image descriptions - Azure Vision in Foundry Tools
 titleSuffix: Azure AI Foundry Tools
-description: Concepts related to the image description feature of the Azure Vision in Foundry Tools API.
+description: Concepts related to the image description feature of Azure Vision in Foundry Tools API.
 author: PatrickFarley
 manager: nitinme
 

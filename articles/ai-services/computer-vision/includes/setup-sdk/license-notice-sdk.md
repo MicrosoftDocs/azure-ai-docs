@@ -10,7 +10,7 @@ ms.author: pafarley
 ---
 
 > [!IMPORTANT]
-> By installing the Azure Vision SDK, you acknowledge its license. For more information, see:
+> By installing Azure Vision SDK, you acknowledge its license. For more information, see:
 > - <a href="https://aka.ms/azai/vision/license" target="_blank">Microsoft software license terms for the Vision SDK <span class="docon docon-navigate-external x-hidden-focus"></span></a>
 > - <a href="https://aka.ms/azai/vision/TPN" target="_blank">Third-party software notices for the Vision SDK<span class="docon docon-navigate-external x-hidden-focus"></span></a>
 

@@ -1,7 +1,7 @@
 ---
 title: Taxonomy of image categories - Azure Vision in Foundry Tools
 titleSuffix: Azure AI Foundry Tools
-description: Get the 86 categories of taxonomy for the Azure Vision in Foundry Tools API in Azure AI Foundry Tools.
+description: Get the 86 categories of taxonomy for Azure Vision in Foundry Tools API in Azure AI Foundry Tools.
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
