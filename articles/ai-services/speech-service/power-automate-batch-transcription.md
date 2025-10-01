@@ -7,7 +7,7 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
+ms.date: 09/16/2025
 #Customer intent: As a low-code developer, I want to learn how to use Power Automate to transcribe audio files from an Azure Storage container.
 ---
 

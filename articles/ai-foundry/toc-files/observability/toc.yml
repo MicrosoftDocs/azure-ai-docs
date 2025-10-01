@@ -43,8 +43,6 @@ items:
      href: ../../how-to/develop/run-scans-ai-red-teaming-agent.md
    - name: Run red teaming scans in the cloud (Azure AI Foundry SDK)
      href: ../../how-to/develop/run-ai-red-teaming-cloud.md
-   - name: View red teaming results in the portal
-     href: ../../how-to/view-ai-red-teaming-results.md
 - name: CI/CD evaluations 
   items:
    - name: Evaluation in GitHub Actions 
@@ -63,7 +61,7 @@ items:
   items:
    - name: Trace your application
      href: ../../how-to/develop/trace-application.md
-   - name: Trace your agent
+   - name: Trace and observe agents
      href: ../../how-to/develop/trace-agents-sdk.md
 - name: A/B experimentation
   href: ../../concepts/a-b-experimentation.md

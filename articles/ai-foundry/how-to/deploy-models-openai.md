@@ -9,7 +9,7 @@ ms.custom:
   - ai-learning-hub
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/26/2025
+ms.date: 09/15/2025
 ms.reviewer: fasantia
 ms.author: mopeakande
 manager: nitinme
@@ -31,7 +31,7 @@ To modify and interact with an Azure OpenAI model in the [Azure AI Foundry](http
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions don't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- An [[!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](create-projects.md?pivots=fdp-project).
+- An [[!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)]](create-projects.md).
 
 ## Deploy an Azure OpenAI model from the model catalog
 

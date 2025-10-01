@@ -3,7 +3,8 @@ title: Azure OpenAI C# support
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI C# support
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 08/31/2025
 ---
@@ -77,7 +78,7 @@ ChatClient client = new(
     credential: new ApiKeyCredential(keyFromEnvironment),
     options: new OpenAIClientOptions() { 
     
-        Endpoint = new Uri("https://france-central-test-001.openai.azure.com/openai/v1")
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
    }
 );
 

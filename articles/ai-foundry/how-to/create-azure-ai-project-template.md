@@ -9,7 +9,7 @@ ms.service: azure-ai-foundry
 ms.topic: quickstart-bicep
 ms.custom: 
   - subject-bicepqs
-ms.date: 08/14/2025
+ms.date: 09/15/2025
 # Customer intent: As a DevOps person, I need to automate or customize the creation of a hub by using templates.
 ---
 
@@ -19,7 +19,7 @@ Use a [Microsoft Bicep](/azure/azure-resource-manager/bicep/overview) file (temp
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 
 - A copy of the files from the GitHub repo. To clone the GitHub repo to your local machine, you can use [Git](https://git-scm.com/). Use the following command to clone the quickstart repository to your local machine and navigate to the `aifoundry-basics` directory.
 
@@ -114,4 +114,4 @@ Remove-AzResourceGroup -Name exampleRG
 
 ## Related content
 
-- [Get started with the SDK](../quickstarts//get-started-code.md?pivots=fdp-project)
+- [Get started with the SDK](../quickstarts//get-started-code.md)

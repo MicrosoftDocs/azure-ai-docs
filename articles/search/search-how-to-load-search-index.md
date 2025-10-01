@@ -33,13 +33,13 @@ For more information, see [Data import strategies](search-what-is-data-import.md
 
 ## Use the Azure portal
 
-In the Azure portal, use the [import wizards](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
+In the Azure portal, use an [import wizard](search-import-data-portal.md) to create and load indexes in a seamless workflow. If you want to load an existing index, choose an alternative approach.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) with your Azure account and [find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices).
 
-1. On the **Overview** page, select **Import data** or **Import and vectorize data wizard** on the command bar to create and populate a search index.
+1. On the **Overview** page, select **Import data** or **Import data (new)** on the command bar to create and populate a search index.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
+   :::image type="content" source="media/search-import-data-portal/import-wizards.png" alt-text="Screenshot of the Import data command." border="true":::
 
     You can follow these links to review the workflow: [Quickstart: Create an Azure AI Search index](search-get-started-portal.md) and [Quickstart: Integrated vectorization](search-get-started-portal-import-vectors.md).
 
@@ -57,7 +57,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
 1. Formulate a POST call specifying the index name, the "docs/index" endpoint, and a request body that includes the `@search.action` parameter.
 
     ```http
-    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexes/hotels-sample-index/docs/index?api-version=2025-09-01
     Content-Type: application/json   
     api-key: [admin key] 
     {
@@ -95,7 +95,7 @@ In the Azure portal, use the [import wizards](search-import-data-portal.md) to c
 1. [Look up the documents](/rest/api/searchservice/documents/get) you just added as a validation step:
 
     ```http
-    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2024-07-01
+    GET https://[service name].search.windows.net/indexes/hotel-sample-index/docs/1111?api-version=2025-09-01
     ```
 
 When the document key or ID is new, **null** becomes the value for any field that is unspecified in the document. For actions on an existing document, updated values replace the previous values. Any fields that weren't specified in a "merge" or "mergeUpload" are left intact in the search index.

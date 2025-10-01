@@ -3,7 +3,8 @@ title: 'How to use connected agents'
 titleSuffix: Azure AI Foundry
 description: Learn how to create multi-agentic systems using connected agents in the Azure AI Foundry Agent Service.
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/11/2025
 author: aahill

@@ -4,9 +4,10 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about system message design
 author: mrbullwinkle
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 07/02/2025
+ms.date: 09/30/2025
 manager: nitinme
 keywords: ChatGPT, GPT-4, meta prompts, chain of thought
 ---

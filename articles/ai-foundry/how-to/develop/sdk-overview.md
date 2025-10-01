@@ -8,10 +8,10 @@ ms.custom:
   - ignite-2024
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/27/2025
+ms.date: 09/15/2025
 ms.reviewer: dantaylo
-ms.author: sgilley
-author: sdgilley
+ms.author: johalexander
+author: ms-johnalex
 zone_pivot_groups: foundry-sdk-overview-languages
 # customer intent: I want to learn how to use the Azure AI Foundry SDK to build AI applications on Azure.
 ---
@@ -31,8 +31,8 @@ The Azure AI Foundry SDK is a set of client libraries and services designed to w
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have one, create a [free account](https://azure.microsoft.com/free/).
-* [Create a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md?pivots=fdp-project) if you don't have one already.
+* [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+* [Create a [!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) if you don't have one already.
 * [!INCLUDE [find-endpoint](../../includes/find-endpoint.md)]
 * Sign in with the Azure CLI using the same account that you use to access your project:
 

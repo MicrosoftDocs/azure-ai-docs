@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: Learn to deploy models as serverless API deployments, using Azure AI Foundry.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 07/29/2025
+ms.date: 09/15/2025
 author: ssalgadodev
 ms.author: ssalgado
 manager: nitinme
@@ -28,7 +28,7 @@ Although serverless API deployment is one option for deploying Azure AI Foundry 
 
 - An Azure subscription with a valid payment method. Free or trial Azure subscriptions won't work. If you don't have an Azure subscription, create a [paid Azure account](https://azure.microsoft.com/pricing/purchase-options/pay-as-you-go) to begin.
 
-- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](create-projects.md?pivots=hub-project).
+- If you don't have one, [create a [!INCLUDE [hub](../includes/hub-project-name.md)]](hub-create-projects.md).
 
 - Ensure that the **Deploy models to Azure AI Foundry resources** (preview) feature is turned off in the Azure AI Foundry portal. When this feature is on, serverless API deployments aren't available from the portal.
 

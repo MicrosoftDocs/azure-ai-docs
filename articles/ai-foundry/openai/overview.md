@@ -4,7 +4,8 @@ description: Apply advanced language models to variety of use cases with Azure O
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: overview
 ms.date: 07/31/2025
 ms.custom: build-2023, build-2023-dataai

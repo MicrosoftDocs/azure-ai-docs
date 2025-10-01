@@ -1,7 +1,8 @@
 ---
 title: Provisioned throughput for Azure AI Foundry Models
 description: Learn about provisioned throughput and Azure AI Foundry.
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/03/2025
 manager: nitinme

@@ -3,11 +3,12 @@ title: 'Quickstart: Generate video with Sora'
 titleSuffix: Azure OpenAI
 description: Learn how to get started generating video clips with Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/08/2025
+ms.date: 09/16/2025
 zone_pivot_groups: openai-video-generation
 ---
 

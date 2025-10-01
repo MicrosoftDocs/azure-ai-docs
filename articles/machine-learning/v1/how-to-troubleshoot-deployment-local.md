@@ -5,8 +5,8 @@ description: Try a local model deployment as a first step in troubleshooting mod
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: joburges
 author: s-polly
+ms.author: scottpolly
 ms.date: 08/15/2022
 ms.topic: troubleshooting
 ms.custom: UpdateFrequency5, deploy, sdkv1

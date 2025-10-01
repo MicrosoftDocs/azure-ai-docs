@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to create and delete capability hosts
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 07/07/2025
 author: fosteramanda

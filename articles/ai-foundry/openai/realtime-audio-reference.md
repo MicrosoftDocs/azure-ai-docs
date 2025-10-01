@@ -3,9 +3,10 @@ title: Audio events reference
 titleSuffix: Azure OpenAI
 description: Learn how to use events with the Realtime API and Voice Live API.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 6/27/2025
+ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
 recommendations: false

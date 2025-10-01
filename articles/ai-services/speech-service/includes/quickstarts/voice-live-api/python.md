@@ -15,7 +15,7 @@ In this article, you learn how to use Azure AI Speech voice live with [Azure AI 
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Azure AI Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -68,7 +68,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
     ```txt
     aiohttp==3.11.18
-    azure-core==1.34.0
+    azure-core==1.35.0
     azure-identity==1.22.0
     certifi==2025.4.26
     cffi==1.17.1
@@ -76,24 +76,19 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
     numpy==2.2.5
     pycparser==2.22
     python-dotenv==1.1.0
+    pyaudio
     requests==2.32.3
     sounddevice==0.5.1
     typing_extensions==4.13.2
     urllib3==2.4.0
     websocket-client==1.8.0
-    azure-ai-voicelive==1.0.0b1
+    azure-ai-voicelive
     ```
 
 1. Install the packages:
 
     ```bash
     pip install -r requirements.txt
-    ```
-
-1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `azure-identity` package with:
-
-    ```console
-    pip install azure-identity
     ```
 
 ## Retrieve resource information
@@ -107,7 +102,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 
 1. Create the `voice-live-quickstart.py` file with the following code:
 
-    ```python
     ```python
     import os
     import sys
@@ -133,7 +127,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     try:
         from dotenv import load_dotenv
     
-        load_dotenv()
+        load_dotenv('.\.env', override=True)
     except ImportError:
         print("Note: python-dotenv not installed. Using existing environment variables.")
     
@@ -156,9 +150,25 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     )
     
     # Set up logging
-    logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-    logger = logging.getLogger(__name__)
+    ## Change to the directory where this script is located
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
     
+    ## Add folder for logging
+    if not os.path.exists('logs'):
+        os.makedirs('logs')
+    
+    ## Add timestamp for logfiles
+    from datetime import datetime
+    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+    
+    ## Set up logging
+    logging.basicConfig(
+        filename=f'logs/{timestamp}_voicelive.log',
+        filemode="w",
+        format='%(asctime)s:%(name)s:%(levelname)s:%(message)s',
+        level=logging.INFO
+    )
+    logger = logging.getLogger(__name__)
     
     class AudioProcessor:
         """
@@ -420,11 +430,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                     endpoint=self.endpoint,
                     credential=self.credential,
                     model=self.model,
-                    connection_options={
-                        "max_msg_size": 10 * 1024 * 1024,
-                        "heartbeat": 20,
-                        "timeout": 20,
-                    },
                 ) as connection:
                     conn = connection
                     self.connection = conn
@@ -592,25 +597,15 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("VOICELIVE_MODEL", "gpt-4o-realtime-preview"),
+            default=os.environ.get("AZURE_VOICELIVE_MODEL", "gpt-realtime"),
         )
     
         parser.add_argument(
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("VOICELIVE_VOICE", "en-US-AvaNeural"),
-            choices=[
-                "alloy",
-                "echo",
-                "fable",
-                "onyx",
-                "nova",
-                "shimmer",
-                "en-US-AvaNeural",
-                "en-US-JennyNeural",
-                "en-US-GuyNeural",
-            ],
+            default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
+            help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
         parser.add_argument(
@@ -618,7 +613,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="System instructions for the AI assistant",
             type=str,
             default=os.environ.get(
-                "VOICELIVE_INSTRUCTIONS",
+                "AZURE_VOICELIVE_INSTRUCTIONS",
                 "You are a helpful AI assistant. Respond naturally and conversationally. "
                 "Keep your responses concise but engaging.",
             ),
@@ -740,7 +735,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         print("=" * 50)
     
         # Run the assistant
-        asyncio.run(main())    
+        asyncio.run(main())
     ```
 
 1. Sign in to Azure with the following command:
@@ -761,7 +756,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 
 The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
 
-```text
+```console
 Session created:  {"type": "session.update", "session": {"instructions": "You are a helpful AI assistant responding in natural, engaging language.","turn_detection": {"type": "azure_semantic_vad", "threshold": 0.3, "prefix_padding_ms": 200, "silence_duration_ms": 200, "remove_filler_words": false, "end_of_utterance_detection": {"model": "semantic_detection_v1", "threshold": 0.1, "timeout": 4}}, "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"}, "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}, "voice": {"name": "en-US-Ava:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8}}, "event_id": ""}
 Starting the chat ...
 Received event: {'session.created'}

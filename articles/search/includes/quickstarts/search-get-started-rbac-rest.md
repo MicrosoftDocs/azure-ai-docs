@@ -75,7 +75,7 @@ To connect using REST:
    @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
 
    ### List existing indexes
-   GET {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+   GET {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       Authorization: Bearer {{token}}
    ```
