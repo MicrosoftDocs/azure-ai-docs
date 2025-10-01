@@ -143,8 +143,8 @@ To create this pipeline in your existing Azure Data Factory and invoke batch end
 
 1. Select a *.zip* file.
 
-   - To use managed identities, select [this file](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip).
-   - To use a service principle, select [this file](https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip).
+   - To use managed identities, select `https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-MI.zip`.
+   - To use a service principle, select `https://azuremlexampledata.blob.core.windows.net/data/templates/batch-inference/Run-BatchEndpoint-SP.zip`.
 
 1. A preview of the pipeline shows up in the portal. Select **Use this template**.
 
