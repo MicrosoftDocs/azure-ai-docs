@@ -136,9 +136,6 @@ items:
     items:
       - name: Audio generation
         href: ../../openai/audio-completions-quickstart.md
-      - name: Chat
-        href: ../../openai/chatgpt-quickstart.md  
-        displayName: ChatGPT, chatgpt
       - name: Vision-enabled chats
         href: ../../openai/gpt-v-quickstart.md
       - name: Image generation
@@ -404,4 +401,4 @@ items:
       - name: Customer Copyright Commitment
         href: ../../responsible-ai/openai/customer-copyright-commitment.md
 - name: Foundry Models FAQ
-  href: ../../faq.yml
+  href: ../../foundry-models/faq.yml

@@ -3,7 +3,8 @@ title: 'How-to: Create and deploy an Azure OpenAI in Azure AI Foundry Models res
 titleSuffix: Azure OpenAI
 description: Learn how to get started with Azure OpenAI and create your first resource and deploy your first model in the Azure CLI or the Azure portal.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-azurecli, build-2023, build-2023-dataai, devx-track-azurepowershell, innovation-engine
 ms.topic: how-to
 ms.date: 07/31/2025

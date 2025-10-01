@@ -2,7 +2,7 @@
 title: Get started with Foundry Local
 titleSuffix: Foundry Local
 description: Learn how to install, configure, and run your first AI model with Foundry Local
-ms.date: 07/03/2025
+ms.date: 10/01/2025
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.topic: quickstart
@@ -18,6 +18,7 @@ keywords:
   - cognitive
   - AI models
   - local inference
+ai-usage: ai-assisted
 # customer intent: As a developer, I want to get started with Foundry Local so that I can run AI models locally.
 ---
 
@@ -32,25 +33,25 @@ This guide walks you through setting up Foundry Local to run AI models on your d
 Your system must meet the following requirements to run Foundry Local:
 
 - **Operating System**: Windows 10 (x64), Windows 11 (x64/ARM), Windows Server 2025, macOS.
-- **Hardware**: Minimum 8GB RAM, 3GB free disk space. Recommended 16GB RAM, 15GB free disk space.
-- **Network**: Internet connection for initial model download (optional for offline use)
+- **Hardware**: Minimum 8 GB RAM and 3 GB free disk space. Recommended 16 GB RAM and 15 GB free disk space.
+- **Network**: Internet connection to download the initial model (optional for offline use).
 - **Acceleration (optional)**: NVIDIA GPU (2,000 series or newer), AMD GPU (6,000 series or newer), AMD NPU, Intel iGPU, Intel NPU (32GB or more of memory), Qualcomm Snapdragon X Elite (8GB or more of memory), Qualcomm NPU, or Apple silicon.
 
 > [!NOTE]
-> New NPUs are only supported on systems running Windows version 24H2 or later. If you have an Intel NPU on Windows, you need to install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration with Foundry Local.
+> New NPUs are supported only on systems running Windows 24H2 or later. If you use an Intel NPU on Windows, install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) to enable NPU acceleration in Foundry Local.
 
-Also, ensure you have administrative privileges to install software on your device.
+Make sure you have admin rights to install software.
 
 > [!TIP]
-> If you encounter service connection issues after installation (such as "Request to local service failed" errors), try running `foundry service restart` to resolve the issue.
+> If you see a service connection error after installation (for example, 'Request to local service failed'), run `foundry service restart`.
 
 ## Quickstart
 
-Get started with Foundry Local quickly with these options:
+Get started fast with Foundry Local:
 
 ### Option 1: Quick CLI setup
 
-1. **Install Foundry Local**
+1. **Install Foundry Local**.
 
    - **Windows**: Open a terminal and run the following command:
      ```bash
@@ -63,47 +64,47 @@ brew install foundrylocal
 `
      Alternatively, you can download the installer from the [Foundry Local GitHub repository](https://aka.ms/foundry-local-installer).
 
-1. **Run your first model** Open a terminal window and run the following command to run a model:
+1. **Run your first model**. Open a terminal and run this command:
 
    ```bash
    foundry model run qwen2.5-0.5b
    ```
 
-   The model downloads - which can take a few minutes, depending on your internet speed - and the model runs. Once the model is running, you can interact with it using the command line interface (CLI). For example, you can ask:
+   Foundry Local downloads the model, which can take a few minutes depending on your internet speed, then runs it. After the model starts, interact with it by using the command-line interface (CLI). For example, you can ask:
 
    ```text
    Why is the sky blue?
    ```
 
-   You should see a response from the model in the terminal:
-   :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from foundry local run command." lightbox="media/get-started-output.png":::
+   You see a response from the model in the terminal:
+   :::image type="content" source="media/get-started-output.png" alt-text="Screenshot of output from Foundry Local run command." lightbox="media/get-started-output.png":::
 
 ### Option 2: Download starter projects
 
 For practical, hands-on learning, download one of our starter projects that demonstrate real-world scenarios:
 
-- **[Chat Application Starter](https://github.com/microsoft/Foundry-Local/tree/main/samples/electron/foundry-chat)**: Build a local chat interface with multiple model support
-- **[Summarize Sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/summarize)**: A command-line utility that generates summaries of text files or direct text input.
-- **[Function Calling Example](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/functioncalling)**: Enabling and using function calling with Phi-4 mini.
+- [Chat Application Starter](https://github.com/microsoft/Foundry-Local/tree/main/samples/electron/foundry-chat): Build a local chat interface with multiple model support.
+- [Summarize Sample](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/summarize): A command-line utility that generates summaries of text files or direct text input.
+- [Function Calling Example](https://github.com/microsoft/Foundry-Local/tree/main/samples/python/functioncalling): Enable and use function calling with Phi-4 mini.
 
 Each project includes:
 
 - Step-by-step setup instructions
 - Complete source code
 - Configuration examples
-- Best practices implementation
+- Best practices
 
 > [!TIP]
-> These starter projects align with scenarios covered in our [how-to guides](how-to/how-to-chat-application-with-open-web-ui.md) and provide immediate practical value.
+> These starter projects align with scenarios in the [how-to guides](how-to/how-to-chat-application-with-open-web-ui.md) and provide immediate practical value.
 
 > [!TIP]
-> You can replace `qwen2.5-0.5b` with any model name from the catalog (see `foundry model list` for available models). Foundry Local downloads the model variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, it downloads the CUDA version of the model. If you have a Qualcomm NPU, it downloads the NPU variant. If you have no GPU or NPU, it downloads the CPU version.
+> Replace `qwen2.5-0.5b` with any model name from the catalog (run `foundry model list` to view available models). Foundry Local downloads the variant that best matches your system's hardware and software configuration. For example, if you have an NVIDIA GPU, Foundry Local downloads the CUDA version. If you have a Qualcomm NPU, Foundry Local downloads the NPU variant. If you have no GPU or NPU, Foundry Local downloads the CPU version.
 >
-> Note that when you run `foundry model list` for the first time, you'll see a download progress bar as Foundry Local downloads the execution providers for your machine's hardware.
+> When you run `foundry model list` the first time, you see a download progress bar while Foundry Local downloads the execution providers for your hardware.
 
 ## Run the latest OpenAI open-source model
 
-To run the latest OpenAI open-source model - `GPT-OSS-20B` - use the following command:
+Run the latest OpenAI open-source model, `GPT-OSS-20B`, with this command:
 
 ```bash
 foundry model run gpt-oss-20b
@@ -112,8 +113,8 @@ foundry model run gpt-oss-20b
 > [!IMPORTANT]
 > Requirements for running GPT-OSS-20B:
 >
-> - Nvidia GPU with 16GB VRAM or more.
-> - Foundry Local version **0.6.87** or above. Any version below this will not support the model. You can check your Foundry Local version by running:
+> - NVIDIA GPU with 16 GB of VRAM or more.
+> - Foundry Local version **0.6.87** or later. Earlier versions don't support the model. Check your version with:
 >
 > ```bash
 > foundry --version
@@ -127,49 +128,49 @@ The Foundry CLI organizes commands into these main categories:
 - **Service**: Commands for managing the Foundry Local service.
 - **Cache**: Commands for managing the local model cache (downloaded models on local disk).
 
-View all available commands with:
+View all commands:
 
 ```bash
 foundry --help
 ```
 
-To view available **model** commands, run:
+View **model** commands:
 
 ```bash
 foundry model --help
 ```
 
-To view available **service** commands, run:
+View **service** commands:
 
 ```bash
 foundry service --help
 ```
 
-To view available **cache** commands, run:
+View **cache** commands:
 
 ```bash
 foundry cache --help
 ```
 
 > [!TIP]
-> For a complete guide to all CLI commands and their usage, see the [Foundry Local CLI Reference](reference/reference-cli.md).
+> For details on all CLI commands, see [Foundry Local CLI reference](reference/reference-cli.md).
 
-## Upgrading Foundry Local
+## Upgrade Foundry Local
 
-To upgrade Foundry Local to the latest version, use the following commands based on your operating system:
+Run the command for your OS to upgrade Foundry Local.
 
-- **Windows**: Open a terminal and run:
+- Windows: In a terminal, run:
   ```bash
   winget upgrade --id Microsoft.FoundryLocal
   ```
-- **macOS**: Open a terminal and run:
+- macOS: In a terminal, run:
   ```bash
   brew upgrade foundrylocal
   ```
 
-## Uninstalling Foundry Local
+## Uninstall Foundry Local
 
-If you wish to uninstall Foundry Local, use the following commands based on your operating system:
+To uninstall Foundry Local, run the command for your operating system:
 
 - **Windows**: Open a terminal and run:
   ```bash
@@ -186,7 +187,7 @@ If you wish to uninstall Foundry Local, use the following commands based on your
 
 ### Service connection issues
 
-If you encounter the following error when running `foundry model list` or other commands:
+If you see this error when you run `foundry model list` or a similar command:
 
 ```
 >foundry model list
@@ -200,18 +201,18 @@ The requested address is not valid in its context. (127.0.0.1:0)
 Please check service status with 'foundry service status'.
 ```
 
-**Solution**: Run the following command to restart the service:
+Run this command to restart the service:
 
 ```bash
 foundry service restart
 ```
 
-This resolves issues where the service is running but not properly accessible due to port binding problems.
+This command fixes cases where the service runs but isn't accessible because of a port binding issue.
 
 ## Related content
 
-- [Integrate inferencing SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
-- [Explore the Foundry Local documentation](index.yml)
-- [Learn about best practices and troubleshooting](reference/reference-best-practice.md)
-- [Explore the Foundry Local API reference](reference/reference-catalog-api.md)
-- [Learn Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)
+- [Integrate inference SDKs with Foundry Local](how-to/how-to-integrate-with-inference-sdks.md)
+- [Foundry Local documentation](index.yml)
+- [Best practices and troubleshooting](reference/reference-best-practice.md)
+- [Foundry Local API reference](reference/reference-catalog-api.md)
+- [Compile Hugging Face models](how-to/how-to-compile-hugging-face-models.md)

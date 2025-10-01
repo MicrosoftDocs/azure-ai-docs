@@ -64,6 +64,6 @@ For more information, see [Role-based access control](rbac-azure-ai-foundry.md#a
 
 ## Related content
 
-- [Security baseline](/security/benchmark/azure/baselines/azure-ai-studio-security-baseline)
+- [Security baseline](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 - [Built-in policy to allow specific models](../how-to/built-in-policy-model-deployment.md)
 - [Custom policy to allow specific models](../model-inference/how-to/configure-deployment-policies.md)

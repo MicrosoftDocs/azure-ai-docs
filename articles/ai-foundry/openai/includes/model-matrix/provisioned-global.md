@@ -2,7 +2,8 @@
 title: Global Provisioned Model Availability
 description: Global PTU model availability by region for Foundry models.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
 ms.date: 09/04/2025
