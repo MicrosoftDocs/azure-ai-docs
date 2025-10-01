@@ -271,4 +271,3 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 * [Quickstart: Create a new agent](../agents/quickstart.md)
 * [Azure AI Foundry client library overview](../how-to/develop/sdk-overview.md)
-]
