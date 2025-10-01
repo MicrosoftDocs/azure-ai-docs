@@ -10,4 +10,4 @@ items:
   - name: Develop with Llama-Index
     href: ../../../how-to/develop/llama-index.md
   - name: Azure OpenAI in Foundry Models
-    href: ../../../openai/supported-languages?context=/azure/ai-foundry/default/context/context
+    href: ../../../openai/supported-languages.md
