@@ -17,7 +17,7 @@ Azure AI Foundry is updated regularly and we're continually improving and enhanc
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
-## Active known issues <functional area1>
+## Active known issues <functional area 1>
 
 This table lists the current known issues for the Speech to text feature:
 
@@ -28,7 +28,7 @@ This table lists the current known issues for the Speech to text feature:
 | 0003   | Category Name | Issue Title | Brief description of the issue. | Describe workaround or N/A. | October 1, 2025 |
 | 0004   | Category Name | Issue Title | Brief description of the issue. | Describe workaround or N/A. | October 1, 2025 |
 
-## Active known issues <functional area2>
+## Active known issues <functional area 2>
 
 This table lists the current known issues for the Text-to-Speech feature.
 
@@ -40,7 +40,7 @@ This table lists the current known issues for the Text-to-Speech feature.
 | 0004   | Category Name | Issue Title | Brief description of the issue. | Describe workaround or N/A. | October 1, 2025 |
 
 
-## Active known issues <functional area3>
+## Active known issues <functional area 3>
 
 This table lists the current known issues for the Speech SDK/Runtime feature.
 
