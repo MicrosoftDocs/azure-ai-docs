@@ -10,7 +10,7 @@ ms.date: 09/30/2025
 ms.topic: reference
 ---
 
-# Adaptive custom translation (adaptCT) API v1.0 (preview)
+# Adaptive custom translation v1.0 (preview)
 
 > [!IMPORTANT]
 >
@@ -18,7 +18,7 @@ ms.topic: reference
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Adaptive custom translation in Azure is a capability of the Translator Text API designed for dynamic, real-time personalization of neural machine translation (NMT). Unlike traditional custom models—which require substantial training data and a separate deployment process—this feature enables the system to adjust to your preferred terminology and writing style using only a handful of examples. This adaptive technology, also known as few-shot learning, is accessible via Azure AI Foundry.
+Adaptive custom translation (adaptCT) in Azure is a capability of the Translator Text API designed for dynamic, real-time personalization of neural machine translation (NMT). Unlike traditional custom models—which require substantial training data and a separate deployment process—this feature enables the system to adjust to your preferred terminology and writing style using only a handful of examples. This adaptive technology, also known as few-shot learning, is accessible via Azure AI Foundry.
 
 Key Differences
 *    **Custom translator**: You provide your data to build a new, tailored translation model, which is then deployed for use.
