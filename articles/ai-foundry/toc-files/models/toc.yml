@@ -401,4 +401,4 @@ items:
       - name: Customer Copyright Commitment
         href: ../../responsible-ai/openai/customer-copyright-commitment.md
 - name: Foundry Models FAQ
-  href: ../../faq.yml
+  href: ../../foundry-models/faq.yml
