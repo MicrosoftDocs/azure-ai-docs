@@ -238,9 +238,13 @@ items:
   - name: Azure AI Foundry for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
+  - name: Adaptive custom translation (preview) 🆕
+    displayName: foundry, gpt, api
+    href: custom-translator/azure-ai-foundry/adaptive-custom-translation.md
   - name: FAQ
     href: custom-translator/azure-ai-foundry/faq.md
   - name: How-to guides
+  
     items:
     - name: Create an Azure AI Foundry project
       displayName: models,pairs,label,edit,delete
