@@ -58,7 +58,7 @@ To get the key and endpoint:
     
 1.  You're taken to [Azure AI Foundry > GitHub](https://ai.azure.com/GitHub), and the page loads with your model's details. It might take one or two minutes to load your model details in Azure AI Foundry.
 
-1. For [Foundry Models from partners and community](../../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to Mistral-Large-2411, for example. Select **Agree and Proceed** to accept the terms.
+1. For [Foundry Models from partners and community](../concepts/models-from-partners.md), you need to subscribe to Azure Marketplace. This requirement applies to Mistral-Large-2411, for example. Select **Agree and Proceed** to accept the terms.
 
 1. Select the **Deploy** button to deploy the model to your account.
 
