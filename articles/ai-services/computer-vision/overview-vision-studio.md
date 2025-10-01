@@ -1,6 +1,6 @@
 ---
 title: What is Vision Studio?
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to set up and use Vision Studio to test features of Azure AI Vision on the web.
 author: PatrickFarley
 manager: nitinme
@@ -19,7 +19,7 @@ Vision Studio lets you try several service features and sample their returned da
 
 ## Get started using Vision Studio
 
-To use Vision Studio, you need an Azure subscription and a resource for Azure AI services for authentication. You can also use this resource to call the services in the try-it-out experiences. Follow these steps to get started.
+To use Vision Studio, you need an Azure subscription and a resource for Azure AI Foundry Tools for authentication. You can also use this resource to call the services in the try-it-out experiences. Follow these steps to get started.
 
 1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/free/ai/).
 

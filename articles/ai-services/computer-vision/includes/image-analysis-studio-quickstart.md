@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis 4.0 using Vision Studio"
-titleSuffix: "Azure AI services"
+titleSuffix: "Azure AI Foundry Tools"
 description: In this quickstart, get started with the Image Analysis service using Vision Studio.
 author: PatrickFarley
 manager: nitinme

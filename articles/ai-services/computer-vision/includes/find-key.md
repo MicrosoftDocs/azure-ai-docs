@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Image Analysis REST API"
-titleSuffix: "Azure AI services"
+titleSuffix: "Azure AI Foundry Tools"
 author: PatrickFarley
 manager: nitinme
 

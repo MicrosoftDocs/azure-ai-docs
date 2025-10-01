@@ -1,6 +1,6 @@
 ---
 title: Content tags - Image Analysis 4.0
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to generate image tags for a wide variety of objects by using the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme

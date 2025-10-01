@@ -1,6 +1,6 @@
 ---
 title: Image captions - Image Analysis 4.0
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Concepts related to the image captioning feature of the Image Analysis 4.0 API.
 author: PatrickFarley
 manager: nitinme

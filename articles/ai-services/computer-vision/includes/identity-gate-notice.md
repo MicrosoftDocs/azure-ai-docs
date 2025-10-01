@@ -1,6 +1,6 @@
 ---
 title: Face gate notice
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision

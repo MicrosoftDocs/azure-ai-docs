@@ -1,17 +1,17 @@
 ---
-title: Migrate from Azure AI Vision - Image Analysis
-description: Guidance for migrating from Azure Computer Vision - Image Analysis API to alternative solutions before its retirement in September 2028.
+title: Migrate from Azure Vision in Foundry Tools - Image Analysis
+description: Guidance for migrating from Azure Vision - Image Analysis API to alternative solutions before its retirement in September 2028.
 author: PatrickFarley
 ms.author: pafarley
-ms.date: 09/24/2025
+ms.date: 10/01/2025
 ms.topic: article
 ms.service: azure-ai-vision
 ms.custom: ai-migration, vision
 ---
 
-# Migrate from Azure AI Vision - Image Analysis
+# Migrate from Azure Vision in Foundry Tools - Image Analysis
 
-The Azure AI Vision - Image Analysis API will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Image Analysis customers until 9/25/2028, but to ensure business continuity and minimize disruption, we encourage customers to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
+The Azure Vision in Foundry Tools - Image Analysis API will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Image Analysis customers until 9/25/2028, but to ensure business continuity and minimize disruption, we encourage customers to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
 
 ## Migration preparation checklist
 
@@ -27,11 +27,11 @@ There are several alternative platforms and services that can be considered depe
 
 ### For OCR and Read capabilities, try Document Intelligence
 
-The Document Intelligence service provides support for OCR text in images.
+Azure Document Intelligence  provides support for OCR text in images.
 
-* **Features**: Azure AI Document Intelligence is a cloud-based Azure AI service that you can use to build intelligent document processing solutions.
+* **Features**: Azure Document Intelligence is a cloud-based Foundry tool that you can use to build intelligent document processing solutions.
 * **Learn more** about Document Intelligence:
-    * [What is Azure AI Document Intelligence?](../document-intelligence/overview.md)
+    * [What is Azure Document Intelligence?](../document-intelligence/overview.md)
     * [Document Intelligence Read model](../document-intelligence/prebuilt/read.md)
 
 ### For Face scenarios, try the Face API

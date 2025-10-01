@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Face recognition using Azure AI Foundry portal"
-titleSuffix: "Azure AI services"
+titleSuffix: "Azure AI Foundry Tools"
 description: In this quickstart, get started with the Face service using the Azure AI Foundry portal.
 author: PatrickFarley
 manager: nitinme
@@ -22,7 +22,7 @@ Use Azure AI Foundry portal to detect faces in an image.
 
 Go to the [Azure AI Foundry portal](https://ai.azure.com/), and sign in with your Azure account that has the AI Foundry resource.
 
-Select **Azure AI Foundry** in the top-left corner, scroll down and select **Explore Azure AI Services**, and then select **Vision + Document**. On the **Face** tab, select **Detect faces in an image**.
+Select **Azure AI Foundry** in the top-left corner, scroll down and select **Explore Azure AI Foundry Tools**, and then select **Vision + Document**. On the **Face** tab, select **Detect faces in an image**.
 
 ## Detect faces
 
