@@ -9,6 +9,7 @@ ms.custom:
 ms.topic: conceptual
 ms.date: 08/31/2025
 ms.author: mbullwin
+monikerRange: 'foundry-classic || foundry'
 zone_pivot_groups: openai-supported-languages
 ---
 
