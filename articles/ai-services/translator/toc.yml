@@ -240,7 +240,7 @@ items:
     href: custom-translator/azure-ai-foundry/beginners-guide.md
   - name: Adaptive custom translation (preview) 🆕
     displayName: foundry, gpt, api
-    href: custom-translator/azure-ai-foundry/adaptive-custom-translation.md
+    href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ
     href: custom-translator/azure-ai-foundry/faq.md
   - name: How-to guides

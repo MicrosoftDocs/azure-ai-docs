@@ -70,21 +70,20 @@ All API requests require authentication using one or more of the following metho
 The Adaptive custom translation API is organized into three main operation categories:
 
 ### 1. Project Operations
-- [Get All Projects](#get-all-workspaces)
-- [Get Project](#get-workspace)
-- [Create Project](#create-workspace)
+* [Get All Projects](#get-all-projects)
+* [Get Project](#get-project)
+* [Create Project](#create-project)
 
 ### 2. Document Operations
-- [Get Adaptive Documents](#get-documents)
-- [Import Adaptive Documents (TMX/TSV)](#import-documents-tmx)
-- [Get Import Job Status](#get-import-job-status)
-- [Delete Documents](#import-documents)
+* [Get Adaptive Documents](#get-documents)
+* [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
+* [Get Import Job Status](#get-import-job-status)
 
 ### 3. Dataset Index Operations
-- [Create Dataset Index](#create-index)
-- [Get Dataset Index](#get-index)
-- [Get All Dataset Indexes](#get-all-indexes)
-- [Delete Dataset Index](#delete-index)
+* [Create Dataset Index](#create-index)
+* [Get Dataset Index](#get-dataset-index)
+* [Get All Dataset Indexes](#get-all-dataset-indexes))
+* [Delete Dataset Index](#delete-dataset-index)
 
 ## Project Operations
 
@@ -488,7 +487,7 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 
 ## Translate With Dataset Index
 
-[Use Text Translation API](https://learn.microsoft.com/azure/ai-services/translator/text-translation/preview/overview)
+[Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
 
 ## Error Responses
 
@@ -511,7 +510,7 @@ The API returns standard HTTP status codes. Common error responses:
 
 ## Next Steps
 
-- [Learn about custom translator models](https://learn.microsoft.com/azure/ai-services/translator/custom-translator/overview)
-- [Learn about the text translation API](https://learn.microsoft.com/azure/ai-services/translator/text-translation/preview/overview)
-- [Explore Azure AI Foundry for advanced AI capabilities](https://learn.microsoft.com/azure/ai-foundry/)
+* [Learn about custom translator models](/azure/ai-services/translator/custom-translator/overview)
+* [Learn about the text translation API](/azure/ai-services/translator/text-translation/preview/overview)
+* [Explore Azure AI Foundry for advanced AI capabilities](/azure/ai-foundry/)
 
