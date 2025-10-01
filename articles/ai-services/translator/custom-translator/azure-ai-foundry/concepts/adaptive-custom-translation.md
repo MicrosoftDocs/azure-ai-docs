@@ -22,8 +22,7 @@ Adaptive custom translation in Azure is a capability of the Translator Text API 
 
 Key Differences
 *    **Custom translator**: You provide your data to build a new, tailored translation model, which is then deployed for use.
-*    **Adaptive custom translation**: Instead of constructing a new model, it uses an existing base model and incrementally improves it in real time by learning from user corrections and added data. This approach eliminates the need to rebuild models from scratch and supports continuous refinement.
-
+*    **Adaptive custom translation**: Instead of constructing a new model, it uses an existing base model and incrementally improves it in real time by learning from user corrections and added data.
 
 > [!IMPORTANT]
 > - The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
@@ -40,14 +39,14 @@ Key Differences
 | **Speed** | Quickly incorporates and applies dataset updates within minutes, allowing for immediate adjustments in translation behavior and output. | Completes model training over a variable period—potentially up to 48 hours—depending on the dataset size and computational capacity. Updates require retraining and redeployment to reflect changes. |
 | **Maintenance** | Simplifies operational management by focusing on dataset index updates and integrity checks, removing the need for ongoing model maintenance. | Supports sustained translation quality with periodic maintenance, including retraining and redeployment, to keep the model current and accurate. |
 
-* Choose the standard Azure AI custom translator to create a custom neural machine translation model trained on your domain-specific documents. This option is ideal when you require specialized terminology, unique styles, and a fully tailored, high-quality solution.
+* Choose **Azure AI custom translator** to create a custom neural machine translation model trained on your domain-specific documents. This option is ideal when you require specialized terminology, unique styles, and a fully tailored, high-quality solution.
 
-* Choose Azure adaptive custom translation when you need continuous learning and real-time adaptation. It's best for workflows with user interactions and corrections, such as chatbots or help desks, where feedback improves translation quality dynamically.
+* Choose **Azure adaptive custom translation** when you need continuous learning and real-time adaptation. It's best for workflows with user interactions and corrections, such as chatbots or help desks, where feedback improves translation quality dynamically.
 
 
 ## Base URL
 
-The base URL for all adaptive custom translation API endpoints is:
+Here's the base URL for all adaptive custom translation API requests:
 
 ```http
    https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/
@@ -55,9 +54,15 @@ The base URL for all adaptive custom translation API endpoints is:
 
 ## Authentication
 
-All API requests require authentication using one or more of the following methods:
+Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. You can choose one of the following methods for authentication:
 
-### Required Headers
+* Authenticate with a [single-service regional](../../../text-translation/reference/authentication.md#authenticating-with-a-regional-resource), [single-service-global](#authenticating-with-a-global-resource), or [multi-service](./../../text-translation/reference/authentication.md#authenticating-with-a-multi-service-resource) resource key.
+* Authenticate with a [bearer token](./../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
+* Authenticate with [Microsoft Entra ID](../../../how-to/microsoft-entra-id-auth.md) is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys.
+
+Form more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
+
+### Required headers
 
 | Header | Value | Required | Description |
 |--------|-------|----------|-------------|
@@ -65,29 +70,29 @@ All API requests require authentication using one or more of the following metho
 | `Ocp-Apim-Subscription-Region` | Your resource region | **True** | Azure resource region (for example, "eastus2") |
 | `Authorization` | `Bearer <your-token>` | **True** | OAuth Bearer token for enhanced authentication |
 
-## API Operations
+## API operations
 
-The Adaptive custom translation API is organized into three main operation categories:
+The Adaptive custom translation API is organized into three main operation categories([project operations](#project-operations-1), [document operations](#document-operations-1), and [dataset index operations](#dataset-index-operations-1)):
 
-### 1. Project Operations
+### Project operations
 * [Get All Projects](#get-all-projects)
 * [Get Project](#get-project)
 * [Create Project](#create-project)
 
-### 2. Document Operations
+### Document operations
 * [Get Adaptive Documents](#get-documents)
 * [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
 * [Get Import Job Status](#get-import-job-status)
 
-### 3. Dataset Index Operations
+### Dataset index operations
 * [Create Dataset Index](#create-dataset-index)
 * [Get Dataset Index](#get-dataset-index)
 * [Get All Dataset Indexes](#get-all-dataset-indexes))
 * [Delete Dataset Index](#delete-dataset-index)
 
-## Project Operations
+## Project operations
 
-### Get All Projects
+### Get all projects
 
 Retrieves all projects available to the authenticated user.
 
@@ -97,7 +102,7 @@ Retrieves all projects available to the authenticated user.
    GET /workspaces/
 ```
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -113,7 +118,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-### Get Project
+### Get project
 
 Retrieves details for a specific project.
 
@@ -129,7 +134,7 @@ Retrieves details for a specific project.
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Unique identifier for the project |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -145,7 +150,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
  -H "Ocp-Apim-Subscription-Region: <your-region>"
 ```
 
-### Create Project
+### Create project
 
 Creates a new project for organizing adaptCT translation dataset data and indexes.
 
@@ -155,7 +160,7 @@ Creates a new project for organizing adaptCT translation dataset data and indexe
    POST /workspaces
 ```
 
-#### Request Headers
+#### Request headers
 
 | Header | Value | Required |
 |--------|-------|----------|
@@ -163,7 +168,7 @@ Creates a new project for organizing adaptCT translation dataset data and indexe
 | `Ocp-Apim-Subscription-Key` | Your subscription key | **True** |
 | `Ocp-Apim-Subscription-Region` | Your resource region | **True** |
 
-#### Request Body
+#### Request body
 
 ```json
 {
@@ -183,7 +188,7 @@ Creates a new project for organizing adaptCT translation dataset data and indexe
 | `subscription.billingRegionCode` | string | **True** | Billing region code (for example, "USE2") |
 | `subscription.subscriptionKey` | string | **True** | Subscription key for billing |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -203,9 +208,9 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
  -d "{\"name\": \"my-workspace\", \"subscription\": {\"billingRegionCode\": \"USE2\", \"subscriptionKey\": \"<your-key>\"}}"
 ```
 
-## Document Operations
+## Document operations
 
-### Get Documents
+### Get documents
 
 Retrieves a paginated list of documents in a project.
 
@@ -222,14 +227,14 @@ Retrieves a paginated list of documents in a project.
 | `workspaceId` | string | **True** | Project identifier |
 | `pageIndex` | integer | False | Page index for pagination (default: 0) |
 
-#### Request Headers
+#### Request headers
 
 | Header | Value | Required |
 |--------|-------|----------|
 | `Authorization` | `Bearer <token>` | **True** |
 | `Content-Type` | `multipart/form-data` | False |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -243,7 +248,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
  -H "Authorization: Bearer <token>"
 ```
 
-### Import Documents (TSV, TMX)
+### Import documents (TSV, TMX)
 
 Imports adaptive documents in TSV and TMX format to a project.
 
@@ -259,20 +264,20 @@ Imports adaptive documents in TSV and TMX format to a project.
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request Headers
+#### Request headers
 
 | Header | Value | Required |
 |--------|-------|----------|
 | `Authorization` | `Bearer <token>` | **True** |
 
-#### Request Body (Multipart Form Data)
+#### Request body (multipart form data)
 
 | Field | Type | Required | Description |
 |-------|------|----------|-------------|
 | `DocumentDetails` | string | **True** | JSON string containing document metadata |
 | `FILES` | file | **True** | TSV or TMX file to upload |
 
-#### DocumentDetails JSON Format
+#### DocumentDetails JSON format
 
 ```json
 [{
@@ -286,7 +291,9 @@ Imports adaptive documents in TSV and TMX format to a project.
 }]
 ```
 
-#### TMX Request Example (English to supported target language, for example, French)
+#### TMX request example
+
+***English to supported target language, for example, French.***
 
 **Windows**
 ```bash
@@ -305,7 +312,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
 
 ```
 
-### Get Import Job Status
+### Get import job status
 
 Retrieves the status of a document import job.
 
@@ -321,13 +328,13 @@ Retrieves the status of a document import job.
 |-----------|------|----------|-------------|
 | `jobId` | string | **True** | Import job identifier |
 
-#### Request Headers
+#### Request headers
 
 | Header | Value | Required |
 |--------|-------|----------|
 | `Authorization` | `Bearer <token>` | **True** |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -341,7 +348,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
  -H "Authorization: Bearer <token>"
 ```
 
-## Dataset Index Operations
+## Dataset index operations
 
 ### Create Dataset Index
 
@@ -359,13 +366,13 @@ Creates a new dataset index for adaptive translation using specified documents.
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request Headers
+#### Request headers
 
 | Header | Value | Required |
 |--------|-------|----------|
 | `Content-Type` | `application/json` | **True** |
 
-#### Request Body
+#### Request body
 
 ```json
 {
@@ -385,7 +392,7 @@ Creates a new dataset index for adaptive translation using specified documents.
 | `SourceLanguage` | string | **True** | Source language code |
 | `TargetLanguage` | string | **True** | Target language code |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -401,7 +408,7 @@ curl -X POST "https://<your-resource-name>.cognitiveservices.azure.com/translato
  -d "{\"documentIds\": [\"1457362\"],\"IndexName\": \"my-index\",\"SourceLanguage\": \"en\",\"TargetLanguage\": \"de\"}"
 ```
 
-### Get Dataset Index
+### Get dataset index
 
 Retrieves details for a specific dataset index.
 
@@ -417,7 +424,7 @@ Retrieves details for a specific dataset index.
 |-----------|------|----------|-------------|
 | `indexId` | string | **True** | Index identifier |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -429,7 +436,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 cucurl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
-### Get All Dataset Indexes
+### Get all dataset indexes
 
 Retrieves all dataset indexes in a project.
 
@@ -445,7 +452,7 @@ Retrieves all dataset indexes in a project.
 |-----------|------|----------|-------------|
 | `workspaceId` | string | **True** | Project identifier |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -457,7 +464,7 @@ curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator
 curl -X GET "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index?workspaceId=<workspaceId>"
 ```
 
-### Delete Dataset Index
+### Delete dataset index
 
 Deletes a specific dataset index.
 
@@ -473,7 +480,7 @@ Deletes a specific dataset index.
 |-----------|------|----------|-------------|
 | `indexId` | string | **True** | Dataset index identifier |
 
-#### Request Example
+#### Request example
 
 **Windows**
 ```bash
@@ -485,11 +492,11 @@ curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/transla
 curl -X DELETE "https://<your-resource-name>.cognitiveservices.azure.com/translator/customtranslator/api/texttranslator/v1.0/index/<indexId>"
 ```
 
-## Translate With Dataset Index
+## Translate with dataset index
 
 [Use Text Translation API](/azure/ai-services/translator/text-translation/preview/overview)
 
-## Error Responses
+## Error responses
 
 The API returns standard HTTP status codes. Common error responses:
 
@@ -501,12 +508,34 @@ The API returns standard HTTP status codes. Common error responses:
 | 404 | Not Found - Resource not found |
 | 500 | Internal Server Error - Service error |
 
-## Best Practices
+## Best practices
 
-1. **Authentication**: Use Bearer tokens for document operations 
-2. **Error Handling**: Implement proper error handling and retry logic for API calls
-3. **Project Organization**: Use descriptive names for projects and dataset indexes to maintain organization
-4. **Document Management**: Ensure TSV and TMX files are properly formatted with well aligned source-target pairs
+1. **Authentication**: Use Bearer tokens for document operations
+1. **Error Handling**: Implement proper error handling and retry logic for API calls
+1. **Project Organization**: Use descriptive names for projects and dataset indexes to maintain organization
+1. **Document Management**: Ensure TSV and TMX files are properly formatted with well aligned source-target pairs
+
+## Troubleshooting
+
+1. **Authentication Errors**
+
+  * Verify your Azure tokens are valid and not expired.
+  * Check that all required environment variables are set.
+  * Ensure your Azure services are properly configured.
+
+1. **Translation Failures**
+
+  * Verify TRANSLATION_KEY and TRANSLATOR_URL are correct.
+  * Check that your Azure Cognitive Services subscription is active.
+  * Ensure the target language is supported.
+
+1. **Index Creation Issues**
+
+  * Verify documents are properly uploaded before creating indices.
+  * Check that the Custom Translator API endpoint is accessible.
+  * Ensure your subscription has sufficient quota.
+
+
 
 ## Next Steps
 
