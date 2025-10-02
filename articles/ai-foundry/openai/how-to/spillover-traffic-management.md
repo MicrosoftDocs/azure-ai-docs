@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/03/2025
+ms.date: 10/02/2025
 ---
 
 # Manage traffic with spillover for provisioned deployments
