@@ -13,7 +13,7 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Supported Personally Identifiable Information entities list
+# Recognized PII entities list
 
 | Entity | Entity | Entity |
 |--------|--------|--------|

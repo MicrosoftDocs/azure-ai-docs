@@ -13,7 +13,7 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Supported **PII** and **PHI** entities
+# Recognized **PII** and **PHI** entities
 
 The Personally Identifiable Information (PII) and Protected Health Information (PHI) detection APIs are cloud-based solutions that use artificial intelligence (AI) and machine learning to help you create smart applications with advanced natural language processing. The **PII** and **PHI** APIs effectively detect and removes sensitive information from input data by categorizing personal details into specific, predefined entity types. This comprehensive approach not only safeguards sensitive data to ensure full compliance with privacy regulations, but also enables applications to process and utilize information with enhanced security, reliability, and efficiency.
 
