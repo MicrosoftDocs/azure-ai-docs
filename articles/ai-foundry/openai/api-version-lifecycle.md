@@ -27,7 +27,7 @@ Previously, Azure OpenAI received monthly updates of new API versions. Taking ad
 
 Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
 
-- Ongoing access to the latest features with no need specify new `api-version`'s each month.
+- Ongoing access to the latest features with no need to specify new `api-version`'s each month.
 - Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
 - OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
