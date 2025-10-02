@@ -50,40 +50,28 @@ Insert NextGen content
     - Dataset and evaluators
       - Specify the evaluator names you want to use for this evaluation run.
       - Queries (required).
-    - Agent IDs
+    - Agent IDs  Retrieve agent identifiers from AI Foundry.
 
-::: moniker range="foundry-classic"
+  See the following sample dataset:
 
-      Retrieve agent identifiers from the AI Foundry portal.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
-
-    See the following sample dataset:
-
-    ```JSON
-    { 
-      "name": "MyTestData", 
-      "evaluators": [ 
-        "FluencyEvaluator", 
-        "ViolenceEvaluator" 
-      ], 
-      "data": [ 
-    
-        { 
-          "query": "Tell me about Tokyo?", 
-        }, 
-        { 
-          "query": "Where is Italy?", 
-        } 
-      ] 
-    } 
-    ```
+  ```JSON
+  { 
+    "name": "MyTestData", 
+    "evaluators": [ 
+      "FluencyEvaluator", 
+      "ViolenceEvaluator" 
+    ], 
+    "data": [ 
+  
+      { 
+        "query": "Tell me about Tokyo?", 
+      }, 
+      { 
+        "query": "Where is Italy?", 
+      } 
+    ] 
+  } 
+  ```
 
 
 
