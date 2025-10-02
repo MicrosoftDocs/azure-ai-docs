@@ -32,6 +32,7 @@ implementation("com.openai:openai-java:4.0.1")
   <artifactId>openai-java</artifactId>
   <version>4.0.1</version>
 </dependency>
+```
 
 ## Authentication
 
@@ -45,7 +46,7 @@ Add the Azure Identity package:
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-identity</artifactId>
-    <version>1.13.3</version>
+    <version>1.18.0</version>
 </dependency>
 ```
 

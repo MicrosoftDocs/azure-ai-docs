@@ -208,6 +208,8 @@ client := openai.NewClient(
 
 # [Java](#tab/Java)
 
+[Java v1 examples](./supported-languages.md)
+
 ### v1 API
 
 **API Key**:
