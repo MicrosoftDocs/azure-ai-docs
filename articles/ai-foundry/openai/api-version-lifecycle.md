@@ -216,7 +216,7 @@ client := openai.NewClient(
 
 OpenAIClient client = OpenAIOkHttpClient.builder()
                 .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
-                .credential(AzureApiKeyCredential.create("{your-api-key}"))
+                .apiKey(apiKey)
                 .build();
 ```
 
