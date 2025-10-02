@@ -13,7 +13,7 @@
   tocHref: /legal/
   topicHref: /azure/index
   items:
-  - name: Azure AI services                # Original doc set name
+  - name: Azure AI Foundry                # Original doc set name
     tocHref: /azure/ai-foundry/responsible-ai/document-intelligence    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
@@ -24,7 +24,7 @@
   tocHref: /ai-builder/
   topicHref: /azure/index
   items:
-  - name: Azure AI services                # Original doc set name
+  - name: Azure AI Foundry                # Original doc set name
     tocHref: /ai-builder/    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
