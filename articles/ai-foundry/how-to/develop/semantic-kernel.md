@@ -2,6 +2,8 @@
 title: Develop applications with Semantic Kernel and Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Develop applications with Semantic Kernel and Azure AI Foundry.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
@@ -12,12 +14,26 @@ ms.service: azure-ai-foundry
 
 # Develop applications with Semantic Kernel and Azure AI Foundry
 
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
+
 In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overview/) with models deployed from the Azure AI model catalog in Azure AI Foundry portal.
 
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
+
+::: moniker range="foundry-classic"
+
 - An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
+
+::: moniker-end
+
 - A model supporting the [Azure AI Model Inference API](../../../ai-foundry/model-inference/reference/reference-model-inference-api.md?tabs=python) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`.
 
   - You can follow the instructions at [Deploy models as serverless API deployments](../deploy-models-serverless.md).
@@ -39,15 +55,26 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 To use LLMs deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to it. Follow these steps to get the information you need from the model you want to use:
 
+::: moniker range="foundry-classic"
+
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
 1. Open the project where the model is deployed, if it isn't already open.
 1. Go to **Models + endpoints** and select the model you deployed as indicated in the prerequisites.
 1. Copy the endpoint URL and the key.
 
     > [!TIP]
     > If your model was deployed with Microsoft Entra ID support, you don't need a key.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
+1. Insert NextGen content
+
+::: moniker-end
 
 In this scenario, we placed both the endpoint URL and key in the following environment variables:
 
@@ -223,5 +250,14 @@ for embedding in embeddings:
 
 ## Related content
 
+::: moniker range="foundry-classic"
+
 - [How to get started with Azure AI SDKs](sdk-overview.md)
 - [Reference for Semantic Kernel model integration](/semantic-kernel/concepts/ai-services/)
+::: moniker-end
+
+::: moniker range="foundry"
+- [How to get started with Azure AI SDKs](sdk-overview.md)
+- [How to get started with Azure AI SDKs](sdk-overview.md)
+
+::: moniker-end
