@@ -3,7 +3,6 @@ title: Agent Evaluation with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
 monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.custom: 
 - build-2025
@@ -13,7 +12,8 @@ ms.date: 09/15/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
-# customer intent: As a developer, I want to evaluate my AI agents using the Azure AI Evaluation SDK so I can assess their quality, safety, and performance.
+# customer intent: As a developer, I want to evaluate my AI agents locally using the Azure AI Evaluation SDK so I can assess the quality, safety, and efficiency of agentic workflows.
+ai-usage: ai-assisted
 ---
 
 # Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)
@@ -323,7 +323,7 @@ print(f'AI Foundry URL: {response.get("studio_url")}')
 
 ::: moniker range="foundry-classic"
 
-After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.
+After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
 
 ::: moniker-end
 
@@ -331,7 +331,7 @@ After the URL, you'll be redirected to Foundry. You can view your evaluation res
 
 Insert NextGen content
 
-::: moniker-end  
+::: moniker-end
 
 With the Azure AI Evaluation SDK client library, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows.
 

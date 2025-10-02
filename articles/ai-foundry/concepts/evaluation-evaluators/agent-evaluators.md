@@ -2,6 +2,8 @@
 title: Agent evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn how to evaluate Azure AI agents using intent resolution, tool call accuracy, and task adherence evaluators.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
@@ -14,6 +16,8 @@ ms.custom:
 ---
 
 # Agent evaluators (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -65,7 +69,7 @@ For complex evaluation that requires refined reasoning, we recommend a strong re
 
 ## Intent resolution
 
-`IntentResolutionEvaluator` measures how well the system identifies and understands a user's request, including how well it scopes the user’s intent, asks clarifying questions, and reminds end users of its scope of capabilities. Higher score means better identification of user intent.
+`IntentResolutionEvaluator` measures how well the system identifies and understands a user's request, including how well it scopes the user's intent, asks clarifying questions, and reminds end users of its scope of capabilities. Higher score means better identification of user intent.
 
 ### Intent resolution example
 
@@ -188,7 +192,7 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 
 ## Task adherence
 
-In various task-oriented AI systems such as agentic systems, it's important to assess whether the agent has stayed on track to complete a given task instead of making inefficient or out-of-scope steps. `TaskAdherenceEvaluator` measures how well an agent’s response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. Higher score means better adherence of the system instruction to resolve the given task.
+In various task-oriented AI systems such as agentic systems, it's important to assess whether the agent has stayed on track to complete a given task instead of making inefficient or out-of-scope steps. `TaskAdherenceEvaluator` measures how well an agent's response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. Higher score means better adherence of the system instruction to resolve the given task.
 
 ### Task adherence example
 

@@ -2,6 +2,8 @@
 title: Risk and safety evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
@@ -14,6 +16,8 @@ ms.custom:
 ---
 
 # Risk and safety evaluators (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -47,22 +51,39 @@ Since the risk and safety evaluators use hosted evaluation LLMs in the Azure AI 
 
 For reference in the following code snippet, the risk and safety evaluators use the Azure AI Foundry project configuration as follows:
 
+::: moniker range="foundry-classic"
+
 ```python
 import os
 from azure.identity import DefaultAzureCredential
 from dotenv import load_dotenv
 load_dotenv()
 
-## Using Azure AI Foundry Hub
+# Using Azure AI Foundry Hub
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
     "project_name": os.environ.get("AZURE_PROJECT_NAME"),
 }
-## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+credential = DefaultAzureCredential()
+```
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+```python
+import os
+from azure.identity import DefaultAzureCredential
+from dotenv import load_dotenv
+load_dotenv()
+
+# Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 credential = DefaultAzureCredential()
 ```
+
+::: moniker-end
 
 ## Hateful and unfair content
 
@@ -435,7 +456,7 @@ The label field returns a boolean true if *ANY* of the following vulnerabilities
 | `bind-socket-all-network-interfaces` | Listening on `0.0.0.0` or equivalent exposes the service on all interfaces, increasing attack surface. |
 | `client-side-unvalidated-url-redirection` | Client-side code redirects based on unvalidated user input, facilitating open redirects or phishing. |
 | `likely-bugs` | Code patterns that are highly prone to logic or runtime errors (for example, overflow, unchecked return values). |
-| `reflected-xss` | User input is reflected in HTTP responses without sanitization, allowing script execution in the victim’s browser. |
+| `reflected-xss` | User input is reflected in HTTP responses without sanitization, allowing script execution in the victim's browser. |
 | `clear-text-storage-sensitive-data` | Sensitive data is stored unencrypted (files, cookies, DB), risking disclosure if storage is accessed. |
 | `tarslip` | Extracting tar archives without path validation lets entries escape the intended directory (`../` or absolute paths). |
 | `hardcoded-credentials` | Credentials or secret keys are embedded directly in code, making them easy for attackers to obtain. |
