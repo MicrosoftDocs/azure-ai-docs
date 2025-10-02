@@ -8,9 +8,13 @@ ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to run an evaluation in GitHub Action (preview)
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -26,7 +30,17 @@ Offline evaluation involves testing AI models and agents using test datasets to 
 
 ## Prerequisites
 
+::: moniker range="foundry-classic"
+
 Foundry project or Hubs based project. To learn more, see [Create a project](create-projects.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 Two GitHub Actions are available for evaluating AI applications: **ai-agent-evals** and **genai-evals**.
 
@@ -46,11 +60,31 @@ The input of ai-agent-evals includes:
 
 # [Foundry project](#tab/foundry-project)
 
+::: moniker range="foundry-classic"
+
 - `azure-ai-project-endpoint`: The endpoint of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 # [Hub-based project](#tab/hub-project)
 
+::: moniker range="foundry-classic"
+
 - `azure-aiproject-connection-string`: The connection string of the Azure AI project. This is used to connect to your AI project to simulate conversations with each agent, and to connect to the Azure AI evaluation SDK to perform the evaluation.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ---
 - `deployment-name`: the deployed model name for evaluation judgement.
@@ -102,6 +136,8 @@ This example illustrates how Azure Agent AI Evaluation can be run when comparing
 
 # [Foundry project](#tab/foundry-project)
 
+::: moniker range="foundry-classic"
+
 ```YAML
 name: "AI Agent Evaluation"
 
@@ -140,7 +176,17 @@ jobs:
 
 ```
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 # [Hub-based project](#tab/hub-project)
+
+::: moniker range="foundry-classic"
 
 ```YAML
 name: "AI Agent Evaluation"
@@ -180,6 +226,14 @@ jobs:
 
 ```
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 ---
 
 ### AI agent evaluations output
@@ -188,7 +242,18 @@ Evaluation results are outputted to the summary section for each AI evaluation G
 
 The result includes two main parts:
 
+::: moniker range="foundry-classic"
+
 - The top section summarizes the overview of your AI agent variants. You can select it on the agent ID link, and it directs you to the agent setting page in AI Foundry portal. You can also select the link for Evaluation Results, and it directs you to AI Foundry portal to view individual result in detail.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+
 - The second section includes evaluation scores and comparison between different variants on statistical significance (for multiple agents) and confidence intervals (for single agent).
 
 Multi agent evaluation result:
