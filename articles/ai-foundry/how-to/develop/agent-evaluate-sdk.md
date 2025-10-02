@@ -14,7 +14,6 @@ ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
 # customer intent: As a developer, I want to evaluate my AI agents locally using the Azure AI Evaluation SDK so I can assess the quality, safety, and efficiency of agentic workflows.
-monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ---
 
