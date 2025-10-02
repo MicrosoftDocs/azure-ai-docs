@@ -1,11 +1,11 @@
----
+﻿---
 title: "Get started: Document Intelligence client library for Java v2.1"
 description: Use the Document Intelligence SDK for Java to create a forms processing app that extracts key/value pairs and table data from your custom documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 ---
 
@@ -23,7 +23,7 @@ In this quickstart, you use the following APIs to extract structured data from f
 
 * A [**Java Development Kit (JDK)**](https://wiki.openjdk.java.net/display/jdk8u) version 8 or later. For more information, *see* [supported Java Versions and update schedule](/azure/developer/java/fundamentals/java-support-on-azure#supported-java-versions-and-update-schedule).
 
-* An Azure AI services or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+* An Azure AI Foundry Tools or Document Intelligence resource. Once you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [multi-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) Document Intelligence resource in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
 
 
@@ -110,7 +110,7 @@ import com.azure.core.util.polling.SyncPoller;
 
 > [!IMPORTANT]
 > Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). 
-For more information, *see* Azure AI services [security](../../../../../ai-services/security-features.md).
+For more information, *see* Azure AI Foundry Tools [security](../../../../../ai-services/security-features.md).
 
 ## **Try it**: Layout model
 

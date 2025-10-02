@@ -1,8 +1,8 @@
----
+﻿---
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-3.0.0'
 ---

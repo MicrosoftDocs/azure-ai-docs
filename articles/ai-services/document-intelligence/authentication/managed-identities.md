@@ -1,12 +1,12 @@
----
+﻿---
 title: Create and use managed identities with Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Understand how to create and  use managed identity with Document Intelligence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: how-to
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: '<=doc-intel-4.0.0'
 ms.custom: sfi-image-nochange

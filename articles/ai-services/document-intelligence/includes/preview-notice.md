@@ -1,4 +1,4 @@
----
+﻿---
 title: Document Intelligence preview content notice
 description: Preview notices include file.
 author: laujan
@@ -6,7 +6,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 11/19/2024
+ms.date: 10/01/2025
 ---
 
 > [!IMPORTANT]
