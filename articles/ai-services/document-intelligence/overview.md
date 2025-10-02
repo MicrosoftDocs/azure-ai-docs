@@ -629,7 +629,7 @@ To learn more about each model and browse the API references, use the links in t
 
 ## Data privacy and security
 
- As with all AI services, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
+ As with all Azure AI Foundry Tools, developers who use Document Intelligence should be aware of Microsoft policies on customer data. For more information, see [Data, privacy, and security for Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security).
 
 ## Related content
 
