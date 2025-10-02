@@ -2,6 +2,8 @@
 title: Retrieval-augmented Generation (RAG) evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about Retrieval-augmented Generation (RAG) evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
@@ -14,6 +16,8 @@ ms.custom:
 ---
 
 # Retrieval-augmented Generation (RAG) evaluators
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 A retrieval-augmented generation (RAG) system tries to generate the most relevant answer consistent with grounding documents in response to a user's query. At a high level, a user's query triggers a search retrieval in the corpus of grounding documents to provide grounding context for the AI model to generate a response. It's important to evaluate:
 
@@ -242,19 +246,40 @@ AI systems can fabricate content or generate irrelevant responses outside the gi
 
 ### Groundedness Pro example
 
+::: moniker range="foundry-classic"
+
 ```python
 import os
 from azure.ai.evaluation import GroundednessProEvaluator
 from dotenv import load_dotenv
 load_dotenv()
 
-## Using Azure AI Foundry Hub
+# Using Azure AI Foundry Hub
 azure_ai_project = {
     "subscription_id": os.environ.get("AZURE_SUBSCRIPTION_ID"),
     "resource_group_name": os.environ.get("AZURE_RESOURCE_GROUP"),
     "project_name": os.environ.get("AZURE_PROJECT_NAME"),
 }
-## Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
+
+groundedness_pro = GroundednessProEvaluator(azure_ai_project=azure_ai_project), 
+groundedness_pro(
+    query="Is Marie Curie is born in Paris?", 
+    context="Background: 1. Marie Curie is born on November 7, 1867. 2. Marie Curie is born in Warsaw.",
+    response="No, Marie Curie is born in Warsaw."
+)
+```
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+```python
+import os
+from azure.ai.evaluation import GroundednessProEvaluator
+from dotenv import load_dotenv
+load_dotenv()
+
+# Using Azure AI Foundry Development Platform, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
 azure_ai_project = os.environ.get("AZURE_AI_PROJECT")
 
 groundedness_pro = GroundednessProEvaluator(azure_ai_project=azure_ai_project), 
@@ -264,6 +289,8 @@ groundedness_pro(
     response="No, Marie Curie is born in Warsaw."
 )
 ```
+
+::: moniker-end
 
 ### Groundedness Pro output
 

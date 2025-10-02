@@ -2,6 +2,8 @@
 title: General purpose evaluators for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
@@ -14,6 +16,8 @@ ms.custom:
 ---
 
 # General purpose evaluators
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, we support evaluating:
 
