@@ -64,17 +64,20 @@ Copy `.env.template` to `.env` and configure your settings:
 
 ```bash
 # Azure AI Foundry Configuration  
-PROJECT_ENDPOINT=https://your-project.aiservices.azure.com
-MODEL_DEPLOYMENT_NAME=gpt-4o
-AI_FOUNDRY_TENANT_ID=your-ai-foundry-tenant-id
+PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
+MODEL_DEPLOYMENT_NAME=gpt-4o-mini
+AI_FOUNDRY_TENANT_ID=<your-ai-foundry-tenant-id>
 
-# Microsoft Learn MCP Server (Works out-of-the-box!)
+# The Microsoft Learn MCP Server, which exposes the latest up-to-date Microsoft documentation.
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
 # SharePoint Integration (Optional - requires additional setup)
 SHAREPOINT_RESOURCE_NAME=your-sharepoint-connection
 SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
 ```
+
+> [!NOTE]
+> To configure your Azure AI Foundry project for SharePoint connectivity, refer to the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
 
 ### Dependencies
 
