@@ -30,7 +30,7 @@ Supported API versions:
 * [**Stable: Generally Available (GA)**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=truetabs=HTTP#entitycategory)
 
 > [!NOTE]
-> Beginning with the GA API (released 2024-11-01), the **Subcategory** field is no longer supported. All entity classifications now use the **type** field.
+> Beginning with the GA API (released `2024-11-01`), the **Subtype** field is no longer supported. All entity classifications now use the **type** field.
 
 
 ## Supported PII entity list
@@ -536,7 +536,7 @@ To review a list of all supported PII entities, *see* [PII entity list](Entity-c
 
 |Issuer|Tag|
 |---|---|
-|Hong Kong| [HKIdentityCardNumber]  |
+|Hong Kong SAR| [HKIdentityCardNumber]  |
 
 ### Type: HR Identity Card Number
 
@@ -1010,7 +1010,7 @@ To review a list of all supported PII entities, *see* [PII entity list](Entity-c
 
 |Issuer|Tag|
 |---|---|
-|Turkey| [TRNationalIdentificationNumber]  |
+|Türkiye| [TRNationalIdentificationNumber]  |
 
 ### Type: TW National ID
 
