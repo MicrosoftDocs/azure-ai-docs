@@ -185,7 +185,7 @@ When developing with the OpenAI SDK, you can instrument your code so traces are 
 
 ::: moniker-end
 
-    :::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="Screenshot that shows a trace view of a chat completion request showing spans and latency." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
+:::image type="content" source="../../media/how-to/develop/trace-application/tracing-display-simple.png" alt-text="Screenshot that shows a trace view of a chat completion request showing spans and latency." lightbox="../../media/how-to/develop/trace-application/tracing-display-simple.png":::
 
 1. It might be useful to capture sections of your code that mixes business logic with models when developing complex applications. OpenTelemetry uses the concept of spans to capture sections you're interested in. To start generating your own spans, get an instance of the current **tracer** object.
 
