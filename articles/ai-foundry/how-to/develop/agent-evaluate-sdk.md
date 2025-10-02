@@ -11,9 +11,14 @@ ms.date: 09/15/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer, I want to evaluate my AI agents locally using the Azure AI Evaluation SDK so I can assess the quality, safety, and efficiency of agentic workflows.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -306,7 +311,17 @@ print(response["metrics"])
 print(f'AI Foundry URL: {response.get("studio_url")}')
 ```
 
+::: moniker range="foundry-classic"
+
 After the URL, you'll be redirected to Foundry. You can view your evaluation results in your Azure AI project and debug your application. Using reason fields and pass/fail, you can easily assess the quality and safety performance of your applications. You can run and compare multiple runs to test for regression or improvements.  
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 With the Azure AI Evaluation SDK client library, you can seamlessly evaluate your Azure AI agents via our converter support, which enables observability and transparency into agentic workflows.
 
