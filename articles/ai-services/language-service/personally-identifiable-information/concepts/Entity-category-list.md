@@ -1,7 +1,7 @@
---
-title: Entity categories recognized by Personally Identifiable Information (detection) in Azure AI Language
+---
+title: Entity categories list recognized by Personally Identifiable Information (PII) detection in Azure AI Language
 titleSuffix: Azure AI services
-description: Learn about the types of entities the PII feature can detect and identify within unstructured text.
+description: View a list of entity types the PII feature can detect and identify within unstructured text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
