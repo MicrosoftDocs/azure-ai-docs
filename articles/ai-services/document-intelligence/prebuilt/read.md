@@ -1,12 +1,12 @@
----
+﻿---
 title: Read model OCR data extraction - Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Extract print and handwritten text from scanned and digital documents with Document Intelligence's Read OCR model.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 02/19/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
 ---
 

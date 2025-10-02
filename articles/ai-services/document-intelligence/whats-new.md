@@ -1,12 +1,12 @@
----
+﻿---
 title: What's new in Document Intelligence
-titleSuffix: Azure AI services
-description: Learn the latest updates to the Azure AI Document Intelligence.
+titleSuffix: Azure AI Foundry Tools
+description: Learn the latest updates to the Azure Document Intelligence in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: whats-new
-ms.date: 03/07/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
 ms.custom:
   - references_regions
@@ -18,7 +18,7 @@ ms.custom:
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD049 -->
 
-# What's new in Azure AI Document Intelligence
+# What's new in Azure Document Intelligence in Foundry Tools
 
 [!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
 

@@ -1,12 +1,12 @@
----
+﻿---
 title: Identity document (ID) processing – Document Intelligence 
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Automate identity document (ID) processing of driver licenses, passports, and more with Document Intelligence.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
-ms.date: 07/29/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
 ms.custom: references.regions
 ---

@@ -1,8 +1,8 @@
----
+﻿---
 author: laujan
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 08/05/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD041 -->
