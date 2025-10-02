@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: conceptual
 ms.date: 10/01/2025
-ms.author: admaheshwari
+ms.author: lajanuar
 monikerRange: '>=doc-intel-4.0.0'
 ---
 
