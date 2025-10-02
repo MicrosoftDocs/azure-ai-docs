@@ -3,7 +3,6 @@ title: Agent Evaluation with the Azure AI Evaluation SDK
 titleSuffix: Azure AI Foundry
 description: This article provides instructions on how to evaluate an AI agent with the Azure AI Evaluation SDK.
 monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.custom: 
 - build-2025
