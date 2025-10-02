@@ -32,1090 +32,1093 @@ Supported API versions:
 > [!NOTE]
 > Beginning with the GA API (released `2024-11-01`), the **Subtype** field is no longer supported. All entity classifications now use the **type** field.
 
-
 ## Supported PII entity list
 
-To review a list of all supported PII entities, *see* [PII entity list](Entity-category-list.md)
+To examine a comprehensive list of all the types of Personally Identifiable Information (PII) entities that are currently supported, please *see* the [Supported PII entity list](list-entity-categories.md)
 
-## Supported PII entities
+## Supported PII extraction entities
+
+Personally identifiable information (PII) refers to any single piece of data or combination of data that enables the unique identification, tracking, or differentiation of an individual.
+
+The Azure Language PII extraction API uses Natural Language Processing (NLP) technology to detect, recognize, and extract PII entities from written text or spoken conversations. The following entities represent specific types of information that can reveal an individual's identity:
 
 ### Type: ABA Routing Number
 
 |Issuer|Tag|
 |---|---|
-|American Bankers Association (ABA)| [ABARoutingNumber]  |
+|American Bankers Association (ABA)|[ABARoutingNumber]|
 
 
 ### Type: Address
 
 |Issuer|Tag|
 |---|---|
-|Not applicable.| [Address]  |
+|Not applicable.|[Address]|
 
 ### Type: Age
 
 |Issuer|Tag|
 |---|---|
-|Not applicable.| [Age]  |
+|Not applicable.|[Age]|
 
 ### Type: AR National Identity Number
 
 |Issuer|Tag|
 |---|---|
-|Argentina| [ARNationalIdentityNumber]  |
+|Argentina|[ARNationalIdentityNumber]|
 
 ### Type: AT Identity Card
 
 |Issuer|Tag|
 |---|---|
-|Austria| [ATIdentityCard]  |
+|Austria|[ATIdentityCard]|
 
 ### Type: AT Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Austria| [ATTaxIdentificationNumber]  |
+|Austria|[ATTaxIdentificationNumber]|
 
 ### Type: AT Value Added Tax Number
 
 |Issuer|Tag|
 |---|---|
-|Austria| [ATValueAddedTaxNumber]  |
+|Austria|[ATValueAddedTaxNumber]|
 
 ### Type: AU Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUBankAccountNumber]  |
+|Australia|[AUBankAccountNumber]|
 
 ### Type: AU Business Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUBusinessNumber]  |
+|Australia|[AUBusinessNumber]|
 
 ### Type: AU Company Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUCompanyNumber]  |
+|Australia|[AUCompanyNumber]|
 
 ### Type: AU Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUDriversLicenseNumber]  |
+|Australia|[AUDriversLicenseNumber]|
 
 ### Type: AU Medical Account Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUMedicalAccountNumber]  |
+|Australia|[AUMedicalAccountNumber]|
 
 ### Type: AU Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUPassportNumber]  |
+|Australia|[AUPassportNumber]|
 
 ### Type: AU Tax File Number
 
 |Issuer|Tag|
 |---|---|
-|Australia| [AUTaxFileNumber]  |
+|Australia|[AUTaxFileNumber]|
 
 ### Type: Azure Document DB Auth Key
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureDocumentDBAuthKey]  |
+|Microsoft|[AzureDocumentDBAuthKey]|
 
 ### Type: Azure IAAS Database Connection And SQL String
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureIAASDatabaseConnectionAndSQLString]  |
+|Microsoft|[AzureIAASDatabaseConnectionAndSQLString]|
 
 ### Type: Azure IoT Connection String
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureIoTConnectionString]  |
+|Microsoft|[AzureIoTConnectionString]|
 
 ### Type: Azure Publish Setting Password
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzurePublishSettingPassword]  |
+|Microsoft|[AzurePublishSettingPassword]|
 
 ### Type: Azure Redis Cache String
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureRedisCacheString]  |
+|Microsoft|[AzureRedisCacheString]|
 
 ### Type: Azure SAS
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureSAS]  |
+|Microsoft|[AzureSAS]|
 
 ### Type: Azure Service Bus String
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureServiceBusString]  |
+|Microsoft|[AzureServiceBusString]|
 
 ### Type: Azure Storage Account Generic
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureStorageAccountGeneric]  |
+|Microsoft|[AzureStorageAccountGeneric]|
 
 ### Type: Azure Storage Account Key
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [AzureStorageAccountKey]  |
+|Microsoft|[AzureStorageAccountKey]|
 
 ### Type: Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [BankAccountNumber]  |
+|Not applicable|[BankAccountNumber]|
 
 ### Type: BE National Number
 
 |Issuer|Tag|
 |---|---|
-|Belgium| [BENationalNumber]  |
+|Belgium|[BENationalNumber]|
 
 ### Type: BE National Number V2
 
 |Issuer|Tag|
 |---|---|
-|Belgium| [BENationalNumberV2]  |
+|Belgium|[BENationalNumberV2]|
 
 ### Type: BE Value Added Tax Number
 
 |Issuer|Tag|
 |---|---|
-|Belgium| [BEValueAddedTaxNumber]  |
+|Belgium|[BEValueAddedTaxNumber]|
 
 ### Type: BG Uniform Civil Number
 
 |Issuer|Tag|
 |---|---|
-|Bulgaria| [BGUniformCivilNumber]  |
+|Bulgaria|[BGUniformCivilNumber]|
 
 ### Type: BR CPF Number
 
 |Issuer|Tag|
 |---|---|
-|Brazil| [BRCPFNumber]  |
+|Brazil|[BRCPFNumber]|
 
 ### Type: BR Legal Entity Number
 
 |Issuer|Tag|
 |---|---|
-|Brazil| [BRLegalEntityNumber]  |
+|Brazil|[BRLegalEntityNumber]|
 
 ### Type: BR National IDRG
 
 |Issuer|Tag|
 |---|---|
-|Brazil| [BRNationalIDRG]  |
+|Brazil|[BRNationalIDRG]|
 
 ### Type: CA Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|Canada| [CABankAccountNumber]  |
+|Canada|[CABankAccountNumber]|
 
 ### Type: CA Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|Canada| [CADriversLicenseNumber]  |
+|Canada|[CADriversLicenseNumber]|
 
 ### Type: CA Health Service Number
 
 |Issuer|Tag|
 |---|---|
-|Canada| [CAHealthServiceNumber]  |
+|Canada|[CAHealthServiceNumber]|
 
 ### Type: CA Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Canada| [CAPassportNumber]  |
+|Canada|[CAPassportNumber]|
 
 ### Type: CA Personal Health Identification
 
 |Issuer|Tag|
 |---|---|
-|Canada| [CAPersonalHealthIdentification]  |
+|Canada|[CAPersonalHealthIdentification]|
 
 ### Type: CA Social Insurance Number
 
 |Issuer|Tag|
 |---|---|
-|Canada| [CASocialInsuranceNumber]  |
+|Canada|[CASocialInsuranceNumber]|
 
 ### Type: CH Social Security Number
 
 |Issuer|Tag|
 |---|---|
-|Switzerland| [CHSocialSecurityNumber]  |
+|Switzerland|[CHSocialSecurityNumber]|
 
 ### Type: CL Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Chile| [CLIdentityCardNumber]  |
+|Chile|[CLIdentityCardNumber]|
 
 ### Type: CN Resident Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|China| [CNResidentIdentityCardNumber]  |
+|China|[CNResidentIdentityCardNumber]|
 
 ### Type: Credit Card Number
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [CreditCardNumber]  |
+|Not applicable|[CreditCardNumber]|
 
 ### Type: CY Identity Card
 
 |Issuer|Tag|
 |---|---|
-|Cyprus| [CYIdentityCard]  |
+|Cyprus|[CYIdentityCard]|
 
 ### Type: CY Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Cyprus| [CYTaxIdentificationNumber]  |
+|Cyprus|[CYTaxIdentificationNumber]|
 
 ### Type: CZ Personal Identity Number
 
 |Issuer|Tag|
 |---|---|
-|Czech Republic| [CZPersonalIdentityNumber]  |
+|Czech Republic|[CZPersonalIdentityNumber]|
 
 ### Type: CZ Personal Identity V2
 
 |Issuer|Tag|
 |---|---|
-|Czech Republic| [CZPersonalIdentityV2]  |
+|Czech Republic|[CZPersonalIdentityV2]|
 
 ### Type: Date
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [Date]  |
+|Not applicable|[Date]|
 
 ### Type: Date Of Birth
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [DateOfBirth]  |
+|Not applicable|[DateOfBirth]|
 
 ### Type: DE Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|Germany| [DEDriversLicenseNumber]  |
+|Germany|[DEDriversLicenseNumber]|
 
 ### Type: DE Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Germany| [DEIdentityCardNumber]  |
+|Germany|[DEIdentityCardNumber]|
 
 ### Type: DE Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Germany| [DEPassportNumber]  |
+|Germany|[DEPassportNumber]|
 
 ### Type: DE Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Germany| [DETaxIdentificationNumber]  |
+|Germany|[DETaxIdentificationNumber]|
 
 ### Type: DE Value Added Number
 
 |Issuer|Tag|
 |---|---|
-|Germany| [DEValueAddedNumber]  |
+|Germany|[DEValueAddedNumber]|
 
 ### Type: DK Personal Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Denmark| [DKPersonalIdentificationNumber]  |
+|Denmark|[DKPersonalIdentificationNumber]|
 
 ### Type: DK Personal Identification V2
 
 |Issuer|Tag|
 |---|---|
-|Denmark| [DKPersonalIdentificationV2]  |
+|Denmark|[DKPersonalIdentificationV2]|
 
 ### Type: Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [DriversLicenseNumber]  |
+|Not applicable|[DriversLicenseNumber]|
 
 ### Type: Drug Enforcement Agency Number
 
 |Issuer|Tag|
 |---|---|
-|United States| [DrugEnforcementAgencyNumber]  |
+|United States|[DrugEnforcementAgencyNumber]|
 
 ### Type: EE Personal Identification Code
 
 |Issuer|Tag|
 |---|---|
-|Estonia| [EEPersonalIdentificationCode]  |
+|Estonia|[EEPersonalIdentificationCode]|
 
 ### Type: Email
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [Email]  |
+|Not applicable|[Email]|
 
 ### Type: ES DNI
 
 |Issuer|Tag|
 |---|---|
-|Spain| [ESDNI]  |
+|Spain|[ESDNI]|
 
 ### Type: ES Social Security Number
 
 |Issuer|Tag|
 |---|---|
-|Spain| [ESSocialSecurityNumber]  |
+|Spain|[ESSocialSecurityNumber]|
 
 ### Type: ES Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Spain| [ESTaxIdentificationNumber]  |
+|Spain|[ESTaxIdentificationNumber]|
 
 ### Type: EU Debit Card Number
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUDebitCardNumber]  |
+|European Union|[EUDebitCardNumber]|
 
 ### Type: EU Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUDriversLicenseNumber]  |
+|European Union|[EUDriversLicenseNumber]|
 
 ### Type: EU GPS Coordinates
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUGPSCoordinates]  |
+|European Union|[EUGPSCoordinates]|
 
 ### Type: EU National Identification Number
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUNationalIdentificationNumber]  |
+|European Union|[EUNationalIdentificationNumber]|
 
 ### Type: EU Passport Number
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUPassportNumber]  |
+|European Union|[EUPassportNumber]|
 
 ### Type: EU Social Security Number
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUSocialSecurityNumber]  |
+|European Union|[EUSocialSecurityNumber]|
 
 ### Type: EU Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|European Union| [EUTaxIdentificationNumber]  |
+|European Union|[EUTaxIdentificationNumber]|
 
 ### Type: FI European Health Number
 
 |Issuer|Tag|
 |---|---|
-|Finland| [FIEuropeanHealthNumber]  |
+|Finland|[FIEuropeanHealthNumber]|
 
 ### Type: FI National ID
 
 |Issuer|Tag|
 |---|---|
-|Finland| [FINationalID]  |
+|Finland|[FINationalID]|
 
 ### Type: FI National ID V2
 
 |Issuer|Tag|
 |---|---|
-|Finland| [FINationalIDV2]  |
+|Finland|[FINationalIDV2]|
 
 ### Type: FI Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Finland| [FIPassportNumber]  |
+|Finland|[FIPassportNumber]|
 
 ### Type: FR Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|France| [FRDriversLicenseNumber]  |
+|France|[FRDriversLicenseNumber]|
 
 ### Type: FR Health Insurance Number
 
 |Issuer|Tag|
 |---|---|
-|France| [FRHealthInsuranceNumber]  |
+|France|[FRHealthInsuranceNumber]|
 
 ### Type: FR National ID
 
 |Issuer|Tag|
 |---|---|
-|France| [FRNationalID]  |
+|France|[FRNationalID]|
 
 ### Type: FR Passport Number
 
 |Issuer|Tag|
 |---|---|
-|France| [FRPassportNumber]  |
+|France|[FRPassportNumber]|
 
 ### Type: FR Social Security Number
 
 |Issuer|Tag|
 |---|---|
-|France| [FRSocialSecurityNumber]  |
+|France|[FRSocialSecurityNumber]|
 
 ### Type: FR Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|France| [FRTaxIdentificationNumber]  |
+|France|[FRTaxIdentificationNumber]|
 
 ### Type: FR Value Added Tax Number
 
 |Issuer|Tag|
 |---|---|
-|France| [FRValueAddedTaxNumber]  |
+|France|[FRValueAddedTaxNumber]|
 
 ### Type: GR National ID Card
 
 |Issuer|Tag|
 |---|---|
-|Greece| [GRNationalIDCard]  |
+|Greece|[GRNationalIDCard]|
 
 ### Type: GR National ID V2
 
 |Issuer|Tag|
 |---|---|
-|Greece| [GRNationalIDV2]  |
+|Greece|[GRNationalIDV2]|
 
 ### Type: GR Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Greece| [GRTaxIdentificationNumber]  |
+|Greece|[GRTaxIdentificationNumber]|
 
 ### Type: HK Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Hong Kong SAR| [HKIdentityCardNumber]  |
+|Hong Kong SAR|[HKIdentityCardNumber]|
 
 ### Type: HR Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Croatia| [HRIdentityCardNumber]  |
+|Croatia|[HRIdentityCardNumber]|
 
 ### Type: HR National ID Number
 
 |Issuer|Tag|
 |---|---|
-|Croatia| [HRNationalIDNumber]  |
+|Croatia|[HRNationalIDNumber]|
 
 ### Type: HR Personal Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Croatia| [HRPersonalIdentificationNumber]  |
+|Croatia|[HRPersonalIdentificationNumber]|
 
 ### Type: HR Personal Identification OIB Number V2
 
 |Issuer|Tag|
 |---|---|
-|Croatia| [HRPersonalIdentificationOIBNumberV2]  |
+|Croatia|[HRPersonalIdentificationOIBNumberV2]|
 
 ### Type: HU Personal Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Hungary| [HUPersonalIdentificationNumber]  |
+|Hungary|[HUPersonalIdentificationNumber]|
 
 ### Type: HU Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Hungary| [HUTaxIdentificationNumber]  |
+|Hungary|[HUTaxIdentificationNumber]|
 
 ### Type: HU Value Added Number
 
 |Issuer|Tag|
 |---|---|
-|Hungary| [HUValueAddedNumber]  |
+|Hungary|[HUValueAddedNumber]|
 
 ### Type: ID Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Indonesia| [IDIdentityCardNumber]  |
+|Indonesia|[IDIdentityCardNumber]|
 
 ### Type: IE Personal Public Service Number
 
 |Issuer|Tag|
 |---|---|
-|Ireland| [IEPersonalPublicServiceNumber]  |
+|Ireland|[IEPersonalPublicServiceNumber]|
 
 ### Type: IE Personal Public Service Number V2
 
 |Issuer|Tag|
 |---|---|
-|Ireland| [IEPersonalPublicServiceNumberV2]  |
+|Ireland|[IEPersonalPublicServiceNumberV2]|
 
 ### Type: IL Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|Israel| [ILBankAccountNumber]  |
+|Israel|[ILBankAccountNumber]|
 
 ### Type: IL National ID
 
 |Issuer|Tag|
 |---|---|
-|Israel| [ILNationalID]  |
+|Israel|[ILNationalID]|
 
 ### Type: IN Permanent Account
 
 |Issuer|Tag|
 |---|---|
-|India| [INPermanentAccount]  |
+|India|[INPermanentAccount]|
 
 ### Type: IN Unique Identification Number
 
 |Issuer|Tag|
 |---|---|
-|India| [INUniqueIdentificationNumber]  |
+|India|[INUniqueIdentificationNumber]|
 
 ### Type: International Banking Account Number
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [InternationalBankingAccountNumber]  |
+|Not applicable|[InternationalBankingAccountNumber]|
 
 ### Type: IP Address
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [IPAddress]  |
+|Not applicable|[IPAddress]|
 
 ### Type: IT Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|Italy| [ITDriversLicenseNumber]  |
+|Italy|[ITDriversLicenseNumber]|
 
 ### Type: IT Fiscal Code
 
 |Issuer|Tag|
 |---|---|
-|Italy| [ITFiscalCode]  |
+|Italy|[ITFiscalCode]|
 
 ### Type: IT Value Added Tax Number
 
 |Issuer|Tag|
 |---|---|
-|Italy| [ITValueAddedTaxNumber]  |
+|Italy|[ITValueAddedTaxNumber]|
 
 ### Type: JP Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPBankAccountNumber]  |
+|Japan|[JPBankAccountNumber]|
 
 ### Type: JP Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPDriversLicenseNumber]  |
+|Japan|[JPDriversLicenseNumber]|
 
 ### Type: JP My Number Corporate
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPMyNumberCorporate]  |
+|Japan|[JPMyNumberCorporate]|
 
 ### Type: JP My Number Personal
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPMyNumberPersonal]  |
+|Japan|[JPMyNumberPersonal]|
 
 ### Type: JP Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPPassportNumber]  |
+|Japan|[JPPassportNumber]|
 
 ### Type: JP Residence Card Number
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPResidenceCardNumber]  |
+|Japan|[JPResidenceCardNumber]|
 
 ### Type: JP Resident Registration Number
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPResidentRegistrationNumber]  |
+|Japan|[JPResidentRegistrationNumber]|
 
 ### Type: JP Social Insurance Number
 
 |Issuer|Tag|
 |---|---|
-|Japan| [JPSocialInsuranceNumber]  |
+|Japan|[JPSocialInsuranceNumber]|
 
 ### Type: KR Resident Registration Number
 
 |Issuer|Tag|
 |---|---|
-|South Korea| [KRResidentRegistrationNumber]  |
+|South Korea|[KRResidentRegistrationNumber]|
 
 ### Type: License Plate
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [LicensePlate]  |
+|Not applicable|[LicensePlate]|
 
 ### Type: LT Personal Code
 
 |Issuer|Tag|
 |---|---|
-|Lithuania| [LTPersonalCode]  |
+|Lithuania|[LTPersonalCode]|
 
 ### Type: LU National Identification Number Natural
 
 |Issuer|Tag|
 |---|---|
-|Luxembourg| [LUNationalIdentificationNumberNatural]  |
+|Luxembourg|[LUNationalIdentificationNumberNatural]|
 
 ### Type: LU National Identification Number Non Natural
 
 |Issuer|Tag|
 |---|---|
-|Luxembourg| [LUNationalIdentificationNumberNonNatural]  |
+|Luxembourg|[LUNationalIdentificationNumberNonNatural]|
 
 ### Type: LV Personal Code
 
 |Issuer|Tag|
 |---|---|
-|Latvia| [LVPersonalCode]  |
+|Latvia|[LVPersonalCode]|
 
 ### Type: MT Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Malta| [MTIdentityCardNumber]  |
+|Malta|[MTIdentityCardNumber]|
 
 ### Type: MT Tax ID Number
 
 |Issuer|Tag|
 |---|---|
-|Malta| [MTTaxIDNumber]  |
+|Malta|[MTTaxIDNumber]|
 
 ### Type: MY Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Malaysia| [MYIdentityCardNumber]  |
+|Malaysia|[MYIdentityCardNumber]|
 
 ### Type: Neighborhood
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [Neighborhood]  |
+|Not applicable|[Neighborhood]|
 
 ### Type: NL Citizens Service Number
 
 |Issuer|Tag|
 |---|---|
-|Netherlands| [NLCitizensServiceNumber]  |
+|Netherlands|[NLCitizensServiceNumber]|
 
 ### Type: NL Citizens Service Number V2
 
 |Issuer|Tag|
 |---|---|
-|Netherlands| [NLCitizensServiceNumberV2]  |
+|Netherlands|[NLCitizensServiceNumberV2]|
 
 ### Type: NL Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Netherlands| [NLTaxIdentificationNumber]  |
+|Netherlands|[NLTaxIdentificationNumber]|
 
 ### Type: NL Value Added Tax Number
 
 |Issuer|Tag|
 |---|---|
-|Netherlands| [NLValueAddedTaxNumber]  |
+|Netherlands|[NLValueAddedTaxNumber]|
 
 ### Type: NO Identity Number
 
 |Issuer|Tag|
 |---|---|
-|Norway| [NOIdentityNumber]  |
+|Norway|[NOIdentityNumber]|
 
 ### Type: NZ Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|New Zealand| [NZBankAccountNumber]  |
+|New Zealand|[NZBankAccountNumber]|
 
 ### Type: NZ Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|New Zealand| [NZDriversLicenseNumber]  |
+|New Zealand|[NZDriversLicenseNumber]|
 
 ### Type: NZ Inland Revenue Number
 
 |Issuer|Tag|
 |---|---|
-|New Zealand| [NZInlandRevenueNumber]  |
+|New Zealand|[NZInlandRevenueNumber]|
 
 ### Type: NZ Ministry Of Health Number
 
 |Issuer|Tag|
 |---|---|
-|New Zealand| [NZMinistryOfHealthNumber]  |
+|New Zealand|[NZMinistryOfHealthNumber]|
 
 ### Type: NZ Social Welfare Number
 
 |Issuer|Tag|
 |---|---|
-|New Zealand| [NZSocialWelfareNumber]  |
+|New Zealand|[NZSocialWelfareNumber]|
 
 ### Type: Organization
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [Organization]  |
+|Not applicable|[Organization]|
 
 ### Type: Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [PassportNumber]  |
+|Not applicable|[PassportNumber]|
 
 ### Type: Person
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [Person]  |
+|Not applicable|[Person]|
 
 ### Type: PH Unified Multi Purpose ID Number
 
 |Issuer|Tag|
 |---|---|
-|Philippines| [PHUnifiedMultiPurposeIDNumber]  |
+|Philippines|[PHUnifiedMultiPurposeIDNumber]|
 
 ### Type: Phone Number
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [PhoneNumber]  |
+|Not applicable|[PhoneNumber]|
 
 ### Type: PIN
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [PIN]  |
+|Not applicable|[PIN]|
 
 ### Type: PL Identity Card
 
 |Issuer|Tag|
 |---|---|
-|Poland| [PLIdentityCard]  |
+|Poland|[PLIdentityCard]|
 
 ### Type: PL National ID
 
 |Issuer|Tag|
 |---|---|
-|Poland| [PLNationalID]  |
+|Poland|[PLNationalID]|
 
 ### Type: PL National ID V2
 
 |Issuer|Tag|
 |---|---|
-|Poland| [PLNationalIDV2]  |
+|Poland|[PLNationalIDV2]|
 
 ### Type: PL Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Poland| [PLPassportNumber]  |
+|Poland|[PLPassportNumber]|
 
 ### Type: PL REGON Number
 
 |Issuer|Tag|
 |---|---|
-|Poland| [PLREGONNumber]  |
+|Poland|[PLREGONNumber]|
 
 ### Type: PL Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Poland| [PLTaxIdentificationNumber]  |
+|Poland|[PLTaxIdentificationNumber]|
 
 ### Type: PT Citizen Card Number
 
 |Issuer|Tag|
 |---|---|
-|Portugal| [PTCitizenCardNumber]  |
+|Portugal|[PTCitizenCardNumber]|
 
 ### Type: PT Citizen Card Number V2
 
 |Issuer|Tag|
 |---|---|
-|Portugal| [PTCitizenCardNumberV2]  |
+|Portugal|[PTCitizenCardNumberV2]|
 
 ### Type: PT Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Portugal| [PTTaxIdentificationNumber]  |
+|Portugal|[PTTaxIdentificationNumber]|
 
 ### Type: RO Personal Numerical Code
 
 |Issuer|Tag|
 |---|---|
-|Romania| [ROPersonalNumericalCode]  |
+|Romania|[ROPersonalNumericalCode]|
 
 ### Type: RU Passport Number Domestic
 
 |Issuer|Tag|
 |---|---|
-|Russia| [RUPassportNumberDomestic]  |
+|Russia|[RUPassportNumberDomestic]|
 
 ### Type: RU Passport Number International
 
 |Issuer|Tag|
 |---|---|
-|Russia| [RUPassportNumberInternational]  |
+|Russia|[RUPassportNumberInternational]|
 
 ### Type: SA National ID
 
 |Issuer|Tag|
 |---|---|
-|Saudi Arabia| [SANationalID]  |
+|Saudi Arabia|[SANationalID]|
 
 ### Type: SE National ID
 
 |Issuer|Tag|
 |---|---|
-|Sweden| [SENationalID]  |
+|Sweden|[SENationalID]|
 
 ### Type: SE National ID V2
 
 |Issuer|Tag|
 |---|---|
-|Sweden| [SENationalIDV2]  |
+|Sweden|[SENationalIDV2]|
 
 ### Type: SE Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Sweden| [SEPassportNumber, PassportNumber]  |
+|Sweden|[SEPassportNumber, PassportNumber]|
 
 ### Type: SE Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Sweden| [SETaxIdentificationNumber]  |
+|Sweden|[SETaxIdentificationNumber]|
 
 ### Type: SG National Registration Identity Card Number
 
 |Issuer|Tag|
 |---|---|
-|Singapore| [SGNationalRegistrationIdentityCardNumber]  |
+|Singapore|[SGNationalRegistrationIdentityCardNumber]|
 
 ### Type: SI Tax Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Slovenia| [SITaxIdentificationNumber]  |
+|Slovenia|[SITaxIdentificationNumber]|
 
 ### Type: SI Unique Master Citizen Number
 
 |Issuer|Tag|
 |---|---|
-|Slovenia| [SIUniqueMasterCitizenNumber]  |
+|Slovenia|[SIUniqueMasterCitizenNumber]|
 
 ### Type: SK Personal Number
 
 |Issuer|Tag|
 |---|---|
-|Slovakia| [SKPersonalNumber]  |
+|Slovakia|[SKPersonalNumber]|
 
 ### Type: Sort Code
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [SortCode]  |
+|Not applicable|[SortCode]|
 
 ### Type: SQL Server Connection String
 
 |Issuer|Tag|
 |---|---|
-|Microsoft| [SQLServerConnectionString]  |
+|Microsoft|[SQLServerConnectionString]|
 
 ### Type: SWIFT Code
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [SWIFTCode]  |
+|Not applicable|[SWIFTCode]|
 
 ### Type: TH Population Identification Code
 
 |Issuer|Tag|
 |---|---|
-|Thailand| [THPopulationIdentificationCode]  |
+|Thailand|[THPopulationIdentificationCode]|
 
 ### Type: TR National Identification Number
 
 |Issuer|Tag|
 |---|---|
-|Türkiye| [TRNationalIdentificationNumber]  |
+|Türkiye|[TRNationalIdentificationNumber]|
 
 ### Type: TW National ID
 
 |Issuer|Tag|
 |---|---|
-|Taiwan| [TWNationalID]  |
+|Taiwan|[TWNationalID]|
 
 ### Type: TW Passport Number
 
 |Issuer|Tag|
 |---|---|
-|Taiwan| [TWPassportNumber]  |
+|Taiwan|[TWPassportNumber]|
 
 ### Type: TW Resident Certificate
 
 |Issuer|Tag|
 |---|---|
-|Taiwan| [TWResidentCertificate]  |
+|Taiwan|[TWResidentCertificate]|
 
 ### Type: UA Passport Number Domestic
 
 |Issuer|Tag|
 |---|---|
-|Ukraine| [UAPassportNumberDomestic]  |
+|Ukraine|[UAPassportNumberDomestic]|
 
 ### Type: UA Passport Number International
 
 |Issuer|Tag|
 |---|---|
-|Ukraine| [UAPassportNumberInternational]  |
+|Ukraine|[UAPassportNumberInternational]|
 
 ### Type: UK Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|United Kingdom| [UKDriversLicenseNumber]  |
+|United Kingdom|[UKDriversLicenseNumber]|
 
 ### Type: UK Electoral Roll Number
 
 |Issuer|Tag|
 |---|---|
-|United Kingdom| [UKElectoralRollNumber]  |
+|United Kingdom|[UKElectoralRollNumber]|
 
 ### Type: UK National Health Number
 
 |Issuer|Tag|
 |---|---|
-|United Kingdom| [UKNationalHealthNumber]  |
+|United Kingdom|[UKNationalHealthNumber]|
 
 ### Type: UK National Insurance Number
 
 |Issuer|Tag|
 |---|---|
-|United Kingdom| [UKNationalInsuranceNumber]  |
+|United Kingdom|[UKNationalInsuranceNumber]|
 
 ### Type: UK Unique Taxpayer Number
 
 |Issuer|Tag|
 |---|---|
-|United Kingdom| [UKUniqueTaxpayerNumber]  |
+|United Kingdom|[UKUniqueTaxpayerNumber]|
 
 ### Type: URL
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [URL]  |
+|Not applicable|[URL]|
 
 ### Type: US Bank Account Number
 
 |Issuer|Tag|
 |---|---|
-|United States| [USBankAccountNumber]  |
+|United States|[USBankAccountNumber]|
 
 ### Type: US Drivers License Number
 
 |Issuer|Tag|
 |---|---|
-|United States| [USDriversLicenseNumber]  |
+|United States|[USDriversLicenseNumber]|
 
 ### Type: US Individual Taxpayer Identification
 
 |Issuer|Tag|
 |---|---|
-|United States| [USIndividualTaxpayerIdentification]  |
+|United States|[USIndividualTaxpayerIdentification]|
 
 ### Type: US Social Security Number
 
 |Issuer|Tag|
 |---|---|
-|United States| [USSocialSecurityNumber]  |
+|United States|[USSocialSecurityNumber]|
 
 ### Type: US UK Passport Number
 
 |Issuer|Tag|
 |---|---|
-|United States/United Kingdom| [USUKPassportNumber]  |
+|United States/United Kingdom|[USUKPassportNumber]|
 
 ### Type: VIN
 
 |Issuer|Tag|
 |---|---|
-|Not applicable| [VIN]  |
+|Not applicable|[VIN]|
 
 ### Type: ZA Identification Number
 
 |Issuer|Tag|
 |---|---|
-|South Africa| [ZAIdentificationNumber]  |
+|South Africa|[ZAIdentificationNumber]|
