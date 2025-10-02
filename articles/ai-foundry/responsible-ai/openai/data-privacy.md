@@ -7,7 +7,7 @@ ms.author: mbullwin
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: article
-ms.date: 02/23/2024
+ms.date: 10/01/2025
 ---
 
 # Data, privacy, and security for Azure Direct Models in Azure AI Foundry 
