@@ -8,9 +8,13 @@ ms.date: 07/31/2025
 ms.reviewer: amibp
 ms.author: lagayhar  
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Continuously evaluate your AI agents (preview)
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -27,9 +31,20 @@ Continuous evaluation for Agents provides near real-time observability and monit
 
 ### Steps to connect Application Insights
 
-1. Navigate to your project in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+::: moniker range="foundry-classic"
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 2. Select **Monitoring** on the left-hand menu and go to **Application Analytics**.
 3. Connect your Application Insights resource to the project.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+2. Insert NextGen content
+
+::: moniker-end
 
 ## Set up continuous evaluations with Azure AI projects client library
 
