@@ -42,7 +42,7 @@ Personally identifiable information (PII) refers to any single piece of data or 
 
 The Azure Language PII extraction API uses Natural Language Processing (NLP) technology to detect, recognize, and extract PII entities from written text or spoken conversations. The following entities represent specific types of information that can reveal an individual's identity:
 
-## Personal identification
+## Personal
 
 Any data, collected or stored, that can be used to identify or contact a specific individual is considered personal information. This may include information that identifies someone directly, such as their name or social security number. It can also refer to data that, when linked with other information, could lead to identification—for example, an address or dates of birth.).
 
@@ -130,7 +130,7 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 |---|---|---|
 |Not applicable.|To retrieve this entity type, specify **VIN** in the **piiCategories** request parameter. If **VIN** is detected, It appears in the **PII** response payload.|[VIN]|
 
-## Financial institution information
+## Financial
 
 Any financial information is connected to a particular individual that can, through identifying details, be traced back to that person. 
 
@@ -171,7 +171,7 @@ Any financial information is connected to a particular individual that can, thro
 |---|---|---|
 |Not applicable.|To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If **SWIFTCode** is detected, It appears in the **PII** response payload.|[SWIFTCode]|
 
-## Organizations
+## Organization
 
 Any data that an organization collects, stores, or processes that can be used to identify a specific individual, either directly or indirectly. 
 
@@ -191,7 +191,7 @@ Any data that an organization collects, stores, or processes that can be used to
 |---|---|---|
 |Not applicable.|To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If **Date** is detected, It appears in the **PII** and **PHI** response payloads.|[Date]|
 
-## Azure-related information
+## Azure-related
 
 Any identifiable Azure information like authentication information and connection strings that can be used to distinguish or trace an individual's identity.
 
@@ -256,7 +256,7 @@ Any identifiable Azure information like authentication information and connectio
 |Microsoft|To retrieve this entity type, specify **SQLServerConnectionString** in the **piiCategories** request parameter. If **SQLServerConnectionString** is detected, It appears in the **PII** response payload.|[AzureStorageAccountKey]|
 
 
-## Government and country/region specific identification
+## Government-related
 
 Any government-issued identification that can be used along or combined with other data to trace and reveal a specific person's identity.
 
