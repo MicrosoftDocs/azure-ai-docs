@@ -97,7 +97,7 @@ The project file defines required Azure AI Foundry SDK packages and supporting l
 > [!TIP]
 > If you add new packages, re-run `dotnet restore`. Use `dotnet list package --outdated` to check for updates.
 
-# [Python](#tab/python?selected=true)
+# [Python](#tab/python)
 
 Create `requirements.txt`:
 
