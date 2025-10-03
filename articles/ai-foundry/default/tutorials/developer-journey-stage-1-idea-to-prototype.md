@@ -82,17 +82,17 @@ SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
 
 ### Dependencies
 
-#[C#](#tab/csharp)
+# [C#](#tab/csharp)
 
-#[Python](#tab/python)
+# [Python](#tab/python)
 
 Create `requirements.txt`:
 
 :::code language="txt" source="~/foundry-samples-main/samples/microsoft/python/developer-journey-stage-1-idea-to-prototype/requirements.txt":::
 
-#[Java](#tab/java)
+# [Java](#tab/java)
 
-#[TypeScript](#tab/typescript)
+# [TypeScript](#tab/typescript)
 
 ---
 
