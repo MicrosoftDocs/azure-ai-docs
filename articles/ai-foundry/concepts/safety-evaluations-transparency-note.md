@@ -10,9 +10,14 @@ ms.date: 08/31/2025
 ms.reviewer: mithigpe
 ms.author: lagayhar
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to understand the capabilities, limitations, and best practices for Azure AI Foundry safety evaluations so I can responsibly evaluate and deploy my generative AI applications.
 ---
 
 # Azure AI Foundry risk and safety evaluations (preview) Transparency Note
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
