@@ -5,6 +5,14 @@ description: 'Evaluate Markdown documentation for developer audiences and produc
 
 Evaluate a Markdown article and produce a prioritized edit plan. Do not apply changes. Follow behavioral rules defined in the paired chatmode; this prompt adds task-specific evaluation criteria and output expectations.
 
+## Referenced Instruction Files
+
+Reference the instruction files below for detailed guidance. Make sure your recommendations incorporate this information.
+
+- .github/copilot-instructions.md
+- .github/instructions/dev-focused.instructions.md
+- .github/instructions/foundry-branding.instructions.md
+
 ## Goals
 
 ### Core goals
@@ -91,6 +99,7 @@ Assess along these dimensions:
 8. References: Each snippet followed by a references line to official docs only.
 9. Visual aids: Suggest a diagram when multi-service architecture or >3 conceptual steps.
 10. Language & style: Active voice, second person, sentence case headings.
+11. Version-specific content: Identify moniker ranges (`:::moniker range="<version>"` ... `:::moniker-end`) and ensure all edits preserve moniker boundaries and respect version applicability. See `.github/instructions/dev-focused.instructions.md` for details.
 
 ### Content & code best practices
 

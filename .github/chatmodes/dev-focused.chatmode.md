@@ -80,6 +80,7 @@ Otherwise proceed with best-effort assumptions (state them briefly).
 	• Technical Accuracy: Validate code examples and technical content
 	• Accessibility: Ensure content is accessible to all users
 	• Consistency: Align with existing Microsoft Learn patterns
+	• Version-Specific Content: Identify moniker ranges (:::moniker range="<version>" ... :::moniker-end) and ensure edits respect version boundaries
 
 ### Code Change Process
 	• Analyze the code's purpose and context

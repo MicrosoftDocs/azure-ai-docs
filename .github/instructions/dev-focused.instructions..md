@@ -27,6 +27,87 @@ Instructions for Foundry Dev-Focused Chat Mode
 *    Always include prerequisites: Add bullet lists with dependencies and assumptions for each code section
 *    Clearly explain the input and output of an example; in some cases, the input is "bad" data or the expected output is an error. Call these out so the user understands what the example does and the output to expect. Also to reduce change requests to "fix" bad data.
 
+# Version-Specific Content (Monikers)
+
+Some articles contain version-specific content using moniker ranges. Monikers allow a single article to serve multiple product versions by tagging sections that apply only to specific versions.
+
+## Understanding Monikers
+
+### Moniker Metadata
+Articles that support multiple versions declare this in the YAML frontmatter:
+```yaml
+monikerRange: '<version 1> || <version 2>'
+```
+
+### Moniker Range Blocks
+Version-specific content is wrapped in moniker range tags:
+```markdown
+:::moniker range="<version 1>"
+[Content that applies ONLY to version 1]
+:::moniker-end
+```
+
+### Untagged Content
+Any content NOT wrapped in moniker tags applies to ALL versions listed in the document's `monikerRange` metadata.
+
+## Critical Moniker Editing Rules
+
+When reviewing or editing articles with monikers, you MUST:
+
+1. **Identify all moniker ranges** before suggesting any edits. Scan the article for `:::moniker range="<version>"` and `:::moniker-end` pairs.
+
+2. **Preserve moniker syntax exactly**. Never:
+   - Delete or malform `:::moniker range="<version>"` opening tags
+   - Delete or malform `:::moniker-end` closing tags
+   - Break the pairing between opening and closing tags
+   - Introduce typos in the version identifiers
+
+3. **Respect version boundaries**. When editing content:
+   - Content inside a moniker block applies ONLY to that version
+   - Do NOT move content out of a moniker block unless explicitly instructed
+   - Do NOT add content inside a moniker block if it should apply to all versions
+   - Do NOT duplicate content across multiple moniker blocks unless intentional
+
+4. **Treat each moniker range as a discrete unit**:
+   - Edits to version 1-specific content must stay within the `:::moniker range="<version 1>"` block
+   - Edits to version 2-specific content must stay within the `:::moniker range="<version 2>"` block
+   - Edits to shared content must remain OUTSIDE any moniker blocks
+
+5. **Flag version-specific concerns** in your recommendations:
+   - Note when suggested changes affect only one version
+   - Identify when similar changes might be needed across multiple version blocks
+   - Warn if moving content would change its version applicability
+
+## Common Moniker Patterns
+
+- **Next steps sections**: Often version-specific with different links for each API version
+- **Code examples**: May differ significantly between versions, requiring separate moniker blocks
+- **Deprecated features**: Typically wrapped in the older version's moniker range with deprecation notices
+- **New features**: Often in newer version moniker blocks only
+
+## Example: Safe Edit Within Monikers
+
+**Before:**
+```markdown
+:::moniker range="<version 1>"
+To deploy the model, use the `AciWebservice.deploy_configuration()` method.
+:::moniker-end
+```
+
+**Safe Edit (preserves moniker boundary):**
+```markdown
+:::moniker range="<version 1>"
+To deploy the model, use the `AciWebservice.deploy_configuration()` method. For more information, see [Deploy models](./v1/how-to-deploy-and-where.md).
+:::moniker-end
+```
+
+**Unsafe Edit (breaks moniker):**
+```markdown
+To deploy the model, use the `AciWebservice.deploy_configuration()` method. For more information, see [Deploy models](./v1/how-to-deploy-and-where.md).
+:::moniker-end
+```
+*(The opening tag was deleted - content now incorrectly applies to all versions)*
+
 # Pattern and schema compliance
 
 Ensure that the article complies with the relevant patterns, as listed below. Instructions for the pattern are contained in comments in the referenced file.
