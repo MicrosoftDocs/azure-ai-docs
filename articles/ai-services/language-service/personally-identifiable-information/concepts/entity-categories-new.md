@@ -26,8 +26,16 @@ The [PII language support page](../language-support.md) lists all languages avai
 
 Supported API versions:
 
-* [**Preview: 2025-05-15-preview**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2025-05-15-preview&preserve-view=true&tabs=HTTP#entitycategory)
 * [**Stable: Generally Available (GA)**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=truetabs=HTTP#entitycategory)
+* [**Preview: 2025-05-15-preview**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2025-05-15-preview&preserve-view=true&tabs=HTTP#entitycategory). The following entities are currently in preview:
+
+  * DateOfBirth
+  * BankAccountNumber
+  * PassportNumber
+  * DriversLicenseNumber
+  * SortCode
+  * VIN (vehicle identification number)
+  * LicensePlate
 
 > [!NOTE]
 > Beginning with the GA API (released `2024-11-01`), the **Subtype** field is no longer supported. All entity classifications now use the **type** field.
@@ -58,13 +66,13 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 |---|---|
 |To retrieve this entity type, specify **Age** in the **piiCategories** request parameter. If **Age** is detected, It appears in the **PII** response payload.|[Age]|
 
-### Type: Date Of Birth
+### Type: Date Of Birth (preview)
 
 |Details|Tag|
 |---|---|
 |To retrieve this entity type, specify **DateOfBirth** in the **piiCategories** request parameter. If **DateOfBirth** is detected, It appears in the **PII** response payload.|[DateOfBirth]|
 
-### Type: Drivers License Number
+### Type: Drivers License Number (preview)
 
 |Details|Tag|
 |---|---|
@@ -82,19 +90,13 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 |---|---|
 |To retrieve this entity type, specify **IPAddress** in the **piiCategories** request parameter. If **IPAddress** is detected, It appears in the **PII** and **PHI** response payloads.|[IPAddress]|
 
-### Type: License Plate
+### Type: License Plate (preview)
 
 |Details|Tag|
 |---|---|
 |To retrieve this entity type, specify **LicensePlate** in the **piiCategories** request parameter. If **LicensePlate** is detected, It appears in the **PII** response payload.|[LicensePlate]|
 
-### Type: Neighborhood
-
-|Details|Tag|
-|---|---|
-|To retrieve this entity type, specify **Neighborhood** in the **piiCategories** request parameter. If **Neighborhood** is detected, It appears in the **PII** response payload.|[Neighborhood]|
-
-### Type: Passport Number
+### Type: Passport Number (preview)
 
 |Details|Tag|
 |---|---|
@@ -112,23 +114,17 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 |---|---|
 |To retrieve this entity type, specify **PhoneNumber** in the **piiCategories** request parameter. If **PhoneNumber** is detected, It appears in the **PII** and **PHI** response payloads.|[PhoneNumber]|
 
-### Type: PIN
-
-|Details|Tag|
-|---|---|
-|To retrieve this entity type, specify **PIN** in the **piiCategories** request parameter. If **PIN** is detected, It appears in the **PII** response payload.|[PIN]|
-
 ### Type: URL
 
 |Details|Tag|
 |---|---|
 |To retrieve this entity type, specify **URL** in the **piiCategories** request parameter. If **URL** is detected, It appears in the **PII** and **PHI** response payloads.|[URL]|
 
-### Type: VIN
+### Type: VIN (preview)
 
 |Details|Tag|
 |---|---|
-|To retrieve this entity type, specify **VIN** in the **piiCategories** request parameter. If **VIN** is detected, It appears in the **PII** response payload.|[VIN]|
+|To retrieve this entity type, specify **VIN** (vehicle registration number) in the **piiCategories** request parameter. If **VIN** is detected, It appears in the **PII** response payload.|[VIN]|
 
 ## Financial
 
@@ -141,7 +137,7 @@ Any financial information is connected to a particular individual that can, thro
 |---|---|---|
 |American Bankers Association (ABA)|To retrieve this entity type, specify **ABARoutingNumber** in the **piiCategories** request parameter. If **ABARoutingNumber** is detected, It appears in the **PII** response payload.|[ABARoutingNumber]|
 
-### Type: Bank Account Number
+### Type: Bank Account Number (preview) 
 
 |Details|Tag|
 |---|---|
@@ -159,7 +155,7 @@ Any financial information is connected to a particular individual that can, thro
 |---|---|
 |To retrieve this entity type, specify **InternationalBankingAccountNumber** in the **piiCategories** request parameter. If **InternationalBankingAccountNumber** is detected, It appears in the **PII** response payload.|[InternationalBankingAccountNumber]|
 
-### Type: Sort Code
+### Type: Sort Code (preview)
 
 |Details|Tag|
 |---|---|
@@ -332,12 +328,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Belgium|To retrieve this entity type, specify **BENationalNumber** in the **piiCategories** request parameter. If **BENationalNumber** is detected, It appears in the **PII** response payload.|[BENationalNumber]|
 
-### Type: BE National Number V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Belgium|To retrieve this entity type, specify **BENationalNumberV2** in the **piiCategories** request parameter. If **BENationalNumberV2** is detected, It appears in the **PII** response payload.|[BENationalNumberV2]|
-
 ### Type: BE Value Added Tax Number
 
 |Issuer|Details|Tag|
@@ -440,12 +430,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Czech Republic|To retrieve this entity type, specify **CZPersonalIdentityNumber** in the **piiCategories** request parameter. If **CZPersonalIdentityNumber** is detected, It appears in the **PII** response payload.|[CZPersonalIdentityNumber]|
 
-### Type: CZ Personal Identity V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Czech Republic|To retrieve this entity type, specify **CZPersonalIdentityV2** in the **piiCategories** request parameter. If **CZPersonalIdentityV2** is detected, It appears in the **PII** response payload.|[CZPersonalIdentityV2]|
-
 ### Type: DE Drivers License Number
 
 |Issuer|Details|Tag|
@@ -482,17 +466,11 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Denmark|To retrieve this entity type, specify **DKPersonalIdentificationNumber** in the **piiCategories** request parameter. If **DKPersonalIdentificationNumber** is detected, It appears in the **PII** response payload.|[DKPersonalIdentificationNumber]|
 
-### Type: DK Personal Identification V2
+### Type: Drug Enforcement Agency Number
 
 |Issuer|Details|Tag|
 |---|---|---|
-|Denmark|To retrieve this entity type, specify **DKPersonalIdentificationV2** in the **piiCategories** request parameter. If **DKPersonalIdentificationV2** is detected, It appears in the **PII** response payload.|[DKPersonalIdentificationV2]|
-
-### Type: "Drug Enforcement Agency Number
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Denmark|To retrieve this entity type, specify **"DrugEnforcementAgencyNumber** in the **piiCategories** request parameter. If **DKPersonalIdentificationV2** is detected, It appears in the **PII** response payload.|["DrugEnforcementAgencyNumber]|
+|United States|To retrieve this entity type, specify **"DrugEnforcementAgencyNumber** in the **piiCategories** request parameter. If **DrugEnforcementAgencyNumber** is detected, It appears in the **PII** response payload.|["DrugEnforcementAgencyNumber]|
 
 ### Type: EE Personal Identification Code
 
@@ -572,12 +550,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Finland|To retrieve this entity type, specify **FINationalID** in the **piiCategories** request parameter. If **FINationalID** is detected, It appears in the **PII** response payload.|[FINationalID]|
 
-### Type: FI National ID V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Finland|To retrieve this entity type, specify **FINationalIDV2** in the **piiCategories** request parameter. If **FINationalIDV2** is detected, It appears in the **PII** response payload.|[FINationalIDV2]|
-
 ### Type: FI Passport Number
 
 |Issuer|Details|Tag|
@@ -632,12 +604,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Greece|To retrieve this entity type, specify **GRNationalIDCard** in the **piiCategories** request parameter. If **GRNationalIDCard** is detected, It appears in the **PII** response payload.|[GRNationalIDCard]|
 
-### Type: GR National ID V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Greece|To retrieve this entity type, specify **GRNationalIDV2** in the **piiCategories** request parameter. If **GRNationalIDV2** is detected, It appears in the **PII** response payload.|[GRNationalIDV2]|
-
 ### Type: GR Tax Identification Number
 
 |Issuer|Details|Tag|
@@ -668,12 +634,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Croatia|To retrieve this entity type, specify **HRPersonalIdentificationNumber** in the **piiCategories** request parameter. If **HRPersonalIdentificationNumber** is detected, It appears in the **PII** response payload.|[HRPersonalIdentificationNumber]|
 
-### Type: HR Personal Identification OIB Number V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Croatia|To retrieve this entity type, specify **HRPersonalIdentificationOIBNumberV2** in the **piiCategories** request parameter. If **HRPersonalIdentificationOIBNumberV2** is detected, It appears in the **PII** response payload.|[HRPersonalIdentificationOIBNumberV2]|
-
 ### Type: HU Personal Identification Number
 
 |Issuer|Details|Tag|
@@ -703,12 +663,6 @@ Any government-issued identification that can be used along or combined with oth
 |Issuer|Details|Tag|
 |---|---|---|
 |Ireland|To retrieve this entity type, specify **IEPersonalPublicServiceNumber** in the **piiCategories** request parameter. If **IEPersonalPublicServiceNumber** is detected, It appears in the **PII** response payload.|[IEPersonalPublicServiceNumber]|
-
-### Type: IE Personal Public Service Number V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Ireland|To retrieve this entity type, specify **IEPersonalPublicServiceNumberV2** in the **piiCategories** request parameter. If **IEPersonalPublicServiceNumberV2** is detected, It appears in the **PII** response payload.|[IEPersonalPublicServiceNumberV2]|
 
 ### Type: IL Bank Account Number
 
@@ -854,12 +808,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Netherlands|To retrieve this entity type, specify **NLCitizensServiceNumber** in the **piiCategories** request parameter. If **NLCitizensServiceNumber** is detected, It appears in the **PII** response payload.|[NLCitizensServiceNumber]|
 
-### Type: NL Citizens Service Number V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Netherlands|To retrieve this entity type, specify **NLCitizensServiceNumberV2** in the **piiCategories** request parameter. If **NLCitizensServiceNumberV2** is detected, It appears in the **PII** response payload.|[NLCitizensServiceNumberV2]|
-
 ### Type: NL Tax Identification Number
 
 |Issuer|Details|Tag|
@@ -926,12 +874,6 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Poland|To retrieve this entity type, specify **PLNationalID** in the **piiCategories** request parameter. If **PLNationalID** is detected, It appears in the **PII** response payload.|[PLNationalID]|
 
-### Type: PL National ID V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Poland|To retrieve this entity type, specify **PLNationalIDV2** in the **piiCategories** request parameter. If **PLNationalIDV2** is detected, It appears in the **PII** response payload.|[PLNationalIDV2]|
-
 ### Type: PL Passport Number
 
 |Issuer|Details|Tag|
@@ -955,12 +897,6 @@ Any government-issued identification that can be used along or combined with oth
 |Issuer|Details|Tag|
 |---|---|---|
 |Portugal|To retrieve this entity type, specify **PTCitizenCardNumber** in the **piiCategories** request parameter. If **PTCitizenCardNumber** is detected, It appears in the **PII** response payload.|[PTCitizenCardNumber]|
-
-### Type: PT Citizen Card Number V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Portugal|To retrieve this entity type, specify **PTCitizenCardNumberV2** in the **piiCategories** request parameter. If **PTCitizenCardNumberV2** is detected, It appears in the **PII** response payload.|[PTCitizenCardNumberV2]|
 
 ### Type: PT Tax Identification Number
 
@@ -997,12 +933,6 @@ Any government-issued identification that can be used along or combined with oth
 |Issuer|Details|Tag|
 |---|---|---|
 |Sweden|To retrieve this entity type, specify **SENationalID** in the **piiCategories** request parameter. If **SENationalID** is detected, It appears in the **PII** response payload.|[SENationalID]|
-
-### Type: SE National ID V2
-
-|Issuer|Details|Tag|
-|---|---|---|
-|Sweden|To retrieve this entity type, specify **SENationalIDV2** in the **piiCategories** request parameter. If **SENationalIDV2** is detected, It appears in the **PII** response payload.|[SENationalIDV2]|
 
 ### Type: SE Passport Number
 
