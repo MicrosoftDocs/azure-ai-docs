@@ -972,7 +972,7 @@ Any government-issued identification that can be used along or combined with oth
 |---|---|---|
 |Switzerland|To retrieve this entity type, specify **CHSocialSecurityNumber** in the **piiCategories** request parameter. If **CHSocialSecurityNumber** is detected, It appears in the **PII** response payload.|[CHSocialSecurityNumber]|
 
-### Type: Taiwan National ID
+### Type: Taiwanese ID
 
 |Issuing authority|Details|Tag|
 |---|---|---|
