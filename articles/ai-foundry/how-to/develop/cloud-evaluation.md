@@ -243,6 +243,18 @@ print("Versioned evaluator id:", registered_evaluator.id)
 
 After you log your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under the **Evaluation** tab of your Azure AI project.
 
+### Troubleshooting: Job Stuck in Running State
+
+If your evaluation job remains in the **Running** state for an extended period when using Azure AI Project/Hub, this may be because the AOAI model you selected does not have enough capacity.
+
+**Resolution**
+
+Cancel the current evaluation job.
+
+Increase the model capacity to handle larger input data.
+
+Re-run the evaluation.
+
 ## Related content
 
 - [Evaluate your generative AI applications locally](./evaluate-sdk.md)
