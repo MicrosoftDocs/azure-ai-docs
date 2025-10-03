@@ -12,9 +12,14 @@ ms.author: mopeakande
 recommendations: false
 ms.reviewer: fasantia
 reviewer: santiagxf
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to understand how model versions work in Azure AI Foundry Models so I can manage deployments and updates effectively.
 ---
 
 # Model versions in Azure AI Foundry Models
+
+[!INCLUDE [version-banner](../../../includes/version-banner.md)]
 
 Azure AI Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Azure AI Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
 
