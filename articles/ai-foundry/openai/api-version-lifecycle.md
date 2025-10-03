@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 09/05/2025
+ms.date: 10/01/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -27,7 +27,7 @@ Previously, Azure OpenAI received monthly updates of new API versions. Taking ad
 
 Starting in August 2025, you can now opt in to our next generation v1 Azure OpenAI APIs which add support for:
 
-- Ongoing access to the latest features with no need specify new `api-version`'s each month.
+- Ongoing access to the latest features with no need to specify new `api-version`'s each month.
 - Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
 - OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
@@ -43,29 +43,13 @@ For the initial v1 Generally Available (GA) API launch we're only supporting a s
 
 ## Code changes
 
-# [API Key](#tab/key)
+# [Python](#tab/python)
 
-### Last generation API 
+### v1 API
 
-```python
-import os
-from openai import AzureOpenAI
+[Python v1 examples](./supported-languages.md)
 
-client = AzureOpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-04-01-preview",
-    azure_endpoint="https://YOUR-RESOURCE-NAME.openai.azure.com")
-    )
-
-response = client.responses.create(
-    model="gpt-4.1-nano", # Replace with your model deployment name 
-    input="This is a test."
-)
-
-print(response.model_dump_json(indent=2)) 
-```
-
-### Next generation API
+**API Key**:
 
 ```python
 import os
@@ -88,33 +72,13 @@ print(response.model_dump_json(indent=2))
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `api-version` is no longer a required parameter with the v1 GA API.
 
-# [Microsoft Entra ID](#tab/entra)
-
-### Last generation API 
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE-NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
-)
-
-response = client.responses.create(
-    model="gpt-4.1-nano", # Replace with your model deployment name 
-    input="This is a test."
-)
-
-print(response.model_dump_json(indent=2)) 
+client = OpenAI()
 ```
 
-### Next generation API
+**Microsoft Entra ID**:
 
 > [!IMPORTANT]
 > Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API removes this dependency, by adding automatic token refresh support to the `OpenAI()` client.
@@ -143,14 +107,150 @@ print(response.model_dump_json(indent=2))
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 
+# [C#](#tab/dotnet)
+
+### v1 API
+
+[C# v1 examples](./supported-languages.md)
+
+**API Key**:
+
+```csharp
+OpenAIClient client = new(
+    new ApiKeyCredential("{your-api-key}"),
+    new OpenAIClientOptions()
+    {
+        Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    })
+```
+
+**Microsoft Entra ID**:
+
+```csharp
+#pragma warning disable OPENAI001
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+OpenAIClient client = new(
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    })
+```
+
+# [JavaScript](#tab/javascript)
+
+### v1 API
+
+[JavaScript v1 examples](./supported-languages.md)
+
+**API Key**:
+
+```javascript
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: "{your-api-key}" 
+});
+```
+
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+
+```javascript
+const client = new OpenAI();
+```
+
+**Microsoft Entra ID**:
+
+```javascript
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+```
+
+# [Go](#tab/go)
+
+### v1 API
+
+[Go v1 examples](./supported-languages.md)
+
+**API Key**:
+
+```go
+client := openai.NewClient(
+    option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    option.WithAPIKey("{your-api-key}")
+)
+```
+
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+
+```go
+client := openai.NewClient()
+```
+
+
+**Microsoft Entra ID**:
+
+```go
+tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
+
+client := openai.NewClient(
+    option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    azure.WithTokenCredential(tokenCredential)
+)
+```
+
+# [Java](#tab/Java)
+
+[Java v1 examples](./supported-languages.md)
+
+### v1 API
+
+**API Key**:
+
+```java
+
+OpenAIClient client = OpenAIOkHttpClient.builder()
+                .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+                .apiKey(apiKey)
+                .build();
+```
+
+**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+
+```java
+OpenAIClient client = OpenAIOkHttpClient.builder()
+                .fromEnv()
+                .build();
+```
+
+**Microsoft Entra ID**:
+
+```java
+Credential tokenCredential = BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+                new DefaultAzureCredentialBuilder().build(),
+                "https://cognitiveservices.azure.com/.default"));
+OpenAIClient client = OpenAIOkHttpClient.builder()
+        .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+        .credential(tokenCredential)
+        .build();
+```
+
 # [REST](#tab/rest)
 
-### Last generation API 
+### v1 API
 
 **API Key**:
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-04-01-preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -162,33 +262,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-ve
 **Microsoft Entra ID**:
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/responses?api-version=2025-04-01-preview \
-  -H "Content-Type: application/json" \
-  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
-  -d '{
-     "model": "gpt-4.1-nano",
-     "input": "This is a test"
-    }'
-```
-
-### Next generation API
-
-**API Key**:
-
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
-  -H "Content-Type: application/json" \
-  -H "api-key: $AZURE_OPENAI_API_KEY" \
-  -d '{
-     "model": "gpt-4.1-nano",
-     "input": "This is a test"
-    }'
-```
-
-**Microsoft Entra ID**:
-
-```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{

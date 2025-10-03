@@ -11,7 +11,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: how-to
-ms.date: 03/31/2025
+ms.date: 10/02/2025
 ---
 
 # Add semantic ranking to queries in Azure AI Search
@@ -29,7 +29,7 @@ This article explains how to invoke the semantic ranker on queries. It assumes y
 + Review [semantic ranking](semantic-search-overview.md) if you need an introduction to the feature.
 
 > [!NOTE]
-> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases except in the case of [query rewrite](semantic-how-to-query-rewrite.md). For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
+> Captions and answers are extracted verbatim from text in the search document. The semantic subsystem uses machine reading comprehension to recognize content having the characteristics of a caption or answer, but doesn't compose new sentences or phrases except in the case of [query rewrite](semantic-how-to-query-rewrite.md). For this reason, content that includes explanations or definitions work best for semantic ranking. If you want chat-style interaction with generated responses, see [Agentic retrieval](search-agentic-retrieval-concept.md) or [Retrieval Augmented Generation (RAG)](retrieval-augmented-generation-overview.md).
 
 ## Choose a client
 
@@ -52,22 +52,11 @@ A few query capabilities bypass relevance scoring, which makes them incompatible
 
 ## Set up the query
 
-By default, queries don't use semantic ranking. To use semantic ranking, two different parameters can be used. Each parameter supports a different set of scenarios.
+By default, queries don't use semantic ranking. To use semantic ranking, two different parameters can be used. Each parameter supports a different set of query formats.
 
-Semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text and they can't be empty. Empty queries result in no semantic ranking being applied to the results.
+All semantic queries, whether specified through `search` plus `queryType`, or through `semanticQuery`, must be plain text and they can't be empty. As you can see from the table below, the `queryType-semantic` parameter supports a subset of query formats.
 
-<!-- 
-1. Set `queryType` to `semantic`:
-  + [Text search](search-lucene-query-architecture.md) with a simple plain text query. Empty queries result in no semantic ranking being applied to the results.
-  + [Hybrid search](hybrid-search-overview.md).
-  + [Simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax can't be used.
-1. Specify `semanticQuery`:
-  + [Text search](search-lucene-query-architecture.md) using the [simple](query-simple-syntax.md) or [full](query-lucene-syntax.md) syntax.
-  + [Vector search](vector-search-overview.md).
-  + [Hybrid search](hybrid-search-overview.md).
-  + The query specified for `semanticQuery` must be a plain text query. Empty queries aren't supported. -->
-
-| Semantic ranker parameter | [Plain text search](search-query-create.md) | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-how-to-query.md) | [Hybrid Search](hybrid-search-how-to-query.md) | [Semantic answers](semantic-answers.md) and captions |
+| Parameter | [Plain text search](search-query-create.md) | [Simple text search syntax](query-simple-syntax.md) | [Full text search syntax](query-lucene-syntax.md) | [Vector search](vector-search-how-to-query.md) | [Hybrid Search](hybrid-search-how-to-query.md) | [Semantic answers](semantic-answers.md) and captions |
 |-|-|-|-|-|-|-|
 | `queryType-semantic` <sup>1</sup> | ✅ | ❌ | ❌ | ❌ | ✅ | ✅ |
 | `semanticQuery="<your plain text query>"`<sup>2</sup> | ✅ | ✅ | ✅ | ✅ |✅ | ✅ |
@@ -139,17 +128,17 @@ POST https://[search-service-name].search.windows.net/indexes/hotels-sample-inde
 }
 ```
 
-1. Set `queryType` to `semantic`.
+1. Set `queryType` to `semantic`. This improves precision of search results by reranking the top 50 matches using a ranking model trained on the Bing corpus for queries expressed in natural language as opposed to keywords. If you set the query type to semantic, you must also set semanticConfiguration. You can optionally set answers if you want to also return the top 3 answers if the query input was formulated in natural language ("what is a ...), and you can optionally set captions to extract key passages from the highest ranked documents.
 
-1. Set `search` to a simple plain text query. Since the `queryType` is set to `semantic`,  [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) aren't supported. Supplying `*` or an empty string results in no semantic ranking being applied to the query.
+1. Set `search` to a simple plain text query. Since the `queryType` is set to `semantic`,  [simple syntax](query-simple-syntax.md) or [full Lucene syntax](query-lucene-syntax.md) aren't supported. Supplying `*` or an empty string results in no semantic ranking being applied to the query. 
 
 1. Set `semanticConfiguration` to a [predefined semantic configuration](semantic-how-to-configure.md) that's embedded in your index.
 
-1. Set `answers` to specify whether [semantic answers](semantic-answers.md) are included in the result. Currently, the only valid value for this parameter is `extractive`. Answers can be configured to return a maximum of 10. The default is one. This example shows a count of three answers: `extractive|count-3`.
+1. Set `answers` to specify whether [semantic answers](semantic-answers.md) are included in the result. Valid values for this parameter are `extractive` and `none`. This parameter is only valid if the query type is "semantic". When set to "extractive", the query formulates and returns answers from key passages in the highest semantically ranked documents. The default is one answer, but you can specify up to 10 by adding a count. For example, `"answers": "extractive|count-3"` returns three answers. For an answer to be returned, there must be verbatim content in the targeted field that looks like an answer. The language models used for answers are trained to recognize answers, not generate them. In addition, the query itself must look like a question.
 
-   Answers aren't guaranteed on every request. To get an answer, the query must look like a question and the content must include text that looks like an answer.
+1. Set `captions` to specify whether semantic captions are included in the result. Valid values are "none" and "extractive". Defaults to "none". This parameter is only valid if the query type is "semantic". When set to "extractive", the query returns captions extracted from key passages in the highest ranked documents. 
 
-1. Set `captions` to specify whether semantic captions are included in the result. Currently, the only valid value for this parameter is `extractive`. Captions can be configured to return results with or without highlights. The default is for highlights to be returned. This example returns captions without highlights: `extractive|highlight-false`.
+   When captions is set to 'extractive', highlighting is enabled by default, and can be configured by appending the pipe character '|' followed by the `highlight-<true/false>` option, such as `extractive|highlight-true`. This example returns captions without highlights: `extractive|highlight-false`.
 
    The basis for captions and answers are the fields referenced in the "semanticConfiguration". These fields are under a combined limit in the range of 2,000 tokens or approximately 20,000 characters. If you anticipate a token count exceeding this limit, consider a [data chunking step](vector-search-how-to-chunk-documents.md) using the [Text split skill](cognitive-search-skill-textsplit.md). This approach introduces a dependency on an [AI enrichment pipeline](cognitive-search-concept-intro.md) and [indexers](search-indexer-overview.md).
 
