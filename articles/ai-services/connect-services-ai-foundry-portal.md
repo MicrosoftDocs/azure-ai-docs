@@ -27,10 +27,12 @@ Depending on the AI service and model you want to use, you can use them in Azure
 - [Bring your existing Azure AI Foundry Tools resources](#connect-azure-ai-foundry-tools-after-you-create-a-project) into a project. You can use your existing Azure AI Foundry Tools resources in an Azure AI Foundry project by creating a connection to the resource.
 - The [model catalog](#discover-azure-ai-models-in-the-model-catalog). You don't need a project to browse and discover Azure AI models. Some of the Azure AI Foundry Tools are available for you to try via the model catalog without a project. Some Azure AI Foundry Tools require a project to use them in the playgrounds.
 - The [project-level playgrounds](#try-azure-ai-foundry-tools-in-the-project-level-playgrounds).
-- [Fine-tune](#fine-tune-azure-ai-foundry-tools-models) models. You can fine-tune a subset of Azure AI Foundry Tools models in Azure AI Foundry portal.
-- [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Azure AI Foundry Tools models are already deployed and ready to use.### Connect Azure AI Foundry Tools after you create a project
+- [Fine-tune](#fine-tune-azure-ai-foundry-tools) models. You can fine-tune a subset of Azure AI Foundry Tools models in Azure AI Foundry portal.
+- [Deploy](#deploy-models-to-production) models. You can deploy base models and fine-tuned models to production. Most Azure AI Foundry Tools models are already deployed and ready to use.
+- 
+- ### Connect Azure AI Foundry Tools after you create a project
 
-You can connect Azure AI services resources to an Azure AI Foundry project after you create a project. To use your existing Azure AI services resources (such as Azure AI Speech) in an Azure AI Foundry project, you need to create a connection to the resource.
+You can connect Azure AI Foundry Tools resources to an Azure AI Foundry project after you create a project. To use your existing Azure AI Foundry Tools resources (such as Azure AI Speech) in an Azure AI Foundry project, you need to create a connection to the resource.
 
 1. Create an Azure AI Foundry project. For detailed instructions, see [Create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md).
 1. Go to your Azure AI Foundry project.
@@ -62,16 +64,16 @@ You can discover Azure AI models in the model catalog without a project. Some Az
 
 1. Select a model to view more details about it. You can also try the model if it's available for you to try without a project.
 
-## Try Azure AI services in the project level playgrounds
+## Try Azure AI Foundry Tools in the project level playgrounds
 
-In the project-level playgrounds, you can try Azure AI services such as Azure AI Speech and Azure AI Language. 
+In the project-level playgrounds, you can try Azure AI Foundry Tools such as Azure Speech and Azure Language.
 
 1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md).
 1. Select **Playgrounds** from the left pane and then select a playground to use. In this example, select **Try the Speech playground**.
 
     :::image type="content" source="./media/ai-foundry/azure-ai-services-playgrounds.png" alt-text="Screenshot of the project level playgrounds that you can use." lightbox="./media/ai-foundry/azure-ai-services-playgrounds.png":::
 
-## Fine-tune Azure AI services models
+## Fine-tune Azure AI Foundry Tools
 
 In Azure AI Foundry portal, you can fine-tune some Azure AI services models. For example, you can fine-tune a model for custom speech. 
 
