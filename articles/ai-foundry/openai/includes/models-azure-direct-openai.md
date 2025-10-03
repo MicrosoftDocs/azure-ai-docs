@@ -258,7 +258,7 @@ OpenAI's MTEB benchmark testing found that even when the third generation model'
 
 The image generation models generate images from text prompts that the user provides. GPT-image-1 is in limited access preview. DALL-E 3 is generally available for use with the REST APIs. DALL-E 2 and DALL-E 3 with client SDKs are in preview.
 
-Registration is required to access `gpt-image-1`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
+Registration is required to access `gpt-image-1` or `gpt-image-1-mini`. Access is granted based on Microsoft's eligibility criteria. Customers who have access to other limited access models still need to request access for this model.
 
 To request access, go to [`gpt-image-1` limited access model application](https://aka.ms/oai/gptimage1access). When access is granted, you need to create a deployment for the model.
 
