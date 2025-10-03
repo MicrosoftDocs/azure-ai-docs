@@ -84,6 +84,19 @@ SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
 
 # [C#](#tab/csharp)
 
+Create and review the project file, then restore dependencies:
+
+```bash
+dotnet restore
+```
+
+The project file defines required Azure AI Foundry SDK packages and supporting libraries:
+
+:::code language="xml" source="~/foundry-samples-main/samples/microsoft/csharp/developer-journey-stage-1-idea-to-prototype/ModernWorkplaceAssistant.csproj":::
+
+> [!TIP]
+> If you add new packages, re-run `dotnet restore`. Use `dotnet list package --outdated` to check for updates.
+
 # [Python](#tab/python)
 
 Create `requirements.txt`:
@@ -92,7 +105,35 @@ Create `requirements.txt`:
 
 # [Java](#tab/java)
 
+The Maven `pom.xml` declares all dependencies. Compile once to download them:
+
+```bash
+mvn -q clean compile
+```
+
+View the full dependency declarations:
+
+:::code language="xml" source="~/foundry-samples-main/samples/microsoft/java/developer-journey-stage-1-idea-to-prototype/pom.xml":::
+
+> [!NOTE]
+> Use `mvn dependency:tree -Dincludes=com.azure` to inspect only Azure-related transitive dependencies.
+
 # [TypeScript](#tab/typescript)
+
+Install Node dependencies from `package.json` (supports npm, pnpm, or yarn):
+
+```bash
+npm install
+# or
+pnpm install
+```
+
+Project dependency manifest:
+
+:::code language="json" source="~/foundry-samples-main/samples/microsoft/typescript/developer-journey-stage-1-idea-to-prototype/package.json":::
+
+> [!TIP]
+> After modifying dependencies, run `npm audit fix` (or the equivalent for your package manager) to address known vulnerabilities.
 
 ---
 
