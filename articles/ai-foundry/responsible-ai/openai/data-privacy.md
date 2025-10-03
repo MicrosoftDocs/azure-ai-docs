@@ -1,7 +1,7 @@
 ---
 title: Data, privacy, and security for Azure Direct Models in Azure AI Foundry 
 titleSuffix: Azure AI services
-description: This document details issues for data, privacy, and security for Azure OpenAI Service
+description: This document details issues for data, privacy, and security for Azure Direct Models
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -24,9 +24,9 @@ This article provides details regarding how data provided by you to Azure Direct
 > - are NOT used by Azure Direct Model providers to improve their models or services. 
 > - are NOT used to train any generative AI foundation models without your permission or instruction. 
 >
-> Your fine-tuned Azure OpenAI models are available exclusively for your use.
+> Your fine-tuned Azure Direct Models are available exclusively for your use.
 >
-> The Azure OpenAI Service is operated by Microsoft as an Azure service; Microsoft hosts the OpenAI models in Microsoft's Azure environment and the Service does NOT interact with any services operated by OpenAI (e.g. ChatGPT, or the OpenAI API).
+> Azure AI Foundry is an Azure service; Microsoft hosts the Azure Direct Models in Microsoft's Azure environment and Azure Direct Models do NOT interact with any services operated by Azure Direct Model providers, for example, OpenAI (e.g. ChatGPT, or the OpenAI API). 
 
 ## What data does Azure AI Foundry process to provide Azure Direct Models? 
 
