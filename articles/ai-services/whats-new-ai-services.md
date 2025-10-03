@@ -28,5 +28,5 @@ Welcome! This article highlights key changes and updates in Azure AI Foundry Too
 - [Prebuilt API](../ai-services/language-service/question-answering/how-to/prebuilt.md)
 - [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
 - [Tutorial: Detect liveness in faces](../ai-services/computer-vision/tutorials/liveness.md)
-- [What is Azure Document Intelligence in Foundry Tools?](../ai-services/document-intelligence/overview.md)
+- [What is Azure Document Intelligence?](../ai-services/document-intelligence/overview.md)
 - [What is the Document Intelligence layout model?](../ai-services/document-intelligence/prebuilt/layout.md)
