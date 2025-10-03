@@ -16,7 +16,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways:
+In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and Microsoft OneLake support a `markdown` parsing mode for Markdown files. Markdown files can be indexed in two ways:
 
 + One-to-many parsing mode, creating multiple search documents per Markdown file
 + One-to-one parsing mode, creating one search document per Markdown file
@@ -26,7 +26,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and OneLake su
 
 ## Prerequisites
 
-+ A supported data source: Azure Blob storage, Azure File storage, OneLake in Microsoft Fabric.
++ A supported data source: Azure Blob storage, Azure File storage, Microsoft OneLake.
 
   For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files.md#prerequisites).
 

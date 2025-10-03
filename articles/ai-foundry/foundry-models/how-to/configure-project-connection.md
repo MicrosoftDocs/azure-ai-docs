@@ -5,7 +5,7 @@ description: Learn how to configure a connection to use Azure AI Foundry Models 
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/19/2025
 ms.custom: ignite-2024, github-universe-2024
 author: ssalgadodev
 ms.author: ssalgado

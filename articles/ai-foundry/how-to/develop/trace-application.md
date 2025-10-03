@@ -5,7 +5,7 @@ description: View trace results for AI applications using OpenAI SDK with OpenTe
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: ychen
-ms.date: 09/15/2025
+ms.date: 09/22/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ai-usage: ai-assisted
@@ -66,7 +66,7 @@ The following steps show how to configure your resource:
     1. Once the connection is configured, you're ready to use tracing in any project within the resource.
 
     > [!TIP]
-    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal).
+    > Make sure you have the [Log Analytics Reader role](/azure/azure-monitor/logs/manage-access?tabs=portal#log-analytics-reader) assigned in your Application Insights resource. To learn more on how to assign roles, see [Assign Azure roles using the Azure portal](/azure/role-based-access-control/role-assignments-portal). Use [Microsoft Entra groups](../../concepts/rbac-azure-ai-foundry.md#use-microsoft-entra-groups-with-azure-ai-foundry) to more easily manage access for users.
 
 1. Go to the landing page of your project and copy the project's endpoint URI. You need it later.
 
@@ -290,6 +290,15 @@ Configure tracing as follows:
         }
     }
     ```
+
+## Trace locally with AI Toolkit
+
+AI Toolkit offers a simple way to trace locally in VS Code. It uses a local OTLP-compatible collector, making it perfect for development and debugging without needing cloud access.
+
+The toolkit supports the OpenAI SDK and other AI frameworks through OpenTelemetry. You can see traces instantly in your development environment.
+
+For detailed setup instructions and SDK-specific code examples, see [Tracing in AI Toolkit](https://code.visualstudio.com/docs/intelligentapps/tracing).
+
 
 ## Related content
 

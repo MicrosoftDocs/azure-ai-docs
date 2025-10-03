@@ -3,7 +3,8 @@ title: 'Safety evaluation - GPT-4o, GPT-4o-mini, & GPT-4 fine tuning only public
 titleSuffix: Azure OpenAI
 description: Learn about how to perform fine-tuning with GPT-4o, GPT-4o-mini, and GPT-4 models.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 05/21/2024
 author: mrbullwinkle

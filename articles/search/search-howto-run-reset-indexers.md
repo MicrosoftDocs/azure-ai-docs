@@ -7,7 +7,7 @@ manager: nitinme
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/01/2025
+ms.date: 10/02/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -183,12 +183,14 @@ catch (RequestFailedException ex) when (ex.Status == 429)
 
 ## How to reset skills (preview)
 
-For indexers that have skillsets, you can reset individual skills to force processing of just that skill and any downstream skills that depend on its output. The [enrichment cache](enrichment-cache-how-to-configure.md), if you enabled it, is also refreshed. 
+The Reset Skills request selectively processes one or more skills on the next indexer run. For indexers that have skillsets, you can reset individual skills to force reprocessing of just that skill and any downstream skills that depend on its output. The [enrichment cache](enrichment-cache-how-to-configure.md), if you enabled it, is also refreshed. 
 
-[Reset Skills](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2024-05-01-preview&preserve-view=true) is currently REST-only, available through 2020-06-30-preview or later. We recommend the latest preview API.
+For indexers that have caching enabled, you can explicitly request processing for skill updates that the indexer cannot detect. For example, if you make external changes, such as revisions to a custom skill, you can use this API to rerun the skill. Outputs, such as a knowledge store or search index, are refreshed using reusable data from the cache and new content per the updated skill.
+
+We recommend the [latest preview API](/rest/api/searchservice/skillsets/reset-skills?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
 ```http
-POST /skillsets/[skillset name]/resetskills?api-version=2024-05-01-preview
+POST /skillsets/[skillset name]/resetskills?api-version=2025-08-01-preview
 {
     "skillNames" : [
         "#1",
@@ -202,13 +204,13 @@ You can specify individual skills, as indicated in the example above, but if any
 
 If no skills are specified, the entire skillset is executed and if caching is enabled, the cache is also refreshed.
 
-Remember to follow up with Run Indexer to invoke actual processing.
+Remember to follow up with [Run Indexer](/rest/api/searchservice/indexers/run) to invoke actual processing.
 
 <a name="reset-docs"></a>
 
 ## How to reset docs (preview)
 
-The [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2024-05-01-preview&preserve-view=true) accepts a list of document keys so that you can refresh specific documents. If specified, the reset parameters become the sole determinant of what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, only that document is processed.
+The [Indexers - Reset Docs (preview)](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2025-08-01-preview&preserve-view=true) accepts a list of document keys so that you can refresh specific documents. If specified, the reset parameters become the sole determinant of what gets processed, regardless of other changes in the underlying data. For example, if 20 blobs were added or updated since the last indexer run, but you only reset one document, only that document is processed.
 
 On a per-document basis, all fields in the search document are refreshed with values and metadata from the data source. You can't pick and choose which fields to refresh. 
 
@@ -216,14 +218,14 @@ If the data source is Azure Data Lake Storage (ADLS) Gen2, and the blobs are ass
 
 If the document is enriched through a skillset and has cached data, the  skillset is invoked for just the specified documents, and the cache is updated for the reprocessed documents.
 
-When you're testing this API for the first time, the following APIs can help you validate and test the behaviors. You can use preview API version 2020-06-30-preview and later. We recommend the latest preview API.
+When you're testing this API for the first time, the following APIs can help you validate and test the behaviors. We recommend the latest preview API.
 
-1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2024-05-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
+1. Call [Indexers - Get Status](/rest/api/searchservice/indexers/get-status?view=rest-searchservice-2025-08-01-preview&preserve-view=true) with a preview API version to check reset status and execution status. You can find information about the reset request at the end of the status response.
 
-1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2024-05-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
+1. Call [Indexers - Reset Docs](/rest/api/searchservice/indexers/reset-docs?view=rest-searchservice-2025-08-01-preview&preserve-view=true) with a preview API version to specify which documents to process.
 
     ```http
-    POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2024-05-01-preview
+    POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-08-01-preview
     {
         "documentKeys" : [
             "1001",
@@ -232,9 +234,15 @@ When you're testing this API for the first time, the following APIs can help you
     }
     ```
 
+    + The API accepts two types of document identifiers as input: Document keys that uniquely identify documents in a search index, and datasource document identifiers that uniquely identify documents in a data source. The body should contain either a list of document keys *or* a list of data source document identifiers that the indexer looks for in the data source. Invoking the API adds the document keys or data source document identifiers to be reset to the indexer metadata. On the next scheduled or on-demand run of the indexer, the indexer processes only the reset documents. 
+
+    + If you use document keys to reset documents and your document keys are referenced in an indexer field mapping, the indexer uses field mapping to locate the appropriate field in the underlying data source.
+
     + The document keys provided in the request are values from the search index, which can be different from the corresponding fields in the data source. If you're unsure of the key value, [send a query](search-query-create.md) to return the value. You can use `select` to return just the document key field.
 
     + For blobs that are parsed into multiple search documents (where parsingMode is set to [jsonLines or jsonArrays](search-howto-index-json-blobs.md), or [delimitedText](search-howto-index-csv-blobs.md)), the document key is generated by the indexer and might be unknown to you. In this scenario, a query for the document key to return the correct value.
+
+    + If you want the indexer to stop trying to process reset documents, you can set "documentKeys" or "datasourceDocumentIds" to an empty list "[]". This results in the indexer resuming regular indexing based on the high water mark. Invalid document keys or document keys that don't exist are ignored.
 
 1. Call [Run Indexer](/rest/api/searchservice/indexers/run) (any API version) to process the documents you specified. Only those specific documents are indexed.
 
@@ -247,7 +255,7 @@ When you're testing this API for the first time, the following APIs can help you
 Calling Reset Documents API multiple times with different keys appends the new keys to the list of document keys reset. Calling the API with the **`overwrite`** parameter set to true will overwrite the current list with the new one:
 
 ```http
-POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2020-06-30-Preview
+POST https://[service name].search.windows.net/indexers/[indexer name]/resetdocs?api-version=2025-08-01-Preview
 {
     "documentKeys" : [
         "200",

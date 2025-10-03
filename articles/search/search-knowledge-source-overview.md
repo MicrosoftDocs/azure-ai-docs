@@ -7,22 +7,24 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 10/01/2025
 ---
 
 # Create a knowledge source
+
+[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 A knowledge source wraps a search index with extra properties for agentic retrieval. It's a required definition in a knowledge agent. We provide guidance on how to create specific knowledge sources, but generally, you can:
 
 + Create multiple knowledge sources as top-level resources on your search service.
 
-+ Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in single request. Subqueries are generated for each knowledge sources. Top results are returned in the retrieval response.
++ Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
 
-Make sure you have at least one knowledge source before creating a knowledge agent. The full specification of a knowledge agent is in the [REST API reference](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). 
+Make sure you have at least one knowledge source before creating a knowledge agent. The full specification of a knowledge source and a knowledge agent is in the [REST API reference](/rest/api/searchservice). 
 
 ## Key points about a knowledge source
 
-+ Creation path: first create knowledge source, then create knowledge agents. Deletion path: update or delete knowledge agents, delete knowledge sources last.
++ Creation path: first create a knowledge source, then create a knowledge agent. Deletion path: update or delete knowledge agents, delete knowledge sources last.
 
 + A knowledge source, its index, and the knowledge agent must all exist on the same search service.
 
@@ -53,7 +55,7 @@ When you have multiple knowledge sources, set the following properties to bias q
 + Setting `alwaysQuerySource` forces query planning to always include the knowledge source.
 + Setting `retrievalInstructions` provides guidance that includes or excludes a knowledge source. 
 
-Retrieval instructions are sent as a prompt to the large language model (LLM) used for query planning. This prompt is helpful when you have multiple knowledge sources and want to provide guidance on when to use each one. For example, if you have separate indexes for product information, job postings, and technical support, the retrieval instructions might say "use the jobs index only if the question is about a job application."
+Retrieval instructions are sent as a user-defined prompt to the large language model (LLM) used for query planning. This prompt is helpful when you have multiple knowledge sources and want to provide guidance on when to use each one. For example, if you have separate indexes for product information, job postings, and technical support, the retrieval instructions might say "use the jobs index only if the question is about a job application."
 
 The `alwaysQuerySource` property overrides `retrievalInstructions`. You should set `alwaysQuerySource` to false when providing retrieval instructions.
 
@@ -61,7 +63,7 @@ The `alwaysQuerySource` property overrides `retrievalInstructions`. You should s
 
 Fast path is opportunistic query processing that approaches the millisecond query performance of regular search. If you enable it, the search engine attempts fast path under the following conditions:
 
-+ `attemptFastPath` is set to true in `knowledgeSourceReferences`.
++ `attemptFastPath` is set to true in `outputConfiguration`.
 
 + The query input is a single message that's fewer than 512 characters.
 
@@ -75,13 +77,23 @@ Under fast path, `retrievalInstructions` are ignored. In general, `alwaysQuerySo
 
 To achieve the fastest possible response times, follow these best practices:
 
-+ Set `modality` to `answerSynthesis` to get a response framed as an LLM-formulated answer. It takes a few extra seconds, but it improves the quality of the response and saves time overall if the answer is usable without further LLM processing.
+1. In the knowledge agent:
 
-+ Retain `includeActivity` set to true (default setting) for insights about query execution and elapsed time.
+   + Set `outputConfiguration.attemptFastPath` to true.
 
-+ Retain `includeReferences` set to true (default setting) for details about each individually scored result.
+   + Set `outputConfiguration.modality` to `answerSynthesis` to get a response framed as an LLM-formulated answer. It takes a few extra seconds, but it improves the quality of the response and saves time overall if the answer is usable without further LLM processing.
 
-+ Set `includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
+   + Retain `outputConfiguration.includeActivity` set to true (default setting) for insights about query execution and elapsed time.
+
+   + Retain `knowledgeSource.includeReferences` set to true (default setting) for details about each individually scored result.
+
+   + Set `knowledgeSources.alwaysQuerySource` to true.
+
+   + Set `knowledgeSources.retrievalInstructions` to false.
+
+   + Set `knowledgeSources.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
+
+1. In the [retrieve action](search-agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
 
 ## Delete a knowledge source
 

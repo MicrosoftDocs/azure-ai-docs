@@ -94,20 +94,20 @@ The following tables list the timelines for models that are on track for retirem
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
 | [Command R](https://ai.azure.com/explore/models/Cohere-command-r/version/1/registry/azureml-cohere?cid=learnDocs) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-08-2024?cid=learnDocs) |
 | [Command R+](https://ai.azure.com/explore/models/Cohere-command-r-plus/version/1/registry/azureml-cohere?cid=learnDocs) | February 24, 2025 | March 25, 2025 | June 30, 2025 | [Cohere Command R+ 08-2024](https://aka.ms/azureai/landing/Cohere-command-r-plus-08-2024?cid=learnDocs) |
-| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) |
-| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere) |
+| [Cohere-rerank-v3-english](https://ai.azure.com/explore/models/Cohere-rerank-v3-english/version/1/registry/azureml-cohere/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) |
+| [Cohere-rerank-v3-multilingual](https://ai.azure.com/explore/models/Cohere-rerank-v3-multilingual/version/1/registry/azureml-cohere/?cid=learnDocs) | February 28, 2025 | March 31, 2025 | June 30, 2025 | [Cohere-rerank-v3.5](https://ai.azure.com/explore/models/Cohere-rerank-v3.5/version/1/registry/azureml-cohere/?cid=learnDocs) |
 
 #### Core42
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/3/registry/azureml-core42) | September 30, 2025 | October 31, 2025 | January 30, 2026 | N/A |
+| [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/3/registry/azureml-core42/?cid=learnDocs) | September 30, 2025 | October 31, 2025 | January 30, 2026 | N/A |
 
 #### DeepSeek
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [DeepSeek-V3](https://aka.ms/azureai/landing/DeepSeek-V3) | April 10, 2025 | May 31, 2025 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324) |
+| [DeepSeek-V3](https://aka.ms/azureai/landing/DeepSeek-V3?cid=learnDocs) | April 10, 2025 | May 31, 2025 | August 31, 2025 | [DeepSeek-V3-0324](https://aka.ms/azureai/landing/DeepSeek-V3-0324?cid=learnDocs) |
 
 #### Gretel
 
@@ -147,12 +147,12 @@ The following tables list the timelines for models that are on track for retirem
 
 | Model | Legacy date (UTC) | Deprecation date (UTC) | Retirement date (UTC) | Suggested replacement model |
 |-------|-------------------|------------------------|-----------------------|-----------------------------|
-| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
-| [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral) |
-| [Mistral-ocr-2503](https://ai.azure.com/explore/models/mistral-ocr-2503/version/1/registry/azureml-mistral) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral) |
+| [Mistral-Nemo](https://ai.azure.com/explore/models/Mistral-Nemo/version/1/registry/azureml-mistral/?cid=learnDocs) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
+| [Mistral-large-2411](https://aka.ms/aistudio/landing/Mistral-Large-2411) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+| [Mistral-ocr-2503](https://ai.azure.com/explore/models/mistral-ocr-2503/version/1/registry/azureml-mistral/?cid=learnDocs) | September 30, 2025 | October 31, 2025 | January 30, 2026 | [Mistral-document-ai-2505](https://ai.azure.com/explore/models/mistral-document-ai-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
 | [Mistral-small](https://ai.azure.com/explore/models/Mistral-small/version/1/registry/azureml-mistral/?cid=learnDocs) | March 31, 2025 | April 30, 2025 | July 31, 2025 | [Mistral-small-2503](https://aka.ms/aistudio/landing/mistral-small-2503) |
-| [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407) | January 13, 2025 | February 13, 2025 | May 13, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral) |
-| [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large) | December 15, 2024 | January 15, 2025 | April 15, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral) |
+| [Mistral-large-2407](https://aka.ms/azureai/landing/Mistral-Large-2407?cid=learnDocs) | January 13, 2025 | February 13, 2025 | May 13, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
+| [Mistral-large](https://aka.ms/azureai/landing/Mistral-Large?cid=learnDocs) | December 15, 2024 | January 15, 2025 | April 15, 2025 | [Mistral-medium-2505](https://ai.azure.com/explore/models/mistral-medium-2505/version/1/registry/azureml-mistral/?cid=learnDocs) |
 
 ## Related content
 

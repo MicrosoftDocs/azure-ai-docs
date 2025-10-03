@@ -69,7 +69,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
                 "content" : [
                   { "type" : "text", "text" : "You can answer questions about the Earth at night.
                     Sources have a JSON format with a ref_id that must be cited in the answer.
-                    If you do not have the answer, respond with 'I don't know'." }
+                    If you do not have the answer, respond with 'I do not know'." }
                 ]
             },
             {

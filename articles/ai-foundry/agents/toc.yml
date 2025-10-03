@@ -148,6 +148,8 @@ items:
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
       href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+    - name: Use MCP Tools in the Visual Studio Code extension
+      href: ../../ai-foundry/how-to/develop/vs-code-agents-mcp.md?context=/azure/ai-services/agents/context/context
 - name: Observability
   items:
     - name: Service monitoring
