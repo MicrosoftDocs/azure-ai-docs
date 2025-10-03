@@ -27,7 +27,7 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 To maximize the utilization of your provisioned deployment, you can enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service. This capability reduces the risk of experiencing disruptions when a provisioned deployment is fully utilized. Alternatively, spillover is configurable per-request to provide flexibility across different scenarios and workloads. Spillover can also now be used for the [Azure AI Foundry Agent Service](../../agents/overview.md).  
 
 ## When does spillover come into effect?
-When you enable spillover for a deployment or configure it for a given inference request, spillover initiates when a non-`200` response code is received for a given inference request. A non-`200` response code can result from any of these scenarios:
+When you enable spillover for a deployment or configure it for a given inference request, spillover initiates when a specific non-`200` response code is received for a given inference request as a result of one of these scenarios:
 
 - Provisioned throughput units (PTU) are completely used, resulting in a `429` response code.
 
@@ -35,13 +35,13 @@ When you enable spillover for a deployment or configure it for a given inference
 
 - Server errors when processing your request, resulting in error code `500` or `503`.
 
-When a request results in a non-`200` response code, Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed. Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment, which might incur additional latency.
+When a request results in one of these non-`200` response codes, Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed. Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment, which might incur additional latency.
 
 ## How to know a request spilled over
 
 The following HTTP response headers indicate that a specific request spilled over:
 
-- `x-ms-spillover-from-<deployment>`. This header contains the PTU deployment name. The presence of this header indicates that the request was a spillover request.
+- `x-ms-spillover-from-<deployment-name>`. This header contains the PTU deployment name. The presence of this header indicates that the request was a spillover request.
 
 - `x-ms-<deployment-name>`. This header contains the name of the deployment that served the request. If the request spilled over, the deployment name is the name of the standard deployment.
 
