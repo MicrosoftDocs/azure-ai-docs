@@ -68,7 +68,8 @@ PROJECT_ENDPOINT=https://<your-project>.aiservices.azure.com
 MODEL_DEPLOYMENT_NAME=gpt-4o-mini
 AI_FOUNDRY_TENANT_ID=<your-ai-foundry-tenant-id>
 
-# The Microsoft Learn MCP Server, which exposes the latest up-to-date Microsoft documentation.
+# The Microsoft Learn MCP Server
+# (This public MCP server indexes the latest up-to-date Microsoft documentation so your AI can give authoritative answers to questions about Microsoft products, including reference links.)
 MCP_SERVER_URL=https://learn.microsoft.com/api/mcp
 
 # SharePoint Integration (Optional - requires additional setup)
@@ -81,19 +82,25 @@ SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
 
 ### Dependencies
 
+#[C#](#tab/csharp)
+
+#[Python](#tab/python)
+
 Create `requirements.txt`:
 
-```txt
-azure-ai-projects>=1.1.0b4
-azure-ai-agents>=1.2.0b5
-azure-identity
-python-dotenv
-```
+:::code language="txt" source="~/foundry-samples-main/samples/microsoft/python/developer-journey-stage-1-idea-to-prototype/requirements.txt":::
+
+#[Java](#tab/java)
+
+#[TypeScript](#tab/typescript)
+
+---
 
 ## Step 2: Build the Modern Workplace Assistant
 
 The `main.py` file demonstrates a complete business scenario combining internal policies with external technical guidance:
 
+<!-- Code section: imports_and_setup -->
 ```python
 import os
 from azure.ai.projects import AIProjectClient
@@ -265,6 +272,7 @@ The `evaluate.py` script tests realistic business scenarios combining SharePoint
 
 ### Evaluation framework (`evaluate.py`)
 
+<!-- Code section: evaluation_framework -->
 ```python
 import json
 import os
@@ -350,6 +358,7 @@ Create `questions.jsonl`:
 
 Create `eval.py`:
 
+<!-- Code section: batch_evaluation -->
 ```python
 import json
 from agent import project_client, chat_with_agent
