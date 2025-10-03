@@ -252,7 +252,7 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 
 ## GPT-image-1 rate limits
 
-### GPT0-image-1 Global Standard
+### GPT-image-1 Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
