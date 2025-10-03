@@ -14,6 +14,8 @@ ms.custom:
   - tool_generated
   - build-aifnd
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
 
 #CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Azure AI Foundry Models from partners and community, including their specific capabilities, deployment types, and regional availability, so that I can select the most appropriate model for my AI application requirements.

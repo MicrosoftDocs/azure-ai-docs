@@ -14,6 +14,8 @@ ms.custom:
   - tool_generated
   - build-aifnd
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 zone_pivot_groups: models-sold-directly-by-azure
 
 #CustomerIntent: As a developer or AI practitioner, I want to explore and understand Azure AI Foundry Models sold directly by Azure, including Azure OpenAI models and selected partner models, along with their capabilities and regional availability, so that I can choose the right model for my AI application.
