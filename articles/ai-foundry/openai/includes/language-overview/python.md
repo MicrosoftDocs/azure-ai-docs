@@ -32,22 +32,6 @@ pip install openai --upgrade
 
 ## Authentication
 
-# [API Key](#tab/python-key)
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
-
-```python
-import os
-from openai import OpenAI
-    
-client = OpenAI(
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
-    )
-
-```
-
-
 # [Microsoft Entra ID](#tab/python-secure)
 
 ```python
@@ -69,6 +53,21 @@ response = client.responses.create(
 )
 
 print(response.model_dump_json(indent=2))
+```
+
+# [API Key](#tab/python-key)
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
+```python
+import os
+from openai import OpenAI
+    
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
+    )
+
 ```
 
 
