@@ -88,7 +88,7 @@ items:
       href: ../../../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
     - name: Manage quotas and limits for Foundry Models
       href: ../../foundry-models/quotas-limits.md
-  -name: Cost management
+  - name: Cost management
     items:
     - name: Manage costs for AI Foundry resources
       href: ../../concepts/manage-costs.md
