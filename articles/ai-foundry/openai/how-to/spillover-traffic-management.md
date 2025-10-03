@@ -14,7 +14,7 @@ ms.date: 10/02/2025
 Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Azure AI Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
 
 > [!NOTE]
-> Spillover is currently not available for the `/v1` [API endpoint](../reference-preview-latest.md) or [responses API](./responses.md).
+> Spillover is currently not available for the [responses API](./responses.md).
 
 ## Prerequisites
 - You need to have a provisioned managed deployment and a standard deployment.
@@ -35,7 +35,10 @@ When you enable spillover for a deployment or configure it for a given inference
 
 - Server errors when processing your request, resulting in error code `500` or `503`.
 
-When a request results in one of these non-`200` response codes, Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed. Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment, which might incur additional latency.
+When a request results in one of these non-`200` response codes, Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed.
+
+> [!NOTE]
+> Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment, which might incur additional latency.
 
 ## How to know a request spilled over
 
