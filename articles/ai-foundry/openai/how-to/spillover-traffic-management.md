@@ -6,7 +6,7 @@ ms.author: mopeakande
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 09/03/2025
+ms.date: 10/02/2025
 ---
 
 # Manage traffic with spillover for provisioned deployments
@@ -27,7 +27,25 @@ Spillover manages traffic fluctuations on provisioned deployments by routing ove
 To maximize the utilization of your provisioned deployment, you can enable spillover for all global and data zone provisioned deployments. With spillover, bursts or fluctuations in traffic can be automatically managed by the service. This capability reduces the risk of experiencing disruptions when a provisioned deployment is fully utilized. Alternatively, spillover is configurable per-request to provide flexibility across different scenarios and workloads. Spillover can also now be used for the [Azure AI Foundry Agent Service](../../agents/overview.md).  
 
 ## When does spillover come into effect?
-When spillover is enabled for a deployment or configured for a given inference request, spillover is initiated when a non-200 response code is received for a given inference request. When a request results in a non-200 response code, the Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed. Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment, which may incur additional latency.
+When you enable spillover for a deployment or configure it for a given inference request, spillover initiates when a specific non-`200` response code is received for a given inference request as a result of one of these scenarios:
+
+- Provisioned throughput units (PTU) are completely used, resulting in a `429` response code.
+
+- You send a long context token request, resulting in a `400` error code. For example, when using `gpt 4.1` series models, PTU supports only context lengths less than 128k and returns HTTP 400.
+
+- Server errors when processing your request, resulting in error code `500` or `503`.
+
+When a request results in one of these non-`200` response codes, Azure OpenAI automatically sends the request from your provisioned deployment to your standard deployment to be processed. Even if a subset of requests is routed to the standard deployment, the service prioritizes sending requests to the provisioned deployment before sending any overage requests to the standard deployment, which might incur additional latency.
+
+## How to know a request spilled over
+
+The following HTTP response headers indicate that a specific request spilled over:
+
+- `x-ms-spillover-from-<deployment-name>`. This header contains the PTU deployment name. The presence of this header indicates that the request was a spillover request.
+
+- `x-ms-<deployment-name>`. This header contains the name of the deployment that served the request. If the request spilled over, the deployment name is the name of the standard deployment.
+
+For a request that spilled over, if the standard deployment request failed for any reason, the original PTU response is used in the response to the customer. The customer sees a header `x-ms-spillover-error` that contains the response code of the spillover request (such as `429` or `500`) so that they know the reason for the failed spillover.
 
 ## How does spillover affect cost?
 Since spillover uses a combination of provisioned and standard deployments to manage traffic fluctuations, billing for spillover involves two components:
