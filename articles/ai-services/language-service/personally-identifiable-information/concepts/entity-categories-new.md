@@ -48,87 +48,87 @@ Any data, collected or stored, that can be used to identify or contact a specifi
 
 ### Type: Address
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Address** in the **piiCategories** request parameter. If **Address** is detected, It appears in the **PII** and **PHI** response payloads. |[Address]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Address** in the **piiCategories** request parameter. If **Address** is detected, It appears in the **PII** and **PHI** response payloads. |[Address]|
 
 ### Type: Age
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Age** in the **piiCategories** request parameter. If **Age** is detected, It appears in the **PII** response payload.|[Age]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Age** in the **piiCategories** request parameter. If **Age** is detected, It appears in the **PII** response payload.|[Age]|
 
 ### Type: Date Of Birth
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **DateOfBirth** in the **piiCategories** request parameter. If **DateOfBirth** is detected, It appears in the **PII** response payload.|[DateOfBirth]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DateOfBirth** in the **piiCategories** request parameter. If **DateOfBirth** is detected, It appears in the **PII** response payload.|[DateOfBirth]|
 
 ### Type: Drivers License Number
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **DriversLicenseNumber** in the **piiCategories** request parameter. If **DriversLicenseNumber** is detected, It appears in the **PII** response payload.|[DriversLicenseNumber]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **DriversLicenseNumber** in the **piiCategories** request parameter. If **DriversLicenseNumber** is detected, It appears in the **PII** response payload.|[DriversLicenseNumber]|
 
 ### Type: Email
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Email** in the **piiCategories** request parameter. If **Email** is detected, It appears in the **PII** and **PHI** response payloads.|[Email]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Email** in the **piiCategories** request parameter. If **Email** is detected, It appears in the **PII** and **PHI** response payloads.|[Email]|
 
 ### Type: IP Address
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **IPAddress** in the **piiCategories** request parameter. If **IPAddress** is detected, It appears in the **PII** and **PHI** response payloads.|[IPAddress]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **IPAddress** in the **piiCategories** request parameter. If **IPAddress** is detected, It appears in the **PII** and **PHI** response payloads.|[IPAddress]|
 
 ### Type: License Plate
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **LicensePlate** in the **piiCategories** request parameter. If **LicensePlate** is detected, It appears in the **PII** response payload.|[LicensePlate]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **LicensePlate** in the **piiCategories** request parameter. If **LicensePlate** is detected, It appears in the **PII** response payload.|[LicensePlate]|
 
 ### Type: Neighborhood
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Neighborhood** in the **piiCategories** request parameter. If **Neighborhood** is detected, It appears in the **PII** response payload.|[Neighborhood]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Neighborhood** in the **piiCategories** request parameter. If **Neighborhood** is detected, It appears in the **PII** response payload.|[Neighborhood]|
 
 ### Type: Passport Number
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **PassportNumber** in the **piiCategories** request parameter. If **PassportNumber** is detected, It appears in the **PII** response payload.|[PassportNumber]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PassportNumber** in the **piiCategories** request parameter. If **PassportNumber** is detected, It appears in the **PII** response payload.|[PassportNumber]|
 
 ### Type: Person
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Person** in the **piiCategories** request parameter. If **Person** is detected, It appears in the **PII** response payloads.|[Person]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Person** in the **piiCategories** request parameter. If **Person** is detected, It appears in the **PII** response payloads.|[Person]|
 
 ### Type: Phone Number
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **PhoneNumber** in the **piiCategories** request parameter. If **PhoneNumber** is detected, It appears in the **PII** and **PHI** response payloads.|[PhoneNumber]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PhoneNumber** in the **piiCategories** request parameter. If **PhoneNumber** is detected, It appears in the **PII** and **PHI** response payloads.|[PhoneNumber]|
 
 ### Type: PIN
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **PIN** in the **piiCategories** request parameter. If **PIN** is detected, It appears in the **PII** response payload.|[PIN]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **PIN** in the **piiCategories** request parameter. If **PIN** is detected, It appears in the **PII** response payload.|[PIN]|
 
 ### Type: URL
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **URL** in the **piiCategories** request parameter. If **URL** is detected, It appears in the **PII** and **PHI** response payloads.|[URL]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **URL** in the **piiCategories** request parameter. If **URL** is detected, It appears in the **PII** and **PHI** response payloads.|[URL]|
 
 ### Type: VIN
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **VIN** in the **piiCategories** request parameter. If **VIN** is detected, It appears in the **PII** response payload.|[VIN]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **VIN** in the **piiCategories** request parameter. If **VIN** is detected, It appears in the **PII** response payload.|[VIN]|
 
 ## Financial
 
@@ -143,33 +143,33 @@ Any financial information is connected to a particular individual that can, thro
 
 ### Type: Bank Account Number
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **BankAccountNumber** in the **piiCategories** request parameter. If **BankAccountNumber** is detected, It appears in the **PII** response payload.|[BankAccountNumber]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **BankAccountNumber** in the **piiCategories** request parameter. If **BankAccountNumber** is detected, It appears in the **PII** response payload.|[BankAccountNumber]|
 
 ### Type: Credit Card Number
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **CreditCardNumber** in the **piiCategories** request parameter. If **CreditCardNumber** is detected, It appears in the **PII** response payload.|[CreditCardNumber]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **CreditCardNumber** in the **piiCategories** request parameter. If **CreditCardNumber** is detected, It appears in the **PII** response payload.|[CreditCardNumber]|
 
 ### Type: International Banking Account Number
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **InternationalBankingAccountNumber** in the **piiCategories** request parameter. If **InternationalBankingAccountNumber** is detected, It appears in the **PII** response payload.|[InternationalBankingAccountNumber]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **InternationalBankingAccountNumber** in the **piiCategories** request parameter. If **InternationalBankingAccountNumber** is detected, It appears in the **PII** response payload.|[InternationalBankingAccountNumber]|
 
 ### Type: Sort Code
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **SortCode** in the **piiCategories** request parameter. If **SortCode** is detected, It appears in the **PII** response payload.|[SortCode]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SortCode** in the **piiCategories** request parameter. If **SortCode** is detected, It appears in the **PII** response payload.|[SortCode]|
 
 ### Type: SWIFT Code
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If **SWIFTCode** is detected, It appears in the **PII** response payload.|[SWIFTCode]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **SWIFTCode** in the **piiCategories** request parameter. If **SWIFTCode** is detected, It appears in the **PII** response payload.|[SWIFTCode]|
 
 ## Organization
 
@@ -177,9 +177,9 @@ Any data that an organization collects, stores, or processes that can be used to
 
 ### Type: Organization
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Organization** in the **piiCategories** request parameter. If **Organization** is detected, It appears in the **PII** and **PHI** response payloads.|[Organization]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Organization** in the **piiCategories** request parameter. If **Organization** is detected, It appears in the **PII** and **PHI** response payloads.|[Organization]|
 
 ## DateTime
 
@@ -187,9 +187,9 @@ Any data that an organization collects, stores, or processes that can be used to
 
 ### Type: Date
 
-|Issuer|Details|Tag|
-|---|---|---|
-|Not applicable.|To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If **Date** is detected, It appears in the **PII** and **PHI** response payloads.|[Date]|
+|Details|Tag|
+|---|---|
+|To retrieve this entity type, specify **Date** in the **piiCategories** request parameter. If **Date** is detected, It appears in the **PII** and **PHI** response payloads.|[Date]|
 
 ## Azure-related
 
