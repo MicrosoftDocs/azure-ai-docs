@@ -1,12 +1,12 @@
----
+﻿---
 title: Create Document Intelligence Studio custom projects
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about form and document processing, data extraction, and analysis by using Document Intelligence Studio.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: quickstart
-ms.date: 03/14/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
 monikerRange: '>=doc-intel-3.0.0'
 ---
@@ -18,7 +18,7 @@ monikerRange: '>=doc-intel-3.0.0'
 
 [!INCLUDE [applies to v4.0 v3.1 v3.0](../includes/applies-to-v40-v31-v30.md)]
 
-[Azure AI Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/) is an online tool that you can use to visually explore, understand, and integrate features from Document Intelligence into your applications. This quickstart aims to show you how to set up a custom project in Document Intelligence Studio.
+[Azure Document Intelligence in Foundry Tools Studio](https://formrecognizer.appliedai.azure.com/) is an online tool that you can use to visually explore, understand, and integrate features from Document Intelligence into your applications. This quickstart aims to show you how to set up a custom project in Document Intelligence Studio.
 
 ## Prerequisites
 

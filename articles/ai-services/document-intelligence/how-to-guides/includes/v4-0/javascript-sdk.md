@@ -1,11 +1,11 @@
----
+﻿---
 title: "Use Document Intelligence SDK for JavaScript / .NET (REST API v3.0)"
 description: 'Use the Document Intelligence SDK for JavaScript (REST API v3.0) to create a forms processing app that extracts key data from documents.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: include
-ms.date: 02/10/2025
+ms.date: 10/01/2025
 ms.author: lajanuar
 ms.custom: devx-track-csharp, linux-related-content
 ---
@@ -23,12 +23,12 @@ ms.custom: devx-track-csharp, linux-related-content
 - The latest version of [Visual Studio Code](https://code.visualstudio.com/) or your preferred IDE. For more information, see [Node.js in Visual Studio Code](https://code.visualstudio.com/docs/nodejs/nodejs-tutorial).
 - The latest `LTS` version of [Node.js](https://nodejs.org/).
 
-- An Azure AI services or Document Intelligence resource. Create a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a Document Intelligence resource." target="_blank">single-service</a> or <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create a multiple Document Intelligence resource." target="_blank">multi-service</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
+- An Azure AI Foundry Tools or Document Intelligence resource. Create a <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer" title="Create a Document Intelligence resource." target="_blank">single-service</a> or <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry" title="Create a multiple Document Intelligence resource." target="_blank">multi-service</a>. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 
   > [!TIP]
-  > Create an Azure AI Foundry resource if you plan to access multiple Azure AI services by using a single endpoint and key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
+  > Create an Azure AI Foundry resource if you plan to access multiple Azure AI Foundry Tools by using a single endpoint and key. For Document Intelligence access only, create a Document Intelligence resource. You need a single-service resource if you intend to use [Microsoft Entra authentication](/azure/active-directory/authentication/overview-authentication).
 
-- The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence service.
+- The key and endpoint from the resource you create to connect your application to the Azure Document Intelligence.
 
   1. After your resource deploys, select **Go to resource**.
   1. In the left pane, select **Keys and Endpoint**.
