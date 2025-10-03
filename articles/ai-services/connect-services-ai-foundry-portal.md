@@ -42,7 +42,7 @@ You can connect Azure AI Foundry Tools resources to an Azure AI Foundry project 
 
     :::image type="content" source="./media/ai-foundry/connections-add.png" alt-text="Screenshot of the connected resources page with the button to create a new connection." lightbox="./media/ai-foundry/connections-add.png":::
 
-1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure AI services (for a connection to multiple services in one resource), Azure OpenAI in Azure AI Foundry Models, Azure AI Content Safety, Azure AI Speech, Azure AI Language, and other AI services.
+1. On the **Add a connection to external assets** page, select the kind of AI service that you want to connect to the project. For example, you can select Azure AI Foundry Tools (for a connection to multiple services in one resource), Azure OpenAI in Azure AI Foundry Models, Azure AI Content Safety, Azure AI Speech, Azure AI Language, and other AI services.
 
     :::image type="content" source="./media/ai-foundry/connections-add-assets.png" alt-text="Screenshot of the page to select the kind of AI service that you want to connect to the project." lightbox="./media/ai-foundry/connections-add-assets.png":::
 
@@ -54,11 +54,11 @@ You can connect Azure AI Foundry Tools resources to an Azure AI Foundry project 
 
 ## Discover Azure AI models in the model catalog
 
-You can discover Azure AI models in the model catalog without a project. Some Azure AI services are available for you to try via the model catalog without a project. 
+You can discover Azure AI models in the model catalog without a project. Some Azure AI Foundry Tools are available for you to try via the model catalog without a project. 
 
 1. Go to the [Azure AI model catalog page](https://ai.azure.com/explore/models) in Azure AI Foundry portal.
 1. Scroll down the page to see the list of available models. You can also use the search box to find a specific model.
-1. From the **Collections** dropdown, select **Microsoft**. Search for Azure AI services models by entering **azure-ai** in the search box.
+1. From the **Collections** dropdown, select **Microsoft**. Search for Azure AI Foundry Tools by entering **azure-ai** in the search box.
 
     :::image type="content" source="./media/ai-foundry/ai-services-model-catalog.png" alt-text="Screenshot of the model catalog page in Azure AI Foundry portal with the option to search by collection and name." lightbox="./media/ai-foundry/ai-services-model-catalog.png":::
 
@@ -75,34 +75,34 @@ In the project-level playgrounds, you can try Azure AI Foundry Tools such as Azu
 
 ## Fine-tune Azure AI Foundry Tools
 
-In Azure AI Foundry portal, you can fine-tune some Azure AI services models. For example, you can fine-tune a model for custom speech. 
+In Azure AI Foundry portal, you can fine-tune some Azure AI Foundry Tools. For example, you can fine-tune a model for custom speech. 
 
 1. Go to your Azure AI Foundry project. If you need to create a project, see [Create an Azure AI Foundry project](../ai-foundry/how-to/create-projects.md).
 1. Select **Fine-tuning** from the left pane.
 1. Select **AI Service fine-tuning**.
 
-    :::image type="content" source="./media/ai-foundry/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Services models." lightbox="./media/ai-foundry/fine-tune-azure-ai-services.png":::
+    :::image type="content" source="./media/ai-foundry/fine-tune-azure-ai-services.png" alt-text="Screenshot of the page to select fine-tuning of Azure AI Foundry Tools." lightbox="./media/ai-foundry/fine-tune-azure-ai-services.png":::
 
 1. Select **+ Fine-tune**.
 1. Follow the wizard to fine-tune a model for the capabilities that you want.
 
 ## Deploy models to production
 
-Once you have a project, several Azure AI services models are already deployed and ready to use. 
+Once you have a project, several Azure AI Foundry Tools are already deployed and ready to use. 
 
 1. Go to your Azure AI Foundry project.
 1. Select **Models + endpoints** (under **My assets**) from the left pane. 
-1. Select the **Service endpoints** tab to view the list of Azure AI services models that are already deployed.
+1. Select the **Service endpoints** tab to view the list of Azure AI Foundry Tools models that are already deployed.
 
-    :::image type="content" source="./media/ai-foundry/models-endpoints-ai-services-deployments.png" alt-text="Screenshot of the models and endpoints page to view Azure AI services endpoints." lightbox="./media/ai-foundry/models-endpoints-ai-services-deployments.png":::
+    :::image type="content" source="./media/ai-foundry/models-endpoints-ai-services-deployments.png" alt-text="Screenshot of the models and endpoints page to view Azure AI Foundry Tools endpoints." lightbox="./media/ai-foundry/models-endpoints-ai-services-deployments.png":::
 
-    In this example, we see six Azure AI Services deployments (such as Azure AI Speech and Azure AI Language) via the default connection. These models were already available for use when you created the project.
+    In this example, we see six Azure AI Foundry Tools deployments (such as Azure AI Speech and Azure AI Language) via the default connection. These models were already available for use when you created the project.
 
-You don't deploy Azure AI services models from the **Models + endpoints** page. Azure AI services models are already deployed and ready to use.
+You don't deploy Azure AI Foundry Tools from the **Models + endpoints** page. Azure AI Foundry Tools models are already deployed and ready to use.
 
-However, you can deploy [fine-tuned Azure AI services models](#fine-tune-azure-ai-services-models). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
+However, you can deploy [fine-tuned Azure AI Foundry tools](#fine-tune-azure-ai-foundry-tools). For example, you might want to deploy a custom speech model that you fine-tuned. In this case, you can deploy the model from the corresponding fine-tuning page. 
 
 ## Related content
 
-- [What are Azure AI services?](./what-are-ai-services.md)
+- [What are Azure AI Foundry Tools?](./what-are-ai-services.md)
 - [How to add a new connection in Azure AI Foundry portal](../ai-foundry/how-to/connections-add.md)
