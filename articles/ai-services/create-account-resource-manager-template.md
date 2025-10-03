@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Create an AI Foundry resource by using an ARM template"
 description: Learn how to use an Azure Resource Manager template to create an AI Foundry resource.
-keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
+keywords: Azure AI Foundry Tools, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ms.custom:
   - subject-armqs
@@ -17,7 +17,7 @@ ms.custom:
 
 # Quickstart: Create an AI Foundry resource by using an ARM template
 
-This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Azure AI services.
+This quickstart shows you how to use an Azure Resource Manager template (ARM template) to create a resource in Azure AI Foundry Tools.
 
 [!INCLUDE [About AI services](./includes/ai-services-intro.md)]
 
@@ -35,7 +35,7 @@ The template that you use in this quickstart is from [Azure Quickstart Templates
 
 One Azure resource is defined in the Bicep file. The `kind` field in the Bicep file defines the type of resource.
 
-As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure AI Language service. 
+As needed, change the `sku` parameter value to the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/) instance you want. The `sku` depends on the resource `kind` that you use. For example, use `AIServices` for the Azure Language. 
 
 ## Deploy the template
 

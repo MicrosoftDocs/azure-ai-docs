@@ -1,12 +1,12 @@
 ---
-title: Configure Virtual Networks for Azure AI services
-titleSuffix: Azure AI services
-description: Configure layered network security for your Azure AI services resources.
+title: Configure Virtual Networks for Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
+description: Configure layered network security for your Azure AI Foundry Tools resources.
 author: aahill
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: aahi
 ms.custom:
   - devx-track-azurepowershell
@@ -14,16 +14,16 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Configure Azure AI services virtual networks
+# Configure Azure AI Foundry Tools virtual networks
 
-Azure AI services provide a layered security model. This model enables you to secure your Azure AI services accounts to a specific subset of networks​. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with *request filtering*, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview).
+Azure AI Foundry Tools provide a layered security model. This model enables you to secure your Azure AI Foundry Tools accounts to a specific subset of networks​. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with *request filtering*, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in [Azure Virtual Networks](/azure/virtual-network/virtual-networks-overview).
 
 An application that accesses an AI Foundry resource when network rules are in effect requires authorization. Authorization is supported with [Microsoft Entra ID](/azure/active-directory/fundamentals/active-directory-whatis) credentials or with a valid API key.
 
 > [!IMPORTANT]
-> Turning on firewall rules for your Azure AI services account blocks incoming requests for data by default. To allow requests through, one of the following conditions needs to be met:
+> Turning on firewall rules for your Azure AI Foundry Tools account blocks incoming requests for data by default. To allow requests through, one of the following conditions needs to be met:
 >
-> - The request originates from a service that operates within an Azure Virtual Network on the allowed subnet list of the target Azure AI services account. The endpoint request that originated from the virtual network needs to be set as the [custom subdomain](cognitive-services-custom-subdomains.md) of your Azure AI services account.
+> - The request originates from a service that operates within an Azure Virtual Network on the allowed subnet list of the target Azure AI Foundry Tools account. The endpoint request that originated from the virtual network needs to be set as the [custom subdomain](cognitive-services-custom-subdomains.md) of your Azure AI Foundry Tools account.
 > - The request originates from an allowed list of IP addresses.
 >
 > Requests that are blocked include those from other Azure services, from the Azure portal, and from logging and metrics services.

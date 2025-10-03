@@ -1,11 +1,11 @@
 ﻿---
 title: Create an AI Foundry resource
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Create and manage an AI Foundry resource.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 7/16/2025
+ms.date: 10/02/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.custom:
@@ -21,11 +21,11 @@ zone_pivot_groups: programming-languages-portal-cli-ps
 
 Learn how to create and manage an AI Foundry resource. It is the primary resource type for designing, deploying, and managing generative AI applications and agents. It provides access to agent service, models that are hosted using a serverless hosting model, evaluations and Azure OpenAI service. This is the recommended resource type for most applications built in Azure AI Foundry. 
 
-Azure AI Foundry is the next version and renaming of former 'Azure AI Services'. All its previous capabilities are supported including Azure AI Services models for Speech, Vision, Language capabilities. New capabilities include AI Foundry API which lets you access Agent service and Evaluations, [projects](../ai-foundry/how-to/create-projects.md) as folders to organize your work, and [connections](../ai-foundry/how-to/connections-add.md) to integrate with other Azure services. 
+Azure AI Foundry is the next version and renaming of former 'Azure AI Foundry Tools'. All its previous capabilities are supported including Azure AI Foundry Tools models for Speech, Vision, Language capabilities. New capabilities include AI Foundry API which lets you access Agent service and Evaluations, [projects](../ai-foundry/how-to/create-projects.md) as folders to organize your work, and [connections](../ai-foundry/how-to/connections-add.md) to integrate with other Azure services. 
 
 Looking to use AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI multi-services resource](#azure-ai-multi-services-resource-for-azure-ai-search-skills).
+Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI Foundry Tools multi-services resource](#azure-ai-foundry-tools-multi-services-resource-for-azure-ai-search-skills).
 
 ::: zone pivot="azportal"
 

@@ -1,23 +1,23 @@
 ---
-title: Azure AI services support and help options
-description: Learn how to obtain help and support for questions and problems when you create applications that integrate with Azure AI services.
+title: Azure AI Foundry Tools support and help options
+description: Learn how to obtain help and support for questions and problems when you create applications that integrate with Azure AI Foundry Tools.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 05/01/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Azure AI services support and help options
+# Azure AI Foundry Tools support and help options
 
-Here are the options for getting support, staying up to date, giving feedback, and reporting bugs for Azure AI services.
+Here are the options for getting support, staying up to date, giving feedback, and reporting bugs for Azure AI Foundry Tools.
 
 ## Get solutions to common issues
 
 In the Azure portal, you can find answers to common AI service issues.
 
-1. Go to your Azure AI services resource in the Azure portal. You can find it on the list on this page: [Azure AI services](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllCognitiveServices). If you're a United States government customer, use the [Azure portal for the United States government](https://portal.azure.us).
+1. Go to your Azure AI Foundry Tools resource in the Azure portal. You can find it on the list on this page: [Azure AI Foundry Tools](https://ms.portal.azure.com/#view/Microsoft_Azure_ProjectOxford/CognitiveServicesHub/~/AllCognitiveServices). If you're a United States government customer, use the [Azure portal for the United States government](https://portal.azure.us).
 1. In the left pane, under **Help**, select **Support + Troubleshooting**.
 1. Describe your issue in the text box, and answer the remaining questions in the form.
 1. You'll find Learn articles and other resources that might help you resolve your issue.
@@ -31,7 +31,7 @@ In the Azure portal, you can find answers to common AI service issues.
 
 Explore the range of Azure support options and [choose the plan](https://azure.microsoft.com/support/plans) that best fits, whether you're a developer just starting your cloud journey or a large organization deploying business-critical, strategic applications. Azure customers can create and manage support requests in the Azure portal.
 
-To submit a support request for Azure AI services, follow the instructions on the [New support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade) page in the Azure portal. After choosing your **Issue type**, select **Cognitive Services** in the **Service type** dropdown field.
+To submit a support request for Azure AI Foundry Tools, follow the instructions on the [New support request](https://ms.portal.azure.com/#view/Microsoft_Azure_Support/NewSupportRequestV3Blade) page in the Azure portal. After choosing your **Issue type**, select **Cognitive Services** in the **Service type** dropdown field.
 
 ## Post a question on Microsoft Q&A
 
@@ -39,7 +39,7 @@ For quick and reliable answers on your technical product questions from Microsof
 
 If you can't find an answer to your problem using search, submit a new question to Microsoft Q&A. Use one of the following tags when you ask your question:
 
-* [Azure AI services](/answers/topics/azure-cognitive-services.html)
+* [Azure AI Foundry Tools](/answers/topics/azure-cognitive-services.html)
 
 
 **Azure OpenAI**
@@ -73,7 +73,7 @@ For answers to your developer questions from the largest community developer eco
 
 If you submit a new question to Stack Overflow, use one or more of the following tags when you create the question:
 
-* [Azure AI services](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
+* [Azure AI Foundry Tools](https://stackoverflow.com/questions/tagged/azure-cognitive-services)
 
 **Azure OpenAI**
 
@@ -103,9 +103,9 @@ You can also use the following forums to ask questions and get help:
 
 ## Submit feedback
 
-To request new features, post them on `https://feedback.azure.com`. Share your ideas for making Azure AI services and its APIs work better for the applications you develop. 
+To request new features, post them on `https://feedback.azure.com`. Share your ideas for making Azure AI Foundry Tools and its APIs work better for the applications you develop. 
 
-* [Azure AI services](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
+* [Azure AI Foundry Tools](https://feedback.azure.com/d365community/forum/09041fae-0b25-ec11-b6e6-000d3a4f0858)
 
 **Vision**
 
@@ -136,13 +136,13 @@ To request new features, post them on `https://feedback.azure.com`. Share your i
 
 ## Stay informed
 
-You can learn about the features in a new release or get the latest news on the Azure blog. Staying informed can help you find the difference between a programming error, a service bug, or a feature not yet available in Azure AI services.
+You can learn about the features in a new release or get the latest news on the Azure blog. Staying informed can help you find the difference between a programming error, a service bug, or a feature not yet available in Azure AI Foundry Tools.
 
 * Learn more about product updates, roadmap, and announcements in [Azure Updates](https://azure.microsoft.com/updates/?category=ai-machine-learning&query=Azure%20Cognitive%20Services).
-* News about Azure AI services is shared in the [Azure AI blog](https://azure.microsoft.com/blog/product/azure-ai/).
-* [Join the conversation on Reddit](https://www.reddit.com/r/AZURE/search/?q=Cognitive%20Services&restrict_sr=1) about Azure AI services.
+* News about Azure AI Foundry Tools is shared in the [Azure AI blog](https://azure.microsoft.com/blog/product/azure-ai/).
+* [Join the conversation on Reddit](https://www.reddit.com/r/AZURE/search/?q=Cognitive%20Services&restrict_sr=1) about Azure AI Foundry Tools.
 
 ## Next step
 
 > [!div class="nextstepaction"]
-> [What are Azure AI services?](./what-are-ai-services.md)
+> [What are Azure AI Foundry Tools?](./what-are-ai-services.md)

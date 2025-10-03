@@ -1,24 +1,24 @@
 ---
 title: Language support
-titleSuffix: Azure AI services
-description: Azure AI services enable you to build applications that see, hear, speak with, and understand your users.
+titleSuffix: Azure AI Foundry Tools
+description: Azure AI Foundry Tools enable you to build applications that see, hear, speak with, and understand your users.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: conceptual
-ms.date: 08/20/2025
+ms.date: 10/02/2025
 ms.author: lajanuar
 ---
 
-# Natural language support for Azure AI services
+# Natural language support for Azure AI Foundry Tools
 
-Azure AI services enable you to build applications that see, hear, articulate, and understand users. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach. Use the links in the tables to view language support and availability by service.
+Azure AI Foundry Tools enable you to build applications that see, hear, articulate, and understand users. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach. Use the links in the tables to view language support and availability by service.
 
 ## Language supported services
 
 The following table provides links to language support reference articles by supported service. 
 
-| Azure AI Language support | Description |
+| Azure Language support | Description |
 | --- | --- |
 |![Content Moderator icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-moderator.svg)</br>[Content Moderator](./content-moderator/language-support.md) (retired) | Detect potentially offensive or unwanted content. |
 |![Content Understanding](~/reusable-content/ce-skilling/azure/media/ai-services/content-understanding.svg)</br>[Content Understanding](./content-understanding/language-region-support.md)|Process, analyze, and transform multimodal content including document, image, video, and audio input files.|

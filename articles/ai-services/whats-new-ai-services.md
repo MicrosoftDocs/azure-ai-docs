@@ -1,17 +1,17 @@
 ﻿---
-title: "Azure AI Services docs: What's new for September 2025"
-description: Discover key changes and updates in Azure AI Services documentation for September 2025.
+title: "Azure AI Foundry Tools docs: What's new for September 2025"
+description: Discover key changes and updates in Azure AI Foundry Tools documentation for September 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-services
 ms.custom: September-2025
-ms.date: 09/02/2025
+ms.date: 10/02/2025
 ---
 
-# What's new in Azure AI Services documentation?
+# What's new in Azure AI Foundry Tools documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Services documentation for September 2025.
+Welcome! This article highlights key changes and updates in Azure AI Foundry Tools documentation for September 2025.
 
 ## New articles
 - [Improve document output quality with confidence, grounding, and in-context learning](../ai-services/content-understanding/document/enrichments.md)
@@ -28,5 +28,5 @@ Welcome! This article highlights key changes and updates in Azure AI Services do
 - [Prebuilt API](../ai-services/language-service/question-answering/how-to/prebuilt.md)
 - [Supported PII entities](../ai-services/language-service/personally-identifiable-information/concepts/entity-categories.md)
 - [Tutorial: Detect liveness in faces](../ai-services/computer-vision/tutorials/liveness.md)
-- [What is Azure AI Document Intelligence?](../ai-services/document-intelligence/overview.md)
+- [What is Azure Document Intelligence in Foundry Tools?](../ai-services/document-intelligence/overview.md)
 - [What is the Document Intelligence layout model?](../ai-services/document-intelligence/prebuilt/layout.md)

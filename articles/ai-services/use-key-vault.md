@@ -1,11 +1,11 @@
 ---
-title: Develop Azure AI services applications with Azure Key Vault
-description: Learn how to develop Azure AI services applications securely by using Azure Key Vault.
+title: Develop Azure AI Foundry Tools applications with Azure Key Vault
+description: Learn how to develop Azure AI Foundry Tools applications securely by using Azure Key Vault.
 author: aahill
 ms.author: aahi
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 zone_pivot_groups: programming-languages-set-twenty-eight
 ms.custom:
   - devx-track-extended-java
@@ -14,9 +14,9 @@ ms.custom:
   - sfi-image-nochange
 ---
 
-# Develop Azure AI services applications with Azure Key Vault
+# Develop Azure AI Foundry Tools applications with Azure Key Vault
 
-Learn how to develop Azure AI services applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
+Learn how to develop Azure AI Foundry Tools applications securely by using [Azure Key Vault](/azure/key-vault/general/overview). 
 
 Key Vault reduces the risk that secrets may be accidentally leaked, because you avoid storing security information in your application. 
 
