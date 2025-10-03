@@ -1,27 +1,27 @@
 ---
 title: Custom subdomains
-titleSuffix: Azure AI services
-description: Learn how to add custom subdomain names for Azure AI services resource by using the Azure portal, Azure Cloud Shell, or Azure CLI.
+titleSuffix: Azure AI Foundry Tools
+description: Learn how to add custom subdomain names for Azure AI Foundry Tools resource by using the Azure portal, Azure Cloud Shell, or Azure CLI.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurecli
 ms.topic: conceptual
-ms.date: 05/01/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Custom subdomain names for Azure AI services
+# Custom subdomain names for Azure AI Foundry Tools
 
-Since July 2019, new Azure AI service resources use custom subdomain names when created through the [Azure portal](https://portal.azure.com), [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), or [Azure CLI](/cli/azure/install-azure-cli). Unlike regional endpoints, which were common for all customers in a specific Azure region, custom subdomain names are unique to the resource. Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
+Since July 2019, new Azure AI Foundry Tools resources use custom subdomain names when created through the [Azure portal](https://portal.azure.com), [Azure Cloud Shell](https://azure.microsoft.com/features/cloud-shell/), or [Azure CLI](/cli/azure/install-azure-cli). Unlike regional endpoints, which were common for all customers in a specific Azure region, custom subdomain names are unique to the resource. Custom subdomain names are required to enable features like Microsoft Entra ID for authentication.
 
 ## How does this impact existing resources?
 
-Azure AI services resources created before July 1, 2019 use the regional endpoints for the associated service. These endpoints work with existing and new resources.
+Azure AI Foundry Tools resources created before July 1, 2019 use the regional endpoints for the associated service. These endpoints work with existing and new resources.
 
 If you'd like to migrate an existing resource to use custom subdomain names to enable features like Microsoft Entra ID, follow these instructions:
 
-1. Sign in to the Azure portal and locate the Azure AI services resource that you'd like to add a custom subdomain name to.
+1. Sign in to the Azure portal and locate the Azure AI Foundry Tools resource that you'd like to add a custom subdomain name to.
 2. In the **Overview** section, locate and select **Generate Custom Domain Name**.
 3. This opens a panel with instructions to create a unique custom subdomain for your resource.
    > [!WARNING]
@@ -29,7 +29,7 @@ If you'd like to migrate an existing resource to use custom subdomain names to e
 
 ## Do I need to update my existing resources?
 
-No. The regional endpoint continues to work for new and existing Azure AI services and the custom subdomain name is optional. Even if a custom subdomain name is added, the regional endpoint continues to work with the resource.
+No. The regional endpoint continues to work for new and existing Azure AI Foundry Tools and the custom subdomain name is optional. Even if a custom subdomain name is added, the regional endpoint continues to work with the resource.
 
 ## What if an SDK asks me for the region for a resource?
 

@@ -1,19 +1,19 @@
 ---
-title: Authentication in Azure AI services
-titleSuffix: Azure AI services
-description: "Learn how to authenticate a request to Azure AI services via Microsoft Entra ID or API key."
+title: Authentication in Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
+description: "Learn how to authenticate a request to Azure AI Foundry Tools via Microsoft Entra ID or API key."
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.custom: devx-track-azurepowershell
 ms.topic: how-to
-ms.date: 5/19/2025
+ms.date: 10/02/2025
 ms.author: pafarley
 ---
 
-# Authenticate requests to Azure AI services
+# Authenticate requests to Azure AI Foundry Tools
 
-Each request to Azure AI services must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn about three ways to authenticate a request and the requirements for each.
+Each request to Azure AI Foundry Tools must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. In this article, you'll learn about three ways to authenticate a request and the requirements for each.
 
 * Authenticate with a [single-service](#authenticate-with-a-single-service-resource-key) or [AI Foundry multi-service](#authenticate-with-an-ai-foundry-resource-key) resource key.
 * Authenticate with a [token](#authenticate-with-an-access-token).
@@ -25,12 +25,12 @@ Before you make a request, you need an Azure subscription and an AI Foundry reso
 
 ## Authentication headers
 
-Let's quickly review the authentication headers available for use with Azure AI services.
+Let's quickly review the authentication headers available for use with Azure AI Foundry Tools.
 
 | Header | Description |
 |--------|-------------|
 | Ocp-Apim-Subscription-Key | Use this header to authenticate with a resource key for a specific service or an AI Foundry resource key. |
-| Ocp-Apim-Subscription-Region | This header is only required when using an AI Foundry resource key with the [Azure AI Translator service](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
+| Ocp-Apim-Subscription-Region | This header is only required when using an AI Foundry resource key with the [Azure Translator](translator/text-translation/reference/v3/reference.md). Use this header to specify the resource region. |
 | Authorization | Use this header if you are using an access token. The steps to perform a token exchange are detailed in the following sections. The value provided follows this format: `Bearer <TOKEN>`. |
 
 ## Authenticate with a single-service resource key
