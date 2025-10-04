@@ -32,7 +32,12 @@ pip install openai --upgrade
 
 ## Authentication
 
-# [Microsoft Entra ID](#tab/python-secure)
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry](https://ai.azure.com):
+
+- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**
+- Sign in to [AI Foundry portal](https://ai.azure,com) > select your resource
+
+# [Microsoft Entra ID](#tab/python-entra)
 
 ```python
 from openai import OpenAI
@@ -46,13 +51,6 @@ client = OpenAI(
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
   api_key = token_provider  
 )
-
-response = client.responses.create(
-    model="gpt-4.1-nano",
-    input= "This is a test" 
-)
-
-print(response.model_dump_json(indent=2))
 ```
 
 # [API Key](#tab/python-key)
@@ -60,18 +58,175 @@ print(response.model_dump_json(indent=2))
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
-import os
+ import os
 from openai import OpenAI
     
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
     )
-
 ```
 
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()   
+```
+
+# [Response](#tab/python-output)
+
+There is no output for client instantiation.
 
 ---
+
+## Responses API
+
+### responses.create()
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.responses.create(
+    model="gpt-4.1-nano",
+    input= "This is a test" 
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.responses.create(   
+  model="gpt-4.1-nano", # Replace with your model deployment name 
+  input="This is a test.",
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Environment Variables](#tab/python-env)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(   
+  model="gpt-4.1-nano", # Replace with your model deployment name 
+  input="This is a test.",
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Response](#tab/python-output)
+
+```json
+{
+  "id": "resp_088ffc6b5f37c64d0068e187d0ceac819499c9331c2a02e92e",
+  "created_at": 1759610832.0,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "metadata": {},
+  "model": "gpt-4.1-nano",
+  "object": "response",
+  "output": [
+    {
+      "id": "msg_088ffc6b5f37c64d0068e187d15f8c819495f84e214435175d",
+      "content": [
+        {
+          "annotations": [],
+          "text": "Hello! I see you've sent a message saying \"This is a test.\" How can I assist you today?",
+          "type": "output_text",
+          "logprobs": []
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1.0,
+  "tool_choice": "auto",
+  "tools": [],
+  "top_p": 1.0,
+  "background": false,
+  "conversation": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_key": null,
+  "reasoning": {
+    "effort": null,
+    "generate_summary": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 11,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 23,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 34
+  },
+  "user": null,
+  "content_filters": null,
+  "store": true
+}
+```
 
 ## Chat
 
@@ -352,10 +507,6 @@ CreateEmbeddingResponse(data=[Embedding(embedding=[0.009098228, -0.010369237, -0
 ## Fine-tuning
 
 [Fine-tuning with Python how-to article](../../how-to/fine-tuning.md)
-
-## Responses API
-
-See the [Responses API](../../how-to/responses.md) documentation.
 
 ## Error handling
 
