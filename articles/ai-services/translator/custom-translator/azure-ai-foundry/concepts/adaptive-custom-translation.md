@@ -22,7 +22,7 @@ Adaptive custom translation (adaptCT) is a translation enhancement feature, desi
 
 AdaptCT APIs for dynamic domain adaptations allow you to upload between 5 and 30,000 prealigned bilingual segments. With this capability, you can quickly build a custom language pair dataset index that's ready in minutes. This index can then be used with [Azure AI Translator 2025-05-01-preview APIs](/azure/ai-services/translator/text-translation/preview/overview). Unlike traditional custom models that require large training datasets and separate deployment, AdaptCT uses few-shot learning to dynamically select relevant sentence pairs from the index at runtime. This capability enables on-the-fly adaptation of the LLM's output to match domain-specific terminology, context, and style. `Available via Azure AI Foundry.`
 
-Key Differences
+### Key differences
 *    **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
 *    **Adaptive custom translation**: No fine-tuning or deployment required; updates by rebuilding the dataset index, ready within minutes. ​
 
@@ -33,7 +33,7 @@ Key Differences
 > - Make sure to test thoroughly before using in production environments.
 > - Project and workspace are used interchangeably to mean a Foundry created project.
 
-## Comparing adaptive and custom translation
+## Compare adaptive and custom translation
 
 | Feature | Adaptive custom translation | Custom translator |
 | --- | --- | --- |
@@ -519,20 +519,18 @@ The API returns standard HTTP status codes. Common error responses:
 ## Troubleshooting
 
 1. **Authentication Errors**
-
-  * Verify your Azure tokens are valid and not expired.
-  * Check that all required environment variables are set.
-  * Ensure your Azure services are properly configured.
+   * Verify your Azure tokens are valid and not expired.
+   * Check that all required environment variables are set.
+   * Ensure your Azure services are properly configured.
 
 1. **Index Creation Issues**
-
-  * Verify documents are properly uploaded before creating indices.
-  * Check that the Custom Translator API endpoint is accessible.
-  * Ensure your subscription is active.
-
+   * Verify documents are properly uploaded before creating indices.
+   * Check that the Custom Translator API endpoint is accessible.
+   * Ensure your subscription is active.
 
 
-## Next Steps
+
+## Next steps
 
 * [Learn about custom translator models](/azure/ai-services/translator/custom-translator/overview)
 * [Learn about the text translation API](/azure/ai-services/translator/text-translation/preview/overview)
