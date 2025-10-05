@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 09/30/2025
+ms.date: 10/04/2025
 ms.topic: reference
 ---
 
@@ -18,11 +18,14 @@ ms.topic: reference
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Adaptive custom translation (adaptCT) in Azure is a capability of the Translator Text API designed for dynamic, real-time personalization of neural machine translation (NMT). Unlike traditional custom models—which require substantial training data and a separate deployment process—this feature enables the system to adjust to your preferred terminology and writing style using only a handful of examples. This adaptive technology, also known as few-shot learning, is accessible via Azure AI Foundry.
+Adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Azure AI Foundry—using a small set of reference sentence pairs.
+
+AdaptCT APIs for dynamic domain adaptations allow you to upload between 5 and 30,000 prealigned bilingual segments. With this capability, you can quickly build a custom language pair dataset index that's ready in minutes. This index can then be used with [Azure AI Translator 2025-05-01-preview APIs](https://learn.microsoft.com/azure/ai-services/translator/text-translation/preview/overview). Unlike traditional custom models that require large training datasets and separate deployment, AdaptCT uses few-shot learning to dynamically select relevant sentence pairs from the index at runtime. This capability enables on-the-fly adaptation of the LLM's output to match domain-specific terminology, context, and style. `Available via Azure AI Foundry.`
 
 Key Differences
-*    **Custom translator**: You provide your data to build a new, tailored translation model, which is then deployed for use.
-*    **Adaptive custom translation**: Instead of constructing a new model, it uses an existing base model and incrementally improves it in real time by learning from user corrections and added data.
+*    **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
+*    **Adaptive custom translation**: No fine-tuning or deployment required; updates by rebuilding the dataset index, ready within minutes. ​
+
 
 > [!IMPORTANT]
 > - The Adaptive custom translation API (v1.0 preview) enables adaptCT dataset indexes lifecycle management capabilities.
@@ -34,14 +37,12 @@ Key Differences
 
 | Feature | Adaptive custom translation | Custom translator |
 | --- | --- | --- |
-| **Model Creation** | Enables dynamic adaptation of an existing Neural Machine Translation (NMT) model using a compact dataset. The process is streamlined, as it doesn't require offline training or manual deployment steps. | Empowers the creation of a dedicated NMT model through comprehensive, end-to-end training. Deployment to production environments ensures that the model is tailored for operational use. |
+| **System Creation** | Enables dynamic translation adaptation and optimization of an existing LLM model using a compact dataset index. The process is streamlined, as it doesn't require offline training or manual deployment steps. | Empowers the creation of a dedicated neural machine translation (NMT) model through comprehensive, end-to-end training. Deployment to production environments ensures that the model is tailored for operational use. |
 | **Data Requirements** | Facilitates domain-specific translation improvements with a minimal dataset, such as five parallel, prealigned sentence pairs, or a small indexed sample. This approach efficiently grounds translation outputs. | Uses a large dataset, typically at least 10,000 parallel sentence pairs, to build a highly accurate NMT model. This extensive data supports robust supervised learning and high-fidelity translations. |
 | **Speed** | Quickly incorporates and applies dataset updates within minutes, allowing for immediate adjustments in translation behavior and output. | Completes model training over a variable period—potentially up to 48 hours—depending on the dataset size and computational capacity. Updates require retraining and redeployment to reflect changes. |
 | **Maintenance** | Simplifies operational management by focusing on dataset index updates and integrity checks, removing the need for ongoing model maintenance. | Supports sustained translation quality with periodic maintenance, including retraining and redeployment, to keep the model current and accurate. |
+| **Use Case** | Best for rapidly evolving or low-volume content (for example, support tickets) where quick updates to terminology or phrasing are needed without retraining a model. | Ideal for high-volume, consistent translation of domain-specific content (for example, legal contracts) where strict terminology and style adherence are critical across all documents. |
 
-* Choose **Azure AI custom translator** to create a custom neural machine translation model trained on your domain-specific documents. This option is ideal when you require specialized terminology, unique styles, and a fully tailored, high-quality solution.
-
-* Choose **Azure adaptive custom translation** when you need continuous learning and real-time adaptation. It's best for workflows with user interactions and corrections, such as chatbots or help desks, where feedback improves translation quality dynamically.
 
 
 ## Base URL
@@ -54,11 +55,11 @@ Here's the base URL for all adaptive custom translation API requests:
 
 ## Authentication
 
-Each request to an Azure AI service must include an authentication header. This header passes along a resource key or authentication token, which is used to validate your subscription for a service or group of services. You can choose one of the following methods for authentication:
+Each request to an adaptCT API must include an authentication header. This header passes along an Azure AI Foundry resource secret key and authentication token, which is used to validate your subscription for a service or group of services. 
 
-* Authenticate with a [single-service regional](../../../text-translation/reference/authentication.md#authenticating-with-a-regional-resource), [single-service-global](../../../text-translation/reference/authentication.md#authenticating-with-a-global-resource), or [multi-service](../../../text-translation/reference/authentication.md#authenticating-with-a-multi-service-resource) resource key.
+* Authenticate with a [secret key](../../../text-translation/reference/authentication.md#secret-key).
 * Authenticate with a [bearer token](../../../text-translation/reference/authentication.md#authenticating-with-an-access-token).
-* Authenticate with [Microsoft Entra ID](../../../how-to/microsoft-entra-id-auth.md) is a cloud-based identity solution designed to manage user access and permissions for Microsoft services, resources, and applications. Microsoft Entra ID enables you to authenticate requests to your Azure AI resources without the need for passwords or keys.
+
 
 Form more information about Azure resources, *see* [Azure resources for Azure AI translation](../../../how-to/create-translator-resource.md)
 
@@ -523,17 +524,11 @@ The API returns standard HTTP status codes. Common error responses:
   * Check that all required environment variables are set.
   * Ensure your Azure services are properly configured.
 
-1. **Translation Failures**
-
-  * Verify TRANSLATION_KEY and TRANSLATOR_URL are correct.
-  * Check that your Azure Cognitive Services subscription is active.
-  * Ensure the target language is supported.
-
 1. **Index Creation Issues**
 
   * Verify documents are properly uploaded before creating indices.
   * Check that the Custom Translator API endpoint is accessible.
-  * Ensure your subscription has sufficient quota.
+  * Ensure your subscription is active.
 
 
 
