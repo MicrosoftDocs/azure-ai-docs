@@ -520,7 +520,7 @@ items:
     - name: Concepts
       items:
       - name: Recognized entity types
-        href: personally-identifiable-information/concepts/entity-categories-new.md
+        href: personally-identifiable-information/concepts/entity-categories.md
       - name: Recognized entities list
         href: personally-identifiable-information/concepts/entity-categories-list.md
       - name: Recognized entity categories for conversation
