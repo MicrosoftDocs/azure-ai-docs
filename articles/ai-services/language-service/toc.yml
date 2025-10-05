@@ -522,7 +522,7 @@ items:
       - name: Recognized entity types
         href: personally-identifiable-information/concepts/entity-categories-new.md
       - name: Recognized entities list
-        href: personally-identifiable-information/concepts/list-entity-categories.md
+        href: personally-identifiable-information/concepts/entity-categories-list.md
       - name: Recognized entity categories for conversation
         href: personally-identifiable-information/concepts/conversations-entity-categories.md
   - name: Custom question answering
