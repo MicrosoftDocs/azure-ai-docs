@@ -13,9 +13,9 @@ ai-usage: ai-assisted
 ---
 
 ::: moniker range="foundry-classic"
-Sign in to the [Azure AI Foundry (classic) portal](https://ai.azure.com/?cid=learnDocs).
+[!INCLUDE [classic-sign-in](classic-sign-in.md)]
 ::: moniker-end
 
 ::: moniker range="foundry"
-Sign in to the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
+[!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
 ::: moniker-end

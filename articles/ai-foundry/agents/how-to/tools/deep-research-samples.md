@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Find code samples and instructions for using deep research in the Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/10/2025
 author: aahill

@@ -17,7 +17,7 @@ Use this fast path when you don't have any projects yet.
 In the portal, you can explore a rich catalog of cutting-edge models from Microsoft, OpenAI, DeepSeek, Hugging Face, Meta, and more. For this tutorial, search and then select the **gpt-4o** model.
 
 ::: moniker range="foundry-classic"
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1.  [!INCLUDE [version-sign-in](version-sign-in.md)]
 1.  From the overview page or **[Model catalog](https://ai.azure.com/explore/models)**, select **gpt-4o** (or **gpt-4o-mini**).
 
     :::image type="content" source="../media/quickstarts/start-building.png" alt-text="Screenshot shows how to start with a model in Azure AI Foundry portal.":::
@@ -33,7 +33,7 @@ If you're building an agent, you can instead start with **Create an agent**. The
 
 ::: moniker range="foundry"
 
-1. Sign in to the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
+1. [!INCLUDE [version-sign-in](version-sign-in.md)]
 1. Create a new project.
 1. Select **Build** on the homepage, then **Blank agent**.
 1. Give your agent a name or keep the default name.

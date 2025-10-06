@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to create helpful AI Assistants with tools like Code Interpreter.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: references_regions
 ms.topic: how-to
 ms.date: 08/15/2025

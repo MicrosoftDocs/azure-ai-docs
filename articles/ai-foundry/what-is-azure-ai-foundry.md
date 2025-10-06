@@ -27,11 +27,15 @@ keywords:
 [!INCLUDE [version-banner](includes/version-banner.md)]
 
 ::: moniker range="foundry-classic"
-[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+
+[!INCLUDE [classic-link](includes/classic-link.md)] is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+
 ::: moniker-end
 
 ::: moniker range="foundry"
-[Azure AI Foundry](https://aka.ms/nextgen-canary) is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+
+[!INCLUDE [foundry-link](default/includes/foundry-link.md)] is a unified Azure platform-as-a-service offering for enterprise AI operations, model builders, and application development. This foundation combines production-grade infrastructure with friendly interfaces, enabling developers to focus on building applications rather than managing infrastructure.
+
 ::: moniker-end
 
 Azure AI Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.

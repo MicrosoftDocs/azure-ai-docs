@@ -2,12 +2,12 @@
 title: Regions - Speech service
 titleSuffix: Azure AI services
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
-author: PatrickFarley
+author: goergenj
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 7/1/2025
-ms.author: pafarley
+ms.date: 9/29/2025
+ms.author: jagoerge
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---
@@ -100,7 +100,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus2            | ✅ | ✅ | ✅ |
 | westus3            | ✅ | ✅ |  |
 
-<sup>1</sup> The region has dedicated hardware for custom speech training. If you plan to train a custom model with audio data, you must use one of the regions with dedicated hardware. Then you can [copy the trained model](how-to-custom-speech-train-model.md#copy-a-model) to another region.
+<sup>1</sup> The region uses dedicated hardware for custom speech training. If you plan to train a custom model with audio data, you must use one of the regions with dedicated hardware. Then you can [copy the trained model](how-to-custom-speech-train-model.md#copy-a-model) to another region.
 
 # [Text to speech](#tab/tts)
 
@@ -174,17 +174,23 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Voice live](#tab/voice-live)
 
-| **Region** | **gpt-4o-realtime-preview** | **gpt-4o-mini-realtime-preview** | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **phi4-mm-realtime** | **phi4-mini** | 
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| centralindia       | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | - | Global standard | Global standard | - | - |
-| eastus2       | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional |
-| southeastasia       | - | - | - | - | - | Global standard | Global standard | - | - |
-| swedencentral       | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional |
-| westus2       | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Regional | Regional |
+| **Region** | **gpt-realtime** | **gpt-4o-mini-realtime-preview** (Preview) | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5** (Preview) | **gpt-5-mini** (Preview) | **gpt-5-nano** (Preview) | **gpt-5-chat** (Preview) | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| centralindia       | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
+| eastus2       | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional |
+| southeastasia       | - | - | - | - | Global standard | Global standard | - | - | - | - | Regional | Regional |
+| swedencentral       | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional |
+| westus2<sup>3</sup> | Cross-region<sup>2</sup> | Cross-region<sup>2</sup> | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | Regional | Regional |
+|australiaeast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
+|japaneast| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | Regional | Regional |
+|eastus| - | - | Data zone standard | Data zone standard | Data zone standard | Data zone standard | - | - | - | - | - | - |
+|uksouth| - | - | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
 
-<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The voice live API uses Sweden Central as needed for generative AI load balancing.  
+<sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure AI Speech features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
 
-<sup>2</sup> The Azure AI Foundry resource must be in West US 2. Azure AI Speech features remain in West US 2. The voice live API uses East US 2 as needed for generative AI load balancing.
+<sup>2</sup> The resource must be in West US 2. Azure AI Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
+
+<sup>3</sup> Currently West US 2 only supports Speech Service resources (not AI Foundry resources). Use one of the other regions to use an Azure AI Foundry resource and best integration with Azure AI Foundry Agent Service and bring-your-own-model (BYOM) support.
 
 # [Intent recognition](#tab/intent-recognition)
 
@@ -262,7 +268,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Scenarios](#tab/scenarios)
 
-| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** | 
+| **Region** | **Pronunciation assessment** | **Speaker recognition** | **Voice assistants** |
 |-----|-----|-----|
 | australiaeast      | ✅ | ✅ |  |
 | brazilsouth        | ✅ |  |  |

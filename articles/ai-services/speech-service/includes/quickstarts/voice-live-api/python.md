@@ -15,7 +15,7 @@ In this article, you learn how to use Azure AI Speech voice live with [Azure AI 
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - <a href="https://www.python.org/" target="_blank">Python 3.10 or later version</a>. If you don't have a suitable version of Python installed, you can follow the instructions in the [VS Code Python Tutorial](https://code.visualstudio.com/docs/python/python-tutorial#_install-a-python-interpreter) for the easiest way of installing Python on your operating system.
-- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see [Region support](/azure/ai-services/speech-service/regions).
 
 > [!TIP]
 > To use voice live, you don't need to deploy an audio model with your Azure AI Foundry resource. Voice live is fully managed, and the model is automatically deployed for you. For more information about models availability, see the [voice live overview documentation](../../../voice-live.md).
@@ -430,11 +430,6 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                     endpoint=self.endpoint,
                     credential=self.credential,
                     model=self.model,
-                    connection_options={
-                        "max_msg_size": 10 * 1024 * 1024,
-                        "heartbeat": 20,
-                        "timeout": 20,
-                    },
                 ) as connection:
                     conn = connection
                     self.connection = conn
@@ -586,30 +581,30 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
         parser.add_argument(
             "--api-key",
-            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICE_LIVE_API_KEY environment variable.",
+            help="Azure VoiceLive API key. If not provided, will use AZURE_VOICELIVE_API_KEY environment variable.",
             type=str,
-            default=os.environ.get("AZURE_VOICE_LIVE_API_KEY"),
+            default=os.environ.get("AZURE_VOICELIVE_API_KEY"),
         )
     
         parser.add_argument(
             "--endpoint",
             help="Azure VoiceLive endpoint",
             type=str,
-            default=os.environ.get("AZURE_VOICE_LIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
+            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
         )
     
         parser.add_argument(
             "--model",
             help="VoiceLive model to use",
             type=str,
-            default=os.environ.get("VOICE_LIVE_MODEL", "gpt-4o-realtime-preview"),
+            default=os.environ.get("AZURE_VOICELIVE_MODEL", "gpt-realtime"),
         )
     
         parser.add_argument(
             "--voice",
             help="Voice to use for the assistant",
             type=str,
-            default=os.environ.get("VOICE_LIVE_VOICE", "en-US-AvaNeural"),
+            default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
             help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
@@ -618,7 +613,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             help="System instructions for the AI assistant",
             type=str,
             default=os.environ.get(
-                "VOICE_LIVE_INSTRUCTIONS",
+                "AZURE_VOICELIVE_INSTRUCTIONS",
                 "You are a helpful AI assistant. Respond naturally and conversationally. "
                 "Keep your responses concise but engaging.",
             ),
@@ -644,7 +639,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         # Validate credentials
         if not args.api_key and not args.use_token_credential:
             print("❌ Error: No authentication provided")
-            print("Please provide an API key using --api-key or set AZURE_VOICE_LIVE_API_KEY environment variable,")
+            print("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,")
             print("or use --use-token-credential for Azure authentication.")
             sys.exit(1)
     
@@ -761,7 +756,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 
 The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
 
-```text
+```console
 Session created:  {"type": "session.update", "session": {"instructions": "You are a helpful AI assistant responding in natural, engaging language.","turn_detection": {"type": "azure_semantic_vad", "threshold": 0.3, "prefix_padding_ms": 200, "silence_duration_ms": 200, "remove_filler_words": false, "end_of_utterance_detection": {"model": "semantic_detection_v1", "threshold": 0.1, "timeout": 4}}, "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"}, "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}, "voice": {"name": "en-US-Ava:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8}}, "event_id": ""}
 Starting the chat ...
 Received event: {'session.created'}

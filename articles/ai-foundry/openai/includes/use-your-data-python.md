@@ -2,7 +2,8 @@
 manager: nitinme
 author: mrbullwinkle #travisw
 ms.author: mbullwin #travisw
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 01/10/2025
 ---

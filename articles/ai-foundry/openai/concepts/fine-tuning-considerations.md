@@ -2,9 +2,10 @@
 title: Azure OpenAI in Azure AI Foundry Models fine-tuning considerations
 description: Learn more about what you should take into consideration before fine-tuning with Azure OpenAI 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 07/02/2025
+ms.date: 09/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

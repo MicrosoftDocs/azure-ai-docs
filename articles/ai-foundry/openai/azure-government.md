@@ -5,7 +5,8 @@ description: Learn how to use Azure OpenAI in the Azure Government cloud.
 author: challenp
 ms.author: chaparker
 ms.date: 6/25/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - references_regions

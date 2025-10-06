@@ -1,0 +1,13 @@
+items:
+    - name: Code of conduct
+      href: /legal/ai-code-of-conduct
+    - name: Azure updates
+      href: https://azure.microsoft.com/updates/?filters=%5B%22Azure+AI+Foundry%22%5D#
+    - name: Azure AI Foundry pricing
+      href: https://azure.microsoft.com/pricing/details/ai-foundry/
+    - name: Compliance
+      href: https://aka.ms/AzureCompliance
+    - name: Service Level Agreement (SLA)
+      href: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
+    - name: Azure Government
+      href: /azure/azure-government/compare-azure-government-global-azure
