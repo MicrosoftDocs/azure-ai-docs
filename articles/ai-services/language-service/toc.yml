@@ -519,9 +519,9 @@ items:
             href: ../cognitive-services-container-support.md
     - name: Concepts
       items:
-      - name: Recognized entity types
+      - name: Recognized entity types 🆕
         href: personally-identifiable-information/concepts/entity-categories.md
-      - name: Recognized entities list
+      - name: Recognized entities list 🆕
         href: personally-identifiable-information/concepts/entity-categories-list.md
       - name: Recognized entity categories for conversation
         href: personally-identifiable-information/concepts/conversations-entity-categories.md
