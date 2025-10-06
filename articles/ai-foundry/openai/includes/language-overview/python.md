@@ -35,7 +35,7 @@ pip install openai --upgrade
 Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry](https://ai.azure.com):
 
 - Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**
-- Sign in to [AI Foundry portal](https://ai.azure,com) > select your resource
+- Sign in to [AI Foundry portal](https://ai.azure.com) > select your resource
 
 # [Microsoft Entra ID](#tab/python-entra)
 
