@@ -14,7 +14,9 @@ The Voice Live API supports function calling in voice conversations. This allows
 
 #### [Python](#tab/python)
 
-Below is an example of async function calling with the Voice Live API - Python SDK. For more information see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/async_function_calling_sample.py). 
+Below is an example of async function calling with the Voice Live API - Python SDK. To run this code, start by implementing the setup steps in the [Quickstart](/azure/ai-services/speech-service/voice-live-quickstart?tabs=linux%2Ckeyless&pivots=programming-language-python). 
+
+For more information see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/ai/azure-ai-voicelive/samples/async_function_calling_sample.py). 
 
 
 ```python
@@ -660,8 +662,9 @@ if __name__ == "__main__":
 
 #### [C#](#tab/csharp)
 
+This code creates a sample customer service bot with function calling. To run it, implement the setup steps in the [Quickstart](/azure/ai-services/speech-service/voice-live-quickstart?tabs=linux%2Ckeyless&pivots=programming-language-csharp). 
 
-This code creates a sample customer service bot with function calling. For more details, see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/CustomerServiceBot).
+For more details, see the sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/CustomerServiceBot).
 
 ```csharp
 // Copyright (c) Microsoft Corporation. All rights reserved.
