@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sehan
-ms.date: 09/25/2024
+ms.date: 10/06/2025
 ms.topic: troubleshooting
 ms.custom:
   - devplatv2
