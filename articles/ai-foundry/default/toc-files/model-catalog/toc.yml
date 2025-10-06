@@ -1,6 +1,4 @@
 items:
-  - name: Explore Foundry Models
-    href: ../../../concepts/foundry-models-overview.md
   - name: Foundry Models sold directly by Azure
     href: ../../../foundry-models/concepts/models-sold-directly-by-azure.md
   - name: Foundry Models from partners and community
