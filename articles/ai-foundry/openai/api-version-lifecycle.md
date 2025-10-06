@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 10/01/2025
+ms.date: 10/06/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -465,6 +465,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
   }'
 ```
 
+---
 
 ## v1 API support
 
