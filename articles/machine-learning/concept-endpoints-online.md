@@ -10,7 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: sehan
 ms.custom: devplatv2, FY25Q1-Linter
-ms.date: 09/23/2024
+ms.date: 10/06/2025
 
 #Customer intent: As an ML pro, I want to understand what an online endpoint is and why I need it.
 ---
@@ -48,12 +48,12 @@ Managed online endpoints are the recommended way to use online endpoints in Azur
 |Attributes  |Managed online endpoints (v2)  |Container Instances or AKS (v1)  |
 |---------|---------|---------|
 |Network security/isolation |Easy inbound/outbound control with quick toggle |Virtual network not supported or requires complex manual configuration |
-|Managed service |• Fully managed compute provisioning/scaling<br>• Network configuration for data exfiltration prevention<br>• Host OS upgrade, controlled rollout of in-place updates |• Scaling is limited<br>• User must manage network configuration or upgrade |
+|Managed service |* Fully managed compute provisioning/scaling<br>* Network configuration for data exfiltration prevention<br>* Host OS upgrade, controlled rollout of in-place updates |* Scaling is limited<br>* User must manage network configuration or upgrade |
 |Endpoint/deployment concept |Distinction between endpoint and deployment enables complex scenarios such as safe rollout of models |No concept of endpoint |
-|Diagnostics and Monitoring |• Local endpoint debugging possible with Docker and Visual Studio Code<br>• Advanced metrics and logs analysis with chart/query to compare between deployments<br>• Cost breakdown to deployment level |No easy local debugging |
-|Scalability |Elastic, and automatic scaling (not bound by the default cluster size) |• Container Instances isn't scalable <br>• AKS v1 supports in-cluster scale only and requires scalability configuration |
+|Diagnostics and Monitoring |* Local endpoint debugging possible with Docker and Visual Studio Code<br>* Advanced metrics and logs analysis with chart/query to compare between deployments<br>* Cost breakdown to deployment level |No easy local debugging |
+|Scalability |Elastic, and automatic scaling (not bound by the default cluster size) |* Container Instances isn't scalable <br>* AKS v1 supports in-cluster scale only and requires scalability configuration |
 |Enterprise readiness |Private link, customer managed keys, Microsoft Entra ID, quota management, billing integration, Service Level Agreement (SLA) |Not supported |
-|Advanced ML features |• Model data collection<br>• Model monitoring<br>• Champion-challenger model, safe rollout, traffic mirroring<br>• Responsible AI extensibility |Not supported |
+|Advanced ML features |* Model data collection<br>* Model monitoring<br>* Champion-challenger model, safe rollout, traffic mirroring<br>* Responsible AI extensibility |Not supported |
 
 ### Managed online endpoints vs Kubernetes online endpoints
 
