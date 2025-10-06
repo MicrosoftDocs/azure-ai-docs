@@ -179,11 +179,6 @@ The table in this section summarizes the locales supported for custom keyword an
 
 [!INCLUDE [Language support include](includes/language-support/custom-keyword.md)]
 
-# [Intent Recognition](#tab/intent-recognizer-pattern-matcher)
-
-The table in this section summarizes the locales supported for the Intent Recognizer Pattern Matcher.
-
-[!INCLUDE [Language support include](includes/language-support/intent-recognizer-pattern-matcher.md)]
 
 ***
 

@@ -94,9 +94,6 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 [Pronunciation assessment](./how-to-pronunciation-assessment.md) evaluates speech pronunciation and gives speakers feedback on the accuracy and fluency of spoken audio. With pronunciation assessment, language learners can practice, get instant feedback, and improve their pronunciation so that they can speak and present with confidence.
 
-### Intent recognition
-
-[Intent recognition](./intent-recognition.md): Use speech to text with conversational language understanding to derive user intents from transcribed speech and act on voice commands. 
 
 ## Delivery and presence
 
