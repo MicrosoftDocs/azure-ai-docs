@@ -107,6 +107,9 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 ## June 2025
 
+### PII detection content filter
+
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
 
 ### codex-mini & o3-pro models released
 
