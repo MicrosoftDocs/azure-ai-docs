@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 
 # Model versions in Azure AI Foundry Models
 
-[!INCLUDE [version-banner](../../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Azure AI Foundry Models are committed to providing the best generative AI models for customers. As part of this commitment, Azure AI Foundry Models regularly releases new model versions to incorporate the latest features and improvements from key model providers in the industry.
 

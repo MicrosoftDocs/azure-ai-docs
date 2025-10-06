@@ -18,7 +18,7 @@ author: ssalgadodev
 
 # Explore Azure AI Foundry Models
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Azure AI Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
 
