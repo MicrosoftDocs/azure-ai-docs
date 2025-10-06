@@ -130,7 +130,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | China North 2 <sup>2</sup> |  |  |  |  |  |  |
 | China North 3 |  | ✅ | ✅ |  | ✅ | ✅ |
 
-<sup>1</sup> Only China East 2 fully supports AI enrichment. In other 21Vianet regions, you can use skillsets with the [Azure OpenAI embedding skill](cognitive-search-skill-azure-openai-embedding.md) for integrated vectorization, which depends on the availability of Azure OpenAI and Azure AI Search in your region. Otherwise, AI enrichment isn't supported.
+<sup>1</sup> Only China East 2 fully supports AI enrichment. In other 21Vianet regions, you can use skillsets with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) for integrated vectorization, which depends on the availability of Azure OpenAI and Azure AI Search in your region. Otherwise, AI enrichment isn't supported.
 
 <sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
