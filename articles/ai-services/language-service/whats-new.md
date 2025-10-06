@@ -14,6 +14,40 @@ ms.author: lajanuar
 
 Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+---
+title: What's new in Azure AI Language?
+titleSuffix: Azure AI services
+description: Find out about new releases and features for the Azure AI Language.
+author: laujan
+manager: nitinme
+ms.service: azure-ai-language
+ms.topic: whats-new
+ms.date: 09/04/2025
+ms.author: lajanuar
+---
+
+# What's new in Azure AI Language?
+
+Azure AI Language is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+
+## September 2025
+
+**Introducing CQA deploy-to-agent**. Custom Question Answering (CQA) projects can now be [deployed as intelligent agents](question-answering/how-to/deploy-agent.md) directly within the Azure AI Foundry playground through a streamlined deployment experience. 
+  * This feature enables users to transform fine-tuned CQA knowledge bases into production-ready agents with minimal configuration steps. 
+  * The deployment process provides parity with CLU workflows and accelerates the agent development timeline within the unified Foundry environment.
+
+**Custom Named Entity Recognition (NER) capabilities integrated into Language Playground**. Users can now access a testing playground for custom Named Entity Recognition (NER) within Azure AI Foundry. 
+  * This interactive interface allows training, deployment, testing, and fine-tuning for custom models while experimenting with custom NER capabilities in real-time.
+  * The playground accelerates the onboarding process and provides enhanced debugging capabilities for custom NER implementations. For more information, *see* [Quickstart: Custom named entity recognition](custom-named-entity-recognition/quickstart.md).
+
+**New Python SDKs**. The new Python SDKs [**azure-ai-textanalytics 6.0.0b1**](https://pypi.org/project/azure-ai-textanalytics/6.0.0b1/) and [**azure-ai-textanalytics-authoring 1.0.0b1**](https://pypi.org/project/azure-ai-textanalytics-authoring/1.0.0b1/) are now available:
+
+   * **azure-ai-textanalytics 6.0.0b1** offers runtime APIs that enable users to utilize various prebuilt features within Azure AI Language, such as sentiment analysis, named entity recognition (NER), language detection, key phrase extraction, text PII detection, Text Analytics for health, and document summarization.<br><br>Additionally, the SDK can be used to access inference APIs for custom NER and text classification models. This release supports the latest `2025-05-15-preview` API, and previous versions. The `2025-05-15-preview` API introduces several new capabilities:
+
+      * Added support for new entity types in [Named Entity Recognition (NER)](named-entity-recognition/concepts/named-entity-categories.md) and [Text PII detection](personally-identifiable-information/concepts/entity-categories.md): **DateOfBirth**, **BankAccountNumber**, **PassportNumber**, and **DriversLicenseNumber**.
+
+      * Enhanced functionality allows users to define values to be excluded from the results produced by Text PII detection.
+
 ## August 2025
 
 **Release of new Text PII and NER model (2025-08-01-preview)**. This new preview model version introduces broader functionality and expanded capabilities for Text personal information identification (PII) and named entity recognition (NER) services:
