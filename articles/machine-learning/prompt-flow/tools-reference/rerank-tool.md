@@ -10,6 +10,7 @@ ms.date: 08/29/2024
 ms.reviewer: jingyizhu
 ms.author: lagayhar
 author: lgayhardt
+ms.update-cycle: 365-days
 ---
 
 # Rerank tool (preview)

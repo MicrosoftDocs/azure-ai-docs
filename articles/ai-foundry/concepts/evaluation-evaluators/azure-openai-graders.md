@@ -2,6 +2,7 @@
 title: Azure OpenAI Graders for generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about Azure OpenAI Graders for evaluating AI model outputs, including label grading, string checking, text similarity, and custom grading.
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
