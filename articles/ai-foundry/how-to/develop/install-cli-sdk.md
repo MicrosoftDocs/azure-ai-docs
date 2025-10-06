@@ -12,16 +12,17 @@ ms.custom:
   - build-aifnd
   - build-2025
 zone_pivot_groups: foundry-sdk-overview-languages
+monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to install the Azure AI Foundry SDK in my development environment
 ---
 
 # Set up your development environment
 
-Set up your development environment to use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
+Set up your development environment to use the Azure AI Foundry SDK. You also need Azure CLI for authentication so that your code can access your user credentials.
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
 
 ## Install your programming language 

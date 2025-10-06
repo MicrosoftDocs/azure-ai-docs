@@ -1,3 +1,9 @@
 items:
+- name: Plan rollout
+  href: ../../../concepts/planning.md
+- name: Choose a resource
+  href: ../../../concepts/resource-types.md
+- name: Status dashboard
+  href: ../../../azure-ai-foundry-status-dashboard-documentation.md  
 - name: Region support
-  href: https://azure.microsoft.com/global-infrastructure/services/?products=cognitive-services
+  href: /explore/global-infrastructure/products-by-region

@@ -2,6 +2,8 @@
 title: Observability in Generative AI with Azure AI Foundry
 titleSuffix: Azure AI Foundry
 description: Learn how Azure AI Foundry enables safe, high-quality generative AI through systematic evaluation and observability tools.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: mithigpe
@@ -13,7 +15,9 @@ ms.custom:
   - build-2025
 ---
 
-# Observability in generative AI  
+# Observability in generative AI
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]  
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -58,8 +62,8 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 
 | Evaluator | Purpose | Inputs |
 |--|--|--|
-| Retrieval | Measures how effectively the system retrieves relevant information. | Query , context |
-| Document Retrieval | Measures accuracy in retrieval results given ground truth. | Ground truth , retrieved documents,  |
+| Retrieval | Measures how effectively the system retrieves relevant information. | Query, context |
+| Document Retrieval | Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents,  |
 | Groundedness | Measures how consistent the response is with respect to the retrieved context. |  Query (optional), context, response |
 | Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
 | Relevance | Measures how relevant the response is with respect to the query. | Query, response|
@@ -122,30 +126,46 @@ Before building your application, you need to select the right foundation. This 
 
 **Tools available**: [Azure AI Foundry benchmark](model-benchmarks.md) for comparing models on public datasets or your own data, and the Azure AI Evaluation SDK for [testing specific model endpoints](https://github.com/Azure-Samples/azureai-samples/blob/main/scenarios/evaluate/Supported_Evaluation_Targets/Evaluate_Base_Model_Endpoint/Evaluate_Base_Model_Endpoint.ipynb).
 
-### Pre-production evaluation
+### Preproduction evaluation
 
-After you select a base model, the next step is to develop an AI application—such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. Once development is complete, pre-production evaluation begins. Before deploying to a production environment, thorough testing is essential to ensure the model is ready for real-world use.
+After you select a base model, the next step is to develop an AI application—such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. Once development is complete, preproduction evaluation begins. Before deploying to a production environment, thorough testing is essential to ensure the model is ready for real-world use.
 
-Pre-production evaluation involves:
+Preproduction evaluation involves:
 
 - Testing with evaluation datasets: These datasets simulate realistic user interactions to ensure the AI application performs as expected.
 - Identifying edge cases: Finding scenarios where the AI application's response quality might degrade or produce undesirable outputs.
 - Assessing robustness: Ensuring that the model can handle a range of input variations without significant drops in quality or safety.
 - Measuring key metrics: Metrics such as response groundedness, relevance, and safety are evaluated to confirm readiness for production.
 
-:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of pre-production evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
+:::image type="content" source="../media/evaluations/evaluation-models-diagram.png" alt-text="Diagram of preproduction evaluation for models and applications with the six steps." lightbox="../media/evaluations/evaluation-models-diagram.png ":::
 
-The pre-production stage acts as a final quality check, reducing the risk of deploying an AI application that doesn't meet the desired performance or safety standards.
+The preproduction stage acts as a final quality check, reducing the risk of deploying an AI application that doesn't meet the desired performance or safety standards.
 
 Evaluation Tools and Approaches:
 
-- Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Azure AI Foundry portal. Use Azure AI Foundry’s evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
-- Simulators and AI red teaming agent (preview): If you don’t have evaluation data (test data), [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
+::: moniker range="foundry-classic"
+
+- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Azure AI Foundry portal. Use Azure AI Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
+- Simulators and AI red teaming agent (preview): If you don't have evaluation data (test data), [Azure AI Evaluation SDK's simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
     - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks such as or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.
-    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you’d expect from users to test quality of responses. With context-appropriate simulators you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
-    - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft’s open framework for Python Risk Identification Tool or PyRIT. Automated scans using the AI red teaming agent enhances pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
+    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you'd expect from users to test quality of responses. With context-appropriate simulators you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
+    - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT. Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
 Alternatively, you can also use [Azure AI Foundry portal's evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+- Bring your own data: You can evaluate your AI applications in preproduction using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators, and view results via the Azure AI Foundry portal. Use Azure AI Foundry's evaluation wizard or [Azure AI Evaluation SDK's](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md), and [view results via the Azure AI Foundry portal](../how-to/evaluate-results.md).
+- Simulators and AI red teaming agent (preview): If you don't have evaluation data (test data), [Azure AI Evaluation SDK's simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model's response to situation-appropriate or attack-like queries (edge cases).
+    - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks such as or attempt jailbreaks, helping identify limitations and preparing the model for unexpected conditions.
+    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you'd expect from users to test quality of responses. With context-appropriate simulators you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
+    - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks using Microsoft's open framework for Python Risk Identification Tool or PyRIT. Automated scans using the AI red teaming agent enhances preproduction risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. This tool is recommended to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
+
+Alternatively, you can also use [Azure AI Foundry portal's evaluation widget](../how-to/evaluate-generative-ai-app.md) for testing your generative AI applications.
+
+::: moniker-end
 
 Once satisfactory results are achieved, the AI application can be deployed to production.
 
@@ -156,9 +176,19 @@ After deployment, continuous monitoring ensures your AI application maintains qu
 - Performance tracking: Regular measurement of key metrics.
 - Incident response: Swift action when harmful or inappropriate outputs occur.
 
-Effective monitoring helps maintain user trust and allows for rapid issue resolution.  
+Effective monitoring helps maintain user trust and allows for rapid issue resolution.
 
-Azure AI Foundry Observability provides comprehensive monitoring capabilities essential for today's complex and rapidly evolving AI landscape. Seamlessly integrated with Azure Monitor Application Insights, this solution enables continuous monitoring of deployed AI applications to ensure optimal performance, safety, and quality in production environments. The Foundry Observability dashboard delivers real-time insights into critical metrics, allowing teams to quickly identify and address performance issues, safety concerns, or quality degradation. For Agent-based applications, Foundry offers enhanced continuous evaluation capabilities that can be enabled to provide deeper visibility into quality and safety metrics, creating a robust monitoring ecosystem that adapts to the dynamic nature of AI applications while maintaining high standards of performance and reliability.  
+::: moniker range="foundry-classic"
+
+Azure AI Foundry Observability provides comprehensive monitoring capabilities essential for today's complex and rapidly evolving AI landscape. Seamlessly integrated with Azure Monitor Application Insights, this solution enables continuous monitoring of deployed AI applications to ensure optimal performance, safety, and quality in production environments. The Foundry Observability dashboard delivers real-time insights into critical metrics, allowing teams to quickly identify and address performance issues, safety concerns, or quality degradation. For Agent-based applications, Foundry offers enhanced continuous evaluation capabilities that can be enabled to provide deeper visibility into quality and safety metrics, creating a robust monitoring ecosystem that adapts to the dynamic nature of AI applications while maintaining high standards of performance and reliability.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Azure AI Foundry Observability provides comprehensive monitoring capabilities essential for today's complex and rapidly evolving AI landscape. Seamlessly integrated with Azure Monitor Application Insights, this solution enables continuous monitoring of deployed AI applications to ensure optimal performance, safety, and quality in production environments. The Foundry Observability dashboard delivers real-time insights into critical metrics, allowing teams to quickly identify and address performance issues, safety concerns, or quality degradation. For Agent-based applications, Foundry offers enhanced continuous evaluation capabilities that can be enabled to provide deeper visibility into quality and safety metrics, creating a robust monitoring ecosystem that adapts to the dynamic nature of AI applications while maintaining high standards of performance and reliability.
+
+::: moniker-end
 
 By continuously monitoring the AI application's behavior in production, you can maintain high-quality user experiences and swiftly address any issues that surface.
 

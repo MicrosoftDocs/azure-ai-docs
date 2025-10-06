@@ -11,9 +11,14 @@ ms.date: 05/19/2025
 ms.reviewer: changliu2
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer, I want to run evaluations in the cloud using the Azure AI Foundry SDK so I can test my generative AI application on large datasets without managing local compute infrastructure.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Run evaluations in the cloud by using the Azure AI Foundry SDK (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -193,7 +198,17 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
+::: moniker range="foundry-classic"
+
 After you register your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under the **Evaluation** tab in your Azure AI project.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ### Prompt-based custom evaluators
 
@@ -241,7 +256,28 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
+::: moniker range="foundry-classic"
+
 After you log your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under the **Evaluation** tab of your Azure AI project.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
+### Troubleshooting: Job Stuck in Running State
+
+If your evaluation job remains in the **Running** state for an extended period when using Azure AI Foundry Project or Hub, this may be because the Azure OpenAI model you selected does not have enough capacity.
+
+**Resolution**
+
+Cancel the current evaluation job.
+
+Increase the model capacity to handle larger input data.
+
+Re-run the evaluation.
 
 ## Related content
 

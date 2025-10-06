@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 09/30/2025
 ---
 
 # Create a knowledge agent in Azure AI Search
@@ -31,17 +31,17 @@ After you create a knowledge agent, you can update its properties at any time. I
 
 + Familiarity with [agentic retrieval concepts and use cases](search-agentic-retrieval-concept.md).
 
-+ A [supported chat completion model](#supported-models) on Azure OpenAI.
-
 + Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
 
-+ Permissions on Azure AI Search. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
++ A [supported chat completion model](#supported-models) on Azure OpenAI.
 
-+ A [knowledge source](search-knowledge-source-overview.md) that identifies searchable content used by the agent. It can be either a [search index knowledge source](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md)
++ Permission requirements. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
+
++ Content requirements. A [knowledge source](search-knowledge-source-overview.md) that identifies searchable content used by the agent. It can be either a [search index knowledge source](search-knowledge-source-how-to-index.md) or a [blob knowledge source](search-knowledge-source-how-to-blob.md)
 
 + API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support knowledge agents at this time**.
 
-To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. T
+To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
 ## Deploy a model for agentic retrieval
 
@@ -65,12 +65,14 @@ Use Azure OpenAI or an equivalent open source model:
 + `gpt-4.1-nano`
 + `gpt-4.1-mini`
 + `gpt-5`
++ `gpt-5-nano`
++ `gpt-5-mini`
 
 ## Configure access
 
 Azure AI Search needs access to the chat completion model. You can use key-based or role-based authentication (recommended).
 
-### Use role-based authentication
+### [**Use roles**](#tab/rbac)
 
 If you're using role-based authentication, on your Azure OpenAI resource, assign the **Cognitive Services User** role to a search service managed identity.
 
@@ -94,7 +96,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
 > [!IMPORTANT]
 > If you use role-based authentication, be sure to remove all references to the API key in your requests. In a request that specifies both approaches, the API key is used instead of roles.
 
-### Use key-based authentication
+### [**Use keys**](#tab/keys)
 
 You can use API keys if you don't have permission to create role assignments.
 
@@ -112,9 +114,93 @@ You can use API keys if you don't have permission to create role assignments.
       @api-key: {{search-api-key}}
    ```
 
+---
+
 ## Check for existing knowledge agents
 
 The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful to know about existing knowledge agents for reuse or for naming new agents.
+
+### [**Python**](#tab/python-get-agents)
+
+```python
+# List existing knowledge agents on the search service
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+
+try:
+    agents = {agent.name: agent for agent in index_client.list_agents(api_version=search_api_version)}
+    print(f"\nKnowledge agents on search service '{search_endpoint}':")
+    
+    if agents:
+        print(f"Found {len(agents)} knowledge agent(s):")
+        for i, (name, agent) in enumerate(sorted(agents.items()), 1):
+            print(f"{i}. Name: {name}")
+            if agent.knowledge_sources:
+                ks_names = [ks.name for ks in agent.knowledge_sources]
+                print(f"   Knowledge Sources: {', '.join(ks_names)}")
+            print()
+    else:
+        print("No knowledge agents found.")
+        
+except Exception as e:
+    print(f"Error listing knowledge agents: {str(e)}")
+```
+
+You can also return a single agent by name to review its JSON definition.
+
+```python
+# Get knowledge agent definition for earth-knowledge-agent-2
+from azure.search.documents.indexes import SearchIndexClient
+import json
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+
+try:
+    agent_name = "earth-knowledge-agent-2"
+    agent = index_client.get_agent(agent_name, api_version=search_api_version)
+    
+    print(f"Knowledge agent '{agent_name}':")
+    print(f"Name: {agent.name}")
+    
+    if agent.description:
+        print(f"Description: {agent.description}")
+    
+    if agent.models:
+        print(f"\nModels ({len(agent.models)}):")
+        for i, model in enumerate(agent.models, 1):
+            print(f"  {i}. {type(model).__name__}")
+            if hasattr(model, 'azure_open_ai_parameters'):
+                params = model.azure_open_ai_parameters
+                print(f"     Resource: {params.resource_url}")
+                print(f"     Deployment: {params.deployment_name}")
+                print(f"     Model: {params.model_name}")
+    
+    if agent.knowledge_sources:
+        print(f"\nKnowledge Sources ({len(agent.knowledge_sources)}):")
+        for i, ks in enumerate(agent.knowledge_sources, 1):
+            print(f"  {i}. {ks.name} (threshold: {ks.reranker_threshold})")
+    
+    if agent.output_configuration:
+        config = agent.output_configuration
+        print(f"\nOutput: {config.modality} (activity: {config.include_activity})")
+    
+    # Full JSON definition
+    print(f"\nJSON definition:")
+    print(json.dumps(agent.as_dict(), indent=2))
+    
+except Exception as e:
+    print(f"Error: {str(e)}")
+    
+    # Show available agents
+    try:
+        agents = {agent.name: agent for agent in index_client.list_agents(api_version=search_api_version)}
+        print(f"\nAvailable agents: {list(agents.keys())}")
+    except Exception:
+        print("Could not list available agents.")
+```
+
+### [**REST**](#tab/rest-get-agents)
 
 ```http
 # List knowledge agents
@@ -132,6 +218,8 @@ GET {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
    Authorization: Bearer {{accessToken}}
 ```
 
+---
+
 ## Create a knowledge agent
 
 A knowledge agent drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
@@ -139,6 +227,44 @@ A knowledge agent drives the agentic retrieval pipeline. In application code, it
 Its composition consists of connections between *knowledge sources* (searchable content) and chat completion models that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
 
 To create an agent, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+
+Recall that you must have an existing [knowledge source](search-knowledge-source-overview.md) to give to the agent.
+
+### [**Python**](#tab/python-create-agent)
+
+```python
+from azure.search.documents.indexes.models import KnowledgeAgent, KnowledgeAgentAzureOpenAIModel, KnowledgeSourceReference, AzureOpenAIVectorizerParameters, KnowledgeAgentOutputConfiguration, KnowledgeAgentOutputConfigurationModality
+from azure.search.documents.indexes import SearchIndexClient
+
+aoai_params = AzureOpenAIVectorizerParameters(
+    resource_url=aoai_endpoint,
+    deployment_name=aoai_gpt_deployment,
+    model_name=aoai_gpt_model,
+)
+
+output_cfg = KnowledgeAgentOutputConfiguration(
+    modality=KnowledgeAgentOutputConfigurationModality.ANSWER_SYNTHESIS,
+    include_activity=True,
+)
+
+agent = KnowledgeAgent(
+    name=knowledge_agent_name,
+    models=[KnowledgeAgentAzureOpenAIModel(azure_open_ai_parameters=aoai_params)],
+    knowledge_sources=[
+        KnowledgeSourceReference(
+            name=knowledge_source_name,
+            reranker_threshold=2.5,
+        )
+    ],
+    output_configuration=output_cfg,
+)
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.create_or_update_agent(agent, api_version=search_api_version)
+print(f"Knowledge agent '{knowledge_agent_name}' created or updated successfully.")
+```
+
+### [**REST**](#tab/rest-create-agent)
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
@@ -240,13 +366,67 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 + `encryptionKey` is optional. Include an encryption key definition if you're supplementing with [customer-managed keys](search-security-manage-encryption-keys.md).
 
-<!-- --- -->
+---
 
 ## Query the knowledge agent
 
-Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task.
+Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
 
 Replace "where does the ocean look green?" with a query string that's valid for your search index.
+
+### [**Python**](#tab/python-query-agent)
+
+Start with instructions.
+
+```python
+instructions = """
+A Q&A agent that can answer questions about the Earth at night.
+If you don't have the answer, respond with "I don't know".
+"""
+
+messages = [
+    {
+        "role": "system",
+        "content": instructions
+    }
+]
+```
+
+Then send the query.
+
+```python
+from azure.search.documents.agent import KnowledgeAgentRetrievalClient
+from azure.search.documents.agent.models import KnowledgeAgentRetrievalRequest, KnowledgeAgentMessage, KnowledgeAgentMessageTextContent, SearchIndexKnowledgeSourceParams
+
+agent_client = KnowledgeAgentRetrievalClient(endpoint=search_endpoint, agent_name=knowledge_agent_name, credential=credential)
+query_1 = """
+    where does the ocean look green??
+    """
+
+messages.append({
+    "role": "user",
+    "content": query_1
+})
+
+req = KnowledgeAgentRetrievalRequest(
+    messages=[
+        KnowledgeAgentMessage(
+            role=m["role"],
+            content=[KnowledgeAgentMessageTextContent(text=m["content"])]
+        ) for m in messages if m["role"] != "system"
+    ],
+    knowledge_source_params=[
+        SearchIndexKnowledgeSourceParams(
+            knowledge_source_name=knowledge_source_name,
+        )
+    ]
+)
+
+result = agent_client.retrieve(retrieval_request=req, api_version=search_api_version)
+print(f"Retrieved content from '{knowledge_source_name}' successfully.")
+```
+
+### [**REST**](#tab/rest-query-agent)
 
 ```http
 # Send grounding request
@@ -299,54 +479,33 @@ The response to the previous query might look like this:
         }
       ]
     }
-  ],
+  ]
 ```
 
-
-<!-- ```http
-# Send grounding request
-POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
-   Content-Type: application/json
-   Authorization: Bearer {{accessToken}}
-
-{
-    "messages" : [
-            {
-                "role" : "assistant",
-                "content" : [
-                  { "type" : "text", "text" : "You are a helpful assistant for Contoso Human Resources. You have access to a search index containing guidelines about health care coverage for Washington state. If you can't find the answer in the search, say you don't know." }
-                ]
-            },
-            {
-                "role" : "user",
-                "content" : [
-                  { "type" : "text", "text" : "What are my vision benefits?" }
-                ]
-            }
-        ],
-    "targetIndexParams" :  [
-        { 
-            "indexName" : "{{index-name}}",
-            "filterAddOn" : "State eq 'WA'",
-            "IncludeReferenceSourceData": true,
-            "rerankerThreshold" : 2.5
-            "maxDocsForReranker": 250
-        } 
-    ]
-}
-``` -->
-
-For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge agent in Azure AI Search](search-agentic-retrieval-how-to-retrieve.md).
+---
 
 ## Delete an agent
 
 If you no longer need the agent, or if you need to rebuild it on the search service, use this request to delete the current object.
 
+### [**Python**](#tab/python-delete-agent)
+
+```python
+from azure.search.documents.indexes import SearchIndexClient
+
+index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
+index_client.delete_agent(knowledge_agent_name)
+print(f"Knowledge agent '{knowledge_agent_name}' deleted successfully.")
+```
+
+### [**REST**](#tab/rest-delete-agent)
 ```http
 # Delete agent
 DELETE {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
    Authorization: Bearer {{accessToken}}
 ```
+
+---
 
 ## Related content
 

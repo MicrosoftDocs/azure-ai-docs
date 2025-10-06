@@ -97,17 +97,17 @@ By default, the score of a document is calculated based on statistical propertie
 If you prefer to compute the score based on the statistical properties across all shards, you can do so by adding `scoringStatistics=global` as a [query parameter](/rest/api/searchservice/documents/search-post) (or add `"scoringStatistics": "global"` as a body parameter of the [query request](/rest/api/searchservice/documents/search-post)).
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
 {
     "search": "<query string>",
     "scoringStatistics": "global"
 }
 ```
 
-Using `scoringStatistics` will ensure that all shards in the same replica provide the same results. That said, different replicas can be slightly different from one another as they're always getting updated with the latest changes to your index. In some scenarios, you might want your users to get more consistent results during a "query session". In such scenarios, you can provide a `sessionId` as part of your queries. The `sessionId` is a unique string that you create to refer to a unique user session.
+Using `scoringStatistics` will ensure that all shards in the same replica provide the same results. That said, different replicas can be slightly different from one another as they're always getting updated with the latest changes to your index. In some scenarios, you might want your users to get more consistent results during a "query session". In such scenarios, you can provide a `sessionId` as part of your queries. The `sessionId` is a unique string that you create to refer to a unique user session. 
 
 ```http
-POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2024-07-01
+POST https://[service name].search.windows.net/indexes/hotels/docs/search?api-version=2025-09-01
 {
     "search": "<query string>",
     "sessionId": "<string>"

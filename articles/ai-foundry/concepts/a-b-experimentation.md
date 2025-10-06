@@ -10,11 +10,15 @@ ms.custom:
   - ignite-2024
 ms.topic: concept-article
 ms.date: 09/18/2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 
 #CustomerIntent: As an AI application developer, I want to learn about A/B experiments so that I can evaluate and improve my applications.
 ---
 
 # A/B Experiments for AI applications
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!IMPORTANT]
 >Items marked (preview) in this article are currently in public or private preview. This preview is provided without a service-level agreement, and we don't recommend it for production workloads. Certain features might not be supported or might have constrained capabilities. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms/).

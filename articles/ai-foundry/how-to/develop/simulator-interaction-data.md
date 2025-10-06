@@ -12,9 +12,14 @@ ms.date: 08/20/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+# customer intent: As a developer or evaluator, I want to generate synthetic and adversarial datasets so I can assess quality, safety, and robustness of my generative AI application.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Generate synthetic and simulated data for evaluation (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 

@@ -10,9 +10,14 @@ ms.date: 09/02/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+# customer intent: As a developer, I want to run AI Red Teaming Agent scans in the cloud using the Azure AI Foundry SDK so I can perform comprehensive pre-deployment safety analysis at scale.
 ---
 
 # Run AI Red Teaming Agent in the cloud (preview)
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
@@ -66,6 +71,8 @@ model_deployment_name = os.environ["MODEL_DEPLOYMENT_NAME"] # Sample : gpt-4o-mi
 
 ### Option 2: Using Azure OpenAI/AI Services deployments
 
+::: moniker range="foundry-classic"
+
 If you want to use deployments from your Azure OpenAI or AI Services accounts, you first need to connect these resources to your Foundry project through connections.
 
 1. **Create a connection**: Follow the instructions in [Configure project connections](../../foundry-models/how-to/configure-project-connection.md?pivots=ai-foundry-portal#add-a-connection) to connect your Azure OpenAI or AI Services resource to your Foundry project.
@@ -78,6 +85,14 @@ If you want to use deployments from your Azure OpenAI or AI Services accounts, y
 # Format: "connectionName/deploymentName"
 model_deployment_name = "my-openai-connection/gpt-4o-mini"
 ```
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ## Create an AI red teaming run
 
@@ -172,7 +187,17 @@ curl --request GET \  --header 'authorization: Bearer {{ai_token}}'  --url https
 
 ---
 
+::: moniker range="foundry-classic"
+
 [!INCLUDE [view-ai-red-teaming-results](../../includes/view-ai-red-teaming-results.md)]
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ## Related content
 
