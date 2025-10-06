@@ -19,7 +19,7 @@ zone_pivot_groups: programming-languages-portal-cli-ps
 
 # Quickstart: Set up your first AI Foundry resource
 
-Learn how to create and manage an Azure AI Foundry resource. It is the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
+Learn how to create and manage an Azure AI Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
 
 An Azure resource is required to use and manage services in Azure. It defines the scope for configuring access, security such as networking, billing, and monitoring. 
 
@@ -33,9 +33,9 @@ Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See cla
 
 An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects acts as folders to group related work.
 
-:::image type="content" source="../foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal.":::
+:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram explaining concepts of an Azure AI Foundry setup.":::
 
-To create your first resource, with basic Azure settings, follow the below steps using either Azure Portal, Azure CLI or Azure Powershell.
+To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or Powershell.
 
 ::: zone pivot="azportal"
 
@@ -55,13 +55,13 @@ To create your first resource, with basic Azure settings, follow the below steps
 
 ::: zone-end
 
-# Access your resource
+## Access your resource
 
-Now you've created your first resource, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure Portal for administrative management](https://portal.azure.com).
+With your first resource created, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure Portal for administrative management](https://portal.azure.com).
 
 ## Grant or obtain developer permissions
 
-[Azure Role Based Access Control](/azure/role-based-access-control/resource-provider-operations.md) (RBAC) differentiates permissions between management and development actions. To build with Foundry, your user account must be assigned developer permissions ("data actions"). You can either use one of the built-in RBAC roles, or use a custom RBAC role.
+[Azure Role Based Access Control](/azure/role-based-access-control/resource-provider-operations) (RBAC) differentiates permissions between management and development actions. To build with Foundry, your user account must be assigned developer permissions ("data actions"). You can either use one of the built-in RBAC roles, or use a custom RBAC role.
 
 Built-in Azure RBAC developer roles for Foundry include:
 
@@ -73,11 +73,11 @@ Built-in Azure RBAC developer roles for Foundry include:
 Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure Portal]() or [AI Foundry Portal via management center](). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 > [!IMPORTANT]
-> Azure Owner and Contributor roles do only include only management permissions, and not development permissions. Development permissions are required to build with all capabilites in Foundry.
+> Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.
 
 ## Start building in your first project
 
-With permissions set up, you are now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can create multiple under the same resource.
+With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can create multiple under the same resource.
 
 Explore some of the services that come bundled with your resource:
 
@@ -108,15 +108,15 @@ To create a multi-service resource for Azure AI Search skills follow these instr
     |Project details| Description   |
     |--|--|
     | **Subscription** | Select one of your available Azure subscriptions. |
-    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
+    | **Resource group** | The Azure resource group that contains your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
     | **Region** | The location of your Azure AI services multi-service account instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
     | **Name** | A descriptive name for your Azure AI services multi-service account resource. For example, *MyCognitiveServicesResource*. |
     | **Pricing tier** | The cost of your Azure AI services multi-service account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
 
-1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
+1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
 
 > [!TIP]
-> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
+> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell), or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you aren't the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
 
 ## Next steps
 
