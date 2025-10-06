@@ -3,7 +3,8 @@ title: 'How to use Azure OpenAI in Azure AI Foundry Models stored completions & 
 titleSuffix: Azure OpenAI
 description: Learn how to use stored completions & distillation with Azure OpenAI
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom: references_regions
 ms.date: 09/15/2025

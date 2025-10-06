@@ -5,7 +5,8 @@ author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/16/2025
 ms.topic: conceptual
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Protected material detection filter

@@ -3,7 +3,8 @@ title: Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 09/08/2025
 author: mrbullwinkle    
@@ -443,8 +444,9 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. 
 
-> [!NOTE]
-> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
+> [!IMPORTANT]
+> Attempting to extract raw reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
 
 # [Python](#tab/py)
 
@@ -569,6 +571,9 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
   "store": true
 }
 ```
+
+> [!NOTE]
+> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
 
 ## Python lark
 

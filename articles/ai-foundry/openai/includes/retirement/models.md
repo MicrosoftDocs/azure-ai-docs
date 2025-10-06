@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Model retirement table for Azure OpenAI in Azure AI Foundry Models.
 manager: nitinme
 ms.date: 09/08/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions, build-2025
 ---

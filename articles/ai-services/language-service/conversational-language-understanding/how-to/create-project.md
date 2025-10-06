@@ -29,9 +29,9 @@ A Conversational Language Understanding (CLU) fine-tuning task is a workspace pr
 *  An [Azure AI Foundry resource](../../../multi-service-resource.md). For more information, *see* [Configure an Azure AI Foundry resource](configure-azure-resources.md#option-1-configure-an-azure-ai-foundry-resource). Alternately, you can use an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 * A Foundry project created in the Azure AI Foundry. For more information, *see* [Create an AI Foundry project](../../../../ai-foundry/how-to/create-projects.md).
 
-## Create a CLU fine-tuning task project
+## Fine-tune a CLU model
 
- To create a CLU fine-tuning task project, you first configure your environment and then create a fine-tuning task, which serves as your workspace for customizing your CLU model.
+ To create a CLU fine-tuning model, you first configure your environment and then create a fine-tuning project, which serves as your workspace for customizing your CLU model.
 
 ### [Azure AI Foundry](#tab/azure-ai-foundry)
 
@@ -160,7 +160,7 @@ To delete the hub along with all its projects:
    :::image type="content" source="../media/create-project/hub-details.png" alt-text="Screenshot of the hub details list in the Azure AI Foundry.":::
 
 1. On the right, select **Delete hub**.
-1. The link opens the Azure portal for you to delete the hub there.
+1. The link opens the Azure portal for you to delete the hub.
 
    :::image type="content" source="../media/create-project/delete-hub.png" alt-text="Screenshot of the Delete hub button in the Azure AI Foundry.":::
 

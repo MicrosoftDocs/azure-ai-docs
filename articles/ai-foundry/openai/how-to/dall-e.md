@@ -6,7 +6,8 @@ author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.date: 09/02/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - build-2025

@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to check statistics and insights from your Azure OpenAI content filtering activity.
 author: PatrickFarley 
 ms.author: pafarley 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 manager: nitinme

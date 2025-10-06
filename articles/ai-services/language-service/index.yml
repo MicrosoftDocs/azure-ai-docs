@@ -12,7 +12,7 @@ metadata:
   manager: nitinme
   ms.service: azure-ai-language
   ms.topic: hub-page
-  ms.date: 03/24/2025
+  ms.date: 09/27/2025
   ms.author: lajanuar
 highlightedContent:
 # itemType: architecture | concept | deploy | download | get-started | how-to-guide | learn | overview | quickstart | reference | tutorial | whats-new
@@ -30,7 +30,7 @@ highlightedContent:
 conceptualContent:
   items:
     - title: Extract information
-      summary: Use Natural Language Understanding (NLU) to extract information from unstructured text. For example, identify key phrases or Personally Identifiable Information (PII), summarize text, recognize and categorize named entities, or customize an entity extraction model on top of your domain set.
+      summary: Use Natural Language Understanding (NLU) to extract information from unstructured text.
       links:
         - itemType: overview
           text: Extract key phrases
