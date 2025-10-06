@@ -139,129 +139,51 @@ Project dependency manifest:
 
 ## Step 2: Build the Modern Workplace Assistant
 
-The `main.py` file demonstrates a complete business scenario combining internal policies with external technical guidance:
+The main file demonstrates a complete business scenario combining internal policies with external technical guidance:
 
-<!-- Code section: imports_and_setup -->
-```python
-import os
-from azure.ai.projects import AIProjectClient
-from azure.identity import DefaultAzureCredential
-from azure.ai.agents.models import SharepointTool, McpTool, ToolResources
-from dotenv import load_dotenv
+### Imports and authentication setup
 
-load_dotenv()
+# [Python](#tab/python)
 
-# Initialize Azure AI Foundry client
-project_client = AIProjectClient(
-    endpoint=os.environ["PROJECT_ENDPOINT"],
-    credential=DefaultAzureCredential(),
-)
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/developer-journey-stage-1-idea-to-prototype/main.py" range="imports_and_setup":::
 
-def create_workplace_assistant():
-    """Create an AI agent with SharePoint and Microsoft Learn integration"""
-    
-    print("🤖 Creating Modern Workplace Assistant...")
-    
-    # Configure SharePoint tool for internal knowledge
-    sharepoint_resource_name = os.environ["SHAREPOINT_RESOURCE_NAME"]
-    sharepoint_site_url = os.getenv("SHAREPOINT_SITE_URL")
-    
-    try:
-        sharepoint_conn = project_client.connections.get(name=sharepoint_resource_name)
-        sharepoint_tool = SharepointTool(connection_id=sharepoint_conn.id)
-        print(f"✅ SharePoint connected: {sharepoint_resource_name}")
-    except Exception as e:
-        print(f"⚠️  SharePoint connection not found: {e}")
-        sharepoint_tool = None
-    
-    # Configure Microsoft Learn MCP tool for technical guidance
-    mcp_tool = McpTool(
-        server_label="microsoft_learn",
-        server_url=os.environ["MCP_SERVER_URL"],
-        allowed_tools=[]
-    )
-    mcp_tool.set_approval_mode("never")  # Enable seamless experience
-    
-    # Create dynamic instructions based on available tools
-    if sharepoint_tool:
-        instructions = """You are a Modern Workplace Assistant for Contoso Corp.
+# [C#](#tab/csharp)
 
-Your capabilities:
-- Search SharePoint for company policies, procedures, and internal documents
-- Access Microsoft Learn for current Azure and Microsoft 365 technical guidance
-- Provide comprehensive answers combining internal policies with implementation guidance
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/developer-journey-stage-1-idea-to-prototype/Program.cs" range="imports_and_setup":::
 
-When responding:
-- For policy questions: Search SharePoint for company documents
-- For technical questions: Use Microsoft Learn for current Azure/M365 guidance  
-- For implementation questions: Combine both sources to show policy requirements AND technical steps
-- Always cite your sources and provide actionable guidance"""
-    else:
-        instructions = """You are a Technical Assistant with access to Microsoft Learn documentation.
+# [Java](#tab/java)
 
-Your capabilities:
-- Access Microsoft Learn for current Azure and Microsoft 365 technical guidance
-- Provide detailed technical implementation steps and best practices
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/developer-journey-stage-1-idea-to-prototype/Main.java" range="imports_and_setup":::
 
-Note: SharePoint integration is not configured. You can only provide technical guidance from Microsoft Learn.
-When users ask about company policies, explain that SharePoint integration needs to be configured."""
+# [TypeScript](#tab/typescript)
 
-    # Create the agent
-    agent = project_client.agents.create_agent(
-        model=os.environ["MODEL_DEPLOYMENT_NAME"],
-        name="Modern Workplace Assistant",
-        instructions=instructions,
-        tools=(sharepoint_tool.definitions if sharepoint_tool else []) + mcp_tool.definitions,
-    )
-    
-    print(f"✅ Agent created: {agent.id}")
-    return agent, mcp_tool
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/developer-journey-stage-1-idea-to-prototype/src/main.ts" range="imports_and_setup":::
 
-def demo_business_scenarios(agent, mcp_tool):
-    """Demonstrate key business scenarios combining internal and external knowledge"""
-    
-    scenarios = [
-        {
-            "title": "📋 Policy Question 1/3",
-            "question": "What is our remote work policy regarding security requirements?",
-            "context": "Should search SharePoint for company policies"
-        },
-        {
-            "title": "🔧 Technical Question 2/3", 
-            "question": "How do I set up Azure Active Directory conditional access?",
-            "context": "Should use Microsoft Learn documentation"
-        },
-        {
-            "title": "🔄 Implementation Question 3/3",
-            "question": "Our security policy requires multi-factor authentication - how do I implement this in Azure AD?",
-            "context": "Should combine internal policy with Azure implementation guidance"
-        }
-    ]
-    
-    print("\n🏢 Modern Workplace Assistant Demo")
-    print("=" * 50)
-    
-    for scenario in scenarios:
-        print(f"\n{scenario['title']}")
-        print(f"❓ {scenario['question']}")
-        print(f"💡 {scenario['context']}")
-        print("-" * 50)
-        
-        response, status = chat_with_assistant(agent.id, mcp_tool, scenario['question'])
-        print(f"🤖 {response[:200]}...")
-        print("-" * 50)
-    
-    print("\n✅ Demo completed! The assistant successfully handled 3 business scenarios.")
+---
 
-if __name__ == "__main__":
-    # Create and demonstrate the Modern Workplace Assistant
-    agent, mcp_tool = create_workplace_assistant()
-    demo_business_scenarios(agent, mcp_tool)
-```
+### Create the workplace assistant
+
+# [Python](#tab/python)
+
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/developer-journey-stage-1-idea-to-prototype/main.py" range="create_workplace_assistant":::
+
+# [C#](#tab/csharp)
+
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/developer-journey-stage-1-idea-to-prototype/Program.cs" range="create_workplace_assistant":::
+
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/developer-journey-stage-1-idea-to-prototype/Main.java" range="create_workplace_assistant":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/developer-journey-stage-1-idea-to-prototype/src/main.ts" range="create_workplace_assistant":::
+
+---
 
 This implementation shows:
 
-- **Robust error handling** for missing connections
+- **Simplified connection handling** - Uses only the connection name, letting Azure AI Foundry handle URL configuration
 - **Dynamic agent instructions** based on available tools  
 - **Business-focused scenarios** combining internal and external knowledge
 - **Clear diagnostic messages** for troubleshooting
@@ -298,85 +220,38 @@ The sample includes realistic Contoso Corp policies that demonstrate:
 ```
 
 These documents reference Azure and Microsoft 365 technologies, creating realistic scenarios where employees need both internal policy information and external implementation guidance.
-    ## Step 4: Business-focused evaluation
 
-The `evaluate.py` script tests realistic business scenarios combining SharePoint policies with Microsoft Learn technical guidance.
+## Step 4: Business-focused evaluation
 
-### Evaluation questions (`questions.jsonl`)
+The `evaluate.py` script tests realistic business scenarios combining SharePoint policies with Microsoft Learn technical guidance. This demonstrates batch evaluation capabilities for validating agent performance across multiple test cases.
 
-```jsonl
-{"question": "What is our remote work policy regarding security requirements?", "source": "sharepoint", "keywords": ["remote", "security", "policy"]}
-{"question": "How do I set up Azure Active Directory conditional access?", "source": "mcp", "keywords": ["conditional access", "azure", "setup"]}
-{"question": "Our policy requires MFA - how do I implement this in Azure AD?", "source": "both", "keywords": ["mfa", "azure", "implement"]}
-{"question": "What are our data governance requirements for Azure resources?", "source": "sharepoint", "keywords": ["data", "governance", "azure"]}
-```
+### Evaluation approach
 
-### Evaluation framework (`evaluate.py`)
+The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources:
 
-<!-- Code section: evaluation_framework -->
-```python
-import json
-import os
-from main import project_client, create_workplace_assistant, chat_with_assistant
+# [Python](#tab/python)
 
-def load_test_questions():
-    """Load business-focused test questions"""
-    with open("questions.jsonl", "r") as f:
-        return [json.loads(line) for line in f]
+:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/developer-journey-stage-1-idea-to-prototype/evaluate.py" range="evaluation_functions":::
 
-def evaluate_response(response, keywords):
-    """Simple keyword-based evaluation"""
-    response_lower = response.lower()
-    matches = sum(1 for keyword in keywords if keyword.lower() in response_lower)
-    return matches >= len(keywords) * 0.5  # Pass if 50%+ keywords found
+# [C#](#tab/csharp)
 
-def run_evaluation():
-    """Run comprehensive business evaluation"""
-    print("🧪 Starting Business Evaluation")
-    print("=" * 40)
-    
-    # Create agent
-    agent, mcp_tool = create_workplace_assistant()
-    questions = load_test_questions()
-    
-    results = []
-    for i, q in enumerate(questions, 1):
-        print(f"\n📝 Question {i}/{len(questions)}")
-        print(f"❓ {q['question']}")
-        print(f"📊 Expected source: {q['source']}")
-        
-        # Get response
-        response, status = chat_with_assistant(agent.id, mcp_tool, q['question'])
-        passed = evaluate_response(response, q['keywords'])
-        
-        result = {
-            "question": q["question"],
-            "source": q["source"], 
-            "keywords": q["keywords"],
-            "response_length": len(response),
-            "status": status,
-            "passed": passed
-        }
-        results.append(result)
-        
-        print(f"✅ Response: {len(response)} chars, Status: {status}")
-        print(f"🎯 Result: {'PASS' if passed else 'FAIL'}")
-    
-    # Summary
-    passed_count = sum(1 for r in results if r["passed"])
-    print(f"\n📊 EVALUATION SUMMARY")
-    print(f"✅ Passed: {passed_count}/{len(results)}")
-    print(f"📈 Success Rate: {passed_count/len(results)*100:.1f}%")
-    
-    # Save results
-    with open("evaluation_results.json", "w") as f:
-        json.dump(results, f, indent=2)
-    
-    return results
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/developer-journey-stage-1-idea-to-prototype/Evaluate.cs" range="evaluation_functions":::
 
-if __name__ == "__main__":
-    run_evaluation()
-```
+# [Java](#tab/java)
+
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/developer-journey-stage-1-idea-to-prototype/Evaluate.java" range="evaluation_functions":::
+
+# [TypeScript](#tab/typescript)
+
+:::code language="typescript" source="~/foundry-samples-main/samples/microsoft/typescript/developer-journey-stage-1-idea-to-prototype/src/evaluate.ts" range="evaluation_functions":::
+
+---
+
+### Test questions format
+
+The `questions.jsonl` file contains business scenarios that test different aspects of the agent:
+
+:::code language="jsonl" source="~/foundry-samples-main/samples/microsoft/python/developer-journey-stage-1-idea-to-prototype/questions.jsonl":::
 
 This evaluation framework tests:
 
@@ -384,53 +259,6 @@ This evaluation framework tests:
 - **MCP integration** for technical guidance questions  
 - **Combined scenarios** requiring both internal and external knowledge
 - **Response quality** using keyword matching and length analysis
-```
-
-## Step 4: Batch evaluation
-
-Create `questions.jsonl`:
-
-```jsonl
-{"question": "What's our remote work policy?", "expected": "policy"}
-{"question": "Get current weather data", "expected": "weather"}
-{"question": "Summarize Q3 performance", "expected": "performance"}
-{"question": "Research market trends", "expected": "research"}
-```
-
-Create `eval.py`:
-
-<!-- Code section: batch_evaluation -->
-```python
-import json
-from agent import project_client, chat_with_agent
-
-def run_evaluation(agent_id):
-    """Run simple batch evaluation locally"""
-    with open("questions.jsonl", "r") as f:
-        questions = [json.loads(line) for line in f]
-    
-    results = []
-    for q in questions:
-        response = chat_with_agent(agent_id, q["question"])
-        contains_expected = q["expected"].lower() in response.lower()
-        results.append({
-            "question": q["question"],
-            "response": response[:100] + "..." if len(response) > 100 else response,
-            "contains_expected": contains_expected
-        })
-    
-    # Print summary
-    passed = sum(1 for r in results if r["contains_expected"])
-    print(f"Evaluation: {passed}/{len(results)} passed")
-    
-    return results
-
-if __name__ == "__main__":
-    import sys
-    agent_id = sys.argv[1] if len(sys.argv) > 1 else input("Agent ID: ")
-    results = run_evaluation(agent_id)
-    print(json.dumps(results, indent=2))
-```
 
 ## Step 5: Run the complete sample
 
@@ -438,17 +266,67 @@ if __name__ == "__main__":
 
 1. **Configure environment**:
 
+# [Python](#tab/python)
+
 ```bash
 cp .env.template .env
 # Edit .env with your Azure AI Foundry project details
 pip install -r requirements.txt
 ```
 
+# [C#](#tab/csharp)
+
+```bash
+cp .env.template .env
+# Edit .env with your Azure AI Foundry project details
+dotnet restore
+```
+
+# [Java](#tab/java)
+
+```bash
+cp .env.template .env
+# Edit .env with your Azure AI Foundry project details
+mvn clean compile
+```
+
+# [TypeScript](#tab/typescript)
+
+```bash
+cp .env.template .env
+# Edit .env with your Azure AI Foundry project details
+npm install
+```
+
+---
+
 2. **Run the Modern Workplace Assistant**:
+
+# [Python](#tab/python)
 
 ```bash
 python main.py
 ```
+
+# [C#](#tab/csharp)
+
+```bash
+dotnet run
+```
+
+# [Java](#tab/java)
+
+```bash
+mvn exec:java -Dexec.mainClass="Main"
+```
+
+# [TypeScript](#tab/typescript)
+
+```bash
+npm run start
+```
+
+---
 
 This demonstrates:
 - SharePoint connection diagnostics  
@@ -458,9 +336,31 @@ This demonstrates:
 
 3. **Run business evaluation**:
 
+# [Python](#tab/python)
+
 ```bash
 python evaluate.py
 ```
+
+# [C#](#tab/csharp)
+
+```bash
+dotnet run --project Evaluate.cs
+```
+
+# [Java](#tab/java)
+
+```bash
+mvn exec:java -Dexec.mainClass="Evaluate"
+```
+
+# [TypeScript](#tab/typescript)
+
+```bash
+npm run evaluate
+```
+
+---
 
 This tests:
 - Policy questions (SharePoint integration)
