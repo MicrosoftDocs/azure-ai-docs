@@ -100,7 +100,7 @@ We encourage you to migrate your code for both CLI and SDK v1 to CLI and SDK v2.
 
 Support for Azure Machine Learning CLI v1 ended on September 30, 2025. Your existing workflows using CLI v1 will continue to operate after the end-of-support date. However, they could be exposed to security risks or breaking changes in the event of architectural changes in the product.
 
-We recommend that you transition to the `ml`, or v2, extension as soon as possible. For more information on the v2 extension, see [Azure Machine Learning CLI extension and Python SDK v2](../concept-v2.md).
+We recommend that you transition to the `ml`, or v2, extension as soon as possible. For more information on the v2 extension, see see [Upgrade to v2](how-to-migrate-from-v1.md).
 
 
 ### SDK v2
