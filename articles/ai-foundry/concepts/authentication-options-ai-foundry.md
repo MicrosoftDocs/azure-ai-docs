@@ -137,7 +137,7 @@ _Diagram source file: contoso-mixed-scenario.mmd (stored with the image for main
 ## Common setup scenarios
 
 ### Scenario: Restrict users to model inference but not agents
-1. Create a custom role that excludes agent dataActions (see [Disable preview features with RBAC](disable-preview-features-with-rbac.md)).
+1. Create a custom role that excludes agent dataActions.
 1. Assign users the custom role and the `Cognitive Services User` role if they need baseline inference.
 1. Attempt an agent action to confirm it's denied.
 
@@ -177,5 +177,4 @@ Some creation workflows can auto assign broad roles, such as granting the resour
 - [Authenticate requests to Azure AI services](/azure/ai-services/authentication)
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
-- [Disable preview features with RBAC](disable-preview-features-with-rbac.md)
 - [Managed identities for Azure resources](/entra/identity/managed-identities-azure-resources/overview)
