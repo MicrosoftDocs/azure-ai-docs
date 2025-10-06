@@ -10,6 +10,7 @@ author: s-polly
 ms.author: scottpolly
 ms.reviewer: sasahami
 ms.date: 08/28/2025
+ms.update-cycle: 365-days
 ---
 
 # Advance your maturity level for Generative Artificial Intelligence Operations (GenAIOps)
