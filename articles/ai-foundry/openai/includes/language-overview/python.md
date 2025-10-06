@@ -228,6 +228,8 @@ For more examples, see the [Responses API](../../how-to/responses.md) documentat
 }
 ```
 
+---
+
 ### responses.create() with MCP server tool
 
 # [Microsoft Entra ID](#tab/python-entra)
