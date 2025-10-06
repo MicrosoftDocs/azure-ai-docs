@@ -12,7 +12,6 @@ ms.custom:
 ms.topic: how-to
 ms.date: 07/14/2025
 ms.reviewer: meerakurup
-ai-usage: ai-assisted
 #customer intent: As an admin, I want to disable shared-key access to my resources to improve security.
 ---
 
