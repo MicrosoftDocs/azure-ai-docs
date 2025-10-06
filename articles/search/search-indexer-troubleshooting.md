@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 05/29/2025
+ms.date: 10/06/2025
 ms.update-cycle: 365-days
 ---
 
@@ -18,6 +18,11 @@ Occasionally, indexers run into problems that don't produce errors or that occur
 
 > [!NOTE]
 > If you have an Azure AI Search error to investigate, see [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md) instead.
+
+## Best practice: indexers are designed to run on a schedule
+> For reliable indexing, configure your indexers to run on a [regular schedule](search-howto-schedule-indexers.md). Scheduled runs automatically pick up any documents missed in previous runs due to transient errors, network interruptions, or temporary service issues. This approach helps maintain data consistency and minimizes the need for manual intervention.  
+>  
+> For [large data sources](search-how-to-large-index.md), the initial enumeration and indexing can take hours or even days. Running your indexer on a schedule allows that progress continues and errors are retried automatically. Avoid relying solely on manual or on-demand indexer runs, as these do not provide the same reliability or transient error recovery.  
 
 <a name="connection-errors"></a>
 
@@ -291,3 +296,4 @@ If you have [sensitivity labels set on documents](/microsoft-365/compliance/sens
 
 * [Troubleshooting common indexer errors and warnings](cognitive-search-common-errors-warnings.md)
 * [Monitor indexer-based indexing](search-monitor-indexers.md)
+* [Index large data sets](search-how-to-large-index.md)

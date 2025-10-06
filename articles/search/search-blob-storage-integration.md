@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 07/25/2025
+ms.date: 10/06/2025
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -143,3 +143,4 @@ A more permanent solution is to gather query inputs and present the response as 
 
 + [Upload, download, and list blobs with the Azure portal (Azure Blob storage)](/azure/storage/blobs/storage-quickstart-blobs-portal)
 + [Set up a blob indexer (Azure AI Search)](search-howto-indexing-azure-blob-storage.md)
++ [Index large data sets](search-how-to-large-index.md)
