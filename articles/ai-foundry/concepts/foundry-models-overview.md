@@ -2,8 +2,6 @@
 title: Explore Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: This article introduces Azure AI Foundry Models and the model catalog in Azure AI Foundry portal.
-monikerRange: 'foundry-classic || foundry'
-ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
@@ -17,8 +15,6 @@ author: ssalgadodev
 ---
 
 # Explore Azure AI Foundry Models
-
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 Azure AI Foundry Models is your one-stop destination for discovering, evaluating, and deploying powerful AI models—whether you're building a custom copilot, building an agent, enhancing an existing application, or exploring new AI capabilities. 
 
@@ -40,7 +36,7 @@ Our catalog is organized into two main categories:
 Understanding the distinction between these categories helps you choose the right models based on your specific requirements and strategic goals. 
 
 > [!NOTE]
-> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Microsoft AI Services complies with the Acceptable Use Policy in Microsoft's Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
+> * For all models, Customers remain responsible for (i) complying with the law in their use of any model or system; (ii) reviewing model descriptions in the model catalog, model cards made available by the model provider, and other relevant documentation; (iii) selecting an appropriate model for their use case, and (iv) implementing appropriate measures (including use of Azure AI Content Safety) to ensure Customer's use of the Microsoft AI Services complies with the Acceptable Use Policy in Microsoft’s Product Terms and the Microsoft Enterprise AI Services Code of Conduct. 
  
 ## Models Sold Directly by Azure 
  
@@ -50,7 +46,7 @@ Characteristics of models sold directly by Azure:
 
 - Support available from Microsoft.
 - High level of integration with Azure services and infrastructure. 
-- Subject to internal review based on Microsoft's Responsible AI standards.
+- Subject to internal review based on Microsoft’s Responsible AI standards.
 - Model documentation and transparency reports provide customer visibility to model risks, mitigations, and limitations. 
 - Enterprise-grade scalability, reliability, and security. 
 
@@ -73,19 +69,9 @@ Models from Partners and Community are deployable as Managed Compute or serverle
 
 ### Requesting a model to be included in the model catalog
 
-::: moniker range="foundry-classic"
-
 You can request that we add a model to the model catalog, right from the model catalog page in the Azure AI Foundry portal. From the search bar of the model catalog page, a search for a model that doesn't exist in the catalog, such as *mymodel*, returns the **Request a model** button. Select this button to open up a form where you can share details about the model you're requesting.
 
 :::image type="content" source="../media/explore/model-request-button-in-catalog.png" alt-text="A screenshot showing where to request inclusion of a model in the model catalog." lightbox="../media/explore/model-request-button-in-catalog.png":::
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 ## Choosing Between direct models and partner & community models 
 
@@ -143,21 +129,9 @@ Network isolation | [Configure managed networks for Azure AI Foundry hubs](../ho
 
 For Azure OpenAI models, see [Azure OpenAI](../openai/concepts/models.md).
 
-::: moniker range="foundry-classic"
-
 To view a list of supported models for serverless API deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Use the **Deployment options** filter to select either **serverless API deployment** or **Managed Compute**. 
 
 :::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-To view a list of supported models for serverless API deployment or Managed Compute, go to the home page of the model catalog in [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs). Use the **Deployment options** filter to select either **serverless API deployment** or **Managed Compute**. 
-
-:::image type="content" source="../media/how-to/model-catalog-overview/catalog-filter.png" alt-text="A screenshot showing how to filter by managed compute models in the catalog." lightbox="../media/how-to/model-catalog-overview/catalog-filter.png":::  
-
-::: moniker-end
 
 
 <!-- docutune:enable -->
@@ -237,17 +211,7 @@ Certain models also support fine-tuning. For these models, you can take advantag
 
 ### RAG with models deployed as serverless API deployments
 
-::: moniker range="foundry-classic"
-
 In Azure AI Foundry portal, you can use vector indexes and retrieval-augmented generation (RAG). You can use models that can be deployed via serverless API deployments to generate embeddings and inferencing based on custom data. These embeddings and inferencing can then generate answers specific to your use case. For more information, see [Build and consume vector indexes in Azure AI Foundry portal](../how-to/index-add.md).
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Insert NextGen content
-
-::: moniker-end
 
 ### Regional availability of offers and models
 
