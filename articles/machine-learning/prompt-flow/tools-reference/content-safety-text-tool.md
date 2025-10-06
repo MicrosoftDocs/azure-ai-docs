@@ -1,3 +1,4 @@
+
 ---
 title: Content Safety (Text) tool in Azure Machine Learning prompt flow
 titleSuffix: Azure Machine Learning
@@ -12,6 +13,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # Content Safety (Text) tool

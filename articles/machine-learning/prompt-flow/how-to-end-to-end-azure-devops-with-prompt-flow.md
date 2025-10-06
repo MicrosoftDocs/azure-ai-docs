@@ -15,6 +15,7 @@ ms.custom:
   - sdk-v2
   - ignite-2023
   - build-2024
+ms.update-cycle: 365-days
 ---
 
 # GenAIOps with prompt flow and Azure DevOps
