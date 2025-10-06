@@ -697,7 +697,7 @@ embedding = client.embeddings.create(
 print(embedding)
 ```
 
-# [Response](#tab/response)
+# [Response](#tab/python-output)
 
 The response has been truncated for brevity.
 
