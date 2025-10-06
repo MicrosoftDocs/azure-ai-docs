@@ -92,7 +92,7 @@ Indexes and knowledge stores are fully independent of each other. While you must
 
 ## Exploring content
 
-After you define and load a [search index](search-what-is-an-index.md) or a [knowledge store](knowledge-store-concept-intro.md), you can explore its data.
+After you define and load a [search index](search-what-is-an-index.md) or [knowledge store](knowledge-store-concept-intro.md), you can explore its data.
 
 ### Query a search index
 
@@ -124,7 +124,7 @@ Start with a subset of data in a [supported data source](search-indexer-overview
 
 1. [Create an index schema](search-how-to-create-search-index.md) that defines a search index.
 
-1. [Create and run the indexer](search-howto-create-indexers.md) to bring all the previous components together. This step retrieves the data, runs the skillset, and loads the index.
+1. [Create and run the indexer](search-howto-create-indexers.md) to bring all of the previous components together. This step retrieves the data, runs the skillset, and loads the index.
 
    An indexer is also where you specify field mappings and output field mappings that set up the data path to a search index.
 
