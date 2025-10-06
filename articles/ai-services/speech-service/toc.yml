@@ -510,9 +510,6 @@ items:
   - name: Retiring features
     displayName: migrate,migration,deprecate,retire,sunset
     items:
-      - name: Speaker recognition
-        href: speaker-recognition-overview.md
-        displayName: migrate,migration,deprecate,retire,sunset
       - name: Intent recognition
         displayName: migrate,migration,deprecate,retire,sunset
         items:
@@ -593,22 +590,6 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md
     - name: Embedded speech
       href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md
-    - name: Speaker Recognition
-      items:
-      - name: Transparency note
-        items:
-        - name: Use cases for Speaker Recognition
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md
-        - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition.md
-      - name: Integration and responsible use
-        items:
-        - name: Limited access
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition.md
-        - name: General guidelines
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition.md
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition.md
 - name: Resources
   items:
     - name: Known issues
