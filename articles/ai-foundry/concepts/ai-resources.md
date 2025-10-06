@@ -8,7 +8,6 @@ ms.reviewer: deeikele
 ms.date: 09/15/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-monikerRange: 'foundry-classic || foundry' # not used in foundry TOC but uses an include that has moniker ranges
 ms.custom:
   - ignite-2023
   - build-2024
