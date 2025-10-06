@@ -67,7 +67,7 @@ Built-in Azure RBAC developer roles for Foundry include:
 
 |Role|Description|
 |---|---|
-|Azure AI project manager|Grants development permissions, and project management permissions. Invite other users to collaborate on project as 'Azure AI user'.|
+|Azure AI project manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Azure AI user'.|
 |Azure AI user|Grants development permissions.|
 
 Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure Portal]() or [AI Foundry Portal via management center](). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
