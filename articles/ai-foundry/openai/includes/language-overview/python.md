@@ -72,6 +72,7 @@ client = OpenAI(
 If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they are automatically used by the client with no further configuration required.
 
 | Environment Variable | Value |
+|----------------|-------------|
 | `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
 | `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
 
@@ -140,7 +141,6 @@ For more examples, see the [Responses API](../../how-to/responses.md) documentat
 # [Environment Variables](#tab/python-env)
 
 ```python
-import os
 from openai import OpenAI
 
 client = OpenAI()
@@ -228,15 +228,26 @@ For more examples, see the [Responses API](../../how-to/responses.md) documentat
 }
 ```
 
+---
+
 ## Chat
 
 ### chat.completions.create()
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
 
 ```python
-# from openai import OpenAI
-# client = OpenAI()
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
 
 completion = client.chat.completions.create(
   model="gpt-4o", # Replace with your model deployment name.
@@ -247,10 +258,52 @@ completion = client.chat.completions.create(
 )
 
 #print(completion.choices[0].message)
-print(completion.model_dump_json(indent=2)
+print(completion.model_dump_json(indent=2))
 ```
 
-# [Response](#tab/response)
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+# [Response](#tab/python-output)
 
 ```json
 {
@@ -333,11 +386,20 @@ print(completion.model_dump_json(indent=2)
 
 ### chat.completions.create() - streaming
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
 
 ```python
-# from openai import OpenAI
-# client = OpenAI()
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
 
 completion = client.chat.completions.create(
   model="gpt-4o", # Replace with your model deployment name.
@@ -353,7 +415,53 @@ for chunk in completion:
         print(chunk.choices[0].delta.content, end='',)
 ```
 
-# [Response](#tab/response)
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ],
+  stream=True
+)
+
+for chunk in completion:
+    if chunk.choices and chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end='',)
+```
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ],
+  stream=True
+)
+
+for chunk in completion:
+    if chunk.choices and chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end='',)
+```
+
+# [Response](#tab/python-output)
 
 ```text
 Microsoft was founded on April 4, 1975, by Bill Gates and Paul Allen.
@@ -363,10 +471,56 @@ Microsoft was founded on April 4, 1975, by Bill Gates and Paul Allen.
 
 ### chat.completions.create() - image input
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+completion = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What's in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png",
+                    }
+                },
+            ],
+        }
+    ],
+    max_tokens=300,
+)
+
+print(completion.model_dump_json(indent=2))
+
+```
+
+# [API Key](#tab/python-key)
 
 
 ```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
 completion = client.chat.completions.create(
     model="gpt-4o",
     messages=[
@@ -389,7 +543,36 @@ completion = client.chat.completions.create(
 print(completion.model_dump_json(indent=2))
 ```
 
-# [Response](#tab/response)
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+completion = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What's in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png",
+                    }
+                },
+            ],
+        }
+    ],
+    max_tokens=300,
+)
+
+print(completion.model_dump_json(indent=2))
+```
+
+# [Response](#tab/python-output)
 
 ```json
 {
@@ -479,11 +662,31 @@ print(completion.model_dump_json(indent=2))
 
 ### embeddings.create()
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
+
+Embeddings currently do not support Microsoft Entra ID with Azure OpenAI and the v1 API.
+
+# [API Key](#tab/python-key)
 
 ```python
-# from openai import OpenAI
-# client = OpenAI()
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+embedding = client.embeddings.create(
+  model="text-embedding-3-large", # Replace with your model deployment name
+  input="Attenion is all you need",
+  encoding_format="float" 
+)
+
+print(embedding)
+```
+
+# [Environment Variables](#tab/python-env)
+
+```python
+client = OpenAI()
 
 embedding = client.embeddings.create(
   model="text-embedding-3-large", # Replace with your model deployment name
