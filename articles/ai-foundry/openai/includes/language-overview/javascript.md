@@ -114,6 +114,37 @@ for await (const event of stream) {
 }
 ```
 
+### MCP Server
+
+```javascript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESORCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const resp = await client.responses.create({
+  model: "gpt-5",
+  tools: [
+    {
+      type: "mcp",
+      server_label: "microsoft_learn",
+      server_description: "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+      server_url: "https://learn.microsoft.com/api/mcp",
+      require_approval: "never",
+    },
+  ],
+  input: "Search for information about Azure Functions",
+});
+
+console.log(resp.output_text);
+```
+
 ## Chat
 
 `chat.completions.create`
