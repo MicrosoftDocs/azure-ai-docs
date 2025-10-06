@@ -48,7 +48,7 @@ The diagram below illustrates how your data is processed. This diagram covers se
 1. How Azure AI Foundry creates a fine-tuned (custom) model with your uploaded data. 
 1. How Azure AI Foundry and Microsoft personnel analyze prompts and completions (text and image) for harmful content and for patterns suggesting the use of the service in a manner that violates the Code of Conduct or other applicable product terms. 
 
-:::image type="content" source="media\flow-2.jpg" alt-text="Data flow diagram for the service." lightbox="media\flow-2.jpg":::
+:::image type="content" source="media\flow-3.png" alt-text="Data flow diagram for the service." lightbox="media\flow-3.png":::
 
 As depicted in the diagram above, managed customers may [apply to modify abuse monitoring](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUOE9MUTFMUlpBNk5IQlZWWkcyUEpWWEhGOCQlQCN0PWcu). 
 
@@ -159,7 +159,7 @@ To learn more about Microsoft's privacy and security commitments see the [Micros
 
 |Date  |Changes  |
 |---------|---------|
-| 29 September 2025 | Expanded document to Azure Direct Models; separated content filtering and abuse monitoring sections; added clarifications on abuse monitoring and severe or recurring abuse. |
+| 3 October 2025 | Expanded document to Azure Direct Models; separated content filtering and abuse monitoring sections; added clarifications on abuse monitoring and severe or recurring abuse. |
 | 17 December 2024 | Added information about data processing and storage in connection with new Stored completions feature; added language clarifying that Azure OpenAI features in preview may not support all data storage conditions; removed "preview" designation for Batch processing |
 |18 November 2024 | Added information about location of data processing for new ‘Data zone’ deployment types; added information about new AI review of prompts and completions as part of preventing abuse and generation of harmful content  |
 | 4 September 2024 | Added information (and revised existing text accordingly) about data processing for new features including Assistants API (preview), Batch (preview), and Global Deployments; revised language related to location of data processing, in accordance with [Azure data residency principles](https://azure.microsoft.com/explore/global-infrastructure/data-residency#select-geography); added information about data processing for safety evaluations of fine-tuned models; clarified commitments related to use of prompts and completions; minor revisions to improve clarity  |
