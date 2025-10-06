@@ -23,7 +23,7 @@ AI enrichment is based on [*skills*](cognitive-search-working-with-skillsets.md)
 
 [Built-in skills](cognitive-search-predefined-skills.md) tap Azure AI services. They apply the following transformations and processing to raw content:
 
-+ Translation and language detection for multi-lingual search.
++ Translation and language detection for multilingual search.
 + Entity recognition to extract people names, places, and other entities from large chunks of text.
 + Key phrase extraction to identify and output important terms.
 + Optical character recognition (OCR) to recognize printed and handwritten text in binary files.
@@ -43,9 +43,9 @@ The following diagram shows the progression of AI enrichment:
 
 **Enrich & Index** covers most of the AI enrichment pipeline:
 
-+ Enrichment starts when the indexer *[cracks documents](search-indexer-overview.md#document-cracking)* and extracts images and text. The type of processing that occurs next depends on your data and the skills you've added to a skillset. Images can be forwarded to skills that perform image processing. Text content is queued for text and natural language processing. Internally, skills create an *[enriched document](cognitive-search-working-with-skillsets.md#enrichment-tree)* that collects transformations as they occur.
++ Enrichment starts when the indexer *[cracks documents](search-indexer-overview.md#document-cracking)* and extracts images and text. The type of processing that occurs next depends on your data and the skills you've added to a skillset. Images can be forwarded to [skills that perform image processing](cognitive-search-concept-image-scenarios.md). Text content is queued for text and natural language processing. Internally, skills create an *[enriched document](cognitive-search-working-with-skillsets.md#enrichment-tree)* that collects transformations as they occur.
 
-+ Enriched content is generated during skillset execution and is temporary unless you save it. You can enable an [enrichment cache](enrichment-cache-how-to-configure.md) to persist cracked documents and skill outputs for reuse in future skillset executions.
++ Enriched content is generated during skillset execution and is temporary unless you save it. You can enable an [enrichment cache](enrichment-cache-how-to-configure.md) to persist skill outputs for reuse in future skillset executions.
 
 + To get content into a search index, the indexer must have mapping information for sending enriched content to target field. [Field mappings](search-indexer-field-mappings.md) (explicit or implicit) set the data path from source data to a search index. [Output field mappings](cognitive-search-output-field-mapping.md) set the data path from enriched documents to an index.
 
@@ -55,7 +55,7 @@ The following diagram shows the progression of AI enrichment:
 
 ## When to use AI enrichment
 
-Enrichment is useful if raw content is unstructured text, image content, or content that needs language detection and translation. Applying AI through the [built-in skills](cognitive-search-predefined-skills.md) can unlock this content for full text search and data science applications.
+Enrichment is useful if raw content is unstructured text, image content, or content that needs language detection and translation. Applying AI through the [built-in skills](cognitive-search-predefined-skills.md) can unlock this content for full-text search and data science applications.
 
 You can also create [custom skills](cognitive-search-create-custom-skill-example.md) to provide external processing.
 Open-source, third-party, or first-party code can be integrated into the pipeline as a custom skill. Classification models that identify salient characteristics of various document types fall into this category, but any external package that adds value to your content could be used.
@@ -66,11 +66,11 @@ Built-in skills are based on the Azure AI services APIs: [Azure AI Computer Visi
 
 A [skillset](cognitive-search-defining-skillset.md) that's assembled using built-in skills is well suited for the following application scenarios:
 
-+ **Image processing** skills include [Optical Character Recognition (OCR)](cognitive-search-skill-ocr.md) and identification of [visual features](cognitive-search-skill-image-analysis.md), such as facial detection, image interpretation, image recognition (famous people and landmarks), or attributes like image orientation. These skills create text representations of image content for full text search in Azure AI Search.
++ **Image processing** skills include [Optical Character Recognition (OCR)](cognitive-search-skill-ocr.md) and identification of [visual features](cognitive-search-skill-image-analysis.md), such as facial detection, image interpretation, image recognition (famous people and landmarks), or attributes like image orientation. These skills create text representations of image content for full-text search in Azure AI Search.
 
 + **Machine translation** is provided by the [Text Translation](cognitive-search-skill-text-translation.md) skill, often paired with [language detection](cognitive-search-skill-language-detection.md) for multi-language solutions.
 
-+ **Natural language processing** analyzes chunks of text. Skills in this category include [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md), [Sentiment Detection (including opinion mining)](cognitive-search-skill-sentiment-v3.md), and [Personal Identifiable Information Detection](cognitive-search-skill-pii-detection.md). With these skills, unstructured text is mapped as searchable and filterable fields in an index. 
++ **Natural language processing** analyzes chunks of text. Skills in this category include [Entity Recognition](cognitive-search-skill-entity-recognition-v3.md), [Sentiment Detection (including opinion mining)](cognitive-search-skill-sentiment-v3.md), and [Personal Identifiable Information Detection](cognitive-search-skill-pii-detection.md). With these skills, unstructured text is mapped as searchable and filterable fields in an index.
 
 ### Use-cases for custom skills
 
@@ -84,8 +84,8 @@ In Azure AI Search, an indexer saves the output it creates. A single indexer run
 
 | Data store | Required | Location | Description |
 |------------|----------|----------|-------------|
-| [searchable index](search-what-is-an-index.md) | Required | Search service | Used for full text search and other query forms. Specifying an index is an indexer requirement. Index content is populated from skill outputs, plus any source fields that are mapped directly to fields in the index. |
-| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining or data science. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. |
+| [searchable index](search-what-is-an-index.md) | Required | Search service | Used for full-text search and other query forms. Specifying an index is an indexer requirement. Index content is populated from skill outputs, plus any source fields that are mapped directly to fields in the index. |
+| [knowledge store](knowledge-store-concept-intro.md) | Optional | Azure Storage | Used for downstream apps like knowledge mining, data science, and multimodal search. A knowledge store is defined within a skillset. Its definition determines whether your enriched documents are projected as tables or objects (files or blobs) in Azure Storage. For [multimodal search scenarios](multimodal-search-overview.md#how-multimodal-search-works-in-azure-ai-search), you can save extracted images to the knowledge store and reference them at query time, allowing the images to be returned directly to client apps. |
 | [enrichment cache](enrichment-cache-how-to-configure.md) | Optional | Azure Storage | Used for caching enrichments for reuse in subsequent skillset executions. The cache stores imported, unprocessed content (cracked documents). It also stores the enriched documents created during skillset execution. Caching is helpful if you're using image analysis or OCR, and you want to avoid the time and expense of reprocessing image files. |
 
 Indexes and knowledge stores are fully independent of each other. While you must attach an index to satisfy indexer requirements, if your sole objective is a knowledge store, you can ignore the index after it's populated.
