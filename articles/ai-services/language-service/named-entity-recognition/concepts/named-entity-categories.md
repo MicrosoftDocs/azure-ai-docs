@@ -48,7 +48,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 |[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)||
 
 ### Type: Address
-##### Category: Location
+##### Category: Address
 
 |Entity|Tags|Detail|
 |---|---|---|
@@ -64,11 +64,11 @@ The [NER language support](../language-support.md) page lists all languages avai
 
 
 ### Type: Airport
-##### Category: Airport
+##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
-|**Airport**|Airport|A designated location equipped with facilities for the landing, takeoff, and maintenance of aircraft.  |
+|**Airport**|Location, Airport|A designated location equipped with facilities for the landing, takeoff, and maintenance of aircraft.  |
 
 ### Type: Area
 ##### Category: Quantity
