@@ -10,7 +10,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/29/2025
+ms.date: 07/14/2025
 ms.reviewer: meerakurup
 #customer intent: As an admin, I want to disable shared-key access to my resources to improve security.
 ---
@@ -22,7 +22,9 @@ ms.reviewer: meerakurup
 > [!NOTE]
 > The information provided in this article is specific to a [!INCLUDE [hub](../includes/hub-project-name.md)] and doesn't apply to an [!INCLUDE [fdp](../includes/fdp-project-name.md)]. For more information, see [Types of projects](../what-is-azure-ai-foundry.md#project-types).
 
-To reduce the risk of unauthorized access, you can disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in Azure Machine Learning studio or to run a notebook while authenticated with the user's identity. Machine Learning uses a managed identity to access the storage account. An example is when the managed identity runs a training job.
+An [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hub defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+
+To reduce the risk of unauthorized access, disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in Azure Machine Learning studio or to run a notebook while authenticated with the user's identity. Machine Learning uses a managed identity to access the storage account - for example, when the managed identity runs a training job.
 
 Use of your hub with a shared-key disabled storage account is currently in preview.
 
@@ -97,17 +99,19 @@ If you use [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell
 
 When you create a new hub, the creation process can automatically disable shared-key access. You can also create a storage account, disable shared-key access, and use it during hub creation.
 
+This section shows you how to create a hub with identity-based access to the storage account.
+
 # [Azure portal](#tab/portal)
 
-1. In the Azure portal, search for `Azure AI Foundry`. On the left menu, select **AI Hubs**, and then select **+ Create** > **Hub**.
+1. In the Azure portal, search for `Azure AI Foundry`. On the left menu, select **AI Hubs**, and select **+ Create** > **Hub**.
 
     :::image type="content" source="../media/how-to/hubs/create-hub.png" alt-text="Screenshot that shows the Azure AI Foundry portal." lightbox="../media/how-to/hubs/create-hub.png":::
 
-1. On the __Basics__ tab, enter the hub details, and then select the __Storage__ tab. Select the storage account that you previously created.
+1. On the **Basics** tab, enter the hub details, and select the **Storage** tab. Select the storage account that you previously created.
 
     :::image type="content" source="../media/disable-local-auth/ai-hub-storage.png" alt-text="Screenshot that shows hub creation by using the previously created storage account." lightbox="../media/disable-local-auth/ai-hub-storage.png":::
 
-1. On the __Identity__ tab, set __Storage account access__ to __Identity-based access__. Then enable __Disable shared key access__.
+1. On the **Identity** tab, set **Storage account access** to **Identity-based access**. Enable **Disable shared key access**.
 
     :::image type="content" source="../media/disable-local-auth/ai-hub-identity-based-access.png" alt-text="Screenshot that shows hub creation by using Identity-based storage access." lightbox="../media/disable-local-auth/ai-hub-identity-based-access.png":::
 
@@ -115,7 +119,7 @@ When you create a new hub, the creation process can automatically disable shared
 
 # [Python SDK](#tab/python)
 
-When you create your hub with the SDK, set `system_datastores_auth_mode="identity"` for the hub. To use a preexisting storage account, use the `storage_account` parameter to specify the Resource Manager ID of an existing storage account:
+When you create your hub with the SDK, set `system_datastores_auth_mode="identity"` for the hub. To use a pre-existing storage account, use the `storage_account` parameter to specify the Resource Manager ID of an existing storage account:
 
 ```python
 # Creating a unique hub name with current datetime to avoid conflicts
@@ -133,7 +137,7 @@ ws_hub = Hub(
     description="This example shows how to create a Hub",
     hbi_workspace=False,
     tags=dict(purpose="demo"),
-    storage_account= {existing_storage_account with AllowSharedKeyAccess=false},
+    storage_account="{existing_storage_account with AllowSharedKeyAccess=false}",
     system_datastores_auth_mode="identity",
 )
 
@@ -143,7 +147,7 @@ print(created_hub)
 
 # [Azure CLI](#tab/cli)
 
-To create a new hub with Microsoft Entra ID authorization for the storage account, use a YAML configuration file that sets `system_datastores_auth_mode` to `identity`. You can also specify the Resource Manager ID value of an existing storage account with the `storage_account` entry.
+To create a new hub with Microsoft Entra ID authorization for the storage account, use a YAML configuration file that sets `system_datastores_auth_mode` to `identity`. You can also specify the Resource Manager ID of an existing storage account with the `storage_account` entry.
 
 This example YAML file shows how to set the hub to use a managed identity and an existing storage account:
 
@@ -153,13 +157,13 @@ name: mlw-basicex-prod
 location: eastus
 display_name: Bring your own dependent resources-example
 description: This configuration specifies a workspace configuration with existing dependent resources
-storage_account: {your storage account resource id}
+storage_account: <your-storage-account-resource-id>
 system_datastores_auth_mode: identity
 tags:
   purpose: demonstration
 ```
 
-You can use this YAML file with the `az ml workspace create` command, with the `--file` parameter:
+You can use this YAML file with the `az ml workspace create` command and the `--file` parameter:
 
 ```azurecli-interactive
 az ml workspace create -g <resource-group-name> --kind hub --file workspace.yml
@@ -169,10 +173,10 @@ az ml workspace create -g <resource-group-name> --kind hub --file workspace.yml
 
 In the JSON template example, substitute your own values for the following placeholders:
 
-- *[workspace name]*
-- *[workspace friendly name]*
-- *[Storage Account ARM resource ID]*
-- *[Key Vault ARM resource ID]*
+- `<workspace-name>`
+- `<workspace-friendly-name>`
+- `<storage-account-arm-resource-id>`
+- `<key-vault-arm-resource-id>`
 
 ```json
 {
@@ -183,7 +187,7 @@ In the JSON template example, substitute your own values for the following place
         {
             "type": "Microsoft.MachineLearningServices/workspaces",
             "apiVersion": "2024-04-01",
-            "name": "[workspace name]",
+            "name": "<workspace-name>",
             "location": "[resourceGroup().location]",
             "sku":
             {
@@ -197,9 +201,9 @@ In the JSON template example, substitute your own values for the following place
             },
             "properties":
             {
-                "friendlyName": "[workspace friendly name]",
-                "storageAccount": "[Storage Account ARM resource ID]",
-                "keyVault": "[Key Vault ARM resource ID]",
+                "friendlyName": "<workspace-friendly-name>",
+                "storageAccount": "<storage-account-arm-resource-id>",
+                "keyVault": "<key-vault-arm-resource-id>",
                 "systemDatastoresAuthMode": "identity",
                 "managedNetwork":
                 {
@@ -212,29 +216,29 @@ In the JSON template example, substitute your own values for the following place
 }
 ```
 
-For information on how to deploy an Azure Resource Manager template (ARM template), see the following articles:
+For information about how to deploy an Azure Resource Manager template (ARM template), see the following articles:
 
 - [Tutorial: Deploy a local ARM template by using the Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
 - [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
-After you create the hub, identify all the users who will use it, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure role-based access control (RBAC) for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see the [Role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
+After you create the hub, identify all the users who need to use it, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure role-based access control (RBAC) for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see [Role assignments](#scenarios-for-hub-storage-account-role-assignments).
 
 ---
 
 ## Update an existing hub
 
-If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then, disable shared-key access on the storage account.
+If you have an existing Azure AI Foundry hub, use the steps in this section to update the hub to use Microsoft Entra ID to authorize access to the storage account. Then disable shared-key access on the storage account.
 
 # [Azure portal](#tab/portal)
 
-1. Go to the Azure portal and select __Azure AI Foundry hub__.
-1. On the left menu, select __Properties__. At the bottom of the pane, set __Storage account access__ to __Identity-based access__. Select __Save__ at the top of the pane to save the configuration.
+1. Go to the Azure portal and select **Azure AI Foundry hub**.
+1. On the left menu, select **Properties**. At the bottom of the pane, set **Storage account access** to **Identity-based access**. Select **Save** at the top of the pane to save the configuration.
 
     :::image type="content" source="../media/disable-local-auth/update-existing-hub-identity-based-access.png" alt-text="Screenshot that shows selection of Identity-based access." lightbox="../media/disable-local-auth/update-existing-hub-identity-based-access.png":::
 
 # [Python SDK](#tab/python)
 
-To update an existing hub, set `system_datastores_auth_mode = "identity"` for the hub. This code sample shows an update of a hub named `test-ws1`:
+To update an existing hub, set `system_datastores_auth_mode = "identity"` for the hub. The following code sample shows an update of a hub named `test-ws1`:
 
 ```python
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
@@ -245,7 +249,7 @@ ws = ml_client.workspaces.begin_update(workspace=ws).result()
 
 # [Azure CLI](#tab/cli)
 
-To update an existing hub, use the `az ml workspace update` command and specify `--system-datastores-auth-mode identity`. This example shows an update of a hub named `myhub`:
+To update an existing hub, use the `az ml workspace update` command and specify `--system-datastores-auth-mode identity`. The following example shows an update of a hub named `myhub`:
 
 ```azurecli-interactive
 az ml workspace update --name myhub --system-datastores-auth-mode identity
@@ -298,7 +302,7 @@ In the JSON template example, substitute your own values for the following place
 }
 ```
 
-For information on how to deploy an ARM template, see the following articles:
+For information about how to deploy an ARM template, see the following articles:
 
 - [Tutorial: Deploy a local ARM template by using the Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
 - [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
@@ -307,25 +311,25 @@ For information on how to deploy an ARM template, see the following articles:
 
 ### Assign roles to users
 
-After you update the hub, update the storage account to disable shared-key access. For more information about how to disable shared-key access, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
+After you update the hub, update the storage account to disable shared-key access. For more information, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 You must also identify all the users who need access to the default datastores, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure RBAC for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see the [Role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
 
-## Revert to use shared keys
+## Revert to using shared keys
 
-To revert a hub back to use of shared keys to access the storage account, use the following information.
+To revert a hub back to using shared keys to access the storage account, use the following information.
 
 # [Azure portal](#tab/portal)
 
-1. To update an existing workspace, go to **Properties** and select **Credential-based access**.
+1. Go to **Properties** and select **Credential-based access**.
 
    :::image type="content" source="../media/disable-local-auth/update-existing-hub-credential-based-access.png" alt-text="Screenshot that shows selection of Credential-based access." lightbox="../media/disable-local-auth/update-existing-hub-credential-based-access.png":::
 
-1. Select **Save** to save this choice.
+1. Select **Save**.
 
 # [Python SDK](#tab/python)
 
-To configure the hub to use a shared key again, set `system_datastores_auth_mode = "accesskey"` for the hub. This code demonstrates an update of a hub named `test-ws1`:
+To configure the hub to use a shared key again, set `system_datastores_auth_mode = "accesskey"` for the hub. This code updates a hub named `test-ws1`:
 
 ```python
 ml_client = MLClient(DefaultAzureCredential(), subscription_id, resource_group)
@@ -336,7 +340,7 @@ ws = ml_client.workspaces.begin_update(workspace=ws).result()
 
 # [Azure CLI](#tab/cli)
 
-To configure the hub to once again use a shared key, use the `az ml workspace update` command and specify `--system-datastores-auth-mode accesskey`. This example demonstrates an update of a hub named `myhub`:
+To configure the hub to use a shared key again, use the `az ml workspace update` command and specify `--system-datastores-auth-mode accesskey`. This example updates a hub named `myhub`:
 
 ```azurecli-interactive
 az ml workspace update --name myhub --system-datastores-auth-mode accesskey
@@ -393,24 +397,24 @@ In the JSON template example, substitute your own values for the following place
 
 For information on how to deploy an ARM template, see the following articles:
 
-- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
-- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
+- [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template).
+- [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal).
 
 After you create the hub, identify all the users who will use it, such as data scientists. The users must be assigned the Storage Blob Data Contributor and Storage File Data Privileged Contributor roles in Azure RBAC for the storage account. If the users need only read access, use the Storage Blob Data Reader and Storage File Data Privileged Reader roles instead. For more information, see the [Role assignments](#scenarios-for-hub-storage-account-role-assignments) section.
 
 ---
 
-After you revert the hub, update the storage account to enable shared-key access. For more information, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
+After you revert the hub, update the storage account to enable shared key access. For more information, see [Prevent shared-key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent).
 
 ## Scenarios for hub storage account role assignments
 
-To work with a storage account with disabled shared-key access, you might need to grant more roles to either your users or the managed identity for your hub. Hubs have a system-assigned managed identity by default. Some scenarios require a user-assigned managed identity. This table summarizes the scenarios that require extra role assignments.
+To work with a storage account with disabled shared-key access, you need to grant more roles to either your users or the managed identity for your hub. Hubs have a system-assigned managed identity by default. Some scenarios require a user-assigned managed identity. This table summarizes the scenarios that require extra role assignments.
 
 | Scenario | Microsoft Entra ID | Required roles | Notes |
 | ----- | ----- | ----- | ----- |
-| Azure AI Speech | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
-| Models as a service | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when provisioned. </br>Don't manually change this role assignment. |
-| Azure AI Search | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when provisioned. </br>Don't manually change this role assignment. |
+| Azure AI Speech | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
+| Models as a service | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when you provision the hub. </br>Don't manually change this role assignment. |
+| Azure AI Search | System-assigned managed identity | Storage Blob Data Contributor | The hub's managed identity. </br>Automatically assigned the role when you provision the hub. </br>Don't manually change this role assignment. |
 | Fine-tuning of open-source software models | User-assigned managed identity | Storage Blob Data Contributor | |
 | Prompt flow | User's identity | Storage Blob Data Contributor </br>Storage File Data Privileged Contributor | |
 | Add and manage your own data | User's identity | Storage Blob Data Contributor | |

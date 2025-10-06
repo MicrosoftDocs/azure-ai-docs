@@ -267,6 +267,17 @@ After you log your custom evaluator to your Azure AI project, you can view it in
 Insert NextGen content
 
 ::: moniker-end
+### Troubleshooting: Job Stuck in Running State
+
+If your evaluation job remains in the **Running** state for an extended period when using Azure AI Foundry Project or Hub, this may be because the Azure OpenAI model you selected does not have enough capacity.
+
+**Resolution**
+
+Cancel the current evaluation job.
+
+Increase the model capacity to handle larger input data.
+
+Re-run the evaluation.
 
 ## Related content
 

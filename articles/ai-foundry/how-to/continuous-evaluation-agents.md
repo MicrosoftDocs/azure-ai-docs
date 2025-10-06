@@ -20,9 +20,7 @@ ai-usage: ai-assisted
 
 Continuous evaluation for Agents provides near real-time observability and monitoring for your AI application. Once enabled, this feature continuously evaluates agent interactions at a set sampling rate to provide insights into quality, safety, and performance with metrics surfaced in the Foundry Observability dashboard. By using continuous evaluation, you're able to identify and troubleshoot issues early, optimize agent performance, and maintain safety. Evaluations are also connected to [traces](./develop/trace-application.md) to enable detailed debugging and root cause analysis.
 
-## Getting Started
-
-### Prerequisites
+## Prerequisites
 
 [!INCLUDE [uses-fdp-only](../includes/uses-fdp-only.md)] 
 
@@ -45,6 +43,21 @@ Continuous evaluation for Agents provides near real-time observability and monit
 2. Insert NextGen content
 
 ::: moniker-end
+## Azure AI Foundry project configuration and region support
+
+Since the evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service, they require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+
+> [!div class="mx-tdCol2BreakAll"]
+> | Region | Code Vulnerability, Coherence, Fluency, Hate/Unfairness, Indirect Attack, Intent Resolution, Relevance, Self-Harm, Sexual, Task Adherence, Tool Call Accuracy, Violence |
+> |--|--|
+> | East US | Supported | 
+> | East US 2 | Supported  | 
+> | West US | Supported |
+> | West US 2 | Supported | 
+> | West US 3 | Supported |
+> | France Central | Supported | 
+> | Norway East | Supported  |
+> | Sweden Central| Supported  | 
 
 ## Set up continuous evaluations with Azure AI projects client library
 
