@@ -324,6 +324,55 @@ For more examples, see the [Responses API](../../how-to/responses.md) documentat
 
 # [Response](#tab/python-output)
 
+```markdown
+Here is a summary of Azure Functions based on official Microsoft documentation:
+
+## What is Azure Functions?
+Azure Functions is a serverless compute service that enables you to run event-driven code without managing infrastructure. You write code in your preferred language—such as C#, Java, JavaScript, PowerShell, or Python—and Azure Functions handles the hosting, scaling, and maintenance for you. You pay only for the compute time you consume, making it cost-effective for many use cases.
+
+- **Official overview:** [What is Azure Functions?](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+
+## Key Scenarios for Azure Functions
+Azure Functions supports a wide range of cloud application scenarios, including:
+
+- Processing file uploads from blob storage.
+- Real-time stream and event processing (IoT, analytics).
+- Executing AI and machine learning inference.
+- Running scheduled tasks or background jobs.
+- Building scalable web APIs with HTTP endpoints.
+- Orchestrating serverless workflows (using Durable Functions).
+- Responding to data or database changes.
+- Creating reliable message processing systems (with queues, Service Bus, Event Hubs).
+
+Read more about scenarios here: [Azure Functions scenarios](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scenarios).
+
+## How It Works
+- **Triggers and Bindings:** Functions are executed by triggers (events like HTTP requests, file uploads, timers, etc.) and can use bindings to automatically interact with other Azure services.
+- **Coding:** Write only the code you need for business logic; Azure Functions integrates with IDEs like Visual Studio and VS Code for development and debugging.
+- **Monitoring:** Built-in integration with Azure Monitor and Application Insights.
+- **Hosting plans:** Choose serverless (Consumption plan), Premium, Dedicated, or deploy in custom containers.
+
+## Getting Started
+You can create your first Azure Function quickly using:
+
+- [Azure CLI or Developer CLI](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli)
+- [Visual Studio Code](https://learn.microsoft.com/en-us/azure/azure-functions/how-to-create-function-vs-code)
+- [Visual Studio](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio)
+
+See quickstarts for all languages: [Getting started with Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started)
+
+## Supported Languages
+- Native: C#, Java, JavaScript, PowerShell, Python
+- With custom handlers: Go, Rust, and more
+
+## Learn More
+- [Overview of Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+- [Supported languages](https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages)
+- [Triggers and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
+
+Let me know if you’re looking for step-by-step tutorials, specific language samples, or deeper technical details!
+```
+
 ---
 
 
