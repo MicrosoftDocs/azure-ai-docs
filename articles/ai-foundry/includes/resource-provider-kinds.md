@@ -22,4 +22,3 @@ ms.custom:
 |Azure AI Speech|`Microsoft.CognitiveServices/account`|`Speech`|Speech|
 |Azure AI Language|`Microsoft.CognitiveServices/account`|`Language`|Language|
 |Azure AI Vision|`Microsoft.CognitiveServices/account`|`Vision`|Vision|
-|Azure OpenAI service|`Microsoft.CognitiveServices/account`|`OpenAI`|Azure OpenAI models and their customization|
