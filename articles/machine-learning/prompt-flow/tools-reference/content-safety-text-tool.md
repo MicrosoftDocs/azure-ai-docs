@@ -1,4 +1,3 @@
-
 ---
 title: Content Safety (Text) tool in Azure Machine Learning prompt flow
 titleSuffix: Azure Machine Learning
