@@ -17,6 +17,8 @@ ms.custom:
 
 # Choose an Azure resource type for AI foundry
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 An Azure resource is required to use and manage services in Azure. It defines the scope for configuring, securing, and monitoring the tools or capabilities you want to use—like AI models, agents, or storage.
 
 Azure AI Foundry portal and SDK clients support multiple distinct Azure resource types, each designed to serve different development and operational needs. This article explains which use case requires which type.
