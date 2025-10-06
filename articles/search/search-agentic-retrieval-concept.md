@@ -65,7 +65,7 @@ Agentic retrieval is designed for conversational search experiences that use an 
 
 The agentic retrieval process follows three main phases:
 
-1. **Query planning**: A knowledge agent sends your query and conversation history to an LLM (gpt-4o or gpt-4.1 series), which analyzes the context and breaks down complex questions into focused subqueries. This step is automated and not customizable. The number of subqueries depends on what the LLM decides and whether the `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50-document batch sent to semantic ranker.
+1. **Query planning**: A knowledge agent sends your query and conversation history to an LLM (gpt-4o, gpt-4.1, and gpt-5 series), which analyzes the context and breaks down complex questions into focused subqueries. This step is automated and not customizable. The number of subqueries depends on what the LLM decides and whether the `maxDocsForReranker` parameter is higher than 50. A new subquery is defined for each 50-document batch sent to semantic ranker.
 
 2. **Query execution**: All subqueries run simultaneously against your knowledge sources, using keyword, vector, and hybrid search. Each subquery undergoes semantic reranking to find the most relevant matches. References are extracted and retained for citation purposes.
 
@@ -88,7 +88,7 @@ Your search index determines query execution and any optimizations that occur du
 Your application drives the pipeline by calling the knowledge agent and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md).
 
 > [!NOTE]
-> Only gpt-4o and gpt-4.1 series models are supported for query planning. You can use any model for final answer generation.
+> Only gpt-4o, gpt-4.1, and gpt-5 series models are supported for query planning. You can use any model for final answer generation.
 
 ## How to get started
 
