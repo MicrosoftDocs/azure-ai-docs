@@ -1,18 +1,18 @@
 ---
-title: "Azure AI Foundry docs: What's new for September 2025"
-description: Discover key changes and updates in Azure AI Foundry documentation for September 2025.
+title: "Azure AI Foundry docs: What's new for October 2025"
+description: Discover key changes and updates in Azure AI Foundry documentation for October 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
 ms.service: azure-ai-foundry
-ms.custom: September-2025
-ms.date: 09/02/2025
+ms.custom: October-2025
+ms.date: 10/06/2025
 ---
 
 # What's new in Azure AI Foundry documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for September 2025.
+Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for October 2025.
 
 ## New articles
 - [Add Azure AI Foundry to a network security perimeter (preview)](../ai-foundry/how-to/add-foundry-to-network-security-perimeter.md)
