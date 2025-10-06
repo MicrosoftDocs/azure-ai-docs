@@ -1,8 +1,6 @@
 items:
 - name: Identity & access management
   items:
-  - name: Authentication options
-    href: ../../concepts/authentication-options-ai-foundry.md
   - name: Role-based access control
     href: ../../concepts/rbac-azure-ai-foundry.md
   - name: Disable preview features with RBAC
