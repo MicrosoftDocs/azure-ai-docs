@@ -78,33 +78,35 @@ items:
     href: ../../how-to/set-up-key-vault-connection.md
 - name: Costs and quotas
   items:
-  - name: Plan and manage costs for AI Foundry resources
-    href: ../../concepts/manage-costs.md
-    displayName: pricing, budget, estimate
-  - name: Manage quotas
-    href: ../../how-to/quota.md
-  - name: Increase rate limit
-    href: ../../../ai-services/autoscale.md?context=/azure/ai-foundry/context/context
-- name: Cost management for Foundry Models
-  items:
-  - name: Manage costs for Foundry Models
-    href: ../../foundry-models/how-to/manage-costs.md
-  - name: Manage quotas and limits for Foundry Models
-    href: ../../foundry-models/quotas-limits.md
-  - name: Azure OpenAI quotas and limits
-    href: ../../../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
-  - name: What is the Provisioned Throughput offering (PTU)?
-    href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
-    displayName: PTU, provisioned, provisioned throughput units
-  - name: Understanding and calculating PTU costs 
-    href: ../../openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
-    displayName: PTU, provisioned, provisioned throughput units
-  - name: Get started with Provisioned Deployments
-    href: ../../openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
-    displayName: PTU, provisioned, provisioned throughput units
-  - name: Provisioned spillover
-    href: ../../openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
-  - name: Azure OpenAI PTU updates
-    href: ../../openai/concepts/provisioned-migration.md
+  - name: Managing quotas and limits
+    items:
+    - name: Manage quotas for AI Foundry resources
+      href: ../../how-to/quota.md
+    - name: Increase rate limit
+      href: ../../../ai-services/autoscale.md?context=/azure/ai-foundry/context/context
+    - name: Azure OpenAI quotas and limits
+      href: ../../../ai-services/openai/quotas-limits.md?context=/azure/ai-foundry/context/context
+    - name: Manage quotas and limits for Foundry Models
+      href: ../../foundry-models/quotas-limits.md
+    - name: Cost management
+      items:
+      - name: Manage costs for AI Foundry resources
+        href: ../../concepts/manage-costs.md
+        displayName: pricing, budget, estimate
+      - name: Manage costs for Foundry Models
+        href: ../../foundry-models/how-to/manage-costs.md
+      - name: What is the Provisioned Throughput offering (PTU)?
+        href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Understanding and calculating PTU costs
+        href: ../../openai/how-to/provisioned-throughput-onboarding.md?context=/azure/ai-foundry/context/context
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Get started with Provisioned Deployments
+        href: ../../openai/how-to/provisioned-get-started.md?context=/azure/ai-foundry/context/context
+        displayName: PTU, provisioned, provisioned throughput units
+      - name: Provisioned spillover
+        href: ../../openai/how-to/spillover-traffic-management.md?context=/azure/ai-foundry/context/context
+      - name: Azure OpenAI PTU updates
+        href: ../../openai/concepts/provisioned-migration.md    
 - name: Service architecture
   href: ../../concepts/architecture.md
