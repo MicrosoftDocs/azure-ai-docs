@@ -228,7 +228,102 @@ For more examples, see the [Responses API](../../how-to/responses.md) documentat
 }
 ```
 
+### responses.create() with MCP server tool
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+resp = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "microsoft_learn",
+            "server_description": "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+            "server_url": "https://learn.microsoft.com/api/mcp",
+            "require_approval": "never",
+        },
+    ],
+    input="Search for information about Azure Functions",
+)
+
+print(resp.output_text)
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+resp = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "microsoft_learn",
+            "server_description": "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+            "server_url": "https://learn.microsoft.com/api/mcp",
+            "require_approval": "never",
+        },
+    ],
+    input="Search for information about Azure Functions",
+)
+
+print(resp.output_text)
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+resp = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "microsoft_learn",
+            "server_description": "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+            "server_url": "https://learn.microsoft.com/api/mcp",
+            "require_approval": "never",
+        },
+    ],
+    input="Search for information about Azure Functions",
+)
+
+print(resp.output_text)
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Response](#tab/python-output)
+
 ---
+
 
 ## Chat
 
