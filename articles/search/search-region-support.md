@@ -1,11 +1,11 @@
 ---
 title: Supported Regions
 titleSuffix: Azure AI Search
-description: Shows supported regions and feature availability across regions for Azure AI Search.
+description: Learn about the regions that offer Azure AI Search and the features available in each region.
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 09/25/2025
+ms.date: 10/06/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -121,16 +121,18 @@ You can create an Azure AI Search service in any of the following Azure public r
 
 ## Azure operated by 21Vianet
 
-| Region | AI enrichment | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
+| Region | AI enrichment <sup>1</sup> | Availability zones | Agentic retrieval | Confidential computing | Semantic ranker | Query rewrite |
 |--|--|--|--|--|--|--|
 | China East |  |  |  |  |  |  |
-| China East 2 <sup>1</sup> | ✅ |  |  |  |  |  |
+| China East 2 <sup>2</sup> | ✅ |  |  |  |  |  |
 | China East 3 |  |  |  |  |  |  |
 | China North |  |  |  |  |  |  |
-| China North 2 <sup>1</sup> |  |  |  |  |  |  |
+| China North 2 <sup>2</sup> |  |  |  |  |  |  |
 | China North 3 |  | ✅ | ✅ |  | ✅ | ✅ |
 
-<sup>1</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
+<sup>1</sup> Only China East 2 fully supports AI enrichment. In other 21Vianet regions, you can use skillsets with the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) for integrated vectorization, which depends on the availability of Azure OpenAI and Azure AI Search in your region. Otherwise, AI enrichment isn't supported.
+
+<sup>2</sup> [Higher storage limits](search-limits-quotas-capacity.md#service-limits) aren't available in this region. If you want higher limits, choose a different region.
 
 ## Related content
 
