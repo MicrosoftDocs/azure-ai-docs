@@ -1,9 +1,12 @@
 ---
-author: goergenj 
-ms.author: jagoerge 
-ms.service: azure-ai-speech
+manager: nitinme
+author: goergenj
+ms.author: jagoerge
+reviewer: patrickfarley
+ms.reviewer: pafarley
+ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 9/26/2025
+ms.date: 10/02/2025
 ---
 
 Create a new file named `.env` in the folder where you want to run the code. 
@@ -12,7 +15,7 @@ In the `.env` file, add the following environment variables for authentication:
 
 ```plaintext
 AZURE_VOICELIVE_ENDPOINT=<your_endpoint>
-VOICELIVE_MODEL=<your_model>
+AZURE_VOICELIVE_MODEL=<your_model>
 AZURE_VOICELIVE_API_VERSION=2025-10-01
 AZURE_VOICELIVE_API_KEY=<your_api_key> # Only required if using API key authentication
 ```
