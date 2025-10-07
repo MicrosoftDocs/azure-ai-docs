@@ -33,7 +33,7 @@ For standard deployments, there are three deployment-type options to choose from
 
 ### Global deployments
 
-Global deployments use the global infrastructure of Azure to dynamically route customer traffic to the datacenter with the best availability for the customer's inference requests. This means that global offers the highest initial throughput limits and best model availability, but still provides our uptime SLA and low latency. For high-volume workloads above the specified usage tiers on Standard and Global Standard, you might experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend using our provisioned deployment types.
+Global deployments use the global infrastructure of Azure to dynamically route customer traffic to the datacenter with the best availability for the customer's inference requests. This means that global offers the highest initial throughput limits and best model availability, but still provides our uptime [SLA](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services) and low latency. For high-volume workloads above the specified usage tiers on Standard and Global Standard, you might experience increased latency variation. For customers that require the lower latency variance at large workload usage, we recommend using our provisioned deployment types.
 
 Our global deployments are the first location for all new models and features. Depending on call volume, customers with large volume and low latency variance requirements should consider our provisioned deployment types.
 
