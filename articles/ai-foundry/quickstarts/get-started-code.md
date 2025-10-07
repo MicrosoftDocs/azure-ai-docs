@@ -58,7 +58,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
-- You must be **Owner** of the subscription to receive the appropriate access control needed to use your project.
+- You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -150,7 +150,7 @@ Follow along below or get the code:
 
 1. [Install Azure CLI](../how-to/develop/install-cli-sdk.md#installs)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running the next command.
-1. Get a temporary access token.  It will expire in 60-90 minutes, you'll need to refresh after that.
+1. Get a temporary access token. It will expire in 60-90 minutes, you'll need to refresh after that.
 
     ```azurecli
     az account get-access-token --scope https://ai.azure.com/.default
@@ -172,7 +172,7 @@ Chat completions are the basic building block of AI applications. Using chat com
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. In the chat playground, fill in the prompt and select the **Send** button.
+1. In the chat playground, fill in the prompt and select **Send**.
 1. The model returns a response in the **Response** pane.
 
 # [Python](#tab/python)
@@ -212,7 +212,7 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
 
 When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
-1. On the left pane, select **Playgrounds**.
+1. In the left pane, select **Playgrounds**.
 1. In the **Agents playground** card, select **Let's go**.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
@@ -268,7 +268,7 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 ::: moniker range="foundry-classic"
 1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
 1. Select **Add**.
-1. Select **Files** to upload the **product_info_1.md** file.
+1. Select **Files** to upload the product_info_1.md file.
 1. Select **Select local files** under **Add files**.
 1. Select **Upload and save**.
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
@@ -279,10 +279,10 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 ::: moniker range="foundry"
 1. In the left section of the Agent pane, under **Tools**, select **Add**.
 1. Select **File search**, then **Add tool**.
-1. Provide a name for the vector index that will be created. Then choose to upload the **product_info_1.md** file.
+1. Provide a name to create a vector index. Then choose to upload the product_info_1.md file.
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
-1. To add more files, select the index name under **Tools**.  Choose the additional files and select **Attach**.
+1. To add more files, select the index name under **Tools**. Choose the additional files and select **Attach**.
 ::: moniker-end
 
 # [Python](#tab/python)
