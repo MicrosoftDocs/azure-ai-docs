@@ -46,8 +46,6 @@ Azure services include:
   * Azure Container Registry stores Docker images for training and inference environments.
   * Application Insights monitors Azure AI Foundry.
 
-* **Compute instance**: A resource you create after you deploy the project. It provides a Microsoft managed model development environment.
-
 * **Connections**: Azure AI Foundry connects to other services. You're responsible for configuring their high availability settings.
 
 The following table shows the Azure services that Microsoft manages and the ones you manage. It also indicates the services that are highly available by default.
@@ -60,8 +58,6 @@ The following table shows the Azure services that Microsoft manages and the ones
 | Azure Key Vault | You | ✓ |
 | Azure Container Registry | You | |
 | Application Insights | You | Not applicable |
-| **Compute resources** |  |  |
-| Compute instance | Microsoft |  |
 | **Connections to external services** like Azure AI Services | You | |
 
 The rest of this article explains how to make each service highly available.
@@ -86,7 +82,6 @@ Azure AI Foundry builds on other services. Some services can replicate to other 
 | Azure service | Geo-replicated by | Configuration |
 | ----- | ----- | ----- |
 | Azure AI Foundry projects | You | Create a projects in the selected regions. |
-| Azure AI Foundry compute | You | Create the compute resources in the selected regions. For compute resources that can dynamically scale, make sure that both regions provide sufficient compute quota for your needs. |
 | Key Vault | Microsoft | Use the same Azure Key Vault instance with the Azure AI Foundry project and resources in both regions. Azure Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
 | Storage account | You | Azure Machine Learning doesn't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and use it for your project. All subsequent projects use the project's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
 | Azure Container Registry | Microsoft | Configure the Azure Container Registry instance to geo-replicate to the paired region for Azure AI Foundry. Use the same instance for both projects. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
