@@ -18,7 +18,7 @@ ms.custom: build-2025
 
 # Azure AI Foundry Playgrounds
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
