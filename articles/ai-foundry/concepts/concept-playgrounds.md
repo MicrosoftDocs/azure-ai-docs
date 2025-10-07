@@ -2,6 +2,8 @@
 title: Azure AI Foundry Playgrounds
 titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Foundry playgrounds for rapid prototyping, experimentation, and validation with AI models before production deployment.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 09/22/2025
@@ -10,11 +12,13 @@ author: msakande
 ms.reviewer: tgokal
 manager: nitinme
 reviewer: tgokal
-ms.custom: build-2025 ai-assisted
+ms.custom: build-2025
 #CustomerIntent: As a developer, I want to use Azure AI Foundry playgrounds for rapid prototyping and experimentation with AI models and agents so that I can validate ideas, test API behavior, and optimize prompts before writing production code.
 ---
 
 # Azure AI Foundry Playgrounds
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -30,10 +34,14 @@ Some highlights of the Azure AI Foundry playgrounds experience include:
 - **Audio playground** for models such as [gpt-4o-audio-preview](https://ai.azure.com/resource/models/gpt-4o-audio-preview/version/2024-12-17/registry/azure-openai/?cid=learnDocs), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai/?cid=learnDocs), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai/?cid=learnDocs) models.
 - **Video playground** for [Azure OpenAI Sora](https://ai.azure.com/resource/models/sora/version/2025-05-02/registry/azure-openai/?cid=learnDocs).
 
+::: moniker range="foundry-classic"
+
 :::image type="content" source="../media/concept-playgrounds/playground-landing-page.png" alt-text="Screenshot of the Azure AI Foundry playground landing page showcasing features for rapid prototyping and experimentation. The left pane of the portal has been customized to show the Playgrounds tab." lightbox="../media/concept-playgrounds/playground-landing-page.png":::
 
 > [!TIP]
 > In the screenshot of the playground landing page, the left pane of the portal is customized to show the Playgrounds tab. To learn more about seeing the other items in the left pane, see [Customize the left pane](../what-is-azure-ai-foundry.md#left-pane).
+
+::: moniker-end
 
 ## Playgrounds as the prelude to production
 
@@ -56,6 +64,8 @@ Available on the multilingual sample code samples, **Open in VS Code** automatic
 
 To use the **Open in VS Code** functionality from the chat and agents playgrounds, follow these steps:
 
+::: moniker range="foundry-classic"
+
 1. Select **Try the Chat playground** to open it. Alternatively, you can follow these steps in the Agents playground by selecting **Let's go** on the Agents playground card.
 
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-mini`.
@@ -74,24 +84,54 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 1. View relevant dependencies in the `requirements.txt` file.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
+
 
 ## Agents playground
 
-The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas. To get started with the agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas.
 
+::: moniker range="foundry-classic"
+
+To get started with the agents playground, see the [Quickstart: Create a new agent](../../ai-services/agents/quickstart.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
 
 ## Chat playground
 
-The chat playground is the place to test the latest reasoning models from Azure OpenAI, DeepSeek, and Meta. To learn more about the chat playground, see the [Quickstart: Get answers in the chat playground](../quickstarts/get-started-playground.md).
+The chat playground is the place to test the latest reasoning models from models including Azure OpenAI, DeepSeek, and Meta. For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model thinks through its response before sharing the output.
 
-For all reasoning models, the chat playground provides a chain-of-thought summary drop-down that lets you see how the model thinks through its response before sharing the output.
+::: moniker range="foundry-classic"
 
+To learn more about the chat playground, see the [Quickstart: Get answers in the chat playground](../quickstarts/get-started-playground.md).
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
 
 ## Audio playground
 
 The audio playground (preview) lets you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
 
 To try the text-to-speech capability, follow these steps:
+
+::: moniker range="foundry-classic"
 
 1. Select **Try the Audio playground** to open it.
 
@@ -107,7 +147,17 @@ To try the text-to-speech capability, follow these steps:
 
 1. Download the audio file to your local computer.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
+
 To try the transcription capability, follow these steps:
+
+::: moniker range="foundry-classic"
 
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-transcribe`.
 
@@ -118,6 +168,14 @@ To try the transcription capability, follow these steps:
 1. Input an audio file, by either uploading one or recording the audio from the prompt bar.
 
 1. Select **Generate transcription** to send the audio input to the model and receive a transcribed output in both text and JSON formats.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
 
 
 ## Video playground
@@ -135,6 +193,8 @@ Follow these steps to use the video playground:
 
 > [!CAUTION]
 > Videos you generate are retained for 24 hours due to data privacy. Download videos to your local computer for longer retention.
+
+::: moniker range="foundry-classic"
 
 1. Select **Try the Video playground** to open it.
 
@@ -161,6 +221,14 @@ Follow these steps to use the video playground:
 1. Select **View code**  from the options menu to view contextual sample code for your video generations in several languages, including Python, JavaScript, C#, JSON, Curl, and Go.  
 
 1. Port the code samples to production by copying them into VS Code.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
 
    
 ### What to validate when experimenting in video playground
@@ -209,6 +277,8 @@ You can use the images playground with these models:
 
 Follow these steps to use the images playground:
 
+::: moniker range="foundry-classic"
+
 1. Select **Try the Images playground** to open it.
 
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-image-1`.
@@ -224,6 +294,14 @@ Follow these steps to use the images playground:
 1. **Transform with API tooling:** Inpainting with text transformation is available for gpt-image-1. Alter parts of your original image with inpainting selection. Use text prompts to specify the change.
 
 1. **Port to production with multi-lingual code samples:** Use Python, Java, JavaScript, C# code samples with "View Code". Images playground is your launchpad to development work in VS Code.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. Insert NextGen content
+
+::: moniker-end
 
 ### What to validate when experimenting in images playground
 
