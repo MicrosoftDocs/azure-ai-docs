@@ -8,13 +8,6 @@ manager: nitinme
 ms.date: 10/07/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
-ms.custom:
-  - devx-track-azurecli
-  - devx-track-azurepowershell
-  - build-2024
-  - ignite-2024
-  - build-2025
-zone_pivot_groups: programming-languages-portal-cli-ps
 ---
 
 # Azure AI multi-services resource for Azure AI Search skills
