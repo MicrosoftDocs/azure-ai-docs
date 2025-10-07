@@ -79,7 +79,7 @@ Managed online endpoints can help streamline your deployment process and provide
   > [!NOTE]
   > Managed online endpoints are based on Azure Machine Learning compute. When you use a managed online endpoint, you pay for the compute and networking charges. There's no added surcharge. For more information on pricing, see the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/).
   >
-  > If you use an Azure Machine Learning virtual network to secure outbound traffic from the managed online endpoint, you're charged for the Azure private link and fully-qualified domain name (FQDN) outbound rules that the managed virtual network uses. For more information, see [Pricing for managed virtual network](how-to-managed-network.md#pricing).
+  > If you use an Azure Machine Learning virtual network to secure outbound traffic from the managed online endpoint, you're charged for the Azure private link and fully qualified domain name (FQDN) outbound rules that the managed virtual network uses. For more information, see [Pricing for managed virtual network](how-to-managed-network.md#pricing).
 
 The following table highlights the key differences between managed online endpoints and Kubernetes online endpoints.
 
@@ -150,7 +150,7 @@ The following table describes the key attributes of a deployment:
 
 [!INCLUDE [machine-learning-shared-quota](includes/machine-learning-shared-quota.md)]
 
-To deploy Llama-2, Phi, Nemotron, Mistral, Dolly, and Deci-DeciLM models from the model catalog by using the shared quota, you must have an [Enterprise Agreement subscription](/azure/cost-management-billing/manage/create-enterprise-subscription). For more information on how to use the shared quota for online endpoint deployment, see [How to deploy foundation models using the studio](how-to-use-foundation-models.md#shared-quota).
+To deploy Llama, Phi, Mistral, and other models from the model catalog by using the shared quota, you must have an [Enterprise Agreement subscription](/azure/cost-management-billing/manage/create-enterprise-subscription). For more information on how to use the shared quota for online endpoint deployment, see [How to deploy foundation models using the studio](how-to-use-foundation-models.md#shared-quota).
 
 For more information on quotas and limits for resources in Azure Machine Learning, see [Manage and increase quotas and limits for resources with Azure Machine Learning](how-to-manage-quotas.md).
 
