@@ -17,7 +17,7 @@ ms.custom:
 
 | Entity | Entity | Entity |
 |--|--|--|
-| [Address](entity-categories.md#type-address) | [Age](entity-categories.md#type-age) || [American Bankers Association Routing Number](entity-categories.md#type-american-bankers-association-routing-number)|
+| [Address](entity-categories.md#type-address) | [Age](entity-categories.md#type-age) | [American Bankers Association Routing Number](entity-categories.md#type-american-bankers-association-routing-number) |
 | [Argentina National Identity Number](entity-categories.md#type-argentina-national-identity-number) | [Australia Bank Account Number](entity-categories.md#type-australia-bank-account-number) | [Australia Business Number](entity-categories.md#type-australia-business-number) |
 | [Australia Company Number](entity-categories.md#type-australia-company-number) | [Australia Drivers License Number](entity-categories.md#type-australia-drivers-license-number) | [Australia Medical Account Number](entity-categories.md#type-australia-medical-account-number) |
 | [Australia Passport Number](entity-categories.md#type-australia-passport-number) | [Australia Tax File Number](entity-categories.md#type-australia-tax-file-number) | [Austria Identity Card](entity-categories.md#type-austria-identity-card) |
