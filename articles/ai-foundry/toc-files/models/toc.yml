@@ -354,8 +354,6 @@ items:
           href: ../../openai/how-to/dynamic-quota.md
         - name: Monitor Azure OpenAI
           href: ../../openai/how-to/monitor-openai.md
-        - name: Plan and manage costs
-          href: ../../openai/how-to/manage-costs.md
         - name: Performance & latency
           href: ../../openai/how-to/latency.md
         - name: Role-based access control (Azure RBAC)
