@@ -36,7 +36,7 @@ Azure AI Foundry depends on multiple Azure services. Some of these services are 
 
 Azure services include:
 
-* **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project. Azure Machine Learning provides the [underlying architecture](..concepts/architecture.md).
+* **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project. Azure Machine Learning provides the [underlying architecture](../concepts/architecture.md).
 
 * **Required associated resources**: Resources set up in your subscription when you create an Azure AI Foundry project. These resources include Azure Storage and Azure Key Vault.
   * The default storage has models, training logs, and references to data assets.
