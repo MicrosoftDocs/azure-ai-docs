@@ -10,7 +10,7 @@ ms.service: azure-ai-services
 ms.topic: quickstart
 ---
 
-# Azure AI multi-service resource for Azure AI Search skills
+# Use Azure AI Foundry with Azure AI Search skills
 
 [Azure AI Search skills](../search/tutorial-skillset.md) don't natively support the AI Foundry resource. You need to create a different _multi-service_ resource, instead, to use Azure AI Search skills with an Azure AI Foundry resource.
 

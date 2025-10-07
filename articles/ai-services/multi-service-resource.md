@@ -25,7 +25,7 @@ Azure AI Foundry is the next version and renaming of former 'Azure AI Services'.
 
 Looking to use AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI multi-services resource](multi-services-resource-search-skills.md).
+Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
 
 ::: zone pivot="azportal"
 
