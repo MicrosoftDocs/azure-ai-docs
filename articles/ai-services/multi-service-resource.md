@@ -82,6 +82,6 @@ The AI Foundry resource enables access to the following Azure AI services with a
 
 ## Related content
 
-- [Azure AI services hub page](../ai-services/index.yml).
-- [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md).
-- [Using Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
+- [Azure AI services hub page](../ai-services/index.yml)
+- [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md)
+- [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md)

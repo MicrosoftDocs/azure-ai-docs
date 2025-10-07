@@ -1,5 +1,5 @@
 ---
-title: Using Azure AI Foundry with Azure AI Search skills
+title: Use Azure AI Foundry with Azure AI Search skills
 titleSuffix: Azure AI services
 description: Learn how to create a multi-service resource to use Azure AI Search skills with an Azure AI Foundry resource.
 author: laujan
@@ -28,15 +28,15 @@ To create a multi-service resource for Azure AI Search skills follow these instr
     |Project details| Description   |
     |--|--|
     | **Subscription** | Select one of your available Azure subscriptions. |
-    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
-    | **Region** | The location of your Azure AI services multi-service account instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
+    | **Resource group** | The Azure resource group that contains your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
+    | **Region** | The location of your Azure AI services multi-service account instance. Different locations might introduce latency, but have no impact on the runtime availability of your resource. |
     | **Name** | A descriptive name for your Azure AI services multi-service account resource. For example, *MyCognitiveServicesResource*. |
     | **Pricing tier** | The cost of your Azure AI services multi-service account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
 
-1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
+1. Configure other settings for your resource as needed, read, and accept the conditions (as applicable), and then select **Review + create**.
 
 > [!TIP]
-> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
+> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell), or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you aren't the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
 
 ## Related content
 
