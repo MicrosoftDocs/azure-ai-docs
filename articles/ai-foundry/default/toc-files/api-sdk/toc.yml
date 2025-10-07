@@ -1,4 +1,6 @@
 items:
   - name: Azure AI Foundry client libraries
     href: ../../../how-to/develop/sdk-overview.md
+  - name: Endpoints for Foundry Models
+    href: ../../../foundry-models/concepts/endpoints.md
     
