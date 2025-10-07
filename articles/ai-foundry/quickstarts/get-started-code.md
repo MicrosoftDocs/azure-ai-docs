@@ -1,5 +1,5 @@
 ---
-title: "Azure AI Foundry SDK Quickstart"
+title: "Azure AI Foundry SDK"
 titleSuffix: Azure AI Foundry
 description: Get started with Azure AI Foundry SDK to build AI applications. Learn to interact with an agent in Python, C#, TypeScript, or Java.
 author: sdgilley
@@ -22,7 +22,7 @@ monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
 
-# Quickstart: Azure AI Foundry SDK Quickstart
+# Quickstart: Azure AI Foundry SDK
 
 ::: moniker range="foundry-classic"
 > [!NOTE]
