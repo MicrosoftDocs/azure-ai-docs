@@ -501,7 +501,7 @@
         "articles/machine-learning/component-reference/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/component-reference-v2/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/component-reference-v2/*.yml": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
-        "articles/machine-learning/prompt-flow/*.md": "ce-skilling-ai-copilot",
+        "articles/machine-learning/prompt-flow/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot",
         "articles/machine-learning/v1/*.md": "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
       },
       "ms.update-cycle": {
@@ -548,6 +548,7 @@
         "articles/ai-foundry/responsible-ai/**/*.md": "1825-days",
         "articles/ai-foundry/responsible-ai/**/*.yml": "1825-days",
         "articles/machine-learning/*.md": "365-days",
+        "articles/machine-learning/prompt-flow/*.md": "365-days",
         "articles/machine-learning/component-reference/*.md": "365-days",
         "articles/machine-learning/component-reference/*.yml": "365-days",
         "articles/machine-learning/component-reference-v2/*.md": "365-days",
