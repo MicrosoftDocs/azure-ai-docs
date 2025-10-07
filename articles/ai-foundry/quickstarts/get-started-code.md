@@ -5,7 +5,7 @@ description: Get started with Azure AI Foundry SDK to build AI applications. Lea
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
-ms.date: 09/22/2025 
+ms.date: 10/07/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom:
@@ -24,9 +24,9 @@ monikerRange: 'foundry-classic || foundry'
 
 # Quickstart: Get started with Azure AI Foundry (Foundry projects)
 
+::: moniker range="foundry-classic"
 > [!NOTE]
 > An alternate hub project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md).
-
 
 In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
 
@@ -36,11 +36,24 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDo
 > * Run a chat completion
 > * Create and run an agent
 > * Upload files to the agent
+::: moniker-end
+
+::: moniker range="foundry"
+In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Create and run an agent
+> * Upload files to the agent
+::: moniker-end
 
 The Azure AI Foundry SDK is available in multiple languages, including Python, Java, TypeScript, and C#. This quickstart provides instructions for each of these languages.
 
+::: moniker range="foundry-classic"
 > [!TIP]
 > The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+::: moniker-end
 
 ## Prerequisites
 
@@ -69,8 +82,11 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
-> [!NOTE]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+
 
 # [C#](#tab/csharp)
 
@@ -90,8 +106,9 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
 
-> [!NOTE]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
 
 
 # [TypeScript](#tab/typescript)
@@ -106,8 +123,9 @@ No installation is necessary to use the Azure AI Foundry portal.
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
 
 
-> [!NOTE]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart).
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart).
 
 # [Java (preview)](#tab/java)
 
@@ -123,8 +141,9 @@ No installation is necessary to use the Azure AI Foundry portal.
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
 
-> [!NOTE]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
 
 
 # [REST API](#tab/rest)
@@ -139,12 +158,14 @@ No installation is necessary to use the Azure AI Foundry portal.
     
 1. Save the results as the environment variable `AZURE_AI_AUTH_TOKEN`.  
 
-> [!NOTE]
-> All the code in this article is at [GitHub Quickstart](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
+Follow along below or get the code:
+> [!div class="nextstepaction"]
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
 ---
 
+::: moniker range="foundry-classic"
 ## Run a chat completion
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
@@ -179,6 +200,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
 ---
+::: moniker-end
 
 ## Chat with an agent
 
@@ -186,12 +208,27 @@ Agents have powerful capabilities through the use of tools. Start by chatting wi
  
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
+::: moniker range="foundry-classic"
+
 When you're ready to try an agent, a default agent is created for you. To chat with this agent:
 
 1. On the left pane, select **Playgrounds**.
 1. In the **Agents playground** card, select **Let's go**.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers."
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+When you're ready to try an agent, a default agent is created for you. To chat with this agent:
+
+1. Notice that creating the agent moved you into the **Build** section of the navigation and selected the agent for you to interact with in the Agent pane.
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. Start chatting with your agent, for example, "Write me a poem about flowers." 
+
+::: moniker-end
+
 
 # [Python](#tab/python)
 
@@ -219,6 +256,7 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 ---
 
+
 ## Add files to the agent
 
 Now let's add a file search tool that enables us to do knowledge retrieval.
@@ -228,6 +266,7 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
+::: moniker range="foundry-classic"
 1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
 1. Select **Add**.
 1. Select **Files** to upload the **product_info_1.md** file.
@@ -236,6 +275,16 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
 1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
+::: moniker-end
+
+::: moniker range="foundry"
+1. In your agent's **Setup** pane, under **Tools**, select **Add**.
+1. Select **File search**, then **Add tool**.
+1. Provide a name for your vector index, then choose the  the **product_info_1.md** file.
+1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
+1. Ask a question, such as, "Hello, what Contoso products do you know?"
+1. To add more files, select the index name under **Tools**.  Choose the additional files and select **Attach**.
+::: moniker-end
 
 # [Python](#tab/python)
 

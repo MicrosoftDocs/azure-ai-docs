@@ -1,3 +1,5 @@
 items:
 - name: Ask the Foundry agent
   href: ../../../foundry-agent/ask-foundry-agent.md
+- name: Quickstart
+  href: ../../../quickstarts/get-started-code.md
