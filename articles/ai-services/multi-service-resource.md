@@ -1,4 +1,4 @@
-﻿﻿---
+﻿---
 title: Create an AI Foundry resource
 titleSuffix: Azure AI services
 description: Create and manage an AI Foundry resource.
