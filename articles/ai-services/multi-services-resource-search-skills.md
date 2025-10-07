@@ -2,9 +2,8 @@
 title: Use Azure AI Foundry with Azure AI Search skills
 titleSuffix: Azure AI services
 description: Learn how to create a multi-service resource to use Azure AI Search skills with an Azure AI Foundry resource.
-author: laujan
-ms.author: lajanuar
-manager: nitinme
+author: jonburchel
+ms.author: jburchel
 ms.date: 10/07/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
