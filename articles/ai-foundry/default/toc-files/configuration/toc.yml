@@ -7,3 +7,5 @@ items:
   href: ../../../azure-ai-foundry-status-dashboard-documentation.md  
 - name: Region support
   href: /explore/global-infrastructure/products-by-region
+- name: Foundry Models quotas and limits
+  href: ../../../foundry-models/quotas-limits.md

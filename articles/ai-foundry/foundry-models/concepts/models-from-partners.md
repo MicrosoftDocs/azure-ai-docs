@@ -14,12 +14,16 @@ ms.custom:
   - tool_generated
   - build-aifnd
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 zone_pivot_groups: azure-ai-model-categories
 
 #CustomerIntent: As a developer or AI practitioner, I want to explore and understand the available Azure AI Foundry Models from partners and community, including their specific capabilities, deployment types, and regional availability, so that I can select the most appropriate model for my AI application requirements.
 ---
 
 # Foundry Models from partners and community
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This article lists a selection of Azure AI Foundry Models from partners and community along with their capabilities, [deployment types, and regions of availability](deployment-types.md), excluding [deprecated and legacy models](../../concepts/model-lifecycle-retirement.md#deprecated). 
 Most Foundry Models come from partners and community. Trusted third-party organizations, partners, research labs, and community contributors provide these models. 
