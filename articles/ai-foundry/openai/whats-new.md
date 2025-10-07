@@ -30,8 +30,11 @@ Request access: [Limited access model application](https://aka.ms/oai/gptimage1a
 Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
 
 
-## September 2025 
+### PII detection content filter
 
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
+
+## September 2025
 
 ## GPT-5-codex is now available
 
