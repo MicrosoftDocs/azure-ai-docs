@@ -15,7 +15,7 @@ ai.usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). Because Azure AI Foundry builds on the [Azure Machine Learning architecture](/azure/machine-learning/concept-workspace), review the foundational architecture.
+Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. Create a disaster recovery plan to handle regional service outages. In this article, you learn how to:
 
@@ -36,7 +36,7 @@ Azure AI Foundry depends on multiple Azure services. Some of these services are 
 
 Azure services include:
 
-* **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project. Azure Machine Learning provides the [underlying architecture](../concepts/architecture.md).
+* **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project.
 
 * **Required associated resources**: Resources set up in your subscription when you create an Azure AI Foundry project. These resources include Azure Storage and Azure Key Vault.
   * The default storage has models, training logs, and references to data assets.
@@ -83,7 +83,7 @@ Azure AI Foundry builds on other services. Some services can replicate to other 
 | ----- | ----- | ----- |
 | Azure AI Foundry projects | You | Create a projects in the selected regions. |
 | Key Vault | Microsoft | Use the same Azure Key Vault instance with the Azure AI Foundry project and resources in both regions. Azure Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
-| Storage account | You | Azure Machine Learning doesn't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and use it for your project. All subsequent projects use the project's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
+| Storage account | You | Azure AI Foundry projects don't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and use it for your project. All subsequent projects use the project's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
 | Azure Container Registry | Microsoft | Configure the Azure Container Registry instance to geo-replicate to the paired region for Azure AI Foundry. Use the same instance for both projects. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
 | Application Insights | You | Create Application Insights for the project in both regions. To adjust the data retention period and details, see [Data collection, retention, and storage in Application Insights](/azure/azure-monitor/logs/data-retention-archive). |
 
