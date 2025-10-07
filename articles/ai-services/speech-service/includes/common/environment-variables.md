@@ -14,14 +14,14 @@ To set the environment variables for your Speech resource key and region, open a
 
 - To set the `SPEECH_KEY` environment variable, replace *your-key* with one of the keys for your resource.
 - To set the `SPEECH_REGION` environment variable, replace *your-region* with one of the regions for your resource.
-- To set the `Endpoint` environment variable, replace `your-endpoint` with the actual endpoint of your Speech resource.
+- To set the `ENDPOINT` environment variable, replace `your-endpoint` with the actual endpoint of your Speech resource.
 
 #### [Windows](#tab/windows)
 
 ```console
 setx SPEECH_KEY your-key
 setx SPEECH_REGION your-region
-setx Endpoint your-endpoint
+setx ENDPOINT your-endpoint
 ```
 
 > [!NOTE]
@@ -38,7 +38,7 @@ Edit your *.bashrc* file, and add the environment variables:
 ```bash
 export SPEECH_KEY=your-key
 export SPEECH_REGION=your-region
-export Endpoint=your-endpoint
+export ENDPOINT=your-endpoint
 ```
 
 After you add the environment variables, run `source ~/.bashrc` from your console window to make the changes effective.
@@ -52,7 +52,7 @@ Edit your *.bash_profile* file, and add the environment variables:
 ```bash
 export SPEECH_KEY=your-key
 export SPEECH_REGION=your-region
-export Endpoint=your-endpoint
+export ENDPOINT=your-endpoint
 ```
 
 After you add the environment variables, run `source ~/.bash_profile` from your console window to make the changes effective.
@@ -66,7 +66,7 @@ For iOS and macOS development, you set the environment variables in Xcode. For e
 1. Under **Environment Variables** select the plus (+) sign to add a new environment variable.
 1. Enter `SPEECH_KEY` for the **Name** and enter your Speech resource key for the **Value**.
 
-To set the environment variable for your Speech resource region, follow the same steps. Set `SPEECH_REGION` to the region of your resource. For example, `westus`. Set `Endpoint` to the endpoint of your resource
+To set the environment variable for your Speech resource region, follow the same steps. Set `SPEECH_REGION` to the region of your resource. For example, `westus`. Set `ENDPOINT` to the endpoint of your resource
 
 For more configuration options, see [the Xcode documentation](https://help.apple.com/xcode/#/dev745c5c974).
 
