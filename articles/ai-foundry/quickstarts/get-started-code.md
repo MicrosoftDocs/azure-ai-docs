@@ -1,7 +1,7 @@
 ---
-title: "Azure AI Foundry SDK Quickstart - Build Your First AI App"
+title: "Azure AI Foundry SDK Quickstart"
 titleSuffix: Azure AI Foundry
-description: Get started with Azure AI Foundry SDK to build AI applications. Learn to deploy models, create chat apps, trace LLM calls, and run evaluations with Python code examples.
+description: Get started with Azure AI Foundry SDK to build AI applications. Learn to interact with an agent in Python, C#, TypeScript, or Java.
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: dantaylo
@@ -22,7 +22,7 @@ monikerRange: 'foundry-classic || foundry'
 # customer intent: As a developer, I want to start using the Azure AI Foundry portal and client libraries.
 ---
 
-# Quickstart: Get started with Azure AI Foundry (Foundry projects)
+# Quickstart: Azure AI Foundry SDK Quickstart
 
 ::: moniker range="foundry-classic"
 > [!NOTE]
@@ -85,7 +85,7 @@ No installation is necessary to use the Azure AI Foundry portal.
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart).
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart)
 
 
 # [C#](#tab/csharp)
@@ -108,7 +108,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart).
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/mslearn-resources/quickstart)
 
 
 # [TypeScript](#tab/typescript)
@@ -125,7 +125,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart).
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart)
 
 # [Java (preview)](#tab/java)
 
@@ -143,7 +143,7 @@ Follow along below or get the code:
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
-> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart).
+> [Get the code](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart)
 
 
 # [REST API](#tab/rest)
@@ -221,9 +221,8 @@ When you're ready to try an agent, a default agent is created for you. To chat w
 
 ::: moniker range="foundry"
 
-When you're ready to try an agent, a default agent is created for you. To chat with this agent:
+Notice that creating the agent moved you into the **Build** section of the navigation and selected the agent for you to interact with in the Agent pane.
 
-1. Notice that creating the agent moved you into the **Build** section of the navigation and selected the agent for you to interact with in the Agent pane.
 1. Add instructions, such as, "You are a helpful writing assistant."
 1. Start chatting with your agent, for example, "Write me a poem about flowers." 
 
@@ -278,9 +277,9 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 ::: moniker-end
 
 ::: moniker range="foundry"
-1. In your agent's **Setup** pane, under **Tools**, select **Add**.
+1. In the left section of the Agent pane, under **Tools**, select **Add**.
 1. Select **File search**, then **Add tool**.
-1. Provide a name for your vector index, then choose the  the **product_info_1.md** file.
+1. Provide a name for the vector index that will be created. Then choose to upload the **product_info_1.md** file.
 1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
 1. Ask a question, such as, "Hello, what Contoso products do you know?"
 1. To add more files, select the index name under **Tools**.  Choose the additional files and select **Attach**.
