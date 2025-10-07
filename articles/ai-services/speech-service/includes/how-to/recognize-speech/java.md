@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 
 public class Program {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
     }
 }
 ```
@@ -52,7 +52,7 @@ import java.util.concurrent.Future;
 
 public class Program {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
         fromMic(speechConfig);
     }
 
@@ -82,7 +82,7 @@ import java.util.concurrent.Future;
 
 public class Program {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
         fromFile(speechConfig);
     }
 
