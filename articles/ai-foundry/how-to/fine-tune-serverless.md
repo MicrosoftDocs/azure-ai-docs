@@ -19,13 +19,13 @@ ai-usage: ai-assisted
 
 [!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
 
-Learn how to deploy fine-tuned models by using serverless API deployments in Azure AI Foundry. This comprehensive guide shows you how to fine-tune large language models to your specific datasets and deploy them with serverless infrastructure, offering improved performance, cost efficiency, reduced latency, and tailored outputs.
+Learn how to deploy fine-tuned models by using serverless API deployments in Azure AI Foundry. This comprehensive guide shows you how to fine-tune large language models (LLMs) to your specific datasets and deploy them with serverless infrastructure, offering improved performance, cost efficiency, reduced latency, and tailored outputs.
 
 **Cost efficiency**: Azure AI Foundry's fine-tuning can be more cost-effective, especially for large-scale deployments, thanks to pay-as-you-go pricing.
 
 **Model variety**: Azure AI Foundry's serverless API deployment fine-tuning offers support for both proprietary and open-source models, providing users with the flexibility to select the models that best suit their needs without being restricted to a single type.
 
-**Customization and control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, allowing users to tailor models more precisely to their specific requirements.
+**Customization and control**: Azure AI Foundry provides greater customization and control over the fine-tuning process, which allows users to tailor models more precisely to their specific requirements.
 
 This article explains how to fine-tune models that are deployed using serverless API deployments in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
@@ -52,7 +52,9 @@ Verify that your subscription is registered to the *Microsoft.Network* resource 
 
 ## Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the Azure regions of support for fine-tuning, see [region availability for models in serverless APIs](deploy-models-serverless-availability.md). Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
+The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [region availability for models in serverless APIs](deploy-models-serverless-availability.md).
+
+Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
 You can also go to the Azure AI Foundry portal to view all models that contain fine-tuning support:
 
@@ -75,7 +77,7 @@ Prepare your training and validation data to fine-tune your model. Your training
 Make sure all your training examples follow the expected format for inference. To fine-tune models effectively, ensure a diverse dataset by maintaining data balance, including various scenarios, and periodically refining training data to align with real-world expectations. These actions ultimately lead to more accurate and balanced model responses.
 
 > [!TIP]
-> Different model types require a different format of training data.
+> Different model types require training data in different formats.
 
 # [Chat completion](#tab/chat-completion)
 
@@ -111,7 +113,7 @@ Here are some example datasets on Hugging Face that you can use to fine-tune you
 
     :::image type="content" source="../media/how-to/fine-tune/dataset-setfit-mrpc.png" alt-text="Screenshot of example Microsoft Research Paraphrase Corpus (MRPC) data on Hugging Face." lightbox="../media/how-to/fine-tune/dataset-setfit-mrpc.png":::
 
-Single text classification requires the training data to include at least two fields such as `text1` and `label`. Text pair classification requires the training data to include at least three fields such as `text1`, `text2`, and `label`. 
+*Single text classification* requires the training data to include at least two fields such as `text1` and `label`. *Text pair classification* requires the training data to include at least three fields such as `text1`, `text2`, and `label`. 
 
 The supported file type is JSON Lines. Files are uploaded to the default datastore and made available in your project.
 
@@ -119,50 +121,38 @@ The supported file type is JSON Lines. Files are uploaded to the default datasto
 
 ## Use the fine-tune model wizard
 
-Azure AI Foundry portal provides the Create custom model wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
+Azure AI Foundry portal provides a custom model wizard, so you can interactively create and train a fine-tuned model for your Azure resource.
 
 ### Select the base model
 
-1. Choose the model you want to fine-tune from the Azure AI Foundry [model catalog](https://ai.azure.com/explore/models).
-1. On the model's **Details page**, select **Fine-tuning**. Some foundation models support both **serverless API deployment** and **Managed compute**, while others support one or the other.
-1. If you see options for **serverless API deployment** and [**managed compute**](./fine-tune-managed-compute.md), select **serverless API deployment** for fine-tuning. This action opens up a wizard that shows information about **Serverless API** fine-tuning for your model.
+1. Select **Fine-tuning** from the sidebar menu, then choose **+ Fine-tune model**.
+1. Select the model you want to fine-tune from the list under **Base models**, then select **Next**.
 
 ### Choose your training data
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
+1. Select **+ Add training data**.
+
 - If your training data is already uploaded to the service, select **Existing files on this resource**.
     - Select the file from the dropdown list shown.
 - To upload new training data, use one of the following options:
-    - Select **Upload file** to upload training data from a local file.
+    - Select **Upload files** to upload training data from a local file.
     - Select **Azure blob or other shared web locations** to import training data from Azure Blob or another shared web location.
+- To use a ready-to-go dataset for quick fine-tuning, choose from the list under **Select data**.
 
 For large data files, we recommend that you import from an Azure Blob store. For more information about Azure Blob Storage, see [What is Azure Blob Storage?](/azure/storage/blobs/storage-blobs-overview)
 
-### Upload training data from local file
-
-You can upload a new training dataset to the service from a local file by using one of the following methods:
-- Drag and drop the file into the client area of the **Training data pane**, and then select **Upload file**.
-- Select **Browse for a file** from the client area of the **Training data pane**, choose the file to upload from the **Open** dialog, and then select **Upload file**.
-- After you select and upload the training dataset, select **Next** to continue.
-
 ### Choose your validation data
 
-The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Next** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
+The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
-The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
+1. Select **+ Add validation data**. The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
-### Split training data
-
-You can automatically divide your training data to generate a validation dataset.
-After you select **Automatic split of training data**, select **Next** to continue.
-
-### Use existing data in Azure AI Foundry
-
-- If your validation data is already uploaded to the service, select **Choose dataset**.
+- If your validation data is already uploaded to the service, select **Existing files on this resource**.
     - Select the file from the list shown in the **Validation data** pane.
 - To upload new validation data, use one of the following options:
-    - Select **Upload file** to upload validation data from a local file.
+    - Select **Upload files** to upload validation data from a local file.
     - Select **Azure blob or other shared web locations** to import validation data from Azure Blob or another shared web location.
 
 For large data files, we recommend that you import from an Azure Blob store. Large files can become unstable when uploaded through multipart forms because the requests are atomic and can't be retried or resumed.
@@ -170,32 +160,19 @@ For large data files, we recommend that you import from an Azure Blob store. Lar
 > [!Note]
 >- Similar to training data files, validation data files must be formatted as JSONL files, encoded in UTF-8 with a byte-order mark (BOM). The file must be less than 512 MB in size.
 
-### Upload validation data from local file
-
-You can upload a new validation dataset to the service from a local file by using one of the following methods:
-- Drag and drop the file into the client area of the **Validation data** pane, and then select **Upload file**.
-- Select **Browse for a file** from the client area of the **Validation data** pane, choose the file to upload from the **Ope**n dialog, and then select **Upload file**.
-- After you select and upload the validation dataset, select **Next** to continue.
-
 ### Configure task parameters
 
 The **Fine-tune model** wizard shows the parameters for training your fine-tuned model on the **Task parameters** pane. The following parameters are available:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
-| **Batch size** |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, larger batch sizes tend to work better for larger datasets. The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
-| **Learning rate multiplier** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate might be useful to avoid overfitting. |
-| **Number of epochs** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
+| **Batch size (1-32)** |integer | The batch size to use for training. The batch size is the number of training examples used to train a single forward and backward pass. In general, larger batch sizes tend to work better for larger datasets. The default value and the maximum value for this property are specific to a base model. A larger batch size means that model parameters are updated less frequently, but with lower variance. |
+| **Learning rate multiplier (0.0-10.0)** | number | The learning rate multiplier to use for training. The fine-tuning learning rate is the original learning rate used for pretraining multiplied by this value. Larger learning rates tend to perform better with larger batch sizes. We recommend experimenting with values in the range 0.02 to 0.2 to see what produces the best results. A smaller learning rate might be useful to avoid overfitting. |
+| **Number of epochs (1-10)** | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 
 Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
 
-After you configure the advanced options, select **Next** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
-
-### Review your choices and train your model
-
-The **Review** pane of the wizard displays information about your configuration choices.
-
-If you're ready to train your model, select **Start Training job** to start the fine-tuning job and return to the **Models** Tab.
+After you configure the advanced options, select **Submit** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
 
 ### Check the status of your custom model
 
@@ -241,13 +218,12 @@ Issues fine-tuning with unique network setups on the workspace and storage usual
 
 ## Deploy a fine-tuned model
 
-After the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tune** tab. You must deploy your custom model to make it available for use with completion calls.
+After the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
-> After you deploy a customized model and finishing with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't
-> delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-
-> tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model. To learn more about
-> planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan and manage costs for Azure AI Foundry Service](./costs-plan-manage.md).
+> After you deploy a customized model and finishing with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
+>
+> To learn more about planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan and manage costs for Azure AI Foundry Service](./costs-plan-manage.md).
 
 > [!NOTE]
 > Only one deployment is permitted for a custom model. An error message is displayed if you select an already-deployed custom model.
@@ -337,7 +313,7 @@ workspace.id
 
 ### Find models with fine-tuning support
 
-The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models that support fine-tuning and the supported Azure regions for fine-tuning, see [Region availability for models in serverless APIs](deploy-models-serverless-availability.md).
+The AI Foundry model catalog offers fine-tuning support for multiple types of models, including chat completions and text generation. For a list of models and regions that support fine-tuning, see [Region availability for models in serverless APIs](deploy-models-serverless-availability.md).
 
 Fine-tuning tasks are available only to users whose Azure subscription belongs to a billing account in a region where the model provider makes the offer available. If the offer is available in the relevant region, the user then must have a project resource in the Azure region where the model is available for deployment or fine-tuning, as applicable.
 
