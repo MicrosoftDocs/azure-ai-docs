@@ -68,9 +68,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Set up your environment  
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-No installation is necessary to use the Azure AI Foundry portal.
 
 # [Python](#tab/python)
 
@@ -165,6 +163,9 @@ Follow along below or get the code:
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/REST/mslearn-resources/quickstart).
 
 
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+No installation is necessary to use the Azure AI Foundry portal.
 ---
 
 ::: moniker range="foundry-classic"
@@ -172,10 +173,7 @@ Follow along below or get the code:
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-1. In the chat playground, fill in the prompt and select **Send**.
-1. The model returns a response in the **Response** pane.
 
 # [Python](#tab/python)
 
@@ -201,6 +199,10 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="chat_completion":::
 
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. In the chat playground, fill in the prompt and select **Send**.
+1. The model returns a response in the **Response** pane.
 ---
 ::: moniker-end
 
@@ -208,27 +210,8 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 Agents have powerful capabilities through the use of tools. Start by chatting with an agent.
  
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
-::: moniker range="foundry-classic"
 
-When you're ready to try an agent, a default agent is created for you. To chat with this agent:
-
-1. In the left pane, select **Playgrounds**.
-1. In the **Agents playground** card, select **Let's go**.
-1. Add instructions, such as, "You are a helpful writing assistant."
-1. Start chatting with your agent, for example, "Write me a poem about flowers."
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-Notice that creating the agent moved you into the **Build** section of the navigation and selected the agent for you to interact with in the Agent pane.
-
-1. Add instructions, such as, "You are a helpful writing assistant."
-1. Start chatting with your agent, for example, "Write me a poem about flowers." 
-
-::: moniker-end
 
 
 # [Python](#tab/python)
@@ -255,6 +238,27 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_and_run_agent":::
 
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+::: moniker range="foundry-classic"
+
+When you're ready to try an agent, a default agent is created for you. To chat with this agent:
+
+1. In the left pane, select **Playgrounds**.
+1. In the **Agents playground** card, select **Let's go**.
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. Start chatting with your agent, for example, "Write me a poem about flowers."
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+After you create the agent, you're automatically moved from **Home** to the **Build** section. Your new agent is selected and ready for you to try out in the Agent pane.
+
+1. Add instructions, such as, "You are a helpful writing assistant."
+1. Start chatting with your agent, for example, "Write me a poem about flowers." 
+
+::: moniker-end
 ---
 
 
@@ -265,27 +269,6 @@ Now let's add a file search tool that enables us to do knowledge retrieval.
 * Download [product_info_1.md](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/data/product_info_1.md) to give to your agent.
 
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
-
-::: moniker range="foundry-classic"
-1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
-1. Select **Add**.
-1. Select **Files** to upload the product_info_1.md file.
-1. Select **Select local files** under **Add files**.
-1. Select **Upload and save**.
-1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
-1. Ask a question, such as, "Hello, what Contoso products do you know?"
-1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
-::: moniker-end
-
-::: moniker range="foundry"
-1. In the left section of the Agent pane, under **Tools**, select **Add**.
-1. Select **File search**, then **Add tool**.
-1. Provide a name to create a vector index. Then choose to upload the product_info_1.md file.
-1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
-1. Ask a question, such as, "Hello, what Contoso products do you know?"
-1. To add more files, select the index name under **Tools**. Choose the additional files and select **Attach**.
-::: moniker-end
 
 # [Python](#tab/python)
 
@@ -310,6 +293,28 @@ Substitute your endpoint for the `endpoint` in this code:
 Replace `YOUR-FOUNDRY-RESOURCE-NAME` and `YOUR-PROJECT-NAME` with your values:
 
 :::code language="console" source="~/foundry-samples-main/samples/microsoft/REST/mslearn-resources/quickstart/quickstart.sh" id="create_filesearch_agent":::
+
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+::: moniker range="foundry-classic"
+1. In your agent's **Setup** pane, scroll down if necessary to find **Knowledge**.
+1. Select **Add**.
+1. Select **Files** to upload the product_info_1.md file.
+1. Select **Select local files** under **Add files**.
+1. Select **Upload and save**.
+1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
+1. Ask a question, such as, "Hello, what Contoso products do you know?"
+1. To add more files, select the **...** on the AgentVectorStore, then select **Manage**.
+::: moniker-end
+
+::: moniker range="foundry"
+1. In the left section of the Agent pane, under **Tools**, select **Add**.
+1. Select **File search**, then **Add tool**.
+1. Provide a name to create a vector index. Then choose to upload the product_info_1.md file.
+1. Change your agents instructions, such as, "You are a helpful assistant and can search information from uploaded files."
+1. Ask a question, such as, "Hello, what Contoso products do you know?"
+1. To add more files, select the index name under **Tools**. Choose the additional files and select **Attach**.
+::: moniker-end
 
 ---
 
