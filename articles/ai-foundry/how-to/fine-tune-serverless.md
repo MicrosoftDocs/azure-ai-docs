@@ -172,7 +172,7 @@ The **Fine-tune model** wizard shows the parameters for training your fine-tuned
 
 Select **Default** to use the default values for the fine-tuning job, or select **Custom** to display and edit the hyperparameter values. When defaults are selected, we determine the correct value algorithmically based on your training data.
 
-After you configure the advanced options, select **Submit** to [review your choices and train your fine-tuned model](#review-your-choices-and-train-your-model).
+After you configure the advanced options, select **Submit**.
 
 ### Check the status of your custom model
 
@@ -200,12 +200,12 @@ Several enterprise scenarios are supported for serverless API deployment fine-tu
 
 | **Storage networking** | **Storage auth** | **Data connection auth** | **Support** |
 |--|--|--|--|
-| Public network access = Enabled | Account key enabled | SAS/Account Key | Yes, UX and SDK |
+| Public network access = Enabled | Account key enabled | SAS/Account key | Yes, UX and SDK |
 | Public network access = Enabled | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK <br><br> *Note:* for UX, you might need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use Account key/SAS token | 
 | Enabled from selected virtual networks and IP addresses | Account key enabled | Account key | Yes, UX and SDK <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list |
 | Enabled from selected virtual networks and IP addresses | Account key enabled | SAS | Yes, UX and SDK  <br><br> *Note:* for UX, the IP of the compute running the browser must be in the selected list |
 | Enabled from selected virtual networks and IP addresses | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br>*Note:* for UX, you might need to add Storage Blob Data Reader or Storage Blob Data Contributor for your user ID on the storage account, or change the connection's authentication to use account key/SAS token. Also ensure the IP of the compute running the browser must be in the selected list |
-| Public network access = Disabled | Account key enabled | SAS/Account Key | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
+| Public network access = Disabled | Account key enabled | SAS/Account key | Yes, UX and SDK. <br><br> *Note:*  for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
 | Public network access = Disabled | Account key disabled | Entra-based auth (credentialless) | Yes, UX and SDK. <br><br> *Note:* for UX data upload and submission to work, the workspace _needs to be accessed from within the virtual network_ that has appropriate access to the storage |
 
 The preceding scenarios should work in a managed virtual network workspace as well. To learn how to set up managed virtual network AI Foundry hub, see [How to configure a managed network for Azure AI Foundry hubs](./configure-managed-network.md).
@@ -221,7 +221,7 @@ Issues fine-tuning with unique network setups on the workspace and storage usual
 After the fine-tuning job succeeds, you can deploy the custom model from the **Fine-tuning** tab. You must deploy your custom model to make it available for use with completion calls.
 
 > [!IMPORTANT]
-> After you deploy a customized model and finishing with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
+> After you deploy a customized model and finish with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
 >
 > To learn more about planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan and manage costs for Azure AI Foundry Service](./costs-plan-manage.md).
 
@@ -543,7 +543,7 @@ finetune_model_name
 After the fine-tuning job succeeds, you can deploy the custom model.
 
 > [!IMPORTANT]
-> After you deploy a customized model and finishing with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
+> After you deploy a customized model and finish with the endpoint, remember to clean up any inactive endpoints. The deletion of an inactive deployment doesn't delete or affect the underlying customized model, and the customized model can be redeployed at any time. As described in Azure AI Foundry pricing, each customized (fine-tuned) model that's deployed incurs an hourly hosting cost regardless of whether completions or chat completions calls are being made to the model.
 >
 > To learn more about planning and managing costs with Azure AI Foundry, refer to the guidance in [Plan and manage costs for Azure AI Foundry hubs](./costs-plan-manage.md).  
 
