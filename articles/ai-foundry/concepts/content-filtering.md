@@ -67,6 +67,7 @@ You can also enable the following special output filters:
 - **Protected material for text**: Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that a large language model might output.
 - **Protected material for code**: Protected material code describes source code that matches a set of source code from public repositories, which a large language models might output without proper citation of source repositories.
 - **Groundedness**: The groundedness detection filter detects whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users.
+- **Personally identifiable information (PII)**: The PII filter detects whether the text responses of large language models (LLMs) contain personally identifiable information (PII). PII refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
 
 [!INCLUDE [create-content-filter](../includes/create-content-filter.md)]
 
