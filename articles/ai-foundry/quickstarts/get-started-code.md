@@ -24,6 +24,8 @@ monikerRange: 'foundry-classic || foundry'
 
 # Quickstart: Azure AI Foundry SDK
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
 ::: moniker range="foundry-classic"
 > [!NOTE]
 > An alternate hub project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md).
