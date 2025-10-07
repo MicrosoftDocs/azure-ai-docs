@@ -12,7 +12,7 @@ ms.service: azure-ai-openai
 
 Personally identifiable information (PII) refers to any information that can be used to identify a particular individual, such as a name, address, phone number, email address, social security number, driver's license number, passport number, or similar information.
 
-PII detection is used to prevent PII from being exposed or shared, protecting users from identity theft, financial fraud, or other types of privacy violations.
+PII detection is used to help prevent PII from being exposed or shared, protecting users from identity theft, financial fraud, or other types of privacy violations.
 
 In the context of large language models (LLMs), PII detection involves analyzing text content in LLM completions. When PII has been identified, it can be flagged for further review, or the output can be blocked. The PII filter scans the output of LLMs to identify and flag known personal information. It's designed to help organizations prevent the generation of content that closely matches sensitive personal information.
 
