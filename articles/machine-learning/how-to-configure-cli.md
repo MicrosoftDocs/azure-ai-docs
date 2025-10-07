@@ -109,7 +109,7 @@ The `ml` CLI extension (sometimes called 'CLI v2') for Azure Machine Learning se
 Data in a data store that is secured in a virtual network isn't_ sent over the public internet. For example, if your training data is located in the default storage account for the workspace, and the storage account is in a virtual network.
 
 > [!NOTE]
-> With the previous extension (`azure-cli-ml`, sometimes called 'CLI v1'), only some of the commands communicate with the Azure Resource Manager. Specifically, commands that create, update, delete, list, or show Azure resources. Operations such as submitting a training job communicate directly with the Azure Machine Learning workspace. If your workspace is [secured with a private endpoint](how-to-configure-private-link.md), that is enough to secure commands provided by the `azure-cli-ml` extension.
+> With the previous extension `azure-cli-ml`, sometimes called 'CLI v1', only some of the commands communicate with Azure Resource Manager. Specifically, commands that create, update, delete, list, or show Azure resources. Operations such as submitting a training job communicate directly with the Azure Machine Learning workspace. If your workspace is [secured with a private endpoint](how-to-configure-private-link.md), that's enough to secure commands provided by the `azure-cli-ml` extension.
 
 # [Public workspace](#tab/public)
 
