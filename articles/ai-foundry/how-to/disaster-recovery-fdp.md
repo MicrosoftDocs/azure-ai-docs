@@ -1,19 +1,17 @@
 ---
-title: Customer enabled disaster recovery for AI hub projects
+title: Customer enabled disaster recovery for Azure AI Foundry projects
 titleSuffix: Azure AI Foundry
-description: Learn how to plan for disaster recovery for Azure AI Foundry hub projects.
+description: Learn how to plan for disaster recovery for Azure AI Foundry projects.
 ms.service: azure-ai-foundry
-ms.custom:
-  - build-2024
 ms.topic: how-to
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: andyaviles
-ms.date: 08/27/2025
+ms.date: 10/07/2025
 ai.usage: ai-assisted
 ---
 
-# Customer-enabled disaster recovery
+# Customer-enabled disaster recovery for Azure AI Foundry projects
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -30,7 +28,7 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Azure AI Foundry itself doesn't provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> The information in this article only applies to **[!INCLUDE [hub](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [fdp](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](disaster-recovery-fdp.md).
+> The information in this article only applies to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](disaster-recovery.md).
 
 ## Understand Azure services for Azure AI Foundry
 
@@ -38,17 +36,17 @@ Azure AI Foundry depends on multiple Azure services. Some of these services are 
 
 Azure services include:
 
-* **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry hub and project. Azure Machine Learning provides the [underlying architecture](..concepts/architecture.md).
+* **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project. Azure Machine Learning provides the [underlying architecture](..concepts/architecture.md).
 
-* **Required associated resources**: Resources set up in your subscription when you create an Azure AI Foundry hub or project. These resources include Azure Storage and Azure Key Vault.
+* **Required associated resources**: Resources set up in your subscription when you create an Azure AI Foundry project. These resources include Azure Storage and Azure Key Vault.
   * The default storage has models, training logs, and references to data assets.
   * Azure Key Vault stores credentials for Azure Storage and connections.
 
-* **Optional associated resources**: Resources you attach to your Azure AI Foundry hub. These resources include Azure Container Registry and Application Insights.
+* **Optional associated resources**: Resources you attach to your Azure AI Foundry project. These resources include Azure Container Registry and Application Insights.
   * Azure Container Registry stores Docker images for training and inference environments.
   * Application Insights monitors Azure AI Foundry.
 
-* **Compute instance**: A resource you create after you deploy the hub. It provides a Microsoft managed model development environment.
+* **Compute instance**: A resource you create after you deploy the project. It provides a Microsoft managed model development environment.
 
 * **Connections**: Azure AI Foundry connects to other services. You're responsible for configuring their high availability settings.
 
@@ -87,12 +85,12 @@ Azure AI Foundry builds on other services. Some services can replicate to other 
 
 | Azure service | Geo-replicated by | Configuration |
 | ----- | ----- | ----- |
-| Azure AI Foundry hub and projects | You | Create a hub and projects in the selected regions. |
+| Azure AI Foundry projects | You | Create a projects in the selected regions. |
 | Azure AI Foundry compute | You | Create the compute resources in the selected regions. For compute resources that can dynamically scale, make sure that both regions provide sufficient compute quota for your needs. |
-| Key Vault | Microsoft | Use the same Azure Key Vault instance with the Azure AI Foundry hub and resources in both regions. Azure Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
-| Storage account | You | Azure Machine Learning doesn't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and use it for your hub. All subsequent projects use the hub's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
-| Azure Container Registry | Microsoft | Configure the Azure Container Registry instance to geo-replicate to the paired region for Azure AI Foundry. Use the same instance for both hubs. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
-| Application Insights | You | Create Application Insights for the hub in both regions. To adjust the data retention period and details, see [Data collection, retention, and storage in Application Insights](/azure/azure-monitor/logs/data-retention-archive). |
+| Key Vault | Microsoft | Use the same Azure Key Vault instance with the Azure AI Foundry project and resources in both regions. Azure Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
+| Storage account | You | Azure Machine Learning doesn't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and use it for your project. All subsequent projects use the project's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
+| Azure Container Registry | Microsoft | Configure the Azure Container Registry instance to geo-replicate to the paired region for Azure AI Foundry. Use the same instance for both projects. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
+| Application Insights | You | Create Application Insights for the project in both regions. To adjust the data retention period and details, see [Data collection, retention, and storage in Application Insights](/azure/azure-monitor/logs/data-retention-archive). |
 
 Use these development practices to enable fast recovery and restart in the secondary region:
 
@@ -115,9 +113,9 @@ Decide the level of business continuity you need. The level can differ between c
 
 Azure AI Foundry is a regional service and stores data both on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. However, you can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata (tags, asset names, descriptions). Data in your storage account is typically not metadata, like uploaded data.
 
-For connections, create two separate resources in two distinct regions, and then create two connections for the hub. For example, if AI Services is critical for business continuity, create two AI Services resources and two hub connections. With this configuration, if one region goes down, the other region stays operational.
+For connections, create two separate resources in two distinct regions, and then create two connections for the project. For example, if AI Services is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
 
-For any hubs that are essential to business continuity, deploy resources in two regions.
+For any projects that are essential to business continuity, deploy resources in two regions.
 
 ### Isolated storage
 
@@ -128,20 +126,20 @@ In the Azure AI Foundry portal, create a connection to your data. If you have mu
 
 ## Initiate a failover
 
-### Continue work in the failover hub
+### Continue work in the failover project
 
-When the primary hub is unavailable, switch to the secondary hub to continue development. Azure AI Foundry doesn't automatically submit jobs to the secondary hub during an outage. Update your configuration to point to the secondary hub or project resources. Avoid hard-coded hub or project references.
+When the primary project is unavailable, switch to the secondary project to continue development. Azure AI Foundry doesn't automatically submit jobs to the secondary project during an outage. Update your configuration to point to the secondary project resources. Avoid hard-coded project references.
 
-Azure AI Foundry can't sync or recover artifacts or metadata between hubs. Depending on your deployment strategy, you might need to move or recreate artifacts in the failover hub to continue. If you configure the primary and secondary hubs to share associated resources with geo-replication enabled, some objects can be available in the failover hub. For example, both hubs can share the same Docker images, configured datastores, and Azure Key Vault resources.
+Azure AI Foundry can't sync or recover artifacts or metadata between projects. Depending on your deployment strategy, you might need to move or recreate artifacts in the failover project to continue. If you configure the primary and secondary projects to share associated resources with geo-replication enabled, some objects can be available in the failover project. For example, both projects can share the same Docker images, configured datastores, and Azure Key Vault resources.
 
 > [!NOTE]
-> Jobs that run during a service outage don't automatically transition to the secondary hub. They're also unlikely to resume and finish successfully in the primary hub after the outage. Resubmit these jobs in the secondary hub or in the primary hub after the outage.
+> Jobs that run during a service outage don't automatically transition to the secondary project. They're also unlikely to resume and finish successfully in the primary project after the outage. Resubmit these jobs in the secondary project or in the primary project after the outage.
 
 ## Recovery options
 
 ### Resource deletion
 
-If you delete a hub and its resources, some resources support soft delete and can be recovered. Hubs and projects don't support soft delete—if you delete them, you can't recover them. The following table shows which services support soft delete.
+If you delete a project and its resources, some resources support soft delete and can be recovered. Projects don't support soft delete. If you delete them, you can't recover them. The following table shows which services support soft delete.
 
 | Service | Soft delete enabled |
 | ------- | ------------------- |
@@ -153,5 +151,4 @@ If you delete a hub and its resources, some resources support soft delete and ca
 
 ## Related content
 
-* See [Create a secure hub](create-secure-ai-hub.md) to learn about secure infrastructure deployments in Azure AI Foundry.
-* Review the [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1).
+Review the [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1).
