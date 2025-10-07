@@ -87,7 +87,7 @@ Users can optionally connect their own Azure Storage accounts. Foundry tools can
 
 * **Bring-your-own storage for storing Agent state**:
 
-  * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multi-tenant storage, with logical separation.
+  * In the basic configuration, the Agent service stores threads, messages, and files in Microsoft-managed multitenant storage, with logical separation.
   * With the [Agent standard setup](../agents/how-to/use-your-own-resources.md), you can bring your own storage for thread and message data. In this configuration, data is isolated by project within the customer’s storage account.
 
 * **Customer-Managed Key Encryption**:
