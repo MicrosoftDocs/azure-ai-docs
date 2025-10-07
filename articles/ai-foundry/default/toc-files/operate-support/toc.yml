@@ -9,5 +9,3 @@ items:
       href: https://aka.ms/AzureCompliance
     - name: Service Level Agreement (SLA)
       href: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
-    - name: Azure Government
-      href: /azure/azure-government/compare-azure-government-global-azure
