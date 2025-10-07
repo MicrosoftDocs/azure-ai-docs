@@ -24,7 +24,7 @@ In this article, you learn how to create the following [Azure AI Foundry](https:
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure AI Foundry](https://azure.microsoft.com/free/) today.
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 
 ## Set up your environment
 

@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to generate reproducible output (preview) with Azure OpenAI.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 08/11/2025
 author: mrbullwinkle

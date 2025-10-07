@@ -34,7 +34,7 @@ This article guides you through the process of
 First install the `redteam` package as an extra from Azure AI Evaluation SDK, this provides the PyRIT functionality:
 
 ```python
-uv install azure-ai-evaluation[redteam]
+uv pip install "azure-ai-evaluation[redteam]"
 ```
 
 > [!NOTE]
@@ -504,7 +504,7 @@ The red teaming scorecard also provides row-level data on each attack-response p
 }
 ```
 
-Once your AI red teaming scan is finished running, you can [view your results](../view-ai-red-teaming-results.md) in your Azure AI Foundry project.
+[!INCLUDE [view-ai-red-teaming-results](../../includes/view-ai-red-teaming-results.md)]
 
 ## Related content
 

@@ -3,9 +3,10 @@ title: Document Embedding in Prompts
 description: Learn how to embed documents in prompts for Azure OpenAI, including JSON escaping and indirect attack detection.
 author: PatrickFarley
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 05/07/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -15,7 +16,7 @@ Azure OpenAI's content filtering system performs better when it can differentiat
 
 ## Default behavior in Chat Completions API
 
-The Chat Completion API is structured by definition. Inputs consist of a list of messages, each with an assigned role. 
+The Chat Completions API is structured by definition. Inputs consist of a list of messages, each with an assigned role. 
 
 The safety system parses this structured format and applies the following behavior: 
 - On the latest "user" content, the following categories of RAI Risks are detected: 

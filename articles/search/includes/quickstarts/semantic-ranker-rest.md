@@ -99,13 +99,7 @@ To update an index using the REST API, you must provide the entire schema, plus 
            { "name": "id", "type": "Edm.String", "searchable": false, "filterable": false, "retrievable": false, "stored": true, "sortable": false, "facetable": false },
            { "name": "rid", "type": "Edm.String", "searchable": false, "filterable": false, "retrievable": false, "stored": true, "sortable": false, "facetable": false }],
       "scoringProfiles": [],
-      "suggesters": [
-        {
-          "name": "sg",
-          "searchMode": "analyzingInfixMatching",
-          "sourceFields": ["Address/City", "Address/Country", "Rooms/Type", "Rooms/Tags"]
-        }
-      ],
+      "suggesters": [],
       "analyzers": [],
       "normalizers": [],
       "tokenizers": [],

@@ -21,6 +21,8 @@ items:
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
+  - name: GPT-5 vs GPT-4.1
+    href: ../../foundry-models/how-to/model-choice-guide.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Azure AI Foundry portal
@@ -134,9 +136,6 @@ items:
     items:
       - name: Audio generation
         href: ../../openai/audio-completions-quickstart.md
-      - name: Chat
-        href: ../../openai/chatgpt-quickstart.md  
-        displayName: ChatGPT, chatgpt
       - name: Vision-enabled chats
         href: ../../openai/gpt-v-quickstart.md
       - name: Image generation
@@ -175,6 +174,9 @@ items:
       - name: Chat completions API
         href: ../../openai/how-to/chatgpt.md
         displayName: ChatGPT, chatgpt
+      - name: Codex
+        href: ../../openai/how-to/codex.md
+        displayName: codex, CODEX, codex cli, codex ide extension, gpt-5-codex
       - name: Computer Use
         href: ../../openai/how-to/computer-use.md
         displayName: cua, computer using model
@@ -399,4 +401,4 @@ items:
       - name: Customer Copyright Commitment
         href: ../../responsible-ai/openai/customer-copyright-commitment.md
 - name: Foundry Models FAQ
-  href: ../../faq.yml
+  href: ../../foundry-models/faq.yml

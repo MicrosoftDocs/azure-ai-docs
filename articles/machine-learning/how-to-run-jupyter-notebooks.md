@@ -79,7 +79,7 @@ Use **Ctrl+Space** to trigger IntelliSense code snippets. Scroll through the sug
 
 :::image type="content" source="media/how-to-run-jupyter-notebooks/insert-snippet.gif" alt-text="Insert a code snippet":::
 
-These same snippets are available when you open your notebook in VS Code. For a complete list of available snippets, see [Azure Machine Learning VS Code Snippets](https://github.com/Azure/azureml-snippets/blob/main/snippets/snippets.md).
+These same snippets are available when you open your notebook in VS Code.
 
 You can browse and search the list of snippets by using the notebook toolbar to open the snippet panel.
 

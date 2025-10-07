@@ -38,7 +38,7 @@ Use these instructions to create a table in Azure Storage for testing purposes.
 
 1. [Install Azure Storage Explorer](https://azure.microsoft.com/products/storage/storage-explorer/#Download-4).
 
-1. [Download HotelsData_toAzureSearch.csv](https://github.com/HeidiSteen/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.csv) from GitHub. This file is a subset of the built-in hotels sample dataset. It omits the rooms collection, translated descriptions, and geography coordinates.
+1. [Download HotelsData_toAzureSearch.csv](https://github.com/Azure-Samples/azure-search-sample-data/blob/main/hotels/HotelsData_toAzureSearch.csv) from GitHub. This file is a subset of the built-in hotels sample dataset. It omits the rooms collection, translated descriptions, and geography coordinates.
 
 1. In Azure Storage Explorer, sign in to Azure, select your subscription, and then select your storage account.
 
@@ -54,7 +54,7 @@ The Description field provides the most verbose content. You should target this 
 
 ## Use the Azure portal
 
-You can use either the **Import data** wizard or **Import and vectorize data wizard** to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
+You can use either the **Import data** wizard or the **Import data (new)** wizard to automate indexing from an SQL database table or view. The data source configuration is similar for both wizards.
 
 1. [Start the wizard](search-import-data-portal.md#starting-the-wizards).
 
@@ -68,15 +68,15 @@ You can use either the **Import data** wizard or **Import and vectorize data wiz
 
    If you [configure Azure AI Search to use a managed identity](search-how-to-managed-identities.md), and you create a role assignment on Azure Storage that grants **Reader and Data Access** permissions to the identity, your indexer can connect to table storage using Microsoft Entra ID and roles.
 
-1. For the **Import and vectorize data wizard**, you can specify options for deletion detection.
+1. For the **Import data (new)** wizard, you can specify options for deletion detection.
 
    Deletion detection requires that you have a preexisting field in the table that can be used as a soft-delete flag. It should be a Boolean field (you could name it IsDeleted). Specify `true` as the soft-delete value. In the search index, add a corresponding search field called *IsDeleted* set to retrievable and filterable.
 
 1. Continue with the remaining steps to complete the wizard:
 
-   + [Import data wizard](search-get-started-portal.md)
+   + [**Import data** wizard](search-get-started-portal.md)
 
-   + [Import and vectorize data wizard](search-get-started-portal-import-vectors.md)
+   + [**Import data (new)** wizard](search-get-started-portal-import-vectors.md)
 
 ## Use the REST APIs
 
@@ -89,7 +89,7 @@ The data source definition specifies the source data to index, credentials, and 
 1. [Create or update a data source](/rest/api/searchservice/data-sources/create-or-update) to set its definition:
 
    ```http
-    POST https://[service name].search.windows.net/datasources?api-version=2024-07-01 
+    POST https://[service name].search.windows.net/datasources?api-version=2025-09-01 
     {
         "name": "my-table-storage-ds",
         "description": null,
@@ -175,7 +175,7 @@ In a [search index](search-what-is-an-index.md), add fields to accept the conten
 1. [Create or update an index](/rest/api/searchservice/indexes/create) to define search fields that will store content from entities:
 
     ```http
-    POST https://[service name].search.windows.net/indexes?api-version=2024-07-01 
+    POST https://[service name].search.windows.net/indexes?api-version=2025-09-01 
     {
       "name" : "my-search-index",
       "fields": [
@@ -215,7 +215,7 @@ Once you have an index and data source, you're ready to create the indexer. Inde
 1. [Create or update an indexer](/rest/api/searchservice/indexers/create) by giving it a name and referencing the data source and target index:
 
     ```http
-    POST https://[service name].search.windows.net/indexers?api-version=2024-07-01
+    POST https://[service name].search.windows.net/indexers?api-version=2025-09-01
     {
         "name" : "my-table-indexer",
         "dataSourceName" : "my-table-storage-ds",
@@ -264,7 +264,7 @@ To monitor the indexer status and execution history, check the indexer execution
 ### [**REST**](#tab/rest-check-indexer)
 
 ```http
-GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2024-07-01
+GET https://myservice.search.windows.net/indexers/myindexer/status?api-version=2025-09-01
   Content-Type: application/json  
   api-key: [admin key]
 ```

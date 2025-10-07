@@ -5,7 +5,7 @@ description: Learn how to plan the rollout of Azure AI Foundry across your organ
 ms.service: azure-ai-foundry
 author: sdgilley
 ms.topic: concept-article
-ms.date: 08/11/2025
+ms.date: 09/15/2025
 ms.author: sgilley
 ms.reviewer: deeikele
 ---
@@ -115,7 +115,7 @@ Effective governance in Azure AI Foundry ensures secure, compliant, and cost-eff
 
 When deploying models in AI Foundry, teams can choose between standard and provisioned [deployment types](../../ai-services/openai/how-to/deployment-types.md). Standard deployments are ideal for development and experimentation, offering flexibility and ease of setup. Provisioned deployments are recommended for production scenarios where predictable performance, cost control, and model version pinning are required.
 
-To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../how-to/connections-add.md?pivots=fdp-project) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
+To support cross-region scenarios and let you access existing model deployments, AI Foundry allows [connections](../how-to/connections-add.md) to model deployments hosted in other Foundry or Azure OpenAI instances. Connections enable teams to centralize deployments for experimentation while still enabling access from distributed projects. For production workloads, consider for use cases to manage its own deployments to ensure tighter control over model lifecycle, versioning, and rollback strategies.
 
 To prevent overuse and ensure fair resource allocation, you can apply [Tokens Per Minute (TPM) limits at the deployment level](../../ai-services/openai/concepts/provisioned-throughput.md?tabs=global-ptum). TPM limits help control consumption, protect against accidental spikes, and align usage with project budgets or quotas. Consider setting conservative limits for shared deployments and higher thresholds for critical production services.
 

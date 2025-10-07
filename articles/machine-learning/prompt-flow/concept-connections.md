@@ -12,6 +12,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 06/26/2024
+ms.update-cycle: 365-days
 ---
 
 # Connections in prompt flow

@@ -783,20 +783,12 @@ items:
       href: how-to-responsible-ai-insights-ui.md
     - name: Generate responsible AI insights (SDK, CLI)
       href: how-to-responsible-ai-insights-sdk-cli.md
-    - name: Generate responsible AI image insights
-      href: how-to-responsible-ai-vision-insights.md
-    - name: Generate responsible AI text insights
-      href: how-to-responsible-ai-text-insights.md
   - name: Configure Responsible AI dashboards
     items:
     - name: Responsible AI dashboard overview
       href: concept-responsible-ai-dashboard.md
     - name: Use the Responsible AI dashboard in studio
       href: how-to-responsible-ai-dashboard.md
-    - name: Use the Responsible AI text dashboard
-      href: how-to-responsible-ai-text-dashboard.md
-    - name: Use the Responsible AI image dashboard
-      href: how-to-responsible-ai-image-dashboard.md
   - name: View a Responsible AI scorecard
     items:
       - name: Responsible AI scorecard
@@ -1451,20 +1443,6 @@ items:
       items:
         - name: Active known issues for Azure Machine Learning
           href: ./known-issues/azure-machine-learning-known-issues.md
-        - name: Compute instance known issues
-          items:
-          - name: Jupyter R Kernel does not start in new compute instance images
-            href: ./known-issues/jupyter-r-kernel-not-starting.md
-          - name: Provisioning error when creating a compute instance with A10 SKU
-            href: ./known-issues/compute-a10-sku-not-supported.md
-          - name: Idleshutdown property in Bicep template causes error
-            href: ./known-issues/compute-idleshutdown-bicep.md
-          - name: Slowness in compute instance terminal from a mounted path
-            href: ./known-issues/compute-slowness-terminal-mounted-path.md
-          - name: Creating compute instance after a workspace move causes Etag conflict error
-            href: ./known-issues/workspace-move-compute-instance-same-name.md
-          - name: Application Sharing Policy isn't supported 
-            href: ./known-issues/application-sharing-policy-not-supported.md 
         - name: Inferencing known issues
           items:
           - name: Existing Kubernetes compute cannot be updated

@@ -235,6 +235,8 @@ api-key: {{api-key}}
 
 ## Learn more
 
++ [Azure AI Search Blob knowledge source Python sample](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
+
 + [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
 
 + [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)

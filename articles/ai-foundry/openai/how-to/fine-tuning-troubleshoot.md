@@ -3,7 +3,8 @@ title: 'Troubleshooting for Azure OpenAI fine-tuning'
 titleSuffix: Azure OpenAI
 description: Learn how to troubleshoot Azure OpenAI in Azure AI Foundry Models fine-tuning.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
 ms.date: 08/29/2025

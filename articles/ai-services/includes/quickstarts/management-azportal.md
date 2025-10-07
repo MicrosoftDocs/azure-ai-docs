@@ -3,7 +3,7 @@ title: "Quickstart: Create an AI Foundry resource in the Azure portal"
 titleSuffix: Azure AI services
 description: Get started with Azure AI services by creating an AI Foundry resource in the Azure portal.
 manager: nitinme
-ms.date: 7/31/2025
+ms.date: 09/15/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.custom:
@@ -29,7 +29,7 @@ The Azure AI Foundry multi-service resource is listed under **AI Foundry** > **A
 :::image type="content" source="../../media/ai-services-resource-portal.png" alt-text="Screenshot of the Azure AI Foundry resource in the Azure portal." lightbox="../../media/ai-services-resource-portal.png":::
 
 > [!TIP]
-> [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) provides a way to [create a new Azure AI Foundry resource](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry&pivots=fdp-project) with basic, defaulted, settings. 
+> [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) provides a way to [create a new Azure AI Foundry resource](/azure/ai-foundry/how-to/create-projects?tabs=ai-foundry) with basic, defaulted, settings. 
 
 To create an AI Foundry resource in the Azure portal follow these instructions:
 

@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 07/08/2025
+ms.date: 09/15/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -159,6 +159,6 @@ Deleting a hub deletes all associated projects. When a project is deleted, all n
 
 ## Related content
 
-- [Create a project](create-projects.md?pivots=hub-project)
+- [Create a hub project](hub-create-projects.md)
 - [Learn more about Azure AI Foundry](../what-is-azure-ai-foundry.md)
 - [Learn more about hubs](../concepts/ai-resources.md)

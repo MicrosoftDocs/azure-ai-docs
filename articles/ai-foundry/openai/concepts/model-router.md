@@ -5,8 +5,9 @@ description: Learn about the model router feature in Azure OpenAI in Azure AI Fo
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
-ms.date: 08/06/2025
-ms.service: azure-ai-openai
+ms.date: 09/10/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - build-2025
@@ -27,9 +28,6 @@ Each version of model router is associated with a specific set of underlying mod
 If you select **Auto-update** at the deployment step (see [Manage models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell#model-updates)), then your model router model automatically updates when new versions become available. When that happens, the set of underlying models also changes, which could affect the overall performance of the model and costs.
 
 ## Underlying models
-
-> [!NOTE]
-> The latest version of model router is currently limited access only. You can request access using the `gpt-5 access` form: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.
 
 |Model router version|Underlying models| Model version
 |:---:|:---|:----:|

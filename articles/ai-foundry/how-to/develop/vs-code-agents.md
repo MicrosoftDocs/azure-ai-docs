@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 08/05/2025
+ms.date: 09/24/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -96,39 +96,43 @@ Azure AI Agent Service has a set of tools that you can use to interact with your
 
 The following tools are available in the Azure AI Foundry VS Code extension:
 
-  - [Grounding with Bing search](/azure/ai-services/agents/how-to/tools/bing-grounding?tabs=python&pivots=overview)
+  - [Grounding with Bing search](/azure/ai-foundry/agents/how-to/tools/bing-grounding)
   - [File search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) 
-  - [Code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview)
-  - [OpenAPI Specified tools](/azure/ai-services/agents/how-to/tools/openapi-spec?tabs=python&pivots=overview)
+  - [Code interpreter](/azure/ai-foundry/agents/how-to/tools/file-search)
+  - [OpenAPI Specified tools](/azure/ai-foundry/agents/how-to/tools/openapi-spec)
+  - [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol)
 
+> [!NOTE]
+> For more information about using MCP tools, see [Use Model Context Protocol (MCP) tools with Azure AI Agents](./vs-code-agents-mcp.md).
 
 #### Add a tool to the AI Agent
 
 Add a tool to the AI Agent with the following steps:
 
-1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the tool you want to add.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
-
-
-1. The designer displays the appropriate pane to configure the tool, as in the following images:
-
-    Code interpreter tool dialog box:
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
+  1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the tool you want to add.
     
-    File upload tool dialog box:
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
+     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::    
+    
+   1. The designer displays the appropriate pane to configure the tool, as in the following images:  
+    Code interpreter tool dialog box:
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
 
-    Grounding with Bing Search dialog box:
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png" alt-text="Screenshot of the Grounding with Bing Search tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png":::
+        File upload tool dialog box:
+      :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
+    
+      Grounding with Bing Search dialog box:
+      :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png" alt-text="Screenshot of the Grounding with Bing Search tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png":::
 
-    OpenAPI 3.0 Specified dialog box:
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the OpenAPI 3.0 Specified tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
+      OpenAPI 3.0 Specified dialog box:
+    
+      :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the OpenAPI 3.0 Specified tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
 
 1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
- 
-> [!NOTE]
-> When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+     
+    > [!NOTE]
+    > When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+    
+1. After entering the required information, select the **Create tool** button in the bottom-left corner.
 
 ### Create Azure AI Agents on the Azure AI Foundry Studio
 
@@ -185,7 +189,6 @@ This Python sample code file that demonstrates a basic call to interact with the
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png" alt-text="Screenshot of generated agent sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png":::
 
-
 ### Interact with Agents using agents playground
 
 Open the **Agents Playground** using the following steps:
@@ -198,7 +201,7 @@ Open the **Agents Playground** using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** VS Code page." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
-1. Type your prompt and see the outputs. The **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
+1. Type your prompt and see the outputs. In this example, the **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
 

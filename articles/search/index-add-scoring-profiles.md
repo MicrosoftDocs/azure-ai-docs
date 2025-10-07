@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 07/25/2025
+ms.date: 09/29/2025
 ms.update-cycle: 365-days
 ---
 
@@ -31,11 +31,11 @@ You can add a scoring profile to an index by editing its JSON definition in the 
 
 ## Rules for scoring profiles
 
-You can use scoring profiles in [keyword search](search-lucene-query-architecture.md), [vector search](vector-search-overview.md), [hybrid search](hybrid-search-overview.md), and [semantic search (reranking)](semantic-search-overview.md). However, scoring profiles only apply to nonvector fields, so make sure your index has text or numeric fields that can be boosted or weighted. 
+You can use scoring profiles in [keyword search](search-lucene-query-architecture.md), [vector search](vector-search-overview.md), [hybrid search](hybrid-search-overview.md), and [semantic reranking)](semantic-search-overview.md). However, scoring profiles only apply to nonvector fields, so make sure your index has text or numeric fields that can be boosted or weighted. 
 
 You can have up to 100 scoring profiles within an index (see [service Limits](search-limits-quotas-capacity.md)), but you can only specify one profile at time in any given query.
 
-You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles. Currently in preview, you can apply a [scoring profile after semantic ranking](semantic-how-to-enable-scoring-profiles.md). Otherwise, when multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](search-relevance-overview.md#diagram-of-ranking-algorithms) provides an illustration.
+You can use [semantic ranker](semantic-how-to-query-request.md) with scoring profiles and apply a [scoring profile after semantic ranking](semantic-how-to-enable-scoring-profiles.md). Otherwise, when multiple ranking or relevance features are in play, semantic ranking is the last step. [How search scoring works](search-relevance-overview.md#diagram-of-ranking-algorithms) provides an illustration.
 
 [Extra rules](#rules-for-using-functions) apply specifically to functions.
 
@@ -77,7 +77,7 @@ The following definition shows a simple profile named "geo". This example boosts
 To use this scoring profile, your query is formulated to specify `scoringProfile` parameter in the request. If you're using the REST API, queries are specified through GET and POST requests. In the following example, "currentLocation" has a delimiter of a single dash (`-`). It's followed by longitude and latitude coordinates, where longitude is a negative value.
 
 ```http
-POST /indexes/hotels/docs&api-version=2024-07-01
+POST /indexes/hotels/docs&api-version=2025-09-01
 {
     "search": "inn",
     "scoringProfile": "geo",
@@ -340,13 +340,6 @@ The `boostGenre` profile uses weighted text fields, boosting matches found in al
         }  
       ]  
     }  
-  ],  
-  "suggesters": [  
-    {  
-      "name": "sg",  
-      "searchMode": "analyzingInfixMatching",  
-      "sourceFields": [ "albumTitle", "artistName" ]  
-    }  
-  ]   
+  ]
 }  
 ```  

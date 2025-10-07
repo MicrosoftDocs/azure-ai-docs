@@ -11,18 +11,18 @@ ms.custom:
   - ignite-2023
   - horz-security
 ms.topic: conceptual
-ms.date: 08/15/2025
+ms.date: 09/25/2025
 ---
 
 # Security in Azure AI Search
 
 Azure AI Search provides comprehensive security controls across network access, data access, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains:
 
-+ **Network traffic patterns and network security** - inbound, outbound, and internal traffic
-+ **Access control mechanisms** - Microsoft Entra ID with roles, or API keys
-+ **Data residency and protection** - encryption in transit, and at rest with optional double encryption
++ **Network traffic patterns and network security**: Inbound, outbound, and internal traffic.
++ **Access control mechanisms**: API keys or Microsoft Entra ID with roles.
++ **Data residency and protection**: Encryption in transit, in use with optional confidential computing, and at rest with optional double encryption.
 
-A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, use a network security perimeter to create a logical boundary around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
+A search service supports multiple network security topologies, from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, use a network security perimeter to create a logical boundary around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
 
 This article details the implementation options for each security layer to help you design appropriate security architectures for development and production environments.
 
@@ -119,7 +119,7 @@ The private endpoint uses an IP address from the virtual network address space f
 
 :::image type="content" source="media/search-security-overview/inbound-private-link-azure-cog-search.png" alt-text="sample architecture diagram for private endpoint access":::
 
-While this solution is the most secure, using more services is an added cost so be sure you have a clear understanding of the benefits before diving in. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/). For more information about how these components work together, [watch this video](https://learn.microsoft.com/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security). Coverage of the private endpoint option starts at 5:48 into the video. For instructions on how to set up the endpoint, see [Create a Private Endpoint for Azure AI Search](service-create-private-endpoint.md).
+While this solution is the most secure, using more services is an added cost so be sure you have a clear understanding of the benefits before diving in. For more information about costs, see the [pricing page](https://azure.microsoft.com/pricing/details/private-link/). For more information about how these components work together, [watch this video](/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security). Coverage of the private endpoint option starts at 5:48 into the video. For instructions on how to set up the endpoint, see [Create a Private Endpoint for Azure AI Search](service-create-private-endpoint.md).
 
 ### Network security perimeter
 
@@ -230,6 +230,24 @@ Earlier versions of TLS (1.0 or 1.1) aren't supported.
 
 For more information, see [TLS support in .NET Framework](/dotnet/framework/network-programming/tls#tls-support-in-net-framework).
 
+### Data in use
+
+By default, Azure AI Search deploys your search service on standard Azure infrastructure. This infrastructure encrypts data at rest and in transit, but it doesn't protect data while it's being actively processed in memory.
+
+Optionally, you can use the [Azure portal](search-create-service-portal.md#choose-a-compute-type) or [Services - Create or Update (REST API)](/rest/api/searchmanagement/services/create-or-update) to configure confidential computing during service creation. Confidential computing protects data in use from unauthorized access, including from Microsoft, through hardware attestation and encryption. For more information, see [Confidential computing use cases](/azure/confidential-computing/use-cases-scenarios).
+
+The following table compares both compute types.
+
+| Compute type | Description | Limitations | Cost | Availability |
+|--|--|--|--|--|
+| Default | Processes data on standard VMs with built-in encryption for data at rest and in transit. No hardware-based isolation for data in use. | No limitations. | No change to the base cost of free or billable tiers. | Available in all regions. |
+| Confidential | Processes data on confidential VMs (DCasv5 or DCesv5) in a hardware-based trusted execution environment. Isolates computations and memory from the host operating system and other VMs. | Disables or restricts [agentic retrieval](search-agentic-retrieval-concept.md), [semantic ranker](semantic-search-overview.md), [query rewrite](semantic-how-to-query-rewrite.md), [skillset execution](cognitive-search-concept-intro.md), and indexers that run in the [multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment) <sup>1</sup>. | Adds a 10% surcharge to the base cost of billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/). | Available in some regions. For more information, see the [list of supported regions](search-region-support.md). |
+
+<sup>1</sup> When you enable this compute type, indexers can only run in the private execution environment, meaning they run from the search clusters hosted on confidential computing.
+
+> [!IMPORTANT]
+> We only recommend confidential computing for organizations whose compliance or regulatory requirements necessitate data-in-use protection. For daily usage, the default compute type suffices.
+
 ### Data at rest
 
 For data handled internally by the search service, the following table describes the [data encryption models](/azure/security/fundamentals/encryption-models). Some features, such as knowledge store, incremental enrichment, and indexer-based indexing, read from or write to data structures in other Azure Services. Services that have a dependency on Azure Storage can use the [encryption features](/azure/storage/common/storage-service-encryption) of that technology.
@@ -300,4 +318,4 @@ Apply metadata tags to categorize search services based on data sensitivity and 
 + [Azure Security](https://azure.microsoft.com/overview/security)
 + [Microsoft Defender for Cloud](/azure/security-center/)
 
-We also recommend the following [video on security features](https://learn.microsoft.com/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security). It's several years old and doesn't cover newer features, but it covers these features: CMK, IP firewalls, and private link. If you use those features, you might find this video helpful.
+We also recommend the following [video on security features](/Shows/AI-Show/Azure-Cognitive-Search-Whats-new-in-security). It's several years old and doesn't cover newer features, but it covers these features: CMK, IP firewalls, and private link. If you use those features, you might find this video helpful.

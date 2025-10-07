@@ -4,9 +4,10 @@ titleSuffix: Azure OpenAI
 description: Learn how to use prompt caching with Azure OpenAI
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/24/2025
+ms.date: 09/15/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -22,10 +23,6 @@ Caches are typically cleared within 5-10 minutes of inactivity and are always re
 
 - Prompt caching is supported with all Azure OpenAI models GPT-4o or newer.
 - Prompt caching applies to models that have chat-completion, completion, responses, or real-time operations. For models which don't have these operations, this feature isn't available.
-
-## API support
-
-Official support for prompt caching was first added in API version `2024-10-01-preview`. At this time, only the o-series model family supports the `cached_tokens` API response parameter.
 
 ## Getting started
 

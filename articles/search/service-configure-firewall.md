@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/20/2025
+ms.date: 09/23/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange

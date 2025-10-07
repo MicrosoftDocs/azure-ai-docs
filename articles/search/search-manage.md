@@ -61,7 +61,7 @@ For integrated vectorization, your search service identity needs the following r
 
 Role assignments can take several minutes to take effect.
 
-Before you move on to network security, consider testing all points of connection to validate role assignments. Run either the [**Import data** wizard](search-get-started-portal.md) or the [**Import and vectorize data wizard**](search-get-started-portal-image-search.md) to test permissions.
+Before you move on to network security, consider testing all points of connection to validate role assignments. Run an [import wizard](search-get-started-portal.md) to test permissions.
 
 ## Configure network security
 
@@ -101,7 +101,7 @@ To connect to Azure AI Search, developers need:
 + An endpoint or URL from the **Overview** page.
 + An API key from the **Keys** page or a role assignment. We recommend Search Service Contributor, Search Index Data Contributor, and Search Index Data Reader.
 
-We recommend portal access for the [**Import data** wizard](search-get-started-portal.md), the [**Import and vectorize data wizard**](search-get-started-portal-import-vectors.md), and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
+We recommend portal access for the [import wizards](search-get-started-portal.md) and [Search explorer](search-explorer.md). You must be a contributor or higher to run the wizards.
 
 ## Related content
 
