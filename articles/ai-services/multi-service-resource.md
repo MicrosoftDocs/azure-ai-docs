@@ -1,11 +1,11 @@
-﻿---
+﻿﻿---
 title: Create an AI Foundry resource
 titleSuffix: Azure AI services
 description: Create and manage an AI Foundry resource.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 7/16/2025
+ms.date: 10/07/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.custom:
@@ -25,7 +25,7 @@ Azure AI Foundry is the next version and renaming of former 'Azure AI Services'.
 
 Looking to use AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI multi-services resource](#azure-ai-multi-services-resource-for-azure-ai-search-skills).
+Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See classic [Azure AI multi-services resource](multi-services-resource-search-skills.md).
 
 ::: zone pivot="azportal"
 
@@ -76,37 +76,12 @@ The AI Foundry resource enables access to the following Azure AI services with a
 | ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | `AIServices`<br/>`TextTranslation` |
 | ![Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg) [Vision](./computer-vision/index.yml) | Analyze content in images and videos. | `AIServices` (Training and Prediction)<br/>`ComputerVision` |
 
-## Azure AI multi-services resource for Azure AI Search skills
-
-[Azure AI Search skills](../search/tutorial-skillset.md) don't support the AI Foundry resource as described previously in this article. You must create a different kind of multi-service resource for Azure AI Search skills. 
-
-The multi-service resource that you can use with Azure AI Search skills is listed under **AI Foundry** > **Classic AI services** > **Azure AI services multi-service account (classic)** in the portal. Look for the logo as shown here:
-
-:::image type="content" source="./media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="./media/cognitive-services-resource-portal.png":::
-
-To create a multi-service resource for Azure AI Search skills follow these instructions:
-1. Select this link to create an **Azure AI services multi-service account (classic)** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne)
-
-1. On the **Create** page, provide the following information:
-
-    |Project details| Description   |
-    |--|--|
-    | **Subscription** | Select one of your available Azure subscriptions. |
-    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
-    | **Region** | The location of your Azure AI services multi-service account instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
-    | **Name** | A descriptive name for your Azure AI services multi-service account resource. For example, *MyCognitiveServicesResource*. |
-    | **Pricing tier** | The cost of your Azure AI services multi-service account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
-
-1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
-
-> [!TIP]
-> If your subscription doesn't allow you to create an AI Foundry resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
-
 ## Pricing
 
 [!INCLUDE [SKUs and pricing](./includes/quickstarts/sku-pricing.md)]
 
 ## Related content
 
-- Go to the [Azure AI services hub page](../ai-services/index.yml).
-- Try AI services in the [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md).
+- [Azure AI services hub page](../ai-services/index.yml).
+- [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md).
+- [Using Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
