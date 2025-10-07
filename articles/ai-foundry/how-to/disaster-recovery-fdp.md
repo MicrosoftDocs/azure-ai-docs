@@ -138,7 +138,6 @@ If you delete a project and its resources, some resources support soft delete an
 
 | Service | Soft delete enabled |
 | ------- | ------------------- |
-| Azure AI Foundry hub | Unsupported | 
 | Azure AI Foundry project | Unsupported | 
 | Azure AI Services resource | Yes |
 | Azure Storage | See [Recover a deleted storage account](/azure/storage/common/storage-account-recover#recover-a-deleted-account-from-the-azure-portal). |
