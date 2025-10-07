@@ -13,6 +13,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
 ms.date: 10/18/2024
+ms.update-cycle: 365-days
 ---
 
 # GenAIOps with prompt flow and GitHub

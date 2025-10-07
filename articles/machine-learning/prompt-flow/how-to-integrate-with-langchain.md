@@ -13,6 +13,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
 ms.date: 10/23/2024
+ms.update-cycle: 365-days
 ---
 
 # Integrate LangChain in prompt flows
