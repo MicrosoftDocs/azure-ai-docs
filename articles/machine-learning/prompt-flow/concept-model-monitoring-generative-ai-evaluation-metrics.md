@@ -14,6 +14,7 @@ ms.date: 08/25/2025
 ms.custom:
   - devplatv2
   - ignite-2023
+ms.update-cycle: 365-days
 ---
 
 

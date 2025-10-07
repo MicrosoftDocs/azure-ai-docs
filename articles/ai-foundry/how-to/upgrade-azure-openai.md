@@ -43,7 +43,7 @@ Your existing resource configurations and state remain preserved including:
 
 Backend limitations:
 
-* Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
+* Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [reconfiguration of private link endpoints and extra DNS configurations](#private-network-configuration) before all Foundry capabilities can be used.
 
