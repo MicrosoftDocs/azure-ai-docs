@@ -1,7 +1,7 @@
 ---
 title: Using Azure AI Foundry with Azure AI Search skills
 titleSuffix: Azure AI services
-description: Create and manage an AI Foundry resource.
+description: Learn how to create a multi-service resource to use Azure AI Search skills with an Azure AI Foundry resource.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
@@ -10,11 +10,11 @@ ms.service: azure-ai-services
 ms.topic: quickstart
 ---
 
-# Azure AI multi-services resource for Azure AI Search skills
+# Azure AI multi-service resource for Azure AI Search skills
 
-[Azure AI Search skills](../search/tutorial-skillset.md) don't support the AI Foundry resource. You need to create a different kind of multi-service resource for Azure AI Search skills.
+[Azure AI Search skills](../search/tutorial-skillset.md) don't natively support the AI Foundry resource. You need to create a different _multi-service_ resource, instead, to use Azure AI Search skills with an Azure AI Foundry resource.
 
-## Create a multi-service resource for Azure AI Search skills
+## Create a multi-service resource
 
 The multi-service resource that you can use with Azure AI Search skills is listed under **AI Foundry** > **Classic AI services** > **Azure AI services multi-service account (classic)** in the portal. Look for the logo as shown here:
 
