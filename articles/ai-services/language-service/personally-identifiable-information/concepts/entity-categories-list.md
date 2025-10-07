@@ -15,9 +15,9 @@ ms.custom:
 
 # Recognized PII entities list
 
-| Entity | Entity | Entity |
+| Entity | Entity | Entity|
 |--|--|--|
-| [Address](entity-categories.md#type-address) | [Age](entity-categories.md#type-age) | [American Bankers Association Routing Number](entity-categories.md#type-american-bankers-association-routing-number) |
+|[Address](entity-categories.md#type-address)| [Age](entity-categories.md#type-age) | [American Bankers Association Routing Number](entity-categories.md#type-american-bankers-association-routing-number) |
 | [Argentina National Identity Number](entity-categories.md#type-argentina-national-identity-number) | [Australia Bank Account Number](entity-categories.md#type-australia-bank-account-number) | [Australia Business Number](entity-categories.md#type-australia-business-number) |
 | [Australia Company Number](entity-categories.md#type-australia-company-number) | [Australia Drivers License Number](entity-categories.md#type-australia-drivers-license-number) | [Australia Medical Account Number](entity-categories.md#type-australia-medical-account-number) |
 | [Australia Passport Number](entity-categories.md#type-australia-passport-number) | [Australia Tax File Number](entity-categories.md#type-australia-tax-file-number) | [Austria Identity Card](entity-categories.md#type-austria-identity-card) |
@@ -72,5 +72,4 @@ ms.custom:
 | [United Kingdom National Health Number](entity-categories.md#type-united-kingdom-national-health-number) | [United Kingdom National Insurance Number](entity-categories.md#type-united-kingdom-national-insurance-number) | [United Kingdom Unique Taxpayer Number](entity-categories.md#type-united-kingdom-unique-taxpayer-number) |
 | [United States Bank Account Number](entity-categories.md#type-united-states-bank-account-number) | [United States Drivers License Number](entity-categories.md#type-united-states-drivers-license-number) | [United States Drug Enforcement Agency Number](entity-categories.md#type-united-states-drug-enforcement-agency-number) |
 | [United States Individual Taxpayer Identification](entity-categories.md#type-united-states-individual-taxpayer-identification) | [United States Social Security Number](entity-categories.md#type-united-states-social-security-number) | [United States/United Kingdom Passport Number](entity-categories.md#type-united-statesunited-kingdom-passport-number) |
-| [URL](entity-categories.md#type-url) | [VIN 🆕](entity-categories.md#type-vin-preview) |  |
-
+| [URL](entity-categories.md#type-url) | [VIN 🆕](entity-categories.md#type-vin-preview) |
