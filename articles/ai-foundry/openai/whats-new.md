@@ -19,7 +19,16 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
-## October 2025
+## October 2025 
+
+### GPT-image-1-mini 
+
+The `gpt-image-1-mini` model is now available for global deployments. It is a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
 
 ### PII detection content filter
 
@@ -34,7 +43,7 @@ Personally identifiable information (PII) detection is now available as a built-
 
 - **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5` you do not need to reapply and will automatically be granted access.
 
-## Sora video-to-video support 
+### Sora video-to-video support 
 
 The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
 
