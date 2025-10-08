@@ -516,51 +516,51 @@
             "redirect_url": "/azure/search/search-how-to-index-azure-data-lake-storage",
             "redirect_document_id": true
         }
-                {
+        {
             "source_path_from_root": "/articles/search/search-howto-index-changed-deleted-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-changed-deleted",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-cosmosdb-gremlin.md",
             "redirect_url": "/azure/search/search-how-to-index-cosmosdb-gremlin",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-cosmosdb-mongodb.md",
             "redirect_url": "/azure/search/search-how-to-index-cosmosdb-mongodb",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-cosmosdb.md",
             "redirect_url": "/azure/search/search-how-to-index-cosmosdb-sql.md",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-csv-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-csv",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-encrypted-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-encrypted",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-json-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-json",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-mysql.md",
             "redirect_url": "/azure/search/search-how-to-index-mysql",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-one-to-many-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-one-to-many",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-plaintext-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-plaintext",
