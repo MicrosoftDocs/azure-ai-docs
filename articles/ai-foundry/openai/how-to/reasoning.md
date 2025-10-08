@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 10/07/2025
+ms.date: 09/08/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -29,9 +29,8 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5-pro` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.   |
-| `gpt-5-codex` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.   |
-| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required.    |
+| `gpt-5-codex` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access)  |
+| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
 | `gpt-5-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed.    |
 | `gpt-5-nano` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed. |
 | `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
@@ -46,27 +45,26 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-| **Feature**  | **gpt-5-pro**, **2025-10-06** | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:--------------------------:|:--------------------------:|:------:|:--------:|:--------:|
-| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ |✅ |
-| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| **[Context Window](../concepts/models.md#o-series-models)** | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
-| **[Reasoning effort](#reasoning-effort)** | -<sup>4</sup>| ✅| ✅| ✅|✅|
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Chat Completions API | - | - | ✅ | ✅ | ✅ |
-| Responses API | ✅| ✅|  ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> |- | ✅ | ✅ | ✅ | ✅ |
-| `max_completion_tokens` <sup>2</sup> | -  | - |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅ | ✅ | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Streaming  |- | ✅ | ✅ | ✅ | ✅|
+| **Feature**  | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:--------------------------:|:--------------------------:|:------:|:--------:|
+| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ |
+| **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | - | ✅ | ✅ | ✅ |
+| Responses API | ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> | - |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) |✅ | ✅ | ✅ | ✅ |
+| Streaming  | ✅ | ✅ | ✅ | ✅|
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
-<sup>4</sup> `gpt-5-pro` only supports `reasoning_effort` `high`, this is the default value even when not explicitly passed to the model.
 
 ### NEW GPT-5 reasoning features
 
