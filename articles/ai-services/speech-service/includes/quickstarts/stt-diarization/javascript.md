@@ -48,8 +48,8 @@ Follow these steps to create a new console application for conversation transcri
     const fs = require("fs");
     const sdk = require("microsoft-cognitiveservices-speech-sdk");
     
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechConfig = sdk.SpeechConfig.fromEndpoint(new URL(process.env.ENDPOINT), process.env.SPEECH_KEY);
     
     function fromFile() {
         const filename = "katiesteve.wav";
