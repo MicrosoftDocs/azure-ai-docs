@@ -28,7 +28,7 @@ OpenAI's image generation models create images from user-provided text prompts a
 
 ## Overview
 
-- Use image generation via [image generation API](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) or [responses API](https://learn.microsoft.com/en-us/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
+- Use image generation via [image generation API](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
 - Experiment with image generation in the [image playground](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
 - Explore [content filtering](https://int.ai.azure.com/doc/azure/ai-foundry/openai/concepts/content-filter?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) and apply to opt out [here]([url](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu): 
 - Learn about [image generation tokens ](https://int.ai.azure.com/doc/azure/ai-foundry/openai/overview?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
