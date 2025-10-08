@@ -62,7 +62,7 @@ Before you set up indexing, review your source data to determine whether any cha
 
 If you don't set up inclusion or exclusion criteria, the indexer will report an ineligible blob as an error and move on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-adls-gen2-indexer).
 
-An indexer typically creates one search document per blob, where the text content and metadata are captured as searchable fields in an index. If blobs are whole files, you can potentially parse them into [multiple search documents](search-howto-index-one-to-many-blobs.md). For example, you can parse rows in a [CSV file](search-howto-index-csv-blobs.md) to create one search document per row.
+An indexer typically creates one search document per blob, where the text content and metadata are captured as searchable fields in an index. If blobs are whole files, you can potentially parse them into [multiple search documents](search-how-to-index-azure-blob-one-to-many.md). For example, you can parse rows in a [CSV file](search-how-to-index-azure-blob-csv.md) to create one search document per row.
 
 <a name="indexing-blob-metadata"></a>
 
@@ -115,7 +115,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 1. Set `"container"` to the blob container, and use "query" to specify any subfolders.
 
-A data source definition can also include [soft deletion policies](search-howto-index-changed-deleted-blobs.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
+A data source definition can also include [soft deletion policies](search-how-to-index-azure-blob-changed-deleted.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
 
 <a name="Credentials"></a>
 
@@ -217,7 +217,7 @@ Once the index and data source have been created, you're ready to create the ind
 
    + "allMetadata" specifies that standard blob properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the blob content and indexed.
 
-1. Under "configuration", set "parsingMode" if blobs should be mapped to [multiple search documents](search-howto-index-one-to-many-blobs.md), or if they consist of [plain text](search-howto-index-plaintext-blobs.md), [JSON documents](search-howto-index-json-blobs.md), or [CSV files](search-howto-index-csv-blobs.md).
+1. Under "configuration", set "parsingMode" if blobs should be mapped to [multiple search documents](search-how-to-index-azure-blob-one-to-many.md), or if they consist of [plain text](search-how-to-index-azure-blob-plaintext.md), [JSON documents](search-how-to-index-azure-blob-json.md), or [CSV files](search-how-to-index-azure-blob-csv.md).
 
 1. [Specify field mappings](search-indexer-field-mappings.md) if there are differences in field name or type, or if you need multiple versions of a source field in the search index.
 
@@ -308,7 +308,7 @@ PUT /indexers/[indexer name]?api-version=2025-09-01
 
 ## Limitations
 
-1. Unlike blob indexers, ADLS Gen2 indexers cannot utilize container level SAS tokens for enumerating and indexing content from a storage account. This is because the indexer makes a check to determine if the storage account has hierarchical namespaces enabled by calling the [Filesystem - Get properties API](/rest/api/storageservices/datalakestoragegen2/filesystem/get-properties). For storage accounts where hierarchical namespaces are not enabled, customers are instead recommended to utilize [blob indexers](search-howto-indexing-azure-blob-storage.md) to ensure performant enumeration of blobs.
+1. Unlike blob indexers, ADLS Gen2 indexers cannot utilize container level SAS tokens for enumerating and indexing content from a storage account. This is because the indexer makes a check to determine if the storage account has hierarchical namespaces enabled by calling the [Filesystem - Get properties API](/rest/api/storageservices/datalakestoragegen2/filesystem/get-properties). For storage accounts where hierarchical namespaces are not enabled, customers are instead recommended to utilize [blob indexers](search-how-to-index-azure-blob-storage.md) to ensure performant enumeration of blobs.
 
 2. If the property `metadata_storage_path` is mapped to be the index key field, blobs are not guaranteed to get reindexed upon a directory rename. If you desire to reindex the blobs that are part of the renamed directories, update the `LastModified` timestamps for all of them.
 
@@ -316,6 +316,6 @@ PUT /indexers/[indexer name]?api-version=2025-09-01
 
 You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
 
-+ [Change detection and deletion detection](search-howto-index-changed-deleted-blobs.md)
++ [Change detection and deletion detection](search-how-to-index-azure-blob-changed-deleted.md)
 + [Index large data sets](search-howto-large-index.md)
 + [C# Sample: Index Data Lake Gen2 using Microsoft Entra ID](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md)

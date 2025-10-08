@@ -15,7 +15,7 @@ ms.update-cycle: 365-days
 
 # Index JSON blobs and files in Azure AI Search
 
-**Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
+**Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
 
 For blob indexing in Azure AI Search, this article shows you how to set properties for blobs or files consisting of JSON documents. JSON files in Azure Blob Storage or Azure Files commonly assume any of these forms:
 
@@ -31,14 +31,14 @@ The blob indexer provides a `parsingMode` parameter to optimize the output of th
 | **`jsonArray`** | Multiple per blob | Parses a JSON array in the blob, where each element of the array becomes a separate search document.  |
 | **`jsonLines`** | Multiple per blob | Parses a blob that contains multiple JSON entities (also an array), with individual elements separated by a newline. The indexer starts a new search document after each new line. |
 
-For both **`jsonArray`** and **`jsonLines`**, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
+For both **`jsonArray`** and **`jsonLines`**, you should review [Indexing one blob to produce many search documents](search-how-to-index-azure-blob-one-to-many.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
 
 Within the indexer definition, you can optionally set [field mappings](search-indexer-field-mappings.md) to choose which properties of the source JSON document are used to populate your target search index. For example, when using the **`jsonArray`** parsing mode, if the array exists as a lower-level property, you can set a "documentRoot" property indicating where the array is placed within the blob.
 
 > [!NOTE]
 > When a JSON parsing mode is used, Azure AI Search assumes that all blobs use the same parser (either for **`json`**, **`jsonArray`** or **`jsonLines`**). If you have a mix of different file types in the same data source, consider using [file extension filters](search-blob-storage-integration.md#controlling-which-blobs-are-indexed) to control which files are imported.
 
-The following sections describe each mode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
+The following sections describe each mode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-how-to-index-azure-blob-storage.md), which isn't repeated here.
 
 <a name="parsing-single-blobs"></a>
 
@@ -74,7 +74,7 @@ api-key: [admin key]
 ```
 
 > [!NOTE]
-> As with all indexers, if fields don't clearly match, you should expect to explicitly specify individual [field mappings](search-indexer-field-mappings.md) unless you're using the implicit fields mappings available for blob content and metadata, as described in [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md).
+> As with all indexers, if fields don't clearly match, you should expect to explicitly specify individual [field mappings](search-indexer-field-mappings.md) unless you're using the implicit fields mappings available for blob content and metadata, as described in [basic blob indexer configuration](search-how-to-index-azure-blob-storage.md).
 > To override an existing index value, the source JSON must provide a non-null value. If the field in the source document is null, the indexer will retain the existing value. To explicitly clear a field, pass an empty string ("") instead. This prevents unintended deletions from the index.
 
 ### json example (single hotel JSON files)
@@ -211,8 +211,8 @@ You can also refer to individual array elements by using a zero-based index. For
 
 ## Next steps
 
-+ [Configure blob indexers](search-howto-indexing-azure-blob-storage.md)
++ [Configure blob indexers](search-how-to-index-azure-blob-storage.md)
 + [Define field mappings](search-indexer-field-mappings.md)
 + [Indexers overview](search-indexer-overview.md)
-+ [How to index CSV blobs with a blob indexer](search-howto-index-csv-blobs.md)
++ [How to index CSV blobs with a blob indexer](search-how-to-index-azure-blob-csv.md)
 + [Tutorial: Search semi-structured data from Azure Blob Storage](search-semi-structured-data.md)
