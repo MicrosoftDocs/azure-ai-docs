@@ -8,7 +8,7 @@ ms.author: aahi
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 10/08/2025
 ms.custom: azure-ai-agents
 ---
 
@@ -16,11 +16,7 @@ ms.custom: azure-ai-agents
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
 
-## September 2025
-
-### Computer Use tool
-
-The [Computer Use](./how-to/tools/computer-use.md) tool is now available in preview. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces.
+## October 2025
 
 ### Additional model support
 
@@ -30,6 +26,12 @@ The Agent Service supports the following [models](./concepts/model-region-suppor
 * gpt-5-nano
 * o3
 * o4-mini
+
+## September 2025
+
+### Computer Use tool
+
+The [Computer Use](./how-to/tools/computer-use.md) tool is now available in preview. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces.
 
 ## August 2025
 
