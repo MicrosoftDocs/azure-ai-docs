@@ -49,7 +49,7 @@ For integrated vectorization, you must use one of the following embedding models
 | [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
 | [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For images:<br>Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
 | [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For text and images:<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
-| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>4</sup> | For text and images: [Azure AI Vision multimodal embeddings APIs](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup></li> |
+| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>4</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup></li> |
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
@@ -217,7 +217,7 @@ The wizard supports several embedding models. Internally, the wizard calls the [
 
 The wizard supports several embedding models in the Azure AI Foundry model catalog. Internally, the wizard calls the [AML skill](cognitive-search-aml-skill.md) to connect to the model catalog.
 
-To complete these steps, you must either have an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) or [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/create-projects). If you're using a hub-based project, skip the role assignment step. Hub-based projects support API keys instead of managed identities for authentication.
+To complete these steps, you must have an [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) or [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects). If you're using a hub-based project, skip the role assignment step. Hub-based projects support API keys instead of managed identities for authentication.
 
 1. To assign roles:
 
@@ -498,7 +498,7 @@ When the wizard completes the configuration, it creates the following objects:
 
 + An index with vector fields, vectorizers, vector profiles, and vector algorithms. You can't design or modify the default index during the wizard workflow. Indexes conform to the [2024-05-01-preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-preview&preserve-view=true).
 
-+ A skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), the [AML skill](cognitive-search-aml-skill.md) for the Azure AI Foundry model catalog, or the [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). The skillset also has the [index projections](index-projections-concept-intro.md) configuration, which maps data from one document in the data source to its corresponding chunks in a "child" index.
++ A skillset with the [Text Split skill](cognitive-search-skill-textsplit.md) for chunking and an embedding skill for vectorization. The embedding skill is either the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [AML skill](cognitive-search-aml-skill.md), or [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md). The skillset also has the [index projections](index-projections-concept-intro.md) configuration, which maps data from one document in the data source to its corresponding chunks in a "child" index.
 
 + An indexer with field mappings and output field mappings (if applicable).
 
