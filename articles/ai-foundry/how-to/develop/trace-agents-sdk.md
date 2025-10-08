@@ -679,6 +679,11 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
     pass
 ```
 
+## View traces in the Azure AI Foundry portal
+
+In your project, go to **Tracing** to filter your traces as you see fit.
+
+By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
 
 ## View thread results in the Azure AI Foundry Agents playground
 
@@ -705,19 +710,12 @@ After selecting **Thread logs**, review:
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
 > [!TIP]
-> If you want to view trace results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
+> If you want to view thread results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 > :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
-> You'll be able to see the **Thread logs** button at the top of the screen to view the trace results.
-
+> You'll be able to see the **Thread logs** button at the top of the screen to view the thread results.
 
 > [!NOTE]
 > Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
-
-## View traces in the Azure AI Foundry portal
-
-In your project, go to **Tracing** to filter your traces as you see fit.
-
-By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
 
 ## View traces in Azure Monitor
 
