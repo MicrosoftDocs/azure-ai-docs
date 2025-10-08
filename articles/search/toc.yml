@@ -297,7 +297,7 @@ items:
         - name: Index plain text
           href: search-how-to-index-azure-blob-plaintext.md
         - name: Index CSV
-          href: search-how-to-index-azure-blob-changed-deleted.md.md
+          href: search-how-to-index-azure-blob-changed-deleted.md
         - name: Index JSON
           href: search-how-to-index-azure-blob-json.md
         - name: Index Markdown
