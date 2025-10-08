@@ -319,7 +319,7 @@ azure_tracer = AzureAIOpenTelemetryTracer(
 Pass the tracer via `config` in the `invoke` operation:
 
 ```python
-chain.invoke({"topic": "living in a foreign country"}, config={"callbacks": [azure_tracer]})
+chain.invoke({"topic": "living in a foreign country/region"}, config={"callbacks": [azure_tracer]})
 ```
 
 To configure the chain itself for tracing, use the `.with_config()` method:
