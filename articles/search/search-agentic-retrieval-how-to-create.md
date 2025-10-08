@@ -57,7 +57,7 @@ Make sure you have a supported model that Azure AI Search can access. The follow
 
 ### Supported models
 
-Use Azure OpenAI or an equivalent open source model:
+Use Azure OpenAI or an equivalent open-source model:
 
 + `gpt-4o`
 + `gpt-4o-mini`
@@ -307,8 +307,8 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
             "azureOpenAIParameters": {
                 "resourceUri": "{{model-provider-url}}",
                 "apiKey": "{{model-api-key}}",
-                "deploymentId": "gpt-4o-mini",
-                "modelName": "gpt-4o-mini"
+                "deploymentId": "gpt-5-mini",
+                "modelName": "gpt-5-mini"
             }
         }
     ],
@@ -345,7 +345,7 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
     + `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
 
-+ `models` specifies one or more connections to an existing gpt-4o or gpt-4o-mini model. Currently in this preview release, models can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
++ `models` specifies a connection to a [supported chat completion model](#supported-models). In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
 + `outputConfiguration` gives you control over query execution logic and output.
 
