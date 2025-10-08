@@ -252,16 +252,23 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-4o-mini-audio-preview` | Default | 2M | 1K |
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
 |`gpt-audio` |   Default | 100K | 30 |
+|`gpt-audio-mini` |   Default | 100K | 30 |
 |`gpt-realtime` | Default | 100K | 30 |
+|`gpt-realtime-mini` | Default | 100K | 30 |
+
 
 ## GPT-image-1 rate limits
 
-### GPT0-image-1 Global Standard
+### GPT-image-1 Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-image-1`|Enterprise and MCA-E | N/A | 20 |
 |`gpt-image-1` |Default | N/A | 6 |
+|`gpt-image-1-mini`|Low | N/A | 12 |
+|`gpt-image-1-mini` |Medium | N/A | 36 |
+|`gpt-image-1-mini` |High | N/A | 120 |
+
 
 ## Usage tiers
 

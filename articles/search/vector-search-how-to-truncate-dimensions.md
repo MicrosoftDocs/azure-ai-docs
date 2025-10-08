@@ -9,7 +9,7 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/28/2025
+ms.date: 10/08/2025
 ---
 
 # Truncate dimensions using MRL compression
@@ -94,7 +94,7 @@ The following example illustrates a vector search configuration that meets the r
     "compressions": [ 
       { 
         "name": "use-mrl", 
-        "kind": "truncation", 
+        "kind": "binaryQuantization", 
         "rescoringOptions": {
             "enableRescoring": true,
             "defaultOversampling": 10,
