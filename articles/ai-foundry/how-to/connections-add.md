@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 # Add a new connection to your project (Foundry projects)
 
-> [!NOTE]
+> [!TIP]
 > An alternate hub-scoped connections article is available: [Create and manage connections (Hubs)](hub-connections-add.md).
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]

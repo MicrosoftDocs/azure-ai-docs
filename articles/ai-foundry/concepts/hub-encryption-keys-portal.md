@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Customer-managed keys for hub projects
 
-> [!NOTE]
+> [!TIP]
 > An alternate Foundry project article is available: [Customer-managed keys for encryption with Azure AI Foundry (Foundry projects)](encryption-keys-portal.md).
 
 Hub-based projects require configuring CMK on each underlying service (Azure AI Hub, Storage) for end-to-end encryption control.
