@@ -1,7 +1,5 @@
 ---
-title: # Azure Translator neural dictionary
-
-The Azure Translator neural dictionary is an extension to our [dynamic dictionary](use-dynamic-dictionary.md) and [phrase dictionary](../../custom-translator/concepts/dictionaries.md#phrase-dictionary) capabilities. Both dynamic and phrase dictionaries allow you to customize the translation output by providing your own translations for specific terms or phrases. The neural dictionary improves translation quality for sentences that include one or more term translations by letting the machine translation model adjust...ral dictionary - Azure Translator in Foundry Tools
+title: Azure Translator neural dictionary
 titleSuffix: Azure AI Foundry Tools
 description: How to use the Azure Translator neural dictionary feature.
 author: laujan
