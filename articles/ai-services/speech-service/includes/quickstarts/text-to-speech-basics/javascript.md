@@ -49,8 +49,8 @@ To translate speech from a file:
     import { SpeechConfig, AudioConfig, SpeechSynthesizer, ResultReason } from "microsoft-cognitiveservices-speech-sdk";
     function synthesizeSpeech() {
         const audioFile = "YourAudioFile.wav";
-        // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-        const speechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
+        // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+        const speechConfig = SpeechConfig.fromEndpoint(new URL(ENDPOINT), process.env.SPEECH_KEY);
         const audioConfig = AudioConfig.fromAudioFileOutput(audioFile);
         // The language of the voice that speaks.
         speechConfig.speechSynthesisVoiceName = "en-US-AvaMultilingualNeural";

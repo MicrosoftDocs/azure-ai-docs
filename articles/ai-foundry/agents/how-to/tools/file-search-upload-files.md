@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Find code samples and instructions for uploading files to Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 08/07/2025
 author: aahill
@@ -469,7 +470,7 @@ console.log(`Deleted agent, agent ID: ${agent.id}`);
 
 To access your files, the file search tool uses the vector store object. Upload your files and create a vector store. After creating the vector store, poll its status until all files are out of the in_progress state to ensure that all content is fully processed. The SDK provides helpers for uploading and polling.
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ### Upload a file
 

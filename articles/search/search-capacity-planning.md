@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2023
   - ignite-2024
 ms.topic: conceptual
-ms.date: 09/15/2025
+ms.date: 09/26/2025
 ms.update-cycle: 180-days
 ---
 
@@ -130,7 +130,7 @@ To change your pricing tier:
 
 1. On the **Select Pricing Tier** page, choose a different tier from the list.
 
-   Currently, you can switch between Basic, S1, S2, and S3 only. Other pricing tiers are unavailable and appear dimmed.
+   You can switch between Basic, S1, S2, and S3, but you can't switch to or from Free, S3HD, L1, or L2. These tiers aren't selectable and appear dimmed.
 
    :::image type="content" source="media/search-capacity-planning/pricing-tier-list.png" alt-text="Screenshot of the Select Pricing Tier page and the list of available tiers in the Azure portal." border="true" lightbox="media/search-capacity-planning/pricing-tier-list.png":::
 

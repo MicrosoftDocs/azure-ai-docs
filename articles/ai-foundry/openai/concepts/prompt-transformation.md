@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn about the prompt transformation feature in Azure OpenAI DALL-E 3, how it works, and why it's necessary.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
 ms.date: 09/16/2025
 manager: nitinme

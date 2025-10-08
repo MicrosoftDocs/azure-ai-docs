@@ -5,7 +5,8 @@ author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
 ms.date: 09/10/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: whats-new
 ms.custom:
   - ignite-2023
@@ -18,7 +19,31 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
-## Sora video-to-video support 
+## October 2025 
+
+### GPT-image-1-mini 
+
+The `gpt-image-1-mini` model is now available for global deployments. It is a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
+
+### PII detection content filter
+
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
+
+## September 2025
+
+## GPT-5-codex is now available
+
+- To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
+- `gpt-5-codex` is specifically designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
+
+- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5` you do not need to reapply and will automatically be granted access.
+
+### Sora video-to-video support 
 
 The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
 
@@ -257,7 +282,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### GPT-4o 2024-11-20
 
-`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
+`gpt-4o-2024-11-20` is now available for [global standard deployment](../foundry-models/concepts/deployment-types.md) in:
 
 - East US
 - East US 2

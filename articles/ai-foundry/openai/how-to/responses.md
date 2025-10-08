@@ -6,7 +6,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.date: 09/19/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
@@ -44,10 +45,13 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5-codex`  (Version: `2025-09-11`)
 - `gpt-5` (Version: `2025-08-07`)
 - `gpt-5-mini` (Version: `2025-08-07`)
 - `gpt-5-nano` (Version: `2025-08-07`)
 - `gpt-5-chat` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-10-03`)
+- `gpt-5-codex` (Version: `2025-09-15`)
 - `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
 - `gpt-4o-mini` (Version: `2024-07-18`)
 - `computer-use-preview`
@@ -55,6 +59,7 @@ The responses API is currently available in the following regions:
 - `gpt-4.1-nano` (Version: `2025-04-14`)
 - `gpt-4.1-mini` (Version: `2025-04-14`)
 - `gpt-image-1` (Version: `2025-04-15`)
+- `gpt-image-1-mini` (Version: `2025-10-06`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
@@ -591,11 +596,11 @@ print(response.output)
 ### Containers
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
 
 The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
 
-To create a container, specify `"container": { "type": "auto", "files": ["file-1", "file-2"] }` in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call` in the output of the APIwill contain the `container_id` that was generated. This container expires if it is not used for 20 minutes.
+To create a container, specify `"container": { "type": "auto", "file_ids": ["file-1", "file-2"] }` in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call` in the output of the APIwill contain the `container_id` that was generated. This container expires if it is not used for 20 minutes.
 
 ### File inputs and outputs
 
@@ -1265,7 +1270,7 @@ Compared to the standalone Image API, the Responses API offers several advantage
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
+> The image generation tool in the Responses API is only supported by the `gpt-image-1` series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
 
 Use the Responses API if you want to build conversational image experiences with GPT Image.
 

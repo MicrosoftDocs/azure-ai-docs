@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 09/12/2025
+ms.date: 10/06/2025
 ms.update-cycle: 365-days
 ---
 
@@ -39,7 +39,7 @@ Parameters are case-sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|
-| `resourceUri` | The URI of the model provider. This parameter only supports URLs with the `openai.azure.com` domain, such as `https://<resourcename>.openai.azure.com`. If your Azure OpenAI endpoint has a URL with the `cognitiveservices.azure.com` domain, such as `https://<resourcename>.cognitiveservices.azure.com`, you must create a [custom subdomain](/azure/ai-services/openai/how-to/use-your-data-securely#enabled-custom-subdomain) with `openai.azure.com` for the Azure OpenAI resource and use `https://<resourcename>.openai.azure.com` instead. |
+| `resourceUri` | The URI of the model provider. This parameter only supports URLs with the `openai.azure.com` domain, such as `https://<resourcename>.openai.azure.com`. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are supported with URL `https://<resourcename>.azure-api.net`. Shared private links aren't supported for API Management endpoints. |
 | `apiKey`   |  The secret key used to access the model. If you provide a key, leave `authIdentity` empty. If you set both the `apiKey` and `authIdentity`, the `apiKey` is used on the connection. |
 | `deploymentId`   | The name of the deployed Azure OpenAI embedding model. The model should be an embedding model, such as text-embedding-ada-002. See the [List of Azure OpenAI models](/azure/ai-services/openai/concepts/models) for supported models.|
 | `authIdentity`   | A user-managed identity used by the search service for connecting to Azure OpenAI. You can use either a [system or user managed identity](search-how-to-managed-identities.md). To use a system managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) permissions to send text to Azure OpenAI. |

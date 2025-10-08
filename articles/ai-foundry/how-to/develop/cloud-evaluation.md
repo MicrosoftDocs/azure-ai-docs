@@ -29,6 +29,9 @@ In this article, you learn how to run evaluations in the cloud (preview) in pre-
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
+> [!NOTE]
+> Virtual Network (VNet) configurations are currently not supported for cloud-based evaluations. Please ensure that public network access is enabled for your Azure OpenAI resource.
+
 ## Get started
 
 1. Install the Azure AI Foundry SDK project client that runs the evaluations in the cloud:
@@ -239,6 +242,18 @@ print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
 After you log your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under the **Evaluation** tab of your Azure AI project.
+
+### Troubleshooting: Job Stuck in Running State
+
+If your evaluation job remains in the **Running** state for an extended period when using Azure AI Foundry Project or Hub, this may be because the Azure OpenAI model you selected does not have enough capacity.
+
+**Resolution**
+
+Cancel the current evaluation job.
+
+Increase the model capacity to handle larger input data.
+
+Re-run the evaluation.
 
 ## Related content
 

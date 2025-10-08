@@ -2,9 +2,10 @@
 title: Azure OpenAI in Azure AI Foundry Models retired models
 titleSuffix: Azure OpenAI
 description: Learn about the deprecated models in Azure OpenAI.
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 06/18/2025
+ms.date: 09/30/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle 

@@ -105,7 +105,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
+POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -202,6 +202,6 @@ Connection information and permissions on the remote service are validated at ru
 
 ## See also
 
-* [Indexing via an Azure Cosmos DB for NoSQL](search-howto-index-cosmosdb.md)
-* [Indexing via an Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md)
-* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md)
+* [Indexing via an Azure Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md)
+* [Indexing via an Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md)
+* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md)

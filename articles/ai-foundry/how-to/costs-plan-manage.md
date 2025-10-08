@@ -1,13 +1,13 @@
 ---
-title: Plan and manage costs for Azure AI Foundry
+title: Plan and manage costs for Azure AI Foundry hubs
 titleSuffix: Azure AI Foundry
-description: Learn how to plan for and manage costs for Azure AI Foundry by using cost analysis in the Azure portal.
+description: Learn how to plan for and manage costs for Azure AI Foundry hubs by using cost analysis in the Azure portal.
 ms.author: mopeakande
 manager: nitinme
 author: msakande 
 ms.reviewer: aashishb
 reviewer: aashishb
-ms.date: 08/12/2025
+ms.date: 09/26/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:
@@ -18,14 +18,14 @@ ms.custom:
   - build-2025
 ---
 
-# Plan and manage costs for Azure AI Foundry
+# Plan and manage costs for Azure AI Foundry hubs
 
-This article describes how to plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs.
+This article describes how to plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) hubs by using cost analysis in the Azure portal. First, use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add any resources. Next, as you add Azure resources, review the estimated costs. 
 
-> [!TIP]
-> Azure AI Foundry doesn't have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services.
+Azure AI Foundry hub projects don't have a specific page in the Azure pricing calculator. Azure AI Foundry hubs are composed of several other Azure services, some of which are optional. This article provides information on using the pricing calculator to estimate costs for these services. You use Azure AI services in Azure AI Foundry portal. Costs for Azure AI services are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including third-party services.
 
-You use Azure AI services in Azure AI Foundry portal. Costs for Azure AI services are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including third-party services.
+> [!NOTE]
+> This article is specific to Azure AI Foundry hub projects. For other costs associated with Azure AI Foundry, refer to [Azure AI Foundry cost management](../concepts/manage-costs.md).
 
 ## Prerequisites
 

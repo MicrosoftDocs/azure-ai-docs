@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use your own virtual network with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 08/01/2025
 author: aahill
@@ -42,9 +43,10 @@ For customers without an existing virtual network, the Standard Setup with Priva
 - **Region availability**:
   - For supported regions for model deployments, see: [Azure OpenAI model region support](../concepts/model-region-support.md#available-models).
 - **Azure Blob Storage**: using Azure Blob Storage files with the File Search tool isn't supported.
+- **Private MCP Server**: using private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 ## Prerequisites
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
 * The person deploying the template must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage).
     * The built-in role needed is **Role Based Access Administrator**.
