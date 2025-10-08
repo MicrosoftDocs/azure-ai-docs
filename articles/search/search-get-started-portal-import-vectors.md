@@ -117,9 +117,9 @@ This section points you to the content that works for this quickstart. Before yo
 
 1. (Optional) Synchronize deletions in your container with deletions in the search index. To configure your indexer for deletion detection:
 
-   1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-howto-index-changed-deleted-blobs.md#native-blob-soft-delete), the next step isn't required.
+   1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account. If you're using [native soft delete](search-how-to-index-changed-deleted-blobs.md#native-blob-soft-delete), the next step isn't required.
 
-   1. [Add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
+   1. [Add custom metadata](search-how-to-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-changed-deleted-blobs.md).
 
 ### [ADLS Gen2](#tab/sample-data-adlsgen2)
 
@@ -145,7 +145,7 @@ This section points you to the content that works for this quickstart. Before yo
 
    1. [Enable soft delete](/azure/storage/blobs/soft-delete-blob-enable?tabs=azure-portal#enable-blob-soft-delete-hierarchical-namespace) on your storage account.
 
-   1. [Add custom metadata](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-howto-index-changed-deleted-blobs.md).
+   1. [Add custom metadata](search-how-to-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata) that an indexer can scan to determine which blobs are marked for deletion. Give your custom property a descriptive name. For example, you can name the property "IsDeleted" and set it to false. Repeat this step for every blob in the container. When you want to delete the blob, change the property to true. For more information, see [Change and delete detection when indexing from Azure Storage](search-how-to-index-changed-deleted-blobs.md).
 
 ### [OneLake](#tab/sample-data-onelake)
 
@@ -322,7 +322,7 @@ In this step, you connect Azure AI Search to a [supported data source](#supporte
 
 ### [Logic Apps](#tab/connect-logic-apps)
 
-The current preview adds support for Logic Apps connectors. For a list of supported connectors and operations, see [Use a Logic Apps connector for indexer-based indexing](search-how-to-index-logic-apps-indexers.md).
+The current preview adds support for Logic Apps connectors. For a list of supported connectors and operations, see [Use a Logic Apps connector for indexer-based indexing](search-how-to-index-logic-apps.md).
 
 ---
 

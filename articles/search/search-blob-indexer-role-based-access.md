@@ -23,7 +23,7 @@ The indexer approach is built on this foundation:
 
 + [Azure Storage blobs secured using role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
-+ [An Azure AI Search indexer for blobs](search-howto-indexing-azure-blob-storage.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
++ [An Azure AI Search indexer for blobs](search-how-to-index-azure-blob-storage.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a preview package of an Azure SDK that supports the feature.
 
 + [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. 
 
@@ -78,7 +78,7 @@ In Azure AI Search, configure an indexer, data source, and index to pull permiss
 
 + Data source must have `indexerPermissionOptions` with `rbacScope`.
 
-  + For `rbacScope`, configure the [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
+  + For `rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   
   + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
 
@@ -184,7 +184,7 @@ Assuming no errors, the index is now populated and you can move forward with [qu
 
 ## Deletion tracking 
 
-To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-howto-index-changed-deleted-blobs.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and delete the corresponding content from the index.  
+To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-how-to-index-changed-deleted-blobs.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and delete the corresponding content from the index.  
 
 ## See also
 
@@ -192,4 +192,4 @@ To effectively manage blob deletion, ensure that you have enabled [deletion trac
 - [Query-Time ACL and RBAC enforcement](search-query-access-control-rbac-enforcement.md)
 - [azure-search-python-samples/Quickstart-Document-Permissions-Push-API](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Document-Permissions-Push-API)
 + [Search over Azure Blob Storage content](search-blob-storage-integration.md)
-+ [Configure a blob indexer](search-howto-indexing-azure-blob-storage.md)
++ [Configure a blob indexer](search-how-to-index-azure-blob-storage.md)

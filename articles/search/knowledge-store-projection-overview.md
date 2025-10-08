@@ -17,7 +17,7 @@ ms.custom:
 # Knowledge store "projections" in Azure AI Search
 
 > [!NOTE]
-> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](search-agentic-retrieval-concept.md) workflows.
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 Projections define the physical tables, objects, and files in a [**knowledge store**](knowledge-store-concept-intro.md) that accept content from an Azure AI Search enrichment pipeline. If you're creating a knowledge store, defining and shaping projections is most of the work.
 

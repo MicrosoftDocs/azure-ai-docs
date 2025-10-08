@@ -377,4 +377,4 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with the basics of Azure Blob indexing, take a closer look at indexer configuration for JSON blobs in Azure Storage:
 
 > [!div class="nextstepaction"]
-> [Configure JSON blob indexing](search-howto-index-json-blobs.md)
+> [Configure JSON blob indexing](search-how-to-index-azure-blob-json.md)

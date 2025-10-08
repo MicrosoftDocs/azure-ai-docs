@@ -14,14 +14,14 @@ ms.date: 08/26/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-By default, a [knowledge agent](search-agentic-retrieval-how-to-create.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information, but it lacks the context and reasoning necessary for complex queries.
+By default, a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) in Azure AI Search performs *data extraction*, which returns raw grounding chunks from your knowledge sources. Data extraction is useful for retrieving specific information, but it lacks the context and reasoning necessary for complex queries.
 
 You can configure the agent to perform *answer synthesis*, which uses your deployed chat completion model to respond to queries in natural language. Each answer includes citations to the retrieved sources and follows any instructions you provide, such as using bulleted lists.
 
 This article explains how to configure and test answer synthesis for an existing agent. Although you can use this configuration for new agents, agent creation is beyond the scope of this article.
 
 > [!IMPORTANT]
-> Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the chat completion model assigned to the agent. For more information, see [Availability and pricing of agentic retrieval](search-agentic-retrieval-concept.md#availability-and-pricing).
+> Answer synthesis incurs pay-as-you-go charges from Azure OpenAI, which is based on the number of input and output tokens. Charges appear under the chat completion model assigned to the agent. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Prerequisites
 
@@ -140,13 +140,13 @@ The full `text` output is as follows:
 "- Healthcare encompasses various services provided to patients and the general population, including primary health services, hospital care, dental care, mental health services, and alternative health services [ref_id:1].\n- It involves the delivery of safe, effective, patient-centered care through different modalities, such as in-person encounters, shared medical appointments, and group education sessions [ref_id:0].\n- Behavioral health is a significant aspect of healthcare, focusing on the connection between behavior and overall health, including mental health and substance use [ref_id:2].\n- The healthcare system aims to ensure quality of care, access to providers, and accountability for positive outcomes while managing costs effectively [ref_id:2].\n- The global health system is evolving to address complex health needs, emphasizing the importance of cross-sectoral collaboration and addressing social determinants of health [ref_id:4]."
 ```
 
-Depending on your agent's configuration, the response might include other information, such as activity logs and reference arrays. For more information, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
+Depending on your agent's configuration, the response might include other information, such as activity logs and reference arrays. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ## Related content
 
 + [Quickstart: Agentic retrieval in Azure AI Search (uses answer synthesis)](https://github.com/Azure-Samples/azure-search-python-samples/blob/main/Quickstart-Agentic-Retrieval/quickstart-agentic-retrieval.ipynb)
 + [Azure AI Search Blob knowledge source Python sample (uses answer synthesis)](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
-+ [Create a search index knowledge source](search-knowledge-source-how-to-index.md)
-+ [Create a blob knowledge source](search-knowledge-source-how-to-blob.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md)
++ [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md)

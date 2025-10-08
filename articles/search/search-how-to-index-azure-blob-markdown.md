@@ -30,7 +30,7 @@ In Azure AI Search, indexers for Azure Blob Storage, Azure Files, and Microsoft 
 
   For OneLake, make sure you meet all of the requirements of the [OneLake indexer](search-how-to-index-onelake-files.md#prerequisites).
 
-  Azure Storage for [blob indexers](search-howto-indexing-azure-blob-storage.md#prerequisites) and [file indexers](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot and cool access tiers.
+  Azure Storage for [blob indexers](search-how-to-index-azure-blob-storage.md#prerequisites) and [file indexers](search-file-storage-integration.md#prerequisites) is a standard performance (general-purpose v2) instance that supports hot and cool access tiers.
 
 ## Markdown parsing mode parameters
 
@@ -62,9 +62,9 @@ The blob indexer provides a `submode` parameter to determine the output of struc
 | **`markdown`** | **`oneToMany`** | Multiple per blob | (default) Breaks the Markdown into multiple search documents, each representing a content (nonheader) section of the Markdown file. You can omit submode unless you want one-to-one parsing.|
 | **`markdown`** | **`oneToOne`** | One per blob | Parses the Markdown into one search document, with sections mapped to specific headers in the Markdown file.|
 
-For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-howto-index-one-to-many-blobs.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
+For **`oneToMany`** submode, you should review [Indexing one blob to produce many search documents](search-how-to-index-azure-blob-one-to-many.md) to understand how the blob indexer handles disambiguation of the document key for multiple search documents produced from the same blob.
 
-Later sections describe each submode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-howto-indexing-azure-blob-storage.md), which isn't repeated here.
+Later sections describe each submode in more detail. If you're unfamiliar with indexer clients and concepts, see [Create a search indexer](search-howto-create-indexers.md). You should also be familiar with the details of [basic blob indexer configuration](search-how-to-index-azure-blob-storage.md), which isn't repeated here.
 
 ### Optional Markdown parsing parameters
 
@@ -472,7 +472,7 @@ In `oneToOne` mode, the entire Markdown file is indexed as a single search docum
 To ensure the index reflects the current state of your Markdown files, consider one of the following approaches:
 
 #### Option 1. Soft delete with metadata
-This method uses a soft-delete to delete documents associated with a specific blob. For more information, see [Change and delete detection using indexers for Azure Storage in Azure AI Search](search-howto-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata).
+This method uses a soft-delete to delete documents associated with a specific blob. For more information, see [Change and delete detection using indexers for Azure Storage in Azure AI Search](search-how-to-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata).
 
 Steps:
 
@@ -525,8 +525,8 @@ Steps:
 
 ## Next steps
 
-+ [Configure blob indexers](search-howto-indexing-azure-blob-storage.md)
++ [Configure blob indexers](search-how-to-index-azure-blob-storage.md)
 + [Define field mappings](search-indexer-field-mappings.md)
 + [Indexers overview](search-indexer-overview.md)
-+ [How to index CSV blobs with a blob indexer](search-howto-index-csv-blobs.md)
++ [How to index CSV blobs with a blob indexer](search-how-to-index-azure-blob-csv.md)
 + [Tutorial: Search Markdown data from Azure Blob Storage](search-markdown-data-tutorial.md)

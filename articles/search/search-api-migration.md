@@ -64,7 +64,7 @@ The following breaking changes apply to data operations.
 
 ### Breaking changes for knowledge agents
 
-[Knowledge agents](search-agentic-retrieval-how-to-create.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](search-agentic-retrieval-how-to-migrate.md).
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 
@@ -380,14 +380,14 @@ Features that became generally available in this API version include:
 
 + [Autocomplete](index-add-suggesters.md) is a typeahead feature that completes a partially specified term input.
 + [Complex types](search-howto-complex-data-types.md) provides native support for structured object data in search index.
-+ [JsonLines parsing modes](search-howto-index-json-blobs.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
++ [JsonLines parsing modes](search-how-to-index-azure-blob-json.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
 + [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Azure AI services.
 
 #### Breaking changes
 
 Code written against an earlier API version breaks on `2019-05-06` and later if it contains the following functionality:
 
-1. Type property for Azure Cosmos DB. For indexers targeting an [Azure Cosmos DB for NoSQL API](search-howto-index-cosmosdb.md) data source, change `"type": "documentdb"` to `"type": "cosmosdb"`.
+1. Type property for Azure Cosmos DB. For indexers targeting an [Azure Cosmos DB for NoSQL API](search-how-to-index-cosmosdb-sql.md) data source, change `"type": "documentdb"` to `"type": "cosmosdb"`.
 
 1. If your indexer error handling includes references to the `status` property, you should remove it. We removed status from the error response because it wasn't providing useful information.
 

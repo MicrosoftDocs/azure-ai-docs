@@ -16,7 +16,7 @@ ms.custom:
 
 # Index CSV blobs and files using delimitedText parsing mode
 
-**Applies to**: [Blob storage indexers](search-howto-indexing-azure-blob-storage.md), [Files indexers](search-file-storage-integration.md)
+**Applies to**: [Blob storage indexers](search-how-to-index-azure-blob-storage.md), [Files indexers](search-file-storage-integration.md)
 
 In Azure AI Search, indexers for Azure Blob Storage and Azure Files support a `delimitedText` parsing mode for CSV files that treats each line in the CSV as a separate search document. For example, given the following comma-delimited text, the `delimitedText` parsing mode would result in two documents in the search index: 
 
@@ -35,7 +35,7 @@ id, datePublished, tags
 
 Without the `delimitedText` parsing mode, the entire contents of the CSV file would be treated as one search document.
 
-Whenever you create multiple search documents from a single blob, be sure to review [Indexing blobs to produce multiple search documents](search-howto-index-one-to-many-blobs.md) to understand how document key assignments work. The blob indexer is capable of finding or generating values that uniquely define each new document. Specifically, it can create a transitory `AzureSearch_DocumentKey` when a blob is parsed into smaller parts, where the value is then used as the search document's key in the index.
+Whenever you create multiple search documents from a single blob, be sure to review [Indexing blobs to produce multiple search documents](search-how-to-index-azure-blob-one-to-many.md) to understand how document key assignments work. The blob indexer is capable of finding or generating values that uniquely define each new document. Specifically, it can create a transitory `AzureSearch_DocumentKey` when a blob is parsed into smaller parts, where the value is then used as the search document's key in the index.
 
 ## Set up CSV indexing
 
@@ -100,5 +100,5 @@ api-key: [admin key]
 
 ## Related content
 
-+ [Index data from Azure Blob Storage](search-howto-indexing-azure-blob-storage.md)
++ [Index data from Azure Blob Storage](search-how-to-index-azure-blob-storage.md)
 + [Index data from Azure Files](search-file-storage-integration.md)
