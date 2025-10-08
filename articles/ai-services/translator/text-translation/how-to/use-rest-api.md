@@ -1,6 +1,6 @@
 ---
-title: "Use Azure AI Translator APIs"
-titleSuffix: Azure AI services
+title: "Use Azure Translator in Foundry Tools APIs"
+titleSuffix: Azure AI Foundry Tools
 description: "Learn to translate text, transliterate text, detect language, and more with the Translator service. Examples are provided in C#, Java, JavaScript, and Python."
 author: laujan
 manager: nitinme
@@ -18,7 +18,7 @@ keywords: translator, translator service, translate text, transliterate text, la
 <!-- markdownlint-disable MD001 -->
 <!-- markdownlint-disable MD024 -->
 
-# Use Azure AI Translator APIs
+# Use Azure Translator APIs
 
 In this how-to guide, you learn to use the [Translator service REST APIs](../reference/rest-api-guide.md). You start with basic examples and move onto some core configuration options that are commonly used during development, including:
 
@@ -41,7 +41,7 @@ In this how-to guide, you learn to use the [Translator service REST APIs](../ref
     :::image type="content" source="../../media/keys-and-endpoint-portal.png" alt-text="Screenshot: Azure portal keys and endpoint page.":::
 
 > [!IMPORTANT]
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* the Azure AI services [security](../../../security-features.md).
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, *see* the Azure AI Foundry Tools [security](../../../security-features.md).
 
 ## Headers
 
@@ -336,7 +336,7 @@ You can use any text editor to write `Go` applications. We recommend using the l
 > [!IMPORTANT]
 > The samples in this guide require hard-coded keys and endpoints.
 > Remember to **remove the key from your code when you're done**, and **never post it publicly**.
-> For production, consider using a secure way of storing and accessing your credentials. For more information, *see* [Azure AI services security](../../../security-features.md).
+> For production, consider using a secure way of storing and accessing your credentials. For more information, *see* [Azure AI Foundry Tools security](../../../security-features.md).
 
 ## Translate text
 

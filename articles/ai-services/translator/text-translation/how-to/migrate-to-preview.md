@@ -1,7 +1,7 @@
 ---
-title: Migrate from Translator v3 to the latest Azure AI Translator text translation version.
-titleSuffix: Azure AI services
-description: This article provides the steps to help you migrate from Azure AI Translator v3 to  2025-05-01-preview text translation API.
+title: Migrate from Translator v3 to the latest Azure Translator in Foundry Tools text translation version.
+titleSuffix: Azure AI Foundry Tools
+description: This article provides the steps to help you migrate from Azure Translator v3 to  2025-05-01-preview text translation API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,15 +12,15 @@ ms.author: lajanuar
 
 # Text translation 2025-05-01-preview migration
 
-Azure AI Translator text translation 2025-05-01-preview is our latest cloud-based, multilingual neural machine translation service. As Azure AI Translator matures, we're focused on patterns and practices to best support and add value to our users.
+Azure Translator text translation 2025-05-01-preview is our latest cloud-based, multilingual neural machine translation service. As Azure Translator matures, we're focused on patterns and practices to best support and add value to our users.
 
 >[!IMPORTANT]
-> * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
-> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> * Azure Translator REST API `2025-05-01-preview` is new version of the Azure Translator REST API **with breaking changes**.
+> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
-The latest version of Azure AI Translator includes the following enhancements and capabilities:
+The latest version of Azure Translator includes the following enhancements and capabilities:
 
  * **Large language model (LLM) choice**. You can choose a large language model based for translation based on quality, cost, and other factors, while avoiding costs associated with prompt engineering and quality evaluations.
 
@@ -30,7 +30,7 @@ The latest version of Azure AI Translator includes the following enhancements an
 
 ## Method changes
 
-The following list compares available Azure AI Translator `2025-05-01-preview` methods with available v3.0 method.
+The following list compares available Azure Translator `2025-05-01-preview` methods with available v3.0 method.
 
 ### Required parameters
 

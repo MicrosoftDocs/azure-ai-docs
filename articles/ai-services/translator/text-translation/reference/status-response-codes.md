@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator response codes and messages
-titleSuffix: Azure AI services
-description: Understand response status and error code messages for the Azure AI Translator operations.
+title: Azure Translator in Foundry Tools response codes and messages
+titleSuffix: Azure AI Foundry Tools
+description: Understand response status and error code messages for the Azure Translator operations.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.date: 06/19/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator response codes and messages
+# Azure Translator response codes and messages
 
 When you use `HTTP` protocol to access content on a server running `IIS`, the server returns a numeric code indicating the outcome of the request and the nature of the response, including its success or failure.
 The status code's first digit categorizes the response class, while the last two digits serve no classification purpose. The first digit can be one of five values:

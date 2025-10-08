@@ -1,6 +1,6 @@
 ---
-title: "Quickstart: Azure AI Translator client libraries"
-titleSuffix: Azure AI services
+title: "Quickstart: Azure Translator in Foundry Tools client libraries"
+titleSuffix: Azure AI Foundry Tools
 description: "Learn to translate text with the Translator service SDks in a programming language of your choice: C#, Java, JavaScript, or Python."
 author: laujan
 manager: nitinme
@@ -20,7 +20,7 @@ zone_pivot_groups:  programming-languages-set-translator-sdk
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 
-# Quickstart: Azure AI Translator text client libraries 
+# Quickstart: Azure Translator text client libraries 
 
 In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 

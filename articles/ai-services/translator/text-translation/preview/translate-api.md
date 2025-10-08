@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator 2025-05-01-preview translate method
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator 2025-05-01-preview translate method.
+title: Azure Translator in Foundry Tools 2025-05-01-preview translate method
+titleSuffix: Azure AI Foundry Tools
+description: Understand the parameters, headers, and body messages for the Azure Translator 2025-05-01-preview translate method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -15,7 +15,7 @@ ms.author: lajanuar
 The Text translation API enables you to translate your source language text into a specified target language text.
 
 >[!IMPORTANT]
-> * Azure AI Translator REST API `2025-05-01-preview` is new version of the Azure AI Translator REST API **with breaking changes**.
+> * Azure Translator REST API `2025-05-01-preview` is new version of the Azure Translator REST API **with breaking changes**.
 > * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 

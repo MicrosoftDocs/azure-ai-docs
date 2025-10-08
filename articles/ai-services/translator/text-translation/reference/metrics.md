@@ -1,7 +1,7 @@
 ---
-title: Azure AI Translator usage and data metrics
-titleSuffix: Azure AI services
-description: Reference documentation for Azure AI Translator Azure Monitor Metrics.
+title: Azure Translator in Foundry Tools usage and data metrics
+titleSuffix: Azure AI Foundry Tools
+description: Reference documentation for Azure Translator Azure Monitor Metrics.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator

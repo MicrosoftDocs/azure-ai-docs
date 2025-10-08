@@ -1,7 +1,7 @@
 ---
-title: Authentication and authorization in Azure AI Translator service
-titleSuffix: Azure AI services
-description: "There are several ways to authenticate a request and authorize access to Azure AI Translator resource In this article, learn about each method, and how to make a request."
+title: Authentication and authorization in Azure Translator in Foundry Tools service
+titleSuffix: Azure AI Foundry Tools
+description: "There are several ways to authenticate a request and authorize access to Azure Translator resource In this article, learn about each method, and how to make a request."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -20,14 +20,14 @@ Each request to an Azure AI service must include an authentication header. This 
 
 ## Headers
 
-Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Azure AI services, and use your key (available in the Azure portal) to authenticate.
+Subscribe to Translator or [multi-service](https://azure.microsoft.com/pricing/details/cognitive-services/) in Azure AI Foundry Tools, and use your key (available in the Azure portal) to authenticate.
 
 There are three headers that you can use to authenticate your subscription. This table describes how each is used:
 
 |Headers|Description|
 |:----|:----|
-|Ocp-Apim-Subscription-Key|*Use with Azure AI services subscription if you're passing your secret key*.<br/>The value is the Azure secret key for your subscription to Translator.|
-|Authorization|*Use with Azure AI services subscription if you're passing an authentication token.*<br/>The value is the Bearer token: `Bearer <token>`.|
+|Ocp-Apim-Subscription-Key|*Use with Azure AI Foundry Tools subscription if you're passing your secret key*.<br/>The value is the Azure secret key for your subscription to Translator.|
+|Authorization|*Use with Azure AI Foundry Tools subscription if you're passing an authentication token.*<br/>The value is the Bearer token: `Bearer <token>`.|
 |Ocp-Apim-Subscription-Region|*Use with multi-service and regional translator resource.*<br/>The value is the region of the multi-service or regional translator resource. This value is optional when using a global translator resource.|
 
 ### Secret key
@@ -207,7 +207,7 @@ curl -X POST https://<your-custom-domain>.cognitiveservices.azure.com/translator
 ```
 ## Virtual Network support
 
-The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI services virtual networks](../../../cognitive-services-virtual-networks.md?tabs=portal).
+The Translator service is now available with Virtual Network (`VNET`) capabilities in all regions of the Azure public cloud. To enable Virtual Network, *See* [Configuring Azure AI Foundry Tools virtual networks](../../../cognitive-services-virtual-networks.md?tabs=portal).
 
 Once you turn on this capability, you must use the custom endpoint to call the Translator. You can't use the global translator endpoint ("api.cognitive.microsofttranslator.com") and you can't authenticate with an access token.
 

@@ -1,7 +1,7 @@
 ---
-title: Dynamic Dictionary - Azure AI Translator
-titleSuffix: Azure AI services
-description: Learn how to use the dynamic dictionary feature of the Azure AI Translator.
+title: Dynamic Dictionary - Azure Translator in Foundry Tools
+titleSuffix: Azure AI Foundry Tools
+description: Learn how to use the dynamic dictionary feature of the Azure Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Dynamic dictionary
 
-The Azure AI Translator dynamic dictionary feature allows you to customize translations for specific terms or phrases. You define custom translations for your unique context, language, or specific needs. If you already know the translation you want to apply to a word or a phrase, you can supply it as markup within the request. The dynamic dictionary is safe only for compound nouns like proper names and product names.
+The Azure Translator dynamic dictionary feature allows you to customize translations for specific terms or phrases. You define custom translations for your unique context, language, or specific needs. If you already know the translation you want to apply to a word or a phrase, you can supply it as markup within the request. The dynamic dictionary is safe only for compound nouns like proper names and product names.
 
 **Syntax:**
 
