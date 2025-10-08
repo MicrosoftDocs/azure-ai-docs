@@ -537,7 +537,7 @@
             "redirect_document_id": true
         },
         {
-            "source_path_from_root": "/articles/search/search-howto-index-csv-blobs.md",
+            "source_path_from_root": "/articles/search/search-how-to-index-csv-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-csv",
             "redirect_document_id": true
         },

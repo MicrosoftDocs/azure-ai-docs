@@ -297,7 +297,7 @@ items:
         - name: Index plain text
           href: search-how-to-index-azure-blob-plaintext.md
         - name: Index CSV
-          href: search-how-to-index-csv-blobs.md
+          href: search-how-to-index-azure-blob-changed-deleted.md.md
         - name: Index JSON
           href: search-how-to-index-azure-blob-json.md
         - name: Index Markdown
@@ -323,7 +323,7 @@ items:
         - name: Tables
           href: search-how-to-index-azure-tables.md
         - name: Index changed and deleted content
-          href: search-how-to-index-changed-deleted-blobs.md
+          href: search-how-to-index-azure-blob-changed-deleted.md
       - name: Azure Cosmos DB
         items:
         - name: Azure Cosmos DB for NoSQL

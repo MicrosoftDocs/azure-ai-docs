@@ -115,7 +115,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 1. Set `"container"` to the blob container, and use "query" to specify any subfolders.
 
-A data source definition can also include [soft deletion policies](search-how-to-index-changed-deleted-blobs.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
+A data source definition can also include [soft deletion policies](search-how-to-index-azure-blob-changed-deleted.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
 
 <a name="Credentials"></a>
 
@@ -316,6 +316,6 @@ PUT /indexers/[indexer name]?api-version=2025-09-01
 
 You can now [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
 
-+ [Change detection and deletion detection](search-how-to-index-changed-deleted-blobs.md)
++ [Change detection and deletion detection](search-how-to-index-azure-blob-changed-deleted.md)
 + [Index large data sets](search-howto-large-index.md)
 + [C# Sample: Index Data Lake Gen2 using Microsoft Entra ID](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md)

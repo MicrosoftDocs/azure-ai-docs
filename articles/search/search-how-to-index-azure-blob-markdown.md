@@ -472,7 +472,7 @@ In `oneToOne` mode, the entire Markdown file is indexed as a single search docum
 To ensure the index reflects the current state of your Markdown files, consider one of the following approaches:
 
 #### Option 1. Soft delete with metadata
-This method uses a soft-delete to delete documents associated with a specific blob. For more information, see [Change and delete detection using indexers for Azure Storage in Azure AI Search](search-how-to-index-changed-deleted-blobs.md#soft-delete-strategy-using-custom-metadata).
+This method uses a soft-delete to delete documents associated with a specific blob. For more information, see [Change and delete detection using indexers for Azure Storage in Azure AI Search](search-how-to-index-azure-blob-changed-deleted.md#soft-delete-strategy-using-custom-metadata).
 
 Steps:
 
