@@ -85,7 +85,7 @@ To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure 
 
 + An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any embedding model that supports the `text-embedding` task.
 
-+ A [supported chat completion model](../../search-agentic-retrieval-how-to-create.md#supported-models) for query planning and answer generation. This quickstart uses `gpt-4.1-mini`. Optionally, you can use one model for query planning and another model for answer generation, but this quickstart uses the same model for simplicity.
++ A [supported chat completion model](../../search-agentic-retrieval-how-to-create.md#supported-models) for query planning and answer generation. This quickstart uses `gpt-5-mini`. Optionally, you can use one model for query planning and another model for answer generation, but this quickstart uses the same model for simplicity.
 
 To deploy the Azure OpenAI models:
 
@@ -101,4 +101,4 @@ To deploy the Azure OpenAI models:
 
 1. Select **Deploy**.
 
-1. Repeat the previous steps, but this time, deploy **gpt-4.1-mini** from the model catalog.
+1. Repeat the previous steps, but this time, deploy **gpt-5-mini** from the model catalog.
