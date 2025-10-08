@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 07/25/2025
+ms.date: 10/06/2025
 ms.update-cycle: 365-days
 ms.custom:
   - ignite-2023
@@ -98,7 +98,7 @@ You can control which blobs are indexed, and which are skipped, by the blob's fi
 Include specific file extensions by setting `"indexedFileNameExtensions"` to a comma-separated list of file extensions (with a leading dot). Exclude specific file extensions by setting `"excludedFileNameExtensions"` to the extensions that should be skipped. If the same extension is in both lists, it's excluded from indexing.
 
 ```http
-PUT /indexers/[indexer name]?api-version=2024-07-01
+PUT /indexers/[indexer name]?api-version=2025-09-01
 {
     "parameters" : { 
         "configuration" : { 
@@ -143,3 +143,4 @@ A more permanent solution is to gather query inputs and present the response as 
 
 + [Upload, download, and list blobs with the Azure portal (Azure Blob storage)](/azure/storage/blobs/storage-quickstart-blobs-portal)
 + [Set up a blob indexer (Azure AI Search)](search-howto-indexing-azure-blob-storage.md)
++ [Index large data sets](search-how-to-large-index.md)

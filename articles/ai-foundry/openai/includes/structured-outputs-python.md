@@ -1,7 +1,8 @@
 ---
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 05/25/2025
+ms.date: 09/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: structured-outputs
@@ -22,19 +23,17 @@ If you are new to using Microsoft Entra ID for authentication see [How to config
 ```python
 import os
 from pydantic import BaseModel
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2024-10-21"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
-
 
 class CalendarEvent(BaseModel):
     name: str
@@ -108,14 +107,12 @@ pip install openai pydantic --upgrade
 ```python
 import os
 from pydantic import BaseModel
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"
+client = OpenAI(
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
-
 
 class CalendarEvent(BaseModel):
     name: str
@@ -193,15 +190,17 @@ Structured Outputs for function calling can be enabled with a single parameter, 
 from enum import Enum
 from typing import Union
 from pydantic import BaseModel
-import openai
-from openai import AzureOpenAI
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
 
 class GetDeliveryDate(BaseModel):
     order_id: str
@@ -229,13 +228,13 @@ from enum import Enum
 from typing import Union
 from pydantic import BaseModel
 import openai
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"
+client = OpenAI(
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
+
 
 class GetDeliveryDate(BaseModel):
     order_id: str

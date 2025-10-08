@@ -31,7 +31,7 @@ Available templates include:
 
 ## Prerequisites
 
-- [Azure subscription](https://azure.microsoft.com/free)
+- [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 - Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 
 ## Start with a sample application

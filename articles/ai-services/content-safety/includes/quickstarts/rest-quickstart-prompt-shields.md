@@ -8,7 +8,7 @@ ms.topic: include
 ms.date: 04/10/2025
 ms.author: pafarley
 ---
-\
+
 ## Prerequisites
 
 * An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/) 

@@ -3,7 +3,8 @@ title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started provisioned deployments on Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: openai
 ms.topic: how-to
 author: msakande

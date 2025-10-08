@@ -26,6 +26,11 @@
           "redirect_document_id": false
         },
         {
+          "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/github/create-model-deployments.md",
+          "redirect_url": "/azure/ai-foundry/foundry-models/how-to/create-model-deployments",
+          "redirect_document_id": false
+        },
+        {
           "source_path_from_root": "/articles/ai-foundry/concepts/rbac-ai-foundry.md",
           "redirect_url": "/azure/ai-foundry/concepts/rbac-azure-ai-foundry",
           "redirect_document_id": false
@@ -203,6 +208,11 @@
           {
             "source_path_from_root": "/articles/ai-studio/how-to/deploy-models-llama.md",
             "redirect_url": "/azure/ai-foundry/how-to/deploy-models-llama",
+            "redirect_document_id": true
+          },
+          {
+            "source_path_from_root": "/articles/ai-foundry/open-ai/how-to/deployment-types.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/concepts/deployment-types",
             "redirect_document_id": true
           },
           {
@@ -909,6 +919,11 @@
             "redirect_document_id": false
         },
         {
+            "source_path_from_root": "/articles/ai-foundry/openai/how-to/manage-costs.md",
+            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/manage-costs",
+            "redirect_document_id": true
+        },
+        {
             "source_path_from_root": "/articles/ai-studio/how-to/simulator-interaction-data.md",
             "redirect_url": "/azure/ai-studio/how-to/data-add",
             "redirect_document_id": true
@@ -1268,6 +1283,11 @@
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
           "redirect_document_id": false
         },
+        {
+          "source_path_from_root": "/articles/ai-foundry/openai/chatgpt-quickstart.md",
+          "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
      {
           "source_path_from_root": "/articles/ai-foundry/openai/how-to/work-with-code.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
@@ -1281,6 +1301,11 @@
      {
           "source_path_from_root": "/articles/ai-foundry/openai/how-to/chat-markup-language.md",
           "redirect_url": "/azure/ai-foundry/openai/how-to/responses",
+          "redirect_document_id": false
+        },
+      {
+          "source_path_from_root": "/articles/ai-foundry/how-to/view-ai-red-teaming-results.md",
+          "redirect_url": "/azure/ai-foundry/how-to/develop/run-scans-ai-red-teaming-agent#viewing-ai-red-teaming-results-in-azure-ai-foundry-project-preview",
           "redirect_document_id": false
         }
     ]

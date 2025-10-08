@@ -1,18 +1,19 @@
 ---
-title: 'How to use the GPT Realtime API via WebSockets'
+title: 'Use the GPT Realtime API via WebSockets'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn how to use the GPT Realtime API for speech and audio via WebSockets.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 6/7/2025
+ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions
 recommendations: false
 ---
 
-# How to use the GPT Realtime API via WebSockets
+# Use the GPT Realtime API via WebSockets
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -30,6 +31,7 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-4o-mini-realtime-preview` (2024-12-17)
 - `gpt-4o-realtime-preview` (2024-12-17)
 - `gpt-realtime` (version 2025-08-28)
+- `gpt-realtime-mini` (version 2025-10-06)
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
 
@@ -41,7 +43,7 @@ Before you can use GPT real-time audio, you need:
 
 - An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
-- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model in a supported region as described in the [supported models](#supported-models) section. You can deploy the model from the [Azure AI Foundry portal model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section. You can deploy the model from the [Azure AI Foundry portal model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
 
 ## Connection and authentication
 
@@ -121,7 +123,7 @@ Events can be sent and received in parallel and applications should generally ha
 
 ## Try the quickstart
 
-Now that you have the prerequisites, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets.
+Now that you've done the above steps, you can follow the instructions in the [Realtime API quickstart](../realtime-audio-quickstart.md) to get started with the Realtime API via WebSockets.
 
 ## Related content
 

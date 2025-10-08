@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/25/2024
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -59,6 +59,6 @@ The image description feature is part of the [Analyze Image](/rest/api/computerv
 
 * [Quickstart: Image Analysis REST API or client libraries](./quickstarts-sdk/image-analysis-client-library.md?pivots=programming-language-csharp)
 
-## Next steps
+## Related content
 
 Learn the related concepts of [tagging images](concept-tagging-images.md) and [categorizing images](concept-categorizing-images.md).

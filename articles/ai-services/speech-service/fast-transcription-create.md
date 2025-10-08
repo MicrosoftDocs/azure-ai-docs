@@ -581,7 +581,7 @@ The response includes `durationMilliseconds`, `offsetMilliseconds`, and more. Th
 }
 ```
 
-# [Multi-lingual transcription (preview)](#tab/multilingual-transcription-on)
+# [Multi-lingual transcription](#tab/multilingual-transcription-on)
 
 Make a multipart/form-data POST request to the `transcriptions` endpoint with the audio file and the request body properties. 
 
@@ -1221,7 +1221,7 @@ curl --location 'https://YourServiceRegion.api.cognitive.microsoft.com/speechtot
 
 Construct the form definition according to the following instructions:
 
-1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`. The supported locales that you can specify are: de-DE, en-GB, en-IN, en-US, es-ES, es-MX, fr-FR, hi-IN, it-IT, ja-JP, ko-KR, pt-BR, and zh-CN.
+1. Set the optional (but recommended) `locales` property that should match the expected locale of the audio data to transcribe. In this example, the locale is set to `en-US`.
 
 1. Set the `diarization` property to recognize and separate multiple speakers in one audio channel. For example, specify `"diarization": {"maxSpeakers": 2, "enabled": true}`. Then the transcription file contains `speaker` entries for each transcribed phrase.
 

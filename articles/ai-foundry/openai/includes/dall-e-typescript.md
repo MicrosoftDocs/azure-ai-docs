@@ -3,7 +3,8 @@ title: 'Quickstart: Use Azure OpenAI in Azure AI Foundry Models with the JavaScr
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started with Azure OpenAI and make your first image generation call with the JavaScript SDK. 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 author: PatrickFarley
 ms.author: pafarley
@@ -260,4 +261,4 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 ## Next steps
 
 * Explore the Image APIs in more depth with the [Image API how-to guide](../how-to/dall-e.md).
-* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/openai-samples).
+* For more examples check out the [Azure OpenAI Samples GitHub repository](https://github.com/Azure/azure-openai-samples).

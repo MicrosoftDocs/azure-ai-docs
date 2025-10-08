@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/08/2025
+ms.date: 09/23/2025
 ---
 
 # Data import in Azure AI Search
@@ -77,7 +77,7 @@ The pull model uses *indexers* connecting to a supported data source, automatica
 + [Azure Files (preview)](search-file-storage-integration.md)
 + [Azure Cosmos DB](search-howto-index-cosmosdb.md)
 + [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
-+ [OneLake files and shortcuts](search-how-to-index-onelake-files.md)
++ [Microsoft OneLake files and shortcuts](search-how-to-index-onelake-files.md)
 + [SharePoint Online (preview)](search-howto-index-sharepoint-online.md)
 
 You can use third-party connectors, developed and maintained by Microsoft partners. For more information and links, see [Data source gallery](search-data-sources-gallery.md).
@@ -103,7 +103,7 @@ An advantage to using the Azure portal is that Azure AI Search can usually gener
 
 A quick way to perform a preliminary check on the document upload is to use [**Search explorer**](search-explorer.md) in the Azure portal.
 
-:::image type="content" source="media/search-explorer/search-explorer-cmd2.png" alt-text="Screenshot of Search Explorer command in the Azure portal." border="true":::
+:::image type="content" source="media/search-explorer/search-explorer-cmd.png" alt-text="Screenshot of Search Explorer command in the Azure portal." border="true":::
 
 The explorer lets you query an index without having to write any code. The search experience is based on default settings, such as the [simple syntax](/rest/api/searchservice/simple-query-syntax-in-azure-search) and default [searchMode query parameter](/rest/api/searchservice/documents/search-post). Results are returned in JSON so that you can inspect the entire document.
 

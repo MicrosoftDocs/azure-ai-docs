@@ -3,9 +3,10 @@ title: 'How to use GPT Realtime API for speech and audio with Azure OpenAI in Az
 titleSuffix: Azure OpenAI
 description: Learn how to use GPT Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 6/7/2025
+ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
 ms.custom: references_regions, ignite-2024
@@ -31,6 +32,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-4o-realtime-preview` (version `2024-12-17`)
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
 - `gpt-realtime` (version `2025-08-28`)
+- `gpt-realtime-mini` (version `2025-10-06`)
 
 See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
 

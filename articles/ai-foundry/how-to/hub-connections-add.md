@@ -5,12 +5,14 @@ description: Learn how to use connections in Azure AI Foundry hubs.
 manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 09/12/2025
+ms.date: 09/22/2025
 ms.reviewer: scottpolly
 reviewer: scottpolly
 ms.author: jburchel
 author: jonburchel
 ai-usage: ai-assisted
+ms.custom:
+  - hub-only
 ---
 
 # Create and manage connections in Azure AI Foundry hubs
@@ -75,4 +77,5 @@ Prefer managed identity wherever possible for keyless and rotated credential man
 
 ## Next steps
 
-Secure network traffic with [Private Link](./hub-configure-private-link.md).
+- [Create and managed connections in Azure AI Foundry projects](./connections-add.md).
+- [Secure network traffic with private link](./hub-configure-private-link.md).

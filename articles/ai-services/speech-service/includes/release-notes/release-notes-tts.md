@@ -15,9 +15,9 @@ Our new “DragonV2.1” model brings improvements to the naturalness of speech,
 ### June 2025 release
 
 #### VoiceLive API update 
-- Support more GenAI models: GPT-4.1, GPT-4.1 Mini and GPT-4.1 Nano, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
+- Support more GenAI models: GPT-4.1, GPT-4.1 Mini, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
 - Support more customization capabilities
-- Azure Semantic VAD is extended to support GPT-4o-Realtime and GPT-4o-Mini-Realtime.
+- Azure Semantic VAD is extended to support GPT-Realtime and GPT-4o-Mini-Realtime.
 - Availability in more regions
 
 #### Public preview of Voice Conversion feature on selected en-US voices
@@ -1049,7 +1049,7 @@ For more information, see the [language and voice list](../../language-support.m
 * Support 2 new styles `sports-commentary`, `sports-commentary-excited` in public preview for `zh-CN-YunjianNeural`. See [voice styles and roles](../../language-support.md?tabs=tts).
 * Support 1 new style `advertisement-upbeat` in public preview for `zh-CN-YunhaoNeural`. See [voice styles and roles](../../language-support.md?tabs=tts).
 * The `cheerful` and `sad` styles for `fr-FR-DeniseNeural` are generally available in all regions.
-* SSML updated to support MathML elements for en-US and en-AU voices. Learn more at [speech synthesis markup](../../speech-synthesis-markup-pronunciation.md#pronunciation-with-mathml).
+* SSML updated to support MathML elements for en-US and en-AU voices. Learn more at [speech synthesis markup](../../speech-synthesis-markup-pronunciation.md#mathematical-expressions-reading).
 
 #### Custom neural voice
 

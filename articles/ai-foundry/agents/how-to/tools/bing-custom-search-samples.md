@@ -6,7 +6,8 @@ author: aahill
 ms.author: aahi
 manager: nitinme
 ms.date: 07/09/2025
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.custom:
   - azure-ai-agents
@@ -55,9 +56,9 @@ Use this article to find step-by-step instructions and code samples for using th
 
 * The name of your Grounding with Bing Custom Search configuration, which contains the URLs you want to allow or disallow. You can find it by navigating to the overview page for your resource in the [Azure portal](https://portal.azure.com/). Select **Configurations**, then select your configuration. 
 
-    :::image type="content" source="../../media/tools/bing/custom-connection-name.png" alt-text="A screenshot showing the Grounding with Bing Custom Search connection name. " lightbox="../../media/tools/bing/custom-connection-name.png":::
+    :::image type="content" source="../../media/tools/bing/custom-connection-name.png" alt-text="A screenshot showing the Grounding with Bing Custom Search configuration name. " lightbox="../../media/tools/bing/custom-connection-name.png":::
 
-    Save this connection name to an environment variable named `BING_CUSTOM_CONNECTION_NAME`. 
+    Save this configuration name to an environment variable named `BING_CUSTOM_INSTANCE_NAME`. 
 
 * The names of your model's deployment name. You can find it in **Models + Endpoints** in the left navigation menu. 
 
@@ -412,7 +413,7 @@ Create a run and observe that the model uses the Grounding with Bing Custom Sear
 > * The following samples are applicable if you are using **Azure AI Foundry Project** resource with Microsoft Fabric tool through REST API call
 > * Your connection ID should be in this format: `/subscriptions/<sub-id>/resourceGroups/<your-rg-name>/providers/Microsoft.CognitiveServices/accounts/<your-ai-services-name>/projects/<your-project-name>/connections/<your-bing-connection-name>`
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 
 ## Create an Agent with the Grounding with Bing Custom Search tool enabled

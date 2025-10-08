@@ -35,7 +35,7 @@ A list of all possible Azure resource types that an indexer might access in a ty
 | Azure Storage (blobs, tables) | Skillsets (caching enrichments, debug sessions, knowledge store projections) |
 | Azure Cosmos DB (various APIs) | Data source |
 | Azure SQL Database | Data source |
-| OneLake (Microsoft Fabric) | Data source |
+| Microsoft OneLake | Data source |
 | SQL Server on Azure virtual machines | Data source |
 | SQL Managed Instance | Data source |
 | Azure Functions | Attached to a skillset and used to host for custom web API skills |

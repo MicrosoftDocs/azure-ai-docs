@@ -8,6 +8,19 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ---
 
+> [!NOTE]
+> Foundry Models sold directly by Azure also include select models from the following top model providers:
+> 
+> - Black Forest Labs: `FLUX.1-Kontext-pro`, `FLUX-1.1-pro`
+> - DeepSeek: `DeepSeek-V3.1`, `DeepSeek-V3-0324`, `DeepSeek-R1-0528`, `DeepSeek-R1`
+> - Meta: `Llama-4-Maverick-17B-128E-Instruct-FP8`, `Llama-3.3-70B-Instruct` 
+> - Microsoft: `MAI-DS-R1`
+> - Mistral: `mistral-document-ai-2505`
+> - xAI: `grok-code-fast-1`, `grok-3`, `grok-3-mini`, `grok-4-fast-reasoning`, `grok-4-fast-non-reasoning`, `grok-4`
+> 
+> To learn about these models, switch to [Other model collections](../../foundry-models/concepts/models-sold-directly-by-azure.md?pivots=azure-direct-others) at the top of this article. 
+
+
 ## Azure OpenAI in Azure AI Foundry models
 
 [!INCLUDE [azure-open-ai-models-list](../includes/azure-openai-models-list.md)]
@@ -19,12 +32,13 @@ ms.topic: include
 
 | Model | Region |
 |---|---|
-| `gpt-5` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-mini` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-nano` (2025-08-07) | East US 2 (Global Standard & Data Zones), Sweden Central (Global Standard & Data Zones)|
-| `gpt-5-chat` (2025-08-07) | East US 2 (Global Standard), Sweden Central (Global Standard)|
+| `gpt-5` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-codex` (2025-09-11) | East US2 (Global Standard) and Sweden Central (Global Standard)  |
 
-- **[Registration is required for access to the gpt-5 model](https://aka.ms/oai/gpt5access).**
+- **[Registration is required for access to the gpt-5 & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
 
@@ -32,10 +46,11 @@ ms.topic: include
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-5` (2025-08-07) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | October 24, 2024 |
-| `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000   | 128,000  | June 24, 2024 |
-| `gpt-5-nano` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | May 31, 2024 |
+| `gpt-5` (2025-08-07) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | October 24, 2024 |
+| `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000   | 128,000  | June 24, 2024 |
+| `gpt-5-nano` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | May 31, 2024 |
 | `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | October 24, 2024 |
+| `gpt-5-codex` (2025-09-11) | - [Responses API](../how-to/responses.md) only. <br> - **Input**: Text/Image <br> - **Output**: Text only  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | - |
 
 ## gpt-oss
 
@@ -110,8 +125,10 @@ A model that intelligently selects from a set of underlying chat models to respo
 
 | Model | Region |
 |---|---|
-| `model-router` (2025-08-07) | East US 2 (Global Standard), Sweden Central (Global Standard) |
-| `model-router` (2025-05-19) | East US 2 (Global Standard), Sweden Central (Global Standard) |
+| `model-router` (2025-08-07) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+| `model-router` (2025-05-19) | East US 2 (Global Standard & Data Zone Standard), Sweden Central (Global Standard & Data Zone Standard) |
+
+*Billing for Data Zone Standard model router deployments will begin no earlier than November 1, 2025.*
 
 ### Capabilities
 
@@ -296,7 +313,7 @@ Details about maximum request tokens and training data are available in the foll
 |`gpt-4o-realtime-preview` (2025-06-03) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
 |`gpt-4o-mini-realtime-preview` (2024-12-17) <br> GPT-4o audio | Audio model for real-time audio processing. |Input: 128,000  <br> Output: 4,096 | October 2023 |
-|`gpt-realtime` (2025-08-28) (GA)<br> GPT-4o audio | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
+|`gpt-realtime` (2025-08-28) (GA)<br>`gpt-realtime-mini` (2025-10-06)<br> `gpt-audio`(2025-08-28)<br>`gpt-audio-mini`(2025-10-06) | Audio model for real-time audio processing. |Input: 28,672  <br> Output: 4,096 | October 2023 |
 
 To compare the availability of GPT-4o audio models across all regions, refer to the [models table](#global-standard-model-availability).
 
@@ -338,9 +355,9 @@ Azure OpenAI provides customers with choices on the hosting structure that fits 
 - **Standard**: Has a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned**: Also has a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../how-to/deployment-types.md).
+All deployments can perform the exact same inference operations, but the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types, see our [Deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
-# [Global Standard](#tab/global-standard)
+# [Global Standard](#tab/global-standard-aoai)
 
 
 ### Global Standard model availability
@@ -350,7 +367,7 @@ All deployments can perform the exact same inference operations, but the billing
 > [!NOTE]
 > `o3-deep-research` is currently only available with Azure AI Foundry Agent Service. To learn more, see the [Deep Research tool guidance](/azure/ai-foundry/agents/how-to/tools/deep-research).
 
-# [Global Provisioned managed](#tab/global-ptum)
+# [Global Provisioned managed](#tab/global-ptum-aoai)
 
 ### Global Provisioned managed model availability
 
@@ -516,6 +533,7 @@ For the latest information on model retirements, refer to the [model retirement 
 
 ## Related content
 
+- [Foundry Models from partners and community](../../foundry-models/concepts/models-from-partners.md)
 - [Model retirement and deprecation](../concepts/model-retirements.md)
 - [Learn more about working with Azure OpenAI models](../how-to/working-with-models.md)
 - [Learn more about Azure OpenAI](../overview.md)
