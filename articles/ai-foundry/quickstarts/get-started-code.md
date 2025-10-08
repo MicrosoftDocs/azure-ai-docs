@@ -30,7 +30,7 @@ monikerRange: 'foundry-classic || foundry'
 > [!NOTE]
 > An alternate hub project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md).
 
-In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
+In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
 
 > [!div class="checklist"]
 > * Create a project
@@ -41,7 +41,7 @@ In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDo
 ::: moniker-end
 
 ::: moniker range="foundry"
-In this quickstart, you use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) to:
+In this quickstart, you use [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] to:
 
 > [!div class="checklist"]
 > * Create a project
