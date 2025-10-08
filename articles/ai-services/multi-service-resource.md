@@ -91,12 +91,6 @@ Explore some of the services that come bundled with your resource:
 | ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. |
 | ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | 
 
-## Pricing
-
-[!INCLUDE [SKUs and pricing](./includes/quickstarts/sku-pricing.md)]
-
-## Next steps
-
 ## Next steps
 
 - [Create a project](../ai-foundry/how-to/create-projects.md) to organize your work.
