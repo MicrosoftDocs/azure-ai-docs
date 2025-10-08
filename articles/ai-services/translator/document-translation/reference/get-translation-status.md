@@ -1,13 +1,13 @@
 ---
 title: Get translation status
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The get translation status method returns the status for a document translation request.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ---
 
 # Get status for a specific translation job

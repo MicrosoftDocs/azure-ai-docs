@@ -1,13 +1,13 @@
 ---
 title: Translator Transliterate Method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

@@ -6,13 +6,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 07/31/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 
-# What is Azure Text translation?
+# What is Azure Translator in Foundry Tools?
 
- Azure Translator in Foundry Tools Text translation is a cloud-based REST API feature of the Translator service that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text translation REST APIs enable you to build intelligent solutions for your applications and workflows.
+ Azure Translator in Foundry Tools is a cloud-based REST API feature of the Translator service that uses neural machine translation technology to enable quick and accurate source-to-target text translation in real time across all [supported languages](../language-support.md). In this overview, you learn how the Text translation REST APIs enable you to build intelligent solutions for your applications and workflows.
 
 Text translation documentation contains the following article types:
 

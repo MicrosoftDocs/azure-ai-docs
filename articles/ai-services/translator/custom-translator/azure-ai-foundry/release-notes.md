@@ -1,11 +1,11 @@
----
 title: "Release notes - custom translation"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: Custom translation releases, improvements, bug fixes, and known issues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---

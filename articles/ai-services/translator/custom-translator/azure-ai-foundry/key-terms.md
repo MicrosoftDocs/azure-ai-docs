@@ -1,20 +1,20 @@
 ---
 title: Azure AI Foundry custom translation key terms
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: List of key terms used in Azure AI Foundry custom translation articles.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: reference
 ---
-
 # Azure AI Foundry custom translation key terms
 
-The following table presents a list of key terms that you may find as you work with custom translation in the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
+titleSuffix: Azure AI Foundry Tools
 
 | Word or Phrase|Definition|
+titleSuffix: Azure AI Foundry Tools
 |------------------|-----------|
 | **Source language** | The source language is the starting language that you want to convert to another language (the "target").|
 | **Target language**| The target language is the language that you want the machine translation to provide after it receives the source language. |

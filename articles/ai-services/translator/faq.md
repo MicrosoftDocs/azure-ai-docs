@@ -1,25 +1,25 @@
 ---
-title: Frequently asked questions - Azure AI Translator
-titleSuffix: Azure AI services
-description: Get answers to frequently asked questions about the Azure AI Translator API in Azure AI services.
+title: Frequently asked questions - Azure Translator in Foundry Tools
+titleSuffix: Azure AI Foundry Tools
+description: Get answers to frequently asked questions about the Azure Translator API in Azure AI Foundry Tools.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: conceptual
-ms.date: 09/27/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 
 # Frequently asked questions—Translator API
 
-## How does Azure AI Translator count characters?
+## How does Azure Translator count characters?
 
-Azure AI Translator counts every code point defined in Unicode as a character. Each translation counts as a separate translation, even if the request was made in a single API call translating to multiple languages. The length of the response doesn't matter and the number of requests, words, bytes, or sentences isn't relevant to character count.
+Azure Translator counts every code point defined in Unicode as a character. Each translation counts as a separate translation, even if the request was made in a single API call translating to multiple languages. The length of the response doesn't matter and the number of requests, words, bytes, or sentences isn't relevant to character count.
 
-Azure AI Translator counts the following input:
+Azure Translator counts the following input:
 
-* Text passed to Azure AI Translator in the body of a request.
+* Text passed to Azure Translator in the body of a request.
   * `Text` when using the [Translate](text-translation/reference/v3/translate.md), [Transliterate](text-translation/reference/v3/transliterate.md), and [Dictionary Lookup](text-translation/reference/v3/dictionary-lookup.md) methods
   * `Text` and `Translation` when using the [Dictionary Examples](text-translation/reference/v3/dictionary-examples.md) method.
 
@@ -29,19 +29,19 @@ Azure AI Translator counts the following input:
 * A space, tab, markup, or any white-space character.
 * A repeated translation, even if you previously translated the same text. Every character submitted to the translate function is counted even when the content is unchanged or the source and target language are the same.
 
-For scripts based on graphic symbols, such as written Chinese and Japanese Kanji, the Azure AI Translator service counts the number of Unicode code points. One character per symbol. Exception: Unicode surrogate pairs count as two characters.
+For scripts based on graphic symbols, such as written Chinese and Japanese Kanji, the Azure Translator service counts the number of Unicode code points. One character per symbol. Exception: Unicode surrogate pairs count as two characters.
 
 Calls to the **Detect** and **BreakSentence** methods aren't counted in the character consumption. However, we do expect calls to the Detect and BreakSentence methods to be reasonably proportionate to the use of other counted functions. If the number of Detect or BreakSentence calls exceeds the number of other counted methods by 100 times, Microsoft reserves the right to restrict your use of the Detect and BreakSentence methods.
 
-For detailed information regarding Azure AI Translator Service request limits, *see* [**Text translation request limits**](service-limits.md#text-translation).
+For detailed information regarding Azure Translator Service request limits, *see* [**Text translation request limits**](service-limits.md#text-translation).
 
 ## Where can I see my monthly usage?
 
 The [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) can be used to estimate your costs. You can also monitor, view, and add Azure alerts for your Azure services in your user account in the Azure portal:
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
-1. Navigate to your Azure AI Translator resource Overview page.
-1. Select the **subscription** for your Azure AI Translator resource.
+1. Navigate to your Azure Translator resource Overview page.
+1. Select the **subscription** for your Azure Translator resource.
 
     :::image type="content" source="media/azure-portal-overview.png" alt-text="Screenshot of the subscription link on overview page in the Azure portal.":::
 
@@ -49,9 +49,9 @@ The [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) 
 
     :::image type="content" source="media/azure-portal-cost-management.png" alt-text="Screenshot of the cost management resources links in the Azure portal.":::
 
-## Is attribution required when using Azure AI Translator?
+## Is attribution required when using Azure Translator?
 
-Attribution isn't required when using Azure AI Translator for text and speech translation. We recommended that you inform users that the content they're viewing is machine translated.
+Attribution isn't required when using Azure Translator for text and speech translation. We recommended that you inform users that the content they're viewing is machine translated.
 
 If attribution is present, it must conform to the [Azure AI Translator attribution guidelines](https://www.microsoft.com/translator/business/attribution/).
 

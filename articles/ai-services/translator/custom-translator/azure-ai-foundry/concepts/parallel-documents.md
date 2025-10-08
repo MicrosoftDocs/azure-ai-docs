@@ -1,11 +1,11 @@
----
 title: Azure AI Foundry custom translation parallel documents
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: Parallel documents are pairs of documents where one is the translation of the other. One document in the pair contains sentences in the source language and the other document contains these sentences translated into the target language.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: conceptual
 #Customer intent: As a custom translation, I want to understand how to use parallel documents to build a custom translation model.

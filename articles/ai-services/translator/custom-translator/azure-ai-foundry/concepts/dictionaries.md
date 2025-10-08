@@ -1,11 +1,11 @@
----
 title: Azure AI Foundry custom translation dictionary
-titleSuffix: Azure AI services
-description: How to create an Azure AI Foundry custom translation dictionary specifying a list of phrases or sentences (and their translations) that you want Azure AI Translator to always translate in the same manner. Dictionaries can also be called glossaries or term bases.
+titleSuffix: Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
+description: How to create an Azure AI Foundry custom translation dictionary specifying a list of phrases or sentences (and their translations) that you want Azure Translator to always translate in the same manner. Dictionaries can also be called glossaries or term bases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator

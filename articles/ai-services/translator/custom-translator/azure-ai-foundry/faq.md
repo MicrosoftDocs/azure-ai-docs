@@ -1,11 +1,11 @@
----
 title: "Frequently asked questions - Azure AI Foundry custom translation"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: This article contains answers to Azure AI Foundry custom translation frequently asked questions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: faq
 ---
@@ -35,7 +35,7 @@ The deployment generally takes less than an hour.
 
 ## How do you access a deployed system?
 
-Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v3/translate.md) webpage.
+Deployed systems can be accessed via the Azure Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v3/translate.md) webpage.
 
 ## How do I skip alignment and sentence breaking if my data is already sentence aligned?
 

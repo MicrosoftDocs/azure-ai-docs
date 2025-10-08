@@ -1,12 +1,12 @@
 ---
 title: Language support - Translator
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Azure AI Translator supports the following languages for text to text translation using Neural Machine Translation (NMT).
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 09/16/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 # Translator language support

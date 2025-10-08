@@ -1,13 +1,13 @@
 ---
 title: Get supported document formats method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The get supported document formats method returns a list of supported document formats.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ---
 
 # Get supported document formats

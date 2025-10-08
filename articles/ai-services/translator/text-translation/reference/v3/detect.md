@@ -1,13 +1,13 @@
 ---
 title: Translator Detect Method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Identify the language of a piece of text with the Azure AI Translator Detect method.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

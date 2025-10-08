@@ -1,12 +1,12 @@
 ---
 title: "Use Microsoft Azure v3 connector to build a Document translation flow"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use Microsoft Azure Translator v3 connector and Power Automate to create a Document translation flow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: tutorial
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

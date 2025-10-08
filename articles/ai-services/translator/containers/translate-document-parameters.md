@@ -1,13 +1,13 @@
 ---
 title: "Container: Translate document"
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body request/response messages for the Azure AI Translator container translate document operation.
+titleSuffix: Azure AI Foundry Tools
+description: Understand the parameters, headers, and body request/response messages for the Azure Translator container translate document operation.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 
@@ -60,7 +60,7 @@ Use synchronous translation processing to send a document as part of the HTTP re
 
 For this project, you need a source document to translate. You can download our [document translation sample document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/Translator/document-translation-sample.docx) for and store it in the same folder as your `compose.yaml` file (`container-environment`). The file name is `document-translation-sample.docx` and the source language is English.
 
-### Query Azure AI Translator endpoint (document)
+### Query Azure Translator endpoint (document)
 
 Here's an example cURL HTTP request using localhost:5000:
 

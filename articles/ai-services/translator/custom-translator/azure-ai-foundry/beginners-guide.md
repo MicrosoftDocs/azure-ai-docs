@@ -1,20 +1,20 @@
 ---
-title: Azure AI Translator custom translation for beginners
-titleSuffix: Azure AI services
+title: Azure Translator in Foundry Tools custom translation for beginners
+titleSuffix: Azure AI Foundry Tools
 description: User guide for understanding the end-to-end customized machine translation process using Azure AI Foundry.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.topic: overview
 ---
 
-# Azure AI Translator custom translation for beginners
+# Azure Translator in Foundry Tools custom translation for beginners
 
  [Custom translation](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../../text-translation/reference/v3/translate.md) service that powers billions of translations every day.
 
-[Custom translation](overview.md) empowers you to build a translation system that truly captures your business's unique language, industry terminology, and domain-specific style. With an intuitive interface, training, testing, and deploying your custom model is simple and requires no programming expertise. Seamlessly integrate your tailored translation system into your existing applications, workflows, and websites—all backed by the cloud-based [Azure AI Translator Text Translation API](../../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations each day.
+[Custom translation](overview.md) empowers you to build a translation system that truly captures your business's unique language, industry terminology, and domain-specific style. With an intuitive interface, training, testing, and deploying your custom model is simple and requires no programming expertise. Seamlessly integrate your tailored translation system into your existing applications, workflows, and websites—all backed by the cloud-based [Azure Translator Text Translation API](../../text-translation/reference/v3/translate.md?tabs=curl) service that powers billions of translations each day.
 
 The platform enables users to build and publish custom translation systems to and from English. The Custom Translator supports more than 100 languages that map directly to the languages available for Neural machine translation (NMT). For a complete list, *see* [Translator language support](../../../language-support.md).
 

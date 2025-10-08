@@ -1,18 +1,18 @@
 ---
-title: Azure AI Translator release history
-titleSuffix: Azure AI services
-description: Release notes and updates for Azure AI Translator Service API.
+title: Azure Translator in Foundry Tools release history
+titleSuffix: Azure AI Foundry Tools
+description: Release notes and updates for Azure Translator in Foundry Tools Service API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/18/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator release history
+# Azure Translator release history
 
-Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
+Azure Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
 
 ## September 2023
 
@@ -191,7 +191,7 @@ These additions bring the total number of languages supported in Translator to 1
 
 ### [Text and document translation support for literary Chinese](https://www.microsoft.com/translator/blog/2021/08/25/microsoft-translator-releases-literary-chinese-translation/)
 
-* Azure AI Translator has [text and document language support](../language-support.md) for  literary Chinese. Classical or literary Chinese is a traditional style of written Chinese used by traditional Chinese poets and in ancient Chinese poetry.
+* Azure Translator has [text and document language support](../language-support.md) for  literary Chinese. Classical or literary Chinese is a traditional style of written Chinese used by traditional Chinese poets and in ancient Chinese poetry.
 
 ## June 2021
 

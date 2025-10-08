@@ -1,13 +1,13 @@
 ---
 title: Translator Dictionary Lookup Method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->

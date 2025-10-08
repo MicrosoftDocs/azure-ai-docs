@@ -1,13 +1,13 @@
 ---
 title: "Batch Document translation C#/.NET or Python client library"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use the Batch Document translation C#/.NET or Python client library (SDK) for cloud-based batch document translation service and process.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-dotnet, devx-track-python
 ms.topic: quickstart
-ms.date: 09/29/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 zone_pivot_groups: programming-languages-document-sdk
 ---

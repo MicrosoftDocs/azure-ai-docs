@@ -1,13 +1,13 @@
 ---
 title: Get document status method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The get document status method returns the status for a specific document.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ---
 
 # Get status for a specific document

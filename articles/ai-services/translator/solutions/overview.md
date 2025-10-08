@@ -1,12 +1,12 @@
 ---
 title: What are Azure AI Translator prebuilt solutions?
-titlesuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Integrate the Azure AI Translator prebuilt solutions into your applications, websites, tools, and other solutions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 09/27/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

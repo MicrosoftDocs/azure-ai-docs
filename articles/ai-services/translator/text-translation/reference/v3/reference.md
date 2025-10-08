@@ -1,12 +1,12 @@
 ---
 title: Translator V3.0 Reference
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Reference documentation for the Translator V3.0. Version 3.0 of the Translator provides a modern JSON-based Web API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

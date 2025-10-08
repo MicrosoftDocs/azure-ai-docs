@@ -1,13 +1,13 @@
 ---
 title: Get documents status
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The get documents status method returns the status for all documents in an asynchronous batch translation request.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ---
 
 # Get status for all documents

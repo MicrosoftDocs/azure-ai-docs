@@ -1,12 +1,12 @@
 ---
 title: Azure AI Custom Translator for beginners
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: A user guide for understanding the end-to-end customized machine translation process.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.author: lajanuar
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.topic: overview
 ---
 

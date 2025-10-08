@@ -1,13 +1,13 @@
 ---
 title: "Container: Transliterate text"
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator container transliterate text operation.
+titleSuffix: Azure AI Foundry Tools
+description: Understand the parameters, headers, and body messages for the Azure Translator container transliterate text operation.
 author: laujan
 manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 03/07/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

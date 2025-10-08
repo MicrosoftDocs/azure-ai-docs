@@ -1,13 +1,13 @@
 ---
 title: Cancel translation method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The cancel translation method cancels a current processing or queued operation.
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ---
 
 # Cancel translation

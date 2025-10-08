@@ -1,11 +1,11 @@
----
 title: Create an Azure AI Foundry custom translation language pair
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: How to create a language pair in the Azure AI custom translation.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

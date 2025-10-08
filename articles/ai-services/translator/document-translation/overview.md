@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 06/03/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.custom: references_regions
 recommendations: false
@@ -20,7 +20,7 @@ recommendations: false
 
 # What is Document translation?
 
-Document translation is a cloud-based machine translation feature of the [Azure AI Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
+Document translation is a cloud-based machine translation feature of the [Azure Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 
 * [Asynchronous batch translation](#asynchronous-batch-translation) supports the processing of multiple documents and large files. The batch translation process requires an Azure Blob storage account with storage containers for your source and translated documents.
 
@@ -137,7 +137,7 @@ Document translation supports the following glossary file types:
 
 ## Document translation Request limits
 
-For detailed information regarding Azure AI Translator Service request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
+For detailed information regarding Azure Translator Service request limits, *see* [**Document translation request limits**](../service-limits.md#document-translation).
 
 ## Document translation data residency
 

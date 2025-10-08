@@ -1,17 +1,17 @@
 ---
 title: Translate text with an Azure AI Custom Translator model
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: How to make translation requests using custom models published with the Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
 # Translate text with an Azure AI Custom Translator model
 
-After you publish your custom model, you can access it with the Azure AI Translator API by using the `Category ID` parameter.
+After you publish your custom model, you can access it with the Azure Translator API by using the `Category ID` parameter.
 
 ## How to translate
 

@@ -1,12 +1,12 @@
 ---
 title: Translate behind firewalls - Azure AI Translator
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: How to enable Azure AI Translator to translate behind firewalls using either domain-name or IP filtering.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

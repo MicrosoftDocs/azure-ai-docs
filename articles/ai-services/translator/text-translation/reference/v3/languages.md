@@ -1,12 +1,12 @@
 ---
 title: Translator Languages Method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The Languages method gets the set of languages currently supported by other operations of the Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

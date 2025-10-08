@@ -1,11 +1,11 @@
 ---
 title: Create and configure Azure AI resources
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to create and configure Azure AI resources for translation services.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
-ms.date: 07/09/2025
+ms.date: 11/15/2025
 ms.service: azure-ai-translator
 ms.topic: how-to
 

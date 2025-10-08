@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.custom: references_regions, build-2023
 recommendations: false
@@ -45,9 +45,9 @@ If you or an administrator have previously setup a Translator resource with a **
 
 > [!NOTE]
 >
-> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI services (multi-service) resource.
+> * Document translation is currently supported in the Translator (single-service) resource only, and is **not** included in the Azure AI Foundry Tools (multi-service) resource.
 >
-> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Document translation is supported in the S1 Standard Service Plan or in the D3 Volume Discount Plan. *See* [Azure AI Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 Document translation in Language Studio requires the following resources:
@@ -86,7 +86,7 @@ At least one **source document** is required. You can download our [document tra
 
     :::image type="content" source="media/language-studio/welcome-home-page.png" alt-text="Screenshot of the language studio home page.":::
 
-1. If you're using the Document translation feature for the first time, start with the **Initial Configuration** to select your **Azure AI Translator resource** and **Document storage** account:
+1. If you're using the Document translation feature for the first time, start with the **Initial Configuration** to select your **Azure Translator resource** and **Document storage** account:
 
    :::image type="content" source="media/language-studio/initial-configuration.png" alt-text="Screenshot of the initial configuration page.":::
 

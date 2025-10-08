@@ -1,11 +1,11 @@
 ---
 title: Build and upload Azure AI Custom Translator training documents
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: How to build and upload parallel documents (two documents where one is the origin and the other is the translation) using Azure AI Custom Translator.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

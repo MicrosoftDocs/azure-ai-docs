@@ -1,5 +1,5 @@
 items:
-- name: Azure AI Translator Documentation
+- name: Azure Translator Documentation
   href: index.yml
 - name: Overview
   expanded: true
@@ -204,7 +204,7 @@ items:
     href: document-translation/faq.md
 - name: Containers
   items:
-  - name: What is an Azure AI Translator container?
+  - name: What is an Azure Translator container?
     displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
     href: containers/overview.md
   - name: Install and run containers
@@ -378,7 +378,7 @@ items:
     href: custom-translator/faq.md
 - name: Translator solutions
   items:
-  - name: What are Azure AI Translator solutions?
+  - name: What are Azure Translator solutions?
     href: solutions/overview.md
   - name: Microsoft Translator Pro
     items:
@@ -424,5 +424,5 @@ items:
     href: https://www.microsoft.com/translator/business/notrace/
   - name: Code samples on GitHub
     href: https://aka.ms/TranslatorGitHub
-  - name: Azure AI Translator release history
+  - name: Azure Translator release history
     href: reference/release-history.md

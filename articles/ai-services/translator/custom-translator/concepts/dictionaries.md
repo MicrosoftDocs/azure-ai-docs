@@ -1,11 +1,11 @@
 ---
 title: "What is a dictionary? - Azure AI Custom Translator"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: How to create an aligned document that specifies a list of phrases or sentences (and their translations) that you always want Microsoft Translator to translate the same way. Dictionaries are sometimes also called glossaries or term bases.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 07/22/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator

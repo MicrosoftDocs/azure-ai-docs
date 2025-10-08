@@ -1,12 +1,12 @@
 ---
 title: "Document translation REST API reference guide"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: View a list of with links to the Document translation REST APIs.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ---
 

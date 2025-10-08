@@ -1,11 +1,11 @@
----
 title: Upload Azure AI Foundry custom translation model language pair datasets 
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: How to upload Azure AI Foundry custom translation datasets
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 11/15/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
