@@ -32,6 +32,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-4o-realtime-preview` (version `2024-12-17`)
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
 - `gpt-realtime` (version `2025-08-28`)
+- `gpt-realtime-mini` (version `2025-10-06`)
 
 See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
 

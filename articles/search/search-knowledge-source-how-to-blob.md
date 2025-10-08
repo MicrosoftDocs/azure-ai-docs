@@ -91,9 +91,9 @@ A response for blob knowledge source might look like the following example.
       "kind": "azureOpenAI",
       "azureOpenAIParameters": {
         "resourceUri": "<REDACTED>",
-        "deploymentId": "gpt-4o-mini",
+        "deploymentId": "gpt-5-mini",
         "apiKey": "<REDACTED>",
-        "modelName": "gpt-4o-mini",
+        "modelName": "gpt-5-mini",
         "authIdentity": null
       }
     },
@@ -177,9 +177,9 @@ A blob knowledge source can include an `ingestionSchedule` that adds scheduling 
           "kind": "azureOpenAI",
           "azureOpenAIParameters": {
             "resourceUri": "{{aoai-endpoint}}",
-            "deploymentId": "gpt-4o-mini",
+            "deploymentId": "gpt-5-mini",
             "apiKey": "{{aoai-key}}",
-            "modelName": "gpt-4o-mini",
+            "modelName": "gpt-5-mini",
             "authIdentity": null
           }
         },
