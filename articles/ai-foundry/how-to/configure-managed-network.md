@@ -109,7 +109,7 @@ Before you start, make sure you have these prerequisites:
 
 # [Python SDK](#tab/python)
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * The __Microsoft.Network__ resource provider must be registered for your Azure subscription. This resource provider is used by the hub when creating private endpoints for the managed virtual network.
 
