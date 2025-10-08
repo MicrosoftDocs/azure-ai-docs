@@ -59,7 +59,7 @@ To learn more, see [Textual similarity evaluators](./evaluation-evaluators/textu
 | Evaluator | Purpose | Inputs |
 |--|--|--|
 | Retrieval | Measures how effectively the system retrieves relevant information. | Query, context |
-| Document Retrieval | Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents  |
+| Document Retrieval | Measures accuracy in retrieval results given ground truth. | Ground truth, retrieved documents |
 | Groundedness | Measures how consistent the response is with respect to the retrieved context. | Query (optional), context, response |
 | Groundedness Pro | Measures whether the response is consistent with respect to the retrieved context. | Query, context, response |
 | Relevance | Measures how relevant the response is with respect to the query. | Query, response|
@@ -144,9 +144,13 @@ Evaluation Tools and Approaches:
 - Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators. View results by using the Azure AI Foundry portal. Use Azure AI Foundry’s evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Azure AI Foundry portal](../how-to/evaluate-results.md).
 - Simulators and AI red teaming agent (preview): If you don’t have evaluation data (test data), [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
 
-    - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) injects static queries that mimic potential safety risks or security attacks or attempted jailbreaks. The simulators help identify limitations to prepare the model for unexpected conditions.
-    - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you might expect from users to test quality of responses. With context-appropriate simulators, you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
-    - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks. It uses Microsoft’s open framework for Python Risk Identification Tool (PyRIT). Automated scans using the AI red teaming agent enhance pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment. By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. We recommend this tool to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
+  - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) inject static queries that mimic potential safety risks or security attacks or attempted jailbreaks. The simulators help identify limitations to prepare the model for unexpected conditions.
+  - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you might expect from users to test quality of responses. With context-appropriate simulators, you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
+  - [AI red teaming agent (preview)](../how-to/develop/run-scans-ai-red-teaming-agent.md) simulates complex adversarial attacks against your AI system using a broad range of safety and security attacks. It uses Microsoft’s open framework for Python Risk Identification Tool (PyRIT).
+    
+    Automated scans using the AI red teaming agent enhance pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment.
+
+    By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. We recommend this tool to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
 
 Alternatively, you can also use [evaluation functionality](../how-to/evaluate-generative-ai-app.md) in the Azure AI Foundry portal for testing your generative AI applications.
 
