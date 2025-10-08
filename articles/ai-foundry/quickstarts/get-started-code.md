@@ -68,8 +68,6 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## Set up your environment  
 
-
-
 # [Python](#tab/python)
 
 1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
@@ -166,13 +164,14 @@ Follow along below or get the code:
 # [Azure AI Foundry portal](#tab/azure-ai-foundry)
 
 No installation is necessary to use the Azure AI Foundry portal.
+
 ---
 
 ::: moniker range="foundry-classic"
+
 ## Run a chat completion
 
 Chat completions are the basic building block of AI applications. Using chat completions you can send a list of messages and get a response from the model.
-
 
 
 # [Python](#tab/python)
@@ -203,16 +202,15 @@ Replace `YOUR-FOUNDRY-RESOURCE-NAME` with your values:
 
 1. In the chat playground, fill in the prompt and select **Send**.
 1. The model returns a response in the **Response** pane.
+
 ---
+
 ::: moniker-end
 
 ## Chat with an agent
 
 Agents have powerful capabilities through the use of tools. Start by chatting with an agent.
  
-
-
-
 
 # [Python](#tab/python)
 
@@ -259,6 +257,7 @@ After you create the agent, you're automatically moved from **Home** to the **Bu
 1. Start chatting with your agent, for example, "Write me a poem about flowers." 
 
 ::: moniker-end
+
 ---
 
 
