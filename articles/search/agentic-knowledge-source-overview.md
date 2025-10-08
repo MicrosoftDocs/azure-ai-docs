@@ -28,7 +28,7 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 + A knowledge source, its index, and the knowledge agent must all exist on the same search service.
 
-+ Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
++ Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
 + For each knowledge source, the knowledge agent provides extra properties for query execution. [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query planning. [KnowledgeAgentOutputConfiguration](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query output.
 
@@ -36,8 +36,8 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 Here are the knowledge sources you can create in this preview:
 
-+ [Search index knowledge source (an existing index)](search-knowledge-source-how-to-index.md)
-+ [Blob knowledge source](search-knowledge-source-how-to-blob.md)
++ [Search index knowledge source (an existing index)](agentic-knowledge-source-how-to-search-index.md)
++ [Blob knowledge source](agentic-knowledge-source-how-to-blob.md)
 
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides all extraction, enrichment and transformations over blob content, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 
@@ -93,7 +93,7 @@ To achieve the fastest possible response times, follow these best practices:
 
    + Set `knowledgeSources.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
 
-1. In the [retrieve action](search-agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
+1. In the [retrieve action](agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
 
 ## Delete a knowledge source
 
