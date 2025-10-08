@@ -533,7 +533,7 @@
         },
         {
             "source_path_from_root": "/articles/search/search-how-to-index-cosmosdb.md",
-            "redirect_url": "/azure/search/search-how-to-index-cosmosdb-sql.md",
+            "redirect_url": "/azure/search/search-how-to-index-cosmosdb-sql",
             "redirect_document_id": true
         },
         {
