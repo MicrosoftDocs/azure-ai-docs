@@ -13,11 +13,11 @@ ms.custom:
   - build-2025
 ---
 
-# Observability in generative AI with Azure AI Foundry
+# Observability in generative AI
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizing how organizations build and deploy intelligent systems. As companies increasingly use AI to transform decision-making, enhance customer experiences, and fuel innovation, one element stands paramount: robust evaluation frameworks. Evaluation isn't just a checkpoint. It's the foundation of trust in AI applications. Without rigorous assessment, AI systems can produce content that's:
+In today's AI-driven world, Generative AI Operations (GenAIOps) is revolutionizing how organizations build and deploy intelligent systems. As companies increasingly use AI to transform decision making, enhance customer experiences, and fuel innovation, one element stands paramount: robust evaluation frameworks. Evaluation isn't just a checkpoint. It's the foundation of trust in AI applications. Without rigorous assessment, AI systems can produce content that's:
 
 - Fabricated or ungrounded in reality
 - Irrelevant or incoherent to user needs
@@ -115,7 +115,7 @@ GenAIOps uses the following three stages.
 
 ### Base model selection
 
-Before building your application, you need to select the right foundation. This initial evaluation helps you compare different models based on:
+Before you build your application, select the right foundation. This initial evaluation helps you compare different models based on:
 
 - Quality and accuracy: How relevant and coherent are the model's responses?
 - Task performance: Does the model handle your specific use cases efficiently?
@@ -126,7 +126,7 @@ Before building your application, you need to select the right foundation. This 
 
 ### Pre-production evaluation
 
-After you select a base model, the next step is to develop an AI application, such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. When development is complete, *pre-production evaluation* begins. Before you deploy to a production environment, thorough testing is essential to ensure the model is ready for real-world use.
+After you select a base model, the next step is to develop an AI application, such as an AI-powered chatbot, a retrieval-augmented generation (RAG) application, an agentic AI application, or any other generative AI tool. When development is complete, *pre-production evaluation* begins. Before you deploy to a production environment, thorough testing is essential to ensure that the model is ready for real-world use.
 
 Pre-production evaluation involves:
 
@@ -141,8 +141,11 @@ The pre-production stage acts as a final quality check, reducing the risk of dep
 
 Evaluation Tools and Approaches:
 
-- Bring your own data: You can evaluate your AI applications in pre-production using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators. View results by using the Azure AI Foundry portal. Use Azure AI Foundry’s evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Azure AI Foundry portal](../how-to/evaluate-results.md).
-- Simulators and AI red teaming agent (preview): If you don’t have evaluation data (test data), [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
+- **Bring your own data**: You can evaluate your AI applications in pre-production using your own evaluation data with supported evaluators, including generation quality, safety, or custom evaluators. View results by using the Azure AI Foundry portal.
+
+  Use Azure AI Foundry’s evaluation wizard or [Azure AI Evaluation SDK’s](../how-to/develop/evaluate-sdk.md) supported evaluators, including generation quality, safety, or [custom evaluators](./evaluation-evaluators/custom-evaluators.md). [View results by using the Azure AI Foundry portal](../how-to/evaluate-results.md).
+
+- **Simulators and AI red teaming agent (preview)**: If you don’t have evaluation data or test data, [Azure AI Evaluation SDK’s simulators](..//how-to/develop/simulator-interaction-data.md) can help by generating topic-related or adversarial queries. These simulators test the model’s response to situation-appropriate or attack-like queries (edge cases).
 
   - [Adversarial simulators](../how-to/develop/simulator-interaction-data.md#generate-adversarial-simulations-for-safety-evaluation) inject static queries that mimic potential safety risks or security attacks or attempted jailbreaks. The simulators help identify limitations to prepare the model for unexpected conditions.
   - [Context-appropriate simulators](../how-to/develop/simulator-interaction-data.md#generate-synthetic-data-and-simulate-non-adversarial-tasks) generate typical, relevant conversations you might expect from users to test quality of responses. With context-appropriate simulators, you can assess metrics such as groundedness, relevance, coherence, and fluency of generated responses.
@@ -150,18 +153,18 @@ Evaluation Tools and Approaches:
     
     Automated scans using the AI red teaming agent enhance pre-production risk assessment by systematically testing AI applications for risks. This process involves simulated attack scenarios to identify weaknesses in model responses before real-world deployment.
 
-    By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. We recommend this tool to be used with human-in-the-loop processes such as conventional AI red teaming probing to help accelerate risk identification and aid in the assessment by a human expert.
+    By running AI red teaming scans, you can detect and mitigate potential safety issues before deployment. We recommend that you use this tool along with human-in-the-loop processes, such as conventional AI red teaming probing, to help accelerate risk identification and aid in the assessment by a human expert.
 
 Alternatively, you can also use [evaluation functionality](../how-to/evaluate-generative-ai-app.md) in the Azure AI Foundry portal for testing your generative AI applications.
 
-After you achieve satisfactory results, you can deploy the AI application to production.
+After you get satisfactory results, you can deploy the AI application to production.
 
 ### Post-production monitoring
 
 After deployment, continuous monitoring ensures your AI application maintains quality in real-world conditions.
 
-- Performance tracking: Regular measurement of key metrics.
-- Incident response: Swift action when harmful or inappropriate outputs occur.
+- **Performance tracking**: Regular measurement of key metrics.
+- **Incident response**: Swift action when harmful or inappropriate outputs occur.
 
 Effective monitoring helps maintain user trust and allows for rapid issue resolution.  
 
