@@ -5,7 +5,7 @@ description: How to create and manage a project in the Azure AI Custom Translato
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---

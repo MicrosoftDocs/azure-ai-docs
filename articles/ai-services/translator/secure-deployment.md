@@ -6,7 +6,7 @@ ms.author: lajanuar
 ms.service: azure-ai-translator
 ms.topic: conceptual
 ms.custom: horz-security
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ---
 
 # Security guidelines for Azure AI Translator

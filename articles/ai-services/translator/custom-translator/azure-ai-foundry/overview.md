@@ -5,7 +5,7 @@ description: Azure AI Foundry custom translation offers similar capabilities to 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ms.author: lajanuar
 ms.topic: overview
 ---

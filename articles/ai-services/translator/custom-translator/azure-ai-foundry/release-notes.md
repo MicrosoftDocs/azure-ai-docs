@@ -5,7 +5,7 @@ description: Custom translation releases, improvements, bug fixes, and known iss
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---

@@ -6,7 +6,7 @@ ms.topic: install-set-up-deploy
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ---
 
 # Enable Microsoft Entra ID authentication

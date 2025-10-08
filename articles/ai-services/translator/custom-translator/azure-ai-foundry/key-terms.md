@@ -5,7 +5,7 @@ description: List of key terms used in Azure AI Foundry custom translation artic
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ms.author: lajanuar
 ms.topic: reference
 ---

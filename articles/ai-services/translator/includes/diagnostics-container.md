@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry Tools
 author:laujan
 ms.service: azure-ai-services
 ms.topic: include
-ms.date: 11/15/2025
+ms.date: 11/08/2025
 ms.author: lajanuar
 ---
 
