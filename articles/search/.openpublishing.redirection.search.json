@@ -515,7 +515,7 @@
             "source_path_from_root": "/articles/search/search-howto-index-azure-data-lake-storage.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-data-lake-storage",
             "redirect_document_id": true
-        }
+        },
         {
             "source_path_from_root": "/articles/search/search-howto-index-changed-deleted-blobs.md",
             "redirect_url": "/azure/search/search-how-to-index-azure-blob-changed-deleted",
