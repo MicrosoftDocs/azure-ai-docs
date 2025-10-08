@@ -27,6 +27,22 @@ OpenAI's image generation models create images from user-provided text prompts a
 - Deploy a `dall-e-3` or `gpt-image-1` series model with your Azure OpenAI resource. For more information on deployments, see [Create a resource and deploy a model with Azure OpenAI](/azure/ai-foundry/openai/how-to/create-resource).
     - GPT-image-1 models are newer and feature a number of improvements over DALL-E 3. They are available in limited access: apply for access with [this form](https://aka.ms/oai/gptimage1access).
 
+## Overview
+
+- Use image generation via [image generation API](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) or [responses API](/azure/ai-foundry/openai/how-to/responses?tabs=python-key)
+- Experiment with image generation in the [image playground](https://int.ai.azure.com/doc/azure/ai-foundry/openai/dall-e-quickstart?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
+- Explore [content filtering](https://int.ai.azure.com/doc/azure/ai-foundry/openai/concepts/content-filter?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2) and apply to opt out [here]([url](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu): 
+- Learn about [image generation tokens ](https://int.ai.azure.com/doc/azure/ai-foundry/openai/overview?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
+
+| Aspect | GPT-Image-1 | DALL·E 3 |
+|--------|-------------|----------|
+| **Input / Output Modalities & Format** | Accepts **text + image** inputs; outputs images only in **base64** (no URL option). | Accepts **text (primary)** input; limited image editing inputs (with mask). Outputs as **URL or base64**. |
+| **Image Sizes / Resolutions** | 1024×1024, 1024×1536, 1536×1024 | 1024×1024, 1024×1792, 1792×1024 |
+| **Quality Options** | `low`, `medium`, `high` (default = high) | `standard`, `hd`; style options: `natural`, `vivid` |
+| **Number of Images per Request** | 1–10 images per request (`n` parameter) | Only **1 image** per request (`n` must be 1) |
+| **Editing (inpainting / variations)** | Yes — supports inpainting and variations with mask + prompt | Yes — supports inpainting and variations |
+| **Strengths** | Better **prompt fidelity**, realism, multimodal context use, strong in **editing instruction-following** | Strong at **prompt adherence**, natural text rendering, stylistic variety, coherent image generation |
+
 
 ## Call the image generation API
 

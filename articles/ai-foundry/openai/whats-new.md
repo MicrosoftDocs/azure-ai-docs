@@ -282,7 +282,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### GPT-4o 2024-11-20
 
-`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
+`gpt-4o-2024-11-20` is now available for [global standard deployment](../foundry-models/concepts/deployment-types.md) in:
 
 - East US
 - East US 2

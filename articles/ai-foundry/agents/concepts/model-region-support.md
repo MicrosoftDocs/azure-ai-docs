@@ -19,7 +19,7 @@ Agents are powered by a diverse set of Azure OpenAI models with different capabi
 - **Standard** is offered with a global deployment option, routing traffic globally to provide higher throughput.
 - **Provisioned** is also offered with a global deployment option, allowing customers to purchase and deploy provisioned throughput units across Azure global infrastructure.
 
-All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../openai/how-to/deployment-types.md).
+All deployments can perform the exact same inference operations, however the billing, scale, and performance are substantially different. To learn more about Azure OpenAI deployment types see [deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
 ## Available models
 
