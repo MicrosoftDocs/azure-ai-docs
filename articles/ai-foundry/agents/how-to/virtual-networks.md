@@ -46,7 +46,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 - **Private MCP Server**: using private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 ## Prerequisites
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
 * The person deploying the template must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage).
     * The built-in role needed is **Role Based Access Administrator**.

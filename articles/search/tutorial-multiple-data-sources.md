@@ -41,7 +41,7 @@ A finished version of the code in this tutorial can be found in the following pr
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An [Azure Cosmos DB for NoSQL account](/azure/cosmos-db/create-cosmosdb-resources-portal).
 * An [Azure storage account](/azure/storage/common/storage-account-create).
 * An [Azure AI Search service](search-create-service-portal.md).
