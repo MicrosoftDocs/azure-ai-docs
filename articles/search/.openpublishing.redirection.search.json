@@ -358,7 +358,7 @@
         {
             "source_path_from_root": "/articles/search/search-howto-index-documentdb.md",
             "redirect_url": "/azure/search/search-how-to-index-cosmosdb-sql",
-            "redirect_document_id": true
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/search/search-create-index-portal.md",
