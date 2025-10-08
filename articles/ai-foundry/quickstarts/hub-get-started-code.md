@@ -16,7 +16,7 @@ ai-usage: ai-assisted
 
 # Quickstart: Get started with Azure AI Foundry (Hub projects)
 
-> [!NOTE]
+> [!TIP]
 > An alternate Foundry project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Foundry projects)](get-started-code.md).
 
 This quickstart sets up your local environment for hub-based projects, deploys a model, and builds a simple traced/evaluable chat script.

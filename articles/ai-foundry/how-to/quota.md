@@ -20,7 +20,7 @@ ai-usage: ai-assisted
 
 # Manage and increase quotas for resources with Azure AI Foundry (Foundry projects)
 
-> [!NOTE]
+> [!TIP]
 > An alternate hub-focused quota article is available: [Manage and increase quotas for hub resources](hub-quota.md).
 
 Quota provides the flexibility to actively manage the allocation of rate limits across the deployments within your subscription. This article walks through the process of managing quota for your Azure AI Foundry Models (Foundry projects). Hub-level quota guidance has moved to `hub-quota.md`.
