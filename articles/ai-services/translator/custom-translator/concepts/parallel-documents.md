@@ -5,7 +5,7 @@ description: Parallel documents are paired documents where one is the translatio
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/08/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: conceptual
 #Customer intent: As a Custom Translator, I want to understand how to use parallel documents to build a custom translation model.

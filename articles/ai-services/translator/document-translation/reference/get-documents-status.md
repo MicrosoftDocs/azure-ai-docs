@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 11/08/2025
+ms.date: 11/05/2025
 ---
 
 # Get status for all documents

@@ -5,7 +5,7 @@ description: This article contains answers to Azure AI Foundry custom translatio
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/08/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: faq
 ---

@@ -5,7 +5,7 @@ description: Learn more about Azure Translator, a cloud-based neural machine tra
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: overview
-ms.date: 11/08/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 

@@ -5,7 +5,7 @@ description: How to test your Azure AI Custom Translator model BLEU score and ev
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 11/08/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
