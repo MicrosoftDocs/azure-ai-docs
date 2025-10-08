@@ -18,11 +18,12 @@ ms.custom: references_regions
 
 In this article, you learn how to:
 
-- Trace key concepts
+- Understand key tracing concepts
 - Trace and observe AI agents in AI Foundry
-- Interpret spans (steps, tool calls, nested operations).
-- View agent threads in the Agents playground.
+- Explore new semantic conventions with multi-agent observability
+- Integrate with popular agent frameworks
 - View traces in the AI Foundry portal and Azure Monitor
+- View agent threads in the Agents playground
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
