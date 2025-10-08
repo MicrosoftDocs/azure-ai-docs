@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 10/07/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -26,6 +26,7 @@ Structured outputs make a model follow a [JSON Schema](https://json-schema.org/o
 
 ## Supported models
 
+- `gpt-5-pro` version `2025-10-06`
 - `gpt-5-codex` version `2025-09-11`
 - `gpt-5` version `2025-08-07`
 - `gpt-5-mini` version `2025-08-07`
