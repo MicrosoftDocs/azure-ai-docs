@@ -72,6 +72,8 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 | germanywestcentral | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
 | italynorth         | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
 | japaneast          | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
+| norwayeast         | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
+| polandcentral      | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
 | southafricanorth   | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
 | southcentralus     | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
 | southeastasia      | ✅                        |                                | ✅                       | ✅                       | ✅                       | ✅                            |
