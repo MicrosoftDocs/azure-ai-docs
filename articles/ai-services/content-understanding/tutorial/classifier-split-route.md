@@ -2,7 +2,7 @@
 title: Classifier tutorial - Split and route
 titleSuffix: Azure AI services
 description: Learn about split modes (none, perPage, auto) and how to route classified content to analyzers via analyzerId.
-author: pafarley
+author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
