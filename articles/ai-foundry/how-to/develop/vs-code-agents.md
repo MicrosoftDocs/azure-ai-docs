@@ -8,7 +8,8 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-ms.date: 10/08/2025
+zone_pivot_groups: foundry-sdk-overview-languages
+ms.date: 10/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -255,16 +256,25 @@ Create a new multi-agent workflow with the following steps:
 
 ### Install Dependencies
 
-For Python, install the following packages from source:
+Install the required dependencies for your multi-agent workflow project. The dependencies vary based on the programming language you selected when creating the project.
+
+::: zone pivot="programming-language-python"
+
+Install the following packages from source:
 ```bash
     git clone https://github.com/microsoft/agent-framework.git
     pip install -e agent-framework/python/packages/azure-ai -e agent-framework/python/packages/core
 ```
+::: zone-end
+
+::: zone pivot="programming-language-csharp"
 
 C# workflows require nightly builds from Microsoft's GitHub Packages, follow these steps to set it up:
   1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)
   1. Create a GitHub Personal Access Token with the `read:packages` scope using these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)
   1. Copy the generated token (it will start with `ghp_`) and save it securely - you won't be able to see it again.
+
+
 
 #### Update NuGet Configuration
 
@@ -273,9 +283,13 @@ In `Nuget.Config`, replace the following placeholders:
 <add key="Username" value="YOUR_GITHUB_USERNAME" />           <!-- Replace with your GitHub username -->
 <add key="ClearTextPassword" value="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN" />  <!-- Replace with your GitHub PAT -->
 ```
+
+::: zone-end
+
 ### Run your multi-agent workflow locally
 
-#### C#/.NET
+::: zone pivot="programming-language-csharp"
+
 Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
 
   1. Configure your environment variables based on your operating system:
@@ -303,8 +317,10 @@ Before running locally with `dotnet run`, ensure you have configured the require
     dotnet build
     dotnet run
     ```
+::: zone-end
 
-#### Python
+::: zone pivot="programming-language-python"
+
 Update the `.env` file in the root directory of your project and add the following environment variables.
 
   ```
@@ -317,6 +333,9 @@ Run the application using:
   ```bash
   python workflow.py
   ```
+
+::: zone-end
+
 ### Visualize multi-agent workflow execution
 
 Visualize your multi-agent workflows using the Azure AI Foundry VS Code extension. This allows you to see the interactions between different agents and how they collaborate to achieve the desired outcome.
