@@ -50,9 +50,9 @@ This article uses the REST APIs to illustrate each step.
 You can use this indexer for the following tasks:
 
 + **Data indexing and incremental indexing:** The indexer can index files and associated metadata from blob containers and folders. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
-+ **Deletion detection:** The indexer can [detect deletions through native soft delete or through custom metadata](search-howto-index-changed-deleted-blobs.md).
++ **Deletion detection:** The indexer can [detect deletions through native soft delete or through custom metadata](search-how-to-index-azure-blob-changed-deleted.md).
 + **Applied AI through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
-+ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
++ **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
 + **Compatibility with other features:** The indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 <a name="SupportedFormats"></a>
@@ -80,7 +80,7 @@ Before you set up indexing, review your source data to determine whether any cha
 
 If you don't set up inclusion or exclusion criteria, the indexer reports an ineligible blob as an error and move on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-blob-indexer).
 
-An indexer typically creates one search document per blob, where the text content and metadata are captured as searchable fields in an index. If blobs are whole files, you can potentially parse them into [multiple search documents](search-howto-index-one-to-many-blobs.md). For example, you can parse rows in a [CSV file](search-howto-index-csv-blobs.md) to create one search document per row.
+An indexer typically creates one search document per blob, where the text content and metadata are captured as searchable fields in an index. If blobs are whole files, you can potentially parse them into [multiple search documents](search-how-to-index-azure-blob-one-to-many.md). For example, you can parse rows in a [CSV file](search-how-to-index-azure-blob-csv.md) to create one search document per row.
 
 A compound or embedded document (such as a ZIP archive, a Word document with embedded Outlook email containing attachments, or an .MSG file with attachments) is also indexed as a single document. For example, all images extracted from the attachments of an .MSG file will be returned in the normalized_images field. If you have images, consider adding [AI enrichment](cognitive-search-concept-intro.md) to get more search utility from that content.
 
@@ -140,7 +140,7 @@ The data source definition specifies the data to index, credentials, and policie
 
 1. Set "container" to the blob container, and use "query" to specify any subfolders.
 
-A data source definition can also include [soft deletion policies](search-howto-index-changed-deleted-blobs.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
+A data source definition can also include [soft deletion policies](search-how-to-index-azure-blob-changed-deleted.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
 
 <a name="credentials"></a>
 
@@ -249,10 +249,10 @@ Once the index and data source have been created, you're ready to create the ind
 
    + "allMetadata" specifies that standard blob properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the blob content and indexed.
 
-1. Under "configuration", set "parsingMode". The default parsing mode is one search document per blob. If blobs are plain text, you can get better performance by switching to [plain text](search-howto-index-plaintext-blobs.md) parsing. If you need more granular parsing that maps blobs to [multiple search documents](search-howto-index-one-to-many-blobs.md), specify a different mode. One-to-many parsing is supported for blobs consisting of:
+1. Under "configuration", set "parsingMode". The default parsing mode is one search document per blob. If blobs are plain text, you can get better performance by switching to [plain text](search-how-to-index-azure-blob-plaintext.md) parsing. If you need more granular parsing that maps blobs to [multiple search documents](search-how-to-index-azure-blob-one-to-many.md), specify a different mode. One-to-many parsing is supported for blobs consisting of:
 
-   + [JSON documents](search-howto-index-json-blobs.md)
-   + [CSV files](search-howto-index-csv-blobs.md)
+   + [JSON documents](search-how-to-index-azure-blob-json.md)
+   + [CSV files](search-how-to-index-azure-blob-csv.md)
 
 1. [Specify field mappings](search-indexer-field-mappings.md) if there are differences in field name or type, or if you need multiple versions of a source field in the search index.
 
@@ -396,6 +396,6 @@ PUT /indexers/[indexer name]?api-version=2025-09-01
 
 ## See also
 
-+ [Change detection and deletion detection](search-howto-index-changed-deleted-blobs.md)
++ [Change detection and deletion detection](search-how-to-index-azure-blob-changed-deleted.md)
 + [Index large data sets](search-howto-large-index.md)
 + [Indexer access to content protected by Azure network security features](search-indexer-securing-resources.md)
