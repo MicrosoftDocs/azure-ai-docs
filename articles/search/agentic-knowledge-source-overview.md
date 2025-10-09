@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/01/2025
+ms.date: 10/09/2025
 ---
 
 # Create a knowledge source
@@ -16,19 +16,21 @@ ms.date: 10/01/2025
 
 A knowledge source wraps a search index with extra properties for agentic retrieval. It's a required definition in a knowledge agent. We provide guidance on how to create specific knowledge sources, but generally, you can:
 
-+ Create multiple knowledge sources as top-level resources on your search service.
++ Create a knowledge source as top-level resources on your search service. Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
 + Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
 
++ Use a knowledge source definition to generate a full indexer pipeline (data source, skillset, indexer, and index) that works for agentic retrieval. Instead of creating multiple objects manually, information in the knowledge source is used to generate all objects, including a populated and searchable index.
+
 Make sure you have at least one knowledge source before creating a knowledge agent. The full specification of a knowledge source and a knowledge agent is in the [REST API reference](/rest/api/searchservice). 
 
-## Key points about a knowledge source
+## Working with a knowledge source
 
-+ Creation path: first create a knowledge source, then create a knowledge agent. Deletion path: update or delete knowledge agents, delete knowledge sources last.
++ Creation path: first create a knowledge source, then create a knowledge agent. 
+
++ Deletion path: update or delete knowledge agents to remove references to a knowledge source, and then delete knowledge sources last.
 
 + A knowledge source, its index, and the knowledge agent must all exist on the same search service.
-
-+ Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
 + For each knowledge source, the knowledge agent provides extra properties for query execution. [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query planning. [KnowledgeAgentOutputConfiguration](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query output.
 
@@ -36,17 +38,30 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 Here are the knowledge sources you can create in this preview:
 
-+ [Search index knowledge source (an existing index)](agentic-knowledge-source-how-to-search-index.md)
-+ [Blob knowledge source](agentic-knowledge-source-how-to-blob.md)
++ [Search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
++ [Blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides all extraction, enrichment and transformations over blob content, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 
 > [!NOTE]
 > `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) isn't currently available in the 2025-08-01-preview.
 
-## Control knowledge source usage
+## Create a knowledge source
 
-Properties on the knowledge agent determine whether and how the knowledge source is used. The [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge agent.
+You must have [permissions](search-security-rbac.md) to create objects on a search service (**Search Service Contributor**), and also permissions to load an index if you're using a blob knowledge source (**Search Index Data Contributor**). You can also [use an API admin key](search-security-api-keys.md).
+
+You must use the REST API or an Azure SDK preview package to create a knowledge source. There's no portal supported at this time. The following links provide instructions for creating a knowledge source:
+
++ [Search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
++ [Blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
+
+After the knowledge source is created, you can reference it in a knowledge agent.
+
+## Use a knowledge source.
+
+Properties on the *knowledge agent* determine whether and how the knowledge source is used. The [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge agent.
+
+The knowledge agent uses the [retrieve action](agentic-retrieval-how-to-retrieve.md) to send queries to the index specified in the knowledge source.
 
 ### Use multiple knowledge sources simultaneously
 
@@ -57,7 +72,7 @@ When you have multiple knowledge sources, set the following properties to bias q
 
 Retrieval instructions are sent as a user-defined prompt to the large language model (LLM) used for query planning. This prompt is helpful when you have multiple knowledge sources and want to provide guidance on when to use each one. For example, if you have separate indexes for product information, job postings, and technical support, the retrieval instructions might say "use the jobs index only if the question is about a job application."
 
-The `alwaysQuerySource` property overrides `retrievalInstructions`. You should set `alwaysQuerySource` to false when providing retrieval instructions.
+The `alwaysQuerySource` property overrides `retrievalInstructions`. Set `alwaysQuerySource` to false when providing retrieval instructions.
 
 ### Attempt fast path processing
 
