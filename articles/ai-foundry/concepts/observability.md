@@ -78,7 +78,7 @@ To learn more, see [Retrieval-augmented Generation (RAG) evaluators](./evaluatio
 | Content Safety | Comprehensive assessment of various safety concerns. | Query, response |
 | Protected Materials | Detects unauthorized use of copyrighted or protected content. | Query, response |
 | Code Vulnerability | Identifies security issues in generated code. |  Query, response |
-| Ungrounded Attributes | Detects fabricated or misrepresented information inferred from user interactions. | Query, context, response |
+| Ungrounded Attributes | Detects fabricated or hallucinated information inferred from user interactions. | Query, context, response |
 
 To learn more, see [Risk and safety evaluators](./evaluation-evaluators/risk-safety-evaluators.md).
 
