@@ -28,7 +28,7 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 | Configure deployments | ✅ | ✅ |
 | Configure projects | ✅ | - |
 | Configure a connection to knowledge and tools | ✅ | - |
-| Configure a capability (for advanced tool configurations) | ✅ | - |
+| Configure a capability host (for advanced tool configurations like [Agent standard setup](../agents/concepts/capability-hosts.md)) | ✅ | - |
 
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
