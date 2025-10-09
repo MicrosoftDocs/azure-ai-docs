@@ -27,7 +27,7 @@ This tutorial explains how to create a retrieval-augmented generation (RAG) solu
 
 ## Prerequisites
 
-To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/free/).
+To get started, you need **An active Azure subscription**. If you don't have an Azure account, you can [create a free subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Once you have your Azure subscription, create an [Azure AI Foundry resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal.
 
