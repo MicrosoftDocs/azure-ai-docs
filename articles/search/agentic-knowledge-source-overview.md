@@ -16,23 +16,23 @@ ms.date: 10/09/2025
 
 A knowledge source wraps a search index with extra properties for agentic retrieval. It's a required definition in a knowledge agent. We provide guidance on how to create specific knowledge sources, but generally, you can:
 
-+ Create a knowledge source as top-level resources on your search service. Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
++ Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
 + Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
 
 + Use a knowledge source definition to generate a full indexer pipeline (data source, skillset, indexer, and index) that works for agentic retrieval. Instead of creating multiple objects manually, information in the knowledge source is used to generate all objects, including a populated and searchable index.
 
-Make sure you have at least one knowledge source before creating a knowledge agent. The full specification of a knowledge source and a knowledge agent is in the [REST API reference](/rest/api/searchservice). 
+Make sure you have at least one knowledge source before creating a knowledge agent. The full specification of a knowledge source and a knowledge agent is in the [preview REST API reference](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
 ## Working with a knowledge source
 
 + Creation path: first create a knowledge source, then create a knowledge agent. 
 
-+ Deletion path: update or delete knowledge agents to remove references to a knowledge source, and then delete knowledge sources last.
++ Deletion path: update or delete knowledge agents to remove references to a knowledge source, and then delete the knowledge source last.
 
 + A knowledge source, its index, and the knowledge agent must all exist on the same search service.
 
-+ For each knowledge source, the knowledge agent provides extra properties for query execution. [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query planning. [KnowledgeAgentOutputConfiguration](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query output.
++ For each knowledge source, the knowledge agent provides extra properties for query execution. [`"knowledgeSources"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query planning. [`"outputConfiguration"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query output.
 
 ## Supported knowledge sources
 
@@ -52,8 +52,8 @@ You must have [permissions](search-security-rbac.md) to create objects on a sear
 
 You must use the REST API or an Azure SDK preview package to create a knowledge source. There's no portal support at this time. The following links provide instructions for creating a knowledge source:
 
-+ [Search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
-+ [Blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
++ [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
++ [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 
 After the knowledge source is created, you can reference it in a knowledge agent.
 
