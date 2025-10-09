@@ -105,6 +105,7 @@ See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-s
 
 > [!div class="nextstepaction"]
 > [See AzureRM reference docs for Azure AI Foundry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
+> [Terraform Azure Verified Module sample](https://github.com/Azure/terraform-azurerm-avm-res-cognitiveservices-account)
 > [Learn more about AzAPI provider](/azure/developer/terraform/overview-azapi-provider)
-> [See more articles about Azure AI Foundry hub](/search/?terms=Azure%20ai%20hub%20and%20terraform)
+
 
