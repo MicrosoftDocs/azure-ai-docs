@@ -12,7 +12,7 @@ ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation user, I want to concept of a project, so that I can use it efficiently.
 ---
-# What is a Foundry Tools custom translation project?
+# What are Foundry Tools custom translation projects?
 
 A project is a work area for composing and building your custom translation system. A project can contain multiple language pairs, models, and documents. All the work you do in custom translation is inside a specific project.
 
@@ -22,7 +22,7 @@ A project is private to you and the people you invite into your project. Uninvit
 
 A language pair is a wrapper for a model, documents, and tests. Each language pair automatically includes all documents that are uploaded into that project that
 have the correct language pair. For example, if you have both an English-to-Spanish language pair and a Spanish-to-English language pair, the same documents are
-included in both language pairs. Each project has a Category ID associated with it that's used when querying the [V3 API](../../../text-translation/reference/v3/translate.md) for translations. Category ID is parameter used to get translations from a customized system built with custom translation.
+included in both language pairs. Each project has a Category ID associated with it used when querying the [V3 API](../../../text-translation/reference/v3/translate.md) for translations. Category ID is parameter used to get translations from a customized system built with custom translation.
 
 ## Language pair categories
 

@@ -233,7 +233,7 @@ items:
     href: containers/faq.yml
 - name: Foundry Tools custom translation 🆕
   items:
-  - name: What is Foundry Tools custom translation?
+  - name: What are Foundry Tools custom translations?
     href: custom-translator/azure-ai-foundry/overview.md
   - name: Key terms
     href: custom-translator/azure-ai-foundry/key-terms.md

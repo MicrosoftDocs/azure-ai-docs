@@ -234,7 +234,7 @@ Disconnected containers enable you to use the Azure Translator API by exporting 
 
 * Commitment plans for disconnected containers have a calendar year commitment period.
 
-* When you purchase a plan, you're charged the full price immediately.
+* When you purchase a plan, you're charged for the full price immediately.
 
 * During the commitment period, you can't change your commitment plan; however you can purchase more units at a pro-rated price for the remaining days in the year.
 

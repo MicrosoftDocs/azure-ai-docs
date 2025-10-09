@@ -388,7 +388,7 @@ Creates a new dataset index for adaptive translation using specified documents.
 
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
-| `documentIds` | array | **True** | Array of document IDs to include in dataset index |
+| `documentIds` | array | **True** | Array of document ID identifiers that include in dataset index. |
 | `IndexName` | string | **True** | Name for the new dataset index |
 | `SourceLanguage` | string | **True** | Source language code |
 | `TargetLanguage` | string | **True** | Target language code |
