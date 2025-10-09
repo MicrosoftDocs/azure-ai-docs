@@ -16,15 +16,9 @@ ms.custom:
 
 # What is Azure AI Content Understanding (preview)?
 
-> [!IMPORTANT]
->
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
-> * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
-> * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
-Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format.
-
-Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
+As of November 17, 2025, Content Understanding is a Generally Available (GA) service, and is now available in a broader range of regions. Customers now have the ability to create their own deployments to support Content Understanding in a wider range of available regions. See [region and language support]() for more information on using Content Understanding. 
 
 :::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
 
@@ -37,6 +31,8 @@ Content Understanding offers a streamlined process to reason over large amounts 
 * **Enhance accuracy**. Content Understanding employs multiple AI models to analyze and cross-validate information simultaneously, resulting in more accurate and reliable results.
 
 * **Confidence scores & grounding**. Content Understanding ensures the accuracy of extracted values while minimizing the cost of human review.
+
+* **Classify content types**. Content Understanding enables you to classify your document types to streamline your ability to process content, now available in a unified approach in the Analyze API.  
 
 ## Content Understanding use cases
 
@@ -72,6 +68,7 @@ Common applications for Content Understanding include:
 |Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
 |Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
+|  |  |
 
 ## Responsible AI
 
