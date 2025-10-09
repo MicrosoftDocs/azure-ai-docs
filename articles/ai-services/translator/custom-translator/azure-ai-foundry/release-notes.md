@@ -1,3 +1,4 @@
+---
 title: "Release notes - custom translation"
 titleSuffix: Azure AI Foundry Tools
 description: Custom translation releases, improvements, bug fixes, and known issues.

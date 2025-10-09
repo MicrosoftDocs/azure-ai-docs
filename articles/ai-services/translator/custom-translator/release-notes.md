@@ -9,6 +9,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: release-notes
 ---
+
 # Custom Translator release notes
 
 This page presents the latest feature, improvement, bug fix, and known issue release notes for Custom Translator service.
