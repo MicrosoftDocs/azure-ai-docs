@@ -2,7 +2,7 @@
 title: Pricing for Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Understand the pricing model for Azure AI Content Understanding, including what you're charged for, how to estimate costs, and pricing examples.
-author: PatrickFarley
+author: jfilcik
 ms.author: jfilcik
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
@@ -176,13 +176,13 @@ For accurate token estimation when using field extraction:
 ### Step 4: Read the total price in the calculator 
 The Azure pricing calculator gives you a total cost estimate based on your total quantity of files and tokens
 
-# Pricing frequently asked questions
+## Pricing frequently asked questions
 
-## Am I always charged for LLM usage no matter the prebuilt analyzer or custom analyzer?
+### Am I always charged for LLM usage no matter the prebuilt analyzer or custom analyzer?
 
 No, LLM usage charges depend on whether the analyzer uses field extraction:
 
-### Example analyzers that use LLM:
+#### Example analyzers that use LLM:
 - Custom analyzers with defined fields
 - `prebuilt-invoice`
 - `prebuilt-callCenter`
@@ -191,7 +191,7 @@ No, LLM usage charges depend on whether the analyzer uses field extraction:
 - `prebuilt-audioAnalyzer`
 - `prebuilt-videoAnalyzer`
 
-### Analyzers that don't use LLM (no token charges):
+#### Analyzers that don't use LLM (no token charges):
 - `prebuilt-read`: Only performs OCR, no field extraction
 - `prebuilt-layout`: Only extracts layout and structure, no generative processing
 - Custom analyzers with no fields defined (content extraction only)
@@ -199,15 +199,15 @@ No, LLM usage charges depend on whether the analyzer uses field extraction:
 If you explicitly don't request any fields, you only receive content extraction results and only pay for content extraction.
 
 
-## Am I charged twice for field extraction through both Content Understanding and Azure OpenAI?
+### Am I charged twice for field extraction through both Content Understanding and Azure OpenAI?
 
 No, you're not charged twice. When you use Content Understanding for field extraction, you pay for Content Understanding for Content Extraction and Contextualization and Azure OpenAI for field extraction generation and embedding. 
 
-## If I select a cheaper model, like GPT-4o-mini, or deployment type, like global, does it reduce the charge?
+### If I select a cheaper model, like GPT-4o-mini, or deployment type, like global, does it reduce the charge?
 
 Yes, selecting a more cost-effective model deployment significantly reduces your charges for the generative model (LLM) component. Content Understanding supports different model deployment options from Azure OpenAI each with a different pricing:
 
-### Ways to reduce model costs
+#### Ways to reduce model costs
 
 1. **Smaller models** (like GPT-4o-mini): Optimized for cost, offering substantially lower pricing compared to standard models while maintaining quality for many scenarios
 
@@ -222,18 +222,18 @@ When you choose a mini or global deployment, the input and output token costs fo
 
 *Note: These numbers are only for illustration purposes. Model prices changes frequently. Check the official (Azure pricing page)[https://azure.microsoft.com/en-us/pricing/details/cognitive-services/openai-service/] for up to date pricing*
 
-### What charges remain the same
+#### What charges remain the same
 
 Important to note: **Content extraction** and **contextualization** charges from Content Understanding remain the same regardless of which model deployment you use. Only the generative model (LLM) token charges vary based on your deployment choice.
 
 > [!TIP]
 > Mini models offer excellent value for many common extraction tasks. Test with mini models to see if they'll provide accurate results for your tasks. Consider global deployments for additional cost optimization. 
 
-## What features increase token usage?
+### What features increase token usage?
 
 Many things can influence token usage, like the contents of the files you process, instructions in your schema, etc. However, there are several features are worth noting that directly increase the number of tokens consumed during field extraction:
 
-### Features that increase tokens
+#### Features that increase tokens
 
 | Feature | Token multiplier | Description |
 |---------|-----------------|-------------|
@@ -249,7 +249,7 @@ Token multiplier refers to the approx increase in cost when enabling this featur
 - No confidence score generation
 - Segmentation = NoSegmentation
 
-### Example comparison
+#### Example comparison
 
 For a 10-page document:
 - **Baseline** (generative, no estimation): ~26,000 input tokens + ~900 output tokens
@@ -257,11 +257,11 @@ For a 10-page document:
 - **Generative model With source estimation + confidence**: ~52,000 input tokens + ~1,800 output tokens
 
 
-## Cost estimation examples
+### Cost estimation examples
 
 Here are detailed examples showing how pricing works for different scenarios. All examples use global deployment pricing for GPT-4.1 and GPT-4.1-mini models.
 
-### Example 1: Processing documents for content ingestion (RAG)
+#### Example 1: Processing documents for content ingestion (RAG)
 
 **Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentAnalyzer` which extracts text, layout, andfigure descriptions.
 
@@ -289,7 +289,7 @@ Here are detailed examples showing how pricing works for different scenarios. Al
 
 **Total estimated cost**: $5.00 + $4 + $3.2 + $1.00 = **$13.20**
 
-### Example 2: Processing invoices with field extraction
+#### Example 2: Processing invoices with field extraction
 
 **Scenario**: You're automating invoice processing using `prebuilt-invoice` to extract structured data (invoice number, date, vendor, total, line items).
 
@@ -321,7 +321,7 @@ Here are detailed examples showing how pricing works for different scenarios. Al
 > [!NOTE]
 > Using a standard GPT-4.1 global deployment instead of mini would increase the field extraction cost by approximately 5x, bringing the total to approximately $33.
 
-### Example 3: Analyzing video content with segment-level field extraction
+#### Example 3: Analyzing video content with segment-level field extraction
 
 **Scenario**: You're analyzing video content to extract structured data at a segment level using `prebuilt-videoAnalyzer`. Segments are short clips of 15-30 seconds on average, resulting in numerous output segments with structured fields per segment.
 
@@ -354,7 +354,7 @@ Here are detailed examples showing how pricing works for different scenarios. Al
 > [!NOTE]
 > Actual cost savings will vary based on the specifics of your input and output. This transparent, usage-based billing model ensures you only pay for what you use.
 
-### Example 4: Processing audio call center recordings
+#### Example 4: Processing audio call center recordings
 
 **Scenario**: You're analyzing call center recordings using `prebuilt-callCenter` to generate transcripts, speaker diarization, sentiment analysis, and summaries.
 
@@ -379,7 +379,7 @@ Here are detailed examples showing how pricing works for different scenarios. Al
 
 **Total estimated cost**: $0.36 + $0.01 + $0.00 + $0.10 = **$0.47**
 
-### Example 5: Processing images with captions
+#### Example 5: Processing images with captions
 
 **Scenario**: You're generating descriptive captions for product images using `prebuilt-imageAnalyzer`.
 

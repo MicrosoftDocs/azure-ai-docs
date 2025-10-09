@@ -2,8 +2,8 @@
 title: CU Studio vs. Foundry
 titleSuffix: Azure AI services
 description: Learn about the differences between CU Studio and Foundry, including use cases and feature distinctions for generative AI document, image, video, and audio processing.
-author: jfilcik
-ms.author: jfilcik
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 10/03/2025
