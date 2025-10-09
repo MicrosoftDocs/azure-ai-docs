@@ -44,7 +44,7 @@ Here are the knowledge sources you can create in this preview:
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides all extraction, enrichment and transformations over blob content, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 
 > [!NOTE]
-> `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) isn't currently available in the 2025-08-01-preview.
+> `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) isn't currently operational in the 2025-08-01-preview.
 
 ## Create a knowledge source
 
@@ -57,9 +57,13 @@ You must use the REST API or an Azure SDK preview package to create a knowledge 
 
 After the knowledge source is created, you can reference it in a knowledge agent.
 
-## Use a knowledge source.
+## Use a knowledge source
 
-Properties on the *knowledge agent* determine whether and how the knowledge source is used. The [KnowledgeSourceReference](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge agent.
+Properties on the *knowledge agent* determine whether and how the knowledge source is used.
+
++ [`"knowledgeSources"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge agent and informs the query logic.
+
++ [`"outputConfiguration"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-08-01-preview&preserve-view=true) properties affect query output.
 
 The knowledge agent uses the [retrieve action](agentic-retrieval-how-to-retrieve.md) to send queries to the index specified in the knowledge source.
 
