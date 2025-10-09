@@ -5,7 +5,7 @@ description: Learn about the regions that offer Azure AI Search and the features
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 10/06/2025
+ms.date: 10/09/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -47,7 +47,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | East US​ | ✅ | ✅ | ✅ |  | ✅ |  |
 | East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Mexico Central |  | ✅ |  | ✅ |  |  |
+| Mexico Central |  | ✅ |  |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ |  | ✅ | ✅ |
 | South Central US​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ | ✅ |  | ✅ |  | ✅ | ✅ |
@@ -102,7 +102,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Indonesia Central |  | ✅ |  |  |  |  |
 | Jio India West​​ | ✅ |  | ✅ |  | ✅ | ✅ |
 | Jio India Central​​ |  |  |  |  |  |  |
-| Japan East | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Japan East | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Japan West​ | ✅ |  | ✅ |  | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ |  | ✅ |  |
