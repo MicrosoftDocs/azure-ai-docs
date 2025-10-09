@@ -34,8 +34,8 @@ The exact output from content extraction depends on the file type:
 - **Documents**: Optical Character Recognition (OCR) to extract text, layout detection, table recognition, and structural elements
 - **Audio**: Speech-to-text transcription
 - **Video**: Frame extraction, scene detection, and speech-to-text transcription
-- **Images**: No content extraction preformed (free)
-- **Text**: No content extraction performed (free)
+- **Images**: No content extraction (free)
+- **Text**: No content extraction (free)
 
 Content extraction is priced based on:
 - **Documents**: Per 1,000 pages
@@ -43,35 +43,35 @@ Content extraction is priced based on:
 
 #### Figure Analysis add-on
 
-Figure analysis is an optional enhancement to content extraction that automatically generates rich descriptions for images, charts, and diagrams within your documents. This feature is particularly valuable for retrieval-augmented generation (RAG) workflows, as it ensures that visual content is properly represented and searchable in your knowledge base.
+Figure analysis is an optional enhancement to content extraction that automatically generates rich descriptions for images, charts, and diagrams within your documents. This feature is valuable for retrieval-augmented generation (RAG) workflows, as it ensures that visual content is properly represented and searchable in your knowledge base.
 
-**Cost impact**: Figure analysis adds generative model (LLM) token charges for each image analyzed. Each image processed requires additional input tokens to analyze the visual content and output tokens for the generated descriptions. The base content extraction charge remains the same—you only pay for the additional LLM calls needed to analyze the images.
+**Cost impact**: Figure analysis adds generative model (LLM) token charges for each image analyzed. Each image processed requires more input tokens to analyze the visual content and output tokens for the generated descriptions. The base content extraction charge remains the same, but you will pay for the another LLM calls needed to analyze the images.
 
 ### Field extraction:
-Field Extraction is where your custom schema comes to life. Using generative models like GPT-4.1 and GPT-4.1-mini, we extract the specific fields you define—whether it’s invoice totals, contract terms, or customer sentiment. With this update. You can now choose the mode depending on your use case. These tokens will be charged based on the actual content processed by the generative models for field extraction using the standard Azure OpenAI tokenizer.
+Field Extraction is where your custom schema comes to life. Using generative models like GPT-4.1 and GPT-4.1-mini, we extract the specific fields you define—whether it’s invoice totals, contract terms, or customer sentiment. With this update. You can now choose the mode depending on your use case. These tokens are charged based on the actual content processed by the generative models for field extraction using the standard Azure OpenAI tokenizer.
 
 ### Understanding the underlying service charges for field extraction
 
 When you use field extraction, you incur charges from both Content Understanding and other Azure AI services that Content Understanding uses:
 
 **From Content Understanding:**
-- **Contextualization**: This is a token based charge for all the processing Content Understanding does to facilitate the generation of the fields. This processing enables confidence scores and source estimation. It also improves accuracy by expanding context around extracted content and optimizing the usage of the generative model context window. These tokens scale based on the length of the input in pages, minutes, or image count.
+- **Contextualization**: Token based charge for all the processing Content Understanding does to facilitate the generation of the fields. This processing enables confidence scores and source estimation. It also improves accuracy by expanding context around extracted content and optimizing the usage of the generative model context window. These tokens scale based on the length of the input in pages, minutes, or image count.
 
 **From Azure AI Foundry Models:**
 - **Azure AI Foundry Models - Generative model (LLMs)**: Token-based charges for the AI models (like GPT-4.1) that power field extraction
-- **Azure AI Foundry Models -Embeddings model** (optional): Token-based charges for generating vector embeddings to leverage labeled data in a knowledge base to improve the accuracy of field extraction. Currently only support for documents. 
+- **Azure AI Foundry Models -Embeddings model** (optional): Token-based charges for generating vector embeddings to use labeled data in a knowledge base to improve the accuracy of field extraction. Currently only support for documents. 
 
 Your total cost is the sum of these components. If you only use content extraction without defining any fields, you're only charged for content extraction.
 
 ### Generative model tokens: What contributes to the input and output tokens for my analyzer?
 
-When you use field extraction, you're charged for all the input and output tokens that are processed by the generative model. Content Understanding works to process your files most efficiently, carefully utilizing the context window of the LLM to balance cost with achieving the best quality results for your extraction tasks.
+When you use field extraction, you're charged for all the input and output tokens processed by a generative model. Content Understanding works to process your files most efficiently, carefully utilizing the context window of the LLM to balance cost with achieving the best quality results for your extraction tasks.
 
 #### Understanding token counts
 
 **Input tokens** include all the tokens that are passed to the generative model:
 - Extracted text from documents and transcripts from audio
-- Images tokens when images are passed directly to the model (currently standard for video, image and figure analysis)
+- Images tokens when images are passed directly to the model (currently standard for video, image, and figure analysis)
 - Your schema definition
 - Content Understanding system prompts 
 - Knowledge base in-context examples (if used)
@@ -82,10 +82,10 @@ When you use field extraction, you're charged for all the input and output token
 
 ### Embeddings for in context learning 
 
-If you are using the in-context learning knowlege based then Content Understanding will use embeddings to lookup related label data in the knowlege base to improve the accuracy of field extraction (for documents only), there are additional costs:
+When you're using the in-context learning knowledge base then Content Understanding will use embeddings to lookup related label data in the knowledge base to improve the accuracy of field extraction (for documents only), there are extra costs:
 
 - **Model**: text-embedding-3-small (most common)
-- **Tokens**: Then entire document will be embedded onces. Typically ~1,500 tokens per page
+- **Tokens**: Then entire document is embedded one time. Typically ~1,500 tokens per page
 - **Rate**: $0.02 per 1,000 tokens
 
 **Example**: For 1,000 pages:
@@ -170,11 +170,11 @@ For accurate token estimation when using field extraction:
 
 ### Step 3: Calculate averages and enter into the Pricing calculator
 
-- Compute per-page,per-minute, or per-image averages number of tokens used from your test results
+- Compute per-page, per-minute, or per-image averages number of tokens used from your test results
 - Add those input and output token values into the pricing calculator
 
 ### Step 4: Read the total price in the calculator 
-The Azure pricing calculator will give you a total cost estimate based on your total quantity of files and tokens
+The Azure pricing calculator gives you a total cost estimate based on your total quantity of files and tokens
 
 # Pricing frequently asked questions
 
@@ -201,7 +201,7 @@ If you explicitly don't request any fields, you only receive content extraction 
 
 ## Am I charged twice for field extraction through both Content Understanding and Azure OpenAI?
 
-No, you're not charged twice. When you use Content Understanding for field extraction with the GA version, you pay for Content Understanding for Content Extraction and Contextualization and Azure OpenAI for field extraction generation and embedding. 
+No, you're not charged twice. When you use Content Understanding for field extraction, you pay for Content Understanding for Content Extraction and Contextualization and Azure OpenAI for field extraction generation and embedding. 
 
 ## If I select a cheaper model, like GPT-4o-mini, or deployment type, like global, does it reduce the charge?
 
