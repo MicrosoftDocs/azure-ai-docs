@@ -86,6 +86,7 @@ The Cohere family of models includes various models optimized for different use 
 For more details on pricing for Cohere rerank models, see [Pricing for Cohere rerank models](../../concepts/models-inference-examples.md#pricing-for-cohere-rerank-models).
 
 See [the Cohere model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Cohere/?cid=learnDocs).
+
 ::: moniker-end
 
 ## Core42
@@ -98,6 +99,8 @@ Core42 includes autoregressive bilingual LLMs for Arabic and English with state-
 | ------ | ---- | ------------ | ------------ |
 | [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42/?cid=learnDocs) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en and ar <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON | Foundry, Hub-based |
 
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Core42/?cid=learnDocs).
+
 ::: moniker-end
 
 ::: moniker range="foundry"
@@ -106,9 +109,9 @@ Core42 includes autoregressive bilingual LLMs for Arabic and English with state-
 | ------ | ---- | ------------ |
 | [jais-30b-chat](https://ai.azure.com/explore/models/jais-30b-chat/version/1/registry/azureml-core42/?cid=learnDocs) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:**  (4,096 tokens) <br /> - **Languages:** en and ar <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
-::: moniker-end
+See [this model collection in Azure AI Foundry portal](https://aka.ms/nextgen-canary/explore/models?&selectedCollection=Core42/?cid=learnDocs).
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Core42/?cid=learnDocs).
+::: moniker-end
 
 ## Meta
 
@@ -128,6 +131,8 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+
 ::: moniker-end
 
 ::: moniker range="foundry"
@@ -140,13 +145,13 @@ Meta Llama models and tools are a collection of pretrained and fine-tuned genera
 | [Meta-Llama-3.1-8B-Instruct](https://ai.azure.com/explore/models/Meta-Llama-3.1-8B-Instruct/version/4/registry/azureml-meta/?cid=learnDocs) | chat-completion | - **Input:** text (131,072 tokens) <br /> - **Output:**  (8,192 tokens) <br /> - **Languages:** `en`, `de`, `fr`, `it`, `pt`, `hi`, `es`, and `th` <br />  - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Llama-4-Scout-17B-16E-Instruct](https://aka.ms/aifoundry/landing/llama-4-scout-17b-16e-instruct) | chat-completion | - **Input:** text and image (128,000 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 
-::: moniker-end
+See [this model collection in Azure AI Foundry portal](https://aka.ms/nextgen-canary/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Meta/?cid=learnDocs). You can also find several Meta models available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+::: moniker-end
 
 ## Microsoft
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi/?cid=learnDocs).
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more.
 
 ::: moniker range="foundry-classic"
 
@@ -157,6 +162,8 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 | [Phi-4](https://ai.azure.com/explore/models/Phi-4/version/2/registry/azureml/?cid=learnDocs) | chat-completion | - **Input:** text (16,384 tokens) <br /> - **Output:**  (16,384 tokens) <br /> - **Languages:** `en`, `ar`, `bn`, `cs`, `da`, `de`, `el`, `es`, `fa`, `fi`, `fr`, `gu`, `ha`, `he`, `hi`, `hu`, `id`, `it`, `ja`, `jv`, `kn`, `ko`, `ml`, `mr`, `nl`, `no`, `or`, `pa`, `pl`, `ps`, `pt`, `ro`, `ru`, `sv`, `sw`, `ta`, `te`, `th`, `tl`, `tr`, `uk`, `ur`, `vi`, `yo`, and `zh` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Phi-4-reasoning](https://aka.ms/azureai/landing/Phi-4-reasoning) | chat-completion with reasoning content | - **Input:** text (32,768 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
 | [Phi-4-mini-reasoning](https://aka.ms/azureai/landing/Phi-4-mini-reasoning) | chat-completion with reasoning content | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text | Foundry, Hub-based |
+
+See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
 ::: moniker-end
 
@@ -170,9 +177,9 @@ Microsoft models include various model groups such as MAI models, Phi models, he
 | [Phi-4-reasoning](https://aka.ms/azureai/landing/Phi-4-reasoning) | chat-completion with reasoning content | - **Input:** text (32,768 tokens) <br /> - **Output:** text (32,768 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 | [Phi-4-mini-reasoning](https://aka.ms/azureai/landing/Phi-4-mini-reasoning) | chat-completion with reasoning content | - **Input:** text (128,000 tokens) <br /> - **Output:** text (128,000 tokens) <br /> - **Languages:** `en` <br /> - **Tool calling:** No <br /> - **Response formats:** Text |
 
-::: moniker-end
+See [the Microsoft model collection in Azure AI Foundry portal](https://aka.ms/nextgen-canary/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
-See [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Microsoft/?cid=learnDocs). Microsoft models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+::: moniker-end
 
 ## Mistral AI
 
@@ -194,6 +201,8 @@ Mistral AI offers two categories of models: premium models such as Mistral Large
 | [mistralai-Mixtral-8x7B-Instruct-v01](https://ai.azure.com/explore/models/mistralai-Mixtral-8x7B-Instruct-v01/version/10/registry/azureml/?cid=learnDocs) | chat-completion | - **Input:** text  <br /> - **Output:** text <br /> - **Languages:** en <br /> - **Response formats:** Text | Hub-based |
 | [mistralai-Mixtral-8x22B-Instruct-v0-1](https://ai.azure.com/explore/models/mistralai-Mixtral-8x22B-Instruct-v0-1/version/5/registry/azureml/?cid=learnDocs) | chat-completion | - **Input:** text (64,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** fr, it, de, es, en <br /> - **Response formats:** Text | Hub-based |
 
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+
 ::: moniker-end
 
 ::: moniker range="foundry"
@@ -207,9 +216,9 @@ Mistral AI offers two categories of models: premium models such as Mistral Large
 | [Mistral-medium-2505](https://aka.ms/aistudio/landing/mistral-medium-2505?cid=learnDocs) | chat-completion |  - **Input:** text (128,000 tokens), image <br /> - **Output:** text (128,000 tokens) <br />  - **Tool calling:** No <br /> - **Response formats:** Text, JSON |
 | [Mistral-Large-2411](https://ai.azure.com/explore/models/Mistral-Large-2411/version/2/registry/azureml-mistral/?cid=learnDocs) | chat-completion | - **Input:** text (128,000 tokens) <br /> - **Output:** text (4,096 tokens) <br /> - **Languages:** `en`, `fr`, `de`, `es`, `it`, `zh`, `ja`, `ko`, `pt`, `nl`, and `pl` <br />  - **Tool calling:** Yes <br /> - **Response formats:** Text, JSON |
 
-::: moniker-end
+See [this model collection in Azure AI Foundry portal](https://aka.ms/nextgen-canary/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Mistral+AI/?cid=learnDocs). Mistral models are also available as [models sold directly by Azure](models-sold-directly-by-azure.md?pivots=azure-direct-others).
+::: moniker-end
 
 ::: moniker range="foundry-classic"
 
@@ -237,9 +246,9 @@ For more details on pricing for Nixtla models, see [Nixtla](../../concepts/model
 | ------ | ---- | ------------ | ------------ |
 | [tsuzumi-7b](https://ai.azure.com/explore/models/Tsuzumi-7b/version/1/registry/azureml-nttdata/?cid=learnDocs) | chat-completion | - **Input:** text (8,192 tokens) <br /> - **Output:** text (8,192 tokens) <br /> - **Languages:** `en` and `jp` <br />  - **Tool calling:** No <br /> - **Response formats:** Text | Hub-based |
 
-::: moniker-end
-
 See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=NTT+Data/?cid=learnDocs).
+
+::: moniker-end
 
 ## Stability AI
 
@@ -253,6 +262,8 @@ The Stability AI collection of image generation models includes Stable Image Cor
 | [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs) | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Foundry, Hub-based |
 | [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) | Foundry, Hub-based |
 
+See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
+
 ::: moniker-end
 
 ::: moniker range="foundry"
@@ -263,17 +274,24 @@ The Stability AI collection of image generation models includes Stable Image Cor
 | [Stable Image Core](https://ai.azure.com/explore/models/Stable-Image-Core/version/1/registry/azureml-stabilityai/?cid=learnDocs) | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
 | [Stable Image Ultra](https://ai.azure.com/explore/models/Stable-Image-Ultra/version/1/registry/azureml-stabilityai/?cid=learnDocs) | Image generation | - **Input:** text (1,000 tokens)  <br /> - **Output:** One Image  <br />  - **Tool calling:** No <br /> - **Response formats:** Image (PNG and JPG) |
 
+See [this model collection in Azure AI Foundry portal](https://aka.ms/nextgen-canary/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
+
 ::: moniker-end
 
-See [this model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=Stability+AI/?cid=learnDocs).
-
+::: moniker range="foundry-classic"
 
 [!INCLUDE [models-open-and-custom](../includes/models-open-custom.md)]
 
+::: moniker-end
 
 ## Related content
 
 - [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
 - [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Azure AI Foundry Models](deployment-types.md)
+
+::: moniker range="foundry-classic"
+
 - [Serverless API inference examples for Foundry Models](../../concepts/models-inference-examples.md)
+
+::: moniker-end

@@ -244,4 +244,9 @@ All deployments perform the same inference operations, but the billing, scale, a
 - [Deployment overview for Azure AI Foundry Models](../../concepts/deployments-overview.md)
 - [Add and configure models to Azure AI Foundry Models](../how-to/create-model-deployments.md)
 - [Deployment types in Azure AI Foundry Models](../concepts/deployment-types.md)
+
+::: moniker range="foundry-classic"
+
 - [Serverless API inference examples for Foundry Models](../../concepts/models-inference-examples.md)
+
+::: moniker-end
