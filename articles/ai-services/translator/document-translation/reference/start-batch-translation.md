@@ -26,7 +26,7 @@ HTTP method: **POST**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X POST "{document-translation-endpoint}/translator/document/batches?api-version={date}"

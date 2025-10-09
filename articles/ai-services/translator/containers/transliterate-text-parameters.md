@@ -104,7 +104,7 @@ The following limitations apply:
 >
 > * Each sample runs on the `localhost` that you specified with the `docker run` command.
 > * While your container is running, `localhost` points to the container itself.
-> * You don't have to use `localhost:5000`. You can use any port that isn't already in use in your host environment.
+> * You don't have to use `localhost:5000`. You can use any port that'sn't already in use in your host environment.
 
 ### Transliterate with REST API
 

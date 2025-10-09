@@ -1345,7 +1345,7 @@ func main() {
 | HTTP status code | Description | Possible reason |
 |------------------|-------------|-----------------|
 | 200 | OK | The request was successful. |
-| 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that is too long. |
+| 400 | Bad Request | A required parameter is missing, empty, or null. Or, the value passed to either a required or optional parameter is invalid. A common issue is a header that's too long. |
 | 401 | Unauthorized | The request isn't authorized. Check to make sure your key or token is valid and in the correct region.
 | 429 | Too Many Requests | You exceeded the quota or rate of requests allowed for your subscription. |
 | 502 | Bad Gateway    | Network or server-side issue. Can also indicate invalid headers. |

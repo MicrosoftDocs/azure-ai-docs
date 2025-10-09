@@ -175,15 +175,15 @@ To learn more, see our Custom Translator [documentation](../custom-translator/ov
 * Translator service adds [text and document language support](../language-support.md) for the following languages:
   * **Bashkir**. A Turkic language spoken by approximately 1.4 million native speakers. It has three regional language groups: Southern, Eastern, and Northwestern.
   * **Dhivehi**. Also known as Maldivian, it's an Indo-Iranian language primarily spoken in the island nation of Maldives.
-  * **Georgian**. A Kartvelian language that is the official language of Georgia. It has approximately 4 million speakers.
-  * **Kyrgyz**. A Turkic language that is the official language of Kyrgyzstan.
-  * **Macedonian (Cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
+  * **Georgian**. A Kartvelian language that's the official language of Georgia. It has approximately 4 million speakers.
+  * **Kyrgyz**. A Turkic language that's the official language of Kyrgyzstan.
+  * **Macedonian (Cyrillic)**. An Eastern South Slavic language that's the official language of North Macedonia. It has approximately 2 million people.
   * **Mongolian (traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
   * **Tatar**. A Turkic language used by speakers in modern Tatarstan closely related to Crimean Tatar and Siberian Tatar but each belongs to different subgroups.
   * **Tibetan**. It has nearly 6 million speakers and can be found in many Tibetan Buddhist publications.
   * **Turkmen**. The official language of Turkmenistan. It's similar to Turkish and Azerbaijani.
   * **Uyghur**. A Turkic language with nearly 15 million speakers spoken primarily in Western China.
-  * **Uzbek (latin)**. A Turkic language that is the official language of Uzbekistan. It has 34 million native speakers.
+  * **Uzbek (latin)**. A Turkic language that's the official language of Uzbekistan. It has 34 million native speakers.
 
 These additions bring the total number of languages supported in Translator to 103.
 

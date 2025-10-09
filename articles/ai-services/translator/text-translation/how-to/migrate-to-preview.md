@@ -52,7 +52,7 @@ The following table provides a detailed comparison of the updates introduced in 
 |[Translate text](../reference/v3/translate.md)|[Translate text](../preview/translate-api.md)|
 |[Transliterate](../reference/v3/transliterate.md)|[Transliterate](../preview/transliterate-api.md)|
 |[Languages](../reference/v3/languages.md)|[Languages](../preview/get-languages.md)|
-|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use a sentence delimiter function or a Natural Language Processing (NLP) library that is compatible with your programming language.|
+|[BreakSentence](../reference/v3/break-sentence.md)|Feature no longer supported.<br>Use a sentence delimiter function or a Natural Language Processing (NLP) library that's compatible with your programming language.|
 |[Detect](../reference/v3/detect.md)|Feature no longer supported.<br>Use the [Azure AI Language detection API](../../../language-service/language-detection/how-to/call-api.md).|
 |[Dictionary Lookup](../reference/v3/dictionary-lookup.md)|Feature no longer supported.|
 |[Dictionary Examples](../reference/v3/dictionary-examples.md)|Feature no longer supported.|

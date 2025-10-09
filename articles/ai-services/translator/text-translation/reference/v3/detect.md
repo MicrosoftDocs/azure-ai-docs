@@ -66,9 +66,9 @@ A successful response is a JSON array with one result for each string in the inp
 
 * `score`: A float value indicating the confidence in the result. The score is between zero and one and a low score indicates a low confidence.
 
-* `isTranslationSupported`: A boolean value that is true if the detected language is one of the languages supported for text translation.
+* `isTranslationSupported`: A boolean value that's true if the detected language is one of the languages supported for text translation.
 
-* `isTransliterationSupported`: A boolean value that is true if the detected language is one of the languages supported for transliteration.
+* `isTransliterationSupported`: A boolean value that's true if the detected language is one of the languages supported for transliteration.
 
 * `alternatives`: An array of other possible languages. Each element of the array is another object the following properties: `language`, `score`, `isTranslationSupported`, and `isTransliterationSupported`.
 

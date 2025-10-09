@@ -19,7 +19,7 @@ HTTP method: **GET**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 * Use the `get documents status` method to request the status for all documents in a translation job.
 

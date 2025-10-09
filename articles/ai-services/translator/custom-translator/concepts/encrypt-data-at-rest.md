@@ -41,7 +41,7 @@ Follow these steps to enable customer-managed keys for Translator:
 
 You must use Azure Key Vault to store your customer-managed keys. You can either create your own keys and store them in a key vault, or you can use the Azure Key Vault APIs to generate keys. The Azure AI Foundry resource and the key vault must be in the same region and in the same Microsoft Entra tenant, but they can be in different subscriptions. For more information about Azure Key Vault, see [What is Azure Key Vault?](/azure/key-vault/general/overview).
 
-A new Azure AI Foundry resource is always encrypted using Microsoft-managed keys. It's not possible to enable customer-managed keys at the time that the resource is created. Customer-managed keys are stored in Azure Key Vault. The key vault must be provisioned with access policies that grant key permissions to the managed identity that is associated with the Azure AI Foundry resource. The managed identity is available as soon as the resource is created.
+A new Azure AI Foundry resource is always encrypted using Microsoft-managed keys. It's not possible to enable customer-managed keys at the time that the resource is created. Customer-managed keys are stored in Azure Key Vault. The key vault must be provisioned with access policies that grant key permissions to the managed identity that's associated with the Azure AI Foundry resource. The managed identity is available as soon as the resource is created.
 
 To learn how to use customer-managed keys with Azure Key Vault for Azure AI Foundry Tools encryption, see:
 

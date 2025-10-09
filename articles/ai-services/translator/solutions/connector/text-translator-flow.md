@@ -103,7 +103,7 @@ Let's select an action. Choose to translate or transliterate text.
       :::image type="content" source="../../media/connectors/add-connection.png" alt-text="Screenshot showing the add-connection window.":::
 
 1. Next, the **Transliterate** action window appears.
-1. **Language**. Select the language of the text that is to be converted.
+1. **Language**. Select the language of the text that's to be converted.
 1. **Source script**. Select the name of the input text script.
 1. **Target script**. Select the name of transliterated text script.
 1. Select **Save**.

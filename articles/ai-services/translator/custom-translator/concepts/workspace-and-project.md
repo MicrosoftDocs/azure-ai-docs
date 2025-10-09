@@ -21,7 +21,7 @@ Workspace is private to you and the people you invite into your workspace. Uninv
 
 A project is a wrapper for a model, documents, and tests. Each project automatically includes all documents that are uploaded into that workspace that
 have the correct language pair. For example, if you have both an English-to-Spanish project and a Spanish-to-English project, the same documents are
-included in both projects. Each project has a CategoryID associated with it that is used when querying the [v3 API](../../text-translation/reference/v3/translate.md?tabs=curl) for translations. CategoryID is parameter used to get translations from a customized system built with Custom Translator.
+included in both projects. Each project has a CategoryID associated with it that's used when querying the [v3 API](../../text-translation/reference/v3/translate.md?tabs=curl) for translations. CategoryID is parameter used to get translations from a customized system built with Custom Translator.
 
 ## Project categories
 
@@ -34,7 +34,7 @@ In the same workspace, you can create projects for the same language pair in dif
 Custom Translator allows you to assign a project label to your project. The project label distinguishes between multiple projects with the same language
 pair and category. As a best practice, avoid using project labels unless necessary.
 
-The project label is used as part of the `CategoryID`. If the project label is left unset or is set identically across projects, then projects with the same category and *different* language pairs share the same CategoryID. This approach is advantageous because it allows you to switch between languages when using the  Translator API without worrying about a CategoryID that is unique to each project.
+The project label is used as part of the `CategoryID`. If the project label is left unset or is set identically across projects, then projects with the same category and *different* language pairs share the same CategoryID. This approach is advantageous because it allows you to switch between languages when using the  Translator API without worrying about a CategoryID that's unique to each project.
 
 For example, if I wanted to enable translations in the Technology domain from English-to-French and from French-to-English, I would create two
 projects: one for English -\> French, and one for French -\> English. I would specify the same category (Technology) for both and leave the project label

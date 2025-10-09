@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # Azure Translator profanity filtering
 
-In most cases, the Azure Translator service retains profanity that is present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures. As a result, the degree of profanity in the target language can be amplified or reduced.
+In most cases, the Azure Translator service retains profanity that's present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures. As a result, the degree of profanity in the target language can be amplified or reduced.
 
 If you want to avoid seeing profanity in the translation, even if profanity is present in the source text, use the profanity filtering option available in the `Translate()` method. This option allows you to choose whether you want the profanity deleted, marked with appropriate tags, or no action taken.
 

@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 # What are Azure Translator containers?
 
-Azure Translator containers enable you to build translator application architecture that is optimized for both robust cloud capabilities and edge locality. A container is an active running instance of an executable software image that contains everything needed—such as all libraries, tools, and dependencies—to run your application consistently and reliably in any environment, whether it's private, public, or personal. Containers are isolated, lightweight, portable, making them ideal for meeting specific security or data governance requirements. Azure Translator containers are available in [connected](#connected-azure-translator-containers) and [disconnected (offline)](#disconnected-azure-translator-containers) modes.
+Azure Translator containers enable you to build translator application architecture that's optimized for both robust cloud capabilities and edge locality. A container is an active running instance of an executable software image that contains everything needed—such as all libraries, tools, and dependencies—to run your application consistently and reliably in any environment, whether it's private, public, or personal. Containers are isolated, lightweight, portable, making them ideal for meeting specific security or data governance requirements. Azure Translator containers are available in [connected](#connected-azure-translator-containers) and [disconnected (offline)](#disconnected-azure-translator-containers) modes.
 
 ## Connected Azure Translator containers
 

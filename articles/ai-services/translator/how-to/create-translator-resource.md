@@ -88,7 +88,7 @@ After you decide which resource type you want use to access the Translator servi
 
 The quickest method for authenticating your Azure AI Foundry Tools API requests is to include your endpoint URL and a read-only key in an authentication header. For more information, *see* [Authentication and authorization](../../authentication.md#authenticate-with-a-single-service-resource-key)
 
-* **Authentication keys**. Your key is a unique string that is passed on every request to the Translation service. You can pass your key through a query-string parameter or by specifying it in the HTTP request header.
+* **Authentication keys**. Your key is a unique string that's passed on every request to the Translation service. You can pass your key through a query-string parameter or by specifying it in the HTTP request header.
 
 * **Endpoint URL**. Use the Global endpoint in your API request unless you need a specific Azure region or custom endpoint. For more information, see [Base URLs](../text-translation/reference/v3/reference.md#base-urls). The Global endpoint URL is `api.cognitive.microsofttranslator.com`.
 

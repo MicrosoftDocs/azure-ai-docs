@@ -17,7 +17,7 @@ Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **DELETE**
 
-* This method cancels a translation job that is currently processing or queued (pending) as indicated in the request by the `id` query parameter. 
+* This method cancels a translation job that's currently processing or queued (pending) as indicated in the request by the `id` query parameter. 
 * An operation isn't canceled if already completed, failed, or still canceling. In those instances, a bad request is returned. 
 * Completed translations can't be canceled and are charged.
 
@@ -25,7 +25,7 @@ HTTP method: **DELETE**
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X  DELETE "{document-translation-endpoint}/translator/document/batches/{id}?api-version={date}"

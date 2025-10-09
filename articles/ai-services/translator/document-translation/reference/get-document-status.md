@@ -23,7 +23,7 @@ This method returns the status for a specific document in a job as indicated in 
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
   curl -i -X GET "{document-translation-endpoint}/translator/document/batches/{id}/documents/{documentId}?api-version={date}"

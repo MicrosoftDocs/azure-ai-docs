@@ -12,7 +12,7 @@ ms.topic: quickstart
 
 # Quickstart: Build, publish, and translate with Custom Translator
 
-Translator is a cloud-based neural machine translation service that is part of the Azure AI Foundry Tools family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../../language-support.md).
+Translator is a cloud-based neural machine translation service that's part of the Azure AI Foundry Tools family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../../language-support.md).
 
 ## Prerequisites
 

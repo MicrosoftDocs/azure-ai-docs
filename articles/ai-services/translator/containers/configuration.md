@@ -13,7 +13,7 @@ recommendations: false
 
 # Configure Azure Translator Docker containers
 
-Azure AI Foundry Tools offer a unified configuration framework for all containers. You can easily configure your Translator containers to create a Translator application architecture that is optimized for both robust cloud features and edge locality deployment.
+Azure AI Foundry Tools offer a unified configuration framework for all containers. You can easily configure your Translator containers to create a Translator application architecture that's optimized for both robust cloud features and edge locality deployment.
 
 The **Azure Translator** container runtime environment is configured using the `docker run` command arguments. This container includes both required and optional settings. The required settings specific to the container are the billing settings.
 

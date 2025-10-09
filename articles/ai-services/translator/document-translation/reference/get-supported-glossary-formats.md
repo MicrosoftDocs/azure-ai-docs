@@ -23,7 +23,7 @@ This method returns a list of glossary formats supported by the Document transla
 
 > [!IMPORTANT]
 >
-> **All API requests to the Document translation feature require a custom domain endpoint that is located on your resource overview page in the Azure portal**.
+> **All API requests to the Document translation feature require a custom domain endpoint that's located on your resource overview page in the Azure portal**.
 
 ```bash
 curl -i -X GET "{document-translation-endpoint}/translator/document/formats?api-version={date}&type=glossary"
