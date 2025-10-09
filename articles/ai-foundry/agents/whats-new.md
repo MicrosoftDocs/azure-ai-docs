@@ -24,8 +24,7 @@ The Agent Service supports the following [models](./concepts/model-region-suppor
 * gpt-5
 * gpt-5-mini
 * gpt-5-nano
-* o3
-* o4-mini
+* gpt-5-chat
 
 ## September 2025
 
