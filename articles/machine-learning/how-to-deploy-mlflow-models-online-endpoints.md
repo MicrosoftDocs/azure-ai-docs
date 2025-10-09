@@ -38,7 +38,7 @@ For no-code-deployment, Azure Machine Learning:
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 - A user account that has at least one of the following Azure role-based access control (Azure RBAC) roles:
   - An Owner role for the Azure Machine Learning workspace

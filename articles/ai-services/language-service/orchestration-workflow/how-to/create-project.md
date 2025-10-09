@@ -22,7 +22,7 @@ Orchestration workflow allows you to create projects that connect your applicati
 
 Before you start using orchestration workflow, you will need several things:
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Azure AI Language resource 
 
 ### Create a Language resource 
