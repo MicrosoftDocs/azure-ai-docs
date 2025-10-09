@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry Tools
 description: The Translator Dictionary Examples method provides examples that show how terms in the dictionary are used in context.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 11/05/2025

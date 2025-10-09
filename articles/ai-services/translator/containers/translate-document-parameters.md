@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry Tools
 description: Understand the parameters, headers, and body request/response messages for the Azure Translator container translate document operation.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 11/05/2025

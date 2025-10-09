@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry Tools
 description: Convert text in one language from one script to another script with the Translator Transliterate method.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 11/05/2025

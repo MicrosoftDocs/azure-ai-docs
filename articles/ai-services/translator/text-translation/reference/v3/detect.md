@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry Tools
 description: Identify the language of a piece of text with the Azure AI Translator Detect method.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
 ms.date: 11/05/2025

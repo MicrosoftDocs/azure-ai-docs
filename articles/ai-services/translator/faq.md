@@ -4,7 +4,6 @@ titleSuffix: Azure AI Foundry Tools
 description: Get answers to frequently asked questions about the Azure Translator API in Azure AI Foundry Tools.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: conceptual
 ms.date: 11/05/2025
