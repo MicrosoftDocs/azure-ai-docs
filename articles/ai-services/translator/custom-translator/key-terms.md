@@ -15,7 +15,7 @@ ms.topic: reference
 The following table presents a list of key terms that you may find as you work with the [Custom Translator](https://portal.customtranslator.azure.ai).
 
 | Word or Phrase | Definition |
-|--|--|
+|---|---|
 | Source Language | The source language is the starting language that you want to convert to another language (the "target"). |
 | Target Language | The target language is the language that you want the machine translation to provide after it receives the source language. |
 | Monolingual File | A monolingual file has a single language not paired with another file of a different language. |
