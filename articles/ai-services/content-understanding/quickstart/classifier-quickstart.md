@@ -2,8 +2,8 @@
 title: Classifier quickstart
 titleSuffix: Azure AI services
 description: Quickstart guide for using the classifier functionality, including prerequisites and sample API calls.
-author: [Author Name]
-ms.author: [ms-author]
+author: pafarley
+ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 10/03/2025

@@ -2,8 +2,8 @@
 title: In-Context Learning tutorial
 titleSuffix: Azure AI services
 description: Tutorial for using in-context learning within Content Understanding, including labeled samples and analyzer rebuilding.
-author: [Author Name]
-ms.author: [ms-author]
+author: pafarley
+ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.date: 10/03/2025

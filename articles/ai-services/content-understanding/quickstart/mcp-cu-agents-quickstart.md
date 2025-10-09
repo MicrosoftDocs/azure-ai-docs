@@ -2,8 +2,8 @@
 title: MCP + CU Agents quickstart
 titleSuffix: Azure AI services
 description: Quickstart for using MCP and Content Understanding together as agents/tools.
-author: [Author Name]
-ms.author: [ms-author]
+author: pafarley
+ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: quickstart
 ms.date: 10/03/2025

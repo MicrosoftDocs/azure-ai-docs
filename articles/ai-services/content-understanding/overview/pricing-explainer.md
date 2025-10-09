@@ -1,5 +1,5 @@
 ---
-title: Pricing explainer for Azure AI Content Understanding
+title: Pricing for Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Understand the pricing model for Azure AI Content Understanding, including what you're charged for, how to estimate costs, and pricing examples.
 author: PatrickFarley

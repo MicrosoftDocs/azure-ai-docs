@@ -2,8 +2,8 @@
 title: In-Context Learning (ICL) in Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Conceptual documentation for In-Context Learning (ICL) in Content Understanding.
-author: [Author Name]
-ms.author: [ms-author]
+author: jfilcik
+ms.author: jfilcik
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 10/03/2025

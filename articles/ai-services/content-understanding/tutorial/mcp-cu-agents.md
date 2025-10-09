@@ -2,8 +2,8 @@
 title: MCP + CU Agents tutorial
 titleSuffix: Azure AI services
 description: Tutorial for using MCP and Content Understanding together in agent workflows.
-author: [Author Name]
-ms.author: [ms-author]
+author: pafarley
+ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: tutorial
 ms.date: 10/03/2025
