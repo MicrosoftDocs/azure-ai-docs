@@ -20,7 +20,7 @@ items:
       - name: CU Studio vs. Foundry (TODO)
         displayName: studio, foundry, differences, comparison, use cases, features
         href: overview/cu-studio-vs-foundry.md
-      - name: Pricing explainer (TODO)
+      - name: Pricing explainer
         displayName: pricing, cost, examples, billing
         href: overview/pricing-explainer.md
       - name: Pricing
