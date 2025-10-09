@@ -54,7 +54,6 @@ Realtime API service improvements:
 - Image Input: Add and discuss images via voice without video requirements.
 - Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
-- SIP entry supported: public SIP URI, SIPS/SRTP, PSTN, HD Voice. 
 
 
 We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
