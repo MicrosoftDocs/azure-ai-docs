@@ -18,7 +18,7 @@ keywords:
 
 ## Prerequisites
 
-* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Create a new Azure AI Foundry resource
 

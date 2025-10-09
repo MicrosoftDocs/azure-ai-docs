@@ -144,7 +144,7 @@ AI Foundry resource is a superset of Azure OpenAI resource and its capabilities 
 
 - {custom-domain}.openai.azure.com
 - {custom-domain}.services.ai.azure.com
-- {custom-domain}.cognitive.microsoft.com
+- {custom-domain}.cognitiveservices.azure.com
 
 Your DNS configuration must be able to resolve each of the above FQDNs in order to use the full set of Foundry capabilities. 
 
@@ -155,7 +155,7 @@ Your DNS configuration must be able to resolve each of the above FQDNs in order 
 After this, delete and [re-create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint creates an IP address in your Azure Virtual Network to map to each endpoint.
 
 > [!IMPORTANT] 
-> When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "cognitive.microsoft.com" IP configurations to be created.
+> When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "{custom-domain}.cognitiveservices.azure.com" IP configurations to be created.
 
 ## Roll back to Azure OpenAI
 

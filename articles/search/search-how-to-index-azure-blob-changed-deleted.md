@@ -30,7 +30,7 @@ The deletion detection strategy must be applied from the very first indexer run.
 
 ## Prerequisites
 
-+ Use an Azure Storage indexer for [Blob Storage](search-howto-indexing-azure-blob-storage.md), [Table Storage](search-howto-indexing-azure-tables.md), [File Storage](search-howto-indexing-azure-tables.md), or [Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
++ Use an Azure Storage indexer for [Blob Storage](search-how-to-index-azure-blob-storage.md), [Table Storage](search-how-to-index-azure-tables.md), [File Storage](search-how-to-index-azure-tables.md), or [Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
 
 + Use consistent document keys and file structure. Changing document keys or directory names and paths (applies to ADLS Gen2) breaks the internal tracking information used by indexers to know which content was indexed, and when it was last indexed.
 
@@ -146,5 +146,5 @@ You can reverse a soft-delete if the original source file still physically exist
 ## Next steps
 
 + [Indexers in Azure AI Search](search-indexer-overview.md)
-+ [How to configure a blob indexer](search-howto-indexing-azure-blob-storage.md)
++ [How to configure a blob indexer](search-how-to-index-azure-blob-storage.md)
 + [Blob indexing overview](search-blob-storage-integration.md)

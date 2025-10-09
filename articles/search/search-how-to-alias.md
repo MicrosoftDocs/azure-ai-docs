@@ -48,7 +48,7 @@ POST /indexes/my-alias/docs/search?api-version=2025-08-01-preview
 
 You can only use an alias with document operations or to get and update an index definition. 
 
-Aliases can't be used to [delete an index](/rest/api/searchservice/indexes/delete), or [test text tokenization](/rest/api/searchservice/indexes/analyze), or be referenced as the `targetIndexName` on an [indexer](/rest/api/searchservice/indexers/create-or-update) or [knowledge source](search-knowledge-source-how-to-index.md).
+Aliases can't be used to [delete an index](/rest/api/searchservice/indexes/delete), or [test text tokenization](/rest/api/searchservice/indexes/analyze), or be referenced as the `targetIndexName` on an [indexer](/rest/api/searchservice/indexers/create-or-update) or [knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 ## Create an index alias
 
