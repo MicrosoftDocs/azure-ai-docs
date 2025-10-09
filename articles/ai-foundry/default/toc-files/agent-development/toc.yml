@@ -3,3 +3,5 @@ items:
   href: ../../../agents/overview.md
 - name: Environment setup
   href: ../../../agents/environment-setup.md
+- name: Agent runtime components
+  href: ../../../agents/concepts/threads-runs-messages.md
