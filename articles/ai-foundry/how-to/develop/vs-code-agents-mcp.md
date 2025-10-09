@@ -1,5 +1,5 @@
 ---
-title: Work with Azure AI Foundry Agent Service and MCP Server tools in Visual Studio Code
+title: Work with Azure AI Foundry Agent Service and MCP Server Tools in Visual Studio Code
 titleSuffix: Azure AI Foundry
 description: Use this article to learn how to use MCP server tools with Azure AI Foundry Agent Service directly in VS Code.
 manager: mcleans
@@ -16,7 +16,7 @@ author: ms-johnalex
 
 # Work with Azure AI Foundry Agent Service and MCP server tools in Visual Studio Code (preview)
 
-In this article, you learn how to add and use the [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol) tool with Azure AI agents by using the [Azure AI Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
+In this article, you learn how to add and use [Model Context Protocol (MCP)](/azure/ai-foundry/agents/how-to/tools/model-context-protocol) tools with Azure AI agents by using the [Azure AI Foundry for Visual Studio Code extension](https://marketplace.visualstudio.com/items?itemName=TeamsDevApp.vscode-ai-foundry).
 
 After you [build an agent in Azure AI Foundry Agent Service](./vs-code-agents.md) by using this Visual Studio Code (VS Code) extension, you can add MCP tools to your agent.
 
@@ -39,7 +39,7 @@ To create an Azure AI agent, follow the steps in [Create and edit Azure AI agent
 
 After you create your agent, you can add tools to it, including MCP tools. For more information about available tools, see [Tools for Azure AI agents](/azure/ai-foundry/agents/how-to/tools/overview).
 
-You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique `Server Label` value within the same agent and a `Server URL` value that points to the remote MCP server.
+You can bring multiple remote MCP servers by adding them as tools. For each tool, you need to provide a unique **Server Label** value within the same agent and a **Server URL** value that points to the remote MCP server.
 
 > [!WARNING]
 > The remote MCP servers that you use with the MCP tool in this article are not from Microsoft. Microsoft doesn't test or verify these servers. For details, see [Considerations for using non-Microsoft services and servers](/azure/ai-foundry/agents/how-to/tools/model-context-protocol?branch=pr-en-us-6966#considerations-for-using-non-microsoft-services-and-servers).
@@ -48,7 +48,7 @@ To add an existing MCP server tool to your AI agent, follow these steps:
 
 1. In the designer, in the upper-right corner of the **TOOL** section, select the **Add tool** button. In the dropdown list, select the **MCP Server** tool.
 
-1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an MCP tool by the following information:
+1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an MCP tool by using the following information:
 
     1. **Server URL**: The URL of the MCP server; for example, `https://gitmcp.io/Azure/azure-rest-api-specs`.
 
@@ -78,7 +78,7 @@ After you add an MCP tool, you can create an agent directly on Azure AI Foundry 
 
 Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only mode. You can:
 
-- Select the **Edit Agent** button to view the agent designer and YAML definition of the agent for editing.
+- Select the **Edit Agent** button to view the agent designer and the YAML definition of the agent for editing.
 - Select the **Open Code File** button to create a sample code file that uses the agent.
 - Select the **Open Playground** button to open **Agent Playground**.
 
@@ -96,24 +96,24 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 
 ### Interact with agents by using the MCP server tool in the agent playground
 
-1. Right-click your deployed agent that has an **MCP Server** tool and select the **Open Playground** option. This action starts a thread with your agent and lets you send messages.
+1. Right-click your deployed agent that has an **MCP Server** tool and then select the **Open Playground** option. This action starts a thread with your agent and lets you send messages.
 
-1. After the **Agent Playground** pane appears, enter a prompt such as **Give me an example for creating a container app** and send it.
+1. In the **Agent Playground** pane, enter a prompt such as **Give me an example for creating a container app** and send it.
 
-1. Select the authentication mode for the MCP server tool. Choose the appropriate authentication method and proceed.
+1. Select the authentication method for the MCP server tool and proceed.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png" alt-text="Screenshot of the MCP server tool authentication prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png":::
-1. Select the approval preference for the MCP server tool. Choose the appropriate approval preference and proceed.
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png" alt-text="Screenshot of the MCP server tool's authentication prompt in the agent playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png":::
+1. Select the approval preference for the MCP server tool and proceed.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP server tool approval preference in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP server tool's approval preference in the agent playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
 
 1. If you chose **Ask every time** for your approval preference, you need to approve or reject the tool call.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png" alt-text="Screenshot of the MCP server tool approval prompt in the Agents Playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png" alt-text="Screenshot of the MCP server tool's approval prompt in the agent playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png":::
 
-1. The agent uses the model and the MCP server tools that you configured in the agent designer to retrieve the information. The source of the information is displayed in the **Agent Annotations** section.
+1. The agent uses the model and the MCP server tools that you configured in the agent designer to retrieve the information. The source of the information appears in the **Agent Annotations** section.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code after using the MCP server tool." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png" alt-text="Screenshot of the agent playground with agent annotations highlighted in Visual Studio Code after use of the MCP server tool." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png":::
 
 ## Clean up resources
 
@@ -123,26 +123,28 @@ The Azure resources that you created in this article are billed to your Azure su
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
+1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with Agents from the navigation menu on the left and the Delete button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+1. Select the agent that you want to delete, and then select **Delete**.
+
+   :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Azure AI Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
 1. In VS Code, refresh the **Azure Resources** view. Expand the **Models** subsection to display the list of deployed models.
 
-1. Right-click your deployed model to delete, and then select the **Delete** option.
+1. Right-click the deployed model that you want to delete, and then select **Delete**.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the Delete option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the shortcut menu with the Delete command for a selected model." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
 
-### Delete your tools
-
-Delete the connected tool with the following steps:
+### Delete your connected tools
 
 1. Open the Azure portal.
-1. Select the Azure Resource Group that contains the tool.
+
+1. Select the Azure resource group that contains the tool.
+
 1. Select the **Delete** button.
 
 ## Related content
 
-- Learn about the tools you can use with Azure AI agents, such as [file search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview), or [code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview).
+- Learn about the tools that you can use with Azure AI agents, such as [file search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) or [code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview).
