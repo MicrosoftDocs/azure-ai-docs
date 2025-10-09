@@ -31,7 +31,7 @@ As your needs change or your automation requirements increase, you can manage wo
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 * With the Python SDK:
    1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
    1. Install azure-identity: `pip install azure-identity`. If in a notebook cell, use `%pip install azure-identity`.
