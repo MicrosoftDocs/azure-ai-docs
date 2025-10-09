@@ -26,14 +26,14 @@ Cached content is placed in Azure Storage using account information that you pro
 
 + [Azure Storage](/azure/storage/common/storage-account-create) for storing cached enrichments. The storage account must be [general purpose v2](/azure/storage/common/storage-account-overview#types-of-storage-accounts).
 
-+ [For blob indexing only](search-howto-indexing-azure-blob-storage.md), if you need synchronized document removal from both the cache and index when blobs are deleted from your data source, enable a [deletion policy](search-howto-index-changed-deleted-blobs.md) in the indexer. Without this policy, document deletion from the cache isn't supported.
++ [For blob indexing only](search-how-to-index-azure-blob-storage.md), if you need synchronized document removal from both the cache and index when blobs are deleted from your data source, enable a [deletion policy](search-how-to-index-azure-blob-changed-deleted.md) in the indexer. Without this policy, document deletion from the cache isn't supported.
 
 You should be familiar with setting up indexers and skillsets. Start with [indexer overview](search-indexer-overview.md) and then continue on to [skillsets](cognitive-search-working-with-skillsets.md) to learn about enrichment pipelines. 
 
 ## Limitations
 
 > [!CAUTION]
-> If you're using the [SharePoint Online indexer (Preview)](search-howto-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and full rebuild](search-howto-run-reset-indexers.md), should you choose to reload it.
+> If you're using the [SharePoint Online indexer (Preview)](search-how-to-index-sharepoint-online.md), you should avoid incremental enrichment. Under certain circumstances, the cache becomes invalid, requiring an [indexer reset and full rebuild](search-howto-run-reset-indexers.md), should you choose to reload it.
 
 ## Permissions
 
