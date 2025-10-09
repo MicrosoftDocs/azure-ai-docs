@@ -202,6 +202,6 @@ Connection information and permissions on the remote service are validated at ru
 
 ## See also
 
-* [Indexing via an Azure Cosmos DB for NoSQL](search-howto-index-cosmosdb.md)
-* [Indexing via an Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md)
-* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md)
+* [Indexing via an Azure Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md)
+* [Indexing via an Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md)
+* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md)
