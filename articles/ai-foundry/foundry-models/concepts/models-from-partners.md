@@ -84,7 +84,7 @@ See [this model collection in Azure AI Foundry portal](https://ai.azure.com/expl
 
 ## Microsoft
 
-Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more. To see all the available Microsoft models, view [the Microsoft model collection in Azure AI Foundry portal](https://ai.azure.com/explore/models?&selectedCollection=phi/?cid=learnDocs).
+Microsoft models include various model groups such as MAI models, Phi models, healthcare AI models, and more.
 
 | Model  | Type | Capabilities | Project type |
 | ------ | ---- | ------------ | ------------ |
