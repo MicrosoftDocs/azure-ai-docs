@@ -12,7 +12,7 @@ ms.author: lajanuar
 zone_pivot_groups: programming-languages-document-sdk
 ---
 
-# Get started: Document translation client libraries
+# Get started: Translator document translation SDKs
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 

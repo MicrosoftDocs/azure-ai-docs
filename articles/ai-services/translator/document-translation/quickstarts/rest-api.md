@@ -10,7 +10,7 @@ ms.topic: quickstart
 ms.date: 11/05/2025
 ---
 
-# Get started: Document translation REST APIs
+# Get started: Translator document translation REST APIs
 <!-- markdownlint-disable MD024 -->
 <!-- markdownlint-disable MD001 -->
 

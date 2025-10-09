@@ -36,34 +36,33 @@ items:
   - name: What is Translator text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
+  - name: Text translation HTTP reference
+    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
+    href: text-translation/reference/v3/reference.md
   - name: Text translation SDK
     displayName: get started,sdk,keys,endpoint
     href: text-sdk-overview.md
-
-  - name: HTTP requests
-    displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
-    href: text-translation/reference/v3/reference.md
-  - name: Text translation REST APIs (GA)
-    href:  text-translation/reference/rest-api-guide.md
-  - name: Get languages
-    href: text-translation/reference/v3/languages.md
-  - name: Translate
-    displayName: detection,detect
-    href: text-translation/reference/v3/translate.md
-  - name: Transliterate
-    href: text-translation/reference/v3/transliterate.md
-  - name: Detect
-    href: text-translation/reference/v3/detect.md
-  - name: BreakSentence
-    displayName: detection,detect
-    href: text-translation/reference/v3/break-sentence.md
-  - name: Dictionary Lookup
-    href: text-translation/reference/v3/dictionary-lookup.md
-  - name: Dictionary Examples
-    href: text-translation/reference/v3/dictionary-examples.md
-  - name: Migrate to v3 Text translation API
-    displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
-    href: text-translation/how-to/migrate-to-v3.md
+  - name: Text translation REST APIs
+    items:
+    - name: Text translation REST API guide
+      href:  text-translation/reference/rest-api-guide.md
+    - name: Get languages
+      href: text-translation/reference/v3/languages.md
+    - name: Translate
+      displayName: detection,detect
+      href: text-translation/reference/v3/translate.md
+    - name: Transliterate
+      href: text-translation/reference/v3/transliterate.md
+    - name: Detect
+      href: text-translation/reference/v3/detect.md
+    - name: BreakSentence
+      displayName: detection,detect
+      href: text-translation/reference/v3/break-sentence.md
+    - name: Dictionary Lookup
+      href: text-translation/reference/v3/dictionary-lookup.md
+    - name: Dictionary Examples
+      href: text-translation/reference/v3/dictionary-examples.md
+  
 
   - name: Quickstarts
     items:
@@ -116,12 +115,15 @@ items:
       - name: Status codes
         displayName: 401000,405000,400000
         href: text-translation/reference/status-response-codes.md
-      - name: metrics
+      - name: Metrics overview.md
         displayName: document count,character count,translation duration
         href: text-translation/reference/metrics.md
+      - name: Migrate to v3 Text translation API
+        displayName: "speech,error,version,endpoint,compatibility,json,authentication,pricing"
+        href: text-translation/how-to/migrate-to-v3.md  
+    
 
-
-- name: Translator text translation (2025-05-01-preview) 🆕
+- name: Azure Translator text translation (preview) 🆕
   items:
   - name: Overview 🆕
     displayName: gpt, adaptive, tone, gender
@@ -145,7 +147,7 @@ items:
 
 - name: Azure Translator document translation
   items:
-  - name: What is Azure document translation?
+  - name: What is Azure Translator document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
   - name: Document translation SDK guide 🆕
@@ -164,7 +166,7 @@ items:
       href: document-translation/quickstarts/rest-api.md
   - name: How-to guides
     items:
-    - name: Use document translation APIs programmatically
+    - name: Use document translation programmatically
       displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
       href: document-translation/how-to-guides/use-rest-api-programmatically.md
     - name: Create and use glossaries
@@ -204,7 +206,7 @@ items:
     href: document-translation/faq.md
 - name: Containers
   items:
-  - name: What is an Azure Translator container?
+  - name: What are Azure Translator containers?
     displayName: docker,docker-run,run,pull,swagger,c#,python,import,cpu,EULA,billing
     href: containers/overview.md
   - name: Install and run containers

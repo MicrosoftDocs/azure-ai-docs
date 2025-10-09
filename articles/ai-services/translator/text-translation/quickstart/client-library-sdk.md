@@ -20,7 +20,7 @@ zone_pivot_groups:  programming-languages-set-translator-sdk
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 
-# Quickstart: Azure Translator text client libraries 
+# Quickstart: Translator text translation SDKs
 
 In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
