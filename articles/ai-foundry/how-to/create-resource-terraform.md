@@ -19,17 +19,19 @@ ai-usage: ai-assisted
 
 In this article, you use Terraform to manage an [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) resource. You learn how to use Terraform to manage AI Foundry management configurations including projects, deployments, and connections. 
 
-You can use either the [AzAPI](/azure/developer/terraform/overview-azapi-provider) or [AzureRM](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) Terraform provider to manage Azure AI Foundry resources. While the AzAPI provider lets you access to all Foundry control plane configurations including preview features, the AzureRM variant is limited to core management capabilities. 
+You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/overview-azapi-provider) or [AzureRM Provider](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) to manage Azure AI Foundry resources. While the AzAPI provider lets you access all Foundry control plane configurations including preview features, the AzureRM variant is limited to core management capabilities:
+
+|Action|AzAPI Provider|AzureRM Provider|
+| --- | --- | --- |
+| Create a resource group | ✅ | ✅ |
+| Create an AI Foundry resource | ✅ | ✅ |
+| Configure deployments | ✅ | ✅ |
+| Configure projects | ✅ | - |
+| Configure a connection to knowledge and tools | ✅ | - |
+| Configure a capability (for advanced tool configurations) | ✅ | - |
+
 
 [!INCLUDE [About Terraform](~/azure-dev-docs-pr/articles/terraform/includes/abstract.md)]
-
-> [!div class="checklist"]
-> * Create a resource group
-> * Create an AI Foundry resource.
-> * Configure projects.
-> * Configure deployments.
-> * Configure a connection to other resources.
-> * Configure capability host to bring your own storage with Agent service.
 
 ## Prerequisites
 
@@ -39,7 +41,7 @@ You can use either the [AzAPI](/azure/developer/terraform/overview-azapi-provide
 
 ## Implement a basic AI Foundry configuration using Terraform code
 
-# [AzAPI](#tab/azapi)
+# [AzAPI Provider](#tab/azapi)
 
 1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
 
@@ -55,7 +57,7 @@ You can use either the [AzAPI](/azure/developer/terraform/overview-azapi-provide
 
     :::code language="Terraform" source="~/foundry-samples-main/samples/microsoft/infrastructure-setup-terraform/00-basic/code/variables.tf"::: 
 
-# [AzureRM](#tab/azurerm)
+# [AzureRM Provider](#tab/azurerm)
 
 1. Create a directory in which to test and run the sample Terraform code and make it the current directory.
 
