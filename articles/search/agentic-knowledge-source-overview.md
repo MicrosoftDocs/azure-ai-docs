@@ -38,8 +38,8 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 Here are the knowledge sources you can create in this preview:
 
-+ [Search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
-+ [Blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
++ [`"searchIndex"`](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) wraps an existing index
++ [`"azureBlob"`](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container
 
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides all extraction, enrichment and transformations over blob content, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 
@@ -48,9 +48,9 @@ A platform-specific knowledge source like the blob knowledge source includes spe
 
 ## Create a knowledge source
 
-You must have [permissions](search-security-rbac.md) to create objects on a search service (**Search Service Contributor**), and also permissions to load an index if you're using a blob knowledge source (**Search Index Data Contributor**). You can also [use an API admin key](search-security-api-keys.md).
+You must have [permissions](search-security-rbac.md) to create objects on a search service (**Search Service Contributor**), and also permissions to load an index if you're using a knowledge source (**Search Index Data Contributor**) that creates an indexer pipeline. Alternatively, you can also [use an API admin key](search-security-api-keys.md) to create and load objects.
 
-You must use the REST API or an Azure SDK preview package to create a knowledge source. There's no portal supported at this time. The following links provide instructions for creating a knowledge source:
+You must use the REST API or an Azure SDK preview package to create a knowledge source. There's no portal support at this time. The following links provide instructions for creating a knowledge source:
 
 + [Search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [Blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
