@@ -193,7 +193,15 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"documentPages": 1,
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
@@ -229,7 +237,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
@@ -274,7 +289,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
@@ -334,7 +356,14 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
         ]
       }
     ]
-  }
+  },
+  "usage": {
+		"tokens": {
+			"contextualization": 1000,
+			"input": 1866,
+			"output": 87
+		}
+	}
 }
 ```
 
