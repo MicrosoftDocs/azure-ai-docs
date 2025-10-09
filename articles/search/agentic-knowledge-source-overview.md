@@ -48,7 +48,7 @@ A platform-specific knowledge source like the blob knowledge source includes spe
 
 ## Create a knowledge source
 
-You must have [permissions](search-security-rbac.md) to create objects on a search service (**Search Service Contributor**), and also permissions to load an index if you're using a knowledge source (**Search Index Data Contributor**) that creates an indexer pipeline. Alternatively, you can also [use an API admin key](search-security-api-keys.md) to create and load objects.
+You must have [**Search Service Contributor** permissions](search-security-rbac.md) to create objects on a search service.  You also need **Search Index Data Contributor** permissions to load an index if you're using a knowledge source that creates an indexer pipeline. Alternatively, you can [use an API admin key](search-security-api-keys.md) instead of roles.
 
 You must use the REST API or an Azure SDK preview package to create a knowledge source. There's no portal support at this time. The following links provide instructions for creating a knowledge source:
 
