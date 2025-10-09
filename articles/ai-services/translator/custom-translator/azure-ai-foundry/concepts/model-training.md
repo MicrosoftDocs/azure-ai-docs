@@ -1,7 +1,6 @@
 ---
 title: Azure AI Foundry custom translation model training
 titleSuffix: Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
 description: "A model is the system that provides translation for a specific language pair. The outcome of a successful training is a model. To train a model, three mutually exclusive data sets are required: training dataset, tuning dataset, and testing dataset."
 author: laujan
 manager: nitinme

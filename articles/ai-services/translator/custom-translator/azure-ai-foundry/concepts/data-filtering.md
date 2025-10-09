@@ -1,7 +1,6 @@
 ---
 title: Azure AI Foundry custom translation data filtering
 titleSuffix: Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
 description: How custom translation training documents for a custom system undergo a series of processing and filtering steps.
 author: laujan
 manager: nitinme

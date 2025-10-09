@@ -1,7 +1,6 @@
 ---
 title: Azure AI Foundry custom translations
 titleSuffix: Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
 description: Build your own machine translation system using your preferred terminology and style.
 #services: cognitive-services
 author: laujan

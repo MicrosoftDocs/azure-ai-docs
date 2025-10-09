@@ -1,6 +1,5 @@
 title: Deploy an Azure AI Foundry custom translation model.
 titleSuffix: Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
 description: This article explains how to deploy a custom translation model.
 author: laujan
 manager: nitinme

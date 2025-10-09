@@ -1,6 +1,5 @@
 title: Create an Azure AI Foundry fine-tuning project - custom translation
 titleSuffix: Azure AI Foundry Tools
-titleSuffix: Azure AI Foundry Tools
 description: How to create and manage a fine-tuning project
 author: laujan
 manager: nitinme
