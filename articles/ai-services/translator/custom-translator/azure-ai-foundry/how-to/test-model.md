@@ -1,3 +1,4 @@
+---
 title: View your Azure AI Foundry custom translation test model details 
 description: How to test your custom translation model BLEU score and evaluate translations
 titleSuffix: Azure AI Foundry Tools

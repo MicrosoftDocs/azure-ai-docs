@@ -1,3 +1,4 @@
+---
 title: Translate text with Azure AI Foundry custom translation model
 titleSuffix: Azure AI Foundry Tools
 description: How to make translation requests using deployed Azure AI Foundry custom translation model

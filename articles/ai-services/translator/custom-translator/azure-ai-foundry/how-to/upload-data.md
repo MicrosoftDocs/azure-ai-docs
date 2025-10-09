@@ -1,3 +1,4 @@
+---
 title: Upload Azure AI Foundry custom translation model language pair datasets 
 titleSuffix: Azure AI Foundry Tools
 description: How to upload Azure AI Foundry custom translation datasets
