@@ -18,7 +18,7 @@ This guide shows you how to use text to speech avatar with real-time synthesis. 
 
 You need:
 
-- **Azure subscription:** [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+- **Azure subscription:** [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - **Speech resource:** [Create a speech resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) in the Azure portal. Select the **Standard S0** pricing tier to access avatars.
 - **Speech resource key and region:** After deployment, select **Go to resource** to view and manage your keys.
 
