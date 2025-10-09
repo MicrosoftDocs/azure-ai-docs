@@ -22,3 +22,4 @@ _repo.*/
 .github/patterns/*.md
 
 articles/ai-foundry/includes/get-started-fdp.md
+articles/ai-foundry/toc-files/setup-management/toc.yml

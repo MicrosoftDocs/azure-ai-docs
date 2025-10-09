@@ -7,11 +7,10 @@ ms.date: 08/14/2025
 ms.author: lajanuar
 ---
 
-Use this article to get started with Conversational Language Understanding (CLU) using Azure AI Foundry or the REST API.
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 
 

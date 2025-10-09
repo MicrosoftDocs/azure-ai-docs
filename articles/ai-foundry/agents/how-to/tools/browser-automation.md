@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to automate browser tasks using AI agents.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 09/15/2025
 author: aahill

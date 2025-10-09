@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 05/08/2025
+ms.date: 09/23/2025
 ---
 
 # Data import in Azure AI Search
@@ -71,14 +71,14 @@ Whether you use the REST API or an Azure SDK, the following document operations 
 
 The pull model uses *indexers* connecting to a supported data source, automatically uploading the data into your index. Indexers from Microsoft are available for these platforms:
 
-+ [Azure Blob storage](search-howto-indexing-azure-blob-storage.md)
-+ [Azure Table storage](search-howto-indexing-azure-tables.md)
-+ [Azure Data Lake Storage Gen2](search-howto-index-azure-data-lake-storage.md)
++ [Azure Blob storage](search-how-to-index-azure-blob-storage.md)
++ [Azure Table storage](search-how-to-index-azure-tables.md)
++ [Azure Data Lake Storage Gen2](search-how-to-index-azure-data-lake-storage.md)
 + [Azure Files (preview)](search-file-storage-integration.md)
-+ [Azure Cosmos DB](search-howto-index-cosmosdb.md)
++ [Azure Cosmos DB](search-how-to-index-cosmosdb-sql.md)
 + [Azure SQL Database, SQL Managed Instance, and SQL Server on Azure VMs](search-how-to-index-sql-database.md)
-+ [OneLake files and shortcuts](search-how-to-index-onelake-files.md)
-+ [SharePoint Online (preview)](search-howto-index-sharepoint-online.md)
++ [Microsoft OneLake files and shortcuts](search-how-to-index-onelake-files.md)
++ [SharePoint Online (preview)](search-how-to-index-sharepoint-online.md)
 
 You can use third-party connectors, developed and maintained by Microsoft partners. For more information and links, see [Data source gallery](search-data-sources-gallery.md).
 

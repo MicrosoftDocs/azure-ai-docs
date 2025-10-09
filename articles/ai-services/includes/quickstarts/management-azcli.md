@@ -18,7 +18,7 @@ Use this quickstart to create an AI Foundry resource using [Azure Command-Line I
 
 ## Prerequisites
 
-* A valid Azure subscription - [Create one](https://azure.microsoft.com/free/cognitive-services) for free.
+* A valid Azure subscription - [Create one](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) for free.
 * The [Azure CLI](/cli/azure/install-azure-cli)
 
 ## Install the Azure CLI and sign in

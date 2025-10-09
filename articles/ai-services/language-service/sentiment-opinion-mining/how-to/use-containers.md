@@ -16,11 +16,11 @@ keywords: on-premises, Docker, container, sentiment analysis, natural language p
 
 Containers enable you to host the Sentiment Analysis API on your own infrastructure. If you have security or data governance requirements that can't be fulfilled by calling Sentiment Analysis remotely, then containers might be a good option.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 
-You must meet the following prerequisites before using Sentiment Analysis containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+You must meet the following prerequisites before using Sentiment Analysis containers. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * [Docker](https://docs.docker.com/) installed on a host computer. Docker must be configured to allow the containers to connect with and send billing data to Azure. 
     * On Windows, Docker must also be configured to support Linux containers.

@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use resources that you already have with the Azure AI Foundry Agent Service. 
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/23/2025
 author: aahill
@@ -49,7 +50,7 @@ If you want to continue using your hub-based project and connection string, you 
 > * Make sure your Azure OpenAI resource and Azure AI Foundry account and project are in the same region. 
 
 ## Prerequisites
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Ensure that the individual creating the account and project has the **Azure AI Account Owner** role at the subscription scope
 * If configuring a [standard setup](#choose-basic-or-standard-agent-setup), the same individual must also have permissions to assign roles to required resources (Cosmos DB, Search, Storage). For more information about RBAC in Azure AI Foundry, see [RBAC in Azure AI Foundry](../../../ai-foundry/concepts/rbac-azure-ai-foundry.md).
     * The built-in role needed is **Role Based Access Administrator**.

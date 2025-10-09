@@ -18,7 +18,7 @@ Use this quickstart to create an AI Foundry resource using [Azure PowerShell](/p
 
 ## Prerequisites
 
-* A valid Azure subscription - [Create one](https://azure.microsoft.com/free/cognitive-services) for free.
+* A valid Azure subscription - [Create one](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) for free.
 * [Azure PowerShell](/powershell/azure/install-azure-powershell).
 
 ## Install Azure PowerShell and sign in

@@ -11,7 +11,7 @@ ms.custom:
   - devx-track-js
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/19/2025
+ms.date: 09/23/2025
 ---
 
 # JavaScript samples for Azure AI Search
@@ -35,7 +35,7 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 | Sample | Description |
 |--|--|
 | [indexes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, and delete [indexes](search-what-is-an-index.md). This sample category also includes a service statistic sample. |
-| [indexers](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, reset, and delete [indexers](search-indexer-overview.md).|
+| [indexers](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, reset, and delete [indexers](search-indexer-overview.md). |
 | [dataSourceConnections (for indexers)](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v11/javascript/dataSourceConnectionOperations.js) | Create, update, get, list, and delete data source connections, which are required for indexer-based indexing of [supported data sources](search-indexer-overview.md#supported-data-sources). |
 | [skillsets](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, and delete [skillsets](cognitive-search-working-with-skillsets.md) that are attached to indexers and perform AI-based enrichment during indexing. |
 | [synonymMaps](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/javascript) | Create, update, get, list, and delete [synonym maps](search-synonyms.md). |
@@ -46,7 +46,7 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 | Sample | Description |
 |--|--|
 | [indexes](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/typescript/src) | Create, update, get, list, and delete [indexes](search-what-is-an-index.md). This sample category also includes a service statistic sample. |
-| [indexers](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/typescript/src) | Create, update, get, list, reset, and delete [indexers](search-indexer-overview.md).|
+| [indexers](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/search/search-documents/samples/v11/typescript/src) | Create, update, get, list, reset, and delete [indexers](search-indexer-overview.md). |
 | [dataSourceConnections (for indexers)](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v11/typescript/src/dataSourceConnectionOperations.ts) | Create, update, get, list, and delete data source connections, which are required for indexer-based indexing of [supported data sources](search-indexer-overview.md#supported-data-sources). |
 | [skillsets](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v11/typescript/src/skillSetOperations.ts) | Create, update, get, list, and delete [skillsets](cognitive-search-working-with-skillsets.md) that are attached to indexers and perform AI-based enrichment during indexing. |
 | [synonymMaps](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/samples/v11/typescript/src/synonymMapOperations.ts) | Create, update, get, list, and delete [synonym maps](search-synonyms.md). |
@@ -54,26 +54,24 @@ Code samples from the Azure SDK development team demonstrate API usage. You can 
 
 ## Doc samples
 
-Code samples from the Azure AI Search team demonstrate features and workflows. Many of the following samples are referenced in tutorials, quickstarts, and how-to articles. You can find these samples in [Azure-Samples/azure-search-javascript-samples](https://github.com/Azure-Samples/azure-search-javascript-samples) on GitHub.
+Code samples from the Azure AI Search team demonstrate features and workflows. The following samples are referenced in tutorials, quickstarts, and how-to articles. You can find these samples in [Azure-Samples/azure-search-javascript-samples](https://github.com/Azure-Samples/azure-search-javascript-samples) on GitHub.
 
 ### JavaScript samples
 
-| Sample | Description |
-|--|--|
-| [quickstart](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) | Source code for the JavaScript portion of [Quickstart: Full-text search](search-get-started-text.md). Create, load, and query a search index using sample data. |
-| [quickstart-rag-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-rag-js) | Source code for the JavaScript portion of [Quickstart: Generative search (RAG)](search-get-started-rag.md). Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
-| [quickstart-semantic-ranking-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-js) | Source code for the JavaScript portion of [Quickstart: Semantic ranking](search-get-started-semantic.md). Add semantic ranking to an index schema and run semantic queries. |
-| [quickstart-vector-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-js) | Source code for the JavaScript portion of [Quickstart: Vector search](search-get-started-vector.md). Index and query vector content. |
-| [azure-functions](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/azure-function-search) | JavaScript example of an Azure function that sends queries to a search service. You can substitute this JavaScript version for the `api` code used in the [Add search to web sites](tutorial-csharp-overview.md) C# sample. |
-| [bulk-insert](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/bulk-insert) | JavaScript example of how to [use the push APIs](search-how-to-load-search-index.md) to upload and index documents. |
+| Sample | Article | Description |
+|--|--|--|
+| [quickstart](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart) | [Quickstart: Full-text search](search-get-started-text.md) | Create, load, and query a search index using sample data. |
+| [quickstart-rag-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-rag-js) | [Quickstart: Generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
+| [quickstart-semantic-ranking-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-js) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
+| [quickstart-vector-js](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-js) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 
 ### TypeScript samples
 
-| Sample | Description |
-|--|--|
-| [quickstart-rag-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-rag-ts) | Source code for the TypeScript portion of [Quickstart: Generative search (RAG)](search-get-started-rag.md). Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
-| [quickstart-semantic-ranking-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-ts) | Source code for the TypeScript portion of [Quickstart: Semantic ranking](search-get-started-semantic.md). Add semantic ranking to an index schema and run semantic queries. |
-| [quickstart-vector-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-ts) | Source code for the TypeScript portion of [Quickstart: Vector search](search-get-started-vector.md). Index and query vector content. |
+| Sample | Article | Description |
+|--|--|--|
+| [quickstart-rag-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-rag-ts) | [Quickstart: Generative search (RAG)](search-get-started-rag.md) | Use grounding data from Azure AI Search with a chat completion model from Azure OpenAI. |
+| [quickstart-semantic-ranking-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-semantic-ranking-ts) | [Quickstart: Semantic ranking](search-get-started-semantic.md) | Add semantic ranking to an index schema and run semantic queries. |
+| [quickstart-vector-ts](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/quickstart-vector-ts) | [Quickstart: Vector search](search-get-started-vector.md) | Index and query vector content. |
 
 ## Other samples
 
@@ -81,7 +79,9 @@ The following samples are also published by the Azure AI Search team but aren't 
 
 | Sample | Description |
 |--|--|
-| [azure-search-vector-sample.js](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript/readme.md) | Perform vector search using the Azure SDK for JavaScript. |
+| [azure-search-vector-sample.js](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-javascript/readme.md) | JavaScript example of how to perform vector search. |
+| [azure-function-search](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/azure-function-search) | JavaScript example of an Azure function that sends queries to a search service. You can substitute this JavaScript version for the `api` code used in [Add search to web sites with .NET](tutorial-csharp-overview.md). |
+| [bulk-insert](https://github.com/Azure-Samples/azure-search-javascript-samples/tree/main/bulk-insert) | JavaScript example of how to [use the push APIs](search-how-to-load-search-index.md) to upload and index documents. |
 
 > [!TIP]
 > Use the [samples browser](/samples/browse/?languages=javascript&products=azure-cognitive-search) to search for Microsoft code samples on GitHub. You can filter your search by product, service, and language.

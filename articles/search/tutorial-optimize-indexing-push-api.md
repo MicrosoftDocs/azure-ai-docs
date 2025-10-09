@@ -30,7 +30,7 @@ In this tutorial, you use C# and the [Azure.Search.Documents library](/dotnet/ap
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 + [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
 <a name="get-service-info"></a>

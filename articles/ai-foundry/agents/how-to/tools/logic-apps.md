@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to integrate Logic Apps with Azure AI Agents to execute tasks like sending emails.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/16/2025
 author: aahill

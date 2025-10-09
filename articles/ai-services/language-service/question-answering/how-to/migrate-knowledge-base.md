@@ -22,7 +22,7 @@ You might want to create copies of your projects or sources for several reasons:
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled in the Azure portal. Remember your Microsoft Entra ID, Subscription, and the Language resource name you selected when you created the resource.
 
 ## Export a project

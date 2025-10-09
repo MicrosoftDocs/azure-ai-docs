@@ -14,6 +14,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Get started with prompt flow
