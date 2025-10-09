@@ -34,7 +34,7 @@ An Azure AI Foundry resource can organize the work for multiple use cases, and i
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram explaining concepts of an Azure AI Foundry setup.":::
 
-To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or Powershell.
+To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or PowerShell.
 
 ::: zone pivot="azportal"
 
@@ -56,7 +56,7 @@ To create your first resource, with basic Azure settings, follow the below steps
 
 ## Access your resource
 
-With your first resource created, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure Portal for administrative management](https://portal.azure.com).
+With your first resource created, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure portal for administrative management](https://portal.azure.com).
 
 ## Grant or obtain developer permissions
 
@@ -69,7 +69,7 @@ Built-in Azure RBAC developer roles for Foundry include:
 |Azure AI project manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Azure AI user'.|
 |Azure AI user|Grants development permissions.|
 
-Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure Portal]() or [AI Foundry Portal via management center](). [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
+Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal] or [AI Foundry Portal via management center]. [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 > [!IMPORTANT]
 > Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.
