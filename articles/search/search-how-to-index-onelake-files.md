@@ -48,6 +48,22 @@ This article uses the REST APIs to illustrate each step.
 
 + A [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
+## Limitations
+
++ Parquet (including delta parquet) file types aren't currently supported.
+
++ File deletion isn't supported for Amazon S3 and Google Cloud Storage shortcuts.
+
++ This indexer doesn't support OneLake workspace Table location content. 
+
++ This indexer doesn't support SQL queries, but the query used in the data source configuration is exclusively to add optionally the folder or shortcut to access.
+
++ There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
+
++ Microsoft Purview Sensitivity Labels applied via Data Map are not currently supported. If sensitivity labels are applied to artifacts in OneLake using [Microsoft Purview Data Map](/purview/data-map-sensitivity-labels-apply), the indexer may fail to execute properly. To bypass this restriction, an exception must be granted by your organization’s IT team responsible for managing Purview sensitivity labels and Data Map configurations.
+  
++ Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
+
 ## Supported tasks
 
 You can use this indexer for the following tasks:
@@ -77,23 +93,6 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 + [Amazon S3 shortcut](/fabric/onelake/create-s3-shortcut)
 
 + [Google Cloud Storage shortcut](/fabric/onelake/create-gcs-shortcut)
-
-## Limitations
-
-+ Parquet (including delta parquet) file types aren't currently supported.
-
-+ File deletion isn't supported for Amazon S3 and Google Cloud Storage shortcuts.
-
-+ This indexer doesn't support OneLake workspace Table location content. 
-
-+ This indexer doesn't support SQL queries, but the query used in the data source configuration is exclusively to add optionally the folder or shortcut to access.
-
-+ There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
-
-+ Microsoft Purview Sensitivity Labels applied via Data Map are not currently supported. If sensitivity labels are applied to artifacts in OneLake using [Microsoft Purview Data Map](/purview/data-map-sensitivity-labels-apply), the indexer may fail to execute properly. To bypass this restriction, an exception must be granted by your organization’s IT team responsible for managing Purview sensitivity labels and Data Map configurations.
-  
-+ Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
-
 
 ## Prepare data for indexing
 
