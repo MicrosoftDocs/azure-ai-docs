@@ -295,21 +295,21 @@ Before running locally with `dotnet run`, ensure you have configured the require
   1. Configure your environment variables based on your operating system:
 
    #### [Windows (PowerShell)](#tab/windows-powershell)
-      ```Windows (PowerShell)
+      ```powershell
       $env:AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
       $env:MODEL_DEPLOYMENT_NAME="your-deployment-name"
       $env:AZURE_OPENAI_API_KEY="your-api-key"
       ```
    
    #### [Windows (Command Prompt)](#tab/windows-command-prompt)   
-    ```Windows (Command Prompt)
+    ```dos   
     set AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
     set MODEL_DEPLOYMENT_NAME=your-deployment-name
     set AZURE_OPENAI_API_KEY=your-api-key
     ```
 
    #### [macOS/Linux (Bash)](#tab/macos-linux-bash)   
-    ```macOS/Linux (Bash)
+    ```bash
     export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
     export MODEL_DEPLOYMENT_NAME="your-deployment-name"
     export AZURE_OPENAI_API_KEY="your-api-key"
