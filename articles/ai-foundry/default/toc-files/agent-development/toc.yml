@@ -2,4 +2,4 @@ items:
 - name: Agent development overview
   href: ../../../agents/overview.md
 - name: Environment setup
-  href: ./environment-setup.md
+  href: ../../../agents/environment-setup.md
