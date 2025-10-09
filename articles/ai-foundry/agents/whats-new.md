@@ -26,6 +26,7 @@ The Agent Service supports the following [models](./concepts/model-region-suppor
 * gpt-5-nano
 * gpt-5-chat
 
+
 ## September 2025
 
 ### Computer Use tool
