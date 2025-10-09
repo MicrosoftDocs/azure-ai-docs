@@ -1,16 +1,16 @@
 items:
-- name: Azure Translator Documentation
+- name: Azure Translator in Foundry Tools documentation
   href: index.yml
 - name: Overview
   expanded: true
   items:
-  - name: What is Translator Service?
+  - name: What is Azure Translator in Foundry Tools?
     displayName: features,develop,development,free
     href: overview.md
   - name: What's new?
     displayName: release,ga,update,support, cognitive
     href: whats-new.md
-  - name: Configure Azure AI resources
+  - name: Configure Azure resources
     displayName: endpoint,key,portal,azure,authentication,delete,resource
     href: create-translator-resource.md
   - name: Language Support
@@ -24,16 +24,16 @@ items:
   - name: Service limits
     displayName: detection,detect,region,
     href: service-limits.md
-  - name: Translator Service FAQ
+  - name: Azure Translator FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
   - name: Secure deployment guide
     displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
     href: secure-deployment.md  
 
-- name: Text translation (GA)
+- name: Azure Translator text translation (GA)
   items:
-  - name: What is Text translation?
+  - name: What is Translator text translation?
     displayName: features,develop,development,free
     href: text-translation/overview.md
   - name: Text translation SDK
@@ -43,7 +43,7 @@ items:
   - name: HTTP requests
     displayName: resource,endpoint,region,location,resource,token,header,header value,header-value
     href: text-translation/reference/v3/reference.md
-  - name: Text Translation REST APIs (GA)
+  - name: Text translation REST APIs (GA)
     href:  text-translation/reference/rest-api-guide.md
   - name: Get languages
     href: text-translation/reference/v3/languages.md
@@ -67,10 +67,10 @@ items:
 
   - name: Quickstarts
     items:
-    - name: Translator Text SDK
+    - name: Translator text translation SDK
       displayName: get started,sdk,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-sdk.md
-    - name:  Translator Text REST APIs
+    - name:  Translator text translation REST APIs
       displayName: get started,rest,api,keys,endpoint,headers,c#,go,java,javascript,python,setup
       href: quickstart-text-rest-api.md
   - name: How-to guides
@@ -121,7 +121,7 @@ items:
         href: text-translation/reference/metrics.md
 
 
-- name: Text translation (2025-05-01-preview) 🆕
+- name: Translator text translation (2025-05-01-preview) 🆕
   items:
   - name: Overview 🆕
     displayName: gpt, adaptive, tone, gender
@@ -143,28 +143,28 @@ items:
     displayName: key,subscription,endpoint,region,location,resource,token,header,header value,header-value
     href: text-translation/reference/authentication.md   
 
-- name: Document translation
+- name: Azure Translator document translation
   items:
-  - name: What is Document translation?
+  - name: What is Azure document translation?
     displayName: ocr,batch,features,development,formats,file types
     href: document-translation/overview.md
   - name: Document translation SDK guide 🆕
     displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
     href: document-translation/document-sdk-overview.md
-  - name: Document translation REST API guide 🆕
+  - name: Translator document translation REST APIs 🆕
     displayName: get,post,cancel,delete
     href: document-translation/reference/rest-api-guide.md
   - name: Quickstarts
     items:
-    - name: "Quickstart: Document translation client libraries"
+    - name: "Quickstart: Translator document translation SDKs"
       displayName: batch,c#,dotnet,.net,python,blob,set up,install,cli,storage,domain,custom domain
       href: document-translation/quickstarts/client-library-sdks.md
-    - name: "Quickstart: Document translation REST APIs"
+    - name: "Quickstart: Translator document translation REST APIs"
       displayName: get,post,cancel,delete
       href: document-translation/quickstarts/rest-api.md
   - name: How-to guides
     items:
-    - name: Use Document translation APIs programmatically
+    - name: Use document translation APIs programmatically
       displayName: get started,batch,sdk,c#,.net,dotnet,python,javascript,java,go,source,target,blob,set up,storage
       href: document-translation/how-to-guides/use-rest-api-programmatically.md
     - name: Create and use glossaries
@@ -229,16 +229,16 @@ items:
         href: containers/translate-document-parameters.md
   - name: Translator container FAQ
     href: containers/faq.yml
-- name: Azure AI Foundry custom translation 🆕
+- name: Foundry Tools custom translation 🆕
   items:
-  - name: What is Azure AI Foundry custom translation?
+  - name: What is Foundry Tools custom translation?
     href: custom-translator/azure-ai-foundry/overview.md
   - name: Key terms
     href: custom-translator/azure-ai-foundry/key-terms.md
-  - name: Azure AI Foundry for beginners
+  - name: Foundry Tools for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
-  - name: Adaptive custom translation (preview) 🆕
+  - name: Foundry Tools adaptive custom translation (preview) 🆕
     displayName: foundry, gpt, api
     href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ
@@ -246,7 +246,7 @@ items:
   - name: How-to guides
   
     items:
-    - name: Create an Azure AI Foundry project
+    - name: Create a Foundry Tools project
       displayName: models,pairs,label,edit,delete
       href: custom-translator/azure-ai-foundry/how-to/create-project.md
     - name: Create a language pair
@@ -255,10 +255,10 @@ items:
     - name: Upload data
       displayName: parallel,document sets,tuning,phrase,sentence,upload
       href: custom-translator/azure-ai-foundry/how-to/upload-data.md
-    - name: Train a custom model
+    - name: Train a Foundry Tools custom model
       displayName: full,dictionary,duplicate
       href: custom-translator/azure-ai-foundry/how-to/train-model.md
-    - name: Test your model
+    - name: Test your Foundry Tools model
       displayName: bleu,baseline
       href: custom-translator/azure-ai-foundry/how-to/test-model.md
     - name: Deploy a custom model
@@ -376,7 +376,7 @@ items:
       href: custom-translator/platform-upgrade.md
   - name: Custom Translator FAQ
     href: custom-translator/faq.md
-- name: Translator solutions
+- name: Azure Translator solutions
   items:
   - name: What are Azure Translator solutions?
     href: solutions/overview.md

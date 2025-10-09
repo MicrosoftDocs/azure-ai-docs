@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.topic: overview
 ---
 
-# Azure Translator in Foundry Tools custom translation for beginners
+# Foundry Tools custom translation for beginners
 
  [Custom translation](overview.md) enables you to a build translation system that reflects your business, industry, and domain-specific terminology and style. Training and deploying a custom system is easy and doesn't require any programming skills. The customized translation system seamlessly integrates into your existing applications, workflows, and websites and is available on Azure through the same cloud-based [Microsoft Text Translation API](../../text-translation/reference/v3/translate.md) service that powers billions of translations every day.
 

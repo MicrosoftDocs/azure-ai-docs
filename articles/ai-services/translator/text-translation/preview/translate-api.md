@@ -16,7 +16,7 @@ The Text translation API enables you to translate your source language text into
 
 >[!IMPORTANT]
 > * Azure Translator REST API `2025-05-01-preview` is new version of the Azure Translator REST API **with breaking changes**.
-> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure AI Translator v3.0.
+> * It's essential to thoroughly test your code against the new release before migrating any production applications from Azure Translator v3.0.
 > * Make sure to review your code and internal workflows for adherence to best practices and restrict your production code to versions that you fully test.
 
 
@@ -311,7 +311,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 #### Translate using `GPT-4o mini` deployment and `NMT`
 
 * Here,  the source text is translated into Spanish language using a specified mode (gpt-4o) and into German language using general NMT model. 
-* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+* Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 
@@ -371,7 +371,7 @@ This request uses a gpt-4o-mini model instance with a user defined name (contoso
 
 #### Translate specifying gender and tone using `GPT-4o mini` deployment
 
-Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure AI resources](../../how-to/create-translator-resource.md).
+Using an `LLM` model requires you to have an Azure AI Foundry resource. For more information, *see* [Configure Azure resources](../../how-to/create-translator-resource.md).
 
 ***Request***
 

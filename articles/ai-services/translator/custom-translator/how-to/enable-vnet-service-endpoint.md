@@ -1,7 +1,7 @@
 ---
-title: Enable Virtual Network service endpoints with Azure AI Custom Translator service
+title: Enable Virtual Network service endpoints with Custom Translator service
 titleSuffix: Azure AI Foundry Tools
-description: This article describes how to use Azure AI Custom Translator service with an Azure Virtual Network service endpoint.
+description: This article describes how to use Custom Translator service with an Azure Virtual Network service endpoint.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -10,7 +10,7 @@ ms.author: moelghaz
 ms.topic: how-to
 ---
 
-# Enable Azure AI Custom Translator through Azure Virtual Network
+# Enable Custom Translator through Azure Virtual Network
 
 In this article, we show you how to set up and use `VNet` service endpoints with Custom Translator.
 

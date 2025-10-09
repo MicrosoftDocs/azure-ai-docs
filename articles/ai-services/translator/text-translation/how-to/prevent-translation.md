@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# How to prevent translation of content with Azure Translator
+# Prevent content translation with Azure Translator
 
 Azure Translator allows you to tag content so that it isn't translated. For example, you might want to tag code, a brand name, or a word/phrase that doesn't make sense when localized.
 

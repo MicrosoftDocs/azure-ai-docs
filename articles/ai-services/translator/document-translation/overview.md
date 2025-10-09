@@ -18,7 +18,7 @@ recommendations: false
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
 
-# What is Document translation?
+# What is Translator document translation?
 
 Document translation is a cloud-based machine translation feature of the [Azure Translator](../translator-overview.md) service. You can translate multiple and complex documents across all [supported languages and dialects](../../language-support.md) while preserving original document structure and data format. The Document translation API supports two translation processes:
 

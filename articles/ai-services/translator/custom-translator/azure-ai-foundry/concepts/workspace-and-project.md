@@ -1,5 +1,5 @@
 ---
-title: What is an Azure AI Foundry custom translation project?
+title: Azure AI Foundry Tools custom translation project?
 titleSuffix: Azure AI Foundry Tools
 description: In This article, learn the differences about creating projects, project categories, and labels for the custom translation service.
 #services: cognitive-services
@@ -12,7 +12,7 @@ ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation user, I want to concept of a project, so that I can use it efficiently.
 ---
-# What is an Azure AI Foundry custom translation project?
+# What is a Foundry Tools custom translation project?
 
 A project is a work area for composing and building your custom translation system. A project can contain multiple language pairs, models, and documents. All the work you do in custom translation is inside a specific project.
 

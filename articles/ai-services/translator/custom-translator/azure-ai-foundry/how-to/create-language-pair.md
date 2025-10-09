@@ -1,5 +1,5 @@
 ---
-title: Create an Azure AI Foundry custom translation language pair
+title: Create an Azure AI Foundry Tools custom translation language pair
 titleSuffix: Azure AI Foundry Tools
 description: How to create a language pair in the Azure AI custom translation.
 author: laujan
@@ -10,7 +10,7 @@ ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Create an Azure AI Foundry custom translation language pair
+# Create a Foundry Tools custom translation language pair
 
 An Azure AI Foundry custom translation language pair includes models, training, tuning, and testing datasets. Creating a language pair is the first step in fine-tuning and deploying a model.
 

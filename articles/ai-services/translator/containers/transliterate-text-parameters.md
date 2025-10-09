@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Container: Transliterate Text
+# Azure Translator container: transliterate text
 
 Convert characters or letters of a source language to the corresponding characters or letters of a target language.
 

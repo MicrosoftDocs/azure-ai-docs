@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Service limits for Azure Translator Service
+# Azure Translator service limits
 
 This article provides both a quick reference and detailed description of Azure Translator Service character and array limits for text and document translation.
 

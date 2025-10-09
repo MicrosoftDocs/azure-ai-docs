@@ -1,5 +1,5 @@
 ---
-title: Synchronous Azure AI Translator translation REST API guide
+title: Synchronous Azure Translator translation REST API guide
 description: "Synchronous translation HTTP REST API guide"
 author: laujan
 manager: nitinme
@@ -19,7 +19,7 @@ recommendations: false
 # Synchronous document translation
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 

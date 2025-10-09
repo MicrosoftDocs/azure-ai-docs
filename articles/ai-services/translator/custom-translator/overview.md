@@ -9,6 +9,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: overview
 ---
+
 # What is Custom Translator?
 
 Custom Translator is a feature of the [Azure Translator in Foundry Tools](../translator-overview.md) service, which enables enterprises, app developers, and language service providers to build customized neural machine translation (NMT) systems. The customized translation systems seamlessly integrate into existing applications, workflows, and websites.

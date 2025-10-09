@@ -19,11 +19,11 @@ metadata:
 
 landingContent:
   # Card 1
-  - title: About Azure Translator Service
+  - title: About Azure Translator
     linkLists:
       - linkListType: overview
         links:
-          - text: What is Azure Translator Service?
+          - text: What is Azure Translator?
             url: translator-overview.md
           - text: Language support
             url:  language-support.md
@@ -33,7 +33,7 @@ landingContent:
             url: https://www.microsoft.com/translator/faq.aspx
       - linkListType: whats-new
         links:
-         - text: What's new in Azure Translator Service?
+         - text: What's new in Azure Translator?
            url: whats-new.md
 
   # Card 2

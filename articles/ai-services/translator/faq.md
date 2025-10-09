@@ -10,7 +10,9 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Frequently asked questions—Translator API
+# Azure Translator frequently asked questions
+
+Welcome to Azure Translator frequently asked questions (FAQ). This resource provides targeted, technically focused answers to key questions regarding Azure Translator, Microsoft's advanced cloud-based machine translation service. Whether you are a developer seeking integration guidance or an IT professional evaluating multilingual support capabilities, these FAQs are designed to clarify Azure Translator's architecture, supported features, implementation strategies, and operational best practices.
 
 ## How does Azure Translator count characters?
 
@@ -52,20 +54,20 @@ The [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) 
 
 Attribution isn't required when using Azure Translator for text and speech translation. We recommended that you inform users that the content they're viewing is machine translated.
 
-If attribution is present, it must conform to the [Azure AI Translator attribution guidelines](https://www.microsoft.com/translator/business/attribution/).
+If attribution is present, it must conform to the [Azure Translator attribution guidelines](https://www.microsoft.com/translator/business/attribution/).
 
-## Is Azure AI Translator a replacement for human translator?
+## Is Azure Translator a replacement for human translator?
 
 No, both have their place as essential tools for communication. Use machine translation where the quantity of content, speed of creation, and budget constraints make it impossible to use human translation.
 
-Machine translation is used as a first pass, before using human translation, by several of our [language service provider (LSP)](https://www.microsoft.com/translator/business/partners/) partners and can improve productivity by up to 50 percent. For a list of LSP partners, visit the Azure AI Translator partner page.
+Machine translation is used as a first pass, before using human translation, by several of our [language service provider (LSP)](https://www.microsoft.com/translator/business/partners/) partners and can improve productivity by up to 50 percent. For a list of LSP partners, visit the Azure Translator partner page.
 
-## Does Azure AI Translator retain any user data?
+## Does Azure Translator retain any user data?
 
-No. Customer data submitted for translation to Azure AI Translator isn't stored permanently and not data is stored at rest. There's no record of the submitted text or document in any Microsoft data center. All organizational data remains within your organization's Azure subscription, ensuring that no data is shared with Microsoft. You maintain full control over your data, which remains your exclusive business. Microsoft further strengthens this control by adhering to extensive privacy laws, such as GDPR, and privacy standards, including the ISO/IEC 27018—the world's first international code of practice for cloud privacy. For more information, *see* [Azure AI Translator data, privacy, and security](/azure/ai-foundry/responsible-ai/translator/data-privacy-security) and [Microsoft Translator Confidentiality](https://www.microsoft.com/translator/business/notrace/#compliance).
+No. Customer data submitted for translation to Azure Translator isn't stored permanently and not data is stored at rest. There's no record of the submitted text or document in any Microsoft data center. All organizational data remains within your organization's Azure subscription, ensuring that no data is shared with Microsoft. You maintain full control over your data, which remains your exclusive business. Microsoft further strengthens this control by adhering to extensive privacy laws, such as GDPR, and privacy standards, including the ISO/IEC 27018—the world's first international code of practice for cloud privacy. For more information, *see* [Azure Translator data, privacy, and security](/azure/ai-foundry/responsible-ai/translator/data-privacy-security) and [Microsoft Translator Confidentiality](https://www.microsoft.com/translator/business/notrace/#compliance).
 
 ---
 > [!TIP]
 
-> If you can't find answers to your questions in this FAQ, try asking the Azure AI Translator API community on [StackOverflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=34bf0ce2-b6b3-4355-86a6-d45a1121fe27).
+> If you can't find answers to your questions in this FAQ, try asking the Azure Translator API community on [StackOverflow](https://stackoverflow.com/search?q=%5Bmicrosoft-cognitive%5D+or+%5Bmicrosoft-cognitive%5D+translator&s=34bf0ce2-b6b3-4355-86a6-d45a1121fe27).
 

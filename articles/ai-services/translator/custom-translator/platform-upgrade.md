@@ -9,6 +9,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: reference
 ---
+
 # Custom Translator platform upgrade
 
 > [!CAUTION]

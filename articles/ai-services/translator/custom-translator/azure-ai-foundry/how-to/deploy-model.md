@@ -1,5 +1,5 @@
 ---
-title: Deploy an Azure AI Foundry custom translation model.
+title: Deploy an Azure AI Foundry Tools custom translation model.
 titleSuffix: Azure AI Foundry Tools
 description: This article explains how to deploy a custom translation model.
 author: laujan
@@ -10,7 +10,7 @@ ms.author: lajanuar
 ms.topic: how-to
 ---
 
-# Deploy an Azure AI Foundry custom translation model
+# Deploy a Foundry Tools custom translation model
 
 Deploying your Azure AI Foundry custom translation model makes it available for use with the Azure Translator API. A language pair might have one or many successfully trained models. You can only deploy one model per language pair; however, you can deploy  a model to one or multiple regions depending on your needs. For more information, see [Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/#pricing).
 

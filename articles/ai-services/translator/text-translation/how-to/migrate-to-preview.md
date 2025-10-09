@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Text translation 2025-05-01-preview migration
+# Azure Translator preview migration
 
 Azure Translator text translation 2025-05-01-preview is our latest cloud-based, multilingual neural machine translation service. As Azure Translator matures, we're focused on patterns and practices to best support and add value to our users.
 

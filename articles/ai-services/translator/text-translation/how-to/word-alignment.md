@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# How to receive and use word alignment information
+# Azure Translator word alignment
 
 To receive alignment information, use the Azure Translator translate method and include the optional `includeAlignment` parameter.
 

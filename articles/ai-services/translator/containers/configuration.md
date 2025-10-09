@@ -157,4 +157,4 @@ Use bind mounts to read and write data to and from the container. You can specif
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Learn more about Azure AI containers](../../cognitive-services-container-support.md)
+> [Learn more about Azure containers](../../cognitive-services-container-support.md)

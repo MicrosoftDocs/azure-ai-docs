@@ -1,5 +1,5 @@
 ---
-title: "Data Filtering - Azure AI Custom Translator"
+title: "Data Filtering - Custom Translator"
 titleSuffix: Azure AI Foundry Tools
 description: When you submit documents to be used for training a custom system, the documents undergo a series of processing and filtering steps.
 author: laujan

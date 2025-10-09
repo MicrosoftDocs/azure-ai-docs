@@ -1,5 +1,5 @@
 ---
-title: Frequently asked questions - Azure Translator in Foundry Tools Document translation
+title: Frequently asked questions - Azure Translator Document translation
 titleSuffix: Azure AI Foundry Tools
 description: Get answers to Azure Translator in Foundry Tools Document translation frequently asked questions.
 author: laujan
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 <!-- markdownlint-disable MD001 -->
 
-# Frequently asked questions—Document Translation API
+# Document Translation frequently asked questions
 
 Azure Document Translation is a powerful cloud-based service designed to help you seamlessly translate documents at scale using advanced machine translation technology. This FAQ provides answers to common questions about the features, capabilities, and best practices for using Azure Document Translation.
 

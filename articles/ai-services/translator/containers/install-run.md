@@ -115,7 +115,7 @@ The following table describes the minimum and recommended specifications and the
 
 ## Required input
 
-All Azure AI containers require the following input values:
+All Azure containers require the following input values:
 
 * **EULA accept setting**. You must have an end-user license agreement (EULA) set with a value of `Eula=accept`.
 
@@ -125,7 +125,7 @@ All Azure AI containers require the following input values:
 
 > [!IMPORTANT]
 >
-> * Keys are used to access your Azure AI resource. Don't share your keys. Store them securely, for example, using Azure Key Vault.
+> * Keys are used to access your Azure resource. Don't share your keys. Store them securely, for example, using Azure Key Vault.
 >
 > * We also recommend regenerating these keys regularly. Only one key is necessary to make an API call. When regenerating the first key, you can use the second key for continued access to the service.
 
@@ -555,7 +555,7 @@ docker run -v /host/output:{OUTPUT_PATH} ... <image> ... Mounts:Output={OUTPUT_P
 
 #### Environment variable names in Kubernetes deployments
 
-* Some Azure AI Containers, for example Translator, require users to pass environmental variable names that include colons (`:`) when running the container.
+* Some Azure containers, for example Translator, require users to pass environmental variable names that include colons (`:`) when running the container.
 
 * Kubernetes doesn't accept colons in environmental variable names.
 To resolve, you can replace colons with two underscore characters (`__`) when deploying to Kubernetes. See the following example of an acceptable format for environmental variable names:

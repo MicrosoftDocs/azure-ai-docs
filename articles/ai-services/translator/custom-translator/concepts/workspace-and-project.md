@@ -1,7 +1,7 @@
 ---
-title: "What is a workspace and project? - Azure AI Custom Translator"
+title: "What is a workspace and project? - Custom Translator"
 titleSuffix: Azure AI Foundry Tools
-description: In This article, learn the differences between a workspace and a project as well as project categories and labels for the Azure AI Custom Translator service.
+description: In This article, learn the differences between a workspace and a project as well as project categories and labels for the Custom Translator service.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -11,7 +11,7 @@ ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
 #Customer intent: As a Custom Translator user, I want to concept of a project, so that I can use it efficiently.
 ---
-# What is an Azure AI Custom Translator workspace?
+# What is a Custom Translator workspace?
 
 A workspace is a work area for composing and building your custom translation system. A workspace can contain multiple projects, models, and documents. All the work you do in Custom Translator is inside a specific workspace.
 

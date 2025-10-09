@@ -11,7 +11,7 @@ ms.author: egeaney
 #Customer intent: As a user of the Translator service, I want to learn how encryption at rest works.
 ---
 
-# Azure Translator in Foundry Tools encryption of data at rest
+# Foundry Tools encryption of data at rest
 
 Translator automatically encrypts your cloud uploaded data to meet your organizational security and compliance goals.
 

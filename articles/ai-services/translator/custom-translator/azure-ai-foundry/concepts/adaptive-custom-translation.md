@@ -1,5 +1,5 @@
 ---
-title: Adaptive custom translation
+title: Azure AI Foundry Tools adaptive custom translation
 titleSuffix: Azure AI Foundry Tools
 description: Understand the parameters, headers, and body messages for the Azure AI adaptive custom translation API v1.0 preview to create and manage adaptive dataset indexes.
 author: laujan
@@ -10,15 +10,15 @@ ms.date: 11/05/2025
 ms.topic: reference
 ---
 
-# Adaptive custom translation v1.0 (preview)
+# Foundry Tools adaptive custom translation (preview)
 
 > [!IMPORTANT]
 >
-> * Azure adaptive custom translation is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Translator adaptive custom translation is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Azure AI Foundry—using a small set of reference sentence pairs.
+Azure Translator adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Azure AI Foundry—using a small set of reference sentence pairs.
 
 AdaptCT APIs for dynamic domain adaptations allow you to upload between 5 and 30,000 prealigned bilingual segments. With this capability, you can quickly build a custom language pair dataset index that's ready in minutes. This index can then be used with [Azure Translator 2025-05-01-preview APIs](/azure/ai-services/translator/text-translation/preview/overview). Unlike traditional custom models that require large training datasets and separate deployment, AdaptCT uses few-shot learning to dynamically select relevant sentence pairs from the index at runtime. This capability enables on-the-fly adaptation of the LLM's output to match domain-specific terminology, context, and style. `Available via Azure AI Foundry.`
 

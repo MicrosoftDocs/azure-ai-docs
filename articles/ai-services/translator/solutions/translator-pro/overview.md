@@ -96,7 +96,7 @@ Microsoft Translator Pro is available for download in the following countries/re
 
 ## Region availability
 
-The app is currently available for Azure AI Translator resources created in the following regions within the respective clouds. Ensure you onboard the app to your resource located in these specified regions.
+The app is currently available for Azure Translator resources created in the following regions within the respective clouds. Ensure you onboard the app to your resource located in these specified regions.
 
 **Azure Cloud (public)**
 

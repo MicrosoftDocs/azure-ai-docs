@@ -13,15 +13,15 @@ ms.devlang: csharp
 ms.custom: mode-other, devx-track-extended-java, devx-track-python, ignite-2024
 ---
 
-# Use REST APIs programmatically
+# Use Document Translation APIs programmatically
 
- Document translation is a cloud-based feature of the [Azure AI Translator](../../translator-overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
+ Document translation is a cloud-based feature of the [Azure Translator](../../translator-overview.md) service. You can use the Document translation API to asynchronously translate whole documents in [supported languages](../../language-support.md) and various [file formats](../overview.md#batch-supported-document-formats) while preserving source document structure and text formatting. In this how-to guide, you learn to use Document translation APIs with a programming language of your choice and the HTTP REST API.
 
 ## Prerequisites
 
 > [!NOTE]
 >
-> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 To get started, you need:
@@ -109,7 +109,7 @@ The `sourceUrl` , `targetUrl` , and optional `glossaryUrl`  must include a Share
 
 An asynchronous batch translation request is submitted to your Translator service endpoint via a POST request. If successful, the POST method returns a `202 Accepted`  response code and the service creates a batch request. The translated documents are listed in your target container.
 
-For detailed information regarding Azure AI Translator Service request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
+For detailed information regarding Azure Translator Service request limits, _see_ [**Document translation request limits**](../../service-limits.md#document-translation).
 
 ### HTTP headers
 

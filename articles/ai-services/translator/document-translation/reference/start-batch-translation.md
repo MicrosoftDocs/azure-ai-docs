@@ -15,7 +15,7 @@ ms.date: 11/05/2025
 <!-- markdownlint-disable MD036 -->
 
 Reference</br>
-Feature: **Azure AI Translator → Document translation**</br>
+Feature: **Azure Translator → Document translation**</br>
 API Version: **2024-05-01**</br>
 HTTP method: **POST**
 
@@ -290,7 +290,7 @@ The following are the possible HTTP status codes that a request returns.
 |--- |--- |--- |
 |code|`string`|Enums containing high-level error codes. Accepted values:</br/>&bullet; InternalServerError</br>&bullet; InvalidArgument</br>&bullet; InvalidRequest</br>&bullet; RequestRateTooHigh</br>&bullet; ResourceNotFound</br>&bullet; ServiceUnavailable</br>&bullet; Unauthorized|
 |message|`string`|Gets high-level error message.|
-|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
+|innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI Foundry Tools API Guidelines. This error message contains required properties: ErrorCode, message, and optional properties target, details(key value pair), and inner error(it can be nested).|
 |inner.Errorcode|`string`|Gets code error string.|
 |innerError.message|`string`|Gets high-level error message.|
 |innerError.target|`string`|Gets the source of the error. For example, it would be `documents` or `document id` if the document is invalid.|

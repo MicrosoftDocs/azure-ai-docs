@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Container: Translate Documents
+# Azure Translator container: translate documents
 
 **Translate document with source language specified**.
 

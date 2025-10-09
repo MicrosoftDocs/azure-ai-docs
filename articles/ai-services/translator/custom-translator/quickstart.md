@@ -1,7 +1,7 @@
 ---
-title: "Quickstart: Build, deploy, and use a custom model - Azure AI Custom Translator"
+title: "Quickstart: Build, deploy, and use a custom model - Custom Translator"
 titleSuffix: Azure AI Foundry Tools
-description: A step-by-step guide to building a translation system using the Azure AI Custom Translator portal v2.
+description: A step-by-step guide to building a translation system using the Custom Translator portal v2.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,13 +9,14 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: quickstart
 ---
-# Quickstart: Build, publish, and translate with custom models
+
+# Quickstart: Build, publish, and translate with Custom Translator
 
 Translator is a cloud-based neural machine translation service that is part of the Azure AI Foundry Tools family of REST API that can be used with any operating system. Translator powers many Microsoft products and services used by thousands of businesses worldwide to perform language translation and other language-related operations. In this quickstart, learn to build custom solutions for your applications across all [supported languages](../../language-support.md).
 
 ## Prerequisites
 
- To use the [Azure AI Custom Translator](https://portal.customtranslator.azure.ai/) portal, you need the following resources:
+ To use the [Custom Translator](https://portal.customtranslator.azure.ai/) portal, you need the following resources:
 
 * A [Microsoft account](https://signup.live.com).
 
@@ -27,21 +28,21 @@ Translator is a cloud-based neural machine translation service that is part of t
 
 For more information, *see* [how to create a Translator resource](../create-translator-resource.md).
 
-## Azure AI Custom Translator portal
+## Custom Translator portal
 
-Once you complete the prerequisites, sign in to the [Azure AI Custom Translator](https://portal.customtranslator.azure.ai/) portal to create workspaces, build projects, upload files, train models, and publish your custom solution.
+Once you complete the prerequisites, sign in to the [Custom Translator](https://portal.customtranslator.azure.ai/) portal to create workspaces, build projects, upload files, train models, and publish your custom solution.
 
 You can read an overview of translation and custom translation, learn some tips, and watch a getting started video in the [Azure AI technical blog](https://techcommunity.microsoft.com/t5/azure-ai/customize-a-translation-to-make-sense-in-a-specific-context/ba-p/2811956).
 
 ## Process summary
 
-1. [**Create a workspace**](#create-a-workspace). A workspace is a work area for composing and building your custom translation system. A workspace can contain multiple projects, models, and documents. All the work you do in Azure AI Custom Translator is done inside a specific workspace.
+1. [**Create a workspace**](#create-a-workspace). A workspace is a work area for composing and building your custom translation system. A workspace can contain multiple projects, models, and documents. All the work you do in Custom Translator is done inside a specific workspace.
 
 1. [**Create a project**](#create-a-project). A project is a wrapper for models, documents, and tests. Each project includes all documents that are uploaded into that workspace with the correct language pair. For example, if you have both an English-to-Spanish project and a Spanish-to-English project, the same documents are included in both projects.
 
 1. [**Upload parallel documents**](#upload-documents). Parallel documents are pairs of documents where one (target) is the translation of the other (source). One document in the pair contains sentences in the source language and the other document contains sentences translated into the target language. It doesn't matter which language is marked as "source" and which language is marked as "target"—a parallel document can be used to train a translation system in either direction.
 
-1. [**Train your model**](#train-your-model). A model is the system that provides translation for a specific language pair. The outcome of a successful training is a model. When you train a model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Azure AI Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and excludes these sentences from the training data itself. A 10,000 parallel sentence is the minimum requirement to train a model.
+1. [**Train your model**](#train-your-model). A model is the system that provides translation for a specific language pair. The outcome of a successful training is a model. When you train a model, three mutually exclusive document types are required: training, tuning, and testing. If only training data is provided when queuing a training, Custom Translator automatically assembles tuning and testing data. It uses a random subset of sentences from your training documents, and excludes these sentences from the training data itself. A 10,000 parallel sentence is the minimum requirement to train a model.
 
 1. [**Test (human evaluate) your model**](#test-your-model). The testing set is used to compute the [`BLEU`](beginners-guide.md#what-is-a-bleu-score) score. This score indicates the quality of your translation system.
 
@@ -51,7 +52,7 @@ You can read an overview of translation and custom translation, learn some tips,
 
 ## Create a workspace
 
-1. After your sign-in to Azure AI Custom Translator, you'll be asked for permission to read your profile from the Microsoft identity platform to request your user access token and refresh token. Both tokens are needed for authentication and to ensure that you aren't signed out during your live session or while training your models. </br>Select **Yes**.
+1. After your sign-in to Custom Translator, you'll be asked for permission to read your profile from the Microsoft identity platform to request your user access token and refresh token. Both tokens are needed for authentication and to ensure that you aren't signed out during your live session or while training your models. </br>Select **Yes**.
 
    :::image type="content" source="media/quickstart/first-time-user.png" alt-text="Screenshot illustrating how to create a workspace.":::
 

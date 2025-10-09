@@ -16,7 +16,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD001 -->
 
-# Create an Azure AI Translator Document translation flow (preview)
+# Create an Azure Translator Document translation flow (preview)
 
 > [!IMPORTANT]
 >
@@ -24,7 +24,7 @@ ms.author: lajanuar
 
 This tutorial guides you through configuring a Microsoft Azure Translator v3 connector cloud flow that supports document translation. The Translator v3 connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows.
 
-Document translation is a cloud-based REST API feature of the Azure AI Translator service. The Document translation API enables multiple and complex document translations while preserving original document structure and data format.
+Document translation is a cloud-based REST API feature of the Azure Translator service. The Document translation API enables multiple and complex document translations while preserving original document structure and data format.
 
 In this tutorial:
 

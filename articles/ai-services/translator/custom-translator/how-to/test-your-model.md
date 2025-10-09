@@ -1,7 +1,7 @@
 ---
-title: View Azure AI Custom Translator model details and test translation
+title: View Custom Translator model details and test translation
 titleSuffix: Azure AI Foundry Tools
-description: How to test your Azure AI Custom Translator model BLEU score and evaluate translations
+description: How to test your Custom Translator model BLEU score and evaluate translations
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
@@ -9,7 +9,8 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
-# Test your Azure AI Custom Translator
+
+# Test your Custom Translator
 
 Once your Azure Translator Custom Translator model is successfully trained, you can use translations to evaluate the quality of your model. In order to make an informed decision about whether to use our standard Azure Translator model or your custom model, you should evaluate the delta between your custom model [**BLEU score**](#bleu-score) and our standard Azure Translator model **Baseline BLEU**. If your model is trained within a narrow domain, and your training data is consistent with the test data, you can expect a high BLEU score.
 
@@ -21,7 +22,7 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 [Read more](../concepts/bleu-score.md?WT.mc_id=aiml-43548-heboelma)
 
-## Azure AI Custom Translator Model details
+## Custom Translator Model details
 
 1. Select the **Model details** blade.
 
@@ -43,5 +44,5 @@ A BLEU score is a number between zero and 100. A score of zero indicates a low-q
 
 ## Next steps
 
-- Learn [how to publish/deploy an Azure AI Custom Translator model](publish-model.md).
-- Learn [how to translate documents with an Azure AI Custom Translator model](translate-with-custom-model.md).
+- Learn [how to publish/deploy a Custom Translator model](publish-model.md).
+- Learn [how to translate documents with a Custom Translator model](translate-with-custom-model.md).

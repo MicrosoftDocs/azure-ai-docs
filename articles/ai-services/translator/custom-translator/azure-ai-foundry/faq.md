@@ -1,5 +1,5 @@
 ---
-title: "Frequently asked questions - Azure AI Foundry custom translation"
+title: "Frequently asked questions - Azure AI Foundry Tools custom translation"
 titleSuffix: Azure AI Foundry Tools
 description: This article contains answers to Azure AI Foundry custom translation frequently asked questions.
 author: laujan
@@ -10,7 +10,7 @@ ms.author: lajanuar
 ms.topic: faq
 ---
 
-# Azure AI Foundry custom translation frequently asked questions
+# Foundry Tools custom translation frequently asked questions
 
 This article contains answers to frequently asked questions about custom translation in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 

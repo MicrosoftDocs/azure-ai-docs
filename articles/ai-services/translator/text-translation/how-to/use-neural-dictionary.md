@@ -83,4 +83,4 @@ Neural dictionary is available using [Custom Translator](https://portal.customtr
 
 ## Next steps
 
-To learn more, start with the [Azure AI Custom Translator beginner's guide](../../custom-translator/beginners-guide.md).
+To learn more, start with the [Custom Translator beginner's guide](../../custom-translator/beginners-guide.md).

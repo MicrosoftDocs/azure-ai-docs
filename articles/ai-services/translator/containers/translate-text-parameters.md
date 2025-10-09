@@ -10,7 +10,7 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Container: Translate Text
+# Azure Translator container: translate text
 
 **Translate text**.
 

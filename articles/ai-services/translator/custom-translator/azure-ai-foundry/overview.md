@@ -1,5 +1,5 @@
 ---
-title: What is Azure AI Foundry custom translation?
+title: What is Azure AI Foundry Tools custom translation?
 titleSuffix: Azure AI Foundry Tools
 description: Azure AI Foundry custom translation offers similar capabilities to what Azure Translator in Foundry Tools Hub does for Statistical Machine Translation (SMT), but exclusively for Neural Machine Translation (NMT) systems.
 author: laujan
@@ -10,7 +10,7 @@ ms.author: lajanuar
 ms.topic: overview
 ---
 
-# What is Azure AI Foundry custom translation?
+# What is Foundry Tools custom translation?
 
 Azure AI Foundry custom translation, formerly known as Custom Translator, empowers businesses, app developers, and language service providers to craft tailored neural machine translation (NMT) systems. Integrated within the [Azure Translator in Foundry Tools](../../overview.md) service, it allows users to adapt translations to suit specific requirements and contexts. The custom translation feature provides translation solutions that effortlessly integrate with your current applications, workflows, and websites.
 

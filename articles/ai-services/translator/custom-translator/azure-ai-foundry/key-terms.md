@@ -1,5 +1,5 @@
 ---
-title: Azure AI Foundry custom translation key terms
+title: Azure AI Foundry Tools custom translation key terms
 titleSuffix: Azure AI Foundry Tools
 description: List of key terms used in Azure AI Foundry custom translation articles.
 author: laujan
@@ -10,7 +10,7 @@ ms.author: lajanuar
 ms.topic: reference
 ---
 
-# Azure AI Foundry custom translation key terms
+# Foundry Tools custom translation key terms
 
 | Word or Phrase | Definition |
 |---|---|

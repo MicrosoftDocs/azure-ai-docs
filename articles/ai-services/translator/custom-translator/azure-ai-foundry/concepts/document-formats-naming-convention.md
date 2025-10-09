@@ -12,24 +12,24 @@ ms.custom: cogserv-non-critical-translator
 #Customer intent: As a custom translation user, I want to understand how to format and name my documents.
 ---
 
-# Azure AI Foundry custom translation document formats and naming conventions
+# Custom translation document formats and naming conventions
 
 Any file used for custom translation must be at least **four** characters in length.
 
 This table includes all supported file formats that you can use to build your translation system:
 
-| Format            | Extensions   | Description                                                                                                                                                                                                                                                                    |
-|-------------------|--------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `XLIFF`             | `.XLF`, `.XLIFF` | A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.                                                                                                                                                              |
-| `TMX`               | `.TMX`         | A parallel document format, export of Translation Memory systems. The languages used are defined inside the file.                                                                                                                                                              |
-| `ZIP`               | `.ZIP`         | An archive file format.                                                                                                                                                                                                        |
-| `Locstudio`         | `.LCL`         | A Microsoft format for parallel documents                                                                                                                                                                                                                                      |
-| Microsoft Word    | `.DOCX`        | Microsoft Word document                                                                                                                                                                                                                                                        |
-| Adobe Acrobat     | `.PDF`         | Adobe Acrobat portable document                                                                                                                                                                                                                                                |
-| `HTML`              | `.HTML`, `.HTM`  | HyperText Markup Language document                                                                                                                                                                                                                                                                  |
-| Text file         | `.TXT`         | UTF-16 or UTF-8 encoded text files. The file name must not contain Japanese characters.                                                                                                                                                                                        |
-| Aligned text file | `.ALIGN`       | The extension `.ALIGN` is a special extension that you can use if you know that the sentences in the document pair are perfectly aligned. If you provide a `.ALIGN` file, custom translation doesn't align the sentences for you. |
-| Excel file        | `.XLSX`        | Excel file (2013 or later). First line/ row of the spreadsheet should be language code.                                                                                                                                                                                                                                                      |
+| Format | Extensions | Description |
+|--|--|--|
+| `XLIFF` | `.XLF`, `.XLIFF` | A parallel document format, export of Translation Memory systems. The languages used are defined inside the file. |
+| `TMX` | `.TMX` | A parallel document format, export of Translation Memory systems. The languages used are defined inside the file. |
+| `ZIP` | `.ZIP` | An archive file format. |
+| `Locstudio` | `.LCL` | A Microsoft format for parallel documents |
+| Microsoft Word | `.DOCX` | Microsoft Word document |
+| Adobe Acrobat | `.PDF` | Adobe Acrobat portable document |
+| `HTML` | `.HTML`, `.HTM` | HyperText Markup Language document |
+| Text file | `.TXT` | UTF-16 or UTF-8 encoded text files. The file name must not contain Japanese characters. |
+| Aligned text file | `.ALIGN` | The extension `.ALIGN` is a special extension that you can use if you know that the sentences in the document pair are perfectly aligned. If you provide a `.ALIGN` file, custom translation doesn't align the sentences for you. |
+| Excel file | `.XLSX` | Excel file (2013 or later). First line/ row of the spreadsheet should be language code. |
 
 ## Dictionary formats
 
