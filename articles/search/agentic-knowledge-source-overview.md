@@ -59,7 +59,7 @@ After the knowledge source is created, you can reference it in a knowledge agent
 
 ## Use a knowledge source
 
-Properties on the *knowledge agent* determine whether and how the knowledge source is used.
+Properties on the [*knowledge agent*](agentic-retrieval-how-to-create-knowledge-base.md) determine whether and how the knowledge source is used.
 
 + [`"knowledgeSources"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-08-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge agent and informs the query logic.
 
