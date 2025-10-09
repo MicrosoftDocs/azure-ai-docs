@@ -1,3 +1,4 @@
+---
 title: Azure AI Foundry custom translation BLEU score
 titleSuffix: Azure AI Foundry Tools
 titleSuffix: Azure AI Foundry Tools

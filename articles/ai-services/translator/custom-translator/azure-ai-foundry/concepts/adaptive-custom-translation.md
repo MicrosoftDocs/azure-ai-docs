@@ -1,3 +1,4 @@
+---
 title: Adaptive custom translation
 titleSuffix: Azure AI Foundry Tools
 titleSuffix: Azure AI Foundry Tools

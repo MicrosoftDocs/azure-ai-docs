@@ -1,3 +1,4 @@
+---
 title: What is Azure AI Foundry custom translation?
 titleSuffix: Azure AI Foundry Tools
 titleSuffix: Azure AI Foundry Tools

@@ -1,3 +1,4 @@
+---
 title: Azure AI Foundry custom translation dictionary
 titleSuffix: Azure AI Foundry Tools
 titleSuffix: Azure AI Foundry Tools
