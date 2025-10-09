@@ -114,21 +114,20 @@ Add a tool to the AI Agent with the following steps:
    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
     
    1. The designer displays the appropriate pane to configure the tool, as in the following images:
-    
-    1. Code interpreter tool dialog box:
-      :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
 
-    1. File upload tool dialog box:
-      :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
-    
-    1. Grounding with Bing Search dialog box:
-      :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png" alt-text="Screenshot of the Grounding with Bing Search tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png":::
+      - Code interpreter tool dialog box:
+        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the Code interpreter tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
 
-    1. OpenAPI 3.0 Specified dialog box:
-    
+      - File upload tool dialog box:
+        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the File upload tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
+      
+      - Grounding with Bing Search dialog box:
+        :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png" alt-text="Screenshot of the Grounding with Bing Search tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png":::
+
+      - OpenAPI 3.0 Specified dialog box:
         :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the OpenAPI 3.0 Specified tool dialog box." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
 
-    1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
+  1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
      
         > [!NOTE]
         > When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
@@ -217,21 +216,6 @@ This Python sample code file that demonstrates a basic call to interact with the
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png" alt-text="Screenshot of generated agent sample code file." lightbox="../../media/how-to/get-started-projects-vs-code/sample-agent-code-file.png":::
 
-### Interact with Agents using agents playground
-
-Open the **Agents Playground** using the following steps:
-
-1. Right-click on your deployed agent and select the **Open Playground** option This action starts a thread with your agent and let you send messages. 
-
-1. Alternatively, select the **Agent Playground** link in the **Tools** subsection, and select your agent from the top-center list. 
-
-1. The **Playground** page is displayed.
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the **Agents Playground** VS Code page." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
-
-1. Type your prompt and see the outputs. In this example, the **Grounding with Bing search** tool is used to search the web for information. The agent uses the model and tools you configured in the agent designer. The source of the information is displayed in the **Agent Annotations** section, highlighted in the following image. 
-
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
 
 ## Explore Threads
 
