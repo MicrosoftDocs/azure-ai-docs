@@ -8,7 +8,7 @@ content_well_notification:
   - AI-contribution
 ai-usage: ai-assisted
 ms.topic: how-to
-zone_pivot_groups: foundry-sdk-overview-languages
+zone_pivot_groups: ai-foundry-vsc-extension-languages
 ms.date: 10/09/2025
 ms.reviewer: erichen
 ms.author: johalexander
@@ -258,7 +258,7 @@ Create a new multi-agent workflow with the following steps:
 
 Install the required dependencies for your multi-agent workflow project. The dependencies vary based on the programming language you selected when creating the project.
 
-::: zone pivot="programming-language-python"
+::: zone pivot="python"
 
 Install the following packages from source:
 ```bash
@@ -267,7 +267,7 @@ Install the following packages from source:
 ```
 ::: zone-end
 
-::: zone pivot="programming-language-csharp"
+::: zone pivot="csharp"
 
 C# workflows require nightly builds from Microsoft's GitHub Packages, follow these steps to set it up:
   1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)
@@ -288,29 +288,37 @@ In `Nuget.Config`, replace the following placeholders:
 
 ### Run your multi-agent workflow locally
 
-::: zone pivot="programming-language-csharp"
+::: zone pivot="csharp"
 
 Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
 
   1. Configure your environment variables based on your operating system:
 
-     **Windows (PowerShell):**
-    ```
-    # Windows (PowerShell)
+    #### [Windows (PowerShell)](#tab/windows-powershell)
+    ```Windows (PowerShell)
     $env:AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
     $env:MODEL_DEPLOYMENT_NAME="your-deployment-name"
     $env:AZURE_OPENAI_API_KEY="your-api-key"
-    
-    # Windows (Command Prompt)
+    ```
+
+
+
+   
+    #### [Windows (Command Prompt)](#tab/windows-command-prompt)   
+    ```Windows (Command Prompt)
     set AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
     set MODEL_DEPLOYMENT_NAME=your-deployment-name
     set AZURE_OPENAI_API_KEY=your-api-key
-    
-    # macOS/Linux (Bash)
+    ```
+
+    #### [macOS/Linux (Bash)](#tab/macos-linux-bash)   
+    ```macOS/Linux (Bash)
     export AZURE_OPENAI_ENDPOINT="https://your-resource-name.openai.azure.com/"
     export MODEL_DEPLOYMENT_NAME="your-deployment-name"
     export AZURE_OPENAI_API_KEY="your-api-key"
     ```
+
+    ---
 
 1. Run the application using the following commands:
     ```bash
@@ -319,7 +327,7 @@ Before running locally with `dotnet run`, ensure you have configured the require
     ```
 ::: zone-end
 
-::: zone pivot="programming-language-python"
+::: zone pivot="python"
 
 Update the `.env` file in the root directory of your project and add the following environment variables.
 
@@ -333,8 +341,6 @@ Run the application using:
   ```bash
   python workflow.py
   ```
-
-::: zone-end
 
 ### Visualize multi-agent workflow execution
 
@@ -374,6 +380,8 @@ The following steps outline how to monitor and visualize your multi-agent workfl
   1. Run the command: `>Azure AI Foundry: Visualize the Multi-Agent Workflow`
   1. A new tab will open in VS Code displaying the execution graph
   1. The visualization updates automatically as your workflow progresses, showing the flow between agents and their interactions.
+
+::: zone-end
 
 ## Cleanup resources
 
