@@ -45,7 +45,7 @@ Content extraction is priced based on:
 
 Figure analysis is an optional enhancement to content extraction that automatically generates rich descriptions for images, charts, and diagrams within your documents. This feature is valuable for retrieval-augmented generation (RAG) workflows, as it ensures that visual content is properly represented and searchable in your knowledge base.
 
-**Cost impact**: Figure analysis adds generative model (LLM) token charges for each image analyzed. Each image processed requires more input tokens to analyze the visual content and output tokens for the generated descriptions. The base content extraction charge remains the same, but you will pay for the another LLM calls needed to analyze the images.
+**Cost impact**: Figure analysis adds generative model (LLM) token charges for each image analyzed. Each image processed requires more input tokens to analyze the visual content and output tokens for the generated descriptions. The base content extraction charge remains the same, but you will also pay for generative model calls needed to describe the images.
 
 ### Field extraction:
 Field Extraction is where your custom schema comes to life. Using generative models like GPT-4.1 and GPT-4.1-mini, we extract the specific fields you define—whether it’s invoice totals, contract terms, or customer sentiment. With this update. You can now choose the mode depending on your use case. These tokens are charged based on the actual content processed by the generative models for field extraction using the standard Azure OpenAI tokenizer.
@@ -231,7 +231,7 @@ Important to note: **Content extraction** and **contextualization** charges from
 
 ### What features increase token usage?
 
-Many things can influence token usage, like the contents of the files you process, instructions in your schema, etc. However, there are several features are worth noting that directly increase the number of tokens consumed during field extraction:
+Many things can influence token usage, like the contents of the files you process, instructions in your schema, etc. However, several features are worth noting that directly increase the number of tokens consumed during field extraction:
 
 #### Features that increase tokens
 
@@ -242,7 +242,7 @@ Many things can influence token usage, like the contents of the files you proces
 | **In-context learning (Knowledge Base)** | Variable | When you provide labeled examples in the knowledge base, Content Understanding retrieves and adds relevant examples into the context window, increasing token usage based on the number and size of examples. |
 | **Custom video segmentation** | Additional output tokens | For videos, custom segmentation outputs fields for each segment identified in the video. The quantity of additional tokens depends on the number of segments in the video.  |
 
-Token multiplier refers to the approx increase in cost when enabling this feature compared to a baseline. The baseline would be to process the same files with the following settings:
+Token multiplier refers to the approximately increase in cost when enabling this feature compared to a baseline. The baseline would be to process the same files with the following settings:
 
 - All fields have `mode = "generative"`
 - Source estimation is turned **off**
@@ -263,7 +263,7 @@ Here are detailed examples showing how pricing works for different scenarios. Al
 
 #### Example 1: Processing documents for content ingestion (RAG)
 
-**Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentAnalyzer` which extracts text, layout, andfigure descriptions.
+**Scenario**: You need to extract content from documents for a Retrieval-Augmented Generation (RAG) solution. You use `prebuilt-documentAnalyzer` which extracts text, layout, and figure descriptions.
 
 **Input**:
 - 1,000 pages
