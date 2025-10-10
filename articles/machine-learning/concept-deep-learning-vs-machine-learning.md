@@ -136,8 +136,8 @@ Transformers are used to solve natural language processing problems such as tran
 Some well-known implementations of transformers are:
 
 - Bidirectional Encoder Representations from Transformers (BERT)
-- Generative Pretrained Transformer 2 (GPT-2)
-- Generative Pretrained Transformer 3 (GPT-3)
+- Generative Pre-trained Transformer 2 (GPT-2)
+- Generative Pre-trained Transformer 3 (GPT-3)
 
 ## Next steps
 
