@@ -35,7 +35,7 @@ The [HTTP status codes](#http-status-codes) section explains how invocation and 
 
 ## Prerequisites
 
-- An active Azure subscription with the free or paid version of Azure Machine Learning. [Get a free trial Azure subscription](https://azure.microsoft.com/free/).
+- An active Azure subscription with the free or paid version of Azure Machine Learning. [Get a free trial Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 # [Azure CLI](#tab/cli)
 

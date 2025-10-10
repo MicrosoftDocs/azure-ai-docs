@@ -22,7 +22,7 @@ In this article, you learn how to connect to Azure data storage services with Az
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The [Azure Machine Learning SDK for Python](https://aka.ms/sdk-v2-install).
 - A Machine Learning workspace.
 

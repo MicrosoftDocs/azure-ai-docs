@@ -18,7 +18,7 @@ In this tutorial you will categorize and triage incoming email using custom text
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesTextAnalytics"  title="Create a Language resource"  target="_blank">A Language resource </a>
     * A trained [custom text classification](../overview.md) model.
     * You will need the key and endpoint from your Language resource to authenticate your Power Automate flow.

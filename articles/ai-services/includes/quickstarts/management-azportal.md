@@ -24,7 +24,7 @@ keywords:
 
 If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](../../../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy compliance.
 
-The Azure AI Foundry multi-service resource is listed under **AI Foundry** > **AI Foundry** in the Azure portal. The API kind is **AIServices**. Look for the logo as shown here:
+The Azure AI Foundry resource is listed under **AI Foundry** > **AI Foundry** in the Azure portal. The API kind is **AIServices**. Look for the logo as shown here:
 
 :::image type="content" source="../../media/ai-services-resource-portal.png" alt-text="Screenshot of the Azure AI Foundry resource in the Azure portal." lightbox="../../media/ai-services-resource-portal.png":::
 

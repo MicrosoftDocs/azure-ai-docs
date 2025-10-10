@@ -13,7 +13,7 @@ ms.author: pafarley
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [An Azure AI Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision). You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 - Connect to [Vision Studio](https://portal.vision.cognitive.azure.com/).
   - You might need to sign in.

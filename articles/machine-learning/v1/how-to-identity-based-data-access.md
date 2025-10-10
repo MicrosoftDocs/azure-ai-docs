@@ -57,7 +57,7 @@ Certain machine learning scenarios involve training models with private data. In
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An Azure storage account with a supported storage type. These storage types are supported:
     - [Azure Blob Storage](/azure/storage/blobs/storage-blobs-overview)
