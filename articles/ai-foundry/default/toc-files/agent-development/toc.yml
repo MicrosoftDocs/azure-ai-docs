@@ -7,9 +7,3 @@ items:
   items:
   - name: Set up your environment for agent development
     href: ../../../agents/environment-setup.md
-  - name: Use your own resources
-    href: ../../../agents/how-to/use-your-own-resources.md
-  - name: Standard agent setup
-    href: ../../../agents/concepts/standard-agent-setup.md
-  - name: Capability hosts
-    href: ../../../agents/concepts/capability-hosts.md
