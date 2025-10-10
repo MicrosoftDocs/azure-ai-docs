@@ -1,1 +1,9 @@
 items:
+- name: Agent development overview
+  href: ../../../agents/overview.md
+- name: Agent runtime components
+  href: ../../../agents/concepts/threads-runs-messages.md
+- name: Environment setup
+  items:
+  - name: Set up your environment for agent development
+    href: ../../../agents/environment-setup.md

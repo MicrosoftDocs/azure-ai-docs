@@ -1,1 +1,19 @@
 items:
+- name: Agent tools overview
+  href: ../../../agents/how-to/tools/overview.md
+- name: Azure AI Search
+  href: ../../../agents/how-to/tools/azure-ai-search.md
+- name: Azure Functions
+  href: ../../../agents/how-to/tools/azure-functions.md
+- name: Browser automation (preview)
+  href: ../../../agents/how-to/tools/browser-automation.md
+- name: Code interpreter
+  href: ../../../agents/how-to/tools/code-interpreter.md
+- name: Connected agents (preview)
+  href: ../../../agents/how-to/connected-agents.md
+- name: Computer Use (preview)
+  href: ../../../agents/how-to/tools/computer-use.md
+- name: Deep Research (preview)
+  href: ../../../agents/how-to/tools/deep-research.md
+- name: Microsoft Fabric (preview)
+  href: ../../../agents/how-to/tools/fabric.md
