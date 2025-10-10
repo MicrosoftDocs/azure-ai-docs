@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 08/14/2025
 ms.custom: azure-ai-agents, references_regions
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Models supported by Azure AI Foundry Agent Service
