@@ -46,7 +46,7 @@ A platform-specific knowledge source like the blob knowledge source includes spe
 > [!NOTE]
 > `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) isn't currently operational in the 2025-08-01-preview.
 
-## Create a knowledge source
+## Creating knowledge sources
 
 You must have [**Search Service Contributor** permissions](search-security-rbac.md) to create objects on a search service.  You also need **Search Index Data Contributor** permissions to load an index if you're using a knowledge source that creates an indexer pipeline. Alternatively, you can [use an API admin key](search-security-api-keys.md) instead of roles.
 
@@ -57,7 +57,7 @@ You must use the REST API or an Azure SDK preview package to create a knowledge 
 
 After the knowledge source is created, you can reference it in a knowledge agent.
 
-## Use a knowledge source
+## Using knowledge sources
 
 Properties on the [*knowledge agent*](agentic-retrieval-how-to-create-knowledge-base.md) determine whether and how the knowledge source is used.
 
@@ -113,36 +113,3 @@ To achieve the fastest possible response times, follow these best practices:
    + Set `knowledgeSources.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
 
 1. In the [retrieve action](agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
-
-## Delete a knowledge source
-
-Before you can delete a knowledge source, you must delete or update any knowledge agent that references it. The associated index is a standalone object in Azure AI Search and doesn't need to be deleted or updated in tandem with the knowledge source, but no references to the knowledge source can exist if you want to delete it.
-
-If you try to delete a knowledge source that's in use, the action fails and a list of affected knowledge agents is returned.
-
-1. Get the knowledge agent definition to confirm knowledge source references.
-
-    ```http
-    ### Get the knowledge agent
-    GET {{search-endpoint}}/agents/hotels-index-ka?api-version=2025-08-01-preview
-    api-key: {{api-key}}
-    Content-Type: application/json
-    ```
-
-1. Either update the knowledge agent by removing the knowledge source, or delete the knowledge agent. This example shows deletion.
-
-    ```http
-    ### Delete knowledge agent
-    DELETE {{search-endpoint}}/agents/hotels-index-ka?api-version=2025-08-01-preview
-    api-key: {{api-key}}
-    Content-Type: application/json
-    ```
-
-1. Delete the knowledge source.
-
-    ```http
-    ### Delete a knowledge source definition
-    GET {{search-endpoint}}/knowledgeSources/hotels-index-ks?api-version=2025-08-01-preview
-    api-key: {{api-key}}
-    Content-Type: application/json
-    ```
