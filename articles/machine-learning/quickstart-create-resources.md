@@ -35,7 +35,7 @@ This video shows you how to create a workspace and compute instance in Azure Mac
 
 ## Prerequisites
 
-- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/machine-learning).
+- An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Create the workspace
 

@@ -5,15 +5,33 @@ description: Learn about new feature updates and additions for your AI Agents.
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
-ms.date: 08/07/2025
+ms.date: 10/08/2025
 ms.custom: azure-ai-agents
 ---
 
 # What's new in Azure AI Foundry Agent Service
 
 This article provides a summary of the latest releases and major documentation updates for Azure AI Foundry Agent Service.
+
+## October 2025
+
+### Additional model support
+
+The Agent Service supports the following [models](./concepts/model-region-support.md):
+* gpt-5
+* gpt-5-mini
+* gpt-5-nano
+* gpt-5-chat
+
+
+## September 2025
+
+### Computer Use tool
+
+The [Computer Use](./how-to/tools/computer-use.md) tool is now available in preview. Computer Use is a specialized AI tool that uses a specialized model that can perform tasks by interacting with computer systems and applications through their user interfaces.
 
 ## August 2025
 
@@ -66,7 +84,7 @@ The [AI Foundry Visual Studio Code extension](../../ai-foundry/how-to/develop/vs
 
 #### Trace agents
 
-Debug and monitor your agents by [tracing agent threads](concepts\tracing.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
+Debug and monitor your agents by [tracing agent threads](../how-to/develop/trace-agents-sdk.md) to clearly see the inputs and outputs of each primitive involved in a particular agent run, in the order in which they were invoked. 
 
 #### Trigger agents using Azure Logic Apps 
 
@@ -122,7 +140,7 @@ Azure AI Service is now available in preview. The service builds off of the Assi
     * [.NET](quickstart.md?pivots=programming-language-csharp) 
     * [The Azure Python SDK](quickstart.md?pivots=programming-language-python-azure)  
     * [The OpenAI Python SDK](quickstart.md?pivots=programming-language-python-openai)   
-* Debugging support using [tracing with Application Insights](concepts\tracing.md)
+* Debugging support using [tracing with Application Insights](../how-to/develop/trace-agents-sdk.md)
 
 ## Next steps
 

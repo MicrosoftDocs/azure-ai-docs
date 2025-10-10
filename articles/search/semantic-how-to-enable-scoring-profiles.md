@@ -7,32 +7,20 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 09/28/2025
 ---
 
 # Use scoring profiles with semantic ranker in Azure AI Search
 
-[!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
+You can apply a [scoring profile](index-add-scoring-profiles.md) over [semantically ranked search results](semantic-search-overview.md), where the scoring profile is processed last.
 
-Using a [scoring profile](index-add-scoring-profiles.md) with [semantic ranker](semantic-search-overview.md) is supported in newer Azure AI Search preview REST API versions and Azure SDK preview packages. With this feature, the scoring profile is processed last. Without this feature, semantic ranking is processed last.
-
-To ensure the scoring profile provides the determining score, the semantic ranker adds a new response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.
-
-> [!NOTE]
-> If you're using a stable API version or an earlier preview, scoring profiles are only used upstream, before the semantic ranking step. For a diagram of the scoring workflow, see [Relevance in Azure AI Search](search-relevance-overview.md).
+To ensure the scoring profile provides the determining score, the semantic ranker adds a response field, `@search.rerankerBoostedScore`, that applies scoring profile logic on semantically ranked results. In search results that include `@search.score` from level 1 ranking, `@search.rerankerScore` from semantic ranker, and `@search.reRankerBoostedScore`, results are sorted by `@search.reRankerBoostedScore`.
 
 ## Prerequisites
 
 - [Azure AI Search](search-create-service-portal.md), Basic pricing tier or higher, with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-- [REST API version `2025-05-01-preview`](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) or a preview Azure SDK package that provides the new APIs.
-
-- A search index with a semantic configuration that specifies `"rankingOrder": "boostedReRankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
-
-- A semantic query includes the scoring profile.
-
-> [!TIP]
-> For all preview features, we recommend reviewing the Azure SDK change logs to check for feature availability: [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md).
+- A search index with a semantic configuration that specifies `"rankingOrder": "boostedRerankerScore"` and a scoring profile that specifies [functions](index-add-scoring-profiles.md#use-functions).
 
 ## Limitations
 
@@ -42,7 +30,7 @@ Boosting of semantically ranked results applies to scoring profile functions onl
 
 When you execute a semantic query associated with a scoring profile, a third search score, `@search.rerankerBoostedScore` value, is generated for every document in your search results. This boosted score, calculated by applying the scoring profile to the existing reranker score, doesn't have a guaranteed range (0–4) like a normal reranker score, and scores can be significantly higher than 4.
 
-Starting in API version `2025-05-01-preview`, semantic results are sorted by `@search.rerankerBoostedScore` by default if a scoring profile exists. If the `rankingOrder` property isn't specified, then `BoostedReRankerScore` is the default value in the semantic configuration.
+Semantic results are sorted by `@search.rerankerBoostedScore` by default if a scoring profile exists. If the `rankingOrder` property isn't specified, then `BoostedRerankerScore` is the default value in the semantic configuration.
 
 In this scenario, a scoring profile is used twice. 
 
@@ -58,16 +46,16 @@ In this scenario, a scoring profile is used twice.
 
 ## Enable scoring profiles in semantic configuration
 
-To enable scoring profiles with semantic ranking, use preview API version `2025-05-01-preview` to update an index by setting the `rankingOrder` property of its semantic configuration. Use the PUT method to update the index with your revisions. No index rebuild is required.
+To enable scoring profiles for semantically ranked results, [update an index](/rest/api/searchservice/indexes/create-or-update#rankingorder) by setting the `rankingOrder` property of its semantic configuration. Use the PUT method to update the index with your revisions. No index rebuild is required.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-05-01-Preview
+PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-09-01
 {
   "semantic": {
     "configurations": [
       {
         "name": "mySemanticConfig",
-        "rankingOrder": "boostedReRankerScore"
+        "rankingOrder": "boostedRerankerScore"
       }
     ]
   }
@@ -79,7 +67,7 @@ PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2
 To opt out of sorting by semantic reranker boosted score, set the `rankingOrder` field to `reRankerScore` value in the semantic configuration.
 
 ```json
-PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2025-05-01-Preview
+PUT /indexes/{index-name}?api-version=2025-09-01
 {
   "semantic": {
     "configurations": [
@@ -92,14 +80,14 @@ PUT https://{service-name}.search.windows.com/indexes/{index-name}?api-version=2
 }
 ```
 
-Even if you opt out of sorting by `@search.rerankerBoostedScore`, the `boostedReRankerScore` field is still produced in the response, but it's no longer used to sort results. 
+Even if you opt out of sorting by `@search.rerankerBoostedScore`, the `boostedRerankerScore` field is still produced in the response, but it's no longer used to sort results. 
 
 ## Example query and response
 
-Start with a [semantic query](semantic-how-to-query-request.md) that specifies a scoring profile. The query uses the new preview REST API, and it targets a search index that has `rankingOrder` set to `boostedReRankerScore`.
+Start with a [semantic query](semantic-how-to-query-request.md) that specifies a scoring profile. This query targets a search index that has `rankingOrder` set to `boostedRerankerScore`.
 
 ```json
-POST https://{service-name}.search.windows.com/indexes/{index-name}/docs/search?api-version=2025-05-01-Preview
+POST /indexes/{index-name}/docs/search?api-version=2025-09-01
 {
   "search": "my query to be boosted",
   "scoringProfile": "myScoringProfile",

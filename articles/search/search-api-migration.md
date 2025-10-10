@@ -11,7 +11,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 07/31/2025
+ms.date: 09/27/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -22,8 +22,8 @@ Here are the most recent versions of the REST APIs:
 
 | Targeted operations | REST API | Status |
 |---------------------|----------|--------|
-| Data plane | [`2024-07-01`](/rest/api/searchservice/search-service-api-versions#2024-07-01) | Stable |
-| Data plane | [`2025-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-05-01-preview&preserve-view=true) | Preview |
+| Data plane | [`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) | Stable |
+| Data plane | [`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview&preserve-view=true) | Preview |
 | Control plane | [`2025-05-01`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-05-01&preserve-view=true) | Stable |
 | Control plane | [`2025-02-01-preview`](/rest/api/searchmanagement/operation-groups?view=rest-searchmanagement-2025-02-01-preview&preserve-view=true) | Preview |
 
@@ -40,7 +40,7 @@ We recommend upgrading API versions in succession, working through each version 
 
 Azure AI Search breaks backward compatibility as a last resort. Upgrade is necessary when:
 
-+ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
++ Your code references a retired or unsupported API version and is subject to one or more breaking changes. You must address breaking changes if your code targets [`2025-05-01-preview`](#breaking-changes-for-knowledge-agents) for knowledge agents, [`2023-07-10-preview`](#code-upgrade-for-vector-indexes-and-queries) for vectors, [`2020-06-01-preview`](#breaking-changes-for-semantic-ranker) for semantic ranker, and [`2019-05-06`](#upgrade-to-2019-05-06) for obsolete skills and workarounds.
 
 + Your code fails when unrecognized properties are returned in an API response. As a best practice, your application should ignore properties that it doesn't understand.
 
@@ -61,6 +61,10 @@ Azure AI Search breaks backward compatibility as a last resort. Upgrade is neces
 ## Breaking changes
 
 The following breaking changes apply to data operations.
+
+### Breaking changes for knowledge agents
+
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 
@@ -85,6 +89,21 @@ See [Migrate from preview version](semantic-code-migration.md) to transition you
 ## Data plane upgrades
 
 Upgrade guidance assumes upgrade from the most recent previous version. If your code is based on an old API version, we recommend upgrading through each successive version to get to the newest version.
+
+### Upgrade to 2025-09-01
+
+[`2025-09-01`](/rest/api/searchservice/search-service-api-versions#2025-09-01) is the latest stable REST API version and it adds general availability for the OneLake indexer, Document Layout skill, and other APIs.
+
+There are no breaking changes if you're upgrading from `2024-07-01` and not using any preview features. To use the new stable release, change the API version and test your code.
+
+### Upgrade to 2025-08-01-preview
+
+[`2025-08-01-preview`](/rest/api/searchservice/search-service-api-versions#2025-08-01-preview) introduces the following breaking changes to knowledge agents created using `2025-05-01-preview`:
+
++ Replaces `targetIndexes` with `knowledgeSources`.
++ Removes `defaultMaxDocsForReranker` without replacement.
+
+Otherwise, there are no behavior changes on existing APIs. You can swap in the new API version and your code runs the same as before.
 
 ### Upgrade to 2025-05-01-preview
 
@@ -123,7 +142,7 @@ There are breaking changes if you upgrade directly from `2023-11-01`. Follow the
 
 ### Upgrade to 2024-05-01-preview
 
-[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds OneLake index, support for binary vectors, and support for more embedding models.
+[`2024-05-01-preview`](/rest/api/searchservice/search-service-api-versions#2024-05-01-preview) adds an indexer for Microsoft OneLake, binary vectors, and more embedding models.
 
 If you're upgrading from `2024-03-01-preview`, the AzureOpenAIEmbedding skill now requires a model name and dimensions property.
 
@@ -361,14 +380,14 @@ Features that became generally available in this API version include:
 
 + [Autocomplete](index-add-suggesters.md) is a typeahead feature that completes a partially specified term input.
 + [Complex types](search-howto-complex-data-types.md) provides native support for structured object data in search index.
-+ [JsonLines parsing modes](search-howto-index-json-blobs.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
++ [JsonLines parsing modes](search-how-to-index-azure-blob-json.md), part of Azure Blob indexing, creates one search document per JSON entity that is separated by a newline.
 + [AI enrichment](cognitive-search-concept-intro.md) provides indexing that uses the AI enrichment engines of Azure AI services.
 
 #### Breaking changes
 
 Code written against an earlier API version breaks on `2019-05-06` and later if it contains the following functionality:
 
-1. Type property for Azure Cosmos DB. For indexers targeting an [Azure Cosmos DB for NoSQL API](search-howto-index-cosmosdb.md) data source, change `"type": "documentdb"` to `"type": "cosmosdb"`.
+1. Type property for Azure Cosmos DB. For indexers targeting an [Azure Cosmos DB for NoSQL API](search-how-to-index-cosmosdb-sql.md) data source, change `"type": "documentdb"` to `"type": "cosmosdb"`.
 
 1. If your indexer error handling includes references to the `status` property, you should remove it. We removed status from the error response because it wasn't providing useful information.
 

@@ -22,9 +22,9 @@ Azure AI Language Personally Identifiable Information (PII) detection is a featu
 
 The 2025-08-01-preview introduces several new entities:
 
-* [**DateOfBirth**](concepts/entity-categories.md#category-datetime) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
-* [**LicensePlate**](concepts/entity-categories.md#type-license-plate-) with English language support.
-* [**SortCode**](concepts/entity-categories.md#type-sort-code-) with English language support.
+* [**DateOfBirth**](concepts/entity-categories.md#type-date-of-birth-preview) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
+* [**LicensePlate**](concepts/entity-categories.md#type-license-plate-preview) with English language support.
+* [**SortCode**](concepts/entity-categories.md#type-sort-code-preview) with English language support.
 
 
 The Text PII and Conversational PII detection preview API (version `2024-11-15-preview`) now supports the option to mask detected sensitive entities with a label beyond just redaction characters. Customers can specify if personal data content such as names and phone numbers, that is, `"John Doe received a call from 424-878-9192"`, are masked with a redaction character, that is, `"******** received a call from ************"`, or masked with an entity label, that is, `"[PERSON_1] received a call from [PHONENUMBER_1]"`. More on how to specify the redaction policy style for your outputs can be found in our [how-to guides](how-to-call.md). 

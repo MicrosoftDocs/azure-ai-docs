@@ -3,9 +3,10 @@ title: Azure OpenAI reasoning models - GPT-5 series, o3-mini, o1, o1-mini
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI's advanced GPT-5 series, o3-mini, o1, & o1-mini reasoning models 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 08/15/2025
+ms.date: 09/08/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 ---
@@ -28,13 +29,14 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 | Model | Region | Limited access |
 |---|---|---|
-| `gpt-5` | East US2 & Sweden Central (Global Standard & Data Zones)  |  Request access: [gpt-5 limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
-| `gpt-5-mini` | East US2 & Sweden Central (Global Standard  & Data Zones)  |  No access request needed.    |
-| `gpt-5-nano` | East US2 & Sweden Central (Global Standard  & Data Zones)  |  No access request needed. |
-| `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [o3 limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
+| `gpt-5-codex` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access)  |
+| `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have `o3 access` no request is required    |
+| `gpt-5-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed.    |
+| `gpt-5-nano` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed. |
+| `o3-pro`  | East US2 & Sweden Central (Global Standard)    |  Request access: [Limited access model application](https://aka.ms/oai/o3access). If you already have `o3 access` no request is required. |
 | `codex-mini`  | East US2 & Sweden Central (Global Standard)    | No access request needed.    |
 | `o4-mini`  | [Model availability](../concepts/models.md#global-standard-model-availability)   | No access request needed to use the core capabilities of this model.<br><br> Request access: [o4-mini reasoning summary feature](https://aka.ms/oai/o3access)     |
-| `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [o3 limited access model application](https://aka.ms/oai/o3access)     |
+| `o3` |  [Model availability](../concepts/models.md#global-standard-model-availability)  | Request access: [Limited access model application](https://aka.ms/oai/o3access)     |
 | `o3-mini` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.   |
 |`o1` | [Model availability](../concepts/models.md#global-standard-model-availability).  | Access is no longer restricted for this model.  |
 | `o1-mini` | [Model availability](../concepts/models.md#global-standard-model-availability). | No access request needed for Global Standard deployments.<br><br>Standard (regional) deployments are currently only available to select customers who were previously granted access as part of the `o1-preview` release.|
@@ -43,39 +45,39 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 
 # [GPT-5 Reasoning Models](#tab/gpt-5)
 
-
-| **Feature**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
-|:-------------------|:--------------------------:|:------:|:--------:|
-| **API Version** | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) | [v1 preview](../api-version-lifecycle.md#api-evolution) |
-| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | 
-| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ |
-| **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
-| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|
-| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ |
-| Chat Completions API | ✅ | ✅ | ✅ |
-| Responses API | ✅  | ✅  | ✅ |
-| Functions/Tools | ✅ | ✅ |✅ |
-| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ |
-| `max_completion_tokens` <sup>2</sup> |  ✅ | ✅ | ✅ |
-| System Messages <sup>3</sup> | ✅ | ✅| ✅ |
-| [Reasoning summary](#reasoning-summary) |  ✅ | ✅ | ✅ |
-| Streaming   | ✅ | ✅ | ✅|
+| **Feature**  | **gpt-5-codex**, **2025-09-011**  | **gpt-5**, **2025-08-07**  | **gpt-5-mini**, **2025-08-07**   | **gpt-5-nano**, **2025-08-07**  |
+|:-------------------|:--------------------------:|:--------------------------:|:------:|:--------:|
+| **API Version** | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) | [v1](../api-version-lifecycle.md#api-evolution) |
+| **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ |
+| **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ |
+| **[Context Window](../concepts/models.md#o-series-models)** |  400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br>Input: 272,000 <br> Output: 128,000 | 400,000 <br><br> Input: 272,000 <br> Output: 128,000 |  400,000 <br><br> Input: 272,000 <br> Output: 128,000 |
+| **[Reasoning effort](#reasoning-effort)** | ✅| ✅| ✅|✅|
+| **[Image input](./gpt-with-vision.md)** | ✅ | ✅ | ✅ | ✅ |
+| Chat Completions API | - | ✅ | ✅ | ✅ |
+| Responses API | ✅|  ✅  | ✅  | ✅ |
+| Functions/Tools | ✅ | ✅ | ✅ |✅ |
+| Parallel Tool Calls<sup>1</sup> | ✅ | ✅ | ✅ | ✅ |
+| `max_completion_tokens` <sup>2</sup> | - |  ✅ | ✅ | ✅ |
+| System Messages <sup>3</sup> | ✅ | ✅ | ✅| ✅ |
+| [Reasoning summary](#reasoning-summary) |✅ | ✅ | ✅ | ✅ |
+| Streaming  | ✅ | ✅ | ✅ | ✅|
 
 <sup>1</sup> Parallel tool calls are not supported when `reasoning_effort` is set to `minimal`<br><br>
 <sup>2</sup> Reasoning models will only work with the `max_completion_tokens` parameter when using the Chat Completions API. Use `max_output_tokens` with the Responses API. <br><br>
 <sup>3</sup> The latest reasoning models support system messages to make migration easier. You should not use both a developer message and a system message in the same API request.<br><br>
 
-
 ### NEW GPT-5 reasoning features
 
 | Feature | Description |
 |----|----|
-|`reasoning_effort` | `minimal` is now supported with GPT-5 series reasoning models <br><br> **Options**: `minimal`, `low`, `medium`, `high`|
-|`verbosity` | A new parameter giving you more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
+|`reasoning_effort` | `minimal` is now supported with GPT-5 series reasoning models<sup>*</sup> <br><br> **Options**: `minimal`, `low`, `medium`, `high`|
+|`verbosity` | A new parameter providing more granular control over how concise the model's output will be.<br><br>**Options:** `low`, `medium`, `high`. |
 | `preamble` | GPT-5 series reasoning models have the ability to spend extra time *"thinking"* before executing a function/tool call.<br><br> When this planning occurs the model can provide insight into the planning steps in the model response via a new object called the `preamble` object.<br><br> Generation of preambles in the model response is not guaranteed though you can encourage the model by using the `instructions` parameter and passing content like "You MUST plan extensively before each function call. ALWAYS output your plan to the user before calling any function"|
 | **allowed tools** | You can specify multiple tools under `tool_choice` instead of just one.  |
 | **custom tool type** | Enables raw text (non-json) outputs |
 | [`lark_tool`](#python-lark) | Allows you to use some of the capabilities of [Python lark](https://github.com/lark-parser/lark) for more flexible constraining of model responses |
+
+<sup>*</sup> `gpt-5-codex` does not support `reasoning_effort` minimal.
 
 For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbook guide](https://cookbook.openai.com/examples/gpt-5/gpt-5_prompting_guide) and their [GPT-5 feature guide](https://platform.openai.com/docs/guides/latest-model).
 
@@ -83,7 +85,7 @@ For more information, we also recommend reading OpenAI's [GPT-5 prompting cookbo
 
 | **Feature**  | **codex-mini**, **2025-05-16**  | **o3-pro**, **2025-06-10**   | **o4-mini**, **2025-04-16**  | **o3**, **2025-04-16** | **o3-mini**, **2025-01-31**  |**o1**, **2024-12-17**   |  **o1-mini**, **2024-09-12**   |
 |:-------------------|:--------------------------:|:------:|:--------|:-----:|:-------:|:--------------------------:|:---:|
-| **API Version** | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1 preview](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
+| **API Version** | `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview`  & [v1](../api-version-lifecycle.md#api-evolution)  | `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1](../api-version-lifecycle.md#api-evolution)   |  `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)   | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution) | `2025-04-01-preview` & [v1 preview](../api-version-lifecycle.md#api-evolution)  |
 | **[Developer Messages](#developer-messages)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
 | **[Structured Outputs](./structured-outputs.md)** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |  - |
 | **[Context Window](../concepts/models.md#o-series-models)** |  Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000 | Input: 200,000 <br> Output: 100,000  | Input: 128,000  <br> Output: 65,536 |
@@ -118,6 +120,35 @@ The following are currently unsupported with reasoning models:
 
 These models [don't currently support the same set of parameters](#api--feature-support) as other models that use the chat completions API. 
 
+# [Python (key-based auth)](#tab/python)
+
+You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
+
+```cmd
+pip install openai --upgrade
+```
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.chat.completions.create(
+    model="gpt-5-mini", # replace with the model deployment name of your o1 deployment.
+    messages=[
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000
+
+)
+
+print(response.model_dump_json(indent=2))
+```
+
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 You'll need to upgrade your OpenAI client library for access to the latest parameters.
@@ -129,17 +160,16 @@ pip install openai --upgrade
 If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI in Azure AI Foundry Models with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-03-01-preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 response = client.chat.completions.create(
@@ -154,66 +184,42 @@ response = client.chat.completions.create(
 print(response.model_dump_json(indent=2))
 ```
 
-# [Python (key-based auth)](#tab/python)
-
-You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
-
-```cmd
-pip install openai --upgrade
-```
-
-```python
-
-from openai import AzureOpenAI
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-03-01-preview"
-)
-
-response = client.chat.completions.create(
-    model="o1-new", # replace with the model deployment name of your o1 deployment.
-    messages=[
-        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
-    ],
-    max_completion_tokens = 5000
-
-)
-
-print(response.model_dump_json(indent=2))
-```
-
 # [C#](#tab/csharp)
 
 ```c#
-using Azure.AI.OpenAI;
-using Azure.AI.OpenAI.Chat;
 using Azure.Identity;
+using OpenAI;
 using OpenAI.Chat;
+using System.ClientModel.Primitives;
 
-AzureOpenAIClient openAIClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
-ChatClient chatClient = openAIClient.GetChatClient("o3-mini"); //model deployment name
+#pragma warning disable OPENAI001 //currently required for token based authentication
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "o4-mini",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    }
+);
 
 ChatCompletionOptions options = new ChatCompletionOptions
 {
     MaxOutputTokenCount = 100000
 };
 
-#pragma warning disable AOAI001 //currently required to use MaxOutputTokenCount
+ChatCompletion completion = client.CompleteChat(
+         new DeveloperChatMessage("You are a helpful assistant"),
+         new UserChatMessage("Tell me about the bitter lesson")
+    );
 
-options.SetNewMaxCompletionTokensPropertyEnabled(true);
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
-ChatCompletion completion = chatClient.CompleteChat(
-    [
-
-        new UserChatMessage("Testing 1,2,3")
-    ],
-    options); // Pass the options to the CompleteChat method
-
-Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 ```
 
 ---
@@ -325,6 +331,36 @@ Functionally developer messages ` "role": "developer"` are the same as system me
 
 Adding a developer message to the previous code example would look as follows:
 
+# [Python (key-based auth)](#tab/python)
+
+You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
+
+```cmd
+pip install openai --upgrade
+```
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.chat.completions.create(
+    model="gpt-5-mini", # replace with the model deployment name of your o1 deployment.
+    messages=[
+        {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
+        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
+    ],
+    max_completion_tokens = 5000,
+    reasoning_effort = "medium" # low, medium, or high
+)
+
+print(response.model_dump_json(indent=2))
+```
+
 # [Python (Microsoft Entra ID)](#tab/python-secure)
 
 You'll need to upgrade your OpenAI client library for access to the latest parameters.
@@ -336,17 +372,16 @@ pip install openai --upgrade
 If you're new to using Microsoft Entra ID for authentication see [How to configure Azure OpenAI with Microsoft Entra ID authentication](../how-to/managed-identity.md).
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  azure_ad_token_provider=token_provider,
-  api_version="2025-04-01-preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
 )
 
 response = client.chat.completions.create(
@@ -363,49 +398,30 @@ response = client.chat.completions.create(
 print(response.model_dump_json(indent=2))
 ```
 
-# [Python (key-based auth)](#tab/python)
-
-You might need to upgrade your version of the OpenAI Python library to take advantage of the new parameters like `max_completion_tokens`.
-
-```cmd
-pip install openai --upgrade
-```
-
-```python
-
-from openai import AzureOpenAI
-
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2025-04-01-preview"
-)
-
-response = client.chat.completions.create(
-    model="o1-new", # replace with the model deployment name of your o1 deployment.
-    messages=[
-        {"role": "developer","content": "You are a helpful assistant."}, # optional equivalent to a system message for reasoning models 
-        {"role": "user", "content": "What steps should I think about when writing my first Python API?"},
-    ],
-    max_completion_tokens = 5000,
-    reasoning_effort = "medium" # low, medium, or high
-)
-
-print(response.model_dump_json(indent=2))
-```
-
 # [C#](#tab/csharp)
 
 ```csharp
-using Azure.AI.OpenAI;
-using Azure.AI.OpenAI.Chat;
-using Azure.Identity;
-using OpenAI.Chat;
 
-AzureOpenAIClient openAIClient = new(
-    new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/"),
-    new DefaultAzureCredential());
-ChatClient chatClient = openAIClient.GetChatClient("o3-mini"); //model deployment name
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001 //currently required for token based authentication
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "o4-mini",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    }
+);
 
 ChatCompletionOptions options = new ChatCompletionOptions
 {
@@ -413,18 +429,13 @@ ChatCompletionOptions options = new ChatCompletionOptions
     MaxOutputTokenCount = 100000
 };
 
-#pragma warning disable AOAI001 //currently required to use MaxOutputTokenCount
+ChatCompletion completion = client.CompleteChat(
+         new DeveloperChatMessage("You are a helpful assistant"),
+         new UserChatMessage("Tell me about the bitter lesson")
+    );
 
-options.SetNewMaxCompletionTokensPropertyEnabled(true);
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
-ChatCompletion completion = chatClient.CompleteChat(
-    [
-        new DeveloperChatMessage("You are a helpful assistant."),
-        new UserChatMessage("Testing 1,2,3")
-    ],
-    options); // Pass the options to the CompleteChat method
-
-Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 ```
 
 ---
@@ -433,8 +444,9 @@ Console.WriteLine($"{completion.Role}: {completion.Content[0].Text}");
 
 When using the latest reasoning models with the [Responses API](./responses.md) you can use the reasoning summary parameter to receive summaries of the model's chain of thought reasoning. 
 
-> [!NOTE]
-> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
+> [!IMPORTANT]
+> Attempting to extract raw reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
 
 # [Python](#tab/py)
 
@@ -445,17 +457,12 @@ pip install openai --upgrade
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -476,7 +483,7 @@ print(response.model_dump_json(indent=2))
 # [REST](#tab/REST)
 
 ```bash
-curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview" \
+curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses" \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
  -d '{
@@ -565,6 +572,9 @@ curl -X POST "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?ap
 }
 ```
 
+> [!NOTE]
+> Even when enabled, reasoning summaries are not guaranteed to be generated for every step/request. This is expected behavior.
+
 ## Python lark
 
 GPT-5 series reasoning models have the ability to call a new `custom_tool` called `lark_tool`. This tool is based on [Python lark](https://github.com/lark-parser/lark) and can be used for more flexible constraining of model output.
@@ -591,17 +601,12 @@ GPT-5 series reasoning models have the ability to call a new `custom_tool` calle
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME-HERE.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(  

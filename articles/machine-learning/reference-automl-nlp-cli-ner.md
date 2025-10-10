@@ -24,7 +24,7 @@ Every Azure Machine Learning entity has a schematized YAML representation. You c
 
 This article provides a reference for some syntax concepts you will encounter while configuring these YAML files for NLP text NER jobs.
 
-The source JSON schema can be found at https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLNLPTextNERJob.schema.json
+The source JSON schema can be found at https://azuremlschemasprod.azureedge.net/latest/autoMLNLPTextNERJob.schema.json
 
 ## YAML syntax
 

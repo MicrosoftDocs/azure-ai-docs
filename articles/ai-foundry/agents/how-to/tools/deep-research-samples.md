@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Find code samples and instructions for using deep research in the Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/10/2025
 author: aahill
@@ -211,7 +212,7 @@ import "dotenv/config";
 const projectEndpoint = process.env["PROJECT_ENDPOINT"] || "<project endpoint>";
 const modelDeploymentName = process.env["MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
 const deepResearchModelDeploymentName =
-  process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"] || "gpt-4o";
+  process.env["DEEP_RESEARCH_MODEL_DEPLOYMENT_NAME"];
 const bingConnectionId = process.env["AZURE_BING_CONNECTION_ID"] || "<connection-id>";
 
 /**

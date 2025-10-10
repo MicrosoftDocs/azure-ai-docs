@@ -4,7 +4,7 @@ titleSuffix: Azure AI Search
 description: Learn how query-time ACL and RBAC enforcement ensures secure document retrieval in Azure AI Search for indexes containing permission filters from Azure Data Lake Storage (ADLS) Gen2 data sources.  
 ms.service: azure-ai-search  
 ms.topic: conceptual  
-ms.date: 07/16/2025  
+ms.date: 08/27/2025  
 author: mattgotteiner  
 ms.author: magottei 
 ---  
@@ -17,7 +17,7 @@ Azure Data Lake Storage (ADLS) Gen2 provides an access model that makes fine-gra
 
 This article explains how to set up queries that use permission metadata to filter results.
 
-## Requirements
+## Prerequisites
 
 - Permission metadata must be in `filterable` string fields. You won't use the filter in your queries, but the search engine builds a filter internally to exclude unauthorized content.
 
@@ -25,7 +25,15 @@ This article explains how to set up queries that use permission metadata to filt
 
 - For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. For blob data sources, your have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
 
-- Use the 2025-05-01-preview REST API or a preview package of an Azure SDK to query the index. This API version supports internal queries that filter out unauthorized results.
+- The latest preview REST API (2025-08-01-preview) or a preview package of an Azure SDK to query the index. This API version supports internal queries that filter out unauthorized results.
+
+## Limitations
+
+- If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
+
+- Document visibility requires both:
+  - the calling application’s RBAC role (Authorization header)  
+  - the user identity carried by **x-ms-query-source-authorization**
 
 ## How query-time enforcement works
 
@@ -51,20 +59,12 @@ For Azure RBAC, permissions are lists of resource ID strings. There must be an A
   
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the request against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
 
-## Limitations
-
-- If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
-
-- Document visibility requires both:
-  - the calling application’s RBAC role (Authorization header)  
-  - the user identity carried by **x-ms-query-source-authorization**
-
 ## Query example
 
 Here's an example of a query request from [sample code](https://github.com/Azure-Samples/azure-search-rest-samples/tree/main/Quickstart-ACL). The query token is passed in the request header. The query token is the personal access token of a user or a group identity behind the request.
 
 ```http
-POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-05-01-preview
+POST  {{endpoint}}/indexes/stateparks/docs/search?api-version=2025-08-01-preview
 Authorization: Bearer {{query-token}}
 x-ms-query-source-authorization: {{query-token}}
 Content-Type: application/json

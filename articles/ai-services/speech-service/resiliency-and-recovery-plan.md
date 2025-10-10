@@ -2,8 +2,8 @@
 title: How to back up and recover speech customer resources
 titleSuffix: Azure AI services
 description: Learn how to prepare for service outages with custom speech and custom voice.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to

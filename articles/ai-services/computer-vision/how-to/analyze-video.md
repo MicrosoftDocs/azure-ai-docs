@@ -4,8 +4,6 @@ titleSuffix: Azure AI services
 description: Learn how to perform near real-time analysis on frames that are taken from a live video stream by using the Azure AI Vision API.
 manager: nitinme
 author: PatrickFarley
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
@@ -229,7 +227,7 @@ By using this approach, you can visualize the detected face immediately. You can
 
 To get started with this sample, complete the following steps:
 
-1. Create an [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you already have an account, go to the next step.
+1. Create an [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you already have an account, go to the next step.
 1. Create resources for Azure AI Vision and Face in the Azure portal to get your key and endpoint. Make sure to select the free tier (F0) during setup.
    - [Azure AI Vision](https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision)
    - [Face](https://portal.azure.com/#create/Microsoft.CognitiveServicesFace)

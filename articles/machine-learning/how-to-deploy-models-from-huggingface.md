@@ -194,6 +194,14 @@ If you see the `OutOfQuota: Container terminated due to insufficient memory`, tr
 
 Hugging Face models are featured in the Azure Machine Learning model catalog through the `HuggingFace` registry. Hugging Face creates and manages this registry and is made available to Azure Machine Learning as a Community Registry. The model weights aren't hosted on Azure. The weights are downloaded directly from Hugging Face hub to the online endpoints in your workspace when these models deploy. `HuggingFace` registry in Azure Machine Learning works as a catalog to help discover and deploy HuggingFace hub models in Azure Machine Learning.
 
+**What models are supported?**
+
+Hugging Face models that meet the following criteria are supported on Azure:
+
+- Must have either the `Transformers`, `Diffusers`, or `Sentence-Transformers` tags on Hugging Face Hub
+- Has a [supported task](https://huggingface.co/docs/microsoft-azure/azure-ai/tasks) such as `chat-completion`, `image-to-task`, or `embeddings`
+- Model weights are in the Safetensors format and the model does not require `trust_remote_code`
+
 **How to deploy the models for batch inference?**
 Deploying these models to batch endpoints for batch inference is currently not supported. 
 
@@ -207,7 +215,7 @@ Since the model weights aren't stored in the `HuggingFace` registry, you can't a
 Community registries are Azure Machine Learning registries created by trusted Azure Machine Learning partners and available to all Azure Machine Learning users.
 
 **Where can users submit questions and concerns regarding Hugging Face within Azure Machine Learning?**
-Submit your questions in the [Azure Machine Learning discussion forum.](https://discuss.huggingface.co/t/about-the-azure-machine-learning-category/40677) 
+Submit your questions in the [Azure Machine Learning discussion forum](https://discuss.huggingface.co/t/about-the-azure-machine-learning-category/40677) or open a [GitHub Issue.](https://github.com/huggingface/Microsoft-Azure/issues)
 
 ### Regional availability
 

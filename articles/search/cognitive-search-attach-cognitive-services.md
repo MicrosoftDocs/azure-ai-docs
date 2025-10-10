@@ -180,7 +180,7 @@ Content-Type: application/json
 
 ### [**.NET SDK**](#tab/cogkey-csharp)
 
-The following code snippet is from [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/tutorial-ai-enrichment/v11/Program.cs), trimmed for brevity.
+The following code snippet is from [azure-search-dotnet-samples](https://github.com/Azure-Samples/azure-search-dotnet-samples/blob/main/tutorial-ai-enrichment/tutorial-ai-enrichment/Program.cs), trimmed for brevity.
 
 ```csharp
 IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
@@ -235,7 +235,7 @@ Enrichments are billable operations. If you no longer need to call Azure AI serv
 1. Remove the key in the body of the definition, and then send the request:
 
     ```http
-    PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2024-07-01
+    PUT https://[servicename].search.windows.net/skillsets/[skillset name]?api-version=2025-09-01
     api-key: [admin key]
     Content-Type: application/json
     {

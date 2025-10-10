@@ -14,6 +14,7 @@ ms.custom:
   - ignite-2023
   - build-2024
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Troubleshoot guidance
@@ -94,7 +95,7 @@ This type of error related to compute session lacks required packages. If you're
 
 ### Where to find the serverless instance used by compute session?
 
-You can view the serverless instance used by compute session in the compute session list tab under compute page. Learn more about [how to manage serverless instance](./how-to-manage-compute-session.md#manage-serverless-instance-used-by-compute-session).
+You can view the serverless instance used by compute session in the compute session list tab under compute page. Learn more about [how to manage serverless instance](how-to-manage-compute-session.md#manage-serverless-instance-used-by-a-compute-session).
 
 
 ### Compute session failures using custom base image

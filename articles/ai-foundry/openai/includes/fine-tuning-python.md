@@ -5,8 +5,9 @@ description: Learn how to create your own customized model with Azure OpenAI by 
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 04/30/2025
-ms.service: azure-ai-openai
+ms.date: 09/01/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
@@ -18,7 +19,7 @@ ms.custom:
 - An Azure subscription. <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
 - An Azure OpenAI resource. For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 - The following Python libraries: `os`, `json`, `requests`, `openai`.
-- The OpenAI Python library **should be at least version 0.28.1**.
+- The OpenAI Python library.
 - Fine-tuning access requires **Cognitive Services OpenAI Contributor**.
 - If you do not already have access to view quota, and deploy models in Azure AI Foundry portal you will require [additional permissions](../how-to/role-based-access-control.md).  
 
@@ -106,12 +107,11 @@ The following Python example uploads local training and validation files by usin
 # Upload fine-tuning files
 
 import os
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"  # This API version or later is required to access seed/events/checkpoint capabilities
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 training_file_name = 'training_set.jsonl'
@@ -140,14 +140,13 @@ After you upload your training and validation files, you're ready to start the f
 
 The following Python code shows an example of how to create a new fine-tune job with the Python SDK:
 
-In this example we are also passing the seed parameter. The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you.
-
 ```python
 response = client.fine_tuning.jobs.create(
     training_file=training_file_id,
     validation_file=validation_file_id,
-    model="gpt-4.1-2025-04-14", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
-    seed = 105  # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
+    model="gpt-4.1-2025-04-14", # Enter base model name.
+    suffix="my-model", # Custom suffix for naming the resulting model. Note that in Azure OpenAI the model cannot contain dot/period characters.
+    seed=105, # seed parameter controls reproducibility of the fine-tuning job. If no seed is specified one will be generated automatically.
 )
 
 job_id = response.id
@@ -160,9 +159,24 @@ print("Status:", response.id)
 print(response.model_dump_json(indent=2))
 ```
 
+If you are fine tuning a model that supports [Global Training](../concepts/models.md#fine-tuning-models), you can specify the training type by using the `extra_body` named argument:
+
+```python
+response = client.fine_tuning.jobs.create(
+    training_file=training_file_id,
+    validation_file=validation_file_id,
+    model="gpt-4.1-2025-04-14",
+    suffix="my-model",
+    seed=105,
+    extra_body={ "trainingType": "globalstandard" }
+)
+
+job_id = response.id
+```
+
 You can also pass additional optional parameters like hyperparameters to take greater control of the fine-tuning process. For initial training we recommend using the automatic defaults that are present without specifying these parameters. 
 
-The current supported hyperparameters for fine-tuning are:
+The current supported hyperparameters for Supervised Fine-Tuning are:
 
 |**Name**| **Type**| **Description**|
 |---|---|---|
@@ -171,25 +185,35 @@ The current supported hyperparameters for fine-tuning are:
 |`n_epochs` | integer | The number of epochs to train the model for. An epoch refers to one full cycle through the training dataset. |
 |`seed` | integer |	The seed controls the reproducibility of the job. Passing in the same seed and job parameters should produce the same results, but may differ in rare cases. If a seed isn't specified, one will be generated for you. |
 
-To set custom hyperparameters with the 1.x version of the OpenAI Python API:
+To set custom hyperparameters with the 1.x version of the OpenAI Python API, provide them as part of the `method`:
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"  # This API version or later is required
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 client.fine_tuning.jobs.create(
   training_file="file-abc123", 
-  model="gpt-4.1-2025-04-14", # Enter base model name. Note that in Azure OpenAI the model name contains dashes and cannot contain dot/period characters.
-  hyperparameters={
-    "n_epochs":2
+  model="gpt-4.1-2025-04-14",
+  suffix="my-model",
+  seed=105,
+  method={
+    "type": "supervised", # In this case, the job will be using Supervised Fine Tuning.
+    "supervised": {
+      "hyperparameters": {
+        "n_epochs": 2
+      }
+    }
   }
 )
 ```
+
+> [!NOTE]
+> See the guides for [Direct Preference Optimization](../how-to/fine-tuning-direct-preference-optimization.md) and [Reinforcement Fine-Tuning](../how-to/reinforcement-fine-tuning.md) to learn more about their supported hyperparameters.
+
 
 ## Check fine-tuning job status
 
@@ -329,12 +353,12 @@ Once you have created a fine-tuned model you might want to continue to refine th
 To perform fine-tuning on a model that you have previously fine-tuned you would use the same process as described in [create a customized model](#create-a-customized-model) but instead of specifying the name of a generic base model you would specify your already fine-tuned model's ID. The fine-tuned model ID looks like `gpt-4.1-2025-04-14.ft-5fd1918ee65d4cd38a5dcf6835066ed7`
 
 ```python
-from openai import AzureOpenAI
+import os
+from openai import OpenAI
 
-client = AzureOpenAI(
-  azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-  api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-  api_version="2024-10-21"  
+client = OpenAI(
+  api_key = os.getenv("AZURE_OPENAI_API_KEY"),  
+  base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
 )
 
 response = client.fine_tuning.jobs.create(

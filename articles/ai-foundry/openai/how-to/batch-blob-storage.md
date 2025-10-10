@@ -5,8 +5,9 @@ description: Learn how to configure Azure Blob Storage with Azure OpenAI Batch
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 05/18/2025
-ms.service: azure-ai-openai
+ms.date: 08/29/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - references_regions
@@ -19,15 +20,7 @@ Azure OpenAI now supports using [Azure Blob Storage](/azure/storage/blobs/storag
 
 ## Region Support
 
-- australiaeast
-- eastus
-- germanywestcentral
-- northcentralus
-- polandcentral
-- swedencentral
-- switzerlandnorth
-- eastus2
-- westus
+Now supported in [all regions where batch deployments are supported](./batch.md#batch-support).
 
 ## Azure Blob Storage configuration
 

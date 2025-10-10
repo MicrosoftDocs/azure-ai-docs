@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 08/22/2022
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Locale                            | Locale (BCP-47) |

@@ -2,12 +2,12 @@
 title: What is personal voice?
 titleSuffix: Azure AI services
 description: With personal voice, you can get AI generated replication of your voice (or users of your application) in a few seconds.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
 ms.date: 08/07/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions, build-2024
 #Customer intent: As a developer, I want to learn about personal voice for text to speech.
 ---

@@ -2,12 +2,12 @@
 title: Text to speech API reference (REST) - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use the REST API to convert text into synthesized speech.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 08/07/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the REST API to convert text into synthesized speech.
 ---
@@ -325,6 +325,6 @@ riff-48khz-16bit-mono-pcm
 
 ## Next steps
 
-- [Create a free Azure account](https://azure.microsoft.com/free/cognitive-services/)
+- [Create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [Get started with custom voice](professional-voice-create-project.md)
 - [Batch synthesis](batch-synthesis.md)

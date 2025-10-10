@@ -10,8 +10,6 @@ ms.custom:
   - ignite-2023
 ms.topic: whats-new
 ms.date: 06/30/2025
-ms.collection: ce-skilling-fresh-tier2
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -27,7 +25,7 @@ The **v1.3-preview.1** public preview introduces a new security enhancement:
 
 - **Abuse detection** – Adds built-in risk assessments, including IP-based checks, to help identify and flag liveness sessions that may be fraudulent. This enables earlier intervention in high-risk scenarios such as identity verification or account onboarding. [Learn more](./concept-liveness-abuse-monitoring.md).  
 
-See the [API Reference](https://learn.microsoft.com/rest/api/face/liveness-session-operations?view=rest-face-v1.3-preview) for full details.  
+See the [API Reference](/rest/api/face/liveness-session-operations?view=rest-face-v1.3-preview) for full details.  
 
 ### Network isolation support for Liveness Detection APIs
 
@@ -260,7 +258,7 @@ Azure AI Vision's [OCR (Read) API](overview-ocr.md) latest model with [164 suppo
 * Performance and latency improvements.
 * Available as [cloud service](overview-ocr.md) and [Docker container](computer-vision-how-to-install-containers.md).
 
-See the [OCR how-to guide](how-to/call-read-api.md#determine-how-to-process-the-data-optional) to learn how to use the GA model.
+See the [OCR how-to guide](how-to/call-read-api.md) to learn how to use the GA model.
 
 > [!div class="nextstepaction"]
 > [Get Started with the Read API](./quickstarts-sdk/client-library.md)
@@ -276,7 +274,7 @@ Azure AI Vision's [OCR (Read) API](overview-ocr.md) expands [supported languages
 * Enhancements including better support for extracting handwritten dates, amounts, names, and single character boxes.
 * General performance and AI quality improvements
 
-See the [OCR how-to guide](how-to/call-read-api.md#determine-how-to-process-the-data-optional) to learn how to use the new preview features.
+See the [OCR how-to guide](how-to/call-read-api.md) to learn how to use the new preview features.
 
 > [!div class="nextstepaction"]
 > [Get Started with the Read API](./quickstarts-sdk/client-library.md)
@@ -295,7 +293,7 @@ Azure AI Vision's [OCR (Read) API](overview-ocr.md) expands [supported languages
 * Enhancements for processing digital PDFs and Machine Readable Zone (MRZ) text in identity documents.
 * General performance and AI quality improvements
 
-See the [OCR how-to guide](how-to/call-read-api.md#determine-how-to-process-the-data-optional) to learn how to use the new preview features.
+See the [OCR how-to guide](how-to/call-read-api.md) to learn how to use the new preview features.
 
 > [!div class="nextstepaction"]
 > [Get Started with the Read API](./quickstarts-sdk/client-library.md)

@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.date: 07/31/2025
-ms.author: mopeakande 
-author: msakande
+author: ssalgadodev
+ms.author: ssalgado
 ms.reviewer: ositanachi
 reviewer: ositanachi
 ms.custom: 

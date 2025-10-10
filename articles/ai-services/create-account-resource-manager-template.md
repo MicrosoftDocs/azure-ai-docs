@@ -2,12 +2,12 @@
 title: "Quickstart: Create an AI Foundry resource by using an ARM template"
 description: Learn how to use an Azure Resource Manager template to create an AI Foundry resource.
 keywords: Azure AI services, cognitive solutions, cognitive intelligence, cognitive artificial intelligence
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: quickstart
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 ms.custom:
   - subject-armqs
   - mode-arm
@@ -25,7 +25,7 @@ This quickstart shows you how to use an Azure Resource Manager template (ARM tem
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/cognitive-services).
+* If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Review the template
 

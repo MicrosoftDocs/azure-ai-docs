@@ -1,8 +1,10 @@
 items:
 - name: Explore Foundry Models
   href: ../../concepts/foundry-models-overview.md
-- name: Models and capabilities 
-  href: ../../foundry-models/concepts/models.md
+- name: Foundry Models sold directly by Azure 
+  href: ../../foundry-models/concepts/models-sold-directly-by-azure.md
+- name: Foundry Models from partners and community
+  href: ../../foundry-models/concepts/models-from-partners.md
 - name: Model versions
   href: ../../foundry-models/concepts/model-versions.md
 - name: Model lifecycle and retirement
@@ -19,6 +21,8 @@ items:
     href: ../../how-to/benchmark-model-in-catalog.md
   - name: Explore the model playgrounds
     href: ../../concepts/concept-playgrounds.md
+  - name: GPT-5 vs GPT-4.1
+    href: ../../foundry-models/how-to/model-choice-guide.md
 - name: Deploy Foundry Models
   items:
   - name: Deployment options in Azure AI Foundry portal
@@ -29,6 +33,8 @@ items:
     href: ../../foundry-models/how-to/configure-marketplace.md
   - name: Deploy Foundry Models
     href: ../../foundry-models/how-to/create-model-deployments.md
+  - name: Deploy Azure OpenAI in Foundry Models
+    href: ../../how-to/deploy-models-openai.md
   - name: Upgrade from GitHub Models to Azure AI Foundry Models
     href: ../../foundry-models/how-to/quickstart-github-models.md
   - name: Troubleshoot deployments and monitoring
@@ -37,8 +43,6 @@ items:
   items:
   - name: Endpoints for Foundry Models
     href: ../../foundry-models/concepts/endpoints.md
-  - name: Use Foundry Models in code
-    href: ../../foundry-models/how-to/inference.md
   - name: Supported programming languages and SDKs
     href: ../../../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Inference SDK
@@ -105,12 +109,11 @@ items:
   items:
   - name: Azure OpenAI 
     href: ../../openai/overview.md
+  - name: Upgrade from Azure OpenAI Service
+    href: ../../how-to/upgrade-azure-openai.md
   - name: Quotas and limits
     href: ../../openai/quotas-limits.md
     displayName: openai 
-  - name: Deployment types
-    href: ../../openai/how-to/deployment-types.md
-    displayName: global, Global, globalstandard, global-standard, Global-Standard, standard, provisioned 
   - name: Azure OpenAI Models
     href: ../../openai/concepts/models.md
     displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
@@ -130,9 +133,6 @@ items:
     items:
       - name: Audio generation
         href: ../../openai/audio-completions-quickstart.md
-      - name: Chat
-        href: ../../openai/chatgpt-quickstart.md  
-        displayName: ChatGPT, chatgpt
       - name: Vision-enabled chats
         href: ../../openai/gpt-v-quickstart.md
       - name: Image generation
@@ -141,21 +141,19 @@ items:
         href: ../../openai/video-generation-quickstart.md
       - name: Use your data
         href: ../../openai/use-your-data-quickstart.md
-      - name: Realtime API for speech and audio (preview)
+      - name: Realtime API for speech and audio
         href: ../../openai/realtime-audio-quickstart.md
       - name: Speech to text with Whisper
         href: ../../openai/whisper-quickstart.md
       - name: Text to speech (preview)
         href: ../../openai/text-to-speech-quickstart.md
-      - name: Completions (legacy)
-        href: ../../openai/quickstart.md
   - name: Audio
     items:
-        - name: Realtime API for speech and audio (preview)
+        - name: Realtime API for speech and audio
           href: ../../openai/how-to/realtime-audio.md
-        - name: Realtime API via WebRTC (preview)
+        - name: Realtime API via WebRTC
           href: ../../openai/how-to/realtime-audio-webrtc.md
-        - name: Realtime API via WebSockets (preview)
+        - name: Realtime API via WebSockets
           href: ../../openai/how-to/realtime-audio-websockets.md
   - name: Batch
     items:
@@ -173,6 +171,9 @@ items:
       - name: Chat completions API
         href: ../../openai/how-to/chatgpt.md
         displayName: ChatGPT, chatgpt
+      - name: Codex
+        href: ../../openai/how-to/codex.md
+        displayName: codex, CODEX, codex cli, codex ide extension, gpt-5-codex
       - name: Computer Use
         href: ../../openai/how-to/computer-use.md
         displayName: cua, computer using model
@@ -237,6 +238,8 @@ items:
           href: ../../openai/concepts/content-filter-groundedness.md
         - name: Protected material detection
           href: ../../openai/concepts/content-filter-protected-material.md
+        - name: Personally identifiable information (PII) detection
+          href: ../../openai/concepts/content-filter-personal-information.md
         - name: Content filter configurability
           href: ../../openai/concepts/content-filter-configurability.md
         - name: Content filter annotations
@@ -350,24 +353,14 @@ items:
           href: ../../openai/how-to/dynamic-quota.md
         - name: Monitor Azure OpenAI
           href: ../../openai/how-to/monitor-openai.md
-        - name: Plan and manage costs
-          href: ../../openai/how-to/manage-costs.md
         - name: Performance & latency
           href: ../../openai/how-to/latency.md
         - name: Role-based access control (Azure RBAC)
           href: ../../openai/how-to/role-based-access-control.md
         - name: Business continuity & disaster recovery (BCDR)
           href: ../../openai/how-to/business-continuity-disaster-recovery.md
-    - name: Work with code
-      href: ../../openai/how-to/work-with-code.md
     - name: Deploy and use web apps
       href: ../../openai/how-to/use-web-app.md
-    - name: Legacy
-      items:
-      - name: Completions (legacy)
-        href: ../../openai/how-to/completions.md
-      - name: Chat Markup Language (ChatML)
-        href: ../../openai/how-to/chat-markup-language.md 
   - name: Tutorials
     items:
       - name: Embeddings
@@ -405,4 +398,4 @@ items:
       - name: Customer Copyright Commitment
         href: ../../responsible-ai/openai/customer-copyright-commitment.md
 - name: Foundry Models FAQ
-  href: ../../faq.yml
+  href: ../../foundry-models/faq.yml

@@ -5,7 +5,8 @@ description: Learn about the quotas and limits for when you use Azure AI Foundry
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 07/03/2025
 ms.custom: azure-ai-agents

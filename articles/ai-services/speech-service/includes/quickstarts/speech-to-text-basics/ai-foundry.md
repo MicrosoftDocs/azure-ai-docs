@@ -1,12 +1,12 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: include
 ms.date: 4/14/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 In this quickstart, you try real-time speech to text in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). 

@@ -2,12 +2,12 @@
 title: How to configure Microsoft Entra authentication
 titleSuffix: Azure AI services
 description: Learn how to authenticate using Microsoft Entra authentication
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 8/13/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: programming-languages-set-two
 ms.custom: devx-track-azurepowershell, devx-track-extended-java, devx-track-python, devx-track-azurecli
 ---

@@ -19,7 +19,7 @@ Learn how to create and manage the files in your Azure Machine Learning workspac
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A Machine Learning workspace. [Create workspace resources](quickstart-create-resources.md).
 
 > [!TIP]

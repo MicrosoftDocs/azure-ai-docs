@@ -4,9 +4,10 @@ metadata:
   description: Get answers to the most popular questions about Azure OpenAI
   #services: cognitive-services
   manager: nitinme
-  ms.service: azure-ai-openai
+  ms.service: azure-ai-foundry
+  ms.subservice: azure-ai-foundry-openai
   ms.topic: faq
-  ms.date: 07/02/2025
+  ms.date: 09/30/2025
   ms.author: mbullwin
   author: mrbullwinkle
 title: Azure OpenAI frequently asked questions
@@ -29,14 +30,6 @@ sections:
         answer: |
           Azure OpenAI is supported by the latest release of the [OpenAI Python library (version>=1.0)](https://pypi.org/project/openai/). However, it's important to note migration of your codebase using `openai migrate` is not supported and will not work with code that targets Azure OpenAI.  
       - question: |
-          I can't find GPT-4 Turbo Preview, where is it?
-        answer:
-          GPT-4 Turbo Preview is the `gpt-4` (1106-preview) model. To deploy this model, under **Deployments** select model **gpt-4**. For **Model version** select **1106-preview**. To check which regions this model is available, refer to the [models page](./concepts/models.md).
-      - question: |
-          Does Azure OpenAI support GPT-4?
-        answer: |
-          Azure OpenAI supports the latest GPT-4 models.  It supports both GPT-4 and GPT-4-32K.
-      - question: |
           How do the capabilities of Azure OpenAI compare to OpenAI?
         answer: | 
           Azure OpenAI gives customers advanced language AI with the latest OpenAI models with the security and enterprise promise of Azure. Azure OpenAI codevelops the APIs with OpenAI, ensuring compatibility and a smooth transition from one to the other.
@@ -47,10 +40,6 @@ sections:
         answer: | 
           Yes, Azure OpenAI supports VNETs and Private Endpoints. To learn more, consult the [virtual networking guidance](../../ai-services/cognitive-services-virtual-networks.md?context=/azure/ai-foundry/openai/context/context). 
       - question: |
-          Do the GPT-4 models currently support image input?
-        answer: | 
-          No, GPT-4 is designed by OpenAI to be multimodal, but currently only text input and output are supported.
-      - question: |
           How do I apply for new use cases?
         answer: |
           Previously, the process for adding new use cases required customers to reapply to the service. Now, we're releasing a new process that allows you to quickly add new use cases to your use of the service. This process follows the established Limited Access process within Azure OpenAI. [Existing customers can attest to any and all new use cases here](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUM003VEJPRjRSOTZBRVZBV1E5N1lWMk1XUyQlQCN0PWcu). Note that this is required anytime you would like to use the service for a new use case you didn't originally apply for.
@@ -59,18 +48,13 @@ sections:
         answer: | 
           This error typically occurs when you try to send a batch of text to embed in a single API request as an array. Currently Azure OpenAI only supports arrays of embeddings with multiple inputs for the `text-embedding-ada-002` Version 2 model. This model version supports an array consisting of up to 16 inputs per API request. The array can be up to 8,191 tokens in length when using the text-embedding-ada-002 (Version 2) model.
       - question: |
-          Where can I read about better ways to use Azure OpenAI to get the responses I want from the service?
+          When I ask the which model it's running, it tells me it's running a different version. Why does this happen?
         answer: | 
-          Check out our [introduction to prompt engineering](./concepts/prompt-engineering.md). While these models are powerful, their behavior is also very sensitive to the prompts they receive from the user. This makes prompt construction an important skill to develop. After you've completed the introduction, check out our article on [system messages](./concepts/advanced-prompt-engineering.md).
-      
-      - question: |
-          When I ask GPT-4 which model it's running, it tells me it's running GPT-3. Why does this happen?
-        answer: | 
-          Azure OpenAI models (including GPT-4) being unable to correctly identify what model is running is expected behavior. 
+          Azure OpenAI models being unable to correctly identify what model is running is expected behavior. 
 
           **Why does this happen?**
 
-          Ultimately, the model is performing next [token](/semantic-kernel/prompt-engineering/tokens) prediction in response to your question. The model doesn't have any native ability to query what model version is currently being run to answer your question. To answer this question, you can always go to **Azure AI Foundry** > **Management** > **Deployments** > and consult the model name column to confirm what model is currently associated with a given deployment name.
+          Ultimately, the model is performing next token prediction in response to your question. The model doesn't have any native ability to query what model version is currently being run to answer your question. To answer this question, you can always go to **Azure AI Foundry** > **Deployments** or **Models + endpoints** > and consult the model name column to confirm what model is currently associated with a given deployment name.
 
           The questions, "What model are you running?" or "What is the latest model from OpenAI?" produce similar quality results to asking the model what the weather will be today. It might return the correct result, but purely by chance. On its own, the model has no real-world information other than what was part of its training/training data. In the case of GPT-4, as of August 2023 the underlying training data goes only up to September 2021. GPT-4 wasn't released until March 2023, so barring OpenAI releasing a new version with updated training data, or a new version that is fine-tuned to answer those specific questions, it's expected behavior for GPT-4 to respond that GPT-3 is the latest model release from OpenAI.
 
@@ -98,7 +82,7 @@ sections:
           
           The frequency that a given piece of information appeared in the training data can also impact the likelihood that the model will respond in a certain way. 
 
-          Asking the latest GPT-4 Turbo Preview model about something that changed more recently like "Who is the prime minister of New Zealand?", is likely to result in the fabricated response `Jacinda Ardern`. However, asking the model "When did `Jacinda Ardern` step down as prime minister?" Tends to yield an accurate response which demonstrates training data knowledge going to at least January of 2023.   
+          Asking the model about something that changed more recently like "Who is the prime minister of New Zealand?", is likely to result in the fabricated response `Jacinda Ardern`. However, asking the model "When did `Jacinda Ardern` step down as prime minister?" Tends to yield an accurate response which demonstrates training data knowledge going to at least January of 2023.   
                     
           So while it is possible to probe the model with questions to guess its training data knowledge cutoff, the [model's page](./concepts/models.md) is the best place to check a model's knowledge cutoff.       
       - question: |
@@ -208,14 +192,6 @@ sections:
   - name: GPT-4 Turbo with Vision
     questions:
       - question: |
-          Can I fine-tune the image capabilities in GPT-4?
-        answer: |
-          No, we don't support fine-tuning the image capabilities of GPT-4 at this time.
-      - question: |
-          Can I use GPT-4 to generate images?
-        answer: |
-          No, you can use `dall-e-3` to generate images and `gpt-4-vision-preview` to understand images.
-      - question: |
           What type of files can I upload?
         answer: |
           We currently support PNG (.png), JPEG (.jpeg and .jpg), WEBP (.webp), and nonanimated GIF (.gif).
@@ -271,7 +247,7 @@ sections:
       - question: | 
           Does the Assistants feature support customer-managed key encryption (CMK)?
         answer: |
-          Today we support CMK for Threads and Files in Assistants. See the [What's new page](./whats-new.md#customer-managed-key-cmk-support-for-assistants) for available regions for this feature.
+          Today we support CMK for Threads and Files in Assistants. 
       - question: |
           Is my data used by Microsoft for training models? 
         answer: |

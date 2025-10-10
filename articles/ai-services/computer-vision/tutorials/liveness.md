@@ -5,10 +5,9 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 03/26/2025
+ms.date: 08/21/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
@@ -25,7 +24,7 @@ In this tutorial, you’ll learn how to run a frontend application with an app s
 
 ## Prerequisites
 
-- Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+- Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Your Azure account must have a **Cognitive Services Contributor** role assigned in order for you to agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.

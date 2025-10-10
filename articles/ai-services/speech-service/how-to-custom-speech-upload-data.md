@@ -2,12 +2,12 @@
 title: "Upload training and testing datasets for custom speech - Speech service"
 titleSuffix: Azure AI services
 description: Learn about how to upload data to test or train a custom speech model.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I need to understand how to upload data to test or train a custom speech model so that I can improve the accuracy of speech recognition.
 ---

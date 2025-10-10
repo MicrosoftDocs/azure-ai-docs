@@ -2,12 +2,12 @@
 title: Test accuracy of a custom speech model - Speech service
 titleSuffix: Azure AI services
 description: In this article, you learn how to quantitatively measure and improve the quality of our speech to text model or your custom model.
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 show_latex: true
 no-loc: [$$, '\times', '\over']

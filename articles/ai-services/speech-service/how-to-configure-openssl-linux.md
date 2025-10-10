@@ -2,8 +2,8 @@
 title: How to configure OpenSSL for Linux
 titleSuffix: Azure AI services
 description: In this guide, you learn how to configure OpenSSL for Linux with the Azure AI Speech SDK.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-go, devx-track-python, linux-related-content

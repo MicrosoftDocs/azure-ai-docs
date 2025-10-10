@@ -4,15 +4,18 @@ titleSuffix: Azure AI Foundry
 description: Learn how to add MCP servers to Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 07/16/2025
+ms.date: 10/10/2025
 author: aahill
 ms.author: aahi
-ms.custom: references_regions
 ---
 
 # Connect to Model Context Protocol servers (preview)
+
+> [!NOTE]
+> When using a [Network Secured Azure AI Foundry](../../how-to/virtual-networks.md), private MCP servers deployed in the same virtual network is not supported, only publicly accessible MCP servers are supported.
 
 You can extend the capabilities of your Azure AI Foundry agent by connecting it to tools hosted on remote [Model Context Protocol (MCP)](https://modelcontextprotocol.io/introduction) servers (bring your own MCP server endpoint). Developers and organizations maintain these servers. The servers expose tools that MCP-compatible clients, such as Azure AI Foundry Agent Service, can access.
 
@@ -40,9 +43,6 @@ For more information on using MCP, see:
 
 * [Security Best Practices](https://modelcontextprotocol.io/specification/draft/basic/security_best_practices) on the Model Context Protocol website.
 * [Understanding and mitigating security risks in MCP implementations](https://techcommunity.microsoft.com/blog/microsoft-security-blog/understanding-and-mitigating-security-risks-in-mcp-implementations/4404667) in the Microsoft Security Community Blog.
-
-> [!NOTE]
-> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
 ## Usage support
 
@@ -73,6 +73,21 @@ For more information on using MCP, see:
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `requires_action`. In the `requires_action` field, you can get more details on which tool in the MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
 
 1. Submit your approval to the agent with `call_id` by setting `approve` to `true`.
+
+## Host a local MCP server
+
+The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+
+|Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|:---------:|:---------:|:---------:|
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
+| **Code changes** | Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
+| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+| **State** | Stateless only. | Stateless only. |
+| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
 
 ## Related content
 

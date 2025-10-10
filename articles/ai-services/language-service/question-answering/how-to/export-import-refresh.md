@@ -2,7 +2,6 @@
 title: Export/import/refresh | custom question answering projects and projects
 description: Learn about backing up your custom question answering projects and projects
 ms.service: azure-ai-language
-ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
@@ -19,7 +18,7 @@ You might want to create a copy of your custom question answering project or rel
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled. Remember your Microsoft Entra ID, Subscription, language resource name you selected when you created the resource.
 
 ## Export a project

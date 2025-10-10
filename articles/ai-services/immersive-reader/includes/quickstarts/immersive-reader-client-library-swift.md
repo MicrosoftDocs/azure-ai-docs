@@ -14,7 +14,7 @@ In this quickstart, you build an iOS app from scratch and integrate the Immersiv
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/ai-services).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Immersive Reader resource configured for Microsoft Entra authentication. Follow [these instructions](../../how-to-create-immersive-reader.md) to get set up. Save the output of your session into a text file so you can configure the environment properties.
 * macOS and [Xcode](https://apps.apple.com/us/app/xcode/id497799835?mt=12).
 

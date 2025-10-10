@@ -2,9 +2,10 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: include
-ms.date: 03/28/2025
+ms.date: 08/29/2025
 ---
 
 | [Reference documentation](/dotnet/api/overview/azure/ai.agents.persistent-readme) | [Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/csharp/getting-started-agents) | [Library source code](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent) | [Package (NuGet)](https://www.nuget.org/packages/Azure.AI.Agents.Persistent) |
@@ -14,14 +15,6 @@ ms.date: 03/28/2025
 [!INCLUDE [universal-prerequisites](universal-prerequisites.md)]
 
 ## Configure and run an agent
-
-| Component | Description                                                                                                                                                                                                                               |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Agent     | Custom AI that uses AI models in conjunction with tools.                                                                                                                                                                                  |
-| Tool      | Tools help extend an agent’s ability to reliably and accurately respond during conversation. Such as connecting to user-defined knowledge bases to ground the model, or enabling web search to provide current information.               |
-| Thread    | A conversation session between an agent and a user. Threads store Messages and automatically handle truncation to fit content into a model’s context.                                                                                     |
-| Message   | A message created by an agent or a user. Messages can include text, images, and other files. Messages are stored as a list on the Thread.                                                                                                 |
-| Run       | Activation of an agent to begin running based on the contents of Thread. The agent uses its configuration and Thread’s Messages to perform tasks by calling models and tools. As part of a Run, the agent appends Messages to the Thread. |
 
 Create a .NET Console project.
 
@@ -61,16 +54,12 @@ Save the name of your model deployment name as an environment variable named `Mo
 using Azure;
 using Azure.AI.Agents.Persistent;
 using Azure.Identity;
-using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 
-IConfigurationRoot configuration = new ConfigurationBuilder()
-    .SetBasePath(AppContext.BaseDirectory)
-    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-    .Build();
+var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
+var modelDeploymentName = System.Environment.GetEnvironmentVariable("ModelDeploymentName");
 
-var projectEndpoint = configuration["ProjectEndpoint"];
-var modelDeploymentName = configuration["ModelDeploymentName"];
+
 
 //Create a PersistentAgentsClient and PersistentAgent.
 PersistentAgentsClient client = new(projectEndpoint, new DefaultAzureCredential());
@@ -141,7 +130,7 @@ foreach (PersistentThreadMessage threadMessage in messages)
     }
 }
 
-//Clean up test resources.
-client.Threads.DeleteThread(threadId: thread.Id);
-client.Administration.DeleteAgent(agentId: agent.Id);
+//If you want to delete your agent, uncomment the following lines:
+//client.Threads.DeleteThread(threadId: thread.Id);
+//client.Administration.DeleteAgent(agentId: agent.Id);
 ```

@@ -2,8 +2,8 @@
 title: Keyword recognition overview - Speech service
 titleSuffix: Azure AI services
 description: An overview of the features, capabilities, and restrictions for keyword recognition by using the Speech SDK.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview

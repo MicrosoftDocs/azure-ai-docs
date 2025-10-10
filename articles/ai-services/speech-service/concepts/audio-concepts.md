@@ -7,8 +7,8 @@ ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 4/28/2025
 ms.reviewer: jagoerge
-ms.author: eur
-author: eric-urban
+ms.author: pafarley
+author: PatrickFarley
 ---
 
 # Audio concepts in Azure AI Speech

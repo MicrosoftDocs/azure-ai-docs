@@ -2,12 +2,12 @@
 title: Deploy a custom speech model - Speech service
 titleSuffix: Azure AI services
 description: Learn how to deploy custom speech models. 
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 5/19/2025
-ms.author: eur
+ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-cli-rest
 #Customer intent: As a developer, I want to learn how to deploy a custom speech model so that I can use it in my applications.
 ---

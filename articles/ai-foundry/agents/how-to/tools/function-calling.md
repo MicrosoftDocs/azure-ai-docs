@@ -4,7 +4,8 @@ titleSuffix: Azure AI Foundry
 description: Learn how to use Azure AI Agents with function calling.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
 ms.date: 07/11/2025
 author: aahill
@@ -23,7 +24,7 @@ Azure AI Agents supports function calling, which allows you to describe the stru
 
 ### Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
+|Azure AI foundry support  | Python SDK |    C# SDK | JavaScript SDK | REST API | Basic agent setup | Standard agent setup |
 |---------|---------|---------|---------|---------|---------|---------|
 |      | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ | ✔️ |
 
@@ -381,6 +382,7 @@ Finally, clean up the created resources by deleting the thread and the agent.
 client.Threads.DeleteThread(threadId: thread.Id);
 // Delete the agent definition
 client.Administration.DeleteAgent(agentId: agent.Id);
+```
 
 ::: zone-end
 
@@ -584,7 +586,7 @@ Start by defining a function for your agent to call. When you create a function 
 
 ## Create an agent
 
-Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api#api-call-information) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
+Follow the [REST API Quickstart](../../quickstart.md?pivots=rest-api) to set the right values for the environment variables `AGENT_TOKEN`, `AZURE_AI_FOUNDRY_PROJECT_ENDPOINT` and `API_VERSION`.
 
 ```bash
 curl --request POST \

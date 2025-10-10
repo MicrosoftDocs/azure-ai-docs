@@ -2,8 +2,8 @@
 title: How to get speech to text session ID and transcription ID
 titleSuffix: Azure AI services
 description: Learn how to get speech to text session ID and transcription ID
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to

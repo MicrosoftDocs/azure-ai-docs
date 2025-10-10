@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 4/24/2024
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 | Text language | Language code |

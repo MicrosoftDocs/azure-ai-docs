@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 06/26/2025
+ms.date: 08/28/2025
 ms.reviewer: fasantia
 ms.author: sgilley
 author: sdgilley
@@ -28,7 +28,7 @@ In this example, we're working with the **Model Inference API**.
 
 To run this tutorial, you need:
 
-* An [Azure subscription](https://azure.microsoft.com).
+* [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
 * An Azure AI project as explained at [Create a project in Azure AI Foundry portal](../create-projects.md).
 * A model supporting the [Model Inference API](https://aka.ms/azureai/modelinference) deployed. In this example, we use a `Mistral-Large` deployment, but use any model of your preference. For using embeddings capabilities in LlamaIndex, you need an embedding model like `cohere-embed-v3-multilingual`. 
 
@@ -214,6 +214,7 @@ from llama_index.embeddings.azure_inference import AzureAIEmbeddingsModel
 embed_model = AzureAIEmbeddingsModel(
     endpoint=os.environ["AZURE_INFERENCE_ENDPOINT"],
     credential=os.environ['AZURE_INFERENCE_CREDENTIAL'],
+    model="<your-model-name>",
 )
 ```
 

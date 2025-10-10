@@ -1,12 +1,13 @@
 ---
 title:  Understanding costs associated with provisioned throughput units (PTU)
 description: Learn about provisioned throughput costs and billing in Azure AI Foundry. 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 06/25/2025
+ms.date: 09/03/2025
 manager: nitinme
-author: aahill 
-ms.author: aahi 
+author: msakande 
+ms.author: mopeakande 
 recommendations: false
 ---
 
@@ -23,7 +24,7 @@ Provisioned throughput units (PTUs) are generic units of model processing capaci
 
 ## Understanding provisioned throughput billing
 
-Azure AI Foundry [Regional Provisioned Throughput](../how-to/deployment-types.md#regional-provisioned), [Data Zone Provisioned Throughput](../how-to/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../how-to/deployment-types.md#global-provisioned) are purchased on-demand at an hourly basis based on the number of deployed PTUs, with substantial term discount available via the purchase of [Azure Reservations](#azure-reservations-for-azure-ai-foundry-provisioned-throughput).  
+Azure AI Foundry [Regional Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#regional-provisioned), [Data Zone Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#global-provisioned) are purchased on-demand at an hourly basis based on the number of deployed PTUs, with substantial term discount available via the purchase of [Azure Reservations](#azure-reservations-for-azure-ai-foundry-provisioned-throughput).  
 
 The hourly model is useful for short-term deployment needs, such as validating new models or acquiring capacity for a hackathon.  However, the discounts provided by the Azure Reservation for Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned are considerable and most customers with consistent long-term usage will find a reserved model to be a better value proposition. 
 
@@ -37,13 +38,13 @@ Unlike the Tokens Per Minute (TPM) quota used by other Azure AI Foundry offering
 
 :::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
 
-Quota for provisioned deployments shows up in Azure AI Foundry as the following deployment types: [global provisioned](../how-to/deployment-types.md#global-provisioned), [data zone provisioned](../how-to/deployment-types.md#data-zone-provisioned) and [regional provisioned](../how-to/deployment-types.md#regional-provisioned).
+Quota for provisioned deployments shows up in Azure AI Foundry as the following deployment types: [global provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned), [data zone provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) and [regional provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned).
 
 |deployment type  |Quota name  |
 |---------|---------|
-|[Regional Provisioned](../how-to/deployment-types.md#regional-provisioned)     |  Regional Provisioned Throughput Unit       |
-|[Global Provisioned](../how-to/deployment-types.md#global-provisioned)     | Global Provisioned Throughput Unit        |
-|[Data zone Provisioned](../how-to/deployment-types.md#data-zone-provisioned)    | Data Zone Provisioned Throughput Unit        |
+|[Regional Provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned)     |  Regional Provisioned Throughput Unit       |
+|[Global Provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned)     | Global Provisioned Throughput Unit        |
+|[Data zone Provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned)    | Data Zone Provisioned Throughput Unit        |
 
 :::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="Screenshot of quota UI for Azure AI Foundry provisioned." lightbox="../media/provisioned/ptu-quota-page.png":::
 
@@ -75,18 +76,50 @@ Customers that require long-term usage of regional provisioned, data zone provis
 
 The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens.  Starting with GPT 4.1 models and later, the system matches the global standard price ratio between input and output tokens. Cached tokens are deducted 100% from the utilization.
 
-For example, for `gpt-4.1:2025-04-14`, 1 output token counts as 4 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
+For example, for gpt-5 1 output token counts as 8 input tokens towards your utilization limit which matches the [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/). For other models, such as gpt-4.1, 1 output token counts as 4 input tokens. Older models use a different ratio and for a deeper understanding on how different ratios of input and output tokens impact the throughput your workload needs, see the [Azure AI Foundry PTU quota calculator](https://ai.azure.com/resource/calculator).
 
-|Topic| **o4-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o3-mini** | **o1** | **gpt-4o** | **gpt-4o-mini** |  **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
-| --- |  --- | --- |  --- |  --- | --- | --- | --- | --- | --- | --- | --- | --- |
-|Global & data zone provisioned minimum deployment| 15 | 15|15| 15 | 15 |15|15|15|15| 100|100|100|
-|Global & data zone provisioned scale increment| 5 | 5|5| 5 | 5 |5|5|5|5|  100|100|100|
-|Regional provisioned minimum deployment|25| 50|25| 25 |50 | 25|25|50|25| NA|NA|NA|
-|Regional provisioned scale increment|25| 50|25| 25 | 50 | 25|50|50|25|NA|NA|NA|
-|Input TPM per PTU|5,400 | 3,000|14,900| 59,400 | 3,000 | 2,500|230|2,500|37,000|4,000|4,000|4,000|
-|Latency Target Value| 99% > 66 Tokens Per Second\* | 99% > 40 Tokens Per Second\* | 99% > 50 Tokens Per Second\*| 99% > 60 Tokens Per Second\* | 99% > 40 Tokens Per Second\* | 99% > 66 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* | 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*|
+## Latest Azure OpenAI models
+
+> [!NOTE]
+> gpt-4.1, gpt-4.1-mini and gpt-4.1-nano don't support long context (requests estimated at larger than 128k prompt tokens).
+
+|Topic| **gpt-5** | **gpt-5-mini** | **gpt-4.1** | **gpt-4.1-mini** | **gpt-4.1-nano** | **o3** | **o4-mini** | 
+| --- | --- |  --- | --- |  --- |  --- | --- |  --- |
+|Global & data zone provisioned minimum deployment| 15 | 15  | 15|15| 15 | 15 | 15 |
+|Global & data zone provisioned scale increment| 5 | 5 | 5|5| 5 | 5 | 5 |
+|Regional provisioned minimum deployment| 50 | 25 | 50|25| 25 |50 |25|
+|Regional provisioned scale increment| 50 | 25 | 50|25| 25 | 50 | 25|
+|Input TPM per PTU| 4,750  | 23,750 | 3,000|14,900| 59,400 | 3,000 | 5,400 |
+|Latency Target Value| 99% > 50 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\*| 99% > 100 Tokens Per Second\* | 99% > 80 Tokens Per Second\* | 99% > 90 Tokens Per Second\* |
+
+\* Calculated as p50 request latency on a per 5 minute basis.
+
+## Previous Azure OpenAI models
+
+|Topic| **gpt-4o** | **gpt-4o-mini** | **o3-mini** | **o1** |
+| --- | --- | --- | --- | --- |
+|Global & data zone provisioned minimum deployment|15|15| 15|15|
+|Global & data zone provisioned scale increment|5|5| 5|5|
+|Regional provisioned minimum deployment|50|25| 25|25|
+|Regional provisioned scale increment|50|25| 25|50|
+|Input TPM per PTU|2,500|37,000| 2,500|230|
+|Latency Target Value| 99% > 25 Tokens Per Second\* | 99% > 33 Tokens Per Second\* |  99% > 66 Tokens Per Second\* | 99% > 25 Tokens Per Second\* |
 
 \* Calculated as the average request latency on a per-minute basis across the month.
+
+## Direct from Azure models
+ 
+|Topic| **DeepSeek-R1** | **DeepSeek-V3-0324** | **DeepSeek-R1-0528** |
+| --- | --- | --- | --- |
+|Global & data zone provisioned minimum deployment| 100|100|100|
+|Global & data zone provisioned scale increment|  100|100|100|
+|Regional provisioned minimum deployment| NA|NA|NA|
+|Regional provisioned scale increment|NA|NA|NA|
+|Input TPM per PTU|4,000|4,000|4,000|
+|Latency Target Value| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*| 99% > 50 Tokens Per Second\*|
+
+\* Calculated as the average request latency on a per-minute basis across the month.
+
 
 For a full list, see the [Azure AI Foundry calculator](https://ai.azure.com/resource/calculator).
 

@@ -61,6 +61,13 @@ items:
               displayName: code interpreter
             - name: How to use code interpreter
               href: how-to/tools/code-interpreter-samples.md
+        - name: Computer Use (preview)
+          items:
+            - name: Overview
+              href: how-to/tools/computer-use.md
+              displayName: computer use, computer-capable models
+            - name: How to use Computer Use
+              href: how-to/tools/computer-use-samples.md
         - name: Deep Research (preview)
           items:
             - name: Overview
@@ -141,12 +148,14 @@ items:
       href: how-to/triggers.md
     - name: Use the Visual Studio Code extension
       href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+    - name: Use MCP Tools in the Visual Studio Code extension
+      href: ../../ai-foundry/how-to/develop/vs-code-agents-mcp.md?context=/azure/ai-services/agents/context/context
 - name: Observability
   items:
     - name: Service monitoring
       href: how-to/metrics.md
     - name: Trace and observe agents
-      href: concepts/tracing.md
+      href: ../how-to/develop/trace-agents-sdk.md
 - name: Responsible AI
   items:
     - name: Transparency note

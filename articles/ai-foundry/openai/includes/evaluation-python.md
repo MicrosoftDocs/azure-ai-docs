@@ -6,7 +6,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.date: 07/28/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ---
 
@@ -23,7 +24,6 @@ async def create_eval():
     response = await asyncio.to_thread(
         requests.post,
         f'{API_ENDPOINT}/openai/v1/evals',
-        params={'api-version': "preview"},
         headers={
             'api-key': API_KEY,
             'aoai-evals': 'preview'
@@ -91,7 +91,6 @@ import json
 response = await asyncio.to_thread(
     requests.post,
     f'{API_ENDPOINT}/openai/v1/evals/{eval_id}/runs',
-    params={'api-version': "preview"},
     headers={
         'api-key': API_KEY,
         'aoai-evals': 'preview'
@@ -126,7 +125,6 @@ async def update_eval():
     response = await asyncio.to_thread(
         requests.post,
         f'{API_ENDPOINT}/openai/v1/evals/{eval_id}',
-        params={'api-version': "preview"},
         headers={
             'api-key': API_KEY,
             'aoai-evals': 'preview'
@@ -156,7 +154,6 @@ async def get_eval():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/{eval_id}',
-        params={'api-version': "preview"},
         headers={
             'api-key': API_KEY,
             'aoai-evals': 'preview'
@@ -179,7 +176,6 @@ async def get_eval_run():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d',
-        params={'api-version': "preview"},
         headers={
             'api-key': API_KEY,
             'aoai-evals': 'preview'
@@ -215,7 +211,6 @@ async def get_eval_list():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals',
-        params={'api-version': "preview"},
         headers={
             'api-key': API_KEY,
             'aoai-evals': 'preview'
@@ -238,7 +233,6 @@ async def get_eval_output_item_list():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d/output_items',
-        params={'api-version': "preview"},
         headers={
             'api-key': API_KEY,
             'aoai-evals': 'preview'
@@ -260,7 +254,6 @@ async def get_eval_output_item():
     response = await asyncio.to_thread(
         requests.get,
         f'{API_ENDPOINT}/openai/v1/evals/eval_67fd95c864f08190817f0dff5f42f49e/runs/evalrun_67fe987a6c548190ba6f33f7cd89343d/output_items/outputitem_67fe988369308190b50d805120945deb',
-        params={'api-version': f"{API_VERSION}"},
         headers={'api-key': API_KEY})
 
     print(response.status_code)

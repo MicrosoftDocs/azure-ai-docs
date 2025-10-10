@@ -5,8 +5,6 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
 ms.topic: include
 ms.date: 05/03/2022
 ms.author: pafarley
@@ -18,7 +16,7 @@ Get started with facial recognition using the Face client library for JavaScript
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The latest version of [Node.js](https://nodejs.org/en/)
 * Once you have your Azure subscription, [Create a Face resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFace).You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 

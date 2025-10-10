@@ -6,7 +6,7 @@ author: arv100kri
 ms.author: arjagann
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/07/2025
+ms.date: 08/27/2025
 ms.update-cycle: 365-days
 ms.custom:
   - subject-rbac-steps
@@ -24,6 +24,10 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 * [Create a managed identity](search-how-to-managed-identities.md) for your search service.
 
+## Limitations
+
+* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) only support the _legacy_ approach.
+
 ## Supported approaches for managed identity authentication
 
 Azure AI Search supports two mechanisms to connect to Azure Cosmos DB using managed identity. 
@@ -33,10 +37,6 @@ Azure AI Search supports two mechanisms to connect to Azure Cosmos DB using mana
 * The _modern_ approach requires configuring the managed identity appropriate roles on the control and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`.
 
 Indexers that connect to Azure Cosmos DB for NoSQL support both the _legacy_ and the _modern_ approach - the _modern_ approach is recommended.
-
-## Limitations
-
-* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) only support the _legacy_ approach.
 
 ## Connect to Azure Cosmos DB for NoSQL
 
@@ -105,7 +105,7 @@ When you're connecting with a system-assigned managed identity, the only change 
 Here's an example using the [Create Data Source](/rest/api/searchservice/data-sources/create) REST API that exercises the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2024-07-01
+POST https://[service name].search.windows.net/datasources?api-version=2025-09-01
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -126,7 +126,7 @@ You need to add an "identity" property to the data source definition, where you 
 Here's an example using user-assigned identity via the _modern_ approach.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
@@ -158,7 +158,7 @@ Follow the same steps as before to assign the appropriate roles on the control p
 Here's an example to connect to MongoDB collections using system-assigned identity via the REST API
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
 {
     "name": "my-cosmosdb-ds",
     "type": "cosmosdb",
@@ -173,7 +173,7 @@ POST https://[service name].search.windows.net/datasources?api-version=2025-05-0
 Here's an example to connect to Gremlin graphs using user-assigned identity.
 
 ```http
-POST https://[service name].search.windows.net/datasources?api-version=2025-05-01-preview
+POST https://[service name].search.windows.net/datasources?api-version=2025-08-01-preview
 {
     "name": "[my-cosmosdb-ds]",
     "type": "cosmosdb",
@@ -202,6 +202,6 @@ Connection information and permissions on the remote service are validated at ru
 
 ## See also
 
-* [Indexing via an Azure Cosmos DB for NoSQL](search-howto-index-cosmosdb.md)
-* [Indexing via an Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md)
-* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md)
+* [Indexing via an Azure Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md)
+* [Indexing via an Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md)
+* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md)

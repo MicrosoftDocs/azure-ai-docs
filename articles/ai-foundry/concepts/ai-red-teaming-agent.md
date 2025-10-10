@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article provides conceptual overview of the AI Red Teaming Agent.
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 04/04/2025
+ms.date: 08/29/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt

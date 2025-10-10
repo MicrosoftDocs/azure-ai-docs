@@ -11,7 +11,7 @@ ms.date: 04/14/2025
 ms.author: lajanuar
 ---
 
-# Managed identities for Azure AI Document translation
+# Managed identities: role-based access control (RBAC)
 
 Managed identities for Azure resources are service principals that create a Microsoft Entra identity and specific permissions for Azure managed resources. Managed identities are a safer way to grant access to storage data and replace the requirement for you to include shared access signature tokens (SAS) with your [source and target URLs](#post-request-body).
 
@@ -36,7 +36,7 @@ Managed identities for Azure resources are service principals that create a Micr
 
 To get started, you need:
 
-* An active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+* An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI services) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../multi-service-resource.md).
 

@@ -2,7 +2,8 @@
 manager: nitinme
 author: santiagxf
 ms.author: fasantia 
-ms.service: azure-ai-model-inference
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-model-inference
 ms.date: 1/21/2025
 ms.topic: include
 zone_pivot_groups: azure-ai-models-deployment
@@ -24,7 +25,7 @@ You can create a connection to an Azure AI services resource using the following
 
 2. In the lower left corner of the screen, select **Management center**.
 
-3. In the section **Connections** select **New connection**.
+3. In the section **Connected resources** select **New connection**.
 
 4. Select **Azure AI services**.
 

@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: goergenj
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 7/31/2025
-ms.author: eur
+ms.date: 9/26/2025
+ms.author: jagoerge
 ---
 
 You create and run an application to use voice live directly with generative AI models for real-time voice agents.
@@ -16,4 +16,4 @@ You create and run an application to use voice live directly with generative AI 
 
 - Direct model use is suitable for scenarios where agent-level abstraction or built-in logic is unnecessary.
 
-To instead use the voice live API with agents, see the [voice live agents quickstart](/azure/ai-services/speech-service/voice-live-agents-quickstart).
+To instead use the Voice live API with agents, see the [Voice live API agents quickstart](/azure/ai-services/speech-service/voice-live-agents-quickstart).

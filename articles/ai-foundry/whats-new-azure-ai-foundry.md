@@ -1,43 +1,47 @@
 ---
-title: "Azure AI Foundry docs: What's new for August 2025"
-description: Discover key changes and updates in Azure AI Foundry documentation for August 2025.
+title: "Azure AI Foundry docs: What's new for October 2025"
+description: Discover key changes and updates in Azure AI Foundry documentation for October 2025.
 ms.author: smcdowell
 author: skpmcdowell
 ms.topic: whats-new
 ms.subject: ai-foundry
 ms.service: azure-ai-foundry
-ms.custom: August-2025
-ms.date: 08/04/2025
+ms.custom: October-2025
+ms.date: 10/06/2025
 ---
 
 # What's new in Azure AI Foundry documentation?
 
-Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for August 2025.
+Welcome! This article highlights key changes and updates in Azure AI Foundry documentation for October 2025.
 
 ## New articles
-
-- [Capability hosts](../ai-foundry/agents/concepts/capability-hosts.md)
-- [Cost management for fine-tuning](../ai-foundry/openai/how-to/fine-tuning-cost-management.md)
-- [Deep Research tool (preview)](../ai-foundry/agents/how-to/tools/deep-research.md)
-- [How to create and configure your storage account for use in Azure AI Foundry Projects](../ai-foundry/how-to/evaluations-storage-account.md)
-- [How to use the Deep Research tool](../ai-foundry/agents/how-to/tools/deep-research-samples.md)
-- [Migrate from hub-based to Foundry projects](../ai-foundry/how-to/migrate-project.md)
-- [Serverless API inference examples for Foundry Models](../ai-foundry/concepts/models-inference-examples.md)
-- [Use Terraform to create Azure AI Foundry resource](../ai-foundry/how-to/create-resource-terraform.md)
-
-### Updated articles
-
-- [Azure OpenAI Responses API (Preview)](../ai-foundry/openai/how-to/responses.md)
-- [Code samples for the Model Context Protocol tool (preview)](../ai-foundry/agents/how-to/tools/model-context-protocol-samples.md)
-- [Customer-managed keys for encryption with Azure AI Foundry](../ai-foundry/concepts/encryption-keys-portal.md)
-- [Evaluate generative AI models and applications by using Azure AI Foundry](../ai-foundry/how-to/evaluate-generative-ai-app.md) 
-- [Evaluate your AI agents locally with the Azure AI Evaluation SDK (preview)](../ai-foundry/how-to/develop/agent-evaluate-sdk.md)
-- [Evaluate your generative AI application locally with the Azure AI Evaluation SDK](../ai-foundry/how-to/develop/evaluate-sdk.md)
-- [Foundry Models and capabilities](../ai-foundry/foundry-models/concepts/models.md)
-- [Generate synthetic and simulated data for evaluation (preview)](../ai-foundry/how-to/develop/simulator-interaction-data.md)
-- [How to use the Deep Research tool](../ai-foundry/agents/how-to/tools/deep-research-samples.md)
-- [How to use the SharePoint tool](../ai-foundry/agents/how-to/tools/sharepoint-samples.md)
-- [View evaluation results in the Azure AI Foundry portal](../ai-foundry/how-to/evaluate-results.md)
+- [Add Azure AI Foundry to a network security perimeter (preview)](../ai-foundry/how-to/add-foundry-to-network-security-perimeter.md)
+- [Azure AI Foundry Agent Service Computer Use Tool](../ai-foundry/agents/how-to/tools/computer-use.md)
+- [Built-in policy for model deployment in Azure AI Foundry portal (Preview)](../ai-foundry/how-to/model-deployment-policy.md)
+- [Codex with Azure OpenAI in Azure AI Foundry Models](../ai-foundry/openai/how-to/codex.md)
+- [Consolidated view for AI services in the Azure portal](../ai-foundry/concepts/ai-foundry-consolidated-view.md)
+- [Create a hub project for Azure AI Foundry](../ai-foundry/how-to/hub-create-projects.md)
+- [Create and manage connections in Azure AI Foundry hubs](../ai-foundry/how-to/hub-connections-add.md)
+- [Customer-managed keys for hub projects](../ai-foundry/concepts/hub-encryption-keys-portal.md)
+- [Data, privacy, and security for Azure AI Voice Live API](../ai-foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md)
+- [Foundry Models sold directly by Azure](../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
+- [GPT-5 vs GPT-4.1: choosing the right model for your use case](../ai-foundry/foundry-models/how-to/model-choice-guide.md)
+- [How to configure a private link for Azure AI Foundry](../ai-foundry/how-to/hub-configure-private-link.md)
+- [How to use the Computer Use Tool](../ai-foundry/agents/how-to/tools/computer-use-samples.md)
+- [Manage and increase quotas for hub resources](../ai-foundry/how-to/hub-quota.md)
+- [Plan and manage costs for Azure AI Foundry](../ai-foundry/concepts/manage-costs.md)
+- [Quickstart: Get started with Azure AI Foundry (Hub projects)](../ai-foundry/quickstarts/hub-get-started-code.md)
+- [Role-based access control for Azure AI Foundry (hub-focused)](../ai-foundry/concepts/hub-rbac-azure-ai-foundry.md)
+- [Upgrade from Azure OpenAI to Azure AI Foundry](../ai-foundry/how-to/upgrade-azure-openai.md)
+- [Use cases for Voice live](../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md)
+- [Work with Azure AI Foundry Agent Service and MCP Server tools in Visual Studio Code (Preview)](../ai-foundry/how-to/develop/vs-code-agents-mcp.md)
 
 
+## Updated articles
 
+- [Azure AI Foundry Playgrounds](../ai-foundry/concepts/concept-playgrounds.md)
+- [Azure AI Search tool](../ai-foundry/agents/how-to/tools/azure-ai-search.md)
+- [Create a project for Azure AI Foundry (Foundry projects)](../ai-foundry/how-to/create-projects.md) 
+- [Foundry Local CLI Reference](../ai-foundry/foundry-local/reference/reference-cli.md)
+- [Get started with Foundry Local](../ai-foundry/foundry-local/get-started.md)
+- [Plan to manage costs for Azure AI Foundry Models](../ai-foundry/foundry-models/how-to/manage-costs.md)

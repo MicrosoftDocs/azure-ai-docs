@@ -2,7 +2,8 @@
 title: Azure OpenAI in Azure AI Foundry Models model versions
 titleSuffix: Azure OpenAI
 description: Learn about model versions in Azure OpenAI. 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
 ms.date: 07/31/2025
 manager: nitinme

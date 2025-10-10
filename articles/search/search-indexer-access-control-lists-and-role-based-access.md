@@ -4,9 +4,9 @@ titleSuffix: Azure AI Search
 description: Learn how to configure Azure AI Search indexers for ingesting Access Control Lists (ACLs) and Azure Role-Based Access (RBAC) metadata on Azure Data Lake Storage (ADLS) Gen2 blobs.
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 05/08/2025  
-author: wlifuture
-ms.author: wli
+ms.date: 09/18/2025  
+author: gmndrg
+ms.author: gimondra
 ---  
 
 # Use an ADLS Gen2 indexer to ingest permission metadata and filter search results based on user access rights
@@ -21,14 +21,14 @@ The indexer approach is built on this foundation:
 
 + [The ADLS Gen2 access control model](/azure/storage/blobs/data-lake-storage-access-control-model) that provides [Access control lists (ACLs)](/azure/storage/blobs/data-lake-storage-access-control-model#access-control-lists-acls) and [Role-based access control (Azure RBAC)](/azure/storage/blobs/data-lake-storage-access-control-model#role-based-access-control-azure-rbac). There's no support for Attribute-based access control (Azure ABAC).
 
-+ [An Azure AI Search indexer for ADLS Gen2](search-howto-index-azure-data-lake-storage.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, you must use the 2025-05-01-preview REST API or a prerelease package of an Azure SDK that supports the feature.
++ [An Azure AI Search indexer for ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) that retrieves and ingests data and metadata, including permission filters. To get permission filter support, use the latest preview REST API or a prerelease package of an Azure SDK that supports the feature.
 
-+ [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up queries that respect the permission filters, you must use the 2025-05-01-preview REST API or a prerelease package of an Azure SDK that supports the feature.
++ [An index in Azure AI Search](search-how-to-create-search-index.md) containing the ingested documents and corresponding permissions. Permission metadata is stored as fields in the index. To set up queries that respect the permission filters, use the latest preview REST API or a prerelease package of an Azure SDK that supports the feature.
 
 <!-- Addison has a concept article for doc-level permission concept. we should link to that instead. -->
 This functionality helps align [document-level permissions](search-security-trimming-for-azure-search.md) in the search index with the access controls defined in ADLS Gen2, allowing users to retrieve content in a way that reflects their existing permissions.
 
-This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
+This article supplements [**Index data from ADLS  Gen2**](search-how-to-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index. 
 
 ## Prerequisites
 
@@ -51,6 +51,8 @@ This article supplements [**Index data from ADLS  Gen2**](search-howto-index-azu
   + [Knowledge store](knowledge-store-concept-intro.md)
   + [Indexer enrichment cache](enrichment-cache-how-to-configure.md)
   + [Debug sessions](cognitive-search-debug-session.md)
+ 
++ This functionality is currently not supported in the Azure portal.
 
 ## Support for the permission model
 
@@ -139,13 +141,13 @@ In Azure AI Search, configure an indexer, data source, and index to pull permiss
 
 ### Create the data source
 
-This section supplements  [**Index data from ADLS  Gen2**](search-howto-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index.
+This section supplements  [**Index data from ADLS  Gen2**](search-how-to-index-azure-data-lake-storage.md) with information that's specific to ingesting permissions alongside document content into an Azure AI Search index.
 
 + Data Source type must be `adlsgen2`.
 
 + Data source must have `indexerPermissionOptions` with `userIds`, `groupIds` and/or `rbacScope`.
 
-  + For`rbacScope`, configure the [connection string](search-howto-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
+  + For`rbacScope`, configure the [connection string](search-how-to-index-azure-data-lake-storage.md#supported-credentials-and-connection-strings) with managed identity format.
   
   + For connection strings using a [user-assigned managed identity](search-howto-managed-identities-storage.md#user-assigned-managed-identity-preview), you must also specify the `identity` property.
 
@@ -265,11 +267,10 @@ Choose one of the following mechanisms, depending on how many items changed:
 | **Dozens to thousands of blobs** | Call [/resetdocs (preview)](search-howto-run-reset-indexers.md#how-to-reset-docs-preview) and list the affected document keys. | Document content **and** ACL/RBAC metadata               |  
 | **Entire data source**          | Call [/resync (preview)](search-howto-run-reset-indexers.md#how-to-resync-indexers-preview) with the permissions option.              | **Only** ACL/RBAC metadata (content is left untouched)    |
 
-
 **Resetdocs (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-05-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resetdocs?api-version=2025-08-01-preview 
    { 
      "documentKeys": [ 
        "1001", 
@@ -281,7 +282,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 **Resync (preview) API example:**
 
    ```http
-   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-05-01-preview 
+   POST https://{service}.search.windows.net/indexers/{indexer}/resync?api-version=2025-08-01-preview 
    { 
      "options": [ 
        "permissions" 
@@ -295,7 +296,7 @@ Choose one of the following mechanisms, depending on how many items changed:
 
 ## Deletion tracking 
 
-To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-howto-index-changed-deleted-blobs.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and have them deleted from the index.
+To effectively manage blob deletion, ensure that you have enabled [deletion tracking](search-how-to-index-azure-blob-changed-deleted.md) before your indexer runs for the first time. This feature allows the system to detect deleted blobs from your source and have them deleted from the index.
 
 ## See also
 

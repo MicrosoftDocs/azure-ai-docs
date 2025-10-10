@@ -6,7 +6,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.date: 07/28/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ---
 

@@ -5,15 +5,16 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/07/2025
-ms.service: azure-ai-openai
+ms.date: 09/19/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - references_regions
   - build-2025
 ---
 
-# Azure OpenAI Responses API (Preview)
+# Azure OpenAI Responses API
 
 The Responses API is a new stateful API from Azure OpenAI. It brings together the best capabilities from the chat completions and assistants API in one unified experience. The Responses API also adds support for the new `computer-use-preview` model which powers the [Computer use](../how-to/computer-use.md) capability.
 
@@ -21,7 +22,7 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 
 ### API support
 
-- [v1 preview API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
+- [v1 API is required for access to the latest features](../api-version-lifecycle.md#api-evolution)
 
 ### Region Availability
 
@@ -44,10 +45,13 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5-codex`  (Version: `2025-09-11`)
 - `gpt-5` (Version: `2025-08-07`)
 - `gpt-5-mini` (Version: `2025-08-07`)
 - `gpt-5-nano` (Version: `2025-08-07`)
 - `gpt-5-chat` (Version: `2025-08-07`)
+- `gpt-5-chat` (Version: `2025-10-03`)
+- `gpt-5-codex` (Version: `2025-09-15`)
 - `gpt-4o` (Versions: `2024-11-20`, `2024-08-06`, `2024-05-13`)
 - `gpt-4o-mini` (Version: `2024-07-18`)
 - `computer-use-preview`
@@ -55,6 +59,7 @@ The responses API is currently available in the following regions:
 - `gpt-4.1-nano` (Version: `2025-04-14`)
 - `gpt-4.1-mini` (Version: `2025-04-14`)
 - `gpt-image-1` (Version: `2025-04-15`)
+- `gpt-image-1-mini` (Version: `2025-10-06`)
 - `o1` (Version: `2024-12-17`)
 - `o3-mini` (Version: `2025-01-31`)
 - `o3` (Version: `2025-04-16`)
@@ -70,7 +75,7 @@ Not every model is available in the regions supported by the responses API. Chec
 >
 > There's a known issue with the following:
 > - PDF as an input file [is now supported](#file-input), but setting file upload purpose to `user_data` is not currently supported.
-> - Performance when background mode is used with streaming. The issue is expected to be resolved soon.
+> - Performance issues when background mode is used with streaming. The issue is expected to be resolved soon.
 
 ### Reference documentation
 
@@ -86,33 +91,7 @@ pip install --upgrade openai
 
 ## Generate a text response
 
-# [Python (Microsoft Entra ID)](#tab/python-secure)
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
-)
-
-response = client.responses.create(
-    model="gpt-4.1-nano",
-    input= "This is a test" 
-)
-
-print(response.model_dump_json(indent=2)) 
-```
-
 # [Python (API Key)](#tab/python-key)
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
 import os
@@ -121,7 +100,6 @@ from openai import OpenAI
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
 )
 
 response = client.responses.create(   
@@ -132,12 +110,37 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.responses.create(
+    model="gpt-4.1-nano",
+    input= "This is a test" 
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
 # [REST API](#tab/rest-api)
 
 ### Microsoft Entra ID
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -149,7 +152,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 ### API Key
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" \
   -d '{
@@ -218,30 +221,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api
 
 To retrieve a response from a previous call to the responses API.
 
-# [Python (Microsoft Entra ID)](#tab/python-secure)
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
-)
-
-response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
-
-print(response.model_dump_json(indent=2))
-```
-
 # [Python (API Key)](#tab/python-key)
-
-[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
 import os
@@ -250,10 +230,31 @@ from openai import OpenAI
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    default_query={"api-version": "preview"}, 
 )
 
 response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
+```
+
+[!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
+
+# [Python (Microsoft Entra ID)](#tab/python-secure)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
+
+print(response.model_dump_json(indent=2))
 ```
 
 # [REST API](#tab/rest-api)
@@ -261,7 +262,7 @@ response = client.responses.retrieve("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
 ### Microsoft Entra ID
 
 ```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" 
 ```
@@ -269,7 +270,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 ### API Key
 
 ```bash
-curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id}?api-version=preview \
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{response_id} \
   -H "Content-Type: application/json" \
   -H "api-key: $AZURE_OPENAI_API_KEY" 
 ```
@@ -332,17 +333,12 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.delete("resp_67cb61fa3a448190bcf2c42d96f0d1a8")
@@ -355,17 +351,12 @@ print(response)
 You can chain responses together by passing the `response.id` from the previous response to the `previous_response_id` parameter.
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -439,17 +430,12 @@ Note from the output that even though we never shared the first input question w
 Alternatively you can manually chain responses together using the method below:
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 
@@ -476,17 +462,12 @@ print(second_response.model_dump_json(indent=2))
 ## Streaming
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -506,17 +487,12 @@ for event in response:
 The responses API supports function calling.
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(  
@@ -592,17 +568,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 instructions = "You are a personal math tutor. When asked a math question, write and run code using the python tool to answer the question."
@@ -625,11 +596,11 @@ print(response.output)
 ### Containers
 
 > [!IMPORTANT]
-> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
+> Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Responses API calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 20 minutes.
 
 The Code Interpreter tool requires a container—a fully sandboxed virtual machine where the model can execute Python code. Containers can include uploaded files or files generated during execution.
 
-To create a container, specify `"container": { "type": "auto", "files": ["file-1", "file-2"] }` in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call` in the output of the APIwill contain the `container_id` that was generated. This container expires if it is not used for 20 minutes.
+To create a container, specify `"container": { "type": "auto", "file_ids": ["file-1", "file-2"] }` in the tool configuration when creating a new Response object. This automatically creates a new container or reuses an active one from a previous code_interpreter_call in the model’s context. The `code_interpreter_call` in the output of the APIwill contain the `container_id` that was generated. This container expires if it is not used for 20 minutes.
 
 ### File inputs and outputs
 
@@ -677,17 +648,12 @@ Any files in the model input get automatically uploaded to the container. You do
 ## List input items
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.input_items.list("resp_67d856fcfba0819081fd3cffee2aa1c0")
@@ -725,17 +691,12 @@ print(response.model_dump_json(indent=2))
 ### Image url
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -762,17 +723,12 @@ print(response)
 
 ```python
 import base64
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 def encode_image(image_path):
@@ -811,9 +767,9 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 > [!NOTE]
 > - All extracted text and images are put into the model's context. Make sure you understand the pricing and token usage implications of using PDFs as input.
 >
-> - You can upload up to 100 pages and 32MB of total content in a single request to the API, across multiple file inputs.
+> - In a single API request, the size of content uploaded across multiple inputs (files) should be within the model's context length.
 >
-> - Only models that support both text and image inputs, such as `gpt-4o`, `gpt-4o-mini`, or `o1`, can accept PDF files as input.
+> - Only models that support both text and image inputs can accept PDF files as input.
 >
 > - A `purpose` of `user_data` is currently not supported. As a temporary workaround you will need to set purpose to `assistants`.
 
@@ -823,17 +779,12 @@ Models with vision capabilities support PDF input. PDF files can be provided eit
 
 ```python
 import base64
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1/",
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 with open("PDF-FILE-NAME.pdf", "rb") as f: # assumes PDF is in the same directory as the executing script
@@ -869,17 +820,12 @@ print(response.output_text)
 Upload the PDF file. A `purpose` of `user_data` is currently not supported. As a workaround you will need to set purpose to `assistants`.
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(
-  azure_endpoint = "https://YOUR-RESOURCE=NAME.openai.azure.com/", 
-  azure_ad_token_provider=token_provider,
-  api_version="2024-10-21"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 
@@ -912,19 +858,13 @@ file_id = file.id
 You will then take the value of the `id` and pass that to a model for processing under `file_id`:
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE=NAME.openai.azure.com/openai/v1",
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
-)
-
 
 response = client.responses.create(
     model="gpt-4o-mini",
@@ -949,12 +889,12 @@ print(response.output_text)
 ```
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files?api-version=2024-10-21 \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/files \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -F purpose="assistants" \
   -F file="@your_file.pdf" \
 
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -988,7 +928,7 @@ You can extend the capabilities of your model by connecting it to tools hosted o
 The following example demonstrates how to use the fictitious MCP server to query information about the Azure REST API. This allows the model to retrieve and reason over repository content in real time.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1006,19 +946,13 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
-)
-
 response = client.responses.create(
     model="gpt-4.1", # replace with your model deployment name 
     tools=[
@@ -1058,7 +992,7 @@ When an approval is required, the model returns a `mcp_approval_request` item in
 To proceed with the remote MCP call, you must respond to the approval request by creating a new response object that includes an mcp_approval_response item. This object confirms your intent to allow the model to send the specified data to the remote MCP server.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1081,17 +1015,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1120,7 +1049,7 @@ Unlike the GitHub MCP server, most remote MCP servers require authentication. Th
 You can specify headers such as API keys, OAuth access tokens, or other credentials directly in your request. The most commonly used header is the `Authorization` header.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1139,17 +1068,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1178,7 +1102,7 @@ By enabling background mode, you can avoid timeouts and maintain reliability dur
 To start a background task, set the background parameter to true in your request:
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1189,17 +1113,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1214,24 +1133,19 @@ print(response.status)
 Use the `GET` endpoint to check the status of a background response. Continue polling while the status is queued or in_progress. Once the response reaches a final (terminal) state, it will be available for retrieval.
 
 ```bash
-curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?api-version=preview \
+curl GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 from time import sleep
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.create(
@@ -1251,23 +1165,18 @@ print(f"Final status: {response.status}\nOutput:\n{response.output_text}")
 You can cancel an in-progress background task using the `cancel` endpoint. Canceling is idempotent—subsequent calls will return the final response object.
 
 ```bash
-curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel?api-version=preview \
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890/cancel \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 response = client.responses.cancel("resp_1234567890")
@@ -1280,7 +1189,7 @@ print(response.status)
 To stream a background response, set both `background` and `stream` to true. This is useful if you want to resume streaming later in case of a dropped connection. Use the sequence_number from each event to track your position.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1293,17 +1202,12 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
 ```
 
 ```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+import os
+from openai import OpenAI
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview"
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+  api_key=os.getenv("AZURE_OPENAI_API_KEY")  
 )
 
 # Fire off an async response but also start streaming immediately
@@ -1332,7 +1236,7 @@ for event in stream:
 ### Resume streaming from a specific point
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42&api-version=2025-04-01-preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/resp_1234567890?stream=true&starting_after=42 \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
 ```
@@ -1344,7 +1248,7 @@ When using the Responses API in stateless mode — either by setting `store` to 
 To retain reasoning items across turns, add `reasoning.encrypted_content` to the `include` parameter in your request. This ensures that the response includes an encrypted version of the reasoning trace, which can be passed along in future requests.
 
 ```bash
-curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version=preview \
+curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
   -d '{
@@ -1356,7 +1260,7 @@ curl https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses?api-version
   }'
 ```
 
-## Image generation
+## Image generation (preview)
 
 The Responses API enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images.
 
@@ -1366,29 +1270,23 @@ Compared to the standalone Image API, the Responses API offers several advantage
 * **Flexible inputs**: Accept image File IDs as inputs, in addition to raw image bytes.
 
 > [!NOTE]
-> The image generation tool in the Responses API is only supported by the `gpt-image-1` model. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`.
+> The image generation tool in the Responses API is only supported by the `gpt-image-1` series models. You can however call this model from this list of supported models - `gpt-4o`, `gpt-4o-mini`, `gpt-4.1`, `gpt-4.1-mini`, `gpt-4.1-nano`, `o3`, and `gpt-5` series models.<br><br>The Responses API image generation tool does not currently support streaming mode. To use streaming mode and generate partial images, call the [image generation API](./dall-e.md) directly outside of the Responses API.
 
-Use the Responses API if you want to:
-
-* Build conversational image experiences with GPT Image.
-* Stream partial image results during generation for a smoother user experience.
-
-Generate an image
+Use the Responses API if you want to build conversational image experiences with GPT Image.
 
 
 ```python
-from openai import AzureOpenAI
+from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
 token_provider = get_bearer_token_provider(
     DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
 
-client = AzureOpenAI(  
+client = OpenAI(  
   base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
+  api_key=token_provider,
+  default_headers={"x-ms-oai-image-generation-deployment":"gpt-image-1", "api_version":"preview"}
 )
 
 response = client.responses.create(
@@ -1409,124 +1307,6 @@ if image_data:
     with open("otter.png", "wb") as f:
         f.write(base64.b64decode(image_base64))
 ```
-
-### Streaming
-
-You can stream partial images using Responses API. The `partial_images` can be used to receive 1-3 partial images
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
-)
-
-stream = client.responses.create(
-    model="gpt-4.1",
-    input="Draw a gorgeous image of a river made of white owl feathers, snaking its way through a serene winter landscape",
-    stream=True,
-    tools=[{"type": "image_generation", "partial_images": 2}],
-)
-
-for event in stream:
-    if event.type == "response.image_generation_call.partial_image":
-        idx = event.partial_image_index
-        image_base64 = event.partial_image_b64
-        image_bytes = base64.b64decode(image_base64)
-        with open(f"river{idx}.png", "wb") as f:
-            f.write(image_bytes)
-```
-
-
-### Edit images
-
-```python
-from openai import AzureOpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
-import base64
-
-client = AzureOpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  azure_ad_token_provider=token_provider,
-  api_version="preview",
-  default_headers={"x-ms-oai-image-generation-deployment":"YOUR-GPT-IMAGE1-DEPLOYMENT-NAME"}
-)
-
-def create_file(file_path):
-  with open(file_path, "rb") as file_content:
-    result = client.files.create(
-        file=file_content,
-        purpose="vision",
-    )
-    return result.id
-
-def encode_image(file_path):
-    with open(file_path, "rb") as f:
-        base64_image = base64.b64encode(f.read()).decode("utf-8")
-    return base64_image
-
-prompt = """Generate a photorealistic image of a gift basket on a white background 
-labeled 'Relax & Unwind' with a ribbon and handwriting-like font, 
-containing all the items in the reference pictures."""
-
-base64_image1 = encode_image("image1.png")
-base64_image2 = encode_image("image2.png")
-file_id1 = create_file("image3.png")
-file_id2 = create_file("image4.png")
-
-response = client.responses.create(
-    model="gpt-4.1",
-    input=[
-        {
-            "role": "user",
-            "content": [
-                {"type": "input_text", "text": prompt},
-                {
-                    "type": "input_image",
-                    "image_url": f"data:image/jpeg;base64,{base64_image1}",
-                },
-                {
-                    "type": "input_image",
-                    "image_url": f"data:image/jpeg;base64,{base64_image2}",
-                },
-                {
-                    "type": "input_image",
-                    "file_id": file_id1,
-                },
-                {
-                    "type": "input_image",
-                    "file_id": file_id2,
-                }
-            ],
-        }
-    ],
-    tools=[{"type": "image_generation"}],
-)
-
-image_generation_calls = [
-    output
-    for output in response.output
-    if output.type == "image_generation_call"
-]
-
-image_data = [output.result for output in image_generation_calls]
-
-if image_data:
-    image_base64 = image_data[0]
-    with open("gift-basket.png", "wb") as f:
-        f.write(base64.b64decode(image_base64))
-else:
-    print(response.output.content)
-```
-
 
 ## Reasoning models
 

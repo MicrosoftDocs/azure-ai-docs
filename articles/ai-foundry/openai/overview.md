@@ -4,7 +4,8 @@ description: Apply advanced language models to variety of use cases with Azure O
 manager: nitinme
 author: mrbullwinkle
 ms.author: mbullwin
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: overview
 ms.date: 07/31/2025
 ms.custom: build-2023, build-2023-dataai
@@ -146,6 +147,7 @@ The audio API models can be used to transcribe and translate speech to text. The
 
 Learn more about each model on our [models concept page](./concepts/models.md).
 
-## Next steps
+## Related content
 
-Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+- Learn more about the [underlying models that power Azure OpenAI](./concepts/models.md).
+- [Upgrade from Azure OpenAI to Azure AI Foundry](../how-to/upgrade-azure-openai.md)

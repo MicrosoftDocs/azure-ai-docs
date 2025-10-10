@@ -1,15 +1,13 @@
 ---
 title: include file
 description: include file
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 6/13/2025
 ms.custom: references_regions
 ---
-
-[!INCLUDE [Feature preview](../../../../includes/preview-feature.md)]
 
 In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 

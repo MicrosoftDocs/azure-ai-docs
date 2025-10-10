@@ -4,7 +4,7 @@ description: Use example Jupyter notebooks for Azure Open Datasets to learn how 
 ms.service: azure-open-datasets
 ms.topic: sample
 author: fbsolo-ms1
-ms.author: franksolomon
+ms.author: scottpolly
 ms.date: 07/29/2024
 ---
 

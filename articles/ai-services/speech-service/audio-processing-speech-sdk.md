@@ -6,8 +6,8 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.date: 08/07/2025
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: jagoerge
 ms.custom: devx-track-csharp
 ---

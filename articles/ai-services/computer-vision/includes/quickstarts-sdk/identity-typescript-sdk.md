@@ -5,8 +5,6 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
 ms.topic: include
 ms.date: 07/23/2025
 ms.author: pafarley
@@ -20,7 +18,7 @@ Get started with facial recognition using the Face client library for TypeScript
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Node.js LTS](https://nodejs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Visual Studio Code](https://code.visualstudio.com/)

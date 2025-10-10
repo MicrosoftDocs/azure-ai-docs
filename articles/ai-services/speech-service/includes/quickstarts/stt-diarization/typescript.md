@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 7/16/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/javascript.md)]
@@ -64,8 +64,8 @@ Follow these steps to create a new console application for conversation transcri
         AudioInputStream 
     } from "microsoft-cognitiveservices-speech-sdk";
     
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechConfig: SpeechConfig = SpeechConfig.fromSubscription(process.env.SPEECH_KEY!, process.env.SPEECH_REGION!);
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechConfig: SpeechConfig = SpeechConfig.fromEndpoint(new URL(process.env.ENDPOINT!), process.env.SPEECH_KEY!);
     
     function fromFile(): void {
         const filename = "katiesteve.wav";

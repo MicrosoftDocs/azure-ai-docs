@@ -4,8 +4,9 @@ titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI in the Azure Government cloud.
 author: challenp
 ms.author: chaparker
-ms.date: 6/25/2025
-ms.service: azure-ai-openai
+ms.date: 8/19/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - references_regions
@@ -40,7 +41,7 @@ Data zone deployments are available in the same Azure OpenAI resource as all oth
 |:---------------|:--------------------------:|:--------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|:---------------------------------:|:---------------------------------:|:---------------------------------:|
 | usgovarizona   | - | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | usgovvirginia  | - | ✅ | ✅ | -  | ✅ | - | - | ✅ |
-| USGov DataZone |✅| ✅ | - | -  | - | - | - | - |
+| USGov DataZone |✅| ✅ | - | ✅  | - | - | - | - |
 
 To request quota increases for these models, submit a request at [https://aka.ms/AOAIGovQuota](https://aka.ms/AOAIGovQuota). 
 
@@ -51,7 +52,28 @@ To request quota increases for these models, submit a request at [https://aka.ms
 |:--------------|:------------:|:-------------------------:|:--------------------------:|:-------------------------------:|:--------------------------:|
 | usgovarizona   | - | ✅ | ✅ | - | ✅ |
 | usgovvirginia  | - | ✅ | ✅ | - | ✅ |
-| USGov DataZone | ✅| ✅| -  | -  | -  |
+| USGov DataZone | ✅| ✅| -  | ✅  | -  |
+
+<br>
+
+### Model Retirements
+In some cases, models are retired in Azure Governmen ahead of dates in the commercial cloud. General information on model retirement policies, dates, and other details can be found at [Azure OpenAI in Azure AI Foundry model deprecations and retirements](/azure/ai-foundry/openai/concepts/model-retirements). The following shows model retirement differences in Azure Government. 
+
+| Model                     | Version			      | Azure Government Status	  | Public Retirement date             |
+| --------------------------|-------------------|:--------------------------|------------------------------------|
+| `gpt-35-turbo`            | 1106				      | Retired                   | November 11, 2025                  |
+| `gpt-4`                   | turbo-2024-04-09	| Retired                   | November 11, 2025                  |
+
+<br>
+
+### Deafault Model Versions 
+In some cases, new model versions are designated as default in Azure Governmen ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
+
+The following shows default model differences in Azure Government. 
+
+| Model     | Azure Government Default Version | Public Default Version | Default upgrade date          |
+|-----------|----------------------------------|------------------------|-------------------------------|
+|  `gpt-4o` | 2024-11-20                       | 2024-08-06             | Starting on October 13, 2025  |
 
 <br>
 

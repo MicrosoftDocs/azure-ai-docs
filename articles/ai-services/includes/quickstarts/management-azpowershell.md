@@ -7,8 +7,6 @@ ms.service: azure-ai-services
 keywords: Azure AI services, cognitive intelligence, cognitive solutions, ai services
 ms.topic: include
 ms.date: 8/1/2024
-ms.author: eur
-author: eric-urban
 ms.custom:
   - mode-api
   - devx-track-azurepowershell
@@ -20,7 +18,7 @@ Use this quickstart to create an AI Foundry resource using [Azure PowerShell](/p
 
 ## Prerequisites
 
-* A valid Azure subscription - [Create one](https://azure.microsoft.com/free/cognitive-services) for free.
+* A valid Azure subscription - [Create one](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) for free.
 * [Azure PowerShell](/powershell/azure/install-azure-powershell).
 
 ## Install Azure PowerShell and sign in

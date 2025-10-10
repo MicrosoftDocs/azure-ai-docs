@@ -36,9 +36,9 @@ The endpoint requires two params for spelling corrections to work:
 |Param|Value|
 |--|--|
 |`spellCheck`|boolean|
-|`bing-spell-check-subscription-key`|[Bing Spell Check API V7](https://azure.microsoft.com/services/cognitive-services/spell-check/) endpoint key|
+|`bing-spell-check-subscription-key`|[Bing Spell Check API V7](/previous-versions/bing/search-apis/bing-spell-check/reference/endpoints) endpoint key|
 
-When [Bing Spell Check API V7](https://azure.microsoft.com/services/cognitive-services/spell-check/) detects an error, the original utterance, and the corrected utterance are returned along with predictions from the endpoint.
+When [Bing Spell Check API V7](/previous-versions/bing/search-apis/bing-spell-check/reference/endpoints) detects an error, the original utterance, and the corrected utterance are returned along with predictions from the endpoint.
 
 #### [V2 prediction endpoint response](#tab/V2)
 

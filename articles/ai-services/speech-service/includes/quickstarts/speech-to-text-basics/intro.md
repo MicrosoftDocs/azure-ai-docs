@@ -1,11 +1,11 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom:
   - build-2024
 ms.topic: include
 ms.date: 8/5/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 In this quickstart, you create and run an application to recognize and transcribe speech to text in real-time. 

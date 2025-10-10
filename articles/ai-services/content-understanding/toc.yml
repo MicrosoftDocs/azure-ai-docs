@@ -54,6 +54,8 @@ items:
           - name: Markdown 🆕
             displayName: document, text, images, video, audio, visual, structured, content, field, extraction
             href: document/markdown.md
+          - name: Enrichments
+            href: document/enrichments.md
       - name: Image
         displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
         href: image/overview.md
