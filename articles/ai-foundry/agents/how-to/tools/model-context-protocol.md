@@ -80,14 +80,14 @@ The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endp
 
 |Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
 |:---------:|:---------:|:---------:|
-| Transport | HTTP POST/GET endpoints required. | HTTP streamable required. | 
-| Code changes | Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
-| Authentication | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
-| Language | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
-| Container Requirements | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
-| Dependencies | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
-| State | Stateless only. | Stateless only. |
-| UVX/NPX | Supported. | Not supported. `npx` start commands not supported. |
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
+| **Code changes** | Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
+| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+| **State** | Stateless only. | Stateless only. |
+| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
 
 ## Related content
 
