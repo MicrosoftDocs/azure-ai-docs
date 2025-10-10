@@ -96,6 +96,9 @@ For more on how to set private endpoints to your connected resources, see the fo
 | Azure OpenAI          | [Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-foundry/openai/how-to/network) |
 | Application Insights  | [Use Azure Private Link to connect networks to Azure Monitor](/azure/azure-monitor/logs/private-link-security) |
 
+> [!NOTE]
+> Cross-Subscription connections used for model deployment is not supported (Azure AI Foundry, Azure OpenAI). You can't connect to resources from different subscription for model deployments.
+
 ## Related content
 
 - [How to create vector indexes](../how-to/index-add.md)
