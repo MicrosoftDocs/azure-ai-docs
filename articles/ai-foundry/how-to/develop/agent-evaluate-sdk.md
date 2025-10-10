@@ -39,15 +39,29 @@ pip install azure-ai-evaluation
 
 ## Evaluate Azure AI agents
 
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter:
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agents and Semantic Kernel's Chat Completion and Azure AI agents. This list of evaluators accept agent messages returnd by our converter:
 
-### Evaluators supported for evaluation data converter
+- Agent: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Groundedness`
 
-- Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
+If you are building other agents with a different schema, you can convert them into the general openai-style [agent message schema](#agent-message-schema) and use the above evaluators.
+
+More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also use the following evaluators:
+- Quality: `Coherence`, `Fluency`, `ResponseCompleteness`, `GroundednessPro`, `Retrieval`
 - Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
-> [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined Python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported.
+
+#### Tool call evaluation support
+`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Agent for the following tools:
+1. File Search
+2. Azure AI Search
+3. Bing Grounding
+4. Bing Custom Search
+5. SharePoint Grounding
+6. Code Interpreter
+7. Fabric Data Agent 
+8. OpenAPI   
+9. Function Tool (user-defined tools)
+However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
 Here's an example that shows you how to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
 

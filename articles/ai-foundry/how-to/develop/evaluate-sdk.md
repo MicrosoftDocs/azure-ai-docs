@@ -57,14 +57,14 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `IntentResolutionEvaluator` | | | | | ✓ |
 | `ToolCallAccuracyEvaluator` | | | | | ✓ |
 | `TaskAdherenceEvaluator` | | | | | ✓ |
-| `GroundednessEvaluator` | ✓ | | | | |
+| `GroundednessEvaluator` | ✓ | | | | ✓ |
 | `GroundednessProEvaluator` | ✓ | | | | |
 | `RetrievalEvaluator` | ✓ | | | | |
 | `DocumentRetrievalEvaluator` | ✓ | | | ✓ | |
 | `RelevanceEvaluator` | ✓ | | | | ✓ |
-| `CoherenceEvaluator` | ✓ | | | | ✓ |
-| `FluencyEvaluator` | ✓ | | | | ✓ |
-| `ResponseCompletenessEvaluator` | ✓ | | ✓ | ✓ | |
+| `CoherenceEvaluator` | ✓ | | | |  |
+| `FluencyEvaluator` | ✓ | | | |  |
+| `ResponseCompletenessEvaluator` | | | ✓ | ✓ | |
 | `QAEvaluator` | | | ✓ | ✓ | |
 | **Natural Language Processing (NLP) Evaluators** |
 | `SimilarityEvaluator` | | | ✓ | ✓ | |
