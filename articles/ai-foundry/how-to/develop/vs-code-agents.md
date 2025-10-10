@@ -290,9 +290,9 @@ In `Nuget.Config`, replace the following placeholders:
 
 ::: zone pivot="csharp"
 
-    Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
+Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
 
-    1. Configure your environment variables based on your operating system:
+1. Configure your environment variables based on your operating system:
 
 #### [Windows (PowerShell)](#tab/windows-powershell)
 
@@ -318,13 +318,13 @@ In `Nuget.Config`, replace the following placeholders:
      export AZURE_OPENAI_API_KEY="your-api-key"
      ```
 
-     ---
+---
 
 1. Run the application using the following commands:
-    ```bash
-    dotnet build
-    dotnet run
-    ```
+     ```bash
+     dotnet build
+     dotnet run
+     ```
 ::: zone-end
 
 ::: zone pivot="python"
