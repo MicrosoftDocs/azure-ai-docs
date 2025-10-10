@@ -1,5 +1,5 @@
 ---
-title: 'Deep learning vs. machine learning'
+title: 'Deep Learning vs. Machine Learning'
 titleSuffix: Azure Machine Learning
 description: Learn how deep learning relates to machine learning and AI. In Azure Machine Learning, use deep learning models for fraud detection, object detection, and more.
 services: machine-learning
@@ -9,17 +9,17 @@ ms.topic: concept-article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: lagayhar
-ms.date: 08/29/2024
+ms.date: 10/13/2025
 ms.custom: engagement-fy23
 ---
 
 # Deep learning vs. machine learning in Azure Machine Learning
 
-This article explains deep learning vs. machine learning and how they fit into the broader category of artificial intelligence. Learn about deep learning solutions you can build on Azure Machine Learning, such as fraud detection, voice and facial recognition, sentiment analysis, and time series forecasting.
+This article compares deep learning to machine learning and describes how they fit into the broader category of AI. Learn about deep learning solutions you can build on Azure Machine Learning, such as fraud detection, voice and facial recognition, sentiment analysis, and time series forecasting.
 
 For guidance on choosing algorithms for your solutions, see the [Machine Learning Algorithm Cheat Sheet](./v1/algorithm-cheat-sheet.md?WT.mc_id=docs-article-lazzeri).
 
-Foundation Models in Azure Machine Learning are pre-trained deep learning models that can be fine-tuned for specific use cases. Learn more about [Foundation Models (preview) in Azure Machine Learning](concept-model-catalog.md), and [how to use Foundation Models in Azure Machine Learning (preview)](how-to-use-foundation-models.md).
+Foundation Models in Azure Machine Learning are pre-trained deep learning models that can be fine-tuned for specific use cases. For more information, see [Foundation Models (preview) in Azure Machine Learning](concept-model-catalog.md) and [How to use Foundation Models in Azure Machine Learning](how-to-use-foundation-models.md).
 
 ## Deep learning, machine learning, and AI
 
