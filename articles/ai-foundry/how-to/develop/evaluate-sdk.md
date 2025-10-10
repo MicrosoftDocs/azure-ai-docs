@@ -19,7 +19,9 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-You can thoroughly assess the performance of your generative AI application by applying it to a substantial dataset. Evaluate the application in your development environment with the Azure AI Evaluation SDK. When you provide either a test dataset or a target, your generative AI application outputs are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
+You can thoroughly assess the performance of your generative AI application by applying it to a substantial dataset. Evaluate the application in your development environment with the Azure AI Evaluation SDK.
+
+When you provide either a test dataset or a target, your generative AI application outputs are quantitatively measured with both mathematical-based metrics and AI-assisted quality and safety evaluators. Built-in or custom evaluators can provide you with comprehensive insights into the application's capabilities and limitations.
 
 In this article, you learn how to run evaluators on a single row of data and a larger test dataset on an application target. You use built-in evaluators that use the Azure AI Evaluation SDK locally. Then, you learn to track the results and evaluation logs in an Azure AI project.
 
@@ -36,6 +38,8 @@ pip install azure-ai-evaluation
 
 ## Built-in evaluators
 
+Built-in quality and safety metrics accept query and response pairs, along with additional information for specific evaluators.
+
 | Category | Evaluators |
 |--------------------------|-----------------------------|
 | [General purpose](../../concepts/evaluation-evaluators/general-purpose-evaluators.md) | `CoherenceEvaluator`, `FluencyEvaluator`, `QAEvaluator` |
@@ -44,8 +48,6 @@ pip install azure-ai-evaluation
 | [Risk and safety](../../concepts/evaluation-evaluators/risk-safety-evaluators.md) | `ViolenceEvaluator`, `SexualEvaluator`, `SelfHarmEvaluator`, `HateUnfairnessEvaluator`, `IndirectAttackEvaluator`, `ProtectedMaterialEvaluator`, `UngroundedAttributesEvaluator`, `CodeVulnerabilityEvaluator`, `ContentSafetyEvaluator` |
 | [Agentic](../../concepts/evaluation-evaluators/agent-evaluators.md) | `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, `TaskAdherenceEvaluator` |
 | [Azure OpenAI](../../concepts/evaluation-evaluators/azure-openai-graders.md) | `AzureOpenAILabelGrader`, `AzureOpenAIStringCheckGrader`, `AzureOpenAITextSimilarityGrader`, `AzureOpenAIGrader` |
-
-Built-in quality and safety metrics accept query and response pairs, along with additional information for specific evaluators.
 
 ### Data requirements for built-in evaluators
 
@@ -194,7 +196,9 @@ To run batch evaluations by using [local evaluation](#local-evaluation-on-test-d
 Our evaluators understand that the first turn of the conversation provides valid `query` from `user`, `context` from `assistant`,  and `response` from `assistant` in the query-response format. Conversations are then evaluated per turn and results are aggregated over all turns for a conversation score.
 
 > [!NOTE]
-> In the second turn, even if `context` is `null` or a missing key, the evaluator interprets the turn as an empty string instead of failing with an error, which might lead to misleading results. We strongly recommend that you validate your evaluation data to comply with the data requirements.
+> In the second turn, even if `context` is `null` or a missing key, the evaluator interprets the turn as an empty string instead of failing with an error, which might lead to misleading results.
+>
+> We strongly recommend that you validate your evaluation data to comply with the data requirements.
 
 For conversation mode, here's an example for `GroundednessEvaluator`:
 
@@ -360,7 +364,7 @@ We open-source the prompts of our quality evaluators in our Evaluator Library an
 
 ### Composite evaluators
 
-Composite evaluators are built-in evaluators that combine individual quality or safety metrics. They easily provide a wide range of metrics right out of the box for both query response pairs or chat messages.
+Composite evaluators are built-in evaluators that combine individual quality or safety metrics. They provide a wide range of metrics right out of the box for both query response pairs or chat messages.
 
 | Composite evaluator | Contains | Description |
 |--|--|--|
@@ -373,11 +377,11 @@ After you spot-check your built-in or custom evaluators on a single row of data,
 
 ### Prerequisite set up steps for Azure AI Foundry projects
 
-If this session is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do a few other setup steps:
+If this session is your first time running evaluations and logging it to your Azure AI Foundry project, you might need to do the following setup steps:
 
 1. [Create and connect your storage account](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/01-connections/connection-storage-account.bicep) to your Azure AI Foundry project at the resource level. This bicep template provisions and connects a storage account to your Foundry project with key authentication.
 1. Make sure the connected storage account has access to all projects.
-1. If you connected your storage account with Microsoft Entra ID, make sure to give MSI (Microsoft Identity) permissions for **Storage Blob Data Owner** to both your account and Foundry project resource in Azure portal.
+1. If you connected your storage account with Microsoft Entra ID, make sure to give Microsoft Identity permissions for **Storage Blob Data Owner** to both your account and Foundry project resource in Azure portal.
 
 ### Evaluate on a dataset and log results to Azure AI Foundry
 
@@ -412,7 +416,7 @@ result = evaluate(
 > [!TIP]
 > Get the contents of the `result.studio_url` property for a link to view your logged evaluation results in your Azure AI project.
 
-The evaluator outputs results in a dictionary, which contains aggregate `metrics` and row-level data and metrics. See the following example of an output:
+The evaluator outputs results in a dictionary, which contains aggregate `metrics` and row-level data and metrics. See the following example output:
 
 ```python
 {'metrics': {'answer_length.value': 49.333333333333336,
@@ -515,7 +519,7 @@ result = evaluate(
 
 If you have a list of queries that you want to run and then evaluate, the `evaluate()` API also supports a `target` parameter. This parameter can send queries to an application to collect answers, and then run your evaluators on the resulting query and response.
 
-A target can be any callable class in your directory. In this example, there's a Python script `askwiki.py` with a callable class `askwiki()` that is set as our target. If you have a dataset of queries that you can send into the simple `askwiki` app, you can evaluate the groundedness of the outputs. Make sure that you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
+A target can be any callable class in your directory. In this example, there's a Python script `askwiki.py` with a callable class `askwiki()` that is set as the target. If you have a dataset of queries that you can send into the simple `askwiki` app, you can evaluate the groundedness of the outputs. Make sure that you specify the proper column mapping for your data in `"column_mapping"`. You can use `"default"` to specify column mapping for all evaluators.
 
 Here's the content in `"data.jsonl"`:
 
