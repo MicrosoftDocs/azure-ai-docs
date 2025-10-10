@@ -39,15 +39,11 @@ pip install azure-ai-evaluation
 
 ## Evaluate Azure AI agents
 
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agents and Semantic Kernel's Chat Completion and Azure AI agents. This list of evaluators accept agent messages returnd by our converter:
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agents and Semantic Kernel's Chat Completion and Azure AI agents. This list of evaluators are supported for evaluation data returned by the converter: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Groundedness`.
 
-- Agent: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Groundedness`
-
-If you are building other agents with a different schema, you can convert them into the general openai-style [agent message schema](#agent-message-schema) and use the above evaluators.
-
-More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also use the following evaluators:
-- Quality: `Coherence`, `Fluency`, `ResponseCompleteness`, `GroundednessPro`, `Retrieval`
-- Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
+> [!NOTE]
+> If you are building other agents that output a different schema, you can convert them into the general openai-style [agent message schema](#agent-message-schema) and use the above evaluators.
+> More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also all of our evaluators.
 
 
 #### Tool call evaluation support
@@ -182,7 +178,7 @@ run_id = run.id
 converted_data = converter.convert(thread_id, run_id)
 ```
 
-And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
+And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluate-azure-ai-agents). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
