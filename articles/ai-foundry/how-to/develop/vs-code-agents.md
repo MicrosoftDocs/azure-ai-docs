@@ -383,7 +383,7 @@ The following steps outline how to monitor and visualize your multi-agent workfl
 
 ::: zone-end
 
-## Cleanup resources
+## Clean up resources
 
 The Azure resources that you created in this article are billed to your Azure subscription. If you don't expect to need these resources in the future, delete them to avoid incurring more charges.
 
