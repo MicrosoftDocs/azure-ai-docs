@@ -26,9 +26,12 @@ A vector index isn't required for RAG, but a vector query can match on semantica
 ## Prerequisites
 
 You must have:
-- An Azure AI Foundry resource
-- An [Azure AI Search resource](/azure/search/search-create-service-portal)
-- You should have content in a supported format that provides sufficient information for a chat experience. It can be an existing index on Azure AI Search, or create a new index using content files in Azure Blob Storage, your local system, or data in Azure AI Foundry.
+
+- An [Azure AI Foundry project](create-projects.md).
+
+- An [Azure AI Search resource](/azure/search/search-create-service-portal).
+
+- You should have content in a supported format that provides sufficient information for a chat experience. It can be an existing index on Azure AI Search, or you can create a new index using content files in Azure Blob Storage, your local system, or data in Azure AI Foundry.
 
 ## Create an index from the Chat playground
 
@@ -58,7 +61,7 @@ You must have:
 
 1. Select **Next** after choosing source data.
 
-1. Choose the **Index storage**, the location where you want your index to be stored in the **Index configuration** tab.
+1. In the **Index configuration** tab, choose the **Index storage** location where you want your index to be stored.
 
 1. If you already have an Azure AI Search resource, you can browse the list of search service resources for your subscription and then select **Connect** for the one you want to use. If you're connecting with API keys, confirm your search service [uses API keys](/azure/search/search-security-api-keys).
 
