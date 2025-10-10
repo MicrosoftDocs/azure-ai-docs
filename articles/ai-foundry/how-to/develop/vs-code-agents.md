@@ -112,7 +112,7 @@ Add a tool to the AI Agent with the following steps:
 
   1. Select the **Add tool** button in the top-right corner of the **TOOL** section in the designer to show the dropdown. Choose the tool you want to add.
     
-   :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
+     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of the Agent designer TOOL section with the plus icon highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
     
    1. The designer displays the appropriate pane to configure the tool, as in the following images:
 
@@ -290,9 +290,9 @@ In `Nuget.Config`, replace the following placeholders:
 
 ::: zone pivot="csharp"
 
-Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
+    Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
 
-  1. Configure your environment variables based on your operating system:
+    1. Configure your environment variables based on your operating system:
 
      #### [Windows (PowerShell)](#tab/windows-powershell)
 
