@@ -10,7 +10,7 @@ items:
 - name: Code interpreter
   href: ../../../agents/how-to/tools/code-interpreter.md
 - name: Connected agents (preview)
-  href: ../../../agents/how-to/tools/connected-agents.md
+  href: ../../../agents/how-to/connected-agents.md
 - name: Computer Use (preview)
   href: ../../../agents/how-to/tools/computer-use.md
 - name: Deep Research (preview)
