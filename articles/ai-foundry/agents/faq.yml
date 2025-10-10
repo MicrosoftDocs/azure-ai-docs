@@ -8,7 +8,7 @@ metadata:
   ms.service: azure-ai-foundry
   ms.subservice: azure-ai-foundry-agent-service
   ms.topic: faq
-  ms.date: 06/30/2025
+  ms.date: 10/09/2025
   ms.author: aahi
   author: aahill
 title: Azure AI Foundry Agent Service frequently asked questions
@@ -56,7 +56,3 @@ sections:
           Is there any additional pricing or quota for using Foundry Agent Service? 
         answer: |
           No. All [quotas](quotas-limits.md) apply to using models with Foundry Agent Service.
-      - question: |
-          Does the Foundry Agent Service API support non-Azure OpenAI models?   
-        answer: |
-          Yes, the Foundry Agent Service API supports non-Azure OpenAI models. See the [models](concepts\model-region-support.md) page for more information.
