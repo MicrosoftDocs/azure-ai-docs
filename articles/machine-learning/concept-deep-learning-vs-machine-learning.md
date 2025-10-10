@@ -19,7 +19,7 @@ This article compares deep learning to machine learning and describes how they f
 
 For guidance on choosing algorithms for your solutions, see the [Machine Learning Algorithm Cheat Sheet](./v1/algorithm-cheat-sheet.md?WT.mc_id=docs-article-lazzeri).
 
-Foundary Models in Azure Machine Learning are pre-trained deep learning models that can be fine-tuned for specific use cases. For more information, see [Explore Azure AI Foundry Models in Azure Machine Learning](concept-model-catalog.md) and [How to use Open Source foundation models curated by Azure Machine Learning](how-to-use-foundation-models.md).
+Foundry Models in Azure Machine Learning are pretrained deep learning models that can be fine-tuned for specific use cases. For more information, see [Explore Azure AI Foundry Models in Azure Machine Learning](concept-model-catalog.md) and [How to use Open Source foundation models curated by Azure Machine Learning](how-to-use-foundation-models.md).
 
 ## Deep learning, machine learning, and AI
 
@@ -38,7 +38,7 @@ The following definitions describe the relationships between deep learning, mach
 
 - **AI** is a technique that enables computers to mimic human intelligence. It includes machine learning.
 
-- **Generative AI** is a subset of AI that uses techniques (such as deep learning) to generate new content. For example, you can use generative AI to create images, text, or audio. These models use massive amounts of pre-trained knowledge to generate this content.
+- **Generative AI** is a subset of AI that uses techniques (such as deep learning) to generate new content. For example, you can use generative AI to create images, text, or audio. These models use massive amounts of pretrained knowledge to generate this content.
 
 By using machine learning and deep learning techniques, you can build computer systems and applications that do tasks that are commonly associated with human intelligence. These tasks include image recognition, speech recognition, and language translation.
 
@@ -105,7 +105,7 @@ Organizations use deep learning to perform text analysis to detect insider tradi
 
 Artificial neural networks are formed by layers of connected nodes. Deep learning models use neural networks that have a large number of layers. 
 
-The following sections explore some popular artificial neural network topologies.
+The following sections describe some popular artificial neural network topologies.
 
 ### Feedforward neural network
 
@@ -136,8 +136,8 @@ Transformers are used to solve natural language processing problems such as tran
 Some well-known implementations of transformers are:
 
 - Bidirectional Encoder Representations from Transformers (BERT)
-- Generative Pre-trained Transformer 2 (GPT-2)
-- Generative Pre-trained Transformer 3 (GPT-3)
+- Generative Pretrained Transformer 2 (GPT-2)
+- Generative Pretrained Transformer 3 (GPT-3)
 
 ## Next steps
 
