@@ -48,7 +48,7 @@ Now that you have a basic understanding of how machine learning differs from dee
 
 The following table compares the two techniques in more detail:
 
-| |All machine learning |Only deep learning|
+| |Machine learning |Deep learning|
 |---|---|---|
 |  **Number of data points** | Can use small amounts of data to make predictions. | Needs to use large amounts of training data to make predictions. |
 |  **Hardware dependencies** | Can work on low-end machines. It doesn't need a large amount of computational power. | Depends on high-end machines. It inherently does a large number of matrix multiplication operations. A GPU can efficiently optimize these operations. |
@@ -59,7 +59,7 @@ The following table compares the two techniques in more detail:
 
 ## What is transfer learning?
 
-Training deep learning models often requires large amounts of training data, high-end compute resources (GPU, TPU), and a longer training time. When you don't have any of these available to you, you can shortcut the training process using a technique known as *transfer learning.*
+Training deep learning models often requires large amounts of training data, high-end compute resources (GPU, TPU), and a longer training time. When you don't have any of these available to you, you can shortcut the training process by using a technique known as *transfer learning.*
 
 Transfer learning is a technique that applies knowledge gained from solving one problem to a different but related problem.
 
@@ -69,7 +69,7 @@ To learn how to apply transfer learning for image classification by using an ope
 
 ## Deep learning use cases
 
-Because of the artificial neural network structure, deep learning excels at identifying patterns in unstructured data such as images, sound, video, and text. For this reason, deep learning is rapidly transforming many industries, including healthcare, energy, finance, and transportation. These industries are now rethinking traditional business processes. 
+Because of the artificial neural network structure, deep learning excels at identifying patterns in unstructured data like images, sound, video, and text. For this reason, deep learning is rapidly transforming many industries, including healthcare, energy, finance, and transportation. These industries are now rethinking traditional business processes. 
 
 Some of the most common applications for deep learning are described in the following paragraphs. In Azure Machine Learning, you can use a model you built from an open-source framework or build the model by using the tools provided.
 
@@ -93,7 +93,7 @@ Usually, image captioning applications use convolutional neural networks to iden
 
 Machine translation takes words or sentences from one language and automatically translates them into another language. Machine translation has been around for a long time, but deep learning achieves impressive results in two specific areas: automatic translation of text (and translation of speech to text) and automatic translation of images.
 
-With the appropriate data transformation, a neural network can understand text, audio, and visual signals. Machine translation can be used to identify snippets of sound in larger audio or visual files and transcribe the spoken word or image as text.
+With the appropriate data transformation, a neural network can understand text, audio, and visual signals. Machine translation can be used to identify snippets of sound in larger audio files and transcribe the spoken word or image as text.
 
 ### Text analytics
 
@@ -109,7 +109,7 @@ The following sections describe some popular artificial neural network topologie
 
 ### Feedforward neural network
 
-The feedforward neural network is the most simple type of artificial neural network. In a feedforward network, information moves in only one direction from input layer to output layer. Feedforward neural networks transform an input by putting it through a series of hidden layers. Every layer is made up of a set of neurons, and each layer is fully connected to all neurons in the layer before. The last fully connected layer (the output layer) represents the generated predictions.
+The feedforward neural network is the most simple type of artificial neural network. In a feedforward network, information moves in only one direction from input layer to output layer. Feedforward neural networks transform an input by putting it through a series of hidden layers. Every layer is made up of a set of neurons, and each layer is fully connected to all neurons in the layer before it. The last fully connected layer (the output layer) represents the generated predictions.
 
 ### Recurrent neural network (RNN)
 
