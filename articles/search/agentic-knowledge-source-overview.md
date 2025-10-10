@@ -1,16 +1,16 @@
 ---
-title: Create a knowledge source
+title: What is a knowledge source
 titleSuffix: Azure AI Search
-description: Learn how to create a knowledge source for agentic retrieval workloads in Azure AI Search.
+description: Learn about the knowledge source object used for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
-ms.topic: how-to
+ms.topic: concept-article
 ms.date: 10/09/2025
 ---
 
-# Create a knowledge source
+# What is a knowledge source?
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -18,7 +18,7 @@ A knowledge source wraps a search index with extra properties for agentic retrie
 
 + Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
-+ Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
++ Reference one or more knowledge sources in a knowledge agent. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in a single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
 
 + Use a knowledge source definition to generate a full indexer pipeline (data source, skillset, indexer, and index) that works for agentic retrieval. Instead of creating multiple objects manually, information in the knowledge source is used to generate all objects, including a populated and searchable index.
 
@@ -41,7 +41,7 @@ Here are the knowledge sources you can create in this preview:
 + [`"searchIndex"`](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) wraps an existing index
 + [`"azureBlob"`](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container
 
-A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides all extraction, enrichment and transformations over blob content, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
+A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 
 > [!NOTE]
 > `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) isn't currently operational in the 2025-08-01-preview.
