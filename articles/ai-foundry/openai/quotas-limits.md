@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/19/2025
+ms.date: 10/10/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
@@ -81,6 +81,7 @@ The following section provides you with a quick guide to the default quotas and 
 | `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
 | `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
 | `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
+| `gpt-5-pro`   | 160 K            | 1.6 M | N/A | N/A |
 
 | Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
 |-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
@@ -89,7 +90,7 @@ The following section provides you with a quick guide to the default quotas and 
 | `gpt-5-nano`  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
 | `gpt-5-chat`  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
 | `gpt-5-codex` | 1 K                                          | 10 K                                                      | N/A                | N/A  | 
-
+| `gpt-5-pro`   | 1.6 K            | 16 K | N/A | N/A
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
