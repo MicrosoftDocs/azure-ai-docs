@@ -299,6 +299,7 @@ The usage limit determines the level of usage above which customers might see la
 
 If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/), your maximum quota values are lower than the values indicated in the previous tables.
 
+- GPT-5-pro quota is only available to MCA-E and default quota subscriptions. All other offer types have zero quota for this model by default.
 - GPT-5 reasoning model quota is 20K TPM and 200 RPM for all offer types that do not have access to MCA-E or default quota. GPT-5-chat is 50K and 50 RPM.
 
 - Some offer types are restricted to only Global Standard deployments in the East US2 and Sweden Central regions.
