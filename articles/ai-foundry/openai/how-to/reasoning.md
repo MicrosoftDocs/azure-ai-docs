@@ -30,7 +30,7 @@ Azure OpenAI reasoning models are designed to tackle reasoning and problem-solvi
 | Model | Region | Limited access |
 |---|---|---|
 | `gpt-5-pro` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.   |
-| `gpt-5-codex` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access).If you already have access to a limited access model no request is required.    |
+| `gpt-5-codex` | East US2 & Sweden Central (Global Standard) | Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.    |
 | `gpt-5` | [Model availability](../concepts/models.md#global-standard-model-availability)   |  Request access: [Limited access model application](https://aka.ms/oai/gpt5access). If you already have access to a limited access model no request is required.     |
 | `gpt-5-mini` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed.    |
 | `gpt-5-nano` | [Model availability](../concepts/models.md#global-standard-model-availability)  |  No access request needed. |
