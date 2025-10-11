@@ -52,7 +52,7 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-### Evaluator model support
+### Evaluator models support
 
 We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
 
@@ -65,7 +65,7 @@ For complex evaluation that requires refined reasoning, we recommend a strong re
 
 ## Intent resolution
 
-`IntentResolutionEvaluator` measures how well the system identifies and understands a user's request, including how well it scopes the user’s intent, asks clarifying questions, and reminds end users of its scope of capabilities. Higher score means better identification of user intent.
+`IntentResolutionEvaluator` measures how well the system identifies and understands a user's request, including how well it scopes the user's intent, asks clarifying questions, and reminds end users of its scope of capabilities. Higher score means better identification of user intent.
 
 ### Intent resolution example
 
@@ -99,11 +99,9 @@ The numerical score is on a Likert scale (integer 1 to 5) and a higher score is 
     }
 }
 
-
-
 ```
 
-If you're building agents outside of Azure AI Agent Service, this evaluator accepts a schema typical for agent messages. To learn more, see our sample notebook for [Intent Resolution](https://aka.ms/intentresolution-sample).
+If you're building agents outside of Azure AI Foundry Agent Service, this evaluator accepts a schema typical for agent messages. To learn more, see our sample notebook for [Intent Resolution](https://aka.ms/intentresolution-sample).
 
 ## Tool call accuracy
 
@@ -113,17 +111,20 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 - the counts of missing or excessive calls.
 
 #### Tool call evaluation support
-`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Agent for the following tools:
-1. File Search
-2. Azure AI Search
-3. Bing Grounding
-4. Bing Custom Search
-5. SharePoint Grounding
-6. Code Interpreter
-7. Fabric Data Agent 
-8. OpenAPI   
-9. Function Tool (user-defined tools)
-However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
+
+`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Foundry Agent Service for the following tools:
+
+- File Search
+- Azure AI Search
+- Bing Grounding
+- Bing Custom Search
+- SharePoint Grounding
+- Code Interpreter
+- Fabric Data Agent
+- OpenAPI
+- Function Tool (user-defined tools)
+
+However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It's recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
 ### Tool call accuracy example
 
@@ -270,7 +271,7 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 
 ## Task adherence
 
-In various task-oriented AI systems such as agentic systems, it's important to assess whether the agent has stayed on track to complete a given task instead of making inefficient or out-of-scope steps. `TaskAdherenceEvaluator` measures how well an agent’s response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. Higher score means better adherence of the system instruction to resolve the given task.
+In various task-oriented AI systems such as agentic systems, it's important to assess whether the agent has stayed on track to complete a given task instead of making inefficient or out-of-scope steps. `TaskAdherenceEvaluator` measures how well an agent's response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. Higher score means better adherence of the system instruction to resolve the given task.
 
 ### Task adherence example
 
