@@ -49,4 +49,4 @@ To use custom speech without relaxing network access restrictions on your produc
 
 To use custom voice without relaxing network access restrictions on your production Speech resource, consider one of these workarounds:
 * Create another Speech resource for development that can be used on a public network. Prepare your custom model in Speech Studio on the development resource, then submit an Azure support ticket to request assistance with copying the model to your production resource.
-* You have the option to not use Speech Studio for custom speech. Use the [Custom voice REST API](/rest/api/aiservices/speechapi/operation-groups) directly for all custom voice operations with your production resource.
+* You have the option to not use Speech Studio for custom voice. Use the [Custom voice REST API](/rest/api/aiservices/speechapi/operation-groups) directly for all custom voice operations with your production resource.
