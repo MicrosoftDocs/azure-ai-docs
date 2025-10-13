@@ -82,7 +82,7 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 - Select the **Open Code File** button to create a sample code file that uses the agent.
 - Select the **Open Playground** button to open **Agent Playground**.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the pane for agent preferences with the Edit Agent, Open Code File, and Open Playground buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the pane for agent preferences with the Edit Agent, Open Code File, and Open Playground buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
 
 ### Edit and update the deployed AI agent
 
@@ -96,13 +96,14 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 
 ### Interact with agents by using the MCP server tool in the agent playground
 
-1. Right-click your deployed agent that has an **MCP Server** tool and then select the **Open Playground** option. This action starts a thread with your agent and lets you send messages.
+1. Right-click your deployed agent that has an **MCP Server** tool, and then select the **Open Playground** option. This action starts a thread with your agent and lets you send messages.
 
-1. In the **Agent Playground** pane, enter a prompt such as **Give me an example for creating a container app** and send it.
+1. On the **Agent Playground** pane, enter a prompt such as **Give me an example for creating a container app** and send it.
 
 1. Select the authentication method for the MCP server tool and proceed.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png" alt-text="Screenshot of the MCP server tool's authentication prompt in the agent playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-authentication.png":::
+
 1. Select the approval preference for the MCP server tool and proceed.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png" alt-text="Screenshot of the MCP server tool's approval preference in the agent playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-approval-preference.png":::
