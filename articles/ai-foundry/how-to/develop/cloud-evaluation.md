@@ -17,20 +17,20 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The Azure AI Evaluation SDK supports running evaluations locally on your own machine and in the cloud. For example, after you run local evaluations on small test data to help assess your generative AI application prototypes, you can move into pre-deployment testing and run evaluations on a large dataset. Evaluating your applications in the cloud frees you from managing your local compute infrastructure. It also enables you to integrate evaluations as tests into your continuous integration and continuous delivery (CI/CD) pipelines. After deployment, you can choose to [continuously evaluate](../online-evaluation.md) your applications for post-deployment monitoring.
+The Azure AI Evaluation SDK supports running evaluations locally on your own machine and in the cloud. For example, after you run local evaluations on small test data to help assess your generative AI application prototypes, you can move into pre-deployment testing and run evaluations on a large dataset. Evaluating your applications in the cloud frees you from managing your local compute infrastructure. It also enables you to integrate evaluations as tests into your continuous integration and continuous delivery (CI/CD) pipelines. After deployment, you can choose to [continuously monitor](../monitor-applications.md) your applications for post-deployment monitoring.
 
-In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
+In this article, you learn how to run evaluations in the cloud (preview) in pre-deployment testing on a test dataset. When you use the Azure AI Projects SDK, evaluation results are automatically logged into your Azure AI project for better observability. This feature supports all Microsoft-curated [built-in evaluators](../../concepts/observability.md#what-are-evaluators) and your own [custom evaluators](../../concepts/evaluation-evaluators/custom-evaluators.md). Your evaluators can be located in the [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) and have the same project-scope role-based access control (RBAC).
 
 ## Prerequisites
 
-- Azure AI Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have an existing project, create one by following the guide [How to create Azure AI Foundry project](../create-projects.md?tabs=ai-studio).
+- Azure AI Foundry project in the same supported [regions](../../concepts/evaluation-evaluators/risk-safety-evaluators.md#azure-ai-foundry-project-configuration-and-region-support) as risk and safety evaluators (preview). If you don't have an existing project, create one. See [Create a project for Azure AI Foundry](../create-projects.md?tabs=ai-studio).
 - Azure OpenAI Deployment with GPT model supporting `chat completion`. For example, `gpt-4`.
 - Make sure you're first logged into your Azure subscription by running `az login`.
 
 [!INCLUDE [evaluation-foundry-project-storage](../../includes/evaluation-foundry-project-storage.md)]
 
 > [!NOTE]
-> Virtual Network (VNet) configurations are currently not supported for cloud-based evaluations. Please ensure that public network access is enabled for your Azure OpenAI resource.
+> Virtual Network configurations are currently not supported for cloud-based evaluations. Ensure that public network access is enabled for your Azure OpenAI resource.
 
 ## Get started
 
@@ -86,7 +86,7 @@ data_id = project_client.datasets.upload_file(
 
 To learn more about input data formats for evaluating generative AI applications, see [Single-turn data](./evaluate-sdk.md#single-turn-support-for-text), [Conversation data](./evaluate-sdk.md#conversation-support-for-text), and [Conversation data for images and multi-modalities](./evaluate-sdk.md#conversation-support-for-images-and-multi-modal-text-and-image).
 
-To learn more about input data formats for evaluating agents, see [Evaluating Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [Evaluating other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
+To learn more about input data formats for evaluating agents, see [Evaluate Azure AI agents](./agent-evaluate-sdk.md#evaluate-azure-ai-agents) and [Evaluate other agents](./agent-evaluate-sdk.md#evaluating-other-agents).
 
 ## Specify evaluators
 
@@ -193,7 +193,7 @@ versioned_evaluator = ml_client.evaluators.get(evaluator_name, version=1)
 print("Versioned evaluator id:", registered_evaluator.id)
 ```
 
-After you register your custom evaluator to your Azure AI project, you can view it in your [Evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under the **Evaluation** tab in your Azure AI project.
+After you register your custom evaluator to your Azure AI project, you can view it in your [evaluator library](../evaluate-generative-ai-app.md#view-and-manage-the-evaluators-in-the-evaluator-library) under the **Evaluation** tab in your Azure AI project.
 
 ### Prompt-based custom evaluators
 
@@ -245,21 +245,19 @@ After you log your custom evaluator to your Azure AI project, you can view it in
 
 ### Troubleshooting: Job Stuck in Running State
 
-If your evaluation job remains in the **Running** state for an extended period when using Azure AI Foundry Project or Hub, this may be because the Azure OpenAI model you selected does not have enough capacity.
+Your evaluation job might remain in the **Running** state for an extended period when using Azure AI Foundry Project or Hub. This problem might be due to the Azure OpenAI model you selected doesn't have enough capacity.
 
 **Resolution**
 
-Cancel the current evaluation job.
-
-Increase the model capacity to handle larger input data.
-
-Re-run the evaluation.
+1. Cancel the current evaluation job.
+1. Increase the model capacity to handle larger input data.
+1. Run the evaluation again.
 
 ## Related content
 
 - [Evaluate your generative AI applications locally](./evaluate-sdk.md)
-- [Evaluate your generative AI applications online](https://aka.ms/GenAIMonitoringDoc)
+- [Monitor your generative AI applications](../monitor-applications.md)
 - [Learn more about simulating test datasets for evaluation](./simulator-interaction-data.md)
-- [View your evaluation results in an Azure AI project](../../how-to/evaluate-results.md)
-- [Get started building a chat app by using the Azure AI Foundry SDK](../../quickstarts/get-started-code.md)
+- [See evaluation results in the Azure AI Foundry portal](../../how-to/evaluate-results.md)
+- [Get started with Azure AI Foundry](../../quickstarts/get-started-code.md)
 - [Get started with evaluation samples](https://aka.ms/aistudio/eval-samples)
