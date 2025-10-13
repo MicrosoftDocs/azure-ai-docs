@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 10/10/2025
 ---
 
 # Create a blob knowledge source
@@ -219,19 +219,7 @@ After the knowledge agent is configured, use the retrieve action to query the kn
 
 ## Delete a knowledge source
 
-If you no longer need the knowledge source, or if you need to rebuild it on the search service, use this request to delete the current object.
-
-```http
-# Delete agent
-DELETE {{search-url}}/knowledgeSources/{{ks-name}}?api-version=2025-08-01-preview
-api-key: {{api-key}}
-```
-
-> [!IMPORTANT]
-> Before you can delete a knowledge source, you must first update the knowledge agent to remove all references to the knowledge source.
->
-> Deleting a blob knowledge source also deletes the objects it created. The indexer, data source, skillset, and index are automatically deleted when the blob knowledge source is deleted.
->
+[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]
 
 ## Learn more
 
