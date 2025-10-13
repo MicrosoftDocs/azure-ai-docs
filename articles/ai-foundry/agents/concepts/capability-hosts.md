@@ -8,8 +8,10 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 07/07/2025
-author: fosteramanda
-ms.author: fosteramanda
+author: aahill
+ms.author: aahi
+ms.reviewer: fosteramanda
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Capability hosts
