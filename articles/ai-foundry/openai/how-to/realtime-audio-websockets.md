@@ -28,10 +28,10 @@ Follow the instructions in this article to get started with the Realtime API via
 ## Supported models
 
 The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
-- `gpt-4o-mini-realtime-preview` (2024-12-17)
-- `gpt-4o-realtime-preview` (2024-12-17)
-- `gpt-realtime` (version 2025-08-28)
-- `gpt-realtime-mini` (version 2025-10-06)
+- `gpt-4o-mini-realtime-preview` (`2024-12-17`)
+- `gpt-4o-realtime-preview` (`2024-12-17`)
+- `gpt-realtime` (`2025-08-28`)
+- `gpt-realtime-mini` (`2025-10-06`)
 
 You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
 
