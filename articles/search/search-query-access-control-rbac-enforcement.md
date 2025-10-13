@@ -17,7 +17,7 @@ Azure Data Lake Storage (ADLS) Gen2 provides an access model that makes fine-gra
 
 This article explains how to set up queries that use permission metadata to filter results.
 
-## Requirements
+## Prerequisites
 
 - Permission metadata must be in `filterable` string fields. You won't use the filter in your queries, but the search engine builds a filter internally to exclude unauthorized content.
 
@@ -26,6 +26,14 @@ This article explains how to set up queries that use permission metadata to filt
 - For ADLS Gen2 data sources, you must have configured Access Control Lists (ACLs) and/or Azure role-based access control (RBAC) roles at the container level. For blob data sources, your have role assignments on the container. You can use a [built-in indexer](search-indexer-access-control-lists-and-role-based-access.md) or [Push APIs](search-index-access-control-lists-and-rbac-push-api.md) to index permission metadata in your index.
 
 - The latest preview REST API (2025-08-01-preview) or a preview package of an Azure SDK to query the index. This API version supports internal queries that filter out unauthorized results.
+
+## Limitations
+
+- If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
+
+- Document visibility requires both:
+  - the calling application’s RBAC role (Authorization header)  
+  - the user identity carried by **x-ms-query-source-authorization**
 
 ## How query-time enforcement works
 
@@ -50,14 +58,6 @@ For Azure RBAC, permissions are lists of resource ID strings. There must be an A
 ### 3. Results filtering
   
 The security filter efficiently matches the userIds, groupIds, and rbacScope from the request against each list of ACLs in every document in the search index to limit the results returned to ones the user has access to. It's important to note that each filter is applied independently and a document is considered authorized if any filter succeeds. For example, if a user has access to a document through userIds but not through groupIds, the document is still considered valid and returned to the user.
-
-## Limitations
-
-- If ACL evaluation fails (for example, the Graph API is unavailable), the service returns **5xx** and does **not** return a partially filtered result set.
-
-- Document visibility requires both:
-  - the calling application’s RBAC role (Authorization header)  
-  - the user identity carried by **x-ms-query-source-authorization**
 
 ## Query example
 

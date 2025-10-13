@@ -57,14 +57,14 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `IntentResolutionEvaluator` | | | | | ✓ |
 | `ToolCallAccuracyEvaluator` | | | | | ✓ |
 | `TaskAdherenceEvaluator` | | | | | ✓ |
-| `GroundednessEvaluator` | ✓ | | | | |
+| `GroundednessEvaluator` | ✓ | | | | ✓ |
 | `GroundednessProEvaluator` | ✓ | | | | |
 | `RetrievalEvaluator` | ✓ | | | | |
 | `DocumentRetrievalEvaluator` | ✓ | | | ✓ | |
 | `RelevanceEvaluator` | ✓ | | | | ✓ |
-| `CoherenceEvaluator` | ✓ | | | | ✓ |
-| `FluencyEvaluator` | ✓ | | | | ✓ |
-| `ResponseCompletenessEvaluator` | ✓ | | ✓ | ✓ | |
+| `CoherenceEvaluator` | ✓ | | | |  |
+| `FluencyEvaluator` | ✓ | | | |  |
+| `ResponseCompletenessEvaluator` | | | ✓ | ✓ | |
 | `QAEvaluator` | | | ✓ | ✓ | |
 | **Natural Language Processing (NLP) Evaluators** |
 | `SimilarityEvaluator` | | | ✓ | ✓ | |
@@ -74,15 +74,15 @@ Built-in evaluators can accept query and response pairs, a list of conversations
 | `BleuScoreEvaluator` | | | ✓ | ✓ | |
 | `MeteorScoreEvaluator` | | | ✓ | ✓ | |
 | **Safety Evaluators** |
-| `ViolenceEvaluator` | | ✓ | | | ✓ |
-| `SexualEvaluator` | | ✓ | | | ✓ |
-| `SelfHarmEvaluator` | | ✓ | | | ✓ |
-| `HateUnfairnessEvaluator` | | ✓ | | | ✓ |
-| `ProtectedMaterialEvaluator` | | ✓ | | | ✓ |
-| `ContentSafetyEvaluator` | | ✓ | | | ✓ |
+| `ViolenceEvaluator` | | ✓ | | |  |
+| `SexualEvaluator` | | ✓ | | |  |
+| `SelfHarmEvaluator` | | ✓ | | |  |
+| `HateUnfairnessEvaluator` | | ✓ | | |  |
+| `ProtectedMaterialEvaluator` | | ✓ | | |  |
+| `ContentSafetyEvaluator` | | ✓ | | |  |
 | `UngroundedAttributesEvaluator` | | | ✓ | | |
-| `CodeVulnerabilityEvaluator` | | | ✓ | | ✓ |
-| `IndirectAttackEvaluator` | ✓ | | | | ✓ |
+| `CodeVulnerabilityEvaluator` | | | ✓ | |  |
+| `IndirectAttackEvaluator` | ✓ | | | |  |
 | **Azure OpenAI Graders** |
 | `AzureOpenAILabelGrader` | ✓ | | | | |
 | `AzureOpenAIStringCheckGrader` | ✓ | | | | |

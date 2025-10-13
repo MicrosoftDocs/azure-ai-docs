@@ -17,7 +17,7 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Contributor permissions in [Azure AI Foundry](https://ai.azure.com/).
 - [`homebrew`](https://brew.sh/) or [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for installing the Codex CLI or VS Code with the Codex extension.
 

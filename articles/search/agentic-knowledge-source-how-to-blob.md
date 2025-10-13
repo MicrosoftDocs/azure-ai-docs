@@ -7,16 +7,16 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 10/10/2025
 ---
 
 # Create a blob knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *blob knowledge source* specifies all of the information necessary for indexing and querying multimodal Azure blob content in an Azure AI Search agentic pipeline. It's created independently, and then referenced by a [knowledge agent](search-agentic-retrieval-how-to-create.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
+A *blob knowledge source* specifies all of the information necessary for indexing and querying multimodal Azure blob content in an Azure AI Search agentic pipeline. It's created independently, and then referenced by a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
 
-In contrast with a [search index knowledge source](search-knowledge-source-how-to-index.md) that specifies an existing and qualified index, a blob knowledge source specifies an external data source (a blob container) plus models and properties that are used to create an entire enrichment pipeline:
+In contrast with a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) that specifies an existing and qualified index, a blob knowledge source specifies an external data source (a blob container) plus models and properties that are used to create an entire enrichment pipeline:
 
 + The generated data source specifies the blob container
 + The generated skillset chunks and vectorizes multimodal content
@@ -29,7 +29,7 @@ Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
-+ Azure Storage with a blob container containing [supported content types](search-howto-indexing-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type depends on your chat completion model and whether it can analyze and describe the image file.
++ Azure Storage with a blob container containing [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For images, the supported content type depends on your chat completion model and whether it can analyze and describe the image file.
 
 + Azure AI Search, basic tier or higher, configured for semantic ranker.
 
@@ -91,9 +91,9 @@ A response for blob knowledge source might look like the following example.
       "kind": "azureOpenAI",
       "azureOpenAIParameters": {
         "resourceUri": "<REDACTED>",
-        "deploymentId": "gpt-4o-mini",
+        "deploymentId": "gpt-5-mini",
         "apiKey": "<REDACTED>",
-        "modelName": "gpt-4o-mini",
+        "modelName": "gpt-5-mini",
         "authIdentity": null
       }
     },
@@ -114,7 +114,7 @@ A response for blob knowledge source might look like the following example.
 
 ## Create a knowledge source
 
-To create a [knowledge source](search-knowledge-source-overview.md), use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a [knowledge source](agentic-knowledge-source-overview.md), use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
 A knowledge source can contain exactly one of the following: `searchIndexParameters` *or* `azureBlobParameters`. The `webParameters` property isn't supported in this release. If you specify `azureBlobParameters`, then `searchIndexParameters` must be null.
 
@@ -177,9 +177,9 @@ A blob knowledge source can include an `ingestionSchedule` that adds scheduling 
           "kind": "azureOpenAI",
           "azureOpenAIParameters": {
             "resourceUri": "{{aoai-endpoint}}",
-            "deploymentId": "gpt-4o-mini",
+            "deploymentId": "gpt-5-mini",
             "apiKey": "{{aoai-key}}",
-            "modelName": "gpt-4o-mini",
+            "modelName": "gpt-5-mini",
             "authIdentity": null
           }
         },
@@ -211,7 +211,7 @@ We recommend using the Azure portal to validate output creation.
 
 ## Assign to a knowledge agent
 
-If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge agent](search-agentic-retrieval-how-to-create.md).
+If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
 Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
 
@@ -219,25 +219,13 @@ After the knowledge agent is configured, use the retrieve action to query the kn
 
 ## Delete a knowledge source
 
-If you no longer need the knowledge source, or if you need to rebuild it on the search service, use this request to delete the current object.
-
-```http
-# Delete agent
-DELETE {{search-url}}/knowledgeSources/{{ks-name}}?api-version=2025-08-01-preview
-api-key: {{api-key}}
-```
-
-> [!IMPORTANT]
-> Before you can delete a knowledge source, you must first update the knowledge agent to remove all references to the knowledge source.
->
-> Deleting a blob knowledge source also deletes the objects it created. The indexer, data source, skillset, and index are automatically deleted when the blob knowledge source is deleted.
->
+[!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]
 
 ## Learn more
 
 + [Azure AI Search Blob knowledge source Python sample](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/knowledge/blob-knowledge-source.ipynb)
 
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 
 + [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 
