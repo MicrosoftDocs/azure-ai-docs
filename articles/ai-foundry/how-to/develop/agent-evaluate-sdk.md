@@ -39,7 +39,7 @@ pip install azure-ai-evaluation
 
 ## Evaluate Azure AI agents
 
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agents and Semantic Kernel's Chat Completion and Azure AI agents. This list of evaluators are supported for evaluation data returned by the converter: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Groundedness`.
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents using our converter support for Azure AI agents and Semantic Kernel agents. The following evaluators are supported for evaluation data returned by the converter: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, and `Groundedness`.
 
 > [!NOTE]
 > If you are building other agents that output a different schema, you can convert them into the general openai-style [agent message schema](#agent-message-schema) and use the above evaluators.
@@ -48,15 +48,17 @@ If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you
 
 #### Tool call evaluation support
 `ToolCallAccuracyEvaluator` supports evaluation in Azure AI Agent for the following tools:
-1. File Search
-2. Azure AI Search
-3. Bing Grounding
-4. Bing Custom Search
-5. SharePoint Grounding
-6. Code Interpreter
-7. Fabric Data Agent 
-8. OpenAPI   
-9. Function Tool (user-defined tools)
+
+- File Search
+- Azure AI Search
+- Bing Grounding
+- Bing Custom Search
+- SharePoint Grounding
+- Code Interpreter
+- Fabric Data Agent 
+- OpenAPI   
+- Function Tool (user-defined tools)
+
 However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
 Here's an example that shows you how to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
@@ -215,10 +217,10 @@ reasoning_model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
-# Evaluators you may want to use reasoning models with
+# Evaluators you might want to use with reasoning models 
 quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model_config, is_reasoning_model=True) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]}
 
-# Other evaluators you may NOT want to use reasoning models 
+# Other evaluators you might NOT want to use with reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
@@ -233,7 +235,6 @@ for name, evaluator in quality_and_safety_evaluators.items():
     result = evaluator(**converted_data)
     print(name)
     print(json.dumps(result, indent=4)) 
-
 
 ```
 

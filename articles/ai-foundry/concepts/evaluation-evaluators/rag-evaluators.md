@@ -245,7 +245,6 @@ AI systems can fabricate content or generate irrelevant responses outside the gi
 ```python
 from azure.ai.evaluation import GroundednessProEvaluator
 from azure.identity import DefaultAzureCredential
-
 import os
 from dotenv import load_dotenv
 load_dotenv()
