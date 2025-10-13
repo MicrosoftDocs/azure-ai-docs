@@ -74,7 +74,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         const endpoint = process.env.AZURE_OPENAI_ENDPOINT || "AZURE_OPENAI_ENDPOINT";
         // Required Azure OpenAI deployment name and API version
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-realtime";
-        const apiVersion = process.env.OPENAI_API_VERSION || "2025-08-28";
+        const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview";
         // Keyless authentication 
         const credential = new DefaultAzureCredential();
         const scope = "https://cognitiveservices.azure.com/.default";

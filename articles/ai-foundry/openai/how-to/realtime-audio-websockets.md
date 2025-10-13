@@ -69,7 +69,7 @@ wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=20
 #### [GA version](#tab/ga)
 
 ```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-08-28&model=gpt-realtime-deployment-name
+wss://my-eastus2-openai-resource.openai.azure.com/openai/v1/realtime?model=gpt-realtime-deployment-name
 ```
 
 ---
