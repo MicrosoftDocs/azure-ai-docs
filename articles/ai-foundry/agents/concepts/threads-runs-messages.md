@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: conceptual
 ms.date: 09/24/2025
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Threads, runs, and messages in Azure AI Foundry Agent Service
