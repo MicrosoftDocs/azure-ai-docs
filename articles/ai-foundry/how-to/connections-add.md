@@ -97,7 +97,7 @@ For more on how to set private endpoints to your connected resources, see the fo
 | Application Insights  | [Use Azure Private Link to connect networks to Azure Monitor](/azure/azure-monitor/logs/private-link-security) |
 
 > [!NOTE]
-> Cross-Subscription connections used for model deployment is not supported (Azure AI Foundry, Azure OpenAI). You can't connect to resources from different subscription for model deployments.
+> Cross-subscription connections used for model deployment are not supported (Azure AI Foundry, Azure OpenAI). You can't connect to resources from different subscriptions for model deployments.
 
 ## Related content
 
