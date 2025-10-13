@@ -73,7 +73,6 @@ If you have access to multiple Azure subscriptions, set the active subscription:
 
 :::code language="azurecli" source="~/azureml-examples-main/cli/misc.sh" id="az_account_set":::
 
-
 ### [Studio](#tab/azure-studio)
 
 Sign in to [Azure Machine Learning studio](https://ml.azure.com).
@@ -121,7 +120,7 @@ For the content of the file, see [workspace YAML examples](https://github.com/Az
 
 ### [Studio](#tab/azure-studio)
 
-Create a workspace on the studio welcome page by selecting **Create workspace**.
+Create a workspace on the studio welcome page by providing the required information and then selecting **Create**. 
 
 ---
 
@@ -137,7 +136,7 @@ A *compute* is a designated compute resource where you run your job or host your
 * **Inference cluster**. Used to deploy trained machine learning models to Azure Kubernetes Service (AKS). You can create an Azure Kubernetes Service cluster from your Azure Machine Learning workspace, or attach an existing AKS cluster.
 * **Attached compute**. You can attach your own compute resources to your workspace and use them for training and inference.
 
-### Create a compute
+### Create a compute resource
 
 ### [Python SDK](#tab/sdk)
 
@@ -177,7 +176,7 @@ For the content of the file, see [compute YAML examples](https://github.com/Azur
 1. Select a workspace, if you aren't already in one.
 1. In the left pane, select **Compute**.
 1. At the top of the page, select a tab to specify the type of compute you want to create.
-1. Select **New** to create the new compute.
+1. Select **New** to create the new compute resource.
 
 ---
 
