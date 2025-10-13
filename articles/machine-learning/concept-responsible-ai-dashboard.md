@@ -30,7 +30,7 @@ The Responsible AI dashboard provides a single interface to help you implement r
 The dashboard offers a holistic assessment and debugging of models so you can make informed data-driven decisions. Having access to all of these tools in one interface enables you to:
 
 - Evaluate and debug your machine learning models by identifying model errors and fairness issues, diagnosing why those errors are happening, and informing your mitigation steps.
-- Boost your data-driven decision-making abilities by addressing questions such as:
+- Boost your data-driven decision-making abilities by addressing questions like:
 
    "What is the minimum change that users can apply to their features to get a different outcome from the model?"
 
@@ -86,10 +86,10 @@ The following table describes when to use Responsible AI dashboard components to
 |-------|-----------|-------------|
 | Identify | Error analysis | The error analysis component helps you get a deeper understanding of model failure distribution and quickly identify erroneous cohorts (subgroups) of data. <br><br> The capabilities of this component in the dashboard come from the [Error Analysis](https://erroranalysis.ai/) package.|
 | Identify | Fairness analysis | The fairness component defines groups in terms of sensitive attributes like sex, race, and age. It then assesses how your model predictions affect these groups and how you can mitigate disparities. It evaluates the performance of your model by exploring the distribution of your prediction values and the values of your model performance metrics across the groups. <br><br>The capabilities of this component in the dashboard come from the [Fairlearn](https://fairlearn.org/) package.  |
-| Identify | Model overview | The model overview component aggregates model assessment metrics in a high-level view of model prediction distribution for better investigation of its performance. This component also enables group fairness assessment by highlighting the breakdown of model performance across sensitive groups. |
+| Identify | Model overview | The model overview component aggregates model assessment metrics in a high-level view of model prediction distribution for better investigation of model performance. This component also enables group fairness assessment by highlighting the breakdown of model performance across sensitive groups. |
 | Diagnose | Data analysis | Data analysis visualizes datasets based on predicted and actual outcomes, error groups, and specific features. You can then identify issues of overrepresentation and underrepresentation, and you can see how data is clustered in the dataset.  |
 | Diagnose | Model interpretability | The interpretability component generates human-understandable explanations of the predictions of a machine learning model. It provides multiple views into a model's behavior: <br> - Global explanations (for example, which features affect the overall behavior of a loan allocation model) <br> - Local explanations (for example, why an applicant's loan application is approved or rejected) <br><br> The capabilities of this component in the dashboard come from the [InterpretML](https://interpret.ml/) package. |
-| Diagnose | Counterfactual analysis and what-if| This component consists of two functionalities for better error diagnosis: <br> - Generating a set of examples in which minimal changes to a particular point alter the model's prediction. That is, the examples show the closest data points with opposite model predictions. <br> - Enabling interactive and custom what-if perturbations for individual data points to understand how the model reacts to feature changes. <br> <br> The capabilities of this component in the dashboard come from the [DiCE](https://github.com/interpretml/DiCE) package.  |
+| Diagnose | Counterfactual analysis and what-if| This component consists of two functionalities for better error diagnosis: <br> - Generating a set of examples in which minimal changes to a particular point alter the model's prediction. That is, the examples show the closest data points that provide opposite model predictions. <br> - Enabling interactive and custom what-if perturbations for individual data points to understand how the model reacts to feature changes. <br> <br> The capabilities of this component in the dashboard come from the [DiCE](https://github.com/interpretml/DiCE) package.  |
 
 Mitigation steps are available via standalone tools such as [Fairlearn](https://fairlearn.org/). For more information, see the [unfairness mitigation algorithms](https://fairlearn.org/v0.7.0/user_guide/mitigation.html).
 
@@ -126,7 +126,7 @@ These components of the Responsible AI dashboard support responsible decision-ma
 
 Although progress has been made on individual tools for specific areas of Responsible AI, data scientists often need to use various tools to holistically evaluate their models and data. For example, they might need to use model interpretability and fairness assessment together. 
 
-If data scientists discover a fairness issue with one tool, they then need to jump to a different tool to understand what data or model factors lie at the root of the issue before taking any steps on mitigation. The following factors further complicate this challenging process:
+If data scientists discover a fairness issue by using one tool, they then need to use a different tool to understand what data or model factors lie at the root of the issue before taking any steps on mitigation. The following factors further complicate this challenging process:
 
 - There's no central location for discovering and learning about the tools, extending the time it takes to research and learn new techniques. 
 - The different tools don't communicate with each other. Data scientists must wrangle the datasets, models, and other metadata as they pass them between the tools. 
@@ -176,7 +176,6 @@ The following roles can use the Responsible AI dashboard, and its corresponding 
 - The Responsible AI dashboard currently doesn't support datasets with more than 10 thousand columns.
 - The Responsible AI dashboard currently doesn't support the AutoML MLFlow model.
 - The Responsible AI dashboard currently doesn't support registered AutoML models from the UI.
-
 
 ## Next steps
 
