@@ -14,37 +14,19 @@ ms.date: 10/10/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *search index knowledge source* specifies a connection to a search index on Azure AI Search that provides searchable content in an agentic retrieval pipeline. It's created independently, and then referenced by a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) and used at query time when an agent or chat bot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action.
+A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](search-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](search-agentic-retrieval-how-to-create.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
 
 Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
-You need a search index containing plain text or vector content, with a semantic configuration. [Review index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The search index must be on the same search service as the knowledge agent.
+You need a search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge agent.
 
-To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. There's no portal support at this time.
+To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
 ## Check for existing knowledge sources
 
-A knowledge source is a top-level, reusable object. All knowledge sources must be uniquely named within the knowledge sources collection. It's helpful to know about existing knowledge sources for either reuse or for naming new objects.
-
-Example request: List all knowledge sources on a search service by name and type.
-
-```http
-# List knowledge sources by name and type
-GET {{search-url}}/knowledgeSources?api-version=2025-08-01-preview&$select=name,kind
-api-key: {{api-key}}
-Content-Type: application/json
-```
-
-Example request: Return a single knowledge source by name to review its JSON definition.
-
-```http
-### Get a knowledge source definition
-GET {{search-url}}/knowledgeSources/{{knowledge-source-name}}?api-version=2025-08-01-preview
-api-key: {{api-key}}
-Content-Type: application/json
-```
+[!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
 An example response for a `searchIndex` knowledge source might look like the following JSON. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
 
@@ -65,31 +47,22 @@ An example response for a `searchIndex` knowledge source might look like the fol
 ```
 
 > [!NOTE]
-> The `webParameters` property isn't operational in this preview and it's reserved for future use.
+> The `webParameters` property isn't operational in this preview and is reserved for future use.
 
 ## Create a knowledge source
 
-To create a [knowledge source](agentic-knowledge-source-overview.md), use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
-
-A knowledge source can contain exactly one of the following: `searchIndexParameters` *or* `azureBlobParameters`. The `webParameters` property isn't supported in this release. If you specify `searchIndexParameters`, then `azureBlobParameters` must be null.
-
-For `searchIndexParameters`:
-
-+ Choose an index [designed for agentic retrieval](agentic-retrieval-how-to-create-index.md)
-+ Specify any `retrievable` fields that can be used for citations, such as a file name or page number.
-
-1. Use the [Create or Update Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) preview REST API.
+To create a `searchIndex` knowledge source:
 
 1. Set environment variables at the top of your file.
 
     ```http
-    @search-url=<YOUR SEARCH SERVICE URL>
-    @api-key=<YOUR ADMIN API KEY>
-    @ks-name=<YOUR KNOWLEDGE SOURCE NAME>
-    @index-name=<YOUR INDEX NAME>
+    @search-url = <YOUR SEARCH SERVICE URL>
+    @api-key = <YOUR ADMIN API KEY>
+    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
+    @index-name = <YOUR INDEX NAME>
     ```
 
-1. Formulate the request and then **Send**.
+1. Use the 2025-08-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
     POST {{search-url}}/knowledgeSources?api-version=2025-08-01-preview
@@ -107,11 +80,17 @@ For `searchIndexParameters`:
     }
     ```
 
+1. Select **Send Request**.
+
 **Key points**:
 
-+ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
++ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search.
 
-+ `sourceDataSelect` is the list of fields returned if you specify `includeReferenceSourceData` in the knowledge agent definition. These fields are used for the citation view experience and should include fields like a document or file name, page or chapter number, and so forth.
++ `kind` must be `searchIndex` for a search index knowledge source.
+
++ `searchIndexName` is the name of your index, which must be [designed for agentic retrieval](agentic-retrieval-how-to-create-index.md).
+
++ `sourceDataSelect` is the list of index fields returned when you specify `includeReferenceSourceData` in the knowledge agent definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers.
 
 ## Assign to a knowledge agent
 
@@ -123,7 +102,7 @@ Within the knowledge agent, there are more properties to set on the knowledge so
 
 [!INCLUDE [Delete knowledge source](includes/how-tos/knowledge-source-delete-rest.md)]
 
-## Learn more
+## Related content
 
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 
