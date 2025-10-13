@@ -343,6 +343,8 @@ As illustrated in the following example, we enable agent message support for the
 
 For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided.
 
+`GroundednessEvaluator` requires `tool_definitions` to be provided to evaluate the groundedness of the agent's responses with respect to the tool outputs the agent receives.
+
 Following are examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [Sample notebooks](#sample-notebooks), which illustrate the possible input paths for each evaluator.  
 
 As with other [built-in AI-assisted quality evaluators](../../concepts/evaluation-evaluators/agent-evaluators.md), `IntentResolutionEvaluator` and `TaskAdherenceEvaluator` output a Likert score (integer 1-5; higher score is better). `ToolCallAccuracyEvaluator` outputs the passing rate of all tool calls made (a float between 0 and 1) based on user query. To further improve intelligibility, all evaluators accept a binary threshold and output two new keys. For the binarization threshold, a default is set and the user can override it. The two new keys are:
