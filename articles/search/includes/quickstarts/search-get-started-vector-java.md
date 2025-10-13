@@ -418,7 +418,7 @@ This search uses [SearchClient](/java/api/com.azure.search.documents.searchclien
 
 ## Create a semantic hybrid search
 
-Here's the last query in the collection to create extend the semantic hybrid search with the additional search text `historic hotel walk to restaurants and shopping`.
+Here's the last query in the collection to extend the semantic hybrid search with the additional search text `historic hotel walk to restaurants and shopping`.
 
 This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
 
