@@ -328,13 +328,14 @@ If you're using agents outside Azure AI Foundry Agent Service, you can still eva
 
 Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, and `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, it can be a challenge to extract these simple data types from agent messages, due to the complex interaction patterns of agents and framework differences. For example, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
 
-As illustrated in the following example, we enable agent message support specifically for the built-in evaluators `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, and `TaskAdherenceEvaluator` to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
+As illustrated in the following example, we enable agent message support for the following built-in evaluators to evaluate these aspects of agentic workflow. These evaluators may take `tool_calls` or `tool_definitions` as parameters unique to agents when evaluating agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  |
 |----------------|---------------|---------------|---------------|---------------|
 | `IntentResolutionEvaluator`   | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | Doesn't apply | Optional: `list[ToolCall]`  |
 | `ToolCallAccuracyEvaluator`   | Required: `Union[str, list[Message]]` | Optional: `Union[str, list[Message]]`  | Optional: `Union[dict, list[ToolCall]]` | Required: `list[ToolDefinition]`  |
 | `TaskAdherenceEvaluator`         | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | Doesn't apply | Optional: `list[ToolCall]`  |
+| `GroundednessEvaluator`         | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | Doesn't apply | Required: `list[ToolCall]`  |
 
 - `Message`: `dict` OpenAI-style message that describes agent interactions with a user, where the `query` must include a system message as the first message.
 - `ToolCall`: `dict` that specifies tool calls invoked during agent interactions with a user.
