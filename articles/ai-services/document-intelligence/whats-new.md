@@ -18,7 +18,7 @@ ms.custom:
 <!-- markdownlint-disable MD051 -->
 <!-- markdownlint-disable MD049 -->
 
-# What's new in Azure Document Intelligence in Foundry Tools
+# What's new in Azure Document Intelligence?
 
 [!INCLUDE [applies to v4.0, v3.1, v3.0, and v2.1](includes/applies-to-v40-v31-v30-v21.md)]
 
