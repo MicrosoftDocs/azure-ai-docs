@@ -19,8 +19,8 @@ monikerRange: '>=doc-intel-3.0.0'
 
 ## Prerequisites
 
-* An Azure subscription. [Create one for free](https://azure.microsoft.com/free/cognitive-services/).
-* An Azure AI Foundry Tools or Document Intelligence resource. After you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multiservice](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal to get your key and endpoint.
+* An Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure Document Intelligence resource. After you have your Azure subscription, create a [single-service](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) or [Azure AI multiservice](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry) resource in the Azure portal to get your key and endpoint.
 * To try the service, use the free pricing tier (F0). You can upgrade later to a paid tier for production.
 
 > [!TIP]

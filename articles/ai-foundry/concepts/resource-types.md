@@ -6,7 +6,7 @@ reviewer: deeikele
 ms.reviewer: deeikele
 author: sdgilley
 ms.author: sgilley
-ms.date: 07/22/2025
+ms.date: 10/09/2025
 ms.service: azure-ai-foundry
 ms.topic: concept-article
 ms.custom:

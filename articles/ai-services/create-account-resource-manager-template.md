@@ -25,7 +25,7 @@ This quickstart shows you how to use an Azure Resource Manager template (ARM tem
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/free/cognitive-services).
+* If you don't have an Azure subscription, [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Review the template
 

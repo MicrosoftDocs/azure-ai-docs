@@ -41,7 +41,7 @@ Here's what you need to get started: [**Translator resource**](#translator-resou
 
 ### Translator resource
 
-* If you don't have an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/), you can [**create one for free**](https://azure.microsoft.com/free/).
+* If you don't have an active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn), you can [**create one for free**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Create a [**single-service Translator resource**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (**not** a multi-service Azure AI Foundry resource). As you complete the Translator project and instance details fields, pay special attention to the following entries:
 

@@ -14,7 +14,7 @@ ms.date: 08/28/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-If you wrote [agentic retrieval](search-agentic-retrieval-concept.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
+If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
 ## When to migrate
 
@@ -95,7 +95,7 @@ PUT https://{{search-url}}/knowledgeSources/{{source-name}}?api-version=2025-08-
     }
 ```
 
-This example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure blob. For more information, see [Create a knowledge source](search-knowledge-source-overview.md).
+This example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure blob. For more information, see [Create a knowledge source](agentic-knowledge-source-overview.md).
 
 ### Update the agent
 
@@ -119,7 +119,7 @@ POST https://{{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
     } 
 ```
 
-This example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
+This example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
 ### Test the retrieval
 
@@ -167,7 +167,7 @@ This section covers breaking and nonbreaking changes for the following REST API 
 
 #### [Breaking changes](#tab/breaking)
 
-+ Introduces knowledge sources as the new way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob` kinds. For more information, see [Create a search index knowledge source](search-knowledge-source-how-to-index.md) and [Create a blob knowledge source](search-knowledge-source-how-to-blob.md).
++ Introduces knowledge sources as the new way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob` kinds. For more information, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md) and [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
 + Requires `knowledgeSources` instead of `targetIndexes` in agent definitions. For migration steps, see [How to migrate](#how-to-migrate).
 
@@ -175,7 +175,7 @@ This section covers breaking and nonbreaking changes for the following REST API 
 
 #### [Nonbreaking changes](#tab/nonbreaking)
 
-+ Adds `knowledgeSources`, `outputConfiguration`, and `retrievalInstructions` to agent definitions. For information about supported properties, see [Create a knowledge agent](search-agentic-retrieval-how-to-create.md).
++ Adds `knowledgeSources`, `outputConfiguration`, and `retrievalInstructions` to agent definitions. For information about supported properties, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
 + Renames `defaultRerankerThreshold` to `rerankerThreshold` and `defaultIncludeReferenceSourceData` to `includeReferenceSourceData`. These properties previously existed in `targetIndexes`, but you now specify them within each knowledge source reference in `knowledgeSources`.
 
@@ -187,6 +187,6 @@ This REST API version introduces agentic retrieval and knowledge agents. Each ag
 
 ## Related content
 
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
-+ [Create a knowledge source](search-knowledge-source-overview.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Create a knowledge source](agentic-knowledge-source-overview.md)
