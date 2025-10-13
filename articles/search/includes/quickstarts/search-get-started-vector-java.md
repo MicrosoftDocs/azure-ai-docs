@@ -92,11 +92,11 @@ You should now be logged in to Azure from your local device.
 
 In this section, you create a vector index in Azure AI Search with [SearchIndexClient](/java/api/com.azure.search.documents.indexes.searchindexclient).[createOrUpdateIndex](/java/api/com.azure.search.documents.indexes.searchindexclient#com-azure-search-documents-indexes-searchindexclient-createorupdateindex(com-azure-search-documents-indexes-models-searchindex)). The index schema defines the fields, including the vector field `DescriptionVector`. 
 
-1. Create a `CreateIndex.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `CreateIndex.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file. 
 
-   :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/CreateIndex.java" :::
+   :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/CreateIndex.java" :::
 
    The code file creates the index and defines the index schema, including the vector field `DescriptionVector`.
 
@@ -133,11 +133,11 @@ Creating and loading the index are separate steps. You created the index schema 
 
 In Azure AI Search, the index stores all searchable content, while the search engine executes queries against that index.
 
-1. Create an `UploadDocuments.java` file in the `src/main/java/com/azure/search` directory.
+1. Create an `UploadDocuments.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
-   :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/UploadDocuments.java" :::
+   :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/UploadDocuments.java" :::
 
     This code loads a collection of documents. Each document includes the vectorized version of the article's `Description`. This vector enables similarity search, where matching is based on meaning rather than exact keywords.
 
@@ -182,9 +182,9 @@ The example vector queries are based on two strings:
 
 The vector query string is semantically similar to the search string, but it includes terms that don't exist in the search index. If you do a keyword search for `quintessential lodging near running trails, eateries, retail`, results are zero. We use this example to show how you can get relevant results even if there are no matching terms.
 
-Create a `QueryVector.java` file in the `src/main/java/com/azure/search` directory and add the code to create the query vector.
+Create a `QueryVector.java` file in the `src/main/java/com/example/search` directory and add the code to create the query vector.
 
-:::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/QueryVector.java" :::
+:::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/QueryVector.java" :::
 
 This code is used in the following sections to perform vector searches. The query vector is created using an embedding model from Azure OpenAI.
 
@@ -192,11 +192,11 @@ This code is used in the following sections to perform vector searches. The quer
 
 The first example demonstrates a basic scenario where you want to find document descriptions that closely match the search string using the [SearchClient](/java/api/com.azure.search.documents.searchclient).[search](/java/api/com.azure.search.documents.searchasyncclient#com-azure-search-documents-searchasyncclient-search(java-lang-string)) and the [VectorQuery](/java/api/com.azure.search.documents.models.vectorquery) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions).
 
-1. Create a `SearchSingle.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `SearchSingle.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/SearchSingle.java" :::
+    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingle.java" :::
 
     The `vectorQuery` contains the configuration of the vectorized query including the vectorized text of the query input as retrieved through `QueryVector.getVectorList`. `setFields` determines which vector fields are searched and `setKNearestNeighborsCount` specifies the number of nearest neighbors to return.
 
@@ -229,11 +229,11 @@ The first example demonstrates a basic scenario where you want to find document 
 
 You can add filters, but the filters are applied to the nonvector content in your index. In this example, the filter applies to the `Tags` field to filter out any hotels that don't provide free Wi-Fi. This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
 
-1. Create a `SearchSingleWithFilter.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `SearchSingleWithFilter.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/SearchSingleWithFilter.java" :::
+    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingleWithFilter.java" :::
 
     This code has the same search functionality as the previous search with a post-processing exclusion filter added for hotels with `free wifi`.
 
@@ -258,11 +258,11 @@ You can add filters, but the filters are applied to the nonvector content in you
 
 You can specify a geospatial filter to limit results to a specific geographic area. In this example, the filter limits results to hotels within 300 kilometers of Washington D.C. (coordinates: `-77.03241 38.90166`). Geospatial distances are always in kilometers. This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
 
-1. Create a `SearchSingleWithFilterGeo.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `SearchSingleWithFilterGeo.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/SearchSingleWithFilterGeo.java" :::
+    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSingleWithFilterGeo.java" :::
 
 1. Build and run the file:
 
@@ -290,11 +290,11 @@ Hybrid search consists of keyword queries and vector queries in a single search 
 
 This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
 
-1. Create a `SearchHybrid.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `SearchHybrid.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/SearchHybrid.java" :::
+    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchHybrid.java" :::
 
 1. Build and run the file:
 
@@ -422,11 +422,11 @@ Here's the last query in the collection to create extend the semantic hybrid sea
 
 This search uses [SearchClient](/java/api/com.azure.search.documents.searchclient).[SearchClient](/java/api/com.azure.search.documents.searchclient) and [SearchOptions](/java/api/com.azure.search.documents.models.searchoptions). 
 
-1. Create a `SearchSemanticHybrid.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `SearchSemanticHybrid.java` file in the `src/main/java/com/example/search` directory.
 
 1. Copy the following code into the file.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/SearchSemanticHybrid.java" :::
+    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/SearchSemanticHybrid.java" :::
 
 1. Build and run the file:
 
@@ -495,11 +495,11 @@ You can find and manage resources in the Azure portal by using the **All resourc
 
 If you want to keep the search service, but delete the index and documents, you can delete the index programmatically.
 
-1. Create a `DeleteIndex.java` file in the `src/main/java/com/azure/search` directory.
+1. Create a `DeleteIndex.java` file in the `src/main/java/com/example/search` directory.
 
 1. Add the code to delete the index.
 
-    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/azure/search/DeleteIndex.java" :::
+    :::code language="java" source="~/azure-search-java-samples/vector-quickstart/src/main/java/com/example/search/DeleteIndex.java" :::
 
 1. Build and run the file:
 
