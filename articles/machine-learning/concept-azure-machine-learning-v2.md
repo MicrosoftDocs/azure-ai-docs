@@ -1,7 +1,7 @@
 ---
-title: 'How Azure Machine Learning works (v2)'
+title: 'How Azure Machine Learning Works (v2)'
 titleSuffix: Azure Machine Learning
-description: This article gives you a high-level understanding of the resources and assets that make up Azure Machine Learning (v2).
+description: Get a high-level understanding of the resources and assets that make up Azure Machine Learning (v2).
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -10,15 +10,15 @@ ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: balapv
-ms.date: 09/30/2024
-#Customer intent: As a data scientist, I want to understand the big picture about how Azure Machine Learning works.
+ms.date: 10/15/2025
+#Customer intent: As a data scientist, I want to understand how Azure Machine Learning works.
 ---
 
 # How Azure Machine Learning works: resources and assets
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-This article applies to the second version of the [Azure Machine Learning CLI & Python SDK (v2)](concept-v2.md). For version one (v1), see [How Azure Machine Learning works: Architecture and concepts (v1)](v1/concept-azure-machine-learning-architecture.md?view=azureml-api-1&preserve-view=true)
+This article applies to the second version of the [Azure Machine Learning CLI and Python SDK v2](concept-v2.md). For version one (v1), see [How Azure Machine Learning works: Architecture and concepts (v1)](v1/concept-azure-machine-learning-architecture.md?view=azureml-api-1&preserve-view=true)
 
 Azure Machine Learning includes several resources and assets to enable you to perform your machine learning tasks. These resources and assets are needed to run any job.
 
