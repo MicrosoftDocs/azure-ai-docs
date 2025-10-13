@@ -1,12 +1,12 @@
 ---
-title: Monitor model deployments in Azure AI Foundry Models
+title: Monitor Model Deployments in Azure AI Foundry Models
 description: Learn how to use Azure Monitor tools like Log Analytics to capture and analyze metrics and data logs for Foundry Models.
 author: ssalgadodev
 ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 10/10/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---
@@ -23,10 +23,10 @@ This document explains how you can use metrics and logs to monitor model deploym
 
 To use monitoring capabilities for model deployments in Foundry Models, you need the following:
 
-* An Azure AI services resource. For more information, see [Create an Azure AI Services resource](../../model-inference/how-to/quickstart-create-resources.md).
+* An [Azure AI Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
 
     > [!TIP]
-    > If you're using Serverless API Endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your Serverless API Endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
+    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
 
 * At least one model deployment.
 
@@ -34,7 +34,7 @@ To use monitoring capabilities for model deployments in Foundry Models, you need
 
 ## Metrics
 
-Azure Monitor collects metrics from Foundry Models automatically. **No configuration is required**. These metrics are:
+Azure Monitor collects metrics from Foundry Models automatically. *No configuration is required*. These metrics are:
 
 * Stored in the Azure Monitor time-series metrics database.
 * Lightweight and capable of supporting near real-time alerting.
@@ -48,25 +48,26 @@ Azure Monitor metrics can be queried using multiple tools, including:
 
 You can view metrics within Azure AI Foundry portal. To view them, follow these steps:
 
-1. Go to [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. Navigate to your model deployment by selecting **Deployments**, and then select the name of the deployment you want to see metrics about.
+1. Under **My assets** in the sidebar menu, select **Models + endpoints**, and then select the name of the deployment you want to see metrics about.
 
-1. Select the tab **Metrics**.
+1. Select the **Metrics** tab.
 
-1. You can access an overview of common metrics that might be of interest. For cost-related metrics, use the Azure Cost Management deep link, which provides access to detailed post-consumption cost metrics in the Cost analysis section located in the Azure portal. Cost data in Azure portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. Follow this link for a full list of [AI resources](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There's approximately a five hour delay from the billing event to when it can be viewed in Azure portal cost analysis.
+1. You can access an overview of common metrics that might be of interest. For cost-related metrics, select the **Azure Cost Management** link, which provides access to detailed post-consumption cost metrics in the **Cost analysis** section located in the Azure portal.
 
     :::image type="content" source="../media/monitor-models/deployment-metrics.png" alt-text="Screenshot showing the metrics displayed for model deployments in Azure AI Foundry portal." lightbox="../media/monitor-models/deployment-metrics.png":::
 
+    Cost data in the Azure portal displays actual post-consumption charges for model consumption, including other AI resources within Azure AI Foundry. For a full list of AI resources, see [Build with customizable APIs and models](https://azure.microsoft.com/products/ai-services#tabs-pill-bar-oc14f0_tab0). There's approximately a five- hour delay from the billing event to when it can be viewed in Azure portal cost analysis.
+
     > [!IMPORTANT]
-    > The **Azure Cost Management deep link**  provides a direct link within the Azure portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
+    > The **Azure Cost Management** link provides a direct link within the Azure portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
+    >
     > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data). 
 
-1. You can **view and analyze metrics with Azure Monitor metrics explorer** to further slice and filter your model deployment metrics.
+1. You can view and analyze metrics with Azure Monitor [metrics explorer](#metrics-explorer) to further slice and filter your model deployment metrics.
 
     :::image type="content" source="../media/monitor-models/deployment-metrics-azmonitor.png" alt-text="Screenshot showing the option to open model deployment metrics in Azure Monitor." lightbox="../media/monitor-models/deployment-metrics-azmonitor.png":::
-
-1. Use [Metrics explorer](#metrics-explorer) to analyze the metrics.
 
 #### Metrics explorer
 
@@ -74,15 +75,15 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 To use Azure Monitor, follow these steps:
 
-1. Go to [Azure portal](https://portal.azure.com).
+1. Go to the [Azure portal](https://portal.azure.com).
 
 1. Type and select **Monitor** on the search box.
 
-1. Select **Metrics** in the left navigation bar.
+1. Select **Metrics** in the sidebar menu.
 
 1. On **Select scope**, select the resources you want to monitor. You can select either one resource or select a resource group or subscription. If that's the case, ensure you select **Resource types** as **Azure AI Services**.
 
-1. The metric explorer shows. Select the [metrics](#metrics-reference) that you want to explore. The following example shows the number of requests made to the model deployments in the resource.
+1. The metrics explorer appears. Select the [metrics](#metrics-reference) that you want to explore. The following example shows the number of requests made to the model deployments in the resource.
 
     :::image type="content" source="../media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../media/monitor-models/azmon-add-metric.png":::
 
@@ -108,13 +109,13 @@ If you [configure diagnostic settings](#configure-diagnostic-settings) to send m
 
 To query metrics, follow these steps:
 
-1. Ensure you have [configure diagnostic settings](#configure-diagnostic-settings).
+1. Ensure that you [configure diagnostic settings](#configure-diagnostic-settings) for your resource.
 
-1. Go to [Azure portal](https://portal.azure.com).
+1. Go to the [Azure portal](https://portal.azure.com).
 
-1. Locate the Azure AI Services resource you want to query.
+1. Locate the Azure AI Foundry resource you want to query.
 
-1. In the left navigation bar, navigate to **Monitoring** > **Logs**.
+1. Under **Monitoring** in the sidebar menu, select **Logs**.
 
 1. Select the Log Analytics workspace that you configured with diagnostics.
 
@@ -129,8 +130,8 @@ To query metrics, follow these steps:
     ```
 
     > [!NOTE]
-    > When you select **Monitoring** > **Logs** in the menu for your resource, Log Analytics opens with the query scope set to the current resource. The visible log queries include data from that specific resource only. To run a query that includes data from other resources or data from other Azure services, select **Logs** from the **Azure Monitor** menu in the Azure portal. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/logs/scope) for details.
-    
+    > When you select **Monitoring** > **Logs** in the menu for your resource, Log Analytics opens with the query scope set to the current resource. The visible log queries include data from that specific resource only. To run a query that includes data from other resources or data from other Azure services, select **Logs** from the **Azure Monitor** menu in the Azure portal. For more information, see [Log query scope and time range in Azure Monitor Log Analytics](/azure/azure-monitor/logs/scope).
+
 
 #### Other tools
 
@@ -155,7 +156,7 @@ The following categories of metrics are available:
 
 | Metric | Internal name | Unit | Aggregation | Dimensions |
 |--------|---------------|------|-------------|------------|
-| **Time To Response**<br /><br />Recommended latency (responsiveness) measure for streaming requests. Applies to PTU and PTU-managed deployments. Calculated as time taken for the first response to appear after a user sends a prompt, as measured by the API gateway. This number increases as the prompt size increases and/or cache hit size reduces. Note: this metric is an approximation as measured latency is heavily dependent on multiple factors, including concurrent calls and overall workload pattern. In addition, it does not account for any client-side latency that may exist between your client and the API endpoint. Refer to your own logging for optimal latency tracking. | `TimeToResponse` | Milliseconds | Maximum, Minimum, Average | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` |
+| **Time To Response**<br /><br />Recommended latency (responsiveness) measure for streaming requests. Applies to PTU and PTU-managed deployments. Calculated as time taken for the first response to appear after a user sends a prompt, as measured by the API gateway. This number increases as the prompt size increases and/or cache hit size reduces. Note: this metric is an approximation as measured latency is heavily dependent on multiple factors, including concurrent calls and overall workload pattern. In addition, it doesn't account for any client-side latency that might exist between your client and the API endpoint. Refer to your own logging for optimal latency tracking. | `TimeToResponse` | Milliseconds | Maximum, Minimum, Average | `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion`, `StatusCode` |
 | **Normalized Time Between Tokens**<br /><br />For streaming requests; model token generation rate, measured in milliseconds. Applies to PTU and PTU-managed deployments. | `NormalizedTimeBetweenTokens` | Milliseconds | Maximum, Minimum, Average |  `ApiName`, `OperationName`, `Region`, `StreamType`, `ModelDeploymentName`, `ModelName`, `ModelVersion` |
 
 #### Models - Usage
