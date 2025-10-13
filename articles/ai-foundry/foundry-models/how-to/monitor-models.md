@@ -6,7 +6,7 @@ ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: how-to
-ms.date: 10/10/2025
+ms.date: 10/13/2025
 ms.reviewer: fasantia
 reviewer: santiagxf
 ---
@@ -17,7 +17,7 @@ reviewer: santiagxf
 
 When you have critical applications and business processes that rely on Azure resources, you need to monitor and get alerts for your system. The Azure Monitor service collects and aggregates metrics and logs from every component of your system, including Foundry Models deployments. You can use this information to view availability, performance, and resilience, and get notifications of issues.
 
-This document explains how you can use metrics and logs to monitor model deployments in Foundry Models.
+This article explains how you can use metrics and logs to monitor model deployments in Foundry Models.
 
 ## Prerequisites
 
@@ -26,7 +26,7 @@ To use monitoring capabilities for model deployments in Foundry Models, you need
 * An [Azure AI Foundry resource](../../model-inference/how-to/quickstart-create-resources.md).
 
     > [!TIP]
-    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this document, [migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
+    > If you're using serverless API endpoints and you want to take advantage of monitoring capabilities explained in this article, [migrate your serverless API endpoints to Foundry Models](../../model-inference/how-to/quickstart-ai-project.md).
 
 * At least one model deployment.
 
@@ -46,7 +46,7 @@ Azure Monitor metrics can be queried using multiple tools, including:
 
 #### Azure AI Foundry portal
 
-You can view metrics within Azure AI Foundry portal. To view them, follow these steps:
+You can view metrics within the Azure AI Foundry portal. To view them, follow these steps:
 
 1. Go to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
@@ -63,7 +63,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
     > [!IMPORTANT]
     > The **Azure Cost Management** link provides a direct link within the Azure portal, allowing users to access detailed cost metrics for deployed AI models. This deep link integrates with the Azure Cost Analysis service view, offering transparent and actionable insights into model-level costs.
     >
-    > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data). 
+    > The deep link directs users to the Cost Analysis view in the Azure portal, providing a one-click experience to view deployments per resource, including input/output token cost/consumption. To view cost data, you need at least *read* access for an Azure account. For information about assigning access to Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data). 
 
 1. You can view and analyze metrics with Azure Monitor [metrics explorer](#metrics-explorer) to further slice and filter your model deployment metrics.
 
@@ -71,7 +71,7 @@ You can view metrics within Azure AI Foundry portal. To view them, follow these 
 
 #### Metrics explorer
 
-[Metrics explorer](/azure/azure-monitor/fundamentals/getting-started) is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see Analyze metrics with Azure Monitor metrics explorer.
+Metrics explorer is a tool in the Azure portal that allows you to view and analyze metrics for Azure resources. For more information, see [Analyze metrics with Azure Monitor metrics explorer](/azure/azure-monitor/metrics/analyze-metrics).
 
 To use Azure Monitor, follow these steps:
 
@@ -81,18 +81,18 @@ To use Azure Monitor, follow these steps:
 
 1. Select **Metrics** in the sidebar menu.
 
-1. On **Select scope**, select the resources you want to monitor. You can select either one resource or select a resource group or subscription. If that's the case, ensure you select **Resource types** as **Azure AI Services**.
+1. On **Select scope**, select the resources you want to monitor. You can either select one resource or select a resource group or subscription. If that's the case, ensure you select **Resource types** as **Azure AI Services**.
 
 1. The metrics explorer appears. Select the [metrics](#metrics-reference) that you want to explore. The following example shows the number of requests made to the model deployments in the resource.
 
     :::image type="content" source="../media/monitor-models/azmon-add-metric.png" alt-text="Screenshot showing how to add a new metric to the chart." lightbox="../media/monitor-models/azmon-add-metric.png":::
 
     > [!IMPORTANT]
-    > Metrics in category **Azure OpenAI** contain metrics for Azure OpenAI models in the resource. Category **Models** contains all the models available in the resource, including Azure OpenAI, DeepSeek, Phi, etc. We recommend switching to this new set of metrics.
+    > Metrics in the **Azure OpenAI** category contain metrics for Azure OpenAI models in the resource. The **Models** category contains all the models available in the resource, including Azure OpenAI, DeepSeek, and Phi. We recommend switching to this new set of metrics.
 
 1. You can add as many metrics as needed to either the same chart or to a new chart.
 
-1. If you need, you can filter metrics by any of the available dimensions of it.
+1. If you need, you can filter metrics by any of their available dimensions.
 
     :::image type="content" source="../media/monitor-models/azmon-add-filter.png" alt-text="Screenshot showing how to apply a filter to a metric." lightbox="../media/monitor-models/azmon-add-filter.png":::
 
@@ -119,7 +119,7 @@ To query metrics, follow these steps:
 
 1. Select the Log Analytics workspace that you configured with diagnostics.
 
-1. From the Log Analytics workspace page, under Overview on the left pane, select Logs. The Azure portal displays a Queries window with sample queries and suggestions by default. You can close this window.
+1. From the Log Analytics workspace page, under **Overview** on the sidebar menu, select Logs. The Azure portal displays a Queries window with sample queries and suggestions by default. You can close this window.
 
 1. To examine the Azure Metrics, use the table `AzureMetrics` for your resource, and run the following query:
 
@@ -137,9 +137,9 @@ To query metrics, follow these steps:
 
 Tools that allow more complex visualization include:
 
-* [Workbooks](/azure/azure-monitor/visualize/workbooks-overview), customizable reports that you can create in the Azure portal. Workbooks can include text, metrics, and log queries.
-* [Grafana](/azure/azure-monitor/visualize/grafana-plugin), an open platform tool that excels in operational dashboards. You can use Grafana to create dashboards that include data from multiple sources other than Azure Monitor.
-* [Power BI](/azure/azure-monitor/logs/log-powerbi), a business analytics service that provides interactive visualizations across various data sources. You can configure Power BI to automatically import log data from Azure Monitor to take advantage of these visualizations.
+* [Workbooks](/azure/azure-monitor/visualize/workbooks-overview): customizable reports that you can create in the Azure portal. Workbooks can include text, metrics, and log queries.
+* [Grafana](/azure/azure-monitor/visualize/grafana-plugin): an open platform tool that excels in operational dashboards. You can use Grafana to create dashboards that include data from multiple sources other than Azure Monitor.
+* [Power BI](/azure/azure-monitor/logs/log-powerbi): a business analytics service that provides interactive visualizations across various data sources. You can configure Power BI to automatically import log data from Azure Monitor to take advantage of these visualizations.
 
 ### Metrics reference
 
