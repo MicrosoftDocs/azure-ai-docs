@@ -34,7 +34,7 @@ The GPT real-time models are available for global deployments.
 - `gpt-realtime` (version `2025-08-28`)
 - `gpt-realtime-mini` (version `2025-10-06`)
 
-See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
+For more information, see the [models and versions documentation](./concepts/models.md#audio-models).
 
 ## API support
 
