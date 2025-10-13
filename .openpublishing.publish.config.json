@@ -189,6 +189,12 @@
       "branch_mapping": {}
     },
     {
+      "path_to_root": "azure-search-java-samples",
+      "url": "https://github.com/Azure-Samples/azure-search-java-samples",
+      "branch": "main",
+      "branch_mapping": {}
+    },
+    {
       "path_to_root": "azure-search-dotnet-samples",
       "url": "https://github.com/Azure-Samples/azure-search-dotnet-samples",
       "branch": "main",
