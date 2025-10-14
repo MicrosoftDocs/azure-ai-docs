@@ -105,7 +105,7 @@ ws = Workspace(
 ml_client.workspaces.begin_create(ws) 
 ```
 
-This [Jupyter notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/resources/workspace/workspace.ipynb) shows more ways to create an Azure Machine Learning workspace by using SDK v2.
+For more ways to create an Azure Machine Learning workspace by using SDK v2, see this [Jupyter notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/resources/workspace/workspace.ipynb).
 
 ### [Azure CLI](#tab/cli)
 
@@ -190,8 +190,8 @@ For more detailed information about creating compute, see:
 
 Azure Machine Learning datastores securely keep the connection information for your data storage on Azure, so you don't have to code it in your scripts. You can register and create a datastore to easily connect to your storage account, and access the data in your underlying storage service. CLI v2 and SDK v2 support the following types of cloud-based storage services:
 
-* Azure Blob Container
-* Azure File Share
+* Azure Blob container
+* Azure file share
 * Azure Data Lake Storage
 * Azure Data Lake Storage Gen2
 
@@ -259,7 +259,7 @@ For more information on how to create models in the registry, see [Work with mod
 
 ## Environment
 
-An Azure Machine Learning environment is an encapsulation of the environment where your machine learning task happens. It specifies the software packages, environment variables, and software settings around your training and scoring scripts. Environments are managed and versioned entities within your Machine Learning workspace. Environments enable reproducible, auditable, and portable machine learning workflows across various computes.
+An Azure Machine Learning environment is an encapsulation of the environment where your machine learning task happens. It specifies the software packages, environment variables, and software settings for your training and scoring scripts. Environments are managed and versioned entities within your Machine Learning workspace. Environments enable reproducible, auditable, and portable machine learning workflows across various computes.
 
 ### Types of environments
 
@@ -314,7 +314,7 @@ Azure Machine Learning allows you to work with different types of data:
 
 For most scenarios, you use URIs (`uri_folder` and `uri_file`) to a location in storage that you can easily map to the filesystem of a compute node in a job by either mounting or downloading the storage to the node.
 
-`mltable` is an abstraction for tabular data that is to be used for AutoML jobs, parallel jobs, and some advanced scenarios. If you're just starting to use Azure Machine Learning and aren't using AutoML, we strongly encourage you to start with URIs.
+`mltable` is an abstraction for tabular data that's used for AutoML jobs, parallel jobs, and some advanced scenarios. If you're just starting to use Azure Machine Learning and aren't using AutoML, we strongly encourage you to start with URIs.
 
 ## Component
 
