@@ -1,6 +1,6 @@
 ---
-title: Manage AI model deployment in Azure AI Foundry (Preview)
-description: Control AI model deployment in Azure AI Foundry Portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively.
+title: Built-in policy for model deployment (Preview)
+description: Manage AI model deployment in Azure AI Foundry Portal with built-in Azure Policy definitions. Learn how to govern and manage model deployments effectively.
 #customer intent: As an IT admin, I want to control the deployment of AI models in Azure AI Foundry Portal so that I can ensure compliance with organizational policies.
 author: jonburchel
 ms.author: jburchel
@@ -11,14 +11,14 @@ ms.service: azure-ai-foundry
 ai-usage: ai-assisted
 ---
 
-# Control AI model deployment with built-in policy in Azure AI Foundry portal (Preview)
+# Built-in policy for model deployment in Azure AI Foundry portal (Preview)
 
 Azure Policy provides built-in policy definitions that help you govern the deployment of AI models in Azure AI Foundry Portal. You can use
 these policies to control what models your developers can deploy in Azure AI Foundry portal.
 
 ## Prerequisites
 
-- An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/free/). Your
+- An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your
   Azure account lets you access the Azure AI Foundry portal.
 
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.

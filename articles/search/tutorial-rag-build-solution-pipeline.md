@@ -27,7 +27,7 @@ In this tutorial, you:
 > - Create a skillset that chunks, vectorizes, and recognizes entities
 > - Run the indexer and check results
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 > [!TIP]
 > You can use the [**Import data (new)** wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts [Image search](search-get-started-portal-image-search.md) or [Vector search](search-get-started-portal-import-vectors.md), to learn more about the pipeline and its moving parts.

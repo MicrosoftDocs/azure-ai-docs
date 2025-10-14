@@ -202,7 +202,7 @@ ms.author: lajanuar
 |Galician|`gl`|Yes|Yes|
 |Georgian|`ka`|Yes|No|
 |German|`de`|Yes|Yes|
-|Greek|`el`|Yes|No|
+|Greek|`el`|No|No|
 |Gujarati|`gu`|Yes|No|
 |Haitian Creole|`ht`|Yes|Yes|
 |Hebrew|`he`|No|No|

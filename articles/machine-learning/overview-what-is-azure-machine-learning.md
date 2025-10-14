@@ -24,7 +24,7 @@ Azure Machine Learning is a cloud service that accelerates and manages the machi
 You can create a model in Machine Learning or use a model built from an open-source platform, such as PyTorch, TensorFlow, or scikit-learn. MLOps tools help you monitor, retrain, and redeploy models.
 
 > [!Tip]
-> **Free trial!** If you don't have an Azure subscription, create a free account before you begin. [Try the free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/machine-learning/search/). You get credits to spend on Azure services. After you use up the credits, you can keep the account and use [free Azure services](https://azure.microsoft.com/free/). Your credit card isn't charged unless you explicitly change your settings and ask to be charged.
+> **Free trial!** If you don't have an Azure subscription, create a free account before you begin. [Try the free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). You get credits to spend on Azure services. After you use up the credits, you can keep the account and use [free Azure services](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your credit card isn't charged unless you explicitly change your settings and ask to be charged.
 
 ## Who is Azure Machine Learning for?
 

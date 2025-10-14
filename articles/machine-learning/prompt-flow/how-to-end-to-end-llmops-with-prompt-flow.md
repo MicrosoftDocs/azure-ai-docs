@@ -13,6 +13,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: chenlujiao
 ms.date: 10/18/2024
+ms.update-cycle: 365-days
 ---
 
 # GenAIOps with prompt flow and GitHub
@@ -87,7 +88,7 @@ The rest of this article shows you how to use GenAIOps with prompt flow by follo
 
 ### Prerequisites
 
-- An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure Machine Learning workspace.
 - [Git version 2.27 or newer](https://git-scm.com/downloads) running on your local machine, with the ability to create a GitHub source control repository.
 - An understanding of [how to integrate GenAIOps with prompt flow](how-to-integrate-with-llm-app-devops.md).

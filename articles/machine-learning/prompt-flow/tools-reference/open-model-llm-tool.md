@@ -13,6 +13,7 @@ ms.date: 11/02/2023
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Open Model LLM tool

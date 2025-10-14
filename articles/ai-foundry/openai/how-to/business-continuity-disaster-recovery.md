@@ -3,9 +3,10 @@ title: 'Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI in Az
 titleSuffix: Azure OpenAI
 description: Considerations for implementing Business Continuity and Disaster Recovery (BCDR) with Azure OpenAI 
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 07/02/2025
+ms.date: 09/30/2025
 author: mrbullwinkle    
 ms.author: mbullwin
 recommendations: false

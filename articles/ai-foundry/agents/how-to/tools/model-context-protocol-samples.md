@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/04/2025
+ms.date: 09/30/2025
 author: aahill
 ms.author: aahi
 zone_pivot_groups: selection-mcp-code
@@ -15,9 +15,6 @@ ms.custom: azure-ai-agents-code
 ---
 
 # How to use the Model Context Protocol tool (preview)
-
-> [!NOTE]
-> Supported regions are `westus`, `westus2`, `uaenorth`, `southindia`, and `switzerlandnorth`.
 
 Use this article to find code samples for connecting Azure AI Foundry Agent Service with Model Context Protocol (MCP) servers.
 
@@ -32,7 +29,7 @@ Use this article to find code samples for connecting Azure AI Foundry Agent Serv
 Create a client object that contains the endpoint for connecting to your AI project and other resources.
 
 > [!NOTE]
-> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/ai/Azure.AI.Agents.Persistent/samples/Sample26_PersistentAgents_MCP.md)
+> You can find an asynchronous example on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.Agents.Persistent/samples)
 
 ```csharp
 var projectEndpoint = System.Environment.GetEnvironmentVariable("PROJECT_ENDPOINT");

@@ -27,8 +27,9 @@ items:
   - name: Translator Service FAQ
     displayName: character,count,usage,attribution, cognitive
     href: translator-faq.md
-
-
+  - name: Secure deployment guide
+    displayName: support,plan,issue,problem,bug,troubleshoot,troubleshooting
+    href: secure-deployment.md  
 
 - name: Text translation (GA)
   items:
@@ -237,9 +238,13 @@ items:
   - name: Azure AI Foundry for beginners
     displayName: use case,usage,train,training,bleu,tuning,tune
     href: custom-translator/azure-ai-foundry/beginners-guide.md
+  - name: Adaptive custom translation (preview) 🆕
+    displayName: foundry, gpt, api
+    href: custom-translator/azure-ai-foundry/concepts/adaptive-custom-translation.md
   - name: FAQ
     href: custom-translator/azure-ai-foundry/faq.md
   - name: How-to guides
+  
     items:
     - name: Create an Azure AI Foundry project
       displayName: models,pairs,label,edit,delete

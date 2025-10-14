@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Get started using the Azure OpenAI .NET SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
 ms.date: 3/11/2025
@@ -14,7 +15,7 @@ Use this article to get started using the Azure OpenAI .NET SDK to deploy and us
 
 ## Prerequisites
 
-- An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
+- An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - [The .NET 8.0 SDK](https://dotnet.microsoft.com/download)
 - An Azure OpenAI in Azure AI Foundry Models resource with a vision-enabled chat model deployed. See [Model availability](../concepts/models.md) for available regions. For more information about resource creation, see the [resource deployment guide](/azure/ai-foundry/openai/how-to/create-resource).
 

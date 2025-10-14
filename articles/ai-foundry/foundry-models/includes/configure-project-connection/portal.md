@@ -25,7 +25,7 @@ You can create a connection to an Azure AI services resource using the following
 
 2. In the lower left corner of the screen, select **Management center**.
 
-3. In the section **Connections** select **New connection**.
+3. In the section **Connected resources** select **New connection**.
 
 4. Select **Azure AI services**.
 

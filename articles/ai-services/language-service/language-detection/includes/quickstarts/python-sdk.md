@@ -16,7 +16,7 @@ Use this quickstart to create a language detection application with the client l
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * [Python 3.8 or later](https://www.python.org/)
 
 

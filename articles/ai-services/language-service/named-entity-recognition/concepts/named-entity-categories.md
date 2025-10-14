@@ -19,12 +19,13 @@ Named Entity Recognition (NER) is a computational linguistic process within natu
 
 * **Entity Types** provide more detailed distinctions within the broader categories, allowing for more granularity and flexibility.
 
-This article provides a list of entity categories identified and returned by the Named Entity Recognition (NER) process.## Language Support
+This article provides a list of entity categories identified and returned by the Named Entity Recognition (NER) process.
 
+## Language Support
 
 The [NER language support](../language-support.md) page lists all languages available for the named entities in this article. Any exceptions are noted for specific named entities.
 
-Supported API versions:
+## Supported API versions:
 
 * [**Preview: 2025-05-15-preview**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2025-05-15-preview&preserve-view=true&tabs=HTTP#entitycategory)
 * [**Stable: Generally Available (GA)**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=truetabs=HTTP#entitycategory)
@@ -47,7 +48,7 @@ Supported API versions:
 |[URL](#type-url)|[Volume](#type-volume)|[Weight](#type-weight)||
 
 ### Type: Address
-##### Category: Location
+##### Category: Address
 
 |Entity|Tags|Detail|
 |---|---|---|
@@ -63,11 +64,11 @@ Supported API versions:
 
 
 ### Type: Airport
-##### Category: Airport
+##### Category: Location
 
 |Entity|Tags|Detail|
 |---|---|---|
-|**Airport**|Airport|A designated location equipped with facilities for the landing, takeoff, and maintenance of aircraft.  |
+|**Airport**|Location, Airport|A designated location equipped with facilities for the landing, takeoff, and maintenance of aircraft.  |
 
 ### Type: Area
 ##### Category: Quantity

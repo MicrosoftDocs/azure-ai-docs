@@ -24,7 +24,7 @@ The `2024-02-01` API includes a multi-lingual model (model version `2023-04-15`)
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesComputerVision"  title="Create a Computer Vision resource"  target="_blank">create a Computer Vision resource </a> in the Azure portal to get your key and endpoint. Be sure to create it in one of the supported geographic regions: see [Region availability](../overview-image-analysis.md#region-availability).
    * After it deploys, select **Go to resource**. Copy the key and endpoint to a temporary location to use later on.
 

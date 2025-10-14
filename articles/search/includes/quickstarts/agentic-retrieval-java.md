@@ -9,7 +9,7 @@ ms.date: 08/28/2025
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]
 
-In this quickstart, you use [agentic retrieval](../../search-agentic-retrieval-concept.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with agentic and custom chat solutions.
+In this quickstart, you use [agentic retrieval](../../agentic-retrieval-overview.md) to create a conversational search experience powered by large language models (LLMs) and your proprietary data. Agentic retrieval breaks down complex user queries into subqueries, runs the subqueries in parallel, and extracts grounding data from documents indexed in Azure AI Search. The output is intended for integration with agentic and custom chat solutions.
 
 Although you can provide your own data, this quickstart uses [sample JSON documents](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/nasa-e-book/earth-at-night-json) from NASA's Earth at Night e-book. The documents describe general science topics and images of Earth at night as observed from space.
 
@@ -18,7 +18,7 @@ Although you can provide your own data, this quickstart uses [sample JSON docume
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An [Azure AI Search service](../../search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](../../semantic-how-to-enable-disable.md).
 
@@ -117,7 +117,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
 
     ```plaintext
     AZURE_OPENAI_ENDPOINT=https://<your-ai-foundry-resource-name>.openai.azure.com/
-    AZURE_OPENAI_GPT_DEPLOYMENT=gpt-4.1-mini
+    AZURE_OPENAI_GPT_DEPLOYMENT=gpt-5-mini
     AZURE_OPENAI_EMBEDDING_DEPLOYMENT=text-embedding-3-large
     AZURE_SEARCH_ENDPOINT=https://<your-search-service-name>.search.windows.net
     AZURE_SEARCH_INDEX_NAME=agentic-retrieval-sample
@@ -167,7 +167,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
         private static final String SEARCH_ENDPOINT;
         private static final String AZURE_OPENAI_ENDPOINT;
         private static final String AZURE_OPENAI_GPT_DEPLOYMENT;
-        private static final String AZURE_OPENAI_GPT_MODEL = "gpt-4.1-mini";
+        private static final String AZURE_OPENAI_GPT_MODEL = "gpt-5-mini";
         private static final String AZURE_OPENAI_EMBEDDING_DEPLOYMENT;
         private static final String AZURE_OPENAI_EMBEDDING_MODEL = "text-embedding-3-large";
         private static final String INDEX_NAME = "earth_at_night";
@@ -182,7 +182,7 @@ The sample in this quickstart works with the Java Runtime. Install a Java Develo
                 "https://contoso-agentic-search-service.search.windows.net");
             AZURE_OPENAI_ENDPOINT = getEnvVar(dotenv, "AZURE_OPENAI_ENDPOINT",
                 "https://contoso-proj-agentic-foundry-res.openai.azure.com/");
-            AZURE_OPENAI_GPT_DEPLOYMENT = getEnvVar(dotenv, "AZURE_OPENAI_GPT_DEPLOYMENT", "gpt-4.1-mini");
+            AZURE_OPENAI_GPT_DEPLOYMENT = getEnvVar(dotenv, "AZURE_OPENAI_GPT_DEPLOYMENT", "gpt-5-mini");
             AZURE_OPENAI_EMBEDDING_DEPLOYMENT = getEnvVar(dotenv, "AZURE_OPENAI_EMBEDDING_DEPLOYMENT", "text-embedding-3-large");
         }
         
@@ -1022,7 +1022,7 @@ Now that you have the code, let's break down the key components:
 
 ### Create a search index
 
-In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth_at_night` to contain plain text and vector content. You can use an existing index, but it must meet the criteria for [agentic retrieval workloads](../../search-agentic-retrieval-how-to-index.md). 
+In Azure AI Search, an index is a structured collection of data. The following code defines an index named `earth_at_night` to contain plain text and vector content. You can use an existing index, but it must meet the criteria for [agentic retrieval workloads](../../agentic-retrieval-how-to-create-index.md). 
 
 ```java
 List<SearchField> fields = Arrays.asList(
@@ -1150,7 +1150,7 @@ try {
 
 ### Create a knowledge agent
 
-To connect Azure AI Search to your `gpt-4.1-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. The following code defines a knowledge agent named `earth-search-agent` that uses the agent definition to process queries and retrieve relevant documents from the `earth_at_night` index.
+To connect Azure AI Search to your `gpt-5-mini` deployment and target the `earth_at_night` index at query time, you need a knowledge agent. The following code defines a knowledge agent named `earth-search-agent` that uses the agent definition to process queries and retrieve relevant documents from the `earth_at_night` index.
 
 To ensure relevant and semantically meaningful responses, `defaultRerankerThreshold` is set to exclude responses with a reranker score of `2.5` or lower.
 
@@ -1324,13 +1324,13 @@ The output should include:
 
 + `Response` provides a text string of the most relevant documents (or chunks) in the search index based on the user query. As shown later in this quickstart, you can pass this string to an LLM for answer generation.
 
-+ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-4.1-mini` deployment and the tokens used for query planning and execution.
++ `Activity` tracks the steps that were taken during the retrieval process, including the subqueries generated by your `gpt-5-mini` deployment and the tokens used for query planning and execution.
 
 + `Results` lists the documents that contributed to the response, each one identified by their `DocKey`.
 
 ### Create the Azure OpenAI client
 
-To extend the retrieval pipeline from answer *extraction* to answer *generation*, set up the Azure OpenAI client to interact with your `gpt-4.1-mini` deployment.
+To extend the retrieval pipeline from answer *extraction* to answer *generation*, set up the Azure OpenAI client to interact with your `gpt-5-mini` deployment.
 
 ```java
 OpenAIAsyncClient openAIClient = new OpenAIClientBuilder()
