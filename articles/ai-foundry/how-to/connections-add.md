@@ -68,7 +68,8 @@ Follow these steps to create a new connection that's only available for the curr
 
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] If you don't have a project, [create a new project](./create-projects.md).
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. If you don't have a project, [create a new project](./create-projects.md).
 1. Select __Management center__ from the bottom left navigation.
 1. Select __Connected resources__ from the __Project__ section.
 1. Select __+ New connection__ from the __Connected resources__ section.
@@ -92,7 +93,8 @@ Follow these steps to create a new connection that's only available for the curr
 
 ::: moniker range="foundry"
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] If you don't have a project, [create a new project](./create-projects.md).
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. If you don't have a project, [create a new project](./create-projects.md).
 1. Select **Operate** in the upper-right navigation.
 1. Select **Admin Console** in the left pane.
 1. Select your project name in the **Manage all projects** list.
