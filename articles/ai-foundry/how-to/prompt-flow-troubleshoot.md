@@ -88,10 +88,10 @@ request_settings:
 
 If you regenerate your Azure OpenAI key and manually update the connection used in a prompt flow, you might see error messages like "Unauthorized. Access token is missing, invalid, audience is incorrect or have expired." You might see these messages when you invoke an existing endpoint that was created before the key was regenerated.
 
-This error occurs because the connections used in the endpoints or deployments aren't automatically updated. You should manually update any change for a key or secrets in deployments, which aims to avoid affecting online production deployment because of unintentional offline operation.
+This error occurs because the connections used in the endpoints/deployments aren't automatically updated. You should manually update any change for a key or secrets in deployments, which aims to avoid affecting online production deployment because of unintentional offline operation.
 
-- If the endpoint was deployed in the Azure AI Foundry portal, redeploy the flow to the existing endpoint by using the same deployment name.
-- If the endpoint was deployed by using the SDK or the Azure CLI, make a modification to the deployment definition, such as adding a dummy environment variable. Then use `az ml online-deployment update` to update your deployment.
+- If you deployed the endpoint in the Azure AI Foundry portal, redeploy the flow to the existing endpoint by using the same deployment name.
+- If you deployed by using the SDK or the Azure CLI, make a modification to the deployment definition, such as adding a dummy environment variable. Then use `az ml online-deployment update` to update your deployment.
 
 ### How do I resolve vulnerability issues in prompt flow deployments?
 
@@ -100,7 +100,7 @@ For prompt flow runtime-related vulnerabilities, try the following approaches:
 - Update the dependency packages in your `requirements.txt` file in your flow folder.
 - If you use a customized base image for your flow, update the prompt flow runtime to the latest version and rebuild your base image. Then redeploy the flow.
 
-For any other vulnerabilities of managed online deployments, Azure AI fixes the issues in monthly.
+For any other vulnerabilities of managed online deployments, Azure AI fixes the issues monthly.
 
 ### What do I do if I get "MissingDriverProgram" or "Could not find driver program in the request" errors?
 
@@ -152,7 +152,7 @@ inference_config:
 
 ### What do I do if my model response takes too long?
 
-You might notice that the deployment takes too long to respond. This delay can occur because of several factors:
+You might notice that the deployment takes a long time to respond. This delay can occur because of several factors:
 
 - The model used in the flow isn't powerful enough. For example, use GPT 3.5 instead of `text-ada`.
 - The index query isn't optimized and takes too long.

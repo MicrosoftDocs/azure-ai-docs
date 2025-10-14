@@ -19,7 +19,7 @@ To start evaluating your application's generations, built-in evaluators are grea
 
 ## Code-based evaluators
 
-You don't need a large language model needed for certain evaluation metrics. Code-based evaluators can give you the flexibility to define metrics based on functions or callable class. You can build your own code-based evaluator, for example, by creating a simple Python class that calculates the length of an answer in `answer_length.py` under directory `answer_len/`, as in the following example.
+You don't need a large language model for certain evaluation metrics. Code-based evaluators can give you the flexibility to define metrics based on functions or callable classes. You can build your own code-based evaluator, for example, by creating a simple Python class that calculates the length of an answer in `answer_length.py` under directory `answer_len/`, as in the following example.
 
 ### Code-based evaluator example: Answer length
 
@@ -49,11 +49,15 @@ answer_length = answer_length_evaluator(answer="What is the speed of light?")
 
 ## Prompt-based evaluators
 
-To build your own prompt-based large language model evaluator or AI-assisted annotator, you can create a custom evaluator based on a *Prompty* file. Prompty is a file with the `.prompty` extension for developing prompt template. The Prompty asset is a markdown file with a modified front matter. The front matter is in YAML format. It contains metadata fields that define model configuration and expected inputs of the Prompty. To measure friendliness of a response, you can create a custom evaluator `FriendlinessEvaluator`:
+To build your own prompt-based large language model evaluator or AI-assisted annotator, you can create a custom evaluator based on a *Prompty* file.
+
+Prompty is a file with the `.prompty` extension for developing prompt template. The Prompty asset is a markdown file with a modified front matter. The front matter is in YAML format. It contains metadata fields that define model configuration and expected inputs of the Prompty.
+
+To measure friendliness of a response, you can create a custom evaluator `FriendlinessEvaluator`:
 
 ### Prompt-based evaluator example: Friendliness evaluator
 
-First, create a `friendliness.prompty` file that describes the definition of the friendliness metric and its grading rubric:
+First, create a `friendliness.prompty` file that defines the friendliness metric and its grading rubric:
 
 ```md
 ---
