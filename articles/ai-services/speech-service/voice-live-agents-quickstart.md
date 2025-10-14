@@ -8,7 +8,7 @@ ms.topic: how-to
 ms.date: 7/31/2025
 author: PatrickFarley
 ms.author: pafarley
-zone_pivot_groups: voice-live-quickstart
+zone_pivot_groups: voice-live-quickstart-agents
 ms.custom: build-2025
 recommendations: false
 ---
@@ -25,8 +25,10 @@ recommendations: false
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-agents/python.md)]
 ::: zone-end
 
+
+
 ## Related content
 
 - Try the [Voice live quickstart](./voice-live-quickstart.md)
-- Learn more about [How to use the voice live API](./voice-live-how-to.md)
-- See the [audio events reference](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context)
+- Learn more about [How to use the Voice live API](./voice-live-how-to.md)
+- See the [Voice live API reference](./voice-live-api-reference.md)

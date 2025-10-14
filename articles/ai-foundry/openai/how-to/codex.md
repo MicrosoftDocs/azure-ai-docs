@@ -2,7 +2,8 @@
 title: Codex with Azure OpenAI in AI Foundry Models
 description: Learn how to use Codex CLI and the VS Code Codex extension with Azure OpenAI and AI Foundry with gpt-5-codex
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/23/2025
 author: mrbullwinkle    
@@ -16,7 +17,7 @@ OpenAI’s [Codex CLI](https://github.com/openai/codex) is the same coding agent
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Contributor permissions in [Azure AI Foundry](https://ai.azure.com/).
 - [`homebrew`](https://brew.sh/) or [`npm`](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) for installing the Codex CLI or VS Code with the Codex extension.
 

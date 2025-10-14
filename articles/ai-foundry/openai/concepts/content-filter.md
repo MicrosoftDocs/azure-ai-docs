@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn about the content filtering capabilities of Azure OpenAI.
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
 ms.custom: template-concept, devx-track-python
@@ -28,7 +29,7 @@ The articles in this section provide information about the content filtering cat
 ## Content filter types
 
 The content filtering system integrated in Azure OpenAI contains: 
-* Neural multclass classification models aimed at detecting and filtering harmful content. The models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
+* Neural multiclass classification models aimed at detecting and filtering harmful content. The models cover four categories (hate, sexual, violence, and self-harm) across four severity levels (safe, low, medium, and high). Content detected at the 'safe' severity level is labeled in annotations but isn't subject to filtering and isn't configurable.
 * Other optional classification models aimed at detecting jailbreak risk and known content for text and code. These models are binary classifiers that flag whether user or model behavior qualifies as a jailbreak attack or match to known text or source code. The use of these models is optional, but use of protected material code model may be required for Customer Copyright Commitment coverage.
 
 ## Filter categories
@@ -47,7 +48,7 @@ The following table summarizes the risk categories supported by Azure OpenAI's c
 | [Groundedness](/azure/ai-foundry/openai/concepts/content-filter-groundedness)<sup>2</sup> | Groundedness detection flags whether the text responses of large language models (LLMs) are grounded in the source materials provided by the users. Ungrounded material refers to instances where the LLMs produce information that is non-factual or inaccurate from what was present in the source materials. Requires [document embedding and formatting](./content-filter-document-embedding.md). |
 | [Protected Material for Text](/azure/ai-foundry/openai/concepts/content-filter-protected-material)<sup>1</sup> | Protected material text describes known text content (for example, song lyrics, articles, recipes, and selected web content) that can be outputted by large language models.|
 | [Protected Material for Code](/azure/ai-foundry/openai/concepts/content-filter-protected-material) | Protected material code describes source code that matches a set of source code from public repositories, which can be outputted by large language models without proper citation of source repositories.|
-
+| [Personally identifiable information (PII)](/azure/ai-services/openai/concepts/content-filter-personal-information) | Personally identifiable information (PII) refers to any information that can be used to identify a particular individual. PII detection involves analyzing text content in LLM completions and filtering any PII that was returned. |
 
 <sup>1</sup> If you're an owner of text material and want to submit text content for protection, [file a request](https://aka.ms/protectedmaterialsform).
 

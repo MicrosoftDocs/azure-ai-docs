@@ -18,7 +18,7 @@ Private endpoints are provided by [Azure Private Link](/azure/private-link/priva
 
 ## Prerequisites
 > [!div class="checklist"]
-> * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+> * If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 > * A [Text Analytics resource](https://portal.azure.com/?quickstart=true#create/Microsoft.CognitiveServicesTextAnalytics) (with Custom question answering feature) created in the Azure portal. Remember your Microsoft Entra ID, Subscription, Text Analytics resource name you selected when you created the resource.
 
 ## Steps to enable private endpoint

@@ -15,6 +15,7 @@ ms.custom:
   - devplatv2
   - ignite-2023
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 

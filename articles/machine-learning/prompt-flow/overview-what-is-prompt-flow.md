@@ -12,6 +12,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: sooryar
 ms.date: 07/16/2025
+ms.update-cycle: 365-days
 ---
 
 # What is Azure Machine Learning prompt flow

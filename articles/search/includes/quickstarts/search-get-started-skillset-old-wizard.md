@@ -18,7 +18,7 @@ Before you run the wizard, you create a few resources and upload sample files.
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. You can use a free service for this quickstart.
 
@@ -77,7 +77,7 @@ If you get `Error detecting index schema from data source`, the indexer that pow
 
 The next step is to configure AI enrichment to invoke OCR, image analysis, and natural-language processing. 
 
-OCR and image analysis are available for blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2 and for image content in OneLake. Images can be standalone files or embedded images in a PDF or other files.
+OCR and image analysis are available for blobs in Azure Blob Storage and Azure Data Lake Storage (ADLS) Gen2 and for image content in Microsoft OneLake. Images can be standalone files or embedded images in a PDF or other files.
 
 To add the skills:
 

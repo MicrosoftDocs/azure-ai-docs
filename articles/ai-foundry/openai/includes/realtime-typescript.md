@@ -2,7 +2,8 @@
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 3/20/2025
 ---
@@ -84,7 +85,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         
         // Required Azure OpenAI deployment name and API version
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-realtime";
-        const apiVersion = process.env.OPENAI_API_VERSION || "2025-08-28"; 
+        const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview"; 
     
         // Keyless authentication 
         const credential = new DefaultAzureCredential();
@@ -197,7 +198,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
         
         // Required Azure OpenAI deployment name and API version
         const deploymentName = process.env.AZURE_OPENAI_DEPLOYMENT_NAME || "gpt-realtime";
-        const apiVersion = process.env.OPENAI_API_VERSION || "2025-08-28"; 
+        const apiVersion = process.env.OPENAI_API_VERSION || "2025-04-01-preview"; 
         
         const azureOpenAIClient = new AzureOpenAI({
             apiKey: apiKey,

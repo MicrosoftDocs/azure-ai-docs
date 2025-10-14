@@ -127,7 +127,7 @@ With the cross-lingual feature, you can transfer your custom voice model to spea
 
 ### Voice conversion
 
-[Voice conversion](voice-conversion.md) is a feature that lets you transform the voice characteristics of a given audio to a target voice speaker. The following table summarizes the locales supported for voice conversion.
+[Voice conversion](voice-conversion.md) is a feature that lets you transform the voice characteristics of a given audio to a target voice speaker. The following table summarizes the locales supported for voice conversion, and each language is available on all [voice conversion regions](regions.md#regions).
 
 [!INCLUDE [Language support include](includes/language-support/voice-conversion.md)]
 

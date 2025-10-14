@@ -5,7 +5,8 @@ author: mrbullwinkle
 ms.author: mbullwin #
 manager: nitinme
 ms.date: 09/10/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: whats-new
 ms.custom:
   - ignite-2023
@@ -18,6 +19,21 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## October 2025 
+
+### GPT-image-1-mini 
+
+The `gpt-image-1-mini` model is now available for global deployments. It is a smaller version of the `gpt-image-1` model that offers a good balance between performance and cost. All use cases are currently supported, except for image edits and input fidelity.
+
+Request access: [Limited access model application](https://aka.ms/oai/gptimage1access)
+
+Follow the [image generation how-to guide](/en-us/azure/ai-foundry/openai/how-to/dall-e) to get started with this model.
+
+
+### PII detection content filter
+
+Personally identifiable information (PII) detection is now available as a built-in content filter. This feature allows you to identify and block sensitive information in LLM outputs, enhancing data privacy. For more information, see the [PII detection](./concepts/content-filter-personal-information.md) documentation.
+
 ## September 2025
 
 ## GPT-5-codex is now available
@@ -27,7 +43,7 @@ This article provides a summary of the latest releases and major documentation u
 
 - **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5` you do not need to reapply and will automatically be granted access.
 
-## Sora video-to-video support 
+### Sora video-to-video support 
 
 The Sora model from OpenAI now supports video-to-video generation. You can provide a short video as input to generate a new, longer video that incorporates the input video. See the [quickstart](./video-generation-quickstart.md) to get started.
 
@@ -53,7 +69,6 @@ Realtime API service improvements:
 - Image Input: Add and discuss images via voice without video requirements.
 - Improved function calling: Enhanced ability to call custom code defined by developers. Async function calling is supported, allowing sessions to continue while a function call is pending.
 - Conversation Mode: Real-world turn-taking behavior for natural interactions. Conversation mode uses VAD to prompt users if no response is detected, improving real-world usability for phone-like interactions.
-- SIP entry supported: public SIP URI, SIPS/SRTP, PSTN, HD Voice. 
 
 
 We highly recommend that all customers transition to the newly launched GA models to take full advantage of the latest features. Visit the [Azure OpenAI documentation](./how-to/realtime-audio-webrtc.md) and [Azure AI Foundry Playground](https://ai.azure.com/playgrounds) to explore capabilities and integrate into your applications. 
@@ -266,7 +281,7 @@ For fine-tuning model region availability, see the [models page](./concepts/mode
 
 ### GPT-4o 2024-11-20
 
-`gpt-4o-2024-11-20` is now available for [global standard deployment](./how-to/deployment-types.md) in:
+`gpt-4o-2024-11-20` is now available for [global standard deployment](../foundry-models/concepts/deployment-types.md) in:
 
 - East US
 - East US 2

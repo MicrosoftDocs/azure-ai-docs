@@ -3,7 +3,8 @@ title: 'Create and manage Azure OpenAI in Azure AI Foundry Models deployments wi
 titleSuffix: Azure OpenAI
 description: Learn how to use the Azure CLI to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-azurecli
 ms.topic: include
 ms.date: 05/20/2024
@@ -93,7 +94,7 @@ az cognitiveservices account deployment create \
 --sku-name "Standard"
 ```
 
-`--sku-name` accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`.  Learn more about [deployment type options](../how-to/deployment-types.md).
+`--sku-name` accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`.  Learn more about [deployment type options](../../foundry-models/concepts/deployment-types.md).
 
 
 > [!IMPORTANT]

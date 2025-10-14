@@ -2,24 +2,27 @@
 title: Data zone standard availability for Azure Direct models
 manager: nitinme
 ms.topic: include
-ms.date: 09/15/2025
+ms.date: 10/07/2025
 ---
 
 <!-- ## DataZoneStandard.md -->
 
-| **Region**         | **grok-3-mini** | **grok-3** |
-|:-------------------|:---------------:|:----------:|
-| eastus             | ✅              | ✅          |
-| eastus2            | ✅              | ✅          |
-| francecentral      | -               | -          |
-| germanywestcentral | -               | -          |
-| italynorth         | -               | -          |
-| northcentralus     | ✅              | ✅          |
-| polandcentral      | -               | -          |
-| southcentralus     | ✅              | ✅          |
-| spaincentral       | -               | -          |
-| swedencentral      | -               | -          |
-| westeurope         | -               | -          |
-| westus             | ✅              | ✅          |
-| westus3            | ✅              | ✅          |
+| **Region**         | **mistral-document-ai-2505** | **grok-4-fast-reasoning** | **grok-4-fast-non-reasoning** |**grok-3** | **grok-3-mini** |
+|:-------------------|:-----------------------------:|:-------------------------:|:-----------------------------:|:----------:|:---------------:|
+| eastus             | ✅                            | ✅                        | ✅                            | ✅          | ✅              |
+| eastus2            | ✅                            | ✅                        | ✅                            | ✅          | ✅              |
+| francecentral      | ✅                            | -                         | -                             | -          | -               |
+| germanywestcentral | ✅                            | -                         | -                             | -          | -               |
+| italynorth         | ✅                            | -                         | -                             | -          | -               |
+| northcentralus     | ✅                            | ✅                        | ✅                            | ✅          | ✅              |
+| norwayeast         | ✅                            | -                         | -                             | -          | -               |
+| polandcentral      | ✅                            | -                         | -                             | -          | -               |
+| southcentralus     | ✅                            | ✅                        | ✅                            | ✅          | ✅              |
+| spaincentral       | ✅                            | -                         | -                             | -          | -               |
+| swedencentral      | ✅                            | -                         | -                             | -          | -               |
+| switzerlandnorth   | ✅                            | -                         | -                             | -          | -               |
+| switzerlandwest    | ✅                            | -                         | -                             | -          | -               |
+| westeurope         | ✅                            | -                         | -                             | -          | -               |
+| westus             | ✅                            | ✅                        | ✅                            | ✅          | ✅              |
+| westus3            | ✅                            | ✅                        | ✅                            | ✅          | ✅              |
 

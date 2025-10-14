@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch REST
 manager: nitinme
 ms.date: 07/22/2024
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
@@ -12,7 +13,7 @@ ms.custom:
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Azure OpenAI resource with a model of the deployment type `Global-Batch` deployed. You can refer to the [resource creation and model deployment guide](../../how-to/create-resource.md) for help with this process.
 
 
