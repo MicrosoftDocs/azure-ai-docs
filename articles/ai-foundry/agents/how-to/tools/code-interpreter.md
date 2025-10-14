@@ -16,7 +16,7 @@ zone_pivot_groups: selection-code-interpreter
 ---
 # Azure AI Foundry Agent Service Code Interpreter
 
-Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
+Code Interpreter allows the agents to write and run Python code in a sandboxed execution environment. With Code Interpreter enabled, your agent can run code iteratively to solve more challenging code, math, and data analysis problems or create graphs and charts. When your Agent writes code that fails to run, it can iterate on this code by modifying and running different code until the code execution succeeds.
 
 > [!IMPORTANT]
 > Code Interpreter has [additional charges](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) beyond the token based fees for Azure OpenAI usage. If your Agent calls Code Interpreter simultaneously in two different threads, two code interpreter sessions are created. Each session is active by default for 1 hour with an idle timeout of 30 minutes.
@@ -33,6 +33,7 @@ Use the following file search tool samples to implement it in your agents. You c
 
 :::zone pivot="python"
 
+### Create an agent with code interpreter
 ```python
 code_interpreter = CodeInterpreterTool()
 
@@ -45,9 +46,24 @@ agent = project_client.agents.create_agent(
     tool_resources=code_interpreter.resources,
 )
 ```
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can use the `upload_and_poll` function. 
+
+```python
+file = agents_client.files.upload_and_poll(file_path=asset_file_path, purpose=FilePurpose.AGENTS)
+print(f"Uploaded file, file ID: {file.id}")
+
+code_interpreter = CodeInterpreterTool(file_ids=[file.id])
+```
+
+
 ::: zone-end
 
 :::zone pivot="csharp"
+
+### Create an agent with code interpreter
 
 ```csharp
 var projectEndpoint = System.Environment.GetEnvironmentVariable("ProjectEndpoint");
@@ -63,9 +79,35 @@ PersistentAgent agent = client.Administration.CreateAgent(
 );
 ```
 
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to your message. 
+
+```csharp
+PersistentAgentFileInfo uploadedAgentFile = client.Files.UploadFile(
+    filePath: "sample_file_for_upload.txt",
+    purpose: PersistentAgentFilePurpose.Agents);
+var fileId = uploadedAgentFile.Id;
+
+var attachment = new MessageAttachment(
+    fileId: fileId,
+    tools: tools
+);
+
+// attach the file to the message
+PersistentThreadMessage message = client.Messages.CreateMessage(
+    threadId: thread.Id,
+    role: MessageRole.User,
+    content: "Can you give me the documented information in this file?",
+    attachments: [attachment]
+);
+```
+
 ::: zone-end
 
 :::zone pivot="javascript"
+
+### Create an agent with code interpreter
 
 ```javascript
 // Create the code interpreter tool
@@ -79,6 +121,21 @@ const agent = await client.createAgent("gpt-4o", {
   toolResources: codeInterpreterTool.resources,
 });
 console.log(`Created agent, agent ID: ${agent.id}`);
+```
+
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to the tool. 
+
+```javascript
+// Upload file and wait for it to be processed
+const filePath = "./examplefile.csv";
+const localFileStream = fs.createReadStream(filePath);
+const localFile = await client.files.upload(localFileStream, "assistants", {
+  fileName: "localFile",
+});
+// Create code interpreter tool
+const codeInterpreterTool = ToolUtility.createCodeInterpreterTool([localFile.id]);
 ```
 
 ::: zone-end
@@ -115,9 +172,28 @@ CodeInterpreterToolDefinition ciTool = new CodeInterpreterToolDefinition();
 CreateAgentOptions createAgentOptions = new CreateAgentOptions(modelName).setName(agentName).setInstructions("You are a helpful agent").setTools(Arrays.asList(ciTool));
 PersistentAgent agent = administrationClient.createAgent(createAgentOptions);
 ```
-::: zone-end
 
-You can now ask your agents questions using the tool. For example, "*Draw a graph for a line with a slope of 4 and y-intercept of 9.*"
+### Attach a file for code interpreter to use
+
+If you want a file to use with code interpreter, you can attach it to the tool. 
+
+```java
+FileInfo uploadedFile = filesClient.uploadFile(new UploadFileRequest(
+    new FileDetails(BinaryData.fromFile(htmlFile))
+    .setFilename("sample.html"), FilePurpose.AGENTS));
+
+MessageAttachment messageAttachment = new MessageAttachment(Arrays.asList(BinaryData.fromObject(ciTool))).setFileId(uploadedFile.getId());
+
+PersistentAgentThread thread = threadsClient.createThread();
+ThreadMessage createdMessage = messagesClient.createMessage(
+    thread.getId(),
+    MessageRole.USER,
+    "What does the attachment say?",
+    Arrays.asList(messageAttachment),
+    null);
+```
+
+::: zone-end
  
 ### Supported models
 
