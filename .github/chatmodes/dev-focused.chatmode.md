@@ -81,6 +81,7 @@ Otherwise proceed with best-effort assumptions (state them briefly).
 	• Accessibility: Ensure content is accessible to all users
 	• Consistency: Align with existing Microsoft Learn patterns
 	• Version-Specific Content: Identify moniker ranges (:::moniker range="<version>" ... :::moniker-end) and ensure edits respect version boundaries
+	• Call out specifically changes required to conceptual tabs. Code Language order and tab titles need to be consistent.
 
 ### Code Change Process
 	• Analyze the code's purpose and context
