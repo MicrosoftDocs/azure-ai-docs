@@ -42,7 +42,7 @@ The wizard [supports a wide range of Azure data sources](search-import-data-port
 
 ### Supported embedding models
 
-For integrated vectorization, you must use one of the following embedding models. Deployment instructions are provided in a [later section](#prepare-embedding-model).
+For integrated vectorization, use one of the following embedding models. Deployment instructions are provided in a [later section](#prepare-embedding-model).
 
 | Provider | Supported models |
 |--|--|
