@@ -30,7 +30,7 @@ The following resources are required for this design pattern:
 
 + Azure AI Search, Basic pricing tier or higher, in a [region that provides semantic ranking](search-region-support.md).
 
-+ A search index that satisfies the [index criteria for agentic retrieval](search-agentic-retrieval-how-to-index.md).
++ A search index that satisfies the [index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
 
 + A project in Azure AI Foundry, with an Azure AI Agent in a Basic setup.
 
@@ -103,17 +103,17 @@ Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure 
 
 Development tasks on the Azure AI Search side include:
 
-+ [Create a knowledge source](search-knowledge-source-overview.md) that maps to a [searchable index](search-agentic-retrieval-how-to-index.md).
-+ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md) on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
-+ [Call the retriever](search-agentic-retrieval-how-to-retrieve.md) and provide a query, conversation, and override parameters.
-+ Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. You can also try [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) for a simpler workflow.
++ [Create a knowledge source](agentic-knowledge-source-overview.md) that maps to a [searchable index](agentic-retrieval-how-to-create-index.md).
++ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
++ [Call the retriever](agentic-retrieval-how-to-retrieve.md) and provide a query, conversation, and override parameters.
++ Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. You can also try [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) for a simpler workflow.
 
 Developments on the Azure AI Agent side include:
 
 + Set up the AI project client and an AI agent.
 + Add a tool to coordinate calls from the AI agent to the retriever and knowledge agent.
 
-Query processing is initiated by user interaction in a client app, such as a chat bot, that calls an AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the [retriever](search-agentic-retrieval-how-to-retrieve.md) on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot. In Azure AI Search, you can use [answer synthesis](search-agentic-retrieval-how-to-synthesize.md) to obtain an LLM-generated response from within the query pipeline, or you can call an LLM in your code if you want more control over answer generation.
+Query processing is initiated by user interaction in a client app, such as a chat bot, that calls an AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the [retriever](agentic-retrieval-how-to-retrieve.md) on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot. In Azure AI Search, you can use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) to obtain an LLM-generated response from within the query pipeline, or you can call an LLM in your code if you want more control over answer generation.
 
 ## Components of the solution
 
@@ -305,7 +305,7 @@ A knowledge agent object in Azure AI Search acquires chat history through API ca
 
 ## Control costs and limit operations
 
-Look at output tokens in the [activity array](search-agentic-retrieval-how-to-retrieve.md#review-the-activity-array) for insights into the query plan.
+Look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.md#review-the-activity-array) for insights into the query plan.
 
 ## Tips for improving performance
 
@@ -313,11 +313,11 @@ Look at output tokens in the [activity array](search-agentic-retrieval-how-to-re
 
 + Use `gpt mini` or a smaller model that performs faster.
 
-+ Set `maxOutputSize` in the [knowledge agent](search-agentic-retrieval-how-to-create.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
++ Set `maxOutputSize` in the [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
 
 ## Related content
 
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 
 + [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 

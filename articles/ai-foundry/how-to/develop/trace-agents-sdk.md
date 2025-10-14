@@ -21,11 +21,12 @@ ms.custom: references_regions
 
 In this article, you learn how to:
 
-- Trace key concepts
+- Understand key tracing concepts
 - Trace and observe AI agents in AI Foundry
-- Interpret spans (steps, tool calls, nested operations).
-- View agent threads in the Agents playground.
+- Explore new semantic conventions with multi-agent observability
+- Integrate with popular agent frameworks
 - View traces in the AI Foundry portal and Azure Monitor
+- View agent threads in the Agents playground
 
 Determining the reasoning behind your agent's executions is important for troubleshooting and debugging. However, it can be difficult for complex agents for many reasons:
 
@@ -287,9 +288,9 @@ Azure AI Foundry has native integrations with Microsoft Agent Framework and Sema
 > [!NOTE]
 > Tracing integration for LangChain and LangGraph described here is currently available only in Python.
 
-You can enable tracing for LangChain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://pypi.org/project/opentelemetry-instrumentation-langchain/).
+You can enable tracing for LangChain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/).
 
-Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](#instrument-tracing-in-your-code).
+Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
 
 > [!NOTE]
 > LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1)
@@ -694,20 +695,24 @@ with tracer.start_as_current_span("agent_session[openai.agents]"):
     pass
 ```
 
+## View traces in the Azure AI Foundry portal
+
+In your project, go to **Tracing** to filter your traces as you see fit.
+
+By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
+
+## View traces in Azure Monitor
+
+If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
+
+For more information on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
 
 ## View thread results in the Azure AI Foundry Agents playground
 
-::: moniker range="foundry-classic"
+
 
 The Agents playground in the Azure AI Foundry portal lets you view results for threads and runs that your agents produce. To see thread results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-The Agents playground in the Azure AI Foundry portal lets you view results for threads and runs that your agents produce. To see thread results, select **Thread logs** in an active thread. You can also optionally select **Metrics** to enable automatic evaluations of the model's performance across several dimensions of **AI quality** and **Risk and safety**.
-
-::: moniker-end
 
 ::: moniker range="foundry-classic"
 
@@ -732,7 +737,7 @@ After selecting **Thread logs**, review:
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
 
 > [!TIP]
-> If you want to view trace results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
+> If you want to view thread results from a previous thread, select **My threads** in the **Agents** screen. Choose a thread, and then select **Try in playground**.
 > :::image type="content" source="../../agents/media/thread-highlight.png" alt-text="A screenshot of the threads screen." lightbox="../../agents/media/thread-highlight.png":::
 > You'll be able to see the **Thread logs** button at the top of the screen to view the trace results.
 
@@ -747,30 +752,6 @@ Insert NextGen content
 
 > [!NOTE]
 > Observability features such as Risk and Safety Evaluation are billed based on consumption as listed in the [Azure pricing page](https://azure.microsoft.com/pricing/details/ai-foundry/).
-
-## View traces in the Azure AI Foundry portal
-
-::: moniker range="foundry-classic"
-
-In your project, go to **Tracing** to filter your traces as you see fit.
-
-By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
-
-::: moniker-end
-
-::: moniker range="foundry"
-
-In your project, go to **Tracing** to filter your traces as you see fit.
-
-By selecting a trace, you can step through each span and identify issues while observing how your application is responding. This can help you debug and pinpoint issues in your application.
-
-::: moniker-end
-
-## View traces in Azure Monitor
-
-If you logged traces using the previous code snippet, then you're all set to view your traces in Azure Monitor Application Insights. You can open Application Insights from **Manage data source** and use the **End-to-end transaction details view** to further investigate.
-
-For more information on how to send Azure AI Inference traces to Azure Monitor and create Azure Monitor resource, see [Azure Monitor OpenTelemetry documentation](/azure/azure-monitor/app/opentelemetry-enable).
 
 ## Related content
 

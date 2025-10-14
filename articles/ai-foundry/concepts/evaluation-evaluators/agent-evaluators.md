@@ -56,7 +56,7 @@ model_config = AzureOpenAIModelConfiguration(
 )
 ```
 
-### Evaluator model support
+### Evaluator models support
 
 We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
 
@@ -103,11 +103,9 @@ The numerical score is on a Likert scale (integer 1 to 5) and a higher score is 
     }
 }
 
-
-
 ```
 
-If you're building agents outside of Azure AI Agent Service, this evaluator accepts a schema typical for agent messages. To learn more, see our sample notebook for [Intent Resolution](https://aka.ms/intentresolution-sample).
+If you're building agents outside of Azure AI Foundry Agent Service, this evaluator accepts a schema typical for agent messages. To learn more, see our sample notebook for [Intent Resolution](https://aka.ms/intentresolution-sample).
 
 ## Tool call accuracy
 
@@ -116,8 +114,21 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 - the correctness of parameters used in tool calls;
 - the counts of missing or excessive calls.
 
-> [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Azure AI Agent's Function Tool evaluation, but doesn't support Built-in Tool evaluation. The agent run must have at least one Function Tool call and no Built-in Tool calls made to be evaluated.
+#### Tool call evaluation support
+
+`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Foundry Agent Service for the following tools:
+
+- File Search
+- Azure AI Search
+- Bing Grounding
+- Bing Custom Search
+- SharePoint Grounding
+- Code Interpreter
+- Fabric Data Agent
+- OpenAPI
+- Function Tool (user-defined tools)
+
+However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It's recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
 ### Tool call accuracy example
 
@@ -125,6 +136,78 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 from azure.ai.evaluation import ToolCallAccuracyEvaluator
 
 tool_call_accuracy = ToolCallAccuracyEvaluator(model_config=model_config, threshold=3)
+
+# provide the agent response with tool calls 
+tool_call_accuracy(
+    query="What timezone corresponds to 41.8781,-87.6298?",
+    response=[
+    {
+        "createdAt": "2025-04-25T23:55:52Z",
+        "run_id": "run_DmnhUGqYd1vCBolcjjODVitB",
+        "role": "assistant",
+        "content": [
+            {
+                "type": "tool_call",
+                "tool_call_id": "call_qi2ug31JqzDuLy7zF5uiMbGU",
+                "name": "azure_maps_timezone",
+                "arguments": {
+                    "lat": 41.878100000000003,
+                    "lon": -87.629800000000003
+                }
+            }
+        ]
+    },    
+    {
+        "createdAt": "2025-04-25T23:55:54Z",
+        "run_id": "run_DmnhUGqYd1vCBolcjjODVitB",
+        "tool_call_id": "call_qi2ug31JqzDuLy7zF5uiMbGU",
+        "role": "tool",
+        "content": [
+            {
+                "type": "tool_result",
+                "tool_result": {
+                    "ianaId": "America/Chicago",
+                    "utcOffset": None,
+                    "abbreviation": None,
+                    "isDaylightSavingTime": None
+                }
+            }
+        ]
+    },
+    {
+        "createdAt": "2025-04-25T23:55:55Z",
+        "run_id": "run_DmnhUGqYd1vCBolcjjODVitB",
+        "role": "assistant",
+        "content": [
+            {
+                "type": "text",
+                "text": "The timezone for the coordinates 41.8781, -87.6298 is America/Chicago."
+            }
+        ]
+    }
+    ],   
+    tool_definitions=[
+                {
+                    "name": "azure_maps_timezone",
+                    "description": "local time zone information for a given latitude and longitude.",
+                    "parameters": {
+                        "type": "object",
+                        "properties": {
+                            "lat": {
+                                "type": "float",
+                                "description": "The latitude of the location."
+                            },
+                            "lon": {
+                                "type": "float",
+                                "description": "The longitude of the location."
+                            }
+                        }
+                    }
+                }
+    ]
+)
+
+# alternatively, provide the tool calls directly without the full agent response
 tool_call_accuracy(
     query="How is the weather in Seattle?",
     tool_calls=[{

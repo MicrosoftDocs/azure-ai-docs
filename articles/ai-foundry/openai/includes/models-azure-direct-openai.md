@@ -36,9 +36,11 @@ ms.topic: include
 | `gpt-5-mini` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-nano` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
+| `gpt-5-chat` (2025-10-03) | East US2 (Global Standard) and Sweden Central (Global Standard) |
 | `gpt-5-codex` (2025-09-11) | East US2 (Global Standard) and Sweden Central (Global Standard)  |
+| `gpt-5-pro` (2025-10-06) | East US2 (Global Standard) and Sweden Central (Global Standard)  |
 
-- **[Registration is required for access to the gpt-5 & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
+- **[Registration is required for access to the gpt-5-pro, gpt-5, & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
 
@@ -46,11 +48,20 @@ ms.topic: include
 
 |  Model ID  | Description | Context Window | Max Output Tokens | Training Data (up to)  |
 |  --- |  :--- |:--- |:---|:---: |
-| `gpt-5` (2025-08-07) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | October 24, 2024 |
-| `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000   | 128,000  | June 24, 2024 |
+| `gpt-5` (2025-08-07) |  - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024  |
+| `gpt-5-mini` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000   | 128,000  | May 31, 2024 |
 | `gpt-5-nano` (2025-08-07) | - [Reasoning](../how-to/reasoning.md) <br> - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md).     | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | May 31, 2024 |
-| `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | October 24, 2024 |
+| `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
+| `gpt-5-chat` (2025-10-03)<br>**Preview**<sup>1<sup/> | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
 | `gpt-5-codex` (2025-09-11) | - [Responses API](../how-to/responses.md) only. <br> - **Input**: Text/Image <br> - **Output**: Text only  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | - |
+| `gpt-5-pro` (2025-10-06) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024 |
+
+> [!NOTE]
+> <sup>1</sup> `gpt-5-chat` version `2025-10-03` introduces a significant enhancement focused on emotional intelligence and mental health capabilities. This upgrade integrates specialized datasets and refined response strategies to improve the model’s ability to:
+> - **Understand and interpret emotional context** more accurately, enabling nuanced and empathetic interactions.
+> - **Provide supportive, responsible responses** in conversations related to mental health, ensuring sensitivity and adherence to best practices.
+>
+> These improvements aim to make GPT-5-chat more context-aware, human-centric, and reliable in scenarios where emotional tone and well-being considerations are critical.
 
 ## gpt-oss
 

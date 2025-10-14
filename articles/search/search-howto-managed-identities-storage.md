@@ -125,7 +125,7 @@ Azure storage accounts can be further secured using firewalls and virtual networ
 
 ## See also
 
-+ [Azure blob indexer](search-howto-indexing-azure-blob-storage.md)
-+ [ADLS Gen2 indexer](search-howto-index-azure-data-lake-storage.md)
-+ [Azure table indexer](search-howto-indexing-azure-tables.md)
++ [Azure blob indexer](search-how-to-index-azure-blob-storage.md)
++ [ADLS Gen2 indexer](search-how-to-index-azure-data-lake-storage.md)
++ [Azure table indexer](search-how-to-index-azure-tables.md)
 + [C# Example: Index Data Lake Gen2 using Microsoft Entra ID (GitHub)](https://github.com/Azure-Samples/azure-search-dotnet-utilities/blob/main/data-lake-gen2-acl-indexing/README.md)

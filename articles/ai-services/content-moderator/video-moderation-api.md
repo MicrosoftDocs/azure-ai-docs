@@ -17,7 +17,7 @@ ms.custom: devx-track-csharp, devx-track-dotnet
 
 This article provides information and code samples to help you get started using the [Content Moderator SDK for .NET](https://www.nuget.org/packages/Microsoft.Azure.CognitiveServices.ContentModerator/) to scan video content for adult or racy content.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 - Any edition of [Visual Studio 2015 or 2017](https://www.visualstudio.com/downloads/)

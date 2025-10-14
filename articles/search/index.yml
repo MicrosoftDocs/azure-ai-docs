@@ -51,7 +51,7 @@ landingContent:
           - text: Retrieval Augmented Generation (RAG)
             url: retrieval-augmented-generation-overview.md
           - text: Agentic retrieval
-            url: search-agentic-retrieval-concept.md        
+            url: agentic-retrieval-overview.md        
           - text: Vector search
             url: vector-search-overview.md
           - text: Multimodal search
