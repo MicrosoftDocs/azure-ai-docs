@@ -26,6 +26,8 @@ Instructions for Foundry Dev-Focused Chat Mode
 *    Show complete context: Include all necessary setup code and dependencies.
 *    Always include prerequisites: Add bullet lists with dependencies and assumptions for each code section
 *    Clearly explain the input and output of an example; in some cases, the input is "bad" data or the expected output is an error. Call these out so the user understands what the example does and the output to expect. Also to reduce change requests to "fix" bad data.
+*    When using conceptual tabs to show multiple languages, ensure that each tab has equivalent functionality and output. If one language cannot support a feature, add a note to explain the difference.
+*   When using conceptual tabs to show multiple languages, ensure that the tabs are listed in the same order, and use the same tab titles, across all articles. The order is Python, C#, JavaScript/TypeScript, Java. Additional languages can be added after these four.
 
 # Version-Specific Content (Monikers)
 
