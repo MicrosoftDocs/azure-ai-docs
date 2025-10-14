@@ -47,9 +47,9 @@ Follow these steps to create an Azure AI agent:
 
 ### Interact with your agent in the designer
 
-After you choose your save location, both the agent .yaml file and the designer view open so you can edit your AI agent. Perform the following tasks in the agent designer:
+After you choose your save location, both the agent .yaml file and the designer view open so that you can edit your AI agent. Perform the following tasks in the agent designer:
 
-1. Enter a name for your agent in the prompt.
+1. In the prompt, enter a name for your agent.
 
 1. In the dropdown list, select the name of your model deployment. The deployment name is what you chose when you deployed an existing model.
 
@@ -103,8 +103,6 @@ For more information about using MCP tools, see [Work with Azure AI Foundry Agen
 
 ### Add a tool to the AI agent
 
-Add a tool to the AI agent by using the following steps:
-
 1. In the designer, in the upper-right corner of the **TOOL** section, select **Add tool**. In the dropdown list, select the tool that you want to add.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png" alt-text="Screenshot of selections in the agent designer for adding a tool." lightbox="../../media/how-to/get-started-projects-vs-code/agent-tool-plus.png":::
@@ -123,7 +121,7 @@ Add a tool to the AI agent by using the following steps:
     - OpenAPI 3.0 specified tools:
       :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the pane for the OpenAPI 3.0 specified tools." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
 
-1. After you enter the required information, select **Create and connect**, **Upload and save**, or **Create Tool**.
+1. After you enter the required information, select **Create and connect**, **Upload and save**, or **Create Tool**. The button varies according to the pane.
 
 When you add a tool, you can also add any new assets it needs. For example, if you add a file search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
 
@@ -139,41 +137,41 @@ Create your agent directly on Azure AI Foundry by using the following steps:
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deployed.png" alt-text="Screenshot of a deployed agent in the Azure Resources view." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deployed.png":::
 
-### View the details of a deployed AI agent
+## View the details of the deployed AI agent
 
-Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only mode. You can:
+Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only mode. You can:
 
 - Select the **Edit Agent** button to view the agent designer and the YAML definition of the agent for editing.
 - Select the **Open Code File** button to create a sample code file that uses the agent.
-- Select the **Open Playground** button to open **Agent Playground**.
+- Select the **Open Playground** button to open the agent playground.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the pane for agent preferences with the Edit Agent, Open Code File, and Open Playground buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the pane for agent preferences, with the Edit Agent, Open Code File, and Open Playground buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
 
 ## Edit and update the deployed AI agent
 
-1. On the **AGENT PERFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's YAML file.
+1. On the **AGENT PREFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's YAML file.
 
 1. Edit the agent's configuration, such as the model, tools, and instructions.
 
 1. After you finish editing, select the **Update on Azure AI Foundry** button to save your changes.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences with the Update on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences, with the Update on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
 
 ## Create a sample code file
 
-1. Right-click your deployed agent, and then select the **Open Code File** option. Or, on the **Agent Preferences** pane, select the **Open Code File** button.
+1. Right-click your deployed agent, and then select the **Open Code File** option. Or, on the **AGENT PREFERENCES** pane, select the **Open Code File** button.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/open-agent-code-file.png" alt-text="Screenshot of the agent shortcut menu with the Open Code File option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/open-agent-code-file.png":::
 
-1. In the **Choose your preferred SDK** dropdown list, select your preferred SDK for the agent code file, and then select the Enter key.
+1. In the **Choose your preferred SDK** dropdown list, select your preferred SDK for the agent code file, and then select the <kbd>Enter</kbd> key.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-agent-preferred-sdk.png" alt-text="Screenshot of the dropdown list for selecting an SDK as part of agent code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-agent-preferred-sdk.png":::
 
-1. In the **Choose a language** dropdown list, select your preferred language for the agent code file, and then select the Enter key.
+1. In the **Choose a language** dropdown list, select your preferred language for the agent code file, and then select the <kbd>Enter</kbd> key.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-agent-language.png" alt-text="Screenshot of the dropdown list for choosing a language as part of agent code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-agent-language.png":::
 
-1. In the **Choose an auth method** dropdown list, select your preferred authentication method for the agent code file, and then select the Enter key.
+1. In the **Choose an auth method** dropdown list, select your preferred authentication method for the agent code file, and then select the <kbd>Enter</kbd> key.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/choose-agent-authn-method.png" alt-text="Screenshot of the dropdown list for choosing an authentication method as part of agent code file selection." lightbox="../../media/how-to/get-started-projects-vs-code/choose-agent-authn-method.png":::
 
@@ -185,17 +183,19 @@ The following Python sample code file demonstrates a basic call to interact with
 
 ## Interact with agents by using the agent playground
 
-1. Right-click your deployed agent, and then select the **Open Playground** option. This action starts a thread with your agent and lets you send messages.
+1. Right-click your deployed agent, and then select the **Open Playground** option.
 
    Alternatively, select the **Agent Playground** link in the **Tools** subsection, and then select your agent from the dropdown list.
 
-   The **Agent Playground** pane appears.
+   This step opens the **Agent Playground** pane and starts a thread with your agent so that you can send messages.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png" alt-text="Screenshot of the agent playground in Visual Studio Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-display-playground.png":::
 
-1. Enter your prompt and view the outputs. This example uses **Bing Grounding** to illustrate a web search for information. The agent uses the model and tools that you configured in the agent designer. The source of the information appears in the **Agent Annotations** section.
+1. Enter your prompt and view the outputs.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agents Playground page with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
+   This example uses **Bing Grounding** to illustrate a web search for information. The agent uses the model and tools that you configured in the agent designer. The source of the information appears in the section for agent annotations.
+
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png" alt-text="Screenshot of the Agent Playground pane with agent annotations highlighted in VS Code." lightbox="../../media/how-to/get-started-projects-vs-code/agent-playground-run.png":::
 
 ## Explore threads
 
@@ -203,51 +203,51 @@ The **Threads** subsection displays the threads created during a run with your a
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-list.png" alt-text="Screenshot of the threads in the Threads subsection." lightbox="../../media/how-to/get-started-projects-vs-code/thread-list.png":::
 
-### View thread details
-
-Select a thread to view the **THREAD DETAILS** page.
-
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the thread details view." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
+Keep these terms in mind as you explore threads:
 
 - A *thread* is a conversation session between an agent and a user. Threads store messages and automatically handle truncation to fit content into a model's context.
 
 - A *message* is a single interaction between the agent and the user. Messages can include text, images, and other files. Messages are stored as a list on the thread.
 
-- A *run* is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
+- A *run* is a single execution of an agent. Each run can have multiple threads, and each thread can have multiple messages. The agent uses its configuration and a thread's messages to perform tasks by calling models and tools. As part of a run, the agent appends messages to the thread.
+
+### View thread details
+
+To view the **THREAD DETAILS** pane, select a thread.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/thread-view.png" alt-text="Screenshot of the pane for thread details." lightbox="../../media/how-to/get-started-projects-vs-code/thread-view.png":::
 
 ### View run details
 
-Select the **View run info** button in the **Thread Details** page to see the run information in a JSON file.
+To view run information in a JSON file, select the **View run info** button on the **THREAD DETAILS** pane. The following screenshot shows an example JSON file.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/run-file.png" alt-text="Screenshot of the run details .json file." lightbox="../../media/how-to/get-started-projects-vs-code/run-file.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/run-file.png" alt-text="Screenshot of an example JSON file of run details." lightbox="../../media/how-to/get-started-projects-vs-code/run-file.png":::
 
 ## Work with multi-agent workflows
 
-The AI Foundry VS Code extension enables you to create multi-agent workflows. A multi-agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
+You can use the Azure AI Foundry for Visual Studio Code extension to create multi-agent workflows. A multi-agent workflow is a sequence of agents that work together to accomplish a task. Each agent in the workflow can have its own model, tools, and instructions.
 
 ### Create a new multi-agent workflow
 
-Create a new multi-agent workflow with the following steps:
+1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Open Command Palette (`Ctrl+Shift+P`).
+1. Run this command: `>Azure AI Foundry: Create a New Multi-agent Workflow`.
 
-1. Run command: `>Azure AI Foundry: Create a New Multi-agent Workflow`.
+1. Select a programming language.
 
-1. Select programming language.
-
-1. Select a folder to save your new workflow.
+1. Select a folder where you want to save your new workflow.
 
 1. Enter a name for your workflow project.
 
-1. A new folder is created with the necessary files for your multi-agent workflow project, including a sample code file to get you started.
+A new folder is created with the necessary files for your multi-agent workflow project, including a sample code file to get you started.
 
 ### Install dependencies
 
-Install the required dependencies for your multi-agent workflow project. The dependencies vary based on the programming language you selected when creating the project.
+Install the required dependencies for your multi-agent workflow project. The dependencies vary based on the programming language that you selected when you created the project.
 
 ::: zone pivot="python"
 
-Install the following packages from source:
+Install the following packages from the source:
 
 ```bash
     git clone https://github.com/microsoft/agent-framework.git
@@ -258,21 +258,21 @@ Install the following packages from source:
 
 ::: zone pivot="csharp"
 
-C# workflows require nightly builds from Microsoft's GitHub Packages, follow these steps to set it up:
+C# workflows require nightly builds from the Microsoft GitHub packages. Follow these steps to set them up:
 
-1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic).
+1. Go to **GitHub Settings** > **Developer settings** > **Personal access tokens** > **Tokens (classic)** > **Generate new token (classic)**.
 
-1. Create a GitHub Personal Access Token with the `read:packages` scope using these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
+1. Create a GitHub personal access token with the `read:packages` scope by using [these instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
 
-1. Copy the generated token (it will start with `ghp_`) and save it securely - you won't be able to see it again.
+1. Copy the generated token (it starts with `ghp_`) and save it securely. You won't be able to see it again.
 
-#### Update NuGet configuration
+#### Update the NuGet configuration
 
 In `Nuget.Config`, replace the following placeholders:
 
 ```xml
 <add key="Username" value="YOUR_GITHUB_USERNAME" /> <!-- Replace with your GitHub username -->
-<add key="ClearTextPassword" value="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN" /> <!-- Replace with your GitHub PAT -->
+<add key="ClearTextPassword" value="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN" /> <!-- Replace with your GitHub personal access token -->
 ```
 
 ::: zone-end
@@ -281,7 +281,7 @@ In `Nuget.Config`, replace the following placeholders:
 
 ::: zone pivot="csharp"
 
-Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal.
+Before you run your workflow locally by using `dotnet run`, ensure that you configured the required environment variables. You can obtain these values from the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 1. Configure your environment variables based on your operating system:
 
@@ -293,7 +293,7 @@ Before running locally with `dotnet run`, ensure you have configured the require
    $env:AZURE_OPENAI_API_KEY="your-api-key"
    ```
 
-   #### [Windows (Command Prompt)](#tab/windows-command-prompt)
+   #### [Windows (command prompt)](#tab/windows-command-prompt)
 
    ```dos
    set AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
@@ -311,7 +311,7 @@ Before running locally with `dotnet run`, ensure you have configured the require
 
     ---
 
-1. Run the application using the following commands:
+1. Run the application by using the following commands:
 
     ```bash
     dotnet build
@@ -322,7 +322,7 @@ Before running locally with `dotnet run`, ensure you have configured the require
 
 ::: zone pivot="python"
 
-Update the `.env` file in the root directory of your project and add the following environment variables.
+Update the .env file in the root directory of your project and add the following environment variables:
 
 ```
 AZURE_OPENAI_ENDPOINT=https://your-resource-name.openai.azure.com/
@@ -330,7 +330,7 @@ AZURE_OPENAI_API_KEY=your-api-key
 MODEL_DEPLOYMENT_NAME=your-deployment-name
 ```
 
-Run the application using:
+Run the application by using this command:
 
 ```bash
 python workflow.py
@@ -338,51 +338,38 @@ python workflow.py
 
 ### Visualize multi-agent workflow execution
 
-Visualize your multi-agent workflows using the Azure AI Foundry VS Code extension. This allows you to see the interactions between different agents and how they collaborate to achieve the desired outcome.
+By using the Azure AI Foundry for Visual Studio Code extension, you can visualize the interactions between agents and how they collaborate to achieve your desired outcome.
 
-To monitor and visualize your multi-agent workflow execution in real-time (currently available for Python interactive mode only):
-
-1. Open the Command Palette (`Ctrl+Shift+P`)
-
-1. Run the command: `>Azure AI Foundry: Visualize the Multi-Agent Workflow`
-
-1. A new tab opens in VS Code displaying the execution graph
-
-1. The visualization updates automatically as your workflow progresses, showing the flow between agents and their interactions.
-
-> [!NOTE]
-> For any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable, and update the observability port in the `workflow.py` file accordingly.
->
-> For example, to change the port to `4318`:
->
-> ```bash
->   export FOUNDRY_OTLP_PORT=4318
-> ```
->
-> In `workflow.py`, update the port number in the observability configuration:
->
-> ```python
->   setup_observability(vs_code_extension_port=4318)
-> ```
-
-## Configure visualizion for your own workflow
-
-Enable workflow visualization in your own workflows by adding the following code snippet:
+Enable visualization in your workflows by adding the following code snippet:
 
 ```python
 from agent_framework.observability import setup_observability
-setup_observability(vs_code_extension_port=4317) # default port is 4317
+setup_observability(vs_code_extension_port=4317) # Default port is 4317
 ```
 
-The following steps outline how to monitor and visualize your multi-agent workflow execution in real-time (currently available for Python interactive mode only):
+To monitor and visualize your multi-agent workflow execution in real time (currently available for Python interactive mode only):
 
-1. Open the Command Palette (`Ctrl+Shift+P`)
+1. Open the command palette (<kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>P</kbd>).
 
-1. Run the command: `>Azure AI Foundry: Visualize the Multi-Agent Workflow`
+1. Run this command: `>Azure AI Foundry: Visualize the Multi-Agent Workflow`.
 
-1. A new tab will open in VS Code displaying the execution graph
+A new tab opens in VS Code to display the execution graph. The visualization updates itself automatically as your workflow progresses, to show the flow between agents and their interactions.
 
-1. The visualization updates automatically as your workflow progresses, showing the flow between agents and their interactions.
+#### Port conflicts
+
+If you find any port conflicts, change the visualization port by setting the `FOUNDRY_OTLP_PORT` environment variable. Update the observability port in the `workflow.py` file accordingly.
+
+For example, to change the port to 4318, use this command:
+
+```bash
+  export FOUNDRY_OTLP_PORT=4318
+```
+
+In `workflow.py`, update the port number in the observability configuration:
+
+```python
+  setup_observability(vs_code_extension_port=4318)
+```
 
 ::: zone-end
 
@@ -394,26 +381,28 @@ The Azure resources that you created in this article are billed to your Azure su
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
-Delete the deployed agent in the [online AI Foundry portal](https://ai.azure.com/?cid=learnDocs). Select **Agents** from the navigation menu on the left, select your agent, then select the **Delete** button.
+1. In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), on the left menu, select **Agents**.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the AI Foundry portal with Agents from the navigation menu on the left and the Delete button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+1. Select the agent that you want to delete, and then select **Delete**.
+
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Azure AI Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
-1. In the VS Code navbar, refresh the **Azure Resources** view. Expand the **Models** subsection to display the list of deployed models.
+1. In VS Code, refresh the **Azure Resources** view. Expand the **Models** subsection to display the list of deployed models.
 
-1. Right-click on your deployed model to delete and select the **Delete** option.
+1. Right-click the deployed model that you want to delete, and then select **Delete**.
 
-    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the model context menu with the Delete option highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-model.png" alt-text="Screenshot of the shortcut menu with the Delete command for a selected model." lightbox="../../media/how-to/get-started-projects-vs-code/delete-model.png":::
 
-### Delete your tools
-
-Delete the connected tool with the following steps:
+### Delete your connected tools
 
 1. Open the Azure portal.
-1. Select the Azure Resource Group containing the tool.
+
+1. Select the Azure resource group that contains the tool.
+
 1. Select the **Delete** button.
 
 ## Related content
 
-- Learn about the tools you can use with Azure AI agents, such as [file search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview), or [code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview).
+- Learn about the tools that you can use with Azure AI agents, such as [file search](/azure/ai-services/agents/how-to/tools/file-search?tabs=python&pivots=overview) or [code interpreter](/azure/ai-services/agents/how-to/tools/code-interpreter?tabs=python&pivots=overview).

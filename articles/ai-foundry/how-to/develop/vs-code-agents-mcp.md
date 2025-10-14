@@ -96,7 +96,7 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 
 ### Interact with agents by using the MCP server tool in the agent playground
 
-1. Right-click your deployed agent that has an **MCP Server** tool, and then select the **Open Playground** option. This action starts a thread with your agent and lets you send messages.
+1. Right-click your deployed agent that has an **MCP Server** tool, and then select the **Open Playground** option. This action starts a thread with your agent so that you can send messages.
 
 1. On the **Agent Playground** pane, enter a prompt such as **Give me an example for creating a container app** and send it.
 
