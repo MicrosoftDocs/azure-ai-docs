@@ -48,6 +48,7 @@ To use the Python SDK code examples in this article:
     from azure.ai.ml import MLClient
     from azure.ai.ml.entities import Workspace
     from azure.identity import DefaultAzureCredential
+    from azure.ai.ml.entities import AmlCompute
     
     # Enter details of your subscription.
     subscription_id = "<SUBSCRIPTION_ID>"
