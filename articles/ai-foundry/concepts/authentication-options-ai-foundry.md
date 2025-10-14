@@ -11,9 +11,8 @@ ai.usage: ai-assisted
 #customer intent: As a platform admin, I want to choose and implement the right authentication approach for Azure AI Foundry so my teams are secure and productive.
 ---
 
-<!--
 # Authentication and authorization options in Azure AI Foundry
-
+<!--
 Azure AI Foundry supports multiple authentication approaches to balance security, operational simplicity, and speed. This article explains the control plane and data plane model, compares API key and Microsoft Entra ID (formerly Azure AD) authentication, maps identities to roles, and describes common least privilege scenarios. Use this article with:
 
 - [Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md)
