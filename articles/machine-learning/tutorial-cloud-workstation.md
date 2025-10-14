@@ -1,7 +1,7 @@
 ---
-title: "Tutorial: Model development on a cloud workstation"
+title: "Tutorial: Model Development on a Cloud Workstation"
 titleSuffix: Azure Machine Learning
-description: Learn how to get started prototyping and developing machine learning models on an Azure Machine Learning cloud workstation. 
+description: Learn how to get started with prototyping and developing machine learning models on an Azure Machine Learning cloud workstation. 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -9,7 +9,7 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: lebaro
-ms.date: 08/05/2024
+ms.date: 10/16/2025
 ms.custom:
   - devx-track-python
   - sfi-image-nochange
@@ -18,7 +18,7 @@ ms.custom:
 
 # Tutorial: Model development on a cloud workstation
 
-Learn how to develop a training script with a notebook on an Azure Machine Learning cloud workstation. This tutorial covers the basics you need to get started:
+This article describes how to develop a training script with a notebook on an Azure Machine Learning cloud workstation. The tutorial covers the basics you need to get started:
 
 > [!div class="checklist"]
 > * Set up and configuring the cloud workstation. Your cloud workstation is powered by an Azure Machine Learning compute instance, which is pre-configured with environments to support your various model development needs.
