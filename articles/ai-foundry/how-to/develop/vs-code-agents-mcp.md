@@ -20,7 +20,7 @@ In this article, you learn how to add and use [Model Context Protocol (MCP)](/az
 
 After you [build an agent in Azure AI Foundry Agent Service](./vs-code-agents.md) by using this Visual Studio Code (VS Code) extension, you can add MCP tools to your agent.
 
-Using or building a MCP server allows your agent to:
+Using or building an MCP server allows your agent to:
 
 - Access up-to-date information from your APIs and services.
 - Retrieve relevant context to enhance the quality of responses from your AI models.
@@ -33,7 +33,7 @@ Azure AI Foundry developers can stay productive by developing, testing, and depl
 
 ## Create an Azure AI agent within the designer view
 
-To create an Azure AI agent, follow the steps in [Create and edit Azure AI agents within the designer view](./vs-code-agents.md#create-and-edit-azure-ai-agents-within-the-designer-view).
+To create an Azure AI agent, follow the steps in [Create and edit Azure AI agents within the designer view](./vs-code-agents.md#create-and-edit-an-azure-ai-agent-within-the-designer-view).
 
 ## Add an existing MCP server tool to the AI agent
 

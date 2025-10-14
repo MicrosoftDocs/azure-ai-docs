@@ -121,7 +121,7 @@ The **Create Run** connector creates a new [run](../concepts/threads-runs-messag
 
 To configure the **Create Run** connector, select it and provide the following information:
 
-* **The ID Of The Thread To Create A Message For** (required): The ID of the thread that you just created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
+* **The ID Of The Thread To Create A Message For** (required): The ID of the thread that you created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
 
   :::image type="content" source="../media\triggers\create-run.png" alt-text="Screenshot of the Create Run connector." lightbox="../media\triggers\create-run.png":::
 
@@ -134,17 +134,17 @@ To configure the **Create Run** connector, select it and provide the following i
 
 ## Configure the Get Run connector
 
-The **Get Run** connector gets and retrieves the run that you just created. Configure the connector by providing the following information:
+The **Get Run** connector gets and retrieves the run that you created. Configure the connector by providing the following information:
 
-* **Thread ID parameter** (required): The ID of the thread that you just created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
+* **Thread ID parameter** (required): The ID of the thread that you created. Select the function icon to select the **id** parameter from your previous **Create Thread** connector output.
 
-* **Run ID** (required): The ID of the run that you just created. Select the function icon to select the **id** parameter from your previous **Create Run** connector output.
+* **Run ID** (required): The ID of the run that you created. Select the function icon to select the **id** parameter from your previous **Create Run** connector output.
 
 ## Configure the List Messages connector
 
 The **List Messages** connector lists all messages in the current thread. Configure the connector by providing the following information:
 
-* **Thread ID parameter** (required): The ID of the thread that you just created. Select the function icon to select the **id** parameter from your previous **Create thread** connector output.
+* **Thread ID parameter** (required): The ID of the thread that you created. Select the function icon to select the **id** parameter from your previous **Create thread** connector output.
 
 ## Get a response from Foundry Agent Service
 

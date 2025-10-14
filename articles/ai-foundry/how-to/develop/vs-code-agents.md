@@ -123,7 +123,7 @@ For more information about using MCP tools, see [Work with Azure AI Foundry Agen
 
 1. After you enter the required information, select **Create and connect**, **Upload and save**, or **Create Tool**. The button varies according to the pane.
 
-When you add a tool, you can also add any new assets it needs. For example, if you add a file search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+When you add a tool, you can also add any new assets that it needs. For example, if you add a file search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
 
 ## Create an Azure AI agent on Azure AI Foundry
 
