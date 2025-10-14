@@ -123,4 +123,4 @@ Verify the index was created successfully:
 GET https://<search-service>.search.windows.net/indexes/cross-tenant-cmk-test?api-version=2025-09-01
 ```
 
-For more information about how to rotate or manage keys, see [Configure customer-managed keys for data encryption ](search-security-manage-encryption-keys.md).
+For more information about how to rotate or manage keys, see [Configure customer-managed keys for data encryption](search-security-manage-encryption-keys.md).
