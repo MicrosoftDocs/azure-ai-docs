@@ -563,8 +563,10 @@ items:
           href: search-query-access-control-rbac-enforcement.md
     - name: Data encryption
       items:
-      - name: Customer-managed keys
+      - name: Customer-managed keys (CMK)
         href: search-security-manage-encryption-keys.md
+      - name: Configure cross-tenant CMK
+        href: search-security-managed-encryption-cross-tenant.md
       - name: Find encrypted objects
         href: search-security-get-encryption-keys.md
   - name: Development
