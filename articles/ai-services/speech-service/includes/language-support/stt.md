@@ -140,7 +140,7 @@ ms.author: pafarley
 | `ta-IN` | Tamil (India) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `te-IN` | Telugu (India) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text |
 | `th-TH` | Thai (Thailand) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format<br/><br/>Phrase list |
-| `tr-TR` | Turkish (Türkiye) | No | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
+| `tr-TR` | Turkish (Türkiye) | Yes | Audio + human-labeled transcript<br/><br/>Plain text<br/><br/>Structured text<br/><br/>Output format |
 | `uk-UA` | Ukrainian (Ukraine) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ur-IN` | Urdu (India) | No | Audio + human-labeled transcript |
 | `uz-UZ` | Uzbek (Latin, Uzbekistan) | No | Plain text |
