@@ -10,6 +10,9 @@ ms.service: azure-ai-foundry
 ai.usage: ai-assisted
 #customer intent: As a platform admin, I want to choose and implement the right authentication approach for Azure AI Foundry so my teams are secure and productive.
 ---
+<!--
+
+REMOVING TEMPORARILY ONLY UNTIL THE TOPIC IS PUBLISHED
 
 # Authentication and authorization options in Azure AI Foundry
 
@@ -178,3 +181,4 @@ Some creation workflows can auto assign broad roles, such as granting the resour
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
 - [Managed identities for Azure resources](/entra/identity/managed-identities-azure-resources/overview)
+-->
