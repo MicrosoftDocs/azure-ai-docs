@@ -66,7 +66,7 @@ To add an existing MCP server tool to your AI agent, follow these steps:
 
 After you add an MCP tool, you can create an agent directly on Azure AI Foundry by using the following steps:
 
-1. In the designer, select the **Create on Azure AI Foundry** button.
+1. In the designer, select the **Create Agent on Azure AI Foundry** button.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the agent designer with the button for creating an agent on Azure AI Foundry highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
 
@@ -78,21 +78,21 @@ After you add an MCP tool, you can create an agent directly on Azure AI Foundry 
 
 Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only mode. You can:
 
-- Select the **Edit Agent** button to view the agent designer and the YAML definition of the agent for editing.
+- Select the **Edit Agent** button to view the agent designer and the .yaml definition of the agent for editing.
 - Select the **Open Code File** button to create a sample code file that uses the agent.
-- Select the **Open Playground** button to open **Agent Playground**.
+- Select the **Open Playground** button to open the agent playground.
 
 :::image type="content" source="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png" alt-text="Screenshot of the pane for agent preferences with the Edit Agent, Open Code File, and Open Playground buttons highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/deployed-agent-view.png":::
 
 ### Edit and update the deployed AI agent
 
-1. On the **AGENT PERFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's YAML file.
+1. On the **AGENT PERFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's .yaml file.
 
 1. Edit the agent's configuration, such as the model, tools, and instructions.
 
-1. After you finish editing, select the **Update on Azure AI Foundry** button to save your changes.
+1. After you finish editing, select the **Update Agent on Azure AI Foundry** button to save your changes.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences with the Update on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences with the Update Agent on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
 
 ### Interact with agents by using the MCP server tool in the agent playground
 
@@ -112,7 +112,7 @@ Selecting the deployed agent opens the **AGENT PERFERENCES** pane in a view-only
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png" alt-text="Screenshot of the MCP server tool's approval prompt in the agent playground." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-approve-tool.png":::
 
-1. The agent uses the model and the MCP server tools that you configured in the agent designer to retrieve the information. The source of the information appears in the **Agent Annotations** section.
+1. The agent uses the model and the MCP server tools that you configured in the agent designer to retrieve the information. The source of the information appears in the section for agent annotations.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png" alt-text="Screenshot of the agent playground with agent annotations highlighted in Visual Studio Code after use of the MCP server tool." lightbox="../../media/how-to/get-started-projects-vs-code/mcp-tool-response.png":::
 

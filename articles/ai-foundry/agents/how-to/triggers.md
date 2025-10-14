@@ -19,9 +19,9 @@ To automatically invoke an agent, you can select among hundreds of [triggers](/a
 
 A trigger is the first item that you need to add to your workflow. It allows you to connect to a specific service. When a specific event happens in the service, the trigger invokes connectors. In this case, it's a connector for Foundry Agent Service.
 
-For example, consider a workflow with the *Microsoft Forms* connector (which has a trigger) that connects to a specific form. Whenever this form receives a new response, the trigger recognizes it and invokes the connectors by following it in the workflow. You can then pass the form response as a message to your AI agent and use its tools to respond or take proper actions.
+For example, consider a workflow with the Microsoft Forms connector (which has a trigger) that connects to a specific form. Whenever this form receives a new response, the trigger recognizes it and invokes the connectors by following it in the workflow. You can then pass the form response as a message to your AI agent and use its tools to respond or take proper actions.
 
-To check if a specific connector has a trigger capability, view its documentation and see if it has a **Triggers** section. For example, view the [Triggers](/connectors/microsoftforms/#triggers) section of the *Microsoft Forms* connector.
+To check if a specific connector has a trigger capability, view its documentation and see if it has a **Triggers** section. For example, view the [Triggers](/connectors/microsoftforms/#triggers) section of the Microsoft Forms connector.
 
 ## Prerequisites
 
@@ -52,7 +52,7 @@ After you assign the role-based access control (RBAC) roles, go back to the Logi
 
 ## Add Foundry Agent Service connectors to your workflow
 
-1. Select **Add an action**, and then search for **Azure AI Foundry Agent Service**. This step lets you add connectors to your workflow.
+1. Select **Add an action**, and then search for **Azure AI Foundry Agent Service**.
 
     :::image type="content" source="../media\triggers\connectors.png" alt-text="Screenshot of actions added to a workflow." lightbox="../media\triggers\connectors.png":::
 
@@ -127,10 +127,10 @@ To configure the **Create Run** connector, select it and provide the following i
 
 * **Assistant_id** (required): The ID of the agent that you created.
 
-* **Messages** (optional): The message you want the AI agent to respond to. Add the role as **user** for the message. It can be the event payload from the trigger; for example, a form response field. It can also be a constant message; for example, always triggering with the phrase "*what is the latest AI news this week?*"
+* **Messages** (optional): The message that you want the AI agent to respond to. Add the role as **user** for the message. It can be the event payload from the trigger; for example, a form response field. It can also be a constant message; for example, always triggering with the phrase "*what is the latest AI news this week?*"
 
 > [!TIP]
-> Be sure to add the message in either the run or the thread connector. Otherwise, you'll have problems.
+> To avoid problems, be sure to add the message in either the run or the thread connector.
 
 ## Configure the Get Run connector
 

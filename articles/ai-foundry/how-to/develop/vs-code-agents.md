@@ -63,11 +63,11 @@ After you choose your save location, both the agent .yaml file and the designer 
 
 1. To save the .yaml file, select **File** > **Save** on the VS Code menu bar.
 
-### Explore the Azure AI agent's YAML definition
+### Explore the Azure AI agent's .yaml definition
 
 Your AI agent's .yaml file was opened at the same time that the designer was. This file contains the details and setup information for your agent. It's similar to the following .yaml file example:
 
-```yml
+```yaml
 # yaml-language-server: $schema=https://aka.ms/ai-foundry-vsc/agent/1.0.0
 version: 1.0.0
 name: my-agent
@@ -110,15 +110,19 @@ For more information about using MCP tools, see [Work with Azure AI Foundry Agen
 1. The designer displays the appropriate pane to configure the tool, as shown in the following images:
 
     - Grounding with Bing search:
+
       :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png" alt-text="Screenshot of the pane for the Grounding with Bing search tool." lightbox="../../media/how-to/get-started-projects-vs-code/agent-bing-tool-dialog.png":::
 
     - File search:
+
       :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png" alt-text="Screenshot of the pane for the file upload tool." lightbox="../../media/how-to/get-started-projects-vs-code/agent-file-search-tool-dialog.png":::
 
     - Code interpreter:
+
       :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png" alt-text="Screenshot of the pane for the code interpreter tool." lightbox="../../media/how-to/get-started-projects-vs-code/agent-ci-tool-dialog.png":::
 
     - OpenAPI 3.0 specified tools:
+
       :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png" alt-text="Screenshot of the pane for the OpenAPI 3.0 specified tools." lightbox="../../media/how-to/get-started-projects-vs-code/agent-openapi-tool-dialog.png":::
 
 1. After you enter the required information, select **Create and connect**, **Upload and save**, or **Create Tool**. The button varies according to the pane.
@@ -129,7 +133,7 @@ When you add a tool, you can also add any new assets that it needs. For example,
 
 Create your agent directly on Azure AI Foundry by using the following steps:
 
-1. In the designer, select the **Create on Azure AI Foundry** button.
+1. In the designer, select the **Create Agent on Azure AI Foundry** button.
 
     :::image type="content" source="../../media/how-to/get-started-projects-vs-code/agent-deploy.png" alt-text="Screenshot of the agent designer with the button for creating an agent on Azure AI Foundry highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/agent-deploy.png":::
 
@@ -141,7 +145,7 @@ Create your agent directly on Azure AI Foundry by using the following steps:
 
 Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only mode. You can:
 
-- Select the **Edit Agent** button to view the agent designer and the YAML definition of the agent for editing.
+- Select the **Edit Agent** button to view the agent designer and the .yaml definition of the agent for editing.
 - Select the **Open Code File** button to create a sample code file that uses the agent.
 - Select the **Open Playground** button to open the agent playground.
 
@@ -149,13 +153,13 @@ Selecting the deployed agent opens the **AGENT PREFERENCES** pane in a view-only
 
 ## Edit and update the deployed AI agent
 
-1. On the **AGENT PREFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's YAML file.
+1. On the **AGENT PREFERENCES** pane, select the **Edit Agent** button. The agent designer opens with the agent's .yaml file.
 
 1. Edit the agent's configuration, such as the model, tools, and instructions.
 
-1. After you finish editing, select the **Update on Azure AI Foundry** button to save your changes.
+1. After you finish editing, select the **Update Agent on Azure AI Foundry** button to save your changes.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences, with the Update on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
+:::image type="content" source="../../media/how-to/get-started-projects-vs-code/update-agent.png" alt-text="Screenshot of the pane for agent preferences, with the Update Agent on Azure AI Foundry button highlighted." lightbox="../../media/how-to/get-started-projects-vs-code/update-agent.png":::
 
 ## Create a sample code file
 
@@ -385,7 +389,7 @@ The Azure resources that you created in this article are billed to your Azure su
 
 1. Select the agent that you want to delete, and then select **Delete**.
 
-:::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Azure AI Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
+    :::image type="content" source="../../media/how-to/get-started-projects-vs-code/delete-agent.png" alt-text="Screenshot of the Azure AI Foundry portal with the Delete command for a selected agent." lightbox="../../media/how-to/get-started-projects-vs-code/delete-agent.png":::
 
 ### Delete your models
 
