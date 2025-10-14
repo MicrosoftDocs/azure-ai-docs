@@ -132,7 +132,7 @@ Azure AI Foundry portal provides a custom model wizard, so you can interactively
 
 The next step is to either choose existing prepared training data or upload new prepared training data to use when customizing your model. The **Training data** pane displays any existing, previously uploaded datasets and also provides options to upload new training data.
 
-1. Select **+ Add training data**.
+Select **+ Add training data**.
 
 - If your training data is already uploaded to the service, select **Existing files on this resource**.
     - Select the file from the dropdown list shown.
@@ -147,7 +147,7 @@ For large data files, we recommend that you import from an Azure Blob store. For
 
 The next step provides options to configure the model to use validation data in the training process. If you don't want to use validation data, you can choose **Submit** to continue to the advanced options for the model. Otherwise, if you have a validation dataset, you can either choose existing prepared validation data or upload new prepared validation data to use when customizing your model.
 
-1. Select **+ Add validation data**. The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
+Select **+ Add validation data**. The **Validation data** pane displays any existing, previously uploaded training and validation datasets and provides options by which you can upload new validation data.
 
 - If your validation data is already uploaded to the service, select **Existing files on this resource**.
     - Select the file from the list shown in the **Validation data** pane.
