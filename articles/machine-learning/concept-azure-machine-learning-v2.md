@@ -269,7 +269,7 @@ Curated environments are provided by Azure Machine Learning and are available in
 In custom environments, you're responsible for setting up your environment and installing packages or any other dependencies that your training or scoring script needs on the compute. Azure Machine Learning allows you to create your own environment by using:
 
 * A Docker image.
-* A base Docker image with a Conda YAML file for furhter customizations.
+* A base Docker image with a Conda YAML file for further customizations.
 * A Docker build context.
 
 ### Create an Azure Machine Learning custom environment
