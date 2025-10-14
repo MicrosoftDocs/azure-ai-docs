@@ -12,6 +12,7 @@ author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
 monikerRange: 'foundry-classic || foundry'
+zone_pivot_groups: selection-code-interpreter
 ---
 # Azure AI Foundry Agent Service Code Interpreter
 
@@ -26,8 +27,9 @@ Code Interpreter allows the agents to write and run Python code in a sandboxed e
 
 
 ## Code samples
-
+<!--
 Use the following file search tool samples to implement it in your agents. You can also add this tool to agents [using the Azure AI Foundry portal](./overview.md#add-tools-to-your-agents-in-the-azure-ai-foundry-portal).
+-->
 
 :::zone pivot="python"
 
