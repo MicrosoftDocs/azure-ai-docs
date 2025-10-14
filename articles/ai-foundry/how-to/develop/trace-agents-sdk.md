@@ -288,9 +288,9 @@ Azure AI Foundry has native integrations with Microsoft Agent Framework and Sema
 > [!NOTE]
 > Tracing integration for LangChain and LangGraph described here is currently available only in Python.
 
-You can enable tracing for LangChain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://pypi.org/project/opentelemetry-instrumentation-langchain/).
+You can enable tracing for LangChain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/).
 
-Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](#instrument-tracing-in-your-code).
+Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
 
 > [!NOTE]
 > LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1)
