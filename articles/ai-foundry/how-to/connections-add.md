@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.date: 10/14/2025
-ms.reviewer: aashishb
+ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
