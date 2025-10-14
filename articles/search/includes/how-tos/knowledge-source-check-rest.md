@@ -12,7 +12,7 @@ A knowledge source is a top-level, reusable object. All knowledge sources must b
 Use [Knowledge Sources - Get (REST API)](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to list knowledge sources by name and type.
 
 ```http
-# List knowledge sources by name and type
+### List knowledge sources by name and type
 GET {{search-url}}/knowledgeSources?api-version=2025-08-01-preview&$select=name,kind
 api-key: {{api-key}}
 Content-Type: application/json

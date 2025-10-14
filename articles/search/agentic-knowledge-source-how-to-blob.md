@@ -14,7 +14,7 @@ ms.date: 10/13/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](search-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](search-agentic-retrieval-how-to-create.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
+Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
 
 Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md), which specifies an existing and qualified index, a blob knowledge source specifies an external data source, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -29,7 +29,7 @@ Knowledge sources are new in the 2025-08-01-preview release.
 
 + Azure Storage with a blob container containing [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
 
-+ Azure AI Search on the Basic tier or higher.
++ Azure AI Search on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
@@ -88,7 +88,7 @@ The following JSON is an example response for an `azureBlob` knowledge source.
 ```
 
 > [!NOTE]
-> Sensitive information is redacted. The generated resources appear at the end of the response. The `webParameters` property isn't operational in this preview and it's reserved for future use.
+> Sensitive information is redacted. The generated resources appear at the end of the response. The `webParameters` property isn't operational in this preview and is reserved for future use.
 
 ## Create a knowledge source
 
@@ -145,7 +145,7 @@ To create an `azureBlob` knowledge source:
 
 + `encryptionKey` (optional) is an encryption key in Azure Key Vault. Use this property to doubly encrypt sensitive information in both the knowledge source and the generated objects.
 
-+ `embeddingModel` (optional) is a text embedding model that vectorizes textual content during indexing and at query time. Use a model supported by the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [AML skill](cognitive-search-aml-skill.md), or [Custom Web API skill](cognitive-search-custom-skill-web-api.md). The embedding skill will be included in the generated skillset, and its equivalent vectorizer will be included in the generated index.
++ `embeddingModel` (optional) is a text embedding model that vectorizes text and image content during indexing and at query time. Use a model supported by the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [AML skill](cognitive-search-aml-skill.md), or [Custom Web API skill](cognitive-search-custom-skill-web-api.md). The embedding skill will be included in the generated skillset, and its equivalent vectorizer will be included in the generated index.
 
 + `chatCompletionModel` (optional) is a chat completion model that verbalizes images or extracts content. Use a model supported by the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), which will be included in the generated skillset. To skip image verbalization, omit this object and set `"disableImageVerbalization": true`.
 

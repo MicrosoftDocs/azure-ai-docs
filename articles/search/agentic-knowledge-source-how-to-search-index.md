@@ -14,7 +14,7 @@ ms.date: 10/10/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](search-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](search-agentic-retrieval-how-to-create.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
+A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
 
 Knowledge sources are new in the 2025-08-01-preview release.
 
@@ -28,7 +28,7 @@ To try the examples in this article, we recommend [Visual Studio Code](https://c
 
 [!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
-An example response for a `searchIndex` knowledge source might look like the following JSON. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
+The following JSON is an example response for a `searchIndex` knowledge source. Notice that the knowledge source specifies a single index name and which fields in the index to include in the query.
 
 ```json
 {
