@@ -15,7 +15,7 @@ ms.custom: generated
 
 # How to generate chat completions with Azure AI Foundry Models
 
-This article explains how to use the chat completions API with AI Foundry Model deployments.
+This article explains how to use chat completions with Azure AI Foundry Model deployments.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ To use chat completion models in your application, you need:
 
 ## Use chat completions
 
-For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../openai/supported-languages.md), however, the v1 API also allows you to make chat completions calls with other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
+For Foundry Models, including Azure OpenAI models, we recommend using the [Responses API](../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
 
 In the following examples, you first create the client to consume the model. Then, create a basic request to the model. 
 
