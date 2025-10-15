@@ -27,10 +27,20 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context
-- name: Disaster recovery
+- name: High availability/Disaster recovery
   items:
-  - name: Azure AI Foundry projects
-    href: ../../how-to/disaster-recovery-fdp.md
+  - name: Azure AI Foundry projects and agent services
+    items:
+    - name: High availability and resiliency
+      href: ../../how-to/high-availability-resilience-fdp.md
+    - name: Disaster recovery
+      items:
+      - name: Disaster recovery for agent services
+        href: ../../how-to/agent-service-disaster-recovery.md
+      - name: Recovering from a platform outage
+        href: ../../how-to/agent-service-platform-disaster-recovery.md
+      - name: Recovering from an operator disaster
+        href: ../../how-to/agent-service-operator-disaster-recovery.md
   - name: Hub projects
     href: ../../how-to/disaster-recovery.md
 - name: Security baseline

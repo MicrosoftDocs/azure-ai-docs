@@ -1,7 +1,7 @@
 ---
-title: Customer enabled disaster recovery for Azure AI Foundry projects
+title: High availability and resiliency for Azure AI Foundry projects and agent services
 titleSuffix: Azure AI Foundry
-description: Learn how to plan for disaster recovery for Azure AI Foundry projects.
+description: Learn how to plan for high availability and resiliency for Azure AI Foundry projects and agent services.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.author: jburchel 
@@ -11,7 +11,7 @@ ms.date: 10/07/2025
 ai.usage: ai-assisted
 ---
 
-# Customer-enabled disaster recovery for Azure AI Foundry projects
+# High availability and resiliency for Azure AI Foundry projects and agent services
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -61,6 +61,93 @@ The following table shows the Azure services that Microsoft manages and the ones
 | **Connections to external services** like Azure AI Services | You | |
 
 The rest of this article explains how to make each service highly available.
+
+## Disaster prevention
+
+Prevention is the primary defense against outages. The following proactive measures reduce the likelihood of these incidents. Apply these recommendations to help you [design for resiliency](/azure/well-architected/reliability/principles#design-for-resiliency) in your workload.
+
+### Prevent resource deletion
+
+To prevent most accidental deletions, apply *delete* [resource locks](/azure/azure-resource-manager/management/lock-resources) to critical resources. Locks protect against resource-level deletion but not data plane operations. Apply delete locks to these resources:
+
+| Resource                 | Protection provided | Limitations |
+| :----------------------- | :------------------ | :---------- |
+| Azure AI Foundry account | Prevents deletion of account, projects, models, connections, and agent capability hosts | Doesn't protect individual agents or threads |
+| Azure Cosmos DB account  | Prevents deletion of account, `enterprise_memory` database, and containers | Doesn't protect data within containers |
+| Azure AI Search service  | Prevents deletion of the search service instance | Doesn't protect indexes or data within indexes |
+| Azure Storage account | Prevents deletion of account and blob containers | Doesn't protect individual blobs. When deleting a container, the Storage Account locks can be overwritten. |
+
+For resilience-in-depth, combine resource locks with the Azure Policy [`denyAction` effect](/azure/governance/policy/concepts/effect-deny-action) to block resource provider delete requests. This layered approach strengthens protection regardless of each resource's recovery capabilities.
+
+### Implement least privilege access
+
+Use Azure Role-Based Access Control (RBAC) to limit access to control and data planes. Grant only required permissions and audit them regularly.
+
+In production, don't grant standing *delete* permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing *write* permissions.
+
+Data can also be destroyed through Azure AI Foundry Agent Service REST APIs; for example, [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) can delete operational data using these APIs or the AI Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read-only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+
+### Implement the single responsibility principle
+
+Dedicate your Azure Cosmos DB account, Azure AI Search service, and Azure Storage account exclusively to your workload's AI Agent Service. Sharing these resources with other Azure AI Foundry accounts or workload components increases risk through broader permission surfaces and a larger blast radius. Unrelated operations from one workload should never remove or corrupt agent state in another workload. This separation also allows you to make per-project recovery decisions without needing to take an all-or-nothing approach.
+
+### Use zone-redundant configurations
+
+Use zone-redundant configurations for your Azure Cosmos DB account, Azure AI Search service, and Azure Storage account. This setup protects against zone failures within a region. Zone-redundant configurations don't protect against full regional outages or human/automation errors. The Microsoft-hosted components of the Azure AI Foundry Agent Service are zone-redundant. 
+
+> [!WARNING]
+> **TODO: VERIFY THIS LAST STATEMENT AND ADD ANY MORE DETAILS AVAILABLE.**
+
+## Resource configuration to support recovery
+
+Resources need to be configured to support recovery prior to an incent happening. Enable these capabilities on your resources. The recovery steps included in this guide assume the following have been configured.
+
+| Resource                 | Recommended configurations | Purpose |
+| :----------------------- | :------------------------- | :------ |
+| Azure AI Foundry account | Establish an [explicit connection to Microsoft Purview](/purview/developer/secure-ai-with-purview). | Supports data continuity for compliance scenarios like eDiscovery requests after thread data is lost in an incident. |
+| AI Foundry project       | Use a user-assigned managed identity, not a system-assigned managed identity. **TODO: ICM IS OPEN BECAUSE THIS CONFIGURATION FAILS WHEN DEPLOYING THE CAP HOST** | Supports restoration of access to agent dependencies without needing changes on the dependencies. |
+| AI Foundry Agent Service | Use the [Standard agent deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). | This mode increases incident risk but provides more recovery capabilities than Basic. |
+| Azure Cosmos DB          | Enable [Continuous backup with point-in-time restore](/azure/cosmos-db/continuous-backup-restore-introduction). | Helps you recover from an accidental delete of the `enterprise_memory` database, one of its containers, or the whole account. |
+| Azure Cosmos DB          | Use a name another customer is unlikely to request. | Reduces the risk of naming collisions during restoration steps. |
+| Azure Cosmos DB          | Enable read replication to your designated failover region, and enable [Service-Managed Failover](/azure/cosmos-db/how-to-manage-database-account#enable-service-managed-failover-for-your-azure-cosmos-db-account). | Enables the Cosmos DB service to switch the write region from the primary region to the secondary region during a prolonged regional outage. |
+| Azure AI Search          | Use a name another customer is unlikely to request. | Reduces the risk of naming collisions during restoration steps. |
+| Azure Storage account    | Use geo-zone-redundant storage (GZRS). Your workload's recovery region could be the secondary region for this Storage account, but it's not required. | Allows customer-managed failover to be initiated to the predetermined region. |
+
+### Deployment modes and recovery implications
+
+Basic mode provides almost no recovery capabilities for human or automation-based resource loss. In the [Standard deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup), you host agent state in your own Azure Cosmos DB, Azure AI Search, and Azure Storage accounts. This topology adds incident risk (for example, direct data deletion) but gives you control over, and the responsibility for, recovery procedures.
+
+> [!TIP]
+> Azure AI Foundry Agent Service has no availability or state durability Service Level Agreement (SLA). Standard mode offloads SLAs and data durability assurances to the underlying storage components.
+
+### Use user-assigned managed identities
+
+When a component uses a managed identity to access a dependency, you must grant that identity the required role assignments on the dependency. With a system-assigned managed identity, a recovery action that recreates the faulted resource results in a new principal ID. You must then reapply all required role assignments on every dependency for the new principal ID and delete the old, now orphaned, assignments. Some dependencies (for example those used by tools or knowledge sources) might be owned by other teams, which adds cross-team coordination and delay during recovery.
+
+Using a user-assigned managed identity avoids this reassignment effort. After you restore the faulted resource, reattach the existing user-assigned managed identity. Existing role assignments on dependencies remain valid; no further action is required.
+
+> [!IMPORTANT]
+> Avoid treating a single user-assigned managed identity as a universal identity for multiple unrelated uses.
+>
+> For example, assign a dedicated user-assigned managed identity per project. Even if two projects have identical role assignments today, treat that situation as temporary. Future divergence can grant unnecessary permissions to one project if they share an identity, violating least privilege. Separate identities also let dependency logs distinguish activity per project.
+
+### Use repeatable deployment techniques
+
+Define the account, projects, capability host, and dependencies in infrastructure as code (IaC) such as Bicep or Terraform. Some recovery steps require redeploying resources exactly as they were. Treat IaC as the source of truth to reproduce configuration and role assignments quickly. Build your IaC modular so that you can independently deploy each project.
+
+Make agents redeployable. For ephemeral agents, existing application code is usually sufficient. For long‑lived agents, store their JSON definitions and knowledge/tool bindings in source control and automate deployment via pipeline calls to the Azure AI Foundry APIs. Automatically update client configuration for new agent IDs. This process rehydrates agent definitions, knowledge files, and tool connections.
+
+Avoid untracked changes made directly in the Azure AI Foundry portal or Azure portal. Untracked production changes make recovery slower and error-prone.
+
+If you still choose system-assigned identities (contrary to the recommendation to [use user-assigned managed identities](#use-user-assigned-managed-identities)), design IaC to recreate, not mutate, each role assignment that references the project's principal ID. The principal ID on role assignments is immutable and can't be updated to a new value. Use a `guid()` expression that incorporates the principal ID so a regenerated identity produces a distinct role assignment name.
+
+### Minimize treating Azure AI Search as a primary data store
+
+Azure AI Search is designed to hold a derived, query‑optimized projection of authoritative content that you store elsewhere. Don't rely on it as the only location of knowledge assets. During recovery you must be able to recreate agents that reference file-based knowledge in either the production or recovery environment.
+
+User‑uploaded files attached within conversation threads generally can't be recovered because they're not registered or persisted outside the thread context. Set expectations that these attachments are transient and will be lost in a disaster.
+
+
 
 ## Plan for multiregional deployment
 
