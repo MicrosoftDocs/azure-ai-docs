@@ -90,11 +90,9 @@ items:
       href: ../../foundry-models/quotas-limits.md
     - name: Cost management
       items:
-      - name: Manage costs for AI Foundry resources
+      - name: Manage costs
         href: ../../concepts/manage-costs.md
         displayName: pricing, budget, estimate
-      - name: Manage costs for Foundry Models
-        href: ../../foundry-models/how-to/manage-costs.md
       - name: What is the Provisioned Throughput offering (PTU)?
         href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
         displayName: PTU, provisioned, provisioned throughput units
