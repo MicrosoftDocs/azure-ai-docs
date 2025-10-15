@@ -1,6 +1,6 @@
 ---
-title: High availability and resiliency for Azure AI Foundry projects and agent services
-description: Learn how to plan for high availability and resiliency for Azure AI Foundry projects and agent services.
+title: High availability and resiliency for Azure AI Foundry projects and Agent Services
+description: Learn how to plan for high availability and resiliency for Azure AI Foundry projects and Agent Service.
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.author: jburchel 
@@ -10,14 +10,14 @@ ms.date: 10/07/2025
 ai.usage: ai-assisted
 ---
 
-# High availability and resiliency for Azure AI Foundry projects and agent services
+# High availability and resiliency for Azure AI Foundry projects and Agent Service
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
+
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. Create a disaster recovery plan to handle regional service outages. In this article, you learn how to:
-Microsoft strives to ensure that Azure services are always available. However, unplanned service outages can occur.
+
 * Plan a multi-region deployment of Azure AI Foundry and associated resources.
 * Maximize your chances to recover logs, notebooks, Docker images, and other metadata.
 * Design your solution for high availability.
@@ -31,7 +31,6 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](disaster-recovery.md).
 ## Understand Azure services for Azure AI Foundry
 
-Azure AI Foundry depends on multiple Azure services. Some of these services are set up in your subscription. You're responsible for the high availability configuration of these services. Microsoft manages some services that are created in a Microsoft subscription. 
 Azure AI Foundry depends on multiple Azure services. Some of these services are set up in your subscription. You're responsible for the high availability configuration of these services. Microsoft manages some services that Microsoft creates in a Microsoft subscription.
 Azure services include:
 
@@ -48,7 +47,7 @@ Azure services include:
 * **Connections**: Azure AI Foundry connects to other services. You're responsible for configuring their high availability settings.
 
 The following table shows the Azure services that Microsoft manages and the ones you manage. It also indicates the services that are highly available by default.
-The following table shows the Azure services that Microsoft manages and the ones you manage, and it indicates the services that are highly available by default.
+
 | Service | Managed by | High availability by default |
 | ----- | ----- | ----- |
 | **Azure AI Foundry infrastructure** | Microsoft | |
