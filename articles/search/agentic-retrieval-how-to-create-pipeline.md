@@ -1,5 +1,5 @@
 ---
-title: Build an agentic retrieval solution
+title: 'Tutorial: Build an agentic retrieval solution'
 titleSuffix: Azure AI Search
 description: Learn how to design and build a custom agentic retrieval solution where Azure AI Search handles data retrieval for your custom agents in AI Foundry.
 author: HeidiSteen
@@ -7,12 +7,12 @@ ms.author: heidist
 manager: nitinme
 ms.date: 09/10/2025
 ms.service: azure-ai-search
-ms.topic: how-to
+ms.topic: tutorial
 ms.custom:
   - build-2025
 ---
 
-# Build an agent-to-agent retrieval solution using Azure AI Search
+# Tutorial: Build an agent-to-agent retrieval solution using Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -20,7 +20,7 @@ This article describes an approach or pattern for building a solution that uses 
 
 :::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Azure AI Agent service." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
 
-This article supports the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
+To run the code for this tutorial, download the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
 This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to retrieve data from the index, and how it uses an agent tool for orchestration. If you want to understand the retrieval pipeline in its simplest form, begin with the quickstart.
 
@@ -314,6 +314,18 @@ Look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.
 + Use `gpt mini` or a smaller model that performs faster.
 
 + Set `maxOutputSize` in the [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
+
+## Clean up resources
+
+When you're working in your own subscription, at the end of a project, it's a good idea to remove the resources that you no longer need. Resources left running can cost you money. You can delete resources individually or delete the resource group to delete the entire set of resources.
+
+You can also delete individual objects:
+
++ [Delete a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md#delete-an-agent)
+
++ [Delete a knowledge source](agentic-knowledge-source-how-to-search-index.md#delete-a-knowledge-source)
+
++ [Delete an index](search-how-to-manage-index#delete-an-index)
 
 ## Related content
 

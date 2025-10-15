@@ -91,7 +91,7 @@ Your search index determines query execution and any optimizations that occur du
 
 ### Integration requirements
 
-Your application drives the pipeline by calling the knowledge agent and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
+Your application drives the pipeline by calling the knowledge agent and handling the response. The pipeline returns grounding data that you pass to an LLM for answer generation in your conversation interface. For implementation details, see [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md).
 
 > [!NOTE]
 > Only gpt-4o, gpt-4.1, and gpt-5 series models are supported for query planning. You can use any model for final answer generation.
@@ -117,7 +117,7 @@ Choose any of these options for your next step.
   + [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
   + [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)
   + [Use a knowledge agent to retrieve data](agentic-retrieval-how-to-retrieve.md)
-  + [Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
+  + [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
 
 + REST API reference:
 
