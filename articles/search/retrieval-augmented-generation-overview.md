@@ -227,11 +227,7 @@ We recommend the [Azure OpenAI demo](https://github.com/Azure-Samples/azure-sear
 
 There are many ways to get started, including code-first solutions and demos.
 
-For help with choosing between agentic retrieval and classic RAG, try a few quickstarts using your own data to understand the development effort and compare outcomes:
-
-+ [Quickstart: Agentic search](search-get-started-agentic-retrieval.md)
-
-+ [Quickstart: Classic RAG using grounding data from Azure AI Seach](search-get-started-rag.md)
+For help with choosing between agentic retrieval and classic RAG, try a few quickstarts using your own data to understand the development effort and compare outcomes.
 
 ### [**Docs**](#tab/docs)
 
