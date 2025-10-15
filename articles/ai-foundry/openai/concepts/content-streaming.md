@@ -17,7 +17,6 @@ ai-usage: ai-assisted
 
 # Content streaming
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This guide describes the Azure OpenAI content streaming experience and options. Customers can receive content from the API as it's generated, instead of waiting for chunks of content that have been verified to pass the content filters.
 

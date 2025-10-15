@@ -17,7 +17,6 @@ ai-usage: ai-assisted
 # Quickstart: Generate a video with Sora (preview)
 
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [!INCLUDE [Video generation introduction](./includes/video-generation-intro.md)]
 
@@ -26,6 +25,12 @@ ai-usage: ai-assisted
 
 
 [!INCLUDE [REST API quickstart](includes/video-generation-rest.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Portal quickstart](includes/video-generation-studio.md)]
 
 ::: zone-end
 

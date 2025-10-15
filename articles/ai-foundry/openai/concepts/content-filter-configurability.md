@@ -14,6 +14,5 @@ ai-usage: ai-assisted
 
 # Content filter configurability
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]

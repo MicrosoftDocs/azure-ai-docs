@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # Use a blocklist with Azure OpenAI
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
 

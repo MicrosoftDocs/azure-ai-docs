@@ -17,7 +17,6 @@ zone_pivot_groups: openai-quickstart-dall-e
 
 # Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 
 
@@ -67,6 +66,12 @@ zone_pivot_groups: openai-quickstart-dall-e
 ::: zone pivot="programming-language-powershell"
 
 [!INCLUDE [PowerShell quickstart](includes/dall-e-powershell.md)]
+
+::: zone-end
+
+::: zone pivot="programming-language-studio"
+
+[!INCLUDE [Portal quickstart](includes/dall-e-studio.md)]
 
 ::: zone-end
 

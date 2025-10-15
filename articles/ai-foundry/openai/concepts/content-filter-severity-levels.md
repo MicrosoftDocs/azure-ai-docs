@@ -16,7 +16,6 @@ ai-usage: ai-assisted
 
 # Content filtering severity levels
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 <!--
 Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.

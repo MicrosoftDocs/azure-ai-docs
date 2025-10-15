@@ -15,6 +15,5 @@ ai-usage: ai-assisted
 
 # Groundedness detection filter
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]

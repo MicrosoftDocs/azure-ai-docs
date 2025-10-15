@@ -15,7 +15,6 @@ ai-usage: ai-assisted
 
 # Protected material detection filter
 
-[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 The protected material detection filter scans the output of large language models (LLMs) to identify and flag known protected material. It helps organizations prevent the generation of content that closely matches copyrighted text or code.
 
