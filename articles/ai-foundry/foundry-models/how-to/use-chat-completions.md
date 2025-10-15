@@ -21,14 +21,14 @@ This article explains how to use the chat completions API with AI Foundry Model 
 
 To use chat completion models in your application, you need:
 
-[!INCLUDE [how-to-prerequisites](../how-to-prerequisites.md)]
+[!INCLUDE [how-to-prerequisites](../includes/how-to-prerequisites.md)]
 
-* A chat completions model deployment. If you don't have one, see [Add and configure Foundry Models](../../how-to/create-model-deployments.md) to add a chat completions model to your resource.
+* A chat completions model deployment. If you don't have one, see [Add and configure Foundry Models](create-model-deployments.md) to add a chat completions model to your resource.
 
 
 ## Use chat completions
 
-For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../../openai/supported-languages.md), however, the v1 API also allows you to make chat completions calls with other [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
+For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../openai/supported-languages.md), however, the v1 API also allows you to make chat completions calls with other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
 
 In the following examples, you first create the client to consume the model. Then, create a basic request to the model. 
 
@@ -39,7 +39,7 @@ This section uses the v1 API.
 
 # [Python](#tab/python)
 
-[Python v1 examples](../../../openai/supported-languages.md).
+[Python v1 examples](../../openai/supported-languages.md).
 
 **API Key**:
 
@@ -102,7 +102,7 @@ print(response.model_dump_json(indent=2))
 
 # [C#](#tab/dotnet)
 
-[C# v1 examples](../../../openai/supported-languages.md)
+[C# v1 examples](../../openai/supported-languages.md)
 
 **API Key**:
 
@@ -116,6 +116,12 @@ OpenAIClient client = new(
 ```
 
 **Microsoft Entra ID**:
+
+To use Entra ID, you also need the following package:
+
+```bash
+    dotnet add package Azure.Identity
+```
 
 ```csharp
 #pragma warning disable OPENAI001
@@ -133,7 +139,7 @@ OpenAIClient client = new(
 
 # [JavaScript](#tab/javascript)
 
-[JavaScript v1 examples](../../../openai/supported-languages.md)
+[JavaScript v1 examples](../../openai/supported-languages.md)
 
 **API Key**:
 
@@ -164,7 +170,7 @@ const client = new OpenAI({
 
 # [Go](#tab/go)
 
-[Go v1 examples](../../../openai/supported-languages.md)
+[Go v1 examples](../../openai/supported-languages.md)
 
 **API Key**:
 
@@ -195,7 +201,7 @@ client := openai.NewClient(
 
 # [Java](#tab/Java)
 
-[Java v1 examples](../../../openai/supported-languages.md)
+[Java v1 examples](../../openai/supported-languages.md)
 
 **API Key**:
 
@@ -258,9 +264,11 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### Use the chat completions API
 
-For Azure OpenAI models we recommend using the [Responses API](../../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with Foundry Models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
+For Azure OpenAI models we recommend using the [Responses API](../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with Foundry Models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
 
 `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
+
+# [Python](#tab/python)
 
 ```python
 from openai import OpenAI
