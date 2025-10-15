@@ -18,12 +18,12 @@ ms.custom:
 
 # Tutorial: Model development on a cloud workstation
 
-This article describes how to develop a training script with a notebook on an Azure Machine Learning cloud workstation. The tutorial covers the basic steps that you need to get started:
+This article describes how to develop a training script by using a notebook on an Azure Machine Learning cloud workstation. The tutorial covers the basic steps that you need to get started:
 
 > [!div class="checklist"]
 > * Set up and configure the cloud workstation. Your cloud workstation is powered by an Azure Machine Learning compute instance, which is pre-configured with environments to support your model development needs.
 > * Use cloud-based development environments.
-> * Use MLflow to track your model metrics, all from within a notebook.
+> * Use MLflow to track your model metrics.
 
 ## Prerequisites
 
@@ -49,7 +49,7 @@ In the compute instance list, select the **VS Code (Web)** or **VS Code (Desktop
 
 This Visual Studio Code instance is attached to your compute instance and your workspace file system. Even if you open it on your desktop, the files you see are files in your workspace.
 
-## Set up a new environment for prototyping (optional)
+## Set up a new environment for prototyping  
 
 In order for your script to run, you need to be working in an environment that's configured with the dependencies and libraries the code expects. This section helps you create an environment that's tailored to your code. To create the new Jupyter kernel your notebook connects to, you use a YAML file that defines the dependencies.
 
@@ -57,11 +57,12 @@ In order for your script to run, you need to be working in an environment that's
 
     Files that you upload are stored in an Azure file share, and these files are mounted to each compute instance and shared within the workspace.
 
-    1. Download the conda environment file [*workstation_env.yml*](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml) to your computer by using the **Download raw file** button in the top-right corner of the page.
+    1. Go to [azureml-examples/tutorials/get-started-notebooks/workstation_env.yml](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml).
+    1. Download the Conda environment file [*workstation_env.yml*](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml) to your computer selecting the ellipsis button (**...**) in the top-right corner of the page and then selecing **Download**.
     1. Drag the file from your computer to the Visual Studio Code window. The file is uploaded to your workspace.
     1. Move the file into your username folder.
 
-        :::image type="content" source="media/tutorial-cloud-workstation/upload-file.png" alt-text="Screenshot shows how to upload a file.":::
+        :::image type="content" source="media/tutorial-cloud-workstation/upload-file.png" alt-text="Screenshot that shows the workstation_env.yml file in the username folder.":::
 
     1. Select the file to preview it. Review the dependencies that it specifies. You should see something like this:
 
@@ -126,14 +127,14 @@ You now have a new kernel. Next, you'll open a notebook and use this kernel.
 
 ## Create a notebook
 
-1. In the menu at the top of the app, select **File > New File**.
+1. In the menu at the top of Visual Studio Code, select **File > New File**.
 1. Name your new file **develop-tutorial.ipynb** (or use another name). Be sure to use the **.ipynb** extension.
 
 ## Set the kernel
 
-1. On the top-right corner of the app, select **Select kernel**.
+1. On the top-right corner of the new file, select **Select Kernel**.
 1. Select **Azure ML compute instance (computeinstance-name)**.
-1. Select the kernel you created: **Tutorial Workstation Env**. If you don't see the kernel, select the **Refresh** button in the top-right corner of the app.
+1. Select the kernel you created: **Tutorial Workstation Env**. If you don't see the kernel, select the refresh button above the list.
 
 ## Develop a training script
 
@@ -163,6 +164,7 @@ This code uses `sklearn` for training and MLflow for logging the metrics.
 
     > [!NOTE]
     > You can ignore the MLflow warnings. The results you need will still be tracked.
+1. Select **Run All** above the code. 
 
 ## Iterate 
 
@@ -172,6 +174,8 @@ Now that you have model results, you might want to change something and try agai
 
 > [!NOTE]
 > You can ignore the MLflow warnings. The results you need will still be tracked.
+
+Select **Run All** to run the model.
 
 ## Examine the results
 
@@ -183,12 +187,12 @@ Now that you've tried two different models, use the results tracked by MLFfow to
     :::image type="content" source="media/tutorial-cloud-workstation/jobs.png" alt-text="Screenshot that shows the Jobs item in the left pane.":::
 
 1. Select **Develop on cloud tutorial**.
-1. There are two different jobs shown, one for each of the models you tried. The names are autogenerated. If you want to rename the job, hover over the name and select the pencil tool next to it. 
-1. Select the link for the first job. The name appears at the top of the page. You can also rename it there by using the pencil tool.
-1. The page shows job details, like properties, outputs, tags, and parameters. Under **Tags**, you see the estimator_name, which describes the type of model.
+1. There are two different jobs shown, one for each of the models you tried. The names are autogenerated. If you want to rename the job, hover over the name and select the pencil button next to it. 
+1. Select the link for the first job. The name appears at the top of the page. You can also rename it here by using the pencil button.
+1. The page shows job details, like properties, outputs, tags, and parameters. Under **Tags**, you see the **estimator_name**, which describes the type of model.
 1. Select the **Metrics** tab to view the metrics that were logged by MLflow. (Your results will be different because you have a different training set.)
 
-    :::image type="content" source="media/tutorial-cloud-workstation/metrics.png" alt-text="Screenshot that shows metrics for a job.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/metrics.png" alt-text="Screenshot that shows metrics for a job." lightbox="media/tutorial-cloud-workstation/metrics.png":::
 
 1. Select the **Images** tab to view the images generated by MLflow. 
 
@@ -215,11 +219,11 @@ You now have a Python script to use for training your preferred model.
 
 For now, you're running this code on your compute instance, which is your Azure Machine Learning development environment. [Tutorial: Train a model](tutorial-train-model.md) shows how to run a training script in a more scalable way on more powerful compute resources. 
 
-1. Select the environment you created earlier in this tutorial as your Python version (workstations_env). In the lower right corner of the notebook, you'll see the environment name. Select it, and then select the environment in the middle of the page.
+1. Select the environment you created earlier in this tutorial as your Python version (workstations_env). In the lower-right corner of the notebook, you'll see the environment name. Select it, and then select the environment at the top of Visual Studio Code.
 
     :::image type="content" source="media/tutorial-cloud-workstation/select-python.png" alt-text="Screenshot that shows selecting the new environment." lightbox="media/tutorial-cloud-workstation/select-python.png":::
 
-1. Run the Python script by selecting the run button in the upper-right corner of the screen.
+1. Run the Python script by selecting the **Run All** button above the code.
 
     :::image type="content" source="media/tutorial-cloud-workstation/run-python.png" alt-text="Screenshot that shows the Run button." lightbox="media/tutorial-cloud-workstation/run-python.png":::
 
