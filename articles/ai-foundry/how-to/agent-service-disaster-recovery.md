@@ -9,7 +9,6 @@ ms.author: jburchel
 ms.date: 10/15/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: agent-service
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
@@ -48,11 +47,11 @@ The Azure AI Foundry Agent Service has important limitations that shape your wor
 
 ## Disaster prevention
 
-Preventing disasters is easier and less costly than recovering from them. Stop disasters from happening in the first place by applying proactive measures. For more information, see [High availability and resiliency for Azure AI Foundry projects and agent services](high-availability-resiliency-fdp.md#disaster-prevention).
+Preventing disasters is easier and less costly than recovering from them. Stop disasters from happening in the first place by applying proactive measures. For more information, see [High availability and resiliency for Azure AI Foundry projects and agent services](high-availability-resiliency.md#disaster-prevention).
 
 ## Resource configuration to support recovery
 
-Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [high-availability-resiliency-fdp.md#resource-configuration-to-support-recovery](high-availability-resiliency-fdp.md#resource-configuration-to-support-recovery).
+Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [high-availability-resiliency.md#resource-configuration-to-support-recovery](high-availability-resiliency.md#resource-configuration-to-support-recovery).
 
 ## Recover from Azure outages
 

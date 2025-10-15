@@ -9,7 +9,6 @@ ms.author: jburchel
 ms.date: 10/15/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: agent-service
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---

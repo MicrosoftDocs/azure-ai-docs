@@ -30,7 +30,7 @@ items:
   - name: Azure AI Foundry projects and agent service
     items:
     - name: High availability and resiliency
-      href: ../../how-to/high-availability-resilience-fdp.md
+      href: ../../how-to/high-availability-resiliency.md
     - name: Disaster recovery
       items:
       - name: Disaster recovery for agent services

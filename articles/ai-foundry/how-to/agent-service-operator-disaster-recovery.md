@@ -9,7 +9,6 @@ ms.author: jburchel
 ms.date: 10/15/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: agent-service
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
@@ -280,7 +279,7 @@ This instance is not to be confused with any AI Search indexes that are connecte
 
 1. Update clients to use the new agent IDs and resume interactions on existing threads.
 
-If you've gone against the [single responsibility principle recommendation](./agent-service-disaster-recovery.md#implement-the-single-responsibility-principle) and combined both Azure AI Foundry Agent Service runtime usage and durable workload knowledge into a single AI Search instance, recovery needs to be a combination of what's was presented here and a [rehydration of your durable knowledge store](/azure/reliability/reliability-ai-search#backups).
+If you've gone against the [single responsibility principle recommendation](./high-availbility-resiliency.md#implement-the-single-responsibility-principle) and combined both Azure AI Foundry Agent Service runtime usage and durable workload knowledge into a single AI Search instance, recovery needs to be a combination of what's was presented here and a [rehydration of your durable knowledge store](/azure/reliability/reliability-ai-search#backups).
 
 **Results:**
 
