@@ -18,7 +18,7 @@ ms.devlang: azurecli
 
 *Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces.
 
-Some methods available in the MLflow API might not be available when you're using Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments). You can also learn about the supported MLflow functionalities in Azure Machine Learning from the article [MLflow and Azure Machine Learning](concept-mlflow.md).
+Some methods available in the MLflow API might not be available when you're using Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments). You can also learn about supported MLflow functionalities in Azure Machine Learning from the article [MLflow and Azure Machine Learning](concept-mlflow.md).
 
 > [!NOTE] 
 > - To track experiments running on Azure Databricks, see [Track Azure Databricks machine learning experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-databricks.md).
@@ -59,7 +59,7 @@ Azure Machine Learning tracks training jobs in what MLflow calls *runs*. Use run
 
 # [Notebooks](#tab/interactive)
 
-When you work interactively, MLflow starts tracking your training routine as soon as you log information that requires an active run. For instance, if Mlflow's autologging functionality is enabled, MLflow tracking starts when you log a metric or parameter, or start a training cycle.
+When you work interactively, MLflow starts tracking your training routine as soon as you log information that requires an active run. For instance, if MLflow's autologging functionality is enabled, MLflow tracking starts when you log a metric or parameter, or start a training cycle.
 
 However, it's usually helpful to start the run explicitly, especially if you want to capture the total time for your experiment in the **Duration** field. To start the run explicitly, use `mlflow.start_run()`.
 
