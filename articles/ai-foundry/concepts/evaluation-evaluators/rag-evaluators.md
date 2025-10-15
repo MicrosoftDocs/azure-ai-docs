@@ -1,7 +1,7 @@
 ---
-title: Retrieval-augmented Generation (RAG) evaluators for generative AI
+title: Retrieval-Augmented Generation (RAG) Evaluators for Generative AI
 titleSuffix: Azure AI Foundry
-description: Learn about Retrieval-augmented Generation (RAG) evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
+description: Learn about Retrieval-augmented Generation evaluators for assessing relevance, groundedness, and response completeness in generative AI systems.
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
@@ -27,7 +27,7 @@ A retrieval-augmented generation (RAG) system tries to generate the most relevan
 These evaluators address three aspects:
 
 - The relevance of the retrieval results to the user's query: use [Document Retrieval](#document-retrieval) if you have labels for query-specific document relevance, or query relevance judgement (qrels) for more accurate measurements. Use [Retrieval](#retrieval) if you only have the retrieved context, but you don't have such labels and have a higher tolerance for a less fine-grained measurement.
-- The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to potentially customize the definition of groundedness in our open-source LLM-judge prompt, [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
+- The consistency of the generated response with respect to the grounding documents: use [Groundedness](#groundedness) if you want to customize the definition of groundedness in our open-source large language model-judge (LLM-judge) prompt. Use [Groundedness Pro](#groundedness-pro) if you want a straightforward definition.
 - The relevance of the final response to the query: [Relevance](#relevance) if you don't have ground truth, and [Response Completeness](#response-completeness) if you have ground truth and don't want your response to miss critical information.
 
 A good way to think about **Groundedness** and **Response Completeness** is: groundedness is about the **precision** aspect of the response that it shouldn't contain content outside of the grounding context, whereas response completeness is about the **recall** aspect of the response that it shouldn't miss critical information compared to the expected response (ground truth).
@@ -57,13 +57,13 @@ We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
 | `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| Other quality evaluators| Not Supported | Supported | -- |
+| Other quality evaluators| Not Supported | Supported |--|
 
 For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
 ## Retrieval
 
-Retrieval quality is important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with an LLM without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
+Retrieval quality is important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. `RetrievalEvaluator` measures the **textual quality** of retrieval results with a language model without requiring ground truth (also known as query relevance judgment), which provides value compared to `DocumentRetrievalEvaluator` measuring `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks (encoded as a string) are to address a query and how the most relevant context chunks are surfaced at the top of the list.
 
 ### Retrieval example
 
@@ -93,19 +93,19 @@ The numerical score on a Likert scale (integer 1 to 5) and a higher score is bet
 
 ## Document retrieval
 
-Retrieval quality is important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your LLM model gives you a satisfactory answer. Therefore, it's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
+Retrieval quality is important given its upstream role in RAG: if the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. Therefore, it's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
 
 - Document Retrieval evaluator measures how well the RAG retrieves the correct documents from the document store. As a composite evaluator useful for RAG scenario with ground truth, it computes a list of useful search quality metrics for debugging your RAG pipelines:
 
 | Metric | Category | Description |
 |--|--|--|
 | Fidelity | Search Fidelity | How well the top n retrieved chunks reflect the content for a given query; number of good documents returned out of the total number of known good documents in a dataset |
-| NDCG | Search NDCG | How good are the rankings to an ideal order where all relevant items are at the top of the list. |
+| NDCG | Search NDCG | How good are the rankings to an ideal order where all relevant items are at the top of the list |
 | XDCG | Search XDCG | How good the results are in the top-k documents regardless of scoring of other index documents |
 | Max Relevance N | Search Max Relevance | Maximum relevance in the top-k chunks |
 | Holes | Search Label Sanity | Number of documents with missing query relevance judgments (Ground truth) |
 
-- To optimize your RAG in a scenario called "parameter sweep", you can use these metrics to calibrate the search parameters for the optimal RAG results. Generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `DocumentRetrievalEvaluator` to find the search parameters that yield the highest retrieval quality.
+- To optimize your RAG in a scenario called *parameter sweep*, you can use these metrics to calibrate the search parameters for the optimal RAG results. Generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `DocumentRetrievalEvaluator` to find the search parameters that yield the highest retrieval quality.
 
 ### Document retrieval example
 
@@ -181,7 +181,7 @@ document_retrieval_evaluator(retrieval_ground_truth=retrieval_ground_truth, retr
 
 ### Document retrieval output
 
-All numerical scores have `high_is_better=True` except for `holes` and `holes_ratio` which have `high_is_better=False`. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. 
+All numerical scores have `high_is_better=True` except for `holes` and `holes_ratio`, which have `high_is_better=False`. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. 
 
 ```python
 {
@@ -279,7 +279,7 @@ The label field returns a boolean score `True` if all content in the response is
 
 ## Relevance
 
-It's important to evaluate the final response because AI models can generate irrelevant responses with respect to a user query. To address this, you can use `RelevanceEvaluator` which measures how effectively a response addresses a query. It assesses the accuracy, completeness, and direct relevance of the response based solely on the given query. Higher scores mean better relevance.
+AI models can generate irrelevant responses with respect to a user query. It's important to evaluate the final response. To address this issue, you can use `RelevanceEvaluator`, which measures how effectively a response addresses a query. It assesses the accuracy, completeness, and direct relevance of the response based solely on the given query. Higher scores mean better relevance.
 
 ### Relevance example
 
@@ -309,7 +309,7 @@ The numerical score on a Likert scale (integer 1 to 5) and a higher score is bet
 
 ## Response completeness
 
-AI systems can fabricate content or generate irrelevant responses outside the given context. Given ground truth response, `ResponseCompletenessEvaluator` that captures the **recall** aspect of response alignment with the expected response. This is complementary to `GroundednessEvaluator`, which captures the **precision** aspect of response alignment with the grounding source.
+AI systems can fabricate content or generate irrelevant responses outside the given context. Given ground truth response, `ResponseCompletenessEvaluator` that captures the **recall** aspect of response alignment with the expected response. This evaluator is complementary to `GroundednessEvaluator`, which captures the **precision** aspect of response alignment with the grounding source.
 
 ### Response completeness example
 
