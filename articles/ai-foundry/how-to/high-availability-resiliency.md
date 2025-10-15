@@ -27,8 +27,7 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Azure AI Foundry itself doesn't provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> [!NOTE]
-> The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](disaster-recovery.md).
+> The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](hub-disaster-recovery.md).
 ## Understand Azure services for Azure AI Foundry
 
 Azure AI Foundry depends on multiple Azure services. Some of these services are set up in your subscription. You're responsible for the high availability configuration of these services. Microsoft manages some services that Microsoft creates in a Microsoft subscription.
