@@ -1,6 +1,6 @@
 ---
 title: Configure containers - Language service
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers.
 author: laujan
 manager: nitinme
@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 04/29/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 

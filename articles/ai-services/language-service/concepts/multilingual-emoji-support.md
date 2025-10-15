@@ -1,12 +1,12 @@
 ---
-title: Multilingual and emoji support in Azure AI Language
-titleSuffix: Azure AI services
+title: Multilingual and emoji support in Azure Language in Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: Learn about offsets caused by multilingual and emoji encodings in Language service features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 

@@ -1,18 +1,18 @@
 ---
-title: "Migrate to Azure AI Language from: LUIS, QnA Maker, and Text Analytics"
-titleSuffix: Azure AI services
+title: "Migrate to Azure Language in Foundry Tools from: LUIS, QnA Maker, and Text Analytics"
+titleSuffix: Azure AI Foundry Tools
 description: Use this article to learn if you need to migrate your applications from LUIS, QnA Maker, and Text Analytics.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Migrating to Azure AI Language
+# Migrating to Azure Language in Foundry Tools
 
-On November 2nd 2021, Azure AI Language was released into public preview. This language service unifies the Text Analytics, QnA Maker, and LUIS service offerings, and provides several new features as well. 
+On November 2nd 2021, Azure Language in Foundry Tools was released into public preview. This language service unifies the Text Analytics, QnA Maker, and LUIS service offerings, and provides several new features as well. 
 
 ## Do I need to migrate to the language service if I am using Text Analytics?
 
@@ -30,6 +30,6 @@ If you're using QnA Maker, see the [migration guide](../question-answering/how-t
 
 ## See also
 
-* [Azure AI Language overview](../overview.md)
+* [Azure Language overview](../overview.md)
 * [Conversational language understanding overview](../conversational-language-understanding/overview.md)
 * [Question answering overview](../question-answering/overview.md)

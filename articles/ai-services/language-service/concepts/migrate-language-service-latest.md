@@ -1,21 +1,21 @@
 ---
-title: Migrate to the latest version of Azure AI Language
-titleSuffix: Azure AI services
+title: Migrate to the latest version of Azure Language in Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to move your Text Analytics applications to use the latest version of the Language service.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Migrate to the latest version of Azure AI Language
+# Migrate to the latest version of Azure Language in Foundry Tools
 
 > [!TIP]
-> Just getting started with Azure AI Language? See the [overview article](../overview.md) for details on the service, available features, and links to quickstarts for information on the current version of the API. 
+> Just getting started with Azure Language in Foundry Tools? See the [overview article](../overview.md) for details on the service, available features, and links to quickstarts for information on the current version of the API. 
 
-If your applications are still using the Text Analytics API, or client library (before stable v5.1.0), this article will help you upgrade your applications to use the latest version of the [Azure AI language](../overview.md) features.
+If your applications are still using the Text Analytics API, or client library (before stable v5.1.0), this article will help you upgrade your applications to use the latest version of the [Azure Language](../overview.md) features.
 
 ## Unified Language endpoint (REST API)
 

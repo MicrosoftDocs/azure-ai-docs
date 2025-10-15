@@ -1,19 +1,19 @@
 ---
 title: Previous language service updates
-titleSuffix: Azure AI services
-description: An archive of previous Azure AI Language updates.
+titleSuffix: Azure AI Foundry Tools
+description: An archive of previous Azure Language in Foundry Tools updates.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ROBOTS: NOINDEX
 ---
 
-# Previous updates for Azure AI Language
+# Previous updates for Azure Language in Foundry Tools
 
-This article contains a list of previously recorded updates for Azure AI Language. For more current service updates, see [What's new](../whats-new.md).
+This article contains a list of previously recorded updates for Azure Language. For more current service updates, see [What's new](../whats-new.md).
 
 ## October 2021
 
