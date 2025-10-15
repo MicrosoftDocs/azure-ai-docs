@@ -1,6 +1,6 @@
 monikerRange: 'foundry-classic'
 items:
-- name: What is Azure AI Foundry?
+- name: What is Azure AI Foundry (classic)?
   href: what-is-azure-ai-foundry.md
 - name: Get started
   expanded: true
