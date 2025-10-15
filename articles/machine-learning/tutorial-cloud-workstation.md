@@ -9,71 +9,71 @@ ms.topic: tutorial
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: lebaro
-ms.date: 08/05/2024
+ms.date: 10/15/2025
 ms.custom:
   - devx-track-python
   - sfi-image-nochange
 #Customer intent: As a data scientist, I want to know how to prototype and develop machine learning models on a cloud workstation.
 ---
 
-# Tutorial: Model development on a cloud workstation
+# Tutorial: model development on a cloud workstation
 
 Learn how to develop a training script with a notebook on an Azure Machine Learning cloud workstation. This tutorial covers the basics you need to get started:
 
 > [!div class="checklist"]
-> * Set up and configuring the cloud workstation. Your cloud workstation is powered by an Azure Machine Learning compute instance, which is pre-configured with environments to support your various model development needs.
+> * Set up and configure the cloud workstation. The workstation runs on an Azure Machine Learning compute instance preconfigured with environments for different model development needs.
 > * Use cloud-based development environments.
-> * Use MLflow to track your model metrics, all from within a notebook.
+> * Use MLflow to track model metrics in a notebook.
 
 ## Prerequisites
 
 [!INCLUDE [workspace](includes/prereq-workspace.md)]
 
-## Start with compute
+## Create a compute instance
 
-The **Compute** section in your workspace allows you to create compute resources. A compute instance is a cloud-based workstation fully managed by Azure Machine Learning. This tutorial series uses a compute instance. You can also use it to run your own code, and to develop and test models.
+The **Compute** section lets you create compute resources. A compute instance is a cloud based workstation managed by Azure Machine Learning. This series uses a compute instance. Use it to run code and develop and test models.
 
 1. Sign in to [Azure Machine Learning studio](https://ml.azure.com).
-1. Select your workspace if it isn't already open.
-1. On the left navigation, select **Compute**.
-1. If you don't have a compute instance, you'll see **New** in the middle of the screen. Select **New** and fill out the form. You can use all the defaults.
-1. If you have a compute instance, select it from the list. If it's stopped, select **Start**.
+1. Select your workspace if it isn't open.
+1. In the navigation pane, select **Compute**.
+1. If you don't have a compute instance, you see **New**. Select **New**, and complete the form. Use the defaults.
+1. If you have a compute instance, select it. If it's stopped, select **Start**.
 
 ## Open Visual Studio Code (VS Code)
 
-Once you have a running compute instance, you can access it in various ways. This tutorial shows using the compute instance from VS Code. VS Code gives you a full integrated development environment (IDE) with the power of Azure Machine Learning resources.
+After you start a compute instance, access it in several ways. This tutorial uses VS Code to connect to the compute instance. VS Code is a full integrated development environment (IDE) that uses Azure Machine Learning resources.
 
-In the compute instance list, select the **VS Code (Web)** or **VS Code (Desktop)** link for the compute instance you want to use. If you choose **VS Code (Desktop)**, you might see a pop-up asking if you want to open the application.
+In the compute instance list, select **VS Code (Web)** or **VS Code (Desktop)** for the compute instance you want. If you select **VS Code (Desktop)**, a prompt might ask you to open the application.
 
-:::image type="content" source="media/tutorial-cloud-workstation/launch-vs-code.png" alt-text="Screenshot shows links to launch VS Code (Web) or (Desktop).":::
+:::image type="content" source="media/tutorial-cloud-workstation/launch-vs-code.png" alt-text="Screenshot of compute instance list with links to launch VS Code (Web) or VS Code (Desktop).":::
 
-This VS Code instance is attached to your compute instance and your workspace file system. Even if you open it on your desktop, the files you see are files in your workspace.
+This VS Code session is attached to your compute instance and workspace file system. Even when you open it on your desktop, the files you see are in your workspace.
 
 ## Set up a new environment for prototyping (optional)
 
-In order for your script to run, you need to be working in an environment configured with the dependencies and libraries the code expects. This section helps you create an environment tailored to your code. To create the new Jupyter kernel your notebook connects to, you'll use a YAML file that defines the dependencies.
+For your script to run, you need an environment with the dependencies and libraries the code expects. This section helps you create an environment for your code. To create the Jupyter kernel your notebook uses, you use a YAML file that defines the dependencies.
 
 * **Upload a file.**
 
-    Files you upload are stored in an Azure file share, and these files are mounted to each compute instance and shared within the workspace.
+    Uploaded files are stored in an Azure file share. They're mounted on each compute instance and shared in the workspace.
 
-    1. Download this conda environment file, [*workstation_env.yml*](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml) to your computer by using the **Download raw file** button at the top right.
-    1. Drag the file from your computer to the VS Code window. The file is uploaded to your workspace.
-    1. Move the file under your username folder.
+    1. Download the conda environment file [*workstation_env.yml*](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml) to your computer by selecting **Download raw file** at the top right.
+    1. Drag the file from your computer into the VS Code window. The file uploads to your workspace.
+    1. Move the file into your user folder.
 
-        :::image type="content" source="media/tutorial-cloud-workstation/upload-file.png" alt-text="Screenshot shows how to upload a file.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/upload-file.png" alt-text="Screenshot of VS Code showing a file being dragged in to upload to the Azure workspace.":::
 
-    1. Select this file to preview it, and see what dependencies it specifies. You'll see contents like this:
+    1. Select the file to preview its dependencies. The file looks like this:
 
     ::: code language="yml" source="~/azureml-examples-main/tutorials/get-started-notebooks/workstation_env.yml" :::
 
 * **Create a kernel.**
 
-    Now use the terminal to create a new Jupyter kernel, based on the *workstation_env.yml* file.
+    Use the terminal to create a new Jupyter kernel based on the *workstation_env.yml* file.
 
     1. On the top menu bar, select **Terminal > New Terminal**.
 
-        :::image type="content" source="media/tutorial-cloud-workstation/open-terminal.png" alt-text="Screenshot shows open terminal tool in notebook toolbar.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/open-terminal.png" alt-text="Screenshot of open terminal tool in notebook toolbar.":::
 
     1. View your current conda environments. The active environment is marked with a *.
 
@@ -81,19 +81,19 @@ In order for your script to run, you need to be working in an environment config
         conda env list
         ```
 
-    1. `cd` to the folder where you uploaded the *workstation_env.yml* file. For example, if you uploaded it to your user folder:
+    1. Go to the folder that contains the *workstation_env.yml* file. For example, if it's in your user folder:
 
         ```bash
         cd Users/myusername
         ```
 
-    1. Make sure the workstation_env.yml is in this folder.
+    1. Make sure *workstation_env.yml* is in this folder.
 
         ```bash
         ls
         ```
 
-    1. Create the environment based on the conda file provided. It takes a few minutes to build this environment.
+    1. Create the environment from the conda file. Building it takes a few minutes.
 
         ```bash
         conda env create -f workstation_env.yml
@@ -108,13 +108,13 @@ In order for your script to run, you need to be working in an environment config
         > [!NOTE]
         > If you see a CommandNotFoundError, follow instructions to run `conda init bash`, close the terminal, and open a new one. Then retry the `conda activate workstation_env` command.
 
-    1. Validate the correct environment is active, again looking for the environment marked with a *.
+    1. Confirm the environment is active. Look for the one marked with a *.
 
         ```bash
         conda env list
         ```
 
-    1. Create a new Jupyter kernel based on your active environment.
+    1. Create a Jupyter kernel based on the active environment.
 
         ```bash
         python -m ipykernel install --user --name workstation_env --display-name "Tutorial Workstation Env" 
@@ -122,38 +122,38 @@ In order for your script to run, you need to be working in an environment config
 
     1. Close the terminal window.
 
-You now have a new kernel. Next you'll open a notebook and use this kernel.
+You now have a new kernel. Next, open a notebook and use this kernel.
 
 ## Create a notebook
 
-1. On the top menu bar, select **File > New File**.
-1. Name your new file **develop-tutorial.ipynb** (or enter your preferred name). Make sure you use the **.ipynb** extension.
+1. Select **File > New File**.
+1. Name the file *develop-tutorial.ipynb* (or another name) and ensure it uses the *.ipynb* extension.
 
 ## Set the kernel
 
-1. On the top right, select **Select kernel**.
+1. In the toolbar, select **Select kernel**.
 1. Select **Azure ML compute instance (computeinstance-name)**.
-1. Select the kernel you created, **Tutorial Workstation Env**. If you don't see it, select the **Refresh** tool at the top right.
+1. Select the kernel you created (**Tutorial Workstation Env**). If it isn't listed, select **Refresh**.
 
 ## Develop a training script
 
-In this section, you develop a Python training script that predicts credit card default payments, using the prepared test and training datasets from the [UCI dataset](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
+Develop a Python training script that predicts credit card default payments by using the prepared training and test datasets from the [UCI dataset](https://archive.ics.uci.edu/ml/datasets/default+of+credit+card+clients).
 
-This code uses `sklearn` for training and MLflow for logging the metrics.
+This code uses `sklearn` for training and MLflow for logging metrics.
 
-1. Start with code that imports the packages and libraries you'll use in the training script.
+1. Import the packages and libraries for the training script.
 
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=import)]
 
-1. Next, load and process the data for this experiment. In this tutorial, you read the data from a file on the internet.
+1. Load and process the data for this experiment. Read the data from an online file.
 
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=load)]
 
-1. Get the data ready for training:
+1. Prepare the data for training.
 
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=extract)]
 
-1. Add code to start autologging with `MLflow`, so that you can track the metrics and results. With the iterative nature of model development, `MLflow` helps you log model parameters and results. Refer back to those runs to compare and understand how your model performs. The logs also provide context for when you're ready to move from the development phase to the training phase of your workflows within Azure Machine Learning.
+1. Start MLflow autologging to track metrics and results. MLflow logs model parameters and results. Use past runs to compare performance. The logs provide context when you're ready to move from development to training in Azure Machine Learning.
 
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=mlflow)]
 
@@ -162,11 +162,11 @@ This code uses `sklearn` for training and MLflow for logging the metrics.
     [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=gbt)]
 
     > [!NOTE]
-    > You can ignore the mlflow warnings. You'll still get all the results you need tracked.
+    > Ignore the MLflow warnings. The system still tracks all the results you need.
 
 ## Iterate 
 
-Now that you have model results, you might want to change something and try again. For example, try a different classifier technique:
+Now that you have model results, change something and run the model again. For example, try a different classification technique:
 
 [!notebook-python[] (~/azureml-examples-main/tutorials/get-started-notebooks/cloud-workstation.ipynb?name=ada)]
 
@@ -180,7 +180,7 @@ Now that you've tried two different models, use the results tracked by `MLFfow` 
 1. Return to your workspace in the [Azure Machine Learning studio](https://ml.azure.com).
 1. On the left navigation, select **Jobs**.
 
-    :::image type="content" source="media/tutorial-cloud-workstation/jobs.png" alt-text="Screenshot shows how to select Jobs in the navigation.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/jobs.png" alt-text="Screenshot of how to select Jobs in the navigation.":::
 
 1. Select the link for **Develop on cloud tutorial**.
 1. There are two different jobs shown, one for each of the models you tried. These names are autogenerated. As you hover over a name, use the pencil tool next to the name if you want to rename it. 
@@ -189,11 +189,11 @@ Now that you've tried two different models, use the results tracked by `MLFfow` 
 
 1. Select the **Metrics** tab to view the metrics that were logged by `MLflow`. (Expect your results to differ, as you have a different training set.)
 
-    :::image type="content" source="media/tutorial-cloud-workstation/metrics.png" alt-text="Screenshot shows metrics for a job.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/metrics.png" alt-text="Screenshot of metrics for a job.":::
 
 1. Select the **Images** tab to view the images generated by `MLflow`. 
 
-    :::image type="content" source="media/tutorial-cloud-workstation/images.png" alt-text="Screenshot shows images for a job.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/images.png" alt-text="Screenshot of images for a job.":::
 
 1. Go back and review the metrics and images for the other model.
 
@@ -219,11 +219,11 @@ For now, you're running this code on your compute instance, which is your Azure 
 
 1. Select the environment you created earlier in this tutorial as your Python version (workstations_env). In the lower right corner of the notebook, you'll see the environment name. Select it, then select the environment in the middle of the screen.
 
-    :::image type="content" source="media/tutorial-cloud-workstation/select-python.png" alt-text="Screenshot shows selecting the new environment.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/select-python.png" alt-text="Screenshot of selecting the new environment.":::
 
 1. Now run the Python script. Use the **Run Python File** tool on the top right.
 
-    :::image type="content" source="media/tutorial-cloud-workstation/run-python.png" alt-text="Screenshot shows the Run Python File tool at the top right of the screen.":::
+    :::image type="content" source="media/tutorial-cloud-workstation/run-python.png" alt-text="Screenshot of the Run Python File tool at the top right of the screen.":::
 
 > [!NOTE]
 > You can ignore the mlflow warnings. You'll still get all the metrics and images from autologging.
