@@ -79,7 +79,18 @@ This diagram provides a high-level overview of the workflow.
 
 ## Supported regions and languages
 
-Currently, video translation in Azure AI Speech is only supported in the East US region.
+Currently, video translation in Azure AI Speech is supported in the following regions:
+
+- East US
+- East US 2
+- Central US
+- North Central US
+- South Central US
+- West Central US
+- West US
+- West US 2
+- West US 3
+- West Europe
 
 We support video translation between various languages, enabling you to tailor your content to specific linguistic preferences. For the languages supported for video translation, refer to the [supported source and target languages](language-support.md?tabs=speech-translation#video-translation). 
 
