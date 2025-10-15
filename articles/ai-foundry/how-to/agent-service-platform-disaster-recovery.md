@@ -13,7 +13,6 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
 ---
 
-
 # Azure AI Foundry Agent Service platform outage recovery
 
 This article covers recovery from Azure platform incidents that take an entire region or a regional dependency offline; for example, a prolonged regional outage or loss of a stateful dependency.

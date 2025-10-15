@@ -13,7 +13,6 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
 ---
 
-
 # Azure AI Foundry Agent Service resource and data loss recovery
 
 This article covers recovery from human or automation-caused incidents that result in Azure resource or data loss for Azure AI Foundry Agent Service projects using the Standard deployment mode. Incidents include accidental deletion of Azure AI Foundry accounts or projects, deletion of agents or threads, and loss or corruption of state in Azure Cosmos DB, Azure AI Search, or Azure Storage supporting the capability host.

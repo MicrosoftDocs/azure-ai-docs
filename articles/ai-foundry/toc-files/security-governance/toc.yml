@@ -42,7 +42,7 @@ items:
       - name: Recover from an resource and data loss
         href: ../../how-to/agent-service-operator-disaster-recovery.md
   - name: Hub projects
-    href: ../../how-to/disaster-recovery.md
+    href: ../../how-to/hub-disaster-recovery.md
 - name: Security baseline
   href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
 - name: Hub Security & Governance

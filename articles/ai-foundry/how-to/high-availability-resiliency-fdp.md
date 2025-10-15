@@ -1,6 +1,5 @@
 ---
 title: High availability and resiliency for Azure AI Foundry projects and agent services
-titleSuffix: Azure AI Foundry
 description: Learn how to plan for high availability and resiliency for Azure AI Foundry projects and agent services.
 ms.service: azure-ai-foundry
 ms.topic: how-to

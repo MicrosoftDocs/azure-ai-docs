@@ -13,7 +13,6 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
 ---
 
-
 # Azure AI Foundry Agent Service disaster recovery
 
 This three-article series provides disaster recovery guidance for Azure AI Foundry Agent Service, focusing on the Standard deployment mode. It explains how to prepare Azure resources, execute recovery procedures, and identify failure scenarios you can't fully recover from.
