@@ -22,13 +22,7 @@ keywords:
 # customer intent: As a developer, I want to understand what Azure AI Foundry is so that I can use it to build AI applications.
 ---
 
-::: moniker range="foundry-classic"
-# What is Azure AI Foundry (classic)?
-::: moniker end
-
-::: moniker range="foundry"
 # What is Azure AI Foundry?
-::: moniker end
 
 [!INCLUDE [version-banner](includes/version-banner.md)]
 
