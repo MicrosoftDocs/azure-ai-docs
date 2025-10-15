@@ -20,9 +20,10 @@ This article describes an approach or pattern for building a solution that uses 
 
 :::image type="content" source="media/agentic-retrieval/agent-to-agent-pipeline.svg" alt-text="Diagram of Azure AI Search integration with Azure AI Agent service." lightbox="media/agentic-retrieval/agent-to-agent-pipeline.png" :::
 
-To run the code for this tutorial, download the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
-
 This exercise differs from the [Agentic Retrieval Quickstart](search-get-started-agentic-retrieval.md) in how it uses Azure AI Agent to retrieve data from the index, and how it uses an agent tool for orchestration. If you want to understand the retrieval pipeline in its simplest form, begin with the quickstart.
+
+< [!TIP]>
+> To run the code for this tutorial, download the [agentic-retrieval-pipeline-example](https://github.com/Azure-Samples/azure-search-python-samples/tree/main/agentic-retrieval-pipeline-example) Python sample on GitHub.
 
 ## Prerequisites
 
@@ -325,7 +326,7 @@ You can also delete individual objects:
 
 + [Delete a knowledge source](agentic-knowledge-source-how-to-search-index.md#delete-a-knowledge-source)
 
-+ [Delete an index](search-how-to-manage-index#delete-an-index)
++ [Delete an index](search-how-to-manage-index.md#delete-an-index)
 
 ## Related content
 
