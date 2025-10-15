@@ -40,7 +40,10 @@ Create an agent in the Azure AI Foundry portal.  Once you create the agent, you 
 1. [!INCLUDE [version-sign-in](version-sign-in.md)]
 1. The project you are working on appears in the upper-left corner.  
 1. To create a new project, select the project name, then **All resources**, then **Create project**.
-1. Select  **Build** in the middle of the page, then **New agent**.
+1. Select  **Build** in the middle of the page, then **Agent**.
+
+    :::image type="content" source="../media/quickstarts/build-agent.png" alt-text="Screenshot showing how to start building an agent in the Azure AI Foundry portal.":::
+
 1. Give your agent a name or keep the default name, then select **Create**.
 1. An agent is created along with a model deployed into your project.
 
