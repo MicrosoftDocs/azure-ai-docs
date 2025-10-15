@@ -10,9 +10,15 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Use vision-enabled chat models
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 
 Vision-enabled chat models are large multimodal models (LMM) developed by OpenAI that can analyze images and provide textual responses to questions about them. They incorporate both natural language processing and visual understanding. The current vision-enabled models are the [o-series reasoning models](./reasoning.md), GPT-5 series, GPT-4.1 series, GPT-4.5, GPT-4o series, and GPT-4 Turbo with Vision.

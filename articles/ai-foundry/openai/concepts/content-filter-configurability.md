@@ -8,8 +8,12 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Content filter configurability
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [content-filter-configurability](../includes/content-filter-configurability.md)]

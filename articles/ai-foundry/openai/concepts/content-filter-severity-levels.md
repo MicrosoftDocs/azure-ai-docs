@@ -8,9 +8,15 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Content filtering severity levels
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 <!--
 Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.

@@ -10,17 +10,16 @@ ms.topic: quickstart
 author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/16/2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 zone_pivot_groups: openai-quickstart-dall-e
 ---
 
 # Quickstart: Generate images with Azure OpenAI in Azure AI Foundry Models
 
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
-::: zone pivot="programming-language-studio"
 
-[!INCLUDE [Portal quickstart](includes/dall-e-studio.md)]
-
-::: zone-end
 
 ::: zone pivot="rest-api"
 

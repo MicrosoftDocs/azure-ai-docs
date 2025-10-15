@@ -10,9 +10,13 @@ ms.topic: conceptual
 ms.date: 09/16/2025
 ms.custom: template-concept, devx-track-python
 manager: nitinme
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Content filtering overview
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Azure OpenAI includes a content filtering system that works alongside core models, including image generation models. This system runs both the prompt and completion through a set of classification models designed to detect and prevent the output of harmful content. The content filtering system detects and takes action on specific categories of potentially harmful content in both input prompts and output completions. Variations in API configurations and application design might affect completions and thus filtering behavior.
 

@@ -8,9 +8,15 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Document embedding in prompts
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Azure OpenAI's content filtering system performs better when it can differentiate between the various elements of your prompt, like system input, user input, and the AI assistant's output. For enhanced detection capabilities, prompts should be formatted according to the following recommended methods.
 

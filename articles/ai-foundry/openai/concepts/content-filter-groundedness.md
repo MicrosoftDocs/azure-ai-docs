@@ -6,9 +6,15 @@ ms.author: pafarley
 ms.date: 09/16/2025
 ms.topic: conceptual  
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-openai  
+ms.subservice: azure-ai-foundry-openai
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Groundedness detection filter
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 [!INCLUDE [groundedness-detection-overview](../../../ai-services/content-safety/includes/groundedness-detection-overview.md)]

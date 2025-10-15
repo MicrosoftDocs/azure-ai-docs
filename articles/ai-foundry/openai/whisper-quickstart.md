@@ -12,9 +12,15 @@ ms.author: pafarley
 author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-ps-py-js-cs
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model
+
+
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This quickstart explains how to use the [Azure OpenAI Whisper model](../../ai-services/speech-service/whisper-overview.md) for speech to text conversion. The Whisper model can transcribe human speech in numerous languages, and it can also translate other languages into English.
 
