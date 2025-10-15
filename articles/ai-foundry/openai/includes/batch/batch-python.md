@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Azure OpenAI model global batch Python
 manager: nitinme
 ms.date: 10/15/2024
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
@@ -12,7 +13,7 @@ ms.custom:
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * Python 3.8 or later version
 * The following Python library: `openai`
 * [Jupyter Notebooks](https://jupyter.org/)

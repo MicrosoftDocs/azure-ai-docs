@@ -25,7 +25,7 @@ This article shows you how to create, retrieve, update, and deactivate schedules
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/free/) before you begin. 
+- An Azure subscription. If you don't have one, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. 
 - An Azure Machine Learning workspace. To create a workspace, see [Create workspace resources](quickstart-create-resources.md).
 - An understanding of Azure Machine Learning pipelines. For information, see [What are machine learning pipelines](concept-ml-pipelines.md).
 

@@ -78,7 +78,7 @@ sections:
         answer: |
           **Yes.**
 
-          You need an active [Azure account](https://azure.microsoft.com/free/cognitive-services/) and subscription with at least a Reader role to access Document Intelligence Studio.
+          You need an active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and subscription with at least a Reader role to access Document Intelligence Studio.
 
           For document analysis and prebuilt models, here are the role requirements for user scenarios:
 

@@ -14,6 +14,7 @@ ms.custom:
   - devx-track-azurecli
   - ignite-2023
   - sfi-ropc-nochange
+ms.update-cycle: 365-days
 ---
 
 # Deploy a flow to online endpoint for real-time inference with CLI

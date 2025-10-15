@@ -30,7 +30,7 @@ This tutorial shows you how to index Markdown files indexed using the `oneToMany
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + [Azure Storage](/azure/storage/common/storage-account-create).
 
@@ -304,7 +304,7 @@ You only need fields for the Markdown elements that the parser supports. These f
 
 - `ordinal_position`: An integer value that indicates the position of the section within the document hierarchy. This field is used for ordering the sections in their original sequence as they appear in the document, beginning with an ordinal position of 1 and incrementing sequentially for each content block.
 
-This implementation uses [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information about the parsed one-to-many document structure, see [Index Markdown blobs](search-how-to-index-markdown-blobs.md).
+This implementation uses [field mappings](search-indexer-field-mappings.md) in the indexer to map from the enriched content to the index. For more information about the parsed one-to-many document structure, see [Index Markdown blobs](search-how-to-index-azure-blob-markdown.md).
 
 This example provides samples of how to index data both with and without field mappings. In this case, we know that `h1` contains the title of the document, so we can map it to a field named `title`. We'll also be mapping the `h2` and `h3` fields to `h2_subheader` and `h3_subheader`, respectively. The `content` and `ordinal_position` fields require no mapping because they're extracted from the Markdown directly into fields using those names. For an example of a full index schema that doesn't require field mappings, see the end of this section.
 
@@ -570,4 +570,4 @@ You can use the Azure portal to delete indexes, indexers, and data sources.
 Now that you're familiar with the basics of Azure Blob indexing, take a closer look at indexer configuration for Markdown blobs in Azure Storage:
 
 > [!div class="nextstepaction"]
-> [Configure Markdown blob indexing](search-how-to-index-markdown-blobs.md)
+> [Configure Markdown blob indexing](search-how-to-index-azure-blob-markdown.md)

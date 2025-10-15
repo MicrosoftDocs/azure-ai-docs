@@ -1,10 +1,10 @@
 ---
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 7/31/2025
+ms.date: 9/26/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using Python code. 
@@ -162,11 +162,11 @@ client = AsyncAzureVoiceLive(
     # This is the main function to run the Voice Live API client.
     def main() -> None: 
         # Set environment variables or edit the corresponding values here.
-        endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
+        endpoint = os.environ.get("AZURE_VOICELIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
         agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "<your-agent-id>"
         project_name = os.environ.get("AI_FOUNDRY_PROJECT_NAME") or "<your-project-name>"
-        api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
-        api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "<your-api-key>"
+        api_version = os.environ.get("AZURE_VOICELIVE_API_VERSION") or "2025-10-01"
+        api_key = os.environ.get("AZURE_VOICELIVE_API_KEY") or "<your-api-key>"
     
         # For the recommended keyless authentication, get and
         # use the Microsoft Entra token instead of api_key:
@@ -669,7 +669,7 @@ The `voicelive.log` file contains information about the connection to the Voice 
 
 ```text
 2025-07-29 09:43:32,574:websockets.client:DEBUG:= connection is CONNECTING
-2025-07-29 09:43:32,825:websockets.client:DEBUG:> GET /voice-live/realtime?api-version=2025-05-01-preview&agent-project-name=contoso-proj-agentic&agent-id=<your-agent-id>&agent-access-token=<your-token>&debug=on HTTP/1.1
+2025-07-29 09:43:32,825:websockets.client:DEBUG:> GET /voice-live/realtime?api-version=2025-10-01&agent-project-name=contoso-proj-agentic&agent-id=<your-agent-id>&agent-access-token=<your-token>&debug=on HTTP/1.1
 2025-07-29 09:43:32,825:websockets.client:DEBUG:> Host: your-ai-foundry-resource.cognitiveservices.azure.com
 2025-07-29 09:43:32,825:websockets.client:DEBUG:> Upgrade: websocket
 2025-07-29 09:43:32,825:websockets.client:DEBUG:> Connection: Upgrade
@@ -861,11 +861,11 @@ connection_queue = queue.Queue()
 # This is the main function to run the Voice Live API client.
 def main() -> None: 
     # Set environment variables or edit the corresponding values here.
-    endpoint = os.environ.get("AZURE_VOICE_LIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
+    endpoint = os.environ.get("AZURE_VOICELIVE_ENDPOINT") or "<https://your-endpoint.azure.com/>"
     agent_id = os.environ.get("AI_FOUNDRY_AGENT_ID") or "<your-agent-id>"
     agent_connection_string = os.environ.get("AI_FOUNDRY_AGENT_CONNECTION_STRING") or "<your-agent-connection-string>"
-    api_version = os.environ.get("AZURE_VOICE_LIVE_API_VERSION") or "2025-05-01-preview"
-    api_key = os.environ.get("AZURE_VOICE_LIVE_API_KEY") or "<your-api-key>"
+    api_version = os.environ.get("AZURE_VOICELIVE_API_VERSION") or "2025-10-01"
+    api_key = os.environ.get("AZURE_VOICELIVE_API_KEY") or "<your-api-key>"
 
     # For the recommended keyless authentication, get and
     # use the Microsoft Entra token instead of api_key:

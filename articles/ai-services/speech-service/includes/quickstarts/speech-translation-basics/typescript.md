@@ -67,8 +67,8 @@ To translate speech from a file:
         TranslationRecognitionResult 
     } from "microsoft-cognitiveservices-speech-sdk";
     
-    // This example requires environment variables named "SPEECH_KEY" and "SPEECH_REGION"
-    const speechTranslationConfig: SpeechTranslationConfig = SpeechTranslationConfig.fromSubscription(process.env.SPEECH_KEY!, process.env.SPEECH_REGION!);
+    // This example requires environment variables named "ENDPOINT" and "SPEECH_KEY"
+    const speechTranslationConfig: SpeechTranslationConfig = SpeechTranslationConfig.fromEndpoint(new URL(process.env.ENDPOINT!), process.env.SPEECH_KEY!);
     speechTranslationConfig.speechRecognitionLanguage = "en-US";
     
     const language = "it";

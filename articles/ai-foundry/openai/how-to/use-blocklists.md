@@ -3,7 +3,8 @@ title: 'How to use blocklists with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
 description: Learn how to use blocklists with Azure OpenAI
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 09/16/2025
 author: PatrickFarley

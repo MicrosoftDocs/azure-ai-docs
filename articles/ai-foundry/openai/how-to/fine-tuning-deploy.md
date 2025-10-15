@@ -3,7 +3,8 @@ title: 'Deploy a fine-tuned model'
 titleSuffix: Azure OpenAI
 description: Learn how to deploy your fine-tuned model with Azure OpenAI in Azure AI Foundry Models by using Python, the REST APIs, or Azure AI Foundry portal.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: build-2023, build-2023-dataai, devx-track-python, references_regions
 ms.topic: how-to
 ms.date: 07/25/2025
@@ -17,7 +18,7 @@ Once your model is fine-tuned, you can deploy the model and can use it in your o
 
 When you deploy the model, you make the model available for inferencing, and that incurs an hourly hosting charge. Fine-tuned models, however, can be stored in Azure AI Foundry at no cost until you're ready to use them.
 
-Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](./deployment-types.md).
+Azure OpenAI provides choices of deployment types for fine-tuned models on the hosting structure that fits different business and usage patterns: **Standard**, **Global Standard** (preview) and **Provisioned Throughput** (preview). Learn more about [deployment types for fine-tuned models](#deployment-types) and the [concepts of all deployment types](../../foundry-models/concepts/deployment-types.md).
 
 ## Deploy your fine-tuned model
 
@@ -361,7 +362,7 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 ### Standard
 
-[Standard deployments](./deployment-types.md#standard) provide a pay-per-token billing model with data residency confined to the deployed region.
+[Standard deployments](../../foundry-models/concepts/deployment-types.md) provide a pay-per-token billing model with data residency confined to the deployed region.
 
 | Models             | East US2 | North Central US | Sweden Central | Switzerland West |
 |--------------------|:--------:|:----------------:|:--------------:|:----------------:|
@@ -376,7 +377,7 @@ Azure OpenAI fine-tuning supports the following deployment types.
 
 ### Global Standard
 
-[Global standard](./deployment-types.md#global-standard) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
+[Global standard](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [cost savings](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/), but custom model weights may temporarily be stored outside the geography of your Azure OpenAI resource.
 
 Global standard deployments are available from all Azure OpenAI regions for the following models:
 
@@ -391,7 +392,7 @@ Global standard deployments are available from all Azure OpenAI regions for the 
 
 ### Developer Tier
 
-[Developer](./deployment-types.md#developer-for-fine-tuned-models) fine-tuned deployments offer a similar experience as [Global Standard](#global-standard) without an hourly hosting fee, but do not offer an availability SLA. Developer deployments are designed for model candidate evaluation and not for production use.
+[Developer](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer a similar experience as [Global Standard](#global-standard) without an hourly hosting fee, but do not offer an availability SLA. Developer deployments are designed for model candidate evaluation and not for production use.
 
 Developer deployments are available from all Azure OpenAI regions for the following models:
 
@@ -408,7 +409,7 @@ Developer deployments are available from all Azure OpenAI regions for the follow
 | GPT-4o       | ✅               | ✅             |
 | GPT-4o-mini  | ✅               | ✅             |
 
-[Provisioned throughput](./deployment-types.md#regional-provisioned) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
+[Provisioned throughput](../../foundry-models/concepts/deployment-types.md) fine-tuned deployments offer [predictable performance](../concepts/provisioned-throughput.md) for latency-sensitive agents and applications. They use the same regional provisioned throughput (PTU) capacity as base models, so if you already have regional PTU quota you can deploy your fine-tuned model in support regions.
 
 ## Clean up your deployment
 
@@ -432,4 +433,4 @@ You can also delete a deployment in Azure AI Foundry portal, or use [Azure CLI](
 ## Next steps
 
 - [Azure OpenAI Quotas & limits](./quota.md)
-- [Azure OpenAI deployment types](./deployment-types.md)
+- [Azure OpenAI deployment types](../../foundry-models/concepts/deployment-types.md)

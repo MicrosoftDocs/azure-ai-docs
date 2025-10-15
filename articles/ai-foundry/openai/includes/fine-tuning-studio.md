@@ -6,7 +6,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.date: 02/27/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
@@ -194,12 +195,12 @@ The following hyperparameters are available for tuning via the Azure AI Foundry 
 
 ### Enable auto deployment (optional)
 
-To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../how-to/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
+To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../../foundry-models/concepts/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
 
 :::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the auto-deployment toggle in the Create custom model wizard in Azure AI Foundry portal.":::
 
 > [!NOTE]
-> Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../how-to/deployment-types.md) documentation for more details.
+> Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../../foundry-models/concepts/deployment-types.md) documentation for more details.
 
 ### Review your choices and train your model
 

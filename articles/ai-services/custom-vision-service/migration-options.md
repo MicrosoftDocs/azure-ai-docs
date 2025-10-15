@@ -1,7 +1,7 @@
 ---
 title: Migrate from Custom Vision Service
 description: Guidance for migrating from Azure Custom Vision Service to alternative solutions before its retirement in September 2028.
-author: pafarley
+author: PatrickFarley
 ms.author: pafarley
 ms.date: 09/24/2025
 ms.topic: how-to
@@ -13,7 +13,7 @@ ms.custom: ai-migration, vision
 
 The Custom Vision Service will be retired on September 25, 2028, after which calls made to the service will fail. Microsoft will provide full support for all existing Azure Custom Vision customers until 9/25/2028, but to ensure business continuity and minimize disruption, customers are encouraged to begin planning their migration to alternative solutions that best meet their scenario requirements. This document provides comprehensive guidance for evaluating, selecting, and transitioning to new services.
 
-## Migration Preparation Checklist
+## Migration preparation checklist
 
 1.	Assess current usage and dependencies on Custom Vision Service.
 2.	Identify business scenarios and technical requirements for image classification and object detection.
@@ -32,9 +32,9 @@ To create both custom image classification and object detection models using tra
 * **Best for**: Customers seeking to apply classic machine learning techniques
 * **Features**: Offers a code-first experience, as well as a no-code studio web experience similar to Custom Vision. It offers the ability to easily train custom image classification and object detection models on your image data.
 * **Learn more** about Azure Machine Learning AutoML:
-    * [What is automated machine learning?]()
-    * [Set up no-code Automated ML training for tabular data with the studio UI]()
-    * [Set up AutoML to train computer vision models]()
+    * [What is automated machine learning?](../../machine-learning/concept-automated-ml.md)
+    * [Set up no-code Automated ML training for tabular data with the studio UI](../../machine-learning/how-to-use-automated-ml-for-ml-models.md)
+    * [Set up AutoML to train computer vision models](../../machine-learning/how-to-auto-train-image-models.md) 
 
 ### Generative AI-based solutions
 Microsoft is also investing in Generative AI-based solutions that increase accuracy in custom scenarios using prompt engineering and other techniques.
@@ -44,16 +44,16 @@ Microsoft is also investing in Generative AI-based solutions that increase accur
 * **Best for**: Customers who are flexible in their approach to creating a solution for customized vision capabilities.
 *	**Features**: Flexibility to build custom solutions based on different Generative AI models.
 *	**Learn more** about Generative AI models in the Azure AI Foundry: 
-    *	[Explore Azure AI Foundry Models]()
-    *	[Azure OpenAI in Azure AI Foundry models]()
+    *	[Explore Azure AI Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
+    *	[Azure OpenAI in Azure AI Foundry models](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard&pivots=azure-openai#azure-openai-in-azure-ai-foundry-models)
 
 #### Azure AI Content Understanding (preview)
 * **Best for**: Customers who want a managed generative solution for image classification
 * **Features**: Content Understanding offers the ability to create custom classification workflows. It also supports processing unstructured data of any type (image, documents, audio, video) and extracting structured insights based on pre-defined or user-defined formats.
 * **Learn more** about Content Understanding:
-    * [What is Azure AI Content Understanding?]()
-    * [Azure AI Content Understanding image solutions (preview)]()
-    * [Content Understanding classifier]()
+    * [What is Azure AI Content Understanding?](../content-understanding/overview.md)
+    * [Azure AI Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
+    * [Content Understanding classifier](../content-understanding/concepts/classifier.md)
 
 ## Data migration guidance
 Before you migrate services, export your labeled datasets and model metadata from Custom Vision Service. Review the data formats required by your chosen alternative and convert as needed.

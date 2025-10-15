@@ -2,7 +2,8 @@
 manager: nitinme
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 02/09/2024
 ---

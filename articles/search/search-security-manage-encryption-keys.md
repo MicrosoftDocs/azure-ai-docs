@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/01/2025
+ms.date: 09/18/2025
 ms.update-cycle: 365-days
 ms.custom:
   - references_regions
@@ -26,7 +26,9 @@ You can store keys using either:
 + Azure Key Vault Managed HSM (Hardware Security Module). An Azure Key Vault Managed HSM is an FIPS 140-2 Level 3 validated HSM. HSM support is new in Azure AI Search. To migrate from Azure Key Vault to HSM, [rotate your keys](#rotate-or-update-encryption-keys) and choose Managed HSM for storage.
 
 > [!IMPORTANT]
-> CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
+> + CMK provides encryption for data at rest. If you need to protect data in use, consider using [confidential computing](search-security-overview.md#data-in-use).
+>
+> + CMK encryption is irreversible. You can rotate keys and change CMK configuration, but index encryption lasts for the lifetime of the index. Post-CMK encryption, an index is only accessible if the search service has access to the key. If you revoke access to the key by deleting or changing role assignment, the index is unusable and the service can't be scaled until the index is deleted or access to the key is restored. If you delete or rotate keys, the most recent key is cached for up to 60 minutes.
 
 ## CMK encrypted objects
 
@@ -48,7 +50,7 @@ Although you can't add encryption to an existing object, once an object is confi
 
 + [Azure AI Search](search-create-service-portal.md) on a [billable tier](search-sku-tier.md#tier-descriptions) (Basic or higher, in any region).
 
-+ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription, but it must be in the same tenant as Azure AI Search.
++ [Azure Key Vault](/azure/key-vault/general/overview) and a key vault with **soft-delete** and **purge protection** enabled. Or, [Azure Key Vault Managed HSM](/azure/key-vault/managed-hsm/overview). This resource can be in any subscription and in a different tenant. These instructions assume a single tenant. For cross-tenant configuration, see [Configure customer-managed keys across different tenants](search-security-managed-encryption-cross-tenant.md).
 
 + Ability to set up permissions for key access and to assign roles. To create keys, you must be **Key Vault Crypto Officer** in Azure Key Vault or **Managed HSM Crypto Officer** in Azure Key Vault Managed HSM.
 
@@ -155,7 +157,7 @@ Wait a few minutes for the role assignment to become operational.
 
 ## Step 4: Encrypt content
 
-Encryption occurs when you create or update an object. You can use the Azure portal for selected objects. For any object, use the [Search REST API](/rest/api/searchservice/) or an Azure SDK. Review the [Python example](#python-example-of-an-encryption-key-configuration) in this article to see how content is encrypted programmatically.
+Encryption occurs when you create or update an object. You can use the Azure portal for select objects. For all objects, use the [Search Service REST APIs](/rest/api/searchservice/) or an Azure SDK.
 
 ### [**Azure portal**](#tab/portal)
 
@@ -245,14 +247,147 @@ In the Azure portal, skillsets are defined in JSON view. Use the JSON shown in t
 
 1. Verify the object is operational by performing a task, such as query an index that's encrypted.
 
-Once you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
+After you create the encrypted object on the search service, you can use it as you would any other object of its type. Encryption is transparent to the user and developer.
 
 None of these key vault details are considered secret and could be easily retrieved by browsing to the relevant Azure Key Vault page in Azure portal.
 
-> [!Important]
-> Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
+### [**Python**](#tab/python)
+
+This example shows the Python representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
+
+1. Install some packages.
+
+    ```python
+    ! pip install python-dotenv
+    ! pip install azure-core
+    ! pip install azure-search-documents==11.5.1
+    ! pip install azure-identity
+    ```
+
+1. Create an index that has an encryption key.
+
+    ```python
+    from azure.search.documents.indexes import SearchIndexClient
+    from azure.search.documents.indexes.models import (
+    SimpleField,
+    SearchFieldDataType,
+    SearchableField,
+    SearchIndex,
+    SearchResourceEncryptionKey
+    )
+    from azure.identity import DefaultAzureCredential
+
+    endpoint="<PUT YOUR AZURE SEARCH SERVICE ENDPOINT HERE>"
+    credential = DefaultAzureCredential()
+
+    index_name = "test-cmk-index"
+    index_client = SearchIndexClient(endpoint=endpoint, credential=credential)
+    fields = [
+    SimpleField(name="Id", type=SearchFieldDataType.String, key=True),
+    SearchableField(name="Description", type=SearchFieldDataType.String)
+    ]
+
+    scoring_profiles = []
+    suggester = []
+    encryption_key = SearchResourceEncryptionKey(
+    key_name="<PUT YOUR KEY VAULT NAME HERE>",
+    key_version="<PUT YOUR ALPHANUMERIC KEY VERSION HERE>",
+    vault_uri
+    )
+    
+    index = SearchIndex(name=index_name, fields=fields, encryption_key=encryption_key)
+    result = index_client.create_or_update_index(index)
+    print(f' {result.name} created')
+    ```
+
+1. Get the index definition to verify encryption key configuration exists.
+
+    ```python
+    index_name = "test-cmk-index-qs"
+    index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
+        
+    result = index_client.get_index(index_name)  
+    print(f"{result}")  
+    ```
+
+1. Load the index with a few documents. All field content is considered sensitive and is encrypted on disk using your customer managed key.
+
+    ```python
+    from azure.search.documents import SearchClient
+    
+    # Create a documents payload
+    documents = [
+        {
+        "@search.action": "upload",
+        "Id": "1",
+        "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
+        },
+        {
+        "@search.action": "upload",
+        "Id": "2",
+        "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
+        },
+        {
+        "@search.action": "upload",
+        "Id": "3",
+        "Description": "The hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services."
+        },
+        {
+        "@search.action": "upload",
+        "Id": "4",
+        "Description": "The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
+        }
+    ]
+    
+    search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, index_name=index_name, credential=credential)
+    try:
+        result = search_client.upload_documents(documents=documents)
+        print("Upload of new document succeeded: {}".format(result[0].succeeded))
+    except Exception as ex:
+        print (ex.message)
+    
+        index_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)
+    ```
+
+1. Run a query to confirm the index is operational.
+
+    ```python
+    from azure.search.documents import SearchClient
+    
+    query = "historic"  
+    
+    search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
+      
+    results = search_client.search(  
+        query_type='simple',
+        search_text=query, 
+        select=["Id", "Description"],
+        include_total_count=True
+        )
+      
+    for result in results:  
+        print(f"Score: {result['@search.score']}")
+        print(f"Id: {result['Id']}")
+        print(f"Description: {result['Description']}")
+    ```
+
+    Output from the query should produce results similar to the following example.
+
+    ```
+    Score: 0.6130029
+    Id: 4
+    Description: The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.
+    Score: 0.26286605
+    Id: 1
+    Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
+    ```
+
+    Since encrypted content is decrypted prior to data refresh or queries, you won't see visual evidence of encryption. To verify encryption is working, check the resource logs.
 
 ---
+
+> [!Important]
+> Encrypted content in Azure AI Search is configured to use a specific key with a specific *version*. If you change the key or version, the object must be updated to use it **before** you delete the previous one. Failing to do so renders the object unusable. You won't be able to decrypt the content if the key is lost.
 
 ## Step 5: Test encryption
 
@@ -427,148 +562,15 @@ For performance reasons, the search service caches the key for up to several hou
 
 ## Work with encrypted content
 
-With CMK encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging. 
+With CMK encryption, you might notice latency for both indexing and queries due to the extra encrypt/decrypt work. Azure AI Search doesn't log encryption activity, but you can monitor key access through key vault logging.
 
 We recommend that you [enable logging](/azure/key-vault/general/logging) as part of key vault configuration.
 
 1. [Create a log analytics workspace](/azure/azure-monitor/logs/quick-create-workspace).
 
-1. [Add a diagnostic setting in key vault](/azure/key-vault/general/howto-logging) that uses the workspace for data retention. 
+1. [Add a diagnostic setting in key vault](/azure/key-vault/general/howto-logging) that uses the workspace for data retention.
 
 1. Select **audit** or **allLogs** for the category, give the diagnostic setting a name, and then save it.
-
-## Python example of an encryption key configuration
-
-This section shows the Python representation of an `encryptionKey` in an object definition. The same definition applies to indexes, data sources, skillets, indexers, and synonym maps. To try this example on your search service and key vault, download the notebook from [azure-search-python-samples](https://github.com/Azure-Samples/azure-search-python-samples).
-
-Install some packages.
-
-```python
-! pip install python-dotenv
-! pip install azure-core
-! pip install azure-search-documents==11.5.1
-! pip install azure-identity
-```
-
-Create an index that has an encryption key.
-
-```python
-from azure.search.documents.indexes import SearchIndexClient
-from azure.search.documents.indexes.models import (
-    SimpleField,
-    SearchFieldDataType,
-    SearchableField,
-    SearchIndex,
-    SearchResourceEncryptionKey
-)
-from azure.identity import DefaultAzureCredential
-
-endpoint="<PUT YOUR AZURE SEARCH SERVICE ENDPOINT HERE>"
-credential = DefaultAzureCredential()
-
-index_name = "test-cmk-index"
-index_client = SearchIndexClient(endpoint=endpoint, credential=credential)  
-fields = [
-        SimpleField(name="Id", type=SearchFieldDataType.String, key=True),
-        SearchableField(name="Description", type=SearchFieldDataType.String)
-    ]
-
-scoring_profiles = []
-suggester = []
-encryption_key = SearchResourceEncryptionKey(
-    key_name="<PUT YOUR KEY VAULT NAME HERE>",
-    key_version="<PUT YOUR ALPHANUMERIC KEY VERSION HERE>",
-    vault_uri="<PUT YOUR KEY VAULT ENDPOINT HERE>"
-)
-
-index = SearchIndex(name=index_name, fields=fields, encryption_key=encryption_key)
-result = index_client.create_or_update_index(index)
-print(f' {result.name} created')
-```
-
-Get the index definition to verify encryption key configuration exists.
-
-```python
-index_name = "test-cmk-index-qs"
-index_client = SearchIndexClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)  
-
-result = index_client.get_index(index_name)  
-print(f"{result}")  
-```
-
-Load the index with a few documents. All field content is considered sensitive and is encrypted on disk using your customer managed key.
-
-```python
-from azure.search.documents import SearchClient
-
-# Create a documents payload
-documents = [
-    {
-    "@search.action": "upload",
-    "Id": "1",
-    "Description": "The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities."
-    },
-    {
-    "@search.action": "upload",
-    "Id": "2",
-    "Description": "The hotel is situated in a  nineteenth century plaza, which has been expanded and renovated to the highest architectural standards to create a modern, functional and first-class hotel in which art and unique historical elements coexist with the most modern comforts."
-    },
-    {
-    "@search.action": "upload",
-    "Id": "3",
-    "Description": "The hotel stands out for its gastronomic excellence under the management of William Dough, who advises on and oversees all of the Hotel's restaurant services."
-    },
-    {
-    "@search.action": "upload",
-    "Id": "4",
-    "Description": "The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace."
-    }
-]
-
-search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, index_name=index_name, credential=credential)
-try:
-    result = search_client.upload_documents(documents=documents)
-    print("Upload of new document succeeded: {}".format(result[0].succeeded))
-except Exception as ex:
-    print (ex.message)
-
-    index_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential)
-```
-
-Run a query to confirm the index is operational.
-
-```python
-from azure.search.documents import SearchClient
-
-query = "historic"  
-
-search_client = SearchClient(endpoint=AZURE_SEARCH_SERVICE, credential=credential, index_name=index_name)
-  
-results = search_client.search(  
-    query_type='simple',
-    search_text=query, 
-    select=["Id", "Description"],
-    include_total_count=True
-    )
-  
-for result in results:  
-    print(f"Score: {result['@search.score']}")
-    print(f"Id: {result['Id']}")
-    print(f"Description: {result['Description']}")
-```
-
-Output from the query should produce results similar to the following example.
-
-```
-Score: 0.6130029
-Id: 4
-Description: The hotel is located in the heart of the historic center of Sublime in an extremely vibrant and lively area within short walking distance to the sites and landmarks of the city and is surrounded by the extraordinary beauty of churches, buildings, shops and monuments. Sublime Palace is part of a lovingly restored 1800 palace.
-Score: 0.26286605
-Id: 1
-Description: The hotel is ideally located on the main commercial artery of the city in the heart of New York. A few minutes away is Time's Square and the historic centre of the city, as well as other places of interest that make New York one of America's most attractive and cosmopolitan cities.
-```
-
-Since encrypted content is decrypted prior to data refresh or queries, you won't see visual evidence of encryption. To verify encryption is working, check the resource logs.
 
 ## Next steps
 
