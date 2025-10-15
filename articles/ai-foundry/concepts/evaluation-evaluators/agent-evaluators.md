@@ -32,7 +32,7 @@ Besides `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence` specific to agen
 - **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
 - **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
 
-In this article we show examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of using other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents).
+In this article, we show examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of using other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents).
 
 ## Model configuration for AI-assisted evaluators
 
@@ -59,7 +59,7 @@ We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
 | `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| Other quality evaluators| Not Supported | Supported | -- |
+| Other quality evaluators| Not Supported | Supported |--|
 
 For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
@@ -82,7 +82,7 @@ intent_resolution(
 
 ### Intent resolution output
 
-The numerical score is on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason and additional fields can help you understand why the score is high or low.
+The numerical score is on a Likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason and other fields can help you understand why the score is high or low.
 
 ```python
 {
@@ -124,7 +124,7 @@ If you're building agents outside of Azure AI Foundry Agent Service, this evalua
 - OpenAPI
 - Function Tool (user-defined tools)
 
-However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It's recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
+However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tools isn't supported, for ease of filtering out these cases. We recommend that you wrap non-supported tools as user-defined tools to enable evaluation.
 
 ### Tool call accuracy example
 
@@ -271,7 +271,7 @@ If you're building agents outside of Azure AI Agent Service, this evaluator acce
 
 ## Task adherence
 
-In various task-oriented AI systems such as agentic systems, it's important to assess whether the agent has stayed on track to complete a given task instead of making inefficient or out-of-scope steps. `TaskAdherenceEvaluator` measures how well an agent's response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. Higher score means better adherence of the system instruction to resolve the given task.
+In various task-oriented AI systems such as agentic systems, it's important to assess whether the agent stays on track to complete a given task instead of making inefficient or out-of-scope steps. `TaskAdherenceEvaluator` measures how well an agent's response adheres to their assigned tasks, according to their task instruction (extracted from system message and user query), and available tools. Higher score means better adherence of the system instruction to resolve the given task.
 
 ### Task adherence example
 
