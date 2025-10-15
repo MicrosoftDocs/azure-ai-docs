@@ -5,7 +5,7 @@ description: Learn how to generate chat completions with Azure AI Foundry Models
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-model-inference
 ms.topic: include
-ms.date: 08/27/2025
+ms.date: 10/15/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: balapv
@@ -14,9 +14,7 @@ ms.custom: references_regions, tool_generated
 zone_pivot_groups: azure-ai-inference-samples
 ---
 
-[!INCLUDE [Feature preview](~/reusable-content/ce-skilling/azure/includes/ai-studio/includes/feature-preview.md)]
-
-This article explains how to use the chat completions API with models deployed in Azure AI Foundry Models.
+This article explains how to use the chat completions API with AI Foundry Model deployments.
 
 ## Prerequisites
 
@@ -29,13 +27,15 @@ To use chat completion models in your application, you need:
 
 ## Use chat completions
 
-For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../../openai/supported-languages.md), however, the v1 API also allows you to make chat completions calls with models from other Models sold directly by Azure, such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
+For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../../openai/supported-languages.md), however, the v1 API also allows you to make chat completions calls with other [Foundry Models sold directly by Azure](../../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
 
 In the following examples, you first create the client to consume the model. Then, create a basic request to the model. When you're creating the client, `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
+[Python v1 examples](../../../openai/supported-languages.md).
+
 ### Use the chat completions API
 
-The following code uses an endpoint URL and **API Key** that are stored in environment variables to create the client.
+The following code uses an endpoint URL and **API key** that are stored in environment variables to create the client.
 
 ```python
 import os
@@ -62,17 +62,17 @@ print(completion.model_dump_json(indent=2))
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `api-version` is no longer a required parameter with the v1 GA API.
 
-**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```python
 client = OpenAI()
 ```
 
 
-The following code uses **Microsoft Entra ID** to create the client.
+Alternatively, you could use **Microsoft Entra ID** to create the client as follows.
 
 > [!IMPORTANT]
-> Handling automatic token refresh was previously handled through use of the `AzureOpenAI()` client. The v1 API removes this dependency, by adding automatic token refresh support to the `OpenAI()` client.
+> Automatic token refresh handling was previously done through use of the `AzureOpenAI()` client. The v1 API removes this dependency by adding automatic token refresh support to the `OpenAI()` client.
 
 ```python
 from openai import OpenAI
@@ -102,9 +102,9 @@ print(completion.model_dump_json(indent=2))
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
 - `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 
-### Using the responses API
+### Use the responses API
 
-This code shows how to ese an Azure OpenAI model with the recommended [Responses API](../../../openai/supported-languages.md).
+This code shows how to use an Azure OpenAI model with the recommended [Responses API](../../../openai/supported-languages.md).
 
 ```python
 from openai import OpenAI
