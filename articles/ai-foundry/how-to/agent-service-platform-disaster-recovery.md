@@ -1,14 +1,18 @@
 ---
 title: Azure AI Foundry Agent Service platform outage recovery
+ms.service: azure-ai-foundry
+ms.reviewer: ckittel
 description: Recover Azure AI Foundry Agent Service projects from Azure platform and regional outages with warm standby, failover, and failback procedures.
-author: ckittel
-ms.author: chkittel
-ms.date: 10/09/2025
-ms.topic: conceptual
+#customer intent: As a developer, I want to understand how to recreate projects in a standby region so that I can restore critical functionality during a regional outage.
+author: jonburchel
+ms.author: jburchel
+ms.date: 10/15/2025
+ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: architecture-guide
+ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
 ---
+
 
 # Azure AI Foundry Agent Service platform outage recovery
 

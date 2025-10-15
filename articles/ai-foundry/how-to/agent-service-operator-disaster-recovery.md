@@ -1,14 +1,18 @@
 ---
 title: Azure AI Foundry Agent Service resource and data loss recovery
+ms.service: azure-ai-foundry
+ms.reviewer: ckittel
 description: Recover Azure AI Foundry Agent Service projects from human or automation errors, accidental deletions, and stateful dependency loss or corruption.
-author: ckittel
-ms.author: chkittel
-ms.date: 10/09/2025
-ms.topic: conceptual
+#customer intent: As a developer, I want to recreate an Azure AI Foundry project after accidental deletion so that I can redeploy agents and resume operations.
+author: jonburchel
+ms.author: jburchel
+ms.date: 10/15/2025
+ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: architecture-guide
+ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
 ---
+
 
 # Azure AI Foundry Agent Service resource and data loss recovery
 

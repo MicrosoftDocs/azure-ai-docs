@@ -1,14 +1,18 @@
 ---
 title: Azure AI Foundry Agent Service disaster recovery
+ms.service: azure-ai-foundry
+ms.reviewer: ckittel
 description: Learn about disaster recovery patterns and best practices for Azure AI Foundry Agent Service to ensure business continuity and resilience.
-author: ckittel
-ms.author: chkittel
-ms.date: 10/09/2025
-ms.topic: conceptual
+#customer intent: As a developer, I want to automate the redeployment of agent definitions so that I can speed up disaster recovery processes.
+author: jonburchel
+ms.author: jburchel
+ms.date: 10/15/2025
+ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: architecture-guide
+ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
 ---
+
 
 # Azure AI Foundry Agent Service disaster recovery
 
