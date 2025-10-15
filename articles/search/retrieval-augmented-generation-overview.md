@@ -28,12 +28,14 @@ The decision about which information retrieval system to use is critical because
 
 + Integration with embedding models for indexing, and chat models or language understanding models for retrieval.
 
-Azure AI Search is a [proven solution for information retrieval](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) in a RAG architecture. It provides indexing and query capabilities, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a comprehensive RAG solution that includes all of the elements for generative AI over your proprietary content. 
+Azure AI Search is a [proven solution for information retrieval](https://github.com/Azure-Samples/azure-search-openai-demo/blob/main/README.md) in a RAG architecture. It provides indexing and query capabilities, with the infrastructure and security of the Azure cloud. Through code and other components, you can design a comprehensive RAG solution that includes all of the elements for generative AI over your proprietary content.
+
+You can choose between two approaches for RAG workloads: agentic retrieval, or the original query architecture for classic RAG.
 
 > [!NOTE]
 > New to copilot and RAG concepts? Watch [Vector search and state of the art retrieval for Generative AI apps](https://www.youtube.com/watch?v=lSzc1MJktAo).
 
-## Modern RAG with Agentic Retrieval
+## Option 1: Modern RAG with Agentic Retrieval
 
 Azure AI Search now provides **agentic retrieval**, a specialized pipeline designed specifically for RAG patterns. This approach uses large language models to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
 
@@ -49,7 +51,7 @@ You need new objects for this pipeline: one or more knowledge sources, a knowled
 
 For new RAG implementations, we recommend starting with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
 
-## Classic RAG pattern for Azure AI Search
+## Option 2: Classic RAG pattern for Azure AI Search
 
 A RAG solution can be implemented on Azure AI Search using the original query execution environment. This approach is faster and simpler with fewer components, and depending on your application requirements it can be the best choice. There's no LLM query planning or LLM integration in the query pipeline. Your application sends a single query request to Azure AI Search, the search engine executes the query and returns search results. There's no query execution details in the response, and citations are built into the response only if you have fields in your index that provide a parent document name or page.
 
@@ -78,14 +80,6 @@ The app server or orchestrator is the integration code that coordinates the hand
 The information retrieval system provides the searchable index, query logic, and the payload (query response). The search index can contain vectors or nonvector content. Although most samples and demos include vector fields, it's not a requirement. The query is executed using the existing search engine in Azure AI Search, which can handle keyword (or term) and vector queries. The index is created in advance, based on a schema you define, and loaded with your content that's sourced from files, databases, or storage.
 
 The LLM receives the original prompt, plus the results from Azure AI Search. The LLM analyzes the results and formulates a response. If the LLM is ChatGPT, the user interaction might consist of multiple conversation turns. An Azure solution most likely uses Azure OpenAI, but there's no hard dependency on this specific service.
-
-## Choosing between agentic retrieval and classic RAG
-
-Try a few quickstarts using your own data to understand the development effort and compare outcomes:
-
-+ [Quickstart: Agentic search](search-get-started-agentic-retrieval.md)
-
-+ [Quickstart: Classic RAG using grounding data from Azure AI Seach](search-get-started-rag.md)
 
 ## Searchable content in Azure AI Search
 
@@ -232,6 +226,12 @@ We recommend the [Azure OpenAI demo](https://github.com/Azure-Samples/azure-sear
 ## How to get started
 
 There are many ways to get started, including code-first solutions and demos.
+
+For help with choosing between agentic retrieval and classic RAG, try a few quickstarts using your own data to understand the development effort and compare outcomes:
+
++ [Quickstart: Agentic search](search-get-started-agentic-retrieval.md)
+
++ [Quickstart: Classic RAG using grounding data from Azure AI Seach](search-get-started-rag.md)
 
 ### [**Docs**](#tab/docs)
 

@@ -152,9 +152,9 @@ items:
       href: tutorial-document-extraction-image-verbalization.md
     - name: Verbalize images from a structured document layout
       href: tutorial-document-layout-image-verbalization.md
-  - name: RAG tutorials
+  - name: Classic RAG tutorials
     items:
-    - name: Build a RAG solution
+    - name: Build a classic RAG solution
       href: tutorial-rag-build-solution.md
     - name: Choose models
       href: tutorial-rag-build-solution-models.md
