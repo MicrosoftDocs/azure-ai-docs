@@ -1,5 +1,5 @@
 ---
-title: Plan and manage Costs
+title: Plan and Manage Costs
 description: Manage Azure AI Foundry costs by estimating expenses, monitoring usage, and setting up alerts for spending anomalies with Microsoft Cost Management.
 #customer intent: As an IT admin or developer, I want to estimate and manage costs for Azure AI Foundry so that I can optimize my organization's budget and understand how billing works for different model types.
 author: jonburchel
