@@ -264,7 +264,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### Use the chat completions API
 
-For Azure OpenAI models we recommend using the [Responses API](../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with Foundry Models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
+For Foundry Models, including Azure OpenAI models, we recommend using the [Responses API](../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with other Foundry Models from providers like DeepSeek and Grok, as these models support the OpenAI v1 chat completions syntax.
 
 `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
