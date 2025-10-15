@@ -78,11 +78,11 @@ The following models are commonly used for a chat search experience:
 
 | Client | Chat models |
 |--------|------------|
-| Azure OpenAI | GPT-35-Turbo, <br>GPT-4, <br>GPT-4o, <br>GPT-4 Turbo |
+| Azure OpenAI | <br>GPT-4, <br>GPT-4o, <br>GPT-4.1. <br>GPT-5 |
 
-GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation.
+GPT-4 and GPT-5 models are optimized to work with inputs formatted as a conversation.
 
-We use GPT-4o in this tutorial. During testing, we found that it's less likely to supplement with its own training data. For example, given the query "how much of the earth is covered by water?", GPT-35-Turbo answered using its built-in knowledge of earth to state that 71% of the earth is covered by water, even though the sample data doesn't provide that fact. In contrast, GPT-4o responded (correctly) with "I don't know".
+We use GPT-4o in this tutorial.
 
 ## Deploy models and collect information
 

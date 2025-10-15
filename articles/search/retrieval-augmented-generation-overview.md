@@ -83,9 +83,9 @@ The LLM receives the original prompt, plus the results from Azure AI Search. The
 
 Try a few quickstarts using your own data to understand the development effort and compare outcomes:
 
-+ [Quickstart: Agentic search](search-get-started-agentic-retrieval.md&pivots=programming-language-python)
++ [Quickstart: Agentic search](search-get-started-agentic-retrieval.md)
 
-+ [Quickstart: Classic RAG using grounding data from Azure AI Seach](search-get-started-rag.md&pivots=python)
++ [Quickstart: Classic RAG using grounding data from Azure AI Seach](search-get-started-rag.md)
 
 ## Searchable content in Azure AI Search
 

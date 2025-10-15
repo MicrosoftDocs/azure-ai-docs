@@ -36,7 +36,7 @@ This tutorial updates the search index created by the [indexing pipeline](tutori
 
 - [Azure AI Search](search-create-service-portal.md), Basic tier or higher for managed identity and semantic ranking.
 
-- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-002 and gpt-35-turbo.
+- [Azure OpenAI](/azure/ai-services/openai/how-to/create-resource), with a deployment of text-embedding-3-small and gpt-4o.
 
 ## Download the sample
 
