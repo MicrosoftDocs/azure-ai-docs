@@ -1,5 +1,5 @@
 ---
-title: Track experiments and models with MLflow
+title: Track Experiments and Models by Using MLflow
 titleSuffix: Azure Machine Learning
 description:  Learn how to use MLflow to log metrics and artifacts from machine learning experiments and runs in Azure Machine Learning workspaces.
 author: s-polly
@@ -7,26 +7,26 @@ ms.author: scottpolly
 ms.reviewer: cacrest
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.date: 09/30/2024
+ms.date: 10/17/2025
 ms.topic: how-to
 ms.custom: mlflow, devx-track-azurecli, cliv2, devplatv2, update-code, FY25Q1-Linter
 ms.devlang: azurecli
 #Customer intent: As a data scientist, I want to know how to track my machine learning experiments and models with MLflow so I can use MLflow for tracking in Azure Machine Learning.
 ---
 
-# Track experiments and models with MLflow
+# Track experiments and models by using MLflow
 
 *Tracking* is the process of saving relevant information about experiments. In this article, you learn how to use MLflow for tracking experiments and runs in Azure Machine Learning workspaces.
 
-Some methods available in the MLflow API might not be available when connected to Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments). You can also learn about the supported MLflow functionalities in Azure Machine Learning from the article [MLflow and Azure Machine Learning](concept-mlflow.md).
+Some methods available in the MLflow API might not be available when you're using Azure Machine Learning. For details about supported and unsupported operations, see [Support matrix for querying runs and experiments](how-to-track-experiments-mlflow.md#support-matrix-for-querying-runs-and-experiments). You can also learn about the supported MLflow functionalities in Azure Machine Learning from the article [MLflow and Azure Machine Learning](concept-mlflow.md).
 
 > [!NOTE] 
-> - To track experiments running on Azure Databricks, see [Track Azure Databricks ML experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-databricks.md).
+> - To track experiments running on Azure Databricks, see [Track Azure Databricks machine learning experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-databricks.md).
 > - To track experiments running on Azure Synapse Analytics, see [Track Azure Synapse Analytics ML experiments with MLflow and Azure Machine Learning](how-to-use-mlflow-azure-synapse.md).
 
 ## Prerequisites
 
-- Have an Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+- Have an Azure subscription and the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - To run Azure CLI and Python commands, install [Azure CLI v2](how-to-configure-cli.md) and the [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme). The `ml` extension for Azure CLI installs automatically the first time you run an Azure Machine Learning CLI command.
 
