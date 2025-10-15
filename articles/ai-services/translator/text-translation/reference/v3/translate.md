@@ -1,12 +1,12 @@
 ---
 title: Translator Translate Method
-titleSuffix: Azure AI services
-description: Understand the parameters, headers, and body messages for the Azure AI Translator to translate text method.
+titleSuffix: Azure AI Foundry Tools
+description: Understand the parameters, headers, and body messages for the Azure Translator to translate text method.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -259,7 +259,7 @@ The response body is:
 
 ### Handle profanity
 
-Normally, the Translator service retains profanity that is present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures, and as a result the degree of profanity in the target language can be amplified or reduced.
+Normally, the Translator service retains profanity that's present in the source in the translation. The degree of profanity and the context that makes words profane differ between cultures, and as a result the degree of profanity in the target language can be amplified or reduced.
 
 If you want to avoid getting profanity in the translation, regardless of the presence of profanity in the source text, you can use the profanity filtering option. The option allows you to choose whether you want to see profanity deleted, marked with appropriate tags (giving you the option to add your own post-processing), or with no action taken. The accepted values of `ProfanityAction` are `Deleted`, `Marked`, and `NoAction` (default).
 
@@ -374,7 +374,7 @@ The alignment information starts with `0:2-0:1`, which means that the first thre
 
 Obtaining alignment information is an experimental feature that we enabled for prototyping research and experiences with potential phrase mappings. Here are some of the notable restrictions where alignments aren't supported:
 
-* Alignment isn't available for text in HTML format that is, textType=html
+* Alignment isn't available for text in HTML format that's, textType=html
 * Alignment is only returned for a subset of the language pairs:
   * English to/from any other language except Chinese Traditional, Cantonese (Traditional) or Serbian (Cyrillic)
   * from Japanese to Korean or from Korean to Japanese

@@ -1,18 +1,18 @@
 ---
-title: Azure AI Translator release history
-titleSuffix: Azure AI services
-description: Release notes and updates for Azure AI Translator Service API.
+title: Azure Translator in Foundry Tools release history
+titleSuffix: Azure AI Foundry Tools
+description: Release notes and updates for Azure Translator in Foundry Tools Service API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/18/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Azure AI Translator release history
+# Azure Translator release history
 
-Azure AI Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure AI Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
+Azure Translator is an innovative language service that enables users to translate text and documents, helps entities expand their global outreach, and supports preservation of at-risk and endangered languages. By utilizing the strengths of artificial intelligence and machine learning, this cutting-edge tool continually improved to offer more precise, swift, and adaptable translation services. Here, you can explore key milestones and enhancements in the evolution of Azure Translator. For more information on recent advances, *see* [What's new?](../whats-new.md).
 
 ## September 2023
 
@@ -175,15 +175,15 @@ To learn more, see our Custom Translator [documentation](../custom-translator/ov
 * Translator service adds [text and document language support](../language-support.md) for the following languages:
   * **Bashkir**. A Turkic language spoken by approximately 1.4 million native speakers. It has three regional language groups: Southern, Eastern, and Northwestern.
   * **Dhivehi**. Also known as Maldivian, it's an Indo-Iranian language primarily spoken in the island nation of Maldives.
-  * **Georgian**. A Kartvelian language that is the official language of Georgia. It has approximately 4 million speakers.
-  * **Kyrgyz**. A Turkic language that is the official language of Kyrgyzstan.
-  * **Macedonian (Cyrillic)**. An Eastern South Slavic language that is the official language of North Macedonia. It has approximately 2 million people.
+  * **Georgian**. A Kartvelian language that's the official language of Georgia. It has approximately 4 million speakers.
+  * **Kyrgyz**. A Turkic language that's the official language of Kyrgyzstan.
+  * **Macedonian (Cyrillic)**. An Eastern South Slavic language that's the official language of North Macedonia. It has approximately 2 million people.
   * **Mongolian (traditional)**. Traditional Mongolian script is the first writing system created specifically for the Mongolian language. Mongolian is the official language of Mongolia.
   * **Tatar**. A Turkic language used by speakers in modern Tatarstan closely related to Crimean Tatar and Siberian Tatar but each belongs to different subgroups.
   * **Tibetan**. It has nearly 6 million speakers and can be found in many Tibetan Buddhist publications.
   * **Turkmen**. The official language of Turkmenistan. It's similar to Turkish and Azerbaijani.
   * **Uyghur**. A Turkic language with nearly 15 million speakers spoken primarily in Western China.
-  * **Uzbek (latin)**. A Turkic language that is the official language of Uzbekistan. It has 34 million native speakers.
+  * **Uzbek (latin)**. A Turkic language that's the official language of Uzbekistan. It has 34 million native speakers.
 
 These additions bring the total number of languages supported in Translator to 103.
 
@@ -191,7 +191,7 @@ These additions bring the total number of languages supported in Translator to 1
 
 ### [Text and document translation support for literary Chinese](https://www.microsoft.com/translator/blog/2021/08/25/microsoft-translator-releases-literary-chinese-translation/)
 
-* Azure AI Translator has [text and document language support](../language-support.md) for  literary Chinese. Classical or literary Chinese is a traditional style of written Chinese used by traditional Chinese poets and in ancient Chinese poetry.
+* Azure Translator has [text and document language support](../language-support.md) for  literary Chinese. Classical or literary Chinese is a traditional style of written Chinese used by traditional Chinese poets and in ancient Chinese poetry.
 
 ## June 2021
 

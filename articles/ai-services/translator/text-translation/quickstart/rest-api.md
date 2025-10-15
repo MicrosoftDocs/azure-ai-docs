@@ -1,12 +1,12 @@
 ---
-title: "Quickstart: Azure AI Translator REST APIs"
-titleSuffix: Azure AI services
+title: "Quickstart: Azure Translator in Foundry Tools REST APIs"
+titleSuffix: Azure AI Foundry Tools
 description: "Learn to translate text with the Translator service REST APIs. Examples are provided in C#, Go, Java, JavaScript, and Python."
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: quickstart
-ms.date: 06/19/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, golang, java, javascript, python
@@ -19,9 +19,9 @@ ms.custom: devx-track-python
 <!-- markdownlint-disable MD036 -->
 <!-- markdownlint-disable MD049 -->
 
-# Quickstart: Azure AI Translator REST APIs
+# Quickstart: Translator text translation REST APIs
 
-Try the latest version of Azure AI Translator. In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice or the REST API. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
+Try the latest version of Azure Translator. In this quickstart, get started using the Translator service to [translate text](../reference/v3/translate.md) using a programming language of your choice or the REST API. For this project, we recommend using the free pricing tier (F0), while you're learning the technology, and later upgrading to a paid tier for production.
 
 ## Prerequisites
 
@@ -56,13 +56,13 @@ Header|Value| Condition  |
 
 > [!IMPORTANT]
 >
-> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, _see_ the Azure AI services [security](../../../security-features.md) article.
+> Remember to remove the key from your code when you're done, and never post it publicly. For production, use a secure way of storing and accessing your credentials like [Azure Key Vault](/azure/key-vault/general/overview). For more information, _see_ the Azure AI Foundry Tools [security](../../../security-features.md) article.
 
 ## Translate text
 
 The core operation of the Translator service is translating text. In this quickstart, you build a request using a programming language of your choice that takes a single source (`from`) and provides two outputs (`to`). Then we review some parameters that can be used to adjust both the request and the response.
 
-For detailed information regarding Azure AI Translator service request limits, *see* [**Text translation request limits**](../../service-limits.md#text-translation).
+For detailed information regarding Azure Translator service request limits, *see* [**Text translation request limits**](../../service-limits.md#text-translation).
 
 ### [C#: Visual Studio](#tab/csharp)
 

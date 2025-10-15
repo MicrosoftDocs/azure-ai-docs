@@ -7,7 +7,7 @@ metadata:
   ms.service: azure-ai-translator
   ms.custom: references_regions
   ms.topic: faq
-  ms.date: 09/27/2025
+  ms.date: 11/05/2025
   ms.author: lajanuar
 title: Frequently asked questions about Microsoft Translator Pro
 summary: |
@@ -58,7 +58,7 @@ sections:
          - question: |
             Does Microsoft implement measures to identify and mitigate potential bias in translation outputs, especially concerning minority languages, dialects, or culturally specific terminology?
            answer: |
-              Yes. Microsoft actively researches and addresses bias-related issues. For more information, *see* [Azure AI Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note#bias).
+              Yes. Microsoft actively researches and addresses bias-related issues. For more information, *see* [Azure Translator Transparency Note](/azure/ai-foundry/responsible-ai/translator/transparency-note#bias).
 
          - question: |
             Has the Microsoft Translator Pro app been evaluated for its impact on equity and fairness?
@@ -82,14 +82,14 @@ sections:
       - question: |
          Are models trained to handle information related to sensitive factors such as sex, gender, age, and other demographic characteristics to prevent discriminatory outputs or biases in translation quality?
         answer: |
-         Yes, fairness is a complex social-technical factor that influences aspects of our product development. One dimension we consider is how well the system performs across groups based on factors such as race, ethnicity, region, gender, and age. For more information, *see* [Azure AI Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note#bias).
+         Yes, fairness is a complex social-technical factor that influences aspects of our product development. One dimension we consider is how well the system performs across groups based on factors such as race, ethnicity, region, gender, and age. For more information, *see* [Azure Translator transparency note](/azure/ai-foundry/responsible-ai/translator/transparency-note#bias).
 
   - name: Testing Standards, Evaluation, and Metrics
     questions:
       - question: |
          Are evaluation metrics and testing protocols implemented to ensure the accuracy and cultural sensitivity of translations, especially in critical areas like legal documents or emergency communications?
         answer: |
-          Translation quality is always relative to a test set. We recommend that you measure quality for a representative test set for a given scenario. For more information, *see* [Azure AI Translator evaluation methods](/azure/ai-foundry/responsible-ai/translator/transparency-note#evaluation-of-azure-ai-translator).
+          Translation quality is always relative to a test set. We recommend that you measure quality for a representative test set for a given scenario. For more information, *see* [Azure Translator evaluation methods](/azure/ai-foundry/responsible-ai/translator/transparency-note#evaluation-of-azure-ai-translator).
 
       - question: |
          How does Microsoft Translator Pro ensure the quality and accuracy of translations in real-world, high-stakes environments?

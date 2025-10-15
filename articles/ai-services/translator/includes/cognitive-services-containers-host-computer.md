@@ -1,7 +1,7 @@
 ---
 author: IEvangelist
 ms.author: dapine
-ms.date: 02/13/2024
+ms.date: 11/05/2025
 ms.service: cognitive-services
 ms.topic: include
 ---

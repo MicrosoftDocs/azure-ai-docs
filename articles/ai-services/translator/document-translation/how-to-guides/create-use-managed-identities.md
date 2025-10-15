@@ -1,13 +1,13 @@
 ---
 title: Create and use managed identities
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Understand how to create and use managed identities in the Azure portal.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: build-2023
 ms.topic: how-to
-ms.date: 04/14/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -29,7 +29,7 @@ Managed identities for Azure resources are service principals that create a Micr
 >
 > * To use managed identities for Azure AI Document translation operations, you must [create your Translator resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in a specific geographic Azure region such as **East US**. If your Translator resource region is set to **Global**, then you can't use managed identity for Azure AI Document translation. You can still use [Shared Access Signature (SAS) tokens](create-sas-tokens.md) for Azure AI Document translation.
 >
-> * Azure AI Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI services pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
+> * Azure AI Document translation is supported in the S1 Standard Service Plan and C2, C3, C4, and D3 Volume Discount Plans. _See_ [Azure AI Foundry Tools pricing—Translator](https://azure.microsoft.com/pricing/details/cognitive-services/translator/).
 >
 
 ## Prerequisites
@@ -38,7 +38,7 @@ To get started, you need:
 
 * An active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)—if you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
-* A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI services) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../multi-service-resource.md).
+* A [**single-service Translator**](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) (not a multi-service Azure AI Foundry Tools) resource assigned to a **geographical** region such as **West US**. For detailed steps, _see_ [Create an Azure AI Foundry resource](../../../multi-service-resource.md).
 
 * A brief understanding of [**Azure role-based access control (`Azure RBAC`)**](/azure/role-based-access-control/role-assignments-portal) using the Azure portal.
 
