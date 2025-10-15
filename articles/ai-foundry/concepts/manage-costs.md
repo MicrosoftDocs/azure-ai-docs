@@ -2,11 +2,11 @@
 title: Plan and Manage Costs
 description: Manage Azure AI Foundry costs by estimating expenses, monitoring usage, and setting up alerts for spending anomalies with Microsoft Cost Management.
 #customer intent: As an IT admin or developer, I want to estimate and manage costs for Azure AI Foundry so that I can optimize my organization's budget and understand how billing works for different model types.
-author: jonburchel
-ms.author: jburchel
+author: sdgilley
+ms.author: sgilley
 ms.reviewer: aashishb
-ms.date: 09/26/2025
-ms.topic: concept-article
+ms.date: 10/15/2025
+ms.topic: how-to
 ms.service: azure-ai-foundry
 ---
 
@@ -44,6 +44,19 @@ As you add new resources to your project, return to this calculator and add the 
 ## Costs associated with Azure AI Foundry
 
 When you create an Azure AI Foundry resource, you pay to use services such as Azure OpenAI, Speech, Content Safety, Vision, Document Intelligence, and Language. Costs vary for each service and for some features within each service. You can find more details on the [Azure AI services](https://azure.microsoft.com/pricing/details/cognitive-services/) pricing page.
+
+## Understand the billing model for Azure AI services
+
+Azure AI services run on Azure infrastructure that accrues costs along with Azure AI when you deploy the new resource. It's important to understand that extra infrastructure might accrue cost. You need to manage that cost when you make changes to deployed resources.
+
+When you create or use Azure AI services resources, you might get charged based on the services that you use. Two billing models are available for Azure AI services:
+
+ - **Serverless API**: With serverless API pricing, you're billed according to the Azure AI services offering that you use, based on its billing information.
+
+ - **Commitment tiers**: With commitment tier pricing, you commit to using several service features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload. You're billed according to the plan you choose. For information on available services, how to sign up, and considerations when purchasing a plan, see [Quickstart: purchase commitment tier pricing](/azure/ai-services/commitment-tier).
+
+> [!NOTE]
+> If you use the resource above the quota provided by the commitment plan, you pay for the extra usage as described in the overage amount in the Azure portal when you purchase a commitment plan.
 
 ## Understand the billing model for Foundry Models
 
@@ -267,19 +280,6 @@ You can also [export your cost data](/azure/cost-management-billing/costs/tutori
 ## Other costs that might accrue
 
 Enabling capabilities such as sending data to Azure Monitor Logs and alerting incurs extra costs for those services. These costs are visible under those other services and at the subscription level, but aren't visible when scoped just to your Azure AI services resource.
-
-## Understand the full billing model for Azure AI services
-
-Azure AI services run on Azure infrastructure that accrues costs along with Azure AI when you deploy the new resource. It's important to understand that extra infrastructure might accrue cost. You need to manage that cost when you make changes to deployed resources.
-
-When you create or use Azure AI services resources, you might get charged based on the services that you use. Two billing models are available for Azure AI services:
-
- - **Serverless API**: With serverless API pricing, you're billed according to the Azure AI services offering that you use, based on its billing information.
-
- - **Commitment tiers**: With commitment tier pricing, you commit to using several service features for a fixed fee, enabling you to have a predictable total cost based on the needs of your workload. You're billed according to the plan you choose. For information on available services, how to sign up, and considerations when purchasing a plan, see [Quickstart: purchase commitment tier pricing](/azure/ai-services/commitment-tier).
-
-> [!NOTE]
-> If you use the resource above the quota provided by the commitment plan, you pay for the extra usage as described in the overage amount in the Azure portal when you purchase a commitment plan.
 
 ### Using Azure Prepayment
 
