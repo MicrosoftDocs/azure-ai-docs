@@ -39,7 +39,6 @@ The following section provides you with a quick guide to the default quotas and 
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute). |
 | Default Sora quota limits | 60 requests per minute. |
-| Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
 | Maximum standard deployments per resource | 32. |
