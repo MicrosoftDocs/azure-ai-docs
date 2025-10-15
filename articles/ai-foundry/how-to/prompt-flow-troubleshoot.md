@@ -1,5 +1,5 @@
 ﻿---
-title: Troubleshoot guidance for prompt flow
+title: Troubleshoot Guidance for Prompt Flow
 titleSuffix: Azure AI Foundry
 description: This article addresses frequently asked questions about prompt flow usage. Learn how to deal with compute session related issues.
 ms.service: azure-ai-foundry
