@@ -1,7 +1,7 @@
 ---
-title: Customer enabled disaster recovery for AI hub projects
+title: High availability and disaster recovery for hub projects
 titleSuffix: Azure AI Foundry
-description: Learn how to plan for disaster recovery for Azure AI Foundry hub projects.
+description: Learn how to plan for high availability and disaster recovery for Azure AI Foundry hub projects.
 ms.service: azure-ai-foundry
 ms.custom:
   - build-2024
@@ -13,7 +13,7 @@ ms.date: 08/27/2025
 ai.usage: ai-assisted
 ---
 
-# Customer-enabled disaster recovery
+# High availability and disaster recovery for hub projects
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
