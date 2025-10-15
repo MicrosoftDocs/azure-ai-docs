@@ -13,16 +13,53 @@ ms.date: 09/16/2025
 # Video generation with Sora (preview)
 
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
+Azure OpenAI supports two versions of Sora:
+- Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
+- Sora 2: The latest OpenAI-based API, now being adapted for Azure OpenAI, with Sora 2 Pro planned for future release.
 
-## Supported features
+## Overview
+- Modalities: text → video, image → video, video (generated) → video
+- Audio: Sora 2 supports audio generation in output videos (similar to the Sora app).
+- Remix: Sora 2 introduces the ability to remix existing videos by making targeted adjustments instead of regenerating from scratch.
 
-Sora can generate complex scenes with multiple characters, diverse motions, and detailed backgrounds. 
+## Sora 1 vs. Sora 2
 
-**Text to video**: The model interprets prompts with contextual and physical world understanding, enabling accurate scene composition and character persistence across multiple shots. Sora demonstrates strong language comprehension for prompt interpretation and emotional character generation. 
+| Aspect | **Sora 1 (Azure OpenAI)** | **Sora 2 (OpenAI-based API)** |
+|--------|-----------------------------|-------------------------------|
+| **Model type** | Azure-specific API implementation | Adapts OpenAI’s latest Sora API |
+| **Availability** | Available exclusively on Azure OpenAI (Preview) | Rolling out on Azure; **Sora 2 Pro** coming later |
+| **Modalities supported** | text → video, image → video, video → video | text → video, image → video, **video (generated) → video** |
+| **Audio generation** | ❌ Not supported | ✅ Supported in outputs |
+| **Remix capability** | ❌ Not supported | ✅ Supported — make targeted edits to existing videos |
+| **API behavior** | Uses Azure-specific API schema | Aligns with OpenAI’s native Sora 2 schema |
+| **Performance & fidelity** | Early preview; limited realism and motion range | Enhanced realism, physics, and temporal consistency |
+| **Intended use** | Enterprise preview deployments | Broader developer availability with improved API parity |
 
-**Image to video**: Sora generates video content from a still image. You can specify where in the generated video the image appears (it doesn't need to be the first frame) and which region of the image to use.
+> **Note:** *Sora 2 Pro* will add higher-quality generation options, advanced camera controls, and improved motion rendering once available on Azure OpenAI.
 
-**Video to video**: Sora generates new video content from an existing video clip. You can specify where in the generated video the input video appears (it doesn't need to be the beginning).
+## Sora 2 API 
+Provides 5 endpoints, each with distinct capabilities. 
+•	Create Video: Start a new render job from a prompt, with optional reference inputs or a remix id. 
+•	Get Video Status: Retrieve the current state of a render job and monitor its progress
+•	Download Video: Fetch the finished MP4 once the job is completed.
+•	List Videos: Enumerate your videos with pagination for history, dashboards, or housekeeping. 
+•	Delete Videos: Delete an individual video id from Azure OpenAI’s storage
+
+### API Parameters
+
+| Parameter | Type | **Sora 2** | **Sora 2 Pro (Coming Soon)** |
+|------------|------|------------|-------------------------------|
+| **Prompt** | String (required) | Natural-language description of the shot. Include shot type, subject, action, setting, lighting, and any desired camera motion to reduce ambiguity. Keep it *single-purpose* for best adherence. | Same as Sora 2 |
+| **Model** | String (optional) | `Sora-2` (default) | `Sora-2-pro` |
+| **Size (Output resolution in width × height)** | String (optional) | Portrait: `720×1280`  <br> Landscape: `1280×720`  <br> **Default:** 720×1280 | Portrait: `720×1280`, `1024×1808`  <br> Landscape: `1280×720`, `1808×1024`  <br> **Default:** 720×1280 |
+| **Seconds** | String (optional) | `4 / 8 / 12`  <br> **Default:** 4 | Same as Sora 2 |
+| **Input reference** | File (optional) | Single reference image used as a visual anchor for the first frame. <br> Accepted MIME types: `image/jpeg`, `image/png`, `image/webp`. Must match size exactly. | Same as Sora 2 |
+| **Remix_video_id** | String (optional) | ID of a previously completed video (e.g., `video_...`) to reuse structure, motion, and framing. | Same as Sora 2 |
+
+The API is the same as the [OAI API]([url](https://platform.openai.com/docs/guides/video-generation)) , minus the following two things:
+• In AOAI API, you have to replace the model's name, by the name of the deployment. For example, "sora2-
+test"
+
 
 ## How it works
 
@@ -39,9 +76,13 @@ Write text prompts in English or other Latin script languages for the best video
 
 Sora might have difficulty with complex physics, causal relationships (for example, bite marks on a cookie), spatial reasoning (for example, knowing left from right), and precise time-based event sequencing such as camera movement.
 
-### Technical limitations
+### Sora 2 Technical Limitations 
 
-Sora has some technical limitations to be aware of:
+- Please Sora 2 API details above 
+- Jobs are available for up to 24 hours after they're created. After that, you must create a new job to generate the video again.
+- You can have two video creation jobs running at the same time. You must wait for one of the jobs to finish before you can create another.
+
+### Sora 1 Technical limitations
 
 - Sora supports the following output resolution dimensions: 
 480x480, 480x854, 854x480, 720x720, 720x1280, 1280x720, 1080x1080, 1080x1920, 1920x1080.
