@@ -15,9 +15,9 @@ ai.usage: ai-assisted
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
 Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
-
+Plan ahead to maintain business continuity and prepare for disaster recovery with [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)
 Microsoft strives to ensure that Azure services are always available. However, unplanned service outages might occur. Create a disaster recovery plan to handle regional service outages. In this article, you learn how to:
-
+Microsoft strives to ensure that Azure services are always available. However, unplanned service outages can occur.
 * Plan a multi-region deployment of Azure AI Foundry and associated resources.
 * Maximize your chances to recover logs, notebooks, Docker images, and other metadata.
 * Design your solution for high availability.
@@ -27,12 +27,12 @@ Microsoft strives to ensure that Azure services are always available. However, u
 > Azure AI Foundry itself doesn't provide automatic failover or disaster recovery.
 
 > [!NOTE]
-> The information in this article only applies to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](disaster-recovery.md).
-
+> [!NOTE]
+> The information in this article applies only to **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. For disaster recovery for **[!INCLUDE [hub](../includes/hub-project-name.md)]**, see [Disaster recovery for Azure AI Foundry hubs](disaster-recovery.md).
 ## Understand Azure services for Azure AI Foundry
 
 Azure AI Foundry depends on multiple Azure services. Some of these services are set up in your subscription. You're responsible for the high availability configuration of these services. Microsoft manages some services that are created in a Microsoft subscription. 
-
+Azure AI Foundry depends on multiple Azure services. Some of these services are set up in your subscription. You're responsible for the high availability configuration of these services. Microsoft manages some services that Microsoft creates in a Microsoft subscription.
 Azure services include:
 
 * **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project.
@@ -48,7 +48,7 @@ Azure services include:
 * **Connections**: Azure AI Foundry connects to other services. You're responsible for configuring their high availability settings.
 
 The following table shows the Azure services that Microsoft manages and the ones you manage. It also indicates the services that are highly available by default.
-
+The following table shows the Azure services that Microsoft manages and the ones you manage, and it indicates the services that are highly available by default.
 | Service | Managed by | High availability by default |
 | ----- | ----- | ----- |
 | **Azure AI Foundry infrastructure** | Microsoft | |
@@ -63,28 +63,30 @@ The rest of this article explains how to make each service highly available.
 
 ## Disaster prevention
 
-Prevention is the primary defense against outages. The following proactive measures reduce the likelihood of these incidents. Apply these recommendations to help you [design for resiliency](/azure/well-architected/reliability/principles#design-for-resiliency) in your workload.
+Prevention is the primary defense against outages. The following proactive measures reduce the likelihood of these incidents. Apply these recommendations to help you design for resiliency in your workload.
+
+Learn more: [Design for resiliency](/azure/well-architected/reliability/principles#design-for-resiliency).
 
 ### Prevent resource deletion
 
-To prevent most accidental deletions, apply *delete* [resource locks](/azure/azure-resource-manager/management/lock-resources) to critical resources. Locks protect against resource-level deletion but not data plane operations. Apply delete locks to these resources:
+To prevent most accidental deletions, apply delete [resource locks](/azure/azure-resource-manager/management/lock-resources) to critical resources. Locks protect against resource-level deletion but not data plane operations. Apply delete locks to these resources.
 
 | Resource                 | Protection provided | Limitations |
 | :----------------------- | :------------------ | :---------- |
-| Azure AI Foundry account | Prevents deletion of account, projects, models, connections, and agent capability hosts | Doesn't protect individual agents or threads |
-| Azure Cosmos DB account  | Prevents deletion of account, `enterprise_memory` database, and containers | Doesn't protect data within containers |
-| Azure AI Search service  | Prevents deletion of the search service instance | Doesn't protect indexes or data within indexes |
-| Azure Storage account | Prevents deletion of account and blob containers | Doesn't protect individual blobs. When deleting a container, the Storage Account locks can be overwritten. |
+| Azure AI Foundry account | Prevents deletion of account, projects, models, connections, and agent capability hosts. | Doesn't protect individual agents or threads. |
+| Azure Cosmos DB account  | Prevents deletion of account, `enterprise_memory` database, and containers. | Doesn't protect data within containers. |
+| Azure AI Search service  | Prevents deletion of the search service instance. | Doesn't protect indexes or data within indexes. |
+| Azure Storage account | Prevents deletion of account and blob containers. | Doesn't protect individual blobs. When deleting a container, the Storage Account locks can be overwritten. |
 
-For resilience-in-depth, combine resource locks with the Azure Policy [`denyAction` effect](/azure/governance/policy/concepts/effect-deny-action) to block resource provider delete requests. This layered approach strengthens protection regardless of each resource's recovery capabilities.
+For resilience in depth, combine resource locks with the Azure Policy [`denyAction` effect](/azure/governance/policy/concepts/effect-deny-action) to block resource provider delete requests. This layered approach strengthens protection regardless of each resource's recovery capabilities.
 
 ### Implement least privilege access
 
-Use Azure Role-Based Access Control (RBAC) to limit access to control and data planes. Grant only required permissions and audit them regularly.
+Use Azure role-based access control (RBAC) to limit access to control and data planes. Grant only required permissions and audit them regularly.
 
-In production, don't grant standing *delete* permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing *write* permissions.
+In production, don't grant standing delete permissions on these resources to any principal. For data plane access to state stores, only the project's managed identity should have standing write permissions.
 
-Data can also be destroyed through Azure AI Foundry Agent Service REST APIs; for example, [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) can delete operational data using these APIs or the AI Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read-only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
+Data can also be destroyed through Azure AI Foundry Agent Service REST APIs. For example, see [Delete Agent](/rest/api/aifoundry/aiagents/delete-agent/delete-agent) or [Delete Thread](/rest/api/aifoundry/aiagents/threads/delete-thread). Built-in AI roles like [Azure AI User](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) can delete operational data using these APIs or the AI Foundry portal. Accidents or abuse of these APIs can create recovery needs. No built-in AI role is read only for these [data plane operations](/rest/api/aifoundry/aiagents/operation-groups). Create [custom roles](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#create-custom-roles-for-projects) to limit access to these `Microsoft.CognitiveServices/*/write` data actions.
 
 ### Implement the single responsibility principle
 
@@ -92,7 +94,7 @@ Dedicate your Azure Cosmos DB account, Azure AI Search service, and Azure Storag
 
 ### Use zone-redundant configurations
 
-Use zone-redundant configurations for your Azure Cosmos DB account, Azure AI Search service, and Azure Storage account. This setup protects against zone failures within a region. Zone-redundant configurations don't protect against full regional outages or human/automation errors. The Microsoft-hosted components of the Azure AI Foundry Agent Service are zone-redundant. 
+Use zone redundant configurations for your Azure Cosmos DB account, Azure AI Search service, and Azure Storage account. This setup protects against zone failures within a region. Zone redundant configurations don't protect against full regional outages or human or automation errors. The Microsoft-hosted components of the Azure AI Foundry Agent Service are zone redundant. 
 
 > [!WARNING]
 > **TODO: VERIFY THIS LAST STATEMENT AND ADD ANY MORE DETAILS AVAILABLE.**
@@ -150,10 +152,10 @@ User‑uploaded files attached within conversation threads generally can't be re
 
 ## Plan for multiregional deployment
 
-A multiregional deployment relies on the creation of Azure AI Foundry resources and other infrastructure in two Azure regions. If a regional outage occurs, switch to the other region. When you plan where to deploy your resources, consider:
+A multiregional deployment relies on creating Azure AI Foundry resources and other infrastructure in two Azure regions. If a regional outage occurs, switch to the other region. When you plan where to deploy your resources, consider:
 
 * Regional availability: If possible, use a region in the same geographic area, not necessarily the closest one. To check regional availability for Azure AI Foundry, see [Azure products by region](https://azure.microsoft.com/global-infrastructure/services/).
-* Azure paired regions: Paired regions coordinate platform updates and prioritize recovery efforts where needed. But not all regions are paired. For more information, see [Azure paired regions](/azure/reliability/cross-region-replication-azure).
+* Azure paired regions: Paired regions coordinate platform updates and prioritize recovery efforts where needed. However, not all regions are paired. For more information, see [Azure paired regions](/azure/reliability/cross-region-replication-azure).
 * Service availability: Decide whether to use hot/hot, hot/warm, or hot/cold for your solution's resources.
     
     * Hot/hot: Both regions are active at the same time, and either region is ready to use immediately.
@@ -163,19 +165,19 @@ A multiregional deployment relies on the creation of Azure AI Foundry resources 
 > [!TIP]
 > Depending on your business requirements, you might treat Azure AI Foundry services differently.
 
-Azure AI Foundry builds on other services. Some services can replicate to other regions. You must manually create other services in multiple regions. The following table lists the services, who is responsible for replication, and an overview of the configuration:
+Azure AI Foundry builds on other services. Some services replicate to other regions. You must manually create other services in multiple regions. The following table lists the services, who is responsible for replication, and an overview of the configuration:
 
 | Azure service | Geo-replicated by | Configuration |
 | ----- | ----- | ----- |
-| Azure AI Foundry projects | You | Create a projects in the selected regions. |
+| Azure AI Foundry projects | You | Create projects in the selected regions. |
 | Key Vault | Microsoft | Use the same Azure Key Vault instance with the Azure AI Foundry project and resources in both regions. Azure Key Vault automatically fails over to a secondary region. For more information, see [Azure Key Vault availability and redundancy](/azure/key-vault/general/disaster-recovery-guidance).|
-| Storage account | You | Azure AI Foundry projects don't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs and use it for your project. All subsequent projects use the project's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
-| Azure Container Registry | Microsoft | Configure the Azure Container Registry instance to geo-replicate to the paired region for Azure AI Foundry. Use the same instance for both projects. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
+| Storage account | You | Azure AI Foundry projects don't support default storage account failover using geo-redundant storage (GRS), geo-zone-redundant storage (GZRS), read-access geo-redundant storage (RA-GRS), or read-access geo-zone-redundant storage (RA-GZRS). Configure a storage account according to your needs, and use it for your project. All subsequent projects use the project's storage account. For more information, see [Azure Storage redundancy](/azure/storage/common/storage-redundancy). |
+| Azure Container Registry | Microsoft | Configure the Azure Container Registry instance to replicate geographically to the paired region for Azure AI Foundry. Use the same instance for both projects. For more information, see [Geo-replication in Azure Container Registry](/azure/container-registry/container-registry-geo-replication). |
 | Application Insights | You | Create Application Insights for the project in both regions. To adjust the data retention period and details, see [Data collection, retention, and storage in Application Insights](/azure/azure-monitor/logs/data-retention-archive). |
 
 Use these development practices to enable fast recovery and restart in the secondary region:
 
-* Use Azure Resource Manager templates. Templates are infrastructure as code and let you quickly deploy services in both regions.
+* Use Azure Resource Manager templates. Templates are infrastructure as code, and they let you quickly deploy services in both regions.
 * To avoid drift between the two regions, update your continuous integration and deployment pipelines to deploy to both regions.
 * Create role assignments for users in both regions.
 * Create network resources such as Azure virtual networks and private endpoints for both regions. Ensure users can access both network environments. For example, configure VPN and DNS for both virtual networks.
@@ -184,51 +186,51 @@ Use these development practices to enable fast recovery and restart in the secon
 
 ### Availability zones
 
-Some Azure services support availability zones. In regions that support availability zones, if a zone goes down, projects pause, and you should save your data. You can't refresh data until the zone is back online.
+Some Azure services support availability zones. In regions that support availability zones, if a zone goes down, projects pause, and you should save your data. You can't refresh data until the zone comes back online.
 
-For more information, see [Availability zone service support](/azure/reliability/availability-zones-service-support).
+Learn more in [Availability zone service support](/azure/reliability/availability-zones-service-support).
 
 ### Deploy critical components to multiple regions
 
-Decide the level of business continuity you need. The level can differ between components of your solution. For example, you might use a hot/hot configuration for production pipelines or model deployments, and hot/cold for development.
+Decide what level of business continuity you need. The level can differ between components of your solution. For example, you might use a hot/hot configuration for production pipelines or model deployments, and hot/cold for development.
 
-Azure AI Foundry is a regional service and stores data both on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. However, you can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata (tags, asset names, descriptions). Data in your storage account is typically not metadata, like uploaded data.
+Azure AI Foundry is a regional service that stores data on the service side and in a storage account in your subscription. If a regional disaster occurs, service data can't be recovered. You can recover data that the service stores in the storage account in your subscription if storage redundancy is enabled. Service-side data is mostly metadata like tags, asset names, and descriptions. Data in your storage account typically isn't metadata, like uploaded data.
 
-For connections, create two separate resources in two distinct regions, and then create two connections for the project. For example, if AI Services is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
+For connections, create two separate resources in two different regions, and then create two connections for the project. For example, if AI Services is critical for business continuity, create two AI Services resources and two project connections. With this configuration, if one region goes down, the other region stays operational.
 
 For any projects that are essential to business continuity, deploy resources in two regions.
 
 ### Isolated storage
 
-If you connect data to customize your AI application, you can use those datasets in Azure AI and outside Azure AI. Dataset volume can be large, so it might be good practice to keep this data in a separate storage account. Evaluate the data replication strategy that makes the most sense for your use case.
+If you connect data to customize your AI application, you can use datasets in Azure AI and outside Azure AI. Dataset volume can be large, so it might be a good idea to keep this data in a separate storage account. Evaluate the data replication strategy that makes the most sense for your use case.
 
-In the Azure AI Foundry portal, create a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you can point to the same storage account because connections work across regions.
+In the Azure AI Foundry portal, create a connection to your data. If you have multiple Azure AI Foundry instances in different regions, you can point to the same storage account. Connections work across regions.
  
 
 ## Initiate a failover
 
 ### Continue work in the failover project
 
-When the primary project is unavailable, switch to the secondary project to continue development. Azure AI Foundry doesn't automatically submit jobs to the secondary project during an outage. Update your configuration to point to the secondary project resources. Avoid hard-coded project references.
+When the primary project is unavailable, switch to the secondary project to continue development work. Azure AI Foundry doesn't automatically submit jobs to the secondary project during an outage, so you need to update your configuration. Update your configuration to point to the secondary project resources. Avoid hard-coded project references.
 
-Azure AI Foundry can't sync or recover artifacts or metadata between projects. Depending on your deployment strategy, you might need to move or recreate artifacts in the failover project to continue. If you configure the primary and secondary projects to share associated resources with geo-replication enabled, some objects can be available in the failover project. For example, both projects can share the same Docker images, configured datastores, and Azure Key Vault resources.
+Azure AI Foundry doesn't sync or recover artifacts or metadata between projects. Depending on your deployment strategy, you might need to move or recreate artifacts in the failover project. If you configure the primary and secondary projects to share associated resources with geo-replication enabled, some objects are available in the failover project. For example, both projects share the same Docker images, configured datastores, and Azure Key Vault resources.
 
 > [!NOTE]
-> Jobs that run during a service outage don't automatically transition to the secondary project. They're also unlikely to resume and finish successfully in the primary project after the outage. Resubmit these jobs in the secondary project or in the primary project after the outage.
+> Jobs that run during a service outage don't automatically transition to the secondary project. They also don't typically resume and finish successfully in the primary project after the outage. Resubmit these jobs in the secondary project or in the primary project after the outage.
 
 ## Recovery options
 
 ### Resource deletion
 
-If you delete a project and its resources, some resources support soft delete and can be recovered. Projects don't support soft delete. If you delete them, you can't recover them. The following table shows which services support soft delete.
+If you delete a project and its resources, some resources support soft delete and can be recovered from deletion. Projects don't support soft delete, so they can't be recovered after deletion. After you delete a project, you can't recover it. The following table shows which services support soft delete.
 
 | Service | Soft delete enabled |
 | ------- | ------------------- |
-| Azure AI Foundry project | Unsupported | 
+| Azure AI Foundry project | No | 
 | Azure AI Services resource | Yes |
-| Azure Storage | See [Recover a deleted storage account](/azure/storage/common/storage-account-recover#recover-a-deleted-account-from-the-azure-portal). |
+| Azure Storage | See [Recover a deleted storage account](/azure/storage/common/storage-account-recover#recover-a-deleted-account-from-the-azure-portal) |
 | Azure Key Vault | Yes |
 
 ## Related content
 
-Review the [Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1).
+[Azure service-level agreements](https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services?lang=1)

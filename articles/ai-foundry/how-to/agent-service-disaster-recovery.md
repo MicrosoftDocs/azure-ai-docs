@@ -11,51 +11,52 @@ ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
 ms.subservice: azure-ai-foundry-agent-service
 ms.custom: arb-aiml
+ai-usage: ai-assisted
 ---
 
 # Azure AI Foundry Agent Service disaster recovery
 
 This three-article series provides disaster recovery guidance for Azure AI Foundry Agent Service, focusing on the Standard deployment mode. It explains how to prepare Azure resources, execute recovery procedures, and identify failure scenarios you can't fully recover from.
 
-Azure AI Agent Service deployments can encounter incidents that affect availability and data integrity in these components.
+Azure AI Agent Service deployments can encounter incidents that affect availability and data integrity in these components:
 
 - **Data plane APIs**: Services responsible for creating, updating, and invoking agents
 - **Agent capability host**: Per-project infrastructure that houses your agents
 - **Agent definitions**: Prompts, knowledge connections, file-based context, and tool integrations
 - **Conversation threads**: Text conversations and user-uploaded files
 
-Disasters stem from prolonged platform outages or from human or automation errors. Incidents in any component can make one or more agents unreachable or inoperable; some incidents stop normal service operation.
+Disasters stem from prolonged platform outages, or from human or automation errors. Incidents in any component can make one or more agents unreachable or inoperable. Some incidents stop normal service operation.
 
-The AI Agent Service is stateful. Recovery focuses on preserving and restoring that state stored in your project's Azure Cosmos DB, Azure AI Search, and Azure Storage account. This guide doesn't cover recovery for other Azure AI Foundry features, or for grounding stores or tools used by agents.
+The AI Agent Service is stateful. Recovery focuses on preserving and restoring that state stored in your project's Azure Cosmos DB, Azure AI Search, and Azure Storage account. This guide doesn't cover recovery for other Azure AI Foundry features or for grounding stores or tools used by agents.
 
 ## Built-in recovery capabilities
 
-The Azure AI Foundry Agent Service has important limitations that shape your workload's disaster recovery (DR) design. These factors should be considered when setting realistic recovery point objectives (RPOs) and recovery time objectives (RTOs).
+The Azure AI Foundry Agent Service has important limitations that shape your workload's disaster recovery (DR) design. Consider these factors when you set realistic recovery point objectives (RPOs) and recovery time objectives (RTOs).
 
 > [!IMPORTANT]
 > Azure AI Foundry Agent Service doesn't provide built-in disaster recovery capabilities. It doesn't replicate state, create backups, or support point-in-time restore. One project can't use the data of another project. The service doesn't have any supported method for active-active, multi-region replication. Microsoft Support can't recover orphaned data, migrate data between projects, or combine state from multiple sources.
 >
-> The recommendations in this guide are compensating controls. Recovery might not be possible. An incident can permanently remove an agent and its data (threads, knowledge).
+> The recommendations in this guide are compensating controls. Recovery might not be possible. An incident can permanently remove an agent and its data, such as threads and knowledge.
 
 ### General implications for your recovery design
 
 - Treat each independent workload capability as an isolated blast radius. Design recovery decisions and procedures to support independent recovery. This boundary is usually a single AI Foundry project, but it can be multiple projects that share the same dependencies and recovery requirements.
-- The recovery point for stateful content can be total loss; plan for business and user acceptance of that loss.
-- Recovery time mostly depends on how fast you can reapply infrastructure-as-code and redeploy agent definitions; invest in automation accordingly.
+- The recovery point for stateful content can be total loss. Plan for business and user acceptance of that loss.
+- Recovery time mostly depends on how fast you can reapply infrastructure as code and redeploy agent definitions. Invest in automation accordingly.
 - Warm standby environments start mostly empty. Recovery is reconstruction, not promotion of a hot replica.
 - Avoid designs or user expectations that assume you can later consolidate a recovery environment's data back into a production environment's data.
 
 ## Disaster prevention
 
-Preventing disasters is easier and less costly than recovering from them. Stop them from happening in the first place by applying proactive measures. Refer to [High availability and resiliency for Azure AI Foundry projects and agent services](high-availability-resiliency-fdp.md#disaster-prevention).
+Preventing disasters is easier and less costly than recovering from them. Stop disasters from happening in the first place by applying proactive measures. For more information, see [High availability and resiliency for Azure AI Foundry projects and agent services](high-availability-resiliency-fdp.md#disaster-prevention).
 
 ## Resource configuration to support recovery
 
-You need to configure your resources to support recovery before an incident happens. This includes enabling specific features and settings that facilitate recovery processes. Refer to [high-availability-resiliency-fdp.md#resource-configuration-to-support-recovery](high-availability-resiliency-fdp.md#resource-configuration-to-support-recovery).
+Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [high-availability-resiliency-fdp.md#resource-configuration-to-support-recovery](high-availability-resiliency-fdp.md#resource-configuration-to-support-recovery).
 
 ## Recover from Azure outages
 
-The Azure AI Foundry Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and capability host. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these service depends on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery is focused on getting another instance running in a region that isn't experiencing an outage.
+The Azure AI Foundry Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and capability host. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these services depend on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery focuses on getting another instance running in a region that isn't experiencing an outage.
 
 > [!div class="nextstepaction"]
 > [Agent Service platform outage recovery strategies](./azure-ai-foundry-agent-service-platform-disaster-recovery.md)
@@ -71,10 +72,10 @@ The Azure AI Foundry Agent Service has a significant amount of state and interco
 
 Disaster recovery is only one part of your business continuity strategy. For agent-based flows, plan how you continue to deliver value when agents are inoperable or data is lost. Set realistic expectations with users and business partners. Fall back to planned contingencies as needed.
 
-For example, the Purview integration provides a compliance safety net for workloads that require eDiscovery. If agents and their threads are lost, you can still respond to eDiscovery requests using Purview. This approach doesn't restore agent functionality or data, but it helps you meet compliance continuity needs.
+For example, the Purview integration provides a compliance safety net for workloads that require eDiscovery. If agents and their threads are lost, you can still respond to eDiscovery requests by using Purview. This approach doesn't restore agent functionality or data, but it helps you meet compliance continuity needs.
 
 Likewise, if your agent provides customer support capabilities to reduce the amount of human time spent with individual customers, you can fall back to email or phone support operations when agents are unavailable. Planned graceful degradation in your workload should direct workload users to alternatives.
 
 ## Next steps
 
-Start your AI Foundry Agent Service design with [recovery strategies for platform outages](./azure-ai-foundry-agent-service-platform-disaster-recovery.md) and then plan your [resource and data loss recovery strategies](./azure-ai-foundry-agent-service-operator-disaster-recovery.md).
+Start your AI Foundry Agent Service design with [recovery strategies for platform outages](./azure-ai-foundry-agent-service-platform-disaster-recovery.md), and then plan your [resource and data loss recovery strategies](./azure-ai-foundry-agent-service-operator-disaster-recovery.md).
