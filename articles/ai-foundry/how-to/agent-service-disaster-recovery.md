@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.date: 10/15/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: agent-service
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
@@ -59,14 +59,14 @@ Configure your resources to support recovery before an incident happens. Enable 
 The Azure AI Foundry Agent Service is a jointly managed service. Microsoft operates and maintains the control plane and capability host. You operate the agent stateful resources; Azure Cosmos DB, Azure AI Search, and Azure Storage account. All of these services depend on your deployment region's availability. If Azure is experiencing a prolonged region-wide outage, your approach to recovery focuses on getting another instance running in a region that isn't experiencing an outage.
 
 > [!div class="nextstepaction"]
-> [Agent Service platform outage recovery strategies](./azure-ai-foundry-agent-service-platform-disaster-recovery.md)
+> [Agent Service platform outage recovery strategies](agent-service-platform-disaster-recovery.md)
 
 ## Recover from resource and data loss incidents
 
 The Azure AI Foundry Agent Service has a significant amount of state and interconnected resources that you're responsible for in your workload. A user or automation process can delete or corrupt that state. The disruption might be accidental or malicious. Your recovery approach varies based on which resource or data element was lost.
 
 > [!div class="nextstepaction"]
-> [Agent Service resource and data loss recovery strategies](./azure-ai-foundry-agent-service-operator-disaster-recovery.md)
+> [Agent Service resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md)
 
 ## Business continuity
 
@@ -78,4 +78,4 @@ Likewise, if your agent provides customer support capabilities to reduce the amo
 
 ## Next steps
 
-Start your AI Foundry Agent Service design with [recovery strategies for platform outages](./azure-ai-foundry-agent-service-platform-disaster-recovery.md), and then plan your [resource and data loss recovery strategies](./azure-ai-foundry-agent-service-operator-disaster-recovery.md).
+Start your AI Foundry Agent Service design with [recovery strategies for platform outages](agent-service-platform-disaster-recovery.md), and then plan your [resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md).

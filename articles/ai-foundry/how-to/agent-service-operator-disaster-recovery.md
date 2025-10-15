@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.date: 10/15/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: agent-service
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
@@ -21,13 +21,13 @@ This article covers recovery from human or automation-caused incidents that resu
 > [!IMPORTANT]
 > This is one article of a three-part series.
 >
-> Read the overview guide first to understand platform limitations, prevention controls, and baseline configuration. See [Azure AI Foundry Agent Service disaster recovery](./azure-ai-foundry-agent-service-disaster-recovery.md) for prerequisites and context. That article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
+> Read the overview guide first to understand platform limitations, prevention controls, and baseline configuration. See [Azure AI Foundry Agent Service disaster recovery](./agent-service-disaster-recovery.md) for prerequisites and context. That article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
 >
-> If you're looking for recommendations on how to recover from platform or regional outages, see [Platform outage recovery](./azure-ai-foundry-agent-service-platform-disaster-recovery.md) for warm standby, regional failover, and failback.
+> If you're looking for recommendations on how to recover from platform or regional outages, see [Platform outage recovery](./agent-service-platform-disaster-recovery.md) for warm standby, regional failover, and failback.
 
 ## Azure AI Foundry accounts and projects
 
-The following sections describe recovery strategies for incidents that affect an Azure AI Foundry account or any of its projects. These recovery steps assume that you [configured your resources](./azure-ai-foundry-agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures didn't work.
+The following sections describe recovery strategies for incidents that affect an Azure AI Foundry account or any of its projects. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures didn't work.
 
 ### Azure AI Foundry account deleted
 
@@ -113,7 +113,7 @@ The following sections describe recovery strategies for incidents that affect an
 
 ## Azure AI Foundry Agent Service
 
-The following sections describe recovery strategies for incidents that are localized to the Azure AI Foundry Agent Service, such as specific agents. These recovery steps assume that you [configured your resources](./azure-ai-foundry-agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
+The following sections describe recovery strategies for incidents that are localized to the Azure AI Foundry Agent Service, such as specific agents. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
 
 ### A production agent is deleted
 
@@ -156,7 +156,7 @@ Cosmos DB's point-in-time restore lets you recover data to a different account, 
 
 ## Azure AI Foundry Agent Service dependencies
 
-The following sections describe recovery strategies for incidents that are localized to one of the Azure AI Foundry Agent Service dependencies in the Standard deployment model, such as Azure Cosmos DB. These recovery steps assume that you [configured your resources](./azure-ai-foundry-agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
+The following sections describe recovery strategies for incidents that are localized to one of the Azure AI Foundry Agent Service dependencies in the Standard deployment model, such as Azure Cosmos DB. These recovery steps assume that you [configured your resources](./agent-service-disaster-recovery.md#resource-configuration-to-support-recovery) to enable recovery and that prevention measures failed.
 
 ### Cosmos DB account is deleted
 
@@ -280,7 +280,7 @@ This instance is not to be confused with any AI Search indexes that are connecte
 
 1. Update clients to use the new agent IDs and resume interactions on existing threads.
 
-If you've gone against the [single responsibility principle recommendation](./azure-ai-foundry-agent-service-disaster-recovery.md#implement-the-single-responsibility-principle) and combined both Azure AI Foundry Agent Service runtime usage and durable workload knowledge into a single AI Search instance, recovery needs to be a combination of what's was presented here and a [rehydration of your durable knowledge store](/azure/reliability/reliability-ai-search#backups).
+If you've gone against the [single responsibility principle recommendation](./agent-service-disaster-recovery.md#implement-the-single-responsibility-principle) and combined both Azure AI Foundry Agent Service runtime usage and durable workload knowledge into a single AI Search instance, recovery needs to be a combination of what's was presented here and a [rehydration of your durable knowledge store](/azure/reliability/reliability-ai-search#backups).
 
 **Results:**
 
@@ -369,4 +369,4 @@ When other recovery options aren't available, you can perform a complete reset o
 Account for platform failures in your recovery design.
 
 > [!div class="nextstepaction"]
-> [Recovery strategies for platform outages](./azure-ai-foundry-agent-service-platform-disaster-recovery.md)
+> [Recovery strategies for platform outages](agent-service-platform-disaster-recovery.md)

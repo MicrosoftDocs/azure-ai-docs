@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.date: 10/15/2025
 ms.topic: reliability-article
 ms.collection: ce-skilling-ai-copilot
-ms.subservice: azure-ai-foundry-agent-service
+ms.subservice: agent-service
 ms.custom: arb-aiml
 ai-usage: ai-assisted
 ---
@@ -23,9 +23,9 @@ The recommended approach to [design for recovery](/azure/well-architected/reliab
 > [!IMPORTANT]
 > This is one article of a three-part series.
 >
-> Read the overview guide first to understand platform limitations, prevention controls, and required baseline configuration. For prerequisites and context, see [Azure AI Foundry Agent Service disaster recovery](./azure-ai-foundry-agent-service-disaster-recovery.md). This article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
+> Read the overview guide first to understand platform limitations, prevention controls, and required baseline configuration. For prerequisites and context, see [Azure AI Foundry Agent Service disaster recovery](./agent-service-disaster-recovery.md). This article explains why some losses are unrecoverable and why recovery often means reconstruction rather than restoration.
 >
-> If you're looking for recommendations on recovering from human-caused or automation-caused deletions and localized data loss, see [Resource and data loss recovery](./azure-ai-foundry-agent-service-operator-disaster-recovery.md).
+> If you're looking for recommendations on recovering from human-caused or automation-caused deletions and localized data loss, see [Resource and data loss recovery](./agent-service-operator-disaster-recovery.md).
 
 ## Architecture preparation
 
@@ -39,7 +39,7 @@ Maintain this low-idle-cost, fully networked warm standby account. It hosts no p
 
 ### Gateway routing
 
-If your clients' configurations are outside your control, add a layer of indirection between your clients and the Azure AI Foundry Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](../../patterns/gateway-routing.yml) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
+If your clients' configurations are outside your control, add a layer of indirection between your clients and the Azure AI Foundry Agent Service [data plane APIs](/rest/api/aifoundry/aiagents/operation-groups). Implement the [Gateway Routing](/azure/architecture/patterns/gateway-routing) pattern in a multiregion gateway such as [API Management configured for multiple regions](/azure/api-management/api-management-howto-deploy-multi-region). This indirection lets you fail over the data plane APIs without updating your clients' fully qualified domain name (FQDN) configuration by instead updating failover routing inside the gateway.
 
 ## Complete regional outage
 
@@ -140,7 +140,7 @@ The Azure Cosmos DB team initiates a service-managed failover automatically base
 **Recovery steps:** None. Wait until the Azure AI Search service is restored in your primary region. Consider going into a graceful degradation state in your workload that avoids any file uploads during this period.
 
 > [!IMPORTANT]
-> If you have a business-critical need to fail over sooner, [Perform a destructive reset of the Azure AI Agent Service capability host](./azure-ai-foundry-agent-service-operator-disaster-recovery.md#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host) and use a new AI Search instance in your failover region. This causes *complete data loss* in your production instance. When AI Search is available again in your primary region, perform the same destructive reset action again.
+> If you have a business-critical need to fail over sooner, [Perform a destructive reset of the Azure AI Agent Service capability host](./agent-service-operator-disaster-recovery.md#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host) and use a new AI Search instance in your failover region. This causes *complete data loss* in your production instance. When AI Search is available again in your primary region, perform the same destructive reset action again.
 >
 > We don't advise this approach unless your users are tolerant of thread loss and your agents can easily rehydrate their file-based knowledge.
 
@@ -192,4 +192,4 @@ Remember that an unplanned failover is a temporary state, and you must fail back
 Account for human-based failures in your recovery design.
 
 > [!div class="nextstepaction"]
-> [Resource and data loss recovery strategies](./azure-ai-foundry-agent-service-operator-disaster-recovery.md)
+> [Resource and data loss recovery strategies](agent-service-operator-disaster-recovery.md)
