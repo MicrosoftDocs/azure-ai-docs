@@ -3,6 +3,8 @@ items:
   items:
   - name: Role-based access control
     href: ../../concepts/rbac-azure-ai-foundry.md
+  - name: Disable preview features with RBAC
+    href: ../../concepts/disable-preview-features-with-rbac.md    
   - name: Rotate API access keys
     href: ../../../ai-services/rotate-keys.md?context=/azure/ai-foundry/context/context
   - name: Configure key-less authentication
@@ -14,12 +16,8 @@ items:
     href: ../../how-to/configure-private-link.md
   - name: Network security perimeter (preview)
     href: ../../how-to/add-foundry-to-network-security-perimeter.md
-- name: Data protection & encryption
-  items:
-  - name: Configure customer-managed keys
-    href: ../../concepts/encryption-keys-portal.md
-  - name: Disable shared key access to storage
-    href: ../../how-to/disable-local-auth.md
+- name: Configure customer-managed encryption keys
+  href: ../../concepts/encryption-keys-portal.md
 - name: Azure policies
   items:
   - name: Built-in policy for model deployment (Preview)
@@ -47,6 +45,8 @@ items:
   href: /security/benchmark/azure/baselines/azure-ai-foundry-security-baseline
 - name: Hub Security & Governance
   items:
+  - name: Disable shared key access to storage
+    href: ../../how-to/disable-local-auth.md
   - name: Azure policies
     items: 
     - name: Audit and manage hubs

@@ -15,7 +15,7 @@ ms.update-cycle: 365-days
 
 # Index plain text blobs and files in Azure AI Search
 
-**Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
+**Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
 
 When using an indexer to extract searchable blob text or file content for full text search, you can assign a parsing mode to get better indexing outcomes. By default, the indexer parses a blob's `content` property as a single chunk of text. However, if all blobs and files contain plain text in the same encoding, you can significantly improve indexing performance by using the `text` parsing mode.
 
@@ -28,8 +28,8 @@ Recall that all indexers serialize to JSON. By default, the content of the entir
 
 If you want a more refined or granular outcome, and if the file type is compatible, consider the following solutions:
 
-+ [`delimitedText`](search-howto-index-csv-blobs.md) parsing mode, if the source is CSV
-+ [`jsonArray` or `jsonLines`](search-howto-index-json-blobs.md), if the source is JSON
++ [`delimitedText`](search-how-to-index-azure-blob-csv.md) parsing mode, if the source is CSV
++ [`jsonArray` or `jsonLines`](search-how-to-index-azure-blob-json.md), if the source is JSON
 
 An alternative third option for breaking content into multiple parts requires advanced features in the form of [AI enrichment](cognitive-search-concept-intro.md). It adds analysis that identifies and assigns chunks of the file to different search fields. You might find a full or partial solution through [built-in skills](cognitive-search-predefined-skills.md) such as entity recognition or keyword extraction, but a more likely solution might be a custom learning model that understands your content, wrapped in a [custom skill](cognitive-search-custom-skill-interface.md).
 
@@ -77,5 +77,5 @@ api-key: [admin key]
 ## Next steps
 
 + [Indexers in Azure AI Search](search-indexer-overview.md)
-+ [How to configure a blob indexer](search-howto-indexing-azure-blob-storage.md)
++ [How to configure a blob indexer](search-how-to-index-azure-blob-storage.md)
 + [Blob indexing overview](search-blob-storage-integration.md)

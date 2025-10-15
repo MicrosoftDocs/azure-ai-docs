@@ -29,7 +29,7 @@ This article guides you on how to create and utilize a Microsoft Entra ID identi
 
 Before you get started, you need an Azure account and an Azure AI services subscription.
 
-* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An active Azure subscription. If you don't have an Azure subscription, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure AI Translator resource. Once you have your Azure subscription, create a [Translator single-service global resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) in the Azure portal.
 

@@ -28,7 +28,7 @@ Artifact (Maven) for [(training)](https://search.maven.org/artifact/com.azure/az
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The current version of the [Java Development Kit(JDK)](https://www.microsoft.com/openjdk).
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 * Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.

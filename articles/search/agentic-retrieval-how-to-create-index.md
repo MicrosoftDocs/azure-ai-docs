@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/01/2025
+ms.date: 10/13/2025
 ---
 
 # Design an index for agentic retrieval in Azure AI Search
@@ -20,9 +20,9 @@ Subqueries are created internally. Certain aspects of the subqueries are determi
 
 A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge agent*, and is either:
 
-+ An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](search-knowledge-source-how-to-index.md) definition.
++ An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
 
-+ A generated index created from a blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](search-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
++ A generated index created from a blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](agentic-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
 
 ## Criteria for agentic retrieval
 
@@ -91,7 +91,6 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
   "tokenizers": [],
   "tokenFilters": [],
   "charFilters": [],
-  "similarity": {},
   "semantic": {
     "defaultConfiguration": "semantic_config",
     "configurations": [
@@ -333,7 +332,7 @@ Synonym maps are defined as a top-level resource on a search index and assigned 
 
 ## Related content
 
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 
 + [Agentic RAG: build a reasoning retrieval engine with Azure AI Search (YouTube video)](https://www.youtube.com/watch?v=PeTmOidqHM8)
 

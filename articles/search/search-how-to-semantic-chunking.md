@@ -48,14 +48,14 @@ The raw inputs must be in a [supported data source](search-indexer-overview.md#s
 
 + Supported file formats include: PDF, JPEG, JPG, PNG, BMP, TIFF, DOCX, XLSX, PPTX, HTML.
 
-+ Supported indexers can be any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-howto-indexing-azure-blob-storage.md), [Microsoft OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
++ Supported indexers can be any indexer that can handle the supported file formats. These indexers include [Blob indexers](search-how-to-index-azure-blob-storage.md), [Microsoft OneLake indexers](search-how-to-index-onelake-files.md), [File indexers](search-file-storage-integration.md).
 
 + Supported regions for the portal experience of this feature include: East US, West Europe, North Central US. If you're setting up your skillset programmatically, you can use any Document Intelligence region that also provides the AI enrichment feature of Azure AI Search. For more information, see [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table).
 
-You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-howto-indexing-azure-blob-storage.md).
+You can use the Azure portal, REST APIs, or an Azure SDK package to [create a data source](search-how-to-index-azure-blob-storage.md).
 
 > [!TIP]
-> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-markdown-blobs.md) is used.
+> Upload the [health plan PDF](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/health-plan) sample files to your supported data source to try out the Document Layout skill and structure-aware chunking on your own search service. The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) is an easy code-free approach for trying out this skill. Be sure to select the **default parsing mode** to use structure-aware chunking. Otherwise, the [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md) is used.
 
 ## Create an index for one-to-many indexing
 
@@ -394,7 +394,7 @@ If you used the health plan PDFs to test this skill, Search Explorer results for
 ## See also
 
 + [Create or update a skill set](cognitive-search-defining-skillset.md).
-+ [Create a data source](search-howto-indexing-azure-blob-storage.md)
++ [Create a data source](search-how-to-index-azure-blob-storage.md)
 + [Define an index projection](search-how-to-define-index-projections.md)
 + [Attach an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)

@@ -15,9 +15,9 @@ ms.update-cycle: 365-days
 
 # Indexing blobs and files to produce multiple search documents
 
-**Applies to**: [Blob indexers](search-howto-indexing-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
+**Applies to**: [Blob indexers](search-how-to-index-azure-blob-storage.md), [File indexers](search-file-storage-integration.md)
 
-By default, an indexer treats the contents of a blob or file as a single search document. If you want a more granular representation in a search index, you can set **parsingMode** values to create multiple search documents from one blob or file. The **parsingMode** values that result in many search documents include `delimitedText` (for [CSV](search-howto-index-csv-blobs.md)), and `jsonArray` or `jsonLines` (for [JSON](search-howto-index-json-blobs.md)).
+By default, an indexer treats the contents of a blob or file as a single search document. If you want a more granular representation in a search index, you can set **parsingMode** values to create multiple search documents from one blob or file. The **parsingMode** values that result in many search documents include `delimitedText` (for [CSV](search-how-to-index-azure-blob-csv.md)), and `jsonArray` or `jsonLines` (for [JSON](search-how-to-index-azure-blob-json.md)).
 
 When you use any of these parsing modes, the new search documents that emerge must have unique document keys, and a problem arises in determining where that value comes from. The parent blob has at least one unique value in the form of `metadata_storage_path property`, but if it contributes that value to more than one search document, the key is no longer unique in the index.
 
@@ -138,12 +138,12 @@ Similar to the previous example, this mapping doesn't result in four documents s
 
 ## Limitations
 
-When a document entry in the index is created from a line in a file, as explained in this article, deleting that line from the file does'nt automatically remove the corresponding entry from the index. To delete the document entry, you must manually submit a deletion request to the index using the [REST API deletion operation](/rest/api/searchservice/addupdate-or-delete-documents).
+When a document entry in the index is created from a line in a file, as explained in this article, deleting that line from the file doesn't automatically remove the corresponding entry from the index. To delete the document entry, you must manually submit a deletion request to the index using the [REST API deletion operation](/rest/api/searchservice/addupdate-or-delete-documents).
 
 ## Next steps
 
-If you aren't already familiar with the basic structure and workflow of blob indexing, you should review [Indexing Azure Blob Storage with Azure AI Search](search-howto-index-json-blobs.md) first. For more information about parsing modes for different blob content types, review the following articles.
+If you aren't already familiar with the basic structure and workflow of blob indexing, you should review [Indexing Azure Blob Storage with Azure AI Search](search-how-to-index-azure-blob-json.md) first. For more information about parsing modes for different blob content types, review the following articles.
 
 > [!div class="nextstepaction"]
-> [Indexing  CSV blobs](search-howto-index-csv-blobs.md)
-> [Indexing JSON blobs](search-howto-index-json-blobs.md)
+> [Indexing  CSV blobs](search-how-to-index-azure-blob-csv.md)
+> [Indexing JSON blobs](search-how-to-index-azure-blob-json.md)
