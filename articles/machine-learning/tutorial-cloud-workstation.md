@@ -58,7 +58,7 @@ In order for your script to run, you need to be working in an environment that's
     Files that you upload are stored in an Azure file share, and these files are mounted to each compute instance and shared within the workspace.
 
     1. Go to [azureml-examples/tutorials/get-started-notebooks/workstation_env.yml](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml).
-    1. Download the Conda environment file [*workstation_env.yml*](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml) to your computer selecting the ellipsis button (**...**) in the top-right corner of the page and then selecing **Download**.
+    1. Download the Conda environment file [*workstation_env.yml*](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/workstation_env.yml) to your computer selecting the ellipsis button (**...**) in the top-right corner of the page and then selecting **Download**.
     1. Drag the file from your computer to the Visual Studio Code window. The file is uploaded to your workspace.
     1. Move the file into your username folder.
 
@@ -209,7 +209,7 @@ You'll now create a Python script from your notebook for model training.
 1. Look through the file and delete code that you don't want in the training script. For example, keep the code for the model you want to use, and delete code for the model you don't want to use.
     * Be sure you keep the code that starts autologging (`mlflow.sklearn.autolog()`).
     * When you run the Python script interactively (as you're doing here), you can keep the line that defines the experiment name (`mlflow.set_experiment("Develop on cloud tutorial")`). Or you can give it a different name to see it as a different entry in the **Jobs** section. But when you prepare the script for a training job, that line doesn't apply and should be omitted: the job definition includes the experiment name.
-    * When you train a single model, the lines for starting and ending a run (`mlflow.start_run()` and `mlflow.end_run()`) are not necessary (they have no effect), but you can can leave them in.
+    * When you train a single model, the lines for starting and ending a run (`mlflow.start_run()` and `mlflow.end_run()`) aren't necessary (they have no effect), but you can leave them in.
 
 1. When you're finished with your edits, save the file.
 
@@ -255,7 +255,7 @@ If you're not going to use it now, stop the compute instance:
 
 See these resources to learn more:
 
-* [From artifacts to models in MLflow](concept-mlflow-models.md)
+* [Artifacts and models in MLflow](concept-mlflow-models.md)
 * [Using Git with Azure Machine Learning](concept-train-model-git-integration.md)
 * [Running Jupyter notebooks in your workspace](how-to-run-jupyter-notebooks.md)
 * [Working with a compute instance terminal in your workspace](how-to-access-terminal.md)
