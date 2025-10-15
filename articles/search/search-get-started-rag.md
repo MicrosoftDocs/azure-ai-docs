@@ -12,7 +12,7 @@ ms.date: 07/09/2025
 zone_pivot_groups: programming-languages-ai-search-rag-qs
 ---
 
-# Quickstart: Generative search (RAG) using grounding data from Azure AI Search
+# Quickstart: Classic generative search (RAG) using grounding data from Azure AI Search
 
 In this quickstart, you send queries to a chat completion model for a conversational search experience over your indexed content on Azure AI Search. After setting up Azure OpenAI and Azure AI Search resources in the Azure portal, you run code to call the APIs.
 
