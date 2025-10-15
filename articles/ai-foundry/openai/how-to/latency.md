@@ -140,6 +140,9 @@ While prompt size has smaller influence on latency than the generation size it a
 ### Batching
 If you're sending multiple requests to the same endpoint, you can batch the requests into a single call. This reduces the number of requests you need to make and depending on the scenario it might improve overall response time. We recommend testing this method to see if it helps. 
 
+### Appropriate Client Timeout Values
+Start by considering a setting of 15 or 30 seconds for your client timeout. In some cases, setting an even longer client timeout may help stabilize your solution.
+
 ## How to measure your throughput
 We recommend measuring your overall throughput on a deployment with two measures:
 -	Calls per minute: The number of API inference calls you're making per minute. This can be measured in Azure-monitor using the Azure OpenAI Requests metric and splitting by the ModelDeploymentName
