@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-ms.date: 09/21/2025
+ms.date: 10/14/2025
 ms.update-cycle: 180-days
 ---
 
@@ -433,3 +433,14 @@ This error typically occurs due to one of the following:
 Ensure that the indexer has access to your setup components by reviewing your resource configurations to confirm they allow traffic to all required services:
 - [Firewall and IP restriction settings](search-indexer-howto-access-ip-restricted.md)
 - [Shared private link setup](search-indexer-howto-access-private.md)
+
+## `Error: Credentials provided in the connection string are invalid or have expired.`
+
+This error occurs when the Azure AI Search indexer cannot authenticate using the provided connection string or it has issues accessing the storage account to verify the credentials. 
+
+| Possible Cause | Details/Example | Resolution |
+|---|---|---|
+| Expired or rotated key | A connection string contains an outdated key that no longer works. | Go to the resource that is being contacted (for example, Azure Storage or Azure SQL) and copy the latest access keys if using key-based authentication, then update the data source or connection string accordingly. |
+| Managed identity not enabled or access not granted | The AI Search service [managed identity](search-how-to-managed-identities.md) is enabled but lacks the required access roles. | - Enable system or user-assigned [managed identity](search-how-to-managed-identities.md) on the search Service.<br>- Assign appropriate role(s) to the identity (for example, `Storage Blob Data Reader` for blob containers). Each [data source](search-data-sources-gallery.md) has its own permission requirements. |
+| Network/firewall blocks identity access | The resource contacted is configured to restrict network access. | Configure [network settings](search-indexer-howto-access-ip-restricted.md) to allow Azure AI Search access. |
+| Key authorization has been disabled | Shared key access removed on the source, but the Search service data source configuration still uses key-based authentication. | Use [managed identity](search-how-to-managed-identities.md) authentication and ensure role-based permissions are in place. From an Azure Storage perspective, this means that [shared key authorization functionality is blocked](/azure/storage/common/shared-key-authorization-prevent), either from the storage account itself, or enforced through enterprise-level Azure Policies. |
