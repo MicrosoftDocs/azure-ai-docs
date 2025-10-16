@@ -59,7 +59,7 @@ Sora 2 API uses the [v1 API](../api-version-lifecycle.md) and has the same struc
 
 ### videos.create()
 
-You will need to update to the latest version of the openai client with `pip install openai --upgrade` to prevent `AttributeError: 'OpenAI' object has no attribute 'videos'`.
+You'll need to update to the latest version of the OpenAI client with `pip install openai --upgrade` to prevent `AttributeError: 'OpenAI' object has no attribute 'videos'`.
 
 # [Microsoft Entra ID](#tab/python-entra)
 
