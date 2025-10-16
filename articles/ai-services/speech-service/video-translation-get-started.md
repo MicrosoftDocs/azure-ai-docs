@@ -10,18 +10,19 @@ ms.date: 4/15/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to use video translation.
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # How to use video translation
 
-::: zone pivot="ai-foundry-portal"
-[!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]
+::: zone pivot="rest-api"
+[!INCLUDE [REST API include](./includes/how-to/video-translation/rest.md)]
 ::: zone-end
 
 ::: zone pivot="speech-studio"
 [!INCLUDE [Speech Studio include](./includes/how-to/video-translation/speech-studio.md)]
 ::: zone-end
 
-::: zone pivot="rest-api"
-[!INCLUDE [REST API include](./includes/how-to/video-translation/rest.md)]
+::: zone pivot="ai-foundry-portal"
+[!INCLUDE [Foundry portal include](./includes/how-to/video-translation/ai-foundry.md)]
 ::: zone-end
