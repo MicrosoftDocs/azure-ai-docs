@@ -44,9 +44,9 @@ As of November 17, 2025, Content Understanding is a Generally Available (GA) ser
 
 * **Optimize workflow through classification**: Content Understanding's classification feature enables you to categorize the documents first, before routing it to the associated analyzer for extraction.
 
-## Applications
+## Industry-specific applications
 
-Common applications for Content Understanding include:
+Some common industry-specific applications for Content Understanding include:
 
 |Application|Description|
 |:---------|:----------|
@@ -57,7 +57,7 @@ Common applications for Content Understanding include:
 |Mortgage application processing|Analyze supplementary supporting documentation and mortgage applications to determine whether a prospective home buyer provided all the necessary documentation to secure a mortgage.|
 |Invoice contract verification|Review invoices and contractual agreements with clients carefully. Apply a multi-step reasoning process to analyze the data. Ensure that conclusions, such as validating the consistency between the invoice and the contract, are accurate and thorough.|
 
-## Components
+## Key components of Content Understanding
 
 :::image type="content" source="media/overview/pro-components.png" lightbox="media/overview/pro-components.png"alt-text="Screenshot of Content Understanding pro components.":::
 
@@ -68,7 +68,14 @@ Common applications for Content Understanding include:
 |Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
 |Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
-|  |  |
+| Classifier |  |
+
+## Content Understanding UX tools
+
+Content Understanding offers two UX tools that are optimized to offer excellent no code experiences that get you started with Content Understanding quickly & easily.
+
+* **Content Understanding Studio**: Optimized for analyzer performance improvement, CU Studio offers the ability to try out prebuilt analyzers, author custom solutions, and perform data labeling techniques to improve the output quality of your analyzer. It also supports the creation and testing of classifiers directly in the portal.
+* **Content Understanding in Azure AI Foundry**: Optimized for the Agentic experience, CU in the AI Foundry also offers the ability to try out prebuilt analyzers and author custom solutions, but also leverages the AI Foundry agent builder to leverage your Content Understanding analyzers to build a robust agentic solution. The AI Foundry agent builder allows for integration with other powerful tools to complete a full agentic workflow, no matter your business needs. The AI Foundry experience does not currently support data labeling or classification
 
 ## Responsible AI
 
