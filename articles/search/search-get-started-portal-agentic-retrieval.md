@@ -20,7 +20,7 @@ In this quickstart, you use [agentic retrieval](agentic-retrieval-overview.md) i
 
 The portal guides you through the process of configuring and creating the following objects:
 
-+ A *knowledge source* that supplies content for indexing and retrieval. Although agentic retrieval [supports multiple knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources), this quickstart uses Azure Blob Storage to create a blob knowledge source.
++ A *knowledge source* that points to a search index containing enriched content. Although agentic retrieval [supports multiple knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources), this quickstart uses Azure Blob Storage to create a blob knowledge source.
 
 + A *knowledge base* that uses an LLM to infer the underlying information need, plan queries, and surface relevant documents from your knowledge source. To optionally generate natural-language answers, this quickstart uses the answer synthesis modality.
 
@@ -97,7 +97,7 @@ To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure 
 
 + An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
 
-For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai?view=foundry-classicw&preserve-view=true).
+For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
 
 ## Prepare sample data
 
@@ -200,7 +200,7 @@ To review the auto-generated objects:
 
 1. Check the skillset to see how your content is chunked and vectorized using your embedding model.
 
-1. Check the index to see how your content is organized for retrieval, including which fields are searchable and filterable and which fields store vectors for similarity search.
+1. Check the index to see how your content is indexed and exposed for retrieval, including which fields are searchable and filterable and which fields store vectors for similarity search.
 
 1. Check the indexer for success or failure messages. Connection or quota errors appear here.
 
