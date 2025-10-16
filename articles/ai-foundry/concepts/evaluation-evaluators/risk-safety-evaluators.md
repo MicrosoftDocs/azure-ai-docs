@@ -1,5 +1,5 @@
 ---
-title: Risk and safety evaluators for generative AI
+title: Risk and Safety Evaluators for Generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about risk and safety evaluators for generative AI, including tools for assessing content safety, jailbreak vulnerabilities, and code security risks.
 author: lgayhardt
