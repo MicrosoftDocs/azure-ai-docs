@@ -19,9 +19,15 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
+## October 2025
+
+### GPT-4o audio model released
+
+- The `gpt-4o-transcribe-diarize` speech to text model is released supporting automatic speech recognition. Use this model via the `/audio` and `/realtime` APIs.  
+
 ## September 2025
 
-## GPT-5-codex is now available
+### GPT-5-codex is now available
 
 - To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
 - `gpt-5-codex` is specifically designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
