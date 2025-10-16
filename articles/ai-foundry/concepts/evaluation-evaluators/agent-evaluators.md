@@ -30,7 +30,7 @@ Agents emit messages. Providing inputs typically requires parsing messages and e
 Besides `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence` specific to agentic workflows, you can also assess other quality and safety aspects of your agentic workflows, using a comprehensive suite of built-in evaluators. Azure AI Foundry supports this list of evaluators for Azure AI agent messages from our converter:
 
 - **Quality**: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
-- **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
+- **Safety**: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`
 
 This article shows examples of `IntentResolution`, `ToolCallAccuracy`, and `TaskAdherence`. For examples of using other evaluators with Azure AI agent messages, see [evaluating Azure AI agents](../../how-to/develop/agent-evaluate-sdk.md#evaluate-azure-ai-agents).
 
