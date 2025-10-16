@@ -7,10 +7,19 @@ ms.author: sgilley
 ms.reviewer: aashishb
 ms.date: 10/15/2025
 ms.topic: how-to
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ---
 
 # Plan and manage costs for Azure AI Foundry
+
+**Managing Azure AI Foundry costs effectively starts with planning.** This article shows you how to estimate expenses before deployment, track spending in real-time, and set up alerts to avoid budget surprises.
+
+**What you'll learn:**
+- Estimate costs using the Azure pricing calculator
+- Monitor actual spending across different model types
+- Create budgets and alerts to control expenses
+- Understand billing differences between Azure-hosted and partner models
 
 This article describes how to plan for and manage costs for [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). First, use the Azure pricing calculator to help plan for Azure AI Foundry costs before you add resources. Next, as you add Azure resources, review the estimated costs. After you start using Azure resources, use cost management features to set budgets and monitor costs.
 
@@ -21,7 +30,11 @@ You use Azure AI services in Azure AI Foundry portal. Costs for Azure AI service
 
 ## Prerequisites
 
-Cost analysis in Microsoft Cost Management supports most Azure account types, but not all. To view the full list of supported account types, see [Understand Cost Management data](/azure/cost-management-billing/costs/understand-cost-mgt-data) To view cost data, you need at least read access for an Azure account. For information about assigning access to Microsoft Cost Management data, see [Assign access to data](/azure/cost-management-billing/costs/assign-access-acm-data).
+**To view and analyze costs, you need:**
+- An Azure account with read access to Cost Management data
+- One of the [supported Azure account types](/azure/cost-management-billing/costs/understand-cost-mgt-data)
+
+**Need to grant access?** See [how to assign access to Cost Management data](/azure/cost-management-billing/costs/assign-access-acm-data).
 
 ## Estimate costs before using Azure AI services
 
@@ -266,7 +279,9 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
 
 ## Create budgets
 
-To manage costs, create [budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets) and set up [alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) that notify stakeholders of spending anomalies and overspending risks. Base alerts on spending compared to budgets and cost thresholds. Create budgets and alerts for Azure subscriptions and resource groups as part of an overall cost monitoring strategy.
+**Prevent cost overruns with automated alerts.** [Create budgets](/azure/cost-management-billing/costs/tutorial-acm-create-budgets) that track your spending limits and [set up alerts](/azure/cost-management-billing/costs/cost-mgt-alerts-monitor-usage-spending) to notify you when costs approach or exceed thresholds.
+
+**Best practice:** Create budgets and alerts for Azure subscriptions and resource groups as part of an overall cost monitoring strategy.
 
 Create budgets with filters for specific resources or services in Azure if you want more granularity in your monitoring. Filters help ensure that you don't accidentally create new resources that cost more money. For more about filter options when you create a budget, see [Group and filter options](/azure/cost-management-billing/costs/group-filter).
 
