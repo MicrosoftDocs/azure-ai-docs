@@ -60,10 +60,10 @@ You can also use the client libraries provided by the Azure SDK to send requests
 
 1. Download and install the client library package for your language of choice:
 
-    |  | Language | Package version |
-    |--|--|--|
-    |  | .NET | [1.0.0](https://www.nuget.org/packages/Azure.AI.Language.Conversations/1.0.0) |
-    |  | Python | [1.0.0](https://pypi.org/project/azure-ai-language-conversations/1.0.0) |
+    | Language | Package version |
+    |--|--|
+    | .NET | [1.0.0](https://www.nuget.org/packages/Azure.AI.Language.Conversations/1.0.0) |
+    | Python | [1.0.0](https://pypi.org/project/azure-ai-language-conversations/1.0.0) |
 
 1. After you install the client library, use the following samples on GitHub to start calling the API.
 
