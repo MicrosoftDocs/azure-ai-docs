@@ -16,7 +16,7 @@ Sora is an AI model from OpenAI that creates realistic and imaginative video sce
 Azure OpenAI supports two versions of Sora:
 - Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
 - Sora 2: The latest OpenAI-based API, now available with the Azure OpenAI [v1 API](../api-version-lifecycle.md).
-- 
+
 ## Overview
 - Modalities: text → video, image → video, video (generated) → video
 - Audio: Sora 2 supports audio generation in output videos (similar to the Sora app).
@@ -38,11 +38,11 @@ Azure OpenAI supports two versions of Sora:
 
 ## Sora 2 API 
 Provides 5 endpoints, each with distinct capabilities. 
-- Create Video: Start a new render job from a prompt, with optional reference inputs or a remix id.
+- Create Video: Start a new render job from a prompt, with optional reference inputs or a remix ID.
 - Get Video Status: Retrieve the current state of a render job and monitor its progress
 - Download Video: Fetch the finished MP4 once the job is completed.
 - List Videos: Enumerate your videos with pagination for history, dashboards, or housekeeping. 
-- Delete Videos: Delete an individual video id from Azure OpenAI’s storage
+- Delete Videos: Delete an individual video ID from Azure OpenAI’s storage
 
 ### API parameters
 
@@ -140,7 +140,7 @@ Video generation started: Video(id='video_68f10985d6c4819097007665bdcfba5f', com
 
 ### Create a video and poll job status
 
-Call `GET /videos/{video_id}` with the id returned from the create call. The response shows the job’s current status, progress percentage, and any errors.
+Call `GET /videos/{video_id}` with the ID returned from the create call. The response shows the job’s current status, progress percentage, and any errors.
 
 Expected states are `queued`, `in_progress`, `completed`, and `failed`. 
 
