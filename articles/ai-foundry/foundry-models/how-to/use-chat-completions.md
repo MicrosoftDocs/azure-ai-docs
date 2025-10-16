@@ -15,7 +15,7 @@ ms.custom: generated
 
 # How to generate chat completions with Azure AI Foundry Models
 
-This article explains how to generate chat completions with Azure AI Foundry Model deployments, using the unified OpenAI v1 chat completion endpoint, also referred to as the v1 Azure OpenAI APIs. The unified endpoint eliminates the need for separate Azure-specific code paths
+This article explains how to generate chat completions with Azure AI Foundry Model deployments, using the unified OpenAI v1 chat completion endpoint, also referred to as the v1 Azure OpenAI APIs. The unified endpoint eliminates the need for separate Azure-specific code paths.
 
 ## Prerequisites
 
@@ -28,20 +28,20 @@ To use chat completion models in your application, you need:
 
 ## v1 Azure OpenAI APIs
 
-The v1 Azure OpenAI APIs use the `OpenAI()` client instead of the deprecated  `AzureOpenAI()` client. In addition, the v1 Azure OpenAI APIs add support for:
+The v1 Azure OpenAI APIs use the `OpenAI()` client instead of the deprecated  `AzureOpenAI()` client. The v1 Azure OpenAI APIs add support for:
 
-- Ongoing access to the latest features with no need to specify new `api-version`s frequently.
+- Ongoing access to the latest features, with no need to specify new values for `api-version` parameter frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
-- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
-- Chat completions calls with Foundry Models from other providers like DeepSeek and Grok, which support the v1 chat completions syntax.
+- OpenAI client support for token-based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
+- Chat completions calls with Foundry Models from providers like DeepSeek and Grok, which support the v1 chat completions syntax.
 
-For mre information on the v1 Azure OpenAI APIs, see [API evolution](../../openai/api-version-lifecycle.md#api-evolution).
+For more information on the v1 Azure OpenAI APIs, see [API evolution](../../openai/api-version-lifecycle.md#api-evolution) and the [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json).
 
 ## Generate chat completions
 
-For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../openai/supported-languages.md) to make chat completion calls. For other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, the the v1 Azure OpenAI API also allows you to make chat completion calls using the v1 chat completions syntax.
+For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../openai/supported-languages.md#responses-api)) to make chat completion calls. For other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, the the v1 Azure OpenAI API also allows you to make chat completion calls using the v1 chat completions syntax.
 
-In the following examples, you first create the client to consume the model. Then, create a basic request to the model. 
+In the following examples, you create the client to consume the model and then send a basic request to the model. 
 
 > [!NOTE]
 > We recommend keyless authentication using Microsoft Entra ID. If that's not possible, use an API key and store it in Azure Key Vault. You can use an environment variable for testing outside of your Azure environments.
@@ -71,12 +71,12 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `OpenAI()` client is used instead of the `AzureOpenAI()` client that was previously recommended but is now deprecated.
+- `OpenAI()` client is used instead of the deprecated `AzureOpenAI()` client.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1/` is appended to the endpoint address.
 - `api-version` is no longer a required parameter with the v1 GA API.
 - `model` refers to the underlying **deployment name** you chose when you deployed the model. This is not the name of the model you deployed.
 
-To use API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```python
 client = OpenAI()
@@ -84,9 +84,6 @@ client = OpenAI()
 
 
 **Microsoft Entra authentication**:
-
-> [!IMPORTANT]
-> Automatic token refresh handling was previously done through use of the `AzureOpenAI()` client. The v1 API removes this dependency by adding automatic token refresh support to the `OpenAI()` client.
 
 Microsoft Entra authentication is only supported with Azure OpenAI resources. Complete the following steps:
 
@@ -127,7 +124,7 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `OpenAI()` client is used instead of the `AzureOpenAI()` client that was previously recommended but is now deprecated.
+- `OpenAI()` client is used instead of the deprecated `AzureOpenAI()` client.
 - `base_url` passes the Azure OpenAI endpoint and `/openai/v1/` is appended to the endpoint address.
 - `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
 - `api-version` is no longer a required parameter with the v1 GA API.
@@ -202,7 +199,7 @@ const client = new OpenAI({
 });
 ```
 
-**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```javascript
 const client = new OpenAI();
@@ -233,7 +230,7 @@ client := openai.NewClient(
 )
 ```
 
-**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```go
 client := openai.NewClient()
@@ -265,7 +262,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
                 .build();
 ```
 
-**API Key** with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```java
 OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -316,11 +313,13 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### Use the chat completions API
 
-For Foundry Models, including Azure OpenAI models, we recommend using the [Responses API](../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with other Foundry Models from providers like DeepSeek and Grok, as these models support the OpenAI v1 chat completions syntax.
+For Foundry Models, including Azure OpenAI models, we recommend using the [Responses API](../../openai/supported-languages.md#responses-api). However, the v1 API also allows you to make chat completions calls with models from providers like DeepSeek and Grok, as these models support the OpenAI v1 chat completions syntax.
 
 `base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
 # [Python](#tab/python)
+
+**Microsoft Entra authentication**:
 
 ```python
 from openai import OpenAI
@@ -347,6 +346,8 @@ print(completion.model_dump_json(indent=2))
 ```
 
 # [C#](#tab/dotnet)
+
+**Microsoft Entra authentication**:
 
 ```csharp
 using Azure.Identity;
@@ -377,6 +378,9 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 # [JavaScript](#tab/javascript)
 
 ```javascript
+
+**Microsoft Entra authentication**:
+
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 import { OpenAI } from "openai";
 
@@ -408,6 +412,8 @@ console.log('Response content:', result.choices[0].message.content);
 ```
 
 # [Go](#tab/go)
+
+**Microsoft Entra authentication**:
 
 ```go
 package main
@@ -451,6 +457,8 @@ func main() {
 ```
 
 # [Java](#tab/Java)
+
+**API key authentication**:
 
 ```java
 package com.example;
@@ -506,11 +514,6 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 ```
 
 ---
-
-## v1 API support
-
-- [v1 OpenAPI 3.0 spec](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/ai/data-plane/OpenAI.v1/azure-v1-v1-generated.json)
-
 
 ## Related content
 
