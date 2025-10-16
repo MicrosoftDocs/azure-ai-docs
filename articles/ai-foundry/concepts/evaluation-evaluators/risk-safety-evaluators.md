@@ -17,7 +17,7 @@ ms.custom:
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-Risk and safety evaluators draw on insights gained from our previous Large Language Model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.
+Risk and safety evaluators draw on insights gained from our previous large language model (LLM) projects such as GitHub Copilot and Bing. This approach ensures a comprehensive approach to evaluating generated responses for risk and safety severity scores.
 
 These evaluators are generated through the Azure AI Foundry Evaluation service, which employs a set of language models. Each model assesses specific risks that could be present in the response from your AI system. Specific risks include sexual content, violent content, and other content. These evaluator models are provided with risk definitions and annotate accordingly. Currently, we support the following risks for assessment:
 
@@ -37,7 +37,7 @@ You can also use the [Content Safety Evaluator](#content-safety-composite-evalua
 
 ## Azure AI Foundry project configuration and region support
 
-The risk and safety evaluators use hosted evaluation LLMs in the Azure AI Foundry evaluation service. They require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
+The risk and safety evaluators use hosted evaluation language models in the Azure AI Foundry evaluation service. They require your Azure AI project information to be instantiated. The Azure AI project must be in a supported region:
 
 | Region | Hate and unfairness, Sexual, Violent, Self-harm, Indirect attack, Code vulnerabilities, Ungrounded attributes | Protected material |
 |--|--|--|
@@ -152,7 +152,7 @@ Safety evaluations annotate sexual content using a 0-7 scale that maps to corres
 > [!WARNING]
 > The content risk definitions and severity scales contain descriptions that might be disturbing to some users.
 
-`ViolenceEvaluator` measures language pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons (and related entities such as manufacturers and associations).
+`ViolenceEvaluator` measures language pertaining to physical actions intended to hurt, injure, damage, or kill someone or something. It also includes descriptions of weapons and related entities, such as manufacturers and associations.
 
 ### Violent content example
 
@@ -336,7 +336,7 @@ The `outputs` is a list of two lists including the baseline adversarial simulati
 
 ## Indirect attack jailbreak (XPIA)
 
-`IndirectAttackEvaluator` measures to what extent the response fell for the indirect jailbreak attempt. Indirect attacks occur when jailbreak attacks are injected into the context of a document or source that might result in altered, unexpected behavior on the part of the LLM. Indirect attacks are also known as *cross-domain prompt injected attacks* (XPIA).
+`IndirectAttackEvaluator` measures to what extent the response fell for the indirect jailbreak attempt. Indirect attacks occur when jailbreak attacks are injected into the context of a document or source that might result in altered, unexpected behavior on the part of the language model. Indirect attacks are also known as *cross-domain prompt injected attacks* (XPIA).
 
 ### Indirect attack jailbreak (XPIA) example
 
@@ -425,23 +425,23 @@ The label field returns a boolean true if *ANY* of the following vulnerabilities
 |---------------------|-------------|
 | `path-injection` | Unvalidated input forms a file / directory path, allowing attackers to access or overwrite unintended locations. |
 | `sql-injection` | Untrusted data is concatenated into SQL or NoSQL queries, letting attackers alter database commands. |
-| `code-injection` | External input is executed or evaluated as code (`eval`, `exec`, etc.), enabling arbitrary command execution. |
+| `code-injection` | External input is executed or evaluated as code, such as `eval` or `exec`, enabling arbitrary command execution. |
 | `stack-trace-exposure` | Application returns stack traces to users, leaking file paths, class names, or other sensitive details. |
 | `incomplete-url-substring-sanitization` | Input is only partially checked before being inserted into a URL, letting attackers manipulate URL semantics. |
 | `flask-debug` | Running a Flask app with `debug=True` in production exposes the Werkzeug debugger, allowing remote code execution. |
-| `clear-text-logging-sensitive-data` | Sensitive information (passwords, tokens, personal data) is written to logs without masking or encryption. |
+| `clear-text-logging-sensitive-data` | Sensitive information, such as passwords, tokens, and personal data, is written to logs without masking or encryption. |
 | `incomplete-hostname-regexp` | Regex that matches hostnames uses unescaped dots, unintentionally matching more domains than intended. |
 | `server-side-unvalidated-url-redirection` | Server redirects to a URL provided by the client without validation, enabling phishing or open-redirect attacks. |
-| `weak-cryptographic-algorithm` | Application employs cryptographically weak algorithms (DES, RC4, MD5, etc.) instead of modern standards. |
+| `weak-cryptographic-algorithm` | Application employs cryptographically weak algorithms, like DES, RC4, or MD5, instead of modern standards. |
 | `full-ssrf` | Unvalidated user input is placed directly in server-side HTTP requests, enabling Server-Side Request Forgery. |
 | `bind-socket-all-network-interfaces` | Listening on `0.0.0.0` or equivalent exposes the service on all interfaces, increasing attack surface. |
 | `client-side-unvalidated-url-redirection` | Client-side code redirects based on unvalidated user input, facilitating open redirects or phishing. |
 | `likely-bugs` | Code patterns that are highly prone to logic or runtime errors, for example, overflow, unchecked return values. |
 | `reflected-xss` | User input is reflected in HTTP responses without sanitization, allowing script execution in the victim’s browser. |
-| `clear-text-storage-sensitive-data` | Sensitive data is stored unencrypted (files, cookies, DB), risking disclosure if storage is accessed. |
-| `tarslip` | Extracting tar archives without path validation lets entries escape the intended directory (`../` or absolute paths). |
+| `clear-text-storage-sensitive-data` | Sensitive data is stored unencrypted, such as files, cookies or databases, risking disclosure if storage is accessed. |
+| `tarslip` | Extracting tar archives without path validation lets entries escape the intended directory: `../` or absolute paths. |
 | `hardcoded-credentials` | Credentials or secret keys are embedded directly in code, making them easy for attackers to obtain. |
-| `insecure-randomness` | Noncryptographic RNG (for example, `rand()`, `Math.random()`) is used for security decisions, allowing prediction. |
+| `insecure-randomness` | Noncryptographic RNG, for example, `rand()`, `Math.random()`, is used for security decisions, allowing prediction. |
 
 ## Ungrounded attributes
 
