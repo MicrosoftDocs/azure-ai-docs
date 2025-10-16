@@ -1,7 +1,7 @@
 ---
 title: Work with Azure AI Foundry Agent Service in Visual Studio Code
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use Azure AI Foundry Agent Service directly in VS Code.
+description: Use this article to learn how to use Azure AI Foundry Agent Service directly in Visual Studio Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -9,7 +9,7 @@ content_well_notification:
 ai-usage: ai-assisted
 ms.topic: how-to
 zone_pivot_groups: ai-foundry-vsc-extension-languages
-ms.date: 10/09/2025
+ms.date: 10/16/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -262,22 +262,35 @@ Install the following packages from the source:
 
 ::: zone pivot="csharp"
 
-C# workflows require nightly builds from the Microsoft GitHub packages. Follow these steps to set them up:
+#### Prerequisites
 
-1. Go to **GitHub Settings** > **Developer settings** > **Personal access tokens** > **Tokens (classic)** > **Generate new token (classic)**.
+To run the sample multi-agent workflow C# project, ensure that you have an Azure AI Foundry project or an Azure OpenAI resource.
 
-1. Create a GitHub personal access token with the `read:packages` scope by using [these instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic).
+#### Setup and installation
 
-1. Copy the generated token (it starts with `ghp_`) and save it securely. You won't be able to see it again.
+1. Download and install the .NET 9 SDK from the [official .NET website](https://dotnet.microsoft.com/download).
 
-#### Update the NuGet configuration
+1. Go to your project directory and run this command to get the necessary NuGet packages:
 
-In `Nuget.Config`, replace the following placeholders:
+    ```bash
+    dotnet restore
+    ```
 
-```xml
-<add key="Username" value="YOUR_GITHUB_USERNAME" /> <!-- Replace with your GitHub username -->
-<add key="ClearTextPassword" value="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN" /> <!-- Replace with your GitHub personal access token -->
-```
+1. The sample workflow project creates an .env file with the necessary environment variables. Create or update the .env file with your Azure OpenAI credentials:
+
+    ```
+    # Your Azure OpenAI endpoint
+    AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
+       
+    # Your Azure OpenAI API key
+    AZURE_OPENAI_API_KEY=<your-api-key>
+       
+    # Your model deployment name in Azure OpenAI
+    MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+    ```
+
+    > [!IMPORTANT]
+    > Never commit the .env file to version control. Add it to your .gitignore file.
 
 ::: zone-end
 
@@ -285,9 +298,9 @@ In `Nuget.Config`, replace the following placeholders:
 
 ::: zone pivot="csharp"
 
-Before you run your workflow locally by using `dotnet run`, ensure that you configured the required environment variables. You can obtain these values from the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+Before you run `dotnet run` locally, set up the required environment variables. You can get these values from the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-1. Configure your environment variables based on your operating system:
+1. Set up your environment variables based on your operating system:
 
    #### [Windows (PowerShell)](#tab/windows-powershell)
 

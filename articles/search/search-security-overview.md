@@ -312,7 +312,7 @@ For Azure AI Search, there's currently one built-in definition. It's for resourc
 
 Apply metadata tags to categorize search services based on data sensitivity and compliance requirements. This facilitates proper governance and security controls. For more information, see [Use tags to organize your Azure resources](/azure/azure-resource-manager/management/tag-resources) and [General guidance – Organize Azure resources using tags](/azure/azure-resource-manager/management/tag-resources).
 
-## Learn more
+## Related content
 
 + [Azure security fundamentals](/azure/security/fundamentals/)
 + [Azure Security](https://azure.microsoft.com/overview/security)

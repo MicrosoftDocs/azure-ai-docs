@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/01/2025
+ms.date: 10/13/2025
 ---
 
 # Design an index for agentic retrieval in Azure AI Search
@@ -91,7 +91,6 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
   "tokenizers": [],
   "tokenFilters": [],
   "charFilters": [],
-  "similarity": {},
   "semantic": {
     "defaultConfiguration": "semantic_config",
     "configurations": [
