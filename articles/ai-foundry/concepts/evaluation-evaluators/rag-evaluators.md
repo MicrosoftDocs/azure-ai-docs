@@ -5,7 +5,7 @@ description: Learn about Retrieval-Augmented Generation evaluators for assessing
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: changliu2
-ms.date: 07/15/2025
+ms.date: 10/17/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -62,11 +62,11 @@ The evaluators support AzureOpenAI or OpenAI [reasoning models](../../../ai-serv
 | `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
 | Other quality evaluators| Not Supported | Supported |--|
 
-For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `o3-mini` and o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model with a balance of reasoning performance and cost efficiency, like `o3-mini` and o-series mini models released afterwards.
 
 ## Retrieval
 
-Retrieval quality is important given its upstream role in RAG. If the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. `RetrievalEvaluator` measures the *textual quality* of retrieval results with a language model without requiring ground truth, also known as *query relevance judgment*. This fact provides value compared to `DocumentRetrievalEvaluator`, which measures `ndcg`,  `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks are to addressing a query and how the most relevant context chunks are surfaced at the top of the list. the context chunks are encoded as strings.
+Because of its upstream role in RAG, the retrieval quality is important. If the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. `RetrievalEvaluator` measures the *textual quality* of retrieval results with a language model without requiring ground truth, also known as *query relevance judgment*. This fact provides value compared to `DocumentRetrievalEvaluator`, which measures `ndcg`, `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks are to addressing a query and how the most relevant context chunks are surfaced at the top of the list. The context chunks are encoded as strings.
 
 ### Retrieval example
 
@@ -96,7 +96,7 @@ The numerical score on a Likert scale (integer 1 to 5). A higher score is better
 
 ## Document retrieval
 
-Retrieval quality is important given its upstream role in RAG. If the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. It's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
+Because of its upstream role in RAG, the retrieval quality is important. If the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. It's important to use `DocumentRetrievalEvaluator` to evaluate the retrieval quality but also optimize your search parameters for RAG.
 
 - Document Retrieval evaluator measures how well the RAG retrieves the correct documents from the document store. As a composite evaluator useful for RAG scenario with ground truth, it computes a list of useful search quality metrics for debugging your RAG pipelines:
 
