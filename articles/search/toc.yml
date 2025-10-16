@@ -3,7 +3,7 @@ items:
   href: index.yml
 - name: Overview
   items:
-  - name: What's Azure AI Search?
+  - name: What is Azure AI Search?
     href: search-what-is-azure-search.md
   - name: New in AI Search
     href: whats-new.md
@@ -78,6 +78,8 @@ items:
     href: /azure/ai-services/openai/use-your-data-quickstart?context=/azure/search/context/context
   - name: Azure portal
     items:
+    - name: Create an agentic search pipeline
+      href: search-get-started-portal-agentic-retrieval.md
     - name: Create a search index
       href: search-get-started-portal.md
     - name: Create a vector index
@@ -236,7 +238,7 @@ items:
         href: index-sql-relational-data.md
       - name: Analyzers
         items:
-        - name: Analyzers overview
+        - name: What is an analyzer?
           href: search-analyzers.md
         - name: Add a language analyzer
           href: index-add-language-analyzers.md
@@ -344,13 +346,13 @@ items:
           href: search-how-to-index-sql-managed-instance.md
         - name: Azure SQL Server VMs
           href: search-how-to-index-sql-server.md
-      - name: Microsoft OneLake
+      - name: OneLake
         href: search-how-to-index-onelake-files.md
       - name: SharePoint Online
         href: search-how-to-index-sharepoint-online.md
     - name: Skillsets (indexers)
       items:
-      - name: Skillsets overview
+      - name: What is a skillset?
         href: cognitive-search-working-with-skillsets.md
       - name: Create a skillset
         href: cognitive-search-defining-skillset.md
@@ -360,7 +362,7 @@ items:
         href: cognitive-search-attach-cognitive-services.md
       - name: Define an index projection
         href: search-how-to-define-index-projections.md
-      - name: Debug sessions overview
+      - name: What is a debug session?
         href: cognitive-search-debug-session.md
       - name: Debug a skillset
         href: cognitive-search-how-to-debug-skillset.md
@@ -404,6 +406,8 @@ items:
           href: agentic-knowledge-source-overview.md
         - name: Azure blobs
           href: agentic-knowledge-source-how-to-blob.md
+        - name: OneLake
+          href: agentic-knowledge-source-how-to-onelake.md
         - name: Search indexes
           href: agentic-knowledge-source-how-to-search-index.md
       - name: Create a knowledge agent
@@ -471,7 +475,7 @@ items:
     items:
     - name: BM25 ranking
       items:
-      - name: BM25 ranking overview
+      - name: What is BM25 ranking?
         href: index-similarity-and-scoring.md
       - name: Configure BM25 ranking
         href: index-ranking-similarity.md
@@ -483,7 +487,7 @@ items:
       href: index-add-scoring-profiles.md
     - name: Semantic ranking
       items:
-      - name: Semantic ranking overview
+      - name: What is semantic ranking?
         href: semantic-search-overview.md
       - name: Enable or disable semantic ranker
         href: semantic-how-to-enable-disable.md
@@ -547,7 +551,7 @@ items:
         href: search-indexer-how-to-access-private-sql.md
     - name: Document-level access
       items:
-      - name: Document-level security overview
+      - name: What is document-level security?
         href: search-document-level-access-overview.md
       - name: Use security filters
         href: search-security-trimming-for-azure-search.md
@@ -603,7 +607,7 @@ items:
       href: search-performance-tips.md
   - name: Knowledge store
     items:
-    - name: Knowledge store projections overview
+    - name: What is a knowledge store projection?
       href: knowledge-store-projection-overview.md
     - name: Create using REST
       href: knowledge-store-create-rest.md
