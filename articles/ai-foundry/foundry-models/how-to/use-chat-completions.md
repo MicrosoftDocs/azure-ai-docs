@@ -332,7 +332,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    baseURL: "https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
