@@ -15,7 +15,7 @@ ms.custom: generated
 
 # How to generate chat completions with Azure AI Foundry Models
 
-This article explains how to use chat completions with Azure AI Foundry Model deployments.
+This article explains how to generate chat completions with Azure AI Foundry Model deployments, using the unified OpenAI v1 chat completion endpoint, also referred to as the v1 Azure OpenAI APIs. The unified endpoint eliminates the need for separate Azure-specific code paths
 
 ## Prerequisites
 
@@ -26,22 +26,33 @@ To use chat completion models in your application, you need:
 * A chat completions model deployment. If you don't have one, see [Add and configure Foundry Models](create-model-deployments.md) to add a chat completions model to your resource.
 
 
-## Use chat completions
+## v1 Azure OpenAI APIs
 
-For Foundry Models, including Azure OpenAI models, we recommend using the [Responses API](../../openai/supported-languages.md). However, the v1 API also allows you to make chat completions calls with other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, which support the OpenAI v1 chat completions syntax.
+The v1 Azure OpenAI APIs use the `OpenAI()` client instead of the deprecated  `AzureOpenAI()` client. In addition, the v1 Azure OpenAI APIs add support for:
+
+- Ongoing access to the latest features with no need to specify new `api-version`s frequently.
+- OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
+- OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
+- Chat completions calls with Foundry Models from other providers like DeepSeek and Grok, which support the v1 chat completions syntax.
+
+For mre information on the v1 Azure OpenAI APIs, see [API evolution](../../openai/api-version-lifecycle.md#api-evolution).
+
+## Generate chat completions
+
+For Azure OpenAI in Foundry Models, we recommend using the [Responses API](../../openai/supported-languages.md) to make chat completion calls. For other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, the the v1 Azure OpenAI API also allows you to make chat completion calls using the v1 chat completions syntax.
 
 In the following examples, you first create the client to consume the model. Then, create a basic request to the model. 
 
+> [!NOTE]
+> We recommend keyless authentication using Microsoft Entra ID. If that's not possible, use an API key and store it in Azure Key Vault. You can use an environment variable for testing outside of your Azure environments.
 
 ### Use the responses API
-
-This section uses the v1 API.
 
 # [Python](#tab/python)
 
 [Python v1 examples](../../openai/supported-languages.md).
 
-**API Key**:
+**API key authentication**:
 
 ```python
 import os
@@ -53,16 +64,17 @@ client = OpenAI(
 )
 
 response = client.responses.create(   
-  model="gpt-4.1-nano", # Replace with your model deployment name 
+  model="gpt-4.1-nano", # Replace with your deployment name 
   input="This is a test.",
 )
 
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `OpenAI()` client is used instead of `AzureOpenAI()`.
-- `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
+- `OpenAI()` client is used instead of the `AzureOpenAI()` client that was previously recommended but is now deprecated.
+- `base_url` passes the Azure OpenAI endpoint and `/openai/v1/` is appended to the endpoint address.
 - `api-version` is no longer a required parameter with the v1 GA API.
+- `model` refers to the underlying **deployment name** you chose when you deployed the model. This is not the name of the model you deployed.
 
 To use API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
@@ -71,12 +83,30 @@ client = OpenAI()
 ```
 
 
-**Microsoft Entra ID**:
+**Microsoft Entra authentication**:
 
 > [!IMPORTANT]
 > Automatic token refresh handling was previously done through use of the `AzureOpenAI()` client. The v1 API removes this dependency by adding automatic token refresh support to the `OpenAI()` client.
 
+Microsoft Entra authentication is only supported with Azure OpenAI resources. Complete the following steps:
+
+1. Install the Azure Identity client library:
+
+    ```bash
+    pip install azure-identity
+    ```
+
+1. Define an environment variable named `AZURE_TOKEN_CREDENTIALS`, and set it according to the environment in which the code is running:
+    - In Azure, set it to `ManagedIdentityCredential`.
+        > [!IMPORTANT]
+        > If using a user-assigned managed identity, define an environment variable named `AZURE_CLIENT_ID`. Set it the client ID of the managed identity. If that environment variable isn't set, `DefaultAzureCredential` will assume a system-assigned managed identity is being used.
+    - In local development, set it to `dev`.
+    This environment variable will be read by the Azure Identity library's `DefaultAzureCredential`. For more information, see [Exclude a credential type category](/azure/developer/python/sdk/authentication/credential-chains?tabs=dac#exclude-a-credential-type-category).
+
+The following code configures the OpenAI client object, specifies your deployment, and generates responses.   
+
 ```python
+import os
 from openai import OpenAI
 from azure.identity import DefaultAzureCredential, get_bearer_token_provider
 
@@ -90,23 +120,30 @@ client = OpenAI(
 )
 
 response = client.responses.create(
-    model="gpt-4.1-nano",
+    model="gpt-4.1-nano",  # Replace with your deployment name 
     input= "This is a test" 
 )
 
 print(response.model_dump_json(indent=2)) 
 ```
 
-- `base_url` passes the Azure OpenAI endpoint and `/openai/v1` is appended to the endpoint address.
+- `OpenAI()` client is used instead of the `AzureOpenAI()` client that was previously recommended but is now deprecated.
+- `base_url` passes the Azure OpenAI endpoint and `/openai/v1/` is appended to the endpoint address.
 - `api_key` parameter is set to `token_provider`, enabling automatic retrieval and refresh of an authentication token instead of using a static API key.
+- `api-version` is no longer a required parameter with the v1 GA API.
+- `model` refers to the underlying **deployment name** you chose when you deployed the model. This is not the name of the model you deployed.
 
 # [C#](#tab/dotnet)
 
 [C# v1 examples](../../openai/supported-languages.md)
 
-**API Key**:
+**API key authentication**:
 
 ```csharp
+using OpenAI;
+using System;
+using System.ClientModel;
+
 OpenAIClient client = new(
     new ApiKeyCredential("{your-api-key}"),
     new OpenAIClientOptions()
@@ -115,13 +152,24 @@ OpenAIClient client = new(
     })
 ```
 
-**Microsoft Entra ID**:
+**Microsoft Entra authentication**:
 
-To use Entra ID, you also need the following package:
+Microsoft Entra authentication is only supported with Azure OpenAI resources. Complete the following steps:
 
-```bash
+1. Install the Azure Identity client library:
+
+    ```dotnetcli
     dotnet add package Azure.Identity
-```
+    ```
+1. Define an environment variable named `AZURE_TOKEN_CREDENTIALS`, and set it according to the environment in which the code is running:
+    - In Azure, set it to `ManagedIdentityCredential`.
+        > [!IMPORTANT]
+        > If using a user-assigned managed identity, define an environment variable named `AZURE_CLIENT_ID`. Set it the client ID of the managed identity. If that environment variable isn't set, `DefaultAzureCredential` will assume a system-assigned managed identity is being used.
+    - In local development, set it to `dev`.
+    This environment variable will be read by the Azure Identity library's `DefaultAzureCredential`. For more information, see [Exclude a credential type category](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#exclude-a-credential-type-category).
+
+
+The following code configures the OpenAI client object, specifies your deployment, and generates responses.   
 
 ```csharp
 #pragma warning disable OPENAI001
@@ -135,13 +183,17 @@ OpenAIClient client = new(
     {
         Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
     })
+
+string deploymentName = "my-gpt-4.1-nano-deployment";
+OpenAIResponseClient response = client.GetOpenAIResponseClient(deploymentName);
+
 ```
 
 # [JavaScript](#tab/javascript)
 
 [JavaScript v1 examples](../../openai/supported-languages.md)
 
-**API Key**:
+**API key authentication**:
 
 ```javascript
 const client = new OpenAI({
@@ -156,7 +208,7 @@ const client = new OpenAI({
 const client = new OpenAI();
 ```
 
-**Microsoft Entra ID**:
+**Microsoft Entra authentication**:
 
 ```javascript
 const tokenProvider = getBearerTokenProvider(
@@ -172,7 +224,7 @@ const client = new OpenAI({
 
 [Go v1 examples](../../openai/supported-languages.md)
 
-**API Key**:
+**API key authentication**:
 
 ```go
 client := openai.NewClient(
@@ -188,7 +240,7 @@ client := openai.NewClient()
 ```
 
 
-**Microsoft Entra ID**:
+**Microsoft Entra authentication**:
 
 ```go
 tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
@@ -203,7 +255,7 @@ client := openai.NewClient(
 
 [Java v1 examples](../../openai/supported-languages.md)
 
-**API Key**:
+**API key authentication**:
 
 ```java
 
@@ -221,7 +273,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
                 .build();
 ```
 
-**Microsoft Entra ID**:
+**Microsoft Entra authentication**:
 
 ```java
 Credential tokenCredential = BearerTokenCredential.create(
@@ -236,7 +288,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 
 # [REST](#tab/rest)
 
-**API Key**:
+**API key authentication**:
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
@@ -248,7 +300,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     }'
 ```
 
-**Microsoft Entra ID**:
+**Microsoft Entra authentication**:
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
