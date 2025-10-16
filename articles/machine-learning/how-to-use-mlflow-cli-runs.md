@@ -117,7 +117,7 @@ Use the Azure Machine Learning jobs parameter `display_name` to configure the na
 
 1. Use the `display_name` property to configure the job.
 
-    # [Azure CLI](#tab/cli)
+    # [YAML](#tab/cli)
 
     To configure the job, create a YAML file with your job definition in a *job.yml* file outside of the *src* directory.
 
