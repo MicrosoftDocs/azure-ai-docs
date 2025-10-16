@@ -9,7 +9,7 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 10/18/2025
 ms.reviewer: alehughes
 reviewer: ahughes-msft
 ms.author: lagayhar  
@@ -42,7 +42,7 @@ Integrations for monitoring a prompt flow deployment allow you to:
 
 [!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
 - A prompt flow ready for deployment. If you don't have one, see [Develop a prompt flow](flow-develop.md).
-- Azure role-based access controls are used to grant access to operations in the Azure AI Foundry portal. To perform the steps in this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information on permissions, see [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md).
+- Azure role-based access controls are used to grant access to operations in the Azure AI Foundry portal. For this article, your user account must be assigned the Azure AI Developer role on the resource group. For more information, see [Role-based access control for Azure AI Foundry](../concepts/rbac-azure-ai-foundry.md).
 
 # [Python SDK](#tab/python)
 
@@ -56,7 +56,9 @@ pip install -U azure-ai-ml
 
 ## Requirements for monitoring metrics
 
-Generative pretrained transformer (GPT) language models generate monitoring metrics that are configured with specific evaluation instructions, or *prompt templates*. These models act as evaluator models for sequence-to-sequence tasks. Use of this technique to generate monitoring metrics shows strong empirical results and high correlation with human judgment when compared to standard generative AI evaluation metrics. For more information about prompt flow evaluation, see [Submit a batch test and evaluate a flow](./flow-bulk-test-evaluation.md) and [Observability in generative AI](../concepts/observability.md).
+Generative pretrained transformer (GPT) language models generate monitoring metrics that are configured with specific evaluation instructions, or *prompt templates*. These models act as evaluator models for sequence-to-sequence tasks.
+
+Using this technique to generate monitoring metrics shows strong empirical results and high correlation with human judgment when compared to standard generative AI evaluation metrics. For more information about prompt flow evaluation, see [Submit a batch test and evaluate a flow](./flow-bulk-test-evaluation.md) and [Observability in generative AI](../concepts/observability.md).
 
 The following GPT models generate monitoring metrics. These GPT models are supported with monitoring and configured as your Azure OpenAI resource:
 
@@ -96,11 +98,11 @@ The parameters that are configured in your data asset dictate what metrics you c
 | Groundedness | Required | Required | Required|
 | Relevance    | Required | Required | Required|
 
-For more information on the specific data mapping requirements for each metric, see [Query and response metric requirements](evaluate-generative-ai-app.md#query-and-response-metric-requirements).
+For information on the specific data mapping requirements for each metric, see [Query and response metric requirements](evaluate-generative-ai-app.md#query-and-response-metric-requirements).
 
 ## Set up monitoring for a prompt flow
 
-To set up monitoring for your prompt flow application, first deploy your prompt flow application with inferencing data collection. Then you can configure monitoring for the deployed application.
+To set up monitoring for your prompt flow application, deploy your prompt flow application with inferencing data collection. Then configure monitoring for the deployed application.
 
 ### Deploy your prompt flow application with inferencing data collection
 
@@ -119,7 +121,7 @@ In this section, you learn how to deploy your prompt flow with inferencing data 
 
 1. Confirm that your flow runs successfully and that the required inputs and outputs are configured for the [metrics that you want to assess](#supported-metrics-for-monitoring).
 
-    The minimum required parameters are question/inputs and answer/outputs. Supplying the minimum parameters provides only two metrics: _coherence_ and _fluency_. You must configure your flow as described in [Requirements for monitoring metrics](#requirements-for-monitoring-metrics). This example uses `question` (Question) and `chat_history` (Context) as the flow inputs, and `answer` (Answer) as the flow output.
+    The minimum required parameters are question/inputs and answer/outputs. Supplying the minimum parameters provides only two metrics: _coherence_ and _fluency_. Configure your flow as described in [Requirements for monitoring metrics](#requirements-for-monitoring-metrics). This example uses `question` (Question) and `chat_history` (Context) as the flow inputs, and `answer` (Answer) as the flow output.
 
 1. Select **Deploy** to begin deploying your flow.
 

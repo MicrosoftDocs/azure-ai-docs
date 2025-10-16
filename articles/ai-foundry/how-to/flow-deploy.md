@@ -10,7 +10,7 @@ ms.custom:
   - ignite-2024
   - hub-only
 ms.topic: how-to
-ms.date: 10/15/2025
+ms.date: 10/18/2025
 ms.reviewer: none
 ms.author: lagayhar
 author: lgayhardt
@@ -22,7 +22,7 @@ ms.update-cycle: 180-days
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-After you build a prompt flow and test it properly, you can deploy it as an online endpoint. Deployments are hosted in an endpoint. They can receive data from clients and send responses in real time.
+After you build a prompt flow and test it, you can deploy it as an online endpoint. Deployments are hosted in an endpoint. They can receive data from clients and send responses in real time.
 
 You can invoke the endpoint for real-time inference for chat, a copilot, or another generative AI application. Prompt flows support endpoint deployment from a flow or a bulk test run.
 
@@ -40,9 +40,9 @@ In this article, you learn how to deploy a flow as a managed online endpoint for
 
 To deploy a prompt flow as an online endpoint, you need:
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - An Azure AI Foundry project.
-- A `Microsoft.PolicyInsights` resource provider registered in your subscription. For more information on how to register a resource provider, see [Register a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
+- A `Microsoft.PolicyInsights` resource provider registered in your subscription. For more information, see [Register a resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider-1).
 
 ## Create an online deployment
 
@@ -85,7 +85,7 @@ For information about how to deploy a base model, see [Deploy models with Azure 
 
 ### Requirements text file
 
-Optionally, you can specify extra packages that you need in `requirements.txt`. You can find `requirements.txt` in the root folder of your flow folder. When you deploy a prompt flow to a managed online endpoint in the UI, by default, the deployment uses the environment that was created based on the base image specified in `flow.dag.yaml` and the dependencies specified in `requirements.txt` of the flow.
+Optionally, you can specify extra packages that you need in `requirements.txt`. You can find `requirements.txt` in the root folder of your flow folder. When you deploy a prompt flow to a managed online endpoint in the UI, by default, the deployment uses the environment that was created based on the base image specified in `flow.dag.yaml` and the dependencies specified in `requirements.txt`.
 
 The base image specified in `flow.dag.yaml` is created based on the prompt flow base image `mcr.microsoft.com/azureml/promptflow/promptflow-runtime-stable:<newest_version>`. To see the latest version, see [this list](https://mcr.microsoft.com/v2/azureml/promptflow/promptflow-runtime-stable/tags/list). If you don't specify the base image in `flow.dag.yaml`, the deployment uses the default base image `mcr.microsoft.com/azureml/promptflow/promptflow-runtime-stable:latest`.
 
@@ -123,7 +123,7 @@ This setting identifies the authentication method for the endpoint. Key-based au
 
 The endpoint needs to access Azure resources for inferencing, such as Azure Container Registry or your Azure AI Foundry hub connections. You can allow the endpoint permission to access Azure resources by giving permission to its managed identity.
 
-System-assigned identity is automatically created after your endpoint is created. The user creates the user-assigned identity. For more information, see [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
+System-assigned identity is created after your endpoint is created. The user creates the user-assigned identity. For more information, see [Managed identities for Azure resources](/azure/active-directory/managed-identities-azure-resources/overview).
 
 ##### System assigned
 
