@@ -488,5 +488,5 @@ The label field returns a boolean true or false based on whether or not either o
 
 ## Related content
 
-- To learn about risk and safety evaluation limitations, use cases, and how it's evaluated for quality and accuracy, see [Azure AI Foundry Transparency Note](../safety-evaluations-transparency-note.md).
+- To learn about risk and safety evaluation limitations, use cases, and how it's evaluated for quality and accuracy, see [Transparency Note](../safety-evaluations-transparency-note.md).
 - Learn [how to run batch evaluation on a dataset](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-test-datasets-using-evaluate) and [how to run batch evaluation on a target](../../how-to/develop/evaluate-sdk.md#local-evaluation-on-a-target).
