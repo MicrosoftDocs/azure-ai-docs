@@ -97,7 +97,7 @@ To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure 
 
 + An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
 
-For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
+For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai?view=foundry-classicw&preserve-view=true).
 
 ## Prepare sample data
 
@@ -143,11 +143,12 @@ To create the knowledge source for this quickstart:
 
 ## Create a knowledge base
 
+> [!NOTE]
+> The portal uses the 2025-08-01-preview, which refers to "knowledge bases" as "knowledge agents." Although the portal UI uses the latest terminology, the underlying REST API objects and JSON payloads still use "knowledge agents."
+
 A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, the knowledge base decomposes it into focused subqueries, sends the subqueries simultaneously to your knowledge source, reranks the results for relevance, and combines the best results into a single, unified response.
 
 By default, the knowledge base outputs raw content from your knowledge source, but you can enable the answer synthesis modality for natural-language answer generation.
-
-ADD NOTE ABOUT TERMINOLOGY DIFF
 
 To create the knowledge base for this quickstart:
 
