@@ -3,6 +3,8 @@ items:
   href: ../../../agents/overview.md
 - name: Model and region support
   href: ../../../agents/concepts/model-region-support.md 
+- name: Development Lifecycle
+  href: ../../../agents/concepts/development-lifecycle.md
 - name: Agent runtime components
   href: ../../../agents/concepts/threads-runs-messages.md
 - name: Environment setup
