@@ -13,4 +13,4 @@ This quickstart requires:
 
 * [JDK 7 or later](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * [Gradle](https://gradle.org/install/)
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)

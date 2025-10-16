@@ -4,7 +4,7 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/19/2025
+ms.date: 10/10/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
@@ -39,6 +39,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute). |
 | Default Sora quota limits | 60 requests per minute. |
+| Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
 | Maximum standard deployments per resource | 32. |
@@ -81,6 +82,7 @@ The following section provides you with a quick guide to the default quotas and 
 | `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
 | `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
 | `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
+| `gpt-5-pro`   | 160 K            | 1.6 M | N/A | N/A |
 
 | Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
 |-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
@@ -89,7 +91,7 @@ The following section provides you with a quick guide to the default quotas and 
 | `gpt-5-nano`  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
 | `gpt-5-chat`  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
 | `gpt-5-codex` | 1 K                                          | 10 K                                                      | N/A                | N/A  | 
-
+| `gpt-5-pro`   | 1.6 K            | 16 K | N/A | N/A
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
@@ -252,16 +254,23 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 |`gpt-4o-mini-audio-preview` | Default | 2M | 1K |
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
 |`gpt-audio` |   Default | 100K | 30 |
+|`gpt-audio-mini` |   Default | 100K | 30 |
 |`gpt-realtime` | Default | 100K | 30 |
+|`gpt-realtime-mini` | Default | 100K | 30 |
+
 
 ## GPT-image-1 rate limits
 
-### GPT0-image-1 Global Standard
+### GPT-image-1 Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-image-1`|Enterprise and MCA-E | N/A | 20 |
 |`gpt-image-1` |Default | N/A | 6 |
+|`gpt-image-1-mini`|Low | N/A | 12 |
+|`gpt-image-1-mini` |Medium | N/A | 36 |
+|`gpt-image-1-mini` |High | N/A | 120 |
+
 
 ## Usage tiers
 
@@ -291,6 +300,7 @@ The usage limit determines the level of usage above which customers might see la
 
 If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/), your maximum quota values are lower than the values indicated in the previous tables.
 
+- GPT-5-pro quota is only available to MCA-E and default quota subscriptions. All other offer types have zero quota for this model by default.
 - GPT-5 reasoning model quota is 20K TPM and 200 RPM for all offer types that do not have access to MCA-E or default quota. GPT-5-chat is 50K and 50 RPM.
 
 - Some offer types are restricted to only Global Standard deployments in the East US2 and Sweden Central regions.

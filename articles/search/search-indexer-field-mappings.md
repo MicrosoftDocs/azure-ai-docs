@@ -46,7 +46,7 @@ Make sure you're using a [supported data source](search-indexer-overview.md#supp
 | Split strings or recast arrays into collections | You can apply [mapping functions](#mappingFunctions) to split a string that includes a delimiter, or to send a JSON array to a search field of type `Collection(Edm.String)`.
 
 > [!NOTE]
-> If no field mappings are present, indexers assume data source fields should be mapped to index fields with the same name. Adding a field mapping overrides the default field mappings for the source and target field. Some indexers, such as the [blob storage indexer](search-howto-indexing-azure-blob-storage.md), add default field mappings for the index key field automatically.
+> If no field mappings are present, indexers assume data source fields should be mapped to index fields with the same name. Adding a field mapping overrides the default field mappings for the source and target field. Some indexers, such as the [blob storage indexer](search-how-to-index-azure-blob-storage.md), add default field mappings for the index key field automatically.
 
 Complex fields aren't supported in a field mapping. Your source structure (nested or hierarchical structures) must exactly match the complex type in the index so that the default mappings work. For more information, see [Tutorial: Index nested JSON blobs](search-semi-structured-data.md) for an example. If you get an error similar to `"Field mapping specifies target field 'Address/city' that doesn't exist in the index"`, it's because target field mappings can't be a complex type. 
 
@@ -215,7 +215,7 @@ PUT /indexers/blob-indexer?api-version=2025-09-01
 
 #### Example - preserve original values
 
-The [blob storage indexer](search-howto-indexing-azure-blob-storage.md) automatically adds a field mapping from `metadata_storage_path`, the URI of the blob, to the index key field if no field mapping is specified. This value is Base64 encoded so it's safe to use as an Azure AI Search document key. The following example shows how to simultaneously map a *URL-safe* Base64 encoded version of `metadata_storage_path` to a `index_key` field and preserve the original value in a `metadata_storage_path` field:
+The [blob storage indexer](search-how-to-index-azure-blob-storage.md) automatically adds a field mapping from `metadata_storage_path`, the URI of the blob, to the index key field if no field mapping is specified. This value is Base64 encoded so it's safe to use as an Azure AI Search document key. The following example shows how to simultaneously map a *URL-safe* Base64 encoded version of `metadata_storage_path` to a `index_key` field and preserve the original value in a `metadata_storage_path` field:
 
 ```JSON
 "fieldMappings": [

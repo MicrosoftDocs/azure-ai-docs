@@ -117,7 +117,7 @@ The data source definition specifies the source data to index, credentials, and 
 
 1. Optionally, set "query" to a filter on PartitionKey. Setting this property is a best practice that improves performance. If "query" is null, the indexer executes a full table scan, which can result in poor performance if the tables are large.
 
-A data source definition can also include [soft deletion policies](search-howto-index-changed-deleted-blobs.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
+A data source definition can also include [soft deletion policies](search-how-to-index-azure-blob-changed-deleted.md), if you want the indexer to delete a search document when the source document is flagged for deletion.
 
 <a name="Credentials"></a>
 
@@ -312,4 +312,4 @@ Execution history contains up to 50 of the most recently completed executions, w
 Learn more about how to [run the indexer](search-howto-run-reset-indexers.md), [monitor status](search-monitor-indexers.md), or [schedule indexer execution](search-howto-schedule-indexers.md). The following articles apply to indexers that pull content from Azure Storage:
 
 + [Tutorial: Index JSON blobs from Azure Storage](search-semi-structured-data.md)
-+ [Tutorial: Index encrypted blobs in Azure Storage](search-howto-index-encrypted-blobs.md)
++ [Tutorial: Index encrypted blobs in Azure Storage](search-how-to-index-azure-blob-encrypted.md)

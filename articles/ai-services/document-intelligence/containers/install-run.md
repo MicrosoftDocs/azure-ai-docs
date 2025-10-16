@@ -43,7 +43,7 @@ Support for containers is currently available with Document Intelligence version
 
 ## Prerequisites
 
-To get started, you need an active [**Azure account**](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/free/).
+To get started, you need an active [**Azure account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [**create a free account**](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 You also need the following to use Document Intelligence containers:
 
