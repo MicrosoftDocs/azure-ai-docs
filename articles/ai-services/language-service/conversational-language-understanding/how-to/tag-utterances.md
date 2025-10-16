@@ -57,7 +57,7 @@ Use the following steps to label your utterances:
 
 1. By using the top tabs, you can change the view to **Training set** or **Testing set**. Learn more about [training and testing sets](train-model.md#data-splitting) and how they're used for model training and evaluation.
 
-    :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot that shows the page for tagging utterances in Language Studio." lightbox="../media/tag-utterances.png":::
+    :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot that shows the page for tagging utterances in Azure AI Foundry." lightbox="../media/tag-utterances.png":::
 
     > [!TIP]
     > If you plan to use **Automatically split the testing set from training data** splitting, add all your utterances to the training set.
@@ -78,7 +78,7 @@ Use the following steps to label your utterances:
     * **Unique utterances per labeled entity:** Each utterance is counted if it contains at least one labeled instance of this entity.
     * **Utterances per intent:** You can view the count of utterances per intent.
 
-    :::image type="content" source="../media/label-distribution.png" alt-text="A screenshot that shows entity distribution in Language Studio." lightbox="../media/label-distribution.png":::
+    :::image type="content" source="../media/label-distribution.png" alt-text="A screenshot that shows entity distribution in Azure AI Foundry." lightbox="../media/label-distribution.png":::
 
   > [!NOTE]
   > List, regex, and prebuilt components aren't shown on the data labeling page. All labels here apply to the learned component only.

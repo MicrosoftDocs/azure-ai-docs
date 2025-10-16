@@ -18,7 +18,7 @@ You can query the deployment programmatically through the [prediction API](https
 
 ## Test deployed model
 
-You can use Language Studio to submit an utterance, get predictions, and visualize the results.
+You can use Azure AI Foundry to submit an utterance, get predictions, and visualize the results.
 
 [!INCLUDE [Test model](../includes/language-studio/test-model.md)]
 
@@ -60,15 +60,15 @@ You can also use the client libraries provided by the Azure SDK to send requests
 
 1. Download and install the client library package for your language of choice:
 
-    a. |Language  |Package version  |
-    b. |---------|---------|
-    c. |.NET     | [1.0.0](https://www.nuget.org/packages/Azure.AI.Language.Conversations/1.0.0)        |
-    d. |Python     | [1.0.0](https://pypi.org/project/azure-ai-language-conversations/1.0.0)         |
+    |  | Language | Package version |
+    |--|--|--|
+    |  | .NET | [1.0.0](https://www.nuget.org/packages/Azure.AI.Language.Conversations/1.0.0) |
+    |  | Python | [1.0.0](https://pypi.org/project/azure-ai-language-conversations/1.0.0) |
 
 1. After you install the client library, use the following samples on GitHub to start calling the API.
 
-    a. * [C#](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Language.Conversations_1.0.0/sdk/cognitivelanguage/Azure.AI.Language.Conversations)
-    b. * [Python](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-language-conversations_1.0.0/sdk/cognitivelanguage/azure-ai-language-conversations)
+    * [C#](https://github.com/Azure/azure-sdk-for-net/tree/Azure.AI.Language.Conversations_1.0.0/sdk/cognitivelanguage/Azure.AI.Language.Conversations)
+    * [Python](https://github.com/Azure/azure-sdk-for-python/tree/azure-ai-language-conversations_1.0.0/sdk/cognitivelanguage/azure-ai-language-conversations)
 
 1. For more information, *see* the following reference documentation:
 
