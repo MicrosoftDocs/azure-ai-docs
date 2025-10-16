@@ -319,6 +319,29 @@ For Foundry Models, including Azure OpenAI models, we recommend using the [Respo
 
 # [Python](#tab/python)
 
+**API key authentication**:
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+
 **Microsoft Entra authentication**:
 
 ```python
@@ -347,7 +370,37 @@ print(completion.model_dump_json(indent=2))
 
 # [C#](#tab/dotnet)
 
+**API key authentication**:
+
+```csharp
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel;
+
+string keyFromEnvironment = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
+
+ChatClient client = new(
+    model: "gpt-4.1-nano",
+    credential: new ApiKeyCredential(keyFromEnvironment),
+    options: new OpenAIClientOptions() { 
+    
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+   }
+);
+
+ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson.'");
+
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+
 **Microsoft Entra authentication**:
+
+A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
+
+```dotnetcli
+dotnet add package Azure.Identity
+```
+
+Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet&preserve-view=true):
 
 ```csharp
 using Azure.Identity;
@@ -377,9 +430,57 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 # [JavaScript](#tab/javascript)
 
+**API key authentication**:
+
+API keys aren't recommended for production use because they're less secure than other authentication methods.
+
 ```javascript
+import { OpenAI } from "openai";
+
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
+});
+
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const messages = [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Tell me about the attention is all you need paper' }
+];
+
+// Make the API request with top-level await
+const result = await client.chat.completions.create({ 
+    messages, 
+    model: 'gpt-4.1-nano', // model deployment name
+    max_tokens: 100 
+});
+
+// Print the full response
+console.log('Full response:', result);
+
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
+```
 
 **Microsoft Entra authentication**:
+
+```cmd
+npm install @azure/identity
+```
+
+In order to authenticate the `OpenAI` client, however, we need to use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. The token provider is created as follows:
+
+```javascript
 
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 import { OpenAI } from "openai";
@@ -413,7 +514,44 @@ console.log('Response content:', result.choices[0].message.content);
 
 # [Go](#tab/go)
 
+**API key authentication**:
+
+```go
+package main
+
+import (
+    "context"
+    "fmt"
+
+    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v2/option"
+)
+
+func main() {
+    // Create a client with Azure OpenAI endpoint and API key
+    client := openai.NewClient(
+        option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+        option.WithAPIKey("API-KEY-HERE"),
+    )
+
+    // Make a completion request
+    chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCompletionNewParams{
+        Messages: []openai.ChatCompletionMessageParamUnion{
+            openai.UserMessage("Tell me about the bitter lesson"),
+        },
+        Model: "o4-mini", // Use your deployed model name on Azure
+    })
+    if err != nil {
+        panic(err.Error())
+    }
+
+    fmt.Println(chatCompletion.Choices[0].Message.Content)
+}
+```
+
 **Microsoft Entra authentication**:
+
+The [azidentity](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/azidentity) module is used for Microsoft Entra ID authentication with Azure OpenAI.
 
 ```go
 package main
@@ -459,6 +597,46 @@ func main() {
 # [Java](#tab/Java)
 
 **API key authentication**:
+
+```java
+OpenAIClient client = OpenAIOkHttpClient.builder()
+                .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+                .apiKey(apiKey)
+                .build();
+```
+
+**Microsoft Entra authentication**:
+
+Authentication with Microsoft Entra ID requires some initial setup:
+
+Add the Azure Identity package:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.0</version>
+</dependency>
+```
+
+After setup, you can choose which type of credential from `azure.identity` to use. As an example, `DefaultAzureCredential` can be used to authenticate the client: Set the values of the client ID, tenant ID, and client secret of the Microsoft Entra ID application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
+
+Authorization is easiest using `DefaultAzureCredential`. It finds the best credential to use in its running environment though use of `DefaultAzureCredential` is only recommended for testing, not for production.  
+
+```java
+Credential tokenCredential = BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+                new DefaultAzureCredentialBuilder().build(),
+                "https://cognitiveservices.azure.com/.default"));
+OpenAIClient client = OpenAIOkHttpClient.builder()
+        .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+        .credential(tokenCredential)
+        .build();
+```
+
+For more information about Azure OpenAI keyless authentication, see [Use Azure OpenAI without keys](/azure/developer/ai/keyless-connections?tabs=java%2Cazure-cli).
+
+**Chat completion**:
 
 ```java
 package com.example;
@@ -518,6 +696,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 ## Related content
 
 - [Work with chat completions models](../../openai/how-to/chatgpt.md)
+- [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 - [Use embeddings models](../../model-inference/how-to/use-embeddings.md)
 - [Use image embeddings models](../../model-inference/how-to/use-image-embeddings.md)
 - [Use reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
