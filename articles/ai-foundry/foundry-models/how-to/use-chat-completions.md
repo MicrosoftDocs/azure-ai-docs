@@ -392,6 +392,8 @@ ChatCompletion completion = client.CompleteChat("Tell me about the bitter lesson
 
 Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
+```
+
 **Microsoft Entra authentication**:
 
 A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
