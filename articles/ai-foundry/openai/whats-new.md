@@ -23,7 +23,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ### GPT-4o audio model released
 
-- The `gpt-4o-transcribe-diarize` speech to text model is released supporting automatic speech recognition. Use this model via the `/audio` and `/realtime` APIs.  
+- The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
+
+Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity. supporting automatic speech recognition. 
+
+Use this model via the `/audio` and `/realtime` APIs.  
 
 ### GPT-image-1-mini 
 
