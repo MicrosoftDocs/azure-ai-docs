@@ -83,7 +83,7 @@ To get the endpoints for this quickstart, select both of the following tabs.
 
 To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure AI Foundry resource:
 
-+ An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any text embedding model.
++ An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
 
 + An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
 
