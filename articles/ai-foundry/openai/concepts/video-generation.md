@@ -44,7 +44,7 @@ Provides 5 endpoints, each with distinct capabilities.
 - List Videos: Enumerate your videos with pagination for history, dashboards, or housekeeping. 
 - Delete Videos: Delete an individual video id from Azure OpenAI’s storage
 
-### API Parameters
+### API parameters
 
 | Parameter | Type | **Sora 2** | 
 |------------|------|------------|
@@ -138,9 +138,9 @@ Video generation started: Video(id='video_68f10985d6c4819097007665bdcfba5f', com
 
 ---
 
-### Create a videa and poll job status
+### Create a video and poll job status
 
-Call `GET /videos/{video_id}` with the id returned from the create call. The response shows the job’s current status, progress percentage , and any errors.
+Call `GET /videos/{video_id}` with the id returned from the create call. The response shows the job’s current status, progress percentage, and any errors.
 
 Expected states are `queued`, `in_progress`, `completed`, and `failed`. 
 
@@ -365,7 +365,7 @@ asyncio.run(main())
 
 # [Response](#tab/python-output)
 
-Response will vary based on if the syncronous or asyncronous version of the code is used. 
+Response will vary based on if the synchronous or asynchronous version of the code is used. 
 
 ```json
 Video creation started. ID: video_68f10c5428708190a98980c2d2b21a78
@@ -462,8 +462,6 @@ Saved video.mp4
 ```
 
 ---
-
-
 
 ## How it works
 
