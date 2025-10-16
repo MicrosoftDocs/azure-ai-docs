@@ -968,7 +968,9 @@ Files are read in *blocks* of 1-4 MB in size. Files smaller than a block are rea
 
 For small files, the latency interval mostly involves handling the requests to storage, instead of data transfers. Therefore, we offer these recommendations to increase the file size:
 
-- For unstructured data (images, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://pytorch.org/data/0.9/dp_tutorial.html) can extract the smaller files.
+- For unstructured data (images, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://meta-pytorch.org/data/0.9/dp_tutorial.html) 
+  
+  can extract the smaller files.
 - For structured data (CSV, parquet, etc.), examine your ETL process, to make sure that it coalesces files to increase size. Spark has `repartition()` and `coalesce()` methods to help increase file sizes.
 
 If you can't increase your file sizes, explore your [Azure Storage options](#azure-storage-options).
