@@ -15,7 +15,8 @@ ms.date: 09/16/2025
 Sora is an AI model from OpenAI that creates realistic and imaginative video scenes from text instructions and/or input images or video. The model can generate a wide range of video content, including realistic scenes, animations, and special effects. It supports several video resolutions and durations.
 Azure OpenAI supports two versions of Sora:
 - Sora (or Sora 1): Azure OpenAI–specific implementation released as an API in early preview.
-- Sora 2: The latest OpenAI-based API, now being adapted for Azure OpenAI
+- Sora 2: The latest OpenAI-based API, now available with the Azure OpenAI [v1 API](../api-version-lifecycle.md).
+- 
 ## Overview
 - Modalities: text → video, image → video, video (generated) → video
 - Audio: Sora 2 supports audio generation in output videos (similar to the Sora app).
@@ -25,7 +26,7 @@ Azure OpenAI supports two versions of Sora:
 
 | Aspect | **Sora 1 (Azure OpenAI)** | **Sora 2 (OpenAI-based API)** |
 |--------|-----------------------------|-------------------------------|
-| **Model type** | Azure-specific API implementation | Adapts OpenAI’s latest Sora API |
+| **Model type** | Azure-specific API implementation | Adapts OpenAI’s latest Sora API using [v1 API](../api-version-lifecycle.md)|
 | **Availability** | Available exclusively on Azure OpenAI (Preview) | Rolling out on Azure; **Sora 2 Pro** coming later |
 | **Modalities supported** | text → video, image → video, video → video | text → video, image → video, **video (generated) → video** |
 | **Audio generation** | ❌ Not supported | ✅ Supported in outputs |
@@ -52,11 +53,416 @@ Provides 5 endpoints, each with distinct capabilities.
 | **Size (Output resolution in width × height)** | String (optional) | Portrait: `720×1280`  <br> Landscape: `1280×720`  <br> **Default:** 720×1280 |
 | **Seconds** | String (optional) | `4 / 8 / 12`  <br> **Default:** 4 | 
 | **Input reference** | File (optional) | Single reference image used as a visual anchor for the first frame. <br> Accepted MIME types: `image/jpeg`, `image/png`, `image/webp`. Must match size exactly. | 
-| **Remix_video_id** | String (optional) | ID of a previously completed video (e.g., `video_...`) to reuse structure, motion, and framing. | Same as Sora 2 |
+| **Remix_video_id** | String (optional) | ID of a previously completed video (e.g., `video_...`) to reuse structure, motion, and framing. Same as Sora 2 |
 
-The API is the same as the [OAI API]([url](https://platform.openai.com/docs/guides/video-generation)) , minus the following two things:
-- In AOAI API, you have to replace the model's name, by the name of the deployment. For example, "sora2-
-test"
+Sora 2 API uses the [v1 API](../api-version-lifecycle.md) and has the same structure as the [OpenAI API](https://platform.openai.com/docs/guides/video-generation).
+
+### videos.create()
+
+You will need to update to the latest version of the openai client with `pip install openai --upgrade` to prevent `AttributeError: 'OpenAI' object has no attribute 'videos'`.
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="A video of a cool cat on a motorcycle in the night",
+)
+
+print("Video generation started:", video)
+```
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="A video of a cool cat on a motorcycle in the night",
+)
+
+print("Video generation started:", video)
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+video = client.videos.create(
+    model="sora-2",
+    prompt="A video of a cool cat on a motorcycle in the night",
+)
+
+print("Video generation started:", video)
+```
+
+# [Response](#tab/python-output)
+
+```json
+Video generation started: Video(id='video_68f10985d6c4819097007665bdcfba5f', completed_at=None, created_at=1760627077, error=None, expires_at=None, model='sora-2', object='video', progress=0, remixed_from_video_id=None, seconds='4', size='720x1280', status='queued')
+```
+
+---
+
+### Create a videa and poll job status
+
+Call `GET /videos/{video_id}` with the id returned from the create call. The response shows the job’s current status, progress percentage , and any errors.
+
+Expected states are `queued`, `in_progress`, `completed`, and `failed`. 
+
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+**Synchronous:**
+
+Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio.run() cannot be called from a running event loop`
+
+```python
+import time
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+    base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+    api_key=token_provider,
+)
+
+# Create the video (don't use create_and_poll)
+video = client.videos.create(
+    model="sora-2",
+    prompt="A video of a cat on a motorcycle",
+)
+
+print(f"Video creation started. ID: {video.id}")
+print(f"Initial status: {video.status}")
+
+# Poll every 20 seconds
+while video.status not in ["completed", "failed", "cancelled"]:
+    print(f"Status: {video.status}. Waiting 20 seconds...")
+    time.sleep(20)
+    
+    # Retrieve the latest status
+    video = client.videos.retrieve(video.id)
+
+# Final status
+if video.status == "completed":
+    print("Video successfully completed!")
+    print(video)
+else:
+    print(f"Video creation ended with status: {video.status}")
+    print(video)
+```
+
+**Async:**
+
+```python
+import asyncio
+from openai import AsyncOpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = AsyncOpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+async def main() -> None:
+    video = await client.videos.create_and_poll(
+        model="sora-2",
+        prompt="A video of a cat on a motorcycle",
+    )
+
+    if video.status == "completed":
+        print("Video successfully completed: ", video)
+    else:
+        print("Video creation failed. Status: ", video.status)
+
+
+asyncio.run(main())
+```
+
+# [API Key](#tab/python-key)
+
+**Synchronous:**
+
+Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio.run() cannot be called from a running event loop`
+
+
+```python
+import asyncio
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+# Create the video (don't use create_and_poll)
+video = client.videos.create(
+    model="sora-2",
+    prompt="A video of a cat on a motorcycle",
+)
+
+print(f"Video creation started. ID: {video.id}")
+print(f"Initial status: {video.status}")
+
+# Poll every 20 seconds
+while video.status not in ["completed", "failed", "cancelled"]:
+    print(f"Status: {video.status}. Waiting 20 seconds...")
+    time.sleep(20)
+    
+    # Retrieve the latest status
+    video = client.videos.retrieve(video.id)
+
+# Final status
+if video.status == "completed":
+    print("Video successfully completed!")
+    print(video)
+else:
+    print(f"Video creation ended with status: {video.status}")
+    print(video)
+```
+
+**Async:**
+
+```python
+import asyncio
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+async def main() -> None:
+    video = await client.videos.create_and_poll(
+        model="sora-2",
+        prompt="A video of a cat on a motorcycle",
+    )
+
+    if video.status == "completed":
+        print("Video successfully completed: ", video)
+    else:
+        print("Video creation failed. Status: ", video.status)
+
+
+asyncio.run(main())
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+
+**Synchronous:**
+
+Use this version if testing in Jupyter Notebooks to avoid `RuntimeError: asyncio.run() cannot be called from a running event loop`
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+# Create the video (don't use create_and_poll)
+video = client.videos.create(
+    model="sora-2",
+    prompt="A video of a cat on a motorcycle",
+)
+
+print(f"Video creation started. ID: {video.id}")
+print(f"Initial status: {video.status}")
+
+# Poll every 20 seconds
+while video.status not in ["completed", "failed", "cancelled"]:
+    print(f"Status: {video.status}. Waiting 20 seconds...")
+    time.sleep(20)
+    
+    # Retrieve the latest status
+    video = client.videos.retrieve(video.id)
+
+# Final status
+if video.status == "completed":
+    print("Video successfully completed!")
+    print(video)
+else:
+    print(f"Video creation ended with status: {video.status}")
+    print(video)
+```
+
+**Async:**
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+async def main() -> None:
+    video = await client.videos.create_and_poll(
+        model="sora-2",
+        prompt="A video of a cat on a motorcycle",
+    )
+
+    if video.status == "completed":
+        print("Video successfully completed: ", video)
+    else:
+        print("Video creation failed. Status: ", video.status)
+
+
+asyncio.run(main())
+```
+
+# [Response](#tab/python-output)
+
+Response will vary based on if the syncronous or asyncronous version of the code is used. 
+
+```json
+Video creation started. ID: video_68f10c5428708190a98980c2d2b21a78
+Initial status: queued
+Status: queued. Waiting 20 seconds...
+Status: in_progress. Waiting 20 seconds...
+Status: in_progress. Waiting 20 seconds...
+Status: in_progress. Waiting 20 seconds...
+Video successfully completed!
+Video(id='video_68f10c5428708190a98980c2d2b21a78', completed_at=1760627863, created_at=1760627796, error=None, expires_at=1760714196, model='sora-2', object='video', progress=100, remixed_from_video_id=None, seconds='4', size='720x1280', status='completed')
+```
+
+---
+
+### Download video
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+video_id = "your_video_id_here"
+
+content = client.videos.download_content(video_id, variant="video")
+content.write_to_file("video.mp4")
+
+print("Saved video.mp4")
+```
+
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+video_id = "your_video_id_here"
+
+content = client.videos.download_content(video_id, variant="video")
+content.write_to_file("video.mp4")
+
+print("Saved video.mp4")
+
+
+```
+
+# [Environment Variables](#tab/python-env)
+
+If you use the default environment variables of:
+
+- `OPENAI_BASE_URL`
+- `OPENAI_API_KEY` 
+
+These environment variables are automatically used by the client with no further configuration required.
+
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+video_id = "your_video_id_here"
+
+content = client.videos.download_content(video_id, variant="video")
+content.write_to_file("video.mp4")
+
+print("Saved video.mp4")
+
+```
+
+# [Response](#tab/python-output)
+
+```json
+Saved video.mp4
+```
+
+---
+
 
 
 ## How it works
