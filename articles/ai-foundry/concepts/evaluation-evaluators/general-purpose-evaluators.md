@@ -1,5 +1,5 @@
 ---
-title: General purpose evaluators for Generative AI
+title: General Purpose Evaluators for Generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
 author: lgayhardt
