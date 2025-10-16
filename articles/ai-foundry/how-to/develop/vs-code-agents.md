@@ -269,14 +269,14 @@ Install the following packages from source:
 
 ::: zone pivot="csharp"
 
-## Prerequisites
+### Prerequisites
 
 To run the sample multi-agent workflow C# project, ensure you have the following prerequisites:
 
 - .NET 9 SDK or higher
 - An AI Foundry Project or Azure OpenAI resource
 
-## Setup and installation
+### Setup and installation
 
 1. **Install the .NET SDK**
 
