@@ -34,7 +34,7 @@ HTTP method: **POST**
 ## Request URL
 
 ```bash
-{your-document-translation-endpoint}/translator/document:translate?targetLanguage=hi&api-version={date}
+{your-document-translation-endpoint}/translator/document:translate?api-version=2024-05-01&sourceLanguage=en&targetLanguage=fr
 ```
 
 ## Request headers
@@ -56,6 +56,12 @@ Query string parameters:
 |**api-version** | _Required parameter_.<br>Version of the API requested by the client. Current value is `2024-05-01`. |
 |**targetLanguage**|_Required parameter_.<br>Specifies the language of the output document. The target language must be one of the supported languages included in the translation scope.|
 
+### Request Body
+
+|Name |Description|Content Type|Condition|
+|---|---|---|---|
+|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#synchronous-supported-document-formats).|***Required***|
+|**glossary**|Document containing a list of terms with definitions to use during the translation process.|Any one of the supported [glossary formats](get-supported-glossary-formats.md).|***Optional***|
 
 ### Optional parameters
 
@@ -64,15 +70,12 @@ Query string parameters:
 |**sourceLanguage**|Specifies the language of the input document. If the `sourceLanguage` parameter isn't specified, automatic language detection is applied to determine the source language.|
 |**allowFallback**|&bull; A boolean specifying that the service is allowed to fall back to a `generalnn` system when a custom system doesn't exist. Accepted values are: `true` (default) or `false`. <br>&bull; `allowFallback=false` specifies that the translation should only use systems trained for the category specified  by the request.<br>&bull; If no system is found with the specific category, the request returns a 400 status code. <br>&bull; `allowFallback=true` specifies that the service is allowed to fall back to a `generalnn` system when a custom system doesn't exist.|
 |**category**|A string specifying the category (domain) for the translation. This parameter is used to get translations from a customized system built with [Custom Translator](../../custom-translator/how-to/translate-with-custom-model.md#how-to-translate). To use your deployed customized system for synchronous document translation, add the `Category ID` from your Custom Translator project details to the `category` parameter. The default value is: `generalnn`.|
-
-### Request Body
-
-|Name |Description|Content Type|Condition|
-|---|---|---|---|
-|**document**| Source document to be translated.|Any one of the [supported document formats](../overview.md#synchronous-supported-document-formats).|***Required***|
-|**glossary**|Document containing a list of terms with definitions to use during the translation process.|Any one of the supported [glossary formats](get-supported-glossary-formats.md).|***Optional***|
+> [!NOTE]
+> While <b>sourceLanguage</b> is optional, we strongly recommend specifying it explicitly. Providing the source language produces better quality translations than relying on automatic detection.
 
 ### Response Status Codes
+
+The following are the possible HTTP status codes that a request returns.
 
 |Status Code| Description|
 |---|---|
@@ -93,7 +96,7 @@ Query string parameters:
     "code": "InvalidRequest",
     "message": "The 'targetLanguage' parameter is required.",
     "innerError": {
-      "requestId": "d3e4f6a9-0000-4a9b-8ad3-bdcd1323aa00",
+      "requestId": "00000000-0000-0000-0000-000000000000",
       "date": "2025-10-15T10:05:23Z"
     }
   }
