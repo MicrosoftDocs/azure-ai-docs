@@ -1,7 +1,7 @@
 ---
 title: Work with Azure AI Foundry Agent Service using the Azure AI Foundry for Visual Studio Code extension
 titleSuffix: Azure AI Foundry
-description: Use this article to learn how to use Azure AI Foundry Agent Service directly in VS Code.
+description: Use this article to learn how to use Azure AI Foundry Agent Service directly in Visual Studio Code.
 manager: mcleans
 ms.service: azure-ai-foundry
 content_well_notification: 
@@ -9,7 +9,7 @@ content_well_notification:
 ai-usage: ai-assisted
 ms.topic: how-to
 zone_pivot_groups: ai-foundry-vsc-extension-languages
-ms.date: 10/09/2025
+ms.date: 10/16/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
@@ -131,7 +131,7 @@ Add a tool to the AI Agent with the following steps:
    1. After entering the required information, select the **Upload and save** button in the bottom-left corner.
      
       > [!NOTE]
-      > When you add a tool, you can also add any new assets it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
+      > When you add a tool, you can also add any new assets, it needs. For example, if you add a File Search tool, you can use an existing vector store asset or make a new asset for your vector store to host your uploaded files.
     
    1. After entering the required information, select the **Create tool** button in the bottom-left corner.
 
@@ -269,20 +269,44 @@ Install the following packages from source:
 
 ::: zone pivot="csharp"
 
-C# workflows require nightly builds from Microsoft's GitHub Packages, follow these steps to set it up:
-  1. Go to GitHub Settings → Developer settings → Personal access tokens → Tokens (classic) → Generate new token (classic)
-  1. Create a GitHub Personal Access Token with the `read:packages` scope using these [instructions](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens#creating-a-personal-access-token-classic)
-  1. Copy the generated token (it will start with `ghp_`) and save it securely - you won't be able to see it again.
+## Prerequisites
 
+To run the sample multi-agent workflow C# project, ensure you have the following prerequisites:
 
+- .NET 9 SDK or higher
+- An AI Foundry Project or Azure OpenAI resource
 
-#### Update NuGet Configuration
+## Setup and installation
 
-In `Nuget.Config`, replace the following placeholders:
-```xml
-<add key="Username" value="YOUR_GITHUB_USERNAME" />           <!-- Replace with your GitHub username -->
-<add key="ClearTextPassword" value="YOUR_GITHUB_PERSONAL_ACCESS_TOKEN" />  <!-- Replace with your GitHub PAT -->
-```
+1. **Install the .NET SDK**
+
+   Download and install the .NET 9 SDK from the [official .NET website](https://dotnet.microsoft.com/download).
+
+2. **Restore NuGet packages**
+
+    Go to your project directory and run this command to get the needed NuGet packages:
+
+    ```bash
+    dotnet restore
+    ```
+
+3. **Configure environment variables**
+
+   The sample workflow project creates an `.env` file with the needed environment variables. Create or update the `.env` file with your Azure OpenAI credentials:
+
+  ```bash
+  # Your Azure OpenAI endpoint
+  AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
+    
+  # Your Azure OpenAI API key
+  AZURE_OPENAI_API_KEY=<your-api-key>
+    
+  # Your model deployment name in Azure OpenAI
+  MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+  ```
+
+  > [!IMPORTANT]
+  > Never commit the `.env` file to version control. Add it to your `.gitignore` file.
 
 ::: zone-end
 
@@ -290,10 +314,9 @@ In `Nuget.Config`, replace the following placeholders:
 
 ::: zone pivot="csharp"
 
-Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
-Before running locally with `dotnet run`, ensure you have configured the required environment variables. You can obtain these values from the Azure AI Foundry portal. 
+Before you run `dotnet run` locally, set up the needed environment variables. You can get these values from the Azure AI Foundry portal. 
 
-  1. Configure your environment variables based on your operating system:
+  1. Set up your environment variables based on your operating system:
 
      #### [Windows (PowerShell)](#tab/windows-powershell)
 
@@ -345,7 +368,7 @@ Run the application using:
 
 ### Visualize multi-agent workflow execution
 
-Visualize your multi-agent workflows using the Azure AI Foundry VS Code extension. This allows you to see the interactions between different agents and how they collaborate to achieve the desired outcome.
+Visualize your multi-agent workflows using the Azure AI Foundry VS Code extension. This extension allows you to see the interactions between different agents and how they collaborate to achieve the desired outcome.
 
 To monitor and visualize your multi-agent workflow execution in real-time (currently available for Python interactive mode only):
 
@@ -379,7 +402,7 @@ The following steps outline how to monitor and visualize your multi-agent workfl
 
   1. Open the Command Palette (`Ctrl+Shift+P`)
   1. Run the command: `>Azure AI Foundry: Visualize the Multi-Agent Workflow`
-  1. A new tab will open in VS Code displaying the execution graph
+  1. A new tab opens in VS Code displaying the execution graph
   1. The visualization updates automatically as your workflow progresses, showing the flow between agents and their interactions.
 
 ::: zone-end
