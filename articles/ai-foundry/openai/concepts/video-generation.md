@@ -77,7 +77,7 @@ client = OpenAI(
 )
 
 video = client.videos.create(
-    model="sora-2",
+    model="sora-2", # Replace with Sora 2 model deployment name
     prompt="A video of a cool cat on a motorcycle in the night",
 )
 
@@ -96,7 +96,7 @@ client = OpenAI(
 )
 
 video = client.videos.create(
-    model="sora-2",
+    model="sora-2", # Replace with Sora 2 model deployment name
     prompt="A video of a cool cat on a motorcycle in the night",
 )
 
@@ -123,7 +123,7 @@ from openai import OpenAI
 client = OpenAI()
 
 video = client.videos.create(
-    model="sora-2",
+    model="sora-2", # Replace with Sora 2 model deployment name
     prompt="A video of a cool cat on a motorcycle in the night",
 )
 
@@ -167,7 +167,7 @@ client = OpenAI(
 
 # Create the video (don't use create_and_poll)
 video = client.videos.create(
-    model="sora-2",
+    model="sora-2", # Replace with Sora 2 model deployment name
     prompt="A video of a cat on a motorcycle",
 )
 
@@ -209,7 +209,7 @@ client = AsyncOpenAI(
 
 async def main() -> None:
     video = await client.videos.create_and_poll(
-        model="sora-2",
+        model="sora-2", # Replace with Sora 2 model deployment name
         prompt="A video of a cat on a motorcycle",
     )
 
@@ -241,7 +241,7 @@ client = OpenAI(
 
 # Create the video (don't use create_and_poll)
 video = client.videos.create(
-    model="sora-2",
+    model="sora-2", # Replace with Sora 2 model deployment name
     prompt="A video of a cat on a motorcycle",
 )
 
@@ -279,7 +279,7 @@ client = OpenAI(
 
 async def main() -> None:
     video = await client.videos.create_and_poll(
-        model="sora-2",
+        model="sora-2", # Replace with Sora 2 model deployment name 
         prompt="A video of a cat on a motorcycle",
     )
 
@@ -317,7 +317,7 @@ client = OpenAI()
 
 # Create the video (don't use create_and_poll)
 video = client.videos.create(
-    model="sora-2",
+    model="sora-2", # Replace with Sora 2 model deployment name
     prompt="A video of a cat on a motorcycle",
 )
 
@@ -350,7 +350,7 @@ client = OpenAI()
 
 async def main() -> None:
     video = await client.videos.create_and_poll(
-        model="sora-2",
+        model="sora-2", # Replace with Sora 2 model deployment name
         prompt="A video of a cat on a motorcycle",
     )
 
