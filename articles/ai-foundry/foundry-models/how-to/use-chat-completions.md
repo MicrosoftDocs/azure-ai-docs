@@ -366,7 +366,7 @@ import (
 
     "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
     "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/azure"
+    "github.com/openai/openai-go/v3/azure"
     "github.com/openai/openai-go/v2/option"
 )
 
