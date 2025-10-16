@@ -88,7 +88,7 @@ _Example Use Cases:_
 - High-volume summarization pipelines
 - Lightweight assistants for internal tools
 
-If you're unsure which model to choose, try [Model Router](https://ai.azure.com/catalog/models/model-router) in Azure AI Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with no loss in fidelity. [How to use model router for Azure AI Foundry (preview) – Microsoft Learn](/azure/ai-foundry/openai/how-to/model-router)
+If you're unsure which model to choose, try [Model Router](https://ai.azure.com/catalog/models/model-router) in Azure AI Foundry for a ready-to-use solution. Developers can use the model router in Foundry Models to maximize the capabilities of the GPT-5 family models (and other models in Foundry Models) while saving up to 60% on inferencing cost with comparable quality. [How to use model router for Azure AI Foundry (preview) – Microsoft Learn](/azure/ai-foundry/openai/how-to/model-router)
 
 
 
