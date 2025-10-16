@@ -292,21 +292,21 @@ To run the sample multi-agent workflow C# project, ensure you have the following
 
 3. **Configure environment variables**
 
-   The sample workflow project creates an `.env` file with the needed environment variables. Create or update the `.env` file with your Azure OpenAI credentials:
+     The sample workflow project creates an `.env` file with the needed environment variables. Create or update the `.env` file with your Azure OpenAI credentials:
 
-  ```bash
-  # Your Azure OpenAI endpoint
-  AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
-    
-  # Your Azure OpenAI API key
-  AZURE_OPENAI_API_KEY=<your-api-key>
-    
-  # Your model deployment name in Azure OpenAI
-  MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
-  ```
+     ```
+     # Your Azure OpenAI endpoint
+     AZURE_OPENAI_ENDPOINT=https://<your-openai-resource>.openai.azure.com/
+       
+     # Your Azure OpenAI API key
+     AZURE_OPENAI_API_KEY=<your-api-key>
+       
+     # Your model deployment name in Azure OpenAI
+     MODEL_DEPLOYMENT_NAME=<your-model-deployment-name>
+     ```
 
-  > [!IMPORTANT]
-  > Never commit the `.env` file to version control. Add it to your `.gitignore` file.
+     > [!IMPORTANT]
+     > Never commit the `.env` file to version control. Add it to your `.gitignore` file.
 
 ::: zone-end
 
