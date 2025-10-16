@@ -493,7 +493,7 @@ This table shows the download performance the Azure Machine Learning data runtim
 We can see that a larger file, broken up into smaller files, can improve download performance due to parallelism. We recommend that you avoid files that become too small (less than 4 MB) because the time needed for storage request submissions increases, relative to time spent downloading the payload. For more information, read [Many small files problem](#many-small-files-problem).
 
 ### Mount (streaming)
-In mount mode, the Azure Machine Learning data capability uses the [FUSE (filesystem in user space)](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) Linux feature, to create an emulated filesystem. Instead of downloading all the data to the local disk (SSD) of the compute target, the runtime can react to the user's script actions *in real-time*. For example, *"open file"*, *"read 2-KB chunk from position X"*, *"list directory content"*.
+In mount mode, the Azure Machine Learning data capability uses the [FUSE (filesystem in user space)](https://www.kernel.org/doc/html/latest/filesystems/fuse) Linux feature, to create an emulated filesystem. Instead of downloading all the data to the local disk (SSD) of the compute target, the runtime can react to the user's script actions *in real-time*. For example, *"open file"*, *"read 2-KB chunk from position X"*, *"list directory content"*.
 
 | Advantages | Disadvantages |
 |-----------|-------------|
