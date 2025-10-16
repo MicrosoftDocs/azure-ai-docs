@@ -1,13 +1,14 @@
 ---
-title: Data, privacy, and security for optical character recognition (OCR) - Azure AI Vision
-titleSuffix: Azure AI services
-description: This document details issues for data, privacy, and security for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure AI Vision API.
+title: Data, privacy, and security for optical character recognition (OCR) - Azure Vision in Foundry Tools
+titleSuffix: Azure AI Foundry Tools
+description: This document details issues for data, privacy, and security for optical character recognition (OCR) of images and documents with printed and handwritten text using Azure Vision in Foundry Tools API.
+ai-usage: ai-assisted
 author: PatrickFarley
 ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article
-ms.date: 02/23/2021
+ms.date: 10/15/2025
 ---
 
 # Data, privacy, and security for OCR
