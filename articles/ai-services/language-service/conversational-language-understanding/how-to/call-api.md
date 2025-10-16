@@ -1,12 +1,12 @@
 ---
 title: Send prediction requests to a conversational language understanding deployment
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about sending prediction requests for conversational language understanding.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/04/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

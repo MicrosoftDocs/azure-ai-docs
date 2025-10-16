@@ -1,12 +1,12 @@
 ---
 title: Choose conversational language understanding or orchestration workflow
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn when to choose between conversational language understanding or orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: best-practice
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

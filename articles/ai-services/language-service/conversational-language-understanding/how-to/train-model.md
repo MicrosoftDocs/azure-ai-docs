@@ -1,12 +1,12 @@
 ---
 title: How to train and evaluate models in Conversational Language Understanding
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this article to train a model and view its evaluation details to make improvements.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/23/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

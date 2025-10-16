@@ -1,12 +1,12 @@
 ---
 title: Conversational language understanding language support
-titleSuffix: Azure AI services
-description: This article explains which natural languages are supported by the conversational language understanding feature of Azure AI Language.
+titleSuffix: Azure AI Foundry Tools
+description: This article explains which natural languages are supported by the conversational language understanding feature of Azure Language in Foundry Tools.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 05/01/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---

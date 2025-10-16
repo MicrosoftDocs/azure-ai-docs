@@ -1,12 +1,12 @@
 ---
 title: Conversational Language Understanding backwards compatibility
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about backwards compatibility between Language Understanding (LUIS) and Conversational Language Understanding
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 08/18/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
