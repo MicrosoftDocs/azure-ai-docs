@@ -7,7 +7,7 @@ ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 06/04/2025
+ms.date: 11/05/2025
 ---
 
 # Integrate conversational language understanding with Bot Framework

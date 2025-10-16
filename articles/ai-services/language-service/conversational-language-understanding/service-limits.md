@@ -25,7 +25,7 @@ Use this article to learn about the data and service limits when using conversat
   |S |Paid tier|You can have up to 100 Language resources in the S tier per region.| 
 
 
-See [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/) for more information.
+For more information, *see* [pricing](https://azure.microsoft.com/pricing/details/cognitive-services/language-service/).
 
 * You can have up to **500** projects per resource.
 
@@ -47,7 +47,7 @@ See [Language service regional availability](../concepts/regional-support.md#con
 
 |Pricing tier |Item |Limit |
 | --- | --- | ---|
-|F|Training time| 1 hour per month  |
+|F|Training time| One hour per month  |
 |S|Training time| Unlimited, Standard |
 |F|Prediction Calls| 5,000 request per month  |
 |S|Prediction Calls| Unlimited, Standard |
@@ -75,10 +75,10 @@ The following limits are observed for the conversational language understanding.
 | Item | Limits |
 |--|--|
 | Project name |  You can only use letters `(a-z, A-Z)`, and numbers `(0-9)` , symbols  `_ . -`, with no spaces. Maximum allowed length is 50 characters. |
-| Model name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and symbols `_ . -`. Maximum allowed length is 50 characters.  |
-| Deployment name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and symbols `_ . -`. Maximum allowed length is 50 characters.  |
-| Intent name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
-| Entity name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)` and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
+| Model name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and symbols `_ . -`. Maximum allowed length is 50 characters.|
+| Deployment name |  You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and symbols `_ . -`. Maximum allowed length is 50 characters.|
+| Intent name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
+| Entity name| You can only use letters `(a-z, A-Z)`, numbers `(0-9)`, and all symbols except ":", `$ & %  * (  ) + ~ # / ?`. Maximum allowed length is 50 characters.|
 
 ## Next steps
 

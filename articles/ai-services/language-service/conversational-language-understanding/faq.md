@@ -13,11 +13,11 @@ ms.custom: mode-other
 
 # Frequently asked questions for conversational language understanding
 
-Use this article to quickly get the answers to common questions about conversational language understanding
+This article provides quick answers to essential FAQs about conversational language understanding.
 
 ## How do I create a project?
 
-See the [quickstart](./quickstart.md) to quickly create your first project, or the [how-to article](./how-to/create-project.md) for more details. 
+Use the [quickstart](./quickstart.md) to get started creating your first project, or the [how-to article](./how-to/create-project.md) for more details. 
 
 
 ## Can I use more than one conversational language understanding project together?
