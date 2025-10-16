@@ -61,7 +61,7 @@ You can use Image Analysis to process images:
 - **[Generate descriptive captions](/azure/ai-services/computer-vision/concept-describing-images):** The image captioning algorithm uses celebrity recognition and landmark recognition models to generate more descriptive captions when celebrities or landmarks are present in the image. Celebrity recognition is only available to approved customers, please apply [here](https://aka.ms/facerecognition) if you would like to use celebrity recognition.
 
    > [!NOTE]
-   > "Caption" replaces "Describe" in V4.0 as the significantly improved image captioning feature rich with details and sematic understanding. Dense Captions provides more detail by generating one sentence descriptions of up to 10 regions of the image in addition to describing the whole image. Dense Captions also returns bounding box coordinates of the described image regions.
+   > "Caption" replaces "Describe" in V4.0 as the significantly improved image captioning feature rich with details and semantic understanding. Dense Captions provides more detail by generating one sentence descriptions of up to 10 regions of the image in addition to describing the whole image. Dense Captions also returns bounding box coordinates of the described image regions.
 
 - [**Moderate content in images**](/azure/ai-services/computer-vision/concept-detecting-adult-content): You can use Image Analysis to detect adult, racy, and gory content in an image and obtain confidence scores for these classifications. You can set the threshold for flagging content as adult, racy, or gory on a sliding scale to accommodate your preferences.
 - [**Obtain an area of interest and smart crops**](/azure/ai-services/computer-vision/concept-generating-thumbnails?tabs=3-2): You can analyze the contents of an image to return the coordinates of the image's most important region or get AI-suggested crops of the image for different aspect ratios. Face detection is used to help determine important regions in the image. The detection does not involve distinguishing one face from another face, predicting or classifying facial attributes, or creating a facial template (a unique set of numbers that are generated from an image that represents the distinctive features of a face).
@@ -73,7 +73,7 @@ You can use Image Analysis to process images:
 - **[Image stitching](/azure/ai-services/computer-vision/how-to/shelf-modify-images)**: Combine multiple images that partially overlap into a single large image. This is used in the product recognition scenario to get a single image of an entire retail shelf.
 - **[Image rectification](/azure/ai-services/computer-vision/how-to/shelf-modify-images)**: Undo the perspective distortion of an image. This is used in the product recognition scenario to ensure shelf images are  easier to analyze.
 - **[Planogram matching](/azure/ai-services/computer-vision/how-to/shelf-planogram)**: Compare product recognition results with a planogram document to see which spots are occupied by products and which have gaps.
-- [**Background Removal**](/azure/ai-services/computer-vision/concept-background-removal):Lets you remove the background of an image. This operation can either output an image of the detected foreground object with a transparent background, or a grayscale alpha matte image showing the opacity of the detected foreground object.
+- [**Background Removal**](/azure/ai-services/computer-vision/concept-background-removal): Lets you remove the background of an image. This operation can either output an image of the detected foreground object with a transparent background, or a grayscale alpha matte image showing the opacity of the detected foreground object.
 - [**Image Retrieval**](/azure/ai-services/computer-vision/how-to/image-retrieval): Image Retrieval allows users to search images the way they think: using natural phases, questions, even vague descriptions. It enables the _vectorization_ of images and text queries. This lets you convert images and text to coordinates in a multi-dimensional vector space. Use vector similarity to match images with search terms based on semantic closeness, for example for searching across image content or recommending an image based on a text query or similar image.
 - [**Video summary and frame locator**](https://aka.ms/visionstudio): Search and interact with video content in the same intuitive way you think and write. Locate relevant content without the need for additional metadata. Currently available only in Vision Studio
 
@@ -170,7 +170,7 @@ We have rigorously tested all our Azure Vision AI models for fairness to identif
 
 In some rare instances, image tagging, and image captioning models have made fairness errors by returning incorrect gender and age labels for people that appear in input images. These instances are very rare, and we continue to improve our models so that newer models are less likely to produce such errors. We recommend that customers don't use Azure Vision models for gender and age classifications.
 
-We ask customers to report any fairness errors and to share their feedback on these issues through the [Azure Portal](https://portal.azure.com/?feature.customportal=false#home) so that we can keep identifying areas of improvement as we seek to ensure that our models work well for everyone. Customers who train their own models using the Customization feature will need to perform additional testing to ensure fairness.
+We ask customers to report any fairness errors and to share their feedback on these issues through the [Azure portal](https://portal.azure.com/?feature.customportal=false#home) so that we can keep identifying areas of improvement as we seek to ensure that our models work well for everyone. Customers who train their own models using the Customization feature will need to perform additional testing to ensure fairness.
 
 ## Evaluating and integrating Image Analysis for your use
 
@@ -187,7 +187,7 @@ This section discusses Azure Vision and key considerations for using this techno
 - **Security**: Ensure that your solution is secure and that it has adequate controls to preserve the integrity of your content and prevent unauthorized access.
 - **Have a blocklist or an allowlist**: Instead of enabling all tags with Azure Vision tag feature, focus on the specific ones that are most appropriate for your use case.
 - **Structure user interactions by limiting specific inputs**: We recommend monitoring user text input for undesired content. This could include hate speech, racial or ethnic slurs, and profane words or phrases. The exact definition of undesired content will depend on your scenario and may change over time.
-- **Control user access**:Consider requiring your customers and users to sign in, as this will make it easier for your business to respond to misuse incidents if they occur. If possible, consider placing the product behind a paywall, to make misuse more difficult.
+- **Control user access**: Consider requiring your customers and users to sign in, as this will make it easier for your business to respond to misuse incidents if they occur. If possible, consider placing the product behind a paywall, to make misuse more difficult.
 - **Limit societal bias**: We recommend running tests for your specific use cases to limit societal biases.
 - **Establish feedback and reporting channel for users**: We recommend creating channels to collect questions and concerns from users and bystanders affected by the system. Invite feedback on the usefulness and accuracy of outputs and give users a clear path to report problematic, offensive, biased, or inappropriate outputs. Possible mechanisms include building feedback features into the UI and publishing an email address for public feedback.
 
@@ -227,7 +227,7 @@ When you're ready to use your model, you can make a model prediction by sending 
 
 #### Intended uses
 
-You might use Customization, a feature of Azure AI Foundry Tools Azure Vision for the following scenarios:
+You might use Customization, a feature of Azure Vision for the following scenarios:
 
 - **Automated visual alerts**: The ability to monitor a video stream and have alerts triggered when certain circumstances are detected. For example, you might want an alert when there is steam detected, or foam on a river, or an animal is present.
 - **Improved efficiency of manual inspection**: In retail, product recognition enables you to reduce the time you or associates spend counting unique SKUs or identifying whether all SKUs that should be on a shelf are present.
