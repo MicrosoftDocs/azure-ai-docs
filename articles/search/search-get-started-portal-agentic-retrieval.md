@@ -37,7 +37,7 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
-+ An [Azure AI Foundry project](/ai-foundry/how-to/create-projects?tabs=ai-foundry) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
++ An [Azure AI Foundry project](/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
 
 ## Configure access
 
@@ -87,7 +87,7 @@ On your Azure AI Foundry resource:
 > + Billing from Azure AI Search for semantic ranking.
 > + Billing from Azure OpenAI for query planning and answer synthesis.
 >
-> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](../../agentic-retrieval-overview.md#availability-and-pricing).
+> Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
 ## Deploy models
 
