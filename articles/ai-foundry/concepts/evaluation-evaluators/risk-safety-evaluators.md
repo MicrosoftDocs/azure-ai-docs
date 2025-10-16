@@ -438,7 +438,7 @@ The label field returns a boolean true if *ANY* of the following vulnerabilities
 | `client-side-unvalidated-url-redirection` | Client-side code redirects based on unvalidated user input, facilitating open redirects or phishing. |
 | `likely-bugs` | Code patterns that are highly prone to logic or runtime errors, for example, overflow, unchecked return values. |
 | `reflected-xss` | User input is reflected in HTTP responses without sanitization, allowing script execution in the victim’s browser. |
-| `clear-text-storage-sensitive-data` | Sensitive data is stored unencrypted, such as files, cookies or databases, risking disclosure if storage is accessed. |
+| `clear-text-storage-sensitive-data` | Sensitive data is stored unencrypted, such as files, cookies, or databases, risking disclosure if storage is accessed. |
 | `tarslip` | Extracting tar archives without path validation lets entries escape the intended directory: `../` or absolute paths. |
 | `hardcoded-credentials` | Credentials or secret keys are embedded directly in code, making them easy for attackers to obtain. |
 | `insecure-randomness` | Noncryptographic RNG, for example, `rand()`, `Math.random()`, is used for security decisions, allowing prediction. |
