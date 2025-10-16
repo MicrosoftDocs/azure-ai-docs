@@ -47,9 +47,6 @@ items:
     - name: Classifier quickstart (TODO)
       displayName: classifier, quickstart, API, prerequisites
       href: quickstart/classifier-quickstart.md
-    - name: Agents with CU via MCP quickstart (TODO)
-      displayName: MCP, agents, tools, quickstart
-      href: quickstart/mcp-cu-agents-quickstart.md
   - name: Concepts
     items:
     - name: Analyzers
@@ -125,9 +122,6 @@ items:
       - name: In-Context Learning tutorial (TODO)
         displayName: ICL, in-context learning, labeled samples, analyzer rebuilding
         href: tutorial/in-context-learning.md
-      - name: MCP + CU Agents tutorial (TODO)
-        displayName: MCP, agents, workflows, tutorial
-        href: tutorial/mcp-cu-agents.md
       - name: Migration from CU Preview to GA (TODO)
         displayName: migration, preview, GA, API changes
         href: how-to/migration-preview-to-ga.md
