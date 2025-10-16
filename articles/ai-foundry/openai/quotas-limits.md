@@ -309,7 +309,7 @@ To determine the offer type associated with your subscription, you can check you
 
 # [REST](#tab/REST)
 
-See the [API reference](/rest/api/subscription/subscriptions/get).
+See the [API reference](/rest/api/subscription/subscriptions/get-target-directory).
 
 ```bash
 az login
