@@ -1,12 +1,12 @@
 ---
-title: Run AI Red Teaming Agent locally (Azure AI Evaluation SDK)
+title: Run AI Red Teaming Agent Locally (Azure AI Evaluation SDK)
 titleSuffix: Azure AI Foundry
-description: This article provides instructions on how to use the AI Red Teaming Agent to run a local automated scan of a Generative AI application with the Azure AI Evaluation SDK.
+description: Learn how to use the AI Red Teaming Agent to run a local automated scan of a Generative AI application with the Azure AI Evaluation SDK.
 ms.service: azure-ai-foundry
 ms.custom:
   - references_regions
 ms.topic: how-to
-ms.date: 06/03/2025
+ms.date: 10/20/2025
 ms.reviewer: minthigpen
 ms.author: lagayhar
 author: lgayhardt
@@ -16,12 +16,12 @@ author: lgayhardt
 
 [!INCLUDE [feature-preview](../../includes/feature-preview.md)]
 
-The AI Red Teaming Agent (preview) is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development. By integrating Microsoft's open-source framework for Python Risk Identification Tool's ([PyRIT](https://github.com/Azure/PyRIT)) AI red teaming capabilities directly into Azure AI Foundry, teams can automatically scan their model and application endpoints for risks, simulate adversarial probing, and generate detailed reports.
+The AI Red Teaming Agent (preview) is a powerful tool designed to help organizations proactively find safety risks associated with generative AI systems during design and development. The AI red teaming capabilities of Microsoft's open-source framework for Python Risk Identification Tool ([PyRIT](https://github.com/Azure/PyRIT)) are integrated  directly into Azure AI Foundry. Teams can automatically scan their model and application endpoints for risks, simulate adversarial probing, and generate detailed reports.
 
-This article guides you through the process of
+This article explains how to:
 
-- Creating an AI Red Teaming Agent locally
-- Running automated scans locally and viewing the results
+- Create an AI Red Teaming Agent locally
+- Run automated scans locally and view the results
 
 ## Prerequisites
 
@@ -31,7 +31,7 @@ This article guides you through the process of
 
 ## Getting started
 
-First install the `redteam` package as an extra from Azure AI Evaluation SDK, this provides the PyRIT functionality:
+Install the `redteam` package as an extra from Azure AI Evaluation SDK. This package provides the PyRIT functionality:
 
 ```python
 uv pip install "azure-ai-evaluation[redteam]"
@@ -72,7 +72,7 @@ def simple_callback(query: str) -> str:
 red_team_result = await red_team_agent.scan(target=simple_callback)
 ```
 
-This example generates a default set of 10 attack prompts for each of the default set of four risk categories (violence, sexual, hate and unfairness, and self-harm) to result in a total of 40 rows of attack prompts to be generated and sent to your target.
+This example generates a default set of 10 attack prompts for each of the default set of four risk categories: violence, sexual, hate and unfairness, and self-harm. The example has a total of 40 rows of attack prompts to be generated and sent to your target.
 
 Optionally, you can specify which risk categories of content risks you want to cover with `risk_categories` parameter and define the number of prompts covering each risk category with `num_objectives` parameter.
 
@@ -120,7 +120,7 @@ azure_openai_config = {
 red_team_result = await red_team_agent.scan(target=azure_openai_config)
 ```
 
-**Simple callback**: A simple callback which takes in a string prompt from `red_team_agent` and returns some string response from your application.
+**Simple callback**: A simple callback that takes in a string prompt from `red_team_agent` and returns some string response from your application:
 
 ```python
 # Define a simple callback function that simulates a chatbot
@@ -131,7 +131,7 @@ def simple_callback(query: str) -> str:
 red_team_result = await red_team_agent.scan(target=simple_callback)   
 ```
 
-**Complex callback**: A more complex callback that is aligned to the OpenAI Chat Protocol
+**Complex callback**: A more complex callback that is aligned to the OpenAI Chat Protocol:
 
 ```python
 # Create a more complex callback function that handles conversation state
@@ -185,9 +185,9 @@ The following risk categories are supported in the AI Red Teaming Agent's runs, 
 
 ## Custom attack objectives
 
-Though the AI Red Teaming Agent provides a Microsoft curated set of adversarial attack objectives covering each supported risk, you might want to bring your own additional custom set to be used fo reach risk category as your own organization policy might be different.
+The AI Red Teaming Agent provides a Microsoft curated set of adversarial attack objectives covering each supported risk. Because your organization's policy might be different, you might want to bring your own custom set to use for each risk category.
 
-You can run the AI Red Teaming Agent on your own dataset
+You can run the AI Red Teaming Agent on your own dataset.
 
 ```python
 custom_red_team_agent = RedTeam(
@@ -197,7 +197,7 @@ custom_red_team_agent = RedTeam(
 )
 ```
 
-Your dataset must be a JSON file, in the following format with the associated metadata for the corresponding risk-types. When bringing your own prompts, the supported `risk-type`s are `violence`, `sexual`, `hate_unfairness`, and `self_harm` so that the attacks can be evaluated for success correspondingly by our Safety Evaluators. The number of prompts you specify will be the `num_objectives` used in the scan.
+Your dataset must be a JSON file, in the following format with the associated metadata for the corresponding risk types. When you bring your own prompts, the supported `risk-type`s are `violence`, `sexual`, `hate_unfairness`, and `self_harm`. Use these supported types so that the Safety Evaluators can evaluate the attacks for success correspondingly. The number of prompts that you specify is the `num_objectives` used in the scan.
 
 ```json
 [
@@ -229,17 +229,17 @@ Your dataset must be a JSON file, in the following format with the associated me
 
 ## Supported attack strategies
 
-If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` will only send baseline direct adversarial queries to your target. This is the most naive method of attempting to elicit undesired behavior or generated content. It's recommended to try the baseline direct adversarial querying first before applying any attack strategies.
+If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` sends only baseline direct adversarial queries to your target. This approach is the most naive method of attempting to elicit undesired behavior or generated content. We recommend that you try the baseline direct adversarial querying first before applying any attack strategies.
 
-Attack strategies are methods to take the baseline direct adversarial queries and convert them into another form to try bypassing your target's safeguards. Attack strategies are classified into three buckets of complexities. Attack complexity reflects the effort an attacker needs to put in conducting the attack.
+Attack strategies are methods to take the baseline direct adversarial queries and convert them into another form to try bypassing your target's safeguards. Attack strategies are classified into three levels of complexity. Attack complexity reflects the effort an attacker needs to put in conducting the attack.
 
 - **Easy complexity attacks** require less effort, such as translation of a prompt into some encoding
 - **Moderate complexity attacks** requires having access to resources such as another generative AI model
-- **Difficult complexity attacks** includes attacks that require access to significant resources and effort to execute an attack such as knowledge of search-based algorithms in addition to a generative AI model.
+- **Difficult complexity attacks** includes attacks that require access to significant resources and effort to execute an attack, such as knowledge of search-based algorithms, in addition to a generative AI model.
 
 ### Default grouped attack strategies
 
-We offer a group of default attacks for easy complexity and moderate complexity which can be used in `attack_strategies` parameter. A difficult complexity attack can be a composition of two strategies in one attack.
+This approach offers a group of default attacks for easy complexity and moderate complexity that can be used in the `attack_strategies` parameter. A difficult complexity attack can be a composition of two strategies in one attack.
 
 | Attack strategy complexity group | Includes |
 | --- | --- |
@@ -247,7 +247,7 @@ We offer a group of default attacks for easy complexity and moderate complexity 
 | `MODERATE` | `Tense` |
 | `DIFFICULT` | Composition of `Tense` and `Base64` |
 
-The following scan would first run all the baseline direct adversarial queries. Then, it would apply the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64` which would first translate the baseline query into past tense then encode it into `Base64`.
+The following scan would first run all the baseline direct adversarial queries. Then, it would apply the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64`, which would first translate the baseline query into past tense then encode it into `Base64`.
 
 ```python
 from azure.ai.evaluation.red_team import AttackStrategy
@@ -266,7 +266,7 @@ red_team_agent_result = await red_team_agent.scan(
 
 ### Specific attack strategies
 
-More advanced users can specify the desired attack strategies instead of using default groups. The following attack strategies are supported:
+You can specify the desired attack strategies instead of using default groups. The following attack strategies are supported:
 
 | Attack strategy | Description | Complexity |
 | --- | --- | --- |
@@ -294,7 +294,9 @@ More advanced users can specify the desired attack strategies instead of using d
 
 Each new attack strategy specified is applied to the set of baseline adversarial queries used in addition to the baseline adversarial queries.
 
-This following example would generate one attack objective per each of the four risk categories specified. This will first, generate four baseline adversarial prompts which would be sent to your target. Then, each baseline query would get converted into each of the four attack strategies. This results in a total of 20 attack-response pairs from your AI system. The last attack strategy is an example of a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition would first encode the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions only support chaining two attack strategies together.
+This following example would generate one attack objective per each of the four risk categories specified. This approach first generates four baseline adversarial prompts, which would be sent to your target. Then, each baseline query would get converted into each of the four attack strategies. This conversion results in a total of 20 attack-response pairs from your AI system.
+
+The last attack strategy is an example of a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition would first encode the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions only support chaining two attack strategies together.
 
 ```python
 red_team_agent = RedTeam(
@@ -335,7 +337,7 @@ red_team_agent_result = await red_team_agent.scan(
 )
 ```
 
-The `My-First-RedTeam-Scan.json` file contains a scorecard that provides a breakdown across attack complexity and risk categories, as well as a joint attack complexity and risk category report. Important metadata is tracked in the `parameters` section which outlines which risk categories were used to generate the attack objectives and which attack strategies were specified in the scan.
+The `My-First-RedTeam-Scan.json` file contains a scorecard that provides a breakdown across attack complexity and risk categories. It also includes a joint attack complexity and risk category report. Important metadata is tracked in the `parameters` section, which outlines which risk categories were used to generate the attack objectives and which attack strategies were specified in the scan.
 
 ```json
 {
