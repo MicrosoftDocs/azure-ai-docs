@@ -23,7 +23,7 @@ In this article, you'll learn about the deployment of [MLflow](https://www.mlflo
 
 ## No-code deployment
 
-When you deploy MLflow models to Azure Machine Learning, in contrast to custom model deployment, you don't need to provide a scoring script or an environment. Azure Machine Learning automatically generates the scoring script and environment. This functionality is called *no-code deployment*.
+When you deploy MLflow models to Azure Machine Learning, unlike with custom model deployment, you don't need to provide a scoring script or an environment. Azure Machine Learning automatically generates the scoring script and environment. This functionality is called *no-code deployment*.
 
 For no-code deployment, Azure Machine Learning:
 
