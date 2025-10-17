@@ -413,7 +413,7 @@ items:
         - name: Web
           href: agentic-knowledge-source-how-to-web.md
         - name: Manage use of web knowledge sources
-          href: agentic-knowledge-source-how-to-manage-web.md
+          href: agentic-knowledge-source-how-to-web-manage.md
       - name: Create a knowledge agent
         href: agentic-retrieval-how-to-create-knowledge-base.md
       - name: Configure answer synthesis for an agent

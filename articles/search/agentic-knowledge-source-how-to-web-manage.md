@@ -29,7 +29,7 @@ As an Azure admin, you can use the Azure CLI to enable or disable the use of [we
 
 + Have **Owner** or **Contributor** access to the subscription.
 
-+ Have the [Azure CLI](cli/azure/install-azure-cli) installed. If you're not already signed in to Azure, run `az login`.
++ Have the [Azure CLI](/cli/azure/install-azure-cli) installed. If you're not already signed in to Azure, run `az login`.
 
 ## Enable use of web knowledge sources
 

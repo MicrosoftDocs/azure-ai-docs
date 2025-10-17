@@ -33,7 +33,7 @@ Web knowledge sources work best alongside other knowledge sources. Use them when
 
 When you use a web knowledge source, keep the following in mind:
 
-+ You can't define answer instructions on the knowledge source.
++ You can't define `answerInstructions` on your knowledge base.
 
 + Your knowledge base must use the `answerSynthesis` output mode and `low` or `medium` reasoning effort. Other output modes and reasoning efforts aren't supported.
 
@@ -43,7 +43,7 @@ When you use a web knowledge source, keep the following in mind:
 
 ## Prerequisites
 
-+ An Azure subscription with [access to web knowledge sources](agentic-knowledge-source-how-to-web-manage.md). By default, access is enabled. Contact your Azure admin if access is disabled.
++ An Azure subscription with [access to web knowledge sources](agentic-knowledge-source-how-to-web-manage.md). By default, access is enabled. Contact your admin if access is disabled.
 
 + An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
@@ -57,7 +57,7 @@ The following JSON is an example response for a web knowledge source.
 
 ```json
 {
-  "name": "web-ks",
+  "name": "my-web-ks",
   "kind": "web",
   "description": "This knowledge source pulls content from the web.",
   "encryptionKey": null,
@@ -72,6 +72,9 @@ The following JSON is an example response for a web knowledge source.
   "indexedOneLakeParameters": null
 }
 ```
+
+> [!NOTE]
+> The `mcpToolParameters` property isn't operational in this preview and is reserved for future use.
 
 ## Create a knowledge source
 
@@ -114,14 +117,14 @@ You can pass the following properties to create a web knowledge source.
 
 | Name | Description | Type | Required |
 |--|--|--|--|
-| `name` | Name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `kind` | The kind of knowledge source, which is `web` in this case. | String | Yes |
 | `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-how-to-cmek.md) to encrypt sensitive information in the knowledge source. | Object | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in the knowledge source. | Object | No |
 | `webParameters` | Parameters specific to web knowledge sources. Currently, this is only `domains`. | Object | No |
-| `domains` | Domains to include or exclude from the search space. The knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) by default. However, if you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search). | Object | No |
-| `allowedDomains` | Domains to include in the search space. For each domain, you must specify the `address` in the `website.com` format. You can optionally specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | No |
-| `blockedDomains` | Domains to exclude from the search space. For each domain, you must specify the `address` in the `website.com` format. You can optionally specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | No |
+| `domains` | Domains to allow or block from the search space. The knowledge source uses [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) by default. However, if you specify domains, the knowledge source uses [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search). | Object | No |
+| `allowedDomains` | Domains to include in the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | No |
+| `blockedDomains` | Domains to exclude from the search space. For each domain, you must specify its `address` in the `website.com` format. You can also specify whether to include the domain's subpages by setting `includeSubpages` to `true` or `false`. | Array | No |
 
 ## Assign to a knowledge base
 

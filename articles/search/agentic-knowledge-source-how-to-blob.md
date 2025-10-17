@@ -14,7 +14,7 @@ ms.date: 10/17/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
+Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md), which specifies an existing and qualified index, a blob knowledge source specifies an external data source, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -22,8 +22,6 @@ Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-
 + A skillset that chunks and optionally vectorizes multimodal content from the container.
 + An index that stores enriched content and meets the criteria for agentic retrieval.
 + An indexer that uses the previous objects to drive the indexing and enrichment pipeline.
-
-Knowledge sources are new in the 2025-08-01-preview release.
 
 ## Prerequisites
 
@@ -115,10 +113,10 @@ To create a blob knowledge source:
     @container-name = <YOUR BLOB CONTAINER NAME>
     ```
 
-1. Use the 2025-08-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    PUT {{search-url}}/knowledgeSources/earth-at-night-blob-ks?api-version=2025-08-01-preview
+    PUT {{search-url}}/knowledgeSources/earth-at-night-blob-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
@@ -157,10 +155,10 @@ You can pass the following properties to create a blob knowledge source.
 
 | Name | Description | Type | Required |
 |--|--|--|--|
-| `name` | Name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | Yes |
 | `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-how-to-cmek.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
 | `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object | No |
 | `connectionString` | A key-based connection string or, if you're using a managed identity, the resource ID. | String | Yes |
 | `containerName` | The name of the blob storage container. | String | Yes |

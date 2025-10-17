@@ -16,7 +16,7 @@ ms.date: 10/17/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Use a *OneLake knowledge source* to index and query Microsoft OneLake files in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) action at query time.
+Use a *OneLake knowledge source* to index and query Microsoft OneLake files in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 When you create a OneLake knowledge source, you specify an external data source, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -136,18 +136,18 @@ To create a OneLake knowledge source:
 
 ### Source-specific properties
 
-You can pass the following properties to create a blob knowledge source.
+You can pass the following properties to create a OneLake knowledge source.
 
 | Name | Description | Type | Required |
 |--|--|--|--|
-| `name` | Name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
 | `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | Yes |
 | `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-how-to-cmek.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
-| `indexedOneLakeParameters` | Parameters specific to the OneLake knowledge source: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object | Yes |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
+| `indexedOneLakeParameters` | Parameters specific to OneLake knowledge sources: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object | Yes |
 | `fabricWorkspaceId` | The GUID of the workspace that contains the lakehouse. | String | Yes |
 | `lakehouseId` | The GUID of the lakehouse. | String | Yes |
-| `targetPath` | A folder or shortcut within your lakehouse. When unspecified, the entire lakehouse is indexed. | String | No |
+| `targetPath` | A folder or shortcut within the lakehouse. When unspecified, the entire lakehouse is indexed. | String | No |
 
 ### `ingestionParameters` properties
 
