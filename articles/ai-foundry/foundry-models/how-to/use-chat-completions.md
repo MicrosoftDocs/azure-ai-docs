@@ -126,7 +126,7 @@ print(response.model_dump_json(indent=2))
 
 - Use the `OpenAI()` client instead of the deprecated `AzureOpenAI()` client.
 - Pass the Azure OpenAI endpoint appended with `/openai/v1/` as the `base_url`.
-- Set the `api_key` parameter to `token_provider`. This setting enables automatic retrieval and refresh of an 
+- Set the `api_key` parameter to `token_provider`. This setting enables automatic retrieval and refresh of an authentication token instead of using a static API key.
 - You don't need to provide the `api-version` parameter with the v1 GA API.
 - Set the `model` parameter to the underlying **deployment name** you chose when you deployed the model. This name isn't the same as the name of the model you deployed.
 
@@ -451,7 +451,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -491,7 +491,7 @@ const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
 const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/",
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
 
@@ -541,7 +541,7 @@ func main() {
         Messages: []openai.ChatCompletionMessageParamUnion{
             openai.UserMessage("Tell me about the bitter lesson"),
         },
-        Model: "o4-mini", // Use your deployed model name on Azure
+        Model: "gpt-4o-mini", // Use your deployed model name on Azure
     })
     if err != nil {
         panic(err.Error())
@@ -577,7 +577,7 @@ func main() {
 
     // Create a client with Azure OpenAI endpoint and token credential
     client := openai.NewClient(
-        option.WithBaseURL("https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/"),
+        option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
         azure.WithTokenCredential(tokenCredential),
     )
 
@@ -682,7 +682,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
       "model": "grok-3-mini",
       "messages": [
       {
-        "role": "developer",
+        "role": "system",
         "content": "You are a helpful assistant."
       },
       {
