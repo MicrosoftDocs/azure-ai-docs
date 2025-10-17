@@ -19,7 +19,7 @@ items:
       - name: Video generation (preview)
         href: ../../../openai/concepts/video-generation.md
       - name: Video translation (preview)
-        href: ../../../../ai-services/speech-service/concepts/video-translation-get-started.md
+        href: ../../../../ai-services/speech-service/video-translation-get-started.md
       - name: Image prompt engineering techniques
         href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
 
