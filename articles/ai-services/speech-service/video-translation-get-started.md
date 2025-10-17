@@ -10,7 +10,6 @@ ms.date: 4/15/2025
 ms.author: pafarley
 zone_pivot_groups: foundry-speech-studio-rest
 #Customer intent: As a developer, I want to learn how to use video translation.
-monikerRange: 'foundry-classic || foundry'
 ---
 
 # How to use video translation

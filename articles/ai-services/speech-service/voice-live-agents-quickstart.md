@@ -11,7 +11,6 @@ ms.author: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 ms.custom: build-2025
 recommendations: false
-monikerRange: 'foundry-classic || foundry'
 
 ---
 
