@@ -44,7 +44,7 @@ For Azure OpenAI in Foundry Models, use the [Responses API](../../openai/support
 In the following examples, you create the client to consume the model and then send a basic request to the model. 
 
 > [!NOTE]
-> Use keyless authentication with Microsoft Entra ID. If that's not possible, use an API key and store it in Azure Key Vault. You can use an environment variable for testing outside of your Azure environments.
+> Use keyless authentication with Microsoft Entra ID. If that's not possible, use an API key and store it in Azure Key Vault. You can use an environment variable for testing outside of your Azure environments. To learn more about keyless authentication, see [What is Microsoft Entra authentication?](/entra/identity/authentication/overview-authentication) and [DefaultAzureCredential](/azure/developer/python/sdk/authentication/overview#defaultazurecredential).
 
 ### Use the responses API
 
@@ -94,13 +94,6 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
     ```bash
     pip install azure-identity
     ```
-
-1. Define an environment variable named `AZURE_TOKEN_CREDENTIALS`, and set it according to the environment in which the code runs:
-    - In Azure, set it to `ManagedIdentityCredential`.
-        > [!IMPORTANT]
-        > If you use a user-assigned managed identity, define an environment variable named `AZURE_CLIENT_ID`. Set it to the client ID of the managed identity. If you don't set that environment variable, `DefaultAzureCredential` assumes a system-assigned managed identity.
-    - In local development, set it to `dev`.
-    The Azure Identity library's `DefaultAzureCredential` reads this environment variable. For more information, see [Exclude a credential type category](/azure/developer/python/sdk/authentication/credential-chains?tabs=dac#exclude-a-credential-type-category).
 
 1. Use the following code to configure the OpenAI client object, specify your deployment, and generate responses.   
 
@@ -162,12 +155,6 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
     ```dotnetcli
     dotnet add package Azure.Identity
     ```
-1. Define an environment variable named `AZURE_TOKEN_CREDENTIALS`, and set it according to the environment in which the code runs:
-    - In Azure, set it to `ManagedIdentityCredential`.
-        > [!IMPORTANT]
-        > If you use a user-assigned managed identity, define an environment variable named `AZURE_CLIENT_ID`. Set it to the client ID of the managed identity. If you don't set that environment variable, `DefaultAzureCredential` assumes a system-assigned managed identity.
-    - In local development, set it to `dev`.
-    The Azure Identity library's `DefaultAzureCredential` reads this environment variable. For more information, see [Exclude a credential type category](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#exclude-a-credential-type-category).
 
 1. Use the following code to configure the OpenAI client object, specify your deployment, and generate responses.  
 
