@@ -66,7 +66,9 @@ For complex evaluation that requires refined reasoning, we recommend a strong re
 
 ## Retrieval
 
-Because of its upstream role in RAG, the retrieval quality is important. If the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. `RetrievalEvaluator` measures the *textual quality* of retrieval results with a language model without requiring ground truth, also known as *query relevance judgment*. This fact provides value compared to `DocumentRetrievalEvaluator`, which measures `ndcg`, `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks are to addressing a query and how the most relevant context chunks are surfaced at the top of the list. The context chunks are encoded as strings.
+Because of its upstream role in RAG, the retrieval quality is important. If the retrieval quality is poor and the response requires corpus-specific knowledge, there's less chance your language model gives you a satisfactory answer. `RetrievalEvaluator` measures the *textual quality* of retrieval results with a language model without requiring ground truth, also known as *query relevance judgment*.
+
+This fact provides value compared to `DocumentRetrievalEvaluator`, which measures `ndcg`, `xdcg`, `fidelity`, and other classical information retrieval metrics that require ground truth. This metric focuses on how relevant the context chunks are to addressing a query and how the most relevant context chunks are surfaced at the top of the list. The context chunks are encoded as strings.
 
 ### Retrieval example
 
@@ -100,13 +102,13 @@ Because of its upstream role in RAG, the retrieval quality is important. If the 
 
 - Document Retrieval evaluator measures how well the RAG retrieves the correct documents from the document store. As a composite evaluator useful for RAG scenario with ground truth, it computes a list of useful search quality metrics for debugging your RAG pipelines:
 
-| Metric | Category | Description |
-|--|--|--|
-| Fidelity | Search Fidelity | How well the top n retrieved chunks reflect the content for a given query: number of good documents returned out of the total number of known good documents in a dataset |
-| NDCG | Search NDCG | How good are the rankings to an ideal order where all relevant items are at the top of the list |
-| XDCG | Search XDCG | How good the results are in the top-k documents regardless of scoring of other index documents |
-| Max Relevance N | Search Max Relevance | Maximum relevance in the top-k chunks |
-| Holes | Search Label Sanity | Number of documents with missing query relevance judgments, or ground truth |
+  | Metric | Category | Description |
+  |--|--|--|
+  | Fidelity | Search Fidelity | How well the top n retrieved chunks reflect the content for a given query: number of good documents returned out of the total number of known good documents in a dataset |
+  | NDCG | Search NDCG | How good are the rankings to an ideal order where all relevant items are at the top of the list |
+  | XDCG | Search XDCG | How good the results are in the top-k documents regardless of scoring of other index documents |
+  | Max Relevance N | Search Max Relevance | Maximum relevance in the top-k chunks |
+  | Holes | Search Label Sanity | Number of documents with missing query relevance judgments, or ground truth |
 
 - To optimize your RAG in a scenario called *parameter sweep*, you can use these metrics to calibrate the search parameters for the optimal RAG results. Generate different retrieval results for various search parameters such as search algorithms (vector, semantic), top_k, and chunk sizes you're interested in testing. Then use `DocumentRetrievalEvaluator` to find the search parameters that yield the highest retrieval quality.
 
@@ -210,7 +212,9 @@ All numerical scores have `high_is_better=True` except for `holes` and `holes_ra
 
 ## Groundedness
 
-It's important to evaluate how grounded the response is in relation to the context. AI models can fabricate content or generate irrelevant responses. `GroundednessEvaluator` measures how well the generated response aligns with the given context - the grounding source -  and doesn't fabricate content outside of it. This metric captures the *precision* aspect of response alignment with the grounding source. Lower score means the response is irrelevant to the query or fabricated inaccurate content outside the context. This metric is complementary to `ResponseCompletenessEvaluator`, which captures the *recall* aspect of response alignment with the expected response.  
+It's important to evaluate how grounded the response is in relation to the context. AI models can fabricate content or generate irrelevant responses. `GroundednessEvaluator` measures how well the generated response aligns with the given context - the grounding source -  and doesn't fabricate content outside of it.
+
+This metric captures the *precision* aspect of response alignment with the grounding source. Lower score means the response is irrelevant to the query or fabricated inaccurate content outside the context. This metric is complementary to `ResponseCompletenessEvaluator`, which captures the *recall* aspect of response alignment with the expected response.  
 
 ### Groundedness example
 
