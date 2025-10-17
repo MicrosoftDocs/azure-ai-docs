@@ -107,7 +107,7 @@ The previous code example doesn't use `mlflow.start_run()`. If this line is used
 
 ### Ensure that your job's environment has MLflow installed
 
-All Azure Machine Learning curated environments already have MLflow installed. However, if you use a custom environment, create a *conda.yaml* file that has the dependencies you need, and reference the environment in your job.
+All Azure Machine Learning curated environments already have MLflow installed. However, if you use a custom environment, create a *conda.yml* file that has the dependencies you need, and reference the environment in your job.
 
 :::code language="yaml" source="~/azureml-examples-main/sdk/python/using-mlflow/deploy/environment/conda.yaml" highlight="7-8" range="1-12":::
 
@@ -130,7 +130,7 @@ Use the Azure Machine Learning jobs parameter `display_name` to configure the na
 
     command_job = command(
         code="src",
-        command="echo "hello world",
+        command=echo "hello world",
         environment=Environment(image="library/python:latest"),
         compute="cpu-cluster",
         display_name="hello-world-example"
