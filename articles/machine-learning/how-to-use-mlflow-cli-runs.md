@@ -130,7 +130,7 @@ Use the Azure Machine Learning jobs parameter `display_name` to configure the na
 
     command_job = command(
         code="src",
-        command=echo "hello world",
+        command="echo "hello world",
         environment=Environment(image="library/python:latest"),
         compute="cpu-cluster",
         display_name="hello-world-example"
