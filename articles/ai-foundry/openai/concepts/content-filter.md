@@ -2,8 +2,8 @@
 title: Azure OpenAI in Azure AI Foundry Models content filtering
 titleSuffix: Azure OpenAI
 description: Learn about the content filtering capabilities of Azure OpenAI.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual

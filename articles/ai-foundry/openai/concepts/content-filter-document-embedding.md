@@ -1,13 +1,13 @@
 ---
 title: Document Embedding in Prompts
 description: Learn how to embed documents in prompts for Azure OpenAI, including JSON escaping and indirect attack detection.
-author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 

@@ -1,8 +1,8 @@
 ---
 title: Protected Material Detection Filter
 description: Learn about the Protected Material Detection Filter for identifying and flagging known protected text and code content in large language model outputs.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.date: 09/16/2025
 ms.topic: conceptual
 ms.service: azure-ai-foundry
