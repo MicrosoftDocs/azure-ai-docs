@@ -59,7 +59,7 @@ The following example MLmodel file highlights the `signature`.
 <a name="models-deployed-in-azure-machine-learning-vs-models-deployed-in-the-mlflow-built-in-server"></a>
 ## Deployment in the MLflow built-in server vs. deployment in Azure Machine Learning inferencing server
 
-Model developers can use MLflow built-in deployment tools to test models locally. For instance, you can run a local instance of a model that's registered in the MLflow server registry by using `mlflow models serve` or the MLflow CLI `mlflow models predict`. For more information about MLflow built-in deployment tools, see [Built-in deployment tools](https://www.mlflow.org/docs/latest/models.html#built-in-deployment-tools) in the MLflow documentation.
+Model developers can use MLflow built-in deployment tools to test models locally. For example, you can run a local instance of a model that's registered in the MLflow server registry by using `mlflow models serve` or the MLflow CLI `mlflow models predict`. For more information about MLflow built-in deployment tools, see [Built-in deployment tools](https://www.mlflow.org/docs/latest/models.html#built-in-deployment-tools) in the MLflow documentation.
 
 Azure Machine Learning also supports deploying models to both online and batch endpoints. These endpoints run different inferencing technologies that can have different features.
 
@@ -69,7 +69,7 @@ Azure Machine Learning also supports deploying models to both online and batch e
 
 ### Input formats
 
-The following table shows the input types supported by the MLflow built-in server versus Azure Machine Learning online endpoints.
+The following table shows the input types supported by the MLflow built-in server and those supported by Azure Machine Learning online endpoints.
 
 | Input type | MLflow built-in server | Azure Machine Learning online endpoint |
 |---| :-: | :-: |
@@ -248,9 +248,9 @@ Use the MLflow SDK if both of the following are true:
 - You're using a platform like Azure Databricks that supports MLflow natively.
 
 Use the Azure Machine Learning CLI v2 or SDK for Python if any of the following is true:
-- You're familiar with them.
+- You're familiar with the tool.
 - You want to automate deployment by using pipelines.
-- You want to keep deployment configuration in a Git repository.
+- You want to store deployment configuration in a Git repository.
 
 Use the Azure Machine Learning studio UI if you want to quickly deploy and test models trained with MLflow.
 
