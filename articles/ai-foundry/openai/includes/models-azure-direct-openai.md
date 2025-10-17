@@ -344,6 +344,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `whisper` | General-purpose speech recognition model. | 25 MB |
 | `gpt-4o-transcribe` | Speech-to-text model powered by GPT-4o. | 25 MB|
 | `gpt-4o-mini-transcribe` | Speech-to-text model powered by GPT-4o mini. | 25 MB|
+| `gpt-4o-transcribe-diarize` | Speech-to-text model with automatic speech recognition. | 25 MB|
+
 
 #### Speech translation models
 
