@@ -71,10 +71,12 @@ response = client.responses.create(
 print(response.model_dump_json(indent=2)) 
 ```
 
-- Use the `OpenAI()` client instead of the deprecated `AzureOpenAI()` client.
-- Pass the Azure OpenAI endpoint appended with `/openai/v1/` as the `base_url`.
-- You don't need to provide the `api-version` parameter with the v1 GA API.
-- Set the `model` parameter to the underlying **deployment name** you chose when you deployed the model. This name isn't the same as the name of the model you deployed.
+Notice the following details of the previous code:
+
+- Uses the `OpenAI()` client instead of the deprecated `AzureOpenAI()` client.
+- Passes the Azure OpenAI endpoint appended with `/openai/v1/` as the `base_url`.
+- Doesn't have to provide the `api-version` parameter with the v1 GA API.
+- Sets the `model` parameter to the underlying **deployment name** you chose when you deployed the model. This name isn't the same as the name of the model you deployed.
 
 To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
@@ -100,35 +102,37 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
     - In local development, set it to `dev`.
     The Azure Identity library's `DefaultAzureCredential` reads this environment variable. For more information, see [Exclude a credential type category](/azure/developer/python/sdk/authentication/credential-chains?tabs=dac#exclude-a-credential-type-category).
 
-The following code configures the OpenAI client object, specifies your deployment, and generates responses.   
+1. Use the following code to configure the OpenAI client object, specify your deployment, and generate responses.   
 
-```python
-import os
-from openai import OpenAI
-from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+    ```python
+    import os
+    from openai import OpenAI
+    from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+    
+    token_provider = get_bearer_token_provider(
+        DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+    )
+    
+    client = OpenAI(  
+      base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+      api_key = token_provider  
+    )
+    
+    response = client.responses.create(
+        model ="gpt-4.1-nano",  # Replace with your deployment name 
+        input = "This is a test" 
+    )
+    
+    print(response.model_dump_json(indent=2)) 
+    ```
 
-token_provider = get_bearer_token_provider(
-    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
-)
+    Notice the following details of the previous code:
 
-client = OpenAI(  
-  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
-  api_key = token_provider  
-)
-
-response = client.responses.create(
-    model="gpt-4.1-nano",  # Replace with your deployment name 
-    input= "This is a test" 
-)
-
-print(response.model_dump_json(indent=2)) 
-```
-
-- Use the `OpenAI()` client instead of the deprecated `AzureOpenAI()` client.
-- Pass the Azure OpenAI endpoint appended with `/openai/v1/` as the `base_url`.
-- Set the `api_key` parameter to `token_provider`. This setting enables automatic retrieval and refresh of an authentication token instead of using a static API key.
-- You don't need to provide the `api-version` parameter with the v1 GA API.
-- Set the `model` parameter to the underlying **deployment name** you chose when you deployed the model. This name isn't the same as the name of the model you deployed.
+    - Uses the `OpenAI()` client instead of the deprecated `AzureOpenAI()` client.
+    - Passes the Azure OpenAI endpoint appended with `/openai/v1/` as the `base_url`.
+    - Sets the `api_key` parameter to `token_provider`. This setting enables automatic retrieval and refresh of an authentication token instead of using a static API key.
+    - Doesn't have to provide the `api-version` parameter with the v1 GA API.
+    - Sets the `model` parameter to the underlying **deployment name** you chose when you deployed the model. This name isn't the same as the name of the model you deployed.
 
 # [C#](#tab/dotnet)
 
@@ -165,26 +169,25 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
     - In local development, set it to `dev`.
     The Azure Identity library's `DefaultAzureCredential` reads this environment variable. For more information, see [Exclude a credential type category](/dotnet/azure/sdk/authentication/credential-chains?tabs=dac#exclude-a-credential-type-category).
 
+1. Use the following code to configure the OpenAI client object, specify your deployment, and generate responses.  
 
-The following code configures the OpenAI client object, specifies your deployment, and generates responses.   
-
-```csharp
-#pragma warning disable OPENAI001
-
-BearerTokenPolicy tokenPolicy = new(
-    new DefaultAzureCredential(),
-    "https://cognitiveservices.azure.com/.default");
-OpenAIClient client = new(
-    authenticationPolicy: tokenPolicy,
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-    })
-
-string deploymentName = "my-gpt-4.1-nano-deployment";
-OpenAIResponseClient response = client.GetOpenAIResponseClient(deploymentName);
-
-```
+    ```csharp
+    #pragma warning disable OPENAI001
+    
+    BearerTokenPolicy tokenPolicy = new(
+        new DefaultAzureCredential(),
+        "https://cognitiveservices.azure.com/.default");
+    OpenAIClient client = new(
+        authenticationPolicy: tokenPolicy,
+        options: new OpenAIClientOptions()
+        {
+            Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+        })
+    
+    string deploymentName = "my-gpt-4.1-nano-deployment";
+    OpenAIResponseClient response = client.GetOpenAIResponseClient(deploymentName);
+    
+    ```
 
 # [JavaScript](#tab/javascript)
 
@@ -673,6 +676,29 @@ public class OpenAITest {
 ```
 
 # [REST](#tab/rest)
+
+**API key authentication**:
+
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "api-key: $AZURE_OPENAI_API_KEY" \
+  -d '{
+      "model": "grok-3-mini",
+      "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant."
+      },
+      {
+        "role": "user",
+        "content": "Explain what the bitter lesson is?"
+      }
+    ]
+  }'
+```
+
+**Microsoft Entra authentication**:
 
 ```bash
 curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
