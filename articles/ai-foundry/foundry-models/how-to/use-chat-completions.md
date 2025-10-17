@@ -316,7 +316,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
 
 ### Use the chat completions API
 
-For Foundry Models, including Azure OpenAI models, use the [Responses API](../../openai/supported-languages.md#responses-api). However, the v1 API also allows you to make chat completions calls with models from providers like DeepSeek and Grok, as these models support the OpenAI v1 chat completions syntax.
+For Azure OpenAI in Foundry Models, use the [Responses API](../../openai/supported-languages.md#responses-api). However, for other Foundry Models from providers like DeepSeek and Grok, the v1 API allows you to make chat completions calls, as these models support the OpenAI v1 chat completions syntax.
 
 `base_url` accepts both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
 
@@ -333,7 +333,7 @@ client = OpenAI(
 )
 
 completion = client.chat.completions.create(
-  model="gpt-4o", # Replace with your model deployment name.
+  model="grok-3-mini", # Replace with your model deployment name.
   messages=[
     {"role": "system", "content": "You are a helpful assistant."},
     {"role": "user", "content": "When was Microsoft founded?"}
@@ -383,7 +383,7 @@ using System.ClientModel;
 string keyFromEnvironment = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
 ChatClient client = new(
-    model: "gpt-4.1-nano",
+    model: "grok-3-mini",
     credential: new ApiKeyCredential(keyFromEnvironment),
     options: new OpenAIClientOptions() { 
     
@@ -466,7 +466,7 @@ const messages = [
 // Make the API request with top-level await
 const result = await client.chat.completions.create({ 
     messages, 
-    model: 'gpt-4.1-nano', // model deployment name
+    model: 'grok-3-mini', // model deployment name
     max_tokens: 100 
 });
 
@@ -544,7 +544,7 @@ func main() {
         Messages: []openai.ChatCompletionMessageParamUnion{
             openai.UserMessage("Tell me about the bitter lesson"),
         },
-        Model: "gpt-4o-mini", // Use your deployed model name on Azure
+        Model: "grok-3-mini", // Use your deployed model name on Azure
     })
     if err != nil {
         panic(err.Error())
