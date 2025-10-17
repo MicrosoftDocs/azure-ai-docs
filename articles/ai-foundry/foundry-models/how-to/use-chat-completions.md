@@ -723,7 +723,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 
 ## Related content
 
-- [Work with chat completions models](../../openai/how-to/chatgpt.md)
+- [Work with chat completions API](../../openai/how-to/chatgpt.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 - [Use embeddings models](../../model-inference/how-to/use-embeddings.md)
 - [Use image embeddings models](../../model-inference/how-to/use-image-embeddings.md)
