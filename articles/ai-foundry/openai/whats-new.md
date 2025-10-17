@@ -19,7 +19,15 @@ ms.custom:
 
 This article provides a summary of the latest releases and major documentation updates for Azure OpenAI.
 
-## October 2025 
+## October 2025
+
+### GPT-4o audio model released
+
+- The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
+
+Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity. supporting automatic speech recognition. 
+
+Use this model via the `/audio` and `/realtime` APIs.  
 
 ### GPT-image-1-mini 
 
@@ -36,7 +44,7 @@ Personally identifiable information (PII) detection is now available as a built-
 
 ## September 2025
 
-## GPT-5-codex is now available
+### GPT-5-codex is now available
 
 - To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
 - `gpt-5-codex` is specifically designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
