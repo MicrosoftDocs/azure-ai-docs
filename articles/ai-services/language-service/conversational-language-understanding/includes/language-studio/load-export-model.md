@@ -13,9 +13,9 @@ To **load** your model data:
 
 2. Select the **Load model data** button. 
 
-3. Confirm that you do not have any unsaved changes you need to capture in window that appears, and select **Load data**. 
+3. Confirm that you don't have any unsaved changes you need to capture in window that appears, and select **Load data**. 
 
-4. Wait until your model data finishes loading back into your project. On completion, you'll be redirected back to the **Schema design** page. 
+4. Wait until your model data finishes loading back into your project. On completion, you're redirected back to the **Schema design** page. 
 
 To **export** your model data:
 
