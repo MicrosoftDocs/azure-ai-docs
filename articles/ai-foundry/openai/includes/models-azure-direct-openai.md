@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 09/15/2025
+ms.date: 10/17/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
@@ -304,7 +304,9 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)|
+|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)  |
+| `sora-2` | East US 2 (Global Standard)<br>Sweden Central(Global Standard) |
+
 
 ## Audio models
 
