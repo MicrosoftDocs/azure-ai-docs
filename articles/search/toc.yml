@@ -68,7 +68,7 @@ items:
     href: search-get-started-agentic-retrieval.md
   - name: Vector search
     href: search-get-started-vector.md
-  - name: Generative search (RAG)
+  - name: Classic RAG
     href: search-get-started-rag.md
   - name: Full-text search
     href: search-get-started-text.md
@@ -152,9 +152,11 @@ items:
       href: tutorial-document-extraction-image-verbalization.md
     - name: Verbalize images from a structured document layout
       href: tutorial-document-layout-image-verbalization.md
-  - name: RAG tutorials
+  - name: Agentic retrieval tutorial
+    href: agentic-retrieval-how-to-create-pipeline.md
+  - name: Classic RAG tutorials
     items:
-    - name: Build a RAG solution
+    - name: Build a classic RAG solution
       href: tutorial-rag-build-solution.md
     - name: Choose models
       href: tutorial-rag-build-solution-models.md
@@ -410,8 +412,6 @@ items:
         href: agentic-retrieval-how-to-answer-synthesis.md
       - name: Retrieve data using an agent
         href: agentic-retrieval-how-to-retrieve.md
-      - name: Build a retrieval pipeline
-        href: agentic-retrieval-how-to-create-pipeline.md
       - name: Migrate agentic retrieval code
         href: agentic-retrieval-how-to-migrate.md
     - name: Vector search
