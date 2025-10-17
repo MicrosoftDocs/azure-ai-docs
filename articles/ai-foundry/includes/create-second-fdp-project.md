@@ -61,7 +61,10 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     ::: moniker range="foundry"
     
-    1. Insert NextGen content
+    1. Select **Operate** in the upper-right navigation.
+    1. Select **Admin Console** in the left pane.
+    1. Select the Parent resource you want to add a project to.
+    1. Select **Add project**.
     
     ::: moniker-end
     
