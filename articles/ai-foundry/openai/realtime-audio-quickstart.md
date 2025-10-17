@@ -64,6 +64,12 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 
 ::: zone-end
 
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Azure AI Foundry portal quickstart](includes/realtime-portal.md)]
+
+::: zone-end
+
 ## Related content
 
 * Learn more about [How to use the Realtime API](./how-to/realtime-audio.md)
