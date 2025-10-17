@@ -20,7 +20,7 @@ Speech to text REST API is used for [fast transcription](fast-transcription-crea
 > - [Speech to text REST API](rest-speech-to-text.md) version `2024-05-15-preview` will be retired on a date to be announced. 
 > - Speech to text REST API `v3.0`, `v3.1`, `v3.2`, `3.2-preview.1`, and `3.2-preview.2` will be retired on March 31st, 2026. 
 > 
-> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), and [v3.2 to 2024-11-15](migrate-2024-11-15.md) migration guides.
+> For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](migrate-v3-0-to-v3-1.md), [v3.1 to v3.2](migrate-v3-1-to-v3-2.md), [v3.2 to 2024-11-15](migrate-2024-11-15.md) and [2024-11-15 to 2025-10-15](migrate-2025-10-15.md) migration guides.
 
 > [!div class="nextstepaction"]
 > [See the Speech to text REST API 2024-11-15 reference documentation](/rest/api/speechtotext/operation-groups?view=rest-speechtotext-2024-11-15&preserve-view=true)
