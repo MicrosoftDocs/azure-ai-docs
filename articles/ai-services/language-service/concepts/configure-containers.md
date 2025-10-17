@@ -1,7 +1,7 @@
 ---
 title: Configure containers - Language service
-titleSuffix: Azure AI services
-description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers.
+titleSuffix: Azure AI Foundry Tools
+description: Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers.
 author: laujan
 manager: nitinme
 ms.custom:
@@ -9,13 +9,13 @@ ms.custom:
   - ignite-2024
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 04/29/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
 # Configure Language service docker containers
 
-Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging and telemetry, and security settings for your containers. This article applies to the following containers:
+Language service provides each container with a common configuration framework, so that you can easily configure and manage storage, logging, and security settings for your containers. This article applies to the following containers:
 
 * Sentiment Analysis
 * Language Detection
@@ -31,7 +31,7 @@ Language service provides each container with a common configuration framework, 
 [!INCLUDE [Container shared configuration settings table](../../includes/cognitive-services-containers-configuration-shared-settings-table.md)]
 
 > [!IMPORTANT]
-> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container won't start.
+> The [`ApiKey`](#apikey-configuration-setting), [`Billing`](#billing-configuration-setting), and [`Eula`](#end-user-license-agreement-eula-setting) settings are used together, and you must provide valid values for all three of them; otherwise your container doesn't start.
 
 ## ApiKey configuration setting
 
@@ -50,7 +50,7 @@ The `Billing` setting specifies the endpoint URI of the _Language_ resource on A
 |Yes| `Billing` | String | Billing endpoint URI. |
 
 
-## EULA setting
+## End-user license agreement (EULA) setting
 
 [!INCLUDE [Container shared configuration eula settings](../../includes/cognitive-services-containers-configuration-shared-settings-eula.md)]
 
@@ -76,8 +76,8 @@ The exact syntax of the host mount location varies depending on the host operati
 
 |Optional| Name | Data type | Description |
 |-------|------|-----------|-------------|
-|Not allowed| `Input` | String | Language service containers don't use this.|
-|Optional| `Output` | String | The target of the output mount. The default value is `/output`. This is the location of the logs. This includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output`|
+|Not allowed| `Input` | String | Language service containers don't use this data type.|
+|Optional| `Output` | String | The target of the output mount. The default value is `/output`. It's the location of the logs. This output includes container logs. <br><br>Example:<br>`--mount type=bind,src=c:\output,target=/output`|
 
 ## Next steps
 

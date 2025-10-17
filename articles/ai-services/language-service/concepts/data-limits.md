@@ -1,19 +1,19 @@
 ---
 title: Data limits for Language service features
-titleSuffix: Azure AI services
-description: Data and service limitations for Azure AI Language features.
+titleSuffix: Azure AI Foundry Tools
+description: Data and service limitations for Azure Language in Foundry Tools features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 05/23/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
-# Service limits for Azure AI Language
+# Service limits for Azure Language in Foundry Tools
 
 > [!NOTE]
-> This article only describes the limits for preconfigured features in Azure AI Language:
+> This article only describes the limits for preconfigured features in Azure Language:
 > To see the service limits for customizable features, see the following articles: 
 > * [Custom classification](../custom-text-classification/service-limits.md)
 > * [Custom NER](../custom-named-entity-recognition/service-limits.md)
@@ -95,5 +95,5 @@ Requests rates are measured for each feature separately. You can send the maximu
 
 ## See also
 
-* [What is Azure AI Language](../overview.md)
+* [What is Azure Language in Foundry Tools](../overview.md)
 * [Pricing details](https://aka.ms/unifiedLanguagePricing)

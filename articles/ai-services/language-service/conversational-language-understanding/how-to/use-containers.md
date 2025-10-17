@@ -1,12 +1,12 @@
 ---
 title: Use conversational language understanding (CLU) Docker containers on-premises
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use Docker containers for the conversational language understanding (CLU) API to determine the language of written text, on-premises.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 

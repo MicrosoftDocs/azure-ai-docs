@@ -1,12 +1,12 @@
 ---
 title: Create a CLU fine-tuning task in Azure AI Foundry or with the REST API
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This article shows you how to create CLU fine-tuning task projects the Azure AI Foundry or using the REST API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-clu
 ---
