@@ -7,6 +7,8 @@ ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 6/13/2025
 ms.custom: references_regions
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
@@ -136,6 +138,7 @@ You can keep the current translation project and translate the original video in
 1. Select **My videos** and then select the tile for your video translation. 
 1. Select **+ New language**. 
 1. On the new **Translate to new language** page that appears, choose a new translation language and voice type. Once the video is translated, a new project is automatically created. 
+
 
 ## Related content
 

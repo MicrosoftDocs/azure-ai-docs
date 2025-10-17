@@ -12,9 +12,13 @@ ms.author: pafarley
 ms.custom: references_regions, ignite-2024
 zone_pivot_groups: openai-portal-js-python-ts
 recommendations: false
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # GPT Realtime API for speech and audio
+
+
 
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
@@ -40,11 +44,7 @@ For more information, see the [models and versions documentation](./concepts/mod
 
 Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-04-01-preview` to access the latest Realtime API features. 
 
-::: zone pivot="ai-foundry-portal"
 
-[!INCLUDE [Azure AI Foundry portal quickstart](includes/realtime-portal.md)]
-
-::: zone-end
 
 ::: zone pivot="programming-language-javascript"
 
@@ -61,6 +61,12 @@ Support for the Realtime API was first added in API version `2024-10-01-preview`
 ::: zone pivot="programming-language-typescript"
 
 [!INCLUDE [TypeScript quickstart](includes/realtime-typescript.md)]
+
+::: zone-end
+
+::: zone pivot="ai-foundry-portal"
+
+[!INCLUDE [Azure AI Foundry portal quickstart](includes/realtime-portal.md)]
 
 ::: zone-end
 

@@ -11,6 +11,8 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 # Model router for Azure AI Foundry (preview)

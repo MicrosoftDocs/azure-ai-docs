@@ -11,6 +11,7 @@ ms.author: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
 ms.custom: build-2025
 recommendations: false
+
 ---
 
 # Quickstart: Create a voice live real-time voice agent with Azure AI Foundry Agent Service (Preview)

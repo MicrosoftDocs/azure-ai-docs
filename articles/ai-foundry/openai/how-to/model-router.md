@@ -11,9 +11,14 @@ ms.topic: how-to
 ms.custom:
   - build-2025
 # customer intent:
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Use model router for Azure AI Foundry (preview)
+
 
 Model router for Azure AI Foundry is a deployable AI chat model that selects the best large language model (LLM) to respond to a prompt in real time. It uses different preexisting models to deliver high performance and save compute costs, all in one model deployment. To learn more about how model router works, its advantages, and limitations, see the [Model router concepts guide](../concepts/model-router.md).
 

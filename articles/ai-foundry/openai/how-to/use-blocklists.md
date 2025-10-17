@@ -9,9 +9,12 @@ ms.topic: how-to
 ms.date: 09/16/2025
 author: PatrickFarley
 ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Use a blocklist with Azure OpenAI
+
 
 The [configurable content filters](/azure/ai-foundry/openai/how-to/content-filters) available in Azure OpenAI are sufficient for most content moderation needs. However, you might need to filter terms specific to your use case. For this, you can use custom blocklists.
 
