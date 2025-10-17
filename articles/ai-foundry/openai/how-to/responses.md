@@ -29,13 +29,25 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 The responses API is currently available in the following regions:
 
 - australiaeast
+- brazilsouth
+- canadacentral
+- canadaeast  
+- centralus
 - eastus
 - eastus2
 - francecentral
+- germanywestcentral
+- italynorth
 - japaneast
+- koreacentral
+- northcentralus
 - norwayeast
 - polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
 - southindia
+- spaincentral
 - swedencentral
 - switzerlandnorth
 - uaenorth
