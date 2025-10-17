@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 10/09/2025
+ms.date: 10/17/2025
 ---
 
 # What is a knowledge source?
@@ -26,7 +26,7 @@ Make sure you have at least one knowledge source before creating a knowledge age
 
 ## Working with a knowledge source
 
-+ Creation path: first create a knowledge source, then create a knowledge agent. 
++ Creation path: first create a knowledge source, then create a knowledge agent.
 
 + Deletion path: update or delete knowledge agents to remove references to a knowledge source, and then delete the knowledge source last.
 
@@ -40,6 +40,8 @@ Here are the knowledge sources you can create in this preview:
 
 + [`"searchIndex"`](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) wraps an existing index
 + [`"azureBlob"`](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container
++ `"indexedOneLake"` generates an indexer pipeline that pulls from a lakehouse
++ `"web"` retrieves real-time web data from Microsoft Bing
 
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 

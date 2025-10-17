@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 10/16/2025
+ms.date: 10/17/2025
 ---
 
 # Create a OneLake knowledge source
@@ -29,6 +29,8 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 ## Prerequisites
 
++ An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
+
 + Completion of the [OneLake indexer prerequisites](search-how-to-index-onelake-files.md#prerequisites).
 
 + Completion of the [OneLake indexer data preparation](search-how-to-index-onelake-files.md#prepare-data-for-indexing).
@@ -39,17 +41,54 @@ The generated indexer conforms to the *OneLake indexer*, whose prerequisites, su
 
 [!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
-<!--
-The following JSON is an example response for an `indexedOneLake` knowledge source.
+The following JSON is an example response for a OneLake knowledge source.
 
 ```json
-
+{
+  "name": "my-onelake-ks",
+  "kind": "indexedOneLake",
+  "description": "A sample OneLake knowledge source.",
+  "encryptionKey": null,
+  "indexedOneLakeParameters": {
+    "fabricWorkspaceId": "<REDACTED>",
+    "lakehouseId": "<REDACTED>",
+    "targetPath": null,
+    "ingestionParameters": {
+      "disableImageVerbalization": false,
+      "ingestionPermissionOptions": [],
+      "contentExtractionMode": "standard",
+      "identity": null,
+      "embeddingModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "text-embedding-3-large",
+          "apiKey": "<REDACTED>",
+          "modelName": "text-embedding-3-large"
+        }
+      },
+      "chatCompletionModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "gpt-5-mini",
+          "apiKey": "<REDACTED>",
+          "modelName": "gpt-5-mini"
+        }
+      },
+      "ingestionSchedule": null,
+      "aiServices": {
+        "uri": "<REDACTED>",
+        "apiKey": "<REDACTED>"
+      }
+    }
+  }
+}
 ```
--->
 
 ## Create a knowledge source
 
-To create an `indexedOneLake` knowledge source:
+To create a OneLake knowledge source:
 
 1. Set environment variables at the top of your file.
 
@@ -73,52 +112,46 @@ To create an `indexedOneLake` knowledge source:
         "kind": "indexedOneLake",
         "description": "This knowledge source pulls content from a lakehouse.",
         "indexedOneLakeParameters": {
-            "fabricWorkspaceId": "{{fabric-workspace-guid}}",
-            "lakehouseId": "{{lakehouse-guid}}",
-            "targetPath": null,
-            "dataSoftDeleteTracking": true,
-            "ingestionParameters": {
-                "identity": null,
-                "embeddingModel": {
-                    // Redacted for brevity
-                },
-                "chatCompletionModel": {
-                    // Redacted for brevity
-                },
-                "contentExtractionMode": "minimal",
-                "disableImageVerbalization": null,
-                "ingestionSchedule": null,
-                "ingestionPermissionOptions": []
-            }
+          "fabricWorkspaceId": "{{fabric-workspace-guid}}",
+          "lakehouseId": "{{lakehouse-guid}}",
+          "targetPath": null,
+          "ingestionParameters": {
+            "identity": null,
+            "disableImageVerbalization": null,
+            "chatCompletionModel": {
+              // Redacted for brevity
+            },
+            "embeddingModel": {
+              // Redacted for brevity
+            },
+            "contentExtractionMode": "minimal",
+            "ingestionSchedule": null,
+            "ingestionPermissionOptions": [ ],
         }
+      }
     }
     ```
 
 1. Select **Send Request**.
 
-**Key points:**
+### Source-specific properties
 
-+ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search.
+You can pass the following properties to create a blob knowledge source.
 
-+ `kind` must be `indexedOneLake` for a OneLake knowledge source.
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `name` | Name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | Yes |
+| `description` | A description of the knowledge source. | String | No |
+| `encryptionKey` | A [customer-managed key](search-security-how-to-cmek.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
+| `indexedOneLakeParameters` | Parameters specific to the OneLake knowledge source: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object | Yes |
+| `fabricWorkspaceId` | The GUID of the workspace that contains the lakehouse. | String | Yes |
+| `lakehouseId` | The GUID of the lakehouse. | String | Yes |
+| `targetPath` | A folder or shortcut within your lakehouse. When unspecified, the entire lakehouse is indexed. | String | No |
 
-+ `targetPath` (optional) is a folder or shortcut within your lakehouse. When unspecified, the entire lakehouse is indexed.
+### `ingestionParameters` properties
 
-+ `dataSoftDeleteTracking` (optional) tracks and removes soft-deleted files from the generated index. Valid values are `true` (default) and `false`. To use this property, you must [set custom metadata](search-how-to-index-onelake-files.md#detect-deletions-via-custom-metadata) on your lakehouse.
-
-+ `embeddingModel` (optional) is a text embedding model that vectorizes text and image content during indexing and at query time. Use a model supported by the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [AML skill](cognitive-search-aml-skill.md), or [Custom Web API skill](cognitive-search-custom-skill-web-api.md). The embedding skill will be included in the generated skillset, and its equivalent vectorizer will be included in the generated index.
-
-+ `chatCompletionModel` (optional) is a chat completion model that verbalizes images or extracts content. Use a model supported by the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), which will be included in the generated skillset. To skip image verbalization, omit this object and set `"disableImageVerbalization": true`.
-
-+ `contentExtractionMode` (optional) controls how content is extracted from files. Valid values are `minimal` (default) and `standard`.
-
-  + `minimal` uses basic extraction for text and images.
-
-  + `standard` uses [Azure Content Understanding in Foundry Tools](/azure/ai-services/content-understanding/overview) for advanced document cracking, document chunking, and image verbalization. This mode requires a billable Azure AI Foundry Tools multi-service resource for the Content Understanding skill, which will be included in the generated skillset. You can also use the optional `AssetStore` object to save extracted images in a blob container.
-
-+ `ingestionSchedule` (optional) adds scheduling information to the generated indexer. You can also [add a schedule](search-howto-schedule-indexers.md) later to automate data refresh.
-
-+ If you get errors, make sure the embedding and chat completion models exist at the endpoints you provided.
+[!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
 
 ## Review the created objects
 

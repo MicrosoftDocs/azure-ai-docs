@@ -402,7 +402,7 @@ items:
         href: agentic-retrieval-how-to-create-index.md
       - name: Create a knowledge source
         items:
-        - name: Knowledge sources
+        - name: What is a knowledge source?
           href: agentic-knowledge-source-overview.md
         - name: Azure blobs
           href: agentic-knowledge-source-how-to-blob.md
@@ -410,6 +410,10 @@ items:
           href: agentic-knowledge-source-how-to-onelake.md
         - name: Search indexes
           href: agentic-knowledge-source-how-to-search-index.md
+        - name: Web
+          href: agentic-knowledge-source-how-to-web.md
+        - name: Manage use of web knowledge sources
+          href: agentic-knowledge-source-how-to-manage-web.md
       - name: Create a knowledge agent
         href: agentic-retrieval-how-to-create-knowledge-base.md
       - name: Configure answer synthesis for an agent

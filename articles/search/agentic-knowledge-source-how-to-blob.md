@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 10/17/2025
 ---
 
 # Create a blob knowledge source
@@ -37,62 +37,73 @@ To try the examples in this article, we recommend [Visual Studio Code](https://c
 
 [!INCLUDE [Check for existing knowledge sources](includes/how-tos/knowledge-source-check-rest.md)]
 
-The following JSON is an example response for an `azureBlob` knowledge source.
+The following JSON is an example response for a blob knowledge source.
 
 ```json
 {
-  "name": "earth-at-night-blob-ks",
+  "name": "my-blob-ks",
   "kind": "azureBlob",
-  "description": "This knowledge source pull from a blob storage container containing pages from the Earth at Night PDF.",
+  "description": "A sample blob knowledge source.",
   "encryptionKey": null,
   "searchIndexParameters": null,
   "azureBlobParameters": {
     "connectionString": "<REDACTED>",
+    "containerName": "my-blob-container",
     "folderPath": null,
-    "disableImageVerbalization": null,
-    "identity": null,
-    "embeddingModel": {
-      "name": "demo-blob-embedding-vectorizer",
-      "kind": "azureOpenAI",
-      "azureOpenAIParameters": {
-        "resourceUri": "<REDACTED>",
-        "deploymentId": "text-embedding-ada-002",
-        "apiKey": "<REDACTED>",
-        "modelName": "text-embedding-ada-002",
-        "authIdentity": null
+    "isADLSGen2": false,
+    "ingestionParameters": {
+      "disableImageVerbalization": false,
+      "ingestionPermissionOptions": [],
+      "contentExtractionMode": "standard",
+      "identity": null,
+      "embeddingModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "text-embedding-3-large",
+          "apiKey": "<REDACTED>",
+          "modelName": "text-embedding-3-large",
+          "authIdentity": null
+        }
       },
-      "customWebApiParameters": null,
-      "aiServicesVisionParameters": null,
-      "amlParameters": null
-    },
-    "chatCompletionModel": {
-      "kind": "azureOpenAI",
-      "azureOpenAIParameters": {
-        "resourceUri": "<REDACTED>",
-        "deploymentId": "gpt-5-mini",
-        "apiKey": "<REDACTED>",
-        "modelName": "gpt-5-mini",
-        "authIdentity": null
+      "chatCompletionModel": {
+        "kind": "azureOpenAI",
+        "azureOpenAIParameters": {
+          "resourceUri": "<REDACTED>",
+          "deploymentId": "gpt-5-mini",
+          "apiKey": "<REDACTED>",
+          "modelName": "gpt-5-mini",
+          "authIdentity": null
+        }
+      },
+      "ingestionSchedule": null,
+      "assetStore": null,
+      "aiServices": {
+        "uri": "<REDACTED>",
+        "apiKey": "<REDACTED>"
       }
     },
-    "ingestionSchedule": null,
     "createdResources": {
-      "datasource": "earth-at-night-blob-ks-datasource",
-      "indexer": "earth-at-night-blob-ks-indexer",
-      "skillset": "earth-at-night-blob-ks-skillset",
-      "index": "earth-at-night-blob-ks-index"
+      "datasource": "my-blob-ks-datasource",
+      "indexer": "my-blob-ks-indexer",
+      "skillset": "my-blob-ks-skillset",
+      "index": "my-blob-ks-index"
     }
   },
-  "webParameters": null
+  "mcpToolParameters": null,
+  "webParameters": null,
+  "remoteSharePointParameters": null,
+  "indexedSharePointParameters": null,
+  "indexedOneLakeParameters": null
 }
 ```
 
 > [!NOTE]
-> Sensitive information is redacted. The generated resources appear at the end of the response. The `webParameters` property isn't operational in this preview and is reserved for future use.
+> Sensitive information is redacted. The generated resources appear at the end of the response. The `mcpToolParameters` property isn't operational in this preview and is reserved for future use.
 
 ## Create a knowledge source
 
-To create an `azureBlob` knowledge source:
+To create a blob knowledge source:
 
 1. Set environment variables at the top of your file.
 
@@ -120,16 +131,19 @@ To create an `azureBlob` knowledge source:
         "connectionString": "{{connection-string}}",
         "containerName": "{{container-name}}",
         "folderPath": null,
-        "disableImageVerbalization": null,
-        "identity": null,
-        "embeddingModel": {
-          // Redacted for brevity
-        },
-        "chatCompletionModel": {
-          // Redacted for brevity
-        },
-        "ingestionSchedule": {
-          // Redacted for brevity
+        "isADLSGen2": false,
+        "ingestionParameters": {
+            "identity": null,
+            "disableImageVerbalization": null,
+            "chatCompletionModel": {
+              // Redacted for brevity
+            },
+            "embeddingModel": {
+              // Redacted for brevity
+            },
+            "contentExtractionMode": "minimal",
+            "ingestionSchedule": null,
+            "ingestionPermissionOptions": [ ],
         }
       }
     }
@@ -137,21 +151,25 @@ To create an `azureBlob` knowledge source:
 
 1. Select **Send Request**.
 
-**Key points:**
+### Source-specific properties
 
-+ `name` must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search.
+You can pass the following properties to create a blob knowledge source.
 
-+ `kind` must be `azureBlob` for a blob knowledge source.
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `name` | Name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | Yes |
+| `description` | A description of the knowledge source. | String | No |
+| `encryptionKey` | A [customer-managed key](search-security-how-to-cmek.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
+| `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object | No |
+| `connectionString` | A key-based connection string or, if you're using a managed identity, the resource ID. | String | Yes |
+| `containerName` | The name of the blob storage container. | String | Yes |
+| `folderPath` | A folder within the container. | String | No |
+| `isADLSGen2` | The default is `false`. Set to `true` if you're using an ADLS Gen2 storage account. | Boolean | No |
 
-+ `encryptionKey` (optional) is an encryption key in Azure Key Vault. Use this property to doubly encrypt sensitive information in both the knowledge source and the generated objects.
+### `ingestionParameters` properties
 
-+ `embeddingModel` (optional) is a text embedding model that vectorizes text and image content during indexing and at query time. Use a model supported by the [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md), [Azure AI Vision multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md), [AML skill](cognitive-search-aml-skill.md), or [Custom Web API skill](cognitive-search-custom-skill-web-api.md). The embedding skill will be included in the generated skillset, and its equivalent vectorizer will be included in the generated index.
-
-+ `chatCompletionModel` (optional) is a chat completion model that verbalizes images or extracts content. Use a model supported by the [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), which will be included in the generated skillset. To skip image verbalization, omit this object and set `"disableImageVerbalization": true`.
-
-+ `ingestionSchedule` (optional) adds scheduling information to the generated indexer. You can also [add a schedule](search-howto-schedule-indexers.md) later to automate data refresh.
-
-+ If you get errors, make sure the embedding and chat completion models exist at the endpoints you provided.
+[!INCLUDE [Knowledge source ingestionParameters properties](./includes/how-tos/knowledge-source-ingestion-parameters.md)]
 
 ## Review the created objects
 
