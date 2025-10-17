@@ -8,6 +8,8 @@ ms.service: azure-ai-foundry
 ms.topic: include
 ms.date: 07/28/2025
 ms.custom: include
+monikerRange: 'foundry-classic || foundry'
+
 ---
 
 [!INCLUDE [version-banner](./version-banner.md)]
@@ -40,6 +42,6 @@ ms.custom: include
 ::: moniker-end
 
 ::: moniker range="foundry"
-1. Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions
+Go to [Azure AI Foundry](https://ai.azure.com/) and navigate to your project. Then select the **Guardrails + controls** page in the left navigation. Select the **Create a custom blocklist** link, and follow the instructions
 
 ::: moniker-end
