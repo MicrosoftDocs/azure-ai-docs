@@ -49,7 +49,7 @@ When it comes to chunking data, think about these factors:
 
 ### How chunking fits into the workflow
 
-If you have large documents, insert a chunking step into indexing and query workflows that breaks up large text. When using [integrated vectorization](vector-search-integrated-vectorization.md), a default chunking strategy using the [Text Split skill](./cognitive-search-skill-textsplit.md) is common. You can also apply a custom chunking strategy using a [custom skill](cognitive-search-custom-skill-web-api.md). See [this code reference]((https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/indexers/document-intelligence-custom-skill)) for a semantic chunking example using a custom skill. Some external libraries that provide chunking include:
+If you have large documents, insert a chunking step into indexing and query workflows that breaks up large text. When using [integrated vectorization](vector-search-integrated-vectorization.md), a default chunking strategy using the [Text Split skill](./cognitive-search-skill-textsplit.md) is common. You can also apply a custom chunking strategy using a [custom skill](cognitive-search-custom-skill-web-api.md). See [this code reference](https://github.com/Azure/azure-search-vector-samples/blob/main/demo-python/code/indexers/document-intelligence-custom-skill/document-intelligence-custom-skill.ipynb) for a semantic chunking example using a custom skill. Some external libraries that provide chunking include:
 
 + [LangChain Text Splitters](https://python.langchain.com/v0.1/docs/modules/data_connection/document_transformers/)
 + [Semantic Kernel TextChunker](/dotnet/api/microsoft.semantickernel.text.textchunker)
