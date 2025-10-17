@@ -76,14 +76,16 @@ Use the following tabs to select the method you'll use to create a Foundry proje
         ```python
         DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
         ```
-            
+
+::: moniker range="foundry-classic"
+          
     1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Auzre Government - US region:
             
         ```python
         from azure.identity import AzureAuthorityHosts
         DefaultAzureCredential(authority=AzureAuthorityHosts.AZURE_GOVERNMENT)
         ```
-    
+::: moniker-end
 
 
 # [Azure CLI](#tab/azurecli)
@@ -139,7 +141,7 @@ To create a Foundry project, follow these steps:
 
 ### Advanced options
 
-A Foundry project is created on an `AI Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
+1. A Foundry project is created on an `AI Foundry` resource. This resource is created for you automatically when you create the project. Select an existing **Resource group** you want to use, or leave the default to create a new resource group.
 
     > [!TIP]
     > Especially for getting started, we recommend you create a new resource group for your project. The resource group lets you easily manage the project and all its resources together.
