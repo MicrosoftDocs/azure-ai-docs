@@ -48,7 +48,7 @@ The following JSON is an example response for a blob knowledge source.
   "searchIndexParameters": null,
   "azureBlobParameters": {
     "connectionString": "<REDACTED>",
-    "containerName": "my-blob-container",
+    "containerName": "blobcontainer",
     "folderPath": null,
     "isADLSGen2": false,
     "ingestionParameters": {

@@ -21,7 +21,7 @@ ms.date: 10/17/2025
 >
 > + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
 >
-> + Learn more about how Azure admins can [manage access to use of Web Knowledge Source](XYZ).
+> + Learn more about how Azure admins can [manage access to use of Web Knowledge Source](agentic-knowledge-source-how-to-web-manage.md).
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 

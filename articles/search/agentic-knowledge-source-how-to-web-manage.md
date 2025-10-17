@@ -20,8 +20,6 @@ ms.date: 10/17/2025
 > + The [Microsoft Data Protection Addendum](https://www.microsoft.com/licensing/docs/view/Microsoft-Products-and-Services-Data-Protection-Addendum-DPA) doesn't apply to data sent to Web Knowledge Source. When Customer uses Web Knowledge Source, Customer Data flows outside the Azure compliance and Geo boundary.
 >
 > + Use of Web Knowledge Source incurs costs; learn more about [pricing](https://www.microsoft.com/en-us/bing/apis/grounding-pricing).
->
-> + Learn more about how Azure admins can [manage access to use of Web Knowledge Source](XYZ).
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
