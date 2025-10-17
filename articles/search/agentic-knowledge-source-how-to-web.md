@@ -27,19 +27,15 @@ ms.date: 10/17/2025
 
 A *web knowledge source* enables retrieval of real-time web data from Microsoft Bing in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
-Depending on its domain configuration, a web knowledge source uses either [Grounding with Bing Search](/azure/ai-foundry/agents/how-to/tools/bing-grounding) or [Grounding with Bing Custom Search](/azure/ai-foundry/agents/how-to/tools/bing-custom-search) to retrieve web results. This means that, unlike most knowledge sources, a web knowledge source doesn't target an index in Azure AI Search.
+Depending on its configuration, a web knowledge source either has unrestricted access to the entire public internet or is scoped to specific domains, such as https://learn.microsoft.com. This means that, unlike most knowledge sources, it doesn't target an index in Azure AI Search.
 
 Web knowledge sources work best alongside other knowledge sources. Use them when your proprietary content doesn't provide complete, up-to-date answers or when you want to supplement results with information from a commercial search engine.
 
-When you use a web knowledge source, keep the following in mind:
+When you use web knowledge sources, keep the following in mind:
 
-+ You can't define `answerInstructions` on your knowledge base.
++ The response is always a single, formulated answer to the query instead of raw search results from the web.
 
-+ Your knowledge base must use the `answerSynthesis` output mode and `low` or `medium` reasoning effort. Other output modes and reasoning efforts aren't supported.
-
-+ Retrieval responses aren't derived from all relevant web results. Instead, you receive a synthesized answer based on the semantically ranked results of the subqueries sent from your knowledge base to Bing.
-
-+ Retrieval responses don't include raw web content. Only URLs and titles are provided via citations to referenced web pages.
++ Because web knowledge sources don't support extractive data, your knowledge base must use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [low or medium reasoning effort](agentic-retrieval-how-to-create-knowledge-base.md#create-a-knowledge-agent). You also can't define answer instructions.
 
 ## Prerequisites
 

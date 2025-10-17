@@ -40,8 +40,8 @@ Here are the knowledge sources you can create in this preview:
 
 + [`"searchIndex"`](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) wraps an existing index
 + [`"azureBlob"`](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-08-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container
-+ `"indexedOneLake"` generates an indexer pipeline that pulls from a lakehouse
-+ `"web"` retrieves real-time web data from Microsoft Bing
++ "indexedOneLake" generates an indexer pipeline that pulls from a lakehouse
++ "web" retrieves real-time web data from Microsoft Bing
 
 A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 

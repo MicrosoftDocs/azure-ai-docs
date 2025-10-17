@@ -23,7 +23,7 @@ ms.date: 10/17/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-As an Azure admin, you can use the Azure CLI to enable or disable the use of [web knowledge sources](agentic-knowledge-source-how-to-web.md) at the subscription level. This setting applies to all accounts within the specified subscription.
+As an Azure admin, you can use the Azure CLI to enable or disable the use of [web knowledge sources](agentic-knowledge-source-how-to-web.md) at the subscription level. This setting applies to all search services within the specified subscription.
 
 ## Prerequisites
 
