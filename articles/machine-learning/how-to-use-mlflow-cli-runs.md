@@ -95,7 +95,7 @@ Azure Machine Learning jobs allow you to submit long-running training or inferen
 
 ### Create a training routine that has tracking
 
-When you work with jobs, you typically include all your training logic as files inside a folder, such as *src*. One of the files is a Python file with your training code entry point.
+When you work with jobs, you typically include all your training logic as files in a folder, such as *src*. One of the files is a Python file with your training code entry point.
 
 In your training routine, you can use the MLflow SDK to track any metric, parameter, artifact, or model. For examples, see [Log metrics, parameters, and files with MLflow](how-to-log-view-metrics.md).
 
@@ -188,7 +188,7 @@ Use the Azure Machine Learning jobs parameter `display_name` to configure the na
    returned_job.studio_url
    ```
 
-1. Monitor the job progress in Azure Machine Learning studio.
+1. Monitor job progress in Azure Machine Learning studio.
 
 ---
 
