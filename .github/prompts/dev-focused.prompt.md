@@ -28,6 +28,11 @@ Ensure the first H2 is a prerequisites section; if missing or misplaced, recomme
 - After each snippet, add a references line linking to each class/method/schema on Microsoft Learn.
 - List any required Azure role-based access control (RBAC) roles (e.g., Reader, Owner) in prerequisites.
 
+### Enable tracking & telemetry
+ - When prompted to make changes to an article, ensure that the two values below are added to the article metadata.
+    - `ms.custom:`Leave existing custom tags intact and add `dev-focus` to the list.
+    - `ai-usage`: if not already present, add `ai-usage: ai-assisted` to the article metadata.
+
 ### Plan, don't change
 
 Output only a prioritized plan (move > modify > add) unless explicit user approval to execute is given. Never modify code samples without approval.
