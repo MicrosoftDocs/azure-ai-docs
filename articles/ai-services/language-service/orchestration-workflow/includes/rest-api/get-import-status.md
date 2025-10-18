@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 Use the following **GET** request to query the status of your import job. You can use the URL you received from the previous step, or replace the placeholder values below with your own values. 

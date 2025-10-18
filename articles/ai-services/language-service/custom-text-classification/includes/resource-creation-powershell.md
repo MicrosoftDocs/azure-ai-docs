@@ -1,12 +1,12 @@
 ---
 title: How to create custom text classification projects
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 

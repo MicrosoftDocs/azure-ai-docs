@@ -5,7 +5,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.custom: devx-track-java
 ms.author: lajanuar
 ---
