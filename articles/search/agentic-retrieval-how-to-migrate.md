@@ -19,7 +19,7 @@ If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an ea
 Migration instructions are intended to help you run an existing solution on a newer API version. The instructions help you resolve breaking changes at the API level so that you have no loss of functionality. For more information about adding new functionality, start with [What's new](whats-new.md).
 
 > [!TIP]
-> If you use Azure SDKs instead of REST APIs, review this article to learn about version differences, and then install a newer preview package to upgrade your solution. Review the individual SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
+> Using Azure SDKs instead of REST? Review this article to learn about breaking changes, and then install a newer preview package to begin your updates. Check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## When to migrate
 
@@ -37,7 +37,7 @@ You can continue to run older code if you retain the API version value. However,
 
 + During development, run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
 
-### [2025-11-01-preview](#tab/migrate-11-01)
+### [**2025-11-01-preview**](#tab/migrate-11-01)
 
 If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge agent is renamed to knowledge base, and multiple properties are relocated to different objects and levels within an object definition.
 
@@ -90,9 +90,9 @@ To complete your migration, follow these cleanup steps:
 
 1. Clear or regenerate cached definitions that were created using the old shapes.
 
-### [2025-08-01-preview](#tab/migrate-08-01)
+### [**2025-08-01-preview**](#tab/migrate-08-01)
 
-If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-preview-1), your agent's definition includes an inline `targetIndexes` array and an optional `defaultMaxDocsForReranker` property.
+If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-preview), your agent's definition includes an inline `targetIndexes` array and an optional `defaultMaxDocsForReranker` property.
 
 Starting with the [2025-08-01-preview](#2025-08-01-preview-1), reusable knowledge sources replace `targetIndexes`, and `defaultMaxDocsForReranker` is no longer supported. These breaking changes require you to:
 
@@ -232,9 +232,9 @@ This section covers breaking and nonbreaking changes for the following REST API 
 
 To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for this version, make sure the 2025-11-01-previewAPI version is selected in the filter at the top of the page.
 
-#### [Breaking changes](#tab/breaking-1)
+#### [**Breaking changes**](#tab/breaking-1)
 
-+ Knowledge agent is renamed to knowledge base. The `agents` REST API is replaced with `knowledgeBases`.
++ Knowledge agent is renamed to knowledge base.
   
   | Previous Route | New Route |
   |-----|-----|
@@ -251,13 +251,13 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Knowledge agent (base) `knowledgeSources` parameters: The following child properties are moved to the `knowledgeSourceParams` properties of the retrieval request object: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`. The `maxSubQueries` property is gone. Its replacement is the new retrieval reasoning effort property.
 
-+ Knowledge agent (base) retrieval request object. The `semanticReranker` activity record is replaced with the `agenticReasoning` activity record type.
++ Knowledge agent (base) retrieval request object: The `semanticReranker` activity record is replaced with the `agenticReasoning` activity record type.
 
 + Knowledge sources for both `azureBlob` and `searchIndex`: top-level properties for `identity`, `embeddingModel`, `chatCompletionModel`, `disableImageVerbalization`, and `ingestionSchedule` are now part of an `ingestionParameters` object on the knowledge source. All knowledge sources that pull from a search index have an `ingestionParameters` object.
 
 + For `searchIndex` knowledge sources only: `sourceDataSelect` is renamed to `sourceDataFields` and is an array that accepts `fieldName` and `fieldToSearch`.
 
-#### [Nonbreaking changes](#tab/nonbreaking-1)
+#### [**Nonbreaking changes**](#tab/nonbreaking-1)
 
 + Adds knowledge sources for OneLake, SharePoint (local), SharePoint (remote) that retrieves content directly from Sharepoint, Web (Bing) that pulls from the Bing indexes.
 
@@ -279,7 +279,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) for this version, make sure the 2025-08-01-preview API version is selected in the filter at the top of the page.
 
-#### [Breaking changes](#tab/breaking)
+#### [**Breaking changes**](#tab/breaking)
 
 + Introduces knowledge sources as the new way to define data sources, supporting both `searchIndex` (one or multiple indexes) and `azureBlob` kinds. For more information, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md) and [Create a blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
@@ -287,7 +287,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Removes `defaultMaxDocsForReranker` support. This property previously existed in `targetIndexes`, but there's no replacement in `knowledgeSources`.
 
-#### [Nonbreaking changes](#tab/nonbreaking)
+#### [**Nonbreaking changes**](#tab/nonbreaking)
 
 + Adds `knowledgeSources`, `outputConfiguration`, and `retrievalInstructions` to agent definitions. For information about supported properties, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
