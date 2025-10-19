@@ -57,6 +57,7 @@ ms.custom: references_regions, build-2025
 | `gpt-4o-transcribe`            | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `gpt-4o-mini-tts`              | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
+| `gpt-4o-mini-transcribe-diarize`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `tts`                          | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `tts-hd`                       | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `whisper`                      | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
