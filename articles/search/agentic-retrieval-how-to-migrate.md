@@ -1,13 +1,13 @@
 ---
 title: Migrate Agentic Retrieval Code
 titleSuffix: Azure AI Search
-description: Learn how to migrate your agentic retrieval code to the latest REST API version. Starting with the 2025-08-01-preview, you must update knowledge agents to use knowledgeSources instead of targetIndexes due to breaking changes.
+description: Learn how to migrate your agentic retrieval code to the latest REST API version. This article focuses on breaking changes and backwards compatibility.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/28/2025
+ms.date: 10/19/2025
 ---
 
 # Migrate agentic retrieval code to the latest version
@@ -18,29 +18,65 @@ If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an ea
 
 ## When to migrate
 
-Migrate your agentic retrieval code when any of the following apply:
+Each new API version that supports agentic retrieval introduces breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview), on to [2025-11-01-preview](#2025-11-01-preview).
 
-+ The REST API version you use is announced for retirement or enters a deprecation window.
-
-+ A newer REST API version introduces breaking changes that affect features you use. For example, you must address breaking changes if your code targets the [2025-05-01-preview](#2025-05-01-preview), which uses `targetIndexes` in agent definitions.
-
-+ You want features that are only available in a newer REST API version.
-
-+ Your code fails when unrecognized properties are returned in a REST API response. As a best practice, your application should ignore properties it doesn't understand.
+You can continue to run older code if you retain the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
 ## How to migrate
+
++ If your code targets 2025-05-01-preview, migrate to 2025-08-01-preview first, and then migrate to 2025-11-01-preview.
+
++ Review [breaking and nonbreaking changes](#version-specific-changes) for each version.
+
++ For each incremental update, start by getting the current object definitions from the search service. Save a copy of the original definition in case you need to restore it. Consider [backing up search index content](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) if you can't easily rebuild the index.
+
++ Run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
+
+### [2025-11-01-preview](#tab/migrate-11-01)
+
+If you're migrating from [2025-08-01-preview](#2025-08-01-preview), knowledge agent is renamed to knowledge base, and multiple properties are relocated to different objects and levels within an object definition.
+
+1. [Get the current knowledge agent definition](#get-the-current-definition).
+1. [Create an equivalent knowledge base](#create-a-knowledge-base).
+1. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
+1. [Send a query to test the retrieval](#test-the-retrieval).
+1. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
+
+#### Get the current definition
+
+TBD
+
+#### Create a knowledge base
+
+TBD
+
+#### TBD heading
+
+TBD
+
+#### Test the retrieval
+
+TBD
+
+#### Update code and clients
+
+TBD
+
+---
+
+### [2025-08-01-preview](#tab/migrate-08-01)
 
 If you created a knowledge agent using the [2025-05-01-preview](#2025-05-01-preview), your agent's definition includes an inline `targetIndexes` array and an optional `defaultMaxDocsForReranker` property.
 
 Starting with the [2025-08-01-preview](#2025-08-01-preview), reusable knowledge sources replace `targetIndexes`, and `defaultMaxDocsForReranker` is no longer supported. These breaking changes require you to:
 
 1. [Get the current `targetIndexes` configuration](#get-the-current-configuration).
-2. [Create an equivalent knowledge source](#create-a-knowledge-source).
-3. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
-4. [Send a query to test the retrieval](#test-the-retrieval).
-5. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
+1. [Create an equivalent knowledge source](#create-a-knowledge-source).
+1. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
+1. [Send a query to test the retrieval](#test-the-retrieval).
+1. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
 
-### Get the current configuration
+#### Get the current configuration
 
 To retrieve your agent's definition, use the 2025-05-01-preview of [Knowledge Agents - Get (REST API)](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-05-01-preview&preserve-view=true).
 
@@ -73,7 +109,7 @@ The response should be similar to the following example. Copy the `indexName`, `
 }
 ```
 
-### Create a knowledge source
+#### Create a knowledge source
 
 To create a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `searchIndexName` to the value you previously copied.
 
@@ -97,7 +133,7 @@ PUT https://{{search-url}}/knowledgeSources/{{source-name}}?api-version=2025-08-
 
 This example creates a knowledge source that represents one index, but you can target multiple indexes or an Azure blob. For more information, see [Create a knowledge source](agentic-knowledge-source-overview.md).
 
-### Update the agent
+#### Update the agent
 
 To replace `targetIndexes` with `knowledgeSources` in your agent's definition, use the 2025-08-01-preview of [Knowledge Agents - Create or Update (REST API)](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `rerankerThreshold` and `includeReferenceSourceData` to the values you previously copied.
 
@@ -121,7 +157,7 @@ POST https://{{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 This example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
-### Test the retrieval
+#### Test the retrieval
 
 To test your agent's output with a query, use the 2025-08-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
@@ -148,7 +184,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
 
 If the response has a `200 OK` HTTP code, your agent successfully retrieved content from the knowledge source.
 
-### Update code and clients
+#### Update code and clients
 
 To complete your migration, follow these cleanup steps:
 
@@ -156,14 +192,33 @@ To complete your migration, follow these cleanup steps:
 + Update client calls to use the 2025-08-01-preview.
 + Clear or regenerate cached agent definitions that were created using the old shape.
 
+---
+
 ## Version-specific changes
 
 This section covers breaking and nonbreaking changes for the following REST API versions:
 
++ [2025-11-01-preview](#2025-11-01-preview)
 + [2025-08-01-preview](#2025-08-01-preview)
 + [2025-05-01-preview](#2025-05-01-preview)
 
+### 2025-11-01-preview
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for this version, make sure the API version is selected in the filter at the top of the page.
+
+#### [Breaking changes](#tab/breaking-1)
+
++ TBD
+
+#### [Nonbreaking changes](#tab/nonbreaking-1)
+
++ TBD
+
+---
+
 ### 2025-08-01-preview
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) for this version, make sure the API version is selected in the filter at the top of the page.
 
 #### [Breaking changes](#tab/breaking)
 
@@ -184,6 +239,8 @@ This section covers breaking and nonbreaking changes for the following REST API 
 ### 2025-05-01-preview
 
 This REST API version introduces agentic retrieval and knowledge agents. Each agent definition requires a `targetIndexes` array that specifies a single index and optional properties, such as `defaultRerankerThreshold` and `defaultIncludeReferenceSourceData`.
+
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-05-01-preview&preserve-view=true) for this version, make sure the API version is selected in the filter at the top of the page.
 
 ## Related content
 
