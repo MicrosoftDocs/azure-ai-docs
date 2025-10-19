@@ -18,19 +18,19 @@ If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an ea
 
 ## When to migrate
 
-Each new API version that supports agentic retrieval introduces breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview), on to [2025-11-01-preview](#2025-11-01-preview).
+Each new API version that supports agentic retrieval introduces breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to the latest [2025-11-01-preview](#2025-11-01-preview-1).
 
 You can continue to run older code if you retain the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
 ## How to migrate
 
-+ If your code targets 2025-05-01-preview, migrate to 2025-08-01-preview first, and then migrate to 2025-11-01-preview.
++ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview first, and then migrate to 2025-11-01-preview.
 
-+ Review [breaking and nonbreaking changes](#version-specific-changes) for each version.
++ To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
 + For each incremental update, start by getting the current object definitions from the search service. Save a copy of the original definition in case you need to restore it. Consider [backing up search index content](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) if you can't easily rebuild the index.
 
-+ Run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
++ During development, run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
 
 ### [2025-11-01-preview](#tab/migrate-11-01)
 
@@ -61,8 +61,6 @@ TBD
 #### Update code and clients
 
 TBD
-
----
 
 ### [2025-08-01-preview](#tab/migrate-08-01)
 
@@ -199,8 +197,8 @@ To complete your migration, follow these cleanup steps:
 This section covers breaking and nonbreaking changes for the following REST API versions:
 
 + [2025-11-01-preview](#2025-11-01-preview)
-+ [2025-08-01-preview](#2025-08-01-preview)
-+ [2025-05-01-preview](#2025-05-01-preview)
++ [2025-08-01-preview](#2025-08-01-preview-1)
++ [2025-05-01-preview](#2025-05-01-preview-1)
 
 ### 2025-11-01-preview
 
