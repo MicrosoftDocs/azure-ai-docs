@@ -16,14 +16,16 @@ ms.date: 10/19/2025
 
 If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
+Migration instructions are intended to help you run an existing solution on a newer API version. The instructions help you resolve breaking changes at the API level so that you have no loss of functionality. For more information about adding new functionality, start with [What's new](whats-new.md).
+
 > [!TIP]
-> If you use Azure SDKs instead of REST APIs, review this article to learn about version differences, and then install a newer preview package to upgrade your solution. Review the individual SDK change logs to confirm feature availability: [Python SDK change log](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET SDK change log](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript SDK change log](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java SDK change log](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
+> If you use Azure SDKs instead of REST APIs, review this article to learn about version differences, and then install a newer preview package to upgrade your solution. Review the individual SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## When to migrate
 
 Each new API version that supports agentic retrieval introduces breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to the latest [2025-11-01-preview](#2025-11-01-preview-1).
 
-You can continue to run older code if you retain the API version value, but to benefit from bug fixes, improvements, and newer functionality, you must update your code.
+You can continue to run older code if you retain the API version value. However, to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
 ## How to migrate
 
@@ -35,37 +37,58 @@ You can continue to run older code if you retain the API version value, but to b
 
 + During development, run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
 
-Migration instructions are intended to help you run an existing solution on a newer API version. For more information about new functionality that you can add to your solution, start with [What's new in Azure AI Search](whats-new.md)
-
 ### [2025-11-01-preview](#tab/migrate-11-01)
 
 If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge agent is renamed to knowledge base, and multiple properties are relocated to different objects and levels within an object definition.
 
-1. [Get the current knowledge agent definition](#get-the-current-definition).
-1. [Create an equivalent knowledge base](#create-a-knowledge-base).
-1. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
+1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
+1. [Update retrieval request object](#update-retrieval-request-object).
+1. [Update searchIndex knowledge sources](#update-the-agent).
 1. [Send a query to test the retrieval](#test-the-retrieval).
 1. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
 
-#### Get the current definition
+#### Replace knowledge agent with knowledge base
 
-TBD
+1. get the current definition.
+1. change the API version.
+1. rename everything that stays.
+1. cut properties that go elsewhere.
+1. see other docs for adding new functionality.
 
-#### Create a knowledge base
+#### Update retrieval request object
 
-TBD
+1. get the current definition.
+1. change the API version.
+1. rename everything that stays.
+1. paste properties from knowledge agent (base).
+1. see other docs for adding new functionality.
 
-#### TBD heading
+#### Update a searchIndex knowledge source
 
-TBD
+1. get the current definition.
+1. change the API version.
+1. ingestionParameters
+1. `sourceDataSelect` is renamed to `sourceDataFields` and is an array that accepts `fieldName` and `fieldToSearch`.
+
+#### Update an azureBlob knowledge source
+
+1. get the current definition.
+1. change the API version.
+1. ingestionParameters
 
 #### Test the retrieval
 
-TBD
+TBD 2025-11-01-preview
 
 #### Update code and clients
 
-TBD
+To complete your migration, follow these cleanup steps:
+
+1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
+
+1. Update client calls to use the 2025-11-01-preview.
+
+1. Clear or regenerate cached definitions that were created using the old shapes.
 
 ### [2025-08-01-preview](#tab/migrate-08-01)
 
@@ -211,11 +234,44 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 #### [Breaking changes](#tab/breaking-1)
 
-+ TBD breaking changes
++ Knowledge agent is renamed to knowledge base. The `agents` REST API is replaced with `knowledgeBases`.
+  
+  | Previous Route | New Route |
+  |-----|-----|
+  | `/agents` | `/knowledgebases` |
+  | `/agents/agent-name` | `/knowledgebases/knowledge-base-name` |
+  | `/agents/agent-name/retrieve` | `/knowledgebases/knowledge-base-name/retrieve` |
+
++ Knowledge agent (base) `outputConfiguration` is renamed to `outputMode` and changed from an object to a string enumerator. Several properties are impacted:
+
+  + `includeActivity` is moved from `outputConfiguration` onto the retrieval request object directly.  
+  + `attemptFastPath` in `outputConfiguration` is removed entirely. The new `minimal` reasoning effort is considered to be the replacement.
+
++ Knowledge agent (base) `requestLimits` is removed. It's child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
+
++ Knowledge agent (base) `knowledgeSources` parameters: The following child properties are moved to the `knowledgeSourceParams` properties of the retrieval request object: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`. The `maxSubQueries` property is gone. Its replacement is the new retrieval reasoning effort property.
+
++ Knowledge agent (base) retrieval request object. The `semanticReranker` activity record is replaced with the `agenticReasoning` activity record type.
+
++ Knowledge sources for both `azureBlob` and `searchIndex`: top-level properties for `identity`, `embeddingModel`, `chatCompletionModel`, `disableImageVerbalization`, and `ingestionSchedule` are now part of an `ingestionParameters` object on the knowledge source. All knowledge sources that pull from a search index have an `ingestionParameters` object.
+
++ For `searchIndex` knowledge sources only: `sourceDataSelect` is renamed to `sourceDataFields` and is an array that accepts `fieldName` and `fieldToSearch`.
 
 #### [Nonbreaking changes](#tab/nonbreaking-1)
 
-+ TBD nonbreaking changes
++ Adds knowledge sources for OneLake, SharePoint (local), SharePoint (remote) that retrieves content directly from Sharepoint, Web (Bing) that pulls from the Bing indexes.
+
++ All knowledge sources that pull from a search index have new ingestion options: `ingestionPermissionOptions` to support source-specific access models, `contentExtractionMode` that enables Content Understanding integration, `aiServices` endpoint for Content Understanding.
+
++ All knowledge sources that pull from a search index have a `status` operation, which returns the synchronization status of the knowledge source with its data source.
+
++ SearchIndex knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieval request.
+
++ Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing.
+
++ Knowledge agent (base) adds a new `intent` object for `minimal` retrieval reasoning effort, where `intent` replaces `messages` to the LLM. An `intent` is a query string passed directly to the search engine, with no intermediate LLM query planning step.
+
++ Activity records in the retrieval response now have an optional `error` output, which indicates if the activity represents a failed operation.
 
 ---
 
