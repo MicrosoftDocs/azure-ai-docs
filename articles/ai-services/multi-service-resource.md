@@ -20,7 +20,7 @@ zone_pivot_groups: programming-languages-portal-cli-ps
 
 # Quickstart: Set up your first AI Foundry resource
 
-In this quickstart, you create an Azure AI Foundry resource and verify access. You can complete this quickstart in approximately 10 minutes.
+In this quickstart, you create an Azure AI Foundry resource and verify access.
 
 Learn how to create and manage an Azure AI Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
 
@@ -28,7 +28,7 @@ An Azure resource is required to use and manage services in Azure. It defines th
 
 Azure AI Foundry resource is the next version and renaming of former "Azure AI Services". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
 
-An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work.
+An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
 
 :::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
 
@@ -108,7 +108,7 @@ Only authorized users, typically the Azure subscription or resource group owner,
 
 ## Start building in your first project
 
-With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can create multiple under the same resource.
+With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects#create-multiple).
 
 Explore some of the services that come bundled with your resource:
 
