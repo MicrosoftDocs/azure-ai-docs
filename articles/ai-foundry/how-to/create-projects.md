@@ -81,7 +81,7 @@ Use the following tabs to select the method you'll use to create a Foundry proje
         ```
 
           
-    1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Auzre Government - US region:
+    1. (Optional) If you're working in the [Azure Government - US](/azure/azure-government/documentation-government-welcome) or [Azure operated by 21Vianet](https://azure.microsoft.com/global-infrastructure/services/?regions=china-east-2%2cchina-non-regional&products=all) regions, specify the region you want to authenticate to. This example authenticates to the Azure Government - US region:
             
         ```python
         from azure.identity import AzureAuthorityHosts
@@ -173,7 +173,7 @@ To create a Foundry project, follow these steps:
 To create a Foundry project:
 
 
-1. Add this code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
+- Add this code to create a Foundry project by using the variables and `client` connection from the [Prerequisites](#prerequisites).
 
     :::code language="python" source="~/foundry-samples-main/samples/microsoft/python/mslearn-resources/quickstart/create_project.py" id="create_resource_project":::
 
