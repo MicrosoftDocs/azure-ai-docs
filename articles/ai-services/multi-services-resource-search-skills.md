@@ -4,14 +4,14 @@ titleSuffix: Azure AI services
 description: Learn how to create a multi-service resource to use Azure AI Search skills with an Azure AI Foundry resource.
 author: jonburchel
 ms.author: jburchel
-ms.date: 10/07/2025
+ms.date: 10/20/2025
 ms.service: azure-ai-services
 ms.topic: quickstart
 ---
 
 # Use Azure AI Foundry with Azure AI Search skills
 
-In this Quickstart, you learn how to create a classic Azure AI services multi-service account that works with Azure AI Search. 
+In this Quickstart, you learn how to create a classic Azure AI services multi-service account that supports [skillset processing](/azure/search/cognitive-search-concept-intro) in Azure AI Search. 
 
 [Azure AI Search skills](../search/tutorial-skillset.md) don't natively support the AI Foundry resource. You need to create a classic _multi-service_ resource, instead, to use Azure AI Search skills with Azure AI Foundry and any other workflow.
 
