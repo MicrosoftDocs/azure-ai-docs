@@ -39,7 +39,7 @@ The agent building experience offers integrated experiences for each core step o
 ### Saving and versioning
 After you create the first version of your agent, you can then save subsequent changes as new versions. You can test unsaved changes in the agent playground, but if you want to view conversation history, monitor your agents performance or run full evaluations, you'll be prompted to save your changes. <!--Learn more about versioning [here](versioning-doc-page).-->
 
-### Adding Tools
+### Adding tools
 You can make your agent more powerful by giving it knowledge (specific files or indexes), or allowing it to take actions (like searching the web or calling external APIs). There are tools available for most use cases, from simple file uploads to custom MCP server connections. For more complicated tools, you may need to configure authentication or add connections as part of attaching it to an agent. You must successfully configure a tool to be able to save an agent with it attached. You can reuse configured tools across agents. See the [tools overview](../../../agents/how-to/tools/overview.md) for more about available tools.
 
 ### Publishing your agent
@@ -75,6 +75,3 @@ Capabilities used for iterative development and improvement of the agent output 
 If you prefer to work in code, there are a couple supported ways to get your agent code into a development environment from which you can test locally and then deploy to Azure.
 
 From the Code tab in the agent playground chat pane, you can take a code snippet that references your agent by ID to a dedicated VS Code for the Web cloud environment, which comes preconfigured with the packages and extensions you need, as well as instructions, to efficiently develop and deploy your Foundry agent to Azure. You can also copy the code snippet directly to your preferred development environment.
-
-## Summary
-The NextGen Foundry Portal offers a more cohesive and feature-rich agent building experience, with a robust playground, as well as publishing and observability features that help you move from development into production. Bring your agents to life and get them in the hands of others faster than ever before.
