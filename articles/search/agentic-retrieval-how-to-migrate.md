@@ -16,10 +16,10 @@ ms.date: 10/19/2025
 
 If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
-Migration instructions are intended to help you run an existing solution on a newer API version. The instructions help you resolve breaking changes at the API level so that you have no loss of functionality. For more information about adding new functionality, start with [What's new](whats-new.md).
+Migration instructions are intended to help you run an existing solution on a newer API version. The instructions help you resolve breaking changes at the API level so that you have no loss of functionality. For help with adding new functionality, start with [What's new](whats-new.md).
 
 > [!TIP]
-> Using Azure SDKs instead of REST? Review this article to learn about breaking changes, and then install a newer preview package to begin your updates. Check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
+> Using Azure SDKs instead of REST? Readthis article to learn about breaking changes, and then install a newer preview package to begin your updates. Before you start, check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## When to migrate
 
@@ -29,7 +29,7 @@ You can continue to run older code if you retain the API version value. However,
 
 ## How to migrate
 
-+ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview first, and then migrate to 2025-11-01-preview.
++ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then migrate to 2025-11-01-preview.
 
 + To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
@@ -60,7 +60,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 
 1. Change the API version to `2025-11-01-preview`.
 
-1. Replace the endpoint: `/knowledgebases/knowledge-base-name`.
+1. Replace the endpoint: `/knowledgebases/{{your-object-name}}`.
 
 1. Replace `outputConfiguration`, `requestLimits`, and `retrievalInstructions`.
 
@@ -105,11 +105,11 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 
 #### Update a searchIndex knowledge source
 
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-source/get#searchservicegetknowledgeagent?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
 
    ```http
    ### Get a knowledge source by name
-   GET {{search-endpoint}}/agents/hotels-ks?api-version=2025-08-01-preview
+   GET {{search-endpoint}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
    api-key: {{api-key}}
    Content-Type: application/json
    ```
@@ -123,7 +123,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 1. Send the request to update the knowledge source.
 
     ```http
-    PUT {{url}}/knowledgesources/search-index-ks?api-version={{api-version}}
+    PUT {{url}}/knowledge-sources/search-index-ks?api-version={{api-version}}
     api-key: {{key}}
     Content-Type: application/json
     
@@ -146,11 +146,11 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 
 #### Update an azureBlob knowledge source
 
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-source/get#searchservicegetknowledgeagent?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
 
    ```http
    ### Get a knowledge source by name
-   GET {{search-endpoint}}/agents/hotels-ks?api-version=2025-08-01-preview
+   GET {{search-endpoint}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
    api-key: {{api-key}}
    Content-Type: application/json
    ```
@@ -164,7 +164,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 1. Send the request to update the knowledge source.
 
     ```http
-    PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+    PUT {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
     
