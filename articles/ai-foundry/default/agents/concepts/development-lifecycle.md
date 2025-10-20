@@ -53,7 +53,7 @@ If you want to develop a more advanced agentic workflow, for example you want to
 
 ## Agent playground in Azure AI Foundry portal
 
-The agent playground is where you do your agent development. You can craft your agent's identity, compare models, test different instructions and tool configurations, add specific knowledge and memory customizations, and set restrictions on your agent's behavior. At any point, you can transition to code to continue development in your preferred development environment. For example, you can work on your agent in Visual Studio Code from the Foundry portal, which offers a preconfigured cloud environment to further iterate on your agent using the [Visual Studio extension](../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context).
+The agent playground is where you do your agent development. You can craft your agent's identity, compare models, test different instructions and tool configurations, add specific knowledge and memory customizations, and set restrictions on your agent's behavior. At any point, you can transition to code to continue development in your preferred development environment. For example, you can work on your agent in Visual Studio Code from the Foundry portal, which offers a preconfigured cloud environment to further iterate on your agent using the [Visual Studio extension](../../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context).
 
 ### Agent identity configurations
 
