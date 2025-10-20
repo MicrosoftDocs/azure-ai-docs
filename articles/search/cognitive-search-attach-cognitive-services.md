@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 06/11/2025
+ms.date: 10/20/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -16,7 +16,7 @@ ms.custom:
 
 # Attach an Azure AI services resource to a skillset in Azure AI Search
 
-If you're using built-in skills for optional [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents free of charge, limited to 20 transactions daily per index. For larger and more frequent workloads, you should attach a billable [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal). 
+If you're using built-in skills for optional [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents free of charge, limited to 20 transactions daily per index. For larger and more frequent workloads, you should attach a billable [classic Azure AI services multi-service resource](/azure/ai-services/multi-services-resource-search-skills). 
 
 Azure AI Search uses dedicated, internally hosted Azure AI services multi-service resources for built-in skills execution, but needs your multi-service resource for billing purposes. 
 
@@ -26,7 +26,7 @@ An Azure AI services multi-service resource provides a collection of Azure AI se
 + [Azure AI Language](/azure/ai-services/language-service/overview) for language detection, entity recognition, sentiment analysis, and key phrase extraction
 + [Azure AI Translator](/azure/ai-services/translator/translator-overview) for machine text translation
 
-Exceptions to billing through the multi-service resource include [AzureOpenAIEmbedding](cognitive-search-skill-azure-openai-embedding.md) or the [AML skill](cognitive-search-aml-skill.md) billing. Azure AI Search doesn't internally host models from Azure OpenAI or the Azure AI Foundry model catalog. Usage for AML and Azure OpenAI skills and vectorizers are through [Azure OpenAI Standard pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) and [Azure Machine Learning Standard pricing](https://azure.microsoft.com/pricing/details/machine-learning/), respectively. A few other skills, such as Text Split and Text Merge, aren't billable.
+Exceptions to billing through the multi-service resource include the [AzureOpenAIEmbedding skill](cognitive-search-skill-azure-openai-embedding.md), [GenAI Prompt skill](cognitive-search-skill-genai-prompt.md), and [AML skill](cognitive-search-aml-skill.md) billing. Azure AI Search doesn't internally host models from Azure OpenAI or the Azure AI Foundry model catalog. Usage for AML and Azure OpenAI skills and vectorizers are through [Azure OpenAI Standard pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/#pricing) and [Azure Machine Learning Standard pricing](https://azure.microsoft.com/pricing/details/machine-learning/), respectively. A few other skills, such as Text Split and Text Merge, aren't billable.
 
 To attach an Azure AI multi-service resource, you must provide connection information in the skillset. You can use a key on the connection, or implement a keyless approach that's currently in preview.
 
@@ -35,8 +35,13 @@ To attach an Azure AI multi-service resource, you must provide connection inform
 
 ## Prerequisites
 
-+ Connectivity over a public endpoint, unless your search service meets the creation date, tier, and region requirements for private connections to an Azure AI services multi-service resource.
-+ [Azure AI multi-service resource](/azure/ai-services/multi-service-resource) created via the [Azure portal](https://portal.azure.com) only.
++ Connectivity over a public endpoint, unless your search service meets the creation date, tier, and region requirements for [private connections](search-indexer-howto-access-private.md) to an Azure AI services multi-service resource.
+
++ [Azure AI multi-service resource](/azure/ai-services/multi-services-resource-search-skills) created via the [Azure portal](https://portal.azure.com) only.
+
+  Your multi-service resource should have API kind set to `CognitiveServices`. You can view this property in the Azure portal page for your multi-service account:
+
+  :::image type="content" source="media/cognitive-search-attach-cognitive-services/cognitive-services-kind" alt-text="Screenshot of the API kind property in the Azure portal." border="true":::
 
 > [!NOTE]
 > If your Azure AI resource is configured to use a private endpoint, Azure AI Search can connect [using a shared private link](search-indexer-howto-access-private.md) For more information, see the [requirements and limits for using shared private links](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
@@ -68,7 +73,7 @@ As with keys, the details you provide about the Azure AI Services resource are u
 Identity is set to null.
 
 ```http
-POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2024-11-01-Preview  
+POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-09-01  
 
 {  
     "name": "my skillset name",  
@@ -92,7 +97,7 @@ Identity is set to the resource ID of the user-assigned managed identity. To fin
 For a user-assigned managed identity, set the `@odata.type` and the `userAssignedIdentity` properties.
 
 ```http
-POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2024-11-01-Preview  
+POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-09-01 
 
 {  
     "name": "my skillset name",  
