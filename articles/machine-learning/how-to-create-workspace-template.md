@@ -30,7 +30,7 @@ For more information, see [Deploy an application with an Azure Resource Manager 
 
 [!INCLUDE [register-namespace](includes/machine-learning-register-namespace.md)]
 
-* The example template might not always use the latest API version for Azure Machine Learning. We recommend that you modify the template to use the latest API versions before you use it. For information on the latest API versions for Azure Machine Learning, see the [Azure Machine Learning REST API](/rest/api/azureml/).
+* The example template might not always use the latest API version for Azure Machine Learning. We recommend that you modify the template to use the latest API versions before you use it. For information on the latest API versions for Azure Machine Learning, see the pages for specific operation groups in the [Azure Machine Learning REST API](/rest/api/azureml/) documentation.
 
     > [!TIP]
     > Each Azure service has its own set of API versions. For information on the API for a specific service, check the service information in the [Azure REST API reference](/rest/api/azure/).
@@ -60,7 +60,7 @@ This template creates the following Azure services:
 * Azure Container Registry
 * An Azure Machine Learning workspace
 
-The resource group is the container that holds the services. The Azure Machine Learning workspace uses these services for functionality like logging and storing data, secrets, and Docker images.
+ The Azure Machine Learning workspace uses these services for functionality like logging and storing data, secrets, and Docker images. The template also creates a resource group that contains the services.
 
 The example template has two required parameters:
 
