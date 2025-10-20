@@ -19,7 +19,7 @@ ai-usage: ai-assisted
 # customer intent: As a developer, I want to create an Azure AI Foundry project so I can work with generative AI.
 ---
 
-# Create a project for Azure AI Foundry (Foundry projects)
+# Create a project for Azure AI Foundry
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
@@ -228,6 +228,7 @@ On the project **Home** page, you find information about the project.
 On the **Home** page, select **Keys** to find the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
 
 ::: moniker-end
+https://review.learn.microsoft.com/en-us/azure/ai-foundry/how-to/create-projects
 
 
 # [Python SDK](#tab/python)
