@@ -72,7 +72,7 @@ def simple_callback(query: str) -> str:
 red_team_result = await red_team_agent.scan(target=simple_callback)
 ```
 
-This example generates a default set of 10 attack prompts for each of the default set of four risk categories: violence, sexual, hate and unfairness, and self-harm. The example has a total of 40 rows of attack prompts to generat and send to your target.
+This example generates a default set of 10 attack prompts for each of the default set of four risk categories: violence, sexual, hate and unfairness, and self-harm. The example has a total of 40 rows of attack prompts to generate and send to your target.
 
 Optionally, you can specify which risk categories of content risks you want to cover with `risk_categories` parameter and define the number of prompts covering each risk category with `num_objectives` parameter.
 
