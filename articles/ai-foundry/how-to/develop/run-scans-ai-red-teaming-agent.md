@@ -72,7 +72,7 @@ def simple_callback(query: str) -> str:
 red_team_result = await red_team_agent.scan(target=simple_callback)
 ```
 
-This example generates a default set of 10 attack prompts for each of the default set of four risk categories: violence, sexual, hate and unfairness, and self-harm. The example has a total of 40 rows of attack prompts to be generated and sent to your target.
+This example generates a default set of 10 attack prompts for each of the default set of four risk categories: violence, sexual, hate and unfairness, and self-harm. The example has a total of 40 rows of attack prompts to generat and send to your target.
 
 Optionally, you can specify which risk categories of content risks you want to cover with `risk_categories` parameter and define the number of prompts covering each risk category with `num_objectives` parameter.
 
@@ -96,7 +96,7 @@ red_team_agent = RedTeam(
 
 ## Region support
 
-Currently, AI Red Teaming Agent is only available in a few regions. Ensure your Azure AI Project is located in the following supported regions:
+Currently, AI Red Teaming Agent is available only in some regions. Ensure your Azure AI Project is located in the following supported regions:
 
 - East US2
 - Sweden Central
@@ -107,70 +107,70 @@ Currently, AI Red Teaming Agent is only available in a few regions. Ensure your 
 
 The `RedTeam` can run automated scans on various targets.
 
-**Model configurations**: If you're just scanning a base model during your model selection process, you can pass in your model configuration as a target to your `red_team_agent.scan()`:
+- **Model configurations**: If you're just scanning a base model during your model selection process, you can pass in your model configuration as a target to your `red_team_agent.scan()`:
 
-```python
-# Configuration for Azure OpenAI model
-azure_openai_config = {
-    "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    "api_key": os.environ.get("AZURE_OPENAI_KEY"), #  not needed for entra ID based auth, use az login before running,
-    "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-}
+  ```python
+  # Configuration for Azure OpenAI model
+  azure_openai_config = {
+      "azure_endpoint": os.environ.get("AZURE_OPENAI_ENDPOINT"),
+      "api_key": os.environ.get("AZURE_OPENAI_KEY"), #  not needed for entra ID based auth, use az login before running,
+      "azure_deployment": os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
+  }
 
-red_team_result = await red_team_agent.scan(target=azure_openai_config)
-```
+  red_team_result = await red_team_agent.scan(target=azure_openai_config)
+  ```
 
-**Simple callback**: A simple callback that takes in a string prompt from `red_team_agent` and returns some string response from your application:
+- **Simple callback**: A simple callback that takes in a string prompt from `red_team_agent` and returns some string response from your application:
 
-```python
-# Define a simple callback function that simulates a chatbot
-def simple_callback(query: str) -> str:
-    # Your implementation to call your application (e.g., RAG system, chatbot)
-    return "I'm an AI assistant that follows ethical guidelines. I cannot provide harmful content."
+  ```python
+  # Define a simple callback function that simulates a chatbot
+  def simple_callback(query: str) -> str:
+      # Your implementation to call your application (e.g., RAG system, chatbot)
+      return "I'm an AI assistant that follows ethical guidelines. I cannot provide harmful content."
 
-red_team_result = await red_team_agent.scan(target=simple_callback)   
-```
+  red_team_result = await red_team_agent.scan(target=simple_callback)   
+  ```
 
-**Complex callback**: A more complex callback that is aligned to the OpenAI Chat Protocol:
+- **Complex callback**: A more complex callback that is aligned to the OpenAI Chat Protocol:
 
-```python
-# Create a more complex callback function that handles conversation state
-async def advanced_callback(messages, stream=False, session_state=None, context=None):
-    # Extract the latest message from the conversation history
-    messages_list = [{"role": message.role, "content": message.content} 
-                    for message in messages]
-    latest_message = messages_list[-1]["content"]
+  ```python
+  # Create a more complex callback function that handles conversation state
+  async def advanced_callback(messages, stream=False, session_state=None, context=None):
+      # Extract the latest message from the conversation history
+      messages_list = [{"role": message.role, "content": message.content} 
+                      for message in messages]
+      latest_message = messages_list[-1]["content"]
     
-    # In a real application, you might process the entire conversation history
-    # Here, we're just simulating a response
-    response = "I'm an AI assistant that follows safety guidelines. I cannot provide harmful content."
+      # In a real application, you might process the entire conversation history
+      # Here, we're just simulating a response
+      response = "I'm an AI assistant that follows safety guidelines. I cannot provide harmful content."
     
-    # Format the response to follow the expected chat protocol format
-    formatted_response = {
-        "content": response,
-        "role": "assistant"
-    }
+      # Format the response to follow the expected chat protocol format
+      formatted_response = {
+          "content": response,
+          "role": "assistant"
+      }
     
-    return {"messages": [formatted_response]}
+      return {"messages": [formatted_response]}
 
-red_team_result = await red_team_agent.scan(target=advanced_callback)
-```
+  red_team_result = await red_team_agent.scan(target=advanced_callback)
+  ```
 
-**PyRIT prompt target**: For advanced users coming from PyRIT, `RedTeam` can also scan text-based PyRIT `PromptChatTarget`. See the full list of [PyRIT prompt targets](https://azure.github.io/PyRIT/code/targets/0_prompt_targets.html).
+- **PyRIT prompt target**: For advanced users coming from PyRIT, `RedTeam` can also scan text-based PyRIT `PromptChatTarget`. See the full list of [PyRIT prompt targets](https://azure.github.io/PyRIT/code/targets/0_prompt_targets.html).
 
-```python
-from pyrit.prompt_target import OpenAIChatTarget, PromptChatTarget
+  ```python
+  from pyrit.prompt_target import OpenAIChatTarget, PromptChatTarget
 
-# Create a PyRIT PromptChatTarget for an Azure OpenAI model
-# This could be any class that inherits from PromptChatTarget
-chat_target = OpenAIChatTarget(
-    model_name=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
-    endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
-    api_key=os.environ.get("AZURE_OPENAI_KEY")
-) 
+  # Create a PyRIT PromptChatTarget for an Azure OpenAI model
+  # This could be any class that inherits from PromptChatTarget
+  chat_target = OpenAIChatTarget(
+      model_name=os.environ.get("AZURE_OPENAI_DEPLOYMENT"),
+      endpoint=os.environ.get("AZURE_OPENAI_ENDPOINT"),
+      api_key=os.environ.get("AZURE_OPENAI_KEY")
+  ) 
 
-red_team_result = await red_team_agent.scan(target=chat_target)
-```
+  red_team_result = await red_team_agent.scan(target=chat_target)
+  ```
 
 ## Supported risk categories
 
