@@ -185,7 +185,7 @@ The following risk categories are supported in the AI Red Teaming Agent's runs, 
 
 ## Custom attack objectives
 
-The AI Red Teaming Agent provides a Microsoft curated set of adversarial attack objectives covering each supported risk. Because your organization's policy might be different, you might want to bring your own custom set to use for each risk category.
+The AI Red Teaming Agent provides a Microsoft curated set of adversarial attack objectives that cover each supported risk. Because your organization's policy might be different, you might want to bring your own custom set to use for each risk category.
 
 You can run the AI Red Teaming Agent on your own dataset.
 
@@ -197,7 +197,7 @@ custom_red_team_agent = RedTeam(
 )
 ```
 
-Your dataset must be a JSON file, in the following format with the associated metadata for the corresponding risk types. When you bring your own prompts, the supported `risk-type`s are `violence`, `sexual`, `hate_unfairness`, and `self_harm`. Use these supported types so that the Safety Evaluators can evaluate the attacks for success correspondingly. The number of prompts that you specify is the `num_objectives` used in the scan.
+Your dataset must be a JSON file, in the following format with the associated metadata for the corresponding risk types. When you bring your own prompts, the supported risk types are `violence`, `sexual`, `hate_unfairness`, and `self_harm`. Use these supported types so that the Safety Evaluators can evaluate the attacks for success. The number of prompts that you specify is the `num_objectives` used in the scan.
 
 ```json
 [
@@ -229,17 +229,17 @@ Your dataset must be a JSON file, in the following format with the associated me
 
 ## Supported attack strategies
 
-If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` sends only baseline direct adversarial queries to your target. This approach is the most naive method of attempting to elicit undesired behavior or generated content. We recommend that you try the baseline direct adversarial querying first before applying any attack strategies.
+If only the target is passed in when you run a scan and no attack strategies are specified, the `red_team_agent` sends only baseline direct adversarial queries to your target. This approach is the most naive method of attempting to elicit undesired behavior or generated content. We recommend that you try the baseline direct adversarial querying first before you apply any attack strategies.
 
 Attack strategies are methods to take the baseline direct adversarial queries and convert them into another form to try bypassing your target's safeguards. Attack strategies are classified into three levels of complexity. Attack complexity reflects the effort an attacker needs to put in conducting the attack.
 
-- **Easy complexity attacks** require less effort, such as translation of a prompt into some encoding
-- **Moderate complexity attacks** requires having access to resources such as another generative AI model
-- **Difficult complexity attacks** includes attacks that require access to significant resources and effort to execute an attack, such as knowledge of search-based algorithms, in addition to a generative AI model.
+- **Easy complexity attacks** require less effort, such as translation of a prompt into some encoding.
+- **Moderate complexity attacks** require having access to resources such as another generative AI model.
+- **Difficult complexity attacks** include attacks that require access to significant resources and effort to run an attack, such as knowledge of search-based algorithms, in addition to a generative AI model.
 
 ### Default grouped attack strategies
 
-This approach offers a group of default attacks for easy complexity and moderate complexity that can be used in the `attack_strategies` parameter. A difficult complexity attack can be a composition of two strategies in one attack.
+This approach offers a group of default attacks for easy complexity and moderate complexity that you can use in the `attack_strategies` parameter. A difficult complexity attack can be a composition of two strategies in one attack.
 
 | Attack strategy complexity group | Includes |
 | --- | --- |
@@ -247,7 +247,7 @@ This approach offers a group of default attacks for easy complexity and moderate
 | `MODERATE` | `Tense` |
 | `DIFFICULT` | Composition of `Tense` and `Base64` |
 
-The following scan would first run all the baseline direct adversarial queries. Then, it would apply the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64`, which would first translate the baseline query into past tense then encode it into `Base64`.
+The following scan first runs all the baseline direct adversarial queries. Then, it applies the following attack techniques: `Base64`, `Flip`, `Morse`, `Tense`, and a composition of `Tense` and `Base64`, which first translates the baseline query into past tense then encode it into `Base64`.
 
 ```python
 from azure.ai.evaluation.red_team import AttackStrategy
@@ -292,11 +292,11 @@ You can specify the desired attack strategies instead of using default groups. T
 | `Jailbreak` | User Injected Prompt Attacks (UPIA) injects specially crafted prompts to bypass AI safeguards | Easy |
 | `Tense` | Changes tense of text into past tense. | Moderate |
 
-Each new attack strategy specified is applied to the set of baseline adversarial queries used in addition to the baseline adversarial queries.
+Each new attack strategy is applied to the set of baseline adversarial queries used in addition to the baseline adversarial queries.
 
-This following example would generate one attack objective per each of the four risk categories specified. This approach first generates four baseline adversarial prompts, which would be sent to your target. Then, each baseline query would get converted into each of the four attack strategies. This conversion results in a total of 20 attack-response pairs from your AI system.
+The following example generates one attack objective per each of the four risk categories specified. This approach first generates four baseline adversarial prompts to send to your target. Then, each baseline query gets converted into each of the four attack strategies. This conversion results in a total of 20 attack-response pairs from your AI system.
 
-The last attack strategy is an example of a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition would first encode the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions only support chaining two attack strategies together.
+The last attack strategy is a composition of two attack strategies to create a more complex attack query: the `AttackStrategy.Compose()` function takes in a list of two supported attack strategies and chains them together. The example's composition first encodes the baseline adversarial query into Base64 then apply the ROT13 cipher on the Base64-encoded query. Compositions support chaining only two attack strategies together.
 
 ```python
 red_team_agent = RedTeam(
@@ -510,4 +510,4 @@ The red teaming scorecard also provides row-level data on each attack-response p
 
 ## Related content
 
-Try out an [example workflow](https://aka.ms/airedteamingagent-sample) in our GitHub samples.
+Try an [example workflow](https://aka.ms/airedteamingagent-sample) in the GitHub samples.

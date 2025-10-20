@@ -15,7 +15,7 @@ After your automated scan finishes, the results also get logged to your Azure AI
 
 ### View report of each scan
 
-In your Azure AI Foundry project or hub-based project, navigate to the **Evaluation** page. Select **AI red teaming** to view the comprehensive report with a detailed drill-down of each scan.
+In your Azure AI Foundry project or hub-based project, navigate to the **Evaluation** page. Select **AI red teaming** to view the report with detailed drill-down results of each scan.
 
 :::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team.png" alt-text="Screenshot of AI Red Teaming tab in Azure AI Foundry project page." lightbox="../media/evaluations/red-teaming-agent/ai-red-team.png":::
 
@@ -27,7 +27,7 @@ Or by attack complexity classification:
 
 :::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team-report-attack.png" alt-text="Screenshot of AI Red Teaming report view by attack complexity category in Azure AI Foundry." lightbox="../media/evaluations/red-teaming-agent/ai-red-team-report-attack.png":::
 
-Drilling down further into the data tab provides a row-level view of each attack-response pair, enabling deeper insights into system issues and behaviors. For each attack-response pair, you can see additional information, such as whether or not the attack was successful, what attack strategy was used and its attack complexity. There's also an option for a human in the loop reviewer to provide human feedback by selecting the thumbs up or thumbs down icon.
+Drilling down further into the data tab provides a row-level view of each attack-response pair. This information offers deeper insights into system issues and behaviors. For each attack-response pair, you can see more information, such as whether or not the attack was successful, what attack strategy was used, and its attack complexity. A human in the loop reviewer can provide human feedback by selecting the thumbs up or thumbs down icon.
 
 :::image type="content" source="../media/evaluations/red-teaming-agent/ai-red-team-data.png" alt-text="Screenshot of AI Red Teaming data page in Azure AI Foundry." lightbox="../media/evaluations/red-teaming-agent/ai-red-team-data.png":::
 
