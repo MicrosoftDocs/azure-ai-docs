@@ -40,18 +40,9 @@ The following JSON is an example response for a search index knowledge source. N
     "semanticConfigurationName": null,
     "sourceDataFields": [],
     "searchFields": []
-  },
-  "azureBlobParameters": null,
-  "mcpToolParameters": null,
-  "webParameters": null,
-  "remoteSharePointParameters": null,
-  "indexedSharePointParameters": null,
-  "indexedOneLakeParameters": null
+  }
 }
 ```
-
-> [!NOTE]
-> The `mcpToolParameters` property isn't operational in this preview and is reserved for future use.
 
 ## Create a knowledge source
 
@@ -62,24 +53,22 @@ To create a search index knowledge source:
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
     @api-key = <YOUR ADMIN API KEY>
-    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
-    @index-name = <YOUR INDEX NAME>
     ```
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    POST {{search-url}}/knowledgeSources?api-version=2025-11-01-preview
+    POST {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-        "name": "{{ks-name}}",
+        "name": "my-search-index-ks",
         "kind": "searchIndex",
         "description": "This knowledge source pulls from an existing index designed for agentic retrieval.",
         "encryptionKey": null,
         "searchIndexParameters": {
-            "searchIndexName": "{{index-name}}",
+            "searchIndexName": "<YOUR INDEX NAME>",
             "semanticConfigurationName": "my-semantic-config",
             "sourceDataFields": [
               { "name": "description" },

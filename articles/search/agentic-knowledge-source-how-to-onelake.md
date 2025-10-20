@@ -47,7 +47,7 @@ The following JSON is an example response for a OneLake knowledge source.
 {
   "name": "my-onelake-ks",
   "kind": "indexedOneLake",
-  "description": "A sample OneLake knowledge source.",
+  "description": "A sample indexed OneLake knowledge source.",
   "encryptionKey": null,
   "indexedOneLakeParameters": {
     "fabricWorkspaceId": "<REDACTED>",
@@ -95,38 +95,31 @@ To create a OneLake knowledge source:
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
     @api-key = <YOUR SEARCH ADMIN API KEY>
-    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
-    @fabric-workspace-guid = <YOUR FABRIC WORKSPACE GUID>
-    @lakehouse-guid = <YOUR LAKEHOUSE GUID>
     ```
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    PUT {{search-url}}/knowledgesources/indexed-onelake-ks?api-version=2025-11-01-preview
+    PUT {{search-url}}/knowledgesources/my-indexed-onelake-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-        "name": "{{ks-name}}",
+        "name": "my-indexed-onelake-ks",
         "kind": "indexedOneLake",
         "description": "This knowledge source pulls content from a lakehouse.",
         "indexedOneLakeParameters": {
-          "fabricWorkspaceId": "{{fabric-workspace-guid}}",
-          "lakehouseId": "{{lakehouse-guid}}",
+          "fabricWorkspaceId": "<YOUR FABRIC WORKSPACE GUID>",
+          "lakehouseId": "<YOUR LAKEHOUSE GUID>",
           "targetPath": null,
           "ingestionParameters": {
             "identity": null,
             "disableImageVerbalization": null,
-            "chatCompletionModel": {
-              // Redacted for brevity
-            },
-            "embeddingModel": {
-              // Redacted for brevity
-            },
+            "chatCompletionModel": { TRIMMED FOR BREVITY },
+            "embeddingModel": { TRIMMED FOR BREVITY },
             "contentExtractionMode": "minimal",
             "ingestionSchedule": null,
-            "ingestionPermissionOptions": [ ],
+            "ingestionPermissionOptions": []
         }
       }
     }

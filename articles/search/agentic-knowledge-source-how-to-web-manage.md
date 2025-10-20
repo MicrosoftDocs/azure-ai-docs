@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 10/17/2025
+ms.date: 10/20/2025
 ---
 
 # Manage access to web knowledge sources in your Azure subscription
@@ -36,7 +36,7 @@ As an Azure admin, you can use the Azure CLI to enable or disable the use of [we
 Access to knowledge sources is enabled by default. If access has been disabled, you can run the following command to enable it.
 
 ```azurecli
-az feature register --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>" 
+az feature unregister --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>" 
 ```
 
 ## Disable use of web knowledge sources
@@ -44,7 +44,7 @@ az feature register --name WebKnowledgeSourceDisabled --namespace Microsoft.Sear
 Run the following command to disable access to web knowledge sources.
 
 ```azurecli
-az feature unregister --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>" 
+az feature register --name WebKnowledgeSourceDisabled --namespace Microsoft.Search --subscription "<subscription-id>" 
 ```
 
 ## Related content

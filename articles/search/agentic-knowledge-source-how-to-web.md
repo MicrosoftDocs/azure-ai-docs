@@ -55,22 +55,13 @@ The following JSON is an example response for a web knowledge source.
 {
   "name": "my-web-ks",
   "kind": "web",
-  "description": "This knowledge source pulls content from the web.",
+  "description": "A sample web knowledge source.",
   "encryptionKey": null,
-  "searchIndexParameters": null,
-  "azureBlobParameters": null,
-  "mcpToolParameters": null,
   "webParameters": {
     "domains": null
-  },
-  "remoteSharePointParameters": null,
-  "indexedSharePointParameters": null,
-  "indexedOneLakeParameters": null
+  }
 }
 ```
-
-> [!NOTE]
-> The `mcpToolParameters` property isn't operational in this preview and is reserved for future use.
 
 ## Create a knowledge source
 
@@ -81,18 +72,17 @@ To create a web knowledge source:
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
     @api-key = <YOUR ADMIN API KEY>
-    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
     ```
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    POST https://{{search-url}}/knowledgeSources/{{ks-name}}?api-version=2025-11-01-preview
+    POST {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview
     Content-Type: application/json
     api-key: {{api-key}}
 
     {
-      "name": "{{ks-name}}",
+      "name": "my-web-ks",
       "kind": "web",
       "description": "This knowledge source pulls content from the web.",
       "encryptionKey": null,

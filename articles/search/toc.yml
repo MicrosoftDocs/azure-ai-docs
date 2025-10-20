@@ -404,15 +404,15 @@ items:
         items:
         - name: What is a knowledge source?
           href: agentic-knowledge-source-overview.md
-        - name: Azure blobs
+        - name: Azure blob
           href: agentic-knowledge-source-how-to-blob.md
         - name: OneLake
           href: agentic-knowledge-source-how-to-onelake.md
-        - name: Search indexes
+        - name: Search index
           href: agentic-knowledge-source-how-to-search-index.md
         - name: Web
           href: agentic-knowledge-source-how-to-web.md
-        - name: Manage use of web knowledge sources
+        - name: Manage web access
           href: agentic-knowledge-source-how-to-web-manage.md
       - name: Create a knowledge agent
         href: agentic-retrieval-how-to-create-knowledge-base.md

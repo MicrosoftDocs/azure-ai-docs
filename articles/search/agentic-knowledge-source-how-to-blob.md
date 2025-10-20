@@ -25,11 +25,13 @@ Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-
 
 ## Prerequisites
 
-+ Azure Storage with a blob container containing [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
++ An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
 
-+ Azure AI Search on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ An [Azure Blob Storage](/azure/storage/common/storage-account-create) or [Azure Data Lake Storage (ADLS) Gen2](/azure/storage/blobs/create-data-lake-storage-account) account.
 
-To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
++ A blob container with [supported content types](search-how-to-index-azure-blob-storage.md#supported-document-formats) for text content. For optional image verbalization, the supported content type depends on whether your chat completion model can analyze and describe the image file.
+
++ [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support.
 
 ## Check for existing knowledge sources
 
@@ -87,17 +89,12 @@ The following JSON is an example response for a blob knowledge source.
       "skillset": "my-blob-ks-skillset",
       "index": "my-blob-ks-index"
     }
-  },
-  "mcpToolParameters": null,
-  "webParameters": null,
-  "remoteSharePointParameters": null,
-  "indexedSharePointParameters": null,
-  "indexedOneLakeParameters": null
+  }
 }
 ```
 
 > [!NOTE]
-> Sensitive information is redacted. The generated resources appear at the end of the response. The `mcpToolParameters` property isn't operational in this preview and is reserved for future use.
+> Sensitive information is redacted. The generated resources appear at the end of the response.
 
 ## Create a knowledge source
 
@@ -108,40 +105,33 @@ To create a blob knowledge source:
     ```http
     @search-url = <YOUR SEARCH SERVICE URL>
     @api-key = <YOUR SEARCH ADMIN API KEY>
-    @ks-name = <YOUR KNOWLEDGE SOURCE NAME>
-    @connection-string = <YOUR FULL ACCESS CONNECTION STRING TO AZURE STORAGE>
-    @container-name = <YOUR BLOB CONTAINER NAME>
     ```
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
-    PUT {{search-url}}/knowledgeSources/earth-at-night-blob-ks?api-version=2025-11-01-preview
+    PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     
     {
-      "name": "{{ks-name}}",
+      "name": "my-blob-ks",
       "kind": "azureBlob",
-      "description": "This knowledge source pulls from a blob storage container containing pages from the Earth at Night PDF.",
+      "description": "This knowledge source pulls from a blob storage container.",
       "encryptionKey": null,
       "azureBlobParameters": {
-        "connectionString": "{{connection-string}}",
-        "containerName": "{{container-name}}",
+        "connectionString": "<YOUR AZURE STORAGE CONNECTION STRING>",
+        "containerName": "<YOUR BLOB CONTAINER NAME>",
         "folderPath": null,
         "isADLSGen2": false,
         "ingestionParameters": {
             "identity": null,
             "disableImageVerbalization": null,
-            "chatCompletionModel": {
-              // Redacted for brevity
-            },
-            "embeddingModel": {
-              // Redacted for brevity
-            },
+            "chatCompletionModel": { TRIMMED FOR BREVITY },
+            "embeddingModel": { TRIMMED FOR BREVITY },
             "contentExtractionMode": "minimal",
             "ingestionSchedule": null,
-            "ingestionPermissionOptions": [ ],
+            "ingestionPermissionOptions": []
         }
       }
     }
