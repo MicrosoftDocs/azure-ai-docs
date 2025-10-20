@@ -1,6 +1,8 @@
 ---
 title: Include file
 description: Include file
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: sdgilley
 ms.author: sgilley
 ms.reviewer: deeikele
@@ -14,7 +16,6 @@ ms.custom:
   - build-aifnd
   - build-2025
 ---
-
 
 Create multiple [!INCLUDE [fdp-project-name](fdp-project-name.md)]s on an existing `AI Foundry` resource to enable team collaboration and shared resource access including security, deployments, and connected tools. This setup is ideal in restricted Azure subscriptions where developers need self-serve exploration ability within the setup of a pre-configured environment.
 
@@ -45,6 +46,8 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     # [Azure AI Foundry portal](#tab/ai-foundry)
     
+    ::: moniker range="foundry-classic"
+    
     [!INCLUDE [tip-left-pane](tip-left-pane.md)]
     
     1. In [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs), select either the [!INCLUDE [fdp-project-name](fdp-project-name.md)] or its associated resource.
@@ -54,6 +57,16 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
         :::image type="content" source="../media/how-to/projects/second-project.png" alt-text="Screenshot shows how to create a second project on an existing resource.":::
     
+    ::: moniker-end
+    
+    ::: moniker range="foundry"
+    
+    1. Select **Operate** in the upper-right navigation.
+    1. Select **Admin Console** in the left pane.
+    1. Select the Parent resource you want to add a project to.
+    1. Select **Add project**.
+    
+    ::: moniker-end
     
     # [Python SDK](#tab/python)
     
