@@ -1,7 +1,7 @@
 ---
-title: 'Understanding the agent development lifecyle'
+title: 'Understanding the agent development lifecycle'
 titleSuffix: Azure AI Foundry
-description: Understanding the agent development lifecyle
+description: Understanding the agent development lifecycle
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -12,21 +12,21 @@ author: aahill
 ms.author: aahi
 ---
 
-# Understanding the agent development lifecyle
+# Understanding the agent development lifecycle
 
-The agent building experience in Azure AI Foundry brings many development and observability features, from agent creation all the way to embedding your agent into your applications. You can use the Azure AI Foundry portal or code build, customize, and test your agent's behavior, and then iterate with capabilities like tracing, monitoring and evaluation to improve your agent's performance. When you're ready, you can publish your agent to preview, share and see your agent in action within your applications.
+The agent building experience in Azure AI Foundry brings many development and observability features, from agent creation all the way to embedding your agent into your applications. You can use the Azure AI Foundry portal or code build, customize, and test your agent's behavior, and then iterate with capabilities like tracing, monitoring, and evaluation to improve your agent's performance. When you're ready, you can publish your agent to preview, share, and see your agent in action within your applications.
 
 ## Types of agents
 
 * Declarative - prompt agents, workflow agents
 * Code-based - hosted agents, containerized agents
 
-You can create declarative agents in the Azure AI Foundry portal or your own development environment using the CLI, SDK, or REST API. Learn more [here](code-based-agents-doc). Then you can see these agents in your list, and test, monitor and publish them.
+You can create declarative agents in the Azure AI Foundry portal or your own development environment using the CLI, SDK, or REST API. See the quickstart for more information. After you create agents, you can view, test, monitor, and publish them.
 <!--The rest of this document will focus on declarative agents.-->
 
 ## Creating a prompt agent
 
-If you already know what kind of agent you want to create, you can start creating it, configuring your model  instructions and tools. If you'd like to start with some examples, pick an agent manifest closest to your use case, and expand your agent capabilities from there. See more details about agent manifests [here](agent-manifest-doc).
+If you already know what kind of agent you want to create, you can start creating it and configure your model  instructions and tools. If you'd like to start with some examples, pick an agent manifest closest to your use case, and expand your agent capabilities from there. <!--See more details about agent manifests [here](agent-manifest-doc).-->
 
 <!--
 Once you create your first agent, it will show in your agent list, which you can return to at any time via the **Build** top nav item, and selecting **Agents** in the left navigation. Here there will be a grid of Agents, with columns for details of each agent you have in your current Foundry project. Selecting an agent will take you to that agent's playground.
@@ -34,26 +34,26 @@ Once you create your first agent, it will show in your agent list, which you can
 
 
 ## The agent development lifecycle
-The agent building experience offers integrated experiences for each core step of the agent development lifecycle. We recommend utlizing these core capabilities as you develop your production-ready agent application. Each capability has in depth documentation you can go to to learn more.
+The agent building experience offers integrated experiences for each core step of the agent development lifecycle. We recommend utilizing these core capabilities as you develop your production-ready agent application. Each capability has in depth documentation you can go to learn more.
 
 ### Saving and versioning
-After your create the first version of your agent, you can then save subsequent changes as new versions. You can test unsaved changes in the agent playground, but if you want to view conversation history, monitor your agents performance or run full evaluations, you'll be prompted to save your changes. Learn more about versioning [here](versioning-doc-page).
+After you create the first version of your agent, you can then save subsequent changes as new versions. You can test unsaved changes in the agent playground, but if you want to view conversation history, monitor your agents performance or run full evaluations, you'll be prompted to save your changes. <!--Learn more about versioning [here](versioning-doc-page).-->
 
 ### Adding Tools
 You can make your agent more powerful by giving it knowledge (specific files or indexes), or allowing it to take actions (like searching the web or calling external APIs). There are tools available for most use cases, from simple file uploads to custom MCP server connections. For more complicated tools, you may need to configure authentication or add connections as part of attaching it to an agent. You must successfully configure a tool to be able to save an agent with it attached. You can reuse configured tools across agents. See the [tools overview](../how-to/tools/overview.md) for more about available tools.
 
 ### Publishing your agent
 
-Once you have an agent version you are happy with, publish it (for example to Microsfot 365 or Microsoft Teams) to get a stable endpoint that you can easily see in action in a web app, share, manage, or embed in your existing applications. You and your collaborators can validate the agent's performance, and identify what needs refinement. You can make any necessary updates, and republish a new version at any time. Learn more about what you can do with your published agent [here](publishing-agent-doc-page).
+Once you have an agent version you are happy with, publish it (for example to Microsoft 365 or Microsoft Teams) to get a stable endpoint that you can easily see in action in a web app, share, manage, or embed in your existing applications. You and your collaborators can validate the agent's performance, and identify what needs refinement. You can make any necessary updates, and republish a new version at any time. <!--Learn more about what you can do with your published agent [here](publishing-agent-doc-page).-->
 
 ### Developing a workflow
 
-If you want to develop a more advanced agentic workflow, for example you want to trigger an action on certain criteria, or orchestrate multiple agents together, you can do so with **Workflows**. This interactive interface lets you define how agentic components like agents, tools, and actions flow together in prescriptive ways. You can test, iterate, monitor, and publish a workflow in similar way to individual Foundry agents. Learn more about developing workflows [here](workflows-doc-page).
+If you want to develop a more advanced agentic workflow, for example you want to trigger an action on certain criteria, or orchestrate multiple agents together, you can do so with **Workflows**. This interactive interface lets you define how agentic components like agents, tools, and actions flow together in prescriptive ways. You can test, iterate, monitor, and publish a workflow in similar way to individual Foundry agents. <!--Learn more about developing workflows [here](workflows-doc-page).-->
 
 
 ## Agent playground in Azure AI Foundry portal
 
-The agent playground is where you do your agent development. You can craft your agent's identity, compare models, test different instructions and tool configurations, add specific knowledge and memory customizations, and set restrictions on your agent's behavior. At any point, you can transition to code to continue development in your preferred development environment. For example, you can work on your agent in Visual Studio Code Code from the Foundry portal which offers a preconfigured cloud environment to further iterate on your agent using the [Visual Studio extension](../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context).
+The agent playground is where you do your agent development. You can craft your agent's identity, compare models, test different instructions and tool configurations, add specific knowledge and memory customizations, and set restrictions on your agent's behavior. At any point, you can transition to code to continue development in your preferred development environment. For example, you can work on your agent in Visual Studio Code from the Foundry portal, which offers a preconfigured cloud environment to further iterate on your agent using the [Visual Studio extension](../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context).
 
 ### Agent identity configurations
 
