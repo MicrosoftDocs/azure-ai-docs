@@ -5,7 +5,7 @@ description: Learn how to Develop applications with Semantic Kernel and Azure AI
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: taochen
-ms.date: 02/27/2025
+ms.date: 10/20/2025
 ms.topic: how-to
 ms.service: azure-ai-foundry
 ---
@@ -29,7 +29,7 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
     pip install semantic-kernel
     ```
 
-- This article uses the Model Inference API, so install the relevant Azure dependencies.  You can use the following command:
+- This article uses the Model Inference API, so install the relevant Azure dependencies. You can use the following command:
 
     ```bash
     pip install semantic-kernel[azure]
@@ -37,7 +37,7 @@ In this article, you learn how to use [Semantic Kernel](/semantic-kernel/overvie
 
 ## Configure the environment
 
-To use language models deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model you want to use:
+To use language models deployed in Azure AI Foundry portal, you need the endpoint and credentials to connect to your project. Follow these steps to get the information you need from the model:
 
 [!INCLUDE [tip-left-pane](../../includes/tip-left-pane.md)]
 
@@ -80,7 +80,7 @@ chat_completion_service = AzureAIInferenceChatCompletion(ai_model_id="<deploymen
 ```
 
 > [!NOTE]
-> IF you use Microsoft Entra ID, make sure that the endpoint was deployed with that authentication method and that you have the required permissions to invoke it.
+> If you use Microsoft Entra ID, make sure that the endpoint was deployed with that authentication method and that you have the required permissions to invoke it.
 
 ### Azure OpenAI models
 
@@ -104,7 +104,7 @@ chat_completion_service = AzureAIInferenceChatCompletion(
 
 ## Inference parameters
 
-You can configure how inference is performed by using the `AzureAIInferenceChatPromptExecutionSettings` class:
+You can configure how to perform inference by using the `AzureAIInferenceChatPromptExecutionSettings` class:
 
 ```python
 from semantic_kernel.connectors.ai.azure_ai_inference import AzureAIInferenceChatPromptExecutionSettings
