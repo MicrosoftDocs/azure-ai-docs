@@ -920,8 +920,13 @@
         },
         {
             "source_path_from_root": "/articles/ai-foundry/openai/how-to/manage-costs.md",
-            "redirect_url": "/azure/ai-foundry/foundry-models/how-to/manage-costs",
-            "redirect_document_id": true
+            "redirect_url": "/azure/ai-foundry/concepts/manage-costs",
+            "redirect_document_id": false
+        },
+        {
+            "source_path_from_root": "/articles/ai-foundry/foundry-models/how-to/manage-costs.md",
+            "redirect_url": "/azure/ai-foundry/concepts/manage-costs",
+            "redirect_document_id": false
         },
         {
             "source_path_from_root": "/articles/ai-studio/how-to/simulator-interaction-data.md",
@@ -1272,6 +1277,11 @@
           "source_path_from_root": "/articles/ai-foundry/agents/concepts/agent-catalog.md",
           "redirect_url": "/azure/ai-foundry/agents/overview",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/agents/how-to/tools/code-interpreter-samples.md",
+          "redirect_url": "/azure/ai-foundry/agents/how-to/tools/code-interpreter",
+          "redirect_document_id": true
         },
         {
           "source_path_from_root": "/articles/ai-foundry/how-to/evaluate-prompts-playground.md",

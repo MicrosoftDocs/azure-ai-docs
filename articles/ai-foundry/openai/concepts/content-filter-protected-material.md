@@ -1,15 +1,20 @@
 ---
 title: Protected Material Detection Filter
 description: Learn about the Protected Material Detection Filter for identifying and flagging known protected text and code content in large language model outputs.
-author: PatrickFarley
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
 ms.date: 09/16/2025
 ms.topic: conceptual
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Protected material detection filter
+
 
 The protected material detection filter scans the output of large language models (LLMs) to identify and flag known protected material. It helps organizations prevent the generation of content that closely matches copyrighted text or code.
 

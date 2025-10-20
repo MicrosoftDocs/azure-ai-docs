@@ -1198,6 +1198,8 @@ The server `session.updated` event is returned when a session is updated by the 
 * `whisper-1` 
 * `gpt-4o-transcribe`
 * `gpt-4o-mini-transcribe`
+* `gpt-4o-transcribe-diarize`
+
 
 ### RealtimeAudioInputTranscriptionSettings
 
@@ -1205,7 +1207,7 @@ The server `session.updated` event is returned when a session is updated by the 
 |-------|------|-------------|
 | language | string | The language of the input audio. Supplying the input language in ISO-639-1 format (such as `en`) will improve accuracy and latency. |
 | model | [RealtimeAudioInputTranscriptionModel](#realtimeaudioinputtranscriptionmodel) | The model for audio input transcription. For example, `whisper-1`. |
-| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe` and `gpt-4o-mini-transcribe` models, the prompt is a free text string such as "expect words related to technology."|
+| prompt | string | The prompt for the audio input transcription. Optional text to guide the model's style or continue a previous audio segment. For the `whisper-1` model, the prompt is a list of keywords. For the `gpt-4o-transcribe`, `gpt-4o-transcribe-diarize`, and `gpt-4o-mini-transcribe` models, the prompt is a free text string such as "expect words related to technology."|
 
 ### RealtimeAudioInputAudioNoiseReductionSettings
 

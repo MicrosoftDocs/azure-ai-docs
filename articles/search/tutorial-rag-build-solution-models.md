@@ -1,5 +1,5 @@
 ---
-title: 'RAG tutorial: Set up models'
+title: 'CLassic RAG tutorial: Set up models'
 titleSuffix: Azure AI Search
 description: Set up an embedding model and chat model for generative search (RAG).
 manager: nitinme
@@ -9,13 +9,16 @@ ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.custom: references_regions
-ms.date: 07/17/2025
+ms.date: 10/14/2025
 
 ---
 
-# Tutorial: Choose embedding and chat models for RAG in Azure AI Search
+# Tutorial: Choose embedding and chat models for classic RAG in Azure AI Search
 
 A RAG solution built on Azure AI Search takes a dependency on embedding models for vectorization, and on chat completion models for conversational search over your data.
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
 
 In this tutorial, you:
 
@@ -75,11 +78,11 @@ The following models are commonly used for a chat search experience:
 
 | Client | Chat models |
 |--------|------------|
-| Azure OpenAI | GPT-35-Turbo, <br>GPT-4, <br>GPT-4o, <br>GPT-4 Turbo |
+| Azure OpenAI | <br>GPT-4, <br>GPT-4o, <br>GPT-4.1. <br>GPT-5 |
 
-GPT-35-Turbo and GPT-4 models are optimized to work with inputs formatted as a conversation.
+GPT-4 and GPT-5 models are optimized to work with inputs formatted as a conversation.
 
-We use GPT-4o in this tutorial. During testing, we found that it's less likely to supplement with its own training data. For example, given the query "how much of the earth is covered by water?", GPT-35-Turbo answered using its built-in knowledge of earth to state that 71% of the earth is covered by water, even though the sample data doesn't provide that fact. In contrast, GPT-4o responded (correctly) with "I don't know".
+We use GPT-4o in this tutorial.
 
 ## Deploy models and collect information
 

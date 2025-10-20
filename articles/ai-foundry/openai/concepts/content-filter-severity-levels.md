@@ -1,16 +1,21 @@
 ---
 title: Content Filter Severity Levels
 description: Overview of risk categories for content filtering in Azure OpenAI, including hate, fairness, sexual, violence, and more.
-author: PatrickFarley
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Content filtering severity levels
+
 
 <!--
 Text and image models support Drugs as an additional classification. This category covers advice related to Drugs and depictions of recreational and non-recreational drugs.

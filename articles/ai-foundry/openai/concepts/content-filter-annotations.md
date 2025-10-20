@@ -1,16 +1,21 @@
 ---
 title: Content Filter Annotations
 description: Learn about annotations for content filtering in Azure OpenAI, including severity levels and optional models.
-author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-ms.author: pafarley
+author: ssalgadodev
+ms.author: ssalgado
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Content filtering annotations
+
 
 Azure OpenAI in Azure AI Foundry Models provides content filtering annotations to help you understand the content filtering results for your requests. Annotations can be enabled even for filters and severity levels that have been disabled from blocking content.
 

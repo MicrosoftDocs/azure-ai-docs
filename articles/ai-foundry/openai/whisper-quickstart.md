@@ -12,6 +12,8 @@ ms.author: pafarley
 author: PatrickFarley
 recommendations: false
 zone_pivot_groups: programming-languages-rest-ps-py-js-cs
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Quickstart: Speech to text with the Azure OpenAI Whisper model

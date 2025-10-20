@@ -1,16 +1,22 @@
 ---
 title: Content Filter Prompt Shields
 description: Learn about prompt shield content in Azure OpenAI, including user prompt attacks and indirect attack severity definitions.
-author: PatrickFarley
+author: ssalgadodev
+ms.author: ssalgado
 manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.date: 09/16/2025
-ms.author: pafarley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Prompt shields content filtering
+
+
 
 Prompt shields are a feature of the Azure OpenAI content filtering system that helps detect and mitigate user prompt attacks. These attacks occur when a user attempts to manipulate the model's behavior by embedding harmful or inappropriate content within their input.
 
