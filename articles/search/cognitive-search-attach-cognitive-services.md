@@ -41,7 +41,7 @@ To attach an Azure AI multi-service resource, you must provide connection inform
 
   Your multi-service resource should have API kind set to `CognitiveServices`. You can view this property in the Azure portal page for your multi-service account:
 
-  :::image type="content" source="media/cognitive-search-attach-cognitive-services/cognitive-services-kind" alt-text="Screenshot of the API kind property in the Azure portal." border="true":::
+  :::image type="content" source="media/cognitive-search-attach-cognitive-services/cognitive-services-kind.png" alt-text="Screenshot of the API kind property in the Azure portal." border="true":::
 
 > [!NOTE]
 > If your Azure AI resource is configured to use a private endpoint, Azure AI Search can connect [using a shared private link](search-indexer-howto-access-private.md) For more information, see the [requirements and limits for using shared private links](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
