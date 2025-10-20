@@ -1,5 +1,5 @@
 ---
-title: Create a workspace with Azure Resource Manager template
+title: Create a Workspace by Using an Azure Resource Manager Template
 titleSuffix: Azure Machine Learning
 description: Learn how to use an Azure Resource Manager template to create a new Azure Machine Learning workspace.
 services: machine-learning
@@ -10,19 +10,19 @@ ms.custom: devx-track-azurepowershell, devx-track-arm-template, devx-track-azure
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: deeikele
-ms.date: 09/11/2024
-#Customer intent: As a DevOps person, I need to automate or customize the creation of Azure Machine Learning by using templates.
+ms.date: 10/22/2025
+#Customer intent: As a DevOps deployment manager, I want to automate or customize the creation of Azure Machine Learning by using templates.
 ---
 
 # Use an Azure Resource Manager template to create a workspace for Azure Machine Learning
 
-In this article, you learn several ways to create an Azure Machine Learning workspace using Azure Resource Manager templates. A Resource Manager template makes it easy to create resources as a single, coordinated operation. A template is a JSON document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values when using the template.
+In this article, you learn several ways to create an Azure Machine Learning workspace by using Azure Resource Manager templates. A Resource Manager template makes it easy to create resources in a single, coordinated operation. A template is a JSON document that defines the resources that are needed for a deployment. It might also specify deployment parameters. Parameters are used to provide input values during deployment.
 
-For more information, see [Deploy an application with Azure Resource Manager template](/azure/azure-resource-manager/templates/deploy-powershell).
+For more information, see [Deploy an application with an Azure Resource Manager template](/azure/azure-resource-manager/templates/deploy-powershell).
 
 ## Prerequisites
 
-* An __Azure subscription__. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* An Azure subscription. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * To use a template from a CLI, you need either [Azure PowerShell](/powershell/azure/) or the [Azure CLI](/cli/azure/install-azure-cli).
 
