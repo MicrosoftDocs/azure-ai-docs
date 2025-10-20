@@ -493,7 +493,7 @@ This table shows the download performance the Azure Machine Learning data runtim
 We can see that a larger file, broken up into smaller files, can improve download performance due to parallelism. We recommend that you avoid files that become too small (less than 4 MB) because the time needed for storage request submissions increases, relative to time spent downloading the payload. For more information, read [Many small files problem](#many-small-files-problem).
 
 ### Mount (streaming)
-In mount mode, the Azure Machine Learning data capability uses the [FUSE (filesystem in user space)](https://www.kernel.org/doc/html/latest/filesystems/fuse.html) Linux feature, to create an emulated filesystem. Instead of downloading all the data to the local disk (SSD) of the compute target, the runtime can react to the user's script actions *in real-time*. For example, *"open file"*, *"read 2-KB chunk from position X"*, *"list directory content"*.
+In mount mode, the Azure Machine Learning data capability uses the [FUSE (filesystem in user space)](https://www.kernel.org/doc/html/latest/filesystems/fuse) Linux feature, to create an emulated filesystem. Instead of downloading all the data to the local disk (SSD) of the compute target, the runtime can react to the user's script actions *in real-time*. For example, *"open file"*, *"read 2-KB chunk from position X"*, *"list directory content"*.
 
 | Advantages | Disadvantages |
 |-----------|-------------|
@@ -968,7 +968,7 @@ Files are read in *blocks* of 1-4 MB in size. Files smaller than a block are rea
 
 For small files, the latency interval mostly involves handling the requests to storage, instead of data transfers. Therefore, we offer these recommendations to increase the file size:
 
-- For unstructured data (images, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://pytorch.org/data/0.9/dp_tutorial.html) can extract the smaller files.
+- For unstructured data (images, video, etc.), archive (zip/tar) small files together, to store them as a larger file that can be read in multiple chunks. These larger archived files can be opened in the compute resource, and [PyTorch Archive DataPipes](https://meta-pytorch.org/data/0.9/dp_tutorial.html) can extract the smaller files.
 - For structured data (CSV, parquet, etc.), examine your ETL process, to make sure that it coalesces files to increase size. Spark has `repartition()` and `coalesce()` methods to help increase file sizes.
 
 If you can't increase your file sizes, explore your [Azure Storage options](#azure-storage-options).
