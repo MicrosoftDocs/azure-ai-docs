@@ -14,6 +14,7 @@ monikerRange: '<=doc-intel-4.0.0'
 
 # Document Intelligence custom models
 
+::: moniker range="doc-intel-4.0.0"
 [!INCLUDE [applies to v4.0](../includes/applies-to-v40.md)]
 ::: moniker-end
 
