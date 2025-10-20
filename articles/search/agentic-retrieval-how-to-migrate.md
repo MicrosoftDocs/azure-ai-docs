@@ -19,7 +19,7 @@ If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an ea
 Migration instructions are intended to help you run an existing solution on a newer API version. The instructions help you resolve breaking changes at the API level so that you have no loss of functionality. For help with adding new functionality, start with [What's new](whats-new.md).
 
 > [!TIP]
-> Using Azure SDKs instead of REST? Readthis article to learn about breaking changes, and then install a newer preview package to begin your updates. Before you start, check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
+> Using Azure SDKs instead of REST? Read this article to learn about breaking changes, and then install a newer preview package to begin your updates. Before you start, check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## When to migrate
 
@@ -43,13 +43,13 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 
 1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
 1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source).
-1. [Update an azureBlob knowledge sources](#update-a-searchindex-knowledge-source).
+1. [Update azureBlob knowledge sources](#update-an-azureblob-knowledge-source).
 1. [Send a query to test the retrieval](#test-the-retrieval-for-2025-11-01-preview-updates).
-1. [Update client code](#update-code-and-clients).
+1. [Update client code](#update-code-and-clients-for-2025-11-01-preview).
 
 #### Replace knowledge agent with knowledge base
 
-1. Get the current definition of your knowledge agent. The response should look similar to [this example](/rest/api/searchservice/knowledge-agents/get#searchservicegetknowledgeagent?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+1. Get the current definition of your knowledge agent. The response should look similar to [this example](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicegetknowledgeagent).
 
    ```http
    ### Get a knowledge agent by name
@@ -146,7 +146,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 
 #### Update an azureBlob knowledge source
 
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
 
    ```http
    ### Get a knowledge source by name
@@ -248,7 +248,7 @@ Content-Type: application/json
 
 If the response has a `200 OK` HTTP code, your knowledge base successfully retrieved content from the knowledge source.
 
-#### Update code and clients
+#### Update code and clients for 2025-11-01-preview
 
 To complete your migration, follow these cleanup steps:
 
@@ -267,8 +267,8 @@ Starting with the [2025-08-01-preview](#2025-08-01-preview-1), reusable knowledg
 1. [Get the current `targetIndexes` configuration](#get-the-current-configuration).
 1. [Create an equivalent knowledge source](#create-a-knowledge-source).
 1. [Update the agent to use `knowledgeSources` instead of `targetIndexes`](#update-the-agent).
-1. [Send a query to test the retrieval](#test-the-retrieval).
-1. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
+1. [Send a query to test the retrieval](#test-the-retrieval-for-2025-08-01-preview-updates).
+1. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients-for-2025-08-01-preview).
 
 #### Get the current configuration
 
@@ -351,7 +351,7 @@ POST https://{{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 This example updates the definition to reference one knowledge source, but you can target multiple knowledge sources. You can also use other properties to control the retrieval behavior, such as `alwaysQuerySource`. For more information, see [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
 
-#### Test the retrieval
+#### Test the retrieval for 2025-08-01-preview updates
 
 To test your agent's output with a query, use the 2025-08-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
@@ -378,7 +378,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
 
 If the response has a `200 OK` HTTP code, your agent successfully retrieved content from the knowledge source.
 
-#### Update code and clients
+#### Update code and clients for 2025-08-01-preview
 
 To complete your migration, follow these cleanup steps:
 
@@ -398,7 +398,7 @@ This section covers breaking and nonbreaking changes for the following REST API 
 
 ### 2025-11-01-preview
 
-To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for this version, make sure the 2025-11-01-previewAPI version is selected in the filter at the top of the page.
+To review the [REST API reference documentation](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) for this version, make sure the 2025-11-01-preview API version is selected in the filter at the top of the page.
 
 #### [**Breaking changes**](#tab/breaking-1)
 
@@ -415,9 +415,16 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
   + `includeActivity` is moved from `outputConfiguration` onto the retrieval request object directly.  
   + `attemptFastPath` in `outputConfiguration` is removed entirely. The new `minimal` reasoning effort is considered to be the replacement.
 
-+ Knowledge agent (base) `requestLimits` is removed. It's child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
++ Knowledge agent (base) `requestLimits` is removed. Its child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
 
-+ Knowledge agent (base) `knowledgeSources` parameters: The following child properties are moved to the `knowledgeSourceParams` properties of the retrieval request object: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`. The `maxSubQueries` property is gone. Its replacement is the new retrieval reasoning effort property.
++ Knowledge agent (base) `knowledgeSources` parameters: The following child properties are moved to the `knowledgeSourceParams` properties of the retrieval request object: 
+
+  + `rerankerThreshold`
+  + `alwaysQuerySource`
+  + `includeReferenceSourceData`
+  + `includeReferences`.
+
+  The `maxSubQueries` property is gone. Its replacement is the new retrieval reasoning effort property.
 
 + Knowledge agent (base) retrieval request object: The `semanticReranker` activity record is replaced with the `agenticReasoning` activity record type.
 
@@ -433,7 +440,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + All knowledge sources that pull from a search index have a `status` operation, which returns the synchronization status of the knowledge source with its data source.
 
-+ SearchIndex knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieval request.
++ The `searchIndex` knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieval request.
 
 + Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing.
 
