@@ -42,43 +42,211 @@ You can continue to run older code if you retain the API version value. However,
 If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge agent is renamed to knowledge base, and multiple properties are relocated to different objects and levels within an object definition.
 
 1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
-1. [Update retrieval request object](#update-retrieval-request-object).
-1. [Update searchIndex knowledge sources](#update-the-agent).
-1. [Send a query to test the retrieval](#test-the-retrieval).
-1. [Remove code that uses `targetIndexes` and update clients](#update-code-and-clients).
+1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source).
+1. [Update an azureBlob knowledge sources](#update-a-searchindex-knowledge-source).
+1. [Send a query to test the retrieval](#test-the-retrieval-for-2025-11-01-preview-updates).
+1. [Update client code](#update-code-and-clients).
 
 #### Replace knowledge agent with knowledge base
 
-1. get the current definition.
-1. change the API version.
-1. rename everything that stays.
-1. cut properties that go elsewhere.
-1. see other docs for adding new functionality.
+1. Get the current definition of your knowledge agent. The response should look similar to [this example](/rest/api/searchservice/knowledge-agents/get#searchservicegetknowledgeagent?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
-#### Update retrieval request object
+   ```http
+   ### Get a knowledge agent by name
+   GET {{search-endpoint}}/agents/corporate-ka?api-version=2025-08-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
 
-1. get the current definition.
-1. change the API version.
-1. rename everything that stays.
-1. paste properties from knowledge agent (base).
-1. see other docs for adding new functionality.
+1. Change the API version to `2025-11-01-preview`.
+
+1. Replace the endpoint: `/knowledgebases/knowledge-base-name`.
+
+1. Replace `outputConfiguration`, `requestLimits`, and `retrievalInstructions`.
+
+1. Send the request to update the object. You can't rename an existing object, but you can create a new one that's an updated version of the original agent if you want to change the name. The response should look similar to [this example](/rest/api/searchservice/knowledgebases/get#searchservicegetknowledgebase?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+   ```http
+    PUT {{url}}/knowledgebases/corporate-kb?api-version={{api-version}}
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+      "name": "corporate-kb",
+      "description": "A sample knowledge base with default medium reasoning",
+      "knowledgeSources": [
+        {
+            "name": "sec-gics-communicationservices"
+        },
+        {
+            "name": "sec-gics-financials"
+        },
+        {
+            "name": "sec-gics-healthcare"
+        }
+      ],
+      "models": [
+        {
+            "kind": "azureOpenAI",
+            "azureOpenAIParameters": {
+                "deploymentId": "gpt-5-mini",
+                "modelName": "gpt-5-mini",
+                "resourceUri": "{{aoai-endpoint}}",
+                "apiKey": "{{aoai-key}}"
+            }
+        }
+      ],
+      "retrievalReasoningEffort": { "kind": "medium" },
+      "outputMode": "answerSynthesis",
+      "answerInstructions": "Provide a concise and accurate answer based on the retrieved information.",
+      "retrievalInstructions": "Use sec-gics-financials to answer financial questions, never use sec-gis-healthcare for this"
+    }
+   ```
 
 #### Update a searchIndex knowledge source
 
-1. get the current definition.
-1. change the API version.
-1. ingestionParameters
-1. `sourceDataSelect` is renamed to `sourceDataFields` and is an array that accepts `fieldName` and `fieldToSearch`.
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-source/get#searchservicegetknowledgeagent?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
+
+   ```http
+   ### Get a knowledge source by name
+   GET {{search-endpoint}}/agents/hotels-ks?api-version=2025-08-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
+
+1. Change the API version to `2025-11-01-preview`.
+
+1. Add `ingestionParameters`.
+
+1. Rename `sourceDataSelect` to `sourceDataFields` and provide `fieldName` and `fieldToSearch` values.
+
+1. Send the request to update the knowledge source.
+
+    ```http
+    PUT {{url}}/knowledgesources/search-index-ks?api-version={{api-version}}
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "search-index-ks",
+        "kind": "searchIndex",
+        "description": "A sample search index knowledge source",
+        "searchIndexParameters": {
+            "searchIndexName": "sec-gics-communicationservices",
+            "semanticConfigurationName": "en-semantic-config",
+            "sourceDataFields": [
+                { "name": "content" }, { "name": "title" }
+            ],
+            "searchFields": [
+                { "name": "content" }, { "name": "title" }, { "name": "url" }
+            ]
+        }
+    }
+    ```
 
 #### Update an azureBlob knowledge source
 
-1. get the current definition.
-1. change the API version.
-1. ingestionParameters
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-source/get#searchservicegetknowledgeagent?view=rest-searchservice-2025-08-01-preview&preserve-view=true).
 
-#### Test the retrieval
+   ```http
+   ### Get a knowledge source by name
+   GET {{search-endpoint}}/agents/hotels-ks?api-version=2025-08-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
 
-TBD 2025-11-01-preview
+1. Change the API version to `2025-11-01-preview`.
+
+1. Add `ingestionParameters`.
+
+1. Remove obsolete parameters.
+
+1. Send the request to update the knowledge source.
+
+    ```http
+    PUT {{url}}/knowledgesources/azure-blob-ks?api-version=2025-11-01-preview
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "azure-blob-ks",
+        "kind": "azureBlob",
+        "description": "A sample azure blob knowledge source",
+        "azureBlobParameters": {
+            "connectionString": "{{blob-connection-string}}",
+            "containerName": "blobcontainer",
+            "folderPath": null,
+            "isADLSGen2": false,
+            "ingestionParameters": {
+                "identity": null,
+                "embeddingModel": {
+                    "kind": "azureOpenAI",
+                    "azureOpenAIParameters": {
+                        "deploymentId": "text-embedding-3-large",
+                        "modelName": "text-embedding-3-large",
+                        "resourceUri": "{{aoai-endpoint}}",
+                        "apiKey": "{{aoai-key}}"
+                    }
+                },
+                "chatCompletionModel": null,
+                "disableImageVerbalization": false,
+                "ingestionSchedule": null,
+                "ingestionPermissionOptions": [],
+                "contentExtractionMode": "standard",
+                "aiServices": {
+                    "uri": "{{ai-endpoint}}",
+                    "apiKey": "{{ai-key}}"
+                }
+            }
+        }
+    }
+    ```
+
+#### Test the retrieval for 2025-11-01-preview updates
+
+To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+```http
+### Send a query to the knowledge base
+POST {{url}}/knowledgebases/corporate-kb/retrieve?api-version=2025-11-01-preview
+api-key: {{key}}
+Content-Type: application/json
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "What companies are in the financial sector?" }
+            ]
+        }
+    ],
+    "includeActivity": true,
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "sec-gics-financials",
+            "kind": "searchIndex",
+            "includeReferences": true,
+            "includeReferenceSourceData": true
+        },
+        {
+            "knowledgeSourceName": "sec-gics-communicationservices",
+            "kind": "searchIndex",
+            "includeReferences": false,
+            "includeReferenceSourceData": false
+        },
+        {
+            "knowledgeSourceName": "sec-gics-healthcare",
+            "kind": "searchIndex",
+            "includeReferences": true,
+            "includeReferenceSourceData": false,
+            "alwaysQuerySource": true
+        }
+    ]
+}
+```
+
+If the response has a `200 OK` HTTP code, your knowledge base successfully retrieved content from the knowledge source.
 
 #### Update code and clients
 
