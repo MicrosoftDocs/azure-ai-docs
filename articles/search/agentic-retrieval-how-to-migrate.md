@@ -23,19 +23,19 @@ Migration instructions are intended to help you run an existing solution on a ne
 
 ## When to migrate
 
-Each new API version that supports agentic retrieval introduces breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to the latest [2025-11-01-preview](#2025-11-01-preview-1).
+Each new API version that supports agentic retrieval has introduced breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to the latest [2025-11-01-preview](#2025-11-01-preview-1).
 
 You can continue to run older code if you retain the API version value. However, to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
 ## How to migrate
-
-+ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then migrate to 2025-11-01-preview.
 
 + To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
 + For each incremental update, start by getting the current object definitions from the search service. Save a copy of the original definition in case you need to restore it. Consider [backing up search index content](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) if you can't easily rebuild the index.
 
 + During development, run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
+
++ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then migrate to 2025-11-01-preview.
 
 ### [**2025-11-01-preview**](#tab/migrate-11-01)
 
@@ -64,7 +64,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
 
 1. Replace `outputConfiguration`, `requestLimits`, and `retrievalInstructions`.
 
-1. Send the request to update the object. You can't rename an existing object, but you can create a new one that's an updated version of the original agent if you want to change the name. The response should look similar to [this example](/rest/api/searchservice/knowledgebases/get#searchservicegetknowledgebase?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+1. Send the request to update the object. You can't rename an existing object, but you can create a new one that's an updated version of the original agent if you want to change the name. The response should look similar to [this example](/rest/api/searchservice/knowledgebases/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchservicegetknowledgebase).
 
    ```http
     PUT {{url}}/knowledgebases/corporate-kb?api-version={{api-version}}
@@ -103,6 +103,8 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
     }
    ```
 
+You now have a knowledge base instead of a knowledge agent.
+
 #### Update a searchIndex knowledge source
 
 1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
@@ -115,8 +117,6 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
    ```
 
 1. Change the API version to `2025-11-01-preview`.
-
-1. Add `ingestionParameters`.
 
 1. Rename `sourceDataSelect` to `sourceDataFields` and provide `fieldName` and `fieldToSearch` values.
 
@@ -143,6 +143,8 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
         }
     }
     ```
+
+You now have an updated `searchIndex` knowledge source with the correct field specifications for the 2025-11-01-preview.
 
 #### Update an azureBlob knowledge source
 
@@ -202,9 +204,15 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
     }
     ```
 
+You now have an updated `azureBlob` knowledge source with the correct ingestion parameters for the 2025-11-01-preview.
+
 #### Test the retrieval for 2025-11-01-preview updates
 
 To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+The retrieve request is modified in the latest preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). 
+
+This variant is the most similar to the default 2025-08-010-preview experience.
 
 ```http
 ### Send a query to the knowledge base
