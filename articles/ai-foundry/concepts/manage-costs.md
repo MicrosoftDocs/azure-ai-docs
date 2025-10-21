@@ -188,7 +188,7 @@ To understand the breakdown of the cost, use the **Cost Analysis** tool in Azure
 1. Select the name of the project. Azure portal opens in a new window.
 ::: moniker-end
 
-::: moniker range="foudry"
+::: moniker range="foundry"
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
 ::: moniker-end
 
