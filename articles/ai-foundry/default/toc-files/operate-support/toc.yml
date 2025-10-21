@@ -1,4 +1,6 @@
 items:
+    - name: Use Azure AI Foundry with a screen reader
+      href: ../../../tutorials/screen-reader.md
     - name: Code of conduct
       href: /legal/ai-code-of-conduct
     - name: Azure updates
