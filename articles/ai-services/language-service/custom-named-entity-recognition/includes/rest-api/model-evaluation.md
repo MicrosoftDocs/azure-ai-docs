@@ -36,7 +36,7 @@ Use the following header to authenticate your request.
 
 ### Response Body
 
-Once you send the request, you will get the following response.
+Once you send the request, you receive the following response.
 
 ```json
 {
