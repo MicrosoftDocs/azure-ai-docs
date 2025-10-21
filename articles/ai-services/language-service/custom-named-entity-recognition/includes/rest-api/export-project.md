@@ -41,10 +41,10 @@ Use the following JSON in your request body specifying that you want to export a
 }
 ```
 
-Once you send your API request, you’ll receive a `202` response indicating that the job was submitted correctly. In the response headers, extract the `operation-location` value. It will be formatted like this: 
+Once you send your API request, you receive a `202` response indicating that the job was submitted correctly. In the response headers, extract the `operation-location` value and format it like this: 
 
 ```rest
 {ENDPOINT}/language/authoring/analyze-text/projects/{PROJECT-NAME}/export/jobs/{JOB-ID}?api-version={API-VERSION}
 ``` 
 
-`{JOB-ID}` is used to identify your request, since this operation is asynchronous. You’ll use this URL to get the export job status.
+`{JOB-ID}` is used to identify your request, since this operation is asynchronous. You use this URL to get the export job status.
