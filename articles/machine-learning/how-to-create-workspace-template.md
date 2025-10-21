@@ -388,7 +388,7 @@ New-AzResourceGroupDeployment `
   -keyVaultBehindVNet "true" `
   -containerRegistryBehindVNet "true" `
   -containerRegistryOption "new" `
-  -containerRegistrySku "Premium"
+  -containerRegistrySku "Premium" `
   -privateEndpointType "AutoApproval"
 ```
 
@@ -474,8 +474,8 @@ To deploy a workspace with existing resources, you have to set the `vnetOption` 
 ## Use the Azure portal
 
 1. Complete the steps in [Deploy resources from custom template](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template). When you get to the __Custom deployment__ pane, select __Quickstart template__.
-1. In the __Quickstart templates__ list, select `microsoft.machinelearningservices/machine-learning-workspace-vnet`. Finally, use `Select template`.
-1. When the template appears, provide the following required information and any other parameters required by your deployment scenario.
+1. In the __Quickstart template__ list, select **quickstarts/microsoft.machinelearningservices/machine-learning-workspace-vnet**. Finally, select **Select template**.
+1. On the **Custom deployment** page, provide the following required information and any other parameters required by your deployment scenario.
 
    * Subscription: Select the Azure subscription to use for the resources.
    * Resource group: Select or create the resource group to contain the services.
@@ -483,7 +483,7 @@ To deploy a workspace with existing resources, you have to set the `vnetOption` 
    * Workspace name: Enter a name for the Azure Machine Learning workspace. The workspace name must be between 3 and 33 characters. It can contain only alphanumeric characters and the `-` character.
    * Location: Select the location where the resources are to be created.
 1. Select __Review + create__.
-1. On the __Review + create__ page, agree to the terms and conditions and then select __Create__.
+1. Select __Create__.
 
 For more information, see [Deploy resources from custom template](/azure/azure-resource-manager/templates/deploy-portal#deploy-resources-from-custom-template).
 
