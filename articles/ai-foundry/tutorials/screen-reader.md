@@ -55,6 +55,7 @@ Most [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] pages have t
 
 For efficient navigation, navigating by landmarks can help you move between these sections on the page.
 
+:::moniker range="foundry"
 ## Projects 
 
 The Azure AI Foundry portal always has a project selected. All of the main navigation, except **Operate**, is in the context of this project. 
@@ -64,7 +65,7 @@ To create or switch projects:
 1. Press <kbd>Tab</kbd> until you hear a project name, and then select the dropdown. 
 1. The dropdown gives you a list of the most recent projects.
 1. At the end of the list of recent projects are **View all projects**, **Create new project**, and **View legacy resources**.
-
+::: moniker-end
 
 :::moniker range="foundry-classic"
 
