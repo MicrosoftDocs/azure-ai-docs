@@ -1,5 +1,5 @@
 ---
-title: Design an index for agentic retrieval
+title: Create an index for agentic retrieval
 titleSuffix: Azure AI Search
 description: Create an index that has fields and configurations that work for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
@@ -7,10 +7,10 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/13/2025
+ms.date: 10/21/2025
 ---
 
-# Design an index for agentic retrieval in Azure AI Search
+# Create an index for agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
@@ -18,19 +18,24 @@ In Azure AI Search, *agentic retrieval* is a new parallel query architecture tha
 
 Subqueries are created internally. Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on the query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
-A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge agent*, and is either:
+A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge base*, and is either:
 
 + An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
 
-+ A generated index created from a blob indexer pipeline. This index is generated and populated using information from a [blob knowledge source](agentic-knowledge-source-how-to-blob.md). It's based on a template that meets all of the criteria for knowledge agents and agentic retrieval. 
++ A generated index created from a [knowledge source](agentic-knowledge-source-overview.md).
+
+  Multiple knowledge sources are capable of generating an indexer pipeline that results in a searchable index. These include [Azure blobs](agentic-knowledge-source-how-to-blob.md) and [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md). The resulting index is based on a template that meets all of the criteria for knowledge bases and agentic retrieval.
+
+> [!IMPORTANT]
+> You can now configure agentic retrieval to use an external data source directly, bypassing a search index. Queries are passed to external sources using native APIs for that data source. Results are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified result. The following knowledge sources don't use a search index: [web knowledge source](agentic-knowledge-source-how-to-web.md) and SharePoint (Remote).
 
 ## Criteria for agentic retrieval
 
 An index that's used in agentic retrieval must have these elements:
 
-+ String fields attributed as `searchable` and `retrievable`
-+ A semantic configuration, with a `defaultSemanticConfiguration`
-+ Vector fields and a vectorizer if you want to include vector queries in the pipeline
++ String fields attributed as `searchable` and `retrievable`.
++ Vector fields and a vectorizer if you want to include text-to-vector query conversion in the pipeline.
++ A semantic configuration, with a `defaultSemanticConfiguration` or a semantic configuration override in the knowledge source.
 
 It should also have fields that can be used for citations, such as  document or file name, page or chapter name, or at least a chunk ID.
 
@@ -84,13 +89,6 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
       "synonymMaps": []
     }
   ],
-  "scoringProfiles": [],
-  "suggesters": [],
-  "analyzers": [],
-  "normalizers": [],
-  "tokenizers": [],
-  "tokenFilters": [],
-  "charFilters": [],
   "semantic": {
     "defaultConfiguration": "semantic_config",
     "configurations": [
@@ -170,8 +168,10 @@ An index description is a schema update, and you can add it without having to re
 
 The index must have at least one semantic configuration. The semantic configuration must have:
 
-+ A `defaultSemanticConfiguration` set to a named configuration.
++ A named configuration.
 + A `prioritizedContentFields` set to at least one string field that is both `searchable` and `retrievable`.
+
+There are two ways to specify a semantic configuration by name. If index has `defaultSemanticConfiguration` set to a named configuration, retrieval uses it. Alternatively, you can specify the semantic configuration in a knowledge source.
 
 Within the configuration, `prioritizedContentFields` is required. Title and keywords are optional. For chunked content, you might not have either. However, if you add [entity recognition](cognitive-search-skill-entity-recognition-v3.md) or [key phrase extraction](cognitive-search-skill-keyphrases.md), you might have some keywords associated with each chunk that can be useful in search scenarios, perhaps in a scoring profile.
 
