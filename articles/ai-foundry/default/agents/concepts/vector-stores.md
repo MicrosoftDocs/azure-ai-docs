@@ -13,7 +13,7 @@ ms.author: aahi
 ---
 
 # Vector stores
-Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
+Vector store objects give the [file search](../../../agents/how-to/tools/file-search.md) and [code interpreter](../../../agents/how-to/tools/code-interpreter.md) tools the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
 
 Similarly, these files can be removed from a vector store by either:
 
