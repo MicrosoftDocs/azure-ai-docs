@@ -17,3 +17,5 @@ items:
     href: ../../../agents/concepts/standard-agent-setup.md
   - name: Capability hosts
     href: ../../../agents/concepts/capability-hosts.md
+- name: Vector stores
+  href: ../../agents/concepts/vector-stores.md
