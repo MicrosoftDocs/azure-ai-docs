@@ -1,5 +1,5 @@
 ---
-tools: ['editFiles', 'search', 'new', 'problems', 'changes', 'openSimpleBrowser', 'microsoft.docs.mcp']
+tools: ['editFiles', 'search', 'problems', 'changes', 'think','todos', 'fetch','openSimpleBrowser', 'microsoft.docs.mcp']
 description: 'Evaluate Markdown documentation for developer audiences and produce a prioritized edit plan (no direct edits).'
 ---
 
