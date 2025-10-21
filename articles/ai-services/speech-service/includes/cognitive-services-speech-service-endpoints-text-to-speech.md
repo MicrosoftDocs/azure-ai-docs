@@ -1,9 +1,11 @@
 ---
-author: wolfma61
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 05/06/2019
-ms.author: wolfma
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ---
 
 ### Standard voices

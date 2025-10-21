@@ -1,9 +1,11 @@
 ---
-author: PatrickFarley
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
-ms.date: 07/06/2023
+ms.date: 10/21/2025
 ms.topic: include
-ms.author: pafarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ---
 
 | Voice                                                        | Auto-detected language number | Auto-detected language (locale)                              | All locales number | All languages (locale) supported from SSML                   |

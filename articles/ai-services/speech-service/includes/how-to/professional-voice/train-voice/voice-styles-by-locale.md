@@ -1,11 +1,13 @@
 ---
 title: include file
 description: include file
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/19/2025
+ms.date: 10/21/2025
 ms.custom: include
 ---
 

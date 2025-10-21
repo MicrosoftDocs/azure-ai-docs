@@ -2,12 +2,14 @@
 title: What are neural text to speech HD voices?
 titleSuffix: Azure AI services
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/8/2025
+ms.date: 10/21/2025
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
 ---
