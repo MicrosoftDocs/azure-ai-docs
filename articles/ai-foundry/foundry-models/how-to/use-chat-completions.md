@@ -15,7 +15,7 @@ ms.custom: generated
 
 # How to generate chat completions with Azure AI Foundry Models
 
-This article explains how to generate chat completions with Azure AI Foundry Model deployments by using the unified OpenAI v1 chat completion endpoint, also referred to as the v1 Azure OpenAI APIs. The unified endpoint eliminates the need for separate Azure-specific code paths.
+This article explains how to generate chat completions using next generation v1 Azure OpenAI APIs.
 
 ## Prerequisites
 
@@ -28,7 +28,7 @@ To use chat completion models in your application, you need:
 
 ## v1 Azure OpenAI APIs
 
-The v1 Azure OpenAI APIs use the `OpenAI()` client instead of the deprecated  `AzureOpenAI()` client. The v1 Azure OpenAI APIs add support for:
+The next generation v1 Azure OpenAI APIs let you use the `OpenAI()` client in the official OpenAI client libraries across languages instead of the `AzureOpenAI()` client. The v1 Azure OpenAI APIs add support for:
 
 - Ongoing access to the latest features, with no need to frequently specify new values for the `api-version` parameter.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
@@ -183,6 +183,8 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
 **API key authentication**:
 
 ```javascript
+import { OpenAI } from "openai";
+
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: "{your-api-key}" 
@@ -192,6 +194,8 @@ const client = new OpenAI({
 To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```javascript
+import { OpenAI } from "openai";
+
 const client = new OpenAI();
 ```
 
@@ -204,6 +208,9 @@ npm install @azure/identity
 ```
 
 ```javascript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
@@ -220,6 +227,14 @@ const client = new OpenAI({
 **API key authentication**:
 
 ```go
+import (
+    "context"
+    "fmt"
+
+    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v2/option"
+)
+
 client := openai.NewClient(
     option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
     option.WithAPIKey("{your-api-key}")
@@ -229,6 +244,13 @@ client := openai.NewClient(
 To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```go
+import (
+    "context"
+    "fmt"
+
+    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v2/option"
+)
 client := openai.NewClient()
 ```
 
@@ -242,6 +264,16 @@ go get -u github.com/Azure/azure-sdk-for-go/sdk/azidentity
 ```
 
 ```go
+import (
+    "context"
+    "fmt"
+
+    "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/azure"
+    "github.com/openai/openai-go/v3/option"
+)
+
 tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
 
 client := openai.NewClient(
@@ -257,6 +289,11 @@ client := openai.NewClient(
 **API key authentication**:
 
 ```java
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+
 
 OpenAIClient client = OpenAIOkHttpClient.builder()
                 .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
@@ -267,6 +304,11 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
 
 ```java
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+
 OpenAIClient client = OpenAIOkHttpClient.builder()
                 .fromEnv()
                 .build();
@@ -274,7 +316,23 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 
 **Microsoft Entra authentication**:
 
-First install the Azure Identity client library. For how to install this library, see [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity/README.md#include-the-package).
+Authentication with Microsoft Entra ID requires some initial setup. First install the Azure Identity client library. For more options on how to install this library, see [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity/README.md#include-the-package).
+
+
+Add the Azure Identity client library:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.0</version>
+</dependency>
+```
+
+After setup, you can choose which type of credential from `azure.identity` to use. As an example, `DefaultAzureCredential` can be used to authenticate the client.
+
+Authentication is easiest using `DefaultAzureCredential`. It finds the best credential to use in its running environment.
+
 
 ```java
 Credential tokenCredential = BearerTokenCredential.create(
@@ -439,15 +497,13 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 API keys aren't recommended for production use because they're less secure than other authentication methods.
 
 ```javascript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 import { OpenAI } from "openai";
 
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
 });
-
-import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
-import { OpenAI } from "openai";
 
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
@@ -478,14 +534,15 @@ console.log('Response content:', result.choices[0].message.content);
 
 **Microsoft Entra authentication**:
 
-```cmd
+First install the Azure Identity client library before you can use DefaultAzureCredential:
+
+```bash
 npm install @azure/identity
 ```
 
 To authenticate the `OpenAI` client, use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. Create the token provider as follows:
 
 ```javascript
-
 import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 import { OpenAI } from "openai";
 
@@ -556,6 +613,12 @@ func main() {
 **Microsoft Entra authentication**:
 
 Use the [azidentity](https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/azidentity) module for Microsoft Entra ID authentication with Azure OpenAI.
+
+Install the Azure Identity module:
+
+```bash
+go get -u github.com/Azure/azure-sdk-for-go/sdk/azidentity
+```
 
 ```go
 package main
