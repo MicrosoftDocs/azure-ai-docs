@@ -47,7 +47,7 @@ Agentic retrieval represents the evolution from traditional single-query RAG pat
 + Built-in semantic ranking for optimal relevance
 + Optional answer synthesis that uses an LLM-formulated answer in the query response.
 
-You need new objects for this pipeline: one or more knowledge sources, a knowledge agent, and the retrieve action that you call from application code, such as a tool that works with your agent.
+You need new objects for this pipeline: one or more knowledge sources, a knowledge base, and the retrieve action that you call from application code, such as a tool that works with your AI agent.
 
 For new RAG implementations, we recommend starting with [agentic retrieval](agentic-retrieval-overview.md). For existing solutions, consider migrating to take advantage of improved accuracy and context understanding.
 

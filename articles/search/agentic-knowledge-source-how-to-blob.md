@@ -7,14 +7,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/17/2025
+ms.date: 10/21/2025
 ---
 
 # Create a blob knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
+Use a *blob knowledge source* to index and query Azure blob content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 Unlike a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md), which specifies an existing and qualified index, a blob knowledge source specifies an external data source, models, and properties to automatically generate the following Azure AI Search objects:
 
@@ -172,13 +172,13 @@ We recommend using the Azure portal to validate output creation. The workflow is
 1. Check the skillset to learn how your content is chunked and optionally vectorized.
 1. Modify the data source if you want to change connection details, such as authentication and authorization. Our example uses API keys for simplicity, but you can use Microsoft Entra ID authentication and role-based access.
 
-## Assign to a knowledge agent
+## Assign to a knowledge base
 
-If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the index, continue to the next step: specify the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
+Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
 
-After the knowledge agent is configured, use the retrieve action to query the knowledge source.
+After the knowledge base is configured, use the retrieve action to query the knowledge source.
 
 ## Delete a knowledge source
 

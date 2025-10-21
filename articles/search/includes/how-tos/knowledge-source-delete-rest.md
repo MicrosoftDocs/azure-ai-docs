@@ -9,17 +9,17 @@ ms.date: 10/20/2025
 
 If you no longer need the knowledge source or need to rebuild it on your search service, use this request to delete the object.
 
-Before you can delete a knowledge source, you must delete any knowledge agent that references it or remove the references in an update action. However, the associated index and any indexer pipeline objects created from the knowledge source are standalone objects and don't need to be deleted or updated with the knowledge source.
+Before you can delete a knowledge source, you must delete any knowledge base that references it or remove the references in an update action. However, the associated index and any indexer pipeline objects created from the knowledge source are standalone objects and don't need to be deleted or updated with the knowledge source.
 
-If you try to delete a knowledge source that's in use, the action fails, and a list of affected knowledge agents is returned.
+If you try to delete a knowledge source that's in use, the action fails, and a list of affected knowledge bases is returned.
 
 To delete a knowledge source:
 
-1. Get a list of all knowledge agents on your search service.
+1. Get a list of all knowledge bases on your search service.
 
     ```http
-    ### Get knowledge agents
-    GET {{search-endpoint}}/agents?api-version=2025-08-01-preview&$select=name
+    ### Get knowledge bases
+    GET {{search-endpoint}}/agents?api-version=2025-11-01-preview&$select=name
     api-key: {{api-key}}
     Content-Type: application/json
     ```
@@ -40,11 +40,11 @@ To delete a knowledge source:
     }
    ```
 
-1. Get the individual knowledge agent definition to check for knowledge source references.
+1. Get the individual knowledge base definition to check for knowledge source references.
 
     ```http
-    ### Get a knowledge agent definition
-    GET {{search-endpoint}}/agents/hotels-sample-ka?api-version=2025-08-01-preview
+    ### Get a knowledge base definition
+    GET {{search-endpoint}}/knowledgebases/hotels-sample-kb?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     ```
@@ -53,7 +53,7 @@ To delete a knowledge source:
 
    ```json
     {
-      "name": "hotels-sample-ka",
+      "name": "hotels-sample-kb",
       "description": null,
       "retrievalInstructions": null,
       "knowledgeSources": [
@@ -73,11 +73,11 @@ To delete a knowledge source:
     }
    ```
 
-1. Either delete the knowledge agent or [update the knowledge agent](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true) by removing the knowledge source if you have multiple sources. This example shows deletion.
+1. Either delete the knowledge base or [update the knowledge base](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) by removing the knowledge source if you have multiple sources. This example shows deletion.
 
     ```http
-    ### Delete a knowledge agent
-    DELETE {{search-endpoint}}/agents/hotels-sample-ka?api-version=2025-08-01-preview
+    ### Delete a knowledge base
+    DELETE {{search-endpoint}}/knowledgebases/hotels-sample-ka?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     ```
@@ -86,7 +86,7 @@ To delete a knowledge source:
 
     ```http
     ### Delete a knowledge source definition
-    DELETE {{search-endpoint}}/knowledgesources/hotels-sample-ks?api-version=2025-08-01-preview
+    DELETE {{search-endpoint}}/knowledgesources/hotels-sample-ks?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     ```

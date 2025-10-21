@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 09/23/2025
+ms.date: 10/21/2025
 ---
 
 [!INCLUDE [Feature preview](../previews/preview-generic.md)]

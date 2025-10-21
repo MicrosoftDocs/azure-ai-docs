@@ -11,7 +11,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: conceptual
-ms.date: 09/27/2025
+ms.date: 10/21/2025
 ---
 
 # Upgrade to the latest REST API in Azure AI Search
@@ -64,7 +64,9 @@ The following breaking changes apply to data operations.
 
 ### Breaking changes for knowledge agents
 
-[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. Breaking changes apply to agents that use `targetIndexes` and `defaultMaxDocsForReranker`, which are deprecated starting in `2025-08-01-preview`. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+[Knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) were introduced in `2025-05-01-preview`. In `2025-08-01-preview`, `targetIndexes` was replaced with a new knowledge source object and `defaultMaxDocsForReranker` was replaced with other APIs.
+
+The latest `2025-11-01-preview` renames knowledge agents to knowledge bases and relocates several properties. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 ### Breaking changes for client code that reads connection information
 

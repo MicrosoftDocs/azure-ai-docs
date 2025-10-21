@@ -1,5 +1,5 @@
 ---
-title: Use a knowledge agent to retrieve data
+title: Use a knowledge base to retrieve data
 titleSuffix: Azure AI Search
 description: Set up a retrieval route for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
@@ -10,13 +10,13 @@ ms.topic: how-to
 ms.date: 10/21/2025
 ---
 
-# Retrieve data using a knowledge agent in Azure AI Search
+# Retrieve data using a knowledge base in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a large language model (LLM) for query planning. It generates subqueries that broaden the scope of what's searchable and relevant. It incorporates chat history for context. The LLM studies the query and subdivides it into more targeted queries, using different phrases and terminology for subquery composition.
 
-This article explains how to use the [**retrieve action**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) that invokes a knowledge agent and parallel query processing. It's updated for the new 2025-08-01-preview, which introduces breaking changes from the 2025-05-01-preview. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
+This article explains how to use the [**retrieve action**](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) that invokes a knowledge base and parallel query processing. It's updated for the new 2025-11-01-preview, which introduces breaking changes from previous previews. For help with breaking changes, see [Migrate your agentic retrieval code](agentic-retrieval-how-to-migrate.md).
 
 This article also explains the three components of the retrieval response: 
 
@@ -24,7 +24,7 @@ This article also explains the three components of the retrieval response:
 + *referenced results*
 + *query activity*
 
-The retrieve request can include instructions for query processing that override the defaults set on the knowledge agent.
+The retrieve request can include instructions for query processing that override the defaults set on the knowledge base.
 
 > [!NOTE]
 > By default, there's no model-generated "answer" in the response and you should pass the extracted response to an LLM so that it can ground its answer based on the search results. For an end-to-end example that includes this step, see [Tutorial: Build an agent-to-agent retrieval solution ](agentic-retrieval-how-to-create-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
@@ -35,19 +35,19 @@ The retrieve request can include instructions for query processing that override
 
 + A *knowledge source* that wraps a searchable index. It's either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
-+ A [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) that represents the chat completion model and one or more knowledge sources.
++ A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that represents the chat completion model and one or more knowledge sources.
 
 + Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on Basic pricing tier and higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to a chat completion model.
 
 + Permissions on Azure AI Search. **Search Index Data Reader** can run queries on Azure AI Search, but the search service managed identity must have **Cognitive Services User** permissions on the Azure OpenAI resource. For more information about local testing and obtaining access tokens, see [Quickstart: Connect without keys](search-get-started-rbac.md).
 
-+ API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
++ API requirements. To create or use a knowledge base, use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API. Or, use a prerelease package of an Azure SDK that provides knowledge base APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending REST API calls to Azure AI Search. There's no portal support at this time.
 
 ## Call the retrieve action
 
-Call the **retrieve** action on the knowledge agent object to invoke retrieval and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
+Call the **retrieve** action on the knowledge base object to invoke retrieval and return a response. Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK prerelease package that provides equivalent functionality for this task.
 
 All `searchable` fields in the search index are in-scope for query execution. If the index includes vector fields, your index should have a valid [vectorizer definition](vector-search-how-to-configure-vectorizer.md) so that it can vectorize the query inputs. Otherwise, vector fields are ignored. The implied query type is `semantic`, and there's no search mode or selection of search fields.
 
@@ -58,7 +58,7 @@ The input for the retrieval route is chat conversation history in natural langua
 @accessToken=<YOUR PERSONAL ID>
 
 # Send grounding request
-POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
+POST https://{{search-url}}/knowledgebases/{{agent-name}}/retrieve?api-version=2025-11-01-preview
     Content-Type: application/json
     Authorization: Bearer {{accessToken}}
 
@@ -91,7 +91,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
 
 **Key points**:
 
-+ The retrieve action targets a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge agent specifies one or more knowledge sources and a knowledge source configuration. Review your knowledge agent definition for output and semantic ranking configuration.
++ The retrieve action targets a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge base specifies one or more knowledge sources and a knowledge source configuration. Review your knowledge base definition for output and semantic ranking configuration.
 
 + Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, a `206 Partial Content` status code is returned, and the response only includes results from sources that succeeded. Details about the partial response appear as [errors in the activity array](#review-the-activity-array).
 
@@ -101,7 +101,7 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
 
   + `content` is the message or prompt sent to the LLM. It must be text in this preview.
 
-+ [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the agent has more than one, and you want to focus the retrieve action on just one knowledge source. If the knowledge agent has just one knowledge source with the configuration you want, you can omit this section.
++ [`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the knowledge base has more than one, and you want to focus the retrieve action on just one knowledge source. If the knowledge base has just one knowledge source with the configuration you want, you can omit this section.
 
   A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
 
@@ -136,7 +136,7 @@ The body of the response is also structured in the chat message style format. Cu
 + `content.type` has one valid value in this preview: `text`. 
 
 > [!NOTE]
-> The `maxOutputSize` property on the [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string. We recommend 5,000 tokens.
+> The `maxOutputSize` property on the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) determines the length of the string. We recommend 5,000 tokens.
 
 ## Review the activity array
 

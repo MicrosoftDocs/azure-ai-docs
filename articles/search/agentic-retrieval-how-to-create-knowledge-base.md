@@ -1,31 +1,31 @@
 ---
-title: Create a knowledge agent
+title: Create a knowledge base
 titleSuffix: Azure AI Search
-description: Learn how to create a knowledge agent for agentic retrieval workloads in Azure AI Search.
+description: Learn how to create a knowledge base for agentic retrieval workloads in Azure AI Search.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 10/21/2025
 ---
 
-# Create a knowledge agent in Azure AI Search
+# Create a knowledge base in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, a *knowledge agent* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge agent is used by the [retrieve method](agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
+In Azure AI Search, a *knowledge base* is a top-level resource representing a connection to a chat completion model for use in agentic retrieval workloads. A knowledge base is used by the [retrieve method](agentic-retrieval-how-to-retrieve.md) in an LLM-powered information retrieval pipeline.
 
-A knowledge agent specifies:
+A knowledge base specifies:
 
 + A knowledge source (one or more) that points to a searchable content
 + A chat completion model that provides reasoning capabilities for query planning and answer formulation
 + Properties for performance optimization (constrain query processing time)
 
-After you create a knowledge agent, you can update its properties at any time. If the knowledge agent is in use, updates take effect on the next job.
+After you create a knowledge base, you can update its properties at any time. If the knowledge base is in use, updates take effect on the next job.
 
 > [!IMPORTANT]
-> 2025-08-01-preview introduces breaking changes for existing knowledge agents. This preview version requires one or more `knowledgeSource` definitions. We recommend [migrating existing code](agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
+> 2025-11-01-preview renames the 2025-08-01-preview *knowledge agent* to *knowledge base*. This is a breaking change. We recommend [migrating existing code](agentic-retrieval-how-to-migrate.md) to the new APIs as soon as possible.
 
 ## Prerequisites
 
@@ -35,11 +35,11 @@ After you create a knowledge agent, you can update its properties at any time. I
 
 + A [supported chat completion model](#supported-models) on Azure OpenAI.
 
-+ Permission requirements. **Search Service Contributor** can create and manage a knowledge agent. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
++ Permission requirements. **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
 
-+ Content requirements. A [knowledge source](agentic-knowledge-source-overview.md) that identifies searchable content used by the agent. It can be either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md)
++ Content requirements. A [knowledge source](agentic-knowledge-source-overview.md) that identifies searchable content used by the knowledge base. It can be either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md)
 
-+ API requirements. To create or use a knowledge agent, use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge agent APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support knowledge agents at this time**.
++ API requirements. To create or use a knowledge base, use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge base APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support for 2025-11-01-preview knowledge bases at this time**.
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
@@ -116,14 +116,18 @@ You can use API keys if you don't have permission to create role assignments.
 
 ---
 
-## Check for existing knowledge agents
+## Check for existing knowledge bases
 
-The following request lists knowledge agents by name. Within the knowledge agents collection, all knowledge agents must be uniquely named. It's helpful to know about existing knowledge agents for reuse or for naming new agents.
+The following request lists knowledge bases by name. Within the knowledge bases collection, all knowledge bases must be uniquely named. It's helpful to know about existing knowledge bases for reuse or for naming new bases.
+
+Any 2025-08-01-preview knowledge agents are also returned in the knowledge bases collection.
+
+<!-- HEIDI TO DO -- FIX THE PYTHON CODE WHEN PREVIEW PACKAGE IS AVAILABLE -- TASK 500156-->
 
 ### [**Python**](#tab/python-get-agents)
 
 ```python
-# List existing knowledge agents on the search service
+# List existing knowledge bases on the search service
 from azure.search.documents.indexes import SearchIndexClient
 
 index_client = SearchIndexClient(endpoint=search_endpoint, credential=credential)
@@ -147,10 +151,10 @@ except Exception as e:
     print(f"Error listing knowledge agents: {str(e)}")
 ```
 
-You can also return a single agent by name to review its JSON definition.
+You can also return a single knowledge base by name to review its JSON definition.
 
 ```python
-# Get knowledge agent definition for earth-knowledge-agent-2
+# Get knowledge base definition for earth-knowledge-base-2
 from azure.search.documents.indexes import SearchIndexClient
 import json
 
@@ -203,32 +207,34 @@ except Exception as e:
 ### [**REST**](#tab/rest-get-agents)
 
 ```http
-# List knowledge agents
-GET {{search-url}}/agents?api-version=2025-08-01-preview
+# List knowledge bases
+GET {{search-url}}/knowledgebases?api-version=2025-11-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 ```
 
-You can also return a single agent by name to review its JSON definition.
+You can also return a single knowledge base by name to review its JSON definition.
 
 ```http
-# Get knowledge agent
-GET {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
+# Get knowledge base
+GET {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 ```
 
 ---
 
-## Create a knowledge agent
+## Create a knowledge base
 
-A knowledge agent drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
+A knowledge base drives the agentic retrieval pipeline. In application code, it's called by other agents or chat bots. 
 
 Its composition consists of connections between *knowledge sources* (searchable content) and chat completion models that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
 
-To create an agent, use the 2025-08-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a knowledge base, use the 2025-``08``-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
-Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to give to the agent.
+Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to assign to the knowledge base.
+
+<!-- HEIDI TO DO -- FIX THE PYTHON CODE WHEN PREVIEW PACKAGE IS AVAILABLE -- TASK 500156-->
 
 ### [**Python**](#tab/python-create-agent)
 
@@ -264,24 +270,24 @@ index_client.create_or_update_agent(agent, api_version=search_api_version)
 print(f"Knowledge agent '{knowledge_agent_name}' created or updated successfully.")
 ```
 
-### [**REST**](#tab/rest-create-agent)
+### [**REST**](#tab/rest-create-kb)
 
 ```http
 @search-url=<YOUR SEARCH SERVICE URL>
-@agent-name=<YOUR AGENT NAME>
+@knowledge-base-name=<YOUR KNOWLEDGE BASE NAME>
 @index-name=<YOUR INDEX NAME>
 @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
 @model-api-key=<YOUR AZURE OPENAI API KEY>
 @accessToken = <a long GUID>
 
-# Create knowledge agent
-PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
+# Create knowledge base
+PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 
 {
-    "name" : "{{agent-name}}",
-    "description": "This knowledge agent handles questions directed at two unrelated sample indexes."
+    "name" : "{{knowledge-base-name}}",
+    "description": "This knowledge base handles questions directed at two unrelated sample indexes."
     "retrievalInstructions": "Use the hotels knowledge source only for queries about hotels or where to stay, otherwise use the earth at night knowledge source.",
     "knowledgeSources": [
         {
@@ -327,13 +333,13 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 **Key points**:
 
-+ `name` must be unique within the knowledge agents collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
++ `name` must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
 
 + `description` is recommended for query planning. The LLM uses the description to inform query planning. 
 
 + `retrievalInstructions` is recommended for query planning when you have multiple knowledge sources. The instructions are passed as a prompt to the LLM to determine whether a knowledge source should be in scope for a query. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). If you set `retrievalInstructions`, make sure `alwaysQuerySource` is set to false.
 
-+ `knowledgeSources` is required for knowledge agent creation. It specifies the search indexes or Azure blobs used by the knowledge agent. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
++ `knowledgeSources` is required for knowledge base creation. It specifies the search indexes or Azure blobs used by the knowledge base. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
 
     + `name` is a reference to either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md).
     
@@ -353,7 +359,7 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
   + `answerInstructions` is used for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null.
 
-  + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. If the query is larger or the score is lower, query planning is invoked. You must have at least one knowledge source that has `alwaysQuerySource` enabled. If there are multiple knowledge sources, they must all have `alwaysQuerySource` enabled to be considered for fast path. The small query runs on all of them. The default is `false`.
+<!--   + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. If the query is larger or the score is lower, query planning is invoked. You must have at least one knowledge source that has `alwaysQuerySource` enabled. If there are multiple knowledge sources, they must all have `alwaysQuerySource` enabled to be considered for fast path. The small query runs on all of them. The default is `false`. -->
 
   + `includeActivity` indicates whether retrieval results should include the query plan. The default is `true`.
 
@@ -368,11 +374,13 @@ PUT {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
 
 ---
 
-## Query the knowledge agent
+## Query the knowledge base
 
-Call the **retrieve** action on the knowledge agent object to confirm the model connection and return a response. Use the [2025-08-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-08-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge agent in Azure AI Search](agentic-retrieval-how-to-retrieve.md).
+Call the **retrieve** action on the knowledge base object to confirm the model connection and return a response. Use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API or an Azure SDK preview package that provides equivalent functionality for this task. For more information about the **retrieve** API and the shape of the response, see [Retrieve data using a knowledge base in Azure AI Search](agentic-retrieval-how-to-retrieve.md).
 
 Replace "where does the ocean look green?" with a query string that's valid for your search index.
+
+<!-- HEIDI TO DO -- FIX THE PYTHON CODE WHEN PREVIEW PACKAGE IS AVAILABLE -- TASK 500156-->
 
 ### [**Python**](#tab/python-query-agent)
 
@@ -426,11 +434,11 @@ result = agent_client.retrieve(retrieval_request=req, api_version=search_api_ver
 print(f"Retrieved content from '{knowledge_source_name}' successfully.")
 ```
 
-### [**REST**](#tab/rest-query-agent)
+### [**REST**](#tab/rest-query-kb)
 
 ```http
 # Send grounding request
-POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-preview
+POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=2025-11-01-preview
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 
@@ -463,7 +471,7 @@ POST {{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-01-previe
 
 [messages](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just "user" role that provides the query.
 
-[`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the agent is configured for multiple sources and you want to focus the retrieve action on just one of them.
+[`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the knowledge base is configured for multiple sources and you want to focus the retrieve action on just one of them.
 
 A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
 
@@ -484,11 +492,11 @@ The response to the previous query might look like this:
 
 ---
 
-## Delete an agent
+## Delete a knowledge base
 
-If you no longer need the agent, or if you need to rebuild it on the search service, use this request to delete the current object.
+If you no longer need the knowledge base, or if you need to rebuild it on the search service, use this request to delete the current object.
 
-### [**Python**](#tab/python-delete-agent)
+### [**Python**](#tab/python-delete-kb)
 
 ```python
 from azure.search.documents.indexes import SearchIndexClient
@@ -498,10 +506,10 @@ index_client.delete_agent(knowledge_agent_name)
 print(f"Knowledge agent '{knowledge_agent_name}' deleted successfully.")
 ```
 
-### [**REST**](#tab/rest-delete-agent)
+### [**REST**](#tab/rest-delete-kb)
 ```http
-# Delete agent
-DELETE {{search-url}}/agents/{{agent-name}}?api-version=2025-08-01-preview
+# Delete knowledge base
+DELETE {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
    Authorization: Bearer {{accessToken}}
 ```
 
