@@ -346,7 +346,7 @@ New-AzResourceGroupDeployment `
   -location "eastus" `
   -vnetOption "new" `
   -vnetName "examplevnet" `
-  -storageAccountBehindVNet "true"
+  -storageAccountBehindVNet "true" `
   -privateEndpointType "AutoApproval"
 ```
 
@@ -384,7 +384,7 @@ New-AzResourceGroupDeployment `
   -location "eastus" `
   -vnetOption "new" `
   -vnetName "examplevnet" `
-  -storageAccountBehindVNet "true"
+  -storageAccountBehindVNet "true" `
   -keyVaultBehindVNet "true" `
   -containerRegistryBehindVNet "true" `
   -containerRegistryOption "new" `
