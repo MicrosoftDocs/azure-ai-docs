@@ -181,7 +181,7 @@ print(f"AI agent '{agent_name}' created or updated successfully")
 
 ### Add an agentic retrieval tool to AI Agent
 
-An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge agent on Azure AI Search. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool is configured in the AI agent and it calls the Azure AI Search knowledge retrieval client and sends back responses that drive the conversation with the user.
+An end-to-end pipeline needs an orchestration mechanism for coordinating calls to the retriever and knowledge base on Azure AI Search. You can use a [tool](/azure/ai-services/agents/how-to/tools/function-calling) for this task. The tool is configured in the AI agent and it calls the Azure AI Search knowledge retrieval client and sends back responses that drive the conversation with the user.
 
 ```python
 from azure.ai.agents.models import FunctionTool, ToolSet, ListSortOrder
@@ -294,7 +294,7 @@ The semantic ranker processes up to 50 documents as an input, and the system cre
 
 The [semantic configuration](semantic-how-to-configure.md) in the index determines whether the input is 50 or not. If the value is less, the query plan specifies however many subqueries are necessary to meet the smaller input size. 
 
-<!-- As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the knowledge agent definition or as an override on the retrieve action. 
+<!-- As the developer, the best way to control the number of subqueries is by setting the `defaultMaxDocsForReranker` in either the knowledge base definition or as an override on the retrieve action. 
 
 The semantic ranker processes up to 50 documents as an input, and the system creates subqueries to accommodate all of the inputs to semantic ranker. For example, if you only wanted two subqueries, you could set `defaultMaxDocsForReranker` to 100 to accommodate all documents in two batches.
 
@@ -322,7 +322,7 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can also delete individual objects:
 
-+ [Delete a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md#delete-a-knowledge-base)
++ [Delete a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md#delete-a-knowledge-base)
 
 + [Delete a knowledge source](agentic-knowledge-source-how-to-search-index.md#delete-a-knowledge-source)
 
