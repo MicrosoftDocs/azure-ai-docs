@@ -1,7 +1,6 @@
 ---
 title: Develop Applications with Semantic Kernel and Azure AI Foundry
 titleSuffix: Azure AI Foundry
-description: Develop applications with Semantic Kernel and Azure AI Foundry.
 monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 description: Learn how to Develop applications with Semantic Kernel and Azure AI Foundry with models deployed from the Azure AI model catalog.
