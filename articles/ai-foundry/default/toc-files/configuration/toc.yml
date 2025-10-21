@@ -8,8 +8,10 @@ items:
 - name: Create a connection
   href: ../../../how-to/connections-add.md
 - name: Status dashboard
-  href: ../../../azure-ai-foundry-status-dashboard-documentation.md  
+  href: ../../../azure-ai-foundry-status-dashboard-documentation.md
+- name: Feature availability by region
+  href: ../../../reference/region-support.md
 - name: Region support
-  href: /explore/global-infrastructure/products-by-region
+  href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md

@@ -4,14 +4,17 @@ titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 07/30/2025
+ms.date: 10/21/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
+monikerRange: 'foundry-classic || foundry'
 ms.custom: references_regions, build-2024
 ---
 
 # Azure AI Foundry feature availability across clouds regions
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) brings together various Azure AI capabilities that previously were only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability may vary by region. In this article, you'll learn what Azure AI Foundry features are available across cloud regions.  
 
@@ -19,6 +22,8 @@ ms.custom: references_regions, build-2024
 
 Azure AI Foundry is currently available in the following Azure regions. You can create [either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Azure AI Foundry](../how-to/create-projects.md) in these regions.
 
+:::row:::
+    :::column:::
 - Australia East
 - Brazil South
 - Canada Central
@@ -27,14 +32,18 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - East US 2
 - France Central
 - Germany West Central
-- Japan East
+    :::column-end:::
+    :::column:::
+ - Japan East
 - Korea Central
 - North Central US
 - Norway East
 - Poland Central
 - South Africa North
 - South Central US
-- South India
+- South India       
+    :::column-end:::
+    :::column:::
 - Sweden Central
 - Switzerland North
 - UAE North
@@ -44,6 +53,9 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - West US 3
 - US Gov Virginia
 - US Gov Arizona
+    :::column-end:::
+:::row-end:::
+
 
 ## Azure AI Foundry features
  
@@ -58,6 +70,8 @@ The following table lists the availability of Azure AI Foundry features across A
 | Standard deployment     | Some models in the model catalog can be deployed as a standard deployment.                                                      | [Region availability for models in standard deployment](../how-to/deploy-models-serverless-availability.md) |
 | Azure AI Content Safety        | To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability)       |
 | Azure AI Foundry Agent Service         | Azure AI Foundry Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Foundry Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models) |
+
+:::moniker range="foundry-classic"
 
 ## Azure AI Foundry in sovereign clouds
 
@@ -102,6 +116,9 @@ Available to US government entities and their partners only. See more informatio
   - Azure OpenAI Evaluation
   - Deploy Web App
   - VS Code Extension 
+
+:::moniker-end
+
 
 ## Next steps
 
