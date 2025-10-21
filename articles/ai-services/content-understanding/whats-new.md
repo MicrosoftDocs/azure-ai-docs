@@ -17,6 +17,71 @@ ms.custom:
 
 Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+## November 2025
+
+Azure AI Content Understanding service is now Generally Available with the new API version [**`2025-11-01`**]. The service is ready for production workloads, with robust enterprise features. This update introduces the following updates and enhanced capabilities:
+
+### Model flexibility with support for a variety of Foundry models
+
+Instead of relying on a built-in managed generative model, you now select a Foundry model deployment for both LLMs and embeddings. 
+
+* Initial support includes some of the most popular generative models like the gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, gpt-4o, and gpt-4o-mini. 
+* For embeddings support includes text-embedding-3-large, text-embedding-3-small, and text-embedding-ada-002
+* This gives you control over quality, cost, and performance—choose the model that best fits your needs.
+* You can 
+
+3. Analyzer Enhancements & Management
+
+Confidence scores and grounding are now default off.
+
+Enable per field or schema with estimateFieldSourceAndConfidence: true.
+
+
+Classify is now part of the Analyze operation—no separate classifier API.
+Analyzer management is improved:
+
+Copy, delete, and replace analyzers easily, including safe overwrites and cross-resource operations.
+
+
+
+4. Expanded Prebuilt Analyzers
+
+More prebuilt analyzers for industry-specific document types (tax, procurement, etc.).
+Prebuilts targeted at Retrieval-Augmented Generation (RAG) use cases and integration with Azure AI Search for ingestion.
+
+Includes figure analysis, content annotations, and hyperlink extraction.
+
+
+Prebuilt read and layout analyzers bring key Document Intelligence features to Content Understanding.
+
+5. Enterprise-Grade Features
+
+Full support for Entra ID, Managed Identities, Customer Managed Keys (CMK), VNET, and private endpoints.
+Enhanced security and compliance for enterprise deployments.
+
+
+Other Notable Improvements
+
+Field limit increased to 1,000 fields.
+Partial content analysis: Analyze specific pages or segments with the range parameter.
+Table format selection: Choose HTML or Markdown output.
+DELETE endpoints for analyzer results.
+
+
+Retired & Deprecated Features
+
+Managed capacity for generative models is retired—BYO LLM and embeddings required.
+Dedicated classifier APIs are deprecated; classification is now handled within the analyzer.
+Pro mode remains in Preview only.
+Person directory and face APIs are removed.
+Video preview features and auto segmentation are retired; segmentation is now manual and output format is updated.
+
+## October 2025
+Azure AI Content Understanding preview version introduces the following updates:
+
+* Azure AI Content Understanding now has increased field count support (1,000) for all modalities.
+* The API response body now inclues input, output, and contextualization tokens consumed as part of the tokens object. Check out the quickstart article for more information.
+
 ## May 2025
 
 The Azure AI Content Understanding [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) REST API is now available. This update introduces the following updates and enhanced capabilities:
