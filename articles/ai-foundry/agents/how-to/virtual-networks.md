@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 08/01/2025
+ms.date: 10/21/2025
 author: aahill
 ms.author: aahi
 ms.reviewer: fosteramanda
@@ -17,6 +17,9 @@ ms.custom: azure-ai-agents
 # Create a new network-secured environment with user-managed identity
 
 Azure AI Foundry Agent Service offers **Standard Setup with private networking** environment setup, allowing you to bring your own (BYO) private virtual network. This setup creates an isolated network environment that lets you securely access data and perform actions while maintaining full control over your network infrastructure. This guide provides a step-by-step walkthrough of the setup process and outlines all necessary requirements.
+
+> [!TIP]
+> See the [FAQ article](../faq.yml#virtual-networking) for common questions when working with Virtual Networks.
 
 ## Security features
 
@@ -34,7 +37,7 @@ For customers without an existing virtual network, the Standard Setup with Priva
 :::image type="content" source="../media\private-network-isolation.png" alt-text="A diagram showing virtual network architecture.":::
 ### Known limitations
 
-- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, i.e. class B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. Private Class A address ranges have limited region support. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/README.md).
+- **Subnet IP address limitation**: both subnets must have IP ranges under `172.16.0.0/12` or `192.168.0.0/16`, which are class B or C private address ranges reserved for private networking. Public Class A, B or C address ranges are not supported. Private Class A address ranges have limited region support. For more information, see [our Private Network Secured Agent deployment template on GitHub](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/15-private-network-standard-agent-setup/README.md).
 - **Agent subnet exclusivity**: The agent subnet cannot be shared by multiple Azure AI Foundry resources. Each AI Foundry must use a dedicated agent subnet.
 - **Agent subnet size**: The recommended size of the delegated Agent subnet is /24 (256 addresses) due to the delegation of the subnet to `Microsoft.App/environment`. For more on the subnet sizing, see [Configuring virtual networks for Azure Container Apps](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet).
 - **Agent subnet egress firewall allowlisting**: If you are integrating an Azure Firewall with your private network secured standard agent, please allowlist the Fully Qualified Domain Names (FQDNs) listed under __Managed Identity__ in the [Integrate with Azure Firewall](/azure/container-apps/use-azure-firewall#application-rules) article or add the Service Tag __AzureActiveDirectory__.
@@ -91,7 +94,7 @@ You can deploy and customize the Standard Setup with Private Networking using ei
 
 * Foundry account and Foundry project are created.
 * A gpt-4o model is deployed.
-* Azure resources for storing customer data — Azure Storage, Azure Cosmos DB, and Azure AI Search — are automatically created if existing resources are not provided. 
+* Azure resources for storing customer data: Azure Storage, Azure Cosmos DB, and Azure AI Search are automatically created if existing resources are not provided. 
 * These resources are connected to your project to store files, threads, and vector data.
 * Microsoft-managed encryption keys for Storage Account and Cognitive Account (AI Foundry) are used by default.
  
@@ -123,7 +126,7 @@ The following DNS zones are configured:
 Virtual networks enable you to specify which endpoints can make API calls to your resources. The Azure service automatically rejects API calls from devices outside your defined network. You can establish allowed networks using either formula-based definitions or by creating an exhaustive list of permitted endpoints. This security layer can be combined with other security measures for enhanced protection.
 
 > [!NOTE]
-> If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimize size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses), which is the default subnet size set in the network secured template. 
+> If you bring your existing virtual network and subnet with the *Microsoft.App/environments* delegation, the minimized size of your subnet should be /27 (32 addresses). We recommend a subnet size of /24 (256 addresses), which is the default subnet size set in the network secured template. 
 
 ### Network rules
 
@@ -175,6 +178,50 @@ This setup enables AI agents to operate entirely within a dedicated, isolated vi
 
 Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly setup your agent environment while still maintaining full control over their networking and data.   
 
+## Troubleshooting Guide 
 
-## What's next?
-You’ve now successfully configured a Network Secure Account and project, use the [quickstart](../quickstart.md) to create your first agent. 
+Refer to this guide to resolve errors regarding the standard secured agent template deployment errors or errors post template deployment in the Azure AI Foundry portal.  
+
+### Template Deployment Errors 
+
+`"CreateCapabilityHostRequestDto is invalid: Agents CapabilityHost supports a single, non empty value for vectorStoreConnections property."` 
+
+`"Agents CapabilityHost supports a single, non empty value for storageConnections property."`
+
+`"Agents CapabilityHost supports a single, non empty value for threadStorageConnections property."`
+
+**Solution**: Providing all connections to all Bring-your-Own (BYO) resources, requires connections to all BYO resources. You cannot create a secured standard agent in Foundry without all three resources provided. 
+
+`"Provided subnet must be of the proper address space. Please provide a subnet which has address space in the range of 172 or 192."` 
+
+**Solution**: You are not using a proper IP range for your delegated agent subnet. Please verify you are using a valid Private IP address spaces.  
+
+`"Subscripton is not registered with the required resource providers, please register with the resource providers Microsoft.App and Microsoft.ContainerService."` 
+
+**Solution**: You are missing the correct resource registration. Ensure the required resources are registered in your tenant. 
+
+```azurecli
+az provider register --namespace 'Microsoft.KeyVault' 
+az provider register --namespace 'Microsoft.CognitiveServices' 
+az provider register --namespace 'Microsoft.Storage' 
+az provider register --namespace 'Microsoft.MachineLearningServices' 
+az provider register --namespace 'Microsoft.Search' 
+az provider register --namespace 'Microsoft.Network' 
+az provider register --namespace 'Microsoft.App' 
+az provider register --namespace 'Microsoft.ContainerService' 
+```
+ 
+
+`"Failed to create Aml RP virtual workspace due to System.Exception: Failed async operation."` or `"The resource operation completed with terminal provisioning state 'Failed'. Capability host operation failed."` 
+
+**Solution**: This is a catch all error we provide. Create a support ticket request to investigate your set-up. Check the capability host for the error. 
+
+ 
+
+`"Subnet requires any of the following delegation(s) [Microsoft.App/environments] to reference service association link /subscriptions/11111-aaaaa-2222-bbbb-333333333/resourceGroups/agentRANGEChange/providers/Microsoft.Network/virtualNetworks/my-agent-vnet/subnets/agent-subnet/serviceAssociationLinks/legionservicelink."` 
+
+**Solution**: This error appears when you try to delete your secured standard template set-up in Azure and did not correctly delete all resources. One solution is to navigate to your AI Foundry resource page in the Azure portal and select **Manage deleted resources**. From there, purge the resource that the agent was associated with for this virtual network. The other option is to run the `deleteCaphost.sh` script in the secured standard template. 
+
+## Next steps
+
+You've now successfully configured a network-secure account and project, use the [quickstart](../quickstart.md) to create your first agent. 
