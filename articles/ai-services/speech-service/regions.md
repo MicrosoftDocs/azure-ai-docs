@@ -109,6 +109,7 @@ The regions in these tables support most of the core features of the Speech serv
 | australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | brazilsouth        | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
 | canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| canadaeast | ✅ | | | | | | | | | |
 | centralindia       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | centralus          | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
 | eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
@@ -116,6 +117,7 @@ The regions in these tables support most of the core features of the Speech serv
 | eastus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
+| italynorth | ✅ | | | | ✅ | | ✅ | | ✅ | ✅ |
 | japaneast          | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
 | japanwest          | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | koreacentral       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
@@ -126,11 +128,12 @@ The regions in these tables support most of the core features of the Speech serv
 | southafricanorth   | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | southcentralus     | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
 | southeastasia      | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| swedencentral      | ✅ | ✅ |  | ✅ |  |  |  |  | ✅ | ✅ |  |
+| swedencentral      | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  | ✅ | ✅ |  |
 | switzerlandnorth   | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | switzerlandwest    | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | uaenorth           | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
 | uksouth            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
+| ukwest | ✅ | | | | | | | | | |
 | westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
 | westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus             | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
