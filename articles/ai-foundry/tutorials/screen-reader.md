@@ -62,9 +62,9 @@ The Azure AI Foundry portal always has a project selected. All of the main navig
 
 To create or switch projects:
 1. In [!INCLUDE [foundry-link](../default/includes/foundry-link.md)], on the top banner, select **Azure AI Foundry**.
-1. Press <kbd>Tab</kbd> until you hear a project name, and then select the dropdown. 
-1. The dropdown gives you a list of the most recent projects.
-1. At the end of the list of recent projects are **View all projects**, **Create new project**, and **View legacy resources**.
+1. Press <kbd>Tab</kbd> until you hear a project name, and then s
+1. Use the down-arrow to scroll throug the list of recent projects.
+1. At the end of the list of recent projects are options to **View all projects**, **Create new project**, and **View legacy resources**.
 ::: moniker-end
 
 :::moniker range="foundry-classic"
