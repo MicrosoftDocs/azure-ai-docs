@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 08/29/2025
+ms.date: 10/21/2025
 ---
 
 # Retrieve data using a knowledge agent in Azure AI Search
@@ -93,6 +93,8 @@ POST https://{{search-url}}/agents/{{agent-name}}/retrieve?api-version=2025-08-0
 
 + The retrieve action targets a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md). The knowledge agent specifies one or more knowledge sources and a knowledge source configuration. Review your knowledge agent definition for output and semantic ranking configuration.
 
++ Successful retrieval returns a `200 OK` status code. If the knowledge base fails to retrieve from one or more knowledge sources, a `206 Partial Content` status code is returned, and the response only includes results from sources that succeeded. Details about the partial response appear as [errors in the activity array](#review-the-activity-array).
+
 + `messages` articulates the messages sent to the model. The message format is similar to Azure OpenAI APIs.
 
   + `role` defines where the message came from, for example either `assistant` or `user`. The model you use determines which roles are valid.
@@ -138,16 +140,16 @@ The body of the response is also structured in the chat message style format. Cu
 
 ## Review the activity array
 
-The activity array outputs the query plan and it helps you keep track of the operations performed when executing the request. It provides transparency of operations so that you can understand billing implications and the frequency of resource invocations.
+The activity array outputs the query plan, which helps you track the operations performed when executing the request. It also provides operational transparency so you can understand the billing implications and frequency of resource invocations.
 
-Output includes:
+The output includes:
 
-+ Token used for input
-+ Token counts for output
-+ Subqueries sent to the retrieval pipeline
-+ Result count per subquery
-+ Filters on the subquery, if applicable
-+ Token counts used for ranking and extraction
++ Token counts used for the input and output.
++ Subqueries sent to the retrieval pipeline.
++ Result counts per subquery.
++ Filters on the subquery, if applicable.
++ Token counts used for ranking and extraction.
++ Errors for any retrieval failures, such as inaccessible knowledge sources.
 
 Here's an example of an activity array.
 
