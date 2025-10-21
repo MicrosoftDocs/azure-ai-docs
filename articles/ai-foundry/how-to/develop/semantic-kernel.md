@@ -66,6 +66,13 @@ To use language models deployed in Azure AI Foundry portal, you need the endpoin
 
     > [!TIP]
     > If your model was deployed with Microsoft Entra ID support, you don't need a key.
+::: moniker-end
+
+::: moniker range="foundry"
+1. Select **Home** from the upper-right navigation.
+1. Select **Keys** 
+1. Copy the endpoint URL and the key.
+::: moniker-end
 
 This example uses environment variables for both the endpoint URL and key:
 
