@@ -108,7 +108,7 @@ To get started with the agents playground, see the [Quickstart: Create a new age
 
 ::: moniker range="foundry"
 
-To get started with the agents playground, see [Insert NextGen content].
+To get started with the agents playground, see [Understanding the agent development lifecycle](../default/agents/concepts/development-lifecycle.md).
 
 ::: moniker-end
 
