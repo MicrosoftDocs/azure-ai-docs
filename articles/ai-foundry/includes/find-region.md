@@ -24,5 +24,5 @@ ms.custom: include
 > 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 > 1. Select **Operate** from the upper-right navigation.
 > 1. Select **Admin Console**.
-> 1. View each project along with its region in the list.
+> 1. Select your project to view details, including the resource group.
 ::: moniker-end

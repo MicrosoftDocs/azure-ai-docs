@@ -150,7 +150,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
     [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. Select **Cost analysis**.
+1. In the Azure portal, select **Cost analysis**.
 
    :::image type="content" source="../media/manage-costs/azure-cost-overview-filters.png" alt-text="Screenshot of the Azure portal showing the Cost Analysis section under Cost Management.":::
 
@@ -175,7 +175,7 @@ To understand the breakdown of the cost, use the **Cost Analysis** tool in Azure
 
    [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. Under **Cost Management**, select **Cost analysis**.
+1. In Azure portal, select **Cost Management**, select **Cost analysis**.
 
 1. By default, cost analysis is scoped to the selected resource group.
 
@@ -245,7 +245,7 @@ If you try to add a filter by service, you can't find Azure OpenAI in the list. 
 
 Azure Marketplace offers serverless API deployments. Model publishers might apply different costs depending on the offering. Each project in the Azure AI Foundry portal has its own subscription with the offering, which you can use to monitor the costs and consumption happening on that project. Use [Microsoft Cost Management](https://azure.microsoft.com/products/cost-management) to monitor the costs:
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)].
+1. Sign in to the [Azure portal](https://portal.azure.com/)
 
 1. Select the portal menu icon to open the left pane.
 
