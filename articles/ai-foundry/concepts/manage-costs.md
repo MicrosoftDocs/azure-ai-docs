@@ -150,7 +150,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
     [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. In the Azure portal, select **Cost analysis**.
+1. In the Azure portal, select **Cost analysis** under **Cost Management**.
 
    :::image type="content" source="../media/manage-costs/azure-cost-overview-filters.png" alt-text="Screenshot of the Azure portal showing the Cost Analysis section under Cost Management.":::
 
@@ -175,7 +175,7 @@ To understand the breakdown of the cost, use the **Cost Analysis** tool in Azure
 
    [!INCLUDE [find-region](../includes/find-region.md)]
 
-1. In Azure portal, select **Cost Management**, select **Cost analysis**.
+1. In Azure portal, select **Cost analysis** under **Cost Management**.
 
 1. By default, cost analysis is scoped to the selected resource group.
 
