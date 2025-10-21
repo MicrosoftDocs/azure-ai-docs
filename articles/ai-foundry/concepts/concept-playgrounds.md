@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 09/22/2025
+ms.date: 10/21/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: tgokal
@@ -32,6 +32,9 @@ Some highlights of the Azure AI Foundry playgrounds experience include:
 - **Open in VS Code** for Chat and Agents playground. This feature saves you time by automatically importing your endpoint and key from Azure AI Foundry to VS Code for multilingual code samples.
 - **Images Playground 2.0** for models such as [gpt-image-1](https://ai.azure.com/explore/models/gpt-image-1/version/2025-04-15/registry/azure-openai/?cid=learnDocs), [Stable Diffusion 3.5 Large](https://ai.azure.com/explore/models/Stable-Diffusion-3.5-Large/version/1/registry/azureml-stabilityai/?cid=learnDocs), and [FLUX.1-Kontext-pro](https://ai.azure.com/resource/models/Flux.1-Kontext-pro/version/1/registry/azureml-blackforestlabs/?cid=learnDocs) models.
 - **Audio playground** for models such as [gpt-4o-audio-preview](https://ai.azure.com/resource/models/gpt-4o-audio-preview/version/2024-12-17/registry/azure-openai/?cid=learnDocs), [gpt-4o-transcribe](https://ai.azure.com/explore/models/gpt-4o-transcribe/version/2025-03-20/registry/azure-openai/?cid=learnDocs), and [gpt-4o-mini-tts](https://ai.azure.com/explore/models/gpt-4o-mini-tts/version/2025-03-20/registry/azure-openai/?cid=learnDocs) models.
+
+::: moniker-end
+
 - **Video playground** for [Azure OpenAI Sora](https://ai.azure.com/resource/models/sora/version/2025-05-02/registry/azure-openai/?cid=learnDocs).
 
 ::: moniker range="foundry-classic"
@@ -95,7 +98,7 @@ To use the **Open in VS Code** functionality from the chat and agents playground
 
 ## Agents playground
 
-The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas.
+The agents playground lets you explore, prototype, and test agents without running any code. From this page, you can quickly iterate and experiment with new ideas. 
 
 ::: moniker range="foundry-classic"
 
@@ -105,7 +108,7 @@ To get started with the agents playground, see the [Quickstart: Create a new age
 
 ::: moniker range="foundry"
 
-1. Insert NextGen content
+To get started with the agents playground, see [Insert NextGen content].
 
 ::: moniker-end
 
@@ -121,17 +124,17 @@ To learn more about the chat playground, see the [Quickstart: Get answers in the
 
 ::: moniker range="foundry"
 
-1. Insert NextGen content
+To learn more about the chat playground, see [Insert NextGen content].
 
 ::: moniker-end
+
+::: moniker range="foundry-classic"
 
 ## Audio playground
 
 The audio playground (preview) lets you use text-to-speech and transcription capabilities with the latest audio models from Azure OpenAI.
 
 To try the text-to-speech capability, follow these steps:
-
-::: moniker range="foundry-classic"
 
 1. Select **Try the Audio playground** to open it.
 
@@ -147,17 +150,7 @@ To try the text-to-speech capability, follow these steps:
 
 1. Download the audio file to your local computer.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-1. Insert NextGen content
-
-::: moniker-end
-
 To try the transcription capability, follow these steps:
-
-::: moniker range="foundry-classic"
 
 1. If you don't have a deployment already, select **Create new deployment** and deploy a model such as `gpt-4o-transcribe`.
 
@@ -171,11 +164,6 @@ To try the transcription capability, follow these steps:
 
 ::: moniker-end
 
-::: moniker range="foundry"
-
-1. Insert NextGen content
-
-::: moniker-end
 
 
 ## Video playground
