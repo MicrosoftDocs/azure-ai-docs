@@ -135,15 +135,7 @@ The following table lists the availability of Azure AI Foundry features across A
 | Azure AI Content Safety        | To use the Content Safety APIs, create your Azure AI Content Safety resource in a supported region.                                           | [What is Azure AI Content Safety?](../../ai-services/content-safety/overview.md#region-availability).       |
 | Azure AI Foundry Agent Service         | Azure AI Foundry Agent Service supports the same models as the chat completions API in Azure OpenAI.                                                          | [Azure AI Foundry Agent Service region availability](../../ai-services/agents/concepts/model-region-support.md#azure-openai-models). |
 
-## Use AI to find the best region
 
-Confused by all the choices?  Use AI to help you find the right region for your needs.  Open the [Foundry agent](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case
-
-```copilot-prompt
-   Based on the features I need for my Azure AI Foundry project, which regions would you recommend to create the project? I need: [list your required features here, such as: gpt-4o models, speech capabilities, custom avatar training, etc.]
-```
-
-*Copilot is powered by AI, so surprises and mistakes are possible. For more information, see [Copilot general use FAQs](https://aka.ms/copilot-general-use-faqs).*
 
 ## Azure AI Foundry in sovereign clouds
 
@@ -191,6 +183,16 @@ Available to US government entities and their partners only. For more informatio
 
 :::moniker-end
 
+## Use AI to find the best region
+
+Confused by all the choices?  Use AI to help you find the right region for your needs.  Open the [Foundry agent](../foundry-agent/ask-foundry-agent.md) and customize this prompt for your specific case
+
+```copilot-prompt
+   Based on the features I need for my Azure AI Foundry project, which regions would you recommend to create the project? 
+   I need: [list your required features here, such as: gpt-4o models, speech capabilities, custom avatar training, etc.]
+```
+
+*Copilot is powered by AI, so surprises and mistakes are possible. For more information, see [Copilot general use FAQs](https://aka.ms/copilot-general-use-faqs).*
 
 ## Next steps
 
