@@ -50,7 +50,7 @@ If you want to create a template that deploys multiple workspaces in the same vi
 
 ## About the Resource Manager template
 
-You can get the Resource Manager template used throughout this document from the [microsoft.machineleaerningservices/machine-learning-workspace-vnet](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-vnet/azuredeploy.json) directory of the Azure quickstart templates GitHub repository.
+You can get the Resource Manager template used throughout this document from the [microsoft.machineleaerningservices/machine-learning-workspace-vnet](https://github.com/Azure/azure-quickstart-templates/blob/master/quickstarts/microsoft.machinelearningservices/machine-learning-workspace-vnet/azuredeploy.json) directory of the Azure Quickstart Templates GitHub repository.
 
 This template creates the following Azure services:
 
@@ -186,7 +186,7 @@ For more information, see [Customer-managed keys](concept-customer-managed-keys.
 > * The key vault must be in the same region where you plan to create the Azure Machine Learning workspace.
 > * You must specify the ID of the key vault and the URI of the encryption key.
 > 
-> For steps on creating the vault and key, see [Configure customer-managed keys](how-to-setup-customer-managed-keys.md).
+> For information about creating the vault and key, see [Configure customer-managed keys](how-to-setup-customer-managed-keys.md).
 
 To get the values for the `cmk_keyvault` (the ID of the key vault) and the `resource_cmk_uri` (the key URI) parameters needed by this template, take the following steps:    
 
@@ -272,7 +272,7 @@ You can optionally set the `confidential_data` parameter to `true`. Doing so ena
 * Enables IP filtering to ensure that no external services other than AzureMachineLearningService can call the underlying batch pools.
 
     > [!IMPORTANT]
-    > After a workspace it created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace taht uses the new values.
+    > After a workspace it created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
 
   For more information, see [Encryption at rest](concept-data-encryption.md#encryption-at-rest).
 
@@ -286,7 +286,7 @@ By setting the `vnetOption` parameter value to either `new` or `existing`, you c
 > [!IMPORTANT]
 > Application Insights doesn't support deployment behind a virtual network.
 
-### Only the deploy workspace behind a private endpoint
+### Only deploy the workspace behind a private endpoint
 
 If your associated resources aren't behind a virtual network, you can set the `privateEndpointType` parameter to `AutoAproval` or `ManualApproval` to deploy the workspace behind a private endpoint. This setting can be used for both new and existing workspaces. When updating an existing workspace, configure the template parameters with the information from the existing workspace.
 
