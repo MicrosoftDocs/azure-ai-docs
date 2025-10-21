@@ -22,12 +22,10 @@ A search index that's used in agentic retrieval is specified as *knowledge sourc
 
 + An existing indexing containing searchable content. This index is made available to agentic retrieval through a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) definition.
 
-+ A generated index created from a [knowledge source](agentic-knowledge-source-overview.md).
-
-  Multiple knowledge sources are capable of generating an indexer pipeline that results in a searchable index. These include [Azure blobs](agentic-knowledge-source-how-to-blob.md) and [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md). The resulting index is based on a template that meets all of the criteria for knowledge bases and agentic retrieval.
++ A generated index created from a [knowledge source](agentic-knowledge-source-overview.md). Multiple knowledge sources are capable of generating an indexer pipeline that results in a searchable index. These include [Azure blobs](agentic-knowledge-source-how-to-blob.md) and [Microsoft OneLake](agentic-knowledge-source-how-to-onelake.md). The resulting index is based on a template that meets all of the criteria for knowledge bases and agentic retrieval.
 
 > [!IMPORTANT]
-> You can now configure agentic retrieval to use an external data source directly, bypassing a search index. Queries are passed to external sources using native APIs for that data source. Results are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified result. The following knowledge sources don't use a search index: [web knowledge source](agentic-knowledge-source-how-to-web.md) and SharePoint (Remote).
+> You can now configure agentic retrieval to bypass a search index and access an external data source directly using its native query APIs. Results from external sources are returned to Azure AI Search for ranking and relevance, and are incorporated into the unified response string. The following knowledge sources bypass a search index and access external sources directly: [web knowledge source (Bing)](agentic-knowledge-source-how-to-web.md) and SharePoint (Remote).
 
 ## Criteria for agentic retrieval
 
