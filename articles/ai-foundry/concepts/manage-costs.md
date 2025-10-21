@@ -148,10 +148,7 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
 
-    ::: moniker range="foundry-classic"
-    > [!TIP]
-    > Find your resource group from ...
-    ::: moniker-end
+    [!INCLUDE [find-region](../includes/find-region.md)]
 
 1. Select **Cost analysis**.
 
@@ -173,17 +170,10 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 
 To understand the breakdown of the cost, use the **Cost Analysis** tool in Azure portal. Follow these steps to understand the cost of inference:
 
-::: moniker range="foundry-classic"
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 
-1. In the upper right corner of the screen, select the name of your Azure AI Foundry resource, or if you're working on an AI project, select the name of the project.
-
-1. Select the name of the project. Azure portal opens in a new window.
-::: moniker-end
-
-::: moniker range="foundry"
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
-::: moniker-end
+
+   [!INCLUDE [find-region](../includes/find-region.md)]
 
 1. Under **Cost Management**, select **Cost analysis**.
 
