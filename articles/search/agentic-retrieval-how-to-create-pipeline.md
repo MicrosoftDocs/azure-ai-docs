@@ -322,7 +322,7 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can also delete individual objects:
 
-+ [Delete a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md#delete-an-agent)
++ [Delete a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md#delete-a-knowledge-base)
 
 + [Delete a knowledge source](agentic-knowledge-source-how-to-search-index.md#delete-a-knowledge-source)
 

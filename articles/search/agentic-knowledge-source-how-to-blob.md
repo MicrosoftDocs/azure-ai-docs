@@ -107,7 +107,7 @@ To create a blob knowledge source:
     @api-key = <YOUR SEARCH ADMIN API KEY>
     ```
 
-1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
     PUT {{search-url}}/knowledgesources/my-blob-ks?api-version=2025-11-01-preview

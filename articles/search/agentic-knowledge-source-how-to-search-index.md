@@ -55,7 +55,7 @@ To create a search index knowledge source:
     @api-key = <YOUR ADMIN API KEY>
     ```
 
-1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
     POST {{search-url}}/knowledgesources/my-search-index-ks?api-version=2025-11-01-preview

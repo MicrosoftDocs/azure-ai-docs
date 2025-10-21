@@ -38,8 +38,8 @@ Make sure you have at least one knowledge source before creating a knowledge bas
 
 Here are the knowledge sources you can create in this preview:
 
-+ [`"searchIndex"`](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) wraps an existing index.
-+ [`"azureBlob"`](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container.
++ [`"searchIndex"`](/rest/api/searchservice/knowledgesources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) wraps an existing index.
++ [`"azureBlob"`](/rest/api/searchservice/knowledgesources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container.
 + "indexedOneLake" generates an indexer pipeline that pulls from a lakehouse.
 + `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) retrieves real-time grounding data from Microsoft Bing.
 

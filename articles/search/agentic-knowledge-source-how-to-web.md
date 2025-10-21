@@ -35,7 +35,7 @@ When you use web knowledge sources, keep the following in mind:
 
 + The response is always a single, formulated answer to the query instead of raw search results from the web.
 
-+ Because web knowledge sources don't support extractive data, your knowledge base must use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [low or medium reasoning effort](agentic-retrieval-how-to-create-knowledge-base.md#create-a-knowledge-agent). You also can't define answer instructions.
++ Because web knowledge sources don't support extractive data, your knowledge base must use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [low or medium reasoning effort](agentic-retrieval-how-to-create-knowledge-base.md#create-a-knowledge-base). You also can't define answer instructions.
 
 ## Prerequisites
 
@@ -74,7 +74,7 @@ To create a web knowledge source:
     @api-key = <YOUR ADMIN API KEY>
     ```
 
-1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
     ```http
     POST {{search-url}}/knowledgesources/my-web-ks?api-version=2025-11-01-preview

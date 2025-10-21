@@ -121,7 +121,7 @@ Choose any of these options for your next step.
 
 + REST API reference:
 
-  + [Knowledge Sources](/rest/api/searchservice/knowledge-sources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
+  + [Knowledge Sources](/rest/api/searchservice/knowledgesources?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
   + [Knowledge Bases](/rest/api/searchservice/knowledgebases?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
   + [Knowledge Retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true)
 

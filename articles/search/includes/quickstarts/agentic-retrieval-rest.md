@@ -209,7 +209,7 @@ POST {{search-url}}/indexes/{{index-name}}/docs/index?api-version={{api-version}
 
 ## Create a knowledge source
 
-A knowledge source is a reusable reference to your source data. Use [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to define a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
+A knowledge source is a reusable reference to your source data. Use [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledgesources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to define a knowledge source named `earth-knowledge-source` that targets the `earth-at-night` index.
 
 `searchIndexParameters.sourceDataSelect` specifies which index fields are accessible for retrieval and citations. Our example includes only human-readable fields to avoid lengthy, uninterpretable embeddings in responses.
 
