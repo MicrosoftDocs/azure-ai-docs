@@ -78,7 +78,7 @@ Azure AI Search provides the agentic retrieval pipeline. Configure access for yo
 
    + For local testing, you must have **Search Service Contributor**, **Search Index Data Contributor**, and **Search Index Data Reader** role assignments to create, load, and retrieve on Azure AI Search.
 
-   + For integrated operations, ensure that all clients using the retrieval pipeline (agent and tool) have **Search Index Data Reader** role assignments for sending retrieval requests.
+   + For integrated operations, ensure that all clients using the retrieval pipeline (AI agent and tool) have **Search Index Data Reader** role assignments for sending retrieval requests.
 
 ### [**Azure AI Foundry**](#tab/foundry-perms)
 
@@ -105,14 +105,14 @@ Azure OpenAI hosts the models used by the agentic retrieval pipeline. Configure 
 Development tasks on the Azure AI Search side include:
 
 + [Create a knowledge source](agentic-knowledge-source-overview.md) that maps to a [searchable index](agentic-retrieval-how-to-create-index.md).
-+ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
++ [Create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) on Azure AI Search that maps to your deployed model in Azure AI Foundry Model.
 + [Call the retriever](agentic-retrieval-how-to-retrieve.md) and provide a query, conversation, and override parameters.
 + Parse the response for the parts you want to include in your chat application. For many scenarios, just the content portion of the response is sufficient. You can also try [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) for a simpler workflow.
 
 Developments on the Azure AI Agent side include:
 
 + Set up the AI project client and an AI agent.
-+ Add a tool to coordinate calls from the AI agent to the retriever and knowledge agent.
++ Add a tool to coordinate calls from the AI agent to the retriever and knowledge base.
 
 Query processing is initiated by user interaction in a client app, such as a chat bot, that calls an AI agent. The AI agent is configured to use a tool that orchestrates the requests and directs the responses. When the chat bot calls the agent, the tool calls the [retriever](agentic-retrieval-how-to-retrieve.md) on Azure AI Search, waits for the response, and then sends the response back to the AI agent and chat bot. In Azure AI Search, you can use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) to obtain an LLM-generated response from within the query pipeline, or you can call an LLM in your code if you want more control over answer generation.
 
@@ -124,7 +124,7 @@ Your custom application makes API calls to Azure AI Search and an Azure SDK.
 + Azure AI Search, hosting indexed data and the agentic data retrieval engine.
 + Azure AI Foundry, hosting the AI agent and tool.
 + Azure SDK with a Foundry project, providing programmatic access to Azure AI Foundry.
-+ Azure OpenAI, hosting a chat completion model used by the knowledge agent and any embedding models used by vectorizers for vector search.
++ Azure OpenAI, hosting a chat completion model used by the knowledge base and any embedding models used by vectorizers for vector search.
 
 ## Set up your environment
 
@@ -204,7 +204,7 @@ project_client.agents.enable_auto_function_calls(toolset)
 
 ## How to structure messages
 
-The messages sent to the agent tool include instructions for chat history and using the results obtained from [knowledge retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview&preserve-view=true) on Azure AI Search. The response is passed as a large single string with no serialization or structure.
+The messages sent to the agent tool include instructions for chat history and using the results obtained from [knowledge retrieval](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) on Azure AI Search. The response is passed as a large single string with no serialization or structure.
 
 This code snippet is the agentic retrieval definition mentioned in the previous code snippet.
 
@@ -288,7 +288,7 @@ The LLM determines the quantity of subqueries based on these factors:
 + Chat history
 + Semantic ranker input constraints
 
-As the developer, the best way to control the number of subqueries is by setting the [maxSubQueries](/rest/api/searchservice/knowledge-agents/create-or-update?view=rest-searchservice-2025-08-01-preview#knowledgesourcereference&preserve-view=true) property in a knowledge agent. 
+As the developer, the best way to control the number of subqueries is by setting the [maxSubQueries](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview#knowledgesourcereference&preserve-view=true) property in a knowledge base. 
 
 The semantic ranker processes up to 50 documents as an input, and the system creates subqueries to accommodate all of the inputs to semantic ranker. For example, if you only wanted two subqueries, you could set `maxSubQueries` to 100 to accommodate all documents in two batches.
 
@@ -302,7 +302,7 @@ The [semantic configuration](semantic-how-to-configure.md) in the index determin
 
 ## Control the number of threads in chat history
 
-A knowledge agent object in Azure AI Search acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, for example, the last five conversation turns.
+A knowledge base object in Azure AI Search acquires chat history through API calls to the Azure Evaluations SDK, which maintains the thread history. You can filter this list to get a subset of the messages, for example, the last five conversation turns.
 
 ## Control costs and limit operations
 
@@ -314,7 +314,7 @@ Look at output tokens in the [activity array](agentic-retrieval-how-to-retrieve.
 
 + Use `gpt mini` or a smaller model that performs faster.
 
-+ Set `maxOutputSize` in the [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
++ Set `maxOutputSize` in the [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) to govern the size of the response, or `maxRuntimeInSeconds` for time-bound processing.
 
 ## Clean up resources
 
@@ -322,7 +322,7 @@ When you're working in your own subscription, at the end of a project, it's a go
 
 You can also delete individual objects:
 
-+ [Delete a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md#delete-an-agent)
++ [Delete a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md#delete-a-knowledge-base)
 
 + [Delete a knowledge source](agentic-knowledge-source-how-to-search-index.md#delete-a-knowledge-source)
 

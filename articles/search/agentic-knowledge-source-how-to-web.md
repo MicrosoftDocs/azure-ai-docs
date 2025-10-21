@@ -35,7 +35,7 @@ When you use web knowledge sources, keep the following in mind:
 
 + The response is always a single, formulated answer to the query instead of raw search results from the web.
 
-+ Because web knowledge sources don't support extractive data, your knowledge base must use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [low or medium reasoning effort](agentic-retrieval-how-to-create-knowledge-base.md#create-a-knowledge-agent). You also can't define answer instructions.
++ Because web knowledge sources don't support extractive data, your knowledge base must use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) and [low or medium reasoning effort](agentic-retrieval-how-to-create-knowledge-base.md#create-a-knowledge-base). You also can't define answer instructions.
 
 ## Prerequisites
 

@@ -1,24 +1,24 @@
 ---
 title: Create a Search Index Knowledge Source
 titleSuffix: Azure AI Search
-description: A search index knowledge source specifies an index used by a knowledge agent for agentic retrieval workloads.
+description: A search index knowledge source specifies an index used by a knowledge base for agentic retrieval workloads.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/17/2025
+ms.date: 10/21/2025
 ---
 
 # Create a search index knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
+A *search index knowledge source* specifies a connection to an Azure AI Search index that provides searchable content in an agentic retrieval pipeline. [Knowledge sources](agentic-knowledge-source-overview.md) are created independently, referenced in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and used as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 ## Prerequisites
 
-You need a search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge agent.
+You need a search index containing plain text or vector content with a semantic configuration. [Review the index criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md#criteria-for-agentic-retrieval). The index must be on the same search service as the knowledge base.
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
@@ -99,11 +99,11 @@ You can pass the following properties to create a search index knowledge source.
 | `sourceDataFields` | The index fields returned when you specify `includeReferenceSourceData` in the knowledge base definition. These fields are used for citations and should be `retrievable`. Examples include the document name, file name, page numbers, or chapter numbers. | Array | No |
 | `searchFields` | The index fields to specifically search against. When unspecified, all fields are searched. | Array | No |
 
-## Assign to a knowledge agent
+## Assign to a knowledge base
 
-If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-Within the knowledge agent, there are more properties to set on the knowledge source that are specific to query operations.
+Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
 
 ## Delete a knowledge source
 
