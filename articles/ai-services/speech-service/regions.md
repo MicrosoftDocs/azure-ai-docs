@@ -3,11 +3,13 @@ title: Regions - Speech service
 titleSuffix: Azure AI services
 description: A list of available regions and endpoints for the Speech service, including speech to text, text to speech, and speech translation.
 author: goergenj
+reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 9/29/2025
+ms.date: 10/21/2025
 ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 #Customer intent: As a developer, I want to learn about the available regions and endpoints for the Speech service.
 ---
@@ -27,7 +29,7 @@ Keep in mind the following points:
 
 ## Regions
 
-The regions in these tables support most of the core features of the Speech service, such as speech to text, text to speech, pronunciation assessment, and translation. Some features, such as fast transcription and batch synthesis API, require specific regions. For the features that require specific regions, the table indicates the regions that support them.
+The regions in these tables support most of the core features of the Speech service, such as speech to text, text to speech, and translation. Some features, such as fast transcription and batch synthesis require specific regions. For the features that require specific regions, the according tables indicate the regions that support them.
 
 # [Geographies](#tab/geographies)
 
@@ -67,7 +69,7 @@ The regions in these tables support most of the core features of the Speech serv
 | US  | West US 2  | `westus2`   |
 | US  | West US 3  | `westus3`   |
 
-<sup>1</sup> Currently this region is not available via a resource of kind AIServices.
+<sup>1</sup> Currently this region isn't available via a resource of kind AIServices.
 
 > [!NOTE]
 > The following regions supported by a resource of kind AIServices, are currently not supported for Speech processing: `southindia`, `spaincentral`.
@@ -169,38 +171,41 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Speech translation](#tab/speech-translation)
 
-| **Region** | **Video translation** |
-|-----|-----|
-| australiaeast  |  |
-| brazilsouth |  |
-| canadacentral  |  |
-| centralindia   |  |
-| centralus | ✅ |
-| eastasia |  |
-| eastus | ✅ |
-| eastus2  | ✅ |
-| francecentral  |  |
-| germanywestcentral |  |
-| japaneast |  |
-| japanwest |  |
-| koreacentral   |  |
-| northcentralus   | ✅ |
-| northeurope |  |
-| norwayeast   |  |
-| qatarcentral   |  |
-| southafricanorth |  |
-| southcentralus   | ✅ |
-| southeastasia  |  |
-| swedencentral  |  |
-| switzerlandnorth |  |
-| switzerlandwest  |  |
-| uaenorth |  |
-| uksouth  |  |
-| westcentralus  | ✅ |
-| westeurope   | ✅ |
-| westus | ✅ |
-| westus2  | ✅ |
-| westus3  | ✅ |
+| **Region** | **Real-time translation** | **Video translation** | **Live interpreter** |
+|-----|-----|-----|-----|
+| australiaeast | ✅ |   |   |
+| brazilsouth | ✅ |   |   |
+| canadacentral | ✅ |   |   |
+| canadaeast | ✅ |   |   |
+| centralindia | ✅ |   |   |
+| centralus | ✅ | ✅ |   |
+| eastasia | ✅ |   |   |
+| eastus | ✅ | ✅ | ✅ |
+| eastus2 | ✅ | ✅ |   |
+| francecentral | ✅ |   |   |
+| germanywestcentral | ✅ |   |   |
+| italynorth | ✅ |   |   |
+| japaneast | ✅ |   | ✅ |
+| japanwest | ✅ |   |   |
+| koreacentral | ✅ |   |   |
+| northcentralus | ✅ | ✅ |   |
+| northeurope | ✅ |   |   |
+| norwayeast | ✅ |   |   |
+| qatarcentral | ✅ |   |   |
+| southafricanorth | ✅ |   |   |
+| southcentralus | ✅ | ✅ |   |
+| southeastasia | ✅ |   | ✅ |
+| swedencentral | ✅ |   |   |
+| switzerlandnorth | ✅ |   |   |
+| switzerlandwest | ✅ |   |   |
+| uaenorth | ✅ |   |   |
+| uksouth | ✅ |   |   |
+| ukwest | ✅ |   |   |
+| westcentralus | ✅ | ✅ |   |
+| westeurope | ✅ | ✅ | ✅ |
+| westus | ✅ | ✅ |   |
+| westus2 | ✅ | ✅ | ✅ |
+| westus3 | ✅ | ✅ |   |
 
 # [Voice live](#tab/voice-live)
 
@@ -242,7 +247,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus |  | ✅ |
 | westus2  | ✅ | ✅ |
 
-Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
+Verify and check actions taken: Computer Use might make mistakes and perform unintended actions. This behavior can be due to the model not fully understanding the GUI, having unclear instructions or encountering an unexpected scenario. 
 
 ---
 
