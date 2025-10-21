@@ -109,7 +109,7 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
  
 You can add features from different regions to your project. You might need to use a different region for a particular feature, based on the region availability of that feature.
 
-For maximum feature availability, consider East US 2, Sweden Central, or West US 2 as your primary regions, as they offer the most comprehensive coverage across Azure AI services.
+For maximum feature availability, consider East US 2, Sweden Central, or West US 2 as your primary regions, as they offer the most comprehensive coverage across features.
 
 The following table lists the availability of Azure AI Foundry features across Azure regions.
 
