@@ -9,7 +9,7 @@ ms.custom:
   - references_regions
   - ignite-2024
 ms.topic: reference
-ms.date: 09/29/2025
+ms.date: 10/21/2025
 ms.update-cycle: 365-days
 ---
 
@@ -249,7 +249,7 @@ This example demonstrates how to output text content in fixed-sized chunks and e
           "ordinalPosition": 0,
           "boundingPolygons": "[[{\"x\":1.5548,\"y\":0.4036},{\"x\":6.9691,\"y\":0.4033},{\"x\":6.9691,\"y\":0.8577},{\"x\":1.5548,\"y\":0.8581}],[{\"x\":1.181,\"y\":1.0627},{\"x\":7.1393,\"y\":1.0626},{\"x\":7.1393,\"y\":1.7363},{\"x\":1.181,\"y\":1.7365}],[{\"x\":1.1923,\"y\":2.1466},{\"x\":3.4585,\"y\":2.1496},{\"x\":3.4582,\"y\":2.4251},{\"x\":1.1919,\"y\":2.4221}],[{\"x\":1.1813,\"y\":2.6518},{\"x\":7.2464,\"y\":2.6375},{\"x\":7.2486,\"y\":3.5913},{\"x\":1.1835,\"y\":3.6056}],[{\"x\":1.3349,\"y\":3.9489},{\"x\":2.1237,\"y\":3.9508},{\"x\":2.1233,\"y\":4.1128},{\"x\":1.3346,\"y\":4.111}],[{\"x\":1.5705,\"y\":4.5322},{\"x\":5.801,\"y\":4.5326},{\"x\":5.801,\"y\":4.7311},{\"x\":1.5704,\"y\":4.7307}]]"
         },
-        "sections": ["sectionHeading"]
+        "sections": []
       },
       {
         "id": "2_25134f52-04c3-415a-ab3d-80729bd58e67",
@@ -259,7 +259,7 @@ This example demonstrates how to output text content in fixed-sized chunks and e
           "ordinalPosition": 1,
           "boundingPolygons": "[[{\"x\":2.2041,\"y\":0.4109},{\"x\":4.3967,\"y\":0.4131},{\"x\":4.3966,\"y\":0.5505},{\"x\":2.204,\"y\":0.5482}],[{\"x\":2.5042,\"y\":0.6422},{\"x\":4.8539,\"y\":0.6506},{\"x\":4.8527,\"y\":0.993},{\"x\":2.5029,\"y\":0.9845}],[{\"x\":2.3705,\"y\":1.1496},{\"x\":2.6859,\"y\":1.15},{\"x\":2.6858,\"y\":1.2612},{\"x\":2.3704,\"y\":1.2608}],[{\"x\":3.7418,\"y\":1.1709},{\"x\":3.8082,\"y\":1.171},{\"x\":3.8081,\"y\":1.2508},{\"x\":3.7417,\"y\":1.2507}],[{\"x\":3.9692,\"y\":1.1445},{\"x\":4.0541,\"y\":1.1445},{\"x\":4.0542,\"y\":1.2621},{\"x\":3.9692,\"y\":1.2622}],[{\"x\":4.5326,\"y\":1.2263},{\"x\":5.1065,\"y\":1.229},{\"x\":5.106,\"y\":1.346},{\"x\":4.5321,\"y\":1.3433}],[{\"x\":5.5508,\"y\":1.2267},{\"x\":5.8992,\"y\":1.2268},{\"x\":5.8991,\"y\":1.3408},{\"x\":5.5508,\"y\":1.3408}]]"
         },
-        "sections": ["sectionHeading", "title"]
+        "sections": []
        }
     ],
     "normalized_images": [ 
@@ -286,6 +286,7 @@ This example demonstrates how to output text content in fixed-sized chunks and e
     ] 
 }
 ```
+Note that the `“sections”` in the sample output above appear blank. To populate them, you’ll need to add an additional skill configured with `outputFormat` set to `markdown`to ensure the sections are properly filled.
 
 The skill uses [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview) to compute locationMetadata. Refer to [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) for details on how pages and bounding polygon coordinates are defined.
 
