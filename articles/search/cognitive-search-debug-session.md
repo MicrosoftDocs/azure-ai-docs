@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 09/21/2025
+ms.date: 10/21/2025
 ms.update-cycle: 365-days
 ---
 
@@ -66,6 +66,17 @@ A cached copy of the enriched document and skillset is loaded into the visual ed
 If the enrichment pipeline doesn't have any errors, a debug session can be used to incrementally enrich a document, test and validate each change before committing the changes.
 
 Debug sessions help identify the root cause of errors or warnings by analyzing the data, skill inputs and outputs, and field mappings. If the indexer encounters configuration issues, such as incorrect network setup, permission-related access errors, or similar, please review the specific error message along with the linked documentation provided. For troubleshooting guidance, refer to the [common indexer errors and warnings](cognitive-search-common-errors-warnings.md).
+
+## Debug Sessions with private connectivity
+
+If your AI enrichment pipeline uses shared private links to access Azure resources, additional configuration is required to ensure indexer and debug sessions work correctly. This includes permissions, trusted access, and network setup.
+
+- If you're using [managed identity](search-how-to-managed-identities.md), assign the necessary roles to your search service identity, including `Storage Blob Data Contributor`, so debug sessions can write session data to your storage account.
+- Ensure the search service has access to all resources referenced in the [skillset definition](cognitive-search-working-with-skillsets.md), including any used in the debug session.
+- In your storage account, [enable trusted services](search-indexer-howto-access-trusted-service-exception.md) to allow access from Azure AI Search.
+- Set `"executionEnvironment" = "private"` property in the indexer definition to ensure the [indexer runs in a private context](search-indexer-howto-access-private.md?#4---configure-the-indexer-to-run-in-the-private-environment).
+- Create a [shared private link](search-indexer-howto-access-private.md) for each resource accessed by the search service, including: your data source, if configured to indexer AI enrichment cache and knowledge store, and any other resources configured in your skillset.
+- For other troubleshooting guidance, refer to the [common indexer errors and warnings](cognitive-search-common-errors-warnings.md).
 
 
 ## Debug session layout
