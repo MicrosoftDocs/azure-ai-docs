@@ -73,11 +73,11 @@ Sample code for text to speech avatar is available on [GitHub](https://github.co
 - Throughout an avatar real-time session or batch content creation, the text to speech, speech to text, Azure OpenAI, or other Azure services are charged separately.
 - Voice sync for avatar (via custom avatar training) is charged the same as a personal voice in terms of voice creation and synthesis. The storage of the voice is free.
 - Refer to [text to speech avatar pricing note](../text-to-speech.md#text-to-speech-avatar) to learn how billing works for the text-to-speech avatar feature.
-- For the detailed pricing, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Avatar pricing is only visible for service regions where the feature is available, including Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
+- For the detailed pricing, see [Speech service pricing](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Avatar pricing is only visible for service regions where the feature is available. For the current list of supported regions, see the [Speech service regions table](../regions.md?tabs=tts-avatar).
 
 ## Available locations
 
-The text to speech avatar feature is only available in the following service regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
+For the current list of regions that support text to speech avatar, see the [Speech service regions table](../regions.md?tabs=tts-avatar).
 
 ### Responsible AI
 

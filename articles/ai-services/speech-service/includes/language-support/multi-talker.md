@@ -11,5 +11,5 @@ ms.author: pafarley
 | `en-US` | English (United States) | `en-US-MultiTalker-Ava-Andrew:DragonHDLatestNeural`<sup>1</sup> (Neutral) | 
 | `en-US` | English (United States) | `en-US-MultiTalker-Ava-Steffan:DragonHDLatestNeural`<sup>1</sup> (Neutral) | 
 
-<sup>1</sup> The neural voice is available in public preview. Voices and styles in public preview are only available in these service [regions](../../regions.md): East US, West Europe, and Southeast Asia. 
+<sup>1</sup> The neural voice is available in public preview. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](../../regions.md?tabs=tts). 
 

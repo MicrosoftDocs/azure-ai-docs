@@ -59,7 +59,7 @@ The text to speech avatar models are trained using deep neural networks based on
 
 ## Available locations
 
-Custom avatar *training* is only available in the following service regions: Southeast Asia, West Europe, and West US 2. You can use a custom avatar model in the following service regions: Southeast Asia, North Europe, West Europe, Sweden Central, South Central US, East US 2, and West US 2.
+For the current list of regions that support custom avatar training and usage, see the [Speech service regions table](../regions.md?tabs=tts-avatar).
 
 ## Custom voice and custom text to speech avatar
 
@@ -68,7 +68,7 @@ Custom avatar *training* is only available in the following service regions: Sou
 The custom text to speech avatar can work with a standard voice or custom voice as the avatar's voice. For more information, see [Avatar voice and language](./what-is-text-to-speech-avatar.md#avatar-voice-and-language).
 
 There are two kinds of custom voice for a custom avatar:
-- **Voice sync for avatar**: When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
+- **Voice sync for avatar**: When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. For supported regions, see the [Speech service regions table](../regions.md?tabs=tts-avatar).
 - **Professional voice**: You can fine-tune a professional voice. [Professional voice fine-tuning](../custom-neural-voice.md) and custom text to speech avatar are separate features. You can use them independently or together. If you choose to use them together, you need to apply for [professional voice fine-tuning](https://aka.ms/customneural) and [custom text to speech avatar](https://aka.ms/customneural) separately, and you're charged separately for professional voice fine-tuning and custom text to speech avatar. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Additionally, if you plan to use [professional voice fine-tuning](../custom-neural-voice.md) with a text to speech avatar, you need to deploy or [copy your custom voice model](../professional-voice-train-voice.md#copy-your-voice-model-to-another-project) to one of the [avatar supported regions](./what-is-custom-text-to-speech-avatar.md#available-locations).
 
 If you fine-tune a professional voice and want to use it together with the custom avatar, pay attention to the following points:

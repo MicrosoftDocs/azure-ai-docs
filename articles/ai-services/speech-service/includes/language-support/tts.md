@@ -164,9 +164,9 @@ ms.custom: references_regions
 | `zh-TW` | Chinese (Taiwanese Mandarin, Traditional) | `zh-TW-HsiaoChenNeural` (Female)<br/>`zh-TW-YunJheNeural` (Male)<br/>`zh-TW-HsiaoYuNeural` (Female) |
 | `zu-ZA` | isiZulu (South Africa) | `zu-ZA-ThandoNeural`<sup>3</sup> (Female)<br/>`zu-ZA-ThembaNeural`<sup>3</sup> (Male) |
 
-<sup>1</sup> The neural voice is available in public preview. Voices and styles in public preview are only available in these service [regions](../../regions.md): East US, Southeast Asia, and West Europe. 
+<sup>1</sup> The neural voice is available in public preview. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](../../regions.md?tabs=tts). 
 
-<sup>2</sup> The neural voice is available in public preview in these service [regions](../../regions.md): Central India, East Asia, East US, Southeast Asia, and West US.
+<sup>2</sup> The neural voice is available in public preview. For the current list of regions that support this voice in public preview, see the [Speech service regions table](../../regions.md?tabs=tts).
 
 <sup>3</sup> [Phonemes](../../speech-synthesis-markup-pronunciation.md#phoneme-element), [custom lexicon](../../speech-synthesis-markup-pronunciation.md#custom-lexicon), and [visemes](../../speech-synthesis-markup-voice.md#viseme-element) aren't supported. For details about supported visemes, see [viseme locales](../../language-support.md?tabs=tts#viseme). 
 

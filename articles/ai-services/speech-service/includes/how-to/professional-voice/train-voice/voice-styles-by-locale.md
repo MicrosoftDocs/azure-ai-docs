@@ -27,4 +27,4 @@ ms.custom: include
 | unfriendly  | English (United States) (`en-US`)|
 | whispering  | English (United States) (`en-US`) |
 
-<sup>1</sup> The neural voice style is available in public preview. Styles in public preview are only available in these service [regions](../../../../regions.md): East US, West Europe, and Southeast Asia. 
+<sup>1</sup> The neural voice style is available in public preview. For the current list of regions that support styles in public preview, see the [Speech service regions table](../../../../regions.md?tabs=tts). 

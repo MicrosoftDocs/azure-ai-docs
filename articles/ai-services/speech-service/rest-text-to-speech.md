@@ -35,7 +35,7 @@ Before you use the text to speech REST API, understand that you need to complete
 You can use the `tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint to get a full list of voices for a specific region or endpoint. Prefix the voices list endpoint with a region to get a list of voices for that region. For example, to get a list of voices for the `westus` region, use the `https://westus.tts.speech.microsoft.com/cognitiveservices/voices/list` endpoint. For a list of all supported regions, see the [regions](regions.md) documentation.
 
 > [!NOTE]
-> [Voices and styles in preview](language-support.md?tabs=tts) are only available in three service regions: East US, West Europe, and Southeast Asia.
+> [Voices and styles in preview](language-support.md?tabs=tts) are only available in a subset of regions. For the current list of regions that support voices and styles in public preview, see the [Speech service regions table](./regions.md?tabs=tts).
 
 ### Request headers
 

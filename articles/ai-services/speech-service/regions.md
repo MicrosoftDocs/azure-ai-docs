@@ -76,49 +76,49 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Speech to text](#tab/stt)
 
-| **Region** | **Real-time transcription**<sup>1</sup> | **Fast transcription** | **Batch transcription**<sup>1</sup> | **Custom speech training**<sup>2</sup> |
-|-----|-----|-----|-----|-----|
-| australiaeast | ✅ | ✅ | ✅ | ✅ |
-| brazilsouth | ✅ | ✅ | ✅ |   |
-| canadacentral | ✅ |   | ✅ | ✅ |
-| canadaeast | ✅ |   | ✅ |   |
-| centralindia | ✅ | ✅ | ✅ | ✅ |
-| centralus  | ✅ |   | ✅ |   |
-| eastasia | ✅ |   | ✅ |   |
-| eastus | ✅ | ✅ | ✅ | ✅ |
-| eastus2  | ✅ | ✅ | ✅ | ✅ |
-| francecentral | ✅ | ✅ | ✅ |   |
-| germanywestcentral | ✅ |   | ✅ |   |
-| italynorth | ✅ |   | ✅ |   |
-| japaneast  | ✅ | ✅ | ✅ |   |
-| japanwest  | ✅ |   | ✅ |   |
-| koreacentral   | ✅ |   | ✅ |   |
-| northcentralus   | ✅ | ✅ | ✅ |   |
-| northeurope | ✅ | ✅ | ✅ | ✅ |
-| norwayeast | ✅ |   | ✅ |   |
-| qatarcentral | ✅ |   | ✅ |   |
-| southafricanorth | ✅ |   | ✅ |   |
-| southcentralus | ✅ | ✅ | ✅ | ✅ |
-| southeastasia | ✅ | ✅ | ✅ | ✅ |
-| swedencentral | ✅ | ✅ | ✅ |   |
-| switzerlandnorth | ✅ |   | ✅ |   |
-| switzerlandwest  | ✅ |   | ✅ |   |
-| uaenorth | ✅ | | ✅ |   |
-| uksouth  | ✅ | ✅ | ✅ | ✅ |
-| ukwest | ✅ |   | ✅ |   |
-| westcentralus | ✅ |   | ✅ |   |
-| westeurope | ✅ | ✅ | ✅ | ✅ |
-| westus | ✅ | ✅ | ✅ |   |
-| westus2  | ✅ | ✅ | ✅ | ✅ |
-| westus3  | ✅ | ✅ | ✅ |   |
+| **Region** | **Real-time transcription**<sup>1</sup> | **Fast transcription** | **Batch transcription**<sup>1</sup> | **Whisper via Batch transcription** | **Whisper via Azure OpenAI** | **Custom speech training**<sup>2</sup> |
+|-----|-----|-----|-----|-----|-----|-----|
+| australiaeast | ✅ | ✅ | ✅ | ✅ |   | ✅ |
+| brazilsouth | ✅ | ✅ | ✅ |   |   |   |
+| canadacentral | ✅ |   | ✅ |   |   | ✅ |
+| canadaeast | ✅ |   | ✅ |   |   |   |
+| centralindia | ✅ | ✅ | ✅ |   | ✅ | ✅ |
+| centralus  | ✅ |   | ✅ |   |   |   |
+| eastasia | ✅ |   | ✅ |   |   |   |
+| eastus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
+| eastus2  | ✅ | ✅ | ✅ |   | ✅ | ✅ |
+| francecentral | ✅ | ✅ | ✅ |   |   |   |
+| germanywestcentral | ✅ |   | ✅ |   |   |   |
+| italynorth | ✅ |   | ✅ |   |   |   |
+| japaneast  | ✅ | ✅ | ✅ | ✅ |   |   |
+| japanwest  | ✅ |   | ✅ |   |   |   |
+| koreacentral   | ✅ |   | ✅ |   |   |   |
+| northcentralus   | ✅ | ✅ | ✅ |   | ✅ |   |
+| northeurope | ✅ | ✅ | ✅ |   |   | ✅ |
+| norwayeast | ✅ |   | ✅ |   | ✅ |   |
+| qatarcentral | ✅ |   | ✅ |   |   |   |
+| southafricanorth | ✅ |   | ✅ |   |   |   |
+| southcentralus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
+| southeastasia | ✅ | ✅ | ✅ | ✅ |   | ✅ |
+| swedencentral | ✅ | ✅ | ✅ |   | ✅ |   |
+| switzerlandnorth | ✅ |   | ✅ |   | ✅ |   |
+| switzerlandwest  | ✅ |   | ✅ |   |   |   |
+| uaenorth | ✅ | | ✅ |   |   |   |
+| uksouth  | ✅ | ✅ | ✅ | ✅ |   | ✅ |
+| ukwest | ✅ |   | ✅ |   |   |   |
+| westcentralus | ✅ |   | ✅ |   |   |   |
+| westeurope | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| westus | ✅ | ✅ | ✅ |   |   |   |
+| westus2  | ✅ | ✅ | ✅ |   |   | ✅ |
+| westus3  | ✅ | ✅ | ✅ |   |   |   |
 
 <sup>1</sup> Supports custom speech model processing.<br>
 <sup>2</sup> The region uses dedicated hardware for custom speech training. If you plan to train a custom model, you must use one of the regions with dedicated hardware. Then you can [copy the trained model](how-to-custom-speech-train-model.md#copy-a-model) to another region.
 
 # [Text to speech](#tab/tts)
 
-| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Voice conversion** |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Voice conversion** | **Voices and styles in preview** |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | australiaeast  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
 | brazilsouth | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |
 | canadacentral  | ✅ | ✅ |  |  | ✅ |  |  |  |  |
@@ -126,36 +126,36 @@ The regions in these tables support most of the core features of the Speech serv
 | centralindia   | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
 | centralus | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |
 | eastasia | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |
-| eastus | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
-| eastus2  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
-| francecentral  | ✅ | ✅ |  |  | ✅ |  |  |  |  |
-| germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |  |
-| italynorth | ✅ | | | | ✅ | | ✅ | | |
-| japaneast | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
-| japanwest | ✅ |  |  |  | ✅ |  |  |  |  |
-| koreacentral   | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
-| northcentralus   | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |
-| northeurope | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
-| norwayeast   | ✅ | ✅ |  |  | ✅ |  |  |  |  |
-| qatarcentral   | ✅ |  |  |  |  |  |  |  |  |
-| southafricanorth | ✅ | ✅ |  |  | ✅ |  |  |  |  |
-| southcentralus   | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
-| southeastasia  | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
-| swedencentral  | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |
-| switzerlandnorth | ✅ | ✅ |  |  | ✅ |  |  |  |  |
-| switzerlandwest  | ✅ |  |  |  | ✅ |  |  |  |  |
-| uaenorth | ✅ | ✅ |  |  | ✅ |  |  |  |  |
-| uksouth  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
-| ukwest | ✅ | | | | | | | | |
-| westcentralus  | ✅ |  |  |  | ✅ |  |  |  |  |
-| westeurope   | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| eastus2  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |
+| francecentral  | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |
+| germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |
+| italynorth | ✅ | | | | ✅ | | ✅ | | | |
+| japaneast | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |
+| japanwest | ✅ |  |  |  | ✅ |  |  |  |  |  |
+| koreacentral   | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |
+| northcentralus   | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |  |
+| northeurope | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |
+| norwayeast   | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |
+| qatarcentral   | ✅ |  |  |  |  |  |  |  |  |  |
+| southafricanorth | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |
+| southcentralus   | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |
+| southeastasia  | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| swedencentral  | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |  |
+| switzerlandnorth | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |
+| switzerlandwest  | ✅ |  |  |  | ✅ |  |  |  |  |  |
+| uaenorth | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |
+| uksouth  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |
+| ukwest | ✅ | | | | | | | | | |
+| westcentralus  | ✅ |  |  |  | ✅ |  |  |  |  |  |
+| westeurope   | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | westus | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |
 | westus2  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ |  |
 | westus3  | ✅ |  |  |  | ✅ |  | ✅ |  |  |
 
 # [Text to speech avatar](#tab/tts)
 
-| **Region** | **Real-time avatar** | **Batch avatar** | **Custom avatar** | **Custom avatar training** |
+| **Region** | **Real-time avatar** | **Batch avatar** | **Custom avatar** | **Custom avatar training**<sup>1</sup> |
 |-----|-----|-----|-----|-----|
 | centralindia | ✅ | ✅ | ✅ |   |
 | eastus | ✅ | ✅ | ✅ |   |
@@ -168,6 +168,8 @@ The regions in these tables support most of the core features of the Speech serv
 | swedencentral | ✅ | ✅ | ✅ |   |
 | westeurope | ✅ | ✅ | ✅ | ✅ |
 | westus2 | ✅ | ✅ | ✅ | ✅ |
+
+<sup>1</sup> When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
 
 # [Speech translation](#tab/speech-translation)
 

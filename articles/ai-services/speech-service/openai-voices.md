@@ -31,8 +31,8 @@ Each voice model offers distinct features and capabilities, allowing you to choo
 
 You can choose from the following text to speech voices in Azure AI services:
 
-- OpenAI text to speech voices in [Azure OpenAI](../openai/reference.md#text-to-speech-preview). Available in the following regions: North Central US and Sweden Central.
-- OpenAI text to speech voices in [Azure AI Speech](./language-support.md?tabs=tts#multilingual-voices). Available in the following regions: North Central US and Sweden Central.
+- OpenAI text to speech voices in [Azure OpenAI](../openai/reference.md#text-to-speech-preview). For the current list of supported regions, see the [Speech service regions table](regions.md?tabs=tts).
+- OpenAI text to speech voices in [Azure AI Speech](./language-support.md?tabs=tts#multilingual-voices). For the current list of supported regions, see the [Speech service regions table](regions.md?tabs=tts).
 - Azure AI Speech service [text to speech voices](./language-support.md?tabs=tts#standard-voices). Available in dozens of regions. See the [region list](regions.md#regions).
 
 ## OpenAI text to speech voices via Azure OpenAI or via Azure AI Speech?
