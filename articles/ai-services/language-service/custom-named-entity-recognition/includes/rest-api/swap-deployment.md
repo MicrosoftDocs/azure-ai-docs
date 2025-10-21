@@ -22,7 +22,7 @@ Create a **POST** request using the following URL, headers, and JSON body to sta
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
-|`{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest [model version](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-05-01` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced here's for the latest [model version](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-05-01` |
 
 
 ### Headers
@@ -50,4 +50,4 @@ Use the following header to authenticate your request.
 |secondDeploymentName | `{SECOND-DEPLOYMENT-NAME}`|The name for your second deployment. This value is case-sensitive.   | `staging` |
 
 
-Once you send your API request, you will receive a `202` response indicating success.
+Once you send your API request, your receive a `202` response indicating success.
