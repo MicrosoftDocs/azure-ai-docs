@@ -107,7 +107,7 @@ You now have a knowledge base instead of a knowledge agent.
 
 #### Update a searchIndex knowledge source
 
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
 
    ```http
    ### Get a knowledge source by name
@@ -148,7 +148,7 @@ You now have an updated `searchIndex` knowledge source with the correct field sp
 
 #### Update an azureBlob knowledge source
 
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledgesources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
+1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
 
    ```http
    ### Get a knowledge source by name
@@ -313,7 +313,7 @@ The response should be similar to the following example. Copy the `indexName`, `
 
 #### Create a knowledge source
 
-To create a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledgesources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `searchIndexName` to the value you previously copied.
+To create a `searchIndex` knowledge source, use the 2025-08-01-preview of [Knowledge Sources - Create (REST API)](/rest/api/searchservice/knowledge-sources/create?view=rest-searchservice-2025-08-01-preview&preserve-view=true). Set `searchIndexName` to the value you previously copied.
 
 ```http
 @source-name = <YourSourceName>
