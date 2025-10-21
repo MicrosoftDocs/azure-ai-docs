@@ -178,11 +178,11 @@ This setup enables AI agents to operate entirely within a dedicated, isolated vi
 
 Our goal is to accelerate the development and deployment of AI agents without compromising critical security requirements. With our bicep and ARM templates, you can quickly setup your agent environment while still maintaining full control over their networking and data.   
 
-## Troubleshooting Guide 
+## Troubleshooting guide 
 
 Refer to this guide to resolve errors regarding the standard secured agent template deployment errors or errors post template deployment in the Azure AI Foundry portal.  
 
-### Template Deployment Errors 
+### Template deployment errors 
 
 `"CreateCapabilityHostRequestDto is invalid: Agents CapabilityHost supports a single, non empty value for vectorStoreConnections property."` 
 

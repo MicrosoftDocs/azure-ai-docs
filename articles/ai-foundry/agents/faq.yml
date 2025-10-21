@@ -72,15 +72,15 @@ sections:
           3. Without the delegation, ACA refuses to deploy, so neither the Agent client nor the compute layer could join your VNet, breaking isolation and compliance requirements.   
           In short, delegating the subnet is the prerequisite that lets ACA, and therefore your Agent runtime, live inside your private network with the correct security and routing policies in place and in your control. 
       - question: |
-          What regions are supported for Class A? 
+          What regions are supported for class A? 
         answer: | 
           Supported regions: West US, East US, East US 2, Japan East, France Central, UAE North, South Central US, Italy North, Germany West Central, Brazil South, South Africa North, Australia East, Sweden Central, Canada East, West Europe, Spain Central, UK South 
       - question: |
-          What class range is supported? Public or Private Class A, B, C Subnets? 
+          What class range is supported for public or private Class A, B, C subnets? 
         answer: |
           Only private class A, B, and C ranges are supported. No public class ranges are supported.  
       - question: |
-          What is the minimum size for the agent subnet? How many IPs should we use initially and how many IPs should be used for each Agent?
+          What is the minimum size for the agent subnet and how many IPs should be used?
         answer: |
           The recommended subnet size is /24 (256 address) and is what we default to in our templates. The minimum subnet size is /27 (32 addresses). The reason why /24 is recommended is because of the runtime impact in the event of a container update, listed in the ACA documentation. For more information, see [Configuring virtual networks Azure Container Apps environments](/azure/container-apps/custom-virtual-networks?tabs=workload-profiles-env#subnet). 
 
@@ -90,7 +90,7 @@ sections:
         answer: |
           As long as there is address space for Agent subnet and private endpoints, then virtual network address range can be anything. 
       - question: |
-          Can I use peered VNETs? Can I have an AI search in one virtual network, CosmosDB in another virtual network, Foundry and Agents in another virtual network?   
+          Can I use peered VNETs? Can I have resources in different virtual networks?  
         answer: |
           Yes this is feasibly possible since the virtual network is in the your subscription, and you  should be able to peer with any virtual network. But data transfer is quite costly so it is not recommended to do this. The requirement is all resources must be in the same region as the Foundry resource.  
       - question: |
