@@ -134,7 +134,7 @@ New-AzResourceGroupDeployment `
 
 ---
 
-By default, all resources created by the template are new. However, you can also use existing resources by including different parameters in the template. For example, if you want to use an existing storage account set the `storageAccountOption` value to `existing`, and provide the name of your storage account in the `storageAccountName` parameter, as shown in the following command.
+By default, all resources created by the template are new. However, you can also use existing resources by including different parameters in the template. For example, if you want to use an existing storage account, set the `storageAccountOption` value to `existing`, and provide the name of your storage account in the `storageAccountName` parameter, as shown in the following command.
 
 > [!IMPORTANT]
 > If you want to use an existing Azure Storage account, it can't be a premium account (Premium_LRS or Premium_GRS). It also can't have a hierarchical namespace (which is used with Azure Data Lake Storage Gen2). Neither premium storage nor hierarchical namespaces are supported with the default storage account of the workspace. You can use premium storage or hierarchical namespace with non-default storage accounts.
@@ -173,7 +173,7 @@ The following example template demonstrates how to create a workspace that has t
 
 * Enable high confidentiality settings for the workspace. This configuration creates a new Azure Cosmos DB instance.
 * Enable encryption for the workspace.
-* Uses an existing Azure key vault to retrieve customer-managed keys. Customer-managed keys are used to create a new Azure Cosmos DB instance for the workspace.
+* Use an existing Azure key vault to retrieve customer-managed keys. Customer-managed keys are used to create a new Azure Cosmos DB instance for the workspace.
 
 > [!IMPORTANT]
 > After a workspace is created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
@@ -268,7 +268,7 @@ You can optionally set the `confidential_data` parameter to `true`. Doing so ena
 
 * Starts encrypting the local scratch disk for Azure Machine Learning compute clusters, if you haven't created any clusters in your subscription. If you have previously created a cluster in the subscription, open a support ticket to have encryption of the scratch disk enabled for your compute clusters.
 * Cleans up the local scratch disk between jobs.
-* Securely passes credentials for the storage account, container registry, and SSH account from the execution layer to your compute clusters by using key vault.
+* Securely passes credentials for the storage account, container registry, and SSH account from the execution layer to your compute clusters by using Key Vault.
 * Enables IP filtering to ensure that no external services other than AzureMachineLearningService can call the underlying batch pools.
 
     > [!IMPORTANT]
