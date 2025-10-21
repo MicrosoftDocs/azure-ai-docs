@@ -16,11 +16,22 @@ ms.custom: references_regions, build-2024
 
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
-[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Azure AI Foundry features are available across cloud regions.  
+:::moniker range="foundry" 
+[!INCLUDE [foundry-link](../default/includes/foundry-link.md)]brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Azure AI Foundry features are available across cloud regions.  
+
+## Azure AI Foundry projects
+
+Azure AI Foundry is currently available in the following Azure regions. 
+
+::: moniker-end
+:::moniker range="foundry-classic" 
+[!INCLUDE [classic-link](../includes/classic-link.md)] brings together various Azure AI capabilities that were previously only available as standalone Azure services. While we strive to make all features available in all regions where Azure AI Foundry is supported at the same time, feature availability might vary by region. In this article, you learn what Azure AI Foundry features are available across cloud regions.  
 
 ## Azure AI Foundry projects
 
 Azure AI Foundry is currently available in the following Azure regions. You can [create either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Azure AI Foundry](../how-to/create-projects.md) in these regions.
+
+::: moniker-end
 
 <!-- Government regions for foundry-classic only at this time -->
 :::moniker range="foundry" 
