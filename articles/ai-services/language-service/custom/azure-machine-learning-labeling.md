@@ -43,20 +43,20 @@ Language Studio supports the JSONL file format used by Azure Machine Learning. I
 
 1.    Start by creating a new project for custom text classification or custom named entity recognition.
 
-    1. In the **Create a project** screen that appears, follow the prompts to connect your storage account, and enter the basic information about your project. Be sure that the Azure resource you're using doesn't have another storage account already connected.
+1. In the **Create a project** screen that appears, follow the prompts to connect your storage account, and enter the basic information about your project. Be sure that the Azure resource you're using doesn't have another storage account already connected.
+
+1. In the **Choose container** section, choose the option indicating that you already have a correctly formatted file. Then select your most recent Azure Machine Learning labels file.
     
-    1. In the **Choose container** section, choose the option indicating that you already have a correctly formatted file. Then select your most recent Azure Machine Learning labels file.
-        
         :::image type="content" source="./media/select-label-file.png" alt-text="A screenshot showing the selection for a label file in Language Studio." lightbox="./media/select-label-file.png":::
 
 ## Connect to Azure Machine Learning
 
 Before you connect to Azure Machine Learning, you need an Azure Machine Learning account with a pricing plan that can accommodate the compute needs of your project. See the [prerequisites section](#prerequisites) to make sure that you have successfully completed all the requirements to start connecting your Language Studio project to Azure Machine Learning.
 
-1.    Use the [Azure portal](https://portal.azure.com) to navigate to the Azure Blob Storage account connected to your language resource.
-2.    Ensure that the *Storage Blob Data Contributor* role is assigned to your AML workspace within the role assignments for your Azure Blob Storage account. 
-3.    Navigate to your project in [Language Studio](https://language.azure.com/). From the left pane of your project, select **Data labeling**.
-4.    Select **use Azure Machine Learning to label** in either the **Data labeling** description, or under the **Activity pane**. 
+1. Use the [Azure portal](https://portal.azure.com) to navigate to the Azure Blob Storage account connected to your language resource.
+1. Ensure that the *Storage Blob Data Contributor* role is assigned to your AML workspace within the role assignments for your Azure Blob Storage account. 
+1. Navigate to your project in [Language Studio](https://language.azure.com/). From the left pane of your project, select **Data labeling**.
+1. Select **use Azure Machine Learning to label** in either the **Data labeling** description, or under the **Activity pane**. 
 
     :::image type="content" source="./media/azure-machine-learning-selection.png" alt-text="A screenshot showing the location of the Azure Machine Learning link." lightbox="./media/azure-machine-learning-selection.png":::
 
@@ -73,7 +73,7 @@ Before you connect to Azure Machine Learning, you need an Azure Machine Learning
 
     You can also leave labeling instructions for the human labelers that will help you in the labeling process. These instructions can help them understand the task by leaving clear definitions of the labels and including examples for better results.
 
-1.    Review the settings for your connection to Azure Machine Learning and make changes if needed. 
+1. Review the settings for your connection to Azure Machine Learning and make changes if needed. 
 
     > [!IMPORTANT]
     > Finalizing the connection **is permanent**. Attempting to disconnect your established connection at any point in time will permanently disable your Language Studio project from connecting to the same Azure Machine Learning project. 
