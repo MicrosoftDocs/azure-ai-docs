@@ -169,7 +169,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westeurope | ✅ | ✅ | ✅ | ✅ |
 | westus2 | ✅ | ✅ | ✅ | ✅ |
 
-<sup>1</sup> When you enable the voice sync for avatar option during custom avatar training, a synthetic voice model using the likeness of the avatar talent is simultaneously trained with the avatar. This voice is exclusively associated with the custom avatar and can't be independently used. Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
+<sup>1</sup>Voice sync for avatar is currently supported in the Southeast Asia, West Europe, and West US 2 regions.
 
 # [Speech translation](#tab/speech-translation)
 
