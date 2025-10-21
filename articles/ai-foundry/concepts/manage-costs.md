@@ -50,17 +50,9 @@ You use Azure AI Foundry Tools in Azure AI Foundry portal. Costs for  AI Foundry
 
 Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Azure AI Foundry Tools.
 
-1. Select a product, such as Azure OpenAI, in the Azure pricing calculator.
-
-    :::image type="content" source="../media/manage-costs/azure-openai-pricing-calculator.png" alt-text="Screenshot of selecting Azure OpenAI in the Azure pricing calculator.":::
-
-1. Enter the number of units you plan to use. For example, enter the number of input tokens.
-
-    :::image type="content" source="../media/manage-costs/azure-openai-cost-estimate.png" alt-text="Screenshot of Azure OpenAI cost estimate in the Azure pricing calculator." lightbox="../media/manage-costs/azure-openai-cost-estimate.png":::
+1. Search for and sellect a product, such as Azure AI Language, in the Azure pricing calculator.
 
 1. Select more than one product to estimate costs for multiple products. For example, search for and select Azure AI Search to add potential costs.
-
-    :::image type="content" source="../media/manage-costs/azure-ai-foundry-cost-calculator.png" alt-text="Screenshot showing the cost calculator in Azure." lightbox="../media/manage-costs/azure-ai-foundry-cost-calculator.png":::
 
 As you add new resources to your project, return to this calculator and add the same resource here to update your cost estimates.
 
