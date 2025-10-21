@@ -35,7 +35,7 @@ This article describes how to plan for and manage costs for [!INCLUDE [classic-l
 > [!TIP]
 > Azure AI Foundry doesn't have a specific page in the Azure pricing calculator. Azure AI Foundry is composed of several other Azure services, some of which are optional. This article shows how to use the pricing calculator to estimate costs for these services.
 
-You use Azure AI Foundry Tools in Azure AI Foundry portal. Costs for  AI Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all Azure services and resources used in your Azure subscription, including third-party services. You can also review forecasted costs and identify spending trends to find areas where you might want to act.
+You use Azure AI Foundry Tools in Azure AI Foundry portal. Costs for  AI Foundry Tools are only a portion of the monthly costs in your Azure bill. You're billed for all services and resources used in your Azure subscription, including third-party services. You can also review forecasted costs and identify spending trends to find areas where you might want to act.
 
 ## Prerequisites
 
@@ -154,27 +154,15 @@ Here's an example of how to monitor costs for a project. The costs are used as a
 1. Under the **Resource properties**, select on the resource group link. The [Azure portal](https://portal.azure.com/) opens to the resource group for your Foundry resource.
 
    :::image type="content" source="../media/manage-costs/azure-cost-analysis-overview.png" alt-text="Screenshot showing the AI Foundry portal with the resource Overview section and resource group highlighted." lightbox="../media/manage-costs/azure-cost-analysis-overview.png":::
+
+[!INCLUDE [monitor-costs-azure-portal](../includes/monitor-costs-azure-portal.md)]
+
 ::: moniker-end
 
 ::: moniker range="foundry"
 1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
+[!INCLUDE [monitor-costs-azure-portal](../includes/monitor-costs-azure-portal.md)]
 ::: moniker-end
-
-1. Select **Cost analysis**.
-
-   :::image type="content" source="../media/manage-costs/azure-cost-overview-filters.png" alt-text="Screenshot of the Azure portal showing the Cost Analysis section under Cost Management.":::
-
-1. You see the cost overview. You can also add filters like the deployment level tags to see the costs based on model deployment, as shown in the following screenshot.
-
-   :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview with deployment level tags." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
-
-1. Select **Costs by resource** > **Resources** to open the Cost analysis page.
-
-   :::image type="content" source="../media/manage-costs/azure-cost-analysis-resources.png" alt-text="Screenshot of the Azure portal cost analysis with the button to select costs by resources.":::
-
-1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource,
-
-   :::image type="content" source="../media/manage-costs/azure-foundry-cost-split.png" alt-text="Screenshot of split of Foundry resource cost across model deployments." lightbox="../media/manage-costs/azure-foundry-cost-split.png":::
 
 ### Understand cost breakdown by meter
 
