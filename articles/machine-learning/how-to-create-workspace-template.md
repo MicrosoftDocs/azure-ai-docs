@@ -482,6 +482,7 @@ To deploy a workspace with existing resources, you have to set the `vnetOption` 
    * Region: Select the Azure region to create the resources in.
    * Workspace name: Enter a name for the Azure Machine Learning workspace. The workspace name must be between 3 and 33 characters. It can contain only alphanumeric characters and the `-` character.
    * Location: Select the location where the resources are to be created.
+   * Vnet Name: Enter a virtual network name. 
 1. Select __Review + create__.
 1. Select __Create__.
 
