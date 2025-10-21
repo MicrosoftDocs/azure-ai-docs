@@ -153,7 +153,7 @@ The regions in these tables support most of the core features of the Speech serv
 | westus2  | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ |  |
 | westus3  | ✅ |  |  |  | ✅ |  | ✅ |  |  |
 
-# [Text to speech avatar](#tab/tts)
+# [Text to speech avatar](#tab/ttsavatar)
 
 | **Region** | **Real-time avatar** | **Batch avatar** | **Custom avatar** | **Custom avatar training**<sup>1</sup> |
 |-----|-----|-----|-----|-----|

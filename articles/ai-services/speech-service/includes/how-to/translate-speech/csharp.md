@@ -413,7 +413,7 @@ For a complete code sample with the Speech SDK, see [speech translation samples 
 
 Live Interpreter continuously identifies the language being spoken without requiring you to set an input language and delivers low latency speech-to-speech translation in a natural voice that preserves the speaker's style and tone. 
 
-To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the regions that support Live Interpreter. See the [Speech service regions table](../../regions.md?tabs=speech-translation) for current regional availability.
+To use the Live Interpreter API, first [apply for personal voice access](https://aka.ms/customneural) and select "Personal Voice" for Question 20. For resource ID, please make sure that it is in one of the regions that support Live Interpreter. See the [Speech service regions table](../../../regions.md?tabs=speech-translation) for current regional availability.
 
 After personal voice access permission is granted, you can enable Live Interpreter with the following code:
 
