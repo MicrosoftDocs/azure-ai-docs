@@ -192,44 +192,6 @@ The regions in these tables support most of the core features of the Speech serv
 
 <sup>3</sup> Currently West US 2 only supports Speech Service resources (not AI Foundry resources). Use one of the other regions to use an Azure AI Foundry resource and best integration with Azure AI Foundry Agent Service and bring-your-own-model (BYOM) support.
 
-# [Intent recognition](#tab/intent-recognition)
-
-| **Region** | **Intent recognition** |
-|-----|-----|
-| australiaeast      | ✅ |
-| brazilsouth        | ✅ |
-| canadacentral      |  |
-| centralindia       |  |
-| centralus          |  |
-| eastasia           | ✅ |
-| eastus             | ✅ |
-| eastus2            | ✅ |
-| francecentral      |  |
-| germanywestcentral |  |
-| japaneast          |  |
-| japanwest          |  |
-| koreacentral       |  |
-| northcentralus     |  |
-| northeurope        | ✅ |
-| norwayeast         |  |
-| qatarcentral       |  |
-| southafricanorth   |  |
-| southcentralus     | ✅ |
-| southeastasia      | ✅ |
-| swedencentral      |  |
-| switzerlandnorth   |  |
-| switzerlandwest    |  |
-| uaenorth           |  |
-| uksouth            |  |
-| westcentralus      | ✅ |
-| westeurope         | ✅ |
-| westus             | ✅ |
-| westus2            | ✅ |
-| westus3            |  |
-
-> [!NOTE]
-> The [Speech SDK](speech-sdk.md) supports intent recognition through Direct Line Speech.
-
 
 # [Keyword recognition](#tab/keyword-recognition)
 

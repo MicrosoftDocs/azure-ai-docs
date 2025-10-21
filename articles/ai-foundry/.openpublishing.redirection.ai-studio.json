@@ -1317,6 +1317,31 @@
           "source_path_from_root": "/articles/ai-foundry/how-to/view-ai-red-teaming-results.md",
           "redirect_url": "/azure/ai-foundry/how-to/develop/run-scans-ai-red-teaming-agent#viewing-ai-red-teaming-results-in-azure-ai-foundry-project-preview",
           "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
+        },
+        {
+          "source_path_from_root": "/articles/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md",
+          "redirect_url": "/azure/ai-services/speech-service/overview",
+          "redirect_document_id": false
         }
     ]
 }
