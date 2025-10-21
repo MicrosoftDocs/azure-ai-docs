@@ -13,10 +13,14 @@ ms.custom:
   - build-2024
   - ignite-2024
   - build-2025
+  - ai-assisted
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-portal-cli-ps
 ---
 
 # Quickstart: Set up your first AI Foundry resource
+
+In this quickstart, you create an Azure AI Foundry resource and verify access.
 
 Learn how to create and manage an Azure AI Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
 
@@ -24,15 +28,15 @@ An Azure resource is required to use and manage services in Azure. It defines th
 
 Azure AI Foundry resource is the next version and renaming of former "Azure AI Services". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
 
+An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
+
+:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
+
 Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
 Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
 
 ## Create your first resource
-
-An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects acts as folders to group related work.
-
-:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram explaining concepts of an Azure AI Foundry setup.":::
 
 To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or PowerShell.
 
@@ -58,6 +62,34 @@ To create your first resource, with basic Azure settings, follow the below steps
 
 With your first resource created, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure portal for administrative management](https://portal.azure.com).
 
+### Verify your setup
+
+You can verify that your resource is set up correctly by using the Azure AI Projects SDK to connect and list projects. This minimal example confirms authentication and access.
+
+```python
+# Install the SDK: pip install azure-ai-projects azure-identity
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Replace with your actual values from Azure portal
+client = AIProjectClient(
+    subscription_id="<your-subscription-id>",
+    resource_group_name="<your-resource-group>",
+    project_name="<your-project-name>",
+    credential=DefaultAzureCredential()
+)
+
+# List projects to verify connection
+projects = client.projects.list()
+print(f"Successfully connected. Found {len(list(projects))} projects.")
+```
+
+**Expected output**: `Successfully connected. Found X projects.` where X is the number of projects in your resource.
+
+**References**:
+- [AIProjectClient class](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient)
+- [DefaultAzureCredential class](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
 ## Grant or obtain developer permissions
 
 [Azure Role Based Access Control](/azure/role-based-access-control/resource-provider-operations) (RBAC) differentiates permissions between management and development actions. To build with Foundry, your user account must be assigned developer permissions ("data actions"). You can either use one of the built-in RBAC roles, or use a custom RBAC role.
@@ -76,7 +108,7 @@ Only authorized users, typically the Azure subscription or resource group owner,
 
 ## Start building in your first project
 
-With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can create multiple under the same resource.
+With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects.md#create-multiple).
 
 Explore some of the services that come bundled with your resource:
 

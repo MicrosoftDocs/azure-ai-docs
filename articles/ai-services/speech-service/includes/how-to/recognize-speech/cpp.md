@@ -31,7 +31,7 @@ You can initialize `SpeechConfig` in a few other ways:
 * Use an authorization token with the associated region/location.
 
 > [!NOTE]
-> Regardless of whether you're performing speech recognition, speech synthesis, translation, or intent recognition, you always create a configuration.
+> Regardless of whether you're performing speech recognition, speech synthesis, or translation, you always create a configuration.
 
 ## Recognize speech from a microphone
 
