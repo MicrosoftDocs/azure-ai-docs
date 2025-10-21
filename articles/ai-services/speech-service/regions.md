@@ -104,41 +104,46 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Text to speech](#tab/tts)
 
-| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
-| australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| brazilsouth        | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
-| canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| canadaeast | ✅ | | | | | | | | | |
-| centralindia       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| centralus          | ✅ | ✅ |  |  | ✅ |  | ✅ |  |  |  |  |
-| eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |  |  |  |
-| eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |  |  |  |
-| eastus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
-| francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| italynorth | ✅ | | | | ✅ | | ✅ | | ✅ | ✅ |
-| japaneast          | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| japanwest          | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| koreacentral       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |  |  |  |
-| northeurope        | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
-| norwayeast         | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| qatarcentral       | ✅ |  |  |  |  |  |  |  |  |  |  |
-| southafricanorth   | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| southcentralus     | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  | ✅ | ✅ |  |
-| southeastasia      | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| swedencentral      | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  | ✅ | ✅ |  |
-| switzerlandnorth   | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| switzerlandwest    | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| uaenorth           | ✅ | ✅ |  |  | ✅ |  |  |  |  |  |  |
-| uksouth            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| ukwest | ✅ | | | | | | | | | |
-| westcentralus      | ✅ |  |  |  | ✅ |  |  |  |  |  |  |
-| westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus             | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |  |  |  |
-| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus3            | ✅ |  |  |  | ✅ |  | ✅ |  |  |  |  |
+| **Region** | **Neural text to speech** | **Batch synthesis API** | **HD voices** | **Azure OpenAI voices**  | **Custom voice** | **Custom voice training** | **Custom voice high performance endpoint** | **Personal voice** |
+|-----|-----|-----|-----|-----|-----|-----|-----|-----|
+| australiaeast      | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| brazilsouth        | ✅ | ✅ |  |  | ✅ |  | ✅ |  |
+| canadacentral      | ✅ | ✅ |  |  | ✅ |  |  |  |
+| canadaeast | ✅ | | | | | | | |
+| centralindia       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| centralus          | ✅ | ✅ |  |  | ✅ |  | ✅ |  |
+| eastasia           | ✅ | ✅ |  |  | ✅ |  |  | ✅ |
+| eastus             | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |
+| eastus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| francecentral      | ✅ | ✅ |  |  | ✅ |  |  |  |
+| germanywestcentral | ✅ | ✅ |  |  | ✅ |  |  |  |
+| italynorth | ✅ | | | | ✅ | | ✅ | |
+| japaneast          | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| japanwest          | ✅ |  |  |  | ✅ |  |  |  |
+| koreacentral       | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| northcentralus     | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |
+| northeurope        | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| norwayeast         | ✅ | ✅ |  |  | ✅ |  |  |  |
+| qatarcentral       | ✅ |  |  |  |  |  |  |  |
+| southafricanorth   | ✅ | ✅ |  |  | ✅ |  |  |  |
+| southcentralus     | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| southeastasia      | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |
+| swedencentral      | ✅ | ✅ |  | ✅ | ✅ |  | ✅ |  |
+| switzerlandnorth   | ✅ | ✅ |  |  | ✅ |  |  |  |
+| switzerlandwest    | ✅ |  |  |  | ✅ |  |  |  |
+| uaenorth           | ✅ | ✅ |  |  | ✅ |  |  |  |
+| uksouth            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| ukwest | ✅ | | | | | | | |
+| westcentralus      | ✅ |  |  |  | ✅ |  |  |  |
+| westeurope         | ✅ | ✅ | ✅ |  | ✅ | ✅ | ✅ | ✅ |
+| westus             | ✅ | ✅ |  |  | ✅ | ✅ | ✅ |  |
+| westus2            | ✅ | ✅ |  |  | ✅ | ✅ | ✅ | ✅ |
+| westus3            | ✅ |  |  |  | ✅ |  | ✅ |  |
+
+# [Text to speech avatar](#tab/tts)
+
+| **Region** | **Text to speech avatar** | **Custom avatar** | **Custom avatar training** |
+|-----|-----|-----|-----|
 
 # [Speech translation](#tab/speech-translation)
 
