@@ -197,6 +197,12 @@ const client = new OpenAI();
 
 **Microsoft Entra authentication**:
 
+First install the Azure Identity client library before you can use DefaultAzureCredential:
+
+```bash
+npm install @azure/identity
+```
+
 ```javascript
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
@@ -228,6 +234,12 @@ client := openai.NewClient()
 
 
 **Microsoft Entra authentication**:
+
+Install the Azure Identity module first:
+
+```bash
+go get -u github.com/Azure/azure-sdk-for-go/sdk/azidentity
+```
 
 ```go
 tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
@@ -261,6 +273,8 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 ```
 
 **Microsoft Entra authentication**:
+
+First install the Azure Identity client library. For how to install this library, see [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity/README.md#include-the-package).
 
 ```java
 Credential tokenCredential = BearerTokenCredential.create(
@@ -373,7 +387,6 @@ ChatClient client = new(
     model: "grok-3-mini",
     credential: new ApiKeyCredential(keyFromEnvironment),
     options: new OpenAIClientOptions() { 
-    
         Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
    }
 );
@@ -386,7 +399,7 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 
 **Microsoft Entra authentication**:
 
-A secure, keyless authentication approach is to use Microsoft Entra ID (formerly Azure Active Directory) via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
+A secure, keyless authentication approach is to use Microsoft Entra ID via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ). To use the library:
 
 ```dotnetcli
 dotnet add package Azure.Identity
@@ -410,7 +423,6 @@ ChatClient client = new(
     model: "grok-3-mini", // Replace with your model deployment name.
     authenticationPolicy: tokenPolicy,
     options: new OpenAIClientOptions() { 
-    
         Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
    }
 );
@@ -611,9 +623,9 @@ Add the Azure Identity package:
 </dependency>
 ```
 
-After setup, you can choose which type of credential from `azure.identity` to use. As an example, `DefaultAzureCredential` can be used to authenticate the client: Set the values of the client ID, tenant ID, and client secret of the Microsoft Entra ID application as environment variables: AZURE_CLIENT_ID, AZURE_TENANT_ID, AZURE_CLIENT_SECRET.
+After setup, you can choose which type of credential from `azure.identity` to use. As an example, `DefaultAzureCredential` can be used to authenticate the client.
 
-Authorization is easiest using `DefaultAzureCredential`. It finds the best credential to use in its running environment. However, use of `DefaultAzureCredential` is only recommended for testing, not for production.  
+Authentication is easiest using `DefaultAzureCredential`. It finds the best credential to use in its running environment.
 
 ```java
 Credential tokenCredential = BearerTokenCredential.create(
