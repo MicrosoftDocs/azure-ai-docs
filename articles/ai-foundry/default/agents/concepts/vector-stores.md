@@ -1,3 +1,17 @@
+---
+title: Vector stores in Azure AI Agent Service'
+titleSuffix: Azure AI Foundry
+description: Learn about how vector stores give agent tools the ability to search your files. 
+services: cognitive-services
+manager: nitinme
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
+ms.topic: conceptual
+ms.date: 10/16/2025
+author: aahill
+ms.author: aahi
+---
+
 # Vector stores
 Vector store objects give the file search tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
 
