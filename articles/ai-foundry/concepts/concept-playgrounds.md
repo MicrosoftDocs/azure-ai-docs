@@ -108,7 +108,7 @@ To get started with the agents playground, see the [Quickstart: Create a new age
 
 ::: moniker range="foundry"
 
-To get started with the agents playground, see [Understanding the agent development lifecycle](../default/agents/concepts/development-lifecycle.md).
+To get started with the agents playground, see [Agent playground in Azure AI Foundry portal](../default/agents/concepts/development-lifecycle.md#agent-playground-in-azure-ai-foundry-portal).
 
 ::: moniker-end
 
