@@ -5,7 +5,7 @@ description: Learn about the regions that offer Azure AI Search and the features
 author: haileytap
 ms.author: haileytapia
 manager: nitinme
-ms.date: 10/06/2025
+ms.date: 10/09/2025
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.custom:
@@ -25,7 +25,7 @@ When you create an Azure AI Search service, your region selection might depend o
 |---------|-------------|--------------|
 | [AI enrichment](cognitive-search-concept-intro.md) | Refers to [built-in skills](cognitive-search-predefined-skills.md) that make internal calls to Azure AI for enrichment and transformation during indexing. Integration requires that Azure AI Search coexists with an [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills) in the same physical region. You can bypass region requirements by using [identity-based connections](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection), currently in public preview. | Regional support is noted in this article. |
 | [Availability zones](/azure/reliability/reliability-ai-search#availability-zone-support) | Divides a region's data centers into distinct physical location groups, providing high availability within the same geo. | Regional support is noted in this article. |
-| [Agentic retrieval](search-agentic-retrieval-concept.md) | Takes a dependency on semantic ranker, which is another premium feature. | Regional support is noted in this article. |
+| [Agentic retrieval](agentic-retrieval-overview.md) | Takes a dependency on semantic ranker, which is another premium feature. | Regional support is noted in this article. |
 | [Confidential computing](search-security-overview.md#data-in-use) | Deploys your search service on confidential VMs to process data in a hardware-based trusted execution environment.<p>Confidential computing disables or restricts certain features, including agentic retrieval, semantic ranker, query rewrite, and skillset execution. | Regional support is noted in this article. |
 | [Semantic ranker](semantic-search-overview.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
 | [Query rewrite](semantic-how-to-query-rewrite.md) | Takes a dependency on Microsoft-hosted models in specific regions. | Regional support is noted in this article. |
@@ -47,7 +47,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | ​Central US​​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | East US​ | ✅ | ✅ | ✅ |  | ✅ |  |
 | East US 2 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| Mexico Central |  | ✅ |  | ✅ |  |  |
+| Mexico Central |  | ✅ |  |  |  |  |
 | North Central US​ ​| ✅ |  | ✅ |  | ✅ | ✅ |
 | South Central US​ | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | West US​​ | ✅ |  | ✅ |  | ✅ | ✅ |
@@ -102,7 +102,7 @@ You can create an Azure AI Search service in any of the following Azure public r
 | Indonesia Central |  | ✅ |  |  |  |  |
 | Jio India West​​ | ✅ |  | ✅ |  | ✅ | ✅ |
 | Jio India Central​​ |  |  |  |  |  |  |
-| Japan East | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Japan East | ✅ | ✅ | ✅ |  | ✅ | ✅ |
 | Japan West​ | ✅ |  | ✅ |  | ✅ |  |
 | Korea Central | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | Korea South​​ |  |  | ✅ |  | ✅ |  |

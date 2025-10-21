@@ -15,7 +15,7 @@ ms.author: pafarley
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/) 
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) 
 * [Node.js LTS](https://nodejs.org/)
 * [TypeScript](https://www.typescriptlang.org/)
 * [Visual Studio Code](https://code.visualstudio.com/)

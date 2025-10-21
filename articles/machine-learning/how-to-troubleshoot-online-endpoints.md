@@ -8,7 +8,7 @@ ms.subservice: inferencing
 author: s-polly
 ms.author: scottpolly
 ms.reviewer: sehan
-ms.date: 09/25/2024
+ms.date: 10/06/2025
 ms.topic: troubleshooting
 ms.custom:
   - devplatv2
@@ -35,7 +35,7 @@ The [HTTP status codes](#http-status-codes) section explains how invocation and 
 
 ## Prerequisites
 
-- An active Azure subscription with the free or paid version of Azure Machine Learning. [Get a free trial Azure subscription](https://azure.microsoft.com/free/).
+- An active Azure subscription with the free or paid version of Azure Machine Learning. [Get a free trial Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 # [Azure CLI](#tab/cli)
 

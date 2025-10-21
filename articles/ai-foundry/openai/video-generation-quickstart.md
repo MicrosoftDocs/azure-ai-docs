@@ -39,5 +39,5 @@ If you want to clean up and remove an Azure OpenAI resource, you can delete the 
 
 ## Related content
 
-* Learn more about Azure OpenAI [deployment types](./how-to/deployment-types.md).
+* Learn more about Azure OpenAI [deployment types](../foundry-models/concepts/deployment-types.md).
 * Learn more about Azure OpenAI [quotas and limits](quotas-limits.md).

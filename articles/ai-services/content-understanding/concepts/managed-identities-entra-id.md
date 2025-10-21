@@ -2,8 +2,8 @@
 title: Managed Identities and Entra ID with Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Documentation for using Managed Identities and Entra ID with Content Understanding.
-author: [Author Name]
-ms.author: [ms-author]
+author: jfilcik
+ms.author: jfilcik
 ms.service: azure-ai-content-understanding
 ms.topic: conceptual
 ms.date: 10/03/2025

@@ -156,7 +156,7 @@ Document translation data residency depends on the Azure region where your Trans
 
 ## Next steps
 
-In our quickstart, you learn how to rapidly get started using Document translation. To begin, you need an active [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free).
+In our quickstart, you learn how to rapidly get started using Document translation. To begin, you need an active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/free).
 
 > [!div class="nextstepaction"]
 > [Get Started with Asynchronous batch translation](./how-to-guides/use-rest-api-programmatically.md) [Get started with synchronous translation](how-to-guides/use-rest-api-programmatically.md)

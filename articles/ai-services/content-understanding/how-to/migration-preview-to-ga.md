@@ -2,8 +2,8 @@
 title: Migration from Content Understanding Preview to GA
 titleSuffix: Azure AI services
 description: Tutorial for migrating from Content Understanding Preview to GA, including API changes and best practices.
-author: [Author Name]
-ms.author: [ms-author]
+author: PatrickFarley
+ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
 ms.date: 10/03/2025

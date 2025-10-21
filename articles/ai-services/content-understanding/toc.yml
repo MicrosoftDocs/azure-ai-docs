@@ -17,9 +17,9 @@ items:
         href: service-limits.md
       - name: Language and region support
         href: language-region-support.md
-      - name: CU Studio vs. Foundry (TODO)
+      - name: CU Studio versus Foundry (TODO)
         displayName: studio, foundry, differences, comparison, use cases, features
-        href: overview/cu-studio-vs-foundry.md
+        href: overview/cu-studio-versus-foundry.md
       - name: Pricing explainer
         displayName: pricing, cost, examples, billing
         href: overview/pricing-explainer.md

@@ -114,9 +114,6 @@ items:
   - name: Quotas and limits
     href: ../../openai/quotas-limits.md
     displayName: openai 
-  - name: Deployment types
-    href: ../../openai/how-to/deployment-types.md
-    displayName: global, Global, globalstandard, global-standard, Global-Standard, standard, provisioned 
   - name: Azure OpenAI Models
     href: ../../openai/concepts/models.md
     displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
@@ -241,6 +238,8 @@ items:
           href: ../../openai/concepts/content-filter-groundedness.md
         - name: Protected material detection
           href: ../../openai/concepts/content-filter-protected-material.md
+        - name: Personally identifiable information (PII) detection
+          href: ../../openai/concepts/content-filter-personal-information.md
         - name: Content filter configurability
           href: ../../openai/concepts/content-filter-configurability.md
         - name: Content filter annotations
@@ -354,8 +353,6 @@ items:
           href: ../../openai/how-to/dynamic-quota.md
         - name: Monitor Azure OpenAI
           href: ../../openai/how-to/monitor-openai.md
-        - name: Plan and manage costs
-          href: ../../openai/how-to/manage-costs.md
         - name: Performance & latency
           href: ../../openai/how-to/latency.md
         - name: Role-based access control (Azure RBAC)
