@@ -1,5 +1,5 @@
 ﻿---
-title: Azure AI Foundry feature availability across clouds regions
+title: Feature availability across cloud regions
 titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across cloud regions.
 ms.service: azure-ai-foundry
