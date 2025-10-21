@@ -12,7 +12,7 @@ ai.usage: ai-assisted
 ---
 
 # Authentication and authorization options in Azure AI Foundry
-
+<!--
 Azure AI Foundry supports multiple authentication approaches to balance security, operational simplicity, and speed. This article explains the control plane and data plane model, compares API key and Microsoft Entra ID (formerly Azure AD) authentication, maps identities to roles, and describes common least privilege scenarios. Use this article with:
 
 - [Role-based access control for Azure AI Foundry](rbac-azure-ai-foundry.md)
@@ -22,7 +22,6 @@ Azure AI Foundry supports multiple authentication approaches to balance security
 
 > [!IMPORTANT]
 > Use Microsoft Entra ID for production workloads to enable conditional access, managed identities, and least privilege RBAC. API keys are convenient for quick evaluation and legacy tooling but lack user level traceability.
-
 ## Control plane vs. data plane
 
 Azure services separate management (_control plane_) from runtime operations (_data plane_).
@@ -40,7 +39,6 @@ _Source file: control-data-plane.mmd (stored alongside the image for maintenance
 
 > [!NOTE]
 > This diagram is conceptual. Check current service documentation for the latest supported resources and operations.
-
 ## Authentication methods
 
 ### API keys
@@ -72,7 +70,6 @@ Microsoft Entra ID uses OAuth 2.0 bearer tokens. Principals get tokens for the r
 
 > [!IMPORTANT]
 > Validate features marked [**TO VERIFY**] against current release notes if you rely on them for compliance-critical scenarios.
-
 | Capability or feature | API Key | Microsoft Entra ID | Notes |
 |---------------------|---------|--------------------|-------|
 | Basic model inference (chat, embeddings) | Yes | Yes | Fully supported. |
@@ -111,7 +108,6 @@ See the authoritative list in [Azure built-in roles (AI + machine learning)](/az
 
 > [!TIP]
 > Create a custom role when a built-in role grants more permissions than you need.
-
 ## Set up Microsoft Entra ID
 
 High-level steps. See the detailed guide: [Configure key-less authentication](../foundry-models/how-to/configure-entra-id.md).
@@ -178,3 +174,4 @@ Some creation workflows can auto assign broad roles, such as granting the resour
 - [Configure key-less authentication with Microsoft Entra ID](../foundry-models/how-to/configure-entra-id.md)
 - [Azure built-in roles (AI + machine learning)](/azure/role-based-access-control/built-in-roles#ai-+-machine-learning)
 - [Managed identities for Azure resources](/entra/identity/managed-identities-azure-resources/overview)
+-->
