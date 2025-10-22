@@ -19,7 +19,7 @@ ms.custom: include
 
 ::: moniker range="foundry"
 > [!NOTE]
-> This document refers to the current [Azure AI Foundry](https://aka.ms/nexgen-canary) portal, which supports only Foundry projects and provides streamlined access to models, agents, and tools.
+> This document refers to the [Azure AI Foundry](https://aka.ms/nexgen-canary) portal, announced at Ignite, which supports only Foundry projects and provides streamlined access to models, agents, and tools.
 > 
 > Switch to the [Azure AI Foundry (classic) documentation](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true) to use other resource types, such as hub-based projects.
 >
