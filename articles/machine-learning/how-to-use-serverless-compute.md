@@ -1,7 +1,7 @@
 ---
-title: Model training on serverless compute
+title: Model Training on Serverless Compute
 titleSuffix: Azure Machine Learning
-description: You no longer need to create your own compute cluster to train your model in a scalable way. You can now use a compute cluster that Azure Machine Learning has made available for you.
+description: Use serverless compute to run training jobs on Azure Machine Learning. Serverless compute is a fully managed on-demand compute. 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -12,31 +12,32 @@ ms.topic: how-to
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: bijuv
-ms.date: 10/02/2024
+ms.date: 10/24/2025
+#customer intent: As a machine learning professional, I want to learn how to use serverless compute to run training jobs on Azure Machine Learning. 
 ---
 
 # Model training on serverless compute
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-You no longer need to [create and manage compute](./how-to-create-attach-compute-cluster.md) to train your model in a scalable way. Your job can instead be submitted to a new compute target type, called _serverless compute_. Serverless compute is the easiest way to run training jobs on Azure Machine Learning. Serverless compute is a fully managed, on-demand compute. Azure Machine Learning creates, scales, and manages the compute for you. Through model training with serverless compute, machine learning professionals can focus on their expertise of building machine learning models and not have to learn about compute infrastructure or setting it up.
+You don't need to [create and manage compute](./how-to-create-attach-compute-cluster.md) to train your model in a scalable way. You can instead submit your job to a compute target type called _serverless compute_. Serverless compute is the easiest way to run training jobs on Azure Machine Learning. Serverless compute is a fully managed, on-demand compute. Azure Machine Learning creates, scales, and manages the compute for you. When they use serverless compute to train models, machine learning professionals can focus on building machine learning models and not have to learn about compute infrastructure or setting it up.
 
-Machine learning professionals can specify the resources the job needs. Azure Machine Learning manages the compute infrastructure and provides managed network isolation, reducing the burden on you.
+You can specify the resources the job needs. Azure Machine Learning manages the compute infrastructure and provides managed network isolation, reducing the burden on you.
 
 Enterprises can also reduce costs by specifying optimal resources for each job. IT administrators can still apply control by specifying core quota at subscription and workspace levels and applying Azure policies.
 
-Serverless compute can be used to fine-tune models in the model catalog. Serverless compute can be used to run all types of jobs from Azure Machine Learning studio, SDK, and CLI. Serverless compute can also be used for building environment images and for responsible AI dashboard scenarios. Serverless jobs consume the same quota as Azure Machine Learning compute quota. You can choose standard (dedicated) tier or spot (low-priority) VMs. Managed identity and user identity are supported for serverless jobs. The billing model is the same as Azure Machine Learning compute.
+You can use serverless compute to fine-tune models in the model catalog. You can use it to run all types of jobs from Azure Machine Learning studio, the Python SDK, and Azure CLI. You can also use serverless compute to build environment images and for responsible AI dashboard scenarios. Serverless jobs consume the same quota as Azure Machine Learning compute quota. You can choose standard (dedicated) tier or spot (low-priority) VMs. Managed identity and user identity are supported for serverless jobs. The billing model is the same as the model for Azure Machine Learning compute.
 
 ## Advantages of serverless compute
 
-* Azure Machine Learning manages creating, setting up, scaling, deleting, and patching compute infrastructure, reducing management overhead
-* You don't need to learn about compute, various compute types, and related properties
-* There's no need to repeatedly create clusters for each VM size needed, using the same settings, and replicating for each workspace
-* You can optimize costs by specifying the exact resources each job needs at runtime in terms of instance type (VM size) and instance count. You can monitor the utilization metrics of the job to optimize the resources a job would need
-* Reduction in steps required to run a job
-* To further simplify job submission, you can skip the resources altogether. Azure Machine Learning defaults the instance count and chooses an instance type (VM size) based on factors like quota, cost, performance, and disk size
-* Shorter wait times before jobs start executing in some cases
-* User identity and workspace user-assigned managed identity are supported for job submission
+* Azure Machine Learning manages creating, setting up, scaling, deleting, and patching compute infrastructure, reducing management overhead.
+* You don't need to learn about compute, various compute types, or related properties.
+* You don't need to repeatedly create clusters for each VM size that you need, using the same settings, and replicating for each workspace.
+* You can optimize costs by specifying the exact resources each job needs at runtime for instance type (VM size) and instance count. You can also monitor the utilization metrics of the job to optimize the resources a job needs.
+* Fewer steps are required to run a job.
+* To further simplify job submission, you can skip the resources altogether. Azure Machine Learning defaults the instance count and chooses an instance type by taking into account factors like quota, cost, performance, and disk size.
+* In some scenarios, wait times before jobs start running are reduced.
+* User identity and workspace user-assigned managed identity are supported for job submission.
 * With managed network isolation, you can streamline and automate your network isolation configuration. Customer virtual network is also supported
 * Administrative control through quota and Azure policies
 
