@@ -211,7 +211,7 @@ This sample implementation of a modern workplace assistant shows you how to:
 - **Provide clear diagnostic messages** for troubleshooting
 - **Implement graceful degradation** when services are unavailable
 
-The code breaks down into the following main sections:
+The code breaks down into the following main sections, ordered as they appear in the full sample code:
 
 1. [Imports and authentication setup](#imports-and-authentication-setup)
 1. [Configure authentication in Azure](#configure-authentication-in-azure)
@@ -326,26 +326,6 @@ Finally, implement an interactive loop to converse with the agent.
 
 ---
 
-### Output from the sample
-
-When you run the sample, you see the following output. You can then enter an interactive mode that lets you converse freely with the agent.
-
-<TBD!!!! Need SDK access to run updated code.>
-
-# [Python](#tab/python)
-
-
-
-# [C#](#tab/csharp)
-
-
-
-# [Java](#tab/java)
-
-
-
----
-
 ## Step 3: Evaluate the assistant in a batch
 
 The evaluation framework code in this sample tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
@@ -357,7 +337,7 @@ This evaluation framework tests:
 - **Combined scenarios** that require both internal and external knowledge
 - **Response quality** by using keyword matching and length analysis
 
-The code breaks down into the following main sections:
+The code breaks down into the following main sections, ordered as they appear in the full sample code:
 
 1. [Load evaluation data](#load-evaluation-data)
 1. [Run batch evaluation](#run-batch-evaluation)
@@ -423,7 +403,7 @@ Finally, the evaluation framework compiles and outputs the results of the batch 
 
 After you set up the environment, dependencies, and code, you can run the complete sample.
 
-### Setup and run
+### Set up and run
 
 1. **Configure environment**:
 
