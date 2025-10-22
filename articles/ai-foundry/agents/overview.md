@@ -10,6 +10,7 @@ ms.subservice: azure-ai-foundry-agent-service
 ms.topic: overview
 ms.date: 09/26/2025
 ms.custom: azure-ai-agents
+monikerRange: 'foundry-classic || foundry'
 ---
 
 

@@ -12,6 +12,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: CLWAN
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # Embedding tool

@@ -1,4 +1,6 @@
 items:
+    - name: Use Azure AI Foundry with a screen reader
+      href: ../../../tutorials/screen-reader.md
     - name: Code of conduct
       href: /legal/ai-code-of-conduct
     - name: Azure updates
@@ -9,5 +11,3 @@ items:
       href: https://aka.ms/AzureCompliance
     - name: Service Level Agreement (SLA)
       href: https://www.microsoft.com/licensing/docs/view/Service-Level-Agreements-SLA-for-Online-Services
-    - name: Azure Government
-      href: /azure/azure-government/compare-azure-government-global-azure

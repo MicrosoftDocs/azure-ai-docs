@@ -84,7 +84,7 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone pivot="programming-language-csharp"
 
-If your audio file exceeds 30 seconds, use continuous mode for processing. The sample code for continuous mode can be found on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/csharp/sharedcontent/console/speech_recognition_samples.cs) under the function `PronunciationAssessmentContinuousWithFile`.
+If your audio file exceeds 30 seconds, use continuous mode for processing. In continuous mode, the `EnableMiscue` option is not supported. To obtain `Omission` and `Insertion` tags, you need to compare the recognized results with the reference text. You can find a sample implementation for continuous mode on [GitHub](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/csharp/sharedcontent/console/speech_recognition_samples.cs) under the function `PronunciationAssessmentContinuousWithFile`.
 
 ::: zone-end
 
@@ -519,7 +519,7 @@ This table lists some of the key pronunciation assessment results for the script
 This table lists some of the key pronunciation assessment results for the unscripted assessment, or speaking scenario.
 
 > [!NOTE]
-> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale.
+> Prosody assessment is only available in the [en-US](./language-support.md?tabs=pronunciation-assessment) locale. For unscripted assessment, the speech-to-text (STT) model used is different from Azure STT. If you need assessment based on highly accurate recognized text, we recommend first calling Azure STT to obtain the reference text, and then performing scripted assessment.
 
 | Response parameter | Description | Granularity |
 |:-------------------|:------------|:------------|

@@ -21,7 +21,7 @@ Since the announcement on June 11th, 2020, Azure AI Face recognition services ar
 
 ## Registration process
 
-Customers and partners who wish to use Limited Access features of the Face API, including Face identification and Face verification, are required to register for access by [submitting a registration form](https://aka.ms/facerecognition). The Face Detection operation is available without registration.
+Customers and partners who wish to use Limited Access features of the Face API, including Face identification and Face verification, are required to register for access by [submitting a registration form](https://aka.ms/facerecognition). Note that these features are only available with Standard (S0) and Enterprise (E0) pricing tiers and are not supported in the Free (F0) tier. The Face Detection operation is available without registration.
 
 Access to Face API is subject to Microsoft's sole discretion based on eligibility criteria and a vetting process. Face API is available only to customers managed by Microsoft, defined as those customers and partners who are working directly with Microsoft account teams. Additionally, Face API is only available for certain use cases, and customers must select their desired use case in their registration. Microsoft may require customers and partners to reverify this information periodically. Read more about example use cases and disallowed use cases to avoid [here](../face/transparency-note.md).  
 

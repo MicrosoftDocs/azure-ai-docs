@@ -43,7 +43,7 @@ Your existing resource configurations and state remain preserved including:
 
 Backend limitations:
 
-* Azure OpenAI resources using **customer-managed keys** for encryption aren't supported for upgrade.
+* Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [reconfiguration of private link endpoints and extra DNS configurations](#private-network-configuration) before all Foundry capabilities can be used.
 
@@ -144,7 +144,7 @@ AI Foundry resource is a superset of Azure OpenAI resource and its capabilities 
 
 - {custom-domain}.openai.azure.com
 - {custom-domain}.services.ai.azure.com
-- {custom-domain}.cognitive.microsoft.com
+- {custom-domain}.cognitiveservices.azure.com
 
 Your DNS configuration must be able to resolve each of the above FQDNs in order to use the full set of Foundry capabilities. 
 
@@ -155,7 +155,7 @@ Your DNS configuration must be able to resolve each of the above FQDNs in order 
 After this, delete and [re-create a private link endpoint](configure-private-link.md) on your resource. Your private link endpoint creates an IP address in your Azure Virtual Network to map to each endpoint.
 
 > [!IMPORTANT] 
-> When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "cognitive.microsoft.com" IP configurations to be created.
+> When upgrading to Azure AI Foundry, you must recreate your private link endpoint, for the "services.ai.azure.com" and "{custom-domain}.cognitiveservices.azure.com" IP configurations to be created.
 
 ## Roll back to Azure OpenAI
 

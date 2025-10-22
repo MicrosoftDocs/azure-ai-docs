@@ -16,7 +16,7 @@ Use this quickstart to send entity linking requests using the REST API. In the f
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 ## Setting up
 

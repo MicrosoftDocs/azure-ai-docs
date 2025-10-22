@@ -1,1 +1,36 @@
 items:
+- name: Agent tools overview
+  href: ../../../agents/how-to/tools/overview.md
+- name: Azure AI Search
+  href: ../../../agents/how-to/tools/azure-ai-search.md
+- name: Azure Functions
+  href: ../../../agents/how-to/tools/azure-functions.md
+- name: Browser automation (preview)
+  href: ../../../agents/how-to/tools/browser-automation.md
+- name: Code interpreter
+  href: ../../../agents/how-to/tools/code-interpreter.md
+- name: Connected agents (preview)
+  href: ../../../agents/how-to/connected-agents.md
+- name: Computer Use (preview)
+  href: ../../../agents/how-to/tools/computer-use.md
+- name: Deep Research (preview)
+  href: ../../../agents/how-to/tools/deep-research.md
+- name: File search
+  href: ../../../agents/how-to/tools/file-search.md
+- name: Function calling
+  href: ../../../agents/how-to/tools/function-calling.md
+- name: Grounding with Bing Search
+  href: ../../../agents/how-to/tools/bing-grounding.md
+- name: Grounding with Bing Custom Search
+  href: ../../../agents/how-to/tools/bing-custom-search.md
+- name: Logic apps
+  href: ../../../agents/how-to/tools/logic-apps.md
+- name: Microsoft Fabric (preview)
+  href: ../../../agents/how-to/tools/fabric.md
+- name: Model Context Protocol (preview)
+  href: ../../../agents/how-to/tools/model-context-protocol.md
+- name: OpenAPI defined tools
+  href: ../../../agents/how-to/tools/openapi-spec.md
+- name: SharePoint
+  href: ../../../agents/how-to/tools/sharepoint.md 
+

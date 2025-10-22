@@ -1,16 +1,16 @@
 ---
-
 title: Add a new connection to your project
 titleSuffix: Azure AI Foundry
 description: Learn how to add a new connection to your Foundry project.
+monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2023
   - build-2024
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/22/2025
-ms.reviewer: sgilley
+ms.date: 10/14/2025
+ms.reviewer: meerakurup
 ms.author: sgilley
 author: sdgilley
 ai-usage: ai-assisted
@@ -18,10 +18,14 @@ ai-usage: ai-assisted
 
 ---
 
-# Add a new connection to your project (Foundry projects)
+# Add a new connection to your project
 
-> [!NOTE]
+[!INCLUDE [version-banner](../includes/version-banner.md)]
+
+::: moniker range="foundry-classic"
+> [!TIP]
 > An alternate hub-scoped connections article is available: [Create and manage connections (Hubs)](hub-connections-add.md).
+::: moniker-end
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
@@ -58,11 +62,14 @@ All Azure AI Foundry projects use a managed Azure Key Vault (not shown in your s
 
 ## <a name="create-a-new-connection"></a> Create a new connection in Azure AI Foundry portal
 
-[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
-
 Follow these steps to create a new connection that's only available for the current project.
 
-1. Go to your project in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). If you don't have a project, [create a new project](./create-projects.md).
+::: moniker range="foundry-classic"
+
+[!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. If you don't have a project, [create a new project](./create-projects.md).
 1. Select __Management center__ from the bottom left navigation.
 1. Select __Connected resources__ from the __Project__ section.
 1. Select __+ New connection__ from the __Connected resources__ section.
@@ -82,6 +89,24 @@ Follow these steps to create a new connection that's only available for the curr
 
 1. After the service is connected, select __Close__.
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. If you don't have a project, [create a new project](./create-projects.md).
+1. Select **Operate** in the upper-right navigation.
+1. Select **Admin Console** in the left pane.
+1. Select your project name in the **Manage all projects** list.
+1. Select **Add connection** in the upper-right corner.
+1. Select the service you want to connect to from the list of available external resources. For example, select __Azure AI Search__.
+1. Browse for and select your Azure AI Search service from the list of available services and then select the type of __Authentication__ to use for the resource. Select __Add connection__.
+
+    > [!TIP]
+    > Different connection types support different authentication methods. Using Microsoft Entra ID might require specific Azure role-based access permissions for your developers. For more information, visit [Role-based access control](../concepts/rbac-azure-ai-foundry.md).
+
+::: moniker-end
+
 ## Network isolation
 
 For end-to-end [network isolation](configure-private-link.md) with AI Foundry, you need private endpoints to connect to your connected resource. For example, if your Azure Storage account is set to public network access as __Disabled__, then a private endpoint should be deployed in your virtual network to access in Azure AI Foundry. 
@@ -95,6 +120,9 @@ For more on how to set private endpoints to your connected resources, see the fo
 | Azure AI Search       | [Create a private endpoint for a secure connection](/azure/search/service-create-private-endpoint)             |
 | Azure OpenAI          | [Securing Azure OpenAI inside a virtual network with private endpoints](/azure/ai-foundry/openai/how-to/network) |
 | Application Insights  | [Use Azure Private Link to connect networks to Azure Monitor](/azure/azure-monitor/logs/private-link-security) |
+
+> [!NOTE]
+> Cross-subscription connections used for model deployment are not supported (Azure AI Foundry, Azure OpenAI). You can't connect to resources from different subscriptions for model deployments.
 
 ## Related content
 

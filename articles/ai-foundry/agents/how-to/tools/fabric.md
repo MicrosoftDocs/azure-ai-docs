@@ -12,6 +12,7 @@ ms.topic: how-to
 ms.custom:
   - build-2025
 zone_pivot_groups: selection-fabric-data-agent
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Use the Microsoft Fabric data agent (preview)

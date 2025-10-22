@@ -11,9 +11,14 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - build-2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+
+
 ---
 
 # Default Guidelines & controls policies
+
 
 
 Azure OpenAI in Azure AI Foundry Models includes default safety policies applied to all models (excluding Azure OpenAI Whisper). These configurations provide you with a responsible experience by default, including [content filtering models](/azure/ai-foundry/openai/concepts/content-filter?tabs=warning%2Cpython-new), blocklists, prompt transformation, [content credentials](/azure/ai-foundry/openai/concepts/content-credentials), and other features.
@@ -53,7 +58,7 @@ Text models in the Azure OpenAI can take in and generate both text and code. The
 
 ### Image generation models
 
-#### [GPT-image-1](#tab/gpt-image-1)
+#### [GPT-image-1 series](#tab/gpt-image-1)
 
 | Risk Category   | Prompt/Completion | Severity Threshold |
 |---------------------------------------------------|------------------------|---------------------|
