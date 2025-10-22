@@ -8,9 +8,9 @@ items:
 - name: Agent runtime components
   href: ../../../agents/concepts/threads-runs-messages.md
 - name: Use the Visual Studio Code extension
-  href: ../../ai-foundry/how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+  href: ../../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Use MCP Tools in the Visual Studio Code extension
-  href: ../../ai-foundry/how-to/develop/vs-code-agents-mcp.md?context=/azure/ai-services/agents/context/context
+  href: ../../../how-to/develop/vs-code-agents-mcp.md?context=/azure/ai-services/agents/context/context
 - name: Environment setup
   items:
   - name: Set up your environment for agent development
