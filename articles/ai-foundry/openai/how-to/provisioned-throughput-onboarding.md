@@ -234,24 +234,6 @@ Choose a model, and click **Confirm**. Select a provision throughput deployment 
 
 To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). The capacity calculator is under **Management Center** > **Quota** > **Provisioned Throughput**.
 
-::: moniker-end
-
-::: moniker range="foundry"
-
-To get a quick estimate for your workload using input and output TPM, leverage the built-in capacity planner in the deployment details section of the deployment dialogue screen. The built-in capacity planner is part of the deployment workflow to help streamline the sizing and allocation of quota to a PTU deployment for a given workload. For more information on how to identify and estimate TPM data, review the recommendations in our [performance and latency documentation](./latency.md). 
-
-To use the capacity planner, go to the Azure AI Foundry Portal and select the **Deployments** button. Then select **Deploy model**.
-
-:::image type="content" source="../media/provisioned/deploy-model-button.png" alt-text="A screenshot of the model deployment screen." lightbox="../media/provisioned/deploy-model-button.png":::
-
-Choose a model, and click **Confirm**. Select a provision throughput deployment type. After filling out the input and output TPM data in the built-in capacity calculator, select the **Calculate** button to view your PTU allocation recommendation. 
-
-:::image type="content" source="../media/provisioned/deployment-ptu-capacity-calculator.png" alt-text="A screenshot of deployment workflow PTU capacity calculator." lightbox="../media/provisioned/deployment-ptu-capacity-calculator.png":::
-
-To estimate provisioned capacity using request level data, open the capacity planner in the [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs). The capacity calculator is under **Management Center** > **Quota** > **Provisioned Throughput**.
-
-::: moniker-end
-
 The **Provisioned Throughput** option and the calculator are only available in certain regions within the Quota pane, if you don't see this option setting the quota region to *Sweden Central* will make this option available. Enter the following parameters based on your workload.
 
 | Input | Description |
@@ -270,6 +252,14 @@ The values in the output column are the estimated value of PTU units required fo
 
 > [!NOTE]
 > The capacity calculators provide an estimate based on simple input criteria. The most accurate way to determine your capacity is to benchmark a deployment with a representational workload for your use case.
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+Insert NextGen content
+
+::: moniker-end
 
 ## Azure Reservations for Azure AI Foundry Provisioned Throughput
 
