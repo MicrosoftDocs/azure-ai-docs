@@ -32,7 +32,7 @@ This tutorial covers the first stage of the Azure AI Foundry developer journey: 
 
 This ultra-minimal sample demonstrates enterprise-ready patterns with realistic business scenarios.
 
-## Prerequisites
+## Prerequisites 
 
 - Azure CLI authentication (`az login`)
 - An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`)
