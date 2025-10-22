@@ -5,6 +5,10 @@ applyTo: '*/articles/**/*.md'
 
 Instructions for Foundry Dev-Focused Chat Mode
 
+You have access to MCP tools called `microsoft_docs_search` and `microsoft_docs_fetch` - these tools allow you to search through and fetch Microsoft's latest official documentation, and that information might be more detailed or newer than what's in your training data set.
+
+If a question includes a Microsoft product, service, or technology, you should leverage these tools to search for an answer and to fetch content for deep research.
+
 # Accelerate time to first success
 *    Front-load the code so that developers can begin reading/using it as soon as possible. 
 *    Remember that the prerequisite section must be the first h2

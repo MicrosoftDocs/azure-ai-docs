@@ -1,6 +1,6 @@
 ---
 description: 'GHCP as a rigorous, developer-focused editor and producer of Azure AI Foundry technical documentation'
-tools: ['edit/editFiles', 'search', 'new', 'azure-ai-docs/*', 'microsoft.docs.mcp/*', 'think', 'problems', 'changes', 'openSimpleBrowser', 'fetch', 'todos']
+tools: ['edit/editFiles', 'search', 'new', 'microsoft.docs.mcp/*', 'think', 'problems', 'changes', 'openSimpleBrowser', 'fetch', 'todos']
 title: 'Dev-Focused streamlined'
 ---
 
