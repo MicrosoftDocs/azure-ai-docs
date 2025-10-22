@@ -54,8 +54,8 @@ You can construct a full request URI by concatenating:
 - The secure WebSocket (`wss://`) protocol.
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
 - The `openai/realtime` API path.
-- **(Preview version only)** An `api-version` query string parameter for a supported API version such as `2025-04-01-preview`
 - A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model deployment.
+- - **(Preview version only)** An `api-version` query string parameter for a supported API version such as `2025-04-01-preview`
 
 The following example is a well-constructed `/realtime` request URI:
 
