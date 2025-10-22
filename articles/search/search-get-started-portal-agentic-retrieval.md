@@ -174,7 +174,7 @@ To create the knowledge base for this quickstart:
 
 ## Test agentic retrieval
 
-The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base and review its responses, which include references to source documents and debug information about the retrieval process.
+The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base, whose responses include references to source documents and debug information about the retrieval process.
 
 To query the knowledge base:
 
