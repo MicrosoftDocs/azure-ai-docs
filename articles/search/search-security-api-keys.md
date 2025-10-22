@@ -86,6 +86,39 @@ GET /indexes/my-new-index/docs?search=*&api-version=2025-09-01&api-key={{queryAp
 > [!NOTE]  
 > It's considered a poor security practice to pass sensitive data such as an `api-key` in the request URI. For this reason, Azure AI Search only accepts a query key as an `api-key` in the query string. As a general rule, we recommend passing your `api-key` as a request header.
 
+### [**Python**](#tab/python-use)
+
+It's a best practice to set the API key as an environment variable, but for simplicity, this example shows it as a string. The example uses a query API key for a query operation.
+
+```python
+# Import libraries
+from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential, AzureAuthorityHosts
+
+# Variables for endpoint, keys, index
+search_endpoint: str = "https://<Put your search service NAME here>.search.windows.net/"
+credential = AzureKeyCredential("Your search service query key")
+index_name: str = "hotels-quickstart-python"
+
+# Set up the client
+search_client = SearchClient(endpoint=search_endpoint,
+                      index_name=index_name,
+                      credential=credential)
+
+# Run the query
+results =  search_client.search(query_type='simple',
+    search_text="*" ,
+    select='HotelName,Description,Tags',
+    include_total_count=True)
+
+print ('Total Documents Matching Query:', results.get_count())
+for result in results:
+    print(result["@search.score"])
+    print(result["HotelName"])
+    print(result["Tags"])
+    print(f"Description: {result['Description']}")
+```
+
 ### [**PowerShell**](#tab/azure-ps-use)
 
 Set API keys in the request header using the following syntax:
