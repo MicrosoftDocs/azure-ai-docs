@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/19/2025
+ms.date: 10/22/2025
 ---
 
 # Migrate agentic retrieval code to the latest version
@@ -16,7 +16,7 @@ ms.date: 10/19/2025
 
 If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
-Migration instructions are intended to help you run an existing solution on a newer API version. The instructions help you resolve breaking changes at the API level so that you have no loss of functionality. For help with adding new functionality, start with [What's new](whats-new.md).
+Migration instructions are intended to help you run an existing solution on a newer API version. These instructions help you address breaking changes at the API level so that your app runs as before. For help with adding new functionality, start with [What's new](whats-new.md).
 
 > [!TIP]
 > Using Azure SDKs instead of REST? Read this article to learn about breaking changes, and then install a newer preview package to begin your updates. Before you start, check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
@@ -25,27 +25,178 @@ Migration instructions are intended to help you run an existing solution on a ne
 
 Each new API version that supports agentic retrieval has introduced breaking changes, from the original [2025-05-01-preview](#2025-05-01-preview) to [2025-08-01-preview](#2025-08-01-preview-1), to the latest [2025-11-01-preview](#2025-11-01-preview-1).
 
-You can continue to run older code if you retain the API version value. However, to benefit from bug fixes, improvements, and newer functionality, you must update your code.
+You can continue to run older code with no updates if you retain the API version value. However, to benefit from bug fixes, improvements, and newer functionality, you must update your code.
 
 ## How to migrate
 
++ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then migrate to 2025-11-01-preview.
+
 + To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
-+ For each incremental update, start by getting the current object definitions from the search service. Save a copy of the original definition in case you need to restore it. Consider [backing up search index content](https://github.com/Azure/azure-search-vector-samples/tree/main/demo-python/code/utilities/index-backup-restore) if you can't easily rebuild the index.
++ "Update" means creating new objects that implement the behaviors of the previous version. When you create new objects under the new API version, you can run old and new side by side.
 
-+ During development, run old and new objects side by side, deleting older versions only after new ones are fully tested and deployed.
++ For each object that you update, start by getting the current definition from the search service so that you can review existing properties before specifying the new one.
 
-+ The supported migration path is incremental. If your code targets 2025-05-01-preview, first migrate to 2025-08-01-preview, and then migrate to 2025-11-01-preview.
++ Delete older versions only after your migration is fully tested and deployed.
 
 ### [**2025-11-01-preview**](#tab/migrate-11-01)
 
-If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge agent is renamed to knowledge base, and multiple properties are relocated to different objects and levels within an object definition.
+If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge agent* is renamed to *knowledge base*, and multiple properties are relocated to different objects and levels within an object definition.
 
-1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
 1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source).
 1. [Update azureBlob knowledge sources](#update-an-azureblob-knowledge-source).
+1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
 1. [Send a query to test the retrieval](#test-the-retrieval-for-2025-11-01-preview-updates).
 1. [Update client code](#update-code-and-clients-for-2025-11-01-preview).
+
+#### Update a searchIndex knowledge source
+
+The underlying index requires no updates. Create a new knowledge source that points to the existing index.
+
+1. List all knowledge sources by name.
+
+   ```http
+   ### List all knowledge sources by name
+   GET {{search-endpoint}}/knowledge-sources?api-version=2025-08-01-preview&$select=name
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
+
+1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
+
+   ```http
+   ### Get a specific knowledge source
+   GET {{search-endpoint}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
+
+1. Set up a create request. The knowledge source you're updating might look like the following example.
+
+    ```http
+    POST {{url}}/knowledge-sources/search-index-ks?api-version={{api-version}}
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "search-index-ks",
+        "kind": "searchIndex",
+        "description": "A sample search index knowledge source",
+        "encryptionKey": null,
+        "searchIndexParameters": {
+            "searchIndexName": "my-search-index",
+            "sourceDataSelect": "id, page_chunk, page_number"
+      }
+    }
+    ```
+
+1. Change the API version to `2025-11-01-preview`.
+
+1. Rename `sourceDataSelect` to `sourceDataFields` and change the string to an array with name-value pairs for each retrievable field you want to query. These are the fields to return in the search results, similar to a `select` clause in a classic query.
+
+1. [Create the new knowledge source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+    ```http
+    PUT {{url}}/knowledge-sources/search-index-ks-new?api-version=2025-11-01-preview
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "search-index-ks",
+        "kind": "searchIndex",
+        "description": "knowledge source migrated to 2025-11-01-preview",
+        "encryptionKey": null,
+        "searchIndexParameters": {
+            "searchIndexName": "my-search-index",
+            "sourceDataFields": [
+                { "name": "id" }, { "name": "page_chunk" }, { "name": "page_number" }
+            ]
+        }
+    }
+    ```
+
+You now have a migrated `searchIndex` knowledge source that implements the previous version features, with the correct field specifications for the 2025-11-01-preview. For more information about new capabilities available to this knowledge source type, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
+
+#### Update an azureBlob knowledge source
+
+The underlying index requires no updates. However, you should create a new knowledge source so that your existing solution remains operational. Another full set of the indexer pipeline is generated.
+
+1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
+
+   ```http
+   ### Get a knowledge source by name
+   GET {{search-endpoint}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
+
+1. Set up a create request. The knowledge source you're updating might look like the following example.
+
+    ```http
+    POST {{url}}/knowledge-sources/search-index-ks?api-version={{api-version}}
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "search-index-ks",
+        "kind": "searchIndex",
+        "description": "A sample search index knowledge source",
+        "encryptionKey": null,
+        "searchIndexParameters": {
+            "searchIndexName": "my-search-index",
+            "sourceDataSelect": "id, page_chunk, page_number"
+      }
+    }
+    ```
+
+1. Change the API version to `2025-11-01-preview`.
+
+1. Add `ingestionParameters`.
+
+1. Remove obsolete parameters.
+
+1. [Create the new knowledge source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+
+    ```http
+    PUT {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-11-01-preview
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "azure-blob-ks",
+        "kind": "azureBlob",
+        "description": "A sample azure blob knowledge source",
+        "azureBlobParameters": {
+            "connectionString": "{{blob-connection-string}}",
+            "containerName": "blobcontainer",
+            "folderPath": null,
+            "isADLSGen2": false,
+            "ingestionParameters": {
+                "identity": null,
+                "embeddingModel": {
+                    "kind": "azureOpenAI",
+                    "azureOpenAIParameters": {
+                        "deploymentId": "text-embedding-3-large",
+                        "modelName": "text-embedding-3-large",
+                        "resourceUri": "{{aoai-endpoint}}",
+                        "apiKey": "{{aoai-key}}"
+                    }
+                },
+                "chatCompletionModel": null,
+                "disableImageVerbalization": false,
+                "ingestionSchedule": null,
+                "ingestionPermissionOptions": [],
+                "contentExtractionMode": "standard",
+                "aiServices": {
+                    "uri": "{{ai-endpoint}}",
+                    "apiKey": "{{ai-key}}"
+                }
+            }
+        }
+    }
+    ```
+
+You now have an updated `azureBlob` knowledge source with the correct ingestion parameters for the 2025-11-01-preview.
 
 #### Replace knowledge agent with knowledge base
 
@@ -57,6 +208,38 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
    api-key: {{api-key}}
    Content-Type: application/json
    ```
+
+1. Set up an update request and paste in the 2025-08-01-preview JSON.
+
+    ```http
+    PUT {{url}}/agents/0801-earth-at-night-ka?api-version=2025-08-01-preview  HTTP/1.1
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "0801-earth-at-night-ka",
+        "knowledgeSources": [
+            {
+            "name": "0801-earth-at-night-ks",
+            "rerankerThreshold": 2.5
+            }
+        ],
+        "models": [
+            {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "resourceUri": "{{aoai-endpoint}}",
+                    "apiKey": "{{aoai-key}}",
+                    "deploymentId": "gpt-5-mini",
+                    "modelName": "gpt-5-mini"
+                }
+            }
+        ],
+        "outputConfiguration": {
+            "modality": "answerSynthesis"
+        }
+    }
+    ```
 
 1. Change the API version to `2025-11-01-preview`.
 
@@ -104,107 +287,6 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), knowledge 
    ```
 
 You now have a knowledge base instead of a knowledge agent.
-
-#### Update a searchIndex knowledge source
-
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
-
-   ```http
-   ### Get a knowledge source by name
-   GET {{search-endpoint}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
-   api-key: {{api-key}}
-   Content-Type: application/json
-   ```
-
-1. Change the API version to `2025-11-01-preview`.
-
-1. Rename `sourceDataSelect` to `sourceDataFields` and provide `fieldName` and `fieldToSearch` values.
-
-1. Send the request to update the knowledge source.
-
-    ```http
-    PUT {{url}}/knowledge-sources/search-index-ks?api-version={{api-version}}
-    api-key: {{key}}
-    Content-Type: application/json
-    
-    {
-        "name": "search-index-ks",
-        "kind": "searchIndex",
-        "description": "A sample search index knowledge source",
-        "searchIndexParameters": {
-            "searchIndexName": "sec-gics-communicationservices",
-            "semanticConfigurationName": "en-semantic-config",
-            "sourceDataFields": [
-                { "name": "content" }, { "name": "title" }
-            ],
-            "searchFields": [
-                { "name": "content" }, { "name": "title" }, { "name": "url" }
-            ]
-        }
-    }
-    ```
-
-You now have an updated `searchIndex` knowledge source with the correct field specifications for the 2025-11-01-preview.
-
-#### Update an azureBlob knowledge source
-
-1. Get the current definition of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
-
-   ```http
-   ### Get a knowledge source by name
-   GET {{search-endpoint}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
-   api-key: {{api-key}}
-   Content-Type: application/json
-   ```
-
-1. Change the API version to `2025-11-01-preview`.
-
-1. Add `ingestionParameters`.
-
-1. Remove obsolete parameters.
-
-1. Send the request to update the knowledge source.
-
-    ```http
-    PUT {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-11-01-preview
-    api-key: {{key}}
-    Content-Type: application/json
-    
-    {
-        "name": "azure-blob-ks",
-        "kind": "azureBlob",
-        "description": "A sample azure blob knowledge source",
-        "azureBlobParameters": {
-            "connectionString": "{{blob-connection-string}}",
-            "containerName": "blobcontainer",
-            "folderPath": null,
-            "isADLSGen2": false,
-            "ingestionParameters": {
-                "identity": null,
-                "embeddingModel": {
-                    "kind": "azureOpenAI",
-                    "azureOpenAIParameters": {
-                        "deploymentId": "text-embedding-3-large",
-                        "modelName": "text-embedding-3-large",
-                        "resourceUri": "{{aoai-endpoint}}",
-                        "apiKey": "{{aoai-key}}"
-                    }
-                },
-                "chatCompletionModel": null,
-                "disableImageVerbalization": false,
-                "ingestionSchedule": null,
-                "ingestionPermissionOptions": [],
-                "contentExtractionMode": "standard",
-                "aiServices": {
-                    "uri": "{{ai-endpoint}}",
-                    "apiKey": "{{ai-key}}"
-                }
-            }
-        }
-    }
-    ```
-
-You now have an updated `azureBlob` knowledge source with the correct ingestion parameters for the 2025-11-01-preview.
 
 #### Test the retrieval for 2025-11-01-preview updates
 
