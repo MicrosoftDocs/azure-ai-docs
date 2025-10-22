@@ -52,7 +52,7 @@ With Azure AI Foundry, you can explore a wide variety of models, services and ca
 :::moniker-end
 
 ::: moniker range="foundry"
-[!INCLUDE [foundry-link](includes/foundry-link.md)] delivers a modernized experience with powerful enhancements designed for flexibility and scale:
+[!INCLUDE [foundry-link](default/includes/foundry-link.md)] delivers a modernized experience with powerful enhancements designed for flexibility and scale:
 
 * **Streamlined Navigation** – A redesigned interface places key controls where you need them, improving workflow efficiency.
 * **Multi-Agent Orchestration and Workflows** – Build advanced automation with SDKs for C# and Python, enabling collaborative agent behavior and complex workflow execution.
