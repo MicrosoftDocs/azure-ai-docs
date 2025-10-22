@@ -130,7 +130,7 @@
     },    
     {
       "path_to_root": "foundry-samples-nov25-updates",
-      "url": "https://github.com/azure-ai-foundry/foundry-samples",
+      "url": "https://github.com/azure-ai-foundry/foundry-samples/samples",
       "branch": "nov25-updates",
       "branch_mapping": {}
     },

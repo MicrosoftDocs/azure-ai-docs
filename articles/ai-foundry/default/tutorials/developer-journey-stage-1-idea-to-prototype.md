@@ -61,7 +61,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the code now](~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
 # [C#](#tab/csharp)
 
@@ -84,7 +84,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the code now](~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
 
 # [Java](#tab/java)
 
@@ -103,7 +103,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the code now](~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype)
 
 ---
 
@@ -164,7 +164,7 @@ These documents reference Azure and Microsoft 365 technologies, creating realist
 
 Review `requirements.txt`:
 
-:::code language="txt" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/requirements.txt":::
+:::code language="txt" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/requirements.txt":::
 
 # [C#](#tab/csharp)
 
@@ -176,7 +176,7 @@ dotnet restore
 
 The project file defines required Azure AI Foundry SDK packages and supporting libraries:
 
-:::code language="xml" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/ModernWorkplaceAssistant.csproj":::
+:::code language="xml" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/ModernWorkplaceAssistant.csproj":::
 
 > [!TIP]
 > If you add new packages, re-run `dotnet restore`. Use `dotnet list package --outdated` to check for updates.
@@ -191,7 +191,7 @@ mvn -q clean compile
 
 View the full dependency declarations:
 
-:::code language="xml" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/pom.xml":::
+:::code language="xml" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/pom.xml":::
 
 > [!NOTE]
 > Use `mvn dependency:tree -Dincludes=com.azure` to inspect only Azure-related transitive dependencies.
@@ -224,15 +224,15 @@ The code uses several client libraries from the Azure AI Foundry SDK to create a
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="imports_and_includes":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="imports_and_includes":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="imports_and_includes":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="imports_and_includes":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="imports_and_includes":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="imports_and_includes":::
 
 ---
 
@@ -242,15 +242,15 @@ Before you can create your agent, set up authentication to the Azure AI Foundry.
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="agent_authentication":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="agent_authentication":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="agent_authentication":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="agent_authentication":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_authentication":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_authentication":::
 
 ---
 
@@ -260,15 +260,15 @@ The agent will be grounded in SharePoint and able to access company policy and p
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="sharepoint_tool_setup":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="sharepoint_tool_setup":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="sharepoint_tool_setup":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="sharepoint_tool_setup":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="sharepoint_tool_setup":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="sharepoint_tool_setup":::
 
 ---
 
@@ -276,15 +276,15 @@ The agent will be grounded in SharePoint and able to access company policy and p
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="mcp_tool_setup":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="mcp_tool_setup":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="mcp_tool_setup":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="mcp_tool_setup":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="mcp_tool_setup":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="mcp_tool_setup":::
 
 ---
 
@@ -294,15 +294,15 @@ Now, create the agent and connect the SharePoint and MCP tools.
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="create_agent_with_tools":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="create_agent_with_tools":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="create_agent_with_tools":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="create_agent_with_tools":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="create_agent_with_tools":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="create_agent_with_tools":::
 
 ---
 
@@ -312,15 +312,15 @@ Finally, implement an interactive loop to converse with the agent.
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="agent_conversation":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="agent_conversation":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="agent_conversation":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="agent_conversation":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_conversation":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_conversation":::
 
 ---
 
@@ -331,15 +331,15 @@ When you run the sample, you'll see the following output, before optionally ente
 <TBD!!!! Need SDK access to run updated code.>
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="agent_conversation":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" range="agent_conversation":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="agent_conversation":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" range="agent_conversation":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_conversation":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_conversation":::
 
 ---
 
@@ -358,19 +358,19 @@ This evaluation framework tests:
 
 In this section, the evaluation framework loads test questions from `questions.jsonl`. The file contains business scenarios that test different aspects of the agent:
 
-:::code language="jsonl" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
+:::code language="jsonl" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/questions.jsonl":::
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" range="load_test_data":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" range="load_test_data":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="load_test_data":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="load_test_data":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="load_test_data":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="load_test_data":::
 
 ---
 
@@ -380,15 +380,15 @@ In this section, the evaluation framework loads runs the agent against each test
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" range="run_batch_evaluation":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" range="run_batch_evaluation":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="run_batch_evaluation":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="run_batch_evaluation":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="run_batch_evaluation":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="run_batch_evaluation":::
 
 ---
 
@@ -398,15 +398,15 @@ Finally, the evaluation framework compiles and outputs the results of the batch 
 
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" range="evaluation_results":::
+:::code language="python" source="~/foundry-samples-nov25-updates/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/evaluate.py" range="evaluation_results":::
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="evaluation_results":::
+:::code language="csharp" source="~/foundry-samples-nov25-updates/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="evaluation_results":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="evaluation_results":::
+:::code language="java" source="~/foundry-samples-nov25-updates/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="evaluation_results":::
 
 ---
 
