@@ -1,20 +1,21 @@
 ---
 title: "Developer journey stage 1: Idea to prototype - Build and evaluate an enterprise agent"
-description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and MCP tools, run batch evaluation, extend to multi-agent, and deploy to Azure AI Foundry."
+description: "Prototype an enterprise agent: build a single agent with SharePoint grounding and Model Context Protocol (MCP) tools, run batch evaluation, extend to multi-agent, and deploy to Azure AI Foundry."
 ms.service: azure-ai-foundry
 ms.topic: tutorial
 ms.date: 11/11/2025
 ms.author: jburchel
 author: jonburchel
 ms.reviewer: dantaylo
+ai.usage: ai-assisted
 #customer intent: As a developer I want to quickly prototype an enterprise-grade agent with real data, tools, evaluation, and a deployment path so I can validate feasibility before scaling.
 ---
 
 # Developer journey stage 1: Idea to prototype - Build and evaluate an enterprise agent
 
-This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You build a **Modern Workplace Assistant** that combines internal company knowledge with external technical guidance using the Azure AI Foundry SDK.
+This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You build a **Modern Workplace Assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
 
-**Business Scenario**: Create an AI assistant that helps employees by combining:
+**Business scenario**: Create an AI assistant that helps employees by combining:
 
 - **Company policies** (from SharePoint documents)
 - **Technical implementation guidance** (from Microsoft Learn via MCP)
@@ -33,16 +34,16 @@ This ultra-minimal sample demonstrates enterprise-ready patterns with realistic 
 ## Prerequisites
 
 - Azure CLI authentication (`az login`)
-- An Azure AI Foundry **project** with a deployed model (e.g., `gpt-4o-mini`)
+- An Azure AI Foundry **project** with a deployed model (for example, `gpt-4o-mini`)
 - Python 3.10 or later, .NET 7 SDK, or Java 17 SDK installed (depending on your chosen language)
 - SharePoint connection configured in your project
 
 > [!NOTE]
-> To configure your Azure AI Foundry project for SharePoint connectivity, refer to the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
+> To configure your Azure AI Foundry project for SharePoint connectivity, see the [SharePoint tool documentation](../../agents/how-to/tools/sharepoint.md).
 
 ## Step 1: Download and configure the sample code
 
-The complete sample is available in the Azure AI Foundry samples repository. The ultra-minimal structure contains only essential files:
+You can find the complete sample in the Azure AI Foundry samples repository. The ultra-minimal structure contains only essential files:
 
 # [Python](#tab/python)
 
@@ -128,21 +129,21 @@ SHAREPOINT_SITE_URL=https://your-company.sharepoint.com/teams/your-site
 
 #### Set up SharePoint business documents for the sample
 
-To demonstrate the complete business scenario, upload sample documents to your SharePoint site using the provided `SAMPLE_SHAREPOINT_CONTENT.md`:
+To demonstrate the complete business scenario, upload sample documents to your SharePoint site using the provided `SAMPLE_SHAREPOINT_CONTENT.md` file:
 
 ##### Create business documents
 
 1. **Navigate to your SharePoint site** (configured in your connection)
 
-2. **Create document library** called "Company Policies" (or use existing "Documents")
+1. **Create document library** called "Company Policies" (or use existing "Documents")
 
-3. **Upload sample documents** from `SAMPLE_SHAREPOINT_CONTENT.md`:
+1. **Upload sample documents** from `SAMPLE_SHAREPOINT_CONTENT.md`:
    - `remote-work-policy.docx` - Remote work security requirements
    - `security-guidelines.docx` - Azure security standards  
    - `collaboration-standards.docx` - Teams and communication policies
    - `data-governance-policy.docx` - Data handling requirements
 
-4. **Copy content** from each section in `SAMPLE_SHAREPOINT_CONTENT.md` into the corresponding Word documents
+1. **Copy content** from each section in `SAMPLE_SHAREPOINT_CONTENT.md` into the corresponding Word documents
 
 ##### Sample document structure
 
@@ -179,11 +180,11 @@ The project file defines required Azure AI Foundry SDK packages and supporting l
 :::code language="xml" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/ModernWorkplaceAssistant.csproj":::
 
 > [!TIP]
-> If you add new packages, re-run `dotnet restore`. Use `dotnet list package --outdated` to check for updates.
+> If you add new packages, run `dotnet restore` again. Use `dotnet list package --outdated` to check for updates.
 
 # [Java](#tab/java)
 
-The Maven `pom.xml` declares all dependencies. Compile once to download them:
+The Maven `pom.xml` file declares all dependencies. Compile the project once to download them:
 
 ```bash
 mvn -q clean compile
@@ -200,16 +201,16 @@ View the full dependency declarations:
 
 ## Step 2: Build a modern workplace assistant
 
-The implementation of a modern workplace assistant in this sample shows you:
+This sample implementation of a modern workplace assistant shows you how to:
 
-- **Integration of multiple agent tools** (SharePoint and MCP) for comprehensive knowledge access
-- **Simplified connection handling** - Uses only the connection name, letting Azure AI Foundry handle URL configuration
-- **Dynamic agent instructions** based on available tools  
-- **Business-focused scenarios** combining internal and external knowledge
-- **Clear diagnostic messages** for troubleshooting
-- **Graceful degradation** when services are unavailable
+- **Integrate multiple agent tools** (SharePoint and MCP) for comprehensive knowledge access
+- **Simplify connection handling** - Use only the connection name, and let Azure AI Foundry handle URL configuration
+- **Use dynamic agent instructions** based on available tools  
+- **Combine business-focused scenarios** with internal and external knowledge
+- **Provide clear diagnostic messages** for troubleshooting
+- **Implement graceful degradation** when services are unavailable
 
-The code can be broken down into the following main sections:
+The code breaks down into the following main sections:
 
 1. [Imports and authentication setup](#imports-and-authentication-setup)
 1. [Configure authentication in Azure](#configure-authentication-in-azure)
@@ -256,7 +257,7 @@ Before you can create your agent, set up authentication to the Azure AI Foundry.
 
 ### Create the SharePoint tool for the agent
 
-The agent will be grounded in SharePoint and able to access company policy and procedure documents stored there. Setup the connection to SharePoint in code.
+The agent uses SharePoint and can access company policy and procedure documents stored there. Set up the connection to SharePoint in your code.
 
 # [Python](#tab/python)
 
@@ -326,7 +327,7 @@ Finally, implement an interactive loop to converse with the agent.
 
 ### Output from the sample
 
-When you run the sample, you'll see the following output, before optionally entering an interactive mode that allows you to converse freely with the agent.
+When you run the sample, you see the following output. You can then enter an interactive mode that lets you converse freely with the agent.
 
 <TBD!!!! Need SDK access to run updated code.>
 # [Python](#tab/python)
@@ -345,14 +346,14 @@ When you run the sample, you'll see the following output, before optionally ente
 
 ## Step 3: Evaluate the assistant
 
-The evaluation framework code in this sample tests realistic business scenarios combining SharePoint policies with Microsoft Learn technical guidance. This demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
+The evaluation framework code in this sample tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
 
 This evaluation framework tests:
 
 - **SharePoint integration** for company policy questions
 - **MCP integration** for technical guidance questions  
-- **Combined scenarios** requiring both internal and external knowledge
-- **Response quality** using keyword matching and length analysis
+- **Combined scenarios** that require both internal and external knowledge
+- **Response quality** by using keyword matching and length analysis
 
 ### Load evaluation data
 
@@ -376,7 +377,7 @@ In this section, the evaluation framework loads test questions from `questions.j
 
 ### Run batch evaluation
 
-In this section, the evaluation framework loads runs the agent against each test question in a batch and evaluates the responses.
+In this section, the evaluation framework runs the agent against each test question in a batch and evaluates the responses.
 
 # [Python](#tab/python)
 
@@ -392,7 +393,7 @@ In this section, the evaluation framework loads runs the agent against each test
 
 ---
 
-### Evaulation results
+### Evaluation results
 
 Finally, the evaluation framework compiles and outputs the results of the batch evaluation.
 
@@ -412,7 +413,7 @@ Finally, the evaluation framework compiles and outputs the results of the batch 
 
 ## Step 4: Run the complete sample
 
-Now that you have set up the environment, dependencies, and code, you can run the complete sample.
+After you set up the environment, dependencies, and code, you can run the complete sample.
 
 ### Setup and run
 
@@ -466,7 +467,7 @@ mvn exec:java -Dexec.mainClass="Main"
 
 ---
 
-This demonstrates:
+This example demonstrates:
 - SharePoint connection diagnostics  
 - Agent creation with dynamic instructions
 - Three business scenarios (policy, technical, combined)
@@ -494,7 +495,7 @@ mvn exec:java -Dexec.mainClass="Evaluate"
 
 ---
 
-This tests:
+This test:
 - Policy questions (SharePoint integration)
 - Technical questions (MCP integration)  
 - Combined scenarios (both sources)
@@ -537,13 +538,13 @@ This tests:
 
 This ultra-minimal sample provides the foundation for enterprise AI development:
 
-### Tutorial 2: Governance and Monitoring
+### Tutorial 2: Governance and monitoring
 - Implement content filtering and safety guardrails
 - Add comprehensive evaluation metrics and monitoring  
 - Set up continuous evaluation pipelines
 - Apply governance policies and compliance controls
 
-### Tutorial 3: Production Deployment
+### Tutorial 3: Production deployment
 - Deploy agents to Azure AI Foundry with proper scaling
 - Implement AI Gateway for cost and usage monitoring
 - Add advanced observability and performance tracking
