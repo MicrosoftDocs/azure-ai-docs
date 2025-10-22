@@ -62,7 +62,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the code now](~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/)
 
 # [C#](#tab/csharp)
 
@@ -85,7 +85,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the code now](~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/)
 
 # [Java](#tab/java)
 
@@ -104,7 +104,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype)
+> [Download the code now](~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/)
 
 ---
 
@@ -214,8 +214,8 @@ The code breaks down into the following main sections:
 
 1. [Imports and authentication setup](#imports-and-authentication-setup)
 1. [Configure authentication in Azure](#configure-authentication-in-azure)
-1. [SharePoint tool setup](#sharepoint-tool-setup)
-1. [MCP tool setup](#mcp-tool-setup)
+1. [SharePoint tool setup](#create-the-sharepoint-tool-for-the-agent)
+1. [MCP tool setup](#create-the-mcp-tool-for-the-agent)
 1. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools)
 1. [Converse with the agent](#converse-with-the-agent)
 
@@ -233,7 +233,7 @@ The code uses several client libraries from the Azure AI Foundry SDK to create a
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="imports_and_includes":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="imports_and_includes":::
 
 ---
 
@@ -251,7 +251,7 @@ Before you can create your agent, set up authentication to the Azure AI Foundry.
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_authentication":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="agent_authentication":::
 
 ---
 
@@ -269,7 +269,7 @@ The agent uses SharePoint and can access company policy and procedure documents 
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="sharepoint_tool_setup":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="sharepoint_tool_setup":::
 
 ---
 
@@ -285,7 +285,7 @@ The agent uses SharePoint and can access company policy and procedure documents 
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="mcp_tool_setup":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="mcp_tool_setup":::
 
 ---
 
@@ -303,7 +303,7 @@ Now, create the agent and connect the SharePoint and MCP tools.
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="create_agent_with_tools":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="create_agent_with_tools":::
 
 ---
 
@@ -321,7 +321,7 @@ Finally, implement an interactive loop to converse with the agent.
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_conversation":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="agent_conversation":::
 
 ---
 
@@ -340,7 +340,7 @@ When you run the sample, you see the following output. You can then enter an int
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Main.java" range="agent_conversation":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" range="agent_conversation":::
 
 ---
 
@@ -367,11 +367,11 @@ In this section, the evaluation framework loads test questions from `questions.j
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="load_test_data":::
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/program.cs" range="load_test_data":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="load_test_data":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/EvaluateAgent.java" range="load_test_data":::
 
 ---
 
@@ -385,11 +385,11 @@ In this section, the evaluation framework runs the agent against each test quest
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="run_batch_evaluation":::
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/program.cs" range="run_batch_evaluation":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="run_batch_evaluation":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/EvaluateAgent.java" range="run_batch_evaluation":::
 
 ---
 
@@ -403,11 +403,11 @@ Finally, the evaluation framework compiles and outputs the results of the batch 
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/Evaluate.cs" range="evaluation_results":::
+:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate/program.cs" range="evaluation_results":::
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/Evaluate.java" range="evaluation_results":::
+:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/EvaluateAgent.java" range="evaluation_results":::
 
 ---
 
@@ -484,7 +484,7 @@ python evaluate.py
 # [C#](#tab/csharp)
 
 ```bash
-dotnet run --project Evaluate.cs
+dotnet run --project Evaluate
 ```
 
 # [Java](#tab/java)
