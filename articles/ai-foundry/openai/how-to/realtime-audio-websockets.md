@@ -33,8 +33,6 @@ The GPT real-time models are available for global deployments in [East US 2 and 
 - `gpt-realtime` (`2025-08-28`)
 - `gpt-realtime-mini` (`2025-10-06`)
 
-You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
-
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
 ## Prerequisites
