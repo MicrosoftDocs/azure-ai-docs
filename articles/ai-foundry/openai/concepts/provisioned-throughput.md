@@ -18,7 +18,7 @@ recommendations: false
 
 # What is provisioned throughput?
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 > [!NOTE]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.

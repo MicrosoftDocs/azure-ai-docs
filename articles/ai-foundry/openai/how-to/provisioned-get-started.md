@@ -18,7 +18,7 @@ recommendations: false
 
 # Get started using provisioned deployments on the Azure OpenAI in Azure AI Foundry Models
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 The following guide walks you through key steps in creating a provisioned deployment with your Azure AI Foundry resource. For more details on the concepts discussed here, see:
 * [Azure AI Foundry Provisioned Throughput Onboarding Guide](./provisioned-throughput-onboarding.md)

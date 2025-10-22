@@ -16,7 +16,7 @@ recommendations: false
 
 # Understanding costs associated with provisioned throughput units (PTU)
 
-[!INCLUDE [version-banner](../includes/version-banner.md)]
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Use this article to learn about calculating and understanding costs associated with PTU. For an overview of the provisioned throughput offering, see [What is provisioned throughput?](../concepts/provisioned-throughput.md). When you're ready to sign up for the provisioned throughput offering, see the [getting started guide](./provisioned-get-started.md).
 

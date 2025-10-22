@@ -7,9 +7,14 @@ ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 10/02/2025
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
+#CustomerIntent: As a developer, I want to manage traffic bursts on my provisioned deployments by routing overage traffic to standard deployments using spillover.
 ---
 
 # Manage traffic with spillover for provisioned deployments
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 Spillover manages traffic fluctuations on provisioned deployments by routing overage traffic to a corresponding standard deployment. Spillover is an optional capability that can be set for all requests on a given deployment or can be managed on a per-request basis. When spillover is enabled, Azure OpenAI in Azure AI Foundry Models sends any overage traffic from your provisioned deployment to a standard deployment for processing.
 
@@ -61,6 +66,8 @@ Since spillover uses a combination of provisioned and standard deployments to ma
 
 # [Azure AI Foundry portal](#tab/portal)
 
+::: moniker range="foundry-classic"
+
 To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs). On the left navigation menu, then select **Deployments**.
 
 
@@ -75,6 +82,21 @@ Specify one the provisioned options as the **Deployment type**, for example **Gl
 > * To see how to enable spillover for select inference requests, click the **REST API** tab above.
 
 :::image type="content" source="../media/provisioned/spillover.png" alt-text="A screenshot showing the spillover option." lightbox="../media/provisioned/spillover.png":::
+
+::: moniker-end
+
+::: moniker range="foundry"
+
+To deploy a model with the spillover capability, navigate to the [Azure AI Foundry](https://aka.ms/nextgen-canary/?cid=learnDocs). 
+
+Insert NextGen content
+
+> [!TIP]
+> * To enable spillover, your account must have at least one active pay-as-you-go deployment that matches the model and version of your current provisioned deployment.
+> * To see how to enable spillover for select inference requests, click the **REST API** tab above.
+
+
+::: moniker-end
 
 # [REST API](#tab/rest-api)
 
@@ -109,7 +131,7 @@ Since the spillover capability relies on a combination of provisioned and standa
 
 ## Monitor metrics in the Azure portal
 
-The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, navigate to your resource in the [Azure portal](https://ai.azure.com/?cid=learnDocs). 
+The following Azure Monitor metrics chart provides an example of the split of requests between the primary provisioned deployment and the spillover standard deployment when spillover is initiated. To create a chart, navigate to your resource in the [Azure portal](https://portal.azure.com). 
 
 1.  Select **Monitoring** > **metrics** from the left navigation menu.
 
