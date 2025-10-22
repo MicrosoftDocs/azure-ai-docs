@@ -43,28 +43,28 @@ You can use serverless compute to fine-tune models in the model catalog. You can
 
 ## How to use serverless compute
 
-* When you create your own compute cluster, you use its name in the command job, such as `compute="cpu-cluster"`. With serverless, you can skip creation of a compute cluster, and omit the `compute` parameter to instead use serverless compute. When `compute` isn't specified for a job, the job runs on serverless compute. Omit the compute name in your CLI or SDK jobs to use serverless compute in the following job types and optionally provide resources a job would need in terms of instance count and instance type:
+* When you create your own compute cluster, you use its name in the command job. For example, `compute="cpu-cluster"`. With serverless, you can skip the creation of a compute cluster, and omit the `compute` parameter to instead use serverless compute. When `compute` isn't specified for a job, the job runs on serverless compute. Omit the compute name in your Azure CLI or Python SDK jobs to use serverless compute in the following job types, and optionally provide resources the job needs for instance count and instance type:
 
   * Command jobs, including interactive jobs and distributed training
   * AutoML jobs
   * Sweep jobs
   * Parallel jobs
 
-* For pipeline jobs through CLI use `default_compute: azureml:serverless` for pipeline level default compute. For pipeline jobs through SDK use `default_compute="serverless"`. See [Pipeline job](#pipeline-job) for an example.
+* For pipeline jobs via the Azure CLI, use `default_compute: azureml:serverless` for pipeline-level default compute. For pipeline jobs via the Python SDK, use `default_compute="serverless"`. See [Pipeline job](#pipeline-job) for an example.
 
 * When you [submit a training job in studio (preview)](how-to-train-with-ui.md), select **Serverless** as the compute type.
-* When using [Azure Machine Learning designer](concept-designer.md), select **Serverless** as default compute.
+* When using [Azure Machine Learning designer](concept-designer.md), select **Serverless** as the default compute.
 
 
 ## Performance considerations
 
-Serverless compute can help speed up your training in the following ways:
+Serverless compute can increase the speed of your training in the following ways:
 
-**Insufficient quota:** When you create your own compute cluster, you're responsible for figuring out what VM size and node count to create. When your job runs, if you don't have sufficient quota for the cluster the job fails. Serverless compute uses information about your quota to select an appropriate VM size by default.
+**Insufficient quota failures.** When you create your own compute cluster, you're responsible for determining the VM size and node count. When your job runs, if you don't have sufficient quota for the cluster, the job fails. Serverless compute uses information about your quota to select an appropriate VM size by default.
 
-**Scale down optimization:** When a compute cluster is scaling down, a new job has to wait for scale down to happen and then scale up before the job can run. With serverless compute, you don't have to wait for scale down and your job can start running on another cluster/node (assuming you have quota).
+**Scale-down optimization.** When a compute cluster is scaling down, a new job has to wait for scale down to happen and then scale up before the job can run. With serverless compute, you don't have to wait for scale down and your job can start running on another cluster/node (assuming you have quota).
 
-**Cluster busy optimization:** When a job is running on a compute cluster and another job is submitted, your job is queued behind the currently running job. With serverless compute, you get another node/another cluster to start running the job (assuming you have quota).
+**Cluster busy optimization.** When a job is running on a compute cluster and another job is submitted, your job is queued behind the currently running job. With serverless compute, you get another node/another cluster to start running the job (assuming you have quota).
 
 ## Quota
 
