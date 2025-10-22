@@ -330,17 +330,18 @@ Finally, implement an interactive loop to converse with the agent.
 When you run the sample, you see the following output. You can then enter an interactive mode that lets you converse freely with the agent.
 
 <TBD!!!! Need SDK access to run updated code.>
+
 # [Python](#tab/python)
 
-:::code language="python" source="~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/main.py" id="agent_conversation":::
+
 
 # [C#](#tab/csharp)
 
-:::code language="csharp" source="~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/Program.cs" id="agent_conversation":::
+
 
 # [Java](#tab/java)
 
-:::code language="java" source="~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/src/main/java/com/microsoft/azure/samples/ModernWorkplaceAssistant.java" id="agent_conversation":::
+
 
 ---
 
