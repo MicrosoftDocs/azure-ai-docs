@@ -34,7 +34,7 @@ You can enable answer synthesis in two ways:
 
 ## Enable answer synthesis on a knowledge base
 
-This section explains how to enable answer synthesis on an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article. Knowledge source and model definitions are also omitted for brevity.
+This section explains how to enable answer synthesis on an existing knowledge base. Although you can use this configuration for new knowledge bases, knowledge base creation is beyond the scope of this article.
 
 To enable answer synthesis on a knowledge base:
 
@@ -56,8 +56,8 @@ api-key: {{api-key}}
 
 {
     "name": "{{knowledge-base-name}}",
-    "knowledgeSources": [ ... // TRIMMED FOR BREVITY ],
-    "models": [ ... // TRIMMED FOR BREVITY ],
+    "knowledgeSources": [ ... // OMITTED FOR BREVITY ],
+    "models": [ ... // OMITTED FOR BREVITY ],
     "outputMode": "answerSynthesis",
     "answerInstructions": "Use concise bulleted lists"
 }
@@ -122,8 +122,7 @@ For example, if your instructions are `Use concise bulleted lists` and your quer
         }
       ]
     }
-  ],
-  ... // TRIMMED FOR BREVITY
+  ]
 }
 ```
 
