@@ -194,6 +194,6 @@ Use AI to help you find the right region for your needs.  Open the [Foundry agen
 
 *Copilot is powered by AI, so surprises and mistakes are possible. For more information, see [Copilot general use FAQs](https://aka.ms/copilot-general-use-faqs).*
 
-## Next steps
+## Next step
 
 - [Azure global infrastructure products by region](https://azure.microsoft.com/global-infrastructure/services/)
