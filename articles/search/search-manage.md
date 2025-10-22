@@ -57,7 +57,7 @@ If you plan to use indexers for automated indexing, applied AI, or integrated ve
 For integrated vectorization, your search service identity needs the following roles:
 
 + Storage Blob Data Reader on Azure Storage
-+ Cognitive Services Data User on an Azure AI services multi-service account
++ Cognitive Services Data User on an Azure AI Foundry resource
 
 Role assignments can take several minutes to take effect.
 

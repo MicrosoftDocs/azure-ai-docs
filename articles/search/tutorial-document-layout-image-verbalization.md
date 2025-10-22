@@ -33,7 +33,7 @@ In this tutorial, you use:
 
 ## Prerequisites
 
-+ [Azure AI services multi-service account](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills). This account provides access to the Document Intelligence Layout model used in this tutorial. You must use an Azure AI multi-service account for skillset access to this resource.
++ [Azure AI Foundry resource](/azure/ai-services/multi-service-resource). This resource provides access to the Document Intelligence Layout model used in this tutorial. You must use an Azure AI Foundry resource for skillset access to this resource.
 
 + [Azure AI Search](search-create-service-portal.md). [Configure your search service](search-manage.md) for role-based access control and a managed identity. Your service must be on the Basic tier or higher. This tutorial isn't supported on the Free tier.
 
@@ -89,11 +89,11 @@ The following instructions apply to Azure Storage which provides the sample data
 
 This tutorial assumes you have an existing Azure OpenAI resource through which the skills a chat completion model for GenAI Prompt and also a text embedding model for vectorization. The search service connects to the models during skillset processing and during query execution using its managed identity. This section gives you guidance and links for assigning roles for authorized access.
 
-You also need a role assignment for accessing the Document Intelligence Layout model via an Azure AI multi-service account.
+You also need a role assignment for accessing the Document Intelligence Layout model via an Azure AI Foundry resource.
 
-### Assign roles in Azure AI multi-service
+### Assign roles in Azure AI Foundry
 
-1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI multi=service account. Make sure it's in a region that provides the [Document Intelligence Layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
+1. Sign in to the Azure portal (not the Foundry portal) and find the Azure AI Foundry resource. Make sure it's in a region that provides the [Document Intelligence Layout model](cognitive-search-skill-document-intelligence-layout.md#supported-regions).
 
 1. Select **Access control (IAM)**.
 
@@ -131,7 +131,7 @@ For authenticated connections that occur during indexer and skillset processing,
    @searchUrl = PUT-YOUR-SEARCH-SERVICE-ENDPOINT-HERE
    @searchApiKey = PUT-YOUR-ADMIN-API-KEY-HERE
    @storageConnection = PUT-YOUR-STORAGE-CONNECTION-STRING-HERE
-   @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-MULTI-SERVICE-ENDPOINT-HERE
+   @cognitiveServicesUrl = PUT-YOUR-AZURE-AI-FOUNDRY-ENDPOINT-HERE
    @openAIResourceUri = PUT-YOUR-OPENAI-URI-HERE
    @openAIKey = PUT-YOUR-OPENAI-KEY-HERE
    @chatCompletionResourceUri = PUT-YOUR-CHAT-COMPLETION-URI-HERE

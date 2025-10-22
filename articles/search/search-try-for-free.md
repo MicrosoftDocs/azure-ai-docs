@@ -74,17 +74,17 @@ Azure AI Search offers integrated operations with applied AI in the Azure cloud.
 > [!NOTE]
 > The same-region requirement doesn't apply to Azure OpenAI and Azure AI Foundry for interoperability with Azure AI Search. However, using the same region can improve performance and reduce latency.
 
-For [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md) powered by Azure AI services, you must create Azure AI Search and Azure AI services multi-service in the same region. This is required for [billing purposes](cognitive-search-attach-cognitive-services.md).
+For [AI enrichment](cognitive-search-concept-intro.md), [integrated vectorization](vector-search-integrated-vectorization.md), and [multimodal search](multimodal-search-overview.md) powered by Azure AI services, you must create Azure AI Search and Azure AI Foundry in the same region. This is required for [billing purposes](cognitive-search-attach-cognitive-services.md).
 
 Before you create these resources:
 
-+ Check [Azure AI Search regions](search-region-support.md). The **AI enrichment** column indicates whether Azure AI Search and Azure AI services multi-service are in the same region.
++ Check [Azure AI Search regions](search-region-support.md). The **AI enrichment** column indicates whether Azure AI Search and Azure AI Foundry are in the same region.
 
-+ Check [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability). The **Multimodal embeddings** column indicates regional support for the multimodal APIs that enable text and image vectorization. Azure AI Vision provides these APIs, which you access through an Azure AI services multi-service resource. Ensure that your search service and multi-service resource are in the same region as the multimodal APIs.
++ Check [Azure AI Vision regions](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability). The **Multimodal embeddings** column indicates regional support for the multimodal APIs that enable text and image vectorization. Azure AI Vision provides these APIs, which you access through an Azure AI Foundry resource. Ensure that your search service and Azure AI Foundry resource are in the same region as the multimodal APIs.
 
 ### Create services
 
-1. [Create a search service](search-create-service-portal.md) if you don't have one already. Choose the Basic tier and, if applicable, the same region as Azure AI services multi-service. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
+1. [Create a search service](search-create-service-portal.md) if you don't have one already. Choose the Basic tier and, if applicable, the same region as Azure AI Foundry. Most Azure AI Search regions provide higher capacity storage limits. There are just a few that have older and lower limits. For the Basic tier, as you install, confirm that you have a 15-GB partition.
 
    > [!div class="nextstepaction"]
    > [Create a search service](search-create-service-portal.md)
@@ -93,9 +93,7 @@ Before you create these resources:
 
 1. [Create an Azure OpenAI resource](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
 
-1. [Create an Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-services-resource-for-azure-ai-search-skills?pivots=azportal) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
-
-   :::image type="content" source="./media/search-try-for-free/azure-ai-service-marketplace.png" alt-text="Screenshot of the Azure AI Services offering in Azure Marketplace.":::
+1. [Create an Azure AI Foundry resource](/azure/ai-services/multi-service-resource) to use applied AI in your indexing workloads and Azure AI Vision multimodal APIs as an embedding model provider. You can create and transform content during indexing if applied AI can be attached. For multimodal APIs, make sure you choose a region that provides those APIs. Look for this tile in Azure Marketplace:
 
 ### Try the quickstarts
 

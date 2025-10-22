@@ -9,12 +9,12 @@ ms.custom:
   - ignite-2023
   - build-2024
 ms.topic: reference
-ms.date: 10/06/2025
+ms.date: 10/22/2025
 ---
 
 #	Azure OpenAI Embedding skill
 
-The **Azure OpenAI Embedding** skill connects to an embedding model deployed to your [Azure OpenAI](/azure/ai-services/openai/overview) resource or [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry) project to generate embeddings during indexing. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
+The **Azure OpenAI Embedding** skill connects to an embedding model deployed to your [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/overview) resource or [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry) project to generate embeddings during indexing. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) in the Azure portal uses the Azure OpenAI Embedding skill to vectorize content. You can run the wizard and review the generated skillset to see how the wizard builds the skill for embedding models.
 
@@ -27,9 +27,9 @@ The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) 
 
   + Your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://<resourcename>.openai.azure.com`. If you created the resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
-  + Your Azure AI Foundry project should have an Azure AI services endpoint with the `cognitiveservices.azure.com` domain. After you deploy an Azure OpenAI embedding model to the project, you must change the endpoint to use the `openai.azure.com` domain. For example, change the endpoint from `https://<resourcename>.cognitiveservices.azure.com` to `https://<resourcename>.openai.azure.com`. You can then use this updated endpoint for the `resourceUri` property in this skill.
+  + The [parent resource](/azure/ai-services/multi-service-resource) of your Azure AI Foundry project provides access to multiple endpoints, including `https://<resourcename>.openai.azure.com`, `https://<resourcename>.services.ai.azure.com`, and `https://<resourcename>.cognitiveservices.azure.com`. You can then use any of these three endpoints for the `resourceUri` property in this skill.
 
-+ An [Azure OpenAI embedding model](/azure/ai-services/openai/concepts/models) deployed to your resource or project.
++ An Azure OpenAI embedding model deployed to your resource or project. For supported models, see the [Skill parameters](#skill-parameters) section.
 
 ## @odata.type  
 
@@ -45,11 +45,11 @@ Parameters are case-sensitive.
 
 | Inputs | Description |
 |---------------------|-------------|
-| `resourceUri` | Required. The URI of the model provider. This parameter only supports URLs with the `openai.azure.com` domain, such as `https://<resourcename>.openai.azure.com`. This field is required if your Azure OpenAI resource is deployed behind a private endpoint or uses Virtual Network (VNet) integration. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are supported with URL `https://<resourcename>.azure-api.net`. Shared private links aren't supported for API Management endpoints. |
+| `resourceUri` | Required. The URI of the model provider. This parameter supports URLs with the `openai.azure.com`, `services.ai.azure.com`, and `cognitiveservices.azure.com` domains. This field is required if your resource is deployed behind a private endpoint or uses virtual network (VNet) integration. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are supported with URL `https://<resourcename>.azure-api.net`. Shared private links aren't supported for API Management endpoints. |
 | `apiKey`   |  The secret key used to access the model. If you provide a key, leave `authIdentity` empty. If you set both the `apiKey` and `authIdentity`, the `apiKey` is used on the connection. |
 | `deploymentId`   | Required. The name of the deployed Azure OpenAI embedding model. The model should be an embedding model, such as text-embedding-ada-002. See the [List of Azure OpenAI models](/azure/ai-services/openai/concepts/models) for supported models.|
-| `authIdentity`   | A user-managed identity used by the search service for connecting to Azure OpenAI. You can use either a [system or user managed identity](search-how-to-managed-identities.md). To use a system managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) permissions to send text to Azure OpenAI. |
-| `modelName` | Required. Set this property to the deployment name of an Azure OpenAI embedding model deployed on the provider specified through `resourceUri` and identified through `deploymentId`. Currently, the supported values are `text-embedding-ada-002`, `text-embedding-3-large`, and `text-embedding-3-small`.  |
+| `authIdentity`   | A user-managed identity used by the search service for the connection. You can use either a [system- or user-managed identity](search-how-to-managed-identities.md). To use a system-managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) permissions to send text to Azure OpenAI. |
+| `modelName` | Required. Set this property to the deployment name of an Azure OpenAI embedding model deployed on the provider specified through `resourceUri` and identified through `deploymentId`. Supported values are `text-embedding-ada-002`, `text-embedding-3-large`, and `text-embedding-3-small`.  |
 | `dimensions` | Optional. The dimensions of embeddings that you would like to generate, assuming the model supports a range of dimensions. Supported ranges are listed below, and currently only apply to the text-embedding-3 model series. The default is the maximum dimensions for each model. For skillsets created using earlier REST API versions dating back to the 2023-10-01-preview, dimensions are fixed at 1536. When setting the dimensions property on a skill, make sure to set the `dimensions` property on the [vector field definition](vector-search-how-to-create-index.md#add-a-vector-field-to-the-fields-collection) to the same value. |
 
 ## Supported dimensions by `modelName`

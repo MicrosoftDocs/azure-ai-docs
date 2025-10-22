@@ -25,7 +25,7 @@ If your application requirements call for multiple skills and projections, this 
 
 ## Set up sample data
 
-Sample documents aren't included with the Projections collection, but the [AI enrichment demo data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) contain text and images that work with the projections described in this example. If you use this sample data, you can skip step that [attaches an Azure AI multi-service account](cognitive-search-attach-cognitive-services.md) because you stay under the daily indexer limit for free enrichments.
+Sample documents aren't included with the Projections collection, but the [AI enrichment demo data files](https://github.com/Azure-Samples/azure-search-sample-data/tree/main/ai-enrichment-mixed-media) contain text and images that work with the projections described in this example. If you use this sample data, you can skip step that [attaches an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) because you stay under the daily indexer limit for free enrichments.
 
 Create a blob container in Azure Storage and upload all 14 items.
 
@@ -184,7 +184,7 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
     ],
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.CognitiveServicesByKey",
-        "description": "An Azure AI services resource in the same region as Search.",
+        "description": "An Azure AI Foundry resource in the same region as Search.",
         "key": ""
     },
     "knowledgeStore": null
@@ -192,7 +192,7 @@ Pay close attention to skill outputs (targetNames). Outputs written to the enric
 ```
 
 > [!NOTE]
-> Under `"cognitiveServices"`, the key field is unspecified because the indexer can use an Azure AI multi-service account in the same region as your search service and process up to 20 transactions daily at no charge. The sample data for this example stays under the 20 transaction limit.
+> Under `"cognitiveServices"`, the key field is unspecified because the indexer can use an Azure AI Foundry resource in the same region as your search service and process up to 20 transactions daily at no charge. The sample data for this example stays under the 20 transaction limit.
 
 ## Example Shaper skill
 

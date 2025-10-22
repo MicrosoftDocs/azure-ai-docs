@@ -14,7 +14,7 @@ ms.update-cycle: 365-days
 
 # Azure OpenAI vectorizer
 
-The **Azure OpenAI** vectorizer connects to an embedding model deployed to your [Azure OpenAI](/azure/ai-services/openai/overview) resource or [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry) project to generate embeddings at query time. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
+The **Azure OpenAI** vectorizer connects to an embedding model deployed to your [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/overview) resource or [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry) project to generate embeddings at query time. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
 Although vectorizers are used at query time, you specify them in index definitions and reference them on vector fields through a vector profile. For more information, see [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md).
 
@@ -29,7 +29,7 @@ The Azure OpenAI vectorizer is called `AzureOpenAIVectorizer` in the REST API. U
 
   + Your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://<resourcename>.openai.azure.com`. If you created the resource in the Azure portal, this subdomain was automatically generated during resource setup.
 
-  + Your Azure AI Foundry project should have an Azure AI services endpoint with the `cognitiveservices.azure.com` domain. After you deploy an Azure OpenAI embedding model to the project, you must change the endpoint to use the `openai.azure.com` domain. For example, change the endpoint from `https://<resourcename>.cognitiveservices.azure.com` to `https://<resourcename>.openai.azure.com`. You can then use this updated endpoint for the `resourceUri` property in this vectorizer.
+  + The [parent resource](/azure/ai-services/multi-service-resource) of your Azure AI Foundry project provides access to multiple endpoints, including `https://<resourcename>.openai.azure.com`, `https://<resourcename>.services.ai.azure.com`, and `https://<resourcename>.cognitiveservices.azure.com`. You can then use any of these three endpoints for the `resourceUri` property in this skill.
 
 + An Azure OpenAI embedding model deployed to your resource or project. For supported models, see the next section.
 
@@ -39,11 +39,11 @@ Parameters are case-sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|
-| `resourceUri` | The URI of the model provider. This parameter only supports URLs with the `openai.azure.com` domain, such as `https://<resourcename>.openai.azure.com`. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are supported with URL `https://<resourcename>.azure-api.net`. Shared private links aren't supported for API Management endpoints. |
+| `resourceUri` | The URI of the model provider. This parameter supports URLs with the `openai.azure.com`, `services.ai.azure.com`, and `cognitiveservices.azure.com` domains. [Azure API Management](/azure/api-management/api-management-key-concepts) endpoints are supported with URL `https://<resourcename>.azure-api.net`. Shared private links aren't supported for API Management endpoints. |
 | `apiKey`   |  The secret key used to access the model. If you provide a key, leave `authIdentity` empty. If you set both the `apiKey` and `authIdentity`, the `apiKey` is used on the connection. |
 | `deploymentId`   | The name of the deployed Azure OpenAI embedding model. The model should be an embedding model, such as text-embedding-ada-002. See the [List of Azure OpenAI models](/azure/ai-services/openai/concepts/models) for supported models.|
-| `authIdentity`   | A user-managed identity used by the search service for connecting to Azure OpenAI. You can use either a [system or user managed identity](search-how-to-managed-identities.md). To use a system managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) permissions to send text to Azure OpenAI. |
-| `modelName` | (Required in API version 2024-05-01-Preview and later). The name of the Azure OpenAI embedding model that is deployed at the provided `resourceUri` and `deploymentId`. Currently, supported values are `text-embedding-ada-002`, `text-embedding-3-large`, and `text-embedding-3-small`. |
+| `authIdentity`   | A user-managed identity used by the search service for the connection. You can use either a [system- or user-managed identity](search-how-to-managed-identities.md). To use a system-managed identity, leave `apiKey` and `authIdentity` blank. The system-managed identity is used automatically. A managed identity must have [Cognitive Services OpenAI User](/azure/ai-services/openai/how-to/role-based-access-control#azure-openai-roles) permissions to send text to Azure OpenAI. |
+| `modelName` | (Required in the 2024-05-01-preview API version and later) The name of the Azure OpenAI embedding model that is deployed at the provided `resourceUri` and `deploymentId`. Supported values are `text-embedding-ada-002`, `text-embedding-3-large`, and `text-embedding-3-small`. |
 
 ## Supported vector query types
 
