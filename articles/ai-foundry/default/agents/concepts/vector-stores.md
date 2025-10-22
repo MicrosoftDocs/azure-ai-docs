@@ -1,7 +1,7 @@
 ---
-title: Vector stores in Azure AI Agent Service'
+title: Vector stores for file search in Azure AI Agent Service
 titleSuffix: Azure AI Foundry
-description: Learn about how vector stores give agent tools the ability to search your files. 
+description: "Discover how vector stores in Azure AI Agent Service enable file search capabilities with automatic chunking, embedding, and semantic search for your AI agents." 
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -13,14 +13,9 @@ ms.author: aahi
 ---
 
 # Vector stores
-Vector store objects give the [file search](../../../agents/how-to/tools/file-search.md) and [code interpreter](../../../agents/how-to/tools/code-interpreter.md) tools the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Each vector store can hold up to 10,000 files. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
+Vector store objects give the [file search](../../../agents/how-to/tools/file-search.md) tool the ability to search your files. Adding a file to a vector store automatically parses, chunks, embeds, and stores the file in a vector database that's capable of both keyword and semantic search. Vector stores can be attached to both agents and threads. Currently you can attach at most one vector store to an agent and at most one vector store to a thread.
 
-Similarly, these files can be removed from a vector store by either:
-
-* Deleting the vector store file object or,
-* By deleting the underlying file object, which removes the file from all vector store and code interpreter configurations across all agents and threads in your organization
-
-The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+For a list of limits for vector search (such as maximum allowable file sizes), see the [quotas and limits](../../../agents/quotas-limits.md) article.
 
 ## Ensuring vector store readiness before creating runs
 
@@ -46,9 +41,7 @@ When you upload a file to create a vector store, the system automatically:
 If you're using a basic agent setup, files can be removed from a vector store by either:
 
 * Deleting the vector store file object or,
-* Deleting the underlying file object, which removes the file from all vector stores and code interpreter configurations across all agents and threads in your organization.
-
-The maximum file size is 512 MB. Each file should contain no more than 5,000,000 tokens per file (computed automatically when you attach a file).
+* Deleting the underlying file object, which removes the file from all vector store configurations across all agents and threads in your organization.
 
 ### Managing costs with expiration policies
 
@@ -63,6 +56,4 @@ When a vector store expires, the runs on that thread fail. To fix this issue, yo
 
 ## Next steps
 
-Learn about tools that use vector stores:
-* [Code interpreter tool](../../../agents/how-to/tools/code-interpreter.md)
-* [File search tool](../../../agents/how-to/tools/file-search.md)
+* Learn more about the [file search tool](../../../agents/how-to/tools/file-search.md)
