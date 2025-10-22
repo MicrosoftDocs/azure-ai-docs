@@ -82,7 +82,7 @@ You might also consider filtering out blank messages using the Remove Empty filt
 
 ## Understand the API
 
-[Key Phrase Extraction](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2024-11-01&preserve-view=true&tabs=HTTP#analyzetextkeyphraseextractioninput) can process up to a thousand text documents per HTTP request. Power BI prefers to deal with records one at a time, so in this tutorial your calls to the API include only a single document each. The Key Phrases API requires the following fields for each document being processed.
+[Key Phrase Extraction](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&branch=main&tabs=HTTP#analyzetextkeyphraseextractioninput&preserve-view=true) can process up to a thousand text documents per HTTP request. Power BI prefers to deal with records one at a time, so in this tutorial your calls to the API include only a single document each. The Key Phrases API requires the following fields for each document being processed.
 
 | Field | Description |
 | - | - |

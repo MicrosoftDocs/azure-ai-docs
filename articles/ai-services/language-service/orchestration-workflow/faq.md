@@ -1,12 +1,12 @@
 ---
 title: Frequently Asked Questions for orchestration projects
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this article to quickly get the answers to FAQ about orchestration projects
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: mode-other
 ---

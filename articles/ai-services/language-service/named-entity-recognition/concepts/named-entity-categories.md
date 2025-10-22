@@ -1,12 +1,12 @@
 ---
 title: Entity categories recognized by Named Entity Recognition in Azure AI Language
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about the entities the NER feature can recognize from unstructured text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 08/06/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---

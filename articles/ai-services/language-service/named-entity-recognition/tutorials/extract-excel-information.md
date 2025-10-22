@@ -1,12 +1,12 @@
 ---
 title: Extract information in Excel using Power Automate
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---

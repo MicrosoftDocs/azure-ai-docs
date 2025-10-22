@@ -1,12 +1,12 @@
 ---
 title: Entity resolutions provided by Named Entity Recognition
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about entity resolutions in the NER feature.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---

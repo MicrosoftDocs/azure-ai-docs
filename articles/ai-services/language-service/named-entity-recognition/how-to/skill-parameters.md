@@ -1,6 +1,6 @@
 ---
 title: Named entity recognition skill parameters
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about skill parameters for named entity recognition.
 author: laujan
 manager: nitinme
@@ -8,7 +8,7 @@ ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 04/29/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
