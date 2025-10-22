@@ -193,7 +193,7 @@ sections:
       - question: |
           Why does the recognized text differ from the reference text?
         answer: |
-          The recognized text is generated based on the audio input, the reference text, and the `EnableMiscue` configuration.
+          The recognized text is generated based on the audio input, the reference text, the `EnableMiscue` configuration and the assessment mode.
 
           In **scripted assessment**, which offers two modes, single-shot and continuous, and the behavior differs slightly. In single-shot mode, if `EnableMiscue` is set to `false`, the system forces the recognized text to match the reference text. When `EnableMiscue` is `true`, only words present in the reference text are considered as recognized results from the audio input. Continuous mode does not support the `EnableMiscue` option and behaves similarly to single-shot mode with `EnableMiscue` set to `true`. Differences between recognized and reference text may occur due to factors such as pronunciation variations, background noise, or limitations in the speech recognition model.
 
