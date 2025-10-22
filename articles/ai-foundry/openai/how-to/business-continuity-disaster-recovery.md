@@ -61,6 +61,18 @@ The additional benefit of this architecture is that it allows you to stack Stand
 
 :::image type="content" source="../how-to/media/disaster-recovery/scaling.jpg" alt-text="Provisioned scaling diagram." lightbox="../how-to/media/disaster-recovery/scaling.jpg":::
 
+## BCDR for agents
+
+To support service resilience, the Agents service relies on customer-provisioned CosmosDB accounts. This ensures that your agent state can be preserved and recovered in the event of a regional outage.
+
+1. As an Azure Standard customer, you provision and manage your own single-tenant CosmosDB account.
+1. All of the agent state is stored in your CosmosDB.
+1. Backup and recovery rely on CosmosDB’s native capabilities, which you control.
+1. If the primary region becomes unavailable, the agent will automatically become available in the secondary region by connecting to the same CosmosDB account.
+    Since all history is preserved in CosmosDB, the agent can continue operation with minimal disruption.
+
+We recommend customers provision and maintain their CosmosDB account and ensure appropriate backup and recovery policies are configured. This ensures seamless continuity if the primary region becomes unavailable.
+
 
 ## Supporting Infrastructure
 
