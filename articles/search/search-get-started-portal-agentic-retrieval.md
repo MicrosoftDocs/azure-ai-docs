@@ -22,7 +22,7 @@ The portal guides you through the process of configuring and creating the follow
 
 + A *knowledge source* that points to a search index containing enriched content. Although agentic retrieval [supports multiple knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources), this quickstart uses Azure Blob Storage to create a blob knowledge source.
 
-+ A *knowledge base* that uses an LLM to infer the underlying information need, plan and execute subqueries, and formulate a natural-language answer using the optional answer synthesis modality.
++ A *knowledge base* that uses an LLM to infer the underlying information need, plan and execute subqueries, and formulate a natural-language answer using the optional answer synthesis output mode.
 
 Afterwards, you test the knowledge base by submitting a complex query that requires information from multiple documents and reviewing the synthesized answer.
 
@@ -148,7 +148,7 @@ To create the knowledge source for this quickstart:
 
 A knowledge base uses your knowledge source and deployed LLM to orchestrate agentic retrieval. When a user submits a complex query, the LLM generates subqueries that are sent simultaneously to your knowledge source. Azure AI Search then semantically ranks the results for relevance and combines the best results into a single, unified response.
 
-By default, the knowledge base outputs raw content from your knowledge source, but you can enable the answer synthesis modality for natural-language answer generation.
+By default, the knowledge base outputs raw content from your knowledge source, but you can enable the answer synthesis output mode for natural-language answer generation.
 
 To create the knowledge base for this quickstart:
 
@@ -174,7 +174,7 @@ To create the knowledge base for this quickstart:
 
 ## Test agentic retrieval
 
-The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base and review its responses, which include references to source documents and debug information about the retrieval process.
+The portal provides a chat playground where you can submit `retrieve` requests to the knowledge base, whose responses include references to source documents and debug information about the retrieval process.
 
 To query the knowledge base:
 
