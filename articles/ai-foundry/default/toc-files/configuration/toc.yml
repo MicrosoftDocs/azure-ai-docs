@@ -3,6 +3,10 @@ items:
   href: ../../../concepts/planning.md
 - name: Create a project
   href: ../../../how-to/create-projects.md
+- name: Create resources using Bicep template
+  href: ../../../how-to/create-resource-template.md
+- name: Create resources using Terraform
+  href: ../../../how-to/create-resource-terraform.md
 - name: Choose a resource
   href: ../../../concepts/resource-types.md
 - name: Create a connection
