@@ -19,7 +19,7 @@ It is important for developers to be aware of the security implications when cho
 While both the Web and Mobile solutions conform to iBeta Level 1 and Level 2 ISO/IEC 30107-3 PAD standards, the Mobile solution includes additional Runtime Application Self-Protections (RASP) provided by [GuardSquare](https://www.guardsquare.com/blog/why-guardsquare), which are not available in the Web solution.<br>
 Notably, the Web solution has limitations inherent to running in browser environments and may be more vulnerable to certain types of attacks due to the inherent limitations of browser environments.<br>
 We recommend using the Mobile solution whenever possible.<br>
-If you choose the Web solution, it is critical that you closely follow the guidance in this document and consider implementing additional safeguards and monitoring to mitigate potential runtime attacks.<br>
+If you choose the Web solution, it is critical that you closely follow the guidance in this document, ensure that the camera in use is a trusted physical device and consider implementing additional safeguards and monitoring to mitigate potential runtime attacks.<br>
 
 ## Secure the connections
 
