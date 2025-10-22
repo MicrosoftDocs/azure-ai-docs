@@ -4,7 +4,7 @@ titleSuffix: Azure AI Foundry
 description: This article lists Azure AI Foundry feature availability across clouds regions.
 ms.service: azure-ai-foundry
 ms.topic: concept-article
-ms.date: 07/30/2025
+ms.date: 10/22/2025
 ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
@@ -23,18 +23,24 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - Brazil South
 - Canada Central
 - Canada East
+- Central India
+- East Asia
 - East US
 - East US 2
 - France Central
 - Germany West Central
+- Italy North
 - Japan East
 - Korea Central
 - North Central US
+- North Europe
 - Norway East
-- Poland Central
+- Quatar Central
 - South Africa North
 - South Central US
 - South India
+- Southeast Asia
+- Spain Central
 - Sweden Central
 - Switzerland North
 - UAE North
