@@ -58,12 +58,12 @@ For efficient navigation, navigating by landmarks can help you move between thes
 :::moniker range="foundry"
 ## Projects 
 
-The Azure AI Foundry portal always has a project selected. All of the main navigation, except **Operate**, is in the context of this project. 
+When using the Azure AI Foundry portal, you always have a project selected to work with. Navigation sections **Home**, **Discover**, and **Build**  display content for your selected project. The **Operate** section is different—it shows information for all your projects.
 
 To create or switch projects:
 1. In [!INCLUDE [foundry-link](../default/includes/foundry-link.md)], on the top banner, select **Azure AI Foundry**.
 1. Press <kbd>Tab</kbd> until you hear a project name.
-1. Use the down-arrow to scroll throug the list of recent projects.
+1. Use the down-arrow to scroll through the list of recent projects.
 1. At the end of the list of recent projects are options to **View all projects**, **Create new project**, and **View legacy resources**.
 ::: moniker-end
 
