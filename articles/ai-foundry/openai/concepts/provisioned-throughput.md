@@ -1,6 +1,8 @@
 ---
 title: Provisioned throughput for Azure AI Foundry Models
 description: Learn about provisioned throughput and Azure AI Foundry.
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
@@ -11,9 +13,12 @@ ms.author: mopeakande #chrhoder
 ms.reviewer: shiyingfu
 reviewer: swingfu
 recommendations: false
+#CustomerIntent As a developer, I want to understand provisioned throughput so I can deploy and manage AI models efficiently.
 ---
 
 # What is provisioned throughput?
+
+[!INCLUDE [version-banner](../includes/version-banner.md)]
 
 > [!NOTE]
 > For more information on recent changes to the provisioned throughput offering, see the [update article](./provisioned-migration.md) for more information.
@@ -21,7 +26,6 @@ recommendations: false
 The Azure AI Foundry provisioned throughput offering is a model deployment type that allows you to specify the amount of throughput you require in a model deployment. Azure AI Foundry then allocates the necessary model processing capacity and ensures it's ready for you. You can use the provisioned throughput you requested across a diverse portfolio of [models that are sold directly by Azure](../../../ai-foundry/concepts/foundry-models-overview.md#models-sold-directly-by-azure). These models include Azure OpenAI models and newly introduced flagship model families like Azure DeepSeek, Azure Grok, Azure Llama, and more within Azure AI Foundry Models.
 
 Provisioned throughput provides:
-
 - **A broader model choice** on the latest flagship models
 - **Flexibility** to switch models and deployments with given provisioned throughput quota
 - **Significant discounts** and the ability to boost your reservation utilization with a more flexible reservation choice
