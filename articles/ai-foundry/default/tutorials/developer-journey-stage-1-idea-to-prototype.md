@@ -160,65 +160,25 @@ The sample includes realistic Contoso Corp policies that demonstrate:
 
 These documents reference Azure and Microsoft 365 technologies, creating realistic scenarios where employees need both internal policy information and external implementation guidance.
 
-### Dependencies
-
-# [Python](#tab/python)
-
-Review `requirements.txt`:
-
-:::code language="txt" source="~/foundry-samples-nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/requirements.txt":::
-
-# [C#](#tab/csharp)
-
-Review the project file, then restore dependencies:
-
-```bash
-dotnet restore
-```
-
-The project file defines required Azure AI Foundry SDK packages and supporting libraries:
-
-:::code language="xml" source="~/foundry-samples-nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/ModernWorkplaceAssistant/ModernWorkplaceAssistant.csproj":::
-
-> [!TIP]
-> If you add new packages, run `dotnet restore` again. Use `dotnet list package --outdated` to check for updates.
-
-# [Java](#tab/java)
-
-The Maven `pom.xml` file declares all dependencies. Compile the project once to download them:
-
-```bash
-mvn -q clean compile
-```
-
-View the full dependency declarations:
-
-:::code language="xml" source="~/foundry-samples-nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/pom.xml":::
-
-> [!NOTE]
-> Use `mvn dependency:tree -Dincludes=com.azure` to inspect only Azure-related transitive dependencies.
-
----
-
 ## Step 2: Build a modern workplace assistant
 
 This sample implementation of a modern workplace assistant shows you how to:
 
-- **Integrate multiple agent tools** (SharePoint and MCP) for comprehensive knowledge access
-- **Simplify connection handling** - Use only the connection name, and let Azure AI Foundry handle URL configuration
-- **Use dynamic agent instructions** based on available tools  
-- **Combine business-focused scenarios** with internal and external knowledge
-- **Provide clear diagnostic messages** for troubleshooting
-- **Implement graceful degradation** when services are unavailable
+- **Integrate multiple agent tools** (SharePoint and MCP) for comprehensive knowledge access.
+- **Simplify connection handling** - Use only the connection name, and let Azure AI Foundry handle URL configuration.
+- **Use dynamic agent instructions** based on available tools.
+- **Combine business-focused scenarios** with internal and external knowledge.
+- **Provide clear diagnostic messages** for troubleshooting.
+- **Implement graceful degradation** when services are unavailable.
 
 The code breaks down into the following main sections, ordered as they appear in the full sample code:
 
-1. [Imports and authentication setup](#imports-and-authentication-setup)
-1. [Configure authentication in Azure](#configure-authentication-in-azure)
-1. [SharePoint tool setup](#create-the-sharepoint-tool-for-the-agent)
-1. [MCP tool setup](#create-the-mcp-tool-for-the-agent)
-1. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools)
-1. [Converse with the agent](#converse-with-the-agent)
+1. [Configure imports and authentication](#imports-and-authentication-setup).
+1. [Configure authentication to Azure](#configure-authentication-in-azure).
+1. [Configure the SharePoint tool](#create-the-sharepoint-tool-for-the-agent).
+1. [Configure MCP tool](#create-the-mcp-tool-for-the-agent).
+1. [Create the agent and connect the tools](#create-the-agent-and-connect-the-tools).
+1. [Converse with the agent](#converse-with-the-agent).
 
 ### Imports and authentication setup
 
@@ -339,9 +299,9 @@ This evaluation framework tests:
 
 The code breaks down into the following main sections, ordered as they appear in the full sample code:
 
-1. [Load evaluation data](#load-evaluation-data)
-1. [Run batch evaluation](#run-batch-evaluation)
-1. [Compile evaluation results](#compile-evaluation-results)
+1. [Load evaluation data](#load-evaluation-data).
+1. [Run batch evaluation](#run-batch-evaluation).
+1. [Compile evaluation results](#compile-evaluation-results).
 
 ### Load evaluation data
 
@@ -405,9 +365,9 @@ After you set up the environment, dependencies, and code, you can run the comple
 
 ### Set up and run
 
-1. **Configure environment**:
-
 # [Python](#tab/python)
+
+1. **Configure environment**:
 
 ```bash
 cp .env.template .env
@@ -415,7 +375,21 @@ cp .env.template .env
 pip install -r requirements.txt
 ```
 
+2. **Run the Modern Workplace Assistant**:
+
+```bash
+python main.py
+```
+
+3. **Run business evaluation**:
+
+```bash
+python evaluate.py
+```
+
 # [C#](#tab/csharp)
+
+1. **Configure environment**:
 
 ```bash
 cp .env.template .env
@@ -423,7 +397,21 @@ cp .env.template .env
 dotnet restore
 ```
 
+2. **Run the Modern Workplace Assistant**:
+
+```bash
+dotnet run
+```
+
+3. **Run business evaluation**:
+
+```bash
+dotnet run --project Evaluate
+```
+
 # [Java](#tab/java)
+
+1. **Configure environment**:
 
 ```bash
 cp .env.template .env
@@ -431,26 +419,16 @@ cp .env.template .env
 mvn clean compile
 ```
 
----
-
 2. **Run the Modern Workplace Assistant**:
-
-# [Python](#tab/python)
-
-```bash
-python main.py
-```
-
-# [C#](#tab/csharp)
-
-```bash
-dotnet run
-```
-
-# [Java](#tab/java)
 
 ```bash
 mvn exec:java -Dexec.mainClass="Main"
+```
+
+3. **Run business evaluation**:
+
+```bash
+mvn exec:java -Dexec.mainClass="Evaluate"
 ```
 
 ---
@@ -461,29 +439,7 @@ This example demonstrates:
 - Three business scenarios (policy, technical, combined)
 - Interactive mode for testing
 
-3. **Run business evaluation**:
-
-# [Python](#tab/python)
-
-```bash
-python evaluate.py
-```
-
-# [C#](#tab/csharp)
-
-```bash
-dotnet run --project Evaluate
-```
-
-# [Java](#tab/java)
-
-```bash
-mvn exec:java -Dexec.mainClass="Evaluate"
-```
-
----
-
-This test:
+The evaluation tests:
 - Policy questions (SharePoint integration)
 - Technical questions (MCP integration)  
 - Combined scenarios (both sources)
