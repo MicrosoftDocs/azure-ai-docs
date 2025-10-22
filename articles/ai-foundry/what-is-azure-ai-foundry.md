@@ -40,7 +40,8 @@ keywords:
 
 Azure AI Foundry unifies agents, models, and tools under a single management grouping with built-in enterprise-readiness capabilities including tracing, monitoring, evaluations, and customizable enterprise setup configurations. The platform provides streamlined management through unified Role-based access control (RBAC), networking, and policies under one Azure resource provider namespace.
 
-[Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) is designed for developers to:
+:::moniker range="foundry-classic"
+[!INCLUDE [classic-link](includes/classic-link.md)] is designed for developers to:
 
 - Build generative AI applications and AI agents on an enterprise-grade platform.
 - Explore, build, test, and deploy using cutting-edge AI tools and ML models, grounded in responsible AI practices.
@@ -48,10 +49,18 @@ Azure AI Foundry unifies agents, models, and tools under a single management gro
 - Work across model providers with a consistent API contract.
 
 With Azure AI Foundry, you can explore a wide variety of models, services and capabilities, and get to building AI applications that best serve your goals. Azure AI Foundry facilitates scalability for transforming proof of concepts into full-fledged production applications with ease. Continuous monitoring and refinement support long-term success.  
+:::moniker-end
 
 ::: moniker range="foundry"
+[!INCLUDE [foundry-link](default/includes/foundry-link.md)] delivers a modernized experience with powerful enhancements designed for flexibility and scale:
 
-## New user experience
+* **Streamlined Navigation** – A redesigned interface places key controls where you need them, improving workflow efficiency.
+* **Multi-Agent Orchestration and Workflows** – Build advanced automation with SDKs for C# and Python, enabling collaborative agent behavior and complex workflow execution.
+* **Expanded Integration Options** – Publish agents to Microsoft 365, Teams, and BizChat, and leverage containerized deployments for greater portability.
+* **Real-Time Observability** – Monitor performance and governance with built-in metrics and model tracking tools.
+* **Optimized Developer Experience** – Faster load times and dynamic prefetching ensure smooth development and deployment.
+
+## Streamlined navigation
 
 Azure AI Foundry has been reimagined as the AI app and agent factory for AI development teams, ushering in a true code shift for modern builders. The new version of Azure AI Foundry portal delivers speed, simplicity, and modularity as development teams access models, integrate knowledge, and continuously monitor the AI development lifecycle. ​
 
@@ -171,8 +180,6 @@ Pin or unpin items into the left pane. When you unpin an item, it's hidden from 
 * Customize each project separately. The left pane isn't shared across projects.
 * The left pane isn't shared across users. Each user customizes their own left pane for each project. 
 
-::: moniker-end
-
 ## Management center
 
 The management center is a part of the Azure AI Foundry portal that streamlines governance and management activities. In the management center, you can view and manage:
@@ -182,6 +189,8 @@ The management center is a part of the Azure AI Foundry portal that streamlines 
 - Govern access and permissions
 
 For more information, see [Management center overview](./concepts/management-center.md).
+
+::: moniker-end
 
 ## Pricing and billing
 
