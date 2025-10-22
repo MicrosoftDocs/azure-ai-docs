@@ -1,5 +1,9 @@
 items:
 - name: Ask the Foundry agent
   href: ../../../foundry-agent/ask-foundry-agent.md
+- name: "Tutorial: The developer journey"
+  items:
+    - name: "Stage 1: Idea to prototype"
+      href: "../../tutorials/developer-journey-stage-1-idea-to-prototype.md"    
 - name: Quickstart
   href: ../../../quickstarts/get-started-code.md

@@ -2,9 +2,10 @@ monikerRange: 'foundry'
 items:
 - name: What is Azure AI Foundry?
   href: ../what-is-azure-ai-foundry.md
+
 - name: Get started
   href: toc-files/get-started/toc.yml
-
+  
 - name: Agent development
   href: toc-files/agent-development/toc.yml
 
