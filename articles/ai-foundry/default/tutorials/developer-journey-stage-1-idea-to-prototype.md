@@ -344,7 +344,7 @@ When you run the sample, you see the following output. You can then enter an int
 
 ---
 
-## Step 3: Evaluate the assistant
+## Step 3: Evaluate the assistant in a batch
 
 The evaluation framework code in this sample tests realistic business scenarios that combine SharePoint policies with Microsoft Learn technical guidance. This approach demonstrates batch evaluation capabilities for validating agent performance across multiple test cases. The evaluation uses a keyword-based approach to assess whether the agent provides relevant responses that incorporate the expected information sources.
 
