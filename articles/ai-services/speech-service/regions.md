@@ -84,15 +84,15 @@ The regions in these tables support most of the core features of the Speech serv
 | canadaeast | ✅ |   | ✅ |   |   |   |
 | centralindia | ✅ | ✅ | ✅ |   | ✅ | ✅ |
 | centralus  | ✅ |   | ✅ |   |   |   |
-| eastasia | ✅ |   | ✅ |   |   |   |
+| eastasia | ✅ |   | ✅ |   |   | ✅ |
 | eastus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | eastus2  | ✅ | ✅ | ✅ |   | ✅ | ✅ |
-| francecentral | ✅ | ✅ | ✅ |   |   |   |
+| francecentral | ✅ | ✅ | ✅ |   |   | ✅ |
 | germanywestcentral | ✅ |   | ✅ |   |   |   |
 | italynorth | ✅ |   | ✅ |   |   |   |
-| japaneast  | ✅ | ✅ | ✅ | ✅ |   |   |
+| japaneast  | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | japanwest  | ✅ |   | ✅ |   |   |   |
-| koreacentral   | ✅ |   | ✅ |   |   |   |
+| koreacentral   | ✅ |   | ✅ |   |   | ✅ |
 | northcentralus   | ✅ | ✅ | ✅ |   | ✅ |   |
 | northeurope | ✅ | ✅ | ✅ |   |   | ✅ |
 | norwayeast | ✅ |   | ✅ |   | ✅ |   |
@@ -101,16 +101,16 @@ The regions in these tables support most of the core features of the Speech serv
 | southcentralus | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | southeastasia | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | swedencentral | ✅ | ✅ | ✅ |   | ✅ |   |
-| switzerlandnorth | ✅ |   | ✅ |   | ✅ |   |
+| switzerlandnorth | ✅ |   | ✅ |   | ✅ | ✅ |
 | switzerlandwest  | ✅ |   | ✅ |   |   |   |
 | uaenorth | ✅ | | ✅ |   |   |   |
 | uksouth  | ✅ | ✅ | ✅ | ✅ |   | ✅ |
 | ukwest | ✅ |   | ✅ |   |   |   |
 | westcentralus | ✅ |   | ✅ |   |   |   |
 | westeurope | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| westus | ✅ | ✅ | ✅ |   |   |   |
+| westus | ✅ | ✅ | ✅ |   |   | ✅ |
 | westus2  | ✅ | ✅ | ✅ |   |   | ✅ |
-| westus3  | ✅ | ✅ | ✅ |   |   |   |
+| westus3  | ✅ | ✅ | ✅ |   |   | ✅ |
 
 <sup>1</sup> Supports custom speech model processing.<br>
 <sup>2</sup> The region uses dedicated hardware for custom speech training. If you plan to train a custom model, you must use one of the regions with dedicated hardware. Then you can [copy the trained model](how-to-custom-speech-train-model.md#copy-a-model) to another region.
