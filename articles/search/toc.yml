@@ -416,9 +416,9 @@ items:
           href: agentic-knowledge-source-how-to-web-manage.md
       - name: Create a knowledge base
         href: agentic-retrieval-how-to-create-knowledge-base.md
-      - name: Configure answer synthesis for an agent
+      - name: Enable answer synthesis
         href: agentic-retrieval-how-to-answer-synthesis.md
-      - name: Retrieve data using an agent
+      - name: Retrieve data
         href: agentic-retrieval-how-to-retrieve.md
       - name: Migrate agentic retrieval code
         href: agentic-retrieval-how-to-migrate.md
