@@ -66,7 +66,7 @@ In some cases, models are retired in Azure Governmen ahead of dates in the comme
 
 <br>
 
-### Deafault Model Versions 
+### Default Model Versions 
 In some cases, new model versions are designated as default in Azure Governmen ahead of dates in the commercial cloud. General information on model upgrades can be found at [Working with Azure OpenAI models](/azure/ai-foundry/openai/how-to/working-with-models?tabs=powershell&branch=main#model-deployment-upgrade-configuration)
 
 The following shows default model differences in Azure Government. 
