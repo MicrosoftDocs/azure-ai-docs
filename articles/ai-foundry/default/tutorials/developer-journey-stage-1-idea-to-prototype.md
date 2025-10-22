@@ -62,7 +62,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-main/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype/)
+> [Download the code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/python/enterprise-agent-tutorial/1-idea-to-prototype)
 
 # [C#](#tab/csharp)
 
@@ -85,7 +85,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-main/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype/)
+> [Download the code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/csharp/enterprise-agent-tutorial/1-idea-to-prototype)
 
 # [Java](#tab/java)
 
@@ -104,7 +104,7 @@ enterprise-agent-tutorial/
 ```
 
 > [!div class="nextstepaction"] 
-> [Download the code now](~/foundry-samples-main/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype/)
+> [Download the code now](https://github.com/azure-ai-foundry/foundry-samples/tree/nov25-updates/samples/microsoft/java/enterprise-agent-tutorial/1-idea-to-prototype)
 
 ---
 
