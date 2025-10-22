@@ -38,8 +38,8 @@ You can use serverless compute to fine-tune models in the model catalog. You can
 * To further simplify job submission, you can skip the resources altogether. Azure Machine Learning defaults the instance count and chooses an instance type by taking into account factors like quota, cost, performance, and disk size.
 * In some scenarios, wait times before jobs start running are reduced.
 * User identity and workspace user-assigned managed identity are supported for job submission.
-* With managed network isolation, you can streamline and automate your network isolation configuration. Customer virtual network is also supported
-* Administrative control through quota and Azure policies
+* With managed network isolation, you can streamline and automate your network isolation configuration. Customer virtual networks are also supported.
+* Administrative control is available via quota and Azure policies.
 
 ## How to use serverless compute
 
