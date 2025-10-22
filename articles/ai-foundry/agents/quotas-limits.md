@@ -23,7 +23,7 @@ The following sections provide you with a guide to the default quotas and limits
 | Limit Name | Limit Value |
 |--|--|
 | Maximum number of files per agent/thread | 10,000 |
-| Maximum file size for agents & fine-tuning | 512 MB |
+| Maximum file size for agents | 512 MB |
 | Maximum size for all uploaded files for agents | 300 GB |
 | Maximum file size in tokens for attaching to a vector store | 2,000,000 tokens |
 | Maximum number of messages per thread | 100,000 |
