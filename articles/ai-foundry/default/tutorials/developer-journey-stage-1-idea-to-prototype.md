@@ -356,6 +356,12 @@ This evaluation framework tests:
 - **Combined scenarios** that require both internal and external knowledge
 - **Response quality** by using keyword matching and length analysis
 
+The code breaks down into the following main sections:
+
+1. [Load evaluation data](#load-evaluation-data)
+1. [Run batch evaluation](#run-batch-evaluation)
+1. [Compile evaluation results](#compile-evaluation-results)
+
 ### Load evaluation data
 
 In this section, the evaluation framework loads test questions from `questions.jsonl`. The file contains business scenarios that test different aspects of the agent:
@@ -394,7 +400,7 @@ In this section, the evaluation framework runs the agent against each test quest
 
 ---
 
-### Evaluation results
+### Compile evaluation results
 
 Finally, the evaluation framework compiles and outputs the results of the batch evaluation.
 
