@@ -33,9 +33,9 @@ You can continue to run older code with no updates if you retain the API version
 
 + To understand the scope of changes, review [breaking and nonbreaking changes](#version-specific-changes) for each version.
 
-+ "Update" means creating new objects that implement the behaviors of the previous version. When you create new objects under the new API version, you can run old and new side by side.
++ "Migration" means creating new, uniquely named objects that implement the behaviors of the previous version. You can't overwrite an existing object if properties are added or deleted on the API. One advantage of creating new objects is the ability to preserve existing objects while new ones are developed and tested.
 
-+ For each object that you update, start by getting the current definition from the search service so that you can review existing properties before specifying the new one.
++ For each object that you migrate, start by getting the current definition from the search service so that you can review existing properties before specifying the new one.
 
 + Delete older versions only after your migration is fully tested and deployed.
 
@@ -115,11 +115,18 @@ The underlying index requires no updates. Create a new knowledge source that poi
     }
     ```
 
-You now have a migrated `searchIndex` knowledge source that implements the previous version features, with the correct field specifications for the 2025-11-01-preview. For more information about new capabilities available to this knowledge source type, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
+You now have a migrated `searchIndex` knowledge source that implements the previous version features, with the correct property specifications for the 2025-11-01-preview. The response includes the full definition of the new object. It includes properties you didn't set. For more information about new capabilities available to this knowledge source type, which you can now do through updates, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 #### Update an azureBlob knowledge source
 
-The underlying index requires no updates. However, you should create a new knowledge source so that your existing solution remains operational. Another full set of the indexer pipeline is generated.
+1. List all knowledge sources by name.
+
+   ```http
+   ### List all knowledge sources by name
+   GET {{search-endpoint}}/knowledge-sources?api-version=2025-08-01-preview&$select=name
+   api-key: {{api-key}}
+   Content-Type: application/json
+   ```
 
 1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
 
