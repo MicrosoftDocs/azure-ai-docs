@@ -1,12 +1,12 @@
 ---
 title: Language support for Key Phrase Extraction
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this article to find the natural languages supported by Key Phrase Extraction.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---

@@ -1,11 +1,11 @@
 ---
 title: Custom text classification limits
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about the data and rate limits when using custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.service: azure-ai-language
 ms.topic: conceptual
 ms.author: lajanuar

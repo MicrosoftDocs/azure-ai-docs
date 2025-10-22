@@ -1,13 +1,13 @@
 ---
 title: Send a text classification request to your custom model
 description: Learn how to send requests for custom text classification.
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, python

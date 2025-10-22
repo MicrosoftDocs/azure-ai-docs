@@ -1,13 +1,13 @@
 ---
 title: Custom text classification FAQ
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about Frequently asked questions when using the custom text classification API.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: faq
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---

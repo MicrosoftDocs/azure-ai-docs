@@ -1,13 +1,13 @@
 ---
 title: How to deploy a custom text classification model
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to deploy a model for custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---

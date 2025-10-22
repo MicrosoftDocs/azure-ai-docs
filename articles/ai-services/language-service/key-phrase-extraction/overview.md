@@ -1,12 +1,12 @@
 ---
-title: What is key phrase extraction in Azure AI Language?
-titleSuffix: Azure AI services
-description: An overview of key phrase extraction in Azure AI services, which helps you identify main concepts in unstructured text
+title: What is key phrase extraction in Azure Language in Foundry Tools?
+titleSuffix: Azure AI Foundry Tools
+description: An overview of key phrase extraction in Azure AI Foundry Tools, which helps you identify main concepts in unstructured text
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/19/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---

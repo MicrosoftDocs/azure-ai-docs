@@ -1,13 +1,13 @@
 ---
 title: Custom text classification evaluation metrics
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about evaluation metrics in custom text classification.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 6/6/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification
 ---
