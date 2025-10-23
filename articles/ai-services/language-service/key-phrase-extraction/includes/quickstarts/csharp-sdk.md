@@ -14,7 +14,7 @@ Use this quickstart to create a key phrase extraction application with the clien
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * The [Visual Studio IDE](https://visualstudio.microsoft.com/vs/)
 
 

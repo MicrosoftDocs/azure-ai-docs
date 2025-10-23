@@ -26,7 +26,7 @@ In this guide, you build and test an analyzer for your scenario. You can start f
 
 To get started, make sure you have the following resources and permissions:
 
-* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An [Azure AI Foundry hub-based project](../../../ai-foundry/how-to/create-projects.md) created in one of the following [supported regions](../service-limits.md): `westus`, `swedencentral`, or `australiaeast`. Use a project to organize your work and save state while building customized AI apps. You can create a project from the [home page of AI Foundry](https://aka.ms/foundry-home-page), or the [Content Understanding landing page](https://aka.ms/cu-landing).
 

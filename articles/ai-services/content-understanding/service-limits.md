@@ -99,7 +99,7 @@ Content Understanding supports both basic field value types and nested structure
 
 | Property | Document | Text | Image | Audio | Video |
 | --- | --- | --- | --- | --- | --- |
-| Max fields | 100 | 100 | 100 | 100 | 100 |
+| Max fields | 1000 | 1000 | 1000 | 1000 | 1000 |
 | Max classify field categories | 300 | 300 | 300 | 300 | 300 |
 | Supported generation methods | extract<br>generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify | generate<br>classify |
 

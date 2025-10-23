@@ -325,6 +325,6 @@ riff-48khz-16bit-mono-pcm
 
 ## Next steps
 
-- [Create a free Azure account](https://azure.microsoft.com/free/cognitive-services/)
+- [Create a free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [Get started with custom voice](professional-voice-create-project.md)
 - [Batch synthesis](batch-synthesis.md)

@@ -24,7 +24,7 @@ The sample app is written using JavaScript and the React Native framework. It ca
 
 ## Prerequisites 
 
-* An Azure subscription – [Create one for free](https://azure.microsoft.com/free/cognitive-services/).  
+* An Azure subscription – [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).  
 * Once you have your Azure subscription, [create a Face resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFace) in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**.  
   * You'll need the key and endpoint from the resource you created to connect your application to Face API.  
 

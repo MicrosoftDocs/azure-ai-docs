@@ -30,7 +30,7 @@ After you learn how to create schedules, you'll learn how to retrieve and deacti
 
 ## Prerequisites
 
-* An Azure subscription. If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don’t have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A Python environment in which the Azure Machine Learning SDK for Python is installed. For more information, see [Create and manage reusable environments for training and deployment with Azure Machine Learning](how-to-use-environments.md).
 

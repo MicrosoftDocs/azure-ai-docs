@@ -17,6 +17,13 @@ ms.custom:
 
 Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
+## October 2025
+
+Azure AI Content Understanding preview version introduces the following updates:
+
+* Azure AI Content Understanding now has increased field count support (1,000) for all modalities. 
+* The API response body now inclues input, output, and contextualization tokens consumed as part of the `tokens` object. Check out the [quickstart](quickstart/use-rest-api.md) article for more information.
+
 ## May 2025
 
 The Azure AI Content Understanding [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) REST API is now available. This update introduces the following updates and enhanced capabilities:
