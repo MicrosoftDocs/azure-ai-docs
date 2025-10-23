@@ -13,6 +13,7 @@ ms.date: 10/16/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex
+monikerRange: foundry-classic || foundry
 ---
 
 # Work with Azure AI Foundry Agent Service in Visual Studio Code (preview)
