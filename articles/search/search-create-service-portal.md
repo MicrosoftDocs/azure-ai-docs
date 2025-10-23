@@ -1,14 +1,14 @@
 ---
 title: 'Create a Search Service in the Azure Portal'
 titleSuffix: Azure AI Search
-description: Learn how to set up an Azure AI Search resource in the Azure portal. Choose resource groups, regions, and a pricing tier.
+description: Learn how to set up an Azure AI Search service in the Azure portal. Choose a resource group, region, and pricing tier.
 manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: how-to
-ms.date: 08/08/2025
+ms.date: 09/25/2025
 ms.custom:
   - references_regions
   - build-2024
@@ -41,7 +41,7 @@ Some properties are fixed for the lifetime of the search service. Before you cre
 | [Name](#name-your-service) | Becomes part of the URL endpoint. The name must be unique and follow naming rules. |
 | [Region](search-region-support.md) | Determines data residency and availability of certain features. For example, semantic ranker and Azure AI integration have region requirements. Choose a region that supports the features you need. |
 | [Tier](search-sku-tier.md) | Determines infrastructure, service limits, and billing. Some features aren't available on lower or specialized tiers. After you create your service, you can [switch between Basic and Standard (S1, S2, and S3) tiers](search-capacity-planning.md#change-your-pricing-tier). |
-
+| [Compute type](search-security-overview.md#data-in-use) | Determines virtualization and security model. You can choose between standard VMs (recommended) and confidential VMs, which are intended for select workloads requiring data-in-use privacy and isolation. |
 ## Subscribe to Azure
 
 Azure AI Search requires a free or Standard Azure subscription.
@@ -140,6 +140,16 @@ The Basic and Standard tiers are the most common for production workloads, but m
 
 > [!NOTE]
 > Services created after April 3, 2024 have larger partitions and higher vector quotas at every billable tier.
+
+## Choose a compute type
+
+The compute type determines the virtualization and security model used to deploy your search service. There are two compute types:
+
++ **Default** (base cost) deploys your search service on standard Azure infrastructure, encrypting data at rest and in transit but not in use. Recommended for most search workloads.
+
++ **Confidential** (10% surcharge) uses [Azure confidential computing](/azure/confidential-computing/use-cases-scenarios) to isolate processing in a hardware-based trusted execution environment, protecting unencrypted data in use from unauthorized access. Recommended only if you have advanced privacy, compliance, or regulatory requirements.
+
+Confidential computing has limited regional availability, disables or restricts certain features, and increases the cost of running your search service. For a detailed comparison of both compute types, see [Data in use](search-security-overview.md#data-in-use).
 
 ## Create your service
 

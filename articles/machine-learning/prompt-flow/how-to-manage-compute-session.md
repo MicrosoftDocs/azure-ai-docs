@@ -13,6 +13,7 @@ ms.date: 08/25/2025
 ms.custom:
   - build-2024
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Manage prompt flow compute session in Azure Machine Learning Studio

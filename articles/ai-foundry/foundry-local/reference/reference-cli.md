@@ -10,7 +10,8 @@ ms.reviewer: samkemp
 author: jonburchel
 reviewer: samuel100
 ms.topic: concept-article
-ms.date: 07/03/2025
+ms.date: 10/01/2025
+ai-usage: ai-assisted
 ---
 
 # Foundry Local CLI Reference
@@ -38,20 +39,20 @@ The CLI organizes commands into three main categories:
 The following table summarizes the commands related to managing and running models:
 
 > [!NOTE]
-> You can specify the `model` argument by its **alias** or **model ID**. Using an alias will:
+> You can specify the `model` argument by its **alias** or **model ID**. Using an alias:
 >
-> - Select the _best model_ for your available hardware. For example, if you have a Nvidia CUDA GPU available, Foundry Local selects the CUDA model. If you have a supported NPU available, Foundry Local selects the NPU model.
-> - Allow you to use a shorter name without needing to remember the model ID.
+> - Selects the _best model_ for your available hardware. For example, if you have an Nvidia CUDA GPU available, Foundry Local selects the CUDA model. If you have a supported NPU available, Foundry Local selects the NPU model.
+> - Lets you use a shorter name without needing to remember the model ID.
 >
-> If you want to run a specific model, you can use the model ID. For example, to run the `qwen2.5-0.5b` on CPU - irrespective of your available hardware - use: `foundry model run qwen2.5-0.5b-instruct-generic-cpu`.
+> If you want to run a specific model, use the model ID. For example, to run the `qwen2.5-0.5b` on CPU - irrespective of your available hardware - use: `foundry model run qwen2.5-0.5b-instruct-generic-cpu`.
 >
-> If you have an Intel NPU on Windows, ensure you have installed the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
+> If you have an Intel NPU on Windows, ensure you install the [Intel NPU driver](https://www.intel.com/content/www/us/en/download/794734/intel-npu-driver-windows.html) for optimal NPU acceleration.
 
 | **Command**                                 | **Description**                                                                                                |
 | ------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
 | `foundry model --help`                      | Displays all available model-related commands and their usage.                                                 |
-| `foundry model run <model>`                 | Runs a specified model, downloading it if not cached, and starts an interaction.                               |
-| `foundry model list`                        | Lists all available models for local use. On first run, downloads execution providers (EPs) for your hardware. |
+| `foundry model run <model>`                 | Runs a specified model, downloads it if it isn't cached, and starts an interaction.                               |
+| `foundry model list`                        | Lists all available models for local use. On first run, it downloads execution providers (EPs) for your hardware. |
 | `foundry model list --filter <key>=<value>` | Lists models filtered by the specified criteria (device, task, alias, provider).                               |
 | `foundry model info <model>`                | Displays detailed information about a specific model.                                                          |
 | `foundry model info <model> --license`      | Displays the license information for a specific model.                                                         |
@@ -68,7 +69,7 @@ foundry model list --filter <key>=<value>
 ```
 
 > [!NOTE]
-> When you run `foundry model list` for the first time after installation, Foundry Local automatically downloads the relevant execution providers (EPs) for your machine's hardware configuration. You'll see a progress bar indicating the download completion before the model list is displayed.
+> When you run `foundry model list` for the first time after installation, Foundry Local automatically downloads the relevant execution providers (EPs) for your machine's hardware configuration. You see a progress bar indicating the download completion before the model list appears.
 
 **Supported filter keys:**
 
@@ -102,8 +103,8 @@ Filters models by their intended use case/task.
 
 **Common values:**
 
-- `chat-completion` - Conversational AI models
-- `text-generation` - Text generation models
+- `chat-completion`: Conversational AI models
+- `text-generation`: Text generation models
 
 #### alias - Model Alias
 
@@ -114,7 +115,7 @@ Filters models by their alias identifier. Supports wildcard matching with `*` su
 - `phi4-cpu`
 - `qwen2.5-coder-0.5b-instruct-generic-cpu`
 - `deepseek-r1-distill-qwen-1.5b-generic-cpu`
-- `Phi-4-mini-instruct-generic-cpu`
+- `phi-4-mini-instruct-generic-cpu`
 
 ### Special filter features
 
@@ -140,9 +141,9 @@ foundry model list --filter provider=CUDAExecutionProvider
 
 > [!NOTE]
 >
-> - All comparisons are case-insensitive
-> - Only one filter can be used per command
-> - Unrecognized filter keys will result in an error
+> - All comparisons are case-insensitive.
+> - Only one filter can be used per command.
+> - Unrecognized filter keys result in an error.
 
 ## Service commands
 
@@ -157,16 +158,16 @@ The following table summarizes the commands related to managing and running the 
 | `foundry service status`        | Displays the current status of the Foundry Local service.        |
 | `foundry service ps`            | Lists all models currently loaded in the Foundry Local service.  |
 | `foundry service diag`          | Displays the logs of the Foundry Local service.                  |
-| `foundry service set <options>` | Set configuration of the Foundry Local service.                  |
+| `foundry service set <options>` | Sets the configuration of the Foundry Local service.                  |
 
 ## Cache commands
 
-The following table summarizes the commands related to managing the local cache where models are stored:
+The following table summarizes the commands for managing the local cache where models are stored:
 
 | **Command**                    | **Description**                                                |
 | ------------------------------ | -------------------------------------------------------------- |
-| `foundry cache --help`         | Displays all available cache-related commands and their usage. |
-| `foundry cache location`       | Displays the current cache directory.                          |
+| `foundry cache --help`         | Shows all available cache-related commands and their usage. |
+| `foundry cache location`       | Shows the current cache directory.                          |
 | `foundry cache list`           | Lists all models stored in the local cache.                    |
-| `foundry cache cd <path>`      | Changes the cache directory.                                   |
-| `foundry cache remove <model>` | Deletes a model from the local cache.                          |
+| `foundry cache cd <path>`      | Changes the cache directory to the specified path.                                   |
+| `foundry cache remove <model>` | Removes a model from the local cache.                          |

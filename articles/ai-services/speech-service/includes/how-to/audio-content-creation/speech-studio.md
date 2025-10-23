@@ -8,7 +8,7 @@ ms.date: 8/5/2025
 
 ## Prerequisites
 
-- An active Azure subscription. [Create one for free](https://azure.microsoft.com/free/ai-services).
+- An active Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Permission to create resources in your subscription.
 - A Speech resource. Create one in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) or [Speech Studio](https://aka.ms/speechstudio).
 

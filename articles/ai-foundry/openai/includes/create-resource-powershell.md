@@ -3,7 +3,8 @@ title: 'Create and manage Azure OpenAI in Azure AI Foundry Models deployments wi
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure PowerShell to create an Azure OpenAI resource and manage deployments with the Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-azurepowershell
 ms.topic: include
 ms.date: 05/20/2024
@@ -85,7 +86,7 @@ $sku = New-Object -TypeName "Microsoft.Azure.Management.CognitiveServices.Models
 New-AzCognitiveServicesAccountDeployment -ResourceGroupName OAIResourceGroup -AccountName MyOpenAIResource -Name MyModel -Properties $properties -Sku $sku
 ```
 
-The `Name` property of the `$sku` variable accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`. Learn more about [deployment type options](../how-to/deployment-types.md).
+The `Name` property of the `$sku` variable accepts the following deployment types: `Standard`, `GlobalBatch`, `GlobalStandard`, and `ProvisionedManaged`. Learn more about [deployment type options](../../foundry-models/concepts/deployment-types.md).
 
 > [!IMPORTANT]
 > When you access the model via the API, you need to refer to the deployment name rather than the underlying model name in API calls, which is one of the [key differences](../how-to/switching-endpoints.yml) between OpenAI and Azure OpenAI. OpenAI only requires the model name. Azure OpenAI always requires deployment name, even when using the model parameter. In our docs, we often have examples where deployment names are represented as identical to model names to help indicate which model works with a particular API endpoint. Ultimately your deployment names can follow whatever naming convention is best for your use case.

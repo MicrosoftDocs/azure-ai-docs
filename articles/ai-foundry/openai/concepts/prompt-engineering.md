@@ -2,9 +2,10 @@
 title:  Prompt engineering techniques | Azure OpenAI in Azure AI Foundry Models
 titleSuffix: Azure OpenAI
 description: Learn how to use prompt engineering to optimize your work with Azure OpenAI.
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 09/23/2025
+ms.date: 09/30/2025
 ms.custom: references_regions, build-2023, build-2023-dataai
 manager: nitinme
 author: mrbullwinkle
@@ -27,7 +28,7 @@ Text prompts are how users interact with GPT models. As with all generative lang
 | Prompt                             |Completion |
 |------------------------------------|-----------|
 | Four score and seven years ago our | fathers brought forth on this continent, a new nation, conceived in Liberty, and dedicated to the proposition that all men are created equal. […]|
-| "Call me Ishmael."                 | "Some years ago—never mind how long precisely—having little o no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world." […]|
+| "Call me Ishmael."                 | "Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world." […]|
 
 As you develop more complex prompts, it's helpful to keep this fundamental behavior in mind. Regardless of the prompt that is provided, the model is simply responding with what it determines is most likely (given its training data and training targets). If you ask a question in your prompt, the model isn't following a separate “Q&A” code path, but rather it appears to answer the question because an answer is the most likely sort of response for the given question as input.
 
@@ -102,26 +103,9 @@ Supporting content is information that the model can utilize to influence the ou
 
 ## Scenario-specific guidance
 
-While the principles of prompt engineering can be generalized across many different model types, certain models expect a specialized prompt structure. For Azure OpenAI GPT models, there are currently two distinct APIs where prompt engineering comes into play:
-
-- Chat Completion API.
-- Completion API.
-
-Each API requires input data to be formatted differently, which in turn impacts overall prompt design. The **Chat Completion API** supports the GPT-35-Turbo and GPT-4 models. These models are designed to take input formatted in a [specific chat-like transcript](../how-to/chatgpt.md) stored inside an array of dictionaries.
-
-The **Completion API** supports the older GPT-3 models and has much more flexible input requirements in that it takes a string of text with no specific format rules.
-
 The techniques in this section will teach you strategies for increasing the accuracy and grounding of responses you generate with a Large Language Model (LLM). It is, however, important to remember that even when using prompt engineering effectively you still need to validate the responses the models generate. Just because a carefully crafted prompt worked well for a particular scenario doesn't necessarily mean it will generalize more broadly to certain use cases. Understanding the [limitations of LLMs](/azure/ai-foundry/responsible-ai/openai/transparency-note#limitations), is just as important as understanding how to leverage their strengths.
 
-#### [Chat completion APIs](#tab/chat)
-
 [!INCLUDE [Prompt Chat Completion](../includes/prompt-chat-completion.md)]
-
-#### [Completion APIs](#tab/completion)
-
-[!INCLUDE [Prompt Completion](../includes/prompt-completion.md)]
-
----
 
 ## Best practices
 
@@ -133,7 +117,7 @@ The techniques in this section will teach you strategies for increasing the accu
 
 ## Space efficiency
 
-While the input size increases with each new generation of GPT models, there will continue to be scenarios that provide more data than the model can handle. GPT models break words into "tokens." While common multi-syllable words are often a single token, less common words are broken in syllables. Tokens can sometimes be counter-intuitive, as shown by the example below which demonstrates token boundaries for different date formats. In this case, spelling out the entire month is more space efficient than a fully numeric date. The current range of token support goes from 2,000 tokens with earlier GPT-3 models to up to 32,768 tokens with the 32k version of the latest GPT-4 model.
+While the input size increases with each new generation of GPT models, there will continue to be scenarios that provide more data than the model can handle. GPT models break words into "tokens." While common multi-syllable words are often a single token, less common words are broken in syllables. Tokens can sometimes be counter-intuitive, as shown by the example below which demonstrates token boundaries for different date formats. In this case, spelling out the entire month is more space efficient than a fully numeric date. 
 
 :::image type="content" source="../media/prompt-engineering/space-efficiency.png" alt-text="Screenshot of a string of text with highlighted colors delineating token boundaries." lightbox="../media/prompt-engineering/space-efficiency.png":::
 

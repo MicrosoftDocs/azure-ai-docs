@@ -24,19 +24,19 @@ This article explains how to join an Azure AI Search service to a [network secur
 
 You can add a search service to a network security perimeter in the Azure portal, as described in this article. Alternatively, you can use the [Azure Virtual Network Manager REST API](/rest/api/networkmanager/) to join a search service, and use the [Search Management REST APIs](/rest/api/searchmanagement/network-security-perimeter-configurations?view=rest-searchmanagement-2025-05-01&preserve-view=true) to view and synchronize the configuration settings.
 
-## Limitations and considerations
-
-* For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-how-to-managed-identities.md) and have a role assignment that permits read-access to data sources.
-
-* Supported indexer data sources are currently limited to [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-howto-index-cosmosdb.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
-
-* Currently, within the perimeter, indexer connections to Azure PaaS for data retrieval is the primary use case. For outbound skills-driven API calls to Azure AI services, Azure OpenAI, or the Azure AI Foundry model catalog, or for inbound calls from the Azure AI Foundry for "chat with your data" scenarios you must [configure inbound and outbound rules](#add-an-inbound-access-rule) to allow the requests through the perimeter. If you require private connections for [structure-aware chunking](search-how-to-semantic-chunking.md) and vectorization, you should [create a shared private link](search-indexer-howto-access-private.md) and a private network.
-
 ## Prerequisites
 
 * An existing network security perimeter. You can [create one to associate with your search service](/azure/private-link/create-network-security-perimeter-portal).
 
 * [Azure AI Search](search-create-service-portal.md), any billable tier, in any region.
+
+## Limitations
+
+* For search services within a network security perimeter, indexers must use a [system or user-assigned managed identity](search-how-to-managed-identities.md) and have a role assignment that permits read-access to data sources.
+
+* Supported indexer data sources are currently limited to [Azure Blob Storage](search-how-to-index-azure-blob-storage.md), [Azure Cosmos DB for NoSQL](./search-how-to-index-cosmosdb-sql.md), and [Azure SQL Database](search-how-to-index-sql-database.md).
+
+* Currently, within the perimeter, indexer connections to Azure PaaS for data retrieval is the primary use case. For outbound skills-driven API calls to Azure AI services, Azure OpenAI, or the Azure AI Foundry model catalog, or for inbound calls from Azure AI Foundry for "chat with your data" scenarios, you must [configure inbound and outbound rules](#add-an-inbound-access-rule) to allow the requests through the perimeter. If you require private connections for [structure-aware chunking](search-how-to-semantic-chunking.md) and vectorization, you should [create a shared private link](search-indexer-howto-access-private.md) and a private network.
 
 ## Assign a search service to a network security perimeter
 

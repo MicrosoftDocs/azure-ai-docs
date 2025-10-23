@@ -24,6 +24,10 @@ You can use a system-assigned managed identity or a user-assigned managed identi
 
 * [Create a managed identity](search-how-to-managed-identities.md) for your search service.
 
+## Limitations
+
+* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) only support the _legacy_ approach.
+
 ## Supported approaches for managed identity authentication
 
 Azure AI Search supports two mechanisms to connect to Azure Cosmos DB using managed identity. 
@@ -33,10 +37,6 @@ Azure AI Search supports two mechanisms to connect to Azure Cosmos DB using mana
 * The _modern_ approach requires configuring the managed identity appropriate roles on the control and data plane of the target Azure Cosmos DB account. Azure AI Search will then request an access token to access the data in the Cosmos DB account. This approach works even if the Cosmos DB account has `"disableLocalAuth": true`.
 
 Indexers that connect to Azure Cosmos DB for NoSQL support both the _legacy_ and the _modern_ approach - the _modern_ approach is recommended.
-
-## Limitations
-
-* Indexers that connect to Azure Cosmos DB for Gremlin and MongoDB (currently in preview) only support the _legacy_ approach.
 
 ## Connect to Azure Cosmos DB for NoSQL
 
@@ -202,6 +202,6 @@ Connection information and permissions on the remote service are validated at ru
 
 ## See also
 
-* [Indexing via an Azure Cosmos DB for NoSQL](search-howto-index-cosmosdb.md)
-* [Indexing via an Azure Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md)
-* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md)
+* [Indexing via an Azure Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md)
+* [Indexing via an Azure Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md)
+* [Indexing via an Azure Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md)

@@ -5,7 +5,8 @@ ms.date: 06/12/2025
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ---
 
 # Add an Azure OpenAI service to a network security perimeter (preview)

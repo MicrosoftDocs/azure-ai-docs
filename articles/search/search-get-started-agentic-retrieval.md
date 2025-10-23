@@ -39,7 +39,7 @@ zone_pivot_groups: search-get-started-agentic-retrieval
 
 ## Related content
 
-+ [Agentic retrieval in Azure AI Search](search-agentic-retrieval-concept.md)
-+ [Create a knowledge agent](search-agentic-retrieval-how-to-create.md)
-+ [Use a knowledge agent to retrieve data](search-agentic-retrieval-how-to-retrieve.md)
-+ [Build an agent-to-agent retrieval solution](search-agentic-retrieval-how-to-pipeline.md)
++ [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
++ [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
++ [Use a knowledge agent to retrieve data](agentic-retrieval-how-to-retrieve.md)
++ [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)

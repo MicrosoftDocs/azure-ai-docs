@@ -48,6 +48,22 @@ This article uses the REST APIs to illustrate each step.
 
 + A [REST client](search-get-started-text.md) to formulate REST calls similar to the ones shown in this article.
 
+## Limitations
+
++ Parquet (including delta parquet) file types aren't currently supported.
+
++ File deletion isn't supported for Amazon S3 and Google Cloud Storage shortcuts.
+
++ This indexer doesn't support OneLake workspace Table location content. 
+
++ This indexer doesn't support SQL queries, but the query used in the data source configuration is exclusively to add optionally the folder or shortcut to access.
+
++ There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
+
++ Microsoft Purview Sensitivity Labels applied via Data Map are not currently supported. If sensitivity labels are applied to artifacts in OneLake using [Microsoft Purview Data Map](/purview/data-map-sensitivity-labels-apply), the indexer may fail to execute properly. To bypass this restriction, an exception must be granted by your organization’s IT team responsible for managing Purview sensitivity labels and Data Map configurations.
+  
++ Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
+
 ## Supported tasks
 
 You can use this indexer for the following tasks:
@@ -55,7 +71,7 @@ You can use this indexer for the following tasks:
 + **Data indexing and incremental indexing:** The indexer can index files and associated metadata from data paths within a lakehouse. It detects new and updated files and metadata through built-in change detection. You can configure data refresh on a schedule or on demand. 
 + **Deletion detection:** The indexer can [detect deletions via custom metadata](#detect-deletions-via-custom-metadata) for most files and shortcuts. This requires adding metadata to files to signify that they have been "soft deleted", enabling their removal from the search index. Currently, it's not possible to detect deletions in Google Cloud Storage or Amazon S3 shortcut files because custom metadata isn't supported for those data sources.
 + **Applied AI enrichment through skillsets:** [Skillsets](cognitive-search-concept-intro.md) are fully supported by the OneLake files indexer. This includes key features like [integrated vectorization](vector-search-integrated-vectorization.md) that adds data chunking and embedding steps.
-+ **Parsing modes:** The indexer supports [JSON parsing modes](search-howto-index-json-blobs.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-markdown-blobs.md).
++ **Parsing modes:** The indexer supports [JSON parsing modes](search-how-to-index-azure-blob-json.md) if you want to parse JSON arrays or lines into individual search documents. It also supports [Markdown parsing mode](search-how-to-index-azure-blob-markdown.md).
 + **Compatibility with other features:** The OneLake indexer is designed to work seamlessly with other indexer features, such as [debug sessions](cognitive-search-debug-session.md), [indexer cache for incremental enrichments](enrichment-cache-how-to-configure.md), and [knowledge store](knowledge-store-concept-intro.md).
 
 <a name="SupportedFormats"></a>
@@ -78,23 +94,6 @@ The following OneLake shortcuts are supported by the OneLake files indexer:
 
 + [Google Cloud Storage shortcut](/fabric/onelake/create-gcs-shortcut)
 
-## Limitations
-
-+ Parquet (including delta parquet) file types aren't currently supported.
-
-+ File deletion isn't supported for Amazon S3 and Google Cloud Storage shortcuts.
-
-+ This indexer doesn't support OneLake workspace Table location content. 
-
-+ This indexer doesn't support SQL queries, but the query used in the data source configuration is exclusively to add optionally the folder or shortcut to access.
-
-+ There's no support to ingest files from **My Workspace** workspace in OneLake since this is a personal repository per user.
-
-+ Microsoft Purview Sensitivity Labels applied via Data Map are not currently supported. If sensitivity labels are applied to artifacts in OneLake using [Microsoft Purview Data Map](/purview/data-map-sensitivity-labels-apply), the indexer may fail to execute properly. To bypass this restriction, an exception must be granted by your organization’s IT team responsible for managing Purview sensitivity labels and Data Map configurations.
-  
-+ Workspace role-based permissions in Microsoft OneLake may affect indexer access to files. Ensure that the Azure AI Search service principal (managed identity) has sufficient permissions over the files you intend to access in the target [Microsoft Fabric workspace](/fabric/fundamentals/workspaces). 
-
-
 ## Prepare data for indexing
 
 Before you set up indexing, review your source data to determine whether any changes should be made to your data in the lakehouse. An indexer can index content from one container at a time. By default, all files in the container are processed. You have several options for more selective processing:
@@ -107,7 +106,7 @@ Before you set up indexing, review your source data to determine whether any cha
 
 File inclusion and exclusion are covered in the [indexer configuration](#configure-and-run-the-onelake-files-indexer) step. If you don't set criteria, the indexer reports an ineligible file as an error and moves on. If enough errors occur, processing might stop. You can specify error tolerance in the indexer [configuration settings](#configure-and-run-the-onelake-files-indexer).
 
-An indexer typically creates one search document per file, where the text content and metadata are captured as searchable fields in an index. If files are whole files, you can potentially parse them into [multiple search documents](search-howto-index-one-to-many-blobs.md). For example, you can parse rows in a [CSV file](search-howto-index-csv-blobs.md) to create one search document per row. If you need to chunk a single document into smaller passages to vectorize data, consider using [integrated vectorization](vector-search-integrated-vectorization.md).
+An indexer typically creates one search document per file, where the text content and metadata are captured as searchable fields in an index. If files are whole files, you can potentially parse them into [multiple search documents](search-how-to-index-azure-blob-one-to-many.md). For example, you can parse rows in a [CSV file](search-how-to-index-azure-blob-csv.md) to create one search document per row. If you need to chunk a single document into smaller passages to vectorize data, consider using [integrated vectorization](vector-search-integrated-vectorization.md).
 
 <a name="indexing-file-metadata"></a>
 
@@ -425,7 +424,7 @@ Once the index and data source are created, you're ready to create the indexer. 
 
    + "allMetadata" specifies that standard file properties and any [metadata for found content types](search-blob-metadata-properties.md) are extracted from the file content and indexed.
 
-1. Under "configuration", set "parsingMode" if files should be mapped to [multiple search documents](search-howto-index-one-to-many-blobs.md), or if they consist of [plain text](search-howto-index-plaintext-blobs.md), [JSON documents](search-howto-index-json-blobs.md), or [CSV files](search-howto-index-csv-blobs.md).
+1. Under "configuration", set "parsingMode" if files should be mapped to [multiple search documents](search-how-to-index-azure-blob-one-to-many.md), or if they consist of [plain text](search-how-to-index-azure-blob-plaintext.md), [JSON documents](search-how-to-index-azure-blob-json.md), or [CSV files](search-how-to-index-azure-blob-csv.md).
 
 1. [Specify field mappings](search-indexer-field-mappings.md) if there are differences in field name or type, or if you need multiple versions of a source field in the search index.
 

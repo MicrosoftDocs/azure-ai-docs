@@ -8,7 +8,7 @@ ms.date: 8/5/2025
 
 ## Prerequisites
 
-- An active Azure subscription. [Create one for free](https://azure.microsoft.com/free/ai-services).
+- An active Azure subscription. [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Permission to create resources in your subscription.
 - An Azure AI Foundry project. For more information, see [Create an Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 

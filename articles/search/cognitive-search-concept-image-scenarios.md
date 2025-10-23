@@ -49,7 +49,7 @@ Azure Blob Storage is the most frequently used storage for image processing in A
 
 + Enable access to content in the container. If you're using a full access connection string that includes a key, the key gives you permission to the content. Alternatively, you can [authenticate using a managed identity](search-how-to-managed-identities.md) or [connect as a trusted service](search-indexer-howto-access-trusted-service-exception.md).
 
-+ [Create a data source](search-howto-indexing-azure-blob-storage.md) of type *azureblob* that connects to the blob container storing your files.
++ [Create a data source](search-how-to-index-azure-blob-storage.md) of type *azureblob* that connects to the blob container storing your files.
 
 + Review [service tier limits](search-limits-quotas-capacity.md) to make sure that your source data is under maximum size and quantity limits for indexers and enrichment.
 
