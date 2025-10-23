@@ -8,14 +8,14 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 09/18/2025
+ms.date: 10/23/2025
 ---
 
 # GenAI Prompt skill
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in Azure AI Foundry or Azure OpenAI in Azure AI Foundry Models. Use this capability to create new information that can be indexed and stored as searchable content.
+The **GenAI (Generative AI) Prompt** skill executes a *chat completion* request against a large language model (LLM) deployed in [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/overview) or [Azure AI Foundry](/azure/ai-foundry/what-is-azure-ai-foundry). Use this skill to create new information that can be indexed and stored as searchable content.
 
 Here are some examples of how the GenAI prompt skill can help you create content:
 
@@ -49,18 +49,19 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 ## Prerequisites
 
-- A deployed chat completion model (for example *gpt-4o* or any compatible Open Source Software (OSS) model) in Azure AI Foundry or Azure OpenAI.
+- An [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-foundry/openai/how-to/create-resource) or [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-  - Copy the endpoint from **Models + Endpoints** in the Foundry portal or from the Azure OpenAI resource subdomain (`*.openai.azure.com`).
+- A chat completion model, such as `gpt-4o` or any compatible open-source software (OSS) model, deployed to your resource or project.
 
-  - Provide this endpoint in the `Uri` parameter of your skill definition.
+  - For Azure OpenAI, copy the endpoint with the `openai.azure.com` domain from the **Keys and Endpoint** page in the Azure portal. Use this endpoint for the `Uri` parameter in this skill.
+
+  - For Azure AI Foundry, copy the target URI for the deployment from the **Models** page in the Azure AI Foundry portal. Use this endpoint for the `Uri` parameter in this skill.
 
 - Authentication can be key-based with an API key from your Azure AI Foundry or Azure OpenAI resource. However, we recommend role-based access using a [search service managed identity](search-how-to-managed-identities.md) assigned to a role.
 
   - On Azure OpenAI, assign [**Cognitive Services OpenAI User**](/azure/ai-services/openai/how-to/role-based-access-control) to the managed identity.
 
-  - For AI Foundry models, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user).
-
+  - On Azure AI Foundry, assign [**Azure AI User**](/azure/ai-foundry/concepts/rbac-azure-ai-foundry#azure-ai-user) to the managed identity.
 
 ## @odata.type  
 
@@ -78,7 +79,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 | Property | Type | Required | Notes |
 |----------|------|----------|-------|
-| `uri` | string | Yes | Public endpoint of the deployed model. |
+| `uri` | string | Yes | Public endpoint of the deployed model. Supported domains are:<p><ul><li>`openai.azure.com`</li><li>`services.ai.azure.com`</li><li>`cognitiveservices.azure.com`</li></ul> |
 | `apiKey` | string | Cond.* | Secret key for the model. Leave blank when using managed identity. |
 | `authIdentity` | string | Cond.* | **User-assigned** managed identity client ID (*Azure OpenAI only*). Leave blank to use the **system-assigned** identity. |
 | `commonModelParameters` | object | No | Standard generation controls such as `temperature`, `maxTokens`, etc. |

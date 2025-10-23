@@ -31,7 +31,7 @@ Microsoft.Skills.Text.CustomEntityLookupSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Description |
 |--------------------|-------------|

@@ -25,7 +25,7 @@ Before you run the wizard, you create a few resources and upload sample files.
 + An [Azure Storage account](/azure/storage/common/storage-account-create). Use Azure Blob Storage on a standard performance (general-purpose v2) account. To avoid bandwidth charges, use the same region as Azure AI Search.
 
 > [!NOTE]
-> This quickstart uses [Azure AI services](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is small, Azure AI services is tapped behind the scenes for free processing up to 20 transactions. Therefore, you don't need to create an Azure AI services multi-service resource.
+> This quickstart uses [Azure AI Foundry Tools](https://azure.microsoft.com/services/cognitive-services/) for AI enrichment. Because the workload is small, Azure AI Foundry Tools is tapped behind the scenes for free processing up to 20 transactions. Therefore, you don't need to create an Azure AI Foundry resource.
 
 ## Prepare sample data
 

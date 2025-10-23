@@ -68,7 +68,7 @@ Later sections describe each submode in more detail. If you're unfamiliar with i
 
 ### Optional Markdown parsing parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Allowed Values | Description |
 |--------------------|-------------|-------------|

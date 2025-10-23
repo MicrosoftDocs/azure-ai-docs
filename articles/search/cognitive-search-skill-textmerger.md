@@ -24,7 +24,7 @@ Microsoft.Skills.Text.MergeSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|

@@ -47,14 +47,14 @@ For integrated vectorization, use one of the following embedding models on an Az
 | Provider | Supported models |
 |--|--|
 | [Azure OpenAI in Azure AI Foundry Models](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource) <sup>3</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>4</sup></li> |
+| [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) <sup>3</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>4</sup></li> |
 <!--| [Azure AI Foundry model catalog](/azure/ai-foundry/what-is-azure-ai-foundry) | For text:<br>Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual<br><br>For images:<br>Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant<br><br>For text and images:<br>Cohere-embed-v4 |-->
 
 <sup>1</sup> The endpoint of your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://my-unique-name.openai.azure.com`. If you created your resource in the [Azure portal](https://portal.azure.com/), this subdomain was automatically generated during resource setup.
 
 <sup>2</sup> Azure OpenAI resources (with access to embedding models) that were created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) aren't supported. You must create an Azure OpenAI resource in the Azure portal.
 
-<sup>3</sup> For billing purposes, you must [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
+<sup>3</sup> For billing purposes, you must [attach your Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) to the skillset in your Azure AI Search service. Unless you use a [keyless connection (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) to create the skillset, both resources must be in the same region.
 
 <sup>4</sup> The Azure AI Vision multimodal embedding model is available in [select regions](/azure/ai-services/computer-vision/overview-image-analysis#region-availability).
 
@@ -236,7 +236,7 @@ Azure AI Search supports text-embedding-ada-002, text-embedding-3-small, and tex
 
 Azure AI Search supports Azure AI Vision image retrieval through multimodal embeddings (version 4.0). Internally, Azure AI Search calls the [multimodal embeddings skill](cognitive-search-skill-vision-vectorize.md) to connect to Azure AI Vision.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI multi-service resource.
+1. Sign in to the [Azure portal](https://portal.azure.com/) and select your Azure AI Foundry resource.
 
 1. To assign roles:
 
@@ -254,10 +254,10 @@ Azure AI Search supports Azure AI Vision image retrieval through multimodal embe
 
    1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
 
-   1. Copy the endpoint for your Azure AI multi-service resource. You specify this URL later in [Set variables](#set-variables).
+   1. Copy the endpoint with the `https://[resource-name].services.ai.azure.com` format. You specify this URL later in [Set variables](#set-variables).
 
    > [!NOTE]
-   > The multimodal embeddings are built into your Azure AI multi-service resource, so there's no model deployment step.
+   > The multimodal embeddings are built into your Azure AI Foundry resource, so there's no model deployment step.
 
 <!--### [Azure AI Foundry model catalog](#tab/prepare-model-catalog)
 
@@ -327,7 +327,7 @@ In this section, you specify the connection information for your Azure AI Search
    | Embedding model provider | Variables | Enter this information |
    |--|--|--|
    | Azure OpenAI | `@aoaiEndpoint`, `@aoaiDeploymentName`, and `@aoaiModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
-   | Azure AI Vision | `@aiMultiServiceEndpoint` | The endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
+   | Azure AI Vision | `@AiFoundryEndpoint` | The endpoint you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |
    <!--| Azure AI Foundry model catalog | `@aoaiEndpoint`, `@aiFoundryDeploymentName`, and `@aiFoundryModelName` | The endpoint, deployment name, and model name you obtained in [Prepare your embedding model](#prepare-your-embedding-model). |-->
 
 1. To verify the variables, send the following request.
@@ -576,13 +576,13 @@ or [Azure AI Vision skill](cognitive-search-skill-vision-vectorize.md)<!--[Azure
 
 1. If you're using the Azure OpenAI Embedding skill, set `dimensions` to the [number of embeddings generated by your embedding model](cognitive-search-skill-azure-openai-embedding.md#supported-dimensions-by-modelname).
 
-1. If you're using the Azure AI Vision skill, [attach your Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) after the `skills` array. This attachment is for billing purposes.
+1. If you're using the Azure AI Vision skill, [attach your Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) after the `skills` array. This attachment is for billing purposes.
 
    ```HTTP
        "skills": [ ... ],
        "cognitiveServices": {
          "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
-         "subdomainUrl": "{{aiMultiServiceEndpoint}}"
+         "subdomainUrl": "{{AiFoundryEndpoint}}"
         }
    ```
 
@@ -756,7 +756,7 @@ In this section, you enable vectorization at query time by [defining a vectorize
              "name": "my-ai-services-vision-vectorizer",
              "kind": "aiServicesVision",
              "aiServicesVisionParameters": {
-               "resourceUri": "{{aiMultiServiceEndpoint}}",
+               "resourceUri": "{{AiFoundryEndpoint}}",
                "modelVersion": "2023-04-15"
              }
            }

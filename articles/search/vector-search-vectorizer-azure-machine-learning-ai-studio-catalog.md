@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2024
 ms.topic: reference
-ms.date: 10/22/2025
+ms.date: 10/23/2025
 ms.update-cycle: 365-days
 ---
 
@@ -17,26 +17,28 @@ ms.update-cycle: 365-days
 > [!IMPORTANT]
 > This vectorizer is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). To use this feature, we recommend the latest preview version of [Indexes - Create Or Update (REST API)](/rest/api/searchservice/indexes/create-or-update).
 
-The **Azure AI Foundry model catalog** vectorizer connects to an embedding model deployed from the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) or an Azure Machine Learning (AML) endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
+The **Azure AI Foundry model catalog** vectorizer connects to an embedding model deployed from the [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview) or an [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) endpoint. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
-If you're using integrated vectorization to create the vector arrays, the skillset should include an [AML skill](cognitive-search-aml-skill.md) that points to the model.
+If you're using integrated vectorization to create the vector arrays, the skillset should include an [AML skill](cognitive-search-aml-skill.md) that points to the same model specified in the vectorizer.
 
 ## Prerequisites
 
-* An [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) for a serverless deployment from the catalog, or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
++ An [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) or an [AML workspace](../machine-learning/concept-workspace.md) for a custom model that you create.
+
++ For hub-based projects only, a [serverless deployment](/azure/ai-foundry/how-to/deploy-models-serverless) of a [supported model](#vectorizer-parameters) from the Azure AI Foundry model catalog.
 
 ## Vectorizer parameters
 
-Parameters are case-sensitive. Which parameters you choose to use depends on what [authentication your AML online endpoint requires](#WhatParametersToUse), if any.
+Parameters are case sensitive. The parameters you use depend on what [authentication your Azure AI Foundry hub-based project or AML online endpoint requires](#WhatParametersToUse), if any.
 
 | Parameter name | Description |
 |--------------------|-------------|
-| `uri` | (Required) The [URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md) to which the _JSON_ payload is sent. Only the **https** URI scheme is allowed. For embedding models in the Azure AI Foundry model catalog, this is the target URI. |
-| `modelName` | (Required) The model ID from the Azure AI Foundry model catalog that is deployed at the provided endpoint. Supported models are:<p><ul><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
-| `key` | (Required for [key authentication](#WhatParametersToUse)) The [key for the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). |
-| `resourceId` | (Required for [token authentication](#WhatParametersToUse)). The Azure Resource Manager resource ID of the AML online endpoint. It should be in the format `subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}`. |
-| `region` | (Optional for [token authentication](#WhatParametersToUse)). The [region](https://azure.microsoft.com/global-infrastructure/regions/) the AML online endpoint is deployed in. Required if the region is different from the region of the search service. |
-| `timeout` | (Optional) Indicates the timeout for the HTTP client making the API call. It must be formatted as an XSD "dayTimeDuration" value (a restricted subset of an [ISO 8601 duration](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) value). For example, `PT60S` for 60 seconds. If not set, a default value of 30 seconds is chosen. The timeout can be set to a maximum of 230 seconds and a minimum of 1 second. |
+| `uri` | (Required for [key authentication](#WhatParametersToUse)) The target URI of the serverless deployment from the Azure AI Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. |
+| `key` | (Required for [key authentication](#WhatParametersToUse)) The API key of the model provider. |
+| `resourceId` | (Required for [token authentication](#WhatParametersToUse)) The Azure Resource Manager resource ID of the model provider. For an AML online endpoint, use the `subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}` format. |
+| `modelName` | The name of the embedding model from the Azure AI Foundry model catalog deployed at the specified `uri`. Supported models are:<p><ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
+| `region` | (Optional for [token authentication](#WhatParametersToUse)) The region in which the model provider is deployed. Required if the region is different from the region of the search service. |
+| `timeout` | (Optional) The timeout for the HTTP client making the API call. It must be formatted as an XSD "dayTimeDuration" value (a restricted subset of an [ISO 8601 duration](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) value). For example, `PT60S` for 60 seconds. If not set, a default value of 30 seconds is chosen. The timeout can be set to a maximum of 230 seconds and a minimum of 1 second. |
 
 <!-- Supported models are:<p><ul><<li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> -->
 
@@ -44,17 +46,11 @@ Parameters are case-sensitive. Which parameters you choose to use depends on wha
 
 ## What authentication parameters to use
 
-Which authentication parameters are required depends on what authentication your AML online endpoint uses, if any. AML online endpoints provide two authentication options:
+The Azure AI Foundry model catalog vectorizer provides two authentication options:
 
-* [Key-based Authentication](../machine-learning/how-to-authenticate-online-endpoint.md). You provide a static key to authenticate scoring requests from the vectorizer.
++ **Key-based authentication**. You provide a static key to authenticate scoring requests from the vectorizer. Set the `uri` and `key` parameters for this connection.
 
-  * Use the `uri` and `key` parameters.
-
-* [Token-based Authentication](../machine-learning/how-to-authenticate-online-endpoint.md). The AML online endpoint is [deployed using token based authentication](../machine-learning/how-to-authenticate-online-endpoint.md). The Azure AI Search service's [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) must be enabled. The vectorizer then uses the service's managed identity to authenticate against the AML online endpoint, with no static keys required. The identity must be assigned owner or contributor role.
-
-  * Use the `resourceId` parameter.
-
-  * If the search service is in a different region from the AML workspace, use the `region` parameter to set the region the AML online endpoint was deployed in.
++  **Token-based authentication**. The Azure AI Foundry hub-based project or AML online endpoint is deployed using token-based authentication. The Azure AI Search service must have a [managed identity](/azure/active-directory/managed-identities-azure-resources/overview) and a role assignment on the model provider. The vectorizer then uses the search service identity to authenticate against the model provider, with no static keys required. The search service identity must have the **Owner** or **Contributor** role. Set the `resourceId` parameter, and if the search service is in a different region from the model provider, set the `region` parameter.
 
 ## Supported vector query types
 
@@ -111,6 +107,6 @@ Suggested model names in the Azure AI Foundry model catalog consist of the base 
 
 + [Integrated vectorization](vector-search-integrated-vectorization.md)
 + [Integrated vectorization with models from Azure AI Foundry](vector-search-integrated-vectorization-ai-studio.md)
-+ [How to configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
-+ [Azure Machine Learning skill](cognitive-search-aml-skill.md)
++ [Configure a vectorizer in a search index](vector-search-how-to-configure-vectorizer.md)
++ [AML skill](cognitive-search-aml-skill.md)
 + [Azure AI Foundry model catalog](/azure/ai-foundry/how-to/model-catalog-overview)

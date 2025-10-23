@@ -40,7 +40,7 @@ The DocumentExtractionSkill can extract text from the following document formats
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Inputs | Allowed Values | Description |
 |-----------------|----------------|-------------|

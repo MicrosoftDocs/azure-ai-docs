@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 10/21/2025
+ms.date: 10/23/2025
 ms.update-cycle: 365-days
 ---
 
@@ -22,7 +22,7 @@ A *skill* is an atomic operation that transforms content in some way. Often, it'
 
 Skills are organized into the following categories:
 
-* A *built-in skill* wraps API calls to an external resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI Foundry resource for AI enrichment, the connection is made over the internal network. Otherwise, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is nonbillable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
+* A *built-in skill* wraps API calls to an external resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI Foundry resource for AI enrichment, the connection is made over the internal network. For skills that run AI workloads on your own Azure-hosted models or services, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is nonbillable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
 
 * A *custom skill* provides custom code that executes externally to the search service. It's accessed through a URI. Custom code is often made available through an Azure function app. To attach an open-source or third-party vectorization model, use a custom skill.
 
@@ -30,7 +30,7 @@ Skills are organized into the following categories:
 
 ## Azure AI Foundry resource skills
 
-Skills that call subservices of Azure AI Foundry Tools are billed at the Standard rate when you [attach a billable resource to your skillset](cognitive-search-attach-cognitive-services.md).
+Skills that call subservices of Azure AI Foundry Tools are billed at the Standard rate when you [attach an Azure AI Foundry resource to a skillset](cognitive-search-attach-cognitive-services.md).
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
@@ -48,7 +48,7 @@ Skills that call subservices of Azure AI Foundry Tools are billed at the Standar
 
 ## "Bring your own capacity" skills
 
-Skills that use your own provisioned resources for processing are billed at the Standard rate.
+Skills that run AI workloads on your own Azure-hosted models or services are billed at the Standard rate.
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
@@ -63,7 +63,7 @@ Skills that use your own provisioned resources for processing are billed at the 
 |-------|-------------|-------------|
 | [Microsoft.Skills.Custom.AmlSkill](cognitive-search-aml-skill.md) | Extends an AI enrichment pipeline with an Azure AI Foundry or Azure Machine Learning model. | None, unless your solution uses a metered Azure service. |
 | [Microsoft.Skills.Custom.ChatCompletionSkill](cognitive-search-skill-genai-prompt.md) | Extends an AI enrichment pipeline with a chat completion model. | None, unless your solution uses a metered Azure service. |
-| [Microsoft.Skills.Text.CustomEntityLookupSkill](cognitive-search-skill-custom-entity-lookup.md) | Extends an AI enrichment pipeline with detection of user-defined entities. | None, unless your solution uses a metered Azure service. |
+| [Microsoft.Skills.Text.CustomEntityLookupSkill](cognitive-search-skill-custom-entity-lookup.md) | Extends an AI enrichment pipeline by detecting user-defined entities. | None, unless your solution uses a metered Azure service. |
 | [Microsoft.Skills.Custom.WebApiSkill](cognitive-search-custom-skill-web-api.md) | Extends an AI enrichment pipeline by making an HTTP call into a custom Web API. | None, unless your solution uses a metered Azure service. |
 
 For guidance on creating a custom skill, see [Define a custom interface](cognitive-search-custom-skill-interface.md) and [Example: Creating a custom skill for AI enrichment](cognitive-search-create-custom-skill-example.md).
@@ -82,6 +82,6 @@ Skills that execute only on Azure AI Search, iterate mostly on nodes in the enri
 
 ## Related content
 
-+ [Create a skillset](cognitive-search-defining-skillset.md)
++ [Create a skillset](cognitiognitive-search-skill-azure-openai-embeddingve-search-defining-skillset.md)
 + [Add a custom skill to an AI enrichment pipeline](cognitive-search-custom-skill-interface.md)
 + [Tutorial: Enriched indexing with AI](tutorial-skillset.md)

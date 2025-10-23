@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/22/2025
+ms.date: 10/23/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -20,7 +20,7 @@ If you're using built-in skills for optional [AI enrichment](cognitive-search-co
 
 Azure AI Search uses dedicated, internally hosted resources to execute built-in skills and requires your resource solely for billing purposes.
 
-Rather than an individual service, the Azure AI Foundry resource provides access to a collection of services within Azure AI Foundry Tools. Specifying the resource in a skillset allows Microsoft to charge you for using the following services:
+Rather than an individual service, the Azure AI Foundry resource provides access to multiple services within Azure AI Foundry Tools. Specifying the resource in a skillset allows Microsoft to charge you for using the following services:
 
 * [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) for image analysis, optical character recognition (OCR), and multimodal embeddings.
 * [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview) for language detection, entity recognition, sentiment analysis, and key phrase extraction.
@@ -59,72 +59,74 @@ To bill through a keyless connection:
 
     + `@odata.type` is always `#Microsoft.Azure.Search.AIServicesByIdentity`.
 
-    + `subdomainUrl` is the endpoint of your Azure AI Foundry resource. The subdomain must include a unique name, such as `https://my-unique-name.services.ai.azure.com`. If you created the resource in the Azure portal, this subdomain was automatically generated during resource setup.
+    + `subdomainUrl` is the endpoint of your Azure AI Foundry resource. You can use the `https://<resource-name>.services.ai.azure.com` or `https://<resource-name>.cognitiveservices.azure.com` format, both of which are available on the **Keys and Endpoint** page in the Azure portal.
 
-    ### [System-assigned managed identity](#tab/system-assigned)
+    + Other properties are specific to the type of managed identity, as shown in the following REST API examples.
 
-    Here's a REST example of a skillset configuration for a system-assigned managed identity. In this scenario, you must set `identity` to `null`.
+        ### [System-assigned managed identity](#tab/system-assigned)
 
-    ```http
-    POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-08-01-preview
-    api-key: [admin-key]
-    Content-Type: application/json
+        Here's a sample skillset configuration for a system-assigned managed identity. In this scenario, you must set `identity` to `null`.
 
-    {
-      "name": "my-skillset",
-      "skills": [
-        // Skills definition goes here
-      ],
-      "cognitiveServices": {
-        "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
-        "description": "A sample configuration for a system-assigned managed identity.",
-        "subdomainUrl": "https://[subdomain-name].services.ai.azure.com",
-        "identity": null
-      }
-    }
-    ```
+        ```http
+        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-08-01-preview
+        api-key: [admin-key]
+        Content-Type: application/json
+    
+        {
+          "name": "my-skillset",
+          "skills": [
+            // Skills definition goes here
+          ],
+          "cognitiveServices": {
+            "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity",
+            "description": "A sample configuration for a system-assigned managed identity.",
+            "subdomainUrl": "https://[resource-name].services.ai.azure.com",
+            "identity": null
+          }
+        }
+        ```
 
-    ### [User-assigned managed identity](#tab/user-assigned)
+        ### [User-assigned managed identity](#tab/user-assigned)
 
-    Here's a REST example of a skillset configuration for a user-assigned managed identity. In this scenario, you must set `identity` to the resource ID of the user-assigned managed identity. To find an existing user-assigned managed identity, see [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
+        Here's a sample skillset configuration for a user-assigned managed identity. In this scenario, you must set `identity` to the resource ID of the user-assigned managed identity. To find an existing user-assigned managed identity, see [Manage user-assigned managed identities](/entra/identity/managed-identities-azure-resources/how-manage-user-assigned-managed-identities).
 
-    You must also set the `identity.@odata.type` and `identity.userAssignedIdentity` properties.
+        You must also set the `identity.@odata.type` and `identity.userAssignedIdentity` properties.
 
-    ```http
-    POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-08-01-preview
-    api-key: [admin-key]
-    Content-Type: application/json
+        ```http
+        POST https://[service-name].search.windows.net/skillsets/[skillset-name]?api-version=2025-08-01-preview
+        api-key: [admin-key]
+        Content-Type: application/json
+    
+        { 
+            "name": "my-skillset", 
+            "skills":  
+            [ 
+              // Skills definition goes here
+            ], 
+            "cognitiveServices": { 
+                "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity", 
+                "description": "A sample configuration for a user-assigned managed identity.", 
+                "subdomainUrl": "https://[resource-name].services.ai.azure.com",
+                "identity": {   
+                    "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",   
+                    "userAssignedIdentity": ""/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"" 
+                }
+            } 
+        }
+        ```
 
-    { 
-        "name": "my-skillset", 
-        "skills":  
-        [ 
-          // Skills definition goes here
-        ], 
-        "cognitiveServices": { 
-            "@odata.type": "#Microsoft.Azure.Search.AIServicesByIdentity", 
-            "description": "A sample configuration for a user-assigned managed identity.", 
-            "subdomainUrl": "https://[subdomain-name].services.ai.azure.com",
-            "identity": {   
-                "@odata.type": "#Microsoft.Azure.Search.DataUserAssignedIdentity",   
-                "userAssignedIdentity": ""/subscriptions/{subscription-ID}/resourceGroups/{resource-group-name}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{user-assigned-managed-identity-name}"" 
-            }
-        } 
-    }
-    ```
-
----
+        ---
 
 ## Bill through a resource key
 
-By default, Azure AI Search charges for transactions using the key of an Azure AI Foundry resource. This approach is generally available. You can use the Azure portal, REST API, or an Azure SDK to add the key to a skillset.
+By default, Azure AI Search charges for transactions using the key of an Azure AI Foundry resource. This approach is generally available. You can use the Azure portal, stable REST API version, or an equivalent Azure SDK to add the key to a skillset.
 
 There are two supported key types:
 
 + `#Microsoft.Azure.Search.CognitiveServicesByKey` calls the regional endpoint.
 + `#Microsoft.Azure.Search.AIServicesByKey` calls the subdomain. We recommend this type because it supports shared private links and doesn't have regional requirements relative to the search service.
 
-Your Azure AI Foundry resource must be in the same region as your search service. To meet the same-region requirement, [choose an Azure AI Search region that provides AI services integration](search-region-support.md), which is indicated by the **AI enrichment** column.
+Your Azure AI Foundry resource must be in the same region as your search service. Choose an [Azure AI Search region that provides Azure AI Foundry Tools integration](search-region-support.md), which is indicated by the **AI enrichment** column. For more information about the same-region requirement, see [How the key is used](#how-the-key-is-used).
 
 If you don't specify the `cognitiveServices` property, your search service attempts to use the free enrichments available to your indexer each day. Execution of billable skills stops at 20 transactions per indexer invocation, and a "Time Out" message appears in the indexer execution history.
 
@@ -132,11 +134,13 @@ If you don't specify the `cognitiveServices` property, your search service attem
 
 1. Sign in to the [Azure portal](https://portal.azure.com).
 
-1. Create an Azure AI Foundry resource in the [same region](#same-region-requirement) as your search service.
+1. Create an Azure AI Foundry resource in the same region as your search service.
 
-1. Under **Resource Management** > **Keys and Endpoint**, get the resource key.
+1. From the left pane, select **Resource Management** > **Keys and Endpoint**.
 
-1. Add the key to a skillset definition:
+1. Copy one of the keys.
+
+1. Add the key to a skillset definition.
 
    + If you're using an [import wizard](search-import-data-portal.md), select the Azure AI Foundry resource. The wizard adds the resource key to your skillset definition.
 
@@ -164,7 +168,7 @@ Content-Type: application/json
     "cognitiveServices": {
         "@odata.type": "#Microsoft.Azure.Search.AIServicesByKey",
         "description": "A sample configuration for key-based billing.",
-        "subdomainUrl": "https://[subdomain-name].services.ai.azure.com",
+        "subdomainUrl": "https://[resource-name].services.ai.azure.com",
         "key": "{your-billable-resource-key}"
     }
 }
