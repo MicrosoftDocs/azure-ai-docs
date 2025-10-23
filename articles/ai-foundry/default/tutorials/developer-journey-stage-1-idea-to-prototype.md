@@ -24,11 +24,11 @@ This tutorial covers the first stage of the Azure AI Foundry developer journey: 
 
 > [!div class="checklist"]
 >
-> - Build a Modern Workplace Assistant with SharePoint and MCP integration
-> - Demonstrate real business scenarios combining internal and external knowledge
-> - Implement robust error handling and graceful degradation
-> - Create evaluation framework for business-focused testing
-> - Prepare foundation for governance and production deployment
+> - Build a Modern Workplace Assistant with SharePoint and MCP integration.
+> - Demonstrate real business scenarios combining internal and external knowledge.
+> - Implement robust error handling and graceful degradation.
+> - Create evaluation framework for business-focused testing.
+> - Prepare foundation for governance and production deployment.
 
 This ultra-minimal sample demonstrates enterprise-ready patterns with realistic business scenarios.
 
@@ -482,23 +482,25 @@ The evaluation tests:
 
 This ultra-minimal sample provides the foundation for enterprise AI development:
 
-### Tutorial 2: Governance and monitoring
-- Implement content filtering and safety guardrails
-- Add comprehensive evaluation metrics and monitoring  
-- Set up continuous evaluation pipelines
-- Apply governance policies and compliance controls
+> [!div class="nextstepaction"] 
+> [Stage 2: Governance and monitoring]()
+- Implement content filtering and safety guardrails.
+- Add comprehensive evaluation metrics and monitoring.
+- Set up continuous evaluation pipelines.
+- Apply governance policies and compliance controls.
 
-### Tutorial 3: Production deployment
-- Deploy agents to Azure AI Foundry with proper scaling
-- Implement AI Gateway for cost and usage monitoring
-- Add advanced observability and performance tracking
-- Set up production-ready security and access controls
+> [!div class="nextstepaction"] 
+> [Stage 3: Production deployment]()
+- Deploy agents to Azure AI Foundry with proper scaling.
+- Implement AI Gateway for cost and usage monitoring.
+- Add advanced observability and performance tracking.
+- Set up production-ready security and access controls.
 
-### Immediate enhancements
-- Add more data sources (Azure AI Search, databases)
-- Implement advanced evaluation methods (AI-assisted evaluation)
-- Create custom tools for business-specific operations
-- Add conversation memory and personalization
+### Suggested enhancements
+- Add more data sources ([Azure AI Search](), [databases]()).
+- Implement advanced evaluation methods ([AI-assisted evaluation]()).
+- Create [custom tools]() for business-specific operations.
+- Add [conversation memory and personalization]().
 
 ## Related content
 
