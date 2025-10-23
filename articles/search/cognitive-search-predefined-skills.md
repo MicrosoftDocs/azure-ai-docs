@@ -82,6 +82,6 @@ Skills that execute only on Azure AI Search, iterate mostly on nodes in the enri
 
 ## Related content
 
-+ [Create a skillset](cognitiognitive-search-skill-azure-openai-embeddingve-search-defining-skillset.md)
++ [Create a skillset](cognitive-search-defining-skillset.md)
 + [Add a custom skill to an AI enrichment pipeline](cognitive-search-custom-skill-interface.md)
 + [Tutorial: Enriched indexing with AI](tutorial-skillset.md)

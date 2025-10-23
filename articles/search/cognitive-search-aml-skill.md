@@ -20,9 +20,9 @@ ms.update-cycle: 180-days
 
 Use the **AML** skill to extend AI enrichment with a deployed base embedding model from the [Azure AI Foundry model catalog](vector-search-integrated-vectorization-ai-studio.md) or a custom [Azure Machine Learning](../machine-learning/overview-what-is-azure-machine-learning.md) (AML) model. Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 
-You specify the AML skill in a skillset, which then integrates your deployed model into an AI enrichment pipeline. Use the AML skill to perform processing or inference not supported by built-in skills. Examples include generating embeddings with your own model and applying custom machine learning logic to enriched content.
+You specify the AML skill in a skillset, which then integrates your deployed model into an AI enrichment pipeline. The AML skill is useful for performing processing or inference not supported by built-in skills. Examples include generating embeddings with your own model and applying custom machine learning logic to enriched content.
 
-Indexer connections to AML online endpoints are generally available, so you can use a stable REST API version or an equivalent Azure SDK to call the AML skill. For connections to the model catalog, use a preview API version.
+For AML online endpoints, use a stable API version or an equivalent Azure SDK to call the AML skill. For connections to the model catalog, use a preview API version.
 
 ## AML skill usage
 
@@ -53,12 +53,12 @@ Microsoft.Skills.Custom.AmlSkill
 
 ## Skill parameters
 
-Parameters are case sensitive. The parameters you use depend on what [authentication your Azure AI Foundry hub-based project or AML online endpoint requires](#WhatSkillParametersToUse), if any.
+Parameters are case sensitive. The parameters you use depend on what [authentication your model provider requires](#WhatSkillParametersToUse), if any.
 
 | Parameter name | Description |
 |--------------------|-------------|
 | `uri` | (Required for [key authentication](#WhatSkillParametersToUse)) The target URI of the serverless deployment from the Azure AI Foundry model catalog or the [scoring URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). Only the HTTPS URI scheme is allowed. Supported models from the model catalog are:<ul><li>Cohere-embed-v3-english</li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
-| `key` | (Required for [key authentication](#WhatParametersToUse)) The API key of the model provider. |
+| `key` | (Required for [key authentication](#WhatSkillParametersToUse)) The API key of the model provider. |
 | `resourceId` | (Required for [token authentication](#WhatSkillParametersToUse)) The Azure Resource Manager resource ID of the model provider. For an AML online endpoint, use the `subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}` format. |
 | `region` | (Optional for [token authentication](#WhatSkillParametersToUse)) The region in which the model provider is deployed. Required if the region is different from the region of the search service. |
 | `timeout` | (Optional) The timeout for the HTTP client making the API call. It must be formatted as an XSD "dayTimeDuration" value, which is a restricted subset of an [ISO 8601 duration](https://www.w3.org/TR/xmlschema11-2/#dayTimeDuration) value. For example, `PT60S` for 60 seconds. If not set, a default value of 30 seconds is chosen. You can set the timeout to a minimum of 1 second and a maximum of 230 seconds. |

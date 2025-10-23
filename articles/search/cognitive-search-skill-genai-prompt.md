@@ -35,7 +35,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 ## Supported models
 
-- You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
+- You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in Azure AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, and Cohere-command-r. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` in the URI) aren't currently compatible.
 
 - For image verbalization, the model you use to analyze the image determines what image formats are supported.
 
@@ -51,7 +51,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 - An [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-foundry/openai/how-to/create-resource) or [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-- A chat completion model, such as `gpt-4o` or any compatible open-source software (OSS) model, deployed to your resource or project.
+- A [supported model](#supported-models) deployed to your resource or project.
 
   - For Azure OpenAI, copy the endpoint with the `openai.azure.com` domain from the **Keys and Endpoint** page in the Azure portal. Use this endpoint for the `Uri` parameter in this skill.
 

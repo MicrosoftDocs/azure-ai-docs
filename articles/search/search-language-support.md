@@ -57,7 +57,7 @@ To add text translation, follow these steps:
 
 1. Create an index that includes fields for translated strings. Most of this article covers index design and field definitions for indexing and querying multi-language content.
 
-1. [Attach a multi-region Azure AI services resource](cognitive-search-attach-cognitive-services.md) to your skillset.
+1. [Attach an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) to your skillset.
 
 1. [Create and run the indexer](search-howto-create-indexers.md), and then apply the guidance in this article to query just the fields of interest.
 

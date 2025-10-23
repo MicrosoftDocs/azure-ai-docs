@@ -17,7 +17,7 @@ ms.update-cycle: 365-days
 > [!IMPORTANT]
 > This vectorizer is in public preview under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/). The [2024-05-01-Preview REST API](/rest/api/searchservice/indexes/create-or-update?view=rest-searchservice-2024-05-01-Preview&preserve-view=true) and newer preview APIs support this feature.
 
-The *Azure AI Vision vectorizer* connects to an [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) to generate embeddings at query time using the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval).
+The **Azure AI Vision** vectorizer connects to an [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) to generate embeddings at query time using the [multimodal embeddings API](/azure/ai-services/computer-vision/concept-image-retrieval).
 
 To determine where this model is accessible, see the [region availability for multimodal embeddings](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0#region-availability). Your data is processed in the [Geo](https://azure.microsoft.com/explore/global-infrastructure/data-residency/) where your model is deployed.
 

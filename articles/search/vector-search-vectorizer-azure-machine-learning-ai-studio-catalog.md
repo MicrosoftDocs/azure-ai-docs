@@ -29,7 +29,7 @@ If you're using integrated vectorization to create the vector arrays, the skills
 
 ## Vectorizer parameters
 
-Parameters are case sensitive. The parameters you use depend on what [authentication your Azure AI Foundry hub-based project or AML online endpoint requires](#WhatParametersToUse), if any.
+Parameters are case sensitive. The parameters you use depend on what [authentication your model provider requires](#WhatParametersToUse), if any.
 
 | Parameter name | Description |
 |--------------------|-------------|

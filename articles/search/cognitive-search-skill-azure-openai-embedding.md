@@ -25,9 +25,9 @@ The [**Import data (new)** wizard](search-get-started-portal-import-vectors.md) 
 
 + An [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-foundry/openai/how-to/create-resource) or [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects).
 
-  + Your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://<resource-name>.openai.azure.com`. If you created the resource in the Azure portal, this subdomain was automatically generated during resource setup. You can use this endpoint for the `resourceUri` property in this skill.
+  + Your Azure OpenAI resource must have a [custom subdomain](/azure/ai-services/cognitive-services-custom-subdomains), such as `https://<resource-name>.openai.azure.com`. You can find this endpoint on the **Keys and Endpoint** page in the Azure portal and use it for the `resourceUri` property in this skill.
 
-  + The [parent resource](/azure/ai-services/multi-service-resource) of your Azure AI Foundry project provides access to multiple endpoints, including `https://<resource-name>.openai.azure.com`, `https://<resource-name>.services.ai.azure.com`, and `https://<resource-name>.cognitiveservices.azure.com`. You can use any of these endpoints for the `resourceUri` property in this skill.
+  + The [parent resource](/azure/ai-services/multi-service-resource) of your Azure AI Foundry project provides access to multiple endpoints, including `https://<resource-name>.openai.azure.com`, `https://<resource-name>.services.ai.azure.com`, and `https://<resource-name>.cognitiveservices.azure.com`. You can find these endpoints on the **Keys and Endpoint** page in the Azure portal and use any of them for the `resourceUri` property in this skill.
 
 + An Azure OpenAI embedding model deployed to your resource or project. For supported models, see the [Skill parameters](#skill-parameters) section.
 

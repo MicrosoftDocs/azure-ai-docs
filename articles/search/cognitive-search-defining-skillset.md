@@ -48,7 +48,7 @@ Start with the basic structure. In the [Create Skillset REST API](/rest/api/sear
    ],
    "cognitiveServices":{
       "@odata.type":"#Microsoft.Azure.Search.CognitiveServicesByKey",
-      "description":"An Azure AI services resource in the same region as Azure AI Search",
+      "description":"An Azure AI Foundry resource in the same region as Azure AI Search",
       "key":"<Your-Azure-AI-Foundry-Resource-Key>"
    },
    "knowledgeStore":{
