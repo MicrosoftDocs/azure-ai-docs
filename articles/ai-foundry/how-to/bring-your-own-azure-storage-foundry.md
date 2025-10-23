@@ -155,5 +155,5 @@ After completing these steps, all AI Foundry features use your customer-managed 
 - [Learn about capability hosts for agents](../agents/concepts/capability-hosts.md).
 - [Understand agents standard setup](../agents/concepts/standard-agent-setup.md).
 - [Add connections to your project](connections-add.md).
-- [Explore AI Foundry REST API](/rest/api/aifoundry/aiprojects/datasets?view=rest-aifoundry-aiprojects-v1).
+- [Explore AI Foundry REST API](/rest/api/aifoundry/aiprojects/datasets).
 - [Connect Azure Storage accounts for Speech and Language resources](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal).

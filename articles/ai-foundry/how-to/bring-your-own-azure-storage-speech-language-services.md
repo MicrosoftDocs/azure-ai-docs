@@ -74,7 +74,7 @@ When you create an Azure AI Foundry resource with Terraform AzureRM, use the sto
 
 ## Understand Speech integration
 
-Speech services in an Azure AI Foundry resource generally follow the guidelines in [Bring your own storage (BYOS) Speech resource](https://learn.microsoft.com/azure/ai-services/speech-service/bring-your-own-storage-speech-resource?tabs=portal). This guidance applies to key Speech scenarios, including Speech-to-Text (batch and real-time), Custom Speech, Text-to-Speech, and Custom Voice. For specific features under Speech, see that documentation.
+Speech services in an Azure AI Foundry resource generally follow the guidelines in [Bring your own storage (BYOS) Speech resource](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal). This guidance applies to key Speech scenarios, including Speech-to-Text (batch and real-time), Custom Speech, Text-to-Speech, and Custom Voice. For specific features under Speech, see that documentation.
 
 ### Configure customer-managed keys for Speech
 
