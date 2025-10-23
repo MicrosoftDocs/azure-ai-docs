@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 11/01/2025
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
 ms.custom:
@@ -19,62 +19,49 @@ Azure AI Content Understanding service is updated on an ongoing basis. Bookmark 
 
 ## November 2025
 
-Azure AI Content Understanding service is now Generally Available with the new API version [**`2025-11-01`**]. The service is ready for production workloads, with robust enterprise features. This update introduces the following updates and enhanced capabilities:
+Azure AI Content Understanding is now Generally Available with API version `2025-11-01`. The release brings production readiness plus customer-driven enhancements across model choice, management, and security.
 
-### Model flexibility with support for a variety of Foundry models
+### Choose the right generative model for every workload
 
-Instead of relying on a built-in managed generative model, you now select a Foundry model deployment for both LLMs and embeddings. 
+- Connect Content Understanding to a Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost.
+- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. Learn how to configure routing in [Use Azure AI Content Understanding in Azure AI Foundry](quickstart/use-ai-foundry.md).
+- Select a deployment type—Global, DataZone, or Regional—or use Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For Global and DataZone, data at rest remains in your customer-designated geography; only the processing location differs.
 
-* Initial support includes some of the most popular generative models like the gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, gpt-4o, and gpt-4o-mini. 
-* For embeddings support includes text-embedding-3-large, text-embedding-3-small, and text-embedding-ada-002
-* This gives you control over quality, cost, and performance—choose the model that best fits your needs.
-* You can 
+### Manage analyzers with more precision
 
-3. Analyzer Enhancements & Management
+- Confidence scores and grounding are now opt-in per field through the `estimateFieldSourceAndConfidence` setting, reducing payload size when you don't need traceability.
+- The `analyzer API` now exposes a `categorization` property, enabling in-line document routing without running a separate classifier.
+- Analyzer lifecycle APIs add copy, delete, replace, and explicit result deletion for privacy controls. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
 
-Confidence scores and grounding are now default off.
+### RAG-ready analyzers
 
-Enable per field or schema with estimateFieldSourceAndConfidence: true.
+- `prebuilt-documentAnalyzer` now captures figure descriptions, annotations, and hyperlinks to enrich retrieval-augmented generation pipelines.
+- Categorization lets you send sections—such as passport pages within `prebuilt-idDocument`—to purpose-built analyzers during a single run.
+- Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
 
+### Domain-specific prebuilt analyzers for industry workloads
 
-Classify is now part of the Analyze operation—no separate classifier API.
-Analyzer management is improved:
+- Added coverage for finance, tax, procurement, mortgage, identity, and utility document types.
+- Each analyzer ships with a tuned schema so you can automate onboarding without custom training.
+- Explore the vertical analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
 
-Copy, delete, and replace analyzers easily, including safe overwrites and cross-resource operations.
+### Enterprise security and governance
 
+- General availability includes Microsoft Entra ID, managed identities, customer-managed keys, virtual networks, and private endpoints.
+- These controls keep sensitive content in your Azure boundary and help you meet compliance requirements. Learn more in [Secure access to Content Understanding](concepts/managed-identities-entra-id.md).
 
+### Other improvements
 
-4. Expanded Prebuilt Analyzers
+- Use the `range` parameter to analyze specific pages or segments and reduce token consumption.
+- Choose HTML or Markdown table output to match downstream processing requirements.
+- Prebuilt `read` and `layout` analyzers now expose key Document Intelligence capabilities inside Content Understanding.
 
-More prebuilt analyzers for industry-specific document types (tax, procurement, etc.).
-Prebuilts targeted at Retrieval-Augmented Generation (RAG) use cases and integration with Azure AI Search for ingestion.
+### Breaking changes
 
-Includes figure analysis, content annotations, and hyperlink extraction.
-
-
-Prebuilt read and layout analyzers bring key Document Intelligence features to Content Understanding.
-
-5. Enterprise-Grade Features
-
-Full support for Entra ID, Managed Identities, Customer Managed Keys (CMK), VNET, and private endpoints.
-Enhanced security and compliance for enterprise deployments.
-
-
-Other Notable Improvements
-
-Field limit increased to 1,000 fields.
-Partial content analysis: Analyze specific pages or segments with the range parameter.
-Table format selection: Choose HTML or Markdown output.
-DELETE endpoints for analyzer results.
-
-
-Retired & Deprecated Features
-
-Managed capacity for generative models is retired—BYO LLM and embeddings required.
-Dedicated classifier APIs are deprecated; classification is now handled within the analyzer.
-Pro mode remains in Preview only.
-Person directory and face APIs are removed.
-Video preview features and auto segmentation are retired; segmentation is now manual and output format is updated.
+- Managed capacity for the preview generative models is retired. Now to use Content Understand you always bring your own Foundry large language model and embedding deployments.
+- Dedicated classifier APIs are deprecated because classification now lives inside the analyzer API as the categorization feature.
+- Video segmentation can now be done using the categorization capability unifying the API for splitting files across document and video analyzers.
+- The preview API (`2025-05-01-preview`) doesn't carry forward Pro mode for cross-file analysis or the person directory with Face API integration.
 
 ## October 2025
 Azure AI Content Understanding preview version introduces the following updates:
