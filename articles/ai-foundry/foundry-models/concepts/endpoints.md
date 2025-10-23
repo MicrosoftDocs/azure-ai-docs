@@ -101,10 +101,13 @@ To use keyless authentication, [configure your resource and grant access to user
 
 [!INCLUDE [code-create-chat-client-entra](../../foundry-models/includes/code-create-chat-client-entra.md)]
 
+::: moniker range="foundry-classic"
 ## Limitations
 
 * You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
 * Real-time API isn't supported in the inference endpoint. Use the dedicated deployment URL.
+
+::: moniker-end
 
 ## Related content
 
