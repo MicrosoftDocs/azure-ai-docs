@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to-guide
-ms.date: 01/23/2025
+ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
 
@@ -54,8 +54,6 @@ The userOwnedStorage field enables customer-managed storage for Speech and Langu
 
 ## Create a Foundry storage connection
 
-::: moniker range="azure-ai-foundry-classic"
-
 Create a storage connection to enable agents, evaluations, datasets, and content understanding features with your own storage account.
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
@@ -78,18 +76,6 @@ Create a storage connection to enable agents, evaluations, datasets, and content
 1. Select **Create** to establish the connection.
 
 The storage connection is now available for use with evaluations, datasets, and content understanding features.
-
-::: moniker-end
-
-::: moniker range="azure-ai-foundry"
-
-Create a storage connection to enable agents, evaluations, datasets, and content understanding features with your own storage account by using Azure CLI, Azure PowerShell, or Azure REST API.
-
-Use the Azure AI Foundry REST API or Azure CLI to create a storage connection at the resource or project level. Reference your Azure Storage account and specify your preferred authentication method (system-assigned managed identity recommended).
-
-The storage connection is now available for use with evaluations, datasets, and content understanding features.
-
-::: moniker-end
 
 ## Configure capability hosts for agents
 
@@ -132,8 +118,6 @@ All Speech and Language capabilities in the resource now use your specified stor
 
 ## Configure content understanding
 
-::: moniker range="azure-ai-foundry-classic"
-
 Connect your storage account to content understanding features through the AI Foundry portal.
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
@@ -145,18 +129,6 @@ Connect your storage account to content understanding features through the AI Fo
 1. Select your existing resource-level storage connection from the available options.
 
 Content understanding now uses your connected storage account for processing and storing data.
-
-::: moniker-end
-
-::: moniker range="azure-ai-foundry"
-
-Connect your storage account to content understanding features by using Azure CLI, Azure PowerShell, or Azure REST API.
-
-Configure your AI Foundry resource to use your existing resource-level storage connection for content understanding capabilities.
-
-Content understanding now uses your connected storage account for processing and storing data.
-
-::: moniker-end
 
 ## Set up complete customer-managed storage
 
@@ -174,17 +146,7 @@ Follow these steps in order to ensure proper configuration:
 
 1. Create a resource-level Azure Storage account connection through Foundry connections.
 
-::: moniker range="azure-ai-foundry-classic"
-
 1. Navigate to the AI Foundry portal and configure content understanding to use your storage connection.
-
-::: moniker-end
-
-::: moniker range="azure-ai-foundry"
-
-1. Configure content understanding to use your storage connection by using Azure CLI, Azure PowerShell, or Azure REST API.
-
-::: moniker-end
 
 After completing these steps, all AI Foundry features use your customer-managed Azure Storage account instead of Microsoft-managed storage.
 
