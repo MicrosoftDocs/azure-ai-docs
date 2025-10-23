@@ -5,6 +5,10 @@ items:
   href: ../../../how-to/create-projects.md
 - name: Choose a resource
   href: ../../../concepts/resource-types.md
+- name: Create resources using Bicep template
+  href: ../../../how-to/create-resource-template.md
+- name: Create resources using Terraform
+  href: ../../../how-to/create-resource-terraform.md
 - name: Create a connection
   href: ../../../how-to/connections-add.md
 - name: Status dashboard

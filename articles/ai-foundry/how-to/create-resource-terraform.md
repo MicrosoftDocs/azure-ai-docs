@@ -9,6 +9,7 @@ ms.reviewer: deeikele
 ms.author: sgilley
 author: sdgilley
 ms.custom: devx-track-terraform
+monikerRange: foundry-classic || foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted
