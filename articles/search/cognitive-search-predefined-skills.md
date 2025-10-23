@@ -10,7 +10,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: concept-article
-ms.date: 10/06/2025
+ms.date: 10/23/2025
 ms.update-cycle: 365-days
 ---
 
@@ -22,7 +22,7 @@ A *skill* is an atomic operation that transforms content in some way. Often, it'
 
 Skills are organized into the following categories:
 
-* A *built-in skill* wraps API calls to an Azure AI resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI resource, the connection is made over the internal network. For skills that call Azure OpenAI, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is nonbillable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
+* A *built-in skill* wraps API calls to an Azure AI resource, where the inputs, outputs, and processing steps are well understood. For skills that call an Azure AI resource, the connection is made over the internal network. For skills that run workloads on your owned-Azure AI endpoints, you provide the connection information that the search service uses to connect to the resource. A small quantity of processing is nonbillable, but at larger volumes, processing is billable. Built-in skills are based on pretrained models from Microsoft, which means you can't train the model using your own training data.
 
 * A *custom skill* provides custom code that executes externally to the search service. It's accessed through a URI. Custom code is often made available through an Azure function app. To attach an open-source or third-party vectorization model, use a custom skill.
 
@@ -47,9 +47,9 @@ Skills that call Azure AI are billed at the Standard rate when you [attach an Az
 | [Microsoft.Skills.Vision.VectorizeSkill](cognitive-search-skill-vision-vectorize.md) | Multimodal image and text vectorization. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 | [Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill](cognitive-search-skill-document-intelligence-layout.md) | Accelerate information extraction from documents. | Azure AI services ([pricing](https://azure.microsoft.com/pricing/details/cognitive-services/)) |
 
-## Azure OpenAI skills
+## Skills using your own Azure endpoint for AI workload execution
 
-Skills that call models deployed on Azure OpenAI are billed at the Standard rate.
+Skills that run AI workloads on your models or services deployed on Azure are billed at the Standard rate.
 
 | OData type  | Description | Metered by |
 |-------|-------------|-------------|
