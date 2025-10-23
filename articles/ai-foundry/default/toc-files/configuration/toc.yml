@@ -13,5 +13,25 @@ items:
   href: ../../../reference/region-support.md
 - name: Region support
   href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
+- name: Foundry Models deployment offers
+  items:
+  - name: Standard deployment offer
+    href:
+  - name: Provisioned deployment offer
+    items:
+      - name: Provisioned Throughput offering (PTU)
+        href: ../../../openai/concepts/provisioned-throughput.md
+      - name: Understanding and calculating PTU costs
+        href: ../../../openai/how-to/provisioned-throughput-onboarding.md
+      - name: Get started with Provisioned Deployments
+        href: ../../../openai/how-to/provisioned-get-started.md
+      - name: Provisioned spillover
+        href: ../../../openai/how-to/spillover-traffic-management.md
+      - name: Azure OpenAI PTU updates
+        href: ../../../openai/concepts/provisioned-migration.md
+  - name: Priority processing deployment offer
+    href:
+  - name: Batch deployment offer
+    href:
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
