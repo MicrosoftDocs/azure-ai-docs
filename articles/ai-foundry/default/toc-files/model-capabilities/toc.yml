@@ -1,20 +1,28 @@
 items:
   - name: Azure OpenAI in Foundry Models
     href: ../../../openai/supported-languages.md
-  - name: Deployment types
-    href: ../../../foundry-models/concepts/deployment-types.md
-  - name: Provisioned throughput offer
+  - name: Deployment offers & types
     items:
-      - name: Provisioned Throughput offering (PTU)
-        href: ../../../openai/concepts/provisioned-throughput.md
-      - name: Understanding and calculating PTU costs
-        href: ../../../openai/how-to/provisioned-throughput-onboarding.md
-      - name: Get started with Provisioned Deployments
-        href: ../../../openai/how-to/provisioned-get-started.md
-      - name: Provisioned spillover
-        href: ../../../openai/how-to/spillover-traffic-management.md
-      - name: Azure OpenAI PTU updates
-        href: ../../../openai/concepts/provisioned-migration.md
+      - name: Deployment offers and types
+        href: ../../../foundry-models/concepts/deployment-types.md
+      - name: Standard deployment offer
+        href:
+      - name: Provisioned deployment offer
+        items:
+          - name: Provisioned Throughput offering (PTU)
+            href: ../../../openai/concepts/provisioned-throughput.md
+          - name: Understanding and calculating PTU costs
+            href: ../../../openai/how-to/provisioned-throughput-onboarding.md
+          - name: Get started with Provisioned Deployments
+            href: ../../../openai/how-to/provisioned-get-started.md
+          - name: Provisioned spillover
+            href: ../../../openai/how-to/spillover-traffic-management.md
+          - name: Azure OpenAI PTU updates
+            href: ../../../openai/concepts/provisioned-migration.md
+      - name: Priority processing deployment offer
+        href:
+      - name: Batch deployment offer
+        href:
   - name: Quickstarts
     items:
       - name: Audio generation
