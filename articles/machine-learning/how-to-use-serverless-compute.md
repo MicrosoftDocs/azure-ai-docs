@@ -62,35 +62,35 @@ Serverless compute can increase the speed of your training in the following ways
 
 **Insufficient quota failures.** When you create your own compute cluster, you're responsible for determining the VM size and node count. When your job runs, if you don't have sufficient quota for the cluster, the job fails. Serverless compute uses information about your quota to select an appropriate VM size by default.
 
-**Scale-down optimization.** When a compute cluster is scaling down, a new job has to wait for scale down to happen and then scale up before the job can run. With serverless compute, you don't have to wait for scale down and your job can start running on another cluster/node (assuming you have quota).
+**Scale-down optimization.** When a compute cluster is scaling down, a new job has to wait for the cluster to scale down and then scale up before the job can run. With serverless compute, you don't have to wait for scale down. Your job can start running on another cluster/node (assuming you have quota).
 
-**Cluster busy optimization.** When a job is running on a compute cluster and another job is submitted, your job is queued behind the currently running job. With serverless compute, you get another node/another cluster to start running the job (assuming you have quota).
+**Cluster-busy optimization.** When a job is running on a compute cluster and another job is submitted, your job is queued behind the currently running job. With serverless compute, your job can start running on another node/cluster (assuming you have quota).
 
 ## Quota
 
-When submitting the job, you still need sufficient Azure Machine Learning compute quota to proceed (both workspace and subscription level quota). The default VM size for serverless jobs is selected based on this quota. If you specify your own VM size/family:
+When you submit a job, you still need sufficient Azure Machine Learning compute quota to proceed (both workspace-level and subscription-level quota). The default VM size for serverless jobs is selected based on this quota. If you specify your own VM size/family:
 
-* If you have some quota for your VM size/family, but not sufficient quota for the number of instances, you see an error. The error recommends decreasing the number of instances to a valid number based on your quota limit or request a quota increase for this VM family or changing the VM size.
-* If you don't have quota for your specified VM size, you see an error. The error recommends selecting a different VM size for which you do have quota or request quota for this VM family.
-* If you do have sufficient quota for VM family to run the serverless job, but other jobs are using the quota, you get a message that your job must wait in a queue until quota is available.
+* If you have some quota for your VM size/family but not sufficient quota for the number of instances, you see an error. The error recommends that you decrease the number of instances to a valid number based on your quota limit, request a quota increase for the VM family, or change the VM size.
+* If you don't have quota for your specified VM size, you see an error. The error recommends that you select a different VM size for which you do have quota or request quota for the VM family.
+* If you do have sufficient quota for a VM family to run the serverless job but other jobs are using the quota, you get a message stating that your job must wait in a queue until quota is available.
 
-When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md#view-your-usage-and-quotas-in-the-azure-portal), you see the name "Serverless" to see all the quota consumed by serverless jobs.
+When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.md#view-your-usage-and-quotas-in-the-azure-portal), you see the name **Serverless** for all quota consumed by serverless jobs.
 
-## Identity support and credential pass through
+## Identity support and credential passthrough
 
-* **User credential pass through**: Serverless compute fully supports user credential pass through. The user token of the user who is submitting the job is used for storage access. These credentials are from your Microsoft Entra ID.
+* **User credential passthrough**: Serverless compute fully supports user credential passthrough. The user token of the user submitting the job is used for storage access. These credentials are from Microsoft Entra ID.
 
     # [Python SDK](#tab/python)
 
     ```python
     from azure.ai.ml import command
-    from azure.ai.ml import MLClient     # Handle to the workspace
-    from azure.identity import DefaultAzureCredential     # Authentication package
+    from azure.ai.ml import MLClient     # Handle to the workspace.
+    from azure.identity import DefaultAzureCredential     # Authentication package.
     from azure.ai.ml.entities import ResourceConfiguration
     from azure.ai.ml.entities import UserIdentityConfiguration 
 
     credential = DefaultAzureCredential()
-    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
         subscription_id="<Azure subscription id>", 
@@ -102,13 +102,13 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
         environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
             identity=UserIdentityConfiguration(),
     )
-    # submit the command job
+    # Submit the command job.
     ml_client.create_or_update(job)
     ```
 
     # [Azure CLI](#tab/cli)
 
-    Create a file named hello.yaml with the following content:
+    Create a file named hello.yaml that contains the following:
 
     ```YAML
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
@@ -119,17 +119,17 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
       type: user_identity
     ```
 
-    Submit the job with the following command:
+    Submit the job by using this command:
 
     ```azurecli
     az ml job create --file hello.yaml --resource-group my-resource-group --workspace-name my-workspace
     ```
 
-    The rest of the CLI examples show variations of the hello.yaml file.  Run each of them in the same way.
+    The rest of the Azure CLI examples show variations of the hello.yaml file. Run each of them in the same way.
 
     ---
 
-* **User-assigned managed identity**: When you have a workspace configured with [user-assigned managed identity](how-to-identity-based-service-authentication.md#workspace), you can use that identity with the serverless job for storage access. To access secrets, see [Use authentication credential secrets in Azure Machine Learning jobs](how-to-use-secrets-in-runs.md).  
+* **User-assigned managed identity**: When you have a workspace configured with [user-assigned managed identity](how-to-identity-based-service-authentication.md#workspace), you can use that identity with the serverless job for storage access. For information about accessing secrets, see [Use authentication credential secrets in Azure Machine Learning jobs](how-to-use-secrets-in-runs.md).  
 
 1. Verify your workspace identity configuration.
     
@@ -150,7 +150,7 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
         workspace
     )
     
-    # Get workspace details
+    # Get workspace details.
     ws = ml_client.workspaces.get(name=workspace)
     print(ws)
     
@@ -159,12 +159,12 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     # [Azure CLI](#tab/cli)
     
     ```azurecli
-    az ml workspace show --name <wsname>  --resource-group <rgname>
+    az ml workspace show --name <workspace-sname>  --resource-group <resource-group-name>
     ```    
     
     ---
 
-    Look for the user-assigned identities in the output. If it's missing, create a new workspace with a user-assigned managed identity by following the instructions in [Set up authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
+    Look for the user-assigned identity in the output. If it's missing, create a new workspace with a user-assigned managed identity by following the instructions in [Set up authentication between Azure Machine Learning and other services](how-to-identity-based-service-authentication.md).
 
 1. Use your user-assigned managed identity in your job.
 
@@ -172,25 +172,25 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
     
     ```python
     from azure.ai.ml import command
-    from azure.ai.ml import MLClient     # Handle to the workspace
-    from azure.identity import DefaultAzureCredential    # Authentication package
+    from azure.ai.ml import MLClient     # Handle to the workspace.
+    from azure.identity import DefaultAzureCredential    # Authentication package.
     from azure.ai.ml.entities import ResourceConfiguration
     from azure.ai.ml.entities import ManagedIdentityConfiguration
     
     credential = DefaultAzureCredential()
-    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
-        subscription_id="<Azure subscription id>", 
-        resource_group_name="<Azure resource group>",
-        workspace_name="<Azure Machine Learning Workspace>",
+        subscription_id="<Azure-subscription-ID>", 
+        resource_group_name="<Azure-resource-group>",
+        workspace_name="<Azure-Machine-Learning-workspace>",
     )
     job = command(
         command="echo 'hello world'",
         environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
-        identity= ManagedIdentityConfiguration(client_id="<workspace-uami-client-id>"),
+        identity= ManagedIdentityConfiguration(client_id="<workspace-UAMI-client-ID>"),
     )
-    # submit the command job
+    # Submit the command job.
     ml_client.create_or_update(job)
     ```
     
@@ -209,30 +209,30 @@ When you [view your usage and quota in the Azure portal](how-to-manage-quotas.md
 
 ## Configure properties for command jobs
 
-If no compute target is specified for command, sweep, and AutoML jobs, then the compute defaults to serverless compute.
-For instance, for this command job:
+If no compute target is specified for command, sweep, and AutoML jobs, the compute defaults to serverless compute.
+Here's an example:
 
 # [Python SDK](#tab/python)
 
 ```python
 from azure.ai.ml import command
 from azure.ai.ml import command 
-from azure.ai.ml import MLClient # Handle to the workspace
-from azure.identity import DefaultAzureCredential # Authentication package
+from azure.ai.ml import MLClient # Handle to the workspace.
+from azure.identity import DefaultAzureCredential # Authentication package.
 
 credential = DefaultAzureCredential()
-# Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+# Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
 ml_client = MLClient(
     credential=credential,
-    subscription_id="<Azure subscription id>", 
-    resource_group_name="<Azure resource group>",
-    workspace_name="<Azure Machine Learning Workspace>",
+    subscription_id="<Azure-subscription-ID>", 
+    resource_group_name="<Azure-resource-group>",
+    workspace_name="<Azure-Machine-Learning-workspace>",
 )
 job = command(
     command="echo 'hello world'",
     environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
 )
-# submit the command job
+# Submit the command job.
 ml_client.create_or_update(job)
 ```
 
@@ -249,37 +249,37 @@ environment:
 
 The compute defaults to serverless compute with:
 
-* Single node for this job. The default number of nodes is based on the type of job. See following sections for other job types.
-* CPU virtual machine, which is determined based on quota, performance, cost, and disk size.
-* Dedicated virtual machines
-* Workspace location
+* A single node, for this job. The default number of nodes is based on the type of job. See following sections for other job types.
+* A CPU virtual machine. The VM is determined based on quota, performance, cost, and disk size.
+* Dedicated virtual machines.
+* Workspace location.
 
 You can override these defaults. If you want to specify the VM type or number of nodes for serverless compute, add `resources` to your job:
 
-* `instance_type` to choose a specific VM. Use this parameter if you want a specific CPU/GPU VM size
-* `instance_count` to specify the number of nodes.
+* Use `instance_type` to choose a specific VM. Use this parameter if you want a specific CPU or GPU VM size
+* Use `instance_count` to specify the number of nodes.
 
     # [Python SDK](#tab/python)
     ```python
     from azure.ai.ml import command 
-    from azure.ai.ml import MLClient # Handle to the workspace
-    from azure.identity import DefaultAzureCredential # Authentication package
+    from azure.ai.ml import MLClient # Handle to the workspace.
+    from azure.identity import DefaultAzureCredential # Authentication package.
     from azure.ai.ml.entities import JobResourceConfiguration 
 
     credential = DefaultAzureCredential()
-    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
-        subscription_id="<Azure subscription id>", 
-        resource_group_name="<Azure resource group>",
-        workspace_name="<Azure Machine Learning Workspace>",
+        subscription_id="<Azure-subscription-ID>", 
+        resource_group_name="<Azure-resource-group>",
+        workspace_name="<Azure-Machine-Learning-workspace>",
     )
     job = command(
         command="echo 'hello world'",
         environment="azureml://registries/azureml/environments/sklearn-1.5/labels/latest",
         resources = JobResourceConfiguration(instance_type="Standard_NC24", instance_count=4)
     )
-    # submit the command job
+    # Submit the command job.
     ml_client.create_or_update(job)
     ```
 
@@ -297,21 +297,21 @@ You can override these defaults. If you want to specify the VM type or number of
 
     ---
 
-* To change job tier, use `queue_settings` to choose between Dedicated VMs (`job_tier: Standard`) and Low priority (`job_tier: Spot`).
+* To change the job tier, use `queue_settings` to choose between dedicated VMs (`job_tier: Standard`) and low priority VMs (`job_tier: Spot`).
 
     # [Python SDK](#tab/python)
 
     ```python
     from azure.ai.ml import command
-    from azure.ai.ml import MLClient    # Handle to the workspace
-    from azure.identity import DefaultAzureCredential    # Authentication package
+    from azure.ai.ml import MLClient    # Handle to the workspace.
+    from azure.identity import DefaultAzureCredential    # Authentication package.
     credential = DefaultAzureCredential()
-    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+    # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
-        subscription_id="<Azure subscription id>", 
-        resource_group_name="<Azure resource group>",
-        workspace_name="<Azure Machine Learning Workspace>",
+        subscription_id="<Azure-subscription-ID>", 
+        resource_group_name="<Azure-resource-group>",
+        workspace_name="<Azure-Machine-Learning-workspace>",
     )
     job = command(
         command="echo 'hello world'",
@@ -320,7 +320,7 @@ You can override these defaults. If you want to specify the VM type or number of
           "job_tier": "spot"  
         }
     )
-    # submit the command job
+    # Submit the command job.
     ml_client.create_or_update(job)
     ```
 
@@ -329,30 +329,29 @@ You can override these defaults. If you want to specify the VM type or number of
     $schema: https://azuremlschemas.azureedge.net/latest/commandJob.schema.json
     component: ./train.yml 
     queue_settings:
-       job_tier: Standard #Possible Values are Standard (dedicated), Spot (low priority). Default is Standard.
+       job_tier: Standard # Possible values are Standard (dedicated) and Spot (low priority). The default is Standard.
     ```
     
-
 ## Example for all fields with command jobs
 
-Here's an example of all fields specified including identity the job should use. There's no need to specify virtual network settings as workspace level managed network isolation is automatically used.
+Here's an example that shows all fields specified, including the identity the job should use. You don't need to specify virtual network settings because workspace-level managed network isolation is automatically used.
 
 # [Python SDK](#tab/python)
 
 ```python
 from azure.ai.ml import command
-from azure.ai.ml import MLClient      # Handle to the workspace
-from azure.identity import DefaultAzureCredential     # Authentication package
+from azure.ai.ml import MLClient      # Handle to the workspace.
+from azure.identity import DefaultAzureCredential     # Authentication package.
 from azure.ai.ml.entities import ResourceConfiguration
 from azure.ai.ml.entities import UserIdentityConfiguration 
 
 credential = DefaultAzureCredential()
-# Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com
+# Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
 ml_client = MLClient(
     credential=credential,
-    subscription_id="<Azure subscription id>", 
-    resource_group_name="<Azure resource group>",
-    workspace_name="<Azure Machine Learning Workspace>",
+    subscription_id="<Azure-subscription-ID>", 
+    resource_group_name="<Azure-resource-group>",
+    workspace_name="<Azure-Machine-Learning-workspace>",
 )
 job = command(
     command="echo 'hello world'",
@@ -363,7 +362,7 @@ job = command(
     }
 )
 job.resources = ResourceConfiguration(instance_type="Standard_E4s_v3", instance_count=1)
-# submit the command job
+# Submit the command job.
 ml_client.create_or_update(job)
 ```
 
@@ -374,9 +373,9 @@ command: echo "hello world"
 environment:
   image: library/python:latest
 queue_settings:
-   job_tier: Standard #Possible Values are Standard, Spot. Default is Standard.
+   job_tier: Standard # Possible values are Standard and Spot. The default is Standard.
 identity:
-  type: user_identity #Possible values are Managed, user_identity
+  type: user_identity # Possible values are Managed and user_identity
 resources:
   instance_count: 1
   instance_type: Standard_E4s_v3 
@@ -384,13 +383,13 @@ resources:
 ```
 
 ---
-View more examples of training with serverless compute:
-* [Quick Start](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
-* [Train Model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)
+Here are two more examples of using serverless compute for training:
+* [First look at Azure Machine Learning](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
+* [Train a model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)
   
 ## AutoML job
 
-There's no need to specify compute for AutoML jobs. Resources can be optionally specified. If instance count isn't specified, then it's defaulted based on max_concurrent_trials and max_nodes parameters. If you submit an AutoML image classification or NLP task with no instance type, the GPU VM size is automatically selected. You can submit AutoML jobs through CLIs, SDK, or Studio. To submit AutoML jobs with serverless compute in studio, first enable the [submit a training job in studio (preview)](how-to-train-with-ui.md) feature in the preview panel.
+You don't need to specify compute for AutoML jobs. Resources can optionally be specified. If an instance count isn't specified, it's defaulted based on the `max_concurrent_trials` and `max_nodes` parameters. If you submit an AutoML image classification or NLP task without specifying an instance type, the GPU VM size is automatically selected. You can submit AutoML jobs by using CLIs, the Python SDK, or studio. To submit AutoML jobs by uing serverless compute in studio, first enable the [submit a training job in studio (preview)](how-to-train-with-ui.md) feature in the preview panel.
 
 # [Python SDK](#tab/python)
 
@@ -424,8 +423,9 @@ For a pipeline job, specify `azureml:serverless` as your default compute type to
 
 You can also set serverless compute as the default compute in Designer.
 
-### Configure Serverless Pipeline Jobs with User-Assigned Managed Identity
-When using serverless compute in pipeline jobs, we recommend setting user identity at the individual step level that will be executed on a compute, rather than at the root pipeline level. (While the identity setting is supported at both root pipeline and step levels, the step-level setting takes precedence if both are set. However, for pipelines containing pipeline components, identity must be set on individual steps that will be executed. Identity set at the root pipeline or pipeline component level won't function. Therefore, we suggest setting identity at the individual step level for simplicity.)
+### Configure serverless pipeline jobs with user-assigned managed identity
+
+When you use serverless compute in pipeline jobs, we recommend that you set user identity at the individual step level that will be run on a compute, rather than at the root pipeline level. (Although the identity setting is supported at both root pipeline and step levels, the step-level setting takes precedence if both are set. However, for pipelines containing pipeline components, identity must be set on individual steps that will be run. Identity set at the root pipeline or pipeline component level won't function. Therefore, we suggest setting identity at the individual step level for the sake of simplicity.)
 
 # [Python SDK](#tab/python)
 
@@ -434,14 +434,15 @@ def my_pipeline():
     train_job = train_component(
         training_data=Input(type="uri_folder", path="./data")
     )
-    # Set managed identity for the job
+    # Set managed identity for the job.
     train_job.identity = {"type": "user_identity"}
     return {"train_output": train_job.outputs}
 
 pipeline_job = my_pipeline()
-# set pipeline to use serverless compute
+# Configure the pipeline to use serverless compute.
 pipeline_job.settings.default_compute = "serverless"
 ```
+
 # [Azure CLI](#tab/cli)
 ```YAML    
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
@@ -462,8 +463,8 @@ inputs:
 ```
 
 ---
-## Next steps
+## Related content
 
-View more examples of training with serverless compute:
-* [Quick Start](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
-* [Train Model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)
+More examples of using serverless compute for training:
+* [First look at Azure Machine Learning](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/quickstart.ipynb)
+* [Train a model](https://github.com/Azure/azureml-examples/blob/main/tutorials/get-started-notebooks/train-model.ipynb)
