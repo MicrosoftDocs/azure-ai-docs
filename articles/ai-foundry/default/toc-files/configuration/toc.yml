@@ -19,6 +19,8 @@ items:
   href: https://azure.microsoft.com/explore/global-infrastructure/products-by-region/
 - name: Foundry Models deployment offers
   items:
+  - name: Deployment offers and types
+    href: ../../../foundry-models/concepts/deployment-types.md
   - name: Standard deployment offer
     href:
   - name: Provisioned deployment offer
