@@ -32,7 +32,6 @@ The responses API is currently available in the following regions:
 - brazilsouth
 - canadacentral
 - canadaeast  
-- centralus
 - eastus
 - eastus2
 - francecentral
