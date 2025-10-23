@@ -1,10 +1,8 @@
 items:
 - name: Ask the Foundry agent
   href: ../../../foundry-agent/ask-foundry-agent.md
-- name: Set up your AI developer environment
+- name: Set up your developer environment
   href: ../../../how-to/develop/install-cli-sdk.md
-- name: Set up your agent development environment
-  href: ../../../agents/environment-setup.md
 - name: Quickstart
   href: ../../../quickstarts/get-started-code.md
 - name: "Tutorial: The developer journey"
