@@ -1,6 +1,8 @@
 items:
   - name: Deployment types
     href: ../../../foundry-models/concepts/deployment-types.md
+  - name: Azure OpenAI in Foundry Models
+    href: ../../../openai/supported-languages.md
   - name: Quickstarts
     items:
       - name: Audio generation
