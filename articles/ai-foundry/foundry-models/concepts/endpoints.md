@@ -41,6 +41,7 @@ An Azure AI Foundry resource can have many model deployments. You only pay for i
 
 For more information about creating deployments, see [Add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
+::: moniker range="foundry-classic"
 ## Endpoints
 
 Azure AI Foundry services provide multiple endpoints depending on the type of work you want to perform:
@@ -74,6 +75,7 @@ For a chat model, you can create a request as follows:
 
 If you specify a model name that doesn't match any model deployment, you get an error that the model doesn't exist. You control which models are available to users by creating model deployments. For more information, see [add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
+::: moniker-end
 
 ## Azure OpenAI inference endpoint
 
@@ -99,10 +101,13 @@ To use keyless authentication, [configure your resource and grant access to user
 
 [!INCLUDE [code-create-chat-client-entra](../../foundry-models/includes/code-create-chat-client-entra.md)]
 
+::: moniker range="foundry-classic"
 ## Limitations
 
 * You can't use Azure OpenAI Batch with the Foundry Models endpoint. You have to use the dedicated deployment URL as explained in [Batch API support in Azure OpenAI documentation](../../../ai-services/openai/how-to/batch.md#api-support).
 * Real-time API isn't supported in the inference endpoint. Use the dedicated deployment URL.
+
+::: moniker-end
 
 ## Related content
 
