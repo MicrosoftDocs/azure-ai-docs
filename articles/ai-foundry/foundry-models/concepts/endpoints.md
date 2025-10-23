@@ -48,7 +48,7 @@ Azure AI Foundry services provide multiple endpoints depending on the type of wo
 * [Azure AI inference endpoint](#azure-ai-inference-endpoint)
 * [Azure OpenAI inference endpoint](#azure-openai-inference-endpoint)
 
-
+::: moniker range="foundry-classic"
 ## Azure AI inference endpoint
 
 The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md), which supports the following modalities:
@@ -74,6 +74,7 @@ For a chat model, you can create a request as follows:
 
 If you specify a model name that doesn't match any model deployment, you get an error that the model doesn't exist. You control which models are available to users by creating model deployments. For more information, see [add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
+::: moniker-end
 
 ## Azure OpenAI inference endpoint
 
