@@ -51,3 +51,5 @@ items:
     href: ../../../how-to/develop/trace-agents-sdk.md
 - name: Create a workflow
   href: ../../agents/concepts/workflow.md
+- name: Playgrounds and quick evaluation
+  href: ../../../concepts/concept-playgrounds.md
