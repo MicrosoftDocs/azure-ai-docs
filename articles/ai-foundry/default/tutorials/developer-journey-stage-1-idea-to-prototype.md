@@ -13,7 +13,7 @@ ai.usage: ai-assisted
 
 # Idea to prototype
 
-This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You build a **Modern Workplace Assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
+This tutorial covers the first stage of the Azure AI Foundry developer journey: from an initial idea to a working prototype. You build a **modern workplace assistant** that combines internal company knowledge with external technical guidance by using the Azure AI Foundry SDK.
 
 **Business scenario**: Create an AI assistant that helps employees by combining:
 
@@ -369,67 +369,67 @@ After you set up the environment, dependencies, and code, you can run the comple
 
 1. **Configure environment**:
 
-```bash
-cp .env.template .env
-# Edit .env with your Azure AI Foundry project details
-pip install -r requirements.txt
-```
+   ```bash
+   cp .env.template .env
+   # Edit .env with your Azure AI Foundry project details
+   pip install -r requirements.txt
+   ```
 
 2. **Run the Modern Workplace Assistant**:
 
-```bash
-python main.py
-```
+   ```bash
+   python main.py
+   ```
 
 3. **Run business evaluation**:
 
-```bash
-python evaluate.py
-```
+   ```bash
+   python evaluate.py
+   ```
 
 # [C#](#tab/csharp)
 
 1. **Configure environment**:
 
-```bash
-cp .env.template .env
-# Edit .env with your Azure AI Foundry project details
-dotnet restore
-```
+   ```bash
+   cp .env.template .env
+   # Edit .env with your Azure AI Foundry project details
+   dotnet restore
+   ```
 
 2. **Run the Modern Workplace Assistant**:
 
-```bash
-dotnet run
-```
-
+   ```bash
+   dotnet run
+   ```
+   
 3. **Run business evaluation**:
 
-```bash
-dotnet run --project Evaluate
-```
+   ```bash
+   dotnet run --project Evaluate
+   ```
 
 # [Java](#tab/java)
 
 1. **Configure environment**:
 
-```bash
-cp .env.template .env
-# Edit .env with your Azure AI Foundry project details
-mvn clean compile
-```
+   ```bash
+   cp .env.template .env
+   # Edit .env with your Azure AI Foundry project details
+   mvn clean compile
+   ```
 
 2. **Run the Modern Workplace Assistant**:
 
-```bash
-mvn exec:java -Dexec.mainClass="Main"
-```
+   ```bash
+   mvn exec:java -Dexec.mainClass="Main"
+   ```
 
 3. **Run business evaluation**:
 
-```bash
-mvn exec:java -Dexec.mainClass="Evaluate"
-```
+   ```bash
+   mvn exec:java -Dexec.mainClass="Evaluate"
+   ```
 
 ---
 
