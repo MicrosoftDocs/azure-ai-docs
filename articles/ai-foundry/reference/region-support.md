@@ -19,6 +19,8 @@ ms.custom: references_regions, build-2024
 
 Azure AI Foundry is currently available in the following Azure regions. You can create [either a [!INCLUDE [fdp-project-name](../includes/fdp-project-name.md)] or [!INCLUDE [hub-project-name](../includes/hub-project-name.md)] in Azure AI Foundry](../how-to/create-projects.md) in these regions.
 
+:::row:::
+    :::column:::
 - Australia East
 - Brazil South
 - Canada Central
@@ -30,6 +32,8 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - France Central
 - Germany West Central
 - Italy North
+    :::column-end:::
+    :::column:::
 - Japan East
 - Korea Central
 - North Central US
@@ -41,6 +45,8 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - South East Asia
 - South India
 - Southeast Asia
+    :::column-end:::
+    :::column:::
 - Spain Central
 - Sweden Central
 - Switzerland North
@@ -51,6 +57,8 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - West US 3
 - US Gov Virginia
 - US Gov Arizona
+:::column-end:::
+:::row-end:::
 
 ## Azure AI Foundry features
  
