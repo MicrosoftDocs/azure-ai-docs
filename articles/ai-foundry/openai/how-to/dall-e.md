@@ -51,7 +51,7 @@ Customers can learn more about these safeguards and how to customize them here:
 - Learn more: Explore[content filtering](https://int.ai.azure.com/doc/azure/ai-foundry/openai/concepts/content-filter?tid=7f292395-a08f-4cc0-b3d0-a400b023b0d2)
 - Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
-Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations of images containing minors (e.g., applying image edits).
+Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations (i.e. applying image edits) to images containing minors.
 If approved, such images will not be automatically blocked by the system. Stay tuned for an upcoming form. 
 
 
