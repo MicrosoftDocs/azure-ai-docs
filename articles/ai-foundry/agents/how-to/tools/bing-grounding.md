@@ -56,7 +56,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 ## Setup  
 
 > [!NOTE]
-> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts\model-region-support.md) that Azure AI Foundry Agent Service supports, except `gpt-4o-mini, 2024-07-18`. 
+> 1. Grounding with Bing Search works with [all Azure OpenAI models](../../concepts\model-region-support.md) that Azure AI Foundry Agent Service supports, except `gpt-4o-mini, 2024-07-18` and gpt-5 models. 
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md).
 
