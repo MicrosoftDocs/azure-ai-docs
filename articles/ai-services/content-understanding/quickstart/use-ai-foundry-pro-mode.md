@@ -1,5 +1,5 @@
 ---
-title: "Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal"
+title: "Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal (preview)"
 titleSuffix: Azure AI services
 description: Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal
 author: PatrickFarley 
@@ -10,7 +10,7 @@ ms.topic: quickstart
 ms.date: 05/29/2025
 ---
 
-# Quickstart: Use Content Understanding with multiple files
+# Quickstart: Use Content Understanding with multiple files (preview)
 
 This quickstart shows you how to use the Content Understanding service in the [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding) to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
 
@@ -38,7 +38,7 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task is
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-2. In this guide, we use a `multi-file task` utilizing Content Understanding Pro mode, but if you're interested in creating a single-file task utilizing Standard mode, refer to [Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal](./use-ai-foundry.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes](../concepts/standard-pro-modes.md).
+2. In this guide, we use a `multi-file task` utilizing Content Understanding Pro mode, but if you're interested in creating a single-file task utilizing Standard mode, refer to [Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal](./use-ai-foundry.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 

@@ -55,7 +55,7 @@ This article offers a reference of the quotas and limits for the Azure AI Conten
 | ✓ `.txt` <br/> ✓ `.html`, `.md`, `.rtf` <br/> ✓ `.eml`, `.msg` <br/> ✓ `.xml`| ≤ 1 MB | ≤ 1M characters |
 
 > [!NOTE]
-> [Pro mode](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
+> [Pro mode (preview)](./concepts/standard-pro-modes.md) currently only supports .pdf, .tiff, and image file types as input.
 > Total input may not exceed 100 MB and 150 pages.
 
 #### Image
