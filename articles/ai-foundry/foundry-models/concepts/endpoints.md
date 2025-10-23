@@ -41,6 +41,7 @@ An Azure AI Foundry resource can have many model deployments. You only pay for i
 
 For more information about creating deployments, see [Add and configure model deployments](../../model-inference/how-to/create-model-deployments.md).
 
+::: moniker range="foundry-classic"
 ## Endpoints
 
 Azure AI Foundry services provide multiple endpoints depending on the type of work you want to perform:
@@ -48,7 +49,7 @@ Azure AI Foundry services provide multiple endpoints depending on the type of wo
 * [Azure AI inference endpoint](#azure-ai-inference-endpoint)
 * [Azure OpenAI inference endpoint](#azure-openai-inference-endpoint)
 
-::: moniker range="foundry-classic"
+
 ## Azure AI inference endpoint
 
 The **Azure AI inference endpoint**, usually of the form `https://<resource-name>.services.ai.azure.com/models`, enables you to use a single endpoint with the same authentication and schema to generate inference for the deployed models in the resource. All Foundry Models support this capability. This endpoint follows the [Azure AI Model Inference API](../../model-inference/reference/reference-model-inference-api.md), which supports the following modalities:
