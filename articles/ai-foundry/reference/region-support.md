@@ -31,9 +31,9 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - East US 2
 - France Central
 - Germany West Central
+- Italy North
     :::column-end:::
     :::column:::
-- Italy North
 - Japan East
 - Korea Central
 - North Central US
@@ -43,10 +43,10 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 - South Africa North
 - South Central US
 - South East Asia
-    :::column-end:::
-    :::column:::
 - South India
 - Southeast Asia
+    :::column-end:::
+    :::column:::
 - Spain Central
 - Sweden Central
 - Switzerland North
