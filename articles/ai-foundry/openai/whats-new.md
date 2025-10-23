@@ -21,6 +21,11 @@ This article provides a summary of the latest releases and major documentation u
 
 ## October 2025
 
+
+### Realtime API support for SIP
+
+The Realtime API now supports SIP, enabling telephony connections to realtimeapi.For more information, see the [Realtime SIP documentation](./how-to/realtime-audio-sip.md).
+
 ### GPT-4o audio model released
 
 - The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.

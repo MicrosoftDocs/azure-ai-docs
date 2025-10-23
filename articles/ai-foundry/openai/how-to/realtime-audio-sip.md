@@ -1,0 +1,279 @@
+---
+title: 'Use the GPT Realtime API via SIP'
+titleSuffix: Azure OpenAI in Azure AI Foundry Models
+description: Learn how to use the GPT Realtime API for speech and audio via SIP.
+manager: nitinme
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
+ms.topic: how-to
+ms.date: 10/23/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.custom: references_regions
+recommendations: false
+---
+
+# Use the GPT Realtime API via SIP
+
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+
+You can use the Realtime API via WebRTC, SIP or WebSocket to send audio input to the model and receive audio responses in real time. Follow the instructions in this article to get started with the Realtime API via SIP.
+
+SIP is a protocol used to make phone calls over the internet. With SIP and the Realtime API you can direct incoming phone calls to the API.
+
+## Supported models
+
+The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
+- `gpt-4o-mini-realtime-preview` (2024-12-17)
+- `gpt-4o-realtime-preview` (2024-12-17)
+- `gpt-realtime` (version 2025-08-28)
+- `gpt-realtime-mini` (version 2025-10-06)
+
+## Prerequisites
+
+Before you can use GPT real-time audio, you need:
+
+- An Azure subscription - <a href="https://azure.microsoft.com/free/cognitive-services" target="_blank">Create one for free</a>.
+- An Azure OpenAI resource created in a [supported region](#supported-models). For more information, see [Create a resource and deploy a model with Azure OpenAI](create-resource.md).
+- You need a deployment of the `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, `gpt-realtime`, or `gpt-realtime-mini` model in a supported region as described in the [supported models](#supported-models) section in this article. You can deploy the model from the [Azure AI Foundry model catalog](../../../ai-foundry/how-to/model-catalog-overview.md) or from your project in Azure AI Foundry portal. 
+
+## Connecting to SIP 
+
+If you want to connect a phone number to the Realtime API, use a SIP trunking provider (e.g., Twilio). This is a service that converts your phone call to IP traffic. After you purchase a phone number from your SIP trunking provider, follow the instructions below.
+
+Start by creating a webhook for incoming calls with the Azure OpenI Webhook Service. We have a [REST API](../../../ai-foundry/how-to/register-a-webhook-endpoint.md)
+
+Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal id of your Azure Resource. Example: 
+
+1) Find the internal id of your Azure Open AI Resource
+2) Your project id = "proj_<internalId>" This might look like "proj_88c4a88817034471a0ba0fcae24ceb1b"
+
+:::image type="content" source="../media/how-to/realtime-audio-sip/find-internal-id.png" alt-text="Screenshot of finding the internal-id in the azure portal." lightbox="../media/how-to/realtime-audio-sip/find-internal-id.png":::
+
+Your sip invites will use this as the user: e.g., sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls.
+
+Note that swedencentral and eastus2 are currently supported regions. 
+
+## Handling Incoming Calls
+
+When Azure OpenAI receives SIP traffic associated with your project, your webhook endpoint will receive in incoming event message. The event fired will be of type = realtime.call.incoming like the example below. 
+
+```
+POST https://my_website.com/webhook_endpoint
+user-agent: OpenAI/1.0 (+https://platform.openai.com/docs/webhooks)
+content-type: application/json
+webhook-id: wh_685342e6c53c8190a1be43f081506c52 # unique id for idempotency
+webhook-timestamp: 1750287078 # timestamp of delivery attempt
+webhook-signature: v1,Signature # signature to verify authenticity from OpenAI
+
+{
+  "object": "event",
+  "id": "evt_685343a1381c819085d44c354e1b330e",
+  "type": "realtime.call.incoming",
+  "created_at": 1750287018, // Unix timestamp
+  "data": {
+    "call_id": "some_unique_id",
+    "sip_headers": [
+      { "name": "From", "value": "sip:+142555512112@sip.example.com" },
+      { "name": "To", "value": "sip:+18005551212@sip.example.com" },
+      { "name": "Call-ID", "value": "rtc_xyz"}
+    ]
+  }
+}
+```
+
+From your webhook endpoint, you can accept, reject or refer this call, using the call_id value from the webhook event. When accepting the call, you'll provide the needed configuration (instructions, voice, etc) for the Realtime API session. Once established, you can set up a WebSocket and monitor the session as usual. The APIs to accept, reject, monitor, refer, and hangup the call are documented below.
+
+### Accept the call
+
+Use the Accept call endpoint to approve the inbound call and configure the realtime session that will answer it. Send the same parameters you would send in a to create client secret (you can also optionally include other realtime session information - just like a session.update message but type, model and instructions are required).
+
+Note: for authorization - you can either use api-key header or the Bearer token as shown below. Remember the model name is actually the name of your deployment. 
+
+```
+curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/accept" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+        "type": "realtime",
+        "model": "gpt-realtime",
+        "instructions": "You are Alex, a friendly concierge for Example Corp."
+      }'
+```
+
+The request path must include
+
+* The call_id from the realtime.call.incoming webhook event
+* Authorization (or api-key) header 
+
+The endpoint returns 200 OK once the SIP leg is ringing and the realtime session is being established.
+
+### Reject the call
+
+Use the Reject call endpoint to decline an invite when you do not want to handle the incoming call, (e.g., from an unsupported country code.) Supply the call_id path parameter and an optional SIP status_code (e.g., 486 to indicate "busy") in the JSON body to control the response sent back to the carrier.
+
+```
+curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/reject" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"status_code": 486}'
+```
+
+If no status code is supplied the API uses 603 Decline by default. A successful request responds with 200 OK after OpenAI delivers the SIP response.
+
+### Redirect the call
+Transfer an active call using the Refer call endpoint. Provide the call_id as well as the target_uri that should be placed in the SIP Refer-To header (for example tel:+14155550123 or sip:agent@example.com).
+
+```
+curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/refer" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{"target_uri": "tel:+14155550123"}'
+```
+
+OpenAI returns 200 OK once the REFER is relayed to your SIP provider. The downstream system handles the rest of the call flow for the caller.
+
+### Monitor call events and issue session commands and updates
+
+After you accept a call, open a WebSocket connection to the same session to stream events and issue realtime commands. Note that when connecting to an existing call using the call_id parameter, the model argument is not used (as it has already been configured via the accept endpoint). The example below shows a common scenario, issuing a "response.create" message to instruct the realtimeapi system to "answer the phone and say hello".
+
+WebSocket request
+
+```
+GET wss://<your azure resource name>.openai.azure.com/openai/v1/realtime?call_id={call_id}
+```
+
+**Query parameters**
+
+|Parameter|Type|Description
+|-------|-----|-----------|
+|call_id|string|Identifier from |the realtime.call.incoming webhook.
+
+**Headers**
+
+Authorization: Bearer $TOKEN (or api-key: your api key)
+
+The WebSocket behaves exactly like any other Realtime API connection.
+
+Send response.create , and other client events to control the call, and listen for server events to track progress. See Webhooks and server-side controls for more information.
+
+The following code snippet illustrates how a websocket connection is made. 
+
+```
+import WebSocket from "ws";
+
+const callId = "rtc_u1_9c6574da8b8a41a18da9308f4ad974ce";
+const ws = new WebSocket(`wss://<your azure resource name>.openai.azure.com/openai/v1/realtime?call_id=${callId}`, {
+    headers: {
+        api-key: `${process.env.OPENAI_API_KEY}`,
+    },
+});
+
+ws.on("open", () => {
+    ws.send(
+        JSON.stringify({
+            type: "response.create",
+        })
+    );
+});
+```
+
+### Hang up the call
+
+End the session with the Hang up endpoint when your application should disconnect the caller. This endpoint can be used to terminate both SIP and WebRTC realtime sessions.
+
+```
+curl -X POST "https://<your azure resoure name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/hangup" \
+  -H "Authorization: Bearer $TOKEN"
+The API responds with 200 OK when it starts tearing down the call.
+```
+
+## Sample Webhook Endpoint
+
+The following is a python example of a realtime.call.incoming handler. It accepts the call and then logs all the events from the Realtime API.
+
+```
+from flask import Flask, request, Response, jsonify, make_response
+from openai import OpenAI, InvalidWebhookSignatureError
+import asyncio
+import json
+import os
+import requests
+import time
+import threading
+import websockets
+
+app = Flask(__name__)
+client = OpenAI(
+    webhook_secret=os.environ["OPENAI_WEBHOOK_SECRET"]
+)
+
+AUTH_HEADER = {
+    "api-key": os.getenv("OPENAI_API_KEY")
+}
+
+call_accept = {
+    "type": "realtime",
+    "instructions": "You are a support agent.",
+    "model": "gpt-realtime",
+}
+
+response_create = {
+    "type": "response.create",
+    "response": {
+        "instructions": (
+            "Say to the user 'Thank you for calling, how can I help you'"
+        )
+    },
+}
+
+
+async def websocket_task(call_id):
+    try:
+        async with websockets.connect(
+            "wss://api.openai.com/v1/realtime?call_id=" + call_id,
+            additional_headers=AUTH_HEADER,
+        ) as websocket:
+            await websocket.send(json.dumps(response_create))
+
+            while True:
+                response = await websocket.recv()
+                print(f"Received from WebSocket: {response}")
+    except Exception as e:
+        print(f"WebSocket error: {e}")
+
+
+@app.route("/", methods=["POST"])
+def webhook():
+    try:
+        event = client.webhooks.unwrap(request.data, request.headers)
+
+        if event.type == "realtime.call.incoming":
+            requests.post(
+                "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/"
+                + event.data.call_id
+                + "/accept",
+                headers={**AUTH_HEADER, "Content-Type": "application/json"},
+                json=call_accept,
+            )
+            threading.Thread(
+                target=lambda: asyncio.run(
+                    websocket_task(event.data.call_id)
+                ),
+                daemon=True,
+            ).start()
+            return Response(status=200)
+    except InvalidWebhookSignatureError as e:
+        print("Invalid signature", e)
+        return Response("Invalid signature", status=400)
+
+
+if __name__ == "__main__":
+    app.run(port=8000)
+
+```
+
+## Next steps
+
+Now that you've connected over SIP, you can work on building your realtime application and finessing your prompts.
+
