@@ -32,7 +32,6 @@ The responses API is currently available in the following regions:
 - brazilsouth
 - canadacentral
 - canadaeast  
-- centralus
 - eastus
 - eastus2
 - francecentral
@@ -343,7 +342,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 
 ## Delete response
 
-By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
+By default response data is retained for 30 days. To delete a response, you can use `response.delete ("{response_id}")`
 
 ```python
 import os

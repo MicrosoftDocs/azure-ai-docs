@@ -14,7 +14,7 @@ ms.custom: references_regions, build-2024
 
 # Language and voice support for the Speech service
 
-The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), [speaker recognition](speaker-recognition-overview.md), and more service features.
+The following tables summarize language support for [speech to text](speech-to-text.md), [text to speech](text-to-speech.md), [pronunciation assessment](how-to-pronunciation-assessment.md), [speech translation](speech-translation.md), and more service features.
 
 You can also get a list of locales and voices supported for each specific region or endpoint via:
 - [Speech SDK](speech-sdk.md)
@@ -172,11 +172,6 @@ The table in this section summarizes the locales supported for [Language identif
 
 [!INCLUDE [Language support include](includes/language-support/language-identification.md)]
 
-# [Speaker recognition](#tab/speaker-recognition)
-
-The table in this section summarizes the locales supported for Speaker recognition. Speaker recognition is mostly language agnostic. The universal model for text-independent speaker recognition combines various data sources from multiple languages. We tuned and evaluated the model on these languages and locales. For more information on speaker recognition, see the [overview](speaker-recognition-overview.md).
-
-[!INCLUDE [Language support include](includes/language-support/speaker-recognition.md)]
 
 # [Custom keyword](#tab/custom-keyword)
 
@@ -184,11 +179,6 @@ The table in this section summarizes the locales supported for custom keyword an
 
 [!INCLUDE [Language support include](includes/language-support/custom-keyword.md)]
 
-# [Intent Recognition](#tab/intent-recognizer-pattern-matcher)
-
-The table in this section summarizes the locales supported for the Intent Recognizer Pattern Matcher.
-
-[!INCLUDE [Language support include](includes/language-support/intent-recognizer-pattern-matcher.md)]
 
 ***
 
