@@ -225,7 +225,7 @@ Face identification description is an add-on that provides context to content ex
 The face add-on enables grouping and identification as output from the content extraction section. To enable face capabilities set `"enableFace":true` in the analyzer configuration.
 
 * **Grouping:** Grouped faces appearing in a video to extract one representative face image for each person and provides segments where each one is present. The grouped face data is available as metadata and can be used to generate customized metadata fields when `returnDetails: true` for the analyzer.
-* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer. To use this capability, first you must create a personDirectory then reference it in the analyzer. For details on how to do that, check out [How to build a person directory](../../content-understanding/tutorial/build-person-directory.md)
+* **Identification:** Labels individuals in the video with names based on a Face API person directory. Customers can enable this feature by supplying a name for a Face API directory in the current resource in the `personDirectoryId` property of the analyzer. To use this capability, first you must create a personDirectory then reference it in the analyzer. For details on how to do that, check out [How to build a person directory (preview)](../../content-understanding/tutorial/build-person-directory.md)
 
 ### Field Extraction – Face description
 
