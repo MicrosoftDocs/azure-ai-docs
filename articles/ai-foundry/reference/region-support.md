@@ -76,7 +76,7 @@ Azure AI Foundry is currently available in the following Azure regions. You can 
 ::: moniker-end
 
 <!-- Government regions for foundry-classic only at this time -->
-:::moniker range="foundry-classic"
+:::moniker range="foundry"
 :::row:::
     :::column:::
 - Australia East
