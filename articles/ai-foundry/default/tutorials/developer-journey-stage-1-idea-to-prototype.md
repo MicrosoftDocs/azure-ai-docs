@@ -482,23 +482,23 @@ The evaluation tests:
 
 This ultra-minimal sample provides the foundation for enterprise AI development:
 
-### Tutorial 2: Governance and monitoring
-- Implement content filtering and safety guardrails
-- Add comprehensive evaluation metrics and monitoring  
-- Set up continuous evaluation pipelines
-- Apply governance policies and compliance controls
+### [Stage 2: Governance and monitoring]()
+- Implement content filtering and safety guardrails.
+- Add comprehensive evaluation metrics and monitoring.
+- Set up continuous evaluation pipelines.
+- Apply governance policies and compliance controls.
 
-### Tutorial 3: Production deployment
-- Deploy agents to Azure AI Foundry with proper scaling
-- Implement AI Gateway for cost and usage monitoring
-- Add advanced observability and performance tracking
-- Set up production-ready security and access controls
+### [Stage 3: Production deployment]()
+- Deploy agents to Azure AI Foundry with proper scaling.
+- Implement AI Gateway for cost and usage monitoring.
+- Add advanced observability and performance tracking.
+- Set up production-ready security and access controls.
 
 ### Immediate enhancements
-- Add more data sources (Azure AI Search, databases)
-- Implement advanced evaluation methods (AI-assisted evaluation)
-- Create custom tools for business-specific operations
-- Add conversation memory and personalization
+- Add more data sources ([Azure AI Search](), [databases]()).
+- Implement advanced evaluation methods ([AI-assisted evaluation]()).
+- Create [custom tools]() for business-specific operations.
+- Add [conversation memory and personalization]().
 
 ## Related content
 
