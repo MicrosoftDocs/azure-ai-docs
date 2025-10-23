@@ -8,7 +8,7 @@ ms.author: jburchel
 ms.reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
-ms.topic: how-to-guide
+ms.topic: how-to
 ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
