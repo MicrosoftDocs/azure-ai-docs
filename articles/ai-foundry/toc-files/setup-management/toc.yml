@@ -69,13 +69,19 @@ items:
   href: ../../concepts/ai-foundry-consolidated-view.md
 - name: Status dashboard
   href: ../../azure-ai-foundry-status-dashboard-documentation.md  
-- name: Connect other services
+- name: Connect to other services
   items:
   - name: Create a connection
     href: ../../how-to/connections-add.md
     displayName: code
   - name: Create a Key Vault
     href: ../../how-to/set-up-key-vault-connection.md
+  - name: Connect to your own Azure storage
+    items:
+    - name: For Azure AI Foundry
+      href: ../../how-to/bring-your-own-azure-storage-foundry.md
+    - name: For Speech and Language services
+      href: ../../how-to/bring-your-own-azure-storage-speech-language-services.md
 - name: Costs and quotas
   items:
   - name: Managing quotas and limits
