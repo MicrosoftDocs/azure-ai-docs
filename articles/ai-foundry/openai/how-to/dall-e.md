@@ -52,7 +52,7 @@ Customers can learn more about these safeguards and how to customize them here:
 - Request customization: Apply to [opt out of content filtering](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUMlBQNkZMR0lFRldORTdVQzQ0TEI5Q1ExOSQlQCN0PWcu)
 
 Certain Enterprise Agreement (EA) customers, those with significant usage volume, or customers with approved use cases may also be eligible to enable photo transformations (i.e. applying image edits) to images containing minors.
-If approved, such images will not be automatically blocked by the system. Stay tuned for an upcoming form. 
+If you're approved, such images will not be automatically blocked by the system.
 
 
 ## Call the image generation API
