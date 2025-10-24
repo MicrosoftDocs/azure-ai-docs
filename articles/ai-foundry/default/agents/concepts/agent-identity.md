@@ -20,7 +20,7 @@ Agent identities integrate seamlessly with Azure AI Foundry, automatically provi
 ## Prerequisites
 
 * Understanding of Microsoft Entra ID and OAuth authentication
-* Familiarity with Azure role-based access control (RBAC)
+* Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)
 * Basic knowledge of AI agents and their runtime requirements
 
 ## Agent identity
