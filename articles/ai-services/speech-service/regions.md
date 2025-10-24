@@ -7,7 +7,7 @@ reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 10/21/2025
+ms.date: 10/24/2025
 ms.author: jagoerge
 ms.reviewer: pafarley
 ms.custom: references_regions
@@ -59,7 +59,7 @@ The regions in these tables support most of the core features of the Speech serv
 | Middle East | UAE North  | `uaenorth`  |
 | South America | Brazil South   | `brazilsouth` |
 | Qatar   | Qatar Central | `qatarcentral`  |
-| US  | Central US<sup>1</sup> | `centralus`   |
+| US  | Central US | `centralus`   |
 | US  | East US  | `eastus` |
 | US  | East US 2  | `eastus2`   |
 | US  | North Central US   | `northcentralus`|
@@ -68,8 +68,6 @@ The regions in these tables support most of the core features of the Speech serv
 | US  | West US  | `westus` |
 | US  | West US 2  | `westus2`   |
 | US  | West US 3  | `westus3`   |
-
-<sup>1</sup> Currently this region isn't available via a resource of kind AIServices.
 
 > [!NOTE]
 > The following regions supported by a resource of kind AIServices, are currently not supported for Speech processing: `southindia`, `spaincentral`.
