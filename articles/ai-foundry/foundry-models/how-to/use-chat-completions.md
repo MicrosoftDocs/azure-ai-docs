@@ -39,7 +39,7 @@ For more information on the v1 Azure OpenAI APIs, see [API evolution](../../open
 
 ## Generate chat completions
 
-For Azure OpenAI in Foundry Models, use the [Responses API](../../openai/supported-languages.md#responses-api)) to make chat completion calls. For other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, the v1 Azure OpenAI API also allows you to make chat completion calls by using the v1 chat completions syntax.
+For Azure OpenAI in Foundry Models, use the [Responses API](../../openai/supported-languages.md#responses-api) to make chat completion calls. For other [Foundry Models sold directly by Azure](../concepts/models-sold-directly-by-azure.md), such as DeepSeek and Grok models, the v1 Azure OpenAI API also allows you to make chat completion calls by using the v1 chat completions syntax.
 
 In the following examples, you create the client to consume the model and then send a basic request to the model. 
 
@@ -425,7 +425,7 @@ public class OpenAITest {
                     .build();
 
             ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
-                            .model(deploymentName)
+                            .model(modelDeploymentName)
                             .input("What's the capital of France?");
             
             
@@ -473,7 +473,7 @@ public class OpenAITest {
     public static void main(String[] args) {
 
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String deploymentName = "grok-3-mini"; //replace with you model deployment name
+        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -484,7 +484,7 @@ public class OpenAITest {
                 .build();
 
             ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
-                    .model(deploymentName)
+                    .model(modelDeploymentName)
                     .input("What's the capital of France?");
 
 
@@ -653,20 +653,11 @@ Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 API keys aren't recommended for production use because they're less secure than other authentication methods.
 
 ```javascript
-import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
 import { OpenAI } from "openai";
 
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: process.env['OPENAI_API_KEY'] //Your Azure OpenAI API key
-});
-
-const tokenProvider = getBearerTokenProvider(
-    new DefaultAzureCredential(),
-    'https://cognitiveservices.azure.com/.default');
-const client = new OpenAI({
-    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
-    apiKey: tokenProvider
 });
 
 const messages = [
@@ -944,7 +935,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 
 - [Work with chat completions API](../../openai/how-to/chatgpt.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
-- [Use embeddings models](../../model-inference/how-to/use-embeddings.md)
-- [Use image embeddings models](../../model-inference/how-to/use-image-embeddings.md)
-- [Use reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
+- [Use embeddings models](use-embeddings.md)
+- [Use image embeddings models](use-image-embeddings.md)
+- [Use reasoning models](use-chat-reasoning.md)
 - [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
