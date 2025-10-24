@@ -114,7 +114,7 @@ You can pass the following properties to create a web knowledge source.
 
 ## Assign to a knowledge base
 
-If you're satisfied with the web source, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the web knowledge source, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
 Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
 
