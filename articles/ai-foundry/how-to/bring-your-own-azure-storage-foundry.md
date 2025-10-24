@@ -1,9 +1,9 @@
 ---
-title: Connect Azure Storage accounts to AI Foundry
+title: Connect to your own storage
 titleSuffix: Azure AI Foundry
 ms.reviewer: andyaviles
-description: Learn how to bring your own Azure Storage account to Azure AI Foundry for agents, evaluations, datasets, and other capabilities.
-#customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own Azure Storage account instead of Microsoft-managed storage.
+description: Learn how to bring your own storage to Azure AI Foundry for agents, evaluations, datasets, and other capabilities.
+#customer intent: As a developer, I want to set up capability hosts for agents so that I can use my own storage instead of Microsoft-managed storage.
 author: jonburchel
 ms.author: jburchel
 ms.service: azure-ai-foundry
@@ -13,26 +13,26 @@ ms.date: 10/24/2025
 ai-usage: ai-assisted
 ---
 
-# Connect Azure Storage accounts to AI Foundry
+# Connect to your own storage
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Azure AI Foundry supports connecting your own Azure Storage accounts for various features and capabilities. You can manage storage connections at both the resource level and project level, giving you flexibility in how you organize and secure your data.
+Azure AI Foundry supports connecting your own storage for various features and capabilities. You can manage storage connections at both the resource level and project level, giving you flexibility in how you organize and secure your data.
 
-This article shows you how to connect your Azure Storage accounts to AI Foundry by using three different approaches depending on which features you plan to use. Each approach serves specific capabilities and has different configuration requirements.
+This article shows you how to connect your storage to AI Foundry by using three different approaches depending on which features you plan to use. Each approach serves specific capabilities and has different configuration requirements.
 
 ## Prerequisites
 
-Before connecting your Azure Storage account, ensure you have:
+Before connecting your storage, ensure you have:
 
 - An Azure subscription with an active AI Foundry resource
-- An Azure Storage account in the same subscription
-- Contributor or Owner permissions on both the AI Foundry resource and Storage account
+- A storage account in the same subscription
+- Contributor or Owner permissions on both the AI Foundry resource and storage account
 - Understanding of your feature requirements (agents, evaluations, datasets, speech, or language)
 
 ## Understand storage connection approaches
 
-Azure AI Foundry provides three methods to connect Azure Storage accounts, each serving different features:
+Azure AI Foundry provides three methods to connect to storage, each serving different features:
 
 | **Approach** | **Features Supported** | **Scope** |
 |-------------|------------------------|-----------|
@@ -70,7 +70,7 @@ Create a storage connection to enable agents, evaluations, datasets, and content
 
    - **Name**: Enter a descriptive name for your connection
    - **Subscription**: Select your Azure subscription
-   - **Storage account**: Select your Azure Storage account
+   - **Storage account**: Select your storage account
    - **Authentication**: Choose your preferred authentication method (system-assigned managed identity recommended)
 
 1. Select **Create** to establish the connection.
@@ -99,7 +99,7 @@ After creating your AI Foundry project:
 
 1. Verify the capability host is properly linked to your storage connection.
 
-Your agents standard setup now uses your own Azure Storage account instead of Microsoft-managed storage.
+Your agents standard setup now uses your own storage account instead of Microsoft-managed storage.
 
 ## Set userOwnedStorage for Speech and Language
 
@@ -144,11 +144,11 @@ Follow these steps in order to ensure proper configuration:
 
 1. Create a project-level capability host for agents.
 
-1. Create a resource-level Azure Storage account connection through Foundry connections.
+1. Create a resource-level storage account connection through Foundry connections.
 
 1. Navigate to the AI Foundry portal and configure content understanding to use your storage connection.
 
-After completing these steps, all AI Foundry features use your customer-managed Azure Storage account instead of Microsoft-managed storage.
+After completing these steps, all AI Foundry features use your customer-managed storage account instead of Microsoft-managed storage.
 
 ## Related content
 
@@ -156,4 +156,4 @@ After completing these steps, all AI Foundry features use your customer-managed 
 - [Understand agents standard setup](../agents/concepts/standard-agent-setup.md).
 - [Add connections to your project](connections-add.md).
 - [Explore AI Foundry REST API](/rest/api/aifoundry/aiprojects/datasets).
-- [Connect Azure Storage accounts for Speech and Language resources](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal).
+- [Connect your own storage to Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal).

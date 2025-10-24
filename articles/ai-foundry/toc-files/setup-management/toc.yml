@@ -76,11 +76,11 @@ items:
     displayName: code
   - name: Create a Key Vault
     href: ../../how-to/set-up-key-vault-connection.md
-  - name: Connect to your own Azure storage
+  - name: Connect to your own storage
     items:
-    - name: For Azure AI Foundry
+    - name: Overview
       href: ../../how-to/bring-your-own-azure-storage-foundry.md
-    - name: For Speech and Language services
+    - name: For Speech/Language
       href: ../../how-to/bring-your-own-azure-storage-speech-language-services.md
 - name: Costs and quotas
   items:
