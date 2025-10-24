@@ -1,11 +1,18 @@
 ﻿---
-author: PatrickFarley
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/24/2025
 ms.author: pafarley
 ms.custom: references_regions
 ---
+
+### October 2025 release
+
+#### Phrase list weight control for Speech SDK
+
+You can now control the influence of phrase lists on speech recognition results when using the Speech SDK with Real-time transcription. The new phrase list weight feature allows you to set a bias level between 0.0 (disabled) and 2.0 (maximum influence) to fine-tune how much priority phrase list terms receive over the default dictionary. For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md).
 
 ### August 2025 release
 
