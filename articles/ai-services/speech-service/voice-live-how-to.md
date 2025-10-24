@@ -417,7 +417,7 @@ And the service responds with the server SDP.
 Then you can connect the avatar with the server SDP.
 
 > [!NOTE]
-> Azure text to speech avatar is currently supported in the following regions only: southeastasia, centralindia, swedencentral, westeurope, eastus2, westus2
+> Azure text to speech avatar is currently supported in limited regions. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=ttsavatar).
 
 ## Related content
 
