@@ -38,7 +38,7 @@ Examples: "Ten-years-old," "23 months old," "60 Y.O."
                         "value": 10
                     }
                 ]
-```              
+```
 
 Possible values for "unit":
 - Year
@@ -105,7 +105,7 @@ Whenever an ambiguous date is provided, you're offered different options for you
                 ]
 ```
 
-Ambiguity can occur even for a given day of the week. For example, saying "Monday" could refer to last Monday or this Monday. Once again the `timex` value indicates no year or month was specified, and uses a day of the week identifier (W) to indicate the first day of the week. 
+Ambiguity can occur even for a given day of the week. For example, saying "Monday" could refer to last Monday or this Monday. Once again the `timex` value indicates no year or month was specified, and uses a day of the week identifier (W) to indicate the first day of the week.
 
 ```json
 "resolutions": [
@@ -159,7 +159,7 @@ Examples: "6 PM tomorrow," "8 PM on January 3rd," "Nov 1 19:30"
                 ]
 ```
 
-Similar to dates, you can have ambiguous datetime entities. For example, "May 3rd noon" could refer to any year. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified. 
+Similar to dates, you can have ambiguous datetime entities. For example, "May 3rd noon" could refer to any year. Resolution provides this year and the next as options. The `timex` value **XXXX** indicates no year was specified.
 
 ```json
 "resolutions": [
@@ -199,11 +199,11 @@ The "duration" parameter indicates the time passed in seconds (S), minutes (M), 
 
 ### Set
 
-A set is a recurring datetime period. Sets don't resolve to exact values, as they don't indicate an exact datetime. 
+A set is a recurring datetime period. Sets don't resolve to exact values, as they don't indicate an exact datetime.
 
 Examples: "every Monday at 6 PM," "every Thursday," "every weekend"
 
-For "every Monday at 6 PM", the `timex` value indicates no specified year with the starting **XXXX**, then every Monday through **WXX-1** to determine first day of every week, and finally **T18** to indicate 6 PM. 
+For "every Monday at 6 PM", the `timex` value indicates no specified year with the starting **XXXX**, then every Monday through **WXX-1** to determine first day of every week, and finally **T18** to indicate 6 PM.
 
 ```json
 "resolutions": [
@@ -259,7 +259,7 @@ Possible values for "resolutionKind" and their "unit" values:
   - Gigabyte
   - Terabyte
   - Petabyte
-  
+
 - **LengthResolution**:
   - Kilometer
   - Hectometer
