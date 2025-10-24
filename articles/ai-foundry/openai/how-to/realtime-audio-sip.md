@@ -56,7 +56,7 @@ Note that swedencentral and eastus2 are currently supported regions.
 
 ## Handling Incoming Calls
 
-When Azure OpenAI receives SIP traffic associated with your project, your webhook endpoint will receive in incoming event message. The event fired will be of type = realtime.call.incoming like the example below. 
+When Azure OpenAI receives SIP traffic associated with your project, your webhook endpoint will receive in incoming event message. The event fired will be of type = `realtime.call.incoming` like the example below. 
 
 ```
 POST https://my_website.com/webhook_endpoint
