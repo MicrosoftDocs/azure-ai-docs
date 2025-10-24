@@ -5,7 +5,7 @@ description: Get reference documentation for Speech to text REST API.
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: concept-article
-ms.date: 5/25/2025
+ms.date: 10/24/2025
 author: PatrickFarley
 ms.author: pafarley
 # Customer intent: As a developer, I want to learn about the Speech to text REST API.

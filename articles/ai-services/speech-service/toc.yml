@@ -532,6 +532,9 @@ items:
         href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
     items:
+    - name: From Speech to text 2024-11-15 to 2025-10-15
+      href: migrate-2025-10-15.md
+      displayName: migrate,migration,deprecate,retire,sunset
     - name: From Speech to text v3.2 to 2024-11-15
       href: migrate-2024-11-15.md
       displayName: migrate,migration,deprecate,retire,sunset
