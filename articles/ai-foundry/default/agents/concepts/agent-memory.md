@@ -40,7 +40,7 @@ Agent memory typically falls into two categories:
 
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
-Azure AI Foundry memory is specifically designed as a long-term memory solution. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
+Azure AI Foundry memory is designed as a long-term memory solution. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
 
 ## Create a memory store
 
@@ -369,17 +369,12 @@ Before you delete a memory store, consider the impact on dependent agents. Agent
 
 Consider these practices when implementing memory in your agents:
 
-**Implement per-user access controls**: Avoid giving every agent access to all memory. Use the *scope* parameter to restrict who can see and update memories. For shared memory across agents or users, use the scope to instruct the memory system not to store personal information.
-
-**Minimize and protect sensitive data**: Store only what's necessary for your use case. If you must store sensitive data such as personally identifiable information (PII), health data, or confidential business inputs, perform redaction and store only partial data.
-
-**Support privacy and compliance**: Implement mechanisms for users to access, export, correct, and delete their data. Support selective deletion of specific memory entries, not just full resets. Log deletions in a tamper-evident audit trail. Ensure your system supports GDPR, CCPA, HIPAA, and other relevant frameworks.
-
-**Segment data and isolate memory**: In multitenant or multiagent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
-
-**Monitor memory usage**: Track token usage and memory operations to understand costs and optimize performance. Set appropriate limits for memory storage and retrieval.
-
-**Version your memory stores**: Use metadata to track versions and configurations of memory stores, making it easier to manage updates and troubleshoot issues.
+- **Implement per-user access controls**: Avoid giving every agent access to all memory. Use the *scope* parameter to restrict who can see and update memories. For shared memory across agents or users, use the scope to instruct the memory system not to store personal information.
+- **Minimize and protect sensitive data**: Store only what's necessary for your use case. If you must store sensitive data such as personal data (PII), health data, or confidential business inputs, perform redaction and store only partial data.
+- **Support privacy and compliance**: Implement mechanisms for users to access, export, correct, and delete their data. Support selective deletion of specific memory entries, not just full resets. Log deletions in a tamper-evident audit trail. Ensure your system supports GDPR, CCPA, HIPAA, and other relevant frameworks.
+- **Segment data and isolate memory**: In multitenant or multiagent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
+- **Monitor memory usage**: Track token usage and memory operations to understand costs and optimize performance. Set appropriate limits for memory storage and retrieval.
+- **Version your memory stores**: Use metadata to track versions and configurations of memory stores, making it easier to manage updates and troubleshoot issues.
 
 ## Related content
 
