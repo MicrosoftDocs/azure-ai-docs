@@ -16,19 +16,19 @@ ms.custom:
 
 # Attach a billable resource to a skillset in Azure AI Search
 
-If you're using built-in skills for optional [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents for free, limited to 20 transactions per index per day. For larger and more frequent workloads, you should attach a billable [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) to your [skillset](/rest/api/searchservice/skillsets/create).
+If you're using built-in skills for [AI enrichment](cognitive-search-concept-intro.md) in Azure AI Search, you can enrich a small number of documents for free, up to 20 transactions per index per day. For larger or more frequent workloads, you should attach a billable Azure AI Foundry resource to your [skillset](/rest/api/searchservice/skillsets/create).
 
-Azure AI Search uses dedicated, internally hosted resources to execute built-in skills and requires your resource solely for billing purposes.
+Azure AI Search uses dedicated, internally hosted resources to execute built-in skills backed by Azure AI Foundry Tools and requires an Azure AI Foundry resource solely for billing purposes. <!-- The exception is the [Content Understanding skill](SKILL), which uses your resource for both billing and processing. -->
 
-Rather than an individual service, the Azure AI Foundry resource provides access to multiple services within Azure AI Foundry Tools. Specifying the resource in a skillset allows Microsoft to charge you for using the following services:
+An Azure AI Foundry resource provides access to multiple services within Azure AI Foundry Tools. When you specify it in a skillset, Microsoft is able to charge you for using the following services:
 
-* [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) for image analysis, optical character recognition (OCR), and multimodal embeddings.
-* [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview) for language detection, entity recognition, sentiment analysis, and key phrase extraction.
-* [Azure Translator in Foundry Tools](/azure/ai-services/translator/translator-overview) for machine text translation.
++ [Azure Vision in Foundry Tools](/azure/ai-services/computer-vision/overview) for image analysis, optical character recognition (OCR), and multimodal embeddings.
++ [Azure Language in Foundry Tools](/azure/ai-services/language-service/overview) for language detection, entity recognition, sentiment analysis, and key phrase extraction.
++ [Azure Translator in Foundry Tools](/azure/ai-services/translator/translator-overview) for machine text translation.
 
-Billing through the Azure AI Foundry resource doesn't apply to the "bring your own capacity" skills, custom skills, and utility skills described in the [skills reference documentation](cognitive-search-predefined-skills.md).
+Skillset processing is billed to the underlying service of each skill. Azure AI Search consolidates charges for Azure AI Foundry Tools into a single Azure AI Foundry resource. For example, if you use the [Image Analysis](cognitive-search-skill-image-analysis.md) and [Language Detection](cognitive-search-skill-language-detection.md) skills, charges for Azure Vision and Azure Language appear on the same bill for your Azure AI Foundry resource. All other resources are billed independently.
 
-To attach an Azure AI Foundry resource, you must provide connection information in the skillset. You can use a key-based approach or keyless approach, which is currently in preview.
+To attach an Azure AI Foundry resource, provide connection information in the skillset. You can use a key-based approach or keyless approach, which is currently in preview.
 
 ## Prerequisites
 
@@ -41,7 +41,7 @@ To attach an Azure AI Foundry resource, you must provide connection information 
 > [!NOTE]
 > + If your Azure AI Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
 >
-> + The 2025-11-01-preview introduces support for the `AIServices` API kind. The previous `CognitiveServices` and classic Azure AI multi-service accounts continue to work, but for all new skillsets, we recommend that you use `AIServices` and Azure AI Foundry resources.
+> + The 2025-11-01-preview introduces support for the `AIServices` API kind. The previous `CognitiveServices` and classic Azure AI multi-service accounts continue to work, but for new skillsets, we recommend that you use `AIServices` and Azure AI Foundry resources.
 
 ## Bill through a keyless connection
 
@@ -121,7 +121,7 @@ To bill through a keyless connection:
 
 ## Bill through a resource key
 
-By default, Azure AI Search charges for transactions using the key of an Azure AI Foundry resource. This approach is generally available. You can use the Azure portal, stable REST API version, or an equivalent Azure SDK to add the key to a skillset.
+By default, Azure AI Search charges for transactions using the key of an Azure AI Foundry resource. This approach is generally available. You can use the Azure portal, a stable REST API version, or an equivalent Azure SDK to add the key to a skillset.
 
 There are two supported key types:
 
