@@ -5,7 +5,7 @@ description: Learn how to deploy protected AI models from partners and community
 ms.service: azure-ai-foundry
 ms.custom:
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 10/24/2025
 ms.reviewer: ambadal
 reviewer: AmarBadal
 ms.author: mopeakande
@@ -160,6 +160,11 @@ Some special things to note about NIMs are:
 | [ProteinMPNN-NIM-microservice](https://ai.azure.com/explore/models/ProteinMPNN-NIM-microservice/version/2/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
 | [MSA-search-NIM-microservice](https://ai.azure.com/explore/models/MSA-search-NIM-microservice/version/3/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
 | [Rfdiffusion-NIM-microservice](https://ai.azure.com/explore/models/Rfdiffusion-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Protein Binder |
+| [NVIDIA-Nemotron-Nano-9b-v2-NIM-microservice](https://ai.azure.com/explore/models/NVIDIA-Nemotron-Nano-9b-v2-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Chat completion |
+| [Trellis-NIM-microservice](https://ai.azure.com/explore/models/Trellis-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Image-to-3D, Text-to-3D, 3D-generation |
+| [Cosmos-reason1-NIM-microservice](https://ai.azure.com/explore/models/Cosmos-reason1-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Task-completion-verification, Action-affordance, Next-plausible-action-prediction |
+| [Evo2-40b-NIM-microservice](https://ai.azure.com/explore/models/Evo2-40b-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Genomics |
+| [Boltz2-NIM-microservice](https://ai.azure.com/explore/models/Boltz2-NIM-microservice/version/1/registry/azureml-nvidia/?cid=learnDocs) | Structure-Prediction |
 
 #### Consume NVIDIA NIM deployments
 

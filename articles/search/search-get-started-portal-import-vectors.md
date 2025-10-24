@@ -9,7 +9,7 @@ ms.custom:
   - build-2024
   - ignite-2024
 ms.topic: quickstart
-ms.date: 10/08/2025
+ms.date: 10/24/2025
 ---
 
 # Quickstart: Vectorize text in the Azure portal
@@ -42,12 +42,12 @@ The wizard [supports a wide range of Azure data sources](search-import-data-port
 
 ### Supported embedding models
 
-For integrated vectorization, you must use one of the following embedding models. Deployment instructions are provided in a [later section](#prepare-embedding-model).
+For integrated vectorization, use one of the following embedding models. Deployment instructions are provided in a [later section](#prepare-embedding-model).
 
 | Provider | Supported models |
 |--|--|
 | [Azure OpenAI in Azure AI Foundry Models resource](/azure/ai-services/openai/how-to/create-resource) <sup>1, 2</sup> | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
-| [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For images:<br>Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
+| [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large |
 | [Azure AI Foundry hub-based project](/azure/ai-foundry/how-to/hub-create-projects) | For text:<br>text-embedding-ada-002<br>text-embedding-3-small<br>text-embedding-3-large<br><br>For text and images:<br>Cohere-embed-v3-english <sup>3</sup><br>Cohere-embed-v3-multilingual <sup>3</sup> |
 | [Azure AI services multi-service resource](/azure/ai-services/multi-service-resource#azure-ai-multi-services-resource-for-azure-ai-search-skills) <sup>4</sup> | For text and images: [Azure AI Vision multimodal](/azure/ai-services/computer-vision/how-to/image-retrieval) <sup>5</sup></li> |
 

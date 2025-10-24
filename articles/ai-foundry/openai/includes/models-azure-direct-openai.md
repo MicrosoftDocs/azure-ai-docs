@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 09/15/2025
+ms.date: 10/17/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
@@ -292,8 +292,8 @@ To request access, go to [`gpt-image-1` limited access model application](https:
 | Model | Region |
 |---|---|
 |`dall-e-3` | East US<br>Australia East<br>Sweden Central|
-|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)|
-|`gpt-image-1-mini` | EastUS (Global Standard) <br> NorthCentralUS (Global Standard) |
+|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
+|`gpt-image-1-mini` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard) |
 
 
 ## Video generation models
@@ -304,7 +304,9 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)|
+|`sora` | East US 2 (Global Standard)<br>Sweden Central (Global Standard)  |
+| `sora-2` | East US 2 (Global Standard)<br>Sweden Central (Global Standard) |
+
 
 ## Audio models
 
@@ -342,6 +344,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `whisper` | General-purpose speech recognition model. | 25 MB |
 | `gpt-4o-transcribe` | Speech-to-text model powered by GPT-4o. | 25 MB|
 | `gpt-4o-mini-transcribe` | Speech-to-text model powered by GPT-4o mini. | 25 MB|
+| `gpt-4o-transcribe-diarize` | Speech-to-text model with automatic speech recognition. | 25 MB|
+
 
 #### Speech translation models
 

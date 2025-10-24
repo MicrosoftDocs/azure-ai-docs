@@ -49,7 +49,7 @@ items:
     href: ../../foundry-models/supported-languages.md
   - name: Work with chat models
     items:
-    - name: Work with chat completion models
+    - name: Work with chat models
       href: ../../foundry-models/how-to/use-chat-completions.md
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md

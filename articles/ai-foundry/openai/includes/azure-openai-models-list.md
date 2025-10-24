@@ -12,6 +12,7 @@ Azure OpenAI is powered by a diverse set of models with different capabilities a
 
 | Models | Description |
 |--|--|
+| [Sora](/azure/ai-foundry/foundry-models/concepts/models-sold-directly-by-azure?pivots=azure-openai&tabs=global-standard-aoai%2Cstandard-chat-completions%2Cglobal-standard#video-generation-models) | **NEW** sora-2 |
 | [GPT-5 series](../concepts/models.md#gpt-5) | **NEW** gpt-5, gpt-5-mini, gpt-5-nano, gpt-5-chat |
 | [gpt-oss](../concepts/models.md#gpt-oss) | **NEW** open-weight reasoning models |
 | [codex-mini](../concepts/models.md#o-series-models) | Fine-tuned version of o4-mini. |  
