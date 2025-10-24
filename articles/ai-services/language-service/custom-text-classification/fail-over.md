@@ -61,13 +61,13 @@ Now go ahead and import the exported project assets in your new project in the s
 
 ### Submit import job
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [Import project using the REST API](./includes/rest-api/import-project.md)]
 
 ### Get import job status
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [Import project using the REST API](./includes/rest-api/get-import-status.md)]
 
@@ -78,14 +78,14 @@ After importing your project, you only copied the project's assets and metadata 
 
 ### Submit training job
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [train model](./includes/rest-api/train-model.md)]
 
 
 ### Get Training Status
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [get training model status](./includes/rest-api/get-training-status.md)]
 
@@ -98,19 +98,19 @@ Deployment is the step where you make your trained model available form consumpt
 
 ### Submit deployment job 
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [deploy model](./includes/rest-api/deploy-model.md)]
 
 ### Get the deployment status
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [get deploy status](./includes/rest-api/get-deployment-status.md)]
 
 ## Changes in calling the runtime
 
-Within your system, at the step where you call [runtime prediction API](https://aka.ms/ct-runtime-swagger) check for the response code returned from the submitted task API. If you observe a **consistent** failure in submitting the request, it could indicate an outage in your primary region. Failure once doesn't mean an outage; it may be transient issue. Retry submitting the job through the secondary resource you created. For the second request use your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}`, if you followed the previous steps, `{PROJECT-NAME}` and `{DEPLOYMENT-NAME}` would be the same so no changes are required to the request body. 
+Within your system, at the step where you call [runtime prediction API](https://aka.ms/ct-runtime-swagger) check for the response code returned from the submitted task API. If you observe a **consistent** failure in submitting the request, it could indicate an outage in your primary region. Failure once doesn't mean an outage; it may be transient issue. Retry submitting the job through the secondary resource you created. For the second request use your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}`, if you followed the previous steps, `{PROJECT-NAME}` and `{DEPLOYMENT-NAME}` would be the same so no changes are required to the request body. 
 
 In case you revert to using your secondary resource you can observe slight increase in latency because of the difference in regions where your model is deployed. 
 
@@ -125,7 +125,7 @@ Repeat the following step twice: once for your primary project, and again for yo
 
 [!INCLUDE [get project details](./includes/rest-api/get-project-details.md)]
 
-Repeat the same steps for your replicated project using `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}`. Compare the returned `lastModifiedDateTime` from both project. If your primary project was modified sooner than your secondary one, you need to repeat the steps of [exporting](#export-your-primary-project-assets), [importing](#import-to-a-new-project), [training](#train-your-model), and [deploying](#deploy-your-model) your model.
+Repeat the same steps for your replicated project using `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}`. Compare the returned `lastModifiedDateTime` from both project. If your primary project was modified sooner than your secondary one, you need to repeat the steps of [exporting](#export-your-primary-project-assets), [importing](#import-to-a-new-project), [training](#train-your-model), and [deploying](#deploy-your-model) your model.
 
 
 ## Next steps

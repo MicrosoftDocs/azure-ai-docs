@@ -15,7 +15,7 @@ ms.author: lajanuar
 
 ## Create a new Azure Language resource and Azure storage account
 
-Before you can use Custom sentiment analysis, you'll need to create an Azure Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset that will be used to build your model.
+Before you can use Custom sentiment analysis, you'll need to create an Azure Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset used to build your model.
 
 > [!IMPORTANT]
 > To quickly get started, we recommend creating a new Azure Language resource using the steps provided in this article. Using the steps in this article lets you create the Language resource and storage account at the same time, which is easier than doing it later.
