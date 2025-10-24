@@ -19,15 +19,15 @@ show_latex: true
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Automated machine learning (AutoML) in Azure Machine Learning uses standard machine learning models together with well-known time series models to create forecasts. This approach incorporates historical information about the target variable with user-provided features in the input data and automatically engineered features. Model search algorithms help to identify models with the best predictive accuracy. For more information, see [forecasting methodology](concept-automl-forecasting-methods.md) and [model sweeping and selection](concept-automl-forecasting-sweeping.md).
+Automated machine learning (AutoML) in Azure Machine Learning uses standard machine learning models together with well-known time-series models to create forecasts. This approach incorporates historical information about the target variable with user-provided features in the input data and automatically engineered features. Model search algorithms help to identify models with the best predictive accuracy. For more information, see [forecasting methodology](concept-automl-forecasting-methods.md) and [model sweeping and selection](concept-automl-forecasting-sweeping.md).
 
-This article describes how to set up AutoML for time-series forecasting with Machine Learning by using the [Azure Machine Learning Python SDK](/python/api/overview/azure/ai-ml-readme). The process includes preparing data for training and configuring time series parameters in a [forecasting job (class reference)](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob). You then train, inference, and evaluate models by using components and pipelines.
+This article describes how to set up AutoML for time-series forecasting with Machine Learning by using the [Azure Machine Learning Python SDK](/python/api/overview/azure/ai-ml-readme). The process includes preparing data for training and configuring time-series parameters in a [forecasting job (class reference)](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob). You then train, inference, and evaluate models by using components and pipelines.
 
-For a low-code experience, see [Tutorial: Forecast demand with automated machine learning](tutorial-automated-ml-forecast.md). This resource is a time-series forecasting example that uses AutoML in [Azure Machine Learning studio](https://ml.azure.com/).
+For a low-code experience, see [Tutorial: Forecast demand with automated machine learning](tutorial-automated-ml-forecast.md). This article provides a time-series forecasting example that uses AutoML in [Azure Machine Learning studio](https://ml.azure.com/).
 
 ## Prerequisites
 
-- An Azure Machine Learning workspace. To create a workspace, see [Create workspace resources](quickstart-create-resources.md).
+- An Azure Machine Learning workspace. For more information, see [Create workspace resources](quickstart-create-resources.md).
 - The ability to launch AutoML training jobs. For more information, see [Set up AutoML training for tabular data with the Azure Machine Learning CLI and Python SDK](how-to-configure-auto-train.md).
 
 ## Prepare training and validation data
@@ -35,17 +35,17 @@ For a low-code experience, see [Tutorial: Forecast demand with automated machine
 Input data for AutoML forecasting must contain a valid time series in tabular format. Each variable must have its own corresponding column in the data table. AutoML requires at least two columns: a *time* column to represent the time axis and a *target* column for the quantity to forecast. Other columns can serve as predictors. For more information, see [How AutoML uses your data](concept-automl-forecasting-methods.md#how-automl-uses-your-data).
 
 > [!IMPORTANT]
-> When you train a model for forecasting future values, ensure all features used in training can also be used when running predictions for your intended horizon.
+> When you train a model for forecasting future values, ensure that all features used in training can also be used when running predictions for your intended horizon.
 >
-> Consider a feature for current stock price, which can massively increase training accuracy. If you forecast with a long horizon, you might not be able to accurately predict future stock values that correspond to future time series points. This approach can reduce model accuracy.
+> Consider a feature for current stock price, which can increase training accuracy. If you forecast with a long horizon, you might not be able to accurately predict future stock values that correspond to future time-series points. This approach can reduce model accuracy.
 
-AutoML forecasting jobs require that your training data is represented as an `MLTable` object. An `MLTable` object specifies a data source and steps for loading the data. For more information and use cases, see [Working with tables(how-to-mltable.md).
+AutoML forecasting jobs require that your training data is represented as an `MLTable` object. An `MLTable` object specifies a data source and steps for loading the data. For more information and use cases, see [Working with tables](how-to-mltable.md).
 
-For the following example, suppose your training data is contained in a CSV file in a local directory, *./train_data/timeseries_train.csv*.
+For the following example, assume that your training data is contained in a CSV file in a local directory: *./train_data/timeseries_train.csv*.
 
 # [Python SDK](#tab/python)
 
-You can create an `MLTable` object by using the [mltable Python SDK](/python/api/mltable/mltable) as shown in the following example:
+You can create an `MLTable` object by using the [mltable Python SDK](/python/api/mltable/mltable):
 
 ```python
 import mltable
@@ -60,13 +60,13 @@ train_table.save('./train_data')
 
 This code creates a new file, *./train_data/MLTable*, which contains the file format and loading instructions.
 
-To start the training job, define an input data object by using the Python SDK as follows:
+To start the training job, define an input data object by using the Python SDK:
 
 ```python
 from azure.ai.ml.constants import AssetTypes
 from azure.ai.ml import Input
 
-# Training MLTable defined locally, with local data to be uploaded
+# Training MLTable defined locally, with local data to be uploaded.
 my_training_data_input = Input(
     type=AssetTypes.MLTABLE, path="./train_data"
 )
@@ -74,7 +74,7 @@ my_training_data_input = Input(
 
 # [Azure CLI](#tab/cli)
 
-You can define a new `MLTable` object by copying the following YAML snippet to a new file, *./train_data/MLTable*:
+You can define a new `MLTable` object by copying the following YAML snippet to a new file, *./train_data/MLTable*.
 
 ```yml
 $schema: https://azuremlschemas.azureedge.net/latest/MLTable.schema.json
@@ -99,31 +99,31 @@ experiment_name: cli-v2-automl-forecasting-job
 description: A time-series forecasting AutoML job
 task: forecasting
 
-# Training data MLTable for the AutoML job
+# Training data MLTable for the AutoML job.
 training_data:
     path: "./train_data"
     type: mltable
 
 validation_data:
-    # Optional validation data
+    # Optional validation data.
 
-compute: # Compute for training job
-primary_metric: # Primary metric  
+compute: # Compute for training job.
+primary_metric: # Primary metric.  
 
-target_column_name: # Target column name
-n_cross_validations: # Cross validation setting
+target_column_name: # Target column name.
+n_cross_validations: # Cross-validation setting.
 
 limits:
-    # Limit settings
+    # Limit settings.
 
 forecasting:
-    # Forecasting specific settings
+    # Forecasting-specific settings.
 
 training:
-    # Training settings 
+    # Training settings. 
 ```
 
-Add more detail to this configuration in subsequent sections of this article. In this example, the location is *./automl-forecasting-job.yml*.
+You'll add more detail to this configuration in subsequent sections of this article. In this example, the location is *./automl-forecasting-job.yml*.
 
 ---
 
@@ -131,11 +131,11 @@ You specify [validation data](concept-automated-ml.md#training-validation-and-te
 
 - [Select forecasting models](./concept-automl-forecasting-sweeping.md#model-selection-in-automl)
 - [Set training data length requirements](./concept-automl-forecasting-methods.md#data-length-requirements)
-- [Prevent overfitting with cross validation](concept-manage-ml-pitfalls.md#prevent-overfitting)
+- [Prevent overfitting with cross-validation](concept-manage-ml-pitfalls.md#prevent-overfitting)
 
-## Create compute to run experiment
+## Create compute to run the experiment
 
-AutoML uses Azure Machine Learning Compute, which is a fully managed compute resource, to run the training job. The following example creates a compute cluster named `cpu-compute`.
+AutoML uses Azure Machine Learning compute, which is a fully managed compute resource, to run the training job. The following example creates a compute cluster named `cpu-compute`.
 
 # [Python SDK](#tab/python)
 
