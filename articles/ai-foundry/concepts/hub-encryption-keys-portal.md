@@ -5,7 +5,7 @@ description: Use customer-managed keys (CMK) with hub-based projects in Azure AI
 ms.author: jburchel 
 author: jonburchel 
 ms.reviewer: deeikele
-ms.date: 09/12/2025
+ms.date: 10/24/2025
 ms.service: azure-ai-services
 ms.topic: concept-article
 ms.custom:
