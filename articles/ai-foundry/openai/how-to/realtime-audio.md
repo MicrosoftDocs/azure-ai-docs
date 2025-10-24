@@ -306,7 +306,7 @@ The following example json body adds an image to the conversation:
 
 ## MCP server support
 
-To enable MCP support in a Realtime API session, provide the URL of a remote MCP server in your session configuration. After connecting, the API will automatically manage tool calls on your behalf.
+To enable MCP support in a Realtime API session, provide the URL of a remote MCP server in your session configuration. This allows the API service to automatically manage tool calls on your behalf.
 
 You can easily enhance your agent's functionality by specifying a different MCP server in the session configuration—any tools available on that server will be accessible immediately.
 

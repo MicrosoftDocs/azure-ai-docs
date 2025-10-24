@@ -24,13 +24,13 @@ This article provides a summary of the latest releases and major documentation u
 
 ### Realtime API support for SIP
 
-The Realtime API now supports SIP, enabling telephony connections to realtimeapi.For more information, see the [Realtime SIP documentation](./how-to/realtime-audio-sip.md).
+The Realtime API now supports SIP, enabling telephony connections to realtimeapi. For more information, see the [Realtime SIP documentation](./how-to/realtime-audio-sip.md).
 
 ### GPT-4o audio model released
 
 - The `gpt-4o-transcribe-diarize` speech to text model is released. This is an Automatic Speech Recognition (ASR) model that converts spoken language into text in real time. It enables organizations to unlock insights from conversations instantly with ultra-low latency and high accuracy across 100+ languages. This capability is essential for workflows where voice data drives decisions—such as customer support, virtual meetings, and live events.
 
-Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity. supporting automatic speech recognition. 
+Diarization is the process of identifying who spoke when in an audio stream. It transforms conversations into speaker-attributed transcripts, enabling businesses to extract actionable insights from meetings, customer calls, and live events. With advanced models like `gpt-4o-transcribe-diarize`, organizations gain real-time clarity and context—turning voice into structured data that drives smarter decisions and improves productivity, supporting automatic speech recognition. 
 
 Use this model via the `/audio` and `/realtime` APIs.  
 
@@ -135,7 +135,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 ## June 2025
 
 
-### codex-mini & o3-pro models released
+### New models codex-mini & o3-pro released
 
 - `codex-mini` and `o3-pro` are now available. To learn more, see the [getting started with reasoning models page](./how-to/reasoning.md)
 
