@@ -135,15 +135,27 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
 
 ```csharp
 using OpenAI;
-using System;
+using OpenAI.Responses;
 using System.ClientModel;
 
-OpenAIClient client = new(
-    new ApiKeyCredential("{your-api-key}"),
-    new OpenAIClientOptions()
+#pragma warning disable OPENAI001
+
+string deploymentName = "my-gpt-4.1-nano-deployment"; // Your model deployment name
+OpenAIResponseClient client = new(
+    model: deploymentName,
+    credential: new ApiKeyCredential("{your-api-key}"),
+    options: new OpenAIClientOptions()
     {
         Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-    })
+    });
+
+OpenAIResponse response = client.CreateResponse(
+     [
+        ResponseItem.CreateUserMessageItem("What's the weather like today for my current location?")
+     ]);
+
+Console.WriteLine($"[ASSISTANT]: {response.GetOutputText()}");
+
 ```
 
 **Microsoft Entra authentication**:
@@ -159,21 +171,34 @@ Microsoft Entra authentication only supports Azure OpenAI resources. Complete th
 1. Use the following code to configure the OpenAI client object, specify your deployment, and generate responses.  
 
     ```csharp
+    using Azure.Identity; 
+    using OpenAI;
+    using OpenAI.Responses;
+    using System.ClientModel.Primitives;
+
     #pragma warning disable OPENAI001
     
     BearerTokenPolicy tokenPolicy = new(
         new DefaultAzureCredential(),
         "https://cognitiveservices.azure.com/.default");
-    OpenAIClient client = new(
-        authenticationPolicy: tokenPolicy,
-        options: new OpenAIClientOptions()
-        {
-            Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
-        })
-    
-    string deploymentName = "my-gpt-4.1-nano-deployment";
-    OpenAIResponseClient response = client.GetOpenAIResponseClient(deploymentName);
-    
+
+    string deploymentName = "my-gpt-4.1-nano-deployment"; // Your model deployment name
+    OpenAIResponseClient client = new(
+    model: deploymentName,
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
+    });
+
+    OpenAIResponse response = client.CreateResponse(
+     [
+        ResponseItem.CreateUserMessageItem("What's the weather like today for my current location?")
+     ]);
+
+    Console.WriteLine($"[ASSISTANT]: {response.GetOutputText()}");    
+
+   
     ```
 
 # [JavaScript](#tab/javascript)
@@ -189,9 +214,23 @@ const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: "{your-api-key}" 
 });
+
+// Make the API request with top-level await
+const result = await client.responses
+    .stream({
+      model: 'grok-3-mini', // Your model deployment name
+      input: 'solve 8x + 31 = 2',
+    }).finalResponse()
+
+// Print the full response
+console.log('Full response:', result);
+
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
+
 ```
 
-To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`, modeify the previous code by creating the client as follows:
 
 ```javascript
 import { OpenAI } from "openai";
@@ -214,10 +253,24 @@ import { OpenAI } from "openai";
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
+
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
 });
+
+// Make the API request with top-level await
+const result = await client.responses
+    .stream({
+      model: 'grok-3-mini', // Your model deployment name
+      input: 'solve 8x + 31 = 2',
+    }).finalResponse()
+
+// Print the full response
+console.log('Full response:', result);
+
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
 ```
 
 # [Go](#tab/go)
@@ -231,14 +284,30 @@ import (
     "context"
     "fmt"
 
-    "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/option"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/option"
+    "github.com/openai/openai-go/v3/responses"
 )
 
 client := openai.NewClient(
     option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
     option.WithAPIKey("{your-api-key}")
 )
+
+// Make a completion request
+question := "Write me a haiku about computers"
+
+resp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+        Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(question)},
+        Model: "grok-3-mini", // Use your deployed model name on Azure
+    })
+
+
+if err != nil {
+    panic(err.Error())
+}
+
+println(resp.OutputText())
 ```
 
 To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`:
@@ -248,8 +317,9 @@ import (
     "context"
     "fmt"
 
-    "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/option"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/option"
+    "github.com/openai/openai-go/v3/responses"
 )
 client := openai.NewClient()
 ```
@@ -272,6 +342,7 @@ import (
     "github.com/openai/openai-go/v3"
     "github.com/openai/openai-go/v3/azure"
     "github.com/openai/openai-go/v3/option"
+    "github.com/openai/openai-go/v3/responses"
 )
 
 tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
@@ -280,6 +351,22 @@ client := openai.NewClient(
     option.WithBaseURL("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"),
     azure.WithTokenCredential(tokenCredential)
 )
+
+// Make a completion request
+question := "Write me a haiku about computers"
+
+resp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
+        Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(question)},
+        Model: "grok-3-mini", // Use your deployed model name on Azure
+    })
+
+
+if err != nil {
+    panic(err.Error())
+}
+
+println(resp.OutputText())
+
 ```
 
 # [Java](#tab/Java)
@@ -314,6 +401,46 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
                 .build();
 ```
 
+Generate responses:
+
+```java
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.ChatModel;
+import com.openai.models.responses.ResponseCreateParams;
+
+public class OpenAITest {
+    public static void main(String[] args) {
+        // Get API key from environment variable for security
+        String apiKey = System.getenv("OPENAI_API_KEY");
+        String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
+
+        try {
+            OpenAIClient client = OpenAIOkHttpClient.builder()
+                    .baseUrl(resourceName)
+                    .apiKey(apiKey)
+                    .build();
+
+            ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
+                            .model(deploymentName)
+                            .input("What's the capital of France?");
+            
+            
+            ResponseCreateParams createParams = paramsBuilder.build();
+            
+            client.responses().create(createParams).output().stream()
+                    .flatMap(item -> item.message().stream())
+                    .flatMap(message -> message.content().stream())
+                    .flatMap(content -> content.outputText().stream())
+                    .forEach(outputText -> System.out.println(outputText.text()));
+        }
+    }
+}
+```
+
 **Microsoft Entra authentication**:
 
 Authentication with Microsoft Entra ID requires some initial setup. First install the Azure Identity client library. For more options on how to install this library, see [Azure Identity client library for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/identity/azure-identity/README.md#include-the-package).
@@ -335,15 +462,44 @@ Authentication is easiest using `DefaultAzureCredential`. It finds the best cred
 
 
 ```java
-Credential tokenCredential = BearerTokenCredential.create(
-        AuthenticationUtil.getBearerTokenSupplier(
-                new DefaultAzureCredentialBuilder().build(),
-                "https://cognitiveservices.azure.com/.default"));
-OpenAIClient client = OpenAIOkHttpClient.builder()
-        .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
-        .credential(tokenCredential)
-        .build();
-```
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.ChatModel;
+import com.openai.models.responses.ResponseCreateParams;
+
+public class OpenAITest {
+    public static void main(String[] args) {
+
+        String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+        String deploymentName = "grok-3-mini"; //replace with you model deployment name
+
+        try {
+            OpenAIClient client = OpenAIOkHttpClient.builder()
+                .baseUrl(resourceName)
+                // Set the Azure Entra ID
+                .credential(BearerTokenCredential.create(AuthenticationUtil.getBearerTokenSupplier(
+                        new DefaultAzureCredentialBuilder().build(), "https://cognitiveservices.azure.com/.default")))
+                .build();
+
+            ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
+                    .model(deploymentName)
+                    .input("What's the capital of France?");
+
+
+            ResponseCreateParams createParams = paramsBuilder.build();
+    
+            client.responses().create(createParams).output().stream()
+                    .flatMap(item -> item.message().stream())
+                    .flatMap(message -> message.content().stream())
+                    .flatMap(content -> content.outputText().stream())
+                    .forEach(outputText -> System.out.println(outputText.text()));
+            }        
+    }
+}
+
+
 
 # [REST](#tab/rest)
 
@@ -442,7 +598,7 @@ using System.ClientModel;
 string keyFromEnvironment = Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY");
 
 ChatClient client = new(
-    model: "grok-3-mini",
+    model: "grok-3-mini", // Replace with your model deployment name.
     credential: new ApiKeyCredential(keyFromEnvironment),
     options: new OpenAIClientOptions() { 
         Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
@@ -521,7 +677,7 @@ const messages = [
 // Make the API request with top-level await
 const result = await client.chat.completions.create({ 
     messages, 
-    model: 'grok-3-mini', // model deployment name
+    model: 'grok-3-mini', // Your model deployment name
     max_tokens: 100 
 });
 
@@ -549,6 +705,7 @@ import { OpenAI } from "openai";
 const tokenProvider = getBearerTokenProvider(
     new DefaultAzureCredential(),
     'https://cognitiveservices.azure.com/.default');
+
 const client = new OpenAI({
     baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
     apiKey: tokenProvider
@@ -562,7 +719,7 @@ const messages = [
 // Make the API request with top-level await
 const result = await client.chat.completions.create({ 
     messages, 
-    model: 'grok-3-mini', // model deployment name
+    model: 'grok-3-mini', // Your model deployment name
     max_tokens: 100 
 });
 
@@ -628,9 +785,9 @@ import (
     "fmt"
 
     "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-    "github.com/openai/openai-go/v3"
-    "github.com/openai/openai-go/v3/azure"
-    "github.com/openai/openai-go/v3/option"
+    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v2/azure"
+    "github.com/openai/openai-go/v2/option"
 )
 
 func main() {
