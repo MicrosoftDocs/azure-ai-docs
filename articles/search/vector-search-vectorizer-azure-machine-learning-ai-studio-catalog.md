@@ -28,7 +28,7 @@ Parameters are case-sensitive. Which parameters you choose to use depends on wha
 | Parameter name | Description |
 |--------------------|-------------|
 | `uri` | (Required) The [URI of the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md) to which the _JSON_ payload is sent. Only the **https** URI scheme is allowed. |
-| `modelName` | (Required) The model ID from the Azure AI Foundry model catalog that is deployed at the provided endpoint. Supported models are:<p><ul><li>Facebook-DinoV2-Image-Embeddings-ViT-Base </li><li>Facebook-DinoV2-Image-Embeddings-ViT-Giant </li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
+| `modelName` | (Required) The model ID from the Azure AI Foundry model catalog that is deployed at the provided endpoint. Supported models are:<p><ul><li></li><li>Cohere-embed-v3-english </li><li>Cohere-embed-v3-multilingual</li><li>Cohere-embed-v4</li></ul> |
 | `key` | (Required for [key authentication](#WhatParametersToUse)) The [key for the AML online endpoint](../machine-learning/how-to-authenticate-online-endpoint.md). |
 | `resourceId` | (Required for [token authentication](#WhatParametersToUse)). The Azure Resource Manager resource ID of the AML online endpoint. It should be in the format subscriptions/{guid}/resourceGroups/{resource-group-name}/Microsoft.MachineLearningServices/workspaces/{workspace-name}/onlineendpoints/{endpoint_name}. |
 | `region` | (Optional for [token authentication](#WhatParametersToUse)). The [region](https://azure.microsoft.com/global-infrastructure/regions/) the AML online endpoint is deployed in. Needed if the region is different from the region of the search service. |
@@ -52,11 +52,14 @@ Which vector query types are supported by the Azure AI Foundry model catalog vec
 
 | Embedding model | Supports `text` query | Supports `imageUrl` query | Supports `imageBinary` query |
 |--------------------|-------------|-------------|-------------|
-| Facebook-DinoV2-Image-Embeddings-ViT-Base |  | X | X |
-| Facebook-DinoV2-Image-Embeddings-ViT-Giant |  | X | X |
 | Cohere-embed-v3-english | X |  | X |
 | Cohere-embed-v3-multilingual | X |  | X |
 | Cohere-embed-v4 | X |  | X |
+
+<!--
+| Facebook-DinoV2-Image-Embeddings-ViT-Base |  | X | X |
+| Facebook-DinoV2-Image-Embeddings-ViT-Giant |  | X | X |
+-->
 
 ## Expected field dimensions
 
@@ -64,11 +67,14 @@ The expected field dimensions for a vector field configured with an Azure AI Fou
 
 | `modelName` | Expected dimensions |
 |--------------------|-------------|
-| Facebook-DinoV2-Image-Embeddings-ViT-Base | 768 |
-| Facebook-DinoV2-Image-Embeddings-ViT-Giant | 1536 |
 | Cohere-embed-v3-english | 1024 |
 | Cohere-embed-v3-multilingual | 1024 |
 | Cohere-embed-v4 | 256–1536 |
+
+<!--
+| Facebook-DinoV2-Image-Embeddings-ViT-Base | 768 |
+| Facebook-DinoV2-Image-Embeddings-ViT-Giant | 1536 |
+-->
 
 ## Sample definition
 
