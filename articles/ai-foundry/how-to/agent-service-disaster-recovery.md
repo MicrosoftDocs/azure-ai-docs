@@ -51,7 +51,7 @@ Preventing disasters is easier and less costly than recovering from them. Stop d
 
 ## Resource configuration to support recovery
 
-Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [high-availability-resiliency.md#resource-configuration-to-support-recovery](high-availability-resiliency.md#resource-configuration-to-support-recovery).
+Configure your resources to support recovery before an incident happens. Enable specific features and settings that facilitate recovery processes. For more information, see [High availability and resiliency: Resource configuration to support recovery](high-availability-resiliency.md#resource-configuration-to-support-recovery).
 
 ## Recover from Azure outages
 

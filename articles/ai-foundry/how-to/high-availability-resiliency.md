@@ -35,13 +35,11 @@ Azure services include:
 
 * **Azure AI Foundry infrastructure**: A Microsoft managed environment for the Azure AI Foundry project.
 
-* **Required associated resources**: Resources set up in your subscription when you create an Azure AI Foundry project. These resources include Azure Storage and Azure Key Vault.
+* **Optional associated resources**: Resources you attach to your Azure AI Foundry project or that are created in your subscription if you choose a managed deployment. These resources include Azure Container Registry and Application Insights.
+  * Application Insights monitors Azure AI Foundry.
   * The default storage has models, training logs, and references to data assets.
   * Azure Key Vault stores credentials for Azure Storage and connections.
 
-* **Optional associated resources**: Resources you attach to your Azure AI Foundry project. These resources include Azure Container Registry and Application Insights.
-  * Azure Container Registry stores Docker images for training and inference environments.
-  * Application Insights monitors Azure AI Foundry.
 
 * **Connections**: Azure AI Foundry connects to other services. You're responsible for configuring their high availability settings.
 
