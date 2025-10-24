@@ -46,7 +46,7 @@ Start by creating a webhook for incoming calls with the Azure OpenI Webhook Serv
 Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal id of your Azure Resource. Example: 
 
 1) Find the internal id of your Azure Open AI Resource
-2) Your project id = "proj_<internalId>" This might look like "proj_88c4a88817034471a0ba0fcae24ceb1b"
+2) Your project id = `"proj_<internalId>"` This might look like `"proj_88c4a88817034471a0ba0fcae24ceb1b"`
 
 :::image type="content" source="../media/how-to/realtime-audio-sip/find-internal-id.png" alt-text="Screenshot of finding the internal-id in the azure portal." lightbox="../media/how-to/realtime-audio-sip/find-internal-id.png":::
 
