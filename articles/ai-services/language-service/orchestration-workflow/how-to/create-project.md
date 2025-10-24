@@ -59,7 +59,7 @@ Once you have a Language resource created, create an orchestration workflow proj
 
 ### [Language Studio](#tab/language-studio)
 
-You can export an orchestration workflow project as a JSON file at any time by going to the orchestration workflow projects page, selecting a project, and from the top menu, clicking on **Export**.
+You can export an orchestration workflow project as a JSON file at any time by going to the orchestration workflow projects page, selecting a project, and from the top menu, selecting **Export**.
 
 That project can be reimported as a new project. If you import a project with the exact same name, it replaces the project's data with the newly imported project's data.
 

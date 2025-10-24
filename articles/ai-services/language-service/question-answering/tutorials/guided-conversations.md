@@ -46,7 +46,7 @@ To help users solve issues with their Surface Pen, we add follow-up prompts:
 - Add a follow-up prompt to one of the newly added prompts
 
 1. Add a new QnA pair with two follow-up prompts **Check compatibility** and **Check Pen Settings**
-Using the editor, we add a new QnA pair with a follow-up prompt by clicking on **Add question pair**
+Using the editor, we add a new QnA pair with a follow-up prompt by selecting **Add question pair**
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of UI with "Add question pair" highlighted in a red box]( ../media/guided-conversations/add-question.png)
@@ -63,7 +63,7 @@ Using the editor, we add a new QnA pair with a follow-up prompt by clicking on *
     > [!div class="mx-imgBorder"]
     > [ ![Screenshot of UI with "add a follow-up prompt" highlighted in a red box]( ../media/guided-conversations/add-prompts.png) ]( ../media/guided-conversations/add-prompts.png#lightbox)
     
-    We provide **Check Compatibility** as the "Display text" for the prompt and try to link it to a QnA. Since, no related QnA pair is available to link to the prompt, when we search “Check your Surface Pen Compatibility”, we create a new question pair by clicking on **Create link to new pair** and select **Done**. Then select **Save changes**.
+    We provide **Check Compatibility** as the "Display text" for the prompt and try to link it to a QnA. Since, no related QnA pair is available to link to the prompt, when we search “Check your Surface Pen Compatibility”, we create a new question pair by selecting **Create link to new pair** and select **Done**. Then select **Save changes**.
     
     > [!div class="mx-imgBorder"]
     > [ ![Screenshot of a question and answer about checking your surface pen compatibility]( ../media/guided-conversations/compatability-check.png) ]( ../media/guided-conversations/compatability-check.png#lightbox)

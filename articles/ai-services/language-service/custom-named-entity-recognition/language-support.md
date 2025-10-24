@@ -1,12 +1,12 @@
 ---
 title: Language and region support for custom named entity recognition
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about the languages and regions supported by custom named entity recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 09/24/2025
+ms.date: 11/05/2025
 ms.custom: language-service-custom-ner
 ms.author: lajanuar
 ---

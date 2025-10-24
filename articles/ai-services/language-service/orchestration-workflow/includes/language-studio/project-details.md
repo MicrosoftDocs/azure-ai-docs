@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 2. You can see project details.
 
-3. In this page you can update project description.
+3. On this page, you can update project description.
 
 4. You can also retrieve your resource primary key from this page.
 

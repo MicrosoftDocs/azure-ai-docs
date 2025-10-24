@@ -1,12 +1,12 @@
 ---
 title: Send a Named Entity Recognition (NER) request to your custom model
 description: Learn how to send requests for custom NER.
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, python

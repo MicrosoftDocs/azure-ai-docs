@@ -34,7 +34,7 @@ Use the following steps to add utterances:
 
 3. From the top pivots, you can change the view to be **training set** or **testing set**.  Learn more about [training and testing sets](train-model.md#data-splitting) and how they're used for model training and evaluation.
 
-3. From the **Select intent** dropdown menu, select one of the intents. Type in your utterance, and press the enter key in the utterance's text box to add the utterance. You can also upload your utterances directly by clicking on **Upload utterance file** from the top menu, make sure it follows the [accepted format](../concepts/data-formats.md#utterance-format).
+3. From the **Select intent** dropdown menu, select one of the intents. Type in your utterance, and press the enter key in the utterance's text box to add the utterance. You can also upload your utterances directly by selecting **Upload utterance file** from the top menu, make sure it follows the [accepted format](../concepts/data-formats.md#utterance-format).
     
     > [!Note]
     > If you're planning on using **Automatically split the testing set from training data** splitting, add all your utterances to the training set.

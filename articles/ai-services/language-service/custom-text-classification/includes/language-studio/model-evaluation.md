@@ -22,7 +22,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/overview.png" alt-text="Screenshot that shows the overview page for model evaluation." lightbox="../../media/overview.png":::
 
-* You can also see [guidance](../../concepts/evaluation-metrics.md#guidance) on how to improve the model. When you select *view details*, a side panel opens to give more guidance on how to improve the model. In this example, there aren't enough data in training set for these classes. Also, there's unclear distinction between class types in training set, where two classes are confused with each other. By clicking on the confused classes, you're taken to the [data labeling](../../how-to/tag-data.md) page to label more data with the correct class.
+* You can also see [guidance](../../concepts/evaluation-metrics.md#guidance) on how to improve the model. When you select *view details*, a side panel opens to give more guidance on how to improve the model. In this example, there aren't enough data in training set for these classes. Also, there's unclear distinction between class types in training set, where two classes are confused with each other. By selecting the confused classes, you're taken to the [data labeling](../../how-to/tag-data.md) page to label more data with the correct class.
 
     :::image type="content" source="../../media/overview-guidance.png" alt-text="A screenshot that shows the guidance page for model evaluation." lightbox="../../media/overview-guidance.png":::
     

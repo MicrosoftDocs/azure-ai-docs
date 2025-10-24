@@ -1,7 +1,7 @@
 ---
 title: How to perform language detection
 titleSuffix: Azure AI Foundry Tools
-description: This article will show you how to detect the language of written text using language detection.
+description: This article shows you how to detect the language of written text using language detection.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language

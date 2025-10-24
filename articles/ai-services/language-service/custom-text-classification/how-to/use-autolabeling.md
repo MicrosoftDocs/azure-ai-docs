@@ -19,7 +19,7 @@ ms.author: lajanuar
 
 Before you can use autolabeling with GPT, you need:
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
-* Text data that [has been uploaded](design-schema.md#data-preparation) to your storage account.
+* Text data [uploaded](design-schema.md#data-preparation) to your storage account.
 * Class names that are meaningful. The GPT models label documents based on the names of the classes you've provided.
 * [Labeled data](tag-data.md) isn't required.
 * An Azure OpenAI [resource and deployment](../../../../ai-foundry/openai/how-to/create-resource.md). 
@@ -51,7 +51,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     > [!NOTE]
     > * If a document was automatically labeled, but this label was already user defined, only the user defined label is used.  
-    > * You can view the documents by clicking on the document name.
+    > * You can view the documents by selecting the document name.
     
     :::image type="content" source="../media/choose-files.png" alt-text="A screenshot showing which documents to be included in the autotag job." lightbox="../media/choose-files.png":::
 

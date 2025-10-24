@@ -175,7 +175,7 @@ In the **If yes** condition, add an **Update a row** action. Then enter the info
 
 ## Get the plumbing issues
 
-Minimize **Apply to each 4** by clicking on the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
+Minimize **Apply to each 4** by selecting the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-plumbing.png" alt-text="Create another apply to each action" lightbox="../media/tutorials/excel/add-apply-action-plumbing.png":::
 

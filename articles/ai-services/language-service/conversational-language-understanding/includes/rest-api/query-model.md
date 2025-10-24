@@ -112,7 +112,7 @@ Once you send the request, you get the following response for the prediction
 In a conversations project, you'll get predictions for both your intents and entities that are present within your project. 
 * The intents and entities include a confidence score between 0.0 to 1.0 associated with how confident the model is about predicting a certain element in your project. 
 * The top scoring intent is contained within its own parameter.
-* Only predicted entities will show up in your response.
+* Only predicted entities shows up in your response.
 * Entities indicate:
     * The text of the entity that was extracted
     * Its start location denoted by an offset value

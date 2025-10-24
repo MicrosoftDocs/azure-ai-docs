@@ -1,12 +1,12 @@
-﻿---
+---
 title: How to use autolabeling in custom named entity recognition
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to use autolabeling in custom named entity recognition.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -20,7 +20,7 @@ ms.author: lajanuar
 
 Before you can use autolabeling based on a model you've trained, you need:
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
-* Text data that [has been uploaded](design-schema.md#data-preparation) to your storage account.
+* Text data [uploaded](design-schema.md#data-preparation) to your storage account.
 * [Labeled data](tag-data.md)
 * A [successfully trained model](train-model.md)
 
@@ -28,7 +28,7 @@ Before you can use autolabeling based on a model you've trained, you need:
 ### [Autolabel with GPT](#tab/autolabel-gpt)
 Before you can use autolabeling with GPT, you need:
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
-* Text data that [has been uploaded](design-schema.md#data-preparation) to your storage account.
+* Text data [uploaded](design-schema.md#data-preparation) to your storage account.
 * Entity names that are meaningful. The GPT models label entities in your documents based on the name of the entity you've provided.
 * [Labeled data](tag-data.md) isn't required.
 * An Azure OpenAI [resource and deployment](../../../../ai-foundry/openai/how-to/create-resource.md). 
@@ -68,7 +68,7 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 
     > [!NOTE]
     > * If an entity was automatically labeled, but has a user defined label, only the user defined label is used and visible.  
-    > * You can view the documents by clicking on the document name.
+    > * You can view the documents by selecting the document name.
     
     :::image type="content" source="../media/choose-files.png" alt-text="A screenshot showing which documents to be included in the autotag job." lightbox="../media/choose-files.png":::
 
@@ -102,7 +102,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     > [!NOTE]
     > * If an entity was automatically labeled, but has a user defined label, only the user defined label is used and visible.  
-    > * You can view the documents by clicking on the document name.
+    > * You can view the documents by selecting the document name.
     
     :::image type="content" source="../media/choose-files.png" alt-text="A screenshot showing which documents to be included in the autotag job." lightbox="../media/choose-files.png":::
 

@@ -1,12 +1,12 @@
 ---
 title: Create custom named entity recognition (NER) projects and use Azure resources
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to create and manage projects and Azure resources for custom NER.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner, references_regions
 ---
