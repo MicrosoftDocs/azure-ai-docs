@@ -426,7 +426,7 @@ public class OpenAITest {
 
             ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
                             .model(modelDeploymentName)
-                            .input("What's the capital of France?");
+                            .input("What's the capital/major city of France?");
             
             
             ResponseCreateParams createParams = paramsBuilder.build();
@@ -485,7 +485,7 @@ public class OpenAITest {
 
             ResponseCreateParams.Builder paramsBuilder = ResponseCreateParams.builder()
                     .model(modelDeploymentName)
-                    .input("What's the capital of France?");
+                    .input("What's the capital/major city of France?");
 
 
             ResponseCreateParams createParams = paramsBuilder.build();
