@@ -37,17 +37,19 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 You can provide audio data to fast transcription in the following ways:
 
-- Pass inline audio data.
+- Inline audio upload
   
 ```
-  --form 'audio=@"YourAudioFile"'
+--form 'audio=@"YourAudioFile"'
 ```
 
-- Upload an audio from a public `audioUrl`.
+- Audio from a public URL
   
 ```
-  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
+--form 'definition="{"audioUrl": "https://crbn.us/hello.wav"}"'
 ```
+In the sections below, inline audio upload is used as an example.
+
 ## Use the fast transcription API
 
 > [!TIP]
