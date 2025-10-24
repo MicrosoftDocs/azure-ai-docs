@@ -88,7 +88,8 @@ From your webhook endpoint, you can accept, reject or refer this call, using the
 
 Use the Accept call endpoint to approve the inbound call and configure the realtime session that will answer it. Send the same parameters you would send in a to create client secret (you can also optionally include other realtime session information - just like a session.update message but type, model and instructions are required).
 
-Note: for authorization - you can either use api-key header or the Bearer token as shown below. Remember the model name is actually the name of your deployment. 
+> [!NOTE]
+> For authorization, you can either use the api-key header or the Bearer token as shown below. Remember the model name is actually the name of your deployment. 
 
 ```
 curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/accept" \
