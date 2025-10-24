@@ -85,7 +85,8 @@ Query string parameters:
 |500| Unexpected service error. Retry or contact support with request details.
 |503| Service temporarily unavailable. Retry later.
 
-**Note:** Errors return a JSON response including an `error` object.
+> [!NOTE]
+> Errors return a JSON response including an `error` object.
 
 **Example JSON Error Response**
 
