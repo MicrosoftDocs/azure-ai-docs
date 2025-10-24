@@ -35,7 +35,7 @@ Your Language resource must have identity management, to enable it using [Langua
 
 1. Select the settings icon in the top right corner of the screen
 2. Select **Resources**
-3. Select the check box **Managed Identity** for your Azure AI Language resource.
+3. Select the check box **Managed Identity** for your Azure Language resource.
 
 ---
 
@@ -52,7 +52,7 @@ Make sure to enable **Custom text classification / Custom Named Entity Recogniti
 >[!Important]
 > * Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you're connecting.
 
-### Set roles for your Azure AI Language resource and storage account
+### Set roles for your Azure Language resource and storage account
 
 [!INCLUDE [roles-for-resource-and-storage](roles-for-resource-and-storage.md)]
 

@@ -25,7 +25,7 @@ Use the following URL to create a project. Replace the following placeholders wi
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
-|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest released version. For more information, see [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2022-05-01` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest released version. For more information, for more information, *see* [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data).| `2022-05-01` |
 
 
 ### Request headers

@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 To start creating a Custom sentiment analysis model, you need to create a project. Creating a project lets you label data, train, evaluate, improve, and deploy your models.
@@ -64,5 +64,10 @@ Use the following JSON in your request. Replace the placeholder values with your
 This request returns a 201 response, which means that the project is created.
 
 
+<<<<<<< HEAD
 This request returns an error if:
 * The selected resource doesn't have proper permission for the storage account.
+=======
+This request will return an error if:
+* The selected resource doesn't have proper permission for the storage account.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e

@@ -19,7 +19,11 @@ ms.author: lajanuar
     :::image type="content" source="../../media/create-project.png" alt-text="A screenshot of the custom text classification project creation page." lightbox="../../media/create-project.png":::
 
 
+<<<<<<< HEAD
 4.  After you select, **Create new project**, a window appears to let you connect your storage account. If you already connected a storage account, you can see it connected to your project. If not, choose your storage account from the dropdown that appears and select **Connect storage account**; this selection sets the required roles for your storage account. This step can return an error if you aren't assigned as **owner** on the storage account.
+=======
+4.  After you select, **Create new project**, a window will appear to let you connect your storage account. If you already connected a storage account, you can see that storage account connected. If not, choose your storage account from the dropdown that appears and select **Connect storage account** and set the required roles for your storage account. This step can return an error if you aren't assigned as **owner** on the storage account.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
     >[!NOTE]
     > * You only need to do this step once for each new language resource you use. 
@@ -32,7 +36,11 @@ ms.author: lajanuar
     
     :::image type="content" source="../../media/project-types.png" alt-text="A screenshot of the available custom classification project types." lightbox="../../media/project-types.png":::
 
+<<<<<<< HEAD
 5. Enter the project information, including a name, description, and the language of the documents in your project. If you're using the [example dataset](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/Custom%20text%20classification/Custom%20multi%20classification%20-%20movies%20summary.zip), select **English**. You can't change the name of your project later. Select **Next**.
+=======
+5. Enter the project information, including a name, description, and the language of the documents in your project. If you're using the [example dataset](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/Custom%20text%20classification/Custom%20multi%20classification%20-%20movies%20summary.zip), select **English**. You won't be able to change the name of your project later. Select **Next**.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
        
     >[!TIP]
     > Your dataset doesn't have to be entirely in the same language. You can have multiple documents, each with different supported languages. If your dataset contains documents of different languages or if you expect text from different languages during runtime, select **enable multi-lingual dataset** option when you enter the basic information for your project. This option can be enabled later from the **Project settings** page.

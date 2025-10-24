@@ -16,7 +16,7 @@ Use the following steps to set the required roles for your Language resource and
 
 :::image type="content" source="../media/add-roles.gif" alt-text="An animated image showing how to set roles in the Azure portal." lightbox="../media/add-roles.gif":::
 
-### Roles for your Azure AI Language resource
+### Roles for your Azure Language resource
 
 1. Go to your storage account or Language resource in the [Azure portal](https://portal.azure.com/).
 2. Select **Access Control (IAM)** in the left pane.

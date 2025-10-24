@@ -18,11 +18,19 @@ ms.author: lajanuar
 
 ### [Overview](#tab/overview)
 
+<<<<<<< HEAD
 * In this tab you can view the model's details such as: F1 score, precision, recall, date, and time for the training job, total training time, and number of training and testing documents included in this training job.
 
     :::image type="content" source="../../media/overview.png" alt-text="A screenshot that shows the overview page for model evaluation." lightbox="../../media/overview.png":::
 
 * You can also see [guidance](../../concepts/evaluation-metrics.md#guidance) on how to improve the model. When you select *view details*, a side panel opens to give more guidance on how to improve the model. In this example, *BorrowerAddress* and *BorrowerName* entities are confused with *$none* entity. By selecting the confused entities, you're taken to the [data labeling](../../how-to/tag-data.md) page to label more data with the correct entity.
+=======
+* In this tab you can view the model's details such as: F1 score, precision, recall, date, and time for the training job, total training time, and number of training and testing documents included in this training job.  
+
+    :::image type="content" source="../../media/overview.png" alt-text="A screenshot that shows the overview page for model evaluation." lightbox="../../media/overview.png":::
+
+* You can also see [guidance](../../concepts/evaluation-metrics.md#guidance) on how to improve the model. When you select *view details*, a side panel opens to give more guidance on how to improve the model. In this example, *BorrowerAddress* and *BorrowerName* entities are confused with *$none* entity. By clicking on the confused entities, you're taken to the [data labeling](../../how-to/tag-data.md) page to label more data with the correct entity.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
     :::image type="content" source="../../media/overview-guidance.png" alt-text="A screenshot that shows the guidance page for model evaluation." lightbox="../../media/overview-guidance.png":::
 
@@ -30,7 +38,11 @@ ms.author: lajanuar
 
 ### [Entity type performance](#tab/entity-performance)
 
+<<<<<<< HEAD
 * This view is a snapshot of how your model performed during testing. The metrics here are static and tied to your model, so they don't update until you train again.
+=======
+* This metric is a snapshot of how your model performed during testing. The metrics here are static and tied to your model, so they don't update until you train again.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
 * You can see for each entity, precision, recall, F1 score, number of training and testing labels.
 
@@ -41,13 +53,20 @@ ms.author: lajanuar
 
 * Here you can see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
 
+<<<<<<< HEAD
 * For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you can see whether it's a [true positive](../../concepts/evaluation-metrics.md), [false positive](../../concepts/evaluation-metrics.md), or [false negative](../../concepts/evaluation-metrics.md).
+=======
+* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you can see whether it's a [true positive](../../concepts/evaluation-metrics.md), [false positive](../../concepts/evaluation-metrics.md), or [false negative](../../concepts/evaluation-metrics.md). 
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
     :::image type="content" source="../../media/test-set.png" alt-text="A screenshot of test set details." lightbox="../../media/test-set.png":::
 
 
+<<<<<<< HEAD
 ### [Dataset distribution](#tab/dataset-distribution)
 
+=======
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 This snapshot shows how entities are distributed across your training and testing sets. This data is static and tied to your model, so it doesn't update until you train again.
 
 * You can view the dataset distribution in *graph* or *table* view.
@@ -62,7 +81,11 @@ This snapshot shows how entities are distributed across your training and testin
 
 **Table view**
 
+<<<<<<< HEAD
 For each *entity*, you can view: tags per entity in training set; tagged documents in training set; tags per entity in testing set; tagged documents in testing set; tags per entity total; and tagged documents total.
+=======
+For each *entity*, you can view tags per entity in training set; tagged documents in training set; tags per entity in testing set; tagged documents in testing set; tags per entity total; and tagged documents total.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
   :::image type="content" source="../../media/dataset-table.png" alt-text="A screenshot showing distribution in table view." lightbox="../../media/dataset-table.png":::
 

@@ -7,12 +7,16 @@ ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
+<<<<<<< HEAD
 After you create an Azure storage account and connected it to your Language resource, you need to upload the documents from the sample dataset to the root directory of your container. These documents are used to train your model.
+=======
+After you create an Azure storage account and connected it to your Language resource, you need to upload the documents from the sample dataset to the root directory of your container. These documents are used later to train your model.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
 
-1. [Download the sample dataset](https://go.microsoft.com/fwlink/?linkid=2175226) from GitHub. 
+1. [Download the sample dataset](https://go.microsoft.com/fwlink/?linkid=2175226) from GitHub.
 
-2. Open the .zip file, and extract the folder containing the documents. 
+2. Open the .zip file, and extract the folder containing the documents.
 
 2. In the [Azure portal](https://portal.azure.com), navigate to the storage account you created, and select it.
 
@@ -20,7 +24,11 @@ After you create an Azure storage account and connected it to your Language reso
 
     :::image type="content" source="../../media/storage-screen.png" alt-text="A screenshot showing the main page for a storage account." lightbox="../../media/storage-screen.png":::
 
+<<<<<<< HEAD
 4. After your container is created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier. 
+=======
+4. After your container is created, select it. Then select **Upload** button to select the `.txt` and `.json` files you downloaded earlier.
+>>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
     :::image type="content" source="../../media/file-upload-screen.png" alt-text="A screenshot showing the button for uploading files to the storage account." lightbox="../../media/file-upload-screen.png":::
 

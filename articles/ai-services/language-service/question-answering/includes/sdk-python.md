@@ -4,7 +4,7 @@ description: This quickstart shows how to get started with the custom question a
 ms.topic: include
 author: laujan
 ms.author: lajanuar
-ms.date: 08/07/2025
+ms.date: 11/05/2025
 ---
 
 Use this quickstart for the custom question answering client library for Python to:
