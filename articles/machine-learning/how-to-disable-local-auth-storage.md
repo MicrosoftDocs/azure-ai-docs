@@ -10,20 +10,17 @@ ms.custom:
   - ignite-2024
 ms.topic: how-to
 ms.reviewer: fsolomon
-ms.date: 11/19/2024
+ms.date: 10/24/2025
 reviewer: AmarBadal
 #customer intent: As an admin, I want to disable shared key access to my resources to improve security.
 ---
 
-# Disable shared key access for your workspace's storage account (preview)
+# Disable shared key access for your workspace's storage account
 
 An Azure Machine Learning workspace defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
 To reduce the risk of unauthorized access, you can disable key-based authorization, and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in the Azure Machine Learning studio, or run a notebook while authenticated with the user's identity. The Azure Machine Learning service uses a managed identity to access the storage account - for example, when running a training job as the managed identity.
 
-Use of your workspace with a shared key disabled storage account is currently in preview.
-
-[!INCLUDE [machine-learning-preview-generic-disclaimer](includes/machine-learning-preview-generic-disclaimer.md)]
 
 ## Prerequisites
 
@@ -412,7 +409,7 @@ To work with a storage account with disabled shared key access, you might need t
 |---------|------|-------|-----|
 | Managed online endpoint | System-assigned managed identity | Storage Blob Data Contributor | Automatically assigned the role when provisioned. </br>Don't manually change this role assignment. |
 | Monitoring (evaluating model quality/perf) | User-assigned managed identity | Storage Blob Data Contributor | If an existing user-assigned managed identity is presently used by the workspace, verify that it has an assigned Storage Data Blob Contributor role.<br>The user-assigned managed identity is in addition to the system-assigned managed identity for your workspace. For information about how to add the managed identity to the workspace, visit [Add a user-assigned managed identity](how-to-identity-based-service-authentication.md#add-a-user-assigned-managed-identity-to-a-workspace-in-addition-to-a-system-assigned-identity).<br>|
-| Model Registry and ML Flow | User-assigned managed identity | Storage Blob Data Contributor | Create compute cluster that uses the user-assigned identity.<br>• In case of model as input/output for a job, separately create an UAMI, add "Storage Data Contributor" role to underlying storage, and associate that UAMI when creating Compute Cluster. The job will then successfully run<br>• In case of registration of a model from local files, the user needs the "Storage Data Contributor" role for the  underlying storage<br>• Model package scenarios have known issues and are not supported at this time. |
+| Model Registry and ML Flow | User-assigned managed identity | Storage Blob Data Contributor | Create compute cluster that uses the user-assigned identity.<br>* In case of model as input/output for a job, separately create an UAMI, add "Storage Data Contributor" role to underlying storage, and associate that UAMI when creating Compute Cluster. The job will then successfully run<br>* In case of registration of a model from local files, the user needs the "Storage Data Contributor" role for the  underlying storage<br>* Model package scenarios have known issues and are not supported at this time. |
 | Parallel Run Step (PRS) | User-assigned managed identity | Storage Table Data Contributor<br><br>Storage Queue Data Contributor| |
 | Data Labeling | User's identity | Storage Blob Data Contributor |  |
 | Studio: create datasets, browse data |  User's identity | Storage Blob Data Contributor |  |
