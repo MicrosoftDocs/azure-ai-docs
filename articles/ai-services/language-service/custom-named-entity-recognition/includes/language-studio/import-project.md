@@ -20,11 +20,7 @@ ms.author: lajanuar
     :::image type="content" source="../../media/create-project.png" alt-text="A screenshot of the project creation page." lightbox="../../media/create-project.png":::
 
 
-<<<<<<< HEAD
-4.  After you select **Create new project**, a screen will appear to let you connect your storage account. If you can’t find your storage account, make sure you created a resource using the recommended steps. If you've already connected a storage account to your Language resource, you can see your storage account connected.
-=======
-4.  After you select **Create new project**, a screen will appear to let you connect your storage account. If you can't find your storage account, make sure you created a resource using the recommended steps. If you already connected a storage account to your Language resource, you see your storage account connected.
->>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
+4.  After you select **Create new project**, a screen will appear to let you connect your storage account. If you can't find your storage account, make sure you created a resource using the recommended steps. If you've already connected a storage account to your Language resource, you can see your storage account connected.
 
     >[!NOTE]
     > * You only need to do this step once for each new language resource you use. 

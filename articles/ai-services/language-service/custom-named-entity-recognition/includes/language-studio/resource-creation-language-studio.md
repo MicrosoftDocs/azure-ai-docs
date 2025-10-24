@@ -11,11 +11,7 @@ ms.author: lajanuar
 
 ### Create a new Language resource from Language Studio
 
-<<<<<<< HEAD
 If it's your first time logging in, you'll see a window in [Language Studio](https://aka.ms/languageStudio) that lets you choose an existing Language resource or create a new one. You can also create a resource by clicking the settings icon in the top-right corner, selecting **Resources**, then clicking **Create a new resource**.
-=======
-If it's your first time logging in, you see a window in [Language Studio](https://aka.ms/languageStudio) that lets you choose an existing Language resource or create a new one. You can also create a resource by clicking the settings icon in the top-right corner, selecting **Resources**, then clicking **Create a new resource**.
->>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
 
 Create a Language resource with following details.
 

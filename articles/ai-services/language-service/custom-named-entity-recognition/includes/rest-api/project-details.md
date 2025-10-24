@@ -53,8 +53,4 @@ Use the following header to authenticate your request.
 | `multilingual` | `true`| A boolean value that enables you to have documents in multiple languages in your dataset and when your model is deployed you can query the model in any supported language (not necessarily included in your training documents. For more information about multilingual support, see [Language support](../../language-support.md#multi-lingual-option). | `true`|
 | `language` | `{LANGUAGE-CODE}` |  A string specifying the language code for the documents used in your project. If your project is a multilingual project, choose the [language code](../../language-support.md) for most of the documents. |`en-us`|
 
-<<<<<<< HEAD
 Once you send your API request, you receive a `200` response indicating success and JSON response body with your project details.
-=======
-Once you send your API request, your receive a `200` response indicating success and JSON response body with your project details.
->>>>>>> d843db8face108a14958aa31ff4bfac876de9b0e
