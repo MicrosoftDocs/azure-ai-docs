@@ -37,9 +37,9 @@ ms.author: lajanuar
 
 ### [Test set details](#tab/test-set)
 
-* Here you will see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
+* Here you can see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
 
-* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you will see whether it's a true positive, false positive or false negative. 
+* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you can see whether it's a true positive, false positive or false negative. 
 
     :::image type="content" source="../../media/custom/test-set.png" alt-text="A screenshot of test set details." lightbox="../../media/custom/test-set.png":::
     

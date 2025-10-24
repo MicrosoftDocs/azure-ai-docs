@@ -43,7 +43,7 @@ Private endpoints are provided by [Azure Private Link](/azure/private-link/priva
 > [!div class="mx-imgBorder"]
 > ![Text Analytics networking](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking-custom-qna.png)
 
-This will establish a private endpoint connection between language resource and Azure AI Search service instance. You can verify the Private endpoint connection on the *Networking* tab of the Azure AI Search service instance. Once the whole operation is completed, you are good to use your language resource with question answering enabled.
+This will establish a private endpoint connection between language resource and Azure AI Search service instance. You can verify the Private endpoint connection on the *Networking* tab of the Azure AI Search service instance. Once the whole operation is completed, you're good to use your language resource with question answering enabled.
 
 ![Managed Networking Service](../../../QnAMaker/media/qnamaker-reference-private-endpoints/private-endpoint-networking-3.png)
 

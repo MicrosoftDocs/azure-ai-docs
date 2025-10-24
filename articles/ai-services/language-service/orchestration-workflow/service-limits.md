@@ -23,7 +23,7 @@ Use this article to learn about the data and service limits when using orchestra
 
   |Tier|Description|Limit|
   |--|--|--|
-  |F0 |Free tier|You are only allowed one Language resource with the F0 tier per subscription.|
+  |F0 |Free tier|You're only allowed one Language resource with the F0 tier per subscription.|
   |S |Paid tier|You can have up to 100 Language resources in the S tier per region.| 
 
 

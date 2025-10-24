@@ -110,7 +110,7 @@ Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT
 
 ## Changes in calling the runtime
 
-Within your system, at the step where you call [runtime API](https://aka.ms/clu-apis) check for the response code returned from the submit task API. If you observe a **consistent** failure in submitting the request, this could indicate an outage in your primary region. Failure once doesn't mean an outage, it may be transient issue. Retry submitting the job through the secondary resource you have created. For the second request use your `{YOUR-SECONDARY-ENDPOINT}` and secondary key, if you have followed the steps above, `{PROJECT-NAME}` and `{DEPLOYMENT-NAME}` would be the same so no changes are required to the request body. 
+Within your system, at the step where you call [runtime API](https://aka.ms/clu-apis) check for the response code returned from the submit task API. If you observe a **consistent** failure in submitting the request, this could indicate an outage in your primary region. Failure once doesn't mean an outage, it may be transient issue. Retry submitting the job through the secondary resource you create. For the second request use your `{YOUR-SECONDARY-ENDPOINT}` and secondary key, if you have followed the steps above, `{PROJECT-NAME}` and `{DEPLOYMENT-NAME}` would be the same so no changes are required to the request body. 
 
 In case you revert to using your secondary resource you will observe slight increase in latency because of the difference in regions where your model is deployed. 
 

@@ -37,7 +37,7 @@ Use the following steps to add utterances:
 3. From the **Select intent** dropdown menu, select one of the intents. Type in your utterance, and press the enter key in the utterance's text box to add the utterance. You can also upload your utterances directly by clicking on **Upload utterance file** from the top menu, make sure it follows the [accepted format](../concepts/data-formats.md#utterance-format).
     
     > [!Note]
-    > If you are planning on using **Automatically split the testing set from training data** splitting, add all your utterances to the training set.
+    > If you're planning on using **Automatically split the testing set from training data** splitting, add all your utterances to the training set.
     > You can add training utterances to **non-connected** intents only.
         
     :::image type="content" source="../media/tag-utterances.png" alt-text="A screenshot of the page for tagging utterances in Language Studio." lightbox="../media/tag-utterances.png":::

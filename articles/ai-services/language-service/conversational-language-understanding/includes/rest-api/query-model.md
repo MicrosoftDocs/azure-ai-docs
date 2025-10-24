@@ -19,7 +19,7 @@ Create a **POST** request using the following URL, headers, and JSON body to sta
 |Placeholder  |Value  | Example |
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 
 ### Headers
@@ -59,7 +59,7 @@ Use the following header to authenticate your request.
 | `projectName` | `{PROJECT-NAME}` | The name of your project. This value is case-sensitive.   | `myProject` |
 | `deploymentName` | `{DEPLOYMENT-NAME}` | The name of your deployment. This value is case-sensitive.  | `staging` |
 
-Once you send the request, you will get the following response for the prediction
+Once you send the request, you get the following response for the prediction
 
 ### Response body
 

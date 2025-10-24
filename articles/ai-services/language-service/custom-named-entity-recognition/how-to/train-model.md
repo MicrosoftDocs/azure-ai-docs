@@ -34,7 +34,7 @@ Before you start the training process, labeled documents in your project are div
 The **training set** is used in training the model, this is the set from which the model learns the labeled entities and what spans of text are to be extracted as entities. 
 The **testing set** is a blind set that is not introduced to the model during training but only during evaluation. 
 After model training is completed successfully, the model is used to make predictions from the documents in the testing and based on these predictions [evaluation metrics](../concepts/evaluation-metrics.md) are calculated. 
-It's recommended to make sure that all your entities are adequately represented in both the training and testing set.
+We recommend that you make sure that all your entities are adequately represented in both the training and testing set.
 
 Custom NER supports two methods for data splitting:
 

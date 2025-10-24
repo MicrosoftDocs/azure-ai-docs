@@ -22,7 +22,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/overview.png" alt-text="A screenshot that shows the overview page for model evaluation." lightbox="../../media/overview.png":::
 
-* You will also see [guidance](../../concepts/evaluation-metrics.md#guidance) on how to improve the model. When clicking on *view details* a side panel will open to give more guidance on how to improve the model. In this example, *BorrowerAddress* and *BorrowerName* entities are confused with *$none* entity. By clicking on the confused entities, you will be taken to the [data labeling](../../how-to/tag-data.md) page to label more data with the correct entity.
+* You can also see [guidance](../../concepts/evaluation-metrics.md#guidance) on how to improve the model. When clicking on *view details* a side panel will open to give more guidance on how to improve the model. In this example, *BorrowerAddress* and *BorrowerName* entities are confused with *$none* entity. By clicking on the confused entities, you will be taken to the [data labeling](../../how-to/tag-data.md) page to label more data with the correct entity.
 
     :::image type="content" source="../../media/overview-guidance.png" alt-text="A screenshot that shows the guidance page for model evaluation." lightbox="../../media/overview-guidance.png":::
     
@@ -39,9 +39,9 @@ ms.author: lajanuar
 
 ### [Test set details](#tab/test-set)
 
-* Here you will see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
+* Here you can see the documents included in the **test set** and the result entity type for each document. You can use the *Show mismatches only* toggle to show only documents with mismatches, or unselect the toggle to view all document in the test set.
 
-* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you will see whether it is a [true positive](../../concepts/evaluation-metrics.md), [false positive](../../concepts/evaluation-metrics.md) or [false negative](../../concepts/evaluation-metrics.md). 
+* For each document, you can view: labeled text, its respective labeled entity type and what entity it was predicted with. Also, you can see whether it is a [true positive](../../concepts/evaluation-metrics.md), [false positive](../../concepts/evaluation-metrics.md) or [false negative](../../concepts/evaluation-metrics.md). 
 
     :::image type="content" source="../../media/test-set.png" alt-text="A screenshot of test set details." lightbox="../../media/test-set.png":::
     

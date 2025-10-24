@@ -11,7 +11,7 @@ ms.author: lajanuar
 
 |Requirement  |Description  |
 |---------|---------|
-|Regions     |  If you don't have a resource, you will need to create a new one in a supported region.        |
+|Regions     |  If you don't have a resource, you need to create a new one in a supported region.        |
 |Pricing tier     | pricing tier for your resource.       |
 |Managed identity     | Make sure that the resource's managed identity setting is enabled. Otherwise, read the next section. |
 
@@ -48,7 +48,7 @@ Make sure to enable this service's custom feature from Azure portal.
 5. Select **Apply**
 
 > [!IMPORTANT]
-> Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you are connecting.
+> Make sure that your **Language resource** has **storage blob data contributor** role assigned on the storage account you're connecting.
 
 ### Set roles for your Azure AI Language resource and storage account
 

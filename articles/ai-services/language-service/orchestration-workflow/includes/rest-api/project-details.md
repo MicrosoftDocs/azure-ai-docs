@@ -17,7 +17,7 @@ To get an orchestration workflow project's details, submit a **GET** request usi
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.  | `myProject` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 ### Headers
 
@@ -29,7 +29,7 @@ Use the following header to authenticate your request.
 
 ### Response Body
 
-Once you send the request, you will get the following response.
+Once you send the request, you get the following response.
 
 ```json
 {
@@ -44,4 +44,4 @@ Once you send the request, you will get the following response.
 }
 ```
 
-Once you send your API request, you will receive a `200` response indicating success and JSON response body with your project details.
+Once you send your API request, you receive a `200` response indicating success and JSON response body with your project details.

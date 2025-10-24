@@ -29,7 +29,7 @@ See the [project development lifecycle](../overview.md#project-development-lifec
 
 ## Data labeling guidelines
 
-After [preparing your data, designing your schema](design-schema.md) and [creating your project](create-project.md), you will need to label your data. Labeling your data is important so your model knows which documents will be associated with the classes you need. When you label your data in [Language Studio](https://aka.ms/languageStudio) (or import labeled data), these labels are stored in the JSON file in your storage container that you've connected to this project. 
+After [preparing your data, designing your schema](design-schema.md) and [creating your project](create-project.md), you need to label your data. Labeling your data is important so your model knows which documents will be associated with the classes you need. When you label your data in [Language Studio](https://aka.ms/languageStudio) (or import labeled data), these labels are stored in the JSON file in your storage container that you've connected to this project. 
 
 As you label your data, keep in mind:
 

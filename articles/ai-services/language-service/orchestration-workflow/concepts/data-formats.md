@@ -67,7 +67,7 @@ If you upload a tags file, it should follow this format.
 
 |Key  |Placeholder  |Value  | Example |
 |---------|---------|----------|--|
-| `api-version` | `{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest released [model version](../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-03-01-preview` |
+| `api-version` | `{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest released [model version](../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released. | `2022-03-01-preview` |
 |`confidenceThreshold`|`{CONFIDENCE-THRESHOLD}`|This is the threshold score below which the intent will be predicted as [none intent](none-intent.md)|`0.7`|
 | `projectName` | `{PROJECT-NAME}` | The name of your project. This value is case-sensitive. | `EmailApp` |
 | `multilingual` | `false`| Orchestration doesn't support the multilingual feature  | `false`|

@@ -23,7 +23,7 @@ Submit a **GET** request using the following URL, headers, and JSON body to get 
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
 |`{trainedModelLabel}`     | The name for your trained model. This value is case-sensitive.   | `Model1` |
-|`{API-VERSION}`     | The version of the API you are calling. See [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2022-05-01` |
+|`{API-VERSION}`     | The version of the API you're calling. See [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.  | `2022-05-01` |
 
 
 ### Headers
@@ -36,7 +36,7 @@ Use the following header to authenticate your request.
 
 ### Response Body
 
-Once you send the request, you will get the following response.
+Once you send the request, you get the following response.
 
 ```json
 {

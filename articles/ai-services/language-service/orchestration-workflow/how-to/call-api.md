@@ -34,7 +34,7 @@ You can use Language Studio to submit an utterance, get predictions and visualiz
 
 # [REST APIs](#tab/REST-APIs)
 
-First you will need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
@@ -44,7 +44,7 @@ First you will need to get your resource key and endpoint:
 
 # [Client libraries (Azure SDK)](#tab/azure-sdk)
 
-First you will need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
 

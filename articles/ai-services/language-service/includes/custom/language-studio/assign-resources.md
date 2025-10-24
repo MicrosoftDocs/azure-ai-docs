@@ -15,4 +15,4 @@ To assign deployment resources in other regions in [Language Studio](https://aka
   4. Select **Add deployment resource**.
   5. Select a Language resource in another region.
   
-You are now ready to deploy your project to the regions where you have assigned resources.
+You're now ready to deploy your project to the regions where you have assigned resources.

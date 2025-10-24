@@ -31,7 +31,7 @@ Before you start using orchestration workflow, you will need an Azure AI Languag
 
 > [!NOTE]
 >  * You need to have an **owner** role assigned on the resource group to create a Language resource.
->  * If you are planning to use question answering, you have to enable question answering in resource creation
+>  * If you're planning to use question answering, you have to enable question answering in resource creation
 
 [!INCLUDE [create a new resource from the Azure portal](../includes/resource-creation-azure-portal.md)]
 
@@ -39,7 +39,7 @@ Before you start using orchestration workflow, you will need an Azure AI Languag
 
 ## Sign in to Language Studio
 
-To create a new intent, select *+Add* button and start by giving your intent a **name**. You will see two options, to connect to a project or not. You can connect to (LUIS, question answering, or Conversational Language Understanding) projects, or choose the **no** option.
+To create a new intent, select *+Add* button and start by giving your intent a **name**. You can see two options, to connect to a project or not. You can connect to (LUIS, question answering, or Conversational Language Understanding) projects, or choose the **no** option.
 
 
 ## Create an orchestration workflow project

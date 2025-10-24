@@ -164,7 +164,7 @@ dotnet run
 1. Enter a Bot URL of `http://localhost:3978/api/messages` and press Connect and wait for it to load
 1. You can now query for different examples such as "Travel from Cairo to Paris" and observe the results
 
-If the top intent returned from CLU resolves to "_Book flight_". Your bot will ask additional questions until it has enough information stored to create a travel booking. At that point it will return this booking information back to your user.
+If the top intent returned from CLU resolves to "_Book flight_". Your bot will ask additional questions until it has enough information stored to create a travel booking. At that point it returns this booking information back to your user.
 
 ## Next steps
 

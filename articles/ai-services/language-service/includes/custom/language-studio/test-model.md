@@ -13,7 +13,7 @@ To test your deployed models from within the [Language Studio](https://aka.ms/La
 
 2. Select the deployment you want to test. You can only test models that are assigned to deployments. 
 
-3. For multilingual projects, from the language dropdown, select the language of the text you are testing.
+3. For multilingual projects, from the language dropdown, select the language of the text you're testing.
 
 3. Select the deployment you want to query/test from the dropdown.
 

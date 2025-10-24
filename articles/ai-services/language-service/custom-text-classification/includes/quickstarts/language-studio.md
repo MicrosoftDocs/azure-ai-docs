@@ -22,7 +22,7 @@ Before you can use custom text classification, you need to create an Azure AI La
 > [!IMPORTANT]
 > To quickly get started, we recommend creating a new Azure AI Language resource using the steps provided in this article. Using the steps in this article lets you create the Language resource and storage account at the same time, which is easier than doing it later.
 >
-> If you have a [preexisting resource](../../how-to/create-project.md#using-a-pre-existing-language-resource) that you'd like to use, you need to connect it to storage account.
+> If you have a [preexisting resource](../../how-to/create-project.md#using-a-preexisting-language-resource) that you'd like to use, you need to connect it to storage account.
 >
 > Adding the role **Storage Blob Data Contributor** is essential for interacting with *any resource* that utilizes the storage account.
 

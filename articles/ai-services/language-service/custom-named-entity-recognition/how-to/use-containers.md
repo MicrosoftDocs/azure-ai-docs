@@ -46,7 +46,7 @@ CPU core and memory correspond to the `--cpus` and `--memory` settings, which ar
 
 ## Export your Custom Named Entity Recognition model
 
-Before you proceed with running the docker image, you will need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values:
+Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
