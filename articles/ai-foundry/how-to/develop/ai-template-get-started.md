@@ -38,7 +38,9 @@ Available templates include:
 ::: moniker range="foundry-classic"
 - Either a [[!INCLUDE [fdp-project-name](../../includes/fdp-project-name.md)]](../create-projects.md) or a [[!INCLUDE [hub-project-name](../../includes/hub-project-name.md)]](../hub-create-projects.md).
 ::: moniker-end
-
+::: moniker range="foundry"
+- A [Foundry project](../create-projects.md).
+::: moniker-end
 
 ## Start with a sample application
 
