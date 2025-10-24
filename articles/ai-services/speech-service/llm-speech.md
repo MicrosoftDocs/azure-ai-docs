@@ -37,8 +37,26 @@ The LLM-speech API currently supports the following speech tasks:
 
 The following languages are currently supported for both `transcribe` and `translate` tasks:
 
-**English**, **Chinese**, **German**, **French**, **Italian**, **Japanese**, **Spanish**, **Portuguese**, and **Korean**.
+ - `English`, `Chinese`, `German`, `French`, `Italian`, `Japanese`, `Spanish`, `Portuguese`, and `Korean`.
 
+
+### Upload audio
+
+You can provide audio data in the following ways:
+
+- Pass inline audio data.
+
+```
+  --form 'audio=@"YourAudioFile"'
+```
+
+- Upload audio file from a public `audioUrl`.
+
+```
+  --form 'definition": "{\"audioUrl\": \"https://crbn.us/hello.wav"}"'
+```
+
+In the sections below, inline audio upload is used as an example.
 
 
 ### Quickstart
