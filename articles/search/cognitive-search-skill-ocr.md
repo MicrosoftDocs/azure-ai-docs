@@ -39,7 +39,7 @@ Supported data sources for OCR and image analysis are blobs in Azure Blob Storag
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Description |
 |--------------------|-------------|

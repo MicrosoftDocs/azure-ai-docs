@@ -24,7 +24,7 @@ Microsoft.Skills.Text.MergeSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name	 | Description |
 |--------------------|-------------|
@@ -35,7 +35,7 @@ Parameters are case-sensitive.
 | Input name | Description |
 |------------|-------------|
 | `itemsToInsert` | Array of strings to be merged. |
-| `text`          | (optional) Main text body to be inserted into. If `text` is not provided, elements of `itemsToInsert` will be concatencated. |
+| `text`          | (optional) Main text body to be inserted into. If `text` is not provided, elements of `itemsToInsert` will be concatenated. |
 | `offsets`       | (optional) Array of positions within `text` where `itemsToInsert` should be inserted. If provided, the number of elements of `text` must equal the number of elements of `textToInsert`. Otherwise all items will be appended at the end of `text`. |
 
 ## Skill outputs

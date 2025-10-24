@@ -62,7 +62,7 @@ Open-source, third-party, or first-party code can be integrated into the pipelin
 
 ### Use-cases for built-in skills
 
-Built-in skills are based on the Azure AI services APIs: [Azure AI Computer Vision](/azure/ai-services/computer-vision/) and [Language Service](/azure/ai-services/language-service/overview). Unless your content input is small, expect to [attach a billable Azure AI services resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
+Built-in skills are based on the Azure AI services APIs: [Azure AI Computer Vision](/azure/ai-services/computer-vision/) and [Language Service](/azure/ai-services/language-service/overview). Unless your content input is small, expect to [attach a billable Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) to run larger workloads.
 
 A [skillset](cognitive-search-defining-skillset.md) that's assembled using built-in skills is well suited for the following application scenarios:
 
@@ -110,7 +110,7 @@ In Azure Storage, a [knowledge store](knowledge-store-concept-intro.md) can assu
 
 AI enrichment is available in regions that offer Azure AI services. To check the availability of AI enrichment, see the [regions list](search-region-support.md).
 
-Billing follows a Standard pricing model. Costs associated with built-in skills are incurred when you specify an Azure OpenAI in Azure AI Foundry Models resource or Azure AI services multi-service resource key in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. However, text extraction and utility skills aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
+Billing follows a Standard pricing model. Costs associated with built-in skills are incurred when you specify an Azure OpenAI in Azure AI Foundry Models resource or Azure AI Foundry resource key in the skillset. There are also costs associated with image extraction, as metered by Azure AI Search. However, text extraction and utility skills aren't billable. For more information, see [How you're charged for Azure AI Search](search-sku-manage-costs.md#how-youre-charged-for-the-base-service).
 
 ## Checklist: A typical workflow
 
@@ -120,7 +120,7 @@ Start with a subset of data in a [supported data source](search-indexer-overview
 
 1. Create a [data source](/rest/api/searchservice/data-sources/create) that specifies a connection to your data.
 
-1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI services multi-service resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
+1. [Create a skillset](cognitive-search-defining-skillset.md). Unless your project is small, you should [attach an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md). If you're [creating a knowledge store](knowledge-store-create-rest.md), define it within the skillset.
 
 1. [Create an index schema](search-how-to-create-search-index.md) that defines a search index.
 

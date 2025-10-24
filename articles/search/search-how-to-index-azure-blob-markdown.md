@@ -68,7 +68,7 @@ Later sections describe each submode in more detail. If you're unfamiliar with i
 
 ### Optional Markdown parsing parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name     | Allowed Values | Description |
 |--------------------|-------------|-------------|
@@ -484,7 +484,7 @@ Steps:
 
 Before re-indexing a modified Markdown file, explicitly delete the existing documents associated with that file using the [delete API](/rest/api/searchservice/documents#indexactiontype). You can either:
 
-* Manually indentify individual stale documents by identifying duplicates in the index to be deleted. This may be feasible for small, well-understood changes but can be time-consuming.
+* Manually identify individual stale documents by identifying duplicates in the index to be deleted. This may be feasible for small, well-understood changes but can be time-consuming.
 * (**Recommended**) Remove all documents generated from the same parent file before re-indexing, ensuring inconsistencies are avoided.
 
 Steps:

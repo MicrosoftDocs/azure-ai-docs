@@ -37,7 +37,7 @@ Microsoft.Skills.Vision.ImageAnalysisSkill
 
 ## Skill parameters
 
-Parameters are case-sensitive.
+Parameters are case sensitive.
 
 | Parameter name | Description |
 |--------------------|-------------|

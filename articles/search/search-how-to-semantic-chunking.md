@@ -38,7 +38,7 @@ For illustration purposes, this article uses the [sample health plan PDFs](https
 
 + A skillset with these two skills:
 
-  + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries. This skill has region requirements. An Azure AI multi-service resource must be in the same region as Azure AI Search with AI enrichment.
+  + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md) that splits documents based on paragraph boundaries. If you use [key-based billing](cognitive-search-attach-cognitive-services.md), this skill requires Azure AI Foundry to be in the same region as Azure AI Search for AI enrichment. Region requirements are relaxed for keyless billing (preview).
 
   + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md) that generates vector embeddings. This skill *doesn't* have region requirements.
 
@@ -189,7 +189,7 @@ Besides skills, the skillset includes `indexProjections` and `cognitiveServices`
 
 + `indexProjections` are used for indexes containing chunked documents. The projections specify how parent-child content is mapped to fields in a search index for one-to-many indexing. For more information, see [Define an index projection](search-how-to-define-index-projections.md).
 
-+ `cognitiveServices` [attaches an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md) for billing purposes (the Document Layout skill is available through [Standard pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/)).
++ `cognitiveServices` [attaches an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) for billing purposes (the Document Layout skill is available through [Standard pricing](https://azure.microsoft.com/pricing/details/ai-document-intelligence/)).
 
 ```https
 POST {endpoint}/skillsets?api-version=2025-09-01
@@ -396,7 +396,7 @@ If you used the health plan PDFs to test this skill, Search Explorer results for
 + [Create or update a skill set](cognitive-search-defining-skillset.md).
 + [Create a data source](search-how-to-index-azure-blob-storage.md)
 + [Define an index projection](search-how-to-define-index-projections.md)
-+ [Attach an Azure AI services multi-service account](cognitive-search-attach-cognitive-services.md)
++ [Attach an Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md)
 + [Document Layout skill](cognitive-search-skill-document-intelligence-layout.md)
 + [Text Split skill](cognitive-search-skill-textsplit.md)
 + [Azure OpenAI Embedding skill](cognitive-search-skill-azure-openai-embedding.md)

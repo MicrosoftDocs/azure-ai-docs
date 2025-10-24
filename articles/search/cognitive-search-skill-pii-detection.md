@@ -31,7 +31,7 @@ The maximum size of a record should be 50,000 characters as measured by [`String
 
 ## Skill parameters
 
-Parameters are case-sensitive and all are optional.
+Parameters are case sensitive and all are optional.
 
 | Parameter name     | Description |
 |--------------------|-------------|

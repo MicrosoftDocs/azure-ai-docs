@@ -31,7 +31,7 @@ Microsoft.Skills.Text.SplitSkill
 
 ## Skill Parameters
 
-Parameters are case-sensitive. 
+Parameters are case sensitive. 
 
 | Parameter name     | Description |
 |--------------------|-------------|-------------|

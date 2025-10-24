@@ -21,7 +21,7 @@ This article is the reference documentation for the Document Layout skill. For u
 
 This skill uses the [Document Intelligence layout model](/azure/ai-services/document-intelligence/concept-layout) provided in [Azure AI Document Intelligence](/azure/ai-services/document-intelligence/overview).
 
-This skill is bound to a [billable Azure AI multi-service resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
+This skill is bound to a [billable Azure AI Foundry resource](cognitive-search-attach-cognitive-services.md) for transactions that exceed 20 documents per indexer per day. Execution of built-in skills is charged at the existing [Azure AI services Standard price](https://azure.microsoft.com/pricing/details/cognitive-services/).
 
 > [!TIP]
 > It's common to use this skill on content such as PDFs that have structure and images. The following tutorials demonstrate image verbalization with two different data chunking techniques:
@@ -34,7 +34,7 @@ This skill is bound to a [billable Azure AI multi-service resource](cognitive-se
 
 This skill has the following limitations:
 
-+ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the AI Services multi-services resource if it attaches to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
++ The skill isn't suitable for large documents requiring more than 5 minutes of processing in the AI Document Intelligence layout model. The skill times out, but charges still apply to the Azure AI Foundry resource if it's attached to the skillset for billing purposes. Ensure documents are optimized to stay within processing limits to avoid unnecessary costs.
 
 + Since this skill calls the Azure AI Document Intelligence layout model, all documented [service behaviors for different document types](/azure/ai-services/document-intelligence/prebuilt/layout#pages) for different file types apply to its output. For example, Word (DOCX) and PDF files may produce different results due to differences in how images are handled. If consistent image behavior across DOCX and PDF is required, consider converting documents to PDF or reviewing the [multimodal search documentation](multimodal-search-overview.md) for alternative approaches.
 
@@ -46,9 +46,9 @@ Supported regions vary by modality and how the skill connects to the Document In
 
 | Approach | Requirement |
 |----------|-------------|
-| [**Import data (new)** wizard](search-import-data-portal.md) | Create an Azure AI multi-service resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
-| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Azure AI multi-service resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
-| Programmatic, using a [multi-service resource API key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and AI multi-service resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
+| [**Import data (new)** wizard](search-import-data-portal.md) | Create an Azure AI Foundry resource in one of these regions to get the portal experience: **East US**, **West Europe**, **North Central US**. | 
+| Programmatic, using [Microsoft Entra ID authentication (preview)](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing |  Create Azure AI Search in one of the regions where the service is supported, according to [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). <br>Create the Azure AI Foundry resource in any region listed in the [Product availability by region](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table) table.|
+| Programmatic, using an [Azure AI Foundry resource key](cognitive-search-attach-cognitive-services.md#bill-through-a-keyless-connection) for billing | Create your Azure AI Search service and Azure AI Foundry resource in the same region. This means that the region chosen must have support for both [Azure AI Search and Azure Document Intelligence services](https://azure.microsoft.com/explore/global-infrastructure/products-by-region/table). |
 
 ## Supported file formats
 
@@ -82,7 +82,7 @@ Microsoft.Skills.Util.DocumentIntelligenceLayoutSkill
   
 ## Skill parameters
 
-Parameters are case-sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-08-01-preview) for full access to all parameters.
+Parameters are case sensitive. Several parameters were introduced in specific preview versions of the REST API. We recommend using the generally available version (2025-09-01) or the latest preview (2025-08-01-preview) for full access to all parameters.
 
 | Parameter name     | Allowed Values | Description |
 |--------------------|----------------|-------------|

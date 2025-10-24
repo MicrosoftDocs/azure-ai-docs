@@ -147,11 +147,13 @@ To set up managed identities for Azure OpenAI and Azure Machine Learning:
 + [How to configure Azure OpenAI in Azure AI Foundry Models with managed identities](/azure/ai-services/openai/how-to/managed-identity)
 + [How to set up authentication between Azure Machine Learning and other services](/azure/machine-learning/how-to-identity-based-service-authentication).
 
-To set up a managed identity for an Azure AI service:
+To set up a managed identity for an Azure AI Foundry resource:
 
-1. [Find your multi-service account](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/microsoft.cognitiveServices%2Faccounts).
-1. On the leftmost pane, under **Resource management**, select **Identity**.
-1. Set **System-assigned** to **On**.
+1. [Find your Azure AI Foundry resource](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/microsoft.cognitiveServices%2Faccounts).
+
+1. From the left pane, select **Resource management** > **Identity**.
+
+1. Set **System assigned** to **On**.
 
 ### Trusted resources must have a role assignment
 
@@ -169,7 +171,7 @@ The trusted services are used for vectorization workloads: generating vectors fr
 
 1. Select **Next**.
 1. On the **Members** page, select **Managed identity** and **Select members**.
-1. Filter by system-managed identity and then select the managed identity of your Azure AI services multi-service account.
+1. Filter by system-managed identity and then select the managed identity of your Azure AI Foundry resource.
 
 > [!NOTE]
 > This article covers the trusted exception for admitting requests to your search service, but Azure AI Search is itself on the trusted services list of other Azure resources. Specifically, you can use the trusted service exception for [connections from Azure AI Search to Azure Storage](search-indexer-howto-access-trusted-service-exception.md).

@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: quickstart
-ms.date: 10/21/2025
+ms.date: 10/24/2025
 ---
 
 # Quickstart: Use agentic retrieval in the Azure portal
@@ -37,7 +37,21 @@ Afterwards, you test the knowledge base by submitting a complex query that requi
 
 + An [Azure Blob Storage account](/azure/storage/common/storage-account-create).
 
-+ An [Azure AI Foundry project](/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
++ An [Azure AI Foundry project](/azure/ai-foundry/how-to/create-projects) and Azure AI Foundry resource. When you create a project, the resource is automatically created.
+
++ For text-to-vector conversion, an embedding model [deployed to your Azure AI Foundry project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any `text-embedding` model, such as `text-embedding-3-large`.
+
++ For query planning and answer generation, an LLM [deployed to your Azure AI Foundry project](/azure/ai-foundry/how-to/deploy-models-openai). You can use any [portal-supported LLM](#supported-llms).
+
+### Supported LLMs
+
+Although agentic retrieval [programmatically supports several LLMs](agentic-retrieval-how-to-create-knowledge-base.md#supported-models), the portal currently supports the following LLMs:
+
++ `gpt-4o`
++ `gpt-4o-mini`
++ `gpt-5`
++ `gpt-5-mini`
++ `gpt-5-nano`
 
 ## Configure access
 
@@ -89,16 +103,6 @@ On your Azure AI Foundry resource:
 >
 > Semantic ranking is free in the initial public preview. After the preview, standard token billing applies. For more information, see [Availability and pricing of agentic retrieval](agentic-retrieval-overview.md#availability-and-pricing).
 
-## Deploy models
-
-To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure AI Foundry resource:
-
-+ An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
-
-+ An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
-
-For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
-
 ## Prepare sample data
 
 This quickstart uses sample JSON documents from NASA's Earth at Night e-book, but you can also use your own files. The documents describe general science topics and images of Earth at night as observed from space.
@@ -139,7 +143,7 @@ To create the knowledge source for this quickstart:
 
 1. Select **System managed identity** for the authentication type.
 
-1. Select **Create**.
+1. Create the knowledge source.
 
 ## Create a knowledge base
 
