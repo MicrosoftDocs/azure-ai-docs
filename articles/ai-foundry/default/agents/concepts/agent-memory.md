@@ -14,7 +14,7 @@ ai-usage: ai-assisted
 
 # Manage memory for AI agents
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
+[!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
 Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
@@ -26,8 +26,8 @@ Memory stores act as persistent storage boundaries that define what types of inf
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - Access to Azure AI Foundry with appropriate permissions to create and manage resources.
-- An Azure AI Foundry project. See [Create a project](../how-to/create-projects.md).
-- An agent created in Azure AI Foundry. See [Quickstart: Build an agent](../agents/quickstart.md).
+- An Azure AI Foundry project. See [Create a project](../../../how-to/create-projects.md).
+- An agent created in Azure AI Foundry. See [Quickstart: Build an agent](../../../agents/quickstart.md).
 - Chat model deployment (for example, GPT-4) in your project.
 - Embedding model deployment (for example, text-embedding-ada-002) in your project.
 - Python 3.8 or later with the Azure AI Agent SDK installed, or access to the REST API.
@@ -36,7 +36,7 @@ Memory stores act as persistent storage boundaries that define what types of inf
 
 Agent memory typically falls into two categories:
 
-- **Short-term memory** tracks the current session's conversation, maintaining immediate context for ongoing interactions. Agent orchestration frameworks like [Microsoft Agent Framework](https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview) typically manage this memory as part of the session context.
+- **Short-term memory** tracks the current session's conversation, maintaining immediate context for ongoing interactions. Agent orchestration frameworks like [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) typically manage this memory as part of the session context.
 
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
@@ -383,6 +383,6 @@ Consider these practices when implementing memory in your agents:
 
 ## Related content
 
-- [Build an agent with Azure AI Foundry](../agents/quickstart.md)
-- [Microsoft Agent Framework overview](https://learn.microsoft.com/en-us/agent-framework/overview/agent-framework-overview)
-- [Create a project in Azure AI Foundry](../how-to/create-projects.md)
+- [Build an agent with Azure AI Foundry](../../../agents/quickstart.md)
+- [Microsoft Agent Framework overview](/agent-framework/overview/agent-framework-overview)
+- [Create a project in Azure AI Foundry](../../../how-to/create-projects.md)
