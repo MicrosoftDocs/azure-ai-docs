@@ -69,13 +69,16 @@ Azure AI Foundry applies a flexible compute architecture to support diverse [mod
   - [Standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
   - [Deployment to serverless API endpoints in Azure AI Hub resources](deployments-overview.md#serverless-api-endpoint)
   - [Deployment to managed computes in Azure AI Hub resources](deployments-overview.md#managed-compute)
+
+   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+
 ::: moniker-end
 
 ::: moniker range="foundry"
-- **Model Hosting Architecture** is provided by [standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
+- **Model Hosting Architecture** is provided by [standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources).   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+
 ::: moniker-end
 
-  For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
 
 - **Workload Execution:** Agents, Evaluations, and Batch jobs are executed as managed container compute, fully managed by Microsoft. 
 
