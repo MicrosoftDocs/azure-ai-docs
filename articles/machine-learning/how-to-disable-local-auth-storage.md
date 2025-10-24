@@ -17,9 +17,9 @@ reviewer: AmarBadal
 
 # Disable shared key access for your workspace's storage account
 
-An Azure Machine Learning workspace defaults to use of a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
+An Azure Machine Learning workspace uses a shared key to access its default Azure Storage account. With key-based authorization, anyone who has the key and access to the storage account can access data.
 
-To reduce the risk of unauthorized access, you can disable key-based authorization, and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in the Azure Machine Learning studio, or run a notebook while authenticated with the user's identity. The Azure Machine Learning service uses a managed identity to access the storage account - for example, when running a training job as the managed identity.
+To reduce the risk of unauthorized access, you can disable key-based authorization and instead use Microsoft Entra ID for authorization. This configuration uses a Microsoft Entra ID value to authorize access to the storage account. The identity used to access storage is either the user's identity or a managed identity. The user's identity is used to view data in the Azure Machine Learning studio or run a notebook while authenticated with the user's identity. The Azure Machine Learning service uses a managed identity to access the storage account - for example, when running a training job as the managed identity.
 
 
 ## Prerequisites
@@ -35,7 +35,7 @@ Not applicable.
 1. [Install the SDK v2](https://aka.ms/sdk-v2-install).
 
     > [!IMPORTANT]
-    > The steps in this article require the **azure-ai-ml Python package, version 1.17.0**. To determine the installed package version, use the `pip list` command from your Python development environment.
+    > This article requires the **azure-ai-ml Python package, version 1.17.0**. To check the installed package version, use the `pip list` command from your Python development environment.
 
 1. Install azure-identity: `pip install azure-identity`. If you're working in a notebook cell, use `%pip install azure-identity`.
 
@@ -66,10 +66,10 @@ Not applicable.
 
 To use the CLI commands in this document, you need the [Azure CLI](/cli/azure/install-azure-cli) and the [ml extension](how-to-configure-cli.md).
 
-If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), the CLI is accessed through the browser, and it lives in the cloud.
+If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-shell/), you access the CLI through the browser, and it lives in the cloud.
 
 > [!IMPORTANT]
-> The steps in this article require the **Azure CLI extension for machine learning, version 2.27.0**. To determine the version of the extension you have installed, use the `az version` command from the Azure CLI. In the extensions collection that's returned, find the `ml` extension. This code sample shows an example return value:
+> The steps in this article require the **Azure CLI extension for machine learning, version 2.27.0**. To determine the version of the extension you installed, use the `az version` command from the Azure CLI. In the extensions collection that's returned, find the `ml` extension. This code sample shows an example return value:
 >
 > ```json
 > {
@@ -102,7 +102,7 @@ When you create a new workspace, the creation process can automatically disable 
 
     :::image type="content" source="./media/how-to-disable-local-auth-storage/workspace-basics-storage-account.png" alt-text="Screenshot of workspace creation using the previously created storage account." lightbox="./media/how-to-disable-local-auth-storage/workspace-basics-storage-account.png":::
 
-1.  From the __Identity__ tab. In the __Storage account access__ section, set __Storage account access type__ to __identity-based__.
+1. From the __Identity__ tab, in the __Storage account access__ section, set __Storage account access type__ to __identity-based__.
 
     :::image type="content" source="./media/how-to-disable-local-auth-storage/workspace-identity-based-access.png" alt-text="Screenshot of workspace creation using identity-based storage access." lightbox="./media/how-to-disable-local-auth-storage/workspace-identity-based-access.png":::
 
@@ -216,7 +216,7 @@ For information on deploying an ARM template, use one of the following articles:
 - [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
 - [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
-After you create the workspace, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
+After you create the workspace, identify all the users that will use it - for example, Data Scientists. Assign these users the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
 
 ---
 
@@ -306,9 +306,9 @@ For information on deploying an ARM template, use one of the following articles:
 
 ### Assign roles to users
 
-After updating the workspace, update the storage account to disable shared key access. For more information about disabling shared key access, visit the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
+After updating the workspace, update the storage account to disable shared key access. For more information about disabling shared key access, see the [Prevent shared key authorization for an Azure Storage account](/azure/storage/common/shared-key-authorization-prevent) article.
 
-You must also identify all the users that need access to the default datastores - for example, Data Scientist. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
+You must also identify all the users that need access to the default datastores - for example, Data Scientist. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, see the [role assignments](#scenarios-for-role-assignments) resource in this document.
 
 ## Revert to use shared keys
 
@@ -395,7 +395,7 @@ For information on deploying an ARM template, use one of the following articles:
 - [Tutorial: Deploy a local ARM template using Azure CLI or Azure PowerShell](/azure/azure-resource-manager/templates/deployment-tutorial-local-template)
 - [Quickstart: Create and deploy ARM templates by using the Azure portal](/azure/azure-resource-manager/templates/quickstart-create-templates-use-the-portal)
 
-After you create the workspace, identify all the users that will use it - for example, Data Scientists. These users must be assigned the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
+After you create the workspace, identify all the users that will use it - for example, Data Scientists. Assign these users the __Storage Blob Data Contributor__ and __Storage File Data Privileged Contributor__ roles in Azure role-based access control for the storage account. If these users only need read access, use the __Storage Blob Data Reader__ and __Storage File Data Privileged Reader__ roles instead. For more information, visit the [role assignments](#scenarios-for-role-assignments) resource in this document.
 
 ---
 
@@ -403,7 +403,7 @@ After reverting the workspace, update the storage account to disable shared key 
 
 ## Scenarios for role assignments
 
-To work with a storage account with disabled shared key access, you might need to grant more roles to either your users or the managed identity for your hub. Hubs have a system-assigned managed identity by default. However, some scenarios require a user-assigned managed identity. This table summarizes the scenarios that require extra role assignments:
+To work with a storage account that has disabled shared key access, you might need to grant more roles to either your users or the managed identity for your hub. Hubs have a system-assigned managed identity by default. However, some scenarios require a user-assigned managed identity. This table summarizes the scenarios that require extra role assignments:
 
 | Scenario | Microsoft Entra ID |Required roles | Notes |
 |---------|------|-------|-----|
@@ -420,7 +420,7 @@ To work with a storage account with disabled shared key access, you might need t
 | Data: datastores and datasets | User's identity | Storage Blob Data Contributor |  |
 
 ## Limitations
-- Creating a compute instance with System-Assigned Managed Identity is NOT support for identity based workspace. If the workspace's storage account access type is identity-based access, compute instances currently doesn't support system assigned identity to mount data store, please use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Priviliiged Contributor** on the storage account.
+- Creating a compute instance with system-assigned managed identity isn't supported for identity-based workspace. If the workspace's storage account access type is identity-based access, compute instances currently don't support system assigned identity to mount data store. Use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Priviliiged Contributor** on the storage account.
 
 ## Related content
 
