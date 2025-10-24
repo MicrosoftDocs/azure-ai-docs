@@ -60,7 +60,7 @@ All unpublished or in-development agents within the same project share a common 
 
 To find your shared Agent Identity Blueprint and Agent Identity, navigate to your Foundry project in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
 
-:::image type="content" source="../../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in Azure Portal displaying Agent Identity Blueprint and Agent Identity details for a Foundry project." lightbox=".../../media/agent-identity/azure-agent-identity-json-view.png":::
+:::image type="content" source="../../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in Azure Portal displaying Agent Identity Blueprint and Agent Identity details for a Foundry project." lightbox="../../media/agent-identity/azure-agent-identity-json-view.png":::
 
 ### Distinct agent identity
 

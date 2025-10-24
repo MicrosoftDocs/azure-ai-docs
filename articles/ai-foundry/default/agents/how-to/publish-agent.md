@@ -156,6 +156,6 @@ Your middle tier should:
 
 ## Related content
 
-- Learn about [Agent identity concepts in Azure AI Foundry](../doc1.md)
+- Learn about [Agent identity concepts in Azure AI Foundry](../concepts/agent-identity.md)
 - Explore [authentication options for Agent Applications](#)
 - Review [best practices for middle tier implementation](#)
