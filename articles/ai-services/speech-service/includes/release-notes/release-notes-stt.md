@@ -3,9 +3,8 @@ author: goergenj
 reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 10/21/2025
-ms.author: jagoerge
-ms.reviewer: pafarley
+ms.date: 10/24/2025
+ms.author: pafarley
 ms.custom: references_regions
 ---
 
@@ -107,6 +106,13 @@ Announcing the release of the latest English speech model (en-US, en-CA), which 
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
 These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
+
+### October 2025 release
+
+#### Speech to text REST API version 2025-10-15
+
+The speech to text REST API version 2025-10-15 is released for general availability. For more information, see the [speech to text REST API reference documentation](https://go.microsoft.com/fwlink/?linkid=2296107) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
+
 
 ### November 2024 release
 
