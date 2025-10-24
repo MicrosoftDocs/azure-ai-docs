@@ -2059,7 +2059,9 @@ Base VAD-based turn detection.
 | prefix_padding_ms | integer | Optional. Audio padding before speech starts |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
+
 
 ##### RealtimeAzureSemanticVad
 
@@ -2079,6 +2081,28 @@ Azure semantic VAD (default variant).
 | require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supported languages |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
+
+##### RealtimeAzureSemanticVadMultilingual
+
+Azure semantic VAD (default variant).
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"azure_semantic_vad_multilingual"` |
+| threshold | number | Optional. Activation threshold |
+| prefix_padding_ms | integer | Optional. Audio padding before speech |
+| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
+| neg_threshold | number | Optional. Negative threshold |
+| speech_duration_ms | integer | Optional. Minimum speech duration |
+| window_size | integer | Optional. Analysis window size |
+| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
+| require_vowel | boolean | Optional. Require vowel in speech |
+| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
+| languages | string[] | Optional. Supported languages |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ### RealtimeEOUDetection
