@@ -52,9 +52,9 @@ Personally identifiable information (PII) detection is now available as a built-
 ### GPT-5-codex is now available
 
 - To learn more about `gpt-5-codex`, see the [getting started with reasoning models page](./how-to/reasoning.md).
-- `gpt-5-codex` is specifically designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
+- `gpt-5-codex` is designed to be used with the [Codex CLI and the Visual Studio Code Codex extension](./how-to/codex.md).
 
-- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5` you do not need to reapply and will automatically be granted access.
+- **[Registration is required for access to the gpt-5-codex model](https://aka.ms/oai/gpt5access).** If you have previously registered and obtained access to other limited access models like `gpt-5`, you do not need to reapply and will automatically be granted access.
 
 ### Sora video-to-video support 
 
@@ -66,7 +66,7 @@ The Sora model from OpenAI now supports video-to-video generation. You can provi
 
 The Sora model from OpenAI now supports image-to-video generation. You can provide an image as input to the model to generate a video that incorporates the content of the image. You can also specify the frame of the video in which the image should appear: it doesn't need to be the beginning. See the [quickstart](./video-generation-quickstart.md) to get started.
 
-Sora is now available in the Sweden Central region as well as East US 2.
+This Sora model is now available in the Sweden Central region and East US 2.
 
 
 ### Realtime API audio model GA
@@ -143,7 +143,7 @@ Spillover is now Generally Available. Spillover manages traffic fluctuations on 
 
 ### Sora video generation released (preview)
 
-Sora (2025-05-02) is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
+The Sora (2025-05-02) model is a video generation model from OpenAI that can create realistic and imaginative video scenes from text instructions.
 
 Follow the [Video generation quickstart](/azure/ai-foundry/openai/video-generation-quickstart) to get started. For more information, see the [Video generation concepts](./concepts/video-generation.md) guide.
 
