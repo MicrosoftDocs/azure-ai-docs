@@ -6,7 +6,7 @@ author: HeidiSteen
 ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/23/2025
+ms.date: 10/24/2025
 ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
@@ -39,7 +39,9 @@ To attach an Azure AI Foundry resource, you must provide connection information 
   :::image type="content" source="media/cognitive-search-attach-cognitive-services/ai-services-kind.png" alt-text="Screenshot of the API kind property in the Azure portal." border="true" lightbox="media/cognitive-search-attach-cognitive-services/ai-services-kind.png":::
 
 > [!NOTE]
-> If your Azure AI Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
+> + If your Azure AI Foundry resource is configured to use a private endpoint, Azure AI Search can [connect using a shared private link](search-indexer-howto-access-private.md). For more information, see [Shared private link resource limits](search-limits-quotas-capacity.md#shared-private-link-resource-limits).
+>
+> + The 2025-11-01-preview introduces support for the `AIServices` API kind. The previous `CognitiveServices` and classic Azure AI multi-service accounts continue to work, but for all new skillsets, we recommend that you use `AIServices` and Azure AI Foundry resources.
 
 ## Bill through a keyless connection
 

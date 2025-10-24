@@ -358,7 +358,7 @@ items:
         href: cognitive-search-defining-skillset.md
       - name: Design tips
         href: cognitive-search-concept-troubleshooting.md
-      - name: Attach an Azure AI resource
+      - name: Attach a billable resource
         href: cognitive-search-attach-cognitive-services.md
       - name: Define an index projection
         href: search-how-to-define-index-projections.md
@@ -743,31 +743,47 @@ items:
       href: cognitive-search-predefined-skills.md
     - name: Annotation reference language
       href: cognitive-search-skill-annotation-language.md
-    - name: Azure AI resource skills
+    - name: Built-in skills
       items:
-      - name: Document Layout skill
-        href: cognitive-search-skill-document-intelligence-layout.md
-      - name: Entity Linking (v3)
-        href: cognitive-search-skill-entity-linking-v3.md
-      - name: Entity Recognition (v3)
-        href: cognitive-search-skill-entity-recognition-v3.md
-      - name: Image Analysis
-        href: cognitive-search-skill-image-analysis.md
-      - name: Key Phrase Extraction
-        href: cognitive-search-skill-keyphrases.md
-      - name: Language Detection
-        href: cognitive-search-skill-language-detection.md
-      - name: OCR
-        href: cognitive-search-skill-ocr.md
-      - name: PII Detection
-        href: cognitive-search-skill-pii-detection.md
-      - name: Sentiment (v3)
-        href: cognitive-search-skill-sentiment-v3.md
-      - name: Text Translation
-        href: cognitive-search-skill-text-translation.md
-      - name: AI Vision multimodal embeddings
-        href: cognitive-search-skill-vision-vectorize.md
-    - name: Azure AI Search utility skills (nonbillable)
+        - name: Azure AI Foundry resource
+          items:
+          - name: AI Vision multimodal embeddings
+            href: cognitive-search-skill-vision-vectorize.md
+          - name: Document Layout skill
+            href: cognitive-search-skill-document-intelligence-layout.md
+          - name: Entity Linking (v3)
+            href: cognitive-search-skill-entity-linking-v3.md
+          - name: Entity Recognition (v3)
+            href: cognitive-search-skill-entity-recognition-v3.md
+          - name: Image Analysis
+            href: cognitive-search-skill-image-analysis.md
+          - name: Key Phrase Extraction
+            href: cognitive-search-skill-keyphrases.md
+          - name: Language Detection
+            href: cognitive-search-skill-language-detection.md
+          - name: OCR
+            href: cognitive-search-skill-ocr.md
+          - name: PII Detection
+            href: cognitive-search-skill-pii-detection.md
+          - name: Sentiment (v3)
+            href: cognitive-search-skill-sentiment-v3.md
+          - name: Text Translation
+            href: cognitive-search-skill-text-translation.md
+        - name: Azure-hosted model or resource
+          items:
+          - name: Azure OpenAI Embedding
+            href: cognitive-search-skill-azure-openai-embedding.md
+    - name: Custom skills
+      items:
+      - name: Azure Machine Learning (AML)
+        href: cognitive-search-aml-skill.md
+      - name: Custom Entity Lookup
+        href: cognitive-search-skill-custom-entity-lookup.md
+      - name: Custom Web API
+        href: cognitive-search-custom-skill-web-api.md 
+      - name: GenAI Prompt
+        href: cognitive-search-skill-genai-prompt.md
+    - name: Utility skills (nonbillable)
       items:
       - name: Conditional
         href: cognitive-search-skill-conditional.md
@@ -779,20 +795,6 @@ items:
         href: cognitive-search-skill-textmerger.md
       - name: Text Split
         href: cognitive-search-skill-textsplit.md
-    - name: Azure OpenAI skills
-      items:
-      - name: Azure OpenAI Embedding
-        href: cognitive-search-skill-azure-openai-embedding.md
-    - name: Custom skills
-      items:
-      - name: Azure Machine Learning (AML)
-        href: cognitive-search-aml-skill.md
-      - name: GenAI Prompt
-        href: cognitive-search-skill-genai-prompt.md
-      - name: Custom Entity Lookup
-        href: cognitive-search-skill-custom-entity-lookup.md
-      - name: Custom Web API
-        href: cognitive-search-custom-skill-web-api.md
     - name: Deprecated skills
       href: cognitive-search-skill-deprecated.md
       items:
