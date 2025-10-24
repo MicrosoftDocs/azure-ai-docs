@@ -136,6 +136,7 @@ phraseList.setWeight(weight)
 ::: zone pivot="programmer-tool-spx"
 With the [Speech CLI](spx-overview.md) you can include a phrase list in-line or with a text file along with the recognize command.
 
+::: zone-end
 
 ## Implement phrase list in fast transcription
 You can add a list of phrases in fast transcription via [Speech-to-text REST API](/rest/api/speechtotext/transcriptions/transcribe)
