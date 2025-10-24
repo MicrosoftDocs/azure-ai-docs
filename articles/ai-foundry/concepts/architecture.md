@@ -25,7 +25,7 @@ This article is intended to provide IT security teams with details on the Azure 
 
 ## Azure AI resource types and providers
 
-Within the Azure AI product family, we distinguish three [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) supporting user needs at different layers in the stack.
+Within the Azure AI product family, we distinguish these [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) supporting user needs at different layers in the stack.
 
 ::: moniker range="foundry-classic"
 | Resource provider | Purpose | Supports resource type kinds |
