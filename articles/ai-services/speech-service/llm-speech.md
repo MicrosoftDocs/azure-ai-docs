@@ -117,7 +117,7 @@ Here are some examples and practices of how prompts can help:
 
 #### More audio configs
 
-You can combine additional configuration options with [Fast transcription](./fast-transcription-create) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
+You can combine additional configuration options with [fast transcription](fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
 
 ```azurecli-interactive
 curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speechtotext/transcriptions:transcribe?api-version=2025-10-15' \
@@ -149,4 +149,4 @@ Some configuration options, such as `locales` and `phraseLists`, are either not 
 
 - [Speech to text REST API reference](/rest/api/speechtotext/transcriptions/transcribe)
 - [Speech to text supported languages](./language-support.md?tabs=stt)
-- [Fast transcription](./fast-transcription-create)
+- [Fast transcription](fast-transcription-create.md)
