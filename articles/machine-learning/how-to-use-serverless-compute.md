@@ -60,7 +60,7 @@ You can use serverless compute to fine-tune models in the model catalog. You can
 
 Serverless compute can increase the speed of your training in the following ways:
 
-**Insufficient quota failures.** When you create your own compute cluster, you're responsible for determining the VM size and node count. When your job runs, if you don't have sufficient quota for the cluster, the job fails. Serverless compute uses information about your quota to select an appropriate VM size by default.
+**Avoid insufficient quota failures.** When you create your own compute cluster, you're responsible for determining the VM size and node count. When your job runs, if you don't have sufficient quota for the cluster, the job fails. Serverless compute uses information about your quota to select an appropriate VM size by default.
 
 **Scale-down optimization.** When a compute cluster is scaling down, a new job has to wait for the cluster to scale down and then scale up before the job can run. With serverless compute, you don't have to wait for scale down. Your job can start running on another cluster/node (assuming you have quota).
 
@@ -93,9 +93,9 @@ When you [view your usage and quotas in the Azure portal](how-to-manage-quotas.m
     # Get a handle to the workspace. You can find the info on the workspace tab on ml.azure.com.
     ml_client = MLClient(
         credential=credential,
-        subscription_id="<Azure subscription id>", 
+        subscription_id="<Azure subscription ID>", 
         resource_group_name="<Azure resource group>",
-        workspace_name="<Azure Machine Learning Workspace>",
+        workspace_name="<Azure Machine Learning workspace>",
     )
     job = command(
         command="echo 'hello world'",
@@ -375,7 +375,7 @@ environment:
 queue_settings:
    job_tier: Standard # Possible values are Standard and Spot. The default is Standard.
 identity:
-  type: user_identity # Possible values are Managed and user_identity
+  type: user_identity # Possible values are Managed and user_identity.
 resources:
   instance_count: 1
   instance_type: Standard_E4s_v3 
