@@ -136,4 +136,4 @@ You must grant the Language resource access to your storage account before it ca
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Native document support](overview.md#native-document-support-for-azure-ai-language-preview)
+> [Native document support](overview.md#native-document-support-for-azure-language-in-foundry-tools-preview)

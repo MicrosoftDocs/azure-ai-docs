@@ -47,7 +47,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     :::image type="content" source="../media/choose-classes.png" alt-text="A screenshot showing which labels to be included in autotag job." lightbox="../media/choose-classes.png":::
     
-7. Choose the documents you want to be automatically labeled. It's recommended to choose the unlabeled documents from the filter. 
+7. Choose the documents you want to be automatically labeled. We recommend to choose the unlabeled documents from the filter. 
 
     > [!NOTE]
     > * If a document was automatically labeled, but this label was already user defined, only the user defined label is used.  

@@ -28,7 +28,7 @@ Before viewing model evaluation you need:
 * [Labeled data](tag-data.md)
 * A successfully [trained model](train-model.md)
 
-See the [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+See the [project development lifecycle](../overview.md#project-development-lifecycle).
 
 ## Model details
 

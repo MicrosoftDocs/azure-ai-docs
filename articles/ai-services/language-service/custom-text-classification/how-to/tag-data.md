@@ -25,7 +25,7 @@ Before you can label data, you need:
 * [A successfully created project](create-project.md) with a configured Azure blob storage account, 
 * Documents containing the [uploaded](design-schema.md#data-preparation) text data in your storage account.
 
-See the [project development lifecycle](../overview.md#project-development-lifecycle) for more information.
+See the [project development lifecycle](../overview.md#project-development-lifecycle).
 
 ## Data labeling guidelines
 

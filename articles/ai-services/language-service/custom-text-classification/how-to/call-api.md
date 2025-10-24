@@ -16,7 +16,7 @@ ms.custom: language-service-clu
 
 # Send text classification requests to your model
 
-After you've successfully deployed a model, you can query the deployment to classify text based on the model you assigned to the deployment.
+After you successfully deploy a model, you can query the deployment to classify text based on the model you assigned to the deployment.
 You can query the deployment programmatically [Prediction API](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&tabs=HTTP&preserve-view=true) or through the client libraries (Azure SDK). 
 
 ## Test deployed model
@@ -58,7 +58,7 @@ First you need to get your resource key and endpoint:
 
 # [Client libraries (Azure SDK)](#tab/client-libraries)
 
-First you'll need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
 
@@ -71,7 +71,7 @@ First you'll need to get your resource key and endpoint:
     |JavaScript     |  [6.0.0-beta.1](https://www.npmjs.com/package/@azure/ai-text-analytics/v/6.0.0-beta.1)       |
     |Python     | [5.2.0b4](https://pypi.org/project/azure-ai-textanalytics/5.2.0b4/)         |
     
-4. After you've installed the client library, use the following samples on GitHub to start calling the API.
+4. After you install the client library, use the following samples on GitHub to start calling the API.
     
     Single label classification:
     * [C#](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/textanalytics/Azure.AI.TextAnalytics/samples/Sample9_SingleLabelClassify.md)
@@ -85,7 +85,7 @@ First you'll need to get your resource key and endpoint:
     * [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/%40azure/ai-text-analytics_6.0.0-beta.1/sdk/textanalytics/ai-text-analytics/samples/v5/javascript/customText.js)
     * [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/textanalytics/azure-ai-textanalytics/samples/sample_multi_label_classify.py)
 
-5. See the following reference documentation for more information on the client, and return object:
+5. See the following reference documentation on the client, and return object:
     
     * [C#](/dotnet/api/azure.ai.textanalytics?view=azure-dotnet-preview&preserve-view=true)
     * [Java](/java/api/overview/azure/ai-textanalytics-readme?view=azure-java-preview&preserve-view=true)
