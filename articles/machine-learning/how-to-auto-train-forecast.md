@@ -556,7 +556,7 @@ AutoML applies aggregation for the following columns:
 
 | Column | Aggregation method |
 | --- | --- |
-| Numerical predictors    | AutoML uses the `sum`, `mean`, `min`, and `max` functions. It generates new columns, where each column name includes a suffix that identifies the name of aggregation function applied to the column values. |
+| Numerical predictors    | AutoML uses the `sum`, `mean`, `min`, and `max` functions. It generates new columns. Each column name includes a suffix that identifies the name of the aggregation function applied to the column values. |
 | Categorical predictors  | AutoML uses the value of the `forecast_mode` parameter to aggregate the data. It's the most prominent category in the window. For more information, see the descriptions of the parameter in the [Many models pipeline](#many-models-pipeline) and [HTS pipeline](#hts-pipeline) sections. |
 | Data predictors         | AutoML uses the minimum target value (`min`), maximum target value (`max`), and `forecast_mode` parameter settings to aggregate the data. |
 | Target                  | AutoML aggregates the values according to the specified operation. Typically, the `sum` function is appropriate for most scenarios. |
@@ -566,9 +566,9 @@ The following example sets the frequency to hourly and the aggregation function 
 # [Python SDK](#tab/python)
 
 ```python
-# Aggregate the data to hourly frequency
+# Aggregate the data to hourly frequency.
 forecasting_job.set_forecast_settings(
-    ...,  # Other settings
+    ...,  # Other settings.
     frequency='H',
     target_aggregate_function='sum'
 )
@@ -577,19 +577,19 @@ forecasting_job.set_forecast_settings(
 # [Azure CLI](#tab/cli)
 
 ```yml
-# Forecasting specific settings
-# Auto configure lags and rolling window features
+# Forecasting-specific settings.
+# Auto-configure lags and rolling window features.
 forecasting:
     frequency: H
     target_aggregate_function: sum
-    # Other settings
+    # Other settings.
 ```
 
 ---
 
 #### Custom cross-validation settings
 
-There are two customizable settings that control cross-validation for forecasting jobs. Customize the number of folds with the [n_cross_validations](/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig#parameters) parameter, and configure the [cv_step_size](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob#azure-ai-ml-automl-forecastingjob-set-forecast-settings) parameter to define the time offset between folds. For more information, see [forecasting model selection](concept-automl-forecasting-sweeping.md#model-selection-in-automl).
+There are two customizable settings that control cross-validation for forecasting jobs. Customize the number of folds by using the [n_cross_validations](/python/api/azureml-train-automl-client/azureml.train.automl.automlconfig.automlconfig#parameters) parameter, and configure the [cv_step_size](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob#azure-ai-ml-automl-forecastingjob-set-forecast-settings) parameter to define the time offset between folds. For more information, see [forecasting model selection](concept-automl-forecasting-sweeping.md#model-selection-in-automl).
 
 By default, AutoML sets both settings automatically based on characteristics of your data. Advanced users might want to set them manually. For example, suppose you have daily sales data and you want your validation setup to consist of five folds with a seven-day offset between adjacent folds. The following code sample shows how to set these values:
 
@@ -598,15 +598,15 @@ By default, AutoML sets both settings automatically based on characteristics of 
 ```python
 from azure.ai.ml import automl
 
-# Create a job with five CV folds
+# Create a job with five CV folds.
 forecasting_job = automl.forecasting(
-    ...,  # Other training parameters
+    ...,  # Other training parameters.
     n_cross_validations=5,
 )
 
-# Set the step size between folds to seven days
+# Set the step size between folds to seven days.
 forecasting_job.set_forecast_settings(
-    ...,  # Other settings
+    ...,  # Other settings.
     cv_step_size=7
 )
 ```
@@ -631,26 +631,26 @@ primary_metric: normalized_root_mean_squared_error
 target_column_name: <target_column_name>
 n_cross_validations: auto
 
-# Use five CV folds
+# Use five CV folds.
 n_cross_validations: 5
 
-# Set the step size between folds to seven days
+# Set the step size between folds to seven days.
 forecasting:
     cv_step_size: 7
-    # Other settings
+    # Other settings.
 
 limits:
-    # Limit settings
+    # Limit settings.
 
 training:
-    # Training settings
+    # Training settings.
 ```
 
 ---
 
 ### Custom featurization
 
-By default, AutoML augments training data with engineered features to increase the accuracy of the models. For more information, see [automated feature engineering](./concept-automl-forecasting-methods.md#automated-feature-engineering). Some of the preprocessing steps can be customized by using the [featurization](reference-automated-ml-forecasting.md#featurization) configuration of the forecasting job.
+By default, AutoML augments training data with engineered features to increase the accuracy of the models. For more information, see [Automated feature engineering](./concept-automl-forecasting-methods.md#automated-feature-engineering). You can customize some of the preprocessing steps by using the [featurization](reference-automated-ml-forecasting.md#featurization) configuration of the forecasting job.
 
 The following table lists the supported customizations for forecasting:
 
@@ -666,8 +666,8 @@ For example, suppose you have a retail demand scenario where the data includes p
 ```python
 from azure.ai.ml.automl import ColumnTransformer
 
-# Customize imputation methods for price and is_on_sale features
-# Median value imputation for price, constant value of zero for is_on_sale
+# Customize imputation methods for price and is_on_sale features.
+# Median value imputation for price, constant value of zero for is_on_sale.
 transformer_params = {
     "imputer": [
         ColumnTransformer(fields=["price"], parameters={"strategy": "median"}),
@@ -675,8 +675,8 @@ transformer_params = {
     ],
 }
 
-# Set the featurization
-# Ensure product_type feature is interpreted as categorical
+# Set the featurization.
+# Ensure product_type feature is interpreted as categorical.
 forecasting_job.set_featurization(
     mode="custom",
     transformer_params=transformer_params,
@@ -704,8 +704,8 @@ primary_metric: normalized_root_mean_squared_error
 target_column_name: <target_column_name>
 n_cross_validations: auto
 
-# Customize imputation methods for price and is_on_sale features
-# Median value imputation for price, constant value of zero for is_on_sale
+# Customize imputation methods for price and is_on_sale features.
+# Median value imputation for price, constant value of zero for is_on_sale.
 featurization:
     mode: custom
     column_name_and_types:
@@ -721,46 +721,46 @@ featurization:
                 fill_value: 0
 
 forecasting:
-    # Forecasting specific settings
+    # Forecasting-specific settings.
 
 limits:
-    # Limit settings
+    # Limit settings.
 
 training:
-    # Training settings
+    # Training settings.
 ```
 
 ---
 
 If you use Azure Machine Learning studio for your experiment, see [Configure featurization settings in the studio](how-to-use-automated-ml-for-ml-models.md#customize-featurization).
 
-## Submit forecasting job
+## Submit the forecasting job
 
 After you configure all settings, you're ready to run the forecasting job. The following example demonstrates this process.
 
 # [Python SDK](#tab/python)
 
 ```python
-# Submit the AutoML job
+# Submit the AutoML job.
 returned_job = ml_client.jobs.create_or_update(
     forecasting_job
 )
 
 print(f"Created job: {returned_job}")
 
-# Get a URL for the job in the studio UI
+# Get a URL for the job in the studio UI.
 returned_job.services["Studio"].endpoint
 ```
 
 # [Azure CLI](#tab/cli)
 
-In following Azure CLI command, the job YAML configuration is in the current working directory at the path, *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
+In following Azure CLI command, the job YAML configuration is in the current working directory at the path *./automl-forecasting-job.yml*. If you run the command from a different directory, you need to change the path accordingly.
 
 ```yml
 run_id=$(az ml job create --file automl-forecasting-job.yml)
 ```
 
-You can use the stored run ID to return information about the job. The `--web` parameter opens the Azure Machine Learning studio web UI where you can see details on the job:
+You can use the stored run ID to return information about the job. The `--web` parameter opens the Azure Machine Learning studio web UI, where you can see details about the job:
 
 ```azurecli
 az ml job show -n $run_id --web
@@ -768,30 +768,30 @@ az ml job show -n $run_id --web
 
 ---
 
-After you submit the job, AutoML provisions compute resources, applies featurization and other preparation steps to the input data, and begins sweeping over forecasting models. For more information, see [forecasting methodology in AutoML](concept-automl-forecasting-methods.md) and [Model sweeping and selection for forecasting in AutoML](concept-automl-forecasting-sweeping.md).
+After you submit the job, AutoML provisions compute resources, applies featurization and other preparation steps to the input data, and begins sweeping over forecasting models. For more information, see [Forecasting methodology in AutoML](concept-automl-forecasting-methods.md) and [Model sweeping and selection for forecasting in AutoML](concept-automl-forecasting-sweeping.md).
 
-## Orchestrate training, inference, and evaluation with components and pipelines
+## Orchestrate training, inference, and evaluation by using components and pipelines
 
-Your machine learning workflow likely requires more than just training. Inference, or retrieving model predictions on newer data, and evaluation of model accuracy on a test set with known target values are other common tasks that you can orchestrate in Azure Machine Learning along with training jobs. To support inference and evaluation tasks, Azure Machine Learning provides [components](concept-component.md), which are self-contained pieces of code that do one step in an Azure Machine Learning [pipeline](concept-ml-pipelines.md).
+Your machine learning workflow probably requires more than just training. Inference, or retrieving model predictions on newer data, and evaluation of model accuracy on a test set with known target values are other common tasks that you can orchestrate in Azure Machine Learning along with training jobs. To support inference and evaluation tasks, Azure Machine Learning provides [components](concept-component.md), which are self-contained pieces of code that do one step in an Azure Machine Learning [pipeline](concept-ml-pipelines.md).
 
 # [Python SDK](#tab/python)
 
-In the following example, retrieve component code from a client registry:
+The following example retrieves component code from a client registry:
 
 ```python
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
-# Get credential to access AzureML registry
+# Get credential to access AzureML registry.
 try:
     credential = DefaultAzureCredential()
-    # Check if token can be obtained successfully
+    # Check if token can be obtained successfully.
     credential.get_token("https://management.azure.com/.default")
 except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential fails
+    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential fails.
     credential = InteractiveBrowserCredential()
 
-# Create client to access assets in AzureML preview registry
+# Create client to access assets in AzureML preview registry.
 ml_client_registry = MLClient(
     credential=credential,
     registry_name="azureml-preview"
