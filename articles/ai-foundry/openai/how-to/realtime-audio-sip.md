@@ -50,7 +50,7 @@ Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal 
 
 Your sip invites use this project id as the user: for example, `sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls`.
 
-Swedencentral and eastus2 are currently supported regions. 
+The currently supported regions are swedencentral and eastus2. 
 
 ## Handling Incoming Calls
 
@@ -134,7 +134,7 @@ OpenAI returns 200 OK once the REFER is relayed to your SIP provider. The downst
 
 ### Monitor call events and issue session commands and updates
 
-After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it was configured when you accepted the call using the accept url. The example here shows a common scenario, issuing a "response.create" message to instruct the realtimeapi system to "answer the phone and say hello."
+After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it is configured as part of the json when accepting the call. The example here shows a common scenario, issuing a "response.create" message to instruct the realtimeapi system to "answer the phone and say hello."
 
 WebSocket request
 
