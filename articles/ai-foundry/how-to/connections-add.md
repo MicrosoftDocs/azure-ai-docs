@@ -33,6 +33,11 @@ In this article, you learn how to add a new connection in [Azure AI Foundry port
 
 Connections are a way to authenticate and consume both Microsoft and other resources within your Azure AI Foundry projects. They're required for scenarios such as building Standard Agents or building with Agent knowledge tools.
 
+## Prerequisites
+
+* [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+* If you don't have one, [create a project](./create-projects.md).
+
 ## Connection types
 
 | Service connection type       | Preview | Required for Standard Agent deployment | Description                                                                                                                                                                                                                     |
@@ -60,6 +65,7 @@ All Azure AI Foundry projects use a managed Azure Key Vault (not shown in your s
 - Deleting the underlying Azure Key Vault breaks the AI Foundry resource (connections depend on stored secrets).
 - Deleting secrets in your BYO Key Vault may break connections to other services.
 
+  
 ## <a name="create-a-new-connection"></a> Create a new connection in Azure AI Foundry portal
 
 Follow these steps to create a new connection that's only available for the current project.
@@ -69,7 +75,6 @@ Follow these steps to create a new connection that's only available for the curr
 [!INCLUDE [tip-left-pane](../includes/tip-left-pane.md)]
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
-1. If you don't have a project, [create a new project](./create-projects.md).
 1. Select __Management center__ from the bottom left navigation.
 1. Select __Connected resources__ from the __Project__ section.
 1. Select __+ New connection__ from the __Connected resources__ section.
@@ -94,7 +99,6 @@ Follow these steps to create a new connection that's only available for the curr
 ::: moniker range="foundry"
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
-1. If you don't have a project, [create a new project](./create-projects.md).
 1. Select **Operate** in the upper-right navigation.
 1. Select **Admin Console** in the left pane.
 1. Select your project name in the **Manage all projects** list.
