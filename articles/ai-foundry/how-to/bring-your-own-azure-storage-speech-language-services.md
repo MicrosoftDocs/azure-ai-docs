@@ -78,7 +78,7 @@ Speech services in an Azure AI Foundry resource generally follow the guidelines 
 
 ### Configure customer-managed keys for Speech
 
-When you attach your storage account, you can set your customer-managed keys for encryption of Speech data. If you don't associate your storage account, Speech services don't use the customer-managed keys set at the Azure AI Foundry resource level. All other services available through your Azure AI Foundry resource use the customer-managed key for encryption.
+When you attach your storage account, you can set your [customer-managed keys for encryption](/azure/storage/common/customer-managed-keys-overview) of Speech data. If you don't associate your storage account, Speech services don't use the customer-managed keys set at the Azure AI Foundry resource level. All other services available through your Azure AI Foundry resource use the customer-managed key for encryption.
 
 ## Understand Language integration
 
