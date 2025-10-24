@@ -45,6 +45,18 @@ If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you
 > If you are building other agents that output a different schema, you can convert them into the general openai-style [agent message schema](#agent-message-schema) and use the above evaluators.
 > More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also all of our evaluators.
 
+### Model support for AI-assisted evaluators
+
+We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `IntentResolution`, `TaskAdherence`, `ToolCallAccuracy`, `ResponseCompleteness`, `Coherence`, `Fluency`, `Similarity`, `Groundedness`, `Retrieval`, `Relevance`  | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `4.1-mini` with a balance of reasoning performance and cost efficiency.
+
+
 
 #### Tool call evaluation support
 `ToolCallAccuracyEvaluator` supports evaluation in Azure AI Agent for the following tools:
