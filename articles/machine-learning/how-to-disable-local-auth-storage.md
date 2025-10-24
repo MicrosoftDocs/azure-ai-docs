@@ -55,7 +55,7 @@ Not applicable.
     DefaultAzureCredential(interactive_browser_tenant_id="<TENANT_ID>")
     ```
                 
-    - (Optional) If you're working in the [Azure Government - US](https://azure.microsoft.com/explore/global-infrastructure/government/) or [Azure China 21Vianet](/azure/china/overview-operations) regions, you must specify the cloud into which you want to authenticate. You can specify these regions in `DefaultAzureCredential`.
+    - (Optional) If you're working in the [Azure Government - US](https://azure.microsoft.com/explore/global-infrastructure/government/) or [Azure operated by 21Vianet](/azure/china/overview-operations) regions, you must specify the cloud into which you want to authenticate. You can specify these regions in `DefaultAzureCredential`.
 
     ```python
     from azure.identity import AzureAuthorityHosts
@@ -82,7 +82,7 @@ If you use the [Azure Cloud Shell](https://azure.microsoft.com//features/cloud-s
 > }
 > ```
 
-# [ARM Template](#tab/armtemplate)
+# [ARM template](#tab/armtemplate)
 
 Not applicable.
 
@@ -110,7 +110,7 @@ When you create a new workspace, the creation process can automatically disable 
 
 # [Python SDK](#tab/python)
 
-When you create your workspace with the SDK, set `system_datastores_auth_mode="identity"`. To use a pre-existing storage account, use the `storage_account` parameter to specify the Azure Resource Manager ID of an existing storage account:
+When you create your workspace with the SDK, set `system_datastores_auth_mode="identity"`. To use a preexisting storage account, use the `storage_account` parameter to specify the Azure Resource Manager ID of an existing storage account:
 
 ```python
 # Creating a unique workspace name with current datetime to avoid conflicts
@@ -163,7 +163,7 @@ This YAML file can be used with the `az ml workspace create` command, with the `
 az ml workspace create -g <resource-group-name> --file workspace.yml
 ```
 
-# [ARM Template](#tab/armtemplate)
+# [ARM template](#tab/armtemplate)
 
 In the following JSON template example, substitute your own values for the following placeholders:
 
@@ -251,7 +251,7 @@ To update an existing workspace, use the `az ml workspace update` command and sp
 az ml workspace update --name myworkspace --system-datastores-auth-mode identity
 ```
 
-# [ARM Template](#tab/armtemplate)
+# [ARM template](#tab/armtemplate)
 
 In the following JSON template example, substitute your own values for the following placeholders:
 
@@ -341,7 +341,7 @@ To configure the workspace to use a shared key again, use the `az ml workspace u
 az ml workspace update --name myworkspace --system-datastores-auth-mode accesskey
 ```
 
-# [ARM Template](#tab/armtemplate)
+# [ARM template](#tab/armtemplate)
 
 If you have an existing Azure Machine Learning workspace, use the steps in this section to update the workspace to use Microsoft Entra ID, to authorize access to the storage account. Then, disable shared key access on the storage account.
 
@@ -420,7 +420,7 @@ To work with a storage account that has disabled shared key access, you might ne
 | Data: datastores and datasets | User's identity | Storage Blob Data Contributor |  |
 
 ## Limitations
-- Creating a compute instance with system-assigned managed identity isn't supported for identity-based workspace. If the workspace's storage account access type is identity-based access, compute instances currently don't support system assigned identity to mount data store. Use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Priviliiged Contributor** on the storage account.
+- Creating a compute instance with system-assigned managed identity isn't supported for identity-based workspace. If the workspace's storage account access type is identity-based access, compute instances currently don't support system assigned identity to mount data store. Use user assigned identity to create the compute instance, and make sure the user-assigned identity has **Storage File Data Privileged Contributor** on the storage account.
 
 ## Related content
 
