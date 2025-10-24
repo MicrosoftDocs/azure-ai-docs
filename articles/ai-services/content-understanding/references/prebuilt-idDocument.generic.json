@@ -1,0 +1,166 @@
+{
+  "analyzerId": "prebuilt-idDocument.generic",
+  "name": "Generic Id Document document understanding",
+  "description": "Extract generic id document fields.",
+  "baseAnalyzerId": "prebuilt-document",
+  "config": {
+    "returnDetails": true,
+    "enableFormula": false,
+    "estimateFieldSourceAndConfidence": true,
+    "_supportedFileTypes": [
+      "application/pdf",
+      "image"
+    ],
+    "_inferenceWorkflow": "e2e_document_analyze_workflow_prebuilt_id_document_generic_2025_11_01",
+    "_trainingWorkflow": "document_train_workflow_prebuilt_2025_11_01",
+    "_enableLearning": false
+  },
+  "fieldSchema": {
+    "name": "IdDocumentGenericAnalysis",
+    "fields": {
+      "CountryRegion": {
+        "type": "string",
+        "method": "generate",
+        "description": "Country or region code",
+        "example": "USA"
+      },
+      "Region": {
+        "type": "string",
+        "method": "generate",
+        "description": "State or province",
+        "example": "Washington"
+      },
+      "DocumentNumber": {
+        "type": "string",
+        "method": "extract",
+        "description": "Driver license number",
+        "example": "WDLABCD456DG"
+      },
+      "DocumentDiscriminator": {
+        "type": "string",
+        "method": "extract",
+        "description": "Driver license document discriminator",
+        "example": "12645646464554646456464544"
+      },
+      "FirstName": {
+        "type": "string",
+        "method": "extract",
+        "description": "Given name and middle initial if applicable",
+        "example": "LIAM R."
+      },
+      "LastName": {
+        "type": "string",
+        "method": "extract",
+        "description": "Surname",
+        "example": "TALBOT"
+      },
+      "Address": {
+        "type": "string",
+        "method": "extract",
+        "description": "Address",
+        "example": "123 STREET ADDRESS YOUR CITY WA 99999-1234"
+      },
+      "BirthDate": {
+        "type": "date",
+        "method": "extract",
+        "description": "Date of birth",
+        "example": "1958-01-06"
+      },
+      "ExpirationDate": {
+        "type": "date",
+        "method": "extract",
+        "description": "Date of expiration",
+        "example": "2020-08-12"
+      },
+      "IssueDate": {
+        "type": "date",
+        "method": "extract",
+        "description": "Date of issue",
+        "example": "2012-08-12"
+      },
+      "EyeColor": {
+        "type": "string",
+        "method": "extract",
+        "description": "Eye color",
+        "example": "BLU"
+      },
+      "HairColor": {
+        "type": "string",
+        "method": "extract",
+        "description": "Hair color",
+        "example": "BRO"
+      },
+      "Height": {
+        "type": "string",
+        "method": "extract",
+        "description": "Height",
+        "example": "5'11\""
+      },
+      "Weight": {
+        "type": "string",
+        "method": "extract",
+        "description": "Weight",
+        "example": "185LB"
+      },
+      "Sex": {
+        "type": "string",
+        "method": "extract",
+        "enum": [
+          "M",
+          "F",
+          "X"
+        ],
+        "description": "Sex",
+        "example": "M"
+      },
+      "Endorsements": {
+        "type": "string",
+        "method": "extract",
+        "description": "Endorsements",
+        "example": "L"
+      },
+      "Restrictions": {
+        "type": "string",
+        "method": "extract",
+        "description": "Restrictions",
+        "example": "B"
+      },
+      "PersonalNumber": {
+        "type": "string",
+        "method": "extract",
+        "description": "Personal Id. No.",
+        "example": "A234567893"
+      },
+      "PlaceOfBirth": {
+        "type": "string",
+        "method": "extract",
+        "description": "Place of birth",
+        "example": "MASSACHUSETTS, U.S.A."
+      },
+      "VehicleClass": {
+        "type": "string",
+        "method": "extract",
+        "description": "Vehicle class",
+        "example": "D"
+      },
+      "Category": {
+        "type": "string",
+        "method": "extract",
+        "description": "Permit category",
+        "example": "DV2"
+      }
+    }
+  },
+  "supportedModels": {
+    "completion": [
+      "gpt-4.1"
+    ],
+    "embedding": [
+      "text-embedding-3-large"
+    ]
+  },
+  "models": {
+    "completion": "gpt-4.1",
+    "embedding": "text-embedding-3-large"
+  }
+}
