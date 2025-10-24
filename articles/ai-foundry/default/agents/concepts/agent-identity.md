@@ -82,7 +82,7 @@ Agents access remote resources and tools using Agent Identity for authentication
 * **Unpublished agents**: Authenticate using the shared project's Agent Identity
 * **Published agents**: Authenticate using their unique Agent Identity associated with the Agent Application
 
-When you publish an agent, you must reassign RBAC permissions to the new Agent Identity for any resources the agent needs to access. This ensures the published agent maintains appropriate access while operating under its distinct identity.
+When you [publish an agent](../how-to/publish-agent.md), you must reassign RBAC permissions to the new Agent Identity for any resources the agent needs to access. This ensures the published agent maintains appropriate access while operating under its distinct identity.
 
 ### MCP server authentication
 
