@@ -144,9 +144,9 @@ GET wss://<your azure resource name>.openai.azure.com/openai/v1/realtime?call_id
 
 **Query parameters**
 
-|Parameter|Type|Description
+|Parameter|Type|Description|
 |-------|-----|-----------|
-|call_id|string|Identifier from |the realtime.call.incoming webhook.
+|call_id|string|Identifier from |the realtime.call.incoming webhook.|
 
 **Headers**
 
