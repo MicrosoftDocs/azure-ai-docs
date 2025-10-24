@@ -59,7 +59,7 @@ These skills are billed at the Standard rate.
 
 ### Azure-hosted model or resource
 
-Skills in this category call Azure-hosted models or resources that you own for both billing and processing. <!-- Although the Content Understanding skill is part of Azure AI Foundry Tools, it connects to your own deployed model for both billing and processing. -->
+Skills in this category call Azure-hosted models or resources that you own for both billing and processing. <!-- Although the Content Understanding skill is part of Azure AI Foundry Tools, it connects to your deployed resource for processing, not just billing. -->
 
 These skills are billed at the Standard rate.
 

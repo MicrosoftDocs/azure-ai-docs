@@ -140,42 +140,24 @@ Now you can test out your deployment that has the blocklist. For instructions on
 In the below example, a GPT-35-Turbo deployment with a blocklist is blocking the prompt. The response returns a `400` error. 
 
 ```json
-{ 
-    "error": { 
-        "message": "The response was filtered due to the prompt triggering Azure OpenAI’s content management policy. Please modify your prompt and retry. To learn more about our content filtering policies please read our documentation: https://go.microsoft.com/fwlink/?linkid=2198766", 
-        "type": null, 
-        "param": "prompt", 
-        "code": "content_filter", 
-        "status": 400, 
-        "innererror": { 
-            "code": "ResponsibleAIPolicyViolation", 
-            "content_filter_results": { 
-                "custom_blocklists": [ 
-                    { 
-                        "filtered": true, 
-                        "id": "raiBlocklistName" 
-                    } 
-                ], 
-                "hate": { 
-                    "filtered": false, 
-                    "severity": "safe" 
-                }, 
-                "self_harm": { 
-                    "filtered": false, 
-                    "severity": "safe" 
-                }, 
-                "sexual": { 
-                    "filtered": false, 
-                    "severity": "safe" 
-                }, 
-                "violence": { 
-                    "filtered": false, 
-                    "severity": "safe" 
-                } 
-            } 
-        } 
-    } 
-} 
+{
+  "error": {
+    "message": "The response was filtered due to the prompt triggering Azure OpenAI's content management policy. Please modify your prompt and retry. To learn more about our content filtering policies please read our documentation: https://go.microsoft.com/fwlink/?linkid=2198766",
+    "type": null,
+    "param": "prompt",
+    "code": "content_filter",
+    "status": 400,
+    "innererror": {
+      "code": "ResponsibleAIPolicyViolation",
+      "content_filter_result": {
+        "custom_blocklists": {
+          "details": [{ "filtered": true, "id": "pizza" }],
+          "filtered": true
+        }
+      }
+    }
+  }
+}
 ```
 
 If the completion itself is blocked, the response returns `200`, as the completion only cuts off when the blocklist content is matched. The annotations show that a blocklist item was matched. 
