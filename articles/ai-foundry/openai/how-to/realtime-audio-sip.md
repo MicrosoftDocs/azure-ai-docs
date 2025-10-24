@@ -50,7 +50,7 @@ Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal 
 
 :::image type="content" source="../media/how-to/realtime-audio-sip/find-internal-id.png" alt-text="Screenshot of finding the internal-id in the azure portal." lightbox="../media/how-to/realtime-audio-sip/find-internal-id.png":::
 
-Your sip invites will use this as the user: e.g., sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls.
+Your sip invites will use this as the user: e.g., `sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls`.
 
 Note that swedencentral and eastus2 are currently supported regions. 
 
