@@ -115,7 +115,7 @@ ms.author: pafarley
 | `mr-IN` | Marathi (India) | No | Audio + human-labeled transcript<br/><br/>Plain text |
 | `ms-MY` | Malay (Malaysia) | No | Plain text |
 | `mt-MT` | Maltese (Malta) | Yes | Plain text |
-| `my-MM` | Burmese (Myanmar) | No | Plain text |
+| `my-MM` | Burmese (Myanmar) | Yes | Plain text |
 | `nb-NO` | Norwegian Bokmål (Norway) | No | Plain text<br/><br/>Output format |
 | `ne-NP` | Nepali (Nepal) | No | Plain text |
 | `nl-BE` | Dutch (Belgium) | No | Plain text |
