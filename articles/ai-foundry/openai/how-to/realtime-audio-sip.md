@@ -45,7 +45,7 @@ Start by creating a webhook for incoming calls with the Azure OpenI Webhook Serv
 
 Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal id of your Azure Resource. Example: 
 
-1) Find the internal id of your Azure Open AI Resource. You can find this by clicking on the `JSON View` of your resource.
+1) Get internal id of your Azure Open AI Resource. You can find the internal id by clicking on the `JSON View` of your resource.
 2) Your project id = `"proj_<internalId>"` This might look like `"proj_88c4a88817034471a0ba0fcae24ceb1b"`
 
 Your sip invites use this project id as the user: for example, `sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls`.
@@ -84,7 +84,7 @@ From your webhook endpoint, you can accept, reject, or refer this call, using th
 
 ### Accept the call
 
-Use the Accept call endpoint to approve the inbound call and configure the realtime session that answers it. Send the same parameters you would send in to a create client secret. You can include any values you would use in a session.update message, but type, model and instructions are required.
+Use the Accept call endpoint to approve the inbound call and configure the real-time session that answers it. Send the same parameters you would send in to a create client secret. You can include any values you would use in a session.update message, but type, model and instructions are required.
 
 > [!NOTE]
 > For authorization, you can either use the api-key header or the Bearer token as shown here. Remember the model name is actually the name of your deployment. 
@@ -105,11 +105,11 @@ The request path must include
 * The call_id from the realtime.call.incoming webhook event
 * Authorization (or api-key) header 
 
-The endpoint returns 200 OK once the SIP leg is ringing and the realtime session is being established.
+The endpoint returns 200 OK once the SIP leg is ringing and the real-time session is being established.
 
 ### Reject the call
 
-Use the Reject call endpoint to decline an invite when you don't want to handle the incoming call (for example, from an unsupported country code.) To control the response sent back to the carrier, supply an optional SIP status code along with the required call_id path parameter. The example here shows a request sending 486 which indicates the system is too busy to take the call.
+Use the Reject call endpoint to decline an invite when you don't want to handle the incoming call (for example, from an unsupported country code.) To control the response sent back to the carrier, supply an optional SIP status code along with the required call_id path parameter. The example here shows a request sending 486, which indicates the system is too busy to take the call.
 
 ```
 curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/reject" \
@@ -118,7 +118,7 @@ curl -X POST "https://<your azure resource name>.openai.azure.com/openai/v1/real
   -d '{"status_code": 486}'
 ```
 
-If no status code is supplied, the sip server will send a status code of 603 to the customer as part of the Decline message. A successful request responds with 200 OK after OpenAI delivers the SIP response.
+If no status code is supplied, the sip server sends a status code of 603 to the customer as part of the Decline message. A successful request responds with 200 OK after OpenAI delivers the SIP response.
 
 ### Redirect the call
 Transfer an active call using the Refer call endpoint. Provide the call_id and the target_uri that should be placed in the SIP Refer-To header (for example tel:+14155550123 or sip:agent@example.com).
@@ -134,7 +134,7 @@ OpenAI returns 200 OK once the REFER is relayed to your SIP provider. The downst
 
 ### Monitor call events and issue session commands and updates
 
-After you accept a call, open a WebSocket connection to the same session to stream events and issue realtime commands. When connecting to an existing call using the call_id parameter, the model argument isn't used. It was configured when you accepted the call using the accept url. The example here shows a common scenario, issuing a "response.create" message to instruct the realtimeapi system to "answer the phone and say hello".
+After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it was configured when you accepted the call using the accept url. The example here shows a common scenario, issuing a "response.create" message to instruct the realtimeapi system to "answer the phone and say hello."
 
 WebSocket request
 
@@ -179,7 +179,7 @@ ws.on("open", () => {
 
 ### Hang up the call
 
-End the session with the Hang up endpoint when your application should disconnect the caller. This endpoint can be used to terminate both SIP and WebRTC realtime sessions.
+End the session with the Hang up endpoint when your application should disconnect the caller. This endpoint can be used to terminate both SIP and WebRTC real-time sessions.
 
 ```
 curl -X POST "https://<your azure resoure name>.openai.azure.com/openai/v1/realtime/calls/$CALL_ID/hangup" \
@@ -274,5 +274,5 @@ if __name__ == "__main__":
 
 ## Next steps
 
-Now that you know how to get a call connected over SIP, you can work on building your realtime application and finessing your prompts.
+You now know how to get a call connected over SIP. The next step is building your real-time application prompts to server your customers.
 
