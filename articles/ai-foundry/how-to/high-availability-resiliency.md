@@ -102,7 +102,7 @@ Resources need to be configured to support recovery prior to an incent happening
 | Resource                 | Recommended configurations | Purpose |
 | :----------------------- | :------------------------- | :------ |
 | Azure AI Foundry account | Establish an [explicit connection to Microsoft Purview](/purview/developer/secure-ai-with-purview). | Supports data continuity for compliance scenarios like eDiscovery requests after thread data is lost in an incident. |
-| AI Foundry project       | Use a user-assigned managed identity, not a system-assigned managed identity. **TODO: ICM IS OPEN BECAUSE THIS CONFIGURATION FAILS WHEN DEPLOYING THE CAP HOST** | Supports restoration of access to agent dependencies without needing changes on the dependencies. |
+| AI Foundry project       | Use a user-assigned managed identity, not a system-assigned managed identity. | Supports restoration of access to agent dependencies without needing changes on the dependencies. |
 | AI Foundry Agent Service | Use the [Standard agent deployment mode](/azure/ai-foundry/agents/concepts/standard-agent-setup). | This mode increases incident risk but provides more recovery capabilities than Basic. |
 | Azure Cosmos DB          | Enable [Continuous backup with point-in-time restore](/azure/cosmos-db/continuous-backup-restore-introduction). | Helps you recover from an accidental delete of the `enterprise_memory` database, one of its containers, or the whole account. |
 | Azure Cosmos DB          | Use a name another customer is unlikely to request. | Reduces the risk of naming collisions during restoration steps. |
