@@ -11,7 +11,7 @@ ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ---
 
-## Azure OpenAI in AI Foundry Models webhooks
+# Azure OpenAI in AI Foundry Models webhooks
 
 Azure OpenAI webhooks enable your applications to receive real-time notifications about API events, such as batch completions or incoming calls. By subscribing to webhook events, you can automate workflows, trigger alerts, and integrate with other systems seamlessly. This guide walks you through setting up a webhook server, securing your endpoints, deploying to production, and troubleshooting common issues.
 
