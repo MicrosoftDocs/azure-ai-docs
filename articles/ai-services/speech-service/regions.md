@@ -155,11 +155,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 | **Region** | **Real-time avatar** | **Batch avatar** | **Custom avatar** | **Custom avatar training**<sup>1</sup> |
 |-----|-----|-----|-----|-----|
-| centralindia |   |   |   |   |
-| eastus |   |   |   |   |
 | eastus2 | ✅ | ✅ | ✅ |   |
-| francecentral |   |   |   |   |
-| italynorth |   |   |   |   |
 | northeurope | ✅ | ✅ | ✅ |   |
 | southcentralus | ✅ | ✅ | ✅ |   |
 | southeastasia | ✅ | ✅ | ✅ | ✅ |
