@@ -173,7 +173,7 @@ Once you send your API request, you receive a `202` response indicating that the
 
 Possible error scenarios for this request:
 
-* The selected resource doesn't have [proper permissions](../../how-to/create-project.md#using-a-pre-existing-language-resource) for the storage account.
+* The selected resource doesn't have [proper permissions](../../how-to/create-project.md#using-a-preexisting-language-resource) for the storage account.
 * The `storageInputContainerName` specified doesn't exist.
 * Invalid language code is used, or if the language code type isn't string.
 * `multilingual` value is a string and not a boolean.
