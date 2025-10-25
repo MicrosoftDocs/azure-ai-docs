@@ -16,7 +16,8 @@ ms.custom: language-service-custom-ner
 # Query your custom model
 
 After the deployment is added successfully, you can query the deployment to extract entities from your text based on the model you assigned to the deployment.
-You can query the deployment programmatically using the [Prediction API](/rest/api/language/text-analysis-runtime/analyze-text) or through the client libraries (Azure SDK).
+
+You can query the deployment programmatically using the [Prediction API](/rest/api/language/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true) or through the client libraries (Azure SDK).
 
 ## Test deployed model
 

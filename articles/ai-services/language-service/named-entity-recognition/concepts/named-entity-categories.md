@@ -28,7 +28,7 @@ The [NER language support](../language-support.md) page lists all languages avai
 ## Supported API versions:
 
 * [**Stable: Generally Available (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP#definitions)
-* [**Preview: 2025-05-15-preview**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2025-05-15-preview&preserve-view=true&tabs=HTTP#entitycategory)
+* [**Preview: 2025-05-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP#definitions)
 
 > [!NOTE]
 > Beginning with the GA API (released 2024-11-01), the **Subcategory** field is no longer supported. All entity classifications now use the **type** field.
