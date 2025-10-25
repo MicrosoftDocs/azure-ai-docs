@@ -94,7 +94,7 @@ requests
 
 ## Create Azure Web App
 
-Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-up). The command must be run from the folder where the `app.py` code for your app is located.
+Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-up&preserve-view=true). The command must be run from the folder where the `app.py` code for your app is located.
 
 ```bash
 az webapp up --name unique-webhook-handler-name --resource-group myResourceGroup --runtime "PYTHON:3.9"
