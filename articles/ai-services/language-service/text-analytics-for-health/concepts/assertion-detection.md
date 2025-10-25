@@ -1,13 +1,13 @@
 ---
 title: Assertion detection in Text Analytics for health
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about assertion detection.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-health
 ---

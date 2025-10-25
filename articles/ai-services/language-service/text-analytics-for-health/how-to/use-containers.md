@@ -1,13 +1,13 @@
 ---
 title: How to use Text Analytics for health containers
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to extract and label medical information on premises using Text Analytics for health Docker container.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-health, devx-track-azurecli
 ms.devlang: azurecli

@@ -1,12 +1,12 @@
 ---
 title: Use Language service in power automate
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to use Azure AI Language in power automate, without writing code.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: cogserv-non-critical-language
 ---

@@ -1,12 +1,12 @@
 ---
 title: Custom question answering encryption of data at rest
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Microsoft offers Microsoft-managed encryption keys, and also lets you manage your Azure AI services subscriptions with your own keys, called customer-managed keys (CMK). This article covers data encryption at rest for custom question answering, and how to enable and manage CMK.
 author: erindormier
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: egeaney
 ms.custom: language-service-question-answering
 ---

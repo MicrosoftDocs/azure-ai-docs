@@ -1,12 +1,12 @@
 ---
 title: Entity categories recognized by Personally Identifiable Information (PII) and Protected Health Information (PHI) detection in Azure AI Language
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about the types of entities the PII feature can detect and identify within unstructured text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 10/01/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom:
   - language-service-pii

@@ -1,6 +1,6 @@
 ---
 title: Language support - custom question answering
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: A list of culture, natural languages supported by custom question answering for your project. Do not mix languages in the same project.
 #services: cognitive-services
 manager: nitinme
@@ -9,7 +9,7 @@ ms.author: lajanuar
 recommendations: false
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.custom: language-service-question-answering
 ---
 

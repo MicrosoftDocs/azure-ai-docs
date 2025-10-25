@@ -1,13 +1,13 @@
 ---
 title: Create and deploy a custom question and answering (CQA) agent in Azure AI Foundry
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this guide to create a CQA Azure AI Foundry agent.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 09/15/2025
+ms.date: 11/05/2025
 ---
 
 # Create and deploy a CQA agent
