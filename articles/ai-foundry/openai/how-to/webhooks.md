@@ -13,7 +13,7 @@ ms.topic: how-to
 
 # Azure OpenAI in AI Foundry Models webhooks
 
-Azure OpenAI webhooks enable your applications to receive real-time notifications about API events, such as batch completions or incoming calls. By subscribing to webhook events, you can automate workflows, trigger alerts, and integrate with other systems seamlessly. This guide walks you through setting up a webhook server, securing your endpoints, deploying to production, and troubleshooting common issues.
+Azure OpenAI webhooks enable your applications to receive real-time notifications about API events, such as batch completions or incoming calls. By subscribing to webhook events, you can automate workflows, trigger alerts, and integrate with other systems seamlessly. This guide walks you through setting up a webhook server, securing your endpoints, deploying, and troubleshooting common issues.
 
 ## Prerequisites
 
@@ -92,20 +92,20 @@ websockets
 requests
 ```
 
-## Create Azure Web App
+## Create an Azure Web App
 
-Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-up&preserve-view=true). The command must be run from the folder where the `app.py` code for your app is located.
+Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-up&preserve-view=true). The command must be run from the folder where the `app.py` code for your application is located.
 
 ```bash
-az webapp up --name unique-webhook-handler-name --resource-group myResourceGroup --runtime "PYTHON:3.9"
+az webapp up --name unique-webhook-handler-name --resource-group myResourceGroup --runtime "PYTHON:3.12"
 ```
 
 This command will:
 
-- Create a resource group if it doesn't exist
-- Create an App Service plan
-- Create a web app
-- Deploy your code
+- Create a resource group if it doesn't exist.
+- Create an [App Service plan](/azure/app-service/overview-hosting-plans).
+- Create a web app.
+- Deploy your code.
 
 Your webhook URL will be: `https://unique-webhook-handler-name.azurewebsites.net/webhook`
 
@@ -174,7 +174,7 @@ curl -X POST https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/dashboard/w
 ---
 
 > [!IMPORTANT]
-> The signing secret is only shown once during creation. Store it securely using [Azure Key Vault](/azure/key-vault/general/overview).
+> The signing secret is only shown once during creation. Secrets can be stored securely using [Azure Key Vault](/azure/key-vault/general/overview).
 
 ### Configure webhook secret in Azure Web App
 
@@ -268,7 +268,9 @@ Status Code: 400
 Response: Invalid signature
 ```
 
-A response of `Invalid signature` indicates that your webhook listener successfully handled you test call. You'll also see the message in the log stream for your web app: `2025-10-24T23:34:57.576593554Z ERROR:app:Invalid signature: The given webhook signature does not match the expected signature`
+A response of `Invalid signature` indicates that your webhook listener successfully handled you test call. You'll also see the message in the log stream for your web app: 
+
+`2025-10-24T23:34:57.576593554Z ERROR:app:Invalid signature: The given webhook signature does not match the expected signature`
 
 ---
 
