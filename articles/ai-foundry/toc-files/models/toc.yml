@@ -216,6 +216,8 @@ items:
       href: ../../openai/concepts/video-generation.md
   - name: Stored completions
     href: ../../openai/how-to/stored-completions.md
+  - name: Webhooks
+    href: ../../openai/how-to-/webhooks.md
   - name: Concepts
     items:
       - name: Assistants
