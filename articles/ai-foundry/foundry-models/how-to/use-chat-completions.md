@@ -942,5 +942,11 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 - [Use embeddings models](use-embeddings.md)
 - [Use image embeddings models](use-image-embeddings.md)
 - [Use reasoning models](use-chat-reasoning.md)
-- [Work with chat completions API](../../openai/how-to/chatgpt.md)
 - [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
+
+::: moniker range="foundry-classic"
+
+- [Work with chat completions API](../../openai/how-to/chatgpt.md)
+
+::: moniker-end
+
