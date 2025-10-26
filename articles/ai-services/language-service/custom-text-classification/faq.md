@@ -76,7 +76,7 @@ See the [data selection and schema design](how-to/design-schema.md) article.
 
 First, you need to enable the multilingual option when [creating your project](how-to/create-project.md) or you can enable it later from the project settings page. After you train and deploy your model, you can start querying it in multiple languages. You may get varied results for different languages. To improve the accuracy of any language, add more tagged instances to your project in that language to introduce the trained model to more syntax of that language. See [language support](language-support.md#multi-lingual-option).
 
-## I trained my model, but I can't test it
+## I trained my model, but I can't test it 
 
 You need to [deploy your model](quickstart.md#deploy-your-model) before you can test it. 
 
