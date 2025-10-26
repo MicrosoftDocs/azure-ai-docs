@@ -56,15 +56,15 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 
     :::image type="content" source="../media/choose-models.png" alt-text="A screenshot showing model choice for auto labeling." lightbox="../media/choose-models.png":::
 
-1.    Choose a trained model. We recommend that you check the model performance before using it for autolabeling.
+1. Choose a trained model. We recommend that you check the model performance before using it for autolabeling.
 
     :::image type="content" source="../media/choose-model-trained.png" alt-text="A screenshot showing how to choose trained model for autotagging." lightbox="../media/choose-model-trained.png":::
 
-1.    Choose the entities you want to be included in the autolabeling job. By default, all entities are selected. You can see the total labels, precision and recall of each entity. We recommend that you include entities that perform well to ensure the quality of the automatically labeled entities.
+1. Choose the entities you want to be included in the autolabeling job. By default, all entities are selected. You can see the total labels, precision and recall of each entity. We recommend that you include entities that perform well to ensure the quality of the automatically labeled entities.
 
     :::image type="content" source="../media/choose-entities.png" alt-text="A screenshot showing which entities to be included in autotag job." lightbox="../media/choose-entities.png":::
 
-1.    Choose the documents you want to be automatically labeled. The number of text records of each document is displayed. When you select one or more documents, you should see the number of texts records selected. We recommend that you choose the unlabeled documents from the filter.
+1. Choose the documents you want to be automatically labeled. The number of text records of each document is displayed. When you select one or more documents, you should see the number of texts records selected. We recommend that you choose the unlabeled documents from the filter.
 
     > [!NOTE]
     > * If an entity was automatically labeled, but has a user defined label, only the user defined label is used and visible.
@@ -72,7 +72,7 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 
     :::image type="content" source="../media/choose-files.png" alt-text="A screenshot showing which documents to be included in the autotag job." lightbox="../media/choose-files.png":::
 
-1.    Select **Autolabel** to trigger the autolabeling job.
+1. Select **Autolabel** to trigger the autolabeling job.
 You should see the model used, number of documents included in the autolabeling job, number of text records and entities to be automatically labeled. Autolabeling jobs can take anywhere from a few seconds to a few minutes, depending on the number of documents you included.
 
     :::image type="content" source="../media/review-autotag.png" alt-text="A screenshot showing the review screen for an autotag job." lightbox="../media/review-autotag.png":::
@@ -106,7 +106,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     :::image type="content" source="../media/choose-files.png" alt-text="A screenshot showing which documents to be included in the autotag job." lightbox="../media/choose-files.png":::
 
-1.    Select **Start job** to trigger the autolabeling job.
+1. Select **Start job** to trigger the autolabeling job.
 You should be directed to the autolabeling page displaying the autolabeling jobs initiated. Autolabeling jobs can take anywhere from a few seconds to a few minutes, depending on the number of documents you included.
 
     :::image type="content" source="../media/review-autotag.png" alt-text="A screenshot showing the review screen for an autotag job." lightbox="../media/review-autotag.png":::

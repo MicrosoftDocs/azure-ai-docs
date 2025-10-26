@@ -55,7 +55,7 @@ When you trigger an autolabeling job with GPT, you're charged to your Azure Open
 
     :::image type="content" source="../media/choose-files.png" alt-text="A screenshot showing which documents to be included in the autotag job." lightbox="../media/choose-files.png":::
 
-1.    Select **Start job** to trigger the autolabeling job.
+1. Select **Start job** to trigger the autolabeling job.
 You should be directed to the autolabeling page displaying the autolabeling jobs initiated. Autolabeling jobs can take anywhere from a few seconds to a few minutes, depending on the number of documents you included.
 
     :::image type="content" source="../media/review-autotag.png" alt-text="A screenshot showing the review screen for an autotag job." lightbox="../media/review-autotag.png":::
