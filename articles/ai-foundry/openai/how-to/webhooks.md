@@ -507,7 +507,7 @@ The following event types are available for webhook registration:
 |                 | `batch.failed`           | Batch failed                    |
 |                 | `batch.cancelled`        | Batch canceled                 |
 |                 | `batch.expired`          | Batch expired                   |
-| Realtime Events | `realtime.call.incoming` | Incoming call event             |
+| Real-time Events | `realtime.call.incoming` | Incoming call event             |
 
 ### Example payload
 
