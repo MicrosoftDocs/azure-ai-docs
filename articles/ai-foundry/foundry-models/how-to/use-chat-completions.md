@@ -11,9 +11,13 @@ author: msakande
 ms.reviewer: achand
 reviewer: achandmsft
 ms.custom: generated
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to generate chat completions with Azure AI Foundry Models
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This article explains how to generate chat completions using next generation v1 Azure OpenAI APIs.
 
