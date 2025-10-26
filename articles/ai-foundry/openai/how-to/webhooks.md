@@ -92,7 +92,7 @@ websockets
 requests
 ```
 
-## Create an Azure Web App
+## Create an Azure web app
 
 Deploy your webhook server using [`az webapp up`](/cli/azure/webapp?view=azure-cli-latest#az-webapp-up&preserve-view=true). The command must be run from the folder where the `app.py` code for your application is located.
 
@@ -323,7 +323,7 @@ queued
 
 Securing your webhook endpoint is critical. Follow these recommendations:
 
-### Signature Verification
+### Signature verification
 
 Always verify the webhook signature to ensure requests are from Azure OpenAI:
 
@@ -344,7 +344,7 @@ if webhook_id in processed_webhooks:
     return Response(status=200)  # Already processed
 ```
 
-### Timeout Handling
+### Timeout handling
 
 Respond quickly to avoid webhook timeouts. Offload heavy processing to background threads:
 
@@ -358,7 +358,7 @@ threading.Thread(target=process_call_async, args=(event.data,)).start()
 return Response(status=200)
 ```
 
-### Additional Recommendations
+### Additional recommendations
 
 * Store your signing secret securely; it's only shown once during creation.
 * Use HTTPS for all webhook endpoints.
@@ -369,7 +369,7 @@ return Response(status=200)
 
 Here are some common patterns for processing webhook events:
 
-### Call Logging
+### Call logging
 
 ```python
 if event.type == "realtime.call.incoming":
@@ -383,7 +383,7 @@ if event.type == "realtime.call.incoming":
     log_call(call_data)
 ```
 
-### Notification System
+### Notification system
 
 ```python
 if event.type == "realtime.call.incoming":
@@ -397,7 +397,7 @@ if event.type == "realtime.call.incoming":
 
 ## Managing webhook endpoints
 
-### List Webhook Endpoints
+### List webhook endpoints
 
 ```bash
 curl -X GET https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/dashboard/webhook_endpoints \
@@ -405,10 +405,10 @@ curl -X GET https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/dashboard/we
   -H "Content-Type: application/json"
 ```
 
-### Update Webhook Endpoint
+### Update webhook endpoint
 
-Update webhook properties such as name, URL, and registered event types.  
-**Note:** The signing secret can't be updated through this operation.
+> [!NOTE] 
+> Update webhook properties such as name, URL, and registered event types. The signing secret can't be updated through this operation.
 
 ```bash
 curl -X POST https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/dashboard/webhook_endpoints/<webhook_id> \
@@ -425,7 +425,7 @@ curl -X POST https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/dashboard/w
   }'
 ```
 
-### Delete Webhook Endpoint
+### Delete webhook endpoint
 
 Remove a webhook endpoint using its webhook ID:
 
@@ -435,7 +435,7 @@ curl -X DELETE https://<YOUR-RESOURCE-NAME>.openai.azure.com/openai/v1/dashboard
   -H "Accept: application/json"
 ```
 
-## Common Issues & troubleshooting
+## Common issues and troubleshooting
 
 | Issue                 | Solution                                                                                             |
 | --------------------- | ---------------------------------------------------------------------------------------------------- |
@@ -493,7 +493,7 @@ Webhook-Signature: v1,Sample Signature
 - **`created_at`**: Unix timestamp when the event was created
 - **`data`**: Event-specific data containing call information and SIP headers
 
-## Webhook Events Reference
+## Webhook events reference
 
 The following event types are available for webhook registration:
 
@@ -509,7 +509,7 @@ The following event types are available for webhook registration:
 |                 | `batch.expired`          | Batch expired                   |
 | Realtime Events | `realtime.call.incoming` | Incoming call event             |
 
-### Example Payload
+### Example payload
 
 ```json
 {
