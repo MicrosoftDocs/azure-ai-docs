@@ -4,4 +4,4 @@ items:
   - name: Endpoints for Foundry Models
     href: ../../../foundry-models/concepts/endpoints.md
   - name: Inference SDK language support
-    hreff: ../../../openai/supported-languages.md
+    href: ../../../openai/supported-languages.md
