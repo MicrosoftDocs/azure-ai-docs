@@ -1,5 +1,5 @@
 ---
-title: Custom text classification - Azure AI Foundry Tools
+title: Custom text classification
 titleSuffix: Azure AI Foundry Tools
 description: Customize an AI model to classify documents and other content using Azure AI Foundry Tools.
 #services: cognitive-services

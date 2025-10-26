@@ -17,7 +17,7 @@ Training is the process where the model learns from your [labeled data](tag-data
 
 To train a model, you start a training job and only successfully completed jobs create a model. Training jobs expire after seven days, which means you won't be able to retrieve the job details after this time. If your training job completed successfully and a model was created, the model isn't affected. You can only have one training job running at a time, and you can't start other jobs in the same project. 
 
-The training times very. Training can be anywhere from a few minutes, when dealing with few documents, or several hours, depending on the dataset size and the complexity of your schema.
+The training times vary. Training can be anywhere from a few minutes, when dealing with few documents, or several hours, depending on the dataset size and the complexity of your schema.
 
 
 ## Prerequisites

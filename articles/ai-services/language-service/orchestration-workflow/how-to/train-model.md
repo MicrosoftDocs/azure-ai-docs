@@ -15,11 +15,11 @@ ms.custom: language-service-orchestration
 
 Training is the process where the model learns from your [labeled utterances](tag-utterances.md). After training is completed, you will be able to [view model performance](view-model-evaluation.md).
 
-To train a model, start a training job. Only successfully completed jobs create a model. Training jobs expire after seven days, after this time you will no longer be able to retrieve the job details. If your training job completed successfully and a model was created, it isn't affected. by the job expiring. You can only have one training job running at a time, and you can't start other jobs in the same project. 
+To train a model, start a training job. Only successfully completed jobs create a model. Training jobs expire after seven days, after this time you will no longer be able to retrieve the job details. If your training job completed successfully and a model was created, it isn't affected by the job expiring. You can only have one training job running at a time, and you can't start other jobs in the same project. 
 
 The training times can be anywhere from a few seconds when dealing with simple projects, up to a couple of hours when you reach the [maximum limit](../service-limits.md) of utterances.
 
-Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to run predictions on the utterances in the testing set, and compares the predicted results with the provided labels (which establishes a baseline of truth). The results are returned so you can review the [model’s performance](view-model-evaluation.md).
+Model evaluation is triggered automatically after training is completed successfully. The evaluation process starts by using the trained model to run predictions on the utterances in the testing set, and compares the predicted results with the provided labels (which establishes a baseline of truth). The results are returned so you can review the [model's performance](view-model-evaluation.md).
 
 ## Prerequisites
 

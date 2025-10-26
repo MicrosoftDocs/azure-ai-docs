@@ -86,10 +86,7 @@ After deploying your model, you [call the prediction API](how-to/call-api.md), u
 
 ## Data privacy and security
 
-Custom text classification is a data processor for General Data Protection Regulation (GDPR) purposes. In compliance with GDPR policies, custom text classification users have full control to view, export, or delete any user content either through the [Language Studio](https://aka.ms/languageStudio) or programmatically by using [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob).
-
-Your data is only stored in your Azure Storage account. Custom text classification only has access to read from it during training.
-
+For more information, *see* [Data, privacy, and security for Azure AI Language](../../../ai-foundry/responsible-ai/language-service/data-privacy.md)
 ## How to clone my project?
 
 To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob) reference for both operations.
