@@ -88,7 +88,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-#### Use llm-speech to transcribe an audio
+#### Use llm-speech to translate an audio file
 
 You can translate audio into a specified target language. To enable translation, you must provide the target language code in the request.
 
