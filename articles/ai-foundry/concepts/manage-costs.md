@@ -181,7 +181,7 @@ You can access cost information from either the [!INCLUDE [foundry-link](../defa
 > [!IMPORTANT]
 > Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
-### Monintor in Azure AI Foundry portal
+### Monitor in Azure AI Foundry portal
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 1. Use the sections below to monitor costs.
