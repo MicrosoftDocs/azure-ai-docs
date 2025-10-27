@@ -14,7 +14,7 @@ ms.date: 05/17/2021
 
 [!INCLUDE [non-english-translation](../../includes/non-english-translation.md)]
 
-As a part of the Azure AI Speech service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
+As a part of the Azure Speech in Foundry Tools service, pronunciation assessment empowers end-to-end education solutions for computer-assisted language learning. Pronunciation Assessment involves multiple criteria to assess learners' performance at multiple levels of detail, with perceptions similar to human judges.
 
 ## How accurate is Pronunciation Assessment?
 
