@@ -62,7 +62,7 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 - `transcribe`: Convert pre-recorded audio into text.
 - `translate`: Convert pre-recorded audio into text in a specified target language.
   
-LLM speech leverages a large language model-enhanced speech model that delivers enhanced quality, deep contextual understanding, multilingual support, and prompt tuning capabilities. It shares the same ultra-fast inference performance as fast transcription, making it ideal for use cases such as generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+LLM speech uses a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It shares the same ultra-fast inference performance as fast transcription, making it ideal for use cases such as generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
 
 ### Language identification
 
