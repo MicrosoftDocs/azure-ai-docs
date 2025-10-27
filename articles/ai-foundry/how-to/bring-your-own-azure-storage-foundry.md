@@ -36,21 +36,21 @@ Azure AI Foundry provides three methods to connect to storage, each serving diff
 
 | **Approach** | **Features Supported** | **Scope** |
 |-------------|------------------------|-----------|
-| Foundry connections | Agents, Evaluations, Datasets, Content Understanding | Resource or project level |
-| Capability hosts | Agents standard setup | Resource and project level |
-| userOwnedStorage field | Speech, Language | Resource level only |
+| Foundry connections (shared data pointer) | Agents, Evaluations, Datasets, Content Understanding | Resource or project level |
+| Capability hosts (feature override binding) | Agents standard setup (explicit assignment) | Resource and project level |
+| userOwnedStorage field (resource storage binding) | Speech, Language | Resource level only |
 
 ### Foundry connections
 
-Foundry connections are sub-resources that store the external service's endpoint and authentication details. Users with permissions on the AI Foundry project automatically have access to connected resources without needing separate permissions on the storage account. This approach works best for most scenarios.
+Foundry connections act as shared data pointers across AI Foundry capabilities (agents, evaluations, datasets, content understanding). Each connection wraps the target storage endpoint plus authentication so users with project access can use the data without direct storage account permissions. Use connections as the default pattern; create a capability host only when you need to explicitly bind (override) a single feature to one connection among several.
 
 ### Capability hosts
 
-Capability hosts bind specific features to designated connections when multiple storage connections exist. They define which storage connection a particular feature uses. Use capability hosts most commonly for agents standard setup. If you don't create capability hosts for agents, AI Foundry uses Microsoft-managed storage for that feature.
+[Capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) bind specific features to designated connections when multiple storage connections exist. They define which storage connection a particular feature uses. Use capability hosts most commonly for agents standard setup. If you don't create capability hosts for agents, AI Foundry uses Microsoft-managed storage for that feature.
 
 ### userOwnedStorage field
 
-The userOwnedStorage field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account for these capabilities.
+The userOwnedStorage field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account for these capabilities with backwards compatibility to the approach used for Azure Speech and Azure Language resource types.
 
 ## Create a Foundry storage connection
 
@@ -79,11 +79,11 @@ The storage connection is now available for use with evaluations, datasets, and 
 
 ## Configure capability hosts for agents
 
-Set up capability hosts to use your storage connection for agents standard setup. You need to configure capability hosts at both the resource and project levels.
+Set up [capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) to use your storage connection for agents standard setup. You need to configure capability hosts at both the resource and project levels.
 
 ### Create resource-level capability host
 
-1. Use the Azure CLI or Azure REST API to create a resource-level capability host.
+1. Use the [Azure CLI](/azure/ml/capability-host) or [Azure REST API](/rest/api/azureml/capability-hosts/create-or-update) to create a resource-level capability host.
 
 1. Reference your previously created storage connection in the capability host configuration.
 
@@ -97,7 +97,7 @@ After creating your AI Foundry project:
 
 1. Configure the capability host to enable agents functionality.
 
-1. Verify the capability host is properly linked to your storage connection.
+1. Verify the capability host is properly linked to your storage connection as demonstrated in this [code sample for Standard agent setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup#41-standard-agent-setup).
 
 Your agents standard setup now uses your own storage account instead of Microsoft-managed storage.
 
