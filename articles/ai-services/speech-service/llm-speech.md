@@ -133,7 +133,7 @@ Here are some examples and practices of how prompts can help:
 - Prompts that aren’t related to speech tasks (e.g., `Tell me a story.`) are typically disregarded.
 
 
-#### More audio configs
+#### More configuration options
 
 You can combine additional configuration options with [fast transcription](fast-transcription-create.md) to enable enhanced features such as `diarization`, `profanityFilterMode`, and `channels`.
 
