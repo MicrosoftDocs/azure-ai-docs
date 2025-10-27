@@ -367,7 +367,7 @@ Before you delete a memory store, consider the impact on dependent agents. Agent
 
 ## Best practices
 
-Consider these practices when implementing memory in your agents:
+When you implement memory in your agents, consider the following practices:
 
 - **Implement per-user access controls**: Avoid giving every agent access to all memory. Use the `scope` parameter to restrict who can see and update memories. For shared memory across agents or users, use the scope to instruct the memory system not to store personal information.
 - **Minimize and protect sensitive data**: Store only what's necessary for your use case. If you must store sensitive data, such as personally identifiable information (PII), health data, or confidential business inputs, perform redaction and store only partial data.
