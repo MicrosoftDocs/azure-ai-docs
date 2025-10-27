@@ -19,67 +19,61 @@ author: jonburchel
 Install the following Python packages:
 
 ```bash
-pip install openai
 pip install foundry-local-sdk
+pip install openai
 ```
 
 > [!TIP]
 > We recommend using a virtual environment to avoid package conflicts. You can create a virtual environment using either `venv` or `conda`.
 
-## Use OpenAI SDK with Foundry Local
+Foundry Local SDK supports the OpenAI input/output messaging format and therefore you can use the OpenAI Python SDK to create the chat messages.
 
-The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code includes the following steps:
+## Use Foundry Local native chat completions API
 
-1. Initializes a `FoundryLocalManager` instance with a `Configuration` that includes the web service configuration. The web service is an OpenAI compliant endpoint.
+The following example demonstrates how to use the Foundry Local native chat completions API. The code includes the following steps:
+
+1. Initializes a `FoundryLocalManager` instance with a `Configuration`.
 1. Gets a `Model` object from the model catalog using an alias. Note: Foundry Local will select the best variant for the model automatically based on the available hardware of the host machine.
 1. Downloads and loads the model variant.
-1. Starts the web service.
-1. Uses the OpenAI SDK to call the local Foundry web service.
-1. Tidies up by stopping the web service and unloading the model.
+1. Uses the Foundry Local native chat completions API to generate a response.
+1. Tidies up by unloading the model.
 
 Copy-and-paste the following code into a Python file named `app.py`:
 
 ```python
-import openai
 from foundry_local.foundry_local_manager import FoundryLocalManager
 from foundry_local.configuration import Configuration, ConfigurationKeys
+from openai.types.chat.chat_completion_message_param import ChatCompletionUserMessageParam
+from openai.types.chat.chat_completion_chunk import ChatCompletionChunk
 
 def main():
-    # Initialize Foundry Local Manager with configuration
-    endpoint_url = "http://127.0.0.1:5464"
+    
     config = Configuration(
         {
-            ConfigurationKeys.AppName: "hello-foundry-local",
-            ConfigurationKeys.WebServiceUrls: endpoint_url
+            ConfigurationKeys.AppName: "hello-foundry-local"
         }
     )
     FoundryLocalManager.initialize(config)
     mgr = FoundryLocalManager.instance
     
-    # get the model from the catalog
     model = mgr.catalog.get_model("qwen2.5-0.5b")
-    
-    # download and load the model
+    model.select_variant("qwen2.5-0.5b-instruct-generic-cpu:3")
     model.download()
     model.load()
-    
-    # Start the web service to handle requests
-    mgr.start_web_service()
+    client = model.get_chat_client()
 
-    client = openai.OpenAI(
-        base_url=endpoint_url + "/v1",
-        api_key="notneeded"  # API key is not required for local usage
-    )
-    # Set the model to use and generate a response
-    response = client.chat.completions.create(
-        model=model.id,
-        messages=[{"role": "user", "content": "What is the golden ratio?"}]
-    )
-    print(response.choices[0].message.content)
+    # Create a chat completion request
+    messages = [ChatCompletionUserMessageParam(role="user", content="Why is the sky blue?")]
     
-    # Tidy up - unload model and stop web service
+    def print_chunk(chunk: ChatCompletionChunk):
+        print(chunk.choices[0].message['content'], end='', flush=True)
+
+    client.complete_streaming_chat(
+        messages,
+        user_callback=print_chunk
+    )
+    
     model.unload()
-    mgr.stop_web_service()
 
 if __name__ == "__main__":
     main()

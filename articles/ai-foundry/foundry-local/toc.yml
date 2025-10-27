@@ -13,6 +13,8 @@ items:
 - name: How-to guides
   expanded: true
   items:
+  - name: Use Native Chat Completions
+    href: how-to/how-to-use-native-chat-completions.md
   - name: Integrate with Inferencing SDKs
     href: how-to/how-to-integrate-with-inference-sdks.md
   - name: Integrate with LangChain
