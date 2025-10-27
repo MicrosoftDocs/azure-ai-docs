@@ -309,7 +309,7 @@ Authorization: Bearer <your-token>
 
 ---
 
-Use the limit parameter to control pagination and efficiently manage large numbers of memory stores.
+Use the `limit` parameter to control pagination and efficiently manage large numbers of memory stores.
 
 ## Delete memories
 
