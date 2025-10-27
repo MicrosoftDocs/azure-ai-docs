@@ -59,7 +59,7 @@ You can provide audio data in the following ways:
 In the sections below, inline audio upload is used as an example.
 
 
-### Quickstart
+### Call the LLM-speech API
 Make a multipart/form-data POST request to the `transcriptions` endpoint with the audio file and the request body properties. 
 
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
