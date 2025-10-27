@@ -130,16 +130,104 @@ As you use Azure AI Foundry, you incur costs. Azure resource usage unit costs va
 
 When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends so you can see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
 
+### Configure permissions to view costs
+
+To view costs, you need the **Owner** role or have a custom role at either subscription or resource group scope with the following actions:
+
+* `Microsoft.Consumption/*/read`
+* `Microsoft.CostManagement/*/read`
+* `Microsoft.Resources/subscriptions/read`
+* `Microsoft.CognitiveServices/accounts/AIServices/usage/read`
+
+> [!NOTE]
+> You need the **Owner** role at the subscription or resource group scope to create custom roles in that scope.
+
+To create a custom role, use one of the following articles:
+
+* [Azure portal](/azure/role-based-access-control/custom-roles-portal)
+* [Azure CLI](/azure/role-based-access-control/custom-roles-cli)
+* [Azure PowerShell](/azure/role-based-access-control/custom-roles-powershell)
+
+For more information about custom roles, see [Azure custom roles](/azure/role-based-access-control/custom-roles).
+
+To create a custom role, construct a role definition JSON file that specifies the permission and scope for the role. The following example defines a custom Azure AI Foundry Cost Reader role scoped at a specific resource level:
+
+```json
+{
+    "Name": "Azure AI Foundry Cost Reader",
+    "IsCustom": true,
+    "Description": "Can see cost metrics in Foundry",
+    "Actions": [
+        "Microsoft.Consumption/*/read",
+        "Microsoft.CostManagement/*/read",
+        "Microsoft.Resources/subscriptions/read",
+        "Microsoft.CognitiveServices/accounts/AIServices/usage/read"
+    ],
+    "NotActions": [],
+    "DataActions": [],
+    "NotDataActions": [],
+    "AssignableScopes": [
+        "/subscriptions/<subscriptionId>/resourceGroups/<resourceGroupName>/providers/Microsoft.CognitiveServices/accounts/<foundryResourceName>"
+    ]
+}
+```
+
+Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` with your actual values.
+
 ### Monitor Azure AI Foundry costs
 
-You can access cost analysis from the [Azure portal](https://portal.azure.com/).
+You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md) portal] or the [Azure portal](https://portal.azure.com/).
 
 > [!IMPORTANT]
 > Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
-Here's an example of how to monitor costs for a project. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
+Here's an example of how to monitor costs. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
-1. Sign in to the [Azure portal](https://portal.azure.com/) and select the resource group that contains the project you want to monitor.
+# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)].
+1. Use the sections below to mon> [!NOTE].
+
+> These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
+
+### Agent costs
+
+1. Select **Operate** in the upper-right navigation.
+1. Select **Overview** in the left pane.
+1. At the top of the page, select the subscription, one or more projects, and a date range. 
+
+    :::image type="content" source="../default/media/costs/subscription-project-date.png" alt-text="Screenshot shows setting the subscription, project and date.":::
+
+1.The Estimated cost tile shows the estimated cost of all the agents for the selected project(s) for the selected dates.
+
+    > [!NOTE]
+    > Currently prompt agent and non-Foundry agent costs are not included. 
+
+1. Select **Assets** in the left pane
+1. Select the **Agents** tab.
+1. The Estimated costs column shows monthly estimates based on the agent configuration and usage patterns.
+
+Investigate costs for individual agents:
+
+1. Select **Build** in the upper-right navigation.
+1. Select **Agents** in the left pane.
+1. Select an agent.
+1. Select the **Monitor** tab for the agent.
+1. Set the date range in the upper-right corner.
+1. Operational metrics show the token cost and usage for the given range.
+
+### Model deployment costs
+
+1. Select **Build** in the upper-right navigation.
+1. Select **Models** in the left pane.
+1. Select a model.
+1. Select the **Monitor** tab.
+1. Select the date range in the upper right corner.
+You  see the total cost along with an estimated cost chart for the given range. 
+
+# [Azure portal](#tab/azure-portal)
+1. Sign in to the [Azure portal](https://portal.azure.com/)
+1. Select the resource group that contains the project you want to monitor.
 
     [!INCLUDE [find-region](../includes/find-region.md)]
 
@@ -280,7 +368,10 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
    | paygo-finetuned-model-inference-input-tokens | Fine-tuned model | Costs associated with the tokens used as input for inference of a fine tuned model. |
    | paygo-finetuned-model-inference-output-tokens | Fine-tuned model | Costs associated with the tokens generated as output for the inference of a fine tuned model. |
 
+
 ::: moniker-end
+
+---
 
 ## Create budgets
 
