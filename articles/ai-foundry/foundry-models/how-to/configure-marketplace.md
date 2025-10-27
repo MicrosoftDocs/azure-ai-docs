@@ -1,5 +1,5 @@
 ---
-title: Access configuration for Models from Partners and Community
+title: Azure Marketplace requirements for Foundry Models from partners
 description: Learn about the requirements needed to configure Azure Marketplace access for Azure AI Foundry Models from partners and community and troubleshoot errors.
 author: msakande   
 ms.author: mopeakande
@@ -12,7 +12,7 @@ ai-usage: ai-assisted
 #CustomerIntent: As an Azure administrator or developer, I want to know the requirements to configure Azure Marketplace access for Azure AI Foundry Models from partners and community to deploy and use these models effectively.
 ---
 
-# Access configuration for Foundry Models from partners and community
+# Azure Marketplace requirements for Foundry Models from partners
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
