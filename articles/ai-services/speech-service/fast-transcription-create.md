@@ -24,7 +24,7 @@ Fast transcription API is used to transcribe audio files with returning results 
 Unlike the batch transcription API, fast transcription API only produces transcriptions in the display (not lexical) form. The display form is a more human-readable form of the transcription that includes punctuation and capitalization.
 
 > [!TIP]
-> You can also use the latest LLM-powered speech transcription and speech translation with [llm-speech](./llm-speech.md).
+> You can also use the latest LLM-powered speech transcription and speech translation with [LLM speech](./llm-speech.md).
 
 ## Prerequisites
 
