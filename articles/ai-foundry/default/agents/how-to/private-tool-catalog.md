@@ -37,7 +37,7 @@ Use this article to learn how to build a private [tool catalog](../concepts/tool
 
 1. Select the MCP server -> **details** -> **versions** -> **Manage Access (preview)**
 
-     :::image type="content" source="../media/tool-catalog/api-center-versions.png" alt-text="A screenshot showing the API Center resource in the Azure portal." lightbox="../media/tool-catalog/api-center-versions.png":::
+     :::image type="content" source="../media/tool-catalog/api-center-versions.png" alt-text="A screenshot showing the API Center resource versions in the Azure portal." lightbox="../media/tool-catalog/api-center-versions.png":::
 
 1. Select the authorization configuration you created.
 
