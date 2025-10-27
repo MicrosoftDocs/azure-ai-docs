@@ -1,8 +1,8 @@
 ---
-title: Azure AI Foundry known issues
-titlesuffix: Azure AI Foundry
-description: Known and common issues with Azure AI Foundry.
-ms.service: azure-ai-foundry
+title: Azure AI Speech known issues
+titlesuffix: Azure AI Speech
+description: Known and common issues with Azure AI Speech.
+ms.service: azure-ai-speech
 ms.topic: reference
 ms.date: 06/09/2025
 author: s-polly
@@ -10,39 +10,15 @@ ms.author: scottpolly
 ms.reviewer: bgilmore
 ---
 
-# Azure AI Foundry known issues
+# Azure AI Speech known issues
 
-Azure AI Foundry is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Foundry and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
+Azure AI Speech is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Speech and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).
 
 
-## Agent Service
-
-No current active known issues
-
-## AI Services
-
-### AI Content Safety
-
-No current active known issues
-
-### AI Content Understanding
-
-No current active known issues
-
-### AI Document Intelligence
-
-No current active known issues
-
-### AI Language
-
-No current active known issues
-
 ### AI Speech
-
-The tables below summarize the current known issues for the Speech services, including Speech to Text (STT), Text to Speech (TTS), and Speech SDK/Runtime. See [Azure AI Speech known issues](speech-known-issues.md) for more details.
 
 #### Speech to Text (STT) active known issues
 This table lists the current known issues for the Speech to text feature:
@@ -83,8 +59,6 @@ This table lists the current known issues for the Speech SDK/Runtime feature.
 | 3004   | SDK/TTS Avatar | Frequent disconnections with JavaScript SDK | TTS Avatar isn't loading/frequent disconnections and reconnections of a custom avatar using the JavaScript SDK. | Customers should open the UDP 3478 port. | June 9, 2025 |
 
 ### AI Translator
-
-The tables below summarize the current known issues for Azure AI Translator. See [Azure AI Translator known issues](translator-known-issues.md) for more details.
 
 #### Text Translation active known issues
 
