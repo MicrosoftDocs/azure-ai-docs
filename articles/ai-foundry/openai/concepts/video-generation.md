@@ -658,7 +658,7 @@ Video generation started: Video(id='video_68ff672709d481908f1fa7c53265d835', com
 ### Remix video
 
 > [!NOTE]
-> There is a currently a known issue with Sora 2 and remixing for Azure OpenAI and Azure AI Foundry resources. The remix commands execute successfully, but the generated video is not based on the previously generated video id as expected. We will update this page as soon as the issue is resolved.
+> There is currently a known issue with Sora 2 and remixing for Azure OpenAI and Azure AI Foundry resources. The remix commands execute successfully, but the generated video is not based on the previously generated video ID as expected. We will update this page as soon as the issue is resolved.
 
 <!-- Remix video currently not fully supported - uncomment once support is added
 
