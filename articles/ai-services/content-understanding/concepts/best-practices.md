@@ -91,7 +91,7 @@ By default, Content Extraction information such as speech transcripts, document 
 
 ## Classifier category names and descriptions
 
-To improve the classifier and splitting accuracy, it's important to give a good category name and description with context.
+To improve the classifier and segmentation accuracy, it's important to give a good category name and description with context.
 
  ##### &emsp; ***Example 8***
 

@@ -54,7 +54,9 @@ Content extraction forms the foundation of Content Understanding document analys
   - **Selection marks**: Identifies and extracts selection indicators such as checkboxes, buttons, and similar markers.
   - **Barcode detection**: Scans and decodes information from over a dozen types of linear and two-dimensional barcodes.
   - **Mathematical formulas**: Captures and preserves complex mathematical expressions in LaTeX format.
-  - **Image elements**: Locates and extracts images, diagrams, and charts along with their related captions and annotations.
+  - **Image elements**: Locates and extracts images, figures, diagrams, and charts along with their related captions and annotations.
+  - **Hyperlink elements**: Detects hyperlinks embedded within the document.
+  - **Annotation elements**: Associates contents with its annotations such as strikethrough, underline, highlight.
 - Structure analysis
   - **Paragraphs**: Detects and categorizes text segments based on their document context and role.
   - **Tabular data**: Recognizes and extracts table structures, including complex formats with spanning cells and multipage layouts.
