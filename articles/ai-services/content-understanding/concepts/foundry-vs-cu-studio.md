@@ -25,13 +25,13 @@ In AI Foundry Classic, the supported Content Understanding API is 2025-05-01-pre
 ## Quick comparison 
 AI Foundry portal and Content Understanding Studio have parity in most all features. See the chart below to understsand the key differences.
 
-| Feature Category | Azure AI Foundry |	Content Understanding Studio |
-|------------------|-----------------|-----------------|
-| **API version support** | AI Foundry NextGen (Coming soon): GA API support <br><br> AI Foundry Classic: 2025-05-01-preview | GA API support |
-| **Supports agent building?** |	AI Foundry NextGen (Coming soon): Yes <br><br> AI Foundry Classic: No	| No |
-| **Supports in-context learning (data labeling)?**	| AI Foundry NextGen (Coming soon): No |	Yes |
-| **Supports classification?** | AI Foundry NextGen (Coming soon): No <br><br> AI Foundry Classic:  No | Yes | 
-| **Supported modes**	| AI Foundry NextGen (Coming soon): Supports Standard mode <br><br> AI Foundry Classic: Offers both Standard and Pro modes for extended agentic features (2025-05-01-preview)	| Supports Standard mode| 
+| Feature Category | Azure AI Foundry NextGen (Coming soon) | Azure AI Foundry Classic |	Content Understanding Studio |
+|------------------|-----------------|-----------------|-----------------|
+| **API version support** | 2025-11-01 GA API support | 2025-05-01-preview | 2025-11-01 GA API support |
+| **Supports agent building?** |	✅ | ❌	| ❌ |
+| **Supports in-context learning (data labeling)?**	| ❌ | ❌	| ✅ |
+| **Supports classification?** | ❌ |  ❌ | ✅ | 
+| **Supported modes**	| Supports Standard mode only | Offers both Standard and Pro modes for extended agentic features (2025-05-01-preview)	| Supports Standard mode| 
 
 
 ## Summary
