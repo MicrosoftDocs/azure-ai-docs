@@ -174,19 +174,19 @@ To create a custom role, construct a role definition JSON file that specifies th
 
 Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` with your actual values.
 
-### Monitor Azure AI Foundry costs
+### Monitor Azure AI Foundry costs 
 
 You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
 
 > [!IMPORTANT]
 > Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
 
-Here's an example of how to monitor costs. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
+### Monintor in Azure AI Foundry portal
 
-# [Azure AI Foundry portal](#tab/azure-ai-foundry)
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
+1. Use the sections below to monitor costs.
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)].
-1. Use the sections below to mon> [!NOTE].
+> [!NOTE].
 
 > These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
 
@@ -225,7 +225,11 @@ Investigate costs for individual agents:
 1. Select the date range in the upper right corner.
 You  see the total cost along with an estimated cost chart for the given range. 
 
-# [Azure portal](#tab/azure-portal)
+
+### Monitor in Azure portal
+
+Here's an example of how to monitor costs. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
+
 1. Sign in to the [Azure portal](https://portal.azure.com/)
 1. Select the resource group that contains the project you want to monitor.
 
@@ -370,8 +374,6 @@ Azure Marketplace offers serverless API deployments. Model publishers might appl
 
 
 ::: moniker-end
-
----
 
 ## Create budgets
 
