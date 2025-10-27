@@ -9,5 +9,3 @@ items:
     href: ../../../how-to/develop/langchain.md
   - name: Develop with Llama-Index
     href: ../../../how-to/develop/llama-index.md
-  - name: Azure OpenAI in Foundry Models
-    href: ../../../openai/supported-languages.md

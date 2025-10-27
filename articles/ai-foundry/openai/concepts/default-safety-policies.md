@@ -92,3 +92,17 @@ In addition to the above safety configurations, DALL-E 3 also comes with [prompt
 
 ---
 
+
+## Audio Models
+
+| Risk Category                          | Prompt/Completion | Severity Threshold |
+|----------------------------------------|--------------------|---------------------|
+| Hate and Fairness                      | Prompts and Completions | Medium |
+| Violence                               | Prompts and Completions | Medium |
+| Sexual                                 | Prompts and Completions | Medium |
+| Self-Harm                              | Prompts and Completions | Medium |
+| User prompt injection attack (Jailbreak) | Prompts           | N/A   |
+| Protected Material - Text              | Completions        | N/A    |
+| Protected Material - Code              | Completions        | N/A    |
+
+

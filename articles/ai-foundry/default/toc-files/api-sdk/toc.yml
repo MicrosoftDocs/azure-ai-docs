@@ -3,4 +3,5 @@ items:
     href: ../../../how-to/develop/sdk-overview.md
   - name: Endpoints for Foundry Models
     href: ../../../foundry-models/concepts/endpoints.md
-    
+  - name: Inference SDK language support
+    href: ../../../openai/supported-languages.md

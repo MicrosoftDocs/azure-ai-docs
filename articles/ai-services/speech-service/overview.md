@@ -40,40 +40,10 @@ These sections summarize Speech features with links for more information.
 
 ### Speech to text
 
-Use [speech to text](speech-to-text.md) to transcribe audio into text, either in [real-time](#real-time-speech-to-text) or asynchronously with [batch transcription](#batch-transcription). 
-
-> [!TIP]
-> You can try real-time speech to text in [Speech Studio](https://aka.ms/speechstudio/speechtotexttool) without signing up or writing any code.
-
-Convert audio to text from a range of sources, including microphones, audio files, and blob storage. Use speaker diarization to determine who said what and when. Get readable transcripts with automatic formatting and punctuation. 
+Use [speech to text](speech-to-text.md) to convert audio into text - whether through [real-time transcription](get-started-speech-to-text.md) for streaming audio, [fast transcription](fast-transcription-create.md) for pre-recorded audio files, or [batch transcription](batch-transcription.md) for processing large volumes of audio asynchronously.
 
 The base model might not be sufficient if the audio contains ambient noise or includes numerous industry and domain-specific jargon. In these cases, you can create and train [custom speech models](custom-speech-overview.md) with acoustic, language, and pronunciation data. Custom speech models are private and can offer a competitive advantage. 
 
-### Real-time speech to text
-
-With [real-time speech to text](get-started-speech-to-text.md), the audio is transcribed as speech is recognized from a microphone or file. Use real-time speech to text for applications that need to transcribe audio in real-time such as:
-- Transcriptions, captions, or subtitles for live meetings
-- [Diarization](get-started-stt-diarization.md)
-- [Pronunciation assessment](how-to-pronunciation-assessment.md)
-- Contact center agents assist
-- Dictation
-- Voice agents
-
-## Fast transcription API
-
-Fast transcription API is used to transcribe audio files with returning results synchronously and much faster than real-time audio. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
-
-- Quick audio or video transcription, subtitles, and edit. 
-- Video translation 
-
-To get started with fast transcription, see [use the fast transcription API](fast-transcription-create.md).
-
-### Batch transcription
-
-[Batch transcription](batch-transcription.md) is used to transcribe a large amount of audio in storage. You can point to audio files with a shared access signature (SAS) URI and asynchronously receive transcription results. Use batch transcription for applications that need to transcribe audio in bulk such as:
-- Transcriptions, captions, or subtitles for prerecorded audio
-- Contact center post-call analytics
-- Diarization
 
 ### Text to speech
 

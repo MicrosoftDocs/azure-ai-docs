@@ -43,7 +43,7 @@ Azure AI Foundry portal and SDK clients support multiple distinct Azure resource
 
 * **Azure AI Hub** - In June 2025, we started to move most of Hub's capabilities under "Azure AI Foundry" resource type. This change brings agents, models, and their tools together for development, management and governance, under a dedicated Azure resource type for AI Foundry.
 
-  New features will only release on Azure AI Foundry resource. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need), including open source model deployments, currently still require a hub resource.
+  New features will primarily land on Azure AI Foundry resource type. To learn more, see [migrate from hub-based to Foundry projects](../how-to/migrate-project.md). [Select use cases](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need), including open source model deployments, currently still require a hub resource.
 
 ::: moniker-end
 
