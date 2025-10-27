@@ -1,7 +1,7 @@
 ---
-title: Use the llm-speech API - Speech service
+title: Use the LLM-speech API - Speech service
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Speech for llm-speech, where you can leverage the latest llm-powered speech model for transcription and translation
+description: Learn how to use Azure AI Speech for LLM-speech, where you can leverage the latest LLM-powered speech model for transcription and translation
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -23,15 +23,15 @@ The LLM speech API currently supports the following speech tasks:
 
 ## Prerequisites
 
-- An Azure AI Speech resource in one of the regions where the llm speech API is available. For the current list of supported regions, see see [Speech service regions](./regions.md?tabs=llmspeech).
+- An Azure AI Speech resource in one of the regions where the LLM speech API is available. For the current list of supported regions, see see [Speech service regions](./regions.md?tabs=LLMspeech).
   
 - An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
   
 
-## Use the llm speech API
+## Use the LLM speech API
 
 > [!TIP]
-> Try out llm speech in the [Azure AI Foundry portal](https://aka.ms/llm-speech-playground).
+> Try out LLM speech in the [Azure AI Foundry portal](https://aka.ms/LLM-speech-playground).
 
 ### Supported languages
 
@@ -71,7 +71,7 @@ The following example shows how to transcribe an audio file with a specified loc
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](./role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
-#### Use llm speech to transcribe an audio
+#### Use LLM speech to transcribe an audio
 
 You can transcribe audio in the input language without specifying a locale code. The model automatically detects and selects the appropriate language based on the audio content.
 
@@ -88,7 +88,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-#### Use llm speech to translate an audio file
+#### Use LLM speech to translate an audio file
 
 You can translate audio into a specified target language. To enable translation, you must provide the target language code in the request.
 
@@ -156,7 +156,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with llm speech, and can be omitted from the request. Learn more from [configuration options of Fast Transcription](fast-transcription-create.md#request-configuration-options). 
+Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of Fast Transcription](fast-transcription-create.md#request-configuration-options). 
 
 ---
 
