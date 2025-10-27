@@ -29,8 +29,14 @@ items:
   href: ../../../agents/how-to/tools/logic-apps.md
 - name: Microsoft Fabric (preview)
   href: ../../../agents/how-to/tools/fabric.md
-- name: Model Context Protocol (preview)
-  href: ../../../agents/how-to/tools/model-context-protocol.md
+- name: Model Context Protocol(MCP) servers
+  items:
+    - name: Tool catalog (preview)
+      href: ../../agents/concepts/tool-catalog.md
+    - name: Private tool catalog (preview)
+      href: ../../agents/how-to/private-tool-catalog.md
+    - name: MCP tool
+      href: ../../../agents/how-to/tools/model-context-protocol.md
 - name: OpenAPI defined tools
   href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint
