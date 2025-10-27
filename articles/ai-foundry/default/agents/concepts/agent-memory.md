@@ -1,5 +1,5 @@
 ---
-title: Manage memory for AI agents
+title: Create and Manage Memory for AI Agents
 ms.reviewer: liulewis
 titleSuffix: Azure AI Foundry
 description: Learn how to create and manage memory stores to enable AI agents to retain context across sessions and personalize user interactions.
