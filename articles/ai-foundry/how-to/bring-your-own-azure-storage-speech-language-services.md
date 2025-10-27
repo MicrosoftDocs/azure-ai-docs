@@ -1,95 +1,189 @@
 ---
 title: Connect your own storage to Speech/Language
 titleSuffix: Azure AI Foundry
-description: Learn how to bring your own storage account to Azure AI Foundry for Speech and Language services during resource creation.
-#customer intent: As a developer, I want to use my own storage account for Speech and Language services so that I can apply my security customizations and meet compliance requirements.
+description: Configure customer-managed storage for Speech and Language capabilities in an Azure AI Foundry resource at creation time.
+#customer intent: As a developer, I want to use my own storage account for Speech and Language so I can apply security and compliance policies.
 author: jonburchel
 ms.author: jburchel
 ms.reviewer: andyaviles
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 10/27/2025
 ai-usage: ai-assisted
 ---
 
-# Connect to your own storage for Speech and Language services
+# Connect your own storage for Speech and Language services
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-When you bring your own storage, you get enhanced control by allowing Azure AI Foundry to integrate with and manage data outputs on storage accounts that you own. This approach provides flexibility to apply your own security customizations, including customer-managed key encryption. It also enables seamless integration with your existing storage accounts, data, and governance policies, ensuring that your organization's compliance and security requirements are met.
+Azure AI Foundry unifies Agents, Azure OpenAI, Speech, and Language capabilities under a single resource type. For Speech and Language, bring-your-own-storage (BYOS) is enabled through a resource-level binding set at creation time (`userOwnedStorage`). This binding provides backward compatibility with earlier standalone Speech and Language resource patterns while centralizing management.
 
-Azure AI Foundry resources act as an aggregator service, bringing together agents, speech, and language capabilities into a unified platform. This integration allows organizations to manage and deploy advanced AI services efficiently. Both Speech and Language services existed before their integration with Azure AI Foundry, each with its own methods for configuring storage and managing data. As a result, the interface and setup process for these services within Azure AI Foundry resources differ from what you might have experienced before.
-
-This article shows you how to connect your storage account to your Azure AI Foundry resource for Speech and Language services. The limitations and instructions in this article apply only to Speech and Language services. To learn more about Azure AI Foundry's bring-your-own storage solutions for other features, see [Connect to your own storage](bring-your-own-azure-storage-foundry.md).
+Use this article when you specifically need Speech and Language data to land in an Azure Storage account you own. For the broader approaches (connections, capability hosts, and when to use them for other features), see [Connect to your own storage](bring-your-own-azure-storage-foundry.md).
 
 ## Prerequisites
 
-Before setting up your storage account with your Azure AI Foundry resource for Speech and Language services, ensure you have:
+Before you begin:
 
-- An Azure subscription
-- A storage account
-- Contributor or Owner permissions on both the Azure AI Foundry resource and storage account
-- Understanding of the [restrictions](#understand-restrictions) for Speech and Language storage configuration
+- An Azure subscription.
+- An Azure Storage account (Blob) in a region supported by your Azure AI Foundry resource.
+- Permissions: Owner or Contributor on both the Azure AI Foundry resource (or resource group) and the Storage account.
+- Decision to use customer-managed keys (CMK) encryption (optional) on the storage account.
+- Understanding of the restrictions below.
+
+> [!TIP]
+> Review [Azure Storage documentation](/azure/storage/) for encryption, networking, and advanced security options.
 
 ## Understand restrictions
 
-Consider the following restrictions before configuring your storage account:
+Consider these constraints before configuring `userOwnedStorage`:
 
-- You can set only one storage account for Speech and Language capabilities.
-- You must set the storage account during Azure AI Foundry resource creation. You can't set it after resource creation.
-- You can't remove the storage account after you set it on the Azure AI Foundry resource.
-- If you delete the storage account, Speech and Language services can't function. You need to create a new Azure AI Foundry resource if this issue occurs. This restriction also applies when you move the storage account to another Azure subscription. Changing the storage account's resource ID results in access issues.
-- The storage account is shared by both Speech and Language capabilities in the Azure AI Foundry resource. While Speech and Language capabilities write to different Azure storage containers, if your scenario requires strict data isolation, create separate Azure AI Foundry resources and storage accounts.
+| Restriction | Details |
+|-------------|---------|
+| Single account | You can set only one storage account for Speech & Language. |
+| Creation time only | Must be set during resource creation; cannot be added or changed afterward. |
+| Non-removable | You cannot remove or swap the storage account post-creation. |
+| Deletion impact | If the storage account is deleted or moved (resource ID changes), Speech & Language stop functioning. Attempt [storage account recovery](/azure/storage/common/storage-account-recover) first; otherwise you must recreate the Azure AI Foundry resource. |
+| Shared across both capabilities | Speech and Language share the same account (distinct containers). For strict isolation, create separate Azure AI Foundry resources and storage accounts. |
+| Data access scope | Any user with access to the Azure AI Foundry resource can access Speech & Language outputs; project-level isolation doesn’t apply for this binding. |
 
 ## Configure authentication
 
-After setting up the storage account, grant the Azure AI Foundry resource proper permissions on the storage account so the service can access your data. The service supports only Azure role-based access control (RBAC) authentication.
+Speech and Language support only Azure role-based access control (RBAC) via the resource’s managed identity.
 
-Assign the storage _Blob Data Contributor_ role on the storage account for the Azure AI Foundry resource's managed identity. Set the role assignment at the Azure AI Foundry resource level, not for individual projects.
+1. Ensure the Azure AI Foundry resource has a system-assigned managed identity.
+2. On the storage account, assign the `Storage Blob Data Contributor` role to the Azure AI Foundry resource’s managed identity.
+3. Do NOT assign the role to individual project identities for this scenario.
 
-API key-based authentication isn't supported.
+API key–based authentication isn't supported.
+
+### Example (Azure CLI) – role assignment
+
+```bash
+STORAGE_ID=/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Storage/storageAccounts/<storageName>
+FOUNDRY_ID=/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<foundryName>
+
+# Assign Storage Blob Data Contributor
+az role assignment create \
+  --assignee-object-id $(az resource show --ids $FOUNDRY_ID --query identity.principalId -o tsv) \
+  --assignee-principal-type ServicePrincipal \
+  --role "Storage Blob Data Contributor" \
+  --scope $STORAGE_ID
+```
+
+### Example (PowerShell) – role assignment
+
+```powershell
+$storage = "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.Storage/storageAccounts/<storageName>"
+$foundry = "/subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/<foundryName>"
+
+$principalId = (Get-AzResource -ResourceId $foundry).Identity.PrincipalId
+New-AzRoleAssignment -ObjectId $principalId -RoleDefinitionName "Storage Blob Data Contributor" -Scope $storage
+```
 
 ## Create resource with storage account
 
-You can associate storage accounts with your Azure AI Foundry resource for Speech and Language services by using infrastructure templates during resource creation.
+Set the `userOwnedStorage` field during resource creation.
 
-### Use Bicep template
+### Bicep template snippet
 
-1. Access the Bicep template from the [Azure AI Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/infrastructure-setup/02-storage-speech-language/main.bicep).
+```bicep
+resource storage 'Microsoft.Storage/storageAccounts@2023-01-01' existing = {
+  name: storageName
+}
 
-1. Create an Azure AI Foundry resource with the `userOwnedStorage` field containing the storage account's resource ID.
+resource foundry 'Microsoft.CognitiveServices/accounts@2025-05-01-preview' = {
+  name: foundryName
+  location: location
+  kind: 'AIServices'
+  sku: { name: 'S0' }
+  identity: {
+    type: 'SystemAssigned'
+  }
+  properties: {
+    userOwnedStorage: {
+      storageResourceId: storage.id
+    }
+  }
+}
+```
 
-1. Assign Storage Blob Data Contributor role for the Azure AI Foundry resource on the storage account.
+### ARM template snippet
 
-### Use Terraform template
+```json
+{
+  "type": "Microsoft.CognitiveServices/accounts",
+  "apiVersion": "2025-05-01-preview",
+  "name": "[parameters('foundryName')]",
+  "location": "[parameters('location')]",
+  "kind": "AIServices",
+  "identity": { "type": "SystemAssigned" },
+  "sku": { "name": "S0" },
+  "properties": {
+    "userOwnedStorage": {
+      "storageResourceId": "[resourceId('Microsoft.Storage/storageAccounts', parameters('storageName'))]"
+    }
+  }
+}
+```
 
-When you create an Azure AI Foundry resource with Terraform AzureRM, use the storage block to pass in the storage account's resource ID.
+### Terraform snippet
 
-1. Review the [Terraform AzureRM cognitive account documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account) to understand how to define the storage block.
+Refer to the [Terraform cognitive_account documentation](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account).
 
-1. Define the storage block in your `kind=AIServices` cognitive account, which represents the Azure AI Foundry resource.
+```hcl
+resource "azurerm_cognitive_account" "foundry" {
+  name                = var.foundry_name
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  kind                = "AIServices"
+  sku_name            = "S0"
 
-1. Reference the [basic Terraform template](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform/00-basic-azurerm) and include the `storage` block.
+  # userOwnedStorage equivalent
+  storage {
+    resource_id = azurerm_storage_account.speechlang.id
+  }
 
-## Understand Speech integration
+  identity {
+    type = "SystemAssigned"
+  }
+}
+```
 
-Speech services in an Azure AI Foundry resource generally follow the guidelines in [Bring your own storage (BYOS) Speech resource](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal). This guidance applies to key Speech scenarios, including Speech-to-Text (batch and real-time), Custom Speech, Text-to-Speech, and Custom Voice. For specific features under Speech, see that documentation.
+### Sample repository
 
-### Configure customer-managed keys for Speech
+See the infrastructure examples (including Speech/Language storage) in the [Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/02-storage-speech-language).
 
-When you attach your storage account, you can set your [customer-managed keys for encryption](/azure/storage/common/customer-managed-keys-overview) of Speech data. If you don't associate your storage account, Speech services don't use the customer-managed keys set at the Azure AI Foundry resource level. All other services available through your Azure AI Foundry resource use the customer-managed key for encryption.
+## Speech integration details
 
-## Understand Language integration
+Speech scenarios (Speech-to-Text batch/real-time, Custom Speech, Text-to-Speech, Custom Voice) conform to guidance in [Bring your own storage (BYOS) Speech resource](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal). When `userOwnedStorage` is set, those outputs route to the bound storage account containers.
 
-The `userOwnedStorage` field in Azure AI Foundry resources acts similarly to Language resources with one key difference: you can't update the storage account even if the storage account is deleted. In standalone Language resources, you can update the storage account after deletion, but this capability isn't available in Azure AI Foundry resources.
+### Customer-managed keys (CMK)
 
-## Understand shared storage configuration
+If you configure [customer-managed keys](/azure/storage/common/customer-managed-keys-overview) encryption on the storage account, Speech data written there uses those keys. If `userOwnedStorage` isn’t set, Speech falls back to Microsoft-managed storage and doesn’t inherit CMK settings from the Azure AI Foundry resource.
 
-Speech and Language services share the same storage account that you set on the Azure AI Foundry resource. You can't separate the data between users at the resource level. If a user has access to the Azure AI Foundry resource, they can access data from both Speech and Language scenarios. Both services use their own container naming conventions that keep each service separate on the storage account.
+## Language integration details
+
+The `userOwnedStorage` binding mirrors historical Language resource behavior with one key difference: you cannot update or replace the storage account after deletion or move. In standalone Language resources an update is possible; in the unified Azure AI Foundry resource it is not—plan lifecycle mitigation accordingly.
+
+## Shared storage configuration
+
+Speech and Language share the same storage account (different container naming conventions keep data logically separated). Because access is at the resource scope, any resource-level user can reach both sets of outputs. For stricter separation, deploy distinct resources.
+
+## Troubleshooting
+
+| Issue | Mitigation |
+|-------|------------|
+| Accidental deletion of storage account | Attempt [recovering the account](/azure/storage/common/storage-account-recover). If unsuccessful, recreate the Azure AI Foundry resource. |
+| Role assignment missing | Re-run RBAC role assignment for the resource managed identity on the storage account. |
+| Moved storage to new subscription | Recreate resource; moving changes the resource ID and breaks binding. |
 
 ## Related content
 
-- [Connect your own storage to AI Foundry](bring-your-own-azure-storage-foundry.md)
-- [Connect your own storage to Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-language-services.md)
-- [Azure AI Foundry samples repository](https://github.com/azure-ai-foundry/foundry-samples)
+- [Connect to your own storage (overview)](bring-your-own-azure-storage-foundry.md)
+- [Capability hosts for Agents](../agents/concepts/capability-hosts.md)
+- [Recover a storage account](/azure/storage/common/storage-account-recover)
+- [Azure Storage documentation](/azure/storage/)
+- [Samples: infrastructure setup](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+- [Terraform cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
+- [Speech BYOS resource guidance](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)
