@@ -22,7 +22,7 @@ Azure AI Speech is updated on an ongoing basis. To stay up-to-date with recent d
    - `transcribe`: Convert pre-recorded audio into text.
    - `translate`: Convert pre-recorded audio into text in a specified target language.
 
-  For more information, see [LLM speech](./llm-speech.md) 
+  For more information, see [LLM speech](./llm-speech.md). 
 
 * Voice live API is generally available now. Transform conversations into seamless experiences with Voice live API—the all-in-one solution that combines speech recognition, generative AI, and text-to-speech into a single low-latency interface for building intelligent voice agents. For more information, see [Voice live](./voice-live.md).
 * To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](fast-transcription-create.md?tabs=multilingual-transcription-on).
