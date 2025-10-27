@@ -1,6 +1,6 @@
 ---
-title: Overview of Responsible AI practices for Azure OpenAI models 
-titleSuffix: Azure AI services
+title: Overview of Responsible AI practices for Azure OpenAI in AI Foundry Models
+titleSuffix: Azure AI Foundry
 description: RAI overview for Azure OpenAI Service
 author: mrbullwinkle
 ms.author: mbullwin

@@ -1,7 +1,7 @@
 ---
-title: Transparency Note for Azure OpenAI
-titleSuffix: Azure AI services
-description: Transparency Note for Azure OpenAI Service
+title: Transparency Note for Azure OpenAI in Azure AI Foundry Models
+titleSuffix: Azure AI Foundry
+description: Transparency Note for Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
@@ -11,7 +11,7 @@ monikerRange: 'foundry-classic || foundry'
 ms.date: 04/16/2025
 ---
 
-# Transparency Note for Azure OpenAI Service
+# Transparency Note for Azure OpenAI
 
 [!INCLUDE [non-english-translation](../includes/non-english-translation.md)]
 
