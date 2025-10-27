@@ -1,12 +1,12 @@
 ---
 title: How to send requests to orchestration workflow
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about sending requests for orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, python
@@ -34,7 +34,7 @@ You can use Language Studio to submit an utterance, get predictions and visualiz
 
 # [REST APIs](#tab/REST-APIs)
 
-First you will need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure portal](../includes/get-keys-endpoint-azure.md)]
 
@@ -44,7 +44,7 @@ First you will need to get your resource key and endpoint:
 
 # [Client libraries (Azure SDK)](#tab/azure-sdk)
 
-First you will need to get your resource key and endpoint:
+First you need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
 

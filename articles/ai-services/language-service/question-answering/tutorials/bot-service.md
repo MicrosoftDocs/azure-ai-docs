@@ -73,7 +73,7 @@ After deploying your project, you can create a bot from the **Deploy project** p
 
 ## Integrate the bot with channels
 
-Select **Channels** in the Bot service resource that you have created. You can activate the Bot in additional [supported channels](/azure/bot-service/bot-service-manage-channels).
+Select **Channels** in the Bot service resource that you create. You can activate the Bot in additional [supported channels](/azure/bot-service/bot-service-manage-channels).
 
    >[!div class="mx-imgBorder"]
    >![Screenshot of integration with teams with product icons.](../media/bot-service/channels.png)

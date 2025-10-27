@@ -19,4 +19,4 @@ ms.custom: language-service-clu
 
 3. Replace `<YOUR_QUERY_HERE>` with the actual text you want to send to extract intents and entities from.
 
-4. Submit the `POST` cURL request in your terminal or command prompt. You'll receive a 202 response with the API results if the request was successful.
+4. Submit the `POST` cURL request in your terminal or command prompt. You receive a 202 response with the API results if the request was successful.

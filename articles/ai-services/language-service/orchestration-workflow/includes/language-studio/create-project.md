@@ -13,7 +13,7 @@ ms.author: lajanuar
    :::image type="content" source="../../media/select-orchestration.png" alt-text="A screenshot showing the location of the orchestration workflow section in the Language Studio landing page." lightbox="../../media/select-orchestration.png"::: 
     
 
-2. This will bring you to the **Orchestration workflow project** page. Select **Create new project**. To create a project, you will need to provide the following details:
+2. This will bring you to the **Orchestration workflow project** page. Select **Create new project**. To create a project, you need to provide the following details:
 
 |Value  | Description  |
 |---------|---------|

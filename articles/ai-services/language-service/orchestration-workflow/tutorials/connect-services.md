@@ -8,7 +8,7 @@ manager: nitinme
 ms.reviewer: cahann, hazemelh
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/15/2025
+ms.date: 11/05/2025
 ---
 
 # Connect different services with Orchestration workflow
@@ -32,7 +32,7 @@ This tutorial includes creating a **chit chat** knowledge base and **email comma
 
 1. Sign into the [Language Studio](https://language.cognitive.azure.com/) and select your Language resource. 
 2. Find and select the [Custom question answering](https://language.cognitive.azure.com/questionAnswering/projects/) tile in the homepage.
-3. Select **Create new project** and add the name **chitchat** with the language _English_ before clicking on **Create project**.
+3. Select **Create new project** and add the name **chitchat** with the language _English_ before selecting **Create project**.
 4. When the project loads, select **Add source** and select _Chit chat_. Select the professional personality for chit chat before
     
     :::image type="content" source="../media/chit-chat.png" alt-text="A screenshot of the chit chat popup." lightbox="../media/chit-chat.png":::
@@ -64,7 +64,7 @@ You're now done with deploying a conversational language understanding project f
 1. In Language Studio, go to the [Orchestration workflow](https://language.cognitive.azure.com/orchestration/projects) service.
 2. Select **Create new project**. Use the name **Orchestrator** and the language _English_ before clicking next then done.
 3. Once the project is created, select **Add** in the **Schema definition** page. 
-4. Select _Yes, I want to connect it to an existing project_. Add the intent name **EmailIntent** and select **Conversational Language Understanding** as the connected service. Select the recently created **EmailProject** project for the project name before clicking on **Add Intent**. 
+4. Select _Yes, I want to connect it to an existing project_. Add the intent name **EmailIntent** and select **Conversational Language Understanding** as the connected service. Select the recently created **EmailProject** project for the project name before selecting **Add Intent**. 
 
 :::image type="content" source="../media/connect-intent-tutorial.png" alt-text="A screenshot of the connect intent popup in orchestration workflow." lightbox="../media/connect-intent-tutorial.png":::
 

@@ -208,7 +208,7 @@ Then you can share your website URL with your school or organization members.
 
 ## Clean up resources
 
-When you are done with the project, remove the QnA Maker resources in the Azure portal.
+When you're done with the project, remove the QnA Maker resources in the Azure portal.
 
 ## See also
 

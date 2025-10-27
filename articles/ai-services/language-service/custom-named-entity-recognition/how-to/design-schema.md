@@ -1,12 +1,12 @@
 ---
 title: Preparing data and designing a schema for custom named entity recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about how to select and prepare data, to be successful in creating custom NER projects.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/24/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---

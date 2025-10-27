@@ -26,7 +26,7 @@ Custom question answering allows you to manage your projects by providing access
 
 3. Select **create new project**.
 
-4. If you are creating the first project associated with your language resource, you have the option of creating future projects with multiple languages for the same resource. If you choose to explicitly set the language to a single language in your first project, you will not be able to modify this setting later and all subsequent projects for that resource will use the language selected during the creation of your first project.
+4. If you're creating the first project associated with your language resource, you have the option of creating future projects with multiple languages for the same resource. If you choose to explicitly set the language to a single language in your first project, you will not be able to modify this setting later and all subsequent projects for that resource will use the language selected during the creation of your first project.
 
     > [!div class="mx-imgBorder"]
     > ![Screenshot of language selection UI.](../media/manage-knowledge-base/choose-language-option.png)

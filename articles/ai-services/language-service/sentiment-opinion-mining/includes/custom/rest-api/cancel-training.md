@@ -12,7 +12,7 @@ Create a **POST** request by using the following URL, headers, and JSON body to 
 
 ### Request URL
 
-Use the following URL when creating your API request. Replace the placeholder values below with your own values. 
+Use the following URL when creating your API request. Replace the placeholder values with your own values. 
 
 ```rest
 {Endpoint}/language/authoring/analyze-text/projects/{PROJECT-NAME}/train/jobs/{JOB-ID}/:cancel?api-version={API-VERSION}
@@ -33,4 +33,4 @@ Use the following header to authenticate your request.
 |--|--|
 |`Ocp-Apim-Subscription-Key`| The key to your resource. Used for authenticating your API requests.|
  
-After you send your API request, you'll receive a 202 response with an `Operation-Location` header used to check the status of the job.
+After you send your API request, you receive a 202 response with an `Operation-Location` header used to check the status of the job.

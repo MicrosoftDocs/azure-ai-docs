@@ -67,7 +67,7 @@ docker run -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-servi
 docker run -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:cpu downloadModels=AbstractiveSummarization billing={ENDPOINT_URI} apikey={API_KEY}
 docker run -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:cpu downloadModels=ConversationSummarization billing={ENDPOINT_URI} apikey={API_KEY}
 ```
-It's not recommended to download models for all skills inside the same `HOST_MODELS_PATH`, as the container loads all models inside the `HOST_MODELS_PATH`. Doing so would use a large amount of memory. It's recommended to only download the model for the skill you need in a particular `HOST_MODELS_PATH`.
+It's not recommended to download models for all skills inside the same `HOST_MODELS_PATH`, as the container loads all models inside the `HOST_MODELS_PATH`. Doing so would use a large amount of memory. We recommend that you only download the model for the skill you need in a particular `HOST_MODELS_PATH`.
 
 In order to ensure compatibility between models and the container, re-download the utilized models whenever you create a container using a new image version. When using a disconnected container, the license should be downloaded again after downloading the models.
 
@@ -85,7 +85,7 @@ Once the *Summarization* container is on the host computer, use the following `d
 docker run -p 5000:5000 -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:cpu eula=accept rai_terms=accept billing={ENDPOINT_URI} apikey={API_KEY}
 ```
 
-Or if you are running a GPU container, use this command instead.
+Or if you're running a GPU container, use this command instead.
 ```bash
 docker run -p 5000:5000 --gpus all -v {HOST_MODELS_PATH}:/models mcr.microsoft.com/azure-cognitive-services/textanalytics/summarization:gpu eula=accept rai_terms=accept billing={ENDPOINT_URI} apikey={API_KEY}
 ```

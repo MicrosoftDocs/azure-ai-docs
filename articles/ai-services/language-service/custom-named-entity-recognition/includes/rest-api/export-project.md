@@ -21,7 +21,7 @@ Use the following URL when creating your API request. Replace the placeholder va
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `MyProject` |
-|`{API-VERSION}`     | The version of the API you're calling. The value referenced here's the latest [model version](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released.  | `2022-05-01` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is the latest [model version](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) released.  | `2022-05-01` |
 
 ### Headers
 
@@ -41,7 +41,7 @@ Use the following JSON in your request body specifying that you want to export a
 }
 ```
 
-Once you send your API request, you receive a `202` response indicating that the job was submitted correctly. In the response headers, extract the `operation-location` value and format it like this: 
+Once you send your API request, you receive a `202` response indicating that the job was submitted correctly. In the response headers, extract the `operation-location` value formatted like this: 
 
 ```rest
 {ENDPOINT}/language/authoring/analyze-text/projects/{PROJECT-NAME}/export/jobs/{JOB-ID}?api-version={API-VERSION}

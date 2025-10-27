@@ -1,12 +1,12 @@
 ---
 title: Extract information in Excel using Power Automate
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to Extract Excel text without having to write code, using Named Entity Recognition and Power Automate.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, cogserv-non-critical-language
 ---
@@ -175,7 +175,7 @@ In the **If yes** condition, add an **Update a row** action. Then enter the info
 
 ## Get the plumbing issues
 
-Minimize **Apply to each 4** by clicking on the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
+Minimize **Apply to each 4** by selecting the name. Then create another **Apply to each** in the parent action. Select the text box, and add **Entities** as the output for this action from the Dynamic content window. 
 
 :::image type="content" source="../media/tutorials/excel/add-apply-action-plumbing.png" alt-text="Create another apply to each action" lightbox="../media/tutorials/excel/add-apply-action-plumbing.png":::
 

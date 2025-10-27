@@ -1,12 +1,12 @@
 ---
 title: Evaluate a Custom Named Entity Recognition (NER) model
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn how to evaluate and score your Custom Named Entity Recognition (NER) model
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-ner
 ---
@@ -24,7 +24,7 @@ After your model has finished training, you can view the model performance and s
 Before viewing model evaluation, you need:
 
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
-* Text data that [has been uploaded](design-schema.md#data-preparation) to your storage account.
+* Text data [uploaded](design-schema.md#data-preparation) to your storage account.
 * [Labeled data](tag-data.md)
 * A [successfully trained model](train-model.md)
 

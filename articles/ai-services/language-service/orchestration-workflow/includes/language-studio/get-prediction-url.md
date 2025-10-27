@@ -16,4 +16,4 @@ ms.custom: language-service-orchestration
 
 2. In the window that appears, copy the sample request URL and body into your command line. Replace `<YOUR_QUERY_HERE>` with the actual text you want to send to extract intents and entities from.
 
-4. Submit the `POST` cURL request in your terminal or command prompt. You'll receive a 202 response with the API results if the request was successful.
+4. Submit the `POST` cURL request in your terminal or command prompt. You receive a 202 response with the API results if the request was successful.

@@ -61,13 +61,13 @@ Now go ahead and import the exported project assets in your new project in the s
 
 ### Submit import job
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [Import project using the REST API](../includes/rest-api/import-project.md)]
 
 ### Get import job status
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [Import project using the REST API](../includes/rest-api/get-import-status.md)]
 
@@ -78,14 +78,14 @@ After importing your project, you only have copies of the project's assets and m
 
 ### Submit training job
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [train model](../includes/rest-api/train-model.md)]
 
 
 ### Get Training Status
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [get training model status](../includes/rest-api/get-training-status.md)]
 
@@ -98,13 +98,13 @@ This step is where you make your trained model available form consumption via th
 
 ### Submit deployment job 
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [deploy model](../includes/rest-api/deploy-model.md)]
 
 ### Get the deployment status
 
-Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
+Replace the placeholders in the following request with your `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}` that you obtained in the first step.
 
 [!INCLUDE [get deploy status](../includes/rest-api/get-deployment-status.md)]
 
@@ -125,7 +125,7 @@ Repeat the following step twice, one for your primary project and another for yo
 
 [!INCLUDE [get project details](../includes/rest-api/get-project-details.md)]
 
-Repeat the same steps for your replicated project using `{SECONDARY-ENDPOINT}` and `{SECONDARY-RESOURCE-KEY}`. Compare the returned `lastModifiedDateTime` from both projects. If your primary project was modified sooner than your secondary one, you need to repeat the steps of [exporting](#export-your-primary-project-assets), [importing](#import-to-a-new-project), [training](#train-your-model), and [deploying](#deploy-your-model) your model.
+Repeat the same steps for your replicated project using `{SECONDARY-ENDPOINT}`, and `{SECONDARY-RESOURCE-KEY}`. Compare the returned `lastModifiedDateTime` from both projects. If your primary project was modified sooner than your secondary one, you need to repeat the steps of [exporting](#export-your-primary-project-assets), [importing](#import-to-a-new-project), [training](#train-your-model), and [deploying](#deploy-your-model) your model.
 
 ## Next steps
 

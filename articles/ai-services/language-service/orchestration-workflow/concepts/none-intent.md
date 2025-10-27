@@ -1,12 +1,12 @@
 ---
 title: Orchestration workflow none intent
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about the default None intent in orchestration workflow.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom:  language-service-orchestration
 ms.reviewer: haelhamm
