@@ -26,7 +26,7 @@ Memory stores act as persistent storage boundaries that define what types of inf
 
 - An Azure subscription. [Create one for free](https://azure.microsoft.com/free/).
 - Access to Azure AI Foundry with appropriate permissions to create and manage resources.
-- An Azure AI Foundry project. See [Create a project](../../../how-to/create-projects.md).
+- An [Azure AI Foundry project](../../../how-to/create-projects.md).
 - An agent created in Azure AI Foundry. See [Quickstart: Build an agent](../../../agents/quickstart.md).
 - Chat model deployment (for example, GPT-4) in your project.
 - Embedding model deployment (for example, text-embedding-ada-002) in your project.
