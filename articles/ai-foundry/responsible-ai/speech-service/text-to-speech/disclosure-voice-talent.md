@@ -50,7 +50,7 @@ Microsoft is committed to designing AI responsibly. We hope this note will foste
 **What to know about it:** The synthesized text to speech avatar’s face, body, and movements closely resemble the avatar talent, but the text to speech avatar’s voice may be generated from any of the prebuilt neural voices Microsoft makes available or from a custom neural voice, including where the voice talent is the same individual as the avatar talent, if the individual has authorized such use.
 
 **Examples of how Microsoft uses it**:  
-- **Prebuilt text to speech avatar** is a feature of Azure AI Speech text to speech that offers "off-the-shelf" text to speech avatar models for customer use.
+- **Prebuilt text to speech avatar** is a feature of Azure Speech in Foundry Tools text to speech that offers "off-the-shelf" text to speech avatar models for customer use.
 - **Custom text to speech avatar** is a feature of Azure AI Speech text to speech that enables the creation of one-of-a-kind custom synthetic text to speech avatar models.
 
 

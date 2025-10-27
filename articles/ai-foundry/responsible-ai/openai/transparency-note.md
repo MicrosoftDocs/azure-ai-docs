@@ -122,7 +122,7 @@ The `gpt-4o-realtime-preview` model in Azure OpenAI service enables robust speec
 
 The Whisper model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The Whisper model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
-You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure AI Speech service. Learn more about the Azure AI Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure Speech in Foundry Tools service. Learn more about the Azure AI Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ### Key terms
 
