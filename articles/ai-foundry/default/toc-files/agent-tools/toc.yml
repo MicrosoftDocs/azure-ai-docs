@@ -1,7 +1,7 @@
 items:
 - name: Agent tools overview
   href: ../../../agents/how-to/tools/overview.md
-- name: Agent memory (Preview)
+- name: Agent memory (preview)
   href: ../../agents/concepts/agent-memory.md
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
