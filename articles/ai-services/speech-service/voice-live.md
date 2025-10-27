@@ -67,7 +67,7 @@ To power the intelligence of your voice agent, you have flexibility and choice i
 
 All natively supported models are fully managed, meaning you don’t have to deploy models, worry about capacity planning, or provisioning throughput. You can use the model you need, and the Voice live API takes care of the rest.
 
-The Voice live API supports the following models. For supported regions, see the [Azure AI Speech service regions](./regions.md?tabs=voice-live#regions).
+The Voice live API supports the following models. For supported regions, see the [Azure Speech service regions](./regions.md?tabs=voice-live#regions).
 
 | Model | Description |
 | ------------------------------ | ----------- |
@@ -126,12 +126,12 @@ Here are some example pricing scenarios to help you understand how the Voice liv
 
 #### Scenario 1
 
-A customer service agent built with standard Azure AI Speech input, GPT-4.1, custom Azure AI Speech output, and a custom avatar.
+A customer service agent built with standard Azure Speech input, GPT-4.1, custom Azure Speech output, and a custom avatar.
 
 You're charged at the voice live pro rate for:
 - Text
-- Audio with Azure AI Speech - Standard
-- Audio with Azure AI Speech - Custom
+- Audio with Azure Speech - Standard
+- Audio with Azure Speech - Custom
 
 You're charged separately for the training and model hosting of:
 - Custom voice – professional
@@ -139,21 +139,21 @@ You're charged separately for the training and model hosting of:
 
 #### Scenario 2
 
-A learning agent built with `gpt-realtime` native audio input and standard Azure AI Speech output.
+A learning agent built with `gpt-realtime` native audio input and standard Azure Speech output.
 
 You're charged at the voice live pro rate for:
 - Text
 - Native audio with `gpt-realtime`
-- Audio with Azure AI Speech - Standard
+- Audio with Azure Speech - Standard
 
 #### Scenario 3
 
-A talent interview agent built with `gpt-4o-mini-realtime-preview` native audio input, and standard Azure AI Speech output and standard avatar.
+A talent interview agent built with `gpt-4o-mini-realtime-preview` native audio input, and standard Azure Speech output and standard avatar.
 
 You're charged at the voice live basic rate for:
 - Text
 - Native audio with `gpt-4o-mini-realtime-preview`
-- Audio with Azure AI Speech - Standard
+- Audio with Azure Speech - Standard
 
 You're charged separately for:
 - Text to speech avatar (standard)
@@ -167,7 +167,7 @@ You're charged at the voice live lite rate for:
 - Native audio with `phi4-mm-realtime`
 
 You're charged at the voice live pro rate for:
-- Audio with Azure AI Speech - Custom
+- Audio with Azure Speech - Custom
 
 You're charged separately for the training and model hosting of:
 - Custom voice – professional

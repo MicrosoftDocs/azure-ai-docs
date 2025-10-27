@@ -48,7 +48,7 @@ Now we'll add some basic UI for input boxes, reference the Speech SDK's JavaScri
     <table width="100%">
       <tr>
         <td></td>
-        <td><h1 style="font-weight:500;">Microsoft Azure AI Speech SDK JavaScript Quickstart</h1></td>
+        <td><h1 style="font-weight:500;">Microsoft Azure Speech SDK JavaScript Quickstart</h1></td>
       </tr>
       <tr>
         <td align="right"><a href="/azure/ai-services/speech-service/overview" target="_blank">Subscription</a>:</td>
@@ -159,7 +159,7 @@ Before you can initialize a `SpeechRecognizer` object, you need to create a conf
           speechConfig = SpeechSDK.SpeechConfig.fromAuthorizationToken(authorizationToken, serviceRegion.value);
         } else {
           if (subscriptionKey.value === "" || subscriptionKey.value === "subscription") {
-            alert("Please enter your Microsoft Azure AI Speech subscription key!");
+            alert("Please enter your Microsoft Azure Speech subscription key!");
             return;
           }
           startIntentRecognizeAsyncButton.disabled = false;

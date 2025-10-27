@@ -14,7 +14,7 @@ ms.custom: mode-api
 
 # Quickstart: Get started with the Azure Speech in Foundry Tools CLI
 
-In this article, you learn how to use the Azure AI Speech CLI (also called SPX) to access Speech services such as speech to text, text to speech, and speech translation, without having to write any code. The Speech CLI is production ready, and you can use it to automate simple workflows in the Speech service by using `.bat` or shell scripts.
+In this article, you learn how to use the Azure Speech CLI (also called SPX) to access Speech services such as speech to text, text to speech, and speech translation, without having to write any code. The Speech CLI is production ready, and you can use it to automate simple workflows in the Speech service by using `.bat` or shell scripts.
 
 This article assumes that you have working knowledge of the Command Prompt window, terminal, or PowerShell.
 

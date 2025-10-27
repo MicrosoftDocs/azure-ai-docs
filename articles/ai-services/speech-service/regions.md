@@ -188,7 +188,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 <sup>1</sup> The Azure AI Foundry resource must be in Central India. Azure Speech in Foundry Tools features remain in Central India. The Voice live API uses Sweden Central as needed for generative AI load balancing.
 
-<sup>2</sup> The resource must be in West US 2. Azure AI Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
+<sup>2</sup> The resource must be in West US 2. Azure Speech features remain in West US 2. The Voice live API uses East US 2 as needed for generative AI load balancing.
 
 <sup>3</sup> Currently West US 2 only supports Speech Service resources (not AI Foundry resources). Use one of the other regions to use an Azure AI Foundry resource and best integration with Azure AI Foundry Agent Service and bring-your-own-model (BYOM) support.
 

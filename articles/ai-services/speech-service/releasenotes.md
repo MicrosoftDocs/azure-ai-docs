@@ -14,15 +14,15 @@ ms.custom: references_regions
 
 # What's new in Azure Speech in Foundry Tools?
 
-Azure AI Speech is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
+Azure Speech is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 
 ## Recent highlights
 
 * To transcribe multi-lingual contents continuously and accurately in an audio file, now you can use the latest multi-lingual model without specifying the locale codes via fast transcription API. For more information, see [multi-lingual transcription in fast transcription](fast-transcription-create.md?tabs=multilingual-transcription-on).
 * Fast transcription is now generally available. It can transcribe audio much faster than the actual audio duration. For more information, see the [fast transcription API guide](fast-transcription-create.md).
-* Azure AI Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure AI Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
-* Azure AI speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure AI Speech high definition (HD) voices?](high-definition-voices.md).
-* Video translation is now available in the Azure AI Speech service. For more information, see [What is video translation?](./video-translation-overview.md).
+* Azure Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
+* Azure Speech high definition (HD) voices are available in public preview. The HD voices can understand the content, automatically detect emotions in the input text, and adjust the speaking tone in real-time to match the sentiment. For more information, see [What are Azure Speech high definition (HD) voices?](high-definition-voices.md).
+* Video translation is now available in the Azure Speech service. For more information, see [What is video translation?](./video-translation-overview.md).
 
 ## Release notes
 

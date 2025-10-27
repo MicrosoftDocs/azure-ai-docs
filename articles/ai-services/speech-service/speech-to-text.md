@@ -79,7 +79,7 @@ For details about customization options per language and locale, see the [langua
 
 ## Usage Examples 
 
-Here are some practical examples of how you can utilize Azure AI speech to text: 
+Here are some practical examples of how you can utilize Azure Speech to text: 
 
 | Use case | Scenario | Solution |
 | --- | --- | --- |

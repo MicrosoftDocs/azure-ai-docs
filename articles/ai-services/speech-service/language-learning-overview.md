@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # Language learning with Azure Speech in Foundry Tools
 
-One of the most important aspects of learning a new language is speaking and listening. Azure AI Speech provides features that can be used to help language learners.
+One of the most important aspects of learning a new language is speaking and listening. Azure Speech provides features that can be used to help language learners.
 
 ## Pronunciation assessment
 
@@ -21,7 +21,7 @@ The [pronunciation assessment](pronunciation-assessment-tool.md) feature provide
 
 The Pronunciation Assessment feature offers several benefits for educators, service providers, and students. 
 - For educators, it provides instant feedback, eliminates the need for time-consuming oral language assessments, and offers consistent and comprehensive assessments. 
-- For service providers, it offers high real-time capabilities, worldwide Azure AI Speech and supports growing global business. 
+- For service providers, it offers high real-time capabilities, worldwide Azure Speech and supports growing global business. 
 - For students and learners, it provides a convenient way to practice and receive feedback, authoritative scoring to compare with native pronunciation and helps to follow the exact text order for long sentences or full documents.
 
 ## Speech to text 

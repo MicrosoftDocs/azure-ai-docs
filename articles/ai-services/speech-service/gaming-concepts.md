@@ -12,7 +12,7 @@ ms.author: pafarley
 
 # Game development with Azure Speech in Foundry Tools
 
-Azure AI Speech can be used to improve various gaming scenarios, both in-game and out-of-game. 
+Azure Speech can be used to improve various gaming scenarios, both in-game and out-of-game. 
 
 Here are a few Speech features to consider for flexible and interactive game experiences:
 

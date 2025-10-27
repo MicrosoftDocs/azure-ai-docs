@@ -12,7 +12,7 @@ ms.author: jagoerge
 
 # Azure Speech in Foundry Tools known issues
 
-Azure AI Speech is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Speech and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
+Azure Speech is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure Speech and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
 * For more information regarding service-level outages, *see* the [Azure status page](https://azure.status.microsoft/en-us/status). 
 * To set up outage notifications and alerts, *see* the [Azure Service Health Portal](/azure/service-health/service-health-portal-update).

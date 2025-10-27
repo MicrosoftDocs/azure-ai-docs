@@ -28,7 +28,7 @@ An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure Speech 
 
 > [!NOTE]
 > Using Voice Live API is optimized for Azure AI Foundry resources. We recommend using Azure AI Foundry resources for full feature availability and best Azure AI Foundry integration experience.        
-> **Azure AI Speech Services resources** don't support Azure AI Foundry Agent Service integration and bring-your-own-model (BYOM).
+> **Azure Speech Services resources** don't support Azure AI Foundry Agent Service integration and bring-your-own-model (BYOM).
 
 ### WebSocket endpoint
 
