@@ -10,7 +10,7 @@ ms.author: scottpolly
 ms.reviewer: bgilmore
 ---
 
-# Azure AI Translator known issues
+# Azure AI Translator active known issues
 
 Azure AI Translator is updated regularly and we're continually improving and enhancing its features and capabilities. This page details known issues related to Azure AI Translator and provides steps to resolve them. Before submitting a support request, review the following list to see if your problem is already being addressed and to find a possible solution.
 
