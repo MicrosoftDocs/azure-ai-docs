@@ -43,9 +43,9 @@ Azure AI Foundry Tools provides information and guidelines on how to responsibly
 
 ## Speech
 - [Azure Speech in Foundry Tools - Pronunciation Assessment](/azure/ai-foundry/responsible-ai/speech-service/pronunciation-assessment/transparency-note-pronunciation-assessment)
-- [Azure AI Speech - Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition)
-- [Azure AI Speech - Text to speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
-- [Azure AI Speech - Speech to text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
+- [Azure Speech - Speaker Recognition](/azure/ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition)
+- [Azure Speech - Text to speech](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/transparency-note)
+- [Azure Speech - Speech to text](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note)
 
 ## Search
 - [Azure AI Search](/azure/ai-foundry/responsible-ai/search/transparency-note)
