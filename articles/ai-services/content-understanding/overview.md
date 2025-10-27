@@ -14,7 +14,7 @@ ms.custom:
 # customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding (preview)?
+# What is Azure AI Content Understanding?
 
 Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-services.md) that uses generative AI to process/ingest content of many types (documents, images, videos, and audio) into a user-defined output format. Content Understanding offers a streamlined process to reason over large amounts of unstructured data, accelerating time-to-value by generating an output that can be integrated into automation and analytical workflows.
 
@@ -70,12 +70,11 @@ Some common industry-specific applications for Content Understanding include:
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
 | Classifier |  |
 
-## Content Understanding UX tools
+## Content Understanding experiences
+Azure AI Content Understanding is an Azure AI Foundry service that transforms unstructured content- documents, images, audio and video- into structured, searchable data. The Azure AI Foundry experience is complemented by the Content Understanding Studio for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio](concepts/foundry-vs-cu-studio.md)
 
-Content Understanding offers two UX tools that are optimized to offer excellent no code experiences that get you started with Content Understanding quickly & easily.
-
-* **Content Understanding Studio**: Optimized for analyzer performance improvement, CU Studio offers the ability to try out prebuilt analyzers, author custom solutions, and perform data labeling techniques to improve the output quality of your analyzer. It also supports the creation and testing of classifiers directly in the portal.
-* **Content Understanding in Azure AI Foundry**: Optimized for the Agentic experience, CU in the AI Foundry also offers the ability to try out prebuilt analyzers and author custom solutions, but also leverages the AI Foundry agent builder to leverage your Content Understanding analyzers to build a robust agentic solution. The AI Foundry agent builder allows for integration with other powerful tools to complete a full agentic workflow, no matter your business needs. The AI Foundry experience does not currently support data labeling or classification
+* **Content Understanding in Azure AI Foundry NextGen portal (coming soon)**: The Azure AI Foundry NextGen portal will offer the ability to build advanced, comprehensive agentic workflows with the Content Understanding Tool.
+* **Content Understanding Studio**: A complementary UX experience, CU Studio is optimized for analyzer performance improvement and offers the ability to improve custom analyzers using data labeling techniques. It also supports building classification-based custom analyzers.
 
 ## Responsible AI
 
