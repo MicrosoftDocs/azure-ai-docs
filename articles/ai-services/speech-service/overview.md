@@ -56,7 +56,7 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 [Speech translation](speech-translation.md) enables real-time, multilingual translation of speech to your applications, tools, and devices. Use this feature for speech to speech and speech to text translation.
 
-### LLM speech (*preview*)
+### LLM speech (preview)
 
 [LLM-speech](llm-speech.md) currently supports the following speech tasks:
 - `transcribe`: Convert pre-recorded audio into text.
