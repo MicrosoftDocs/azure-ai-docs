@@ -24,7 +24,7 @@ Create a **POST** request using the following URL, headers, and JSON body to sta
 
 ### Headers
 
-Use the following header to authenticate your request. 
+Use the following header to authenticate your request.
 
 |Key|Value|
 |--|--|
@@ -109,8 +109,8 @@ Once you send the request, you get the following response for the prediction
 
 ## API response for a conversations project
 
-In a conversations project, you'll get predictions for both your intents and entities that are present within your project. 
-* The intents and entities include a confidence score between 0.0 to 1.0 associated with how confident the model is about predicting a certain element in your project. 
+In a conversations project, you'll get predictions for both your intents and entities that are present within your project.
+* The intents and entities include a confidence score between 0.0 to 1.0 associated with how confident the model is about predicting a certain element in your project.
 * The top scoring intent is contained within its own parameter.
 * Only predicted entities show up in your response.
 * Entities indicate:

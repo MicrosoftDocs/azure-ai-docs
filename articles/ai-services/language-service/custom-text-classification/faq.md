@@ -86,7 +86,8 @@ After deploying your model, you [call the prediction API](how-to/call-api.md), u
 
 ## Data privacy and security
 
-For more information, *see* [Data, privacy, and security for Azure AI Language](../../../ai-foundry/responsible-ai/language-service/data-privacy.md)
+For more information, *see* [Data, privacy, and security for Azure Language](/azure/ai-foundry/responsible-ai/language-service/data-privacy).
+
 ## How to clone my project?
 
 To clone your project, you need to use the export API  to export the project assets, and then import them into a new project. See [REST APIs](https://westus.dev.cognitive.microsoft.com/docs/services/language-authoring-clu-apis-2022-03-01-preview/operations/Projects_TriggerImportProjectJob) reference for both operations.

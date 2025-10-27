@@ -46,13 +46,13 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 >
 > `ceil(8921/1000) = ceil(8.921)`, which is 9 text records.
 
-1.  From the left pane, select **Data labeling**.
-1.  Select the **Autolabel** button under the Activity pane to the right of the page.
+1. From the left pane, select **Data labeling**.
+1. Select the **Autolabel** button under the Activity pane to the right of the page.
 
 
     :::image type="content" source="../media/trigger-autotag.png" alt-text="A screenshot showing how to trigger an autotag job." lightbox="../media/trigger-autotag.png":::
 
-1. Choose Autolabel based on a model you've trained and select Next.
+1. Choose autolabel based on a model you've trained and select Next.
 
     :::image type="content" source="../media/choose-models.png" alt-text="A screenshot showing model choice for auto labeling." lightbox="../media/choose-models.png":::
 
@@ -81,8 +81,8 @@ You should see the model used, number of documents included in the autolabeling 
 
 When you trigger an autolabeling job with GPT, you're charged to your Azure OpenAI resource as per your consumption. You're charged an estimate of the number of tokens in each document being autolabeled. Refer to the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for a detailed breakdown of pricing per token of different models.
 
- 1. From the left pane, select **Data labeling**.
- 1. Select the **Autolabel** button under the Activity pane to the right of the page.
+1. From the left pane, select **Data labeling**.
+1. Select the **Autolabel** button under the Activity pane to the right of the page.
 
     :::image type="content" source="../media/trigger-autotag.png" alt-text="A screenshot showing how to trigger an autotag job from the activity pane." lightbox="../media/trigger-autotag.png":::
 
@@ -130,7 +130,7 @@ After you accept or reject the labeled entities, select **Save labels** to apply
 
 > [!NOTE]
 > * We recommend validating automatically labeled entities before accepting them.
-> * All labels that were not accepted are deleted when you train your model.
+> * All labels that aren't accepted are deleted when you train your model.
 
 :::image type="content" source="../media/accept-reject-entities.png" alt-text="A screenshot showing how to accept and reject autolabeled entities." lightbox="../media/accept-reject-entities.png":::
 
