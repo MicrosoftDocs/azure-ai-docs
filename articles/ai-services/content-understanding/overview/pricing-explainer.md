@@ -19,21 +19,21 @@ For specific pricing rates, see [Azure AI Content Understanding Pricing](https:/
  
 ## Understanding the two types of charges
  
-Azure AI Content Understanding pricing is based on two main charge categories:
+Azure AI Content Understanding pricing is based on two main usage categories:
  
 ### 1. Content extraction charges
  
-Content extraction transforms unstructured input (documents, audio, video) into structured, searchable text. This output includes OCR for documents, speech-to-text for audio/video, and layout detection. You pay per input unit processed:
+Content extraction transforms unstructured input (documents, audio, video) into structured, searchable text and content. This output includes OCR for documents, speech-to-text for audio/video, and layout detection. You pay per input unit processed:
 - **Documents**: Per 1,000 pages  
-- **Audio/Video**: Per minute
-- **Images and digital documents**: Free (no content extraction needed)
+- **Audio and Video**: Per minute
+- **Images**: Per 1,000 images  
 
 ### 2. Generative feature charges
 
 When you use AI-powered features that call large language models (LLMs), you incur two types of charges:
 
-- **Contextualization charges**: Prepares context, generate confidence scores, source grounding, and output formatting
-- **Generative model charges**: Token-based costs from Azure AI Foundry models (LLMs for generation, embeddings for training examples)
+- **Contextualization charges**: Prepares context, generate confidence scores, source grounding, and output formatting. For details see [Contextualization tokens](#contextualization-tokens).
+- **Generative model charges**: Token-based costs from Azure AI Foundry models (LLMs for generation, embeddings for training examples). This will not show up as Content Understanding usage, but rather as usage charges for the model deployments you attach to the analyzers. For details see [Generative model charges](#generative-model-charges-llm). 
 
 **Generative features include**: Field extraction, figure analysis, segmentation, categorization, training.
 
@@ -78,7 +78,7 @@ The calculator provides accurate cost projections for your workload.
 
 Following the estimation approach, let's walk through a concrete example manually to demonstrate how the costs are calculated. You're processing invoices to extract structured data like vendor name, invoice number, total amount, and line items.
 
-**Scenario**: You want to process 1,000 invoice pages using GPT-4o-mini with source grounding and confidence scores enabled. You're not using a knowledge base with training examples, so no embeddings charges apply.
+**Scenario**: You want to process 1,000 invoice pages using GPT-4o-mini with source grounding and confidence scores enabled. 
 
 **Step 1: Test with representative files**
 After testing representative files, you found the following average token usage per page:
@@ -99,7 +99,8 @@ Using GPT-4o-mini global deployment with the following pricing assumptions:
 - Contextualization: $1.00 per 1M tokens
 - GPT-4o-mini input tokens: $0.40 per 1M tokens
 - GPT-4o-mini output tokens: $1.60 per 1M tokens
-- Embeddings: $0.02 per 1000 tokens (not used in this example)
+- Embeddings: $0.02 per 1000 tokens. You're not using a knowledge base with training examples, so no embeddings charges apply. If you added labeled examples to this improve accuracy, we would add embedding token usage to embed all the text from the input documents. 
+
 
 **Cost calculation**:
 - Content extraction: 1,000 pages × $5.00 per 1,000 pages = $5.00
@@ -109,7 +110,7 @@ Using GPT-4o-mini global deployment with the following pricing assumptions:
 - Embeddings: Not used = $0.00
 
 ```
-Total Cost = $5.00 + $1.00 + $2.08 + $0.29 + $0.00 = $8.37
+Total Cost = $5.00 + $1.00 + $2.08 + $0.29 + $0.00 = $8.37 per 1000 pages
 ```
 
 ## Detailed cost components
@@ -187,7 +188,7 @@ Token-based charges for embedding models used when training custom analyzers wit
 **Typical usage**: The entire document is embedded. Usage can vary depending on the density of text, but ~1,500 tokens per page are a good initial estimate.
 
 ## Generative feature details
-There are several generative features have slightly different cost implications. 
+There are several generative features each of which has slightly different cost implications. 
 
 ### Field extraction
 Generates structured key-value pairs based on your schema definition. Examples include invoice sender/receiver, line items, or video ad elements like tagline and product appearance.
@@ -197,12 +198,12 @@ Generates structured key-value pairs based on your schema definition. Examples i
 ### Figure analysis  
 Creates descriptive text for images, charts, and diagrams to make visual content searchable in RAG workflows.
 
-**Cost impact**: LLM tokens per image analyzed - both input tokens for image interpretation and output tokens for descriptions. Charges scale with the number of images contained in the documents
+**Cost impact**: LLM tokens per image analyzed - both input tokens for image interpretation and output tokens for descriptions. Usage scales with the size and number of images contained in the document.
 
 ### Segmentation
 Divides documents or videos into logical sections for targeted processing and improved efficiency.
 
-**Cost impact**: Output token costs for each segment created. Optionally you can chain analyzers for more analysis on each segment. When chaining you incurs another content extraction and generative charges equivalent to running the chained analyzers independently. 
+**Cost impact**: Output token costs for each segment created. Optionally you can chain analyzers for further analysis on each segment. When chaining you incurs additional content extraction and generative usage equivalent to running the chained analyzers independently. 
 
 ### Categorization
 Assigns labels to documents or segments for classification and intelligent routing to specialized analyzers.
@@ -223,10 +224,10 @@ Enhances custom analyzers with labeled training examples for domain-specific acc
 ## Frequently asked questions
 
 ### When am I charged for LLM usage?
-You're charged for LLM tokens only when using generative capabilities. Analyzers that only perform content extraction (ex. `prebuilt-read`, `prebuilt-layout`, or custom analyzers without any generative capabilities) don't incur LLM charges.
+You're charged for LLM tokens only when you provide the analyzer with a Foundry deployment and use a generative capability in Content Understanding. Analyzers that only perform content extraction (ex. `prebuilt-read`, `prebuilt-layout`, or custom analyzers without any generative capabilities) don't incur LLM charges.
 
 ### Am I charged twice for Azure AI Foundry model usage?
-No. Content Understanding includes LLM charges in its transparent pricing. You pay Content Understanding for content extraction and contextualization, and Azure AI Foundry for the generative model tokens (input/output tokens and embeddings).
+No. Content Understanding uses the LLM deployments linked for all LLM and embedding calls. You are billed on those deployments. You pay Content Understanding for content extraction and contextualization, and Azure AI Foundry for the generative model tokens (input/output tokens and embeddings).
 
 ### How much can I save with smaller models?
 Choosing GPT-4o-mini instead of GPT-4o can reduce LLM costs by up to 80%. Global deployments provide another 9% savings. Content extraction and contextualization charges remain the same regardless of model choice.

@@ -29,9 +29,10 @@ Azure AI Content Understanding is now Generally Available with API version `2025
 
 ### Manage analyzers with more precision
 
-- Confidence scores and grounding are now opt-in per field through the `estimateFieldSourceAndConfidence` setting, reducing payload size when you don't need traceability. Opting in to confidence scores also helps with cost management by only computing confidence when needed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
-- The `analyzer API` now exposes a `categorization` property, enabling in-line document routing without running a separate analyzer. Categorization now expands to 200 categories, allowing you to classify and route content more precisely across a wider range of document types.
-- Analyzer lifecycle APIs add copy, delete, replace, and explicit result deletion for privacy controls. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
+- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` setting. This selective approach reduces response payload sizes and lowers processing costs by computing confidence metrics only when required. Confidence scores are now consistently available across all extraction methods—whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
+- **Simplify analyzer development** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
+- **Categorization expands support** with `categorization` property now supports up to 200 categories up from 50, enabling precise classification and routing of diverse document types within a single analyzer—no separate classifier required. 
+- **Analyzer lifecycle APIs** extend to support copy, delete, replace, and explicit result deletion give you complete control over analyzer versions and data retention for compliance and privacy requirements. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
 
 ### RAG analyzers
 

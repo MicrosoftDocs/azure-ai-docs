@@ -14,15 +14,38 @@ ms.custom:
 
 # Prebuilt analyzers in Azure AI Content Understanding
 
-Azure AI Content Understanding prebuilt analyzers enable you to add intelligent domain-specific content processing to your apps and flows without training and building your own models. Prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks, from content ingestion for search and retrieval-augmented generation (RAG) workflows to intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract additional fields or refine outputs to better fit your specific workflow requirements.
+Azure AI Content Understanding prebuilt analyzers provide a rich set domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas—they’re powered by rich knowledge bases of thousands of real-world document examples. This means they don’t just extract data, they understand how information is structured and used, adapting to the nuances of each content type. Prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks, from content ingestion for search and retrieval-augmented generation (RAG) workflows to intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract additional fields or refine outputs to better fit your specific workflow requirements.
 
 ## Analyzer types
 
 Azure AI Content Understanding provides several categories of analyzers to support different scenarios:
 
+### Content extraction analyzers
+
+Content extraction analyzers focus on optical character recognition and layout analysis.
+
+#### `prebuilt-read`
+
+* Extracts text from documents and images
+* Provides basic OCR capabilities
+
+Note: This prebuilt does not require an LLM or Embeddings model
+
+#### `prebuilt-layout`
+
+* Extracts text with detailed layout information
+* Identifies document structure including tables, sections, and formatting
+
+Note: This prebuilt does not require an LLM or Embeddings model
+
+#### `prebuilt-layoutWithFigures`
+
+* Extends layout extraction with figure detection and analysis
+* Extracts charts, diagrams, and images with their context
+
 ### Base analyzers
 
-Base analyzers provide fundamental content processing capabilities and are intended primarily for use as a `baseAnalyzerId` when [creating custom analyzers](../tutorial/create-custom-analyzer.md). While you can use these analyzers directly, they're most powerful when extended with custom field schemas.
+Base analyzers provide fundamental content processing capabilities specific to a content type and are intended primarily for use as a parent to inherit from when [creating custom analyzers](../tutorial/create-custom-analyzer.md). When creating a custom analyzer you include one of these as a base analyzer using the baseAnalyzerId property. 
 
 * `prebuilt-audio` - Base audio processing
 * `prebuilt-document` - Base document processing
@@ -33,9 +56,9 @@ Base analyzers provide fundamental content processing capabilities and are inten
 > [!NOTE]
 > Currently, you can only derive custom analyzers from base analyzers. Support for deriving from other prebuilt analyzers is planned for future releases.
 
-### RAG analyzers
+### Retrieval-augmented generation (RAG) analyzers
 
-RAG analyzers are optimized for retrieval-augmented generation scenarios. These analyzers extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
+Content understanding provides a set of analyzers optimized for retrieval-augmented generation (RAG) scenarios. These analyzers extract content with layout as markdown and perform semantic analysis to enhance retrieval quality for downstream applications.
 
 #### `prebuilt-documentAnalyzer`
 
@@ -87,25 +110,6 @@ Utility analyzers provide specialized functionality for schema generation and fi
 * Extracts key-value pairs from documents
 * Used internally by vertical analyzers when the input doesn't match any of the predefined schemas (for example, `prebuilt-idDocument`)
 
-### OCR analyzers
-
-OCR analyzers focus on optical character recognition and layout analysis.
-
-#### `prebuilt-read`
-
-* Extracts text from documents and images
-* Provides basic OCR capabilities
-
-#### `prebuilt-layout`
-
-* Extracts text with detailed layout information
-* Identifies document structure including tables, sections, and formatting
-
-#### `prebuilt-layoutWithFigures`
-
-* Extends layout extraction with figure detection and analysis
-* Extracts charts, diagrams, and images with their context
-
 ## Use prebuilt analyzers
 
 To analyze content with a prebuilt analyzer, make a POST request to the analyze endpoint:
@@ -145,7 +149,7 @@ Include your modified analyzer definition in the request body. See [Create a cus
 
 ### Lock analyzer behavior
 
-To create a stable copy of a prebuilt analyzer that won't change with API updates:
+The definition of Prebuilt analyzers may change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that won't change with API updates leverage the Copy operations by calling it as follows:
 
 ```http
 POST /analyzers/myIdDocument:copy
