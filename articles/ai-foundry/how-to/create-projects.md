@@ -225,7 +225,7 @@ On the project **Home** page, you find information about the project.
 
 ::: moniker range="foundry"
 
-On the **Home** page, select **Keys** to find the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
+On the **Home** page, you see the project endpoint and API key for the project. You don't need the API key if you use Microsoft Entra ID authentication.
 
 ::: moniker-end
 
