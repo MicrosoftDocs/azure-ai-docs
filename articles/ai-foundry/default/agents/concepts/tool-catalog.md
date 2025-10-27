@@ -31,7 +31,7 @@ There are 3 types of tools in the public tool catalog:
 
 **Remote MCP server**: The MCP server publisher has already hosted the server and provided a static or dynamic MCP server endpoint. AI Foundry developers need to follow the configuration guidance to provide the appropriate information to finish the setup. 
 
-**Local MCP server**: The MCP server publisher doesn't host the server and require AI Foundry developers to self-host and bring the self-hosted remote MCP server endpoint back to AI Foundry to use it with AI agents. Learn more about self-hosting a local MCP server here: https://aka.ms/FoundryCustomMCP  
+**Local MCP server**: The MCP server publisher doesn't host the server and require AI Foundry developers to self-host and bring the self-hosted remote MCP server endpoint back to AI Foundry to use it with AI agents. For information about self-hosting a local MCP server here, see the [custom MCP Server documentation](https://aka.ms/FoundryCustomMCP)  
 
 **Custom MCP Server**: These MCP servers are converted from Azure Logic App Connectors. AI Foundry developers need additional [configuration](https://aka.ms/FoundryCustomTool) to convert to remote MCP servers.
 
