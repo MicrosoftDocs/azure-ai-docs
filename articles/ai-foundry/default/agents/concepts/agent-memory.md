@@ -16,11 +16,11 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../../../includes/feature-preview.md)]
 
-Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
-
 This article shows you how to create memory stores, attach them to agents, add and search memories, and implement best practices for security and privacy. With these capabilities, your agents can maintain context across multistep interactions and provide more reliable, personalized responses.
 
 Memory stores act as persistent storage boundaries that define what types of information are relevant to each agent. You control access through the `scope` parameter, which ensures secure and isolated experiences by segmenting memory across users.
+
+Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution that enables agent continuity across sessions, devices, and workflows. By creating memory stores and managing their content, you can build agents that retain user preferences, maintain conversation history, and deliver personalized experiences.
 
 ## Prerequisites
 
@@ -28,8 +28,8 @@ Memory stores act as persistent storage boundaries that define what types of inf
 - Access to Azure AI Foundry with appropriate permissions to create and manage resources.
 - An [Azure AI Foundry project](../../../how-to/create-projects.md).
 - An [agent created in Azure AI Foundry](../../../agents/quickstart.md).
-- Chat model deployment (for example, GPT-4) in your project.
-- Embedding model deployment (for example, text-embedding-ada-002) in your project.
+- [Chat model deployment](../../../foundry-models/how-to/create-model-deployments.md) (for example, `gpt-4o`) in your project.
+- [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-ada-002`) in your project.
 - Python 3.8 or later with the Azure AI Agent SDK installed, or access to the REST API.
 
 ## Understand memory types
@@ -133,7 +133,7 @@ Authorization: Bearer <your-token>
 
 ---
 
-Once attached, the agent can access and update memories within the memory store according to the scope permissions you configure.
+After you attach it, the agent can access and update memories within the memory store according to the scope permissions you configure.
 
 ## Add memories to a memory store
 
@@ -317,7 +317,7 @@ Memories are organized by scope within a memory store. You can delete memories f
 
 ### Delete memories by scope
 
-Remove all memories associated with a particular user or group scope while preserving the memory store structure.
+Remove all memories associated with a particular user or group scope while preserving the memory store structure. Use this operation to handle user data deletion requests or reset memory for specific users.
 
 # [Python](#tab/python)
 
@@ -339,8 +339,6 @@ Authorization: Bearer <your-token>
 ```
 
 ---
-
-Use this operation to handle user data deletion requests or reset memory for specific users.
 
 ### Delete a memory store
 
