@@ -231,15 +231,11 @@ Here's an example of how to monitor costs in the Azure portal. The costs are use
 
 1. In the Azure portal, select **Cost analysis** under **Cost Management**.
 
-   :::image type="content" source="../media/manage-costs/azure-cost-overview-filters.png" alt-text="Screenshot of the Azure portal showing the Cost Analysis section under Cost Management.":::
-
 1. You see the cost overview. You can also add filters like the deployment level tags to see the costs based on model deployment, as shown in the following screenshot.
 
    :::image type="content" source="../media/manage-costs/cost-overview-deployment-tags.png" alt-text="Screenshot of cost overview with deployment level tags." lightbox="../media/manage-costs/cost-overview-deployment-tags.png":::
 
 1. Select **Costs by resource** > **Resources** to open the Cost analysis page.
-
-   :::image type="content" source="../media/manage-costs/azure-cost-analysis-resources.png" alt-text="Screenshot of the Azure portal cost analysis with the button to select costs by resources.":::
 
 1. You can see cost of your Foundry resource and the split of that cost across multiple model deployments under that resource,
 
