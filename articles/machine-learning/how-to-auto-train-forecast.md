@@ -782,7 +782,7 @@ The following example retrieves component code from a client registry:
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
-# Get credential to access AzureML registry.
+# Get credential to access azureml registry.
 try:
     credential = DefaultAzureCredential()
     # Check if token can be obtained successfully.
@@ -791,32 +791,32 @@ except Exception as ex:
     # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential fails.
     credential = InteractiveBrowserCredential()
 
-# Create client to access assets in AzureML preview registry.
+# Create client to access assets in azureml-preview registry.
 ml_client_registry = MLClient(
     credential=credential,
     registry_name="azureml-preview"
 )
 
-# Create client to access assets in AzureML registry
+# Create client to access assets in azureml registry.
 ml_client_metrics_registry = MLClient(
     credential=credential,
     registry_name="azureml"
 )
 
-# Get inference component from registry
+# Get inference component from registry.
 inference_component = ml_client_registry.components.get(
     name="automl_forecasting_inference",
     label="latest"
 )
 
-# Get component to compute evaluation metrics from registry
+# Get component to compute evaluation metrics from registry.
 compute_metrics_component = ml_client_metrics_registry.components.get(
     name="compute_metrics",
     label="latest"
 )
 ```
 
-Next, define a factory function that creates pipelines orchestrating training, inference, and metric computation. For more information, see [Configure experiment](#configure-experiment).
+Next, define a factory function that creates pipelines orchestrating training, inference, and metric computation. For more information, see [Configure the experiment](#configure-the-experiment).
 
 ```python
 from azure.ai.ml import automl
@@ -1310,7 +1310,7 @@ az ml job create --file automl-mm-forecasting-pipeline.yml -w <Workspace> -g <Re
 
 ---
 
-After the job finishes, you can download the evaluation metrics locally by using the same procedure as in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-with-components-and-pipelines).
+After the job finishes, you can download the evaluation metrics locally by using the same procedure as in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
 
 For a more detailed example, see the [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb).
 
@@ -1592,7 +1592,7 @@ az ml job create --file automl-hts-forecasting-pipeline.yml -w <Workspace> -g <R
 
 ---
 
-After the job finishes, the evaluation metrics can be downloaded locally by using the same procedure as in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-with-components-and-pipelines).
+After the job finishes, the evaluation metrics can be downloaded locally by using the same procedure as in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
 
 For a more detailed example, see the [demand forecasting with hierarchical time series notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-hts-pipeline/aml-demand-forecast-hts.ipynb).
 

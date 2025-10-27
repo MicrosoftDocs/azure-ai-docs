@@ -19,7 +19,7 @@ show_latex: true
 
 This article introduces concepts related to model inference and evaluation in forecasting tasks. For instructions and examples for training forecasting models in AutoML, see [Set up AutoML to train a time-series forecasting model with SDK and CLI](./how-to-auto-train-forecast.md).
 
-After you use AutoML to train and select a best model, the next step is to generate forecasts. Then, if possible, evaluate their accuracy on a test set held out from the training data. To see how to setup and run forecasting model evaluation in automated machine learning, see [Orchestrating training, inference, and evaluation](how-to-auto-train-forecast.md#orchestrate-training-inference-and-evaluation-with-components-and-pipelines).
+After you use AutoML to train and select a best model, the next step is to generate forecasts. Then, if possible, evaluate their accuracy on a test set held out from the training data. To see how to setup and run forecasting model evaluation in automated machine learning, see [Orchestrating training, inference, and evaluation](how-to-auto-train-forecast.md#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
 
 ## Inference scenarios
 
@@ -58,7 +58,7 @@ Suppose that after you train a model, you want to use it to make predictions fro
 
 :::image type="content" source="media/concept-automl-forecasting-evaluation/forecasting-with-gap-diagram.png" alt-text="Diagram demonstrating a forecast with a gap between the training and inference periods.":::
 
-AutoML supports this inference scenario, but you need to provide the context data in the gap period, as shown in the diagram. The prediction data passed to the [inference component](how-to-auto-train-forecast.md#orchestrate-training-inference-and-evaluation-with-components-and-pipelines) needs values for features and observed target values in the gap and missing values or `NaN` values for the target in the inference period. The following table shows an example of this pattern:  
+AutoML supports this inference scenario, but you need to provide the context data in the gap period, as shown in the diagram. The prediction data passed to the [inference component](how-to-auto-train-forecast.md#orchestrate-training-inference-and-evaluation-by using-components-and-pipelines) needs values for features and observed target values in the gap and missing values or `NaN` values for the target in the inference period. The following table shows an example of this pattern:  
 
 :::image type="content" source="media/concept-automl-forecasting-evaluation/forecasting-with-gap-table.png" alt-text="Table showing an example of prediction data when there's a gap between the training and inference periods.":::
 
@@ -86,7 +86,7 @@ The context advances along with the forecasting window. Actual values from the t
 
 :::image type="content" source="media/concept-automl-forecasting-evaluation/rolling-evaluation-table.png" alt-text="Diagram shows example output table from a rolling forecast.":::
 
-With a table like this, you can visualize the forecasts versus the actuals and compute desired evaluation metrics. AutoML pipelines can generate rolling forecasts on a test set with an [inference component](how-to-auto-train-forecast.md#orchestrate-training-inference-and-evaluation-with-components-and-pipelines).
+With a table like this, you can visualize the forecasts versus the actuals and compute desired evaluation metrics. AutoML pipelines can generate rolling forecasts on a test set with an [inference component](how-to-auto-train-forecast.md#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
 
 > [!NOTE]
 > When the test period is the same length as the forecast horizon, a rolling forecast gives a single window of forecasts up to the horizon.
