@@ -61,7 +61,7 @@ If you can't find an answer to your problem using search, submit a new question 
 
 **Speech**
 
-* [Azure AI Speech](/answers/topics/azure-speech.html)
+* [Azure Speech in Foundry Tools](/answers/topics/azure-speech.html)
 
 ## Post a question to Stack Overflow
 
