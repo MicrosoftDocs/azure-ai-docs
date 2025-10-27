@@ -42,4 +42,4 @@ AI Foundry portal and Content Understanding Studio have parity in most all featu
 
 
 ## Next steps
-
+* Check out the quickstart to [get started with Content Understanding Studio](./quickstart/cu-studio.md)
