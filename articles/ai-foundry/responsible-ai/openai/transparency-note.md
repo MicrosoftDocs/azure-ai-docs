@@ -122,7 +122,7 @@ The `gpt-4o-realtime-preview` model in Azure OpenAI service enables robust speec
 
 The Whisper model in Azure OpenAI service enables access to a model that performs robust speech recognition and translation tasks. The Whisper model is an Automatic Speech Recognition (ASR) model that was developed by [OpenAI](https://openai.com/research/whisper) and is capable of transcribing speech audio files into the language that was spoken as well as translated into English.
 
-You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure Speech in Foundry Tools service. Learn more about the Azure AI Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+You can learn more about training and modeling techniques for the Whisper model in the [OpenAI Whisper research paper](https://cdn.openai.com/papers/whisper.pdf). The Whisper model is also used in the Azure Speech in Foundry Tools service. Learn more about the Azure Speech integration and evaluate it for your use [here](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ### Key terms
 
@@ -519,7 +519,7 @@ The Whisper model in Azure OpenAI service can be used for various speech recogni
 We encourage customers to use the `gpt-4o-realtime-preview` and Whisper models in Azure OpenAI service in their innovative solutions or applications. Here are some considerations when choosing a use case:
 - **Avoid scenarios in which the use or misuse of the system could have a consequential impact on life opportunities or legal status.** Examples include scenarios in which the AI system could affect an individual's legal status, legal rights, or their access to credit, education, employment, healthcare, housing, insurance, social welfare benefits, services, opportunities, or the terms on which these items are available. 
 - **Carefully consider all use cases in high-stakes domains or industries:** Examples include but are not limited to healthcare, education, finance, and legal.
-- **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure AI Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, or processing multiple audio files per request.
+- **Whisper in Azure Speech service:** The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, or processing multiple audio files per request.
 - [!INCLUDE [regulatory-considerations](../includes/regulatory-considerations.md)]
 
 
@@ -690,7 +690,7 @@ For additional information on how to evaluate and integrate these models respons
 
 #### [Audio / speech models](#tab/speech)
 
-The OpenAI Whisper model is also available within Azure AI Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
+The OpenAI Whisper model is also available within Azure Speech services, enhancing the experience with advanced features like multi-lingual recognition and readability. Depending on your scenario, you might explore [Azure Speech services](https://azure.microsoft.com/products/cognitive-services/speech-to-text/) and the service's additional capabilities like diaritization, customization, real-time streaming, or processing multiple audio files per request. For additional information on how to evaluate and integrate the Whisper model responsibly, please see the [Azure Speech services transparency note](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note).
 
 ---
 

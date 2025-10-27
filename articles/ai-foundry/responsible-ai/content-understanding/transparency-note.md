@@ -39,7 +39,7 @@ Azure AI Content Understanding ingests unstructured content in any modality such
 |Face grouping |  After the faces are detected, the identified faces are filtered into local groups. If a person is detected more than once, more observed face instances are created for this person. Please refer to [Face grouping documentation](/azure/ai-services/computer-vision/overview-identity" \l "group-faces) for more information.    |
 |Generate | This is a type of field kind. The field will generate a value from parent field content. An example would be generating scene description from videos or summarizing from a call audio.     |
 |Schema |  Schema is the term we use for field names and descriptions that customers need to provide for us to extract values from the input. Content Understanding provides a set of prebuilt schemas to fit your scenarios. Depending on the scenario, Content Understanding has a pre-defined list of fields that will be filled out based on the input. You can use these prebuilt schemas to get started on your project faster without having to define the fields yourself.    |
-|Transcription |  Content Understanding's automated speech-to-text output feature, sometimes called machine transcription or automated speech recognition (ASR). Transcription uses [Azure AI Speech](/azure/ai-services/speech-service/overview) and is fully automated. All Content Understanding APIs that support transcription also support diarization.    |
+|Transcription |  Content Understanding's automated speech-to-text output feature, sometimes called machine transcription or automated speech recognition (ASR). Transcription uses [Azure Speech](/azure/ai-services/speech-service/overview) and is fully automated. All Content Understanding APIs that support transcription also support diarization.    |
 
 
 
@@ -311,7 +311,7 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 - [Azure OpenAI overview](/azure/ai-foundry/openai/overview )
 - [Azure AI Document Intelligence overview](/azure/ai-services/document-intelligence/overview?view=doc-intel-4.0.0&preserve-view=true)
-- [Azure AI Speech overview](/azure/ai-services/speech-service/overview )
+- [Azure Speech overview](/azure/ai-services/speech-service/overview )
 - [Azure AI Vision overview](/azure/ai-services/computer-vision/overview-image-analysis?tabs=4-0 )
 - [Azure AI Face service overview](/azure/ai-services/computer-vision/overview-identity)
 - [Azure AI Video Indexer overview](/azure/azure-video-indexer/video-indexer-overview)
@@ -320,7 +320,7 @@ When you're getting ready to integrate Content Understanding to your product or 
 
 - [Azure OpenAI](/azure/ai-foundry/responsible-ai/openai/transparency-note) 
 - [Azure AI Document Intelligence](/azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Ftoc.json&bc=%2Fazure%2Fai-services%2Fdocument-intelligence%2Fbreadcrumb%2Ftoc.json&view=doc-intel-4.0.0&preserve-view=true) 
-- [Azure AI Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
+- [Azure Speech](/azure/ai-foundry/responsible-ai/speech-service/speech-to-text/transparency-note) 
 - [Azure AI Vision](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note) 
 - [Azure AI Face](/azure/ai-foundry/responsible-ai/face/transparency-note)  
 - [Azure AI Video Indexer](/legal/azure-video-indexer/transparency-note?context=%2Fazure%2Fazure-video-indexer%2Fcontext%2Fcontext ) 

@@ -44,7 +44,7 @@ The Voice Live API enables developers to build low-latency speech-to-speech expe
 Voice Live API provides developers with choices on multiple dimensions for achieving low-latency speech-to-speech experiences:
 - **Choice of language model**: Developers can choose from a list of different natively supported language models like GPT-Realtime, GPT-5, GPT-4.1, GPT-4o and GPT-4o-mini; incorporate an agent they have built using the Azure AI Foundry Agent Service to give the agent speech-in and speech-out capabilities; or bring their own model of choice deployed in Azure AI Foundry.  
 - **Choice of audio input processing**: Developers can choose between audio input being processed natively through multimodal language models like GPT-Realtime or processed through Azure Speech in Foundry Tools’s speech-to-text capabilities.  
-- **Choice of audio output processing**: Developers can choose between audio output being generated natively through multimodal language models like GPT-Realtime or generated through Azure AI Speech’s text-to-speech capabilities.
+- **Choice of audio output processing**: Developers can choose between audio output being generated natively through multimodal language models like GPT-Realtime or generated through Azure Speech’s text-to-speech capabilities.
 
 For any combination of choices made by the developer, the API also provides the developer the ability to enable conversational enhancement capabilities like start of speech and end of speech detection, background noise suppression, echo cancellation, and more.  
 
