@@ -1,12 +1,12 @@
 ---
 title: Version-based API mapping for entity types and tags
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about the differences between NER API versions.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 04/29/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-ner, ignite-2024
 ---

@@ -1,10 +1,10 @@
 ---
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
@@ -12,7 +12,7 @@ ms.custom: language-service-custom-classification, references_regions
 
 ### Create a new Language resource from Language Studio
 
-If it's your first time logging in, you'll see a window in [Language Studio](https://aka.ms/languageStudio) that will let you choose an existing Language resource or create a new one. You can also create a resource by clicking the settings icon in the top-right corner, selecting **Resources**, then clicking **Create a new resource**.
+If it's your first time logging in, you'll see a window in [Language Studio](https://aka.ms/languageStudio) that lets you choose an existing Language resource or create a new one. You can also create a resource by clicking the settings icon in the top-right corner, selecting **Resources**, then clicking **Create a new resource**.
 
 Create a Language resource with following details.
 

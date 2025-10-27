@@ -42,4 +42,4 @@ zone_pivot_groups: search-get-started-agentic-retrieval
 + [Agentic retrieval in Azure AI Search](agentic-retrieval-overview.md)
 + [Create a knowledge agent](agentic-retrieval-how-to-create-knowledge-base.md)
 + [Use a knowledge agent to retrieve data](agentic-retrieval-how-to-retrieve.md)
-+ [Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)
++ [Tutorial: Build an agent-to-agent retrieval solution](agentic-retrieval-how-to-create-pipeline.md)

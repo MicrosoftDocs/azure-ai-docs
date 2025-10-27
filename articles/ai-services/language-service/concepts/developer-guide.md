@@ -1,12 +1,12 @@
 ---
 title: Use the Language SDK and REST API
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Learn about how to integrate the Language service SDK and REST API into your applications.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 06/04/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -165,4 +165,4 @@ For more information, *see* the following reference documentation:
 
 ## See also 
 
-[Azure AI Language overview](../overview.md)
+[Azure Language in Foundry Tools overview](../overview.md)

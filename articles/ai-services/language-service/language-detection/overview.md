@@ -1,19 +1,19 @@
 ---
-title: What is language detection in Azure AI Language?
-titleSuffix: Azure AI services
-description: An overview of language detection in Azure AI services, which helps you detect the language that text is written in by returning language codes.
+title: What is language detection in Azure Language in Foundry Tools?
+titleSuffix: Azure AI Foundry Tools
+description: An overview of language detection in Azure Language, which helps you detect the language that text is written in by returning language codes.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/19/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-language-detection
 ---
 
-# What is language detection in Azure AI Language?
+# What is language detection in Azure Language in Foundry Tools?
 
-Language detection is one of the features offered by [Azure AI Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. Language detection is able to detect more than 100 languages in their primary script. In addition, the service offers [script detection](./how-to/call-api.md#script-name-and-script-code) for each detected language using  [ISO 15924 standard](https://wikipedia.org/wiki/ISO_15924) for a [select number of languages](./language-support.md#script-detection).
+Language detection is one of the features offered by [Azure Language](../overview.md), a collection of machine learning and AI algorithms in the cloud for developing intelligent applications that involve written language. Language detection is able to detect more than 100 languages in their primary script. In addition, the service offers [script detection](./how-to/call-api.md#script-name-and-script-code) for each detected language using  [ISO 15924 standard](https://wikipedia.org/wiki/ISO_15924) for a [select number of languages](./language-support.md#script-detection).
 This documentation contains the following types of articles:
 
 * [**Quickstarts**](quickstart.md) are getting-started instructions to guide you through making requests to the service.

@@ -61,7 +61,7 @@ Choose the personality that you want as your chitchat base.
 
 ## Edit your chitchat questions and answers
 
-When you edit your project, you will see a new source for chitchat, based on the personality you selected. You can now add altered questions or edit the responses, just like with any other source.
+When you edit your project, you can see a new source for chitchat, based on the personality you selected. You can now add altered questions or edit the responses, just like with any other source.
 
 > [!div class="mx-imgBorder"]
 > ![Edit chitchat question pairs](../media/chit-chat/edit-chit-chat.png)
@@ -70,7 +70,7 @@ To turn the views for context and metadata on and off, select **Show columns** i
 
 ## Add more chitchat questions and answers
 
-You can add a new chitchat question pair that is not in the predefined data set. Ensure that you are not duplicating a question pair that is already covered in the chitchat set. When you add any new chitchat question pair, it gets added to your **Editorial** source. To ensure the ranker understands that this is chitchat, add the metadata key/value pair "Editorial: chitchat," as seen in the following image:
+You can add a new chitchat question pair that is not in the predefined data set. Ensure that you're not duplicating a question pair that is already covered in the chitchat set. When you add any new chitchat question pair, it gets added to your **Editorial** source. To ensure the ranker understands that this is chitchat, add the metadata key/value pair "Editorial: chitchat," as seen in the following image:
 
 :::image type="content" source="../media/chit-chat/add-new-chit-chat.png" alt-text="Add chitchat question answer pairs" lightbox="../media/chit-chat/add-new-chit-chat.png":::
 

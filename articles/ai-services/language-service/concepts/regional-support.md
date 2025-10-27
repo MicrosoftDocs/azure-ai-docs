@@ -1,12 +1,12 @@
 ---
-title: Regional support for Azure AI Language
-titleSuffix: Azure AI services
+title: Regional support for Azure Language in Foundry Tools
+titleSuffix: Azure AI Foundry Tools
 description: Learn which Azure regions support by the Language service features and capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 09/17/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: references_regions
 ---

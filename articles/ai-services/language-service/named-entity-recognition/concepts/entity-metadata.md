@@ -1,12 +1,12 @@
 ---
 title: Entity Metadata provided by Named Entity Recognition (NER)
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: View entity metadata values for named entity recognition (NER) named entities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 08/22/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-ner
 ---

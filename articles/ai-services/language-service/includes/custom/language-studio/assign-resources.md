@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -15,4 +15,4 @@ To assign deployment resources in other regions in [Language Studio](https://aka
   4. Select **Add deployment resource**.
   5. Select a Language resource in another region.
   
-You are now ready to deploy your project to the regions where you have assigned resources.
+You're now ready to deploy your project to the regions where you have assigned resources.

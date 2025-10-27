@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -16,7 +16,7 @@ Use this **POST** request to start a text classification task.
 |Placeholder  |Value  | Example |
 |---------|---------|---------|
 |`{ENDPOINT}`     | The endpoint for authenticating your API request.   | `https://<your-custom-subdomain>.cognitiveservices.azure.com` |
-|`{API-VERSION}`     | The version of the API you are calling. The value referenced here is for the latest version released. <!--See [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.-->  | `2023-04-15-preview` |
+|`{API-VERSION}`     | The version of the API you're calling. The value referenced is for the latest version released. <!--See [Model lifecycle](../../../concepts/model-lifecycle.md#choose-the-model-version-used-on-your-data) to learn more about other available API versions.-->  | `2023-04-15-preview` |
 
 #### Headers
 
@@ -74,7 +74,7 @@ Use this **POST** request to start a text classification task.
 
 #### Response
 
-You will receive a 202 response indicating that your task has been submitted successfully. In the response **headers**, extract `operation-location`.
+You receive a 202 response indicating that your task has been submitted successfully. In the response **headers**, extract `operation-location`.
 `operation-location` is formatted like this:
 
 ```rest

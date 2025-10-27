@@ -1,13 +1,12 @@
 ---
 title: Translator Dictionary Lookup Method
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: The Dictionary Lookup method provides alternative translations for a word and a few idiomatic phrases.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/19/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
@@ -98,9 +97,9 @@ A successful response is a JSON array with one result for each string in the inp
 
 * `backTranslations`: A list of "back translations" of the target. For example, source words that the target can translate to. The list is guaranteed to contain the source word that was requested (for example, if the source word being looked up is `fly`, then  `fly` is included in the `backTranslations` list). However, it isn't guaranteed to be in the first position, and often isn't. Each element of the `backTranslations` list is an object described by the following properties:
 
-  * `normalizedText`: A string giving the normalized form of the source term that is a back-translation of the target. This value should be used as input to [lookup examples](./dictionary-examples.md).
+  * `normalizedText`: A string giving the normalized form of the source term that's a back-translation of the target. This value should be used as input to [lookup examples](./dictionary-examples.md).
 
-  * `displayText`: A string giving the source term that is a back-translation of the target in a form best suited for end-user display.
+  * `displayText`: A string giving the source term that's a back-translation of the target in a form best suited for end-user display.
 
   * `numExamples`: An integer representing the number of examples that are available for this translation pair. Actual examples must be retrieved with a separate call to [lookup examples](./dictionary-examples.md). The number is mostly intended to facilitate display in a UX. For example, a user interface can add a hyperlink to the back-translation if the number of examples is greater than zero. Then the back-translation is shown as plain text if there are no examples. The actual number of examples returned by a call to [lookup examples](./dictionary-examples.md) can be less than `numExamples`, because more filtering can be applied on the fly to remove "bad" examples.
 

@@ -6,7 +6,7 @@ ms.topic: how-to
 manager: nitinme
 ms.author: lajanuar
 author: laujan
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.custom: sfi-image-nochange
 ---
 
@@ -136,4 +136,4 @@ You must grant the Language resource access to your storage account before it ca
 ## Next steps
 
 > [!div class="nextstepaction"]
-> [Native document support](overview.md#native-document-support-for-azure-ai-language-preview)
+> [Native document support](overview.md#native-document-support-for-azure-language-in-foundry-tools-preview)

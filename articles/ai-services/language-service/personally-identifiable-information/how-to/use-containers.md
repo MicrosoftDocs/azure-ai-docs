@@ -39,7 +39,7 @@ You must meet the following prerequisites before using PII detection containers.
 
 The following table describes the minimum and recommended specifications for the available container. Each CPU core must be at least 2.6 gigahertz (GHz) or faster.
 
-It's recommended to have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
+We recommend that you have a CPU with AVX-512 instruction set, for the best experience (performance and accuracy).
 
 |                     | Minimum host specs     | Recommended host specs |
 |---------------------|------------------------|------------------------|

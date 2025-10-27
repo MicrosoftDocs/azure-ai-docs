@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -23,7 +23,7 @@ Use the following **GET** request to get the status of your deployment job. Repl
 |`{PROJECT-NAME}`     | The name for your project. This value is case-sensitive.   | `myProject` |
 |`{DEPLOYMENT-NAME}`     | The name for your deployment. This value is case-sensitive.   | `staging` |
 |`{JOB-ID}`     | The ID for locating your model's training status.  | `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxxx` |
-|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you are calling. | `2023-04-01` |
+|`{API-VERSION}`     | The [version](../../../concepts/model-lifecycle.md#api-versions) of the API you're calling. | `2023-04-01` |
 
 ### Headers
 

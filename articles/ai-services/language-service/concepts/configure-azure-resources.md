@@ -1,11 +1,11 @@
 ---
-title: Configure the conversational language understanding  service for fine-tune models
+title: Configure the conversational language understanding service for fine-tune models
 description: This article details Azure AI resource configurations for conversational language understanding fine-tune models.
 ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 09/15/2025
+ms.date: 11/05/2025
 ms.custom: language-service-question-answering
 ---
 
@@ -17,9 +17,9 @@ In this guide, we walk you through configuring your Azure AI resources and permi
 
 * [**Option 2: Configure Azure Language and Azure OpenAI resources**](#option-2-configure-azure-language-resource-and-azure-openai-resources). Azure OpenAI allows users to access OpenAI's language models within the Azure platform, providing security, regulatory compliance, and integration with other Azure services.
 
-Completing these setups is essential for fully integrating your environment with Azure AI Services. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered conversational language understanding capabilities.
+Completing these setups is essential for fully integrating your environment with Azure AI Foundry Tools. You only need to perform this setup once—afterward, you have seamless access to advanced, AI-powered conversational language understanding capabilities.
 
-In addition, we show you how to assign the correct roles and permissions within the Azure portal. These steps help you get started quickly and effectively with Azure AI Language.
+In addition, we show you how to assign the correct roles and permissions within the Azure portal. These steps help you get started quickly and effectively with Azure Language in Foundry Tools.
 
 ## Prerequisites
 
@@ -27,7 +27,7 @@ Before you can set up your resources, you need:
 
 * **An active Azure subscription**. If you don't have one, you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * **Requisite permissions**. Make sure the person establishing the account and project is assigned as the Azure AI Account Owner role at the subscription level. Alternatively, having either the **Contributor** or **Cognitive Services Contributor** role at the subscription scope also meets this requirement. For more information, *see* [Role based access control (RBAC)](/azure/ai-foundry/openai/how-to/role-based-access-control#cognitive-services-contributor).
-* An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) or an [Azure AI Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
+* An [Azure AI Foundry resource](/azure/ai-services/multi-service-resource) or an [Azure Language resource](https://portal.azure.com/?Microsoft_Azure_PIMCommon=true#create/Microsoft.CognitiveServicesTextAnalytics).
 
 * An [Azure OpenAI resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesOpenAI) (optional but required for [option 2](#option-2-configure-azure-language-resource-and-azure-openai-resources))
 
@@ -106,9 +106,9 @@ Azure AI Foundry offers a unified platform where you can easily build, manage, a
    :::image type="content" source="../conversational-language-understanding/media/configure-resources/new-connection.png" alt-text="Screenshot of the new connection button in the Azure AI Foundry.":::
 
 
-1. In the new window, select **Azure AI Language** as the resource type, then find your Azure AI Language resource.
+1. In the new window, select **Azure Language** as the resource type, then find your Azure Language resource.
 
-1. Select **Add connection** in the corner of your selected Azure AI Language resource.
+1. Select **Add connection** in the corner of your selected Azure Language resource.
 
 1. Select **Azure OpenAI** as the resource type, then find your desired Azure OpenAI resource.
 
@@ -120,9 +120,9 @@ Azure AI Foundry offers a unified platform where you can easily build, manage, a
 
 ## Import an existing Azure AI project
 
-Azure AI Foundry allows you to connect to your existing Azure AI services resources. This means you can establish a connection within your Azure AI Foundry project to the Azure AI Language resource where your custom models are stored.
+Azure AI Foundry allows you to connect to your existing Azure AI Foundry Tools resources. This means you can establish a connection within your Azure AI Foundry project to the Azure Language resource where your custom models are stored.
 
-To import an existing Azure AI services project with Azure AI Foundry, you need to create a connection to the Azure AI services resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Services projects to Azure AI Foundry](/azure/ai-services/connect-services-ai-foundry-portal)
+To import an existing Azure AI Foundry Tools project with Azure AI Foundry, you need to create a connection to the Azure AI Foundry Tools resource within your Azure AI Foundry project. For more information, *see* [Connect Azure AI Foundry Tools projects to Azure AI Foundry](/azure/ai-services/connect-services-ai-foundry-portal)
 
 ## Export a project
 

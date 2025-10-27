@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Entity linking using the client library and REST API"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: 'Use this quickstart to perform Entity Linking, using C#, Python, Java, JavaScript, and the REST API.'
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/26/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

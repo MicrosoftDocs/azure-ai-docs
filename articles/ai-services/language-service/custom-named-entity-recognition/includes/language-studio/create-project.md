@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 09/24/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -17,7 +17,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/create-project.png" alt-text="A screenshot of the project creation page." lightbox="../../media/create-project.png":::
 
-4.  After you select, **Create new project**, a window will appear to let you connect your storage account. If you already connected a storage account, the connected storage accounted appears in the window. If not, choose your storage account from the dropdown that appears and select **Connect storage account**; this sets the required roles for your storage account. This step can return an error if you aren't assigned as **owner** on the storage account.
+4.  After you select, **Create new project**, a window appears to let you connect your storage account. If you already connected a storage account, the connected storage accounted appears in the window. If not, choose your storage account from the dropdown that appears and select **Connect storage account**; this sets the required roles for your storage account. This step can return an error if you aren't assigned as **owner** on the storage account.
 
     >[!NOTE]
     > * You only need to do this step once for each new resource you use. 

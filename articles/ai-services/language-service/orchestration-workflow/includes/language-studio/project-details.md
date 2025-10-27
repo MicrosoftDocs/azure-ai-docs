@@ -1,10 +1,10 @@
 ---
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -12,7 +12,7 @@ ms.author: lajanuar
 
 2. You can see project details.
 
-3. In this page you can update project description.
+3. On this page, you can update project description.
 
 4. You can also retrieve your resource primary key from this page.
 

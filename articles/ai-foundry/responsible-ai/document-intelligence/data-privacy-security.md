@@ -1,13 +1,13 @@
 ---
 title: Data, privacy, and security for Document Intelligence
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This document details issues for data, privacy, and security for Document Intelligence.
 author: laujan
 ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-document-intelligence
 ms.topic: article
-ms.date: 09/22/2025
+ms.date: 10/15/2025
 ---
 
 
@@ -21,11 +21,11 @@ This article provides details regarding how Document Intelligence processes your
 
 ### Authenticate (with subscription or API keys)
 
-The most common way to authenticate access to Document Intelligence is by using the customer's Document Intelligence API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service or group of services. For more information, see [Authenticate requests to Azure AI services](/azure/ai-services/authentication?tabs=powershell).
+The most common way to authenticate access to Document Intelligence is by using the customer's Document Intelligence API key. Each request to the service URL must include an authentication header. This header passes along an API key (or token if applicable), which is used to validate your subscription for a service or group of services. For more information, see [Authenticate requests to Azure AI Foundry Tools](/azure/ai-services/authentication?tabs=powershell).
 
 ### Secure data in transit (for scanning)
 
-All Azure AI services endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. For more information, see [Azure AI services security](/azure/security/fundamentals/double-encryption).
+All Azure AI Foundry Tools endpoints, including the Document Intelligence API URLs, use HTTPS URLs for encrypting data during transit. The client operating system needs to support Transport Layer Security (TLS) 1.2 for calling the endpoints. For more information, see [Azure AI Foundry Tools security](/azure/security/fundamentals/double-encryption).
 
 ### Encrypts input data for processing
 
@@ -41,6 +41,6 @@ The "Get Analyze Results" operation is authenticated against the same API key th
 
 **For customer trained models**: The Custom model feature allows customers to build custom models from training data stored in customer’s Azure blob storage locations. The interim outputs after analysis and labeling are stored in the same location. The trained custom models are stored in Azure storage in the same region and logically isolated with their Azure subscription and API credentials.
 
-**Deletes data**: Customers can delete the analysis response at any time by utilizing the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API. . After successfully retrieving the analysis results, calling the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API permanently purges those results.
+**Deletes data**: Analyze response is stored for 24 hours from when the operation completes for retrieval. Customers can delete the analysis response at any time by utilizing the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API. After successfully retrieving the analysis results, calling the [**Delete Analyze Result**](/rest/api/aiservices/document-models/delete-analyze-result?view=rest-aiservices-v4.0%20(2024-11-30)&preserve-view=true&tabs=HTTP) API permanently purges those results. This action applies to all models.
 
 To learn more about privacy and security commitments, see the [Microsoft Trust Center](https://www.microsoft.com/TrustCenter/CloudServices/Azure/default.aspx).

@@ -3,7 +3,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -15,18 +15,18 @@ ms.author: lajanuar
 
 ## Create a new Azure Language resource and Azure storage account
 
-Before you can use Custom sentiment analysis, you'll need to create an Azure Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset that will be used in building your model.
+Before you can use Custom sentiment analysis, you'll need to create an Azure Language resource, which will give you the credentials that you need to create a project and start training a model. You'll also need an Azure storage account, where you can upload your dataset used in building your model.
 
 > [!IMPORTANT]
-> To get started quickly, we recommend creating a new Azure Language resource using the steps provided in this article, which will let you create the Language resource, and create and/or connect a storage account at the same time, which is easier than doing it later.
+> To get started quickly, we recommend creating a new Azure Language resource using the steps provided in this article, which lets you create the Language resource, and create and/or connect a storage account at the same time, which is easier than doing it later.
 
-<!-- If you have a [pre-existing resource](../../../custom/how-to/create-project.md#using-a-pre-existing-language-resource) that you'd like to use, you will need to connect it to storage account.-->
+<!-- If you have a [pre-existing resource](../../../custom/how-to/create-project.md#using-a-preexisting-language-resource) that you'd like to use, you need to connect it to storage account.-->
 
 [!INCLUDE [create a new resource from the Azure portal](../../../../includes/custom/resource-creation-azure-portal.md)]
     
 ## Upload sample data to blob container
 
-After you have created an Azure storage account and connected it to your Language resource, you will need to upload the documents from the sample dataset to the root directory of your container. These documents will later be used to train your model.
+After you create an Azure storage account and connected it to your Language resource, you need to upload the documents from the sample dataset to the root directory of your container. These documents are used to train your model.
 
 Start by [downloading the sample dataset for Custom sentiment analysis projects](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/language-service/Custom%20sentiment%20analysis/example_data.zip). Open the .zip file, and extract the folder containing the documents. The provided sample dataset contains documents, each of which is a short example of a customer review.
 

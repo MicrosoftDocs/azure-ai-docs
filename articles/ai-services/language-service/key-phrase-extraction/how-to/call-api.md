@@ -1,12 +1,12 @@
 ---
 title: how to call the Key Phrase Extraction API
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: How to extract key phrases by using the Key Phrase Extraction API.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-key-phrase
 ---

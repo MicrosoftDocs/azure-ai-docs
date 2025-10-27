@@ -1,12 +1,12 @@
 ---
 title: Model Lifecycle of Language service models
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This article describes the timelines for models and model versions used by Language service features.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: conceptual
-ms.date: 08/07/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -71,9 +71,9 @@ Training configurations are typically available for **six months** after its rel
 > [!TIP]
 > We recommend that you use the latest supported configuration version.
 
-After the **training config expiration** date, you'll have to use another supported training configuration version to submit any training or deployment jobs. After the **deployment expiration** date, your deployed model will be unavailable to be used for prediction.
+After the **training config expiration** date, you have to use another supported training configuration version to submit any training or deployment jobs. After the **deployment expiration** date, your deployed model is unavailable to be used for prediction.
 
-After training config version expires, API calls will return an error when called or used if called with an expired configuration version. By default, training requests use the latest available training configuration version. To change the configuration version, use the `trainingConfigVersion` parameter when submitting a training job and assign the version you want.
+After training config version expires, API calls returns an error when called or used if called with an expired configuration version. By default, training requests use the latest available training configuration version. To change the configuration version, use the `trainingConfigVersion` parameter when submitting a training job and assign the version you want.
 
 
 ## API versions

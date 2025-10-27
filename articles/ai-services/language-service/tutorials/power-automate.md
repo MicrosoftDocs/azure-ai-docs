@@ -69,12 +69,12 @@ For this tutorial, you will create a flow that extracts named entities from text
 :::image type="content" source="../media/connector-data.png" alt-text="A screenshot of data being added to the connector." lightbox="../media/connector-data.png":::
     
     > [!NOTE]
-    > You will need deployment name and project name if you are using custom language capability.
+    > You will need deployment name and project name if you're using custom language capability.
     
 1. From the top navigation menu, save the flow and select **Test the flow**. In the window that appears, select **Test**. 
 :::image type="content" source="../media/test-connector.png" alt-text="A screenshot of how to run the flow." lightbox="../media/test-connector.png":::
 
-1. After the flow runs, you will see the response in the **outputs** field.
+1. After the flow runs, you can see the response in the **outputs** field.
 
     :::image type="content" source="../media/response-connector.png" alt-text="A screenshot of flow response." lightbox="../media/response-connector.png":::
 

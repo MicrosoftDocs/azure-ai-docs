@@ -1,14 +1,14 @@
 ---
-title: Native document support for Azure AI Language (preview)
-titleSuffix: Azure AI services
-description: How to use native document with Azure AI Languages Personally Identifiable Information and Summarization capabilities.
+title: Native document support for Azure Language in Foundry Tools (preview)
+titleSuffix: Azure AI Foundry Tools
+description: How to use native document with Azure Language Personally Identifiable Information and Summarization capabilities.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 08/20/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -19,7 +19,7 @@ ms.author: lajanuar
 <!-- markdownlint-disable MD049 -->
 <!-- markdownlint-disable MD001 -->
 
-# Native document support for Azure AI Language (preview)
+# Native document support for Azure Language in Foundry Tools (preview)
 
 > [!IMPORTANT]
 >

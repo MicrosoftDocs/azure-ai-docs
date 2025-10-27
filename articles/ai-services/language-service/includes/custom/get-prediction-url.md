@@ -1,10 +1,10 @@
 ---
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 06/30/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
@@ -18,7 +18,7 @@ ms.author: lajanuar
 
     :::image type="content" source="../../media/custom/get-prediction-url-2.png" alt-text="A screenshot showing the example request." lightbox="../../media/custom/get-prediction-url-2.png":::
 
-4. Submit the `POST` cURL request in your terminal or command prompt. You'll receive a 202 response with the API results if the request was successful.
+4. Submit the `POST` cURL request in your terminal or command prompt. You receive a 202 response with the API results if the request was successful.
 
 5. In the response header you receive extract `{JOB-ID}` from `operation-location`, which has the format: `{ENDPOINT}/text/analytics/v3.2-preview.2/analyze/jobs/<JOB-ID}>`
 
