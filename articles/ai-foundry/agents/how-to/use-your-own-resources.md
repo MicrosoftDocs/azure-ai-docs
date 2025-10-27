@@ -156,7 +156,7 @@ For example, if two projects are deployed under the same Foundry account, the Co
 
 Both provisioned throughput and serverless modes are supported.
 
-> [NOTE]
+> [!NOTE]
 > Insufficient RU/s capacity in the Cosmos DB account will result in capability host provisioning failures during deployment.
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
