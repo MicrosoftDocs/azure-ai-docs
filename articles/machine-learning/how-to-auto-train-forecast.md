@@ -28,7 +28,7 @@ For a low-code experience, see [Tutorial: Forecast demand with automated machine
 ## Prerequisites
 
 - An Azure Machine Learning workspace. For more information, see [Create workspace resources](quickstart-create-resources.md).
-- The ability to launch AutoML training jobs. For more information, see [Set up AutoML training for tabular data with the Azure Machine Learning CLI and Python SDK](how-to-configure-auto-train.md).
+- The ability to start AutoML training jobs. For more information, see [Set up AutoML training for tabular data with the Azure Machine Learning CLI and Python SDK](how-to-configure-auto-train.md).
 
 ## Prepare training and validation data
 
