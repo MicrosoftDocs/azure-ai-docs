@@ -23,6 +23,7 @@ Install the required Python packages:
 pip install flask openai websockets requests
 ```
 
+
 ## Webhook server setup
 
 A webhook server is an application that listens for and processes automated messages (webhooks) sent by Azure OpenAI when specific events occur.
@@ -526,6 +527,18 @@ The following event types are available for webhook registration:
     ]
   }
 }
+```
+
+## Clean up resources
+
+When you no longer need the webhook server, you can delete the Azure Web App and its associated resources.
+
+### Delete the web app only
+
+To delete just the web app while keeping the resource group and other resources:
+
+```bash
+az webapp delete --name unique-webhook-handler-name --resource-group myResourceGroup
 ```
 
 ## Additional suggested configurations
