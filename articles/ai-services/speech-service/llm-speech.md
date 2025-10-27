@@ -106,7 +106,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-#### Prompt tuning
+#### Use prompt-tuning to alter performance
 
 You can provide an optional text to guide the output style for `transcribe` or `translate` task.
 
