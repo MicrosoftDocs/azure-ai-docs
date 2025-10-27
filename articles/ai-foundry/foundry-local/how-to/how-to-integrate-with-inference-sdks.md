@@ -21,10 +21,6 @@ ai-usage: ai-assisted
 
 Foundry Local integrates with inference SDKs such as OpenAI, Azure OpenAI, and LangChain. This article shows you how to connect your app to local AI models using popular SDKs.
 
-## Prerequisites
-
-- Install Foundry Local. See [Get started with Foundry Local](../get-started.md) for instructions.
-
 ::: zone pivot="programming-language-python"
 [!INCLUDE [Python](../includes/integrate-examples/python.md)]
 ::: zone-end

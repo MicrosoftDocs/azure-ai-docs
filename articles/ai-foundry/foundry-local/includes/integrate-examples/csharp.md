@@ -6,6 +6,10 @@ ms.author: samkemp
 author: samuel100
 ---
 
+## Prerequisites
+
+- [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) or later installed.
+
 ## Create project
 
 Create a new C# project and navigate into it:
@@ -20,37 +24,75 @@ cd hello-foundry-local
 Install the following NuGet packages into your project folder:
 
 ```bash
-dotnet add package Microsoft.AI.Foundry.Local --version 0.1.0
-dotnet add package OpenAI --version 2.2.0-beta.4
+dotnet add package Microsoft.AI.Foundry.Local
+dotnet add package OpenAI --version 2.5.0
 ```
 
 ## Use OpenAI SDK with Foundry Local
 
-The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code initializes the Foundry Local service, loads a model, and generates a response using the OpenAI SDK.
+The following example demonstrates how to use the OpenAI SDK with Foundry Local. The code includes the following steps:
+
+1. Initializes a `FoundryLocalManager` instance with a `Configuration` that includes the web service configuration. The web service is an OpenAI compliant endpoint.
+1. Gets a `Model` object from the model catalog using an alias. Note: Foundry Local will select the best variant for the model automatically based on the available hardware of the host machine.
+1. Downloads and loads the model variant.
+1. Starts the web service.
+1. Uses the OpenAI SDK to call the local Foundry web service.
+1. Tidies up by stopping the web service and unloading the model.
 
 Copy-and-paste the following code into a C# file named `Program.cs`:
 
 ```csharp
 using Microsoft.AI.Foundry.Local;
+using Microsoft.Extensions.Logging;
 using OpenAI;
-using OpenAI.Chat;
 using System.ClientModel;
-using System.Diagnostics.Metrics;
 
-var alias = "qwen2.5-0.5b";
-
-var manager = await FoundryLocalManager.StartModelAsync(aliasOrModelId: alias);
-
-var model = await manager.GetModelInfoAsync(aliasOrModelId: alias);
-ApiKeyCredential key = new ApiKeyCredential(manager.ApiKey);
-OpenAIClient client = new OpenAIClient(key, new OpenAIClientOptions
+var config = new Configuration
 {
-    Endpoint = manager.Endpoint
+    AppName = "hello-foundry-local",
+    LogLevel = Microsoft.AI.Foundry.Local.LogLevel.Information,
+    Web = new Configuration.WebService
+    {
+        Urls = "http://127.0.0.1:5464"
+    },
+};
+
+using var loggerFactory = LoggerFactory.Create(builder =>
+{
+    builder.SetMinimumLevel(Microsoft.Extensions.Logging.LogLevel.Information);
 });
 
-var chatClient = client.GetChatClient(model?.ModelId);
+var logger = loggerFactory.CreateLogger<Program>();
 
-var completionUpdates = chatClient.CompleteChatStreaming("Why is the sky blue'");
+// Initialize the singleton instance.
+await FoundryLocalManager.CreateAsync(config, logger);
+var mgr = FoundryLocalManager.Instance;
+
+// Get the model catalog
+var catalog = mgr.GetCatalog();
+
+// Get a model using an alias
+var model = await catalog.GetModelAsync("qwen2.5-0.5b") ?? throw new Exception("Model not found");
+
+// Download and load the variant
+await model.DownloadAsync();
+await model.LoadAsync();
+
+// Start the web service
+await mgr.StartWebServiceAsync();
+
+// <<<<<< OPEN AI SDK USAGE >>>>>>
+// Use the OpenAI SDK to call the local Foundry web service
+
+ApiKeyCredential key = new ApiKeyCredential("notneeded");
+OpenAIClient client = new OpenAIClient(key, new OpenAIClientOptions
+{
+    Endpoint = new Uri(config.Web.Urls + "/v1"),
+});
+
+var chatClient = client.GetChatClient(model.Id);
+
+var completionUpdates = chatClient.CompleteChatStreaming("Why is the sky blue?");
 
 Console.Write($"[ASSISTANT]: ");
 foreach (var completionUpdate in completionUpdates)
@@ -60,6 +102,13 @@ foreach (var completionUpdate in completionUpdates)
         Console.Write(completionUpdate.ContentUpdate[0].Text);
     }
 }
+Console.WriteLine();
+// <<<<<< END OPEN AI SDK USAGE >>>>>>
+
+// Tidy up
+// Stop the web service and unload model
+await mgr.StopWebServiceAsync();
+await model.UnloadAsync();
 ```
 
 Run the code using the following command:
