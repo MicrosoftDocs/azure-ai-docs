@@ -11,27 +11,27 @@ ms.date: 10/15/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
-# LLM-Speech for speech transcription and translation (Preview)
+# LLM Speech for speech transcription and translation (Preview)
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-LLM-Speech is powered by a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios including generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
+LLM speech is powered by a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios including generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
 
-The LLM-speech API currently supports the following speech tasks:
+The LLM speech API currently supports the following speech tasks:
 - `transcribe`
 - `translate`
 
 
 ## Prerequisites
 
-- An Azure AI Speech resource in one of the regions where the fast transcription API is available. The supported regions are: **East US**, **North Europe**, **Central India**, **Southeast Asia**, **West US**. For more information about regions supported for other Speech service features, see [Speech service regions](./regions.md).
+- An Azure AI Speech resource in one of the regions where the llm speech API is available. For the current list of supported regions, see see [Speech service regions](./regions.md?tabs=llmspeech).
   
 - An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
   
 
-## Use the llm-speech API
+## Use the llm speech API
 
 > [!TIP]
-> Try out llm-speech in the [Azure AI Foundry portal](https://aka.ms/llm-speech-playground).
+> Try out llm speech in the [Azure AI Foundry portal](https://aka.ms/llm-speech-playground).
 
 ### Supported languages
 
@@ -59,7 +59,7 @@ You can provide audio data in the following ways:
 In the sections below, inline audio upload is used as an example.
 
 
-### Call the LLM-speech API
+### Call the LLM speech API
 Make a multipart/form-data POST request to the `transcriptions` endpoint with the audio file and the request body properties. 
 
 The following example shows how to transcribe an audio file with a specified locale. If you know the locale of the audio file, you can specify it to improve transcription accuracy and minimize the latency.
@@ -71,7 +71,7 @@ The following example shows how to transcribe an audio file with a specified loc
 > [!IMPORTANT]
 > For the recommended keyless authentication with Microsoft Entra ID, replace `--header 'Ocp-Apim-Subscription-Key: YourSpeechResoureKey'` with `--header "Authorization: Bearer YourAccessToken"`. For more information about keyless authentication, see the [role-based access control](./role-based-access-control.md#authentication-with-keys-and-tokens) how-to guide.
 
-#### Use llm-speech to transcribe an audio
+#### Use llm speech to transcribe an audio
 
 You can transcribe audio in the input language without specifying a locale code. The model automatically detects and selects the appropriate language based on the audio content.
 
@@ -88,7 +88,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-#### Use llm-speech to translate an audio file
+#### Use llm speech to translate an audio file
 
 You can translate audio into a specified target language. To enable translation, you must provide the target language code in the request.
 
@@ -156,7 +156,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with llm-speech, and can be omitted from the request. Learn more from [configuration options of Fast Transcription](fast-transcription-create.md#request-configuration-options). 
+Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with llm speech, and can be omitted from the request. Learn more from [configuration options of Fast Transcription](fast-transcription-create.md#request-configuration-options). 
 
 ---
 
