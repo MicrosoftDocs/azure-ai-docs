@@ -9,7 +9,7 @@ ms.author: jburchel
 ms.service: azure-ai-foundry
 ms.custom: ignite-2024, build-2025
 ms.topic: how-to
-ms.date: 10/24/2025
+ms.date: 10/27/2025
 ai-usage: ai-assisted
 ---
 
@@ -17,22 +17,35 @@ ai-usage: ai-assisted
 
 [!INCLUDE [feature-preview](../includes/feature-preview.md)]
 
-Azure AI Foundry supports connecting your own storage for various features and capabilities. You can manage storage connections at both the resource level and project level, giving you flexibility in how you organize and secure your data.
+Azure AI Foundry brings Agents, Azure OpenAI, Speech, and Language services together under one unified resource type. Bring-your-own-storage (BYOS) lets you route data produced by these capabilities to an Azure Storage account that you own and govern. The configuration patterns align with (and provide backwards compatibility to) earlier standalone Speech and Language resource types.
 
-This article shows you how to connect your storage to AI Foundry by using three different approaches depending on which features you plan to use. Each approach serves specific capabilities and has different configuration requirements.
+This article shows you how to connect your storage to Azure AI Foundry by using two overarching approaches:
+
+1. Connections + (optional) capability hosts (recommended baseline for most features)
+2. userOwnedStorage field (Speech and Language only)
+
+Connections provide the shared data pointer; capability hosts optionally override/explicitly bind a specific feature (for example, Agents standard setup) to one connection among several. The userOwnedStorage field is a resource-level binding used only by Speech and Language.
 
 ## Prerequisites
 
 Before connecting your storage, ensure you have:
 
-- An Azure subscription with an active AI Foundry resource
-- A storage account in the same subscription
-- Contributor or Owner permissions on both the AI Foundry resource and storage account
-- Understanding of your feature requirements (agents, evaluations, datasets, speech, or language)
+- An Azure subscription with an active Azure AI Foundry resource
+- An Azure Storage account in the same subscription (Blob Storage supported)
+- Contributor or Owner permissions on both the Azure AI Foundry resource and the storage account
+- Clarity on which features you plan to use (Agents, Evaluations, Datasets, Content Understanding, Speech, Language)
+- (Optional) A plan for customer-managed keys (CMK) encryption on the storage account
+
+> [!TIP]
+> See [Azure Storage documentation](/azure/storage/) for guidance on security, networking, and encryption options.
 
 ## Understand storage connection approaches
 
-Azure AI Foundry provides three methods to connect to storage, each serving different features:
+| Approach | What it is | Features supported | Scope | When to use |
+|----------|------------|--------------------|-------|-------------|
+| Connections (shared data pointer) | Sub-resource holding endpoint + auth; grants project users indirect access | Agents, Evaluations, Datasets, Content Understanding | Resource or project level | Default pattern for most scenarios |
+| Capability hosts (feature override binding) | Explicit per-feature binding selecting which connection a feature uses | Agents (standard setup) | Resource and project level | When multiple connections exist and you must force one for Agents |
+| userOwnedStorage field (resource storage binding) | Resource property assigning one storage account for Speech & Language (shared) | Speech, Language | Resource level only | To enable customer-managed storage for Speech & Language at creation time |
 
 | **Approach** | **Features Supported** | **Scope** |
 |-------------|------------------------|-----------|
@@ -48,34 +61,73 @@ Foundry connections act as shared data pointers across AI Foundry capabilities (
 
 [Capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) bind specific features to designated connections when multiple storage connections exist. They define which storage connection a particular feature uses. Use capability hosts most commonly for agents standard setup. If you don't create capability hosts for agents, AI Foundry uses Microsoft-managed storage for that feature.
 
-### userOwnedStorage field
+See [Capability hosts](../agents/concepts/capability-hosts.md) for conceptual details.
 
 The userOwnedStorage field enables customer-managed storage for Speech and Language capabilities. Set this field during resource creation at the resource level, so all projects within the resource share the same storage account for these capabilities with backwards compatibility to the approach used for Azure Speech and Azure Language resource types.
 
-## Create a Foundry storage connection
+The `userOwnedStorage` field is set during resource creation to bind one storage account for Speech and Language capabilities. Speech and Language share the account (different containers) and the setting applies to all projects in the resource. You cannot change or remove it later.
 
-Create a storage connection to enable agents, evaluations, datasets, and content understanding features with your own storage account.
+If strict data isolation is required between Speech and Language scenarios, create separate Azure AI Foundry resources with different storage accounts.
+
+> [!IMPORTANT]
+> If you delete or move (change resource ID of) the storage account bound by `userOwnedStorage`, Speech and Language stop functioning. Consider attempting account recovery first: [Recover a storage account](/azure/storage/common/storage-account-recover). Otherwise you must recreate the Azure AI Foundry resource.
+
+## Create a storage connection
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+2. Open your Azure AI Foundry resource or project.
+3. In the left navigation, select **Connections** (or **Connected resources**).
+4. Select **+ New connection**.
+5. Choose **Azure Blob Storage**.
+6. Provide:
+   - Name
+   - Subscription
+   - Storage account
+   - Authentication method (system-assigned managed identity recommended)
+7. Select **Create**.
 
-1. Go to your AI Foundry resource or project where you want to add the connection.
+The connection is now available to Agents (when not overridden), Evaluations, Datasets, and Content Understanding.
 
-1. In the left navigation, select **Connected resources** or **Connections**.
+## Configure capability host for Agents (combined resource + project steps)
 
-1. Select **+ New connection**.
+You create two capability hosts—one at the resource level and one at the project level—each referencing the same connection chain so Agents route to your storage.
 
-1. In the connection type list, select **Azure Blob Storage**.
+1. Create a resource-level connection (as above) if not already present.
+2. Create a resource-level capability host referencing that connection.
+3. Create (or open) a project under the resource.
+4. Create a project-level capability host referencing the resource-level capability host.
+5. Verify Agents data now writes to the bound storage account.
 
-1. Enter the following information:
+> [!NOTE]
+> A future UX flow will streamline these steps directly in the portal.
 
-   - **Name**: Enter a descriptive name for your connection
-   - **Subscription**: Select your Azure subscription
-   - **Storage account**: Select your storage account
-   - **Authentication**: Choose your preferred authentication method (system-assigned managed identity recommended)
+### Example (Azure CLI) *(illustrative)*
+```bash
+# Placeholder example; adjust for actual CLI verbs when published
+az ai-foundry capability-host create \
+  --resource-name MyFoundryResource \
+  --name agents-host \
+  --feature agents \
+  --connection-id /subscriptions/<sub>/resourceGroups/<rg>/providers/Microsoft.CognitiveServices/accounts/MyFoundryResource/connections/myblobconnection
+```
 
-1. Select **Create** to establish the connection.
+### Example (PowerShell) *(illustrative)*
+```powershell
+New-AIFCapabilityHost -ResourceName MyFoundryResource -Name agents-host -Feature agents -ConnectionId "/subscriptions/<sub>/resourceGroups/<rg>/.../connections/myblobconnection"
+```
 
-The storage connection is now available for use with evaluations, datasets, and content understanding features.
+### ARM template snippet *(illustrative)*
+```json
+{
+  "type": "Microsoft.CognitiveServices/accounts/capabilityHosts",
+  "apiVersion": "2025-05-01-preview",
+  "name": "[concat(parameters('foundryName'), '/agents-host')]",
+  "properties": {
+    "feature": "agents",
+    "connectionId": "[resourceId('Microsoft.CognitiveServices/accounts/connections', parameters('foundryName'), 'myblobconnection')]"
+  }
+}
+```
 
 ## Configure capability hosts for agents
 
@@ -103,57 +155,69 @@ Your agents standard setup now uses your own storage account instead of Microsof
 
 ## Set userOwnedStorage for Speech and Language
 
-Set the userOwnedStorage field during resource creation to use your storage account for Speech and Language capabilities.
+Set the field during resource creation—via Bicep, ARM, Terraform, CLI, or PowerShell.
 
-> [!IMPORTANT]
-> Set the userOwnedStorage field during resource creation. It applies to all projects within the resource. This setting has specific restrictions and can't be changed after resource creation.
+### Bicep example
+```bicep
+resource foundry 'Microsoft.CognitiveServices/accounts@2025-05-01-preview' = {
+  name: myFoundryName
+  location: location
+  kind: 'AIServices'
+  sku: { name: 'S0' }
+  properties: {
+    userOwnedStorage: {
+      storageResourceId: storageAccount.id
+    }
+  }
+}
+```
 
-1. Create your AI Foundry resource with Azure CLI, Azure PowerShell, or Azure Resource Manager templates.
+### Terraform snippet
+Refer to [Terraform cognitive_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account).
+```hcl
+resource "azurerm_cognitive_account" "foundry" {
+  name                = var.foundry_name
+  location            = var.location
+  resource_group_name = azurerm_resource_group.rg.name
+  kind                = "AIServices"
+  sku_name            = "S0"
 
-1. In the resource properties, add the userOwnedStorage field with your storage account details.
+  storage { # userOwnedStorage equivalent
+    resource_id = azurerm_storage_account.speechlang.id
+  }
+}
+```
 
-1. Finish the resource creation process.
+### Role assignment
 
-All Speech and Language capabilities in the resource now use your specified storage account.
+Create the role assignment on the Azure Storage account for the Foundry resource (account) managed identity—not the project managed identity. Assign `Storage Blob Data Contributor`.
 
-## Configure content understanding
-
-Connect your storage account to content understanding features through the AI Foundry portal.
+## Configure Content Understanding
 
 1. Sign in to [Azure AI Foundry](https://ai.azure.com).
+2. Open the resource.
+3. Select **Content Understanding**.
+4. Choose the existing storage connection.
 
-1. Go to your AI Foundry resource.
+> [!NOTE]
+> Programmatic configuration options for Content Understanding are under evaluation.
 
-1. In the left navigation, select **Content Understanding**.
+## End-to-end customer-managed storage checklist
 
-1. Select your existing resource-level storage connection from the available options.
+1. Create resource with `userOwnedStorage` (if Speech/Language needed).
+2. Create storage connection (connections).
+3. Create resource-level capability host (Agents override when needed).
+4. Create project-level capability host (Agents override at project).
+5. Bind Content Understanding to the storage connection.
 
-Content understanding now uses your connected storage account for processing and storing data.
-
-## Set up complete customer-managed storage
-
-For enterprise scenarios that require customer-managed storage for all features, configure all three approaches together.
-
-Follow these steps in order to ensure proper configuration:
-
-1. Create your AI Foundry resource with the `userOwnedStorage` field in the resource properties.
-
-1. Create a resource-level capability host for agents.
-
-1. Create your AI Foundry project.
-
-1. Create a project-level capability host for agents.
-
-1. Create a resource-level storage account connection through Foundry connections.
-
-1. Navigate to the AI Foundry portal and configure content understanding to use your storage connection.
-
-After completing these steps, all AI Foundry features use your customer-managed storage account instead of Microsoft-managed storage.
+After these steps all features (Agents, Evaluations, Datasets, Content Understanding, Speech, Language) route to customer-managed storage.
 
 ## Related content
 
-- [Learn about capability hosts for agents](../agents/concepts/capability-hosts.md).
-- [Understand agents standard setup](../agents/concepts/standard-agent-setup.md).
-- [Add connections to your project](connections-add.md).
-- [Explore AI Foundry REST API](/rest/api/aifoundry/aiprojects/datasets).
-- [Connect your own storage to Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal).
+- [Capability hosts for Agents](../agents/concepts/capability-hosts.md)
+- [Understanding Agents standard setup](../agents/concepts/standard-agent-setup.md)
+- [Add connections to your project](connections-add.md)
+- [Recover a storage account](/azure/storage/common/storage-account-recover)
+- [Azure Storage documentation](/azure/storage/)
+- [Infrastructure setup samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup)
+- [Connect storage for Speech/Language](../../ai-services/speech-service/bring-your-own-storage-speech-resource.md?tabs=portal)
