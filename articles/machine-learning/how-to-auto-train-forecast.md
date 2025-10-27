@@ -833,7 +833,7 @@ def forecasting_train_and_evaluate_factory(
     primary_metric='normalized_root_mean_squared_error',
     cv_folds='auto'
 ):
-    # Configure training node of pipeline
+    # Configure training node of pipeline.
     training_node = automl.forecasting(
         training_data=train_data_input,
         target_column_name=target_column_name,
@@ -846,21 +846,21 @@ def forecasting_train_and_evaluate_factory(
         time_column_name=time_column_name,
         forecast_horizon=max_horizon,
         frequency=frequency,
-        # Other settings
+        # Other settings.
         ... 
     )
     
     training_node.set_training(
-        # Training parameters
+        # Training parameters.
         ...
     )
     
     training_node.set_limits(
-        # Limit settings
+        # Limit settings.
         ...
     )
 
-    # Configure inference node to make rolling forecasts on test set
+    # Configure inference node to make rolling forecasts on test set.
     inference_node = inference_component(
         test_data=test_data_input,
         model_path=training_node.outputs.best_model,
@@ -869,7 +869,7 @@ def forecasting_train_and_evaluate_factory(
         step=1
     )
 
-    # Configure metrics calculation node
+    # Configure metrics calculation node.
     compute_metrics_node = compute_metrics_component(
         task="tabular-forecasting",
         ground_truth=inference_node.outputs.inference_output_file,
@@ -877,7 +877,7 @@ def forecasting_train_and_evaluate_factory(
         evaluation_config=inference_node.outputs.evaluation_config_output_file
     )
 
-    # Return dictionary with evaluation metrics and raw test set forecasts
+    # Return dictionary with evaluation metrics and raw test set forecasts.
     return {
         "metrics_result": compute_metrics_node.outputs.evaluation_result,
         "rolling_fcst_result": inference_node.outputs.inference_output_file
@@ -909,10 +909,10 @@ pipeline_job = forecasting_train_and_evaluate_factory(
     forecast_horizon
 )
 
-# Set pipeline level compute
+# Set pipeline-level compute.
 pipeline_job.settings.default_compute = compute_name
 
-# Submit pipeline job
+# Submit pipeline job.
 returned_pipeline_job = ml_client.jobs.create_or_update(
     pipeline_job,
     experiment_name=experiment_name
@@ -929,11 +929,11 @@ type: pipeline
 description: AutoML Forecasting Pipeline
 experiment_name: cli-v2-automl-forecasting-pipeline
 
-# Set default compute for pipeline steps
+# Set default compute for pipeline steps.
 settings:
     default_compute: cpu-compute
 
-# Pipeline inputs
+# Pipeline inputs.
 inputs:
     train_data_input:
         type: mltable
@@ -947,8 +947,8 @@ inputs:
     primary_metric: normalized_root_mean_squared_error
     cv_folds: auto
 
-# Set pipeline outputs
-# Output the evaluation metrics and raw test set rolling forecasts
+# Set pipeline outputs.
+# Output the evaluation metrics and raw test set rolling forecasts.
 outputs: 
     metrics_result:
         type: uri_file
@@ -958,7 +958,7 @@ outputs:
         mode: upload
 
 jobs:
-  # Configure automl training node of pipeline 
+  # Configure automl training node of pipeline.
     training_node:
         type: automl
         task: forecasting
@@ -967,18 +967,18 @@ jobs:
         training_data: ${{parent.inputs.train_data_input}}
         n_cross_validations: ${{parent.inputs.cv_folds}}
         training:
-            # Training settings
+            # Training settings.
         forecasting:
             time_column_name: ${{parent.inputs.time_column_name}}
             forecast_horizon: ${{parent.inputs.forecast_horizon}}
-            # Other forecasting specific settings
+            # Other forecasting-specific settings.
         limits:
-            # Limit settings
+            # Limit settings.
         outputs:
             best_model:
                 type: mlflow_model
 
-    # Configure inference node to make rolling forecasts on test set
+    # Configure inference node to make rolling forecasts on test set.
     inference_node:
         type: command
         component: azureml://registries/azureml-preview/components/automl_forecasting_inference
@@ -993,7 +993,7 @@ jobs:
             evaluation_config_output_file:
                 type: uri_file
 
-    # Configure metrics calculation node
+    # Configure metrics calculation node.
     compute_metrics:
         type: command
         component: azureml://registries/azureml/compute_metrics
@@ -1006,9 +1006,9 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-AutoML requires training data in [MLTable format](#prepare-training-and-validation-data) for AutoML.
+AutoML requires training data in [MLTable format](#prepare-training-and-validation-data).
 
-Launch the pipeline run by using the following command. The pipeline configuration is at the path *./automl-forecasting-pipeline.yml*:
+Start the pipeline run by using the following command. The pipeline configuration is at the path *./automl-forecasting-pipeline.yml*:
 
 ```yml
 run_id=$(az ml job create --file automl-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>)
@@ -1016,15 +1016,15 @@ run_id=$(az ml job create --file automl-forecasting-pipeline.yml -w <Workspace> 
 
 ---
 
-After you submit the run request, the pipeline runs AutoML training, rolling evaluation inference, and metric calculation in sequence. You can monitor and inspect the run in the studio UI. When the run completes, you can download the rolling forecasts and the evaluation metrics to the local working directory:
+After you submit the run request, the pipeline runs AutoML training, rolling-evaluation inference, and metric calculation in sequence. You can monitor and inspect the run in the studio UI. When the run completes, you can download the rolling forecasts and the evaluation metrics to the local working directory:
 
 # [Python SDK](#tab/python)
 
 ```python
-# Download metrics JSON
+# Download metrics JSON.
 ml_client.jobs.download(returned_pipeline_job.name, download_path=".", output_name='metrics_result')
 
-# Download rolling forecasts
+# Download rolling forecasts.
 ml_client.jobs.download(returned_pipeline_job.name, download_path=".", output_name='rolling_fcst_result')
 ```
 
@@ -1040,24 +1040,24 @@ az ml job download --name $run_id --download-path . --output-name rolling_fcst_r
 You can review the output at the following locations:
 
 - Metrics: *./named-outputs/metrics_results/evaluationResult/metrics.json*
-- Forecasts: *./named-outputs/rolling_fcst_result/inference_output_file* (JSON lines format)
+- Forecasts: *./named-outputs/rolling_fcst_result/inference_output_file* (JSON Lines format)
 
 For more information on rolling evaluation, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md).
 
 ## Forecast at scale: Many models
 
-The many models components in AutoML enable you to train and manage millions of models in parallel. For more information on many models concepts, see [Many models](concept-automl-forecasting-at-scale.md#many-models).
+The many-models components in AutoML enable you to train and manage millions of models in parallel. For more information, see [Many models](concept-automl-forecasting-at-scale.md#many-models).
 
-### Many models training configuration
+### Many-models training configuration
 
-The many models training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it launches. The YAML file has the same specification as the [Forecasting command job](reference-automated-ml-forecasting.md) plus the `partition_column_names` and `allow_multi_partitions` parameters.
+The many-models training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it starts. The YAML file has the same specification as the [Forecasting command job](reference-automated-ml-forecasting.md), plus the `partition_column_names` and `allow_multi_partitions` parameters.
 
 | Parameter | Description |
 | --- | --- |
-| `partition_column_names` | Column names in the data that, when grouped, define the data partitions. The many models training component launches an independent training job on each partition. |
+| `partition_column_names` | Column names in the data that, when grouped, define the data partitions. The many-models training component starts an independent training job on each partition. |
 | `allow_multi_partitions` | An optional flag that allows training one model per partition when each partition contains more than one unique time series. The default value is `false`. |
 
-The following example provides a sample YAML configuration:
+Here's a sample YAML configuration:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -1090,22 +1090,22 @@ partition_column_names: ["state", "store"]
 allow_multi_partitions: false
 ```
 
-In subsequent examples, the configuration is stored at the path, *./automl_settings_mm.yml*`.
+In subsequent examples, the configuration is stored at the path *./automl_settings_mm.yml*`.
 
-### Many models pipeline
+### Many-models pipeline
 
-Next, define a factory function that creates pipelines for orchestration of many models training, inference, and metric computation. The following table describes the parameters for this factory function:
+Next, you'll define a factory function that creates pipelines for the orchestration of many models training, inference, and metric computation. The following table describes the parameters for this factory function:
 
 | Parameter | Description |
 | --- | --- |
 | `max_nodes`                        | Number of compute nodes to use in the training job. |
-| `max_concurrency_per_node`         | Number of AutoML processes to run on each node. Hence, the total concurrency of a many models jobs is `max_nodes * max_concurrency_per_node`. |
-| `parallel_step_timeout_in_seconds` | Many models component timeout specified in number of seconds. |
-| `retrain_failed_models`            | Flag to enable retraining for failed models. This value is useful if you did previous many models runs that resulted in failed AutoML jobs on some data partitions. When you enable this flag, many models only launch training jobs for previously failed partitions. |
+| `max_concurrency_per_node`         | Number of AutoML processes to run on each node. The total concurrency of a many-models job is `max_nodes` * `max_concurrency_per_node`. |
+| `parallel_step_timeout_in_seconds` | Many models component timeout, specified in number of seconds. |
+| `retrain_failed_models`            | Flag to enable retraining for failed models. This value is useful if you did previous many-models runs that resulted in failed AutoML jobs on some data partitions. When you enable this flag, many models only runs training jobs for previously failed partitions. |
 | `forecast_mode`                    | Inference mode for model evaluation. Valid values are `recursive` (default) and `rolling`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [ManyModelsInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.manymodelsinferenceparameters#parameters) reference. |
-| `step`                             | Step size for rolling forecast (default is 1). For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [ManyModelsInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.manymodelsinferenceparameters#parameters) reference.|
+| `step`                             | Step size for rolling forecast. The default is 1. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [ManyModelsInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.manymodelsinferenceparameters#parameters) reference.|
 
-The following example demonstrates a factory method to construct many models training and model evaluation pipelines:
+The following example demonstrates a factory method for constructing many-models training and model evaluation pipelines:
 
 # [Python SDK](#tab/python)
 
@@ -1113,28 +1113,28 @@ The following example demonstrates a factory method to construct many models tra
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
-# Get credential to access AzureML registry
+# Get credential to access azureml registry.
 try:
     credential = DefaultAzureCredential()
-    # Check if token can be obtained successfully
+    # Check whether token can be obtained.
     credential.get_token("https://management.azure.com/.default")
 except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential fails
+    # Fall back to InteractiveBrowserCredential if DefaultAzureCredential fails.
     credential = InteractiveBrowserCredential()
 
-# Get many models training component
+# Get many-models training component.
 mm_train_component = ml_client_registry.components.get(
     name='automl_many_models_training',
     version='latest'
 )
 
-# Get many models inference component
+# Get many-models inference component.
 mm_inference_component = ml_client_registry.components.get(
     name='automl_many_models_inference',
     version='latest'
 )
 
-# Get component to compute evaluation metrics
+# Get component to compute evaluation metrics.
 compute_metrics_component = ml_client_metrics_registry.components.get(
     name="compute_metrics",
     label="latest"
@@ -1181,13 +1181,13 @@ def many_models_train_evaluate_factory(
         evaluation_config=mm_inference_node.outputs.evaluation_configs
     )
 
-    # Return metrics results from rolling evaluation
+    # Return metrics results from rolling evaluation.
     return {
         "metrics_result": compute_metrics_node.outputs.evaluation_result
     }
 ```
 
-Construct the pipeline with the factory function. The training and test data are in the local folders *./data/train* and *./data/test*, respectively. Finally, set the default compute and submit the job as shown in the following example:
+Construct the pipeline with the factory function. The training and test data are in the local folders *./data/train* and *./data/test*. Finally, set the default compute and submit the job as shown in the following example:
 
 ```python
 pipeline_job = many_models_train_evaluate_factory(
@@ -1223,11 +1223,11 @@ type: pipeline
 description: AutoML Many Models Forecasting Pipeline
 experiment_name: cli-v2-automl-mm-forecasting-pipeline
 
-# Set default compute for pipeline steps
+# Set default compute for pipeline steps.
 settings:
     default_compute: azureml:cpu-compute
 
-# Set pipeline inputs
+# Set pipeline inputs.
 inputs:
     train_data_input:
         type: uri_folder
@@ -1246,15 +1246,15 @@ inputs:
     step: 1
     retrain_failed_model: False
 
-# Set pipeline outputs
-# Output the evaluation metrics and raw test set rolling forecasts
+# Set pipeline outputs.
+# Output the evaluation metrics and raw test set rolling forecasts.
 outputs: 
     metrics_result:
         type: uri_file
         mode: upload
 
 jobs:
-    # Configure AutoML many models training component
+    # Configure AutoML many-models training component.
     mm_train_node:
         type: command
         component: azureml://registries/azureml-preview/components/automl_many_models_training
@@ -1269,7 +1269,7 @@ jobs:
             run_output:
                 type: uri_folder
 
-    # Configure inference node to make rolling forecasts on test set
+    # Configure inference node to make rolling forecasts on test set.
     mm_inference_node:
         type: command
         component: azureml://registries/azureml-preview/components/automl_many_models_inference
@@ -1289,7 +1289,7 @@ jobs:
             evaluation_data:
                 type: uri_file
 
-    # Configure metrics calculation node
+    # Configure metrics calculation node.
     compute_metrics:
         type: command
         component: azureml://registries/azureml/components/compute_metrics
@@ -1302,7 +1302,7 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-You launch the pipeline job with the following command. The many models pipeline configuration is at the path *./automl-mm-forecasting-pipeline.yml*:
+You start the pipeline job with the following command. The many-models pipeline configuration is at the path *./automl-mm-forecasting-pipeline.yml*:
 
 ```azurecli
 az ml job create --file automl-mm-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>
@@ -1310,37 +1310,37 @@ az ml job create --file automl-mm-forecasting-pipeline.yml -w <Workspace> -g <Re
 
 ---
 
-After the job finishes, you can download the evaluation metrics locally by using the same procedure as in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
+After the job finishes, you can download the evaluation metrics locally by using the procedure in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
 
-For a more detailed example, see the [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb).
+For a more detailed example, see the [Demand Forecasting by Using Many Models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb).
 
-#### Training considerations for a many models run
+#### Training considerations for a many-models run
 
-- The many models training and inference components conditionally partition your data according to the `partition_column_names` setting. This process results in each partition being in its own file. The process can be very slow or fail when data is very large. The recommendation is to partition your data manually before you run many models training or inference.
+- The many-models training and inference components conditionally partition your data according to the `partition_column_names` setting. This process results in each partition being in its own file. The process can be slow or fail when you have a lot of data. We recommend that you to partition your data manually before you run many-models training or inference.
 
-- During many models training, models are automatically registered in the workspace, and hence manual registration of models are not required. Models are named based on the partition on which they were trained and this is not customizable. Same for tags, these are not customizable, and we use these properties to auto detect models during inference.
+- During many-models training, models are automatically registered in the workspace, so manual registration of models isn't required. Models are named based on the partition on which they were trained, and these names aren't customizable. Tags also aren't customizable. These properties are used to automatically detect models during inference.
 
-- Deploying individual model is not at all scalable, and hence we provide `PipelineComponentBatchDeployment` to ease the deployment process. Please refer [demand forecasting with many models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb) to see this in action. 
+- Deploying individual models isn't scalable, but you can use `PipelineComponentBatchDeployment` to make the deployment process easier. For an example, see the [Demand Forecasting by Using Many Models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb). 
 
-- During inference, appropriate models (latest version) are automatically selected based on the partition sent in the inference data. By default, latest models are selected from an experiment by providing `training_experiment_name` but you can override to select models from a particular training run by also providing `train_run_id`.
+- During inference, appropriate models (the latest version) are automatically selected based on the partition sent in the inference data. By default, when you use `training_experiment_name`, the latest model is used, but you can override this behaviour to select models from a particular training run by also providing `train_run_id`.
 
 > [!NOTE]
-> The default parallelism limit for a many models run within a subscription is set to 320. If your workload requires a higher limit, you can contact Microsoft support.
+> The default parallelism limit for a many-models run in a subscription is 320. If your workload requires a higher limit, you can contact Microsoft support.
 
 ## Forecast at scale: Hierarchical time series
 
-The hierarchical time series (HTS) components in AutoML enable you to train a large number of models on data with hierarchical structure. For more information, see [Hierarchical time series forecasting](concept-automl-forecasting-at-scale.md#hierarchical-time-series-forecasting).
+The hierarchical time series (HTS) components in AutoML enable you to train a large number of models on data that's in a hierarchical structure. For more information, see [Hierarchical time series forecasting](concept-automl-forecasting-at-scale.md#hierarchical-time-series-forecasting).
 
 ### HTS training configuration
 
-The HTS training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it launches. This YAML file has the same specification as the [Forecasting command job](reference-automated-ml-forecasting.md) plus other parameters related to the hierarchy information:
+The HTS training component accepts a YAML format configuration file of AutoML training settings. The component applies these settings to each AutoML instance it runs. This YAML file has the same specification as the [Forecasting command job](reference-automated-ml-forecasting.md), but it includes other parameters that are related to the hierarchy information:
 
 | Parameter | Description |
 | --- | --- |
 | `hierarchy_column_names`  | A list of column names in the data that define the hierarchical structure of the data. The order of the columns in this list determines the hierarchy levels. The degree of aggregation decreases with the list index. That is, the last column in the list defines the leaf, or most disaggregated, level of the hierarchy. |
 | `hierarchy_training_level` | The hierarchy level to use for forecast model training. |
 
-The following example provides a sample YAML configuration:
+Here's a sample YAML configuration:
 
 ```yml
 $schema: https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLJob.schema.json
@@ -1374,21 +1374,21 @@ hierarchy_column_names: ["state", "store", "SKU"]
 hierarchy_training_level: "store"
 ```
 
-In subsequent examples, the configuration is stored at the path, *./automl_settings_hts.yml*.
+In subsequent examples, the configuration is stored at the path *./automl_settings_hts.yml*.
 
 ### HTS pipeline
 
-Next, define a factory function that creates pipelines for orchestration of HTS training, inference, and metric computation. The following table describes the parameters for this factory function:
+Next, define a factory function that creates pipelines for the orchestration of HTS training, inference, and metric computation. The following table describes the parameters for this factory function:
 
 | Parameter | Description |
 | --- | --- |
 | `forecast_level`                   | The level of the hierarchy for which to retrieve forecasts. |
-| `allocation_method`                | Allocation method to use when forecasts are disaggregated. Valid values are `proportions_of_historical_average` and `average_historical_proportions`. |
-| `max_nodes`                        | Number of compute nodes to use in the training job. |
-| `max_concurrency_per_node`         | Number of AutoML processes to run on each node. Hence, the total concurrency of an HTS job is `max_nodes * max_concurrency_per_node`. |
-| `parallel_step_timeout_in_seconds` | Many models component timeout specified in number of seconds. |
-| `forecast_mode`                    | Inference mode for model evaluation. Valid values are `recursive` and `rolling`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
-| `step`                             | Step size for rolling forecast (default is 1). For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
+| `allocation_method`                | The allocation method to use when forecasts are disaggregated. Valid values are `proportions_of_historical_average` and `average_historical_proportions`. |
+| `max_nodes`                        | The number of compute nodes to use in the training job. |
+| `max_concurrency_per_node`         | The number of AutoML processes to run on each node. The total concurrency of an HTS job is `max_nodes` * `max_concurrency_per_node`. |
+| `parallel_step_timeout_in_seconds` |The many-models component timeout, specified in seconds. |
+| `forecast_mode`                    | The inference mode for model evaluation. Valid values are `recursive` and `rolling`. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
+| `step`                             | The step size for rolling forecast. The default is 1. For more information, see [Inference and evaluation of forecasting models](concept-automl-forecasting-evaluation.md) and the [HTSInferenceParameters Class](/python/api/azureml-train-automl-runtime/azureml.train.automl.runtime.htsinferenceparameters#parameters) reference. |
 
 # [Python SDK](#tab/python)
 
@@ -1396,28 +1396,28 @@ Next, define a factory function that creates pipelines for orchestration of HTS 
 from azure.ai.ml import MLClient
 from azure.identity import DefaultAzureCredential, InteractiveBrowserCredential
 
-# Get credential to access AzureML registry
+# Get credential to access azureml registry.
 try:
     credential = DefaultAzureCredential()
-    # Check if token can be obtained successfully
+    # Check whether token can be obtained.
     credential.get_token("https://management.azure.com/.default")
 except Exception as ex:
-    # Fall back to InteractiveBrowserCredential in case DefaultAzureCredential fails
+    # Fall back to InteractiveBrowserCredential if DefaultAzureCredential fails.
     credential = InteractiveBrowserCredential()
 
-# Get HTS training component
+# Get HTS training component.
 hts_train_component = ml_client_registry.components.get(
     name='automl_hts_training',
     version='latest'
 )
 
-# Get HTS inference component
+# Get HTS inference component.
 hts_inference_component = ml_client_registry.components.get(
     name='automl_hts_inference',
     version='latest'
 )
 
-# Get component to compute evaluation metrics
+# Get component to compute evaluation metrics.
 compute_metrics_component = ml_client_metrics_registry.components.get(
     name="compute_metrics",
     label="latest"
@@ -1461,13 +1461,13 @@ def hts_train_evaluate_factory(
         evaluation_config=hts_inference.outputs.evaluation_configs
     )
 
-    # Return metrics results from rolling evaluation
+    # Return metrics results from rolling evaluation.
     return {
         "metrics_result": compute_metrics_node.outputs.evaluation_result
     }
 ```
 
-Construct the pipeline by using the factory function. The training and test data are in the local folders *./data/train* and *./data/test*, respectively. Finally, set the default compute and submit the job as shown in the following example:
+Construct the pipeline by using the factory function. The training and test data are in the local folders *./data/train* and *./data/test*. Finally, set the default compute and submit the job as shown in the following example:
 
 ```python
 pipeline_job = hts_train_evaluate_factory(
@@ -1502,11 +1502,11 @@ type: pipeline
 description: AutoML Many Models Forecasting Pipeline
 experiment_name: cli-v2-automl-mm-forecasting-pipeline
 
-# Set the default compute for pipeline steps
+# Set the default compute for pipeline steps.
 settings:
     default_compute: cpu-compute
 
-# Set pipeline inputs
+# Set pipeline inputs.
 inputs:
     train_data_input:
         type: uri_folder
@@ -1526,15 +1526,15 @@ inputs:
     allocation_method: proportions_of_historical_average
     forecast_level: # forecast level
 
-# Set pipeline outputs
-# Output evaluation metrics and raw test set rolling forecasts
+# Set pipeline outputs.
+# Output evaluation metrics and raw test set rolling forecasts.
 outputs: 
     metrics_result:
         type: uri_file
         mode: upload
 
 jobs:
-    # Configure AutoML many models training component
+    # Configure AutoML many-models training component.
     hts_train_node:
         type: command
         component: azureml://registries/azureml-preview/components/automl_hts_training
@@ -1549,7 +1549,7 @@ jobs:
                 type: uri_folder
 
 
-    # Configure inference node to make rolling forecasts on test set
+    # Configure inference node to make rolling forecasts on test set.
     hts_inference_node:
         type: command
         component: azureml://registries/azureml-preview/components/automl_hts_inference
@@ -1571,7 +1571,7 @@ jobs:
             evaluation_data:
                 type: uri_file
 
-    # Configure metrics calculation node
+    # Configure metrics calculation node.
     compute_metrics:
         type: command
         component: azureml://registries/azureml/components/compute_metrics
@@ -1584,7 +1584,7 @@ jobs:
             evaluation_result: ${{parent.outputs.metrics_result}}
 ```
 
-You launch the pipeline job with the following command. The many models pipeline configuration is at the path *./automl-hts-forecasting-pipeline.yml*:
+You start the pipeline job by using the following command. The many-models pipeline configuration is at the path *./automl-hts-forecasting-pipeline.yml*.
 
 ```azurecli
 az ml job create --file automl-hts-forecasting-pipeline.yml -w <Workspace> -g <Resource Group> --subscription <Subscription>
@@ -1592,28 +1592,28 @@ az ml job create --file automl-hts-forecasting-pipeline.yml -w <Workspace> -g <R
 
 ---
 
-After the job finishes, the evaluation metrics can be downloaded locally by using the same procedure as in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
+After the job finishes, you can download the evaluation metrics locally by using the procedure in the [single training run pipeline](#orchestrate-training-inference-and-evaluation-by-using-components-and-pipelines).
 
-For a more detailed example, see the [demand forecasting with hierarchical time series notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-hts-pipeline/aml-demand-forecast-hts.ipynb).
+For a more detailed example, see the [Demand Forecasting Using HTS notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-hts-pipeline/aml-demand-forecast-hts.ipynb).
 
 #### Training considerations for an HTS run
 
-The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so each partition is in its own file. This process can be very slow or fail when data is very large. The recommended approach is to partition your data manually before you run HTS training or inference.
+The HTS training and inference components conditionally partition your data according to the `hierarchy_column_names` setting so that each partition is in its own file. This process can be slow or fail when you have a lot of data. We recommended that you to partition your data manually before you run HTS training or inference.
 
 > [!NOTE]
-> The default parallelism limit for an HTS run within a subscription is set to 320. If your workload requires a higher limit, you can contact Microsoft support.
+> The default parallelism limit for an HTS run in a subscription is 320. If your workload requires a higher limit, you can contact Microsoft support.
 
 ## Forecast at scale: Distributed DNN training
 
 As described earlier in this article, you can [enable learning for deep neural networks (DNN)](#enable-learning-for-deep-neural-networks). To learn how distributed training works for DNN forecasting tasks, see [Distributed deep neural network training (preview)](concept-automl-forecasting-at-scale.md#distributed-dnn-training-preview). 
 
-For scenarios with large data requirements, distributed training with AutoML is available for a limited set of models. You can find more information and code samples in [AutoML at scale: Distributed training](how-to-configure-auto-train.md#automl-at-scale-distributed-training).
+For scenarios that require large amounts of data, distributed training with AutoML is available for a limited set of models. You can find more information and code samples in [AutoML at scale: Distributed training](how-to-configure-auto-train.md#automl-at-scale-distributed-training).
 
 ## Explore example notebooks
 
 Detailed code samples that demonstrate advanced forecasting configurations are available in the [AutoML Forecasting Sample Notebooks](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/automl-standalone-jobs) GitHub repository. Here are some of the example notebooks:
 
-- [Create demand forecasting pipeline (HTS and Many models)](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline)
+- [Create demand forecasting pipeline (HTS and many models)](https://github.com/Azure/azureml-examples/tree/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline)
 - [Train TCNForecaster (DNN) model on GitHub dataset](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-github-dau/auto-ml-forecasting-github-dau.ipynb)
 - [Forecast with holiday detection and featurization (bike-share dataset)](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-bike-share/auto-ml-forecasting-bike-share.ipynb)
 - [Configure lags and rolling window aggregation manually](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/automl-standalone-jobs/automl-forecasting-task-energy-demand/automl-forecasting-task-energy-demand-advanced.ipynb)
@@ -1621,5 +1621,5 @@ Detailed code samples that demonstrate advanced forecasting configurations are a
 ## Related content
 
 - [Deploy an AutoML model to an online endpoint](how-to-deploy-automl-endpoint.md)
-- [Get AutoML model explanations with the Python SDK](./v1/how-to-machine-learning-interpretability-automl.md)
+- [Model interpretability with the Python SDK](./v1/how-to-machine-learning-interpretability-automl.md)
 - [Choose a modeling configuration](how-to-automl-forecasting-faq.md#what-modeling-configuration-should-i-use)
