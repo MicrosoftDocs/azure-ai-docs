@@ -234,7 +234,7 @@ console.log('Response content:', result.choices[0].message.content);
 
 ```
 
-To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`, modeify the previous code by creating the client as follows:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`, modify the previous code by creating the client as follows:
 
 ```javascript
 import { OpenAI } from "openai";
