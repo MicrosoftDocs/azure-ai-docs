@@ -3,7 +3,7 @@ title: Ask the Foundry agent
 titleSuffix: Azure AI Foundry
 description: Learn how to ask the Foundry agent for help, getting your questions answered based on Azure AI Foundry documentation and model catalog.
 ms.service: azure-ai-foundry
-ms.date: 07/28/2025
+ms.date: 10/27/2025
 ms.reviewer: sgilley
 ms.author: jeomhove
 author: jfomhover
