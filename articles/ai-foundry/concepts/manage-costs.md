@@ -50,7 +50,7 @@ You use Azure AI Foundry Tools in Azure AI Foundry portal. Costs for  AI Foundry
 
 Use the [Azure pricing calculator](https://azure.microsoft.com/pricing/calculator/) to estimate costs before you add Azure AI Foundry Tools.
 
-1. Search for and sellect a product, such as Azure AI Language, in the Azure pricing calculator.
+1. Search for and select a product, such as Azure AI Language, in the Azure pricing calculator.
 
 1. Select more than one product to estimate costs for multiple products. For example, search for and select Azure AI Search to add potential costs.
 
