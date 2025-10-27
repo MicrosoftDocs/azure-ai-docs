@@ -125,7 +125,7 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 ```
 
 
-Here are some examples and practices of how prompts can help:
+Here are some best practices for prompts:
 - Prompts are subject to a maximum length of 4,096 characters.
 - The prompt should match the audio language.
 - Prompts can guide output formatting. By default, responses use a display format optimized for readability. To enforce lexical formatting, include: `Output must be in lexical format.`
