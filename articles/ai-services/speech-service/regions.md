@@ -207,6 +207,16 @@ The regions in these tables support most of the core features of the Speech serv
 | westus2 | ✅ | ✅ | ✅ |
 | westus3 | ✅ | ✅ |   |
 
+# [LLM speech](#tab/llmspeech)
+
+| **Region** | **transcription** | **translation** |
+|-----|-----|-----|
+| centralindia   | ✅ | ✅ |
+| eastus | ✅ | ✅ |
+| northeurope | ✅ | ✅ |
+| southeastasia  | ✅ | ✅ |
+| westus | ✅ | ✅ |
+
 # [Voice live](#tab/voice-live)
 
 | **Region** | **gpt-realtime** | **gpt-4o-mini-realtime-preview** (Preview) | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5** (Preview) | **gpt-5-mini** (Preview) | **gpt-5-nano** (Preview) | **gpt-5-chat** (Preview) | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) |
