@@ -1,5 +1,5 @@
 ---
-title: Migrate from Azure AI Inference SDK to OpenAI v1 SDK
+title: Migrate from Azure AI Inference SDK to OpenAI v1 SDK (take2)
 titleSuffix: Azure AI Foundry
 description: Learn how to migrate your applications from Azure AI Inference SDK to OpenAI v1 SDK for Azure AI Foundry Models
 ms.service: azure-ai-foundry
@@ -14,7 +14,7 @@ ms.custom: migration
 ai-usage: ai-assisted
 ---
 
-# Migrate from Azure AI Inference SDK to OpenAI v1 SDK
+# Migrate from Azure AI Inference SDK to OpenAI v1 SDK (take2)
 
 This article provides guidance on migrating your applications from the Azure AI Inference SDK to the OpenAI v1 SDK. The OpenAI v1 SDK offers broader compatibility with OpenAI's latest features and allows you to seamlessly switch between OpenAI and Azure endpoints with minimal code changes.
 
@@ -1244,7 +1244,7 @@ If you receive "model not found" errors:
 
 ## Related content
 
-- [How to generate chat completions with Azure AI Foundry Models](../../../TMP/use-chat-completions.md)
-- [Azure OpenAI supported programming languages](../../../../openai/supported-languages.md)
+- [How to generate chat completions with Azure AI Foundry Models](../foundry-models/how-to/use-chat-completions.md)
+- [Azure OpenAI supported programming languages](../openai/supported-languages.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
-- [API evolution and version lifecycle](../../../../openai/api-version-lifecycle.md)
+- [Azure OpenAI in Azure AI Foundry Models API lifecycle](../openai/api-version-lifecycle.md)
