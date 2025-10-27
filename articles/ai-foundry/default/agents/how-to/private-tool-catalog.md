@@ -7,7 +7,7 @@ ms.date: 10/27/2025
 ms.manager: nitinme
 ms.topic: how-to
 ms.service: azure-ai-foundry
-ms.subservice: agents
+ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
@@ -28,19 +28,19 @@ Use this article to learn how to build a private [tool catalog](../concepts/tool
 
 1. Navigate to your API Center resource in the [Azure portal](https://portal.azure.com). If your remote MCP server requires authentication, select **Governance** -> **authorization** in the left panel
 
-     :::image type="content" source="../media/tool-catalog/api-center-resource.png" alt-text="A screenshot showing the API Center resource in the Azure portal." lightbox="../media/tool-catalog/api-center-resource.png:::
+     :::image type="content" source="../media/tool-catalog/api-center-resource.png" alt-text="A screenshot showing the API Center resource in the Azure portal." lightbox="../media/tool-catalog/api-center-resource.png":::
 
 1. Select **add configuration** and set the security scheme to be `API Key`, `OAuth` or `HTTP` (bearer token authorization) and provide the required information.
 
-    > [!NOTE]: 
+    > [!NOTE] 
     > If you choose `API key` the key you provide in the Azure Key Vault won't be used in Azure AI Foundry to configure the MCP server. Developers need to provide the API key during configuration.   
 
 1. Select the MCP server -> **details** -> **versions** -> **Manage Access (preview)**
 
-     :::image type="content" source="../media/tool-catalog/api-center-versions.png" alt-text="A screenshot showing the API Center resource in the Azure portal." lightbox="../media/tool-catalog/api-center-versions.png:::
+     :::image type="content" source="../media/tool-catalog/api-center-versions.png" alt-text="A screenshot showing the API Center resource in the Azure portal." lightbox="../media/tool-catalog/api-center-versions.png":::
 
 1. Select the authorization configuration you created.
 
 ## Give access to your organization. 
 
-For developers to see the MCP servers in the Azure AI Foundry tool catalog, you need to give them at least [Azure API Center Data Reader](/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) or equivalent role. 
+For developers to see the MCP servers in the Azure AI Foundry tool catalog, you need to give them at least [Azure API Center Data Reader](/azure/role-based-access-control/built-in-roles/integration#azure-api-center-data-reader) or equivalent role. 

@@ -7,7 +7,7 @@ ms.date: 10/27/2025
 ms.manager: nitinme
 ms.topic: conceptual
 ms.service: azure-ai-foundry
-ms.subservice: agents
+ms.subservice: azure-ai-foundry-agent-service
 ai-usage: ai-assisted
 ---
 
