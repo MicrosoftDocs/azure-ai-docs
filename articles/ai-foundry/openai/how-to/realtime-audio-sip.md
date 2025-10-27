@@ -134,9 +134,9 @@ OpenAI returns 200 OK once the REFER is relayed to your SIP provider. The downst
 
 ### Monitor call events and issue session commands and updates
 
-After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it is configured as part of the json when accepting the call. The example here shows a common scenario, issuing a "response.create" message to instruct the Realtime API system to "answer the phone and say hello."
+After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it's configured as part of the json when accepting the call. The example here shows a common scenario, issuing a "response.create" message to instruct the Realtime API system to "answer the phone and say hello."
 
-Here is a sample of a WebSocket request to a specific SIP call.
+Here's a sample of a WebSocket request to a specific SIP call.
 
 ```
 GET wss://<your azure resource name>.openai.azure.com/openai/v1/realtime?call_id={call_id}
