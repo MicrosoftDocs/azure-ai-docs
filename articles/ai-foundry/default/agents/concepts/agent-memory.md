@@ -369,7 +369,7 @@ Before you delete a memory store, consider the impact on dependent agents. Agent
 
 Consider these practices when implementing memory in your agents:
 
-- **Implement per-user access controls**: Avoid giving every agent access to all memory. Use the *scope* parameter to restrict who can see and update memories. For shared memory across agents or users, use the scope to instruct the memory system not to store personal information.
+- **Implement per-user access controls**: Avoid giving every agent access to all memory. Use the `scope` parameter to restrict who can see and update memories. For shared memory across agents or users, use the scope to instruct the memory system not to store personal information.
 - **Minimize and protect sensitive data**: Store only what's necessary for your use case. If you must store sensitive data, such as personally identifiable information (PII), health data, or confidential business inputs, perform redaction and store only partial data.
 - **Support privacy and compliance**: Implement mechanisms for users to access, export, correct, and delete their data. Support selective deletion of specific memory entries, not just full resets. Log deletions in a tamper-evident audit trail. Ensure your system supports GDPR, CCPA, HIPAA, and other relevant frameworks.
 - **Segment data and isolate memory**: In multitenant or multiagent systems, segment memory logically and operationally. Allow customers to define, isolate, inspect, and delete their own memory footprint.
