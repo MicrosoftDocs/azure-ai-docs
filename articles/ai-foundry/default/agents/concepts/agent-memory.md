@@ -243,7 +243,7 @@ Search operations return a search ID that you can use for incremental searches, 
 
 ## Update a memory store
 
-Update memory store properties such as name, description, or metadata to reflect changes in your application or organizational requirements.
+Update memory store properties, such as `name`, `description`, or `metadata`, to reflect changes in your application or organizational requirements.
 
 # [Python](#tab/python)
 
