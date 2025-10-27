@@ -1,7 +1,7 @@
 ---
-title: Use Native Chat Completions
+title: Transcribe audio files with Foundry Local
 titleSuffix: Foundry Local
-description: This article provides instructions on how to leverage native chat completions API in Foundry Local.
+description: This article provides instructions on how to transcribe audio using Foundry Local.
 ms.service: azure-ai-foundry
 ms.subservice: foundry-local
 ms.custom: build-2025
@@ -15,20 +15,27 @@ reviewer: samuel100
 ai-usage: ai-assisted
 ---
     
-# Use Foundry Local native chat completions API
+# Transcribe recorded audio files with Foundry Local
 
 [!INCLUDE [foundry-local-preview](./../includes/foundry-local-preview.md)]
 
-Foundry Local has a native chat completions API that allows you to use the inference capabilities without needing to rely on the optional Web Server or separate SDKs (such as the OpenAI chat completions API). This article shows you how to use the native chat completions API in Foundry Local.
+Foundry Local has a native audio transcription API that allows you to transcribe audio files in the following formats:
+
+- WAV
+- MP3
+- FLAC
+
+
+This article shows you how to use the native audio transcription API in Foundry Local.
 
 ::: zone pivot="programming-language-python"
-[!INCLUDE [Python](../includes/native-chat-completions/python.md)]
+[!INCLUDE [Python](../includes/audio-transcription/python.md)]
 ::: zone-end
 ::: zone pivot="programming-language-javascript"
-[!INCLUDE [JavaScript](../includes/native-chat-completions/javascript.md)]
+[!INCLUDE [JavaScript](../includes/audio-transcription/javascript.md)]
 ::: zone-end
 ::: zone pivot="programming-language-csharp"
-[!INCLUDE [C#](../includes/native-chat-completions/csharp.md)]
+[!INCLUDE [C#](../includes/audio-transcription/csharp.md)]
 ::: zone-end
 
 ## Related content
