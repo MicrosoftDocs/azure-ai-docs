@@ -8,35 +8,27 @@ ms.topic: how-to
 ms.date: 10/06/2025
 ---
 
-# Use function calling in a Voice Live session
+# Use Function Calling in a Voice Live Session
 
-The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information, and include that information in their spoken responses.
+The Voice Live API supports function calling in voice conversations. This allows you to create voice assistants that can call external functions to get real-time information and include that information in their spoken responses.
 
-
-## About function calling
-
-available_functions ties tool names to JSON-returning Python callables.
-
-_setup_session registers those callables as FunctionTools in the Voice Live RequestSession.
-
-_process_events/_handle_event react to server events, coordinating audio flow and spotting function calls.
-
-_handle_function_call_with_improved_pattern executes the requested function and responds with a FunctionCallOutputItem.
-
-AudioProcessor streams microphone input and assistant playback so the call-and-response stays realtime.
 
 
 ## Implementation steps
 
-1. Write backend functions: implement Python callables that fulfill business tasks (time lookup, weather, database queries) and serialize outputs to JSON-friendly dictionaries.
+The code sample below does these basic steps to set up function calling.
 
-1. Describe tools for Voice Live: create FunctionTool definitions with names, parameter schemas, and descriptions, and bundle them into the session configuration so the model understands available actions.
+1. **Write backend functions**: Define Python callables that fulfill business tasks (time lookup, weather, database queries) and serialize outputs to JSON-friendly dictionaries.
 
-1. Initialize the session: connect with azure.ai.voicelive.aio.connect, provide credentials, choose the target model/voice, enable audio modalities, transcription, and turn detection. Start audio processing: spin up AudioProcessor to capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
+1. **Describe tools for Voice Live**: Create **FunctionTool** definitions with names, parameter schemas, and text descriptions, and bundle them into the session configuration so the model understands the available actions.
 
-1. Run the event loop: await Voice Live events, updating session state, reacting to user speech boundaries, and streaming assistant audio/text deltas back to the user interface. When a ResponseFunctionCallItem arrives, locate the Python callable, execute it with parsed arguments, package the result into a FunctionCallOutputItem, and send it back so the assistant can finalize its reply.
+1. **Initialize the session**: Connect using `azure.ai.voicelive.aio.connect`, provide credentials, choose your target model/voice, and enable audio modalities, transcription, and turn detection.
 
+1. **Start audio processing**: Spin up **AudioProcessor** to capture microphone input, encode it (PCM16, 24 kHz), and stream it to the Voice Live connection; simultaneously prepare playback for assistant audio responses.
 
+1. **Run the event loop**: Await Voice Live events, updating session state, reacting to user speech boundaries, and streaming assistant audio/text back to the user interface. When a **ResponseFunctionCallItem** arrives, locate the callable, execute it with parsed arguments, package the result into a **FunctionCallOutputItem**, and send it back so the assistant can finalize its reply.
+
+## Sample code
 
 #### [Python](#tab/python)
 
