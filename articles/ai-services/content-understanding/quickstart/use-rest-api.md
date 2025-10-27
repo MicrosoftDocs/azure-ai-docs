@@ -93,6 +93,16 @@ Use the `request-id` from the [`POST` response](#post-response) and retrieve the
 1. Replace `{endpoint}` and `{key}` with the endpoint and key values from your Azure portal Azure AI Foundry instance.
 2. Replace `{request-id}` with the `request-id` from the `POST` response, or use the complete URL from the `Operation-Location` response header.
 
+> [!NOTE]
+> When using the video analyzer, keyframes are returned as URLs in the JSON response (for example, under `result.contents.frames[]`).  
+> You can download these keyframes using a standard HTTP `GET` request for each keyframe URL.  
+> Example (Bash):  
+> ```bash
+> curl -O "<keyframeUrl>"
+> ```
+> Repeat this command for each keyframe URL you want to save.
+
+
 #### GET request
 ```bash
 curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview" \
