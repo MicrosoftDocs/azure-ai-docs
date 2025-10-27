@@ -46,6 +46,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 - Within one run, the AI model will evaluate the tool outputs and may decide to invoke the tool again for more information and context. AI model may also decide which piece(s) of tool outputs are used to generate the response.
 - Azure AI Agent service will return **AI model generated response** as output so end-to-end latency will be impacted pre-/post-processing of LLMs.
 - Grounding with Bing Search tool does NOT return the tool output to developers and end users.
+- Grounding with Bing Search only works with agents that are not using VPN or Private Endpoints. The agent must have have normal network access.
 
 ## Usage support
 
