@@ -26,7 +26,7 @@ The [PII language support page](../language-support.md) lists all languages avai
 
 Supported API versions:
 
-* [**Stable 2025-11-01: Generally Available (GA)**](s/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
+* [**Stable 2025-11-01: Generally Available (GA)**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-01&preserve-view=true&tabs=HTTP)
 * [**Preview: 2025-11-15-preview**](/rest/api/language/analyze-text/analyze-text/analyze-text?view=rest-language-analyze-text-2025-11-15-preview&preserve-view=true&tabs=HTTP). 
 
 The following entities are currently in preview:
