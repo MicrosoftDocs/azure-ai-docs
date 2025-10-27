@@ -41,7 +41,7 @@ Before you can use GPT real-time audio, you need:
 
 If you want to connect a phone number to the Realtime API, use a SIP trunking provider (for example, Twilio). A trunking provider is a service that converts your phone call to IP traffic. After you purchase a phone number from your SIP trunking provider, follow the instructions shown here.
 
-Start by creating a webhook for incoming calls with the Azure OpenI Webhook Service. We have a [REST API](../../../ai-foundry/how-to/webhooks.md)
+Start by creating a webhook for incoming calls with the Azure OpenAI Webhook Service. We have a [REST API](../../../ai-foundry/openai/how-to/webhooks.md) that allows you to create, update, view and delete webhook endpoints.
 
 Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal id of your Azure Resource. Example: 
 
