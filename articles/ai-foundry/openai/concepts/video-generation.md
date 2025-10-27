@@ -655,7 +655,7 @@ Video generation started: Video(id='video_68ff672709d481908f1fa7c53265d835', com
 
 ---
 
-<!--
+<!-- Remix video currently not fully supported - uncomment once support is added
 
 ### Remix video
 
