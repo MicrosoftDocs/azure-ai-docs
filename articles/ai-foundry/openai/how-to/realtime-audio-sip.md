@@ -43,16 +43,16 @@ If you want to connect a phone number to the Realtime API, use a SIP trunking pr
 
 Start by creating a webhook for incoming calls with the Azure OpenAI Webhook Service. We have a [REST API](../../../ai-foundry/openai/how-to/webhooks.md) that allows you to create, update, view and delete webhook endpoints.
 
-Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal id of your Azure Resource. Example: 
+Then, point your SIP trunk at the Azure OpenAI SIP endpoint, using the internal ID of your Azure Resource. Example: 
 
-1) Get internal id of your Azure Open AI Resource. You can find the internal id by clicking on the `JSON View` of your resource.
-2) Your project id = `"proj_<internalId>"` This might look like `"proj_88c4a88817034471a0ba0fcae24ceb1b"`
+* Get internal ID of your Azure Open AI Resource. You can find the internal ID by clicking on the `JSON View` of your resource.
+* Your project ID = `"proj_<internalId>"` This might look like `"proj_88c4a88817034471a0ba0fcae24ceb1b"`
 
-Your sip invites use this project id as the user: for example, `sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls`.
+Your sip invites use this project ID as the user: for example, `sip:proj_88c4a88817034471a0ba0fcae24ceb1b@<region>.sip.ai.azure.com;transport=tls`.
 
 The currently supported regions are swedencentral and eastus2. 
 
-## Handling Incoming Calls
+## Handling incoming calls
 
 When Azure OpenAI receives SIP traffic associated with your project, your webhook endpoint receives an incoming event message. The event fired for sip calls is type = `realtime.call.incoming` like the example shown here. 
 
@@ -60,7 +60,7 @@ When Azure OpenAI receives SIP traffic associated with your project, your webhoo
 POST https://my_website.com/webhook_endpoint
 user-agent: OpenAI/1.0 (+https://platform.openai.com/docs/webhooks)
 content-type: application/json
-webhook-id: wh_685342e6c53c8190a1be43f081506c52 # unique id for idempotency
+webhook-id: wh_685342e6c53c8190a1be43f081506c52 # unique ID for idempotency
 webhook-timestamp: 1750287078 # timestamp of delivery attempt
 webhook-signature: v1,Signature # signature to verify authenticity from OpenAI
 
@@ -134,9 +134,9 @@ OpenAI returns 200 OK once the REFER is relayed to your SIP provider. The downst
 
 ### Monitor call events and issue session commands and updates
 
-After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it is configured as part of the json when accepting the call. The example here shows a common scenario, issuing a "response.create" message to instruct the realtimeapi system to "answer the phone and say hello."
+After you accept a call, open a WebSocket connection to the same session to stream events and issue Realtime API commands. To create a websocket to an existing call, you must use the call_id parameter. The model argument isn't used because it is configured as part of the json when accepting the call. The example here shows a common scenario, issuing a "response.create" message to instruct the Realtime API system to "answer the phone and say hello."
 
-WebSocket request
+Here is a sample of a WebSocket request to a specific SIP call.
 
 ```
 GET wss://<your azure resource name>.openai.azure.com/openai/v1/realtime?call_id={call_id}
@@ -150,7 +150,7 @@ GET wss://<your azure resource name>.openai.azure.com/openai/v1/realtime?call_id
 
 **Headers**
 
-Authorization: Bearer $TOKEN (or api-key: your api key)
+Authorization: Bearer $TOKEN (or api-key: your API key)
 
 The WebSocket behaves exactly like any other Realtime API connection.
 
@@ -187,7 +187,7 @@ curl -X POST "https://<your azure resoure name>.openai.azure.com/openai/v1/realt
 The API responds with 200 OK when it starts tearing down the call.
 ```
 
-## Sample Webhook Endpoint
+## Sample webhook endpoint
 
 The following code is a python example of a realtime.call.incoming handler. It accepts the call and then logs all the events from the Realtime API.
 
@@ -230,7 +230,7 @@ response_create = {
 async def websocket_task(call_id):
     try:
         async with websockets.connect(
-            "wss://api.openai.com/v1/realtime?call_id=" + call_id,
+            "wss://<your azure resource>.openai.azure.com/openai/v1/realtime?call_id=" + call_id,
             additional_headers=AUTH_HEADER,
         ) as websocket:
             await websocket.send(json.dumps(response_create))
