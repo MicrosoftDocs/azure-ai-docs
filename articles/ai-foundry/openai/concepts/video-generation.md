@@ -655,6 +655,8 @@ Video generation started: Video(id='video_68ff672709d481908f1fa7c53265d835', com
 
 ---
 
+<!--
+
 ### Remix video
 
 The remix feature allows you to modify specific aspects of an existing video while preserving its core elements. By referencing the previous video `id` from a successfully completed generation, and supplying an updated prompt the system maintains the original video's framework, scene transitions, and visual layout while implementing your requested changes. For optimal results, limit your modifications to one clearly articulated adjustment—narrow, precise edits retain greater fidelity to the source material and minimize the likelihood of generating visual defects.
@@ -736,6 +738,8 @@ Video generation started: Video(id='video_68ff7cef76cc8190b7eab9395e936d9e', com
 ```
 
 ---
+
+-->
 
 ## How it works
 
