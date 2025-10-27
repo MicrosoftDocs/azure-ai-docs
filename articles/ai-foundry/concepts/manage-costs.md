@@ -130,6 +130,11 @@ As you use Azure AI Foundry, you incur costs. Azure resource usage unit costs va
 
 When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends so you can see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
 
+You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
+
+> [!IMPORTANT]
+> Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
+
 ### Configure permissions to view costs
 
 To view costs, you need the **Owner** role or have a custom role at either subscription or resource group scope with the following actions:
@@ -174,20 +179,13 @@ To create a custom role, construct a role definition JSON file that specifies th
 
 Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` with your actual values.
 
-### Monitor Azure AI Foundry costs 
 
-You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
-
-> [!IMPORTANT]
-> Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
-
-### Monitor in Azure AI Foundry portal
+## Monitor in Azure AI Foundry portal
 
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 1. Use the sections below to monitor costs.
 
 > [!NOTE].
-
 > These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
 
 ### Agent costs
@@ -195,19 +193,15 @@ You can access cost information from either the [!INCLUDE [foundry-link](../defa
 1. Select **Operate** in the upper-right navigation.
 1. Select **Overview** in the left pane.
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
+1.The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
 
-    :::image type="content" source="../default/media/costs/subscription-project-date.png" alt-text="Screenshot shows setting the subscription, project and date.":::
-
-1.The Estimated cost tile shows the estimated cost of all the agents for the selected project(s) for the selected dates.
-
-   > [!NOTE]
-   > Currently prompt agent and non-Foundry agent costs are not included. 
+For individual agent estimates:
 
 1. Select **Assets** in the left pane
 1. Select the **Agents** tab.
-1. The Estimated costs column shows monthly estimates based on the agent configuration and usage patterns.
+1. The **Estimated costs** column shows monthly estimates based on the agent configuration and usage patterns.
 
-Investigate costs for individual agents:
+For more details of an individual agent:
 
 1. Select **Build** in the upper-right navigation.
 1. Select **Agents** in the left pane.
@@ -226,9 +220,9 @@ Investigate costs for individual agents:
 You  see the total cost along with an estimated cost chart for the given range. 
 
 
-### Monitor in Azure portal
+## Monitor in Azure portal
 
-Here's an example of how to monitor costs. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
+Here's an example of how to monitor costs in the Azure portal. The costs are used as an example only. Your costs vary depending on the services that you use and the amount of usage.
 
 1. Sign in to the [Azure portal](https://portal.azure.com/)
 1. Select the resource group that contains the project you want to monitor.
