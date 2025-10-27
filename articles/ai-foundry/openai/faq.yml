@@ -109,6 +109,11 @@ sections:
 
           If the service doesn't perform processing, you won't be charged.
           For example, a 401 error due to authentication or a 429 error due to exceeding the Rate Limit.
+      - question: |
+          Do all Azure OpenAI models support `max_completion_tokens` with the chat completions API?
+        answer:
+          No, all Azure OpenAI models do not support `max_completion_tokens`. This parameter is not supported with older models like gpt-4 (turbo-2024-04-09).
+
   - name: Getting access to Azure OpenAI Service
     questions:
       - question: |
