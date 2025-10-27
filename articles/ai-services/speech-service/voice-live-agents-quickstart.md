@@ -1,7 +1,7 @@
 ---
-title: Get started with Azure AI Speech voice live and Azure AI Foundry Agent Service
+title: Get started with Azure Speech in Foundry Tools voice live and Azure AI Foundry Agent Service
 titleSuffix: Azure AI services
-description: Learn how to use voice live with agents for real-time voice agents with Azure AI Speech.
+description: Learn how to use voice live with agents for real-time voice agents with Azure Speech in Foundry Tools.
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to

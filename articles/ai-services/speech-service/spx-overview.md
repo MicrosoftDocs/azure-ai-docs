@@ -1,5 +1,5 @@
 ---
-title: The Azure AI Speech CLI
+title: The Azure Speech in Foundry Tools CLI
 titleSuffix: Azure AI services
 description: In this article, you learn about the Speech CLI, a command-line tool for using Speech service without having to write any code.
 author: PatrickFarley

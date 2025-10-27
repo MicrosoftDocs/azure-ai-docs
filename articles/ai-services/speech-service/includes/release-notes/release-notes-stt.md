@@ -207,7 +207,7 @@ The Speech to text REST API version 3.2 is now generally available. For more inf
 
 #### Video translation (Preview)
 
-Video translation is now available in public preview. Video translation is a feature in Azure AI Speech that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
+Video translation is now available in public preview. Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more. For more information, see the [video translation overview](../../video-translation-overview.md).
 
 #### Pronunciation Assessment
 

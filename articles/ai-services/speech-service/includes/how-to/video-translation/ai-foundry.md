@@ -9,7 +9,7 @@ ms.date: 6/13/2025
 ms.custom: references_regions
 ---
 
-In this article, you learn how to use video translation with Azure AI Speech in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
+In this article, you learn how to use video translation with Azure Speech in Foundry Tools in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
 > [!TIP]
 > Try out video translation in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) before using the API. Use the [video translation REST API](?pivots=rest-api) to integrate video translation into your applications. For more information about the API, see [Video translation REST API](/rest/api/aiservices/videotranslation/translation-operations/create-translation).

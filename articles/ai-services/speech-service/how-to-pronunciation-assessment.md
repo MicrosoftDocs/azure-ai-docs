@@ -54,7 +54,7 @@ For how to use Pronunciation Assessment in streaming mode in your own applicatio
 
 ::: zone pivot="programming-language-python"
 
-For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py#:~:text=def%20pronunciation_assessment_from_stream()), or try the [Azure AI Speech Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
+For how to use Pronunciation Assessment in streaming mode in your own application, see [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/scenarios/python/console/language-learning/pronunciation_assessment.py#:~:text=def%20pronunciation_assessment_from_stream()), or try the [Azure Speech in Foundry Tools Toolkit](https://marketplace.visualstudio.com/items?itemName=ms-azureaispeech.azure-ai-speech-toolkit).
 
 ::: zone-end
 

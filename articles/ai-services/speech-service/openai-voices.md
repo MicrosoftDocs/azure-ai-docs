@@ -16,7 +16,7 @@ ms.custom:
 
 # What are OpenAI text to speech voices? 
 
-Like Azure AI Speech voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. 
+Like Azure Speech in Foundry Tools voices, OpenAI text to speech voices deliver high-quality speech synthesis to convert written text into natural sounding spoken audio. This unlocks a wide range of possibilities for immersive and interactive user experiences. 
 
 OpenAI text to speech voices are available via two model variants: `Neural` and `NeuralHD`.
 

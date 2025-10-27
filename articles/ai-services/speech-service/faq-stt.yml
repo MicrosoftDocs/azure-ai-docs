@@ -2,7 +2,7 @@
 metadata:
   title: Speech to text frequently asked questions (FAQ)
   titleSuffix: Azure AI services
-  description: Get answers to frequently asked questions about the speech to text capability in Azure AI Speech.
+  description: Get answers to frequently asked questions about the speech to text capability in Azure Speech in Foundry Tools.
   author: PatrickFarley
   manager: nitinme
   ms.service: azure-ai-speech

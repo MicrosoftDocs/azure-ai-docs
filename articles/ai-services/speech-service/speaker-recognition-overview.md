@@ -9,7 +9,7 @@ ms.topic: overview
 ms.date: 6/5/2025
 ms.author: pafarley
 keywords: speaker recognition, voice biometry
-#customer intent: As a developer, I want to learn about speaker recognition in Azure AI Speech to verify and identify speakers by their unique voice characteristics.
+#customer intent: As a developer, I want to learn about speaker recognition in Azure Speech in Foundry Tools to verify and identify speakers by their unique voice characteristics.
 ---
 
 # What is speaker recognition?

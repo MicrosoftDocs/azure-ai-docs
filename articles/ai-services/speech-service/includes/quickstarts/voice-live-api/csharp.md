@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 09/23/2025
 ---
 
-In this article, you learn how to use Azure AI Speech voice live with Azure AI Foundry models using the VoiceLive SDK for C#.
+In this article, you learn how to use Azure Speech in Foundry Tools voice live with Azure AI Foundry models using the VoiceLive SDK for C#.
 
 [!INCLUDE [Introduction](intro.md)]
 

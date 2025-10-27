@@ -67,7 +67,7 @@ Example session configuration with custom speech models. In this case, if the de
 ```
 
 > [!NOTE]
-> In order to use a custom speech model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure AI Speech resource you have to copy the model to the resource you are using to call the Voice live API.
+> In order to use a custom speech model with Voice live API, the model must be available on the same Azure AI Foundry resource you are using to call the Voice live API. If you trained the model on a different Azure AI Foundry or Azure Speech in Foundry Tools resource you have to copy the model to the resource you are using to call the Voice live API.
 > You pay separately for custom speech training and model hosting. 
 
 ## Speech output customization

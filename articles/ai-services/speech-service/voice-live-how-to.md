@@ -24,7 +24,7 @@ For a table of supported models and regions, see the [Voice live API overview](.
 
 ## Authentication
 
-An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure AI Speech Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
+An [Azure AI Foundry resource](../multi-service-resource.md) or a [Azure Speech in Foundry Tools Services resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesSpeechServices) is required to use the Voice live API.
 
 > [!NOTE]
 > Using Voice Live API is optimized for Azure AI Foundry resources. We recommend using Azure AI Foundry resources for full feature availability and best Azure AI Foundry integration experience.        

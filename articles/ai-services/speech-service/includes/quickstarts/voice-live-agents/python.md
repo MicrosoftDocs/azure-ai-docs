@@ -7,7 +7,7 @@ ms.topic: include
 ms.date: 9/26/2025
 ---
 
-In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using Python code. 
+In this article, you learn how to use Azure Speech in Foundry Tools voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using Python code. 
 
 [!INCLUDE [Introduction](intro.md)]
 

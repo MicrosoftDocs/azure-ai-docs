@@ -9,7 +9,7 @@ ms.date: 6/13/2025
 ms.custom: references_regions
 ---
 
-In this article, you learn how to use video translation with Azure AI Speech in the [Speech Studio](https://aka.ms/speechstudio).
+In this article, you learn how to use video translation with Azure Speech in Foundry Tools in the [Speech Studio](https://aka.ms/speechstudio).
 
 ## Pre-requisites
 

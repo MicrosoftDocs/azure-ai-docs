@@ -57,7 +57,7 @@ The following voices are now available for the feature:
 ### May 2025 release
 
 #### Public preview for VoiceLive API
-Azure AI Speech feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
+Azure Speech in Foundry Tools feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
 
 ### April 2025 release
 

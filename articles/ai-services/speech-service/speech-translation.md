@@ -9,12 +9,12 @@ ms.topic: overview
 ms.date: 08/07/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp
-#Customer intent: As a developer, I want to learn about the benefits and capabilities of speech translation with Azure AI Speech.
+#Customer intent: As a developer, I want to learn about the benefits and capabilities of speech translation with Azure Speech in Foundry Tools.
 ---
 
 # What is speech translation?
 
-In this article, you learn about the benefits and capabilities of translation with Azure AI Speech. The Speech service supports real-time, multi-language speech to speech and speech to text translation of audio streams. 
+In this article, you learn about the benefits and capabilities of translation with Azure Speech in Foundry Tools. The Speech service supports real-time, multi-language speech to speech and speech to text translation of audio streams. 
 
 By using the Speech SDK or Speech CLI, you can give your applications, tools, and devices access to source transcriptions and translation outputs for the provided audio. Interim transcription and translation results are returned as speech is detected, and the final results can be converted into synthesized speech.
 

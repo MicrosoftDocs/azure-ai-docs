@@ -38,13 +38,13 @@ Here's more information about neural text to speech features in the Speech servi
 
 * **Asynchronous synthesis of long audio**: Use the [batch synthesis API](batch-synthesis.md) to asynchronously synthesize text to speech files longer than 10 minutes (for example, audio books or lectures). Unlike synthesis performed via the Speech SDK or Speech to text REST API, responses aren't returned in real-time. The expectation is that requests are sent asynchronously, responses are polled for, and synthesized audio is downloaded when the service makes it available.
 
-* **Standard voices**: Azure AI Speech uses deep neural networks to overcome the limits of traditional speech synthesis regarding stress and intonation in spoken language. Prosody prediction and voice synthesis happen simultaneously, which results in more fluid and natural-sounding outputs. Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can use neural voices to:
+* **Standard voices**: Azure Speech in Foundry Tools uses deep neural networks to overcome the limits of traditional speech synthesis regarding stress and intonation in spoken language. Prosody prediction and voice synthesis happen simultaneously, which results in more fluid and natural-sounding outputs. Each standard voice model is available at 24 kHz and high-fidelity 48 kHz. You can use neural voices to:
 
   - Make interactions with chatbots and voice assistants more natural and engaging.
   - Convert digital texts such as e-books into audiobooks.
   - Enhance in-car navigation systems.
 
-  For a full list of standard Azure AI Speech neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
+  For a full list of standard Azure Speech in Foundry Tools neural voices, see [Language and voice support for the Speech service](language-support.md?tabs=tts).
 
 * **Improve text to speech output with SSML**: Speech Synthesis Markup Language (SSML) is an XML-based markup language used to customize text to speech outputs. With SSML, you can adjust pitch, add pauses, improve pronunciation, change speaking rate, adjust volume, and attribute multiple voices to a single document.
 

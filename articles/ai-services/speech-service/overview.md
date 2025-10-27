@@ -103,7 +103,7 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 ## Delivery and presence
 
-You can deploy Azure AI Speech features in the cloud or on-premises.
+You can deploy Azure Speech in Foundry Tools features in the cloud or on-premises.
 
 With [containers](speech-container-howto.md), you can bring the service closer to your data for compliance, security, or other operational reasons. 
 

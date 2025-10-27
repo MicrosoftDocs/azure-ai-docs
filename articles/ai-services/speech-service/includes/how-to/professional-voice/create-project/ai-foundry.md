@@ -26,7 +26,7 @@ To fine-tune a professional voice model, follow these steps:
 
 ## Continue fine-tuning
 
-Go to the Azure AI Speech documentation to learn how to continue fine-tuning your professional voice model:
+Go to the Azure Speech in Foundry Tools documentation to learn how to continue fine-tuning your professional voice model:
 * [Add voice talent consent](../../../../professional-voice-create-consent.md)
 * [Add training datasets](../../../../professional-voice-create-training-set.md)
 * [Train your voice model](../../../../professional-voice-train-voice.md)

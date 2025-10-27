@@ -200,7 +200,7 @@ If you are approved to run the container disconnected from the internet, the fol
 
 In order to prepare and configure a disconnected custom speech to text container, you need two separate speech resources:
 
-- A regular Azure AI Speech resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan. This is used to train, download, and configure your custom speech models for use in your container.
+- A regular Azure Speech in Foundry Tools resource that is either configured to use a "**S0 - Standard**" pricing tier or a "**Speech to Text (Custom)**" commitment tier pricing plan. This is used to train, download, and configure your custom speech models for use in your container.
 - An Azure AI Speech resource that is configured to use the "**DC0 Commitment (Disconnected)**" pricing plan. This is used to download your disconnected container license file required to run the container in disconnected mode.
 
 Follow these steps to download and run the container in disconnected environments. 

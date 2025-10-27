@@ -57,7 +57,7 @@ The Voice live API is fully managed, eliminating the need for customers to handl
 
 The Voice live API is designed for compatibility with the Azure OpenAI Realtime API. The supported real-time events are mostly in parity with the [Azure OpenAI Realtime API events](/azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context), with some exceptions as described in the [Voice live API how to guide](./voice-live-how-to.md).
 
-Features that are unique to the Voice live API are designed to be optional and additive. You can add Azure AI Speech capabilities such as noise suppression, echo cancellation, and advanced end-of-turn detection to your existing applications without needing to change your existing architecture.
+Features that are unique to the Voice live API are designed to be optional and additive. You can add Azure Speech in Foundry Tools capabilities such as noise suppression, echo cancellation, and advanced end-of-turn detection to your existing applications without needing to change your existing architecture.
 
 The API is supported through WebSocket events, allowing for an easy server-to-server integration. Your backend or middle-tier service connects to the Voice live API via WebSockets. You can use the WebSocket messages directly to interact with the API.
 

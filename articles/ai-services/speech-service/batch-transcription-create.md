@@ -1,7 +1,7 @@
 ---
 title: Create a batch transcription - Speech service
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Speech for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
+description: Learn how to use Azure Speech in Foundry Tools for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -255,7 +255,7 @@ Batch transcription requests for expired models fail with a 4xx error. Set the `
 
 ## Use a Whisper model
 
-Azure AI Speech supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
+Azure Speech in Foundry Tools supports OpenAI's Whisper model by using the batch transcription API. You can use the Whisper model for batch transcription.
 
 > [!NOTE]
 > Azure OpenAI in Azure AI Foundry Models also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, see [Speech to text with the Azure OpenAI Whisper model](../../ai-foundry/openai/whisper-quickstart.md). For more information about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models, see [What is the Whisper model?](./whisper-overview.md)

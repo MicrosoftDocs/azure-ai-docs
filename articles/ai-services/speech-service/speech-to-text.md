@@ -13,7 +13,7 @@ ms.author: pafarley
 
 # What is speech to text?
 
-Azure AI Speech service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
+Azure Speech in Foundry Tools service offers advanced speech to text capabilities. This feature supports both real-time and batch transcription, providing versatile solutions for converting audio streams into text. 
 
 ## Core Features 
 

@@ -1,7 +1,7 @@
 ---
-title: Game development with Azure AI Speech - Speech service
+title: Game development with Azure Speech in Foundry Tools - Speech service
 titleSuffix: Azure AI services
-description: Concepts for game development with Azure AI Speech.
+description: Concepts for game development with Azure Speech in Foundry Tools.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
@@ -10,7 +10,7 @@ ms.date: 08/07/2025
 ms.author: pafarley
 ---
 
-# Game development with Azure AI Speech
+# Game development with Azure Speech in Foundry Tools
 
 Azure AI Speech can be used to improve various gaming scenarios, both in-game and out-of-game. 
 

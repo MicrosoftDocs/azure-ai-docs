@@ -28,7 +28,7 @@ Let's add some code that works as a skeleton for our project.
     <!DOCTYPE html>
     <html>
     <head>
-    <title>Microsoft Azure AI Speech SDK JavaScript Quickstart</title>
+    <title>Microsoft Azure Speech in Foundry Tools SDK JavaScript Quickstart</title>
     <meta charset="utf-8" />
     </head>
     <body style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px;">

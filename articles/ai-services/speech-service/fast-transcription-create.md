@@ -1,7 +1,7 @@
 ---
 title: Use the fast transcription API - Speech service
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Speech for fast transcriptions, where you submit audio get the transcription results faster than real-time.
+description: Learn how to use Azure Speech in Foundry Tools for fast transcriptions, where you submit audio get the transcription results faster than real-time.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -11,7 +11,7 @@ ms.date: 5/25/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
-# Use the fast transcription API with Azure AI Speech 
+# Use the fast transcription API with Azure Speech in Foundry Tools 
 
 Fast transcription API is used to transcribe audio files with returning results synchronously and faster than real-time. Use fast transcription in the scenarios that you need the transcript of an audio recording as quickly as possible with predictable latency, such as: 
 

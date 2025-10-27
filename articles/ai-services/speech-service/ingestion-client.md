@@ -18,7 +18,7 @@ The Ingestion Client is a tool released by Microsoft on GitHub that helps you qu
 > [!TIP]
 > You can use the tool and resulting solution in production to process a high volume of audio.
 
-Ingestion Client uses the [Azure AI Language](../language-service/index.yml), [Azure AI Speech](./index.yml), [Azure storage](https://azure.microsoft.com/product-categories/storage/), and [Azure Functions](https://azure.microsoft.com/services/functions/). 
+Ingestion Client uses the [Azure AI Language](../language-service/index.yml), [Azure Speech in Foundry Tools](./index.yml), [Azure storage](https://azure.microsoft.com/product-categories/storage/), and [Azure Functions](https://azure.microsoft.com/services/functions/). 
 
 ## Get started with the Ingestion Client
 

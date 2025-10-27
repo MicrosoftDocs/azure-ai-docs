@@ -1,17 +1,17 @@
 ---
-title: Language learning with Azure AI Speech
+title: Language learning with Azure Speech in Foundry Tools
 titleSuffix: Azure AI services
-description: Learn about how Azure AI Speech can be used to learn languages.
+description: Learn about how Azure Speech in Foundry Tools can be used to learn languages.
 author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
 ms.date: 08/07/2025
 ms.author: pafarley
-#Customer intent: As a language learner, I want to learn how to use Azure AI Speech to improve my language skills.
+#Customer intent: As a language learner, I want to learn how to use Azure Speech in Foundry Tools to improve my language skills.
 ---
 
-# Language learning with Azure AI Speech
+# Language learning with Azure Speech in Foundry Tools
 
 One of the most important aspects of learning a new language is speaking and listening. Azure AI Speech provides features that can be used to help language learners.
 

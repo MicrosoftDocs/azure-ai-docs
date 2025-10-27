@@ -1,7 +1,7 @@
 ---
 title: What's new - Speech service
 titleSuffix: Azure AI services
-description: Discover the latest updates, features, and improvements in Azure AI Speech, including SDK, CLI, and service releases.
+description: Discover the latest updates, features, and improvements in Azure Speech in Foundry Tools, including SDK, CLI, and service releases.
 manager: nitinme
 author: PatrickFarley
 ms.author: pafarley
@@ -9,10 +9,10 @@ ms.service: azure-ai-speech
 ms.topic: release-notes
 ms.date: 4/28/2025
 ms.custom: references_regions
-# Customer intent: As a developer, I want to learn about new releases and features for Azure AI Speech.
+# Customer intent: As a developer, I want to learn about new releases and features for Azure Speech in Foundry Tools.
 ---
 
-# What's new in Azure AI Speech?
+# What's new in Azure Speech in Foundry Tools?
 
 Azure AI Speech is updated on an ongoing basis. To stay up-to-date with recent developments, this article provides you with information about new releases and features.
 

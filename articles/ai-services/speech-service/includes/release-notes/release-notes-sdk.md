@@ -188,7 +188,7 @@ then forwards audio to the Speech Service via the Speech SDK
 
 ### 2024-November release
 
-#### Azure AI Speech Toolkit extension for Visual Studio Code
+#### Azure Speech in Foundry Tools Toolkit extension for Visual Studio Code
 
 Azure AI Speech Toolkit extension is now available for Visual Studio Code users. It contains a list of speech quick-starts and scenario samples that can be easily built and run with simple clicks. For more information, see [Azure AI Speech Toolkit in Visual Studio Code Marketplace](https://aka.ms/speech-toolkit-vscode).
 

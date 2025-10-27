@@ -19,7 +19,7 @@ With custom speech, you can enhance speech recognition accuracy for your applica
 > [!TIP]
 > Bring your custom speech models from [Speech Studio](https://speech.microsoft.com) to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). In Azure AI Foundry portal, you can pick up where you left off by connecting to your existing Speech resource. For more information about connecting to an existing Speech resource, see [Connect to an existing Speech resource](../../ai-studio/ai-services/how-to/connect-ai-services.md#connect-azure-ai-services-after-you-create-a-project).
 
-You create a custom speech model by fine-tuning an Azure AI Speech base model with your own data. You can upload your data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint.
+You create a custom speech model by fine-tuning an Azure Speech in Foundry Tools base model with your own data. You can upload your data, test and train a custom model, compare accuracy between models, and deploy a model to a custom endpoint.
 
 This article shows you how to use fine-tuning to create a custom speech model. For more information about custom speech, see the [custom speech overview](./custom-speech-overview.md) documentation.
 

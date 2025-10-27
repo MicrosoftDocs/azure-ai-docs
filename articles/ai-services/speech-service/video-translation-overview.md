@@ -9,12 +9,12 @@ ms.date: 6/13/2025
 ms.author: pafarley
 author: PatrickFarley
 ms.custom: references_regions
-#Customer intent: As a developer, I want to learn about video translation in Azure AI Speech.
+#Customer intent: As a developer, I want to learn about video translation in Azure Speech in Foundry Tools.
 ---
 
 # What is video translation?
 
-Video translation is a feature in Azure AI Speech that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more.
+Video translation is a feature in Azure Speech in Foundry Tools that enables you to seamlessly translate and generate videos in multiple languages automatically. This feature is designed to help you localize your video content to cater to diverse audiences around the globe. You can efficiently create immersive, localized videos across various use cases such as vlogs, education, news, enterprise training, advertising, film, TV shows, and more.
 
 The process of replacing the original language of a video with speech recorded in a different language is essential for catering to diverse audiences. This method, typically achieved through human recording and manual post-production, ensures that viewers can enjoy video content in their native language. However, it comes with key pain points:
 - **High cost**: Traditional video translation methods often require expensive human voice actors and extensive post-production work, making it a costly endeavor for content creators.
