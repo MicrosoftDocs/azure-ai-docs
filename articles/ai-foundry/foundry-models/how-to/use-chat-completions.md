@@ -11,9 +11,13 @@ author: msakande
 ms.reviewer: achand
 reviewer: achandmsft
 ms.custom: generated
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # How to generate chat completions with Azure AI Foundry Models
+
+[!INCLUDE [version-banner](../../includes/version-banner.md)]
 
 This article explains how to generate chat completions using next generation v1 Azure OpenAI APIs.
 
@@ -230,7 +234,7 @@ console.log('Response content:', result.choices[0].message.content);
 
 ```
 
-To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`, modeify the previous code by creating the client as follows:
+To use the API key with environment variables set for `OPENAI_BASE_URL` and `OPENAI_API_KEY`, modify the previous code by creating the client as follows:
 
 ```javascript
 import { OpenAI } from "openai";
@@ -933,9 +937,16 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
 
 ## Related content
 
-- [Work with chat completions API](../../openai/how-to/chatgpt.md)
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 - [Switch between OpenAI and Azure OpenAI endpoints](/azure/developer/ai/how-to/switching-endpoints)
 - [Use embeddings models](use-embeddings.md)
 - [Use image embeddings models](use-image-embeddings.md)
 - [Use reasoning models](use-chat-reasoning.md)
 - [Basic Azure AI Foundry chat reference architecture](/azure/architecture/ai-ml/architecture/basic-azure-ai-foundry-chat)
+
+::: moniker range="foundry-classic"
+
+- [Work with chat completions API](../../openai/how-to/chatgpt.md)
+
+::: moniker-end
+
