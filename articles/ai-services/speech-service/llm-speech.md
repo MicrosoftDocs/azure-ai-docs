@@ -11,7 +11,7 @@ ms.date: 10/15/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
-# LLM Speech for speech transcription and translation (Preview)
+# LLM speech for speech transcription and translation (Preview)
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
 LLM speech is powered by a large-language-model-enhanced speech model that delivers improved quality, deep contextual understanding, multilingual support, and prompt-tuning capabilities. It uses GPU acceleration for ultra-fast inference, making it ideal for a wide range of scenarios including generating captions and subtitles from audio files, summarizing meeting notes, assisting call center agents, transcribing voicemails, and more.
