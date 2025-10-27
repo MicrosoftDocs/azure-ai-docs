@@ -58,7 +58,7 @@ With [text to speech](text-to-speech.md), you can convert input text into human 
 
 ### LLM speech (preview)
 
-[LLM-speech](llm-speech.md) currently supports the following speech tasks:
+[LLM speech](llm-speech.md) currently supports the following speech tasks:
 - `transcribe`: Convert pre-recorded audio into text.
 - `translate`: Convert pre-recorded audio into text in a specified target language.
   
