@@ -176,7 +176,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 
 ### Monitor Azure AI Foundry costs
 
-You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md) portal] or the [Azure portal](https://portal.azure.com/).
+You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
 
 > [!IMPORTANT]
 > Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
@@ -200,8 +200,8 @@ Here's an example of how to monitor costs. The costs are used as an example only
 
 1.The Estimated cost tile shows the estimated cost of all the agents for the selected project(s) for the selected dates.
 
-    > [!NOTE]
-    > Currently prompt agent and non-Foundry agent costs are not included. 
+   > [!NOTE]
+   > Currently prompt agent and non-Foundry agent costs are not included. 
 
 1. Select **Assets** in the left pane
 1. Select the **Agents** tab.
