@@ -18,7 +18,7 @@ these policies to control what models your developers can deploy in Azure AI Fou
 
 ## Prerequisites
 
-- An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/free/). Your
+- An Azure account with an active subscription. If you don't have one, create a [free Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). Your
   Azure account lets you access the Azure AI Foundry portal.
 
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.

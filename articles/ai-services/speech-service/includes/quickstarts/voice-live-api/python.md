@@ -1,10 +1,12 @@
 ---
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+ms.author: jagoerge
+reviewer: patrickfarley
+ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 7/31/2025
+ms.date: 10/02/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
@@ -123,6 +125,9 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         print("This sample requires pyaudio. Install with: pip install pyaudio")
         sys.exit(1)
     
+    ## Change to the directory where this script is located
+    os.chdir(os.path.dirname(os.path.abspath(__file__)))
+    
     # Environment variable loading
     try:
         from dotenv import load_dotenv
@@ -146,13 +151,11 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         ServerVad,
         AzureStandardVoice,
         Modality,
-        AudioFormat,
+        InputAudioFormat,
+        OutputAudioFormat,
     )
     
     # Set up logging
-    ## Change to the directory where this script is located
-    os.chdir(os.path.dirname(os.path.abspath(__file__)))
-    
     ## Add folder for logging
     if not os.path.exists('logs'):
         os.makedirs('logs')
@@ -486,8 +489,8 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
                 modalities=[Modality.TEXT, Modality.AUDIO],
                 instructions=self.instructions,
                 voice=voice_config,
-                input_audio_format=AudioFormat.PCM16,
-                output_audio_format=AudioFormat.PCM16,
+                input_audio_format=InputAudioFormat.PCM16,
+                output_audio_format=OutputAudioFormat.PCM16,
                 turn_detection=turn_detection_config,
             )
     
@@ -602,10 +605,9 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
         parser.add_argument(
             "--voice",
-            help="Voice to use for the assistant",
+            help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
             type=str,
             default=os.environ.get("AZURE_VOICELIVE_VOICE", "en-US-Ava:DragonHDLatestNeural"),
-            help="Voice to use for the assistant. E.g. alloy, echo, fable, en-US-AvaNeural, en-US-GuyNeural",
         )
     
         parser.add_argument(
@@ -620,7 +622,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
         )
     
         parser.add_argument(
-            "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true"
+            "--use-token-credential", help="Use Azure token credential instead of API key", action="store_true", default=True
         )
     
         parser.add_argument("--verbose", help="Enable verbose logging", action="store_true")
@@ -754,46 +756,35 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
 
 ## Output
 
-The output of the script is printed to the console. You see messages indicating the status of the connection, audio stream, and playback. The audio is played back through your speakers or headphones.
+The output of the script is printed to the console. You see messages indicating the status of system. The audio is played back through your speakers or headphones.
 
 ```console
-Session created:  {"type": "session.update", "session": {"instructions": "You are a helpful AI assistant responding in natural, engaging language.","turn_detection": {"type": "azure_semantic_vad", "threshold": 0.3, "prefix_padding_ms": 200, "silence_duration_ms": 200, "remove_filler_words": false, "end_of_utterance_detection": {"model": "semantic_detection_v1", "threshold": 0.1, "timeout": 4}}, "input_audio_noise_reduction": {"type": "azure_deep_noise_suppression"}, "input_audio_echo_cancellation": {"type": "server_echo_cancellation"}, "voice": {"name": "en-US-Ava:DragonHDLatestNeural", "type": "azure-standard", "temperature": 0.8}}, "event_id": ""}
-Starting the chat ...
-Received event: {'session.created'}
-Press 'q' and Enter to quit the chat.
-Received event: {'session.updated'}
-Received event: {'input_audio_buffer.speech_started'}
-Received event: {'input_audio_buffer.speech_stopped'}
-Received event: {'input_audio_buffer.committed'}
-Received event: {'conversation.item.input_audio_transcription.completed'}
-Received event: {'conversation.item.created'}
-Received event: {'response.created'}
-Received event: {'response.output_item.added'}
-Received event: {'conversation.item.created'}
-Received event: {'response.content_part.added'}
-Received event: {'response.audio_transcript.delta'}
-Received event: {'response.audio_transcript.delta'}
-Received event: {'response.audio_transcript.delta'}
-REDACTED FOR BREVITY
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-q
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Quitting the chat...
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-REDACTED FOR BREVITY
-Received event: {'response.audio.delta'}
-Received event: {'response.audio.delta'}
-Chat done.
+============================================================
+🎤 VOICE ASSISTANT READY
+Start speaking to begin conversation
+Press Ctrl+C to exit
+============================================================
+
+🎤 Listening...
+🤔 Processing...
+🎤 Ready for next input...
+🎤 Listening...
+🤔 Processing...
+🎤 Ready for next input...
+🎤 Listening...
+🤔 Processing...
+🎤 Ready for next input...
+🎤 Listening...
+🤔 Processing...
+🎤 Listening...
+🎤 Ready for next input...
+🤔 Processing...
+🎤 Ready for next input...
 ```
 
 The script that you ran creates a log file named `<timestamp>_voicelive.log` in the `logs` folder.
+
+The default loglevel is set to **INFO** but you can change it by running the quickstart with the command line parameter `--verbose` or by changing the logging config within the code as follows:
 
 ```python
 logging.basicConfig(
@@ -801,59 +792,90 @@ logging.basicConfig(
     filemode="w",
     level=logging.DEBUG,
     format='%(asctime)s:%(name)s:%(levelname)s:%(message)s'
-)
 ```
 
 The log file contains information about the connection to the Voice Live API, including the request and response data. You can view the log file to see the details of the conversation.
 
 ```text
-2025-05-09 06:56:06,821:websockets.client:DEBUG:= connection is CONNECTING
-2025-05-09 06:56:07,101:websockets.client:DEBUG:> GET /voice-live/realtime?api-version=2025-05-01-preview&model=gpt-4o HTTP/1.1
-<REDACTED FOR BREVITY>
-2025-05-09 06:56:07,551:websockets.client:DEBUG:= connection is OPEN
-2025-05-09 06:56:07,551:websockets.client:DEBUG:< TEXT '{"event_id":"event_5a7NVdtNBVX9JZVuPc9nYK","typ...es":null,"agent":null}}' [1475 bytes]
-2025-05-09 06:56:07,552:websockets.client:DEBUG:> TEXT '{"type": "session.update", "session": {"turn_de....8}}, "event_id": null}' [551 bytes]
-2025-05-09 06:56:07,557:__main__:INFO:Starting audio stream ...
-2025-05-09 06:56:07,810:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,824:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,844:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,874:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,874:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,905:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,926:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,954:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,954:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...///7/", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:07,974:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:08,004:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:08,035:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:08,035:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-<REDACTED FOR BREVITY>
-2025-05-09 06:56:42,957:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAP//", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:42,984:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+/wAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,005:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": .../////", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,034:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+////", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,034:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...CAAMA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,055:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...CAAIA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,084:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,114:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...9//3/", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,114:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...DAAMA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,134:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAIA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,165:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAAAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,184:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+//7/", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,214:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": .../////", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,214:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...+/wAA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,245:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAIA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,264:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...AAP//", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,295:websockets.client:DEBUG:> TEXT '{"type": "input_audio_buffer.append", "audio": ...BAAEA", "event_id": ""}' [1346 bytes]
-2025-05-09 06:56:43,295:websockets.client:DEBUG:> CLOSE 1000 (OK) [2 bytes]
-2025-05-09 06:56:43,297:websockets.client:DEBUG:= connection is CLOSING
-2025-05-09 06:56:43,346:__main__:INFO:Audio stream closed.
-2025-05-09 06:56:43,388:__main__:INFO:Playback done.
-2025-05-09 06:56:44,512:websockets.client:DEBUG:< CLOSE 1000 (OK) [2 bytes]
-2025-05-09 06:56:44,514:websockets.client:DEBUG:< EOF
-2025-05-09 06:56:44,514:websockets.client:DEBUG:> EOF
-2025-05-09 06:56:44,514:websockets.client:DEBUG:= connection is CLOSED
-2025-05-09 06:56:44,514:websockets.client:DEBUG:x closing TCP connection
-2025-05-09 06:56:44,514:asyncio:ERROR:Unclosed client session
-client_session: <aiohttp.client.ClientSession object at 0x00000266DD8E5400>
+2025-10-02 14:47:37,901:__main__:INFO:Using Azure token credential
+2025-10-02 14:47:37,901:__main__:INFO:Connecting to VoiceLive API with model gpt-realtime
+2025-10-02 14:47:37,901:azure.core.pipeline.policies.http_logging_policy:INFO:Request URL: 'https://login.microsoftonline.com/organizations/v2.0/.well-known/openid-configuration'
+Request method: 'GET'
+Request headers:
+    'User-Agent': 'azsdk-python-identity/1.22.0 Python/3.11.9 (Windows-10-10.0.26200-SP0)'
+No body was attached to the request
+2025-10-02 14:47:38,057:azure.core.pipeline.policies.http_logging_policy:INFO:Response status: 200
+Response headers:
+    'Date': 'Thu, 02 Oct 2025 21:47:37 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '1641'
+    'Connection': 'keep-alive'
+    'Cache-Control': 'max-age=86400, private'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'Access-Control-Allow-Origin': 'REDACTED'
+    'Access-Control-Allow-Methods': 'REDACTED'
+    'P3P': 'REDACTED'
+    'x-ms-request-id': 'f81adfa1-8aa3-4ab6-a7b8-908f411e0d00'
+    'x-ms-ests-server': 'REDACTED'
+    'x-ms-srs': 'REDACTED'
+    'Content-Security-Policy-Report-Only': 'REDACTED'
+    'Cross-Origin-Opener-Policy-Report-Only': 'REDACTED'
+    'Reporting-Endpoints': 'REDACTED'
+    'X-XSS-Protection': 'REDACTED'
+    'Set-Cookie': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2025-10-02 14:47:42,105:azure.core.pipeline.policies.http_logging_policy:INFO:Request URL: 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token'
+Request method: 'POST'
+Request headers:
+    'Accept': 'application/json'
+    'x-client-sku': 'REDACTED'
+    'x-client-ver': 'REDACTED'
+    'x-client-os': 'REDACTED'
+    'x-ms-lib-capability': 'REDACTED'
+    'client-request-id': 'REDACTED'
+    'x-client-current-telemetry': 'REDACTED'
+    'x-client-last-telemetry': 'REDACTED'
+    'X-AnchorMailbox': 'REDACTED'
+    'User-Agent': 'azsdk-python-identity/1.22.0 Python/3.11.9 (Windows-10-10.0.26200-SP0)'
+A body is sent with the request
+2025-10-02 14:47:42,466:azure.core.pipeline.policies.http_logging_policy:INFO:Response status: 200
+Response headers:
+    'Date': 'Thu, 02 Oct 2025 21:47:42 GMT'
+    'Content-Type': 'application/json; charset=utf-8'
+    'Content-Length': '6587'
+    'Connection': 'keep-alive'
+    'Cache-Control': 'no-store, no-cache'
+    'Pragma': 'no-cache'
+    'Expires': '-1'
+    'Strict-Transport-Security': 'REDACTED'
+    'X-Content-Type-Options': 'REDACTED'
+    'P3P': 'REDACTED'
+    'client-request-id': 'REDACTED'
+    'x-ms-request-id': '2e82e728-22c0-4568-b3ed-f00ec79a2500'
+    'x-ms-ests-server': 'REDACTED'
+    'x-ms-clitelem': 'REDACTED'
+    'x-ms-srs': 'REDACTED'
+    'Content-Security-Policy-Report-Only': 'REDACTED'
+    'Cross-Origin-Opener-Policy-Report-Only': 'REDACTED'
+    'Reporting-Endpoints': 'REDACTED'
+    'X-XSS-Protection': 'REDACTED'
+    'Set-Cookie': 'REDACTED'
+    'X-Cache': 'REDACTED'
+2025-10-02 14:47:42,467:azure.identity._internal.interactive:INFO:InteractiveBrowserCredential.get_token succeeded
+2025-10-02 14:47:42,884:__main__:INFO:AudioProcessor initialized with 24kHz PCM16 mono audio
+2025-10-02 14:47:42,884:__main__:INFO:Setting up voice conversation session...
+2025-10-02 14:47:42,887:__main__:INFO:Session configuration sent
+2025-10-02 14:47:42,943:__main__:INFO:Audio playback system ready
+2025-10-02 14:47:42,943:__main__:INFO:Voice assistant ready! Start speaking...
+2025-10-02 14:47:42,975:__main__:INFO:Session ready: sess_CMLRGjWnakODcHn583fXf
+2025-10-02 14:47:42,994:__main__:INFO:Started audio capture
+2025-10-02 14:47:47,513:__main__:INFO:\U0001f3a4 User started speaking - stopping playback
+2025-10-02 14:47:47,593:__main__:INFO:Stopped audio playback
+2025-10-02 14:47:51,757:__main__:INFO:\U0001f3a4 User stopped speaking
+2025-10-02 14:47:51,813:__main__:INFO:Audio playback system ready
+2025-10-02 14:47:51,816:__main__:INFO:\U0001f916 Assistant response created
+2025-10-02 14:47:58,009:__main__:INFO:\U0001f916 Assistant finished speaking
+2025-10-02 14:47:58,009:__main__:INFO:\u2705 Response complete
+2025-10-02 14:48:07,309:__main__:INFO:Received shutdown signal
 ```

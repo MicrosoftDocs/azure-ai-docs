@@ -32,37 +32,368 @@ pip install openai --upgrade
 
 ## Authentication
 
+Endpoints and API keys for your resources can be retrieved from the [Azure portal](https://portal.azure.com) or the [AI Foundry](https://ai.azure.com):
+
+- Sign in to [Azure portal](https://portal.azure.com) > select your resource > **Resource Management** > **Keys and Endpoint**
+- Sign in to [AI Foundry portal](https://ai.azure.com) > select your resource
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key = token_provider  
+)
+```
+
 # [API Key](#tab/python-key)
 
 [!INCLUDE [Azure key vault](~/reusable-content/ce-skilling/azure/includes/ai-services/security/azure-key-vault.md)]
 
 ```python
-import os
+ import os
 from openai import OpenAI
     
 client = OpenAI(
     api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
     base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/"
     )
-
 ```
 
+# [Environment Variables](#tab/python-env)
 
-# [Microsoft Entra ID](#tab/python-secure)
+If you use the default environment variables of `OPENAI_BASE_URL` and `OPENAI_API_KEY` they are automatically used by the client with no further configuration required.
 
-v1 support for Entra ID authentication is coming soon. To learn more, see the [API version lifecycle guide](../../api-version-lifecycle.md).
+| Environment Variable | Value |
+|----------------|-------------|
+| `OPENAI_BASE_URL`    | `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/`|
+| `OPENAI_API_KEY`     | Azure OpenAI or AI Foundry API key. |
+
+```python
+from openai import OpenAI
+
+client = OpenAI()   
+```
+
+# [Response](#tab/python-output)
+
+There is no output for client instantiation.
 
 ---
+
+## Responses API
+
+### responses.create()
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+response = client.responses.create(
+    model="gpt-4.1-nano",
+    input= "This is a test" 
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+response = client.responses.create(   
+  model="gpt-4.1-nano", # Replace with your model deployment name 
+  input="This is a test.",
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+response = client.responses.create(   
+  model="gpt-4.1-nano", # Replace with your model deployment name 
+  input="This is a test.",
+)
+
+print(response.model_dump_json(indent=2)) 
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Response](#tab/python-output)
+
+```json
+{
+  "id": "resp_088ffc6b5f37c64d0068e187d0ceac819499c9331c2a02e92e",
+  "created_at": 1759610832.0,
+  "error": null,
+  "incomplete_details": null,
+  "instructions": null,
+  "metadata": {},
+  "model": "gpt-4.1-nano",
+  "object": "response",
+  "output": [
+    {
+      "id": "msg_088ffc6b5f37c64d0068e187d15f8c819495f84e214435175d",
+      "content": [
+        {
+          "annotations": [],
+          "text": "Hello! I see you've sent a message saying \"This is a test.\" How can I assist you today?",
+          "type": "output_text",
+          "logprobs": []
+        }
+      ],
+      "role": "assistant",
+      "status": "completed",
+      "type": "message"
+    }
+  ],
+  "parallel_tool_calls": true,
+  "temperature": 1.0,
+  "tool_choice": "auto",
+  "tools": [],
+  "top_p": 1.0,
+  "background": false,
+  "conversation": null,
+  "max_output_tokens": null,
+  "max_tool_calls": null,
+  "previous_response_id": null,
+  "prompt": null,
+  "prompt_cache_key": null,
+  "reasoning": {
+    "effort": null,
+    "generate_summary": null,
+    "summary": null
+  },
+  "safety_identifier": null,
+  "service_tier": "default",
+  "status": "completed",
+  "text": {
+    "format": {
+      "type": "text"
+    },
+    "verbosity": "medium"
+  },
+  "top_logprobs": 0,
+  "truncation": "disabled",
+  "usage": {
+    "input_tokens": 11,
+    "input_tokens_details": {
+      "cached_tokens": 0
+    },
+    "output_tokens": 23,
+    "output_tokens_details": {
+      "reasoning_tokens": 0
+    },
+    "total_tokens": 34
+  },
+  "user": null,
+  "content_filters": null,
+  "store": true
+}
+```
+
+---
+
+### responses.create() with MCP server tool
+
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+resp = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "microsoft_learn",
+            "server_description": "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+            "server_url": "https://learn.microsoft.com/api/mcp",
+            "require_approval": "never",
+        },
+    ],
+    input="Search for information about Azure Functions",
+)
+
+print(resp.output_text)
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+resp = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "microsoft_learn",
+            "server_description": "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+            "server_url": "https://learn.microsoft.com/api/mcp",
+            "require_approval": "never",
+        },
+    ],
+    input="Search for information about Azure Functions",
+)
+
+print(resp.output_text)
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+resp = client.responses.create(
+    model="gpt-5",
+    tools=[
+        {
+            "type": "mcp",
+            "server_label": "microsoft_learn",
+            "server_description": "Microsoft Learn MCP server for searching and fetching Microsoft documentation.",
+            "server_url": "https://learn.microsoft.com/api/mcp",
+            "require_approval": "never",
+        },
+    ],
+    input="Search for information about Azure Functions",
+)
+
+print(resp.output_text)
+```
+
+For more examples, see the [Responses API](../../how-to/responses.md) documentation.
+
+# [Response](#tab/python-output)
+
+```markdown
+Here is a summary of Azure Functions based on official Microsoft documentation:
+
+## What is Azure Functions?
+Azure Functions is a serverless compute service that enables you to run event-driven code without managing infrastructure. You write code in your preferred language—such as C#, Java, JavaScript, PowerShell, or Python—and Azure Functions handles the hosting, scaling, and maintenance for you. You pay only for the compute time you consume, making it cost-effective for many use cases.
+
+- **Official overview:** [What is Azure Functions?](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+
+## Key Scenarios for Azure Functions
+Azure Functions supports a wide range of cloud application scenarios, including:
+
+- Processing file uploads from blob storage.
+- Real-time stream and event processing (IoT, analytics).
+- Executing AI and machine learning inference.
+- Running scheduled tasks or background jobs.
+- Building scalable web APIs with HTTP endpoints.
+- Orchestrating serverless workflows (using Durable Functions).
+- Responding to data or database changes.
+- Creating reliable message processing systems (with queues, Service Bus, Event Hubs).
+
+Read more about scenarios here: [Azure Functions scenarios](https://learn.microsoft.com/en-us/azure/azure-functions/functions-scenarios).
+
+## How It Works
+- **Triggers and Bindings:** Functions are executed by triggers (events like HTTP requests, file uploads, timers, etc.) and can use bindings to automatically interact with other Azure services.
+- **Coding:** Write only the code you need for business logic; Azure Functions integrates with IDEs like Visual Studio and VS Code for development and debugging.
+- **Monitoring:** Built-in integration with Azure Monitor and Application Insights.
+- **Hosting plans:** Choose serverless (Consumption plan), Premium, Dedicated, or deploy in custom containers.
+
+## Getting Started
+You can create your first Azure Function quickly using:
+
+- [Azure CLI or Developer CLI](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-azure-developer-cli)
+- [Visual Studio Code](https://learn.microsoft.com/en-us/azure/azure-functions/how-to-create-function-vs-code)
+- [Visual Studio](https://learn.microsoft.com/en-us/azure/azure-functions/functions-create-your-first-function-visual-studio)
+
+See quickstarts for all languages: [Getting started with Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-get-started)
+
+## Supported Languages
+- Native: C#, Java, JavaScript, PowerShell, Python
+- With custom handlers: Go, Rust, and more
+
+## Learn More
+- [Overview of Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/functions-overview)
+- [Supported languages](https://learn.microsoft.com/en-us/azure/azure-functions/supported-languages)
+- [Triggers and bindings](https://learn.microsoft.com/en-us/azure/azure-functions/functions-triggers-bindings)
+
+Let me know if you’re looking for step-by-step tutorials, specific language samples, or deeper technical details!
+```
+
+---
+
 
 ## Chat
 
 ### chat.completions.create()
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
 
 ```python
-# from openai import OpenAI
-# client = OpenAI()
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
 
 completion = client.chat.completions.create(
   model="gpt-4o", # Replace with your model deployment name.
@@ -73,10 +404,52 @@ completion = client.chat.completions.create(
 )
 
 #print(completion.choices[0].message)
-print(completion.model_dump_json(indent=2)
+print(completion.model_dump_json(indent=2))
 ```
 
-# [Response](#tab/response)
+
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+client = OpenAI()
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+# [Response](#tab/python-output)
 
 ```json
 {
@@ -159,11 +532,20 @@ print(completion.model_dump_json(indent=2)
 
 ### chat.completions.create() - streaming
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
 
 ```python
-# from openai import OpenAI
-# client = OpenAI()
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
 
 completion = client.chat.completions.create(
   model="gpt-4o", # Replace with your model deployment name.
@@ -179,7 +561,53 @@ for chunk in completion:
         print(chunk.choices[0].delta.content, end='',)
 ```
 
-# [Response](#tab/response)
+# [API Key](#tab/python-key)
+
+```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ],
+  stream=True
+)
+
+for chunk in completion:
+    if chunk.choices and chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end='',)
+```
+
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+completion = client.chat.completions.create(
+  model="gpt-4o", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "When was Microsoft founded?"}
+  ],
+  stream=True
+)
+
+for chunk in completion:
+    if chunk.choices and chunk.choices[0].delta.content is not None:
+        print(chunk.choices[0].delta.content, end='',)
+```
+
+# [Response](#tab/python-output)
 
 ```text
 Microsoft was founded on April 4, 1975, by Bill Gates and Paul Allen.
@@ -189,10 +617,56 @@ Microsoft was founded on April 4, 1975, by Bill Gates and Paul Allen.
 
 ### chat.completions.create() - image input
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+
+completion = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What's in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png",
+                    }
+                },
+            ],
+        }
+    ],
+    max_tokens=300,
+)
+
+print(completion.model_dump_json(indent=2))
+
+```
+
+# [API Key](#tab/python-key)
 
 
 ```python
+import os
+from openai import OpenAI
+
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
+
 completion = client.chat.completions.create(
     model="gpt-4o",
     messages=[
@@ -215,7 +689,36 @@ completion = client.chat.completions.create(
 print(completion.model_dump_json(indent=2))
 ```
 
-# [Response](#tab/response)
+# [Environment Variables](#tab/python-env)
+
+```python
+from openai import OpenAI
+
+client = OpenAI()
+
+completion = client.chat.completions.create(
+    model="gpt-4o",
+    messages=[
+        {
+            "role": "user",
+            "content": [
+                {"type": "text", "text": "What's in this image?"},
+                {
+                    "type": "image_url",
+                    "image_url": {
+                        "url": "https://raw.githubusercontent.com/MicrosoftDocs/azure-ai-docs/main/articles/ai-foundry/openai/media/how-to/generated-seattle.png",
+                    }
+                },
+            ],
+        }
+    ],
+    max_tokens=300,
+)
+
+print(completion.model_dump_json(indent=2))
+```
+
+# [Response](#tab/python-output)
 
 ```json
 {
@@ -305,11 +808,17 @@ print(completion.model_dump_json(indent=2))
 
 ### embeddings.create()
 
-# [Python](#tab/command)
+# [Microsoft Entra ID](#tab/python-entra)
+
+Embeddings currently do not support Microsoft Entra ID with Azure OpenAI and the v1 API.
+
+# [API Key](#tab/python-key)
 
 ```python
-# from openai import OpenAI
-# client = OpenAI()
+client = OpenAI(
+    api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+)
 
 embedding = client.embeddings.create(
   model="text-embedding-3-large", # Replace with your model deployment name
@@ -320,7 +829,21 @@ embedding = client.embeddings.create(
 print(embedding)
 ```
 
-# [Response](#tab/response)
+# [Environment Variables](#tab/python-env)
+
+```python
+client = OpenAI()
+
+embedding = client.embeddings.create(
+  model="text-embedding-3-large", # Replace with your model deployment name
+  input="Attenion is all you need",
+  encoding_format="float" 
+)
+
+print(embedding)
+```
+
+# [Response](#tab/python-output)
 
 The response has been truncated for brevity.
 
@@ -333,10 +856,6 @@ CreateEmbeddingResponse(data=[Embedding(embedding=[0.009098228, -0.010369237, -0
 ## Fine-tuning
 
 [Fine-tuning with Python how-to article](../../how-to/fine-tuning.md)
-
-## Responses API
-
-See the [Responses API](../../how-to/responses.md) documentation.
 
 ## Error handling
 
