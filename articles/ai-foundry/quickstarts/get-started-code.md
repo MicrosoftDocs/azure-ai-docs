@@ -62,11 +62,11 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - You must be **Owner** of the subscription to get the appropriate access control needed to use your project.
 
-[!INCLUDE [feature-preview](../includes/feature-preview.md)]
-
 [!INCLUDE [first-run](../includes/first-run-experience.md)]
 
-## Set up your environment  
+## <a name="install"></a> Get ready to code
+
+[!INCLUDE [code-preview](../default/includes/code-preview.md)] 
 
 # [Python](#tab/python)
 
@@ -125,7 +125,11 @@ Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/typescript/mslearn-resources/quickstart)
 
-# [Java (preview)](#tab/java)
+# [Java](#tab/java)
+
+::: moniker range="foundry-classic"
+[!INCLUDE [code-preview](../default/includes/code-preview.md)]
+::: moniker-end
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
