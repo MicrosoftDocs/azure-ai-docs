@@ -41,7 +41,7 @@ When you use web knowledge sources, keep the following in mind:
 
 + An Azure subscription with [access to web knowledge sources](agentic-knowledge-source-how-to-web-manage.md). By default, access is enabled. Contact your admin if access is disabled.
 
-+ An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md).
++ An [Azure AI Search service](search-create-service-portal.md) on the Basic tier or higher with [semantic ranker enabled](semantic-how-to-enable-disable.md). The service must also be in an [Azure public region](search-region-support.md#azure-public-regions), as web knowledge sources aren't supported in private or sovereign clouds.
 
 + [Visual Studio Code](https://code.visualstudio.com/) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) or a preview package of an Azure SDK that provides the latest knowledge source REST APIs. Currently, there's no portal support.
 

@@ -7,7 +7,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
-ms.date: 04/30/2025
+ms.date: 10/28/2025
 ms.update-cycle: 180-days
 ms.custom:
   - references_regions
@@ -166,21 +166,32 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 
 Maximum number of synonym maps varies by tier. Each rule can have up to 20 expansions, where an expansion is an equivalent term. For example, given "cat", association with "kitty", "feline", and "felis" (the genus for cats) would count as 3 expansions.
 
-| Resource | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
+| Resource | Free | Basic | S1 | S2 | S3 | S3HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
 | Maximum synonym maps |3 |3|5 |10 |20 |20 | 10 | 10 |
 | Maximum number of rules per map |5000 |20000|20000 |20000 |20000 |20000 | 20000 | 20000  |
 
 ## Index alias limits
 
-Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). In all tiers, if the service was created after October 2022 the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
+Maximum number of [index aliases](search-how-to-alias.md) varies by tier and [service creation date](search-how-to-upgrade.md#check-your-service-creation-or-upgrade-date). On all tiers, if the service was created after October 2022, the maximum number of aliases is double the maximum number of indexes allowed. If the service was created before October 2022, the limit is the number of indexes allowed.
 
-| Service Creation Date | Free | Basic | S1 | S2 | S3 | S3-HD |L1 | L2 |
+| Service creation date | Free | Basic | S1 | S2 | S3 | S3HD |L1 | L2 |
 |----------|------|-------|----|----|----|-------|----|----|
 | Before October 2022 | 3 | 5 or 15 <sup>1</sup> | 50 | 200 | 200 | 1000 per partition or 3000 per service | 10 | 10 |
 | After October 2022 | 6 | 30 | 100 | 400 | 400 | 2000 per partition or 6000 per service | 20 | 20 |
 
-<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes
+<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on indexes.
+
+## Agentic retrieval limits
+
+Each [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) contains [knowledge sources](agentic-knowledge-source-overview.md), which are data source connections, and configurations that agents consume for [agentic retrieval](agentic-retrieval-overview.md). The following limits apply to knowledge sources and knowledge bases per service tier.
+
+| Resource | Free | Basic <sup>1</sup> | S1 | S2 | S3 | S3HD | L1 | L2 |
+|--|--|--|--|--|--|--|--|--|
+| Maximum knowledge sources | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+| Maximum knowledge bases | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
+
+<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on knowledge sources and knowledge bases.
 
 ## Data limits (AI enrichment)
 
@@ -215,7 +226,7 @@ Total semantic ranker queries per second varies based on the following factors:
 
 The following table describes the semantic ranker throttling limits by tier, subject to available capacity in the region. You can contact Microsoft support to request a limit increase.
 
-| Resource | Basic | S1 | S2 | S3 | S3-HD | L1 | L2 |
+| Resource | Basic | S1 | S2 | S3 | S3HD | L1 | L2 |
 |----------|-------|----|----|----|-------|----|----|
 | Maximum Concurrent Requests (per Search Unit) | 2 | 3 | 4 | 4 | 4 | 4 | 4 |
 | Maximum Request Queue Size (per Search Unit) | 4 | 6 | 8 | 8 | 8 | 8 | 8 |

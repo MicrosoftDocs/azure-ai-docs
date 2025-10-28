@@ -5,7 +5,7 @@ description: Learn about agentic retrieval concepts, architecture, and use cases
 author: HeidiSteen
 ms.author: heidist
 manager: nitinme
-ms.date: 10/21/2025
+ms.date: 10/28/2025
 ms.service: azure-ai-search
 ms.topic: concept-article
 ms.custom:
@@ -129,7 +129,7 @@ Choose any of these options for your next step.
 
 ## Availability and pricing
 
-Agentic retrieval is available in [all regions that provide semantic ranker](search-region-support.md), on all tiers except the free tier.
+Agentic retrieval is available in [all regions that provide semantic ranker](search-region-support.md), on all tiers except the free tier. Knowledge sources and knowledge bases also have [maximum limits](search-limits-quotas-capacity.md#agentic-retrieval-limits) that vary by service tier.
 
 Billing for agentic retrieval has two parts:
 
