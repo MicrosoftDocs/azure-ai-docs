@@ -72,6 +72,8 @@ items:
       href: ../../ai-foundry/responsible-ai/computer-vision/limited-access.md
   - name: How-to guides
     items:
+    - name: Migrate from Image Analysis
+      href: migration-options.md
     - name: Version 4.0
       items:
       - name: Call the Analyze API

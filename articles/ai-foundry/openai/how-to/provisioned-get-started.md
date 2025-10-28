@@ -3,7 +3,8 @@ title: 'Quickstart - Get started using Provisioned Deployments with Azure OpenAI
 titleSuffix: Azure OpenAI
 description: Walkthrough on how to get started provisioned deployments on Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: openai
 ms.topic: how-to
 author: msakande
@@ -20,7 +21,7 @@ The following guide walks you through key steps in creating a provisioned deploy
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Azure Contributor or Cognitive Services Contributor role 
 
 ## Obtain/verify PTU quota availability.

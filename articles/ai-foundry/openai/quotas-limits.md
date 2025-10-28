@@ -4,8 +4,9 @@ description: This article features detailed descriptions and best practices on t
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 08/19/2025
-ms.service: azure-ai-openai
+ms.date: 10/10/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
 ms.custom:
   - ignite-2023
@@ -38,6 +39,7 @@ The following section provides you with a quick guide to the default quotas and 
 | Default DALL-E 3 quota limits| 2 capacity units (6 requests per minute).|
 | Default GPT-image-1 quota limits | 2 capacity units (6 requests per minute). |
 | Default Sora quota limits | 60 requests per minute. |
+| Default Sora 2 quota limits | 2 parallel tasks | 
 | Default speech-to-text audio API quota limits | 3 requests per minute. |
 | Maximum prompt tokens per request | Varies per model. For more information, see [Azure OpenAI models](./concepts/models.md).|
 | Maximum standard deployments per resource | 32. |
@@ -75,17 +77,21 @@ The following section provides you with a quick guide to the default quotas and 
 
 | Model       | Global Default<br>Tokens per minute (TPM)  | Global Enterprise and MCA-E <br>Tokens per minute (TPM)  | Data Zone Default <br>Tokens per minute (TPM)  | Data Zone Enterprise and MCA-E <br>Tokens per minute (TPM) |
 |-------------|----------------|-------------------|-------------------|----------------------|
-| gpt-5       | 1 M             | 10 M               | 300 K              | 3 M                   |
-| gpt-5-mini  | 1 M             | 10 M               | 300 K              | 3 M                   |
-| gpt-5-nano  | 5 M             | 150 M              | 2 M                | 50 M                  |
-| gpt-5-chat  | 1 M             | 5 M                | N/A              |    N/A                  |
+| `gpt-5`       | 1 M             | 10 M               | 300 K              | 3 M                   |
+| `gpt-5-mini`  | 1 M             | 10 M               | 300 K              | 3 M                   |
+| `gpt-5-nano`  | 5 M             | 150 M              | 2 M                | 50 M                  |
+| `gpt-5-chat`  | 1 M             | 5 M                | N/A                |  N/A         |
+| `gpt-5-codex` | 1 M             | 10 M               | N/A                | N/A  | 
+| `gpt-5-pro`   | 160 K            | 1.6 M | N/A | N/A |
 
 | Model       | Global Default<br>Requests per minute (RPM)  | Global Enterprise and MCA-E <br>Requests per minute (RPM)  | Data Zone Default <br>Requests per minute (RPM)  | Data Zone Enterprise and MCA-E <br>Requests per minute (RPM) |
 |-------------|----------------------------------------------|------------------------------------------------------------|--------------------------------------------------|--------------------------------------------------------------|
-| gpt-5       | 10 K                                         | 100 K                                                      | 3 K                                              | 30 K                   |
-| gpt-5-mini  | 1 K                                          | 10 K                                                       | 300                                              | 3 K                   |
-| gpt-5-nano  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
-| gpt-5-chat  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
+| `gpt-5`       | 10 K                                         | 100 K                                                      | 3 K                                              | 30 K                   |
+| `gpt-5-mini`  | 1 K                                          | 10 K                                                       | 300                                              | 3 K                   |
+| `gpt-5-nano`  | 5 K                                          | 150 K                                                      | 2 K                                              | 50 K                  |
+| `gpt-5-chat`  | 1 K                                          | 5 K                                                        | N/A                                              | N/A                  |
+| `gpt-5-codex` | 1 K                                          | 10 K                                                      | N/A                | N/A  | 
+| `gpt-5-pro`   | 1.6 K            | 16 K | N/A | N/A
 
 
 [!INCLUDE [Quota](./includes/global-batch-limits.md)]
@@ -241,23 +247,30 @@ The following section provides you with a quick guide to the default quotas and 
 
 During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-| Model|Tier| Quota limit in tokens per minute | Requests per minute |
+| Model|Tier| Quota limit in tokens per minute | Requests per minute<br>(new websocket connections per minute) |
 |---|---|:---:|:---:|
 |`gpt-4o-audio-preview` | Default | 450K | 1K |
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
 |`gpt-4o-mini-audio-preview` | Default | 2M | 1K |
 |`gpt-4o-mini-realtime-preview` | Default | 800K | 1K |
 |`gpt-audio` |   Default | 100K | 30 |
+|`gpt-audio-mini` |   Default | 100K | 30 |
 |`gpt-realtime` | Default | 100K | 30 |
+|`gpt-realtime-mini` | Default | 100K | 30 |
+
 
 ## GPT-image-1 rate limits
 
-### GPT0-image-1 Global Standard
+### GPT-image-1 Global Standard
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
 |`gpt-image-1`|Enterprise and MCA-E | N/A | 20 |
 |`gpt-image-1` |Default | N/A | 6 |
+|`gpt-image-1-mini`|Low | N/A | 12 |
+|`gpt-image-1-mini` |Medium | N/A | 36 |
+|`gpt-image-1-mini` |High | N/A | 120 |
+
 
 ## Usage tiers
 
@@ -287,6 +300,7 @@ The usage limit determines the level of usage above which customers might see la
 
 If your Azure subscription is linked to certain [offer types](https://azure.microsoft.com/support/legal/offer-details/), your maximum quota values are lower than the values indicated in the previous tables.
 
+- GPT-5-pro quota is only available to MCA-E and default quota subscriptions. All other offer types have zero quota for this model by default.
 - GPT-5 reasoning model quota is 20K TPM and 200 RPM for all offer types that do not have access to MCA-E or default quota. GPT-5-chat is 50K and 50 RPM.
 
 - Some offer types are restricted to only Global Standard deployments in the East US2 and Sweden Central regions.
@@ -306,7 +320,7 @@ To determine the offer type associated with your subscription, you can check you
 
 # [REST](#tab/REST)
 
-See the [API reference](/rest/api/subscription/subscriptions/get).
+See the [API reference](/rest/api/resources/subscriptions/get).
 
 ```bash
 az login
@@ -370,9 +384,7 @@ To minimize issues related to rate limits, it's a good idea to use the following
 
 ## Request quota increases
 
-Quota increase requests can be submitted via the [quota increase request form](https://aka.ms/oai/stuquotarequest). Due to high demand, quota increase requests are accepted and filled in the order they're received. Priority is given to customers who generate traffic that consumes the existing quota allocation. Your request might be denied if this condition isn't met.
-
-You can [submit a service request](../../ai-services/cognitive-services-support-options.md?context=/azure/ai-foundry/openai/context/context) for other rate limits.
+[!INCLUDE [quota-increase- request](includes/quota-increase-request.md)]
 
 ## Regional quota capacity limits
 

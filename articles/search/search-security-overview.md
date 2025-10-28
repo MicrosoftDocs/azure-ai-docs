@@ -11,18 +11,18 @@ ms.custom:
   - ignite-2023
   - horz-security
 ms.topic: conceptual
-ms.date: 08/15/2025
+ms.date: 09/25/2025
 ---
 
 # Security in Azure AI Search
 
 Azure AI Search provides comprehensive security controls across network access, data access, and data protection to meet enterprise requirements. As a solution architect, you should understand three key security domains:
 
-+ **Network traffic patterns and network security** - inbound, outbound, and internal traffic
-+ **Access control mechanisms** - Microsoft Entra ID with roles, or API keys
-+ **Data residency and protection** - encryption in transit, and at rest with optional double encryption
++ **Network traffic patterns and network security**: Inbound, outbound, and internal traffic.
++ **Access control mechanisms**: API keys or Microsoft Entra ID with roles.
++ **Data residency and protection**: Encryption in transit, in use with optional confidential computing, and at rest with optional double encryption.
 
-A search service supports multiple network security topologies—from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, use a network security perimeter to create a logical boundary around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
+A search service supports multiple network security topologies, from IP firewall restrictions for basic protection to private endpoints for complete network isolation. Optionally, use a network security perimeter to create a logical boundary around your Azure PaaS resources. For enterprise scenarios requiring granular permissions, you can implement document-level access controls. All security features integrate with Azure's compliance framework and support common enterprise patterns like multitenancy and cross-service authentication using managed identities.
 
 This article details the implementation options for each security layer to help you design appropriate security architectures for development and production environments.
 
@@ -67,7 +67,7 @@ The following list is a full enumeration of the outbound requests for which you 
 | Custom skills | Connect to Azure functions, Azure web apps, or other apps running external code that's hosted off-service. The request for external processing is sent during skillset execution. |
 | Indexers and [integrated vectorization](vector-search-integrated-vectorization.md) | Connect to Azure OpenAI and a deployed embedding model, or it goes through a custom skill to connect to an embedding model that you provide. The search service sends text to embedding models for vectorization during indexing. |
 | Vectorizers | Connect to Azure OpenAI or other embedding models at query time to [convert user text strings to vectors](vector-search-how-to-configure-vectorizer.md) for vector search. |
-| Knowledge agents | Connect to chat completion models for [agentic retrieval](search-agentic-retrieval-concept.md) query planning, and also for formulating answers grounded in search results. <p>If you're implementing a [basic RAG pattern](retrieval-augmented-generation-overview.md), your query logic calls an external chat completion model for formulating an answer grounded in search results. For this pattern, the connection to the model uses the identity of your client or user. The search service identity isn't used for the connection. In contrast, if you use [knowledge agents](search-agentic-retrieval-how-to-create.md) in a RAG retrieval pattern, the outbound request is made by the search service managed identity. |
+| Knowledge agents | Connect to chat completion models for [agentic retrieval](agentic-retrieval-overview.md) query planning, and also for formulating answers grounded in search results. <p>If you're implementing a [basic RAG pattern](retrieval-augmented-generation-overview.md), your query logic calls an external chat completion model for formulating an answer grounded in search results. For this pattern, the connection to the model uses the identity of your client or user. The search service identity isn't used for the connection. In contrast, if you use [knowledge agents](agentic-retrieval-how-to-create-knowledge-base.md) in a RAG retrieval pattern, the outbound request is made by the search service managed identity. |
 | Search service | Connect to Azure Key Vault for [customer-managed encryption keys](search-security-manage-encryption-keys.md) used to encrypt and decrypt sensitive data. |
 
 Outbound connections can generally be made using a resource's full access connection string that includes a key or a database login, or [a managed identity](search-how-to-managed-identities.md) if you're using Microsoft Entra ID and role-based access.
@@ -230,6 +230,24 @@ Earlier versions of TLS (1.0 or 1.1) aren't supported.
 
 For more information, see [TLS support in .NET Framework](/dotnet/framework/network-programming/tls#tls-support-in-net-framework).
 
+### Data in use
+
+By default, Azure AI Search deploys your search service on standard Azure infrastructure. This infrastructure encrypts data at rest and in transit, but it doesn't protect data while it's being actively processed in memory.
+
+Optionally, you can use the [Azure portal](search-create-service-portal.md#choose-a-compute-type) or [Services - Create or Update (REST API)](/rest/api/searchmanagement/services/create-or-update) to configure confidential computing during service creation. Confidential computing protects data in use from unauthorized access, including from Microsoft, through hardware attestation and encryption. For more information, see [Confidential computing use cases](/azure/confidential-computing/use-cases-scenarios).
+
+The following table compares both compute types.
+
+| Compute type | Description | Limitations | Cost | Availability |
+|--|--|--|--|--|
+| Default | Processes data on standard VMs with built-in encryption for data at rest and in transit. No hardware-based isolation for data in use. | No limitations. | No change to the base cost of free or billable tiers. | Available in all regions. |
+| Confidential | Processes data on confidential VMs (DCasv5 or DCesv5) in a hardware-based trusted execution environment. Isolates computations and memory from the host operating system and other VMs. | Disables or restricts [agentic retrieval](agentic-retrieval-overview.md), [semantic ranker](semantic-search-overview.md), [query rewrite](semantic-how-to-query-rewrite.md), [skillset execution](cognitive-search-concept-intro.md), and indexers that run in the [multitenant environment](search-howto-run-reset-indexers.md#indexer-execution-environment) <sup>1</sup>. | Adds a 10% surcharge to the base cost of billable tiers. For more information, see the [pricing page](https://azure.microsoft.com/pricing/details/search/). | Available in some regions. For more information, see the [list of supported regions](search-region-support.md). |
+
+<sup>1</sup> When you enable this compute type, indexers can only run in the private execution environment, meaning they run from the search clusters hosted on confidential computing.
+
+> [!IMPORTANT]
+> We only recommend confidential computing for organizations whose compliance or regulatory requirements necessitate data-in-use protection. For daily usage, the default compute type suffices.
+
 ### Data at rest
 
 For data handled internally by the search service, the following table describes the [data encryption models](/azure/security/fundamentals/encryption-models). Some features, such as knowledge store, incremental enrichment, and indexer-based indexing, read from or write to data structures in other Azure Services. Services that have a dependency on Azure Storage can use the [encryption features](/azure/storage/common/storage-service-encryption) of that technology.
@@ -294,7 +312,7 @@ For Azure AI Search, there's currently one built-in definition. It's for resourc
 
 Apply metadata tags to categorize search services based on data sensitivity and compliance requirements. This facilitates proper governance and security controls. For more information, see [Use tags to organize your Azure resources](/azure/azure-resource-manager/management/tag-resources) and [General guidance – Organize Azure resources using tags](/azure/azure-resource-manager/management/tag-resources).
 
-## Learn more
+## Related content
 
 + [Azure security fundamentals](/azure/security/fundamentals/)
 + [Azure Security](https://azure.microsoft.com/overview/security)

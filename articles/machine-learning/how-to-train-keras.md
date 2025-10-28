@@ -33,7 +33,7 @@ Whether you're developing a Keras model from the ground-up or you're bringing an
 
 To benefit from this article, you'll need to:
 
-- Access an Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/free/).
+- Access an Azure subscription. If you don't have one already, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Run the code in this article using either an Azure Machine Learning compute instance or your own Jupyter notebook.
     - Azure Machine Learning compute instance—no downloads or installation necessary
         - Complete [Create resources to get started](quickstart-create-resources.md) to create a dedicated notebook server pre-loaded with the SDK and the sample repository.

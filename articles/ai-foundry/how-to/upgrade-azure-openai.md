@@ -5,7 +5,7 @@ description: Upgrade seamlessly from Azure OpenAI to Azure AI Foundry and unlock
 ms.author: sgilley
 author: sdgilley
 ms.reviewer: deeikele
-ms.date: 09/03/2025
+ms.date: 10/01/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ---

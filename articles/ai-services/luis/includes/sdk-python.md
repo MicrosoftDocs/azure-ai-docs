@@ -19,7 +19,7 @@ Use the Language Understanding client libraries for Python to:
 ## Prerequisites
 
 * The current version of [Python 3.x](https://www.python.org/).
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Once you have your Azure subscription, [create a Language Understanding authoring resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesLUISAllInOne) in the Azure portal to get your key and endpoint. Wait for it to deploy and select the **Go to resource** button.
     * You need the key and endpoint from the resource you [create](../luis-how-to-azure-subscription.md) to connect your application to Language Understanding authoring. Paste your key and endpoint into the following quickstart code samples. You can use the free pricing tier (`F0`) to try the service.
 

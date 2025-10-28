@@ -11,6 +11,7 @@ author: lgayhardt
 ms.reviewer: jinzhong
 ms.date: 12/18/2023
 ms.custom: sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Incorporate images into prompt flow (preview)

@@ -3,7 +3,8 @@ title: 'Use your own data to generate text using Azure OpenAI in Azure AI Foundr
 titleSuffix: Azure OpenAI
 description: Use this article to import and use your data in Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom:
   - ignite-2024
 ms.topic: quickstart

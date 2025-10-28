@@ -4,7 +4,8 @@ titleSuffix: Azure OpenAI
 description: Learn how to work with the Chat Completion API for prompt engineering.
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.date: 03/26/2025
 manager: nitinme
@@ -97,6 +98,10 @@ One simple way to use an affordance is to stop generation once the affordance ca
 | You're an AI assistant that helps people find information. | You'll read a paragraph, extract factual claims, and then use search engine results to fact-check them<br>---<br>PARAGRAPH<br>John Smith is married to Lucy Smith. They have five kids, and he works as a software engineer at Microsoft. What search queries should I do to fact-check this?<br>---<br>FACTUAL CLAIMS<br>- John Smith is married to Lucy Smith<br>- John and Lucy have five kids<br>- John works as a software engineer at Microsoft<br>---<br>Here are various search queries issued to research the claims above:<br>SEARCH QUERIES<br>- John Smith married to Lucy Smith<br>- John Smith number of children<br>- John Smith software engineer Microsoft<br>---<br>Here are snippets of the search results:<br>SNIPPETS:<br>[1] … John Smith’s wedding was on September 25, 2012 …<br>[2] … John Smith was accompanied by his wife Lucy to a party<br>[3]John was accompanied to the soccer game by his two daughters and three sons<br>[4] … After spending 10 years at Microsoft, Smith founded his own startup, Tailspin Toys<br>[5] John M is the town smith, and he married Fiona. They have a daughter named Lucy<br>---<br>Given the snippets, fact check each of the factual claims above:| - John Smith is married to Lucy Smith: Confirmed. Snippet [1] and [2] both mention John Smith's wife as Lucy.<br><br>- John and Lucy have five kids: Confirmed. Snippet [3] mentions that John was accompanied by his two daughters and three sons.<br><br>- John works as a software engineer at Microsoft: Partially confirmed. Snippet [4] mentions that John spent 10 years at Microsoft, but it doesn't explicitly state that he currently works there. Further research might be needed to confirm his current employment status.|
 
 ## Chain of thought prompting
+
+> [!IMPORTANT]
+> This technique is only applicable non-reasoning models. Attempting to extract model reasoning through methods other than the reasoning summary parameter are not supported, may violate the Acceptable Use Policy, and may result in throttling or suspension when detected.
+
 
 This is a variation on the **break the task down** technique. Instead of splitting a task into smaller steps, in this approach, the model response is instructed to proceed step-by-step and present all the steps involved. Doing so reduces the possibility of inaccuracy of outcomes and makes assessing the model response easier.
 

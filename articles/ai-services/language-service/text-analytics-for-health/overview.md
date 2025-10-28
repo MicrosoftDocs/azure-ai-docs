@@ -61,7 +61,7 @@ Some common customer motivations for using Text Analytics for health include:
 |Extract insights and statistics|Identify medical entities such as symptoms, medications, diagnosis from clinical and research documents in order to extract insights and statistics for different patient cohorts.|
 |Develop predictive models using historic data|Power solutions for planning, decision support, risk analysis and more, based on prediction models created from historic data.|
 |Annotate and curate medical information|Support solutions for clinical data annotation and curation such as automating clinical coding and digitizing manually created data.|
-|Review and report medical information|potential medical information errors found during quality assurance reviews.|
+|Review and report medical information|Potential medical information errors found during quality assurance reviews.|
 |Assist with decision support|Enable solutions that provide humans with assistive information relating to patients' medical information for faster and more reliable decisions.|
 
 ## Get started with Text Analytics for health

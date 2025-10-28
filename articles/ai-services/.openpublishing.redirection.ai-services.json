@@ -616,6 +616,26 @@
       "redirect_document_id": false
     },
     {
+      "source_path_from_root": "/articles/ai-services/speech-service/speaker-recognition-overview.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/intent-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-intent-recognition-clu.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/speech-service/get-started-intent-recognition.md",
+      "redirect_url": "/azure/ai-services/speech-service/overview",
+      "redirect_document_id": false
+    },
+    {
       "source_path_from_root": "/articles/ai-services/speech-service/how-to-recognize-intents-from-speech-csharp.md",
       "redirect_url": "/azure/ai-services/speech-service/intent-recognition",
       "redirect_document_id": false
@@ -2828,6 +2848,11 @@
     {
       "source_path_from_root": "/articles/ai-services/qnamaker/tutorials/integrate-with-power-virtual-assistant-fallback-topic.md",
       "redirect_url": "/azure/ai-services/language-service/tutorials/power-automate",
+      "redirect_document_id": true
+    },
+    {
+      "source_path_from_root": "/articles/ai-services/language-service/conversational-language-understanding/how-to/configure-azure-resources.md",
+      "redirect_url": "/azure/ai-services/language-service/concepts/configure-azure-resources",
       "redirect_document_id": true
     }
 

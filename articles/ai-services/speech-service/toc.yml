@@ -232,20 +232,46 @@ items:
          href: video-translation-overview.md
        - name: How to use video translation
          href: video-translation-get-started.md
-- name: Voice live (preview)
+- name: Voice live
   items:
     - name: Voice live overview
       href: voice-live.md
-    - name: Voice live with Foundry models quickstart
-      href: voice-live-quickstart.md
-    - name: Voice live with Foundry agents quickstart
-      href: voice-live-agents-quickstart.md
-    - name: How to use voice live
-      href: voice-live-how-to.md
     - name: Voice live language support
       href: voice-live-language-support.md
-    - name: Audio events reference
-      href: /azure/ai-foundry/openai/realtime-audio-reference?context=/azure/ai-services/speech-service/context/context
+    - name: Quickstarts
+      expanded: true
+      items:
+      - name: Voice live with Foundry models quickstart
+        href: voice-live-quickstart.md
+      - name: Voice live with Foundry agents quickstart
+        href: voice-live-agents-quickstart.md
+      - name: Bring your own model with Voice live (preview)
+        href: how-to-bring-your-own-model.md
+    - name: How-to guides
+      expanded: true
+      items:
+      - name: How to use voice live
+        href: voice-live-how-to.md
+      - name: How to customize voice live input and output
+        href: voice-live-how-to-customize.md
+      - name: Voice live telephony integration
+        href: voice-live-telephony.md
+    - name: Voice live FAQ
+      href: voice-live-faq.yml
+      displayName: FAQ,frequently asked questions
+    - name: Reference
+      items:
+      - name: Voice live API reference
+        href: voice-live-api-reference.md
+      - name: Voice Live SDK
+        items:
+          - name: 'C#'
+            displayName: CSharp SDK,.NET SDK,C# SDK,C# dev kit,reference,reference docs,ref documentation
+            href: /dotnet/api/overview/azure/ai.voicelive-readme      
+          - name: Python
+            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
+            href: /python/api/overview/azure/ai-voicelive-readme
+
 - name: Keyword recognition
   items:
     - name: Keyword recognition overview
@@ -464,11 +490,6 @@ items:
           - name: Python
             displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
             href: /python/api/azure-cognitiveservices-speech/
-      - name: Voice Live SDK (Preview)
-        items:
-          - name: Python
-            displayName: Python SDK,Python dev kit,reference,reference docs,ref documentation
-            href: /python/api/overview/azure/ai-voicelive-readme
     - name: REST API reference
       items:
         - name: Speech to text REST API
@@ -491,24 +512,6 @@ items:
   - name: Retiring features
     displayName: migrate,migration,deprecate,retire,sunset
     items:
-      - name: Speaker recognition
-        href: speaker-recognition-overview.md
-        displayName: migrate,migration,deprecate,retire,sunset
-      - name: Intent recognition
-        displayName: migrate,migration,deprecate,retire,sunset
-        items:
-          - name: Intent recognition overview
-            href: intent-recognition.md
-          - name: Pattern matching concepts
-            href: pattern-matching-overview.md
-          - name: Intent recognition with simple pattern matching quickstart
-            href: how-to-use-simple-language-pattern-matching.md
-          - name: Intent recognition with custom entity pattern matching
-            href: how-to-use-custom-entity-pattern-matching.md
-          - name: Intent recognition with CLU quickstart
-            href: get-started-intent-recognition-clu.md
-          - name: Recognize speech intents with LUIS (deprecated)
-            href: get-started-intent-recognition.md
       - name: Online transcription editor
         href: how-to-custom-speech-transcription-editor.md
   - name: Speech to text REST API migration
@@ -558,6 +561,12 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/concepts-disclosure-patterns-avatar.md
       - name: Data, privacy, and security
         href: ../../ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security.md
+    - name: Voice live
+      items:
+      - name: Transparency note
+        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/transparency-note.md
+      - name: Data, privacy, and security
+        href: ../../ai-foundry/responsible-ai/speech-service/voice-live/data-privacy-security.md
     - name: Pronunciation Assessment
       items:
       - name: Transparency Note
@@ -568,22 +577,6 @@ items:
           href: ../../ai-foundry/responsible-ai/speech-service/pronunciation-assessment/characteristics-and-limitations-pronunciation-assessment.md
     - name: Embedded speech
       href: ../../ai-foundry/responsible-ai/speech-service/embedded-speech/limited-access-embedded-speech.md
-    - name: Speaker Recognition
-      items:
-      - name: Transparency note
-        items:
-        - name: Use cases for Speaker Recognition
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/transparency-note-speaker-recognition.md
-        - name: Characteristics and limitations
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/characteristics-and-limitations-speaker-recognition.md
-      - name: Integration and responsible use
-        items:
-        - name: Limited access
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/limited-access-speaker-recognition.md
-        - name: General guidelines
-          href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/guidance-integration-responsible-use-speaker-recognition.md
-      - name: Data, privacy, and security
-        href: ../../ai-foundry/responsible-ai/speech-service/speaker-recognition/data-privacy-speaker-recognition.md
 - name: Resources
   items:
     - name: Known issues

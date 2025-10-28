@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 07/17/2025
+ms.date: 09/26/2025
 ms.author: lajanuar
 ---
 
@@ -48,7 +48,7 @@ The Language service also provides several new features as well, which can eithe
       :::image type="content" source="media/overview/text-pii.png" alt-text="A screenshot of text personally identifying information in Azure AI Foundry." lightbox="media/overview/text-pii.png":::
    :::column-end:::
    :::column span="":::
-      [PII detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
+      [Personally Identifiable Information (PII) detection](./personally-identifiable-information/overview.md) identifies entities in text and conversations (chat or transcripts) that are associated with individuals.
 
    :::column-end:::
 :::row-end:::
@@ -104,6 +104,10 @@ Conversation summarization recaps and segments long meetings into timestamped ch
 :::row-end:::
 
 ### Entity linking
+
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](named-entity-recognition/overview.md) or consider other alternative solutions.
+
 
 :::row:::
    :::column span="":::

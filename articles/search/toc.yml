@@ -37,7 +37,7 @@ items:
   - name: Retrieval
     items:
     - name: Agentic search
-      href: search-agentic-retrieval-concept.md
+      href: agentic-retrieval-overview.md
     - name: Full-text search
       href: search-lucene-query-architecture.md
     - name: Vector search
@@ -68,7 +68,7 @@ items:
     href: search-get-started-agentic-retrieval.md
   - name: Vector search
     href: search-get-started-vector.md
-  - name: Generative search (RAG)
+  - name: Classic RAG
     href: search-get-started-rag.md
   - name: Full-text search
     href: search-get-started-text.md
@@ -139,7 +139,7 @@ items:
   - name: Security tutorials
     items:
     - name: Index encrypted blobs
-      href: search-howto-index-encrypted-blobs.md
+      href: search-how-to-index-azure-blob-encrypted.md
     - name: Index permissioned ADLS Gen2 files
       href: tutorial-adls-gen2-indexer-acls.md
   - name: Multimodal indexing tutorials
@@ -152,9 +152,11 @@ items:
       href: tutorial-document-extraction-image-verbalization.md
     - name: Verbalize images from a structured document layout
       href: tutorial-document-layout-image-verbalization.md
-  - name: RAG tutorials
+  - name: Agentic retrieval tutorial
+    href: agentic-retrieval-how-to-create-pipeline.md
+  - name: Classic RAG tutorials
     items:
-    - name: Build a RAG solution
+    - name: Build a classic RAG solution
       href: tutorial-rag-build-solution.md
     - name: Choose models
       href: tutorial-rag-build-solution-models.md
@@ -277,7 +279,7 @@ items:
     - name: Logic Apps workflows
       items:
       - name: Create a workflow
-        href: search-how-to-index-logic-apps-indexers.md
+        href: search-how-to-index-logic-apps.md
     - name: Indexers
       items:
       - name: Create an indexer
@@ -293,15 +295,15 @@ items:
         - name: Content metadata properties
           href: search-blob-metadata-properties.md
         - name: Index one-to-many
-          href: search-howto-index-one-to-many-blobs.md
+          href: search-how-to-index-azure-blob-one-to-many.md
         - name: Index plain text
-          href: search-howto-index-plaintext-blobs.md
+          href: search-how-to-index-azure-blob-plaintext.md
         - name: Index CSV
-          href: search-how-to-index-csv-blobs.md
+          href: search-how-to-index-azure-blob-changed-deleted.md
         - name: Index JSON
-          href: search-howto-index-json-blobs.md
+          href: search-how-to-index-azure-blob-json.md
         - name: Index Markdown
-          href: search-how-to-index-markdown-blobs.md
+          href: search-how-to-index-azure-blob-markdown.md
       - name: Troubleshooting guidance
         href: search-indexer-troubleshooting.md
       - name: Troubleshoot indexer errors and warnings
@@ -315,25 +317,25 @@ items:
         - name: Search over blobs
           href: search-blob-storage-integration.md
         - name: ADLS Gen2
-          href: search-howto-index-azure-data-lake-storage.md
+          href: search-how-to-index-azure-data-lake-storage.md
         - name: Blobs
-          href: search-howto-indexing-azure-blob-storage.md
+          href: search-how-to-index-azure-blob-storage.md
         - name: Files
           href: search-file-storage-integration.md
         - name: Tables
-          href: search-howto-indexing-azure-tables.md
+          href: search-how-to-index-azure-tables.md
         - name: Index changed and deleted content
-          href: search-howto-index-changed-deleted-blobs.md
+          href: search-how-to-index-azure-blob-changed-deleted.md
       - name: Azure Cosmos DB
         items:
         - name: Azure Cosmos DB for NoSQL
-          href: search-howto-index-cosmosdb.md
+          href: search-how-to-index-cosmosdb-sql.md
         - name: Azure Cosmos DB for MongoDB
-          href: search-howto-index-cosmosdb-mongodb.md
+          href: search-how-to-index-cosmosdb-mongodb.md
         - name: Azure Cosmos DB for Apache Gremlin
-          href: search-howto-index-cosmosdb-gremlin.md
+          href: search-how-to-index-cosmosdb-gremlin.md
       - name: Azure DB for MySQL
-        href: search-howto-index-mysql.md
+        href: search-how-to-index-mysql.md
       - name: Azure SQL
         items:
         - name: Azure SQL Databases
@@ -342,10 +344,10 @@ items:
           href: search-how-to-index-sql-managed-instance.md
         - name: Azure SQL Server VMs
           href: search-how-to-index-sql-server.md
-      - name: OneLake files
+      - name: Microsoft OneLake
         href: search-how-to-index-onelake-files.md
       - name: SharePoint Online
-        href: search-howto-index-sharepoint-online.md
+        href: search-how-to-index-sharepoint-online.md
     - name: Skillsets (indexers)
       items:
       - name: Skillsets overview
@@ -395,25 +397,23 @@ items:
     - name: Agentic retrieval
       items:
       - name: Create an index for agentic retrieval
-        href: search-agentic-retrieval-how-to-index.md
+        href: agentic-retrieval-how-to-create-index.md
       - name: Create a knowledge source
         items:
         - name: Knowledge sources
-          href: search-knowledge-source-overview.md
+          href: agentic-knowledge-source-overview.md
         - name: Azure blobs
-          href: search-knowledge-source-how-to-blob.md
+          href: agentic-knowledge-source-how-to-blob.md
         - name: Search indexes
-          href: search-knowledge-source-how-to-index.md
+          href: agentic-knowledge-source-how-to-search-index.md
       - name: Create a knowledge agent
-        href: search-agentic-retrieval-how-to-create.md
+        href: agentic-retrieval-how-to-create-knowledge-base.md
       - name: Configure answer synthesis for an agent
-        href: search-agentic-retrieval-how-to-synthesize.md
+        href: agentic-retrieval-how-to-answer-synthesis.md
       - name: Retrieve data using an agent
-        href: search-agentic-retrieval-how-to-retrieve.md
-      - name: Build a retrieval pipeline
-        href: search-agentic-retrieval-how-to-pipeline.md
+        href: agentic-retrieval-how-to-retrieve.md
       - name: Migrate agentic retrieval code
-        href: search-agentic-retrieval-how-to-migrate.md
+        href: agentic-retrieval-how-to-migrate.md
     - name: Vector search
       items:
       - name: Query vectors
@@ -534,7 +534,7 @@ items:
         - name: SQL Database
           href: search-howto-managed-identities-sql.md
         - name: SQL Managed Instance
-          href: search-index-azure-sql-managed-instance-with-managed-identity.md
+          href: search-how-to-index-sql-managed-instance-with-managed-identity.md
         - name: Connect to an Azure function
           href: search-howto-managed-identities-azure-functions.md
       - name: Connect through a firewall
@@ -563,8 +563,10 @@ items:
           href: search-query-access-control-rbac-enforcement.md
     - name: Data encryption
       items:
-      - name: Customer-managed keys
+      - name: Customer-managed keys (CMK)
         href: search-security-manage-encryption-keys.md
+      - name: Configure cross-tenant CMK
+        href: search-security-managed-encryption-cross-tenant.md
       - name: Find encrypted objects
         href: search-security-get-encryption-keys.md
   - name: Development

@@ -3,7 +3,8 @@ title: Azure OpenAI On Your Data Python & REST API reference
 titleSuffix: Azure OpenAI
 description: Learn how to use Azure OpenAI On Your Data Python & REST API.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: reference
 ms.date: 02/27/2025
 author: aahill

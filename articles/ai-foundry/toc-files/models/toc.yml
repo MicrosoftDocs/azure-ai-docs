@@ -49,7 +49,7 @@ items:
     href: ../../foundry-models/supported-languages.md
   - name: Work with chat models
     items:
-    - name: Work with chat completion models
+    - name: Work with chat models
       href: ../../foundry-models/how-to/use-chat-completions.md
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md
@@ -114,9 +114,6 @@ items:
   - name: Quotas and limits
     href: ../../openai/quotas-limits.md
     displayName: openai 
-  - name: Deployment types
-    href: ../../openai/how-to/deployment-types.md
-    displayName: global, Global, globalstandard, global-standard, Global-Standard, standard, provisioned 
   - name: Azure OpenAI Models
     href: ../../openai/concepts/models.md
     displayName: gpt-5, GPT-5, gpt-5-nano, gpt-5-mini, gpt-5-chat
@@ -136,9 +133,6 @@ items:
     items:
       - name: Audio generation
         href: ../../openai/audio-completions-quickstart.md
-      - name: Chat
-        href: ../../openai/chatgpt-quickstart.md  
-        displayName: ChatGPT, chatgpt
       - name: Vision-enabled chats
         href: ../../openai/gpt-v-quickstart.md
       - name: Image generation
@@ -159,6 +153,8 @@ items:
           href: ../../openai/how-to/realtime-audio.md
         - name: Realtime API via WebRTC
           href: ../../openai/how-to/realtime-audio-webrtc.md
+        - name: Realtime API via SIP
+          href: ../../openai/how-to/realtime-audio-sip.md
         - name: Realtime API via WebSockets
           href: ../../openai/how-to/realtime-audio-websockets.md
   - name: Batch
@@ -177,6 +173,9 @@ items:
       - name: Chat completions API
         href: ../../openai/how-to/chatgpt.md
         displayName: ChatGPT, chatgpt
+      - name: Codex
+        href: ../../openai/how-to/codex.md
+        displayName: codex, CODEX, codex cli, codex ide extension, gpt-5-codex
       - name: Computer Use
         href: ../../openai/how-to/computer-use.md
         displayName: cua, computer using model
@@ -219,6 +218,8 @@ items:
       href: ../../openai/concepts/video-generation.md
   - name: Stored completions
     href: ../../openai/how-to/stored-completions.md
+  - name: Webhooks
+    href: ../../openai/how-to/webhooks.md
   - name: Concepts
     items:
       - name: Assistants
@@ -241,6 +242,8 @@ items:
           href: ../../openai/concepts/content-filter-groundedness.md
         - name: Protected material detection
           href: ../../openai/concepts/content-filter-protected-material.md
+        - name: Personally identifiable information (PII) detection
+          href: ../../openai/concepts/content-filter-personal-information.md
         - name: Content filter configurability
           href: ../../openai/concepts/content-filter-configurability.md
         - name: Content filter annotations
@@ -354,8 +357,6 @@ items:
           href: ../../openai/how-to/dynamic-quota.md
         - name: Monitor Azure OpenAI
           href: ../../openai/how-to/monitor-openai.md
-        - name: Plan and manage costs
-          href: ../../openai/how-to/manage-costs.md
         - name: Performance & latency
           href: ../../openai/how-to/latency.md
         - name: Role-based access control (Azure RBAC)
@@ -401,4 +402,4 @@ items:
       - name: Customer Copyright Commitment
         href: ../../responsible-ai/openai/customer-copyright-commitment.md
 - name: Foundry Models FAQ
-  href: ../../faq.yml
+  href: ../../foundry-models/faq.yml
