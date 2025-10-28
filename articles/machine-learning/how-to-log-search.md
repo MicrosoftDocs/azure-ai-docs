@@ -58,7 +58,7 @@ In Azure Machine Learning studio, add the environment variable when you configur
    - **Name**: `AZUREML_COMMON_RUNTIME_USE_APPINSIGHTS_CAPABILITY`
    - **Value**: `true`
 
-:::image type="content" source="media/how-to-log-search/portal-configuration.png" alt-text="Screenshot of portal environment variable configuration.":::
+:::image type="content" source="media/how-to-log-search/portal-configuration.png" alt-text="Screenshot of portal environment variable configuration." lightbox="media/how-to-log-search/portal-configuration.png":::
 
 # [Python SDK](#tab/python)
 
@@ -112,7 +112,6 @@ Submit the job using the Azure CLI:
 ```azurecli
 az ml job create --file job.yml
 ```
-
 ---
 
 ## Query training job logs
@@ -122,15 +121,15 @@ After configuring log forwarding, you can query your training logs in Applicatio
 1. Go to the job overview page in Azure Machine Learning studio.
 1. Select the **Job Logs** link.
 
-   :::image type="content" source="media/how-to-log-search/job-overview.png" alt-text="Screenshot of job overview page with Job Logs link.":::
+   :::image type="content" source="media/how-to-log-search/job-overview.png" alt-text="Screenshot of job overview page with Job Logs link." lightbox="media/how-to-log-search/job-overview.png":::
 
 1. You're taken to an Application Insights workspace with a default query filtered by the job ID.
 
-   :::image type="content" source="media/how-to-log-search/app-insights.png" alt-text="Screenshot of application insights workspace with default query.":::
+   :::image type="content" source="media/how-to-log-search/app-insights.png" alt-text="Screenshot of application insights workspace with default query." lightbox="media/how-to-log-search/app-insights.png":::
 
 1. Logs are written following the AppTraces [schema](/azure/azure-monitor/reference/tables/apptraces). Edit the query to search for errors, exceptions, or other points of interest across nodes.
 
-   :::image type="content" source="media/how-to-log-search/query-editor.png" alt-text="Screenshot of query editor for searching logs.":::
+   :::image type="content" source="media/how-to-log-search/query-editor.png" alt-text="Screenshot of query editor for searching logs." lightbox="media/how-to-log-search/query-editor.png":::
 
 ### Useful log fields
 
