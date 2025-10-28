@@ -42,7 +42,7 @@ If you don't create an account-level and project-level capability host, the Azur
 ### Bring-your-own resources
 When you create capability hosts at both the account and project levels, all agent data is stored and processed using your own Azure resources within your subscription. This configuration is called a **standard agent setup**.
 
-All Foundry workspace resources should be in the same region as the VNet, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, Managed Identity.
+All Foundry workspace resources should be in the same region as the VNet, including CosmosDB, Storage Account, AI Search, Foundry Account, Project, and Managed Identity.
 
 #### Configuration hierarchy
 
