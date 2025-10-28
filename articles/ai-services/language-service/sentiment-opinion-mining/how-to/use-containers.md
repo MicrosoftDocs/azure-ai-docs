@@ -63,7 +63,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-To run the Sentiment Analysis container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the Sentiment Analysis container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|

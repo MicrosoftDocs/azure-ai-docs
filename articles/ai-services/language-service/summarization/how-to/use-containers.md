@@ -73,7 +73,7 @@ In order to ensure compatibility between models and the container, re-download t
 
 ## Run the container with `docker run`
 
-Once the *Summarization* container is on the host computer, use the following `docker run` command to run the containers. The container will continue to run until you stop it. Replace the placeholders below with your own values:
+Once the *Summarization* container is on the host computer, use the following `docker run` command to run the containers. The container will continue to run until you stop it. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|

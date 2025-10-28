@@ -46,7 +46,7 @@ CPU core and memory correspond to the `--cpus` and `--memory` settings, which ar
 
 ## Export your Custom Named Entity Recognition model
 
-Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders below with your own values:
+Before you proceed with running the docker image, you need to export your own trained model to expose it to your container. Use the following command to extract your model and replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
@@ -86,7 +86,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > * The docker commands in the following sections use the back slash, `\`, as a line continuation character. Replace or remove this based on your host operating system's requirements. 
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 
-To run the *Custom Named Entity Recognition* container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the *Custom Named Entity Recognition* container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|
