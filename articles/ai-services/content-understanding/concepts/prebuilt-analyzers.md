@@ -3,7 +3,7 @@ title: Azure AI Content Understanding prebuilt analyzers
 titleSuffix: Azure AI services
 description: Learn about prebuilt analyzers, base analyzers, RAG analyzers, vertical analyzers, and how to use and customize them in Azure AI Content Understanding.
 author: PatrickFarley 
-ms.author: admaheshwari
+ms.author: jfilcik
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
