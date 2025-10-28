@@ -35,7 +35,7 @@ You can choose between two approaches for RAG workloads: agentic retrieval, or t
 > [!NOTE]
 > New to copilot and RAG concepts? Watch [Vector search and state of the art retrieval for Generative AI apps](https://www.youtube.com/watch?v=lSzc1MJktAo).
 
-## Modern RAG with Agentic Retrieval
+## Modern RAG with agentic retrieval
 
 Azure AI Search now provides **agentic retrieval**, a specialized pipeline designed specifically for RAG patterns. This approach uses large language models to intelligently break down complex user queries into focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
 
@@ -53,7 +53,7 @@ For new RAG implementations, we recommend starting with [agentic retrieval](agen
 
 ## Classic RAG pattern for Azure AI Search
 
-A RAG solution can be implemented on Azure AI Search using the original query execution architecture. With this approach, your application sends a single query request to Azure AI Search, the search engine processes the request, and returns search results to the caller. There's no side trip to an LLM query planning or LLM integration in the query pipeline. There's no query execution details in the response, and citations are built into the response only if you have fields in your index that provide a parent document name or page. This approach is faster and simpler with fewer components. Depending on your application requirements, it can be the best choice. 
+A RAG solution can be implemented on Azure AI Search using the original query execution architecture. With this approach, your application sends a single query request to Azure AI Search, the search engine processes the request, and returns search results to the caller. There's no side trip to an LLM for query planning or answer formulation. There's no query execution details in the response, and citations are built into the response only if you have fields in your index that provide a parent document name or page. This approach is faster and simpler with fewer components. Depending on your application requirements, it could be the best choice. 
 
 A high-level summary of classic RAG pattern built on Azure AI Search looks like this:
 

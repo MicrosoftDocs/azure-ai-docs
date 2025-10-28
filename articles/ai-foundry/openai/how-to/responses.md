@@ -29,13 +29,24 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 The responses API is currently available in the following regions:
 
 - australiaeast
+- brazilsouth
+- canadacentral
+- canadaeast  
 - eastus
 - eastus2
 - francecentral
+- germanywestcentral
+- italynorth
 - japaneast
+- koreacentral
+- northcentralus
 - norwayeast
 - polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
 - southindia
+- spaincentral
 - swedencentral
 - switzerlandnorth
 - uaenorth
@@ -331,7 +342,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 
 ## Delete response
 
-By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
+By default response data is retained for 30 days. To delete a response, you can use `response.delete ("{response_id}")`
 
 ```python
 import os

@@ -57,6 +57,7 @@ ms.custom: references_regions, build-2025
 | `gpt-4o-transcribe`            | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `gpt-4o-mini-tts`              | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
+| `gpt-4o-mini-transcribe-diarize`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `tts`                          | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `tts-hd`                       | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `whisper`                      | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
@@ -67,8 +68,8 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version      | Lifecycle<br>Status | Retirement date                  | Replacement model                    |
 | -------------------------------|--------------|---------------------|----------------------------------|--------------------------------------|
-| `dalle-3`                      | 3            | Generally Available | No earlier than October 31, 2025 |                                      |
-| `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than October 31, 2025 |                                      |
+| `dalle-3`                      | 3            | Generally Available | No earlier than January 31, 2026 |                                      |
+| `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than January 31, 2026 |                                      |
 | `gpt-image-1-mini`                  | 2025-10-06   | GA             | No earlier than October 6, 2026 |                                      |
 | `sora`                         | 2025-05-02   | Preview             | No earlier than February 15, 2026|                                      |
 
