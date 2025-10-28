@@ -17,7 +17,7 @@ author: ssalgadodev
 
 # Build a Workflow in Azure AI Foundry
 
-Workflows are a UI-based tool in Foundry to create declarative workflows, a predefined sequence of actions including agents, as in [Microsoft Agent Framework Workflows | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/agent-framework/workflows/).
+Workflows are a UI-based tool in Foundry to create declarative workflows, a predefined sequence of actions including agents, as in Microsoft Agent Framework Workflows.
 
 Workflows enable you to build intelligent automation systems that seamlessly blend AI agents with business processes, in a visual manner. Traditional single-agent systems are limited in their ability to handle complex, multi-faceted tasks. By orchestrating multiple agents, each with specialized skills or roles, we can create systems that are more robust, adaptive, and capable of solving real-world problems collaboratively.
 
@@ -27,7 +27,7 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 - A **project in Azure AI Foundry** in westus2.
 - The project endpoint URL of the form `https://your-ai-services-account-name.services.ai.azure.com/api/projects/your-project-name`. It can be found in your Azure AI Foundry Project overview page. Below we will assume the environment variable `PROJECT_ENDPOINT` was defined to hold this value.
 - An Entra ID token for authentication. Your application needs an object that implements the `TokenCredential` interface. Code samples here use `DefaultAzureCredential`. To get that working, you will need:
-  - An appropriate role assignment. See [Role-based access control in Azure AI Foundry portal](https://learn.microsoft.com/en-us/azure/ai-services/agent-framework/access-control/). Role assignment can be done via the "Access Control (IAM)" tab of your Azure AI Project resource in the Azure portal.
+  - An appropriate role assignment. See [Role-based access control in Azure AI Foundry portal](/azure/ai-services/agent-framework/access-control). Role assignment can be done via the "Access Control (IAM)" tab of your Azure AI Project resource in the Azure portal.
 - **Azure CLI** installed.
 - You are logged into your Azure account by running `az login`.
 
@@ -50,7 +50,7 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 
 ## Workflow Concepts
 
-To start creating a new workflow, you can begin with a blank workflow or select one of the templates of pre-defined orchestration patterns [Microsoft Agent Framework Workflows Orchestrations | Microsoft Learn](https://learn.microsoft.com/en-us/azure/ai-services/agent-framework/workflows/orchestrations/).
+To start creating a new workflow, you can begin with a blank workflow or select one of the templates of pre-defined orchestration patterns [Microsoft Agent Framework Workflows Orchestrations | Microsoft Learn](/azure/ai-services/agent-framework/workflows/orchestrations).
 
 | Pattern    | Description                                                        | Typical Use Case                                         |
 |------------|--------------------------------------------------------------------|----------------------------------------------------------|
