@@ -6,7 +6,7 @@ ms.service: azure-ai-foundry
 ms.custom:
   - build-2025
   - code01
-ms.topic: concept-article
+ms.topic: tutorial
 ms.date: 10/25/2025
 ms.reviewer: fniedtner
 ms.author: ssalgado
