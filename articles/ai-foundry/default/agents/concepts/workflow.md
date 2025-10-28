@@ -100,7 +100,3 @@ The following **are not** supported:
 - The function tool
 - Structured input and structured output.
 - Advanced conversational patterns (for example, a single agent within a workflow having a multi-turn conversation). The only way to perform these patterns (for example human-in-the-loop) is question-action, which requires the question to contain a prompt which needs to be driven by the agent.
-
-## Find issues?
-
-If you find issues or bugs during this preview, please create a GitHub issue in this repo for the workflow team to review.
