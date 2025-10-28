@@ -53,7 +53,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge
 
 This procedure creates a new 2025-08-01-preview `searchIndex` knowledge source at the same functional level as the previous 2025-08-01 version. The underlying index itself requires no updates.
 
-1. List all knowledge sources by name.
+1. List all knowledge sources by name to find your knowledge source.
 
    ```http
    ### List all knowledge sources by name
@@ -77,22 +77,22 @@ This procedure creates a new 2025-08-01-preview `searchIndex` knowledge source a
    {
         "name": "search-index-ks",
         "kind": "searchIndex",
-        "description": "This knowledge source pulls from a search index created using teh 2025-08-01-preview.",
+        "description": "This knowledge source pulls from a search index created using the 2025-08-01-preview.",
         "encryptionKey": null,
         "searchIndexParameters": {
         "searchIndexName": "earth-at-night-idx",
         "sourceDataSelect": "id, page_chunk, page_number"
         },
         "azureBlobParameters": null
-    }
+   }
    ```
 
-1. Formulate a [Create Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request targeting the new 2025-11-01-preview API.
+1. Formulate a [Create Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
 
     Start with the 08-01-preview JSON.
 
     ```http
-    POST {{url}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
+    POST {{url}}/knowledge-sources/search-index-ks?api-version=2025-08-01-preview
     api-key: {{key}}
     Content-Type: application/json
     
@@ -116,7 +116,7 @@ This procedure creates a new 2025-08-01-preview `searchIndex` knowledge source a
 
    + Rename `sourceDataSelect` to `sourceDataFields` and change the string to an array with name-value pairs for each retrievable field you want to query. These are the fields to return in the search results, similar to a `select` clause in a classic query.
 
-1. Review and then send the request to create the object.
+1. Review your updates and then send the request to create the object.
 
     ```http
     PUT {{url}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
@@ -137,15 +137,15 @@ This procedure creates a new 2025-08-01-preview `searchIndex` knowledge source a
     }
     ```
 
-You now have a migrated `searchIndex` knowledge source that implements the previous version features, with the correct property specifications for the 2025-11-01-preview. 
+You now have a migrated `searchIndex` knowledge source is backwards compatible with the previous version, using the correct property specifications for the 2025-11-01-preview. 
 
 The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [How to create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 #### Update an azureBlob knowledge source
 
-This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at the same functional level as the previous 2025-08-01 version. It creates a new set of indexer objects: data source, skillset, indexer, index.
+This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at the same functional level as the previous 2025-08-01 version. It creates a new set of generated objects: data source, skillset, indexer, index.
 
-1. List all knowledge sources by name.
+1. List all knowledge sources by name to find your knowledge source.
 
    ```http
    ### List all knowledge sources by name
@@ -154,7 +154,7 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
    Content-Type: application/json
    ```
 
-1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
+1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties.
 
    ```http
    ### Get a specific knowledge source
@@ -163,61 +163,99 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
    Content-Type: application/json
    ```
 
-   The response should look similar to the following example. Notice it includes the names of the generated objects.
+   The response might look similar to the following example if your workflow includes a model. Notice that a response includes the names of the generated objects.
 
    ```json
-    "name": "azure-blob-ks",
-    "kind": "azureBlob",
-    "description": "A sample azure blob knowledge source",
-    "encryptionKey": null,
-    "searchIndexParameters": null,
-    "azureBlobParameters": {
-    "connectionString": "<redacted>",
-    "containerName": "blobcontainer",
-    "folderPath": null,
-    "disableImageVerbalization": null,
-    "identity": null,
-    "embeddingModel": null,
-    "chatCompletionModel": null,
-    "ingestionSchedule": null,
-    "createdResources": {
-        "datasource": "azure-blob-ks-datasource",
-        "indexer": "azure-blob-ks-indexer",
-        "skillset": "azure-blob-ks-skillset",
-        "index": "azure-blob-ks-index"
-        }
-    }
-    ```
-
-1. Set up a create request that recreates this object. The knowledge source you're updating might look like the following example.
-
-    ```http
-    POST {{url}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
-    api-key: {{key}}
-    Content-Type: application/json
-    
     {
-        "name": "search-index-ks",
-        "kind": "searchIndex",
-        "description": "A sample search index knowledge source",
-        "encryptionKey": null,
-        "searchIndexParameters": {
-            "searchIndexName": "my-search-index",
-            "sourceDataSelect": "id, page_chunk, page_number"
+      "name": "azure-blob-ks",
+      "kind": "azureBlob",
+      "description": "A sample azure blob knowledge source.",
+      "encryptionKey": null,
+      "searchIndexParameters": null,
+      "azureBlobParameters": {
+        "connectionString": "<redacted>",
+        "containerName": "blobcontainer",
+        "folderPath": null,
+        "disableImageVerbalization": false,
+        "identity": null,
+        "embeddingModel": {
+          "name": "embedding-model",
+          "kind": "azureOpenAI",
+          "azureOpenAIParameters": {
+            "resourceUri": "<redacted>",
+            "deploymentId": "text-embedding-3-large",
+            "apiKey": "<redacted>",
+            "modelName": "text-embedding-3-large",
+            "authIdentity": null
+          },
+          "customWebApiParameters": null,
+          "aiServicesVisionParameters": null,
+          "amlParameters": null
+        },
+        "chatCompletionModel": null,
+        "ingestionSchedule": null,
+        "createdResources": {
+          "datasource": "azure-blob-ks-datasource",
+          "indexer": "azure-blob-ks-indexer",
+          "skillset": "azure-blob-ks-skillset",
+          "index": "azure-blob-ks-index"
+        }
       }
     }
     ```
 
-1. Change the API version to `2025-11-01-preview`.
+1. Formulate a [Create Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
 
-1. Add `ingestionParameters`.
-
-1. Remove obsolete parameters.
-
-1. [Create the new knowledge source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+    Start with the 08-01-preview JSON.
 
     ```http
-    PUT {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-11-01-preview
+    POST {{url}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
+    api-key: {{key}}
+    Content-Type: application/json
+    
+    {
+        "name": "azure-blob-ks",
+        "kind": "azureBlob",
+        "description": "A sample azure blob knowledge source.",
+        "encryptionKey": null,
+        "azureBlobParameters": {
+            "connectionString": "<redacted>",
+            "containerName": "blobcontainer",
+            "folderPath": null,
+            "disableImageVerbalization": false,
+            "identity": null,
+            "embeddingModel": {
+                "name": "embedding-model",
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                "resourceUri": "<redacted>",
+                "deploymentId": "text-embedding-3-large",
+                "apiKey": "<redacted>",
+                "modelName": "text-embedding-3-large",
+                "authIdentity": null
+                },
+                "customWebApiParameters": null,
+                "aiServicesVisionParameters": null,
+                "amlParameters": null
+            },
+            "chatCompletionModel": null,
+            "ingestionSchedule": null
+      }
+    }
+    ```
+
+   Make the following updates for a 2025-11-01-preview migration:
+
+   + Give the knowledge source a new name.
+
+   + Change the API version to `2025-11-01-preview`.
+
+   + Add `ingestionParameters` and move the following properties as child properties: `"embeddingModel"`, `"chatCompletionModel"`, `"ingestionSchedule"`.
+
+1. Review your updates and then send the request to create the object.
+
+    ```http
+    PUT {{url}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
     
@@ -225,13 +263,12 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
         "name": "azure-blob-ks",
         "kind": "azureBlob",
         "description": "A sample azure blob knowledge source",
+        "encryptionKey": null,
         "azureBlobParameters": {
             "connectionString": "{{blob-connection-string}}",
             "containerName": "blobcontainer",
             "folderPath": null,
-            "isADLSGen2": false,
             "ingestionParameters": {
-                "identity": null,
                 "embeddingModel": {
                     "kind": "azureOpenAI",
                     "azureOpenAIParameters": {
@@ -243,19 +280,15 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
                 },
                 "chatCompletionModel": null,
                 "disableImageVerbalization": false,
-                "ingestionSchedule": null,
-                "ingestionPermissionOptions": [],
-                "contentExtractionMode": "standard",
-                "aiServices": {
-                    "uri": "{{ai-endpoint}}",
-                    "apiKey": "{{ai-key}}"
-                }
+                "ingestionSchedule": null
             }
         }
     }
     ```
 
-You now have an updated `azureBlob` knowledge source with the correct ingestion parameters for the 2025-11-01-preview.
+You now have a migrated `azureBlob` knowledge source that is backwards compatible with the previous version, using the correct property specifications for the 2025-11-01-preview. 
+
+The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [How to create an Azure Blob knowledge source](agentic-knowledge-source-how-to-blob.md).
 
 #### Replace knowledge agent with knowledge base
 
