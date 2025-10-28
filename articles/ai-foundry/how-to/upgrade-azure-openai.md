@@ -43,6 +43,7 @@ Your existing resource configurations and state remain preserved including:
 
 Backend limitations:
 
+* AI Foundry model and feature availability [differs by region](../reference/region-support.md). For example, Agent service is [available](../agents/concepts/model-region-support.md) in select regions compared to Azure OpenAI service.
 * Azure OpenAI resources using **customer-managed keys** for encryption are available for upgrade by request only. [Fill out the request form here](https://forms.office.com/r/sKGZJ0YhDd).
 * The AI Foundry resource type doesn't support configuring Weights & Biases.
 * Private network setups require [reconfiguration of private link endpoints and extra DNS configurations](#private-network-configuration) before all Foundry capabilities can be used.
@@ -61,20 +62,22 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Foundry portal](#tab/portal)
 
-**Option 1: Use Azure AI Foundry portal**
-
 1. Sign in to [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 1. Select your Azure OpenAI resource.
-1. On the overview page, find the banner **Make the switch to AI Foundry** and select **Switch now.**
+1. On the overview page, find the banner **Want to try the latest industry models and Agents?** and select **Get started**.
 1. Provide the name for your first project. A project is a folder to organize your work in Azure AI Foundry. Your first 'default' project has backwards compatibility with your previous work in Azure OpenAI.
-1. Confirm to start the upgrade. The upgrade takes up to two minutes.
+1. Confirm to start the upgrade.
 
-> [!NOTE]
-> While the upgrade capability is rolling out to all users, you might not see the upgrade action yet in the portal for your resource. Use Azure Bicep or wait until you see the banner.
+# [Azure Portal](#tab/azportal)
+
+1. Sign in to [Azure Portal](http://portal.azure.com/)
+1. Select your Azure OpenAI resource
+1. On the overview page, locate the banner "Want to try the latest industry models and Agents?" and select 'Get Started'.
+1. Confirm to start the upgrade.
+
+:::image type="content" source="../media/upgrade-azure-openai/azure-portal-upgrade.png" alt-text="Screenshot shows how to upgrade in Azure Portal." lightbox = "../media/upgrade-azure-openai/azure-portal-upgrade.png":::
 
 # [Azure Bicep](#tab/bicep)
-
-**Option 2: Use an Azure Bicep template**
 
 Starting with your existing Azure OpenAI template configuration, set the following properties:
 
@@ -179,6 +182,14 @@ Then, use either AI Foundry Portal or ARM template to roll back:
 1. Select **Rollback**.
 
 :::image type="content" source="../media/upgrade-azure-openai/rollback.png" alt-text="Screenshot shows the roll back option in the Azure AI Foundry portal." lightbox = "../media/upgrade-azure-openai/rollback.png":::
+
+# [Azure Portal](#tab/azportal)
+
+1. Sign in to [Azure Portal](http://portal.azure.com/)
+1. Select your Azure AI Foundry resource
+1. On the overview page, select 'rollback upgrade'.
+
+:::image type="content" source="../media/upgrade-azure-openai/rollback-azure-portal.png" alt-text="Screenshot shows how to upgrade in Azure Portal." lightbox = "../media/upgrade-azure-openai/rollback-azure-portal.png":::
 
 # [Azure Bicep](#tab/bicep)
 
