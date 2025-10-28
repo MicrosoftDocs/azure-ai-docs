@@ -29,7 +29,7 @@ Azure Machine Learning simplifies debugging and observability in distributed tra
 
 - **Improved debuggability**: Reduces time spent manually inspecting multiple files.
 
-- **Configurable retention and billing**: Logs are retained for **90 days** by default in an AppTraces Table with table type as Analytics; ingestion is billed by size of logs, retention beyond 90 days can be configured at additional cost. Learn More: 
+- **Configurable retention and billing**: Logs are retained for **90 days** by default in an AppTraces Table with table type as Analytics; ingestion is billed by size of logs, retention beyond 90 days can be configured at additional cost. For more information, see [Manage data retention](/azure/azure-monitor/logs/data-retention-configure).
 
 ## Prerequisites
 
@@ -43,7 +43,7 @@ Azure Machine Learning simplifies debugging and observability in distributed tra
 
 - Your Azure Machine Learning workspace must not be a [Hub workspace](/azure/machine-learning/concept-hub-workspace).
 
-- Log Analytics Reader role to search for logs. For more information, see [Manage access to Log Analytics workspaces](/azure/azure-monitor/logs/manage-access?tabs=portal).
+- You must have the `Log Analytics Reader` role assigned in the Log Analytics workspace in order to query and search logs. For more information, see [Manage access to Log Analytics workspaces](/azure/azure-monitor/logs/manage-access?tabs=portal).
 
 ## Enable log forwarding to Application Insights
 
