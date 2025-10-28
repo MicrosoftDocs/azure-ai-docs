@@ -203,6 +203,22 @@ JSON example:
 
 A *figure* is a content element that represents an embedded image, figure, or chart in the document. Content Understanding generates summary of detected figures, converts select images into chart.js representation, and extracts any embedded text from the images and any associated captions and footnotes. Charts are represented in figure content using chart.js syntax and diagrams are represented in figure content using a string in mermaid syntax.
 
+The following figure types are currently supported:
+
+| Figure type | Representation |
+|--------------|-------------|
+| `Bar chart` | Chart.js |
+| `Line chart` | Chart.js |
+| `Pie chart` | Chart.js |
+| `Radar chart` | Chart.js |
+| `Scatter chart` | Chart.js |
+| `Bubble chart` | Chart.js |
+| `Quadrant chart` | Chart.js |
+| `Mixed chart (e.g. combined bar and line chart)` | Mermaid.js |
+| `Flow chart` | Mermaid.js |
+| `Sequence diagrams` | Mermaid.js |
+| `Gantt chart` | Mermaid.js |
+
 JSON example:
 
 ```json
