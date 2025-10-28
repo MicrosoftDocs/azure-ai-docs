@@ -2059,9 +2059,32 @@ Base VAD-based turn detection.
 | prefix_padding_ms | integer | Optional. Audio padding before speech starts |
 | silence_duration_ms | integer | Optional. Silence duration to detect speech end |
 | end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. End-of-utterance detection config |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
+##### RealtimeSemanticVad
+
+Azure semantic VAD (default variant).
+
+| Field | Type | Description |
+|-------|------|-------------|
+| type | string | Must be `"semantic_vad"` |
+| threshold | number | Optional. Activation threshold |
+| prefix_padding_ms | integer | Optional. Audio padding before speech |
+| silence_duration_ms | integer | Optional. Silence duration for speech end |
+| end_of_utterance_detection | [RealtimeEOUDetection](#realtimeeoudetection) | Optional. EOU detection config |
+| neg_threshold | number | Optional. Negative threshold |
+| speech_duration_ms | integer | Optional. Minimum speech duration |
+| window_size | integer | Optional. Analysis window size |
+| distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
+| require_vowel | boolean | Optional. Require vowel in speech |
+| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
+| languages | string[] | Optional. Supported languages |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
+| eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
+| interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
+| auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
 ##### RealtimeAzureSemanticVad
 
@@ -2081,6 +2104,7 @@ Azure semantic VAD (default variant).
 | require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supported languages |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
@@ -2102,6 +2126,7 @@ Azure semantic VAD (default variant).
 | require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
 | languages | string[] | Optional. Supported languages |
+| create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
 
