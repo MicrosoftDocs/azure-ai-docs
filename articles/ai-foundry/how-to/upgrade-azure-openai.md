@@ -165,7 +165,7 @@ After this, delete and [re-create a private link endpoint](configure-private-lin
 
 ## Roll back to Azure OpenAI
 
-In case you run into any issues, a rollback option is available. As prerequisite to rollback, you're required to delete any of the following configurations first:
+In case you run into any issues, a rollback option is available. As prerequisite to roll back, you're required to delete any of the following configurations first:
 
 * Projects
 * Connections
@@ -227,15 +227,15 @@ Azure resource limits and organizational configurations may require extra steps 
 
 |Issue|Solution/mitigation|
 |---|---|
-|User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resources, e.g. Owner, Contributor, Azure AI Administrator.| 
-|Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure portal.|
+|User principal lacks account/write permissions|Obtain a privileged Azure RBAC role to manage top-level Azure resourcee. For example Owner, Contributor, Azure AI Administrator.| 
+|Managed identity isn't enabled on the Azure OpenAI resource|Configure managed identity on your resource via templates or Azure Portal.|
 |No permissions to create agents, while you're the owner/contributor on the resource.|An EntraID data plane role is required for development actions including agents. Examples include Azure AI User or Azure AI Project Manager role. Owner and Contributor roles only grant access to management operations in Azure such as managing deployments.|
-|An Azure Policy conflict occurred.|Your organization may have put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
+|An Azure Policy conflict occurred.|Your organization may put constraints on resource configurations. Inspect the details of the policy violation error. Then upgrade your resource via template options for further customization. For example, network configurations for Agents can only be configured via template options such as Azure Bicep.|
 |Exceeded number of Azure OpenAI instances of 30 per subscription per region when rolling back.|Delete an Azure OpenAI resource or upgrade it to the Azure AI Foundry. Then retry rolling back your current resource.|
 |Exceeded number of AIServices instances of 100 per subscription per region.|Delete an Azure AI Foundry resource you may not use in this subscription. Then retry upgrading your current resource.|
 |I can't access my resource over the private network|See [private networking configuration](#private-network-configuration) for the required steps.|
 
-## How to inspect whether a resource has been upgraded
+## How to inspect whether a resource was upgraded
 
 The following Azure resource property is available to inspect whether a resource was previously upgraded to AI Foundry.
 
@@ -248,7 +248,7 @@ The following Azure resource property is available to inspect whether a resource
 }
 ```
 
-Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure portal](/azure/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
+Not sure who upgraded your resource to Azure AI Foundry? You can [view the activity log in the Azure Portal](/azure/azure-monitor/platform/activity-log-insights#view-the-activity-log) to understand when the upgrade operation took place and by which user:
 
 1. Use Azure Activity Logs (under "Monitoring") to see if an upgrade operation was performed.
 1. Filter by "Write" operations on the storage account.
