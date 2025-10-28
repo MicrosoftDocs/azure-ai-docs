@@ -48,12 +48,12 @@ model_config = AzureOpenAIModelConfiguration(
 
 Azure AI Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
 
-| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o) | To enable |
-|------------|-----------------------------------------------------------------------------|-------------------------------------------------------------|-------|
-| `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| Other quality evaluators| Not Supported | Supported | -- |
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `IntentResolution`, `TaskAdherence`, `ToolCallAccuracy`, `ResponseCompleteness`, `Coherence`, `Fluency`, `Similarity`, `Groundedness`, `Retrieval`, `Relevance`  | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other evaluators| Not Supported | Supported | -- |
 
-For complex evaluation that requires refined reasoning, we recommend a strong reasoning model with a balance of reasoning performance and cost efficiency, like `o3-mini` and o-series mini models released afterwards.
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `4.1-mini` with a balance of reasoning performance and cost efficiency.
 
 ## Coherence
 

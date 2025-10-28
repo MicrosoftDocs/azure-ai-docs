@@ -247,7 +247,7 @@ The following section provides you with a quick guide to the default quotas and 
 
 During the preview, the rate limits for each `gpt-4o` realtime model deployment is at least 100,000 tokens per minute and 1,000 requests per minute, even if a lower limit is shown in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 
-| Model|Tier| Quota limit in tokens per minute | Requests per minute |
+| Model|Tier| Quota limit in tokens per minute | Requests per minute<br>(new websocket connections per minute) |
 |---|---|:---:|:---:|
 |`gpt-4o-audio-preview` | Default | 450K | 1K |
 |`gpt-4o-realtime-preview` | Default | 800K | 1K |
