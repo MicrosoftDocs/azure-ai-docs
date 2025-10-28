@@ -64,11 +64,13 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## <a name="install"></a> Get ready to code
 
-:::moniker range="foundry"
+::: moniker range="foundry"
 [!INCLUDE [code-preview](../default/includes/code-preview.md)] 
-:::moniker-end
+::: moniker-end
 
 # [Python](#tab/python)
+
+::: moniker range="foundry-classic"
 
 1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
 1. Install these packages:
@@ -80,7 +82,20 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
 
+::: moniker-end
+::: moniker range="foundry"
+1. [Install Python and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-python)
+1. Install these packages, including the preview version of `azure-ai-projects`:
 
+    ```
+    pip install openai azure-identity
+    pip install azure-ai-projects --pre
+    ```
+
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Python scripts.
+
+::: moniker-end
 Follow along below or get the code:
 > [!div class="nextstepaction"]
 > [Get the code](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/python/mslearn-resources/quickstart)
@@ -88,6 +103,7 @@ Follow along below or get the code:
 
 # [C#](#tab/csharp)
 
+::: moniker range="foundry-classic"
 1. [Install C# and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp)
 1. Install packages:
 
@@ -103,6 +119,24 @@ Follow along below or get the code:
     > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+::: moniker-end
+::: moniker range="foundry"
+1. [Install C# and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-csharp)
+1. Install packages, including the preview version of `Azure.AI.Projects`:
+
+    [!INCLUDE [install-csharp-packages](../includes/install-csharp-packages.md)]
+
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+
+1. Set these environment variables to use in your scripts.  The `AZURE_AI_ENDPOINT` is the project endpoint you copied earlier.  Remove everything after `.com/` in that endpoint to form `AZURE_AI_INFERENCE`.
+
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/csharp/mslearn-resources/quickstart/Samples/.env.example":::
+
+    > [!TIP]
+    > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+::: moniker-end
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -110,6 +144,8 @@ Follow along below or get the code:
 
 
 # [TypeScript](#tab/typescript)
+
+:: moniker range="foundry-classic"
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
@@ -120,6 +156,19 @@ Follow along below or get the code:
 
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
 
+::: moniker-end
+:: moniker range="foundry"
+
+1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
+1. Download [package.json](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/typescript/mslearn-resources/quickstart/package.json).
+1. Install packages with `npm install`, including the preview version of `@azure/ai-projects`.
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
+
+::: moniker-end
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
@@ -129,7 +178,7 @@ Follow along below or get the code:
 
 ::: moniker range="foundry-classic"
 [!INCLUDE [code-preview](../default/includes/code-preview.md)]
-::: moniker-end
+
 
 1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
 1. [!INCLUDE [find-endpoint](../includes/find-endpoint.md)]
@@ -142,6 +191,21 @@ Follow along below or get the code:
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
 1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE.
+::: moniker-end
+::: moniker range="foundry"
+
+1. [Install Java and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-java).
+1. [!INCLUDE [find-endpoint](../default/includes/find-endpoint.md)]
+1. Set these environment variables to use in your scripts:
+
+    ```txt
+    MODEL_DEPLOYMENT_NAME=gpt-4o
+    PROJECT_ENDPOINT=https://<your-foundry-resource-name>.services.ai.azure.com/api/projects/<your-foundry-project-name>
+    ```
+
+1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your Java scripts.
+1. Download [POM.XML](https://github.com/azure-ai-foundry/foundry-samples/blob/main/samples/microsoft/java/mslearn-resources/quickstart/pom.xml) to your Java IDE. This includes the preview version of `azure-ai-projects`.
+::: moniker-end
 
 Follow along below or get the code:
 > [!div class="nextstepaction"]
