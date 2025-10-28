@@ -70,7 +70,7 @@ As a prerequisite to upgrade, managed identity must be enabled on your Azure Ope
 
 # [Azure Portal](#tab/azportal)
 
-1. Sign in to [Azure Portal](http://portal.azure.com/)
+1. Sign in to [Azure Portal](https://portal.azure.com/)
 1. Select your Azure OpenAI resource
 1. On the overview page, locate the banner "Want to try the latest industry models and Agents?" and select 'Get Started'.
 1. Confirm to start the upgrade.
