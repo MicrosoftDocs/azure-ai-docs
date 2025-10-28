@@ -12,13 +12,13 @@ ms.author: lajanuar
 
 # How to use autolabeling for Custom Named Entity Recognition
 
-[Labeling process](tag-data.md) is an important part of preparing your dataset. Since this process requires both time and effort, you can use the autolabeling feature to automatically label your entities. You can start autolabeling jobs based on a model you've previously trained or using GPT models. With autolabeling based on a model you've previously trained, you can start labeling a few of your documents, train a model, then create an autolabeling job to produce entity labels for other documents based on that model. With autolabeling with GPT, you may immediately trigger an autolabeling job without any prior model training. This feature can save you the time and effort of manually labeling your entities.
+[Labeling process](tag-data.md) is an important part of preparing your dataset. Since this process requires both time and effort, you can use the autolabeling feature to automatically label your entities. You can start autolabeling jobs based on a model you previously trained or using `GPT` models. With autolabeling based on a model you previously trained, you can start labeling a few of your documents, train a model, then create an autolabeling job to produce entity labels for other documents based on that model. With autolabeling with `GPT`, you may immediately trigger an autolabeling job without any prior model training. This feature can save you the time and effort of manually labeling your entities.
 
 ## Prerequisites
 
-### [Autolabel based on a model you've trained](#tab/autolabel-model)
+### [Autolabel based on a model you trained](#tab/autolabel-model)
 
-Before you can use autolabeling based on a model you've trained, you need:
+Before you can use autolabeling based on a model you trained, you need:
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
 * Text data [uploaded](design-schema.md#data-preparation) to your storage account.
 * [Labeled data](tag-data.md)
@@ -29,7 +29,7 @@ Before you can use autolabeling based on a model you've trained, you need:
 Before you can use autolabeling with GPT, you need:
 * A successfully [created project](create-project.md) with a configured Azure blob storage account.
 * Text data [uploaded](design-schema.md#data-preparation) to your storage account.
-* Entity names that are meaningful. The GPT models label entities in your documents based on the name of the entity you've provided.
+* Entity names that are meaningful. The GPT models label entities in your documents based on the name of the entity you provided.
 * [Labeled data](tag-data.md) isn't required.
 * An Azure OpenAI [resource and deployment](../../../../ai-foundry/openai/how-to/create-resource.md).
 
@@ -37,14 +37,14 @@ Before you can use autolabeling with GPT, you need:
 
 ## Trigger an autolabeling job
 
-### [Autolabel based on a model you've trained](#tab/autolabel-model)
+### [Autolabel based on a model you trained](#tab/autolabel-model)
 
-When you trigger an autolabeling job based on a model you've trained, there's a monthly limit of 5,000 text records per month, per resource. This means the same limit applies on all projects within the same resource.
+When you trigger an autolabeling job based on a model you trained, there's a monthly limit of 5,000 text records per month, per resource. The same limit applies on all projects within the same resource.
 
 > [!TIP]
-> A text record is calculated as the ceiling of (Number of characters in a document / 1,000). For example, if a document has 8921 characters, the number of text records is:
+> A text record is calculated as the ceiling of (Number of characters in a document / 1,000). For example, if a document has 8,921 characters, the number of text records is:
 >
-> `ceil(8921/1000) = ceil(8.921)`, which is 9 text records.
+> `ceil(8921/1000) = ceil(8.921)`, which is nine text records.
 
 1. From the left pane, select **Data labeling**.
 1. Select the **Autolabel** button under the Activity pane to the right of the page.
@@ -52,7 +52,7 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 
     :::image type="content" source="../media/trigger-autotag.png" alt-text="A screenshot showing how to trigger an autotag job." lightbox="../media/trigger-autotag.png":::
 
-1. Choose autolabel based on a model you've trained and select Next.
+1. Choose autolabel based on a model you trained and select Next.
 
     :::image type="content" source="../media/choose-models.png" alt-text="A screenshot showing model choice for auto labeling." lightbox="../media/choose-models.png":::
 
@@ -60,7 +60,7 @@ When you trigger an autolabeling job based on a model you've trained, there's a 
 
     :::image type="content" source="../media/choose-model-trained.png" alt-text="A screenshot showing how to choose trained model for autotagging." lightbox="../media/choose-model-trained.png":::
 
-1. Choose the entities you want to be included in the autolabeling job. By default, all entities are selected. You can see the total labels, precision and recall of each entity. We recommend that you include entities that perform well to ensure the quality of the automatically labeled entities.
+1. Choose the entities you want to be included in the autolabeling job. By default, all entities are selected. You can see the total labels, precision, and recall of each entity. We recommend that you include entities that perform well to ensure the quality of the automatically labeled entities.
 
     :::image type="content" source="../media/choose-entities.png" alt-text="A screenshot showing which entities to be included in autotag job." lightbox="../media/choose-entities.png":::
 
@@ -79,7 +79,7 @@ You should see the model used, number of documents included in the autolabeling 
 
 ### [Autolabel with GPT](#tab/autolabel-gpt)
 
-When you trigger an autolabeling job with GPT, you're charged to your Azure OpenAI resource as per your consumption. You're charged an estimate of the number of tokens in each document being autolabeled. Refer to the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for a detailed breakdown of pricing per token of different models.
+When you trigger an autolabeling job with GPT, you're charged to your Azure OpenAI resource as per your consumption. You're charged for an estimate of the number of tokens in each document being autolabeled. Refer to the [Azure OpenAI pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for a detailed breakdown of pricing per token of different models.
 
 1. From the left pane, select **Data labeling**.
 1. Select the **Autolabel** button under the Activity pane to the right of the page.
@@ -120,7 +120,7 @@ When the autolabeling job is complete, you can see the output documents in the *
 
 :::image type="content" source="../media/open-autotag-files.png" alt-text="A screenshot showing the autolabeled documents" lightbox="../media/open-autotag-files.png":::
 
-Entities that have been automatically labeled appear with a dotted line. These entities have two selectors (a checkmark and an "X") that allow you to accept or reject the automatic label.
+Entities that are automatically labeled appear with a dotted line. These entities have two selectors (a checkmark and an "X") that allow you to accept or reject the automatic label.
 
 Once an entity is accepted, the dotted line changes to a solid one, and the label is included in any further model training becoming a user defined label.
 

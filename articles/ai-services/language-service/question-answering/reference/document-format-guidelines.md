@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.author: lajanuar
 author: laujan
 ms.topic: reference
-ms.date: 06/21/2025
+ms.date: 11/05/2025
 ---
 
 # Format guidelines for custom question answering

@@ -13,7 +13,7 @@ ms.custom: language-service-clu
 
 # Train a conversational language understanding model
 
-After you complete [labeling your utterances](tag-utterances.md), you can start training a model. Training is the process where the model learns from your [labeled utterances](tag-utterances.md). <!--After training is completed, you will be able to [view model performance](view-model-evaluation.md).-->
+After you complete [labeling your utterances](tag-utterances.md), you can start training a model. Training is the process where the model learns from your [labeled utterances](tag-utterances.md). <!--After training is completed, you can [view model performance](view-model-evaluation.md).-->
 
 To train a model, start a training job. Only successfully completed jobs create a model. Training jobs expire after seven days, then you can no longer retrieve the job details. If your training job completed successfully and a model was created, the job doesn't expire. You can only have one training job running at a time, and you can't start other jobs in the same fine tuning task.
 
@@ -132,7 +132,7 @@ Use the evaluation scores to guide your decisions. There may be times where a sp
 1. Select one of the **Data splitting** methods presented in the **Train a new model** window:
 
    * **Automatically split the testing set from training data** enables the system to split your utterances between the training and testing sets, according to the specified percentages.
-   * **Use a manual split of training and testing data** enables the system to use the training and testing sets that you assigned and labeled to create your custom model. ***This option is only available if you have added utterances to your testing set when you labeled your utterances**.
+   * **Use a manual split of training and testing data** enables the system to use the training and testing sets that you assigned and labeled to create your custom model. ***This option is only available if you added utterances to your testing set when you labeled your utterances**.
 
       :::image type="content" source="../media/data-splitting.png" alt-text="Screenshot of data splitting option in the Azure AI Foundry.":::
 

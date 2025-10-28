@@ -1,12 +1,12 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from native documents
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This article shows you how to redact Personally Identifying Information (PII) from native documents.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -190,7 +190,7 @@ For this quickstart, you need a **source document** uploaded to your **source co
 
 * The source `location` value is the SAS URL for the **source document (blob)**, not the source container SAS URL.
 
-* The `redactionPolicy` possible values are `UseRedactionCharacterWithRefId` (default) or `UseEntityTypeName`. For more information, *see* [**PiiTask Parameters**](/rest/api/language/text-analysis-runtime/analyze-text?view=rest-language-2023-11-15-preview&tabs=HTTP#piitaskparameters&preserve-view=true).
+* The `redactionPolicy` possible values are `UseRedactionCharacterWithRefId` (default) or `UseEntityTypeName`. For more information, *see* [**PiiTask Parameters**](/rest/api/language/analyze-documents/analyze-documents-submit-job/analyze-documents-submit-job?view=rest-language-analyze-documents-2024-11-15-preview&preserve-view=true&tabs=HTTP#piitaskparameters).
 
 ### Run the POST request
 

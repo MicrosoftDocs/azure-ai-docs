@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 ms.topic: how-to
 author: laujan
 ms.author: lajanuar
-ms.date: 06/06/2025
+ms.date: 11/05/2025
 ms.custom: language-service-question-answering
 ---
 
