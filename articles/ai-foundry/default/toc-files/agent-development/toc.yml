@@ -25,3 +25,5 @@ items:
   items:
   - name: Work with chat models
     href: ../../../foundry-models/how-to/use-chat-completions.md
+- name: Create a workflow
+  href: ../../agents/concepts/workflow.md
