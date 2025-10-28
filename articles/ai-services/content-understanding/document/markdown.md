@@ -47,13 +47,14 @@ Mathematical formulas are encoded by using LaTeX in Markdown:
 Detected images, including figures and charts, are represented using standard Markdown image syntax. The alt text contains the detected text inside the figure, and the syntax varies based on configuration options.
 
 ### Image representation patterns
-
+ 
 | Configuration | Markdown pattern | Description |
 | --- | --- | --- |
 | Basic | `![detected text](figures/path)` | Standard image without description |
 | enableFigureDescription | `![detected text](figures/path "description")` | Includes generated image description |
-| enableFigureDescription + enableFigureAnalysis | `[![detected text](figures/path "description")](contents/images/path)` | Clickable image linking to analysis |
-| enableFigureAnalysis only | `[![detected text](figures/path)](contents/images/path)` | Clickable image without description |
+| enableFigureDescription + enableFigureAnalysis | `![detected text](figures/path "description")` followed by a chart, markdown table, or mermaid diagram | Image with description and appended figure analysis (chart, table, or diagram) |
+| enableFigureAnalysis only | `![detected text](figures/path)` followed by a chart, markdown table, or mermaid diagram | Image without description and appended figure analysis (chart, table, or diagram) |
+ 
 
 ### Examples
 
