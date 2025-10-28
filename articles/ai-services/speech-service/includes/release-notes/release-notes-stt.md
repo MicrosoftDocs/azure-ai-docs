@@ -10,6 +10,10 @@ ms.custom: references_regions
 
 ### October 2025 release
 
+#### Speech to text REST API version 2025-10-15
+
+The speech to text REST API version 2025-10-15 is released for general availability. For more information, see the [speech to text REST API reference documentation](https://go.microsoft.com/fwlink/?linkid=2296107) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
+
 #### Phrase list weight control for Speech SDK
 
 You can now control the influence of phrase lists on speech recognition results when using the Speech SDK with Real-time transcription. The new phrase list weight feature allows you to set a bias level between 0.0 (disabled) and 2.0 (maximum influence) to fine-tune how much priority phrase list terms receive over the default dictionary. For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md).
@@ -106,14 +110,6 @@ Announcing the release of the latest English speech model (en-US, en-CA), which 
 The new model also improved the overall performance, including entity recognition and better recognition of spelled-out letters.
 
 These advancements are expected to provide a more accurate, efficient, and satisfying experience for all users. The new model is available through the API and Azure AI Foundry playground. Feedback is encouraged to further refine its capabilities.
-
-### October 2025 release
-
-#### Speech to text REST API version 2025-10-15
-
-The speech to text REST API version 2025-10-15 is released for general availability. For more information, see the [speech to text REST API reference documentation](https://go.microsoft.com/fwlink/?linkid=2296107) and the [Speech to text REST API guide](../../rest-speech-to-text.md).
-
-
 ### November 2024 release
 
 #### Speech to text REST API version 2024-11-15
