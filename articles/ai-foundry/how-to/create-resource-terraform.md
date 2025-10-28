@@ -2,13 +2,14 @@
 title: 'Use Terraform to create Azure AI Foundry'
 description: In this article, you create an Azure AI Foundry resource, an Azure AI Foundry project, using Terraform infrastructure as code templates.
 ms.topic: how-to
-ms.date: 07/22/2025
+ms.date: 10/27/2025
 titleSuffix: Azure AI Foundry 
 ms.service: azure-ai-foundry
 ms.reviewer: deeikele 
 ms.author: sgilley
 author: sdgilley
 ms.custom: devx-track-terraform
+monikerRange: foundry-classic || foundry
 content_well_notification: 
   - AI-contribution
 ai-usage: ai-assisted

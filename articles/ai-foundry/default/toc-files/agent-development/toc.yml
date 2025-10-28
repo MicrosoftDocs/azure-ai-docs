@@ -21,3 +21,7 @@ items:
     href: ../../../agents/concepts/standard-agent-setup.md
   - name: Capability hosts
     href: ../../../agents/concepts/capability-hosts.md
+- name: Interact with models
+  items:
+  - name: Work with chat models
+    href: ../../../foundry-models/how-to/use-chat-completions.md

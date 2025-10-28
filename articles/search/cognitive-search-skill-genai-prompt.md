@@ -8,7 +8,7 @@ ms.service: azure-ai-search
 ms.custom:
   - build-2025
 ms.topic: reference
-ms.date: 09/18/2025
+ms.date: 10/23/2025
 ---
 
 # GenAI Prompt skill
@@ -35,7 +35,7 @@ The GenAI Prompt skill is available in the [latest preview REST API](/rest/api/s
 
 ## Supported models
 
-- You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth.
+- You can use any [chat completion inference model](/azure/ai-foundry/model-inference/concepts/models) deployed in AI Foundry, such as GPT models, Deepseek R#, Llama-4-Mavericj, Cohere-command-r, and so forth. For GPT models specifically, only the chat completions API endpoints are supported. Endpoints using the Azure OpenAI Responses API (containing `/openai/responses` as part of the URI) are not currently compatible.
 
 - For image verbalization, the model you use to analyze the image determines what image formats are supported.
 

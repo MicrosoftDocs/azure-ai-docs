@@ -45,6 +45,8 @@ This article describes how to set up the Azure AI Search tool, including creatin
 + To use the Azure AI Search tool in the Azure AI Foundry portal behind a virtual network, you must create an agent using the SDK or REST API. After you create the agent programmatically, you can then use it in the portal. 
 
 + The Azure AI Search tool can only target one index. To use multiple indexes, consider using [connected agents](../connected-agents.md), each with a configured index.
+  
++ An Azure AI Foundry resource with basic agent deployments do not support private Azure AI Search resources, nor Azure AI Search  with public network access disabled and a private endpoint. To use a private Azure AI Search tool with your agents, deploy the standard agent with virtual network injection.
 
 ## Setup
 

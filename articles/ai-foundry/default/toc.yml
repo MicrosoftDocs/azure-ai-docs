@@ -15,8 +15,8 @@ items:
 - name: Model catalog
   href: toc-files/model-catalog/toc.yml
 
-- name: Model operations
-  href: toc-files/model-operations/toc.yml
+- name: Model capabilities
+  href: toc-files/model-capabilities/toc.yml
 
 - name: Fine-tuning
   href: toc-files/fine-tuning/toc.yml

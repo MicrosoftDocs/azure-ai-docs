@@ -25,7 +25,7 @@ This article is intended to provide IT security teams with details on the Azure 
 
 ## Azure AI resource types and providers
 
-Within the Azure AI product family, we distinguish three [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) supporting user needs at different layers in the stack.
+Within the Azure AI product family, we distinguish these [Azure resource providers](/azure/azure-resource-manager/management/resource-providers-and-types) supporting user needs at different layers in the stack.
 
 ::: moniker range="foundry-classic"
 | Resource provider | Purpose | Supports resource type kinds |
@@ -61,15 +61,24 @@ Azure AI Foundry enforces a clear separation between management and development 
 
 ## Computing infrastructure
 
+::: moniker range="foundry-classic"
 Azure AI Foundry applies a flexible compute architecture to support diverse [model access](../concepts/foundry-models-overview.md) and workload execution scenarios. 
 
-- Model Hosting Architecture: Foundry models access is provided in different ways:
+- **Model Hosting Architecture**: Foundry models access is provided in different ways:
   
   - [Standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources)
   - [Deployment to serverless API endpoints in Azure AI Hub resources](deployments-overview.md#serverless-api-endpoint)
   - [Deployment to managed computes in Azure AI Hub resources](deployments-overview.md#managed-compute)
 
   For an overview of data, privacy, and security considerations with these deployment options, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+
+::: moniker-end
+
+::: moniker range="foundry"
+- **Model Hosting Architecture** is provided by [standard deployment in Azure AI Foundry resources](deployments-overview.md#standard-deployment-in-azure-ai-foundry-resources).   For an overview of data, privacy, and security considerations with deployment, see [Data, privacy, and security for use of models](../how-to/concept-data-privacy.md)
+
+::: moniker-end
+
 
 - **Workload Execution:** Agents, Evaluations, and Batch jobs are executed as managed container compute, fully managed by Microsoft. 
 
