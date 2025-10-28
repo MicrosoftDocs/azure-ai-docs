@@ -16,7 +16,7 @@ zone_pivot_groups: azure-ai-inference-samples
 
 # How to generate embeddings with Azure AI Foundry Models
 
-[!INCLUDE [model-inference-to-v1-openai-transition](../../includes/model-inference-to-v1-openai-transition.md)]
+[!INCLUDE [migrate-model-inference-to-v1-openai](../../includes/migrate-model-inference-to-v1-openai.md)]
 
 ::: zone pivot="programming-language-python"
 
