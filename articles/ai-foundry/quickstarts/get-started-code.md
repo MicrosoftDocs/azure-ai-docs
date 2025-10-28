@@ -27,8 +27,6 @@ monikerRange: 'foundry-classic || foundry'
 [!INCLUDE [version-banner](../includes/version-banner.md)]
 
 ::: moniker range="foundry-classic"
-> [!TIP]
-> An alternate hub project quickstart is available: [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md).
 
 In this quickstart, you use [!INCLUDE [classic-link](../includes/classic-link.md)] to:
 
@@ -54,7 +52,7 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ::: moniker range="foundry-classic"
 > [!TIP]
-> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. Select **[!INCLUDE [hub](../includes/hub-project-name.md)]** at the top of this article if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
+> The rest of this article shows how to create and use a **[!INCLUDE [fdp](../includes/fdp-project-name.md)]**. See [Quickstart: Get started with Azure AI Foundry (Hub projects)](hub-get-started-code.md). if you want to use a [!INCLUDE [hub](../includes/hub-project-name.md)] instead. [Which type of project do I need?](../what-is-azure-ai-foundry.md#which-type-of-project-do-i-need)
 ::: moniker-end
 
 ## Prerequisites
