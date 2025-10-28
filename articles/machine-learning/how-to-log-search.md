@@ -19,17 +19,17 @@ ai-usage: ai-assisted
 
 [!INCLUDE [dev v2](includes/machine-learning-dev-v2.md)]
 
-Azure Machine Learning simplifies debugging and observability in distributed training scenarios. Training jobs generate multiple log files - often one per worker - which makes error diagnosis cumbersome. For example, a 10-node cluster with 8 GPUs per node can produce 80 separate log files. You can now send these logs to a central **Azure Application Insights AppTraces** table enabling fast query-based error and exception detection.
+Azure Machine Learning simplifies debugging and observability in distributed training scenarios. Training jobs generate multiple log files - often one per worker - which makes error diagnosis cumbersome. For example, a 10-node cluster with eight GPUs per node can produce 80 separate log files. You can now send these logs to a central **Azure Application Insights AppTraces** table enabling fast query-based error and exception detection.
 
-**Key Benefits:**
+**Key benefits:**
 
-- **Centralized Log Access**: Aggregates stdout and stderr from all workers into Application Insights.
+- **Centralized log access**: Aggregates stdout and stderr from all workers into Application Insights.
 
-- **Searchable Logs**: Use Kusto queries to filter errors, warnings, or custom patterns.
+- **Searchable logs**: Use Kusto queries to filter errors, warnings, or custom patterns.
 
-- **Improved Debuggability**: Reduces time spent manually inspecting multiple files.
+- **Improved debuggability**: Reduces time spent manually inspecting multiple files.
 
-- **Configurable Retention & Billing**: Logs are retained for **90 days** by default in an AppTraces Table with table type as Analytics; ingestion is billed by size of logs, retention beyond 90 days can be configured at additional cost. Learn More: 
+- **Configurable retention and billing**: Logs are retained for **90 days** by default in an AppTraces Table with table type as Analytics; ingestion is billed by size of logs, retention beyond 90 days can be configured at additional cost. Learn More: 
 
 ## Prerequisites
 
@@ -37,11 +37,11 @@ Azure Machine Learning simplifies debugging and observability in distributed tra
 
 - An Azure Machine Learning workspace. For steps to create a workspace, see [Create workspace resources](quickstart-create-resources.md).
 
-- Application Insights resource is configured to support [local authentication](/azure/azure-monitor/app/azure-ad-authentication?tabs=aspnetcore) for writing traces (Entra ID based authentication is not supported yet).
+- Application Insights resource is configured to support [local authentication](/azure/azure-monitor/app/azure-ad-authentication?tabs=aspnetcore) for writing traces (Microsoft Entra ID based authentication isn't supported yet).
 
 - Compute cluster running the job has network access to the linked Application Insights workspace.
 
-- Azure Machine Learning workspace is not a [Hub workspace](/azure/machine-learning/concept-hub-workspace).
+- Your Azure Machine Learning workspace must not be a [Hub workspace](/azure/machine-learning/concept-hub-workspace).
 
 - Log Analytics Reader role to search for logs. For more information, see [Manage access to Log Analytics workspaces](/azure/azure-monitor/logs/manage-access?tabs=portal).
 
@@ -53,8 +53,8 @@ Set the `AZUREML_COMMON_RUNTIME_USE_APPINSIGHTS_CAPABILITY` environment variable
 
 In Azure Machine Learning studio, add the environment variable when you configure your job:
 
-1. Navigate to your job configuration.
-1. In the **Environment variables** section, add the following:
+1. Go to your job configuration.
+1. In the **Environment variables** section, add the following values:
    - **Name**: `AZUREML_COMMON_RUNTIME_USE_APPINSIGHTS_CAPABILITY`
    - **Value**: `true`
 
@@ -120,7 +120,6 @@ az ml job create --file job.yml
 After configuring log forwarding, you can query your training logs in Application Insights.
 
 1. Go to the job overview page in Azure Machine Learning studio.
-1. 
 1. Select the **Job Logs** link.
 
    :::image type="content" source="media/how-to-log-search/job-overview.png" alt-text="Screenshot of job overview page with Job Logs link.":::
@@ -135,34 +134,34 @@ After configuring log forwarding, you can query your training logs in Applicatio
 
 ### Useful log fields
 
-The most useful fields in the AppTraces table are:
+The most useful fields in the `AppTraces` table are:
 
 - `timestamp` – Timestamp of the log message
 - `message` – The log line from your training code
-- `customDimensions` – JSON with useful fields like job ID, source file name, source node, etc.
+- `customDimensions` – JSON with useful fields like job ID, source file name, source node, and more
 
 ## Verify log ingestion
 
-To verify that your logs are being forwarded to Application Insights:
+To verify that Application Insights receives your logs:
 
 1. Submit a test training job with the environment variable configured.
 1. Wait for the job to start running.
-1. Navigate to the job overview page and select the **Job Logs** link.
+1. Go to the job overview page and select the **Job Logs** link.
 1. Confirm that log traces appear in the Application Insights query results.
 
-If you don't see logs, check the troubleshooting section below.
+If you don't see logs, check the troubleshooting section.
 
 ## Troubleshooting
 
-- If you are looking at the logs for an old job and you do not see any log messages, modify the default query which only checks last few days of logs in Application Insights.
+- If you look at the logs for an old job and you don't see any log messages, modify the default query. The default query only checks the last few days of logs in Application Insights.
 
-- Verify environment variable is set in Job Overview \> Job Yaml.
+- Verify that you set the environment variable in **Job Overview > Job Yaml**.
 
-- Check Application Insights linkage in workspace settings by opening the workspace resource in the Azure Portal and checking if the Application Insights link is populated.
+- Check Application Insights linkage in workspace settings by opening the workspace resource in the Azure portal and checking if the Application Insights link is populated.
 
-- Ensure compute cluster has network access to the default Application Insights workspace linked to the Azure Machine Learning workspace.
+- Ensure the compute cluster has network access to the default Application Insights workspace linked to the Azure Machine Learning workspace.
 
-- Inspect appinsights-capability.log in system/ job logs for errors.
+- Inspect **appinsights-capability.log** in system job logs for errors.
 
 ## Next steps
 

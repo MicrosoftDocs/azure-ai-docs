@@ -498,7 +498,7 @@ items:
         href: concept-expressions.md
       - name: Using secrets in training
         href: how-to-use-secrets-in-runs.md
-      - name: Sent logs to Application Insights
+      - name: Send logs to Application Insights
         href: how-to-log-search.md
       - name: Custom Training
         items:
