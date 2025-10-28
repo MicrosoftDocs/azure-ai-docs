@@ -196,10 +196,10 @@ Discounts on top of the hourly usage price can be obtained by purchasing an Azur
 
 * If the size of provisioned deployments within the scope of a reservation exceeds the amount of the reservation, the excess is charged at the hourly rate. For example, if deployments amounting to 250 PTUs exist within the scope of a 200 PTU reservation, 50 PTUs will be charged on an hourly basis until the deployment sizes are reduced to 200 PTUs, or a new reservation is created to cover the remaining 50. 
 
-* Reservations guarantee a discounted price for the selected term.  They don't reserve capacity on the service or guarantee that it will be available when a deployment is created. It's highly recommended that customers create deployments prior to purchasing a reservation to prevent from over-purchasing a reservation. 
+* Reservations guarantee a discounted price for the selected term.  They don't reserve capacity on the service or guarantee that it will be available when a deployment is created. It's highly recommended that customers create deployments prior to purchasing a reservation to protect against over-purchasing a reservation. 
 
 > [!IMPORTANT] 
-> * Capacity availability for model deployments is dynamic and changes frequently across regions and models. To prevent you from purchasing a reservation for more PTUs than you can use, create deployments first, and then purchase the Azure Reservation to cover the PTUs you have deployed. This best practice will ensure that you can take full advantage of the reservation discount and prevent you from purchasing a term commitment that you cannot use. 
+> * Capacity availability for model deployments is dynamic and changes frequently across regions and models. To protect against purchasing a reservation for more PTUs than you can use, create deployments first, and then purchase the Azure Reservation to cover the PTUs you have deployed. This best practice will ensure that you can take full advantage of the reservation discount, and protects you from committing to a reservation that you cannot use. 
 >
 > * The Azure role and tenant policy requirements to purchase a reservation are different than those required to create a deployment or Azure AI Foundry resource. Verify authorization to purchase reservations in advance of needing to do so. See [Azure AI Foundry Provisioned Throughput Reservation](https://aka.ms/oai/docs/ptum-reservations) for more details.
 
@@ -207,7 +207,7 @@ Discounts on top of the hourly usage price can be obtained by purchasing an Azur
 
 The PTU amounts in reservation purchases are independent of PTUs allocated in quota or used in deployments. It's possible to purchase a reservation for more PTUs than you have in quota, or can deploy for the desired region, model, or version. Credits for over-purchasing a reservation are limited, and customers must take steps to ensure they maintain their reservation sizes in line with their deployed PTUs. 
  
-The best practice is to always purchase a reservation after deployments have been created. This prevents purchasing a reservation and then finding out that the required capacity isn't available for the desired region or model. 
+The best practice is to always purchase a reservation after deployments have been created. This protects against purchasing a reservation and then finding out that the required capacity isn't available for the desired region or model. 
  
 
 Reservations for Global, Data Zone, and Regional deployments aren't interchangeable. You need to purchase a separate reservation for each deployment type.

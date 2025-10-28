@@ -19,6 +19,10 @@ keywords:
 ## Prerequisites
 
 * A valid Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
+* Azure RBAC role to create resources. You need one of the following roles assigned on your Azure subscription or resource group:
+  * Contributor
+  * Owner
+  * Custom role with `Microsoft.CognitiveServices/accounts/write` permission
 
 ## Create a new Azure AI Foundry resource
 
