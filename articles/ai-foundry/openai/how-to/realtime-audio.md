@@ -22,8 +22,9 @@ Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model f
 
 Most users of the Realtime API need to deliver and receive audio from an end-user in real time, including applications that use WebRTC or a telephony system. The Realtime API isn't designed to connect directly to end user devices and relies on client integrations to terminate end user audio streams. 
 
-You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming. For more information, see:
+You can use the Realtime API via WebRTC, SIP or WebSocket to send audio input to the model and receive audio responses in real time. In most cases, we recommend using the WebRTC API for low-latency real-time audio streaming. For more information, see:
 - [Realtime API via WebRTC](./realtime-audio-webrtc.md)
+- [Realtime API via SIP](./realtime-audio-sip.md)
 - [Realtime API via WebSockets](./realtime-audio-websockets.md)
 
 ## Supported models
@@ -308,7 +309,7 @@ The following example json body adds an image to the conversation:
 
 ## MCP server support
 
-To enable MCP support in a Realtime API session, provide the URL of a remote MCP server in your session configuration. After connecting, the API will automatically manage tool calls on your behalf.
+To enable MCP support in a Realtime API session, provide the URL of a remote MCP server in your session configuration. This allows the API service to automatically manage tool calls on your behalf.
 
 You can easily enhance your agent's functionality by specifying a different MCP server in the session configuration—any tools available on that server will be accessible immediately.
 

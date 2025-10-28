@@ -55,14 +55,14 @@ Quality index is provided on a scale of zero to one. Higher values of quality in
 
 | Dataset Name       | Leaderboard Scenario |
 |--------------------|----------------------|
-| arena_hard        | QA                   |
-| bigbench_hard     | Reasoning            |
-| gpqa              | QA                   |
-| humanevalplus     | Coding               |
-| ifeval            | Reasoning            |
-| math              | Math                 |
-| mbppplus          | Coding               |
-| mmlu_pro          | General Knowledge    |
+| [arena_hard](https://github.com/lmarena/arena-hard-auto)        | QA                   |
+| [bigbench_hard](https://github.com/suzgunmirac/BIG-Bench-Hard)     | Reasoning            |
+| [gpqa](https://github.com/idavidrein/gpqa)              | QA                   |
+| [humanevalplus](https://github.com/evalplus/evalplus)     | Coding               |
+| [ifeval](https://github.com/google-research/google-research/tree/master/instruction_following_eval)            | Reasoning            |
+| [math](https://github.com/hendrycks/math)              | Math                 |
+| [mbppplus](https://github.com/evalplus/evalplus)          | Coding               |
+| [mmlu_pro](https://github.com/TIGER-AI-Lab/MMLU-Pro)          | General Knowledge    |
 
 
 
@@ -147,12 +147,12 @@ The performance of LLMs and SLMs is assessed across the following metrics:
 | Latency TTFT | Total time to first token (TTFT) is the time taken for the first token in the response to be returned from the endpoint when streaming is enabled.                                                                                                                                                 |
 | Time between tokens | This metric is the time between tokens received.                                                                                                                                                                                                                                                   |
 
-Azure AI also displays performance indexes for latency and throughput as follows:
+Azure AI also displays performance metrics for latency and throughput as follows:
 
-| Index | Description |
+| Metric | Description |
 |-------|-------------|
-| Latency index | Mean time to first token. Lower values are better. |
-| Throughput index | Mean generated tokens per second. Higher values are better. |
+| Latency | Mean time to first token. Lower values are better. |
+| Throughput | Mean generated tokens per second. Higher values are better. |
 
 For performance metrics like latency or throughput, the time to first token and the generated tokens per second give a better overall sense of the typical performance and behavior of the model. We refresh our performance numbers on regular cadence.
 
@@ -168,11 +168,11 @@ The cost of LLMs and SLMs is assessed across the following metrics:
 | Cost per output tokens | Cost for serverless API deployment for 1 million output tokens |
 | Estimated cost | Cost for the sum of cost per input tokens and cost per output tokens, with a ratio of 3:1. |
 
-Azure AI also displays the cost index as follows:
+Azure AI also displays the cost as follows:
 
-| Index | Description |
+| Metric | Description |
 |-------|-------------|
-| Cost index | Estimated cost. Lower values are better. |
+| Cost | Estimated US dollar cost per 1 million tokens. The estimated workload uses the 3-to-1 ratio between input and output tokens. Lower values are better. |
 
 ## Quality benchmarks of embedding models
 
