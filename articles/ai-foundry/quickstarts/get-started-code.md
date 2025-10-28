@@ -66,7 +66,9 @@ The Azure AI Foundry SDK is available in multiple languages, including Python, J
 
 ## <a name="install"></a> Get ready to code
 
+:::moniker range="foundry"
 [!INCLUDE [code-preview](../default/includes/code-preview.md)] 
+:::moniker-end
 
 # [Python](#tab/python)
 
