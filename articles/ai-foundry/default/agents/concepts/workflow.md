@@ -23,7 +23,7 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 
 ## Prerequisites
 
-- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- [!INCLUDE [azure-subscription](../../../includes/azure-subscription.md)]
 * A [project in Azure AI Foundry](/azure/ai-foundry/how-to/create-projects) in the westus2 region.
 
 ## Create a workflow
