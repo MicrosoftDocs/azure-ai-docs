@@ -32,7 +32,7 @@ Azure AI Foundry Agent Service supports the following Azure OpenAI models in the
 > * The [file search tool](../how-to/tools/file-search.md) is currently unavailable in the following regions:
 >     * Italy north
 >     * Brazil south 
-> * The gpt-5 models are available for the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools 
+> * The gpt-5 models can only use the [code interpreter](../how-to/tools/code-interpreter.md) and [file search](../how-to/tools/file-search.md) tools 
 >    * [Registration](https://aka.ms/openai/gpt-5/2025-08-07) is required to use the gpt-5 models. Access will be granted according to Microsoft's eligibility criteria.
 
 # [Global standard](#tab/global-standard)
