@@ -7,19 +7,19 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/22/2025
+ms.date: 10/28/2025
 ---
 
 # Migrate agentic retrieval code to the latest version
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to the latest version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
+If you wrote [agentic retrieval](agentic-retrieval-overview.md) code using an early preview REST API, this article explains when and how to migrate to a newer version. It also describes breaking and nonbreaking changes for all REST API versions that support agentic retrieval.
 
-Migration instructions are intended to help you run an existing solution on a newer API version. These instructions help you address breaking changes at the API level so that your app runs as before. For help with adding new functionality, start with [What's new](whats-new.md).
+Migration instructions are intended to help you run an existing solution on a newer API version. The instructions in this article help you address breaking changes at the API level so that your app runs as before. For help with adding new functionality, start with [What's new](whats-new.md).
 
 > [!TIP]
-> Using Azure SDKs instead of REST? Read this article to learn about breaking changes, and then install a newer preview package to begin your updates. Before you start, check the SDK change logs to confirm feature availability: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
+> Using Azure SDKs instead of REST? Read this article to learn about breaking changes, and then install a newer preview package to begin your updates. Before you start, check the SDK change logs to confirm API updates: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md), [JavaScript](https://github.com/Azure/azure-sdk-for-js/blob/main/sdk/search/search-documents/CHANGELOG.md), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md).
 
 ## When to migrate
 
@@ -51,7 +51,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge
 
 #### Update a searchIndex knowledge source
 
-The underlying index requires no updates. Create a new knowledge source that points to the existing index.
+This procedure creates a new 2025-08-01-preview `searchIndex` knowledge source at the same functional level as the previous 2025-08-01 version. The underlying index itself requires no updates.
 
 1. List all knowledge sources by name.
 
@@ -62,7 +62,7 @@ The underlying index requires no updates. Create a new knowledge source that poi
    Content-Type: application/json
    ```
 
-1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesource).
+1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties.
 
    ```http
    ### Get a specific knowledge source
@@ -71,10 +71,28 @@ The underlying index requires no updates. Create a new knowledge source that poi
    Content-Type: application/json
    ```
 
-1. Set up a create request. The knowledge source you're updating might look like the following example.
+   The response should look similar to the following example.
+
+   ```json
+   {
+        "name": "search-index-ks",
+        "kind": "searchIndex",
+        "description": "This knowledge source pulls from a search index created using teh 2025-08-01-preview.",
+        "encryptionKey": null,
+        "searchIndexParameters": {
+        "searchIndexName": "earth-at-night-idx",
+        "sourceDataSelect": "id, page_chunk, page_number"
+        },
+        "azureBlobParameters": null
+    }
+   ```
+
+1. Formulate a [Create Knowledge Source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request targeting the new 2025-11-01-preview API.
+
+    Start with the 08-01-preview JSON.
 
     ```http
-    POST {{url}}/knowledge-sources/search-index-ks?api-version={{api-version}}
+    POST {{url}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
     
@@ -90,19 +108,23 @@ The underlying index requires no updates. Create a new knowledge source that poi
     }
     ```
 
-1. Change the API version to `2025-11-01-preview`.
+   Make the following updates for a 2025-11-01-preview migration:
 
-1. Rename `sourceDataSelect` to `sourceDataFields` and change the string to an array with name-value pairs for each retrievable field you want to query. These are the fields to return in the search results, similar to a `select` clause in a classic query.
+   + Give the knowledge source a new name.
 
-1. [Create the new knowledge source](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+   + Change the API version to `2025-11-01-preview`.
+
+   + Rename `sourceDataSelect` to `sourceDataFields` and change the string to an array with name-value pairs for each retrievable field you want to query. These are the fields to return in the search results, similar to a `select` clause in a classic query.
+
+1. Review and then send the request to create the object.
 
     ```http
-    PUT {{url}}/knowledge-sources/search-index-ks-new?api-version=2025-11-01-preview
+    PUT {{url}}/knowledge-sources/search-index-ks-11-01?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
     
     {
-        "name": "search-index-ks",
+        "name": "search-index-ks-11-01",
         "kind": "searchIndex",
         "description": "knowledge source migrated to 2025-11-01-preview",
         "encryptionKey": null,
@@ -115,9 +137,13 @@ The underlying index requires no updates. Create a new knowledge source that poi
     }
     ```
 
-You now have a migrated `searchIndex` knowledge source that implements the previous version features, with the correct property specifications for the 2025-11-01-preview. The response includes the full definition of the new object. It includes properties you didn't set. For more information about new capabilities available to this knowledge source type, which you can now do through updates, see [Create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
+You now have a migrated `searchIndex` knowledge source that implements the previous version features, with the correct property specifications for the 2025-11-01-preview. 
+
+The response includes the full definition of the new object. For more information about new properties available to this knowledge source type, which you can now do through updates, see [How to create a search index knowledge source](agentic-knowledge-source-how-to-search-index.md).
 
 #### Update an azureBlob knowledge source
+
+This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at the same functional level as the previous 2025-08-01 version. It creates a new set of indexer objects: data source, skillset, indexer, index.
 
 1. List all knowledge sources by name.
 
@@ -131,16 +157,42 @@ You now have a migrated `searchIndex` knowledge source that implements the previ
 1. [Get the current definition](/rest/api/searchservice/knowledge-sources/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) of your knowledge source. The response should look similar to [this example](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicecreateorupdateknowledgesourceazureblob).
 
    ```http
-   ### Get a knowledge source by name
+   ### Get a specific knowledge source
    GET {{search-endpoint}}/knowledge-sources/azure-blob-ks?api-version=2025-08-01-preview
    api-key: {{api-key}}
    Content-Type: application/json
    ```
 
-1. Set up a create request. The knowledge source you're updating might look like the following example.
+   The response should look similar to the following example. Notice it includes the names of the generated objects.
+
+   ```json
+    "name": "azure-blob-ks",
+    "kind": "azureBlob",
+    "description": "A sample azure blob knowledge source",
+    "encryptionKey": null,
+    "searchIndexParameters": null,
+    "azureBlobParameters": {
+    "connectionString": "<redacted>",
+    "containerName": "blobcontainer",
+    "folderPath": null,
+    "disableImageVerbalization": null,
+    "identity": null,
+    "embeddingModel": null,
+    "chatCompletionModel": null,
+    "ingestionSchedule": null,
+    "createdResources": {
+        "datasource": "azure-blob-ks-datasource",
+        "indexer": "azure-blob-ks-indexer",
+        "skillset": "azure-blob-ks-skillset",
+        "index": "azure-blob-ks-index"
+        }
+    }
+    ```
+
+1. Set up a create request that recreates this object. The knowledge source you're updating might look like the following example.
 
     ```http
-    POST {{url}}/knowledge-sources/search-index-ks?api-version={{api-version}}
+    POST {{url}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
     api-key: {{key}}
     Content-Type: application/json
     
@@ -301,7 +353,7 @@ To test your knowledge base's output with a query, use the 2025-11-01-preview of
 
 The retrieve request is modified in the latest preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). 
 
-This variant is the most similar to the default 2025-08-010-preview experience.
+This variant is the most similar to the default 2025-08-01-preview experience.
 
 ```http
 ### Send a query to the knowledge base
