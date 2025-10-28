@@ -10,8 +10,8 @@ Content Understanding is available in AI Foundry Classic and is coming soon to t
 The **Azure AI Foundry NextGen portal** (coming soon) will offer the ability to:
 * Build advanced, comprehensive agentic workflows with the Content Understanding Tool
 
-[!NOTE]
-In AI Foundry Classic, the supported Content Understanding API is 2025-05-01-preview. The updated Foundry NextGen platform will soon support all the great new features of the Content Understanding GA API 2025-11-01.
+> [!NOTE]
+> In AI Foundry Classic, the supported Content Understanding API is 2025-05-01-preview. The updated Foundry NextGen platform will soon support all the great new features of the Content Understanding GA API 2025-11-01.
 
 **Content Understanding Studio** is a complementary UX experience that brings the power of analyzer improvement to your custom analyzer workflows. Content Understanding Studio offers the following key capabilities:
 * Improve custom analyzers using data labeling techniques to optimize performance
