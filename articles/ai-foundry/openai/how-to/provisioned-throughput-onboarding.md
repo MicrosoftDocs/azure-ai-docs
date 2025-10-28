@@ -24,20 +24,20 @@ Provisioned throughput units (PTUs) are generic units of model processing capaci
 
 ## Understanding provisioned throughput billing
 
-Azure AI Foundry [Regional Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#regional-provisioned), [Data Zone Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#global-provisioned) are billed hourly based on the number of deployed PTUs, with substantial term discount available via the purchase of [Azure Reservations](#azure-reservations-for-azure-ai-foundry-provisioned-throughput).  
+Azure AI Foundry [Regional Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#regional-provisioned), [Data Zone Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned), and [Global Provisioned Throughput](../../foundry-models/concepts/deployment-types.md#global-provisioned) are billed hourly based on the number of deployed PTUs, with substantial term discount available via the purchase of Azure reservations.  
 
-The hourly model is useful for short-term deployment needs, such as validating new models or acquiring capacity for a hackathon.  However, the discounts provided by the Azure Reservation for Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned are considerable and most customers with consistent long-term usage will find a reserved model to be a better value proposition. 
+The hourly billing model is useful for short-term deployment needs, such as validating new models or acquiring capacity for a hackathon.  However, the discounts provided by the Azure reservation for Azure AI Foundry Regional Provisioned, Data Zone Provisioned, and Global Provisioned are considerable and most customers with consistent long-term usage will find a reserved model to be a better value proposition. 
 
-Azure Reservations are a financial discount construct applied to billing meters, not to service interactions (like deployment). Reservations and deployments are loosely coupled to provide flexibility. You create or delete deployments and reservations independently. This approach lets you change resources, subscriptions, or deployments without changing the billing construct.
+[Azure reservations](#azure-reservations-for-azure-ai-foundry-provisioned-throughput) are a financial discount construct applied to billing meters, not to service interactions (like deployment). Reservations and deployments are loosely coupled to provide flexibility. You create or delete deployments and reservations independently. This approach lets you change resources, subscriptions, or deployments without changing the billing construct.
 
 Recommended order of operations to avoid unwanted charges:
-1.    Use Azure AI Foundry to deploy your model in a region with available quota. This step confirms capacity exists, since quota does not equal capacity.
-2.    After deployment, share deployment details, including deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region and subscription, with your admin.
-3.    The admin uses these details to purchase a new reservation matching the deployment details, or verify an existing reservation matches, to receive the discounted rate.
+1. Use Azure AI Foundry to deploy your model in a region with available quota. This step confirms capacity exists, since quota does not equal capacity.
+1. After deployment, share deployment details, including deployment type (Global Provisioned, Data Zone Provisioned, or Regional Provisioned), region, and subscription, with your admin.
+1. The admin uses these details to either purchase a new reservation matching the deployment details, or verify that an existing reservation matches, to receive the discounted rate.
 
 
 > [!NOTE]
-> Azure AI Foundry Provisioned customers onboarded prior to the August self-service update use a purchase model called the Commitment model. These customers can continue to use this older purchase model alongside the Hourly/reservation purchase model. The Commitment model is not available for new customers or [certain new models](../concepts/provisioned-migration.md#supported-models-on-commitment-payment-model) introduced after August 2024. For details on the Commitment purchase model and options for coexistence and migration, see the [Azure AI Foundry Provisioned August Update](../concepts/provisioned-migration.md).
+> Azure AI Foundry provisioned customers onboarded prior to the August self-service update use a purchase model called the Commitment model. These customers can continue to use this older purchase model alongside the Hourly/reservation purchase model. The Commitment model is not available for new customers or [certain new models](../concepts/provisioned-migration.md#supported-models-on-commitment-payment-model) introduced after August 2024. For details on the Commitment purchase model and options for coexistence and migration, see the [Azure AI Foundry Provisioned August Update](../concepts/provisioned-migration.md).
 
 
 ## Model independent quota
@@ -47,7 +47,9 @@ Unlike the Tokens Per Minute (TPM) quota used by other Azure AI Foundry offering
 :::image type="content" source="../media/provisioned/model-independent-quota.png" alt-text="Diagram of model independent quota with one pool of PTUs available to multiple Azure OpenAI models." lightbox="../media/provisioned/model-independent-quota.png":::
 
 Quota for provisioned deployments shows up in Azure AI Foundry as the following deployment types: [global provisioned](../../foundry-models/concepts/deployment-types.md#global-provisioned), [data zone provisioned](../../foundry-models/concepts/deployment-types.md#data-zone-provisioned) and [regional provisioned](../../foundry-models/concepts/deployment-types.md#regional-provisioned).
-Note: Quota does not guarantee capacity. Deploy your model in Azure AI Foundry before purchasing a matching reservation in the Azure portal.
+
+> [!NOTE]
+> Quota doesn't guarantee capacity. Deploy your model in Azure AI Foundry before purchasing a matching reservation in the Azure portal.
 
 |deployment type  |Quota name  |
 |---------|---------|
@@ -78,23 +80,22 @@ Customers that require long-term usage of regional provisioned, data zone provis
 > 
 
 ## Deleting PTU deployments
-Use these steps to remove a provisioned deployment and avoid unwanted charges.
 
-Important
-Charges for deployments on a deleted resource will continue until the resource is purged. To prevent this, delete a resource's deployment before deleting the resource. For more information, see [Recover or purge deleted Azure OpenAI resources](../../../ai-services/recover-purge-resources.md). 
+> [!IMPORTANT]
+> Charges for deployments on a deleted resource will continue until the resource is purged. To prevent unwanted charges, delete a resource's deployment before deleting the resource. However, if you already deleted the resource first, you can recover or purge it. For more information, see [recover or purge deleted Azure OpenAI resources](../../../ai-services/recover-purge-resources.md). 
 
-Deleting a deployment does not cancel or change any PTU reservation. Use Azure Reservations in the portal to cancel or exchange manually. Reservations do not support delete. Extra fees might apply.
-Delete a PTU deployment
-1.    In Azure AI Foundry, delete the deployment.
-2.    If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
-3.    In the Azure portal, manage Reservations. Purchase, cancel, or exchange to align with current deployments.
+
+Deleting a deployment does not cancel or change any PTU reservation. Use Azure reservations in the Azure portal to cancel or exchange reservations manually. Reservations don't support delete. Extra fees might apply.
+
+
+Use these steps to delete a provisioned deployment to avoid unwanted charges.
+
+1. Delete the deployment in the Azure AI Foundry portal.
+1. If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
+1. In the Azure portal, manage Reservations. Purchase, cancel, or exchange to align with current deployments.
 
 
 ## How much throughput per PTU you get for each model
-
-
-
-
 
 The amount of throughput (measured in tokens per minute or TPM) a deployment gets per PTU is a function of the input and output tokens in a given minute. Generating output tokens requires more processing than input tokens.  Starting with GPT 4.1 models and later, the system matches the global standard price ratio between input and output tokens. Cached tokens are deducted 100% from the utilization.
 
@@ -210,7 +211,7 @@ Discounts on top of the hourly usage price can be obtained by purchasing an Azur
 
     * All subscriptions in a billing account 
 
-* Discount applies when: Deployment type (Regional/Data Zone/Global), Region, and Reservation scope (subscription or resource group) match the running deployment. Matching is not by model or deployment ID. Multiple deployments within scope can consume the same reservation up to its PTU quantity.
+* Discount applies when Deployment type (Regional/Data Zone/Global), Region, and Reservation scope (subscription or resource group) match the running deployment. Matching is not by model or deployment ID. Multiple deployments within scope can consume the same reservation up to its PTU quantity.
 
 * New reservations can be purchased to cover the same scope as existing reservations, to allow for discounting of new provisioned deployments. The scope of existing reservations can also be updated at any time without penalty, for example to cover a new subscription. 
 
@@ -233,16 +234,15 @@ The PTU amounts in reservation purchases are independent of PTUs allocated in qu
  
 The best practice is to always purchase a reservation after deployments have been created. This protects against purchasing a reservation and then finding out that the required capacity isn't available for the desired region or model. 
  
-
 Reservations for Global, Data Zone, and Regional deployments aren't interchangeable. You need to purchase a separate reservation for each deployment type.
 
-To assist customers with purchasing the correct reservation amounts. The total number of PTUs in a subscription and region that can be covered by a reservation are listed on the Quotas page of Azure AI Foundry. See the message "PTUs Available for reservation." 
+To assist customers with purchasing the correct reservation amounts. The total number of PTUs in a subscription and region that can be covered by a reservation are listed on the Quotas page of the Azure AI Foundry portal. See the message "PTUs Available for reservation." 
 
 :::image type="content" source="../media/provisioned/ptu-quota-page.png" alt-text="A screenshot showing available PTU quota." lightbox="../media/provisioned/available-quota.png":::
 
 Managing Azure Reservations 
 
-After a reservation is created, it is a best practice monitor it to ensure it is receiving the usage you're expecting. This can be done via the Azure Reservation Portal or Azure Monitor. Details on these articles and others can be found here: 
+After a reservation is created, monitor it via the Azure Reservation Portal or Azure Monitor to ensure that the reservation is receiving the usage you expect. To learn more about managing and monitoring Azure reservations, see these articles:
 
 * [View Azure reservation utilization](/azure/cost-management-billing/reservations/reservation-utilization) 
 * [View Azure Reservation purchase and refund transactions](/azure/cost-management-billing/reservations/view-purchase-refunds) 
@@ -250,7 +250,7 @@ After a reservation is created, it is a best practice monitor it to ensure it is
 * [Charge back Azure Reservation costs](/azure/cost-management-billing/reservations/charge-back-usage)
 * [Automatically renew Azure reservations](/azure/cost-management-billing/reservations/reservation-renew)
 
-## Next steps
+## Related content
 
 - [Provisioned Throughput Units (PTU) getting started guide](./provisioned-get-started.md)
 - [Provisioned Throughput Units (PTU) concepts](../concepts/provisioned-throughput.md)
