@@ -185,7 +185,7 @@ Then, use either AI Foundry Portal or ARM template to roll back:
 
 # [Azure Portal](#tab/azportal)
 
-1. Sign in to [Azure Portal](http://portal.azure.com/)
+1. Sign in to [Azure Portal](https://portal.azure.com/)
 1. Select your Azure AI Foundry resource
 1. On the overview page, select 'rollback upgrade'.
 
