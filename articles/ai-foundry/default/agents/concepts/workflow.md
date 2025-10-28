@@ -15,7 +15,7 @@ author: ssalgadodev
 #customer intent: As a developer, I want to learn how to build a workflow.
 ---
 
-# Build a Workflow in Azure AI Foundry
+# Build a workflow in Azure AI Foundry
 
 Workflows are a UI-based tool in Foundry to create declarative workflows, a predefined sequence of actions including agents, as in Microsoft Agent Framework Workflows.
 
@@ -28,9 +28,9 @@ Workflows enable you to build intelligent automation systems that seamlessly ble
 
 ## Create a workflow
 
-In Azure AI Foundry, you can choose to create a blank workflow or choose from one of the premade configured options. For this tutorial, we will be creating a Sequential workflow. If you want to learn more about different types of workflows, see the [workflow concepts](#workflow-concepts) section of this article. 
+In Azure AI Foundry, you can choose to create a blank workflow or choose from one of the premade configured options. For this tutorial, we'll be creating a Sequential workflow. If you want to learn more about different types of workflows, see the [workflow concepts](#workflow-concepts) section of this article. 
 
-### Creating a Sequential workflow
+### Create a sequential workflow
 
 1. Go to [Foundry Portal](https://eastus2euap.ai.azure.com/nextgen/r/LThb9AdWSnaqlSi_ntO2JQ,rg-vkintali-5609,,vkintali-prod-westus2-resource,vkintali-prod-westus2/Build/workflows?flight=ignite_preview%3Dfalse%2Cnextgen_canary).
 2. Select **Create new workflow** and **Sequential**.
@@ -41,9 +41,9 @@ In Azure AI Foundry, you can choose to create a blank workflow or choose from on
 7. (Optional) you can add new nodes to your workflow with steps found in the [adding nodes to your workflow](#adding-nodes-to-your-workflow) section.
 
 > [!IMPORTANT]
-> Workflows are not saved automatically. Select **Save** every time you want to save changes to your workflow.
+> Workflows aren't saved automatically. Select **Save** every time you want to save changes to your workflow.
 
-## Workflow Concepts
+## Workflow concepts
 
 To start creating a new workflow, you can begin with a blank workflow or select one of the templates of pre-defined orchestration patterns [Microsoft Agent Framework Workflows Orchestrations | Microsoft Learn](/agent-framework/user-guide/workflows/orchestrations/overview).
 
@@ -54,7 +54,7 @@ To start creating a new workflow, you can begin with a blank workflow or select 
 | Handoff    | Dynamically passes control between agents based on context or rules.| Dynamic workflows, escalation, fallback, or expert handoff scenarios. |
 | Magentic   | Inspired by MagenticOne.                                           | Complex, generalist multi-agent collaboration.           |
 
-## Adding nodes to your workflow
+## Add nodes to your workflow
 
 When selecting a pre-built workflow, you should see a workflow of nodes displayed in the builder. Each node corresponds to a specific action or component and performs a step in sequence. You can modify the order of the nodes by selecting the three dots on the node and selecting **move**. You can add new nodes by selecting the **+** icon in the workspace.
 
@@ -65,12 +65,12 @@ Nodes define the building blocks of your workflow. Common node types include:
 - **Data Transformation**: Set Variable, Parse Value.
 - **Basic chat**: Send a message or ask a question to an agent.
 
-## Add Agents to your Workflow
+## Add agents to your workflow
 
 You can add any Foundry agent from your project to the workflow. Agent nodes also allow you to create new agents, configure their model, prompt, and tools, giving them customized capabilities.
 For more advanced options and comprehensive agent creation, visit the Foundry Agent tab in the AI Foundry portal.
 
-### Adding Existing
+### Add existing
 
 1. Select the '+' sign in the workflow visualizer.
 2. In the pop-up dropdown, select **Invoke agent**.
