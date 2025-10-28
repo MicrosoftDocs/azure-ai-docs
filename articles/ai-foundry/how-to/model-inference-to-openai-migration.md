@@ -19,6 +19,29 @@ ai-usage: ai-assisted
 
 This article provides guidance on migrating your applications from the Azure AI Inference SDK to the OpenAI v1 SDK. The OpenAI v1 SDK offers broader compatibility, access to the latest OpenAI features, and simplified code with unified patterns across Azure OpenAI and Foundry Models.
 
+## Benefits of migrating
+
+Migrating to the OpenAI v1 SDK provides several advantages:
+
+- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
+- **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
+- **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
+- **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
+- **Broader model support**: Works with Azure OpenAI in Foundry Models and other Foundry Models from providers like DeepSeek and Grok
+
+## Key differences
+
+The following table shows the main differences between the two SDKs:
+
+| Aspect | Azure AI Inference SDK | OpenAI v1 SDK |
+|--------|------------------------|---------------|
+| Client class | `ChatCompletionsClient` | `OpenAI` |
+| Endpoint format | `https://<resource>.services.ai.azure.com/models` | `https://<resource>.openai.azure.com/openai/v1/` |
+| API version | Required in URL or parameter | Not required |
+| Model parameter | Optional (for multi-model endpoints) | Required (deployment name) |
+| Authentication | Azure credentials only | API key or Azure credentials |
+
+
 ::: zone pivot="programming-language-python"
 
 [!INCLUDE [Python](../includes/model-inference-migration/python.md)]
@@ -48,6 +71,73 @@ This article provides guidance on migrating your applications from the Azure AI 
 [!INCLUDE [Go](../includes/model-inference-migration/go.md)]
 
 ::: zone-end
+
+
+## Common migration patterns
+
+### Model parameter handling
+
+- **Azure AI Inference SDK**: The `model` parameter is optional for single-model endpoints but required for multi-model endpoints
+- **OpenAI v1 SDK**: The `model` parameter is always required and should be set to your deployment name
+
+### Endpoint URL format
+
+- **Azure AI Inference SDK**: Uses `https://<resource>.services.ai.azure.com/models`
+- **OpenAI v1 SDK**: Uses `https://<resource>.openai.azure.com/openai/v1/`
+
+### Response structure
+
+The response structure is similar but has some differences:
+
+- **Azure AI Inference SDK**: Returns `ChatCompletions` object with `choices[].message.content`
+- **OpenAI v1 SDK**: Returns `ChatCompletion` object with `choices[].message.content`
+
+Both SDKs provide similar access patterns to response data, including:
+- Message content
+- Token usage
+- Model information
+- Finish reason
+
+## Migration checklist
+
+Use this checklist to ensure a smooth migration:
+
+- [ ] Install the OpenAI v1 SDK for your programming language
+- [ ] Update authentication code (API key or Microsoft Entra ID)
+- [ ] Change endpoint URLs from `.services.ai.azure.com/models` to `.openai.azure.com/openai/v1/`
+- [ ] Update client initialization code
+- [ ] Always specify the `model` parameter with your deployment name
+- [ ] Update request method calls (`complete` → `chat.completions.create`)
+- [ ] Update streaming code if applicable
+- [ ] Update error handling to use OpenAI SDK exceptions
+- [ ] Test all functionality thoroughly
+- [ ] Update documentation and code comments
+
+## Troubleshooting
+
+### Authentication failures
+
+If you experience authentication failures:
+
+- Verify your API key is correct and hasn't expired
+- For Microsoft Entra ID, ensure your application has the correct permissions
+- Check that the credential scope is set to `https://cognitiveservices.azure.com/.default`
+
+### Endpoint errors
+
+If you receive endpoint errors:
+
+- Verify the endpoint URL format includes `/openai/v1/` at the end
+- Ensure your resource name is correct
+- Check that the model deployment exists and is active
+
+### Model not found errors
+
+If you receive "model not found" errors:
+
+- Verify you're using your deployment name, not the model name
+- Check that the deployment is active in your Azure AI Foundry resource
+- Ensure the deployment name matches exactly (case-sensitive)
 
 ## Related content
 

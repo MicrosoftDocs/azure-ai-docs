@@ -1,12 +1,14 @@
-## Benefits of migrating
-
-Migrating to the OpenAI v1 SDK provides several advantages:
-
-- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
-- **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
-- **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
-- **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
-- **Broader model support**: Works with Azure OpenAI in Foundry Models and other Foundry Models from providers like DeepSeek and Grok
+---
+title: Include file
+description: Include file
+author: msakande
+ms.reviewer: mopeakande
+ms.author: mopeakande
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 10/28/2025
+ms.custom: include
+---
 
 ## Setup
 
@@ -23,6 +25,8 @@ npm install @azure/identity
 ```
 
 ## Client configuration
+
+With API key authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -49,7 +53,7 @@ const client = new OpenAI({
 
 ---
 
-With Microsoft Entra ID:
+With Microsoft Entra ID authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -91,7 +95,7 @@ const client = new OpenAI({
 
 ## Responses API
 
-For Azure OpenAI models, use the Responses API for chat completions:
+Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI models, use the Responses API for chat completions:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -213,14 +217,8 @@ const embedding = response.body.data[0].embedding;
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```javascript
-const response = await client.embeddings.create({
-    input: "Your text string goes here",
-    model: "text-embedding-3-small" // Your deployment name
-});
+OpenAI v1 SDK doesn't support embeddings models.
 
-const embedding = response.data[0].embedding;
-```
 
 ---
 
@@ -228,60 +226,10 @@ const embedding = response.data[0].embedding;
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
-Azure AI Inference SDK doesn't support image generation. Use OpenAI SDK instead.
+Azure AI Inference SDK doesn't support image generation models.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```javascript
-const response = await client.images.generate({
-    model: "dall-e-3", // Your deployment name
-    prompt: "a happy monkey eating a banana, in watercolor",
-    n: 1,
-    size: "1024x1024",
-    quality: "standard"
-});
-
-const imageUrl = response.data[0].url;
-console.log(`Generated image available at: ${imageUrl}`);
-```
-
----
-
-## Error handling
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```javascript
-try {
-    const response = await client.path("/chat/completions").post({
-        body: {
-            messages: [{ role: "user", content: "Hello" }],
-            model: "gpt-4o-mini"
-        }
-    });
-} catch (error) {
-    console.error(`Request failed: ${error.statusCode}`);
-    console.error(`Error message: ${error.message}`);
-}
-```
-
-# [OpenAI v1 SDK](#tab/openai)
-
-```javascript
-import { OpenAI } from "openai";
-
-try {
-    const completion = await client.chat.completions.create({
-        model: "gpt-4o-mini",
-        messages: [{ role: "user", content: "Hello" }]
-    });
-} catch (error) {
-    if (error instanceof OpenAI.APIError) {
-        console.error(`API error: ${error.status} - ${error.message}`);
-    } else {
-        console.error(`Unexpected error: ${error}`);
-    }
-}
-```
+OpenAI v1 SDK doesn't support image generation models.
 
 ---

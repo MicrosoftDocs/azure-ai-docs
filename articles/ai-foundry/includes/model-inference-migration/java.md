@@ -1,12 +1,14 @@
-## Benefits of migrating
-
-Migrating to the OpenAI v1 SDK provides several advantages:
-
-- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
-- **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
-- **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
-- **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
-- **Broader model support**: Works with Azure OpenAI in Foundry Models and other Foundry Models from providers like DeepSeek and Grok
+---
+title: Include file
+description: Include file
+author: msakande
+ms.reviewer: mopeakande
+ms.author: mopeakande
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 10/28/2025
+ms.custom: include
+---
 
 ## Setup
 
@@ -23,6 +25,8 @@ For Microsoft Entra ID authentication, also add:
 ```
 
 ## Client configuration
+
+With API key authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -51,7 +55,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 
 ---
 
-With Microsoft Entra ID:
+With Microsoft Entra ID authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -94,7 +98,7 @@ OpenAIClient client = OpenAIOkHttpClient.builder()
 
 ## Responses API
 
-For Azure OpenAI models, use the Responses API for chat completions:
+Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI models, use the Responses API for chat completions:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -235,17 +239,8 @@ List<Float> embedding = response.getData().get(0).getEmbedding();
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```java
-import com.openai.models.embeddings.*;
+OpenAI v1 SDK doesn't support embeddings models.
 
-EmbeddingCreateParams params = EmbeddingCreateParams.builder()
-    .input("Your text string goes here")
-    .model("text-embedding-3-small") // Your deployment name
-    .build();
-
-EmbeddingCreateResponse response = client.embeddings().create(params);
-List<Double> embedding = response.data().get(0).embedding();
-```
 
 ---
 
@@ -253,57 +248,11 @@ List<Double> embedding = response.data().get(0).embedding();
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
-Azure AI Inference SDK doesn't support image generation. Use OpenAI SDK instead.
+Azure AI Inference SDK doesn't support image generation models.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```java
-import com.openai.models.images.*;
-
-ImageGenerateParams params = ImageGenerateParams.builder()
-    .prompt("a happy monkey eating a banana, in watercolor")
-    .model("dall-e-3") // Your deployment name
-    .n(1)
-    .size(ImageGenerateParams.Size._1024X1024)
-    .quality(ImageGenerateParams.Quality.STANDARD)
-    .build();
-
-ImageGenerateResponse response = client.images().generate(params);
-String imageUrl = response.data().get(0).url();
-System.out.println("Generated image available at: " + imageUrl);
-```
+OpenAI v1 SDK doesn't support image generation models.
 
 ---
 
-## Error handling
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```java
-import com.azure.core.exception.HttpResponseException;
-
-try {
-    ChatCompletions response = client.complete(options);
-} catch (HttpResponseException ex) {
-    System.err.println("Request failed: " + ex.getResponse().getStatusCode());
-    System.err.println("Error message: " + ex.getMessage());
-}
-```
-
-# [OpenAI v1 SDK](#tab/openai)
-
-```java
-import com.openai.errors.*;
-
-try {
-    ChatCompletion completion = client.chat().completions().create(params);
-} catch (RateLimitException e) {
-    System.err.println("Rate limit exceeded: " + e.getMessage());
-} catch (ApiException e) {
-    System.err.println("API error: " + e.statusCode() + " - " + e.getMessage());
-} catch (OpenAIException e) {
-    System.err.println("OpenAI error: " + e.getMessage());
-}
-```
-
----

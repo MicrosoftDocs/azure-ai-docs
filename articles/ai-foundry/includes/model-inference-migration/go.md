@@ -1,12 +1,14 @@
-## Benefits of migrating
-
-Migrating to the OpenAI v1 SDK provides several advantages:
-
-- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
-- **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
-- **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
-- **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
-- **Broader model support**: Works with Azure OpenAI in Foundry Models and other Foundry Models from providers like DeepSeek and Grok
+---
+title: Include file
+description: Include file
+author: msakande
+ms.reviewer: mopeakande
+ms.author: mopeakande
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 10/28/2025
+ms.custom: include
+---
 
 ## Setup
 
@@ -23,6 +25,8 @@ go get -u github.com/Azure/azure-sdk-for-go/sdk/azidentity
 ```
 
 ## Client configuration
+
+With API key authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -44,7 +48,7 @@ client := openai.NewClient(
 
 ---
 
-With Microsoft Entra ID:
+With Microsoft Entra ID authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -75,7 +79,7 @@ client := openai.NewClient(
 
 ## Responses API
 
-For Azure OpenAI models, use the Responses API for chat completions:
+Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI models, use the Responses API for chat completions:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -184,28 +188,8 @@ Azure AI Inference SDK for Go uses Azure SDK patterns for embeddings.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```go
-import (
-    "context"
-    "fmt"
-    "github.com/openai/openai-go/v2"
-)
+OpenAI v1 SDK doesn't support embeddings models.
 
-embedding, err := client.Embeddings.New(context.TODO(), openai.EmbeddingNewParams{
-    Input: openai.F[openai.EmbeddingNewParamsInputUnion](
-        openai.EmbeddingNewParamsInputArrayOfStrings([]string{
-            "Your text string goes here",
-        }),
-    ),
-    Model: "text-embedding-3-small", // Your deployment name
-})
-
-if err != nil {
-    panic(err.Error())
-}
-
-fmt.Printf("Embedding: %v\n", embedding.Data[0].Embedding)
-```
 
 ---
 
@@ -213,60 +197,11 @@ fmt.Printf("Embedding: %v\n", embedding.Data[0].Embedding)
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
-Azure AI Inference SDK doesn't support image generation. Use OpenAI SDK instead.
+Azure AI Inference SDK doesn't support image generation models.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```go
-import (
-    "context"
-    "fmt"
-    "github.com/openai/openai-go/v2"
-)
-
-image, err := client.Images.Generate(context.TODO(), openai.ImageGenerateParams{
-    Prompt: openai.F("a happy monkey eating a banana, in watercolor"),
-    Model:  openai.F("dall-e-3"), // Your deployment name
-    N:      openai.F(int64(1)),
-    Size:   openai.F(openai.ImageGenerateParamsSize1024x1024),
-    Quality: openai.F(openai.ImageGenerateParamsQualityStandard),
-})
-
-if err != nil {
-    panic(err.Error())
-}
-
-fmt.Printf("Generated image available at: %s\n", image.Data[0].URL)
-```
+OpenAI v1 SDK doesn't support image generation models.
 
 ---
 
-## Error handling
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-Azure AI Inference SDK for Go uses standard Go error handling with Azure SDK patterns.
-
-# [OpenAI v1 SDK](#tab/openai)
-
-```go
-import (
-    "context"
-    "errors"
-    "fmt"
-    "github.com/openai/openai-go/v2"
-)
-
-chatCompletion, err := client.Chat.Completions.New(context.TODO(), params)
-if err != nil {
-    var apiErr *openai.Error
-    if errors.As(err, &apiErr) {
-        fmt.Printf("API error: %s (code: %s)\n", apiErr.Message, apiErr.Code)
-    } else {
-        fmt.Printf("Error: %v\n", err)
-    }
-    return
-}
-```
-
----

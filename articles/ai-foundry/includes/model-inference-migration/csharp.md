@@ -1,12 +1,14 @@
-## Benefits of migrating
-
-Migrating to the OpenAI v1 SDK provides several advantages:
-
-- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
-- **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
-- **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
-- **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
-- **Broader model support**: Works with Azure OpenAI in Foundry Models and other Foundry Models from providers like DeepSeek and Grok
+---
+title: Include file
+description: Include file
+author: msakande
+ms.reviewer: mopeakande
+ms.author: mopeakande
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 10/28/2025
+ms.custom: include
+---
 
 ## Setup
 
@@ -23,6 +25,8 @@ dotnet add package Azure.Identity
 ```
 
 ## Client configuration
+
+With API key authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -54,7 +58,7 @@ ChatClient client = new(
 
 ---
 
-With Microsoft Entra ID:
+With Microsoft Entra ID authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -97,7 +101,7 @@ ChatClient client = new(
 
 ## Responses API
 
-For Azure OpenAI models, use the Responses API for chat completions:
+Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI models, use the Responses API for chat completions:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -238,24 +242,7 @@ ReadOnlyMemory<float> embedding = response.Value.Data[0].Embedding;
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```csharp
-using OpenAI;
-using OpenAI.Embeddings;
-
-EmbeddingClient client = new(
-    "text-embedding-3-small", // Your deployment name
-    credential: new ApiKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY")),
-    options: new OpenAIClientOptions()
-    {
-        Endpoint = new Uri("https://<resource>.openai.azure.com/openai/v1/")
-    }
-);
-
-string input = "Your text string goes here";
-
-OpenAIEmbedding embedding = client.GenerateEmbedding(input);
-ReadOnlyMemory<float> vector = embedding.ToFloats();
-```
+OpenAI v1 SDK doesn't support embeddings models.
 
 ---
 
@@ -263,70 +250,10 @@ ReadOnlyMemory<float> vector = embedding.ToFloats();
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
-Azure AI Inference SDK doesn't support image generation. Use OpenAI SDK instead.
+Azure AI Inference SDK doesn't support image generation models.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```csharp
-using OpenAI;
-using OpenAI.Images;
-
-AzureOpenAIClient openAIClient = new(
-    new Uri("https://<resource>.openai.azure.com/"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_OPENAI_API_KEY"))
-);
-
-ImageClient imageClient = openAIClient.GetImageClient("dall-e-3"); // Your deployment name
-
-string prompt = "a happy monkey eating a banana, in watercolor";
-
-ImageGenerationOptions options = new()
-{
-    Quality = GeneratedImageQuality.Standard,
-    Size = GeneratedImageSize.W1024xH1024,
-    ResponseFormat = GeneratedImageFormat.Uri
-};
-
-GeneratedImage image = imageClient.GenerateImage(prompt, options);
-Console.WriteLine($"Generated image available at: {image.ImageUri}");
-```
-
----
-
-## Error handling
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```csharp
-using Azure;
-using Azure.AI.Inference;
-
-try
-{
-    Response<ChatCompletions> response = client.Complete(requestOptions);
-}
-catch (RequestFailedException ex)
-{
-    Console.WriteLine($"Request failed: {ex.Status}");
-    Console.WriteLine($"Error message: {ex.Message}");
-}
-```
-
-# [OpenAI v1 SDK](#tab/openai)
-
-```csharp
-using OpenAI;
-using System.ClientModel;
-
-try
-{
-    ChatCompletion completion = client.CompleteChat(messages);
-}
-catch (ClientResultException ex)
-{
-    Console.WriteLine($"Request failed with status: {ex.Status}");
-    Console.WriteLine($"Error message: {ex.Message}");
-}
-```
+OpenAI v1 SDK doesn't support image generation models.
 
 ---

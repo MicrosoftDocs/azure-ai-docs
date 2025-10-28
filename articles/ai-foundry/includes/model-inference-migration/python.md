@@ -1,12 +1,14 @@
-## Benefits of migrating
-
-Migrating to the OpenAI v1 SDK provides several advantages:
-
-- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
-- **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
-- **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
-- **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
-- **Broader model support**: Works with Azure OpenAI in Foundry Models and other Foundry Models from providers like DeepSeek and Grok
+---
+title: Include file
+description: Include file
+author: msakande
+ms.reviewer: mopeakande
+ms.author: mopeakande
+ms.service: azure-ai-foundry
+ms.topic: include
+ms.date: 10/28/2025
+ms.custom: include
+---
 
 ## Setup
 
@@ -25,6 +27,8 @@ pip install azure-identity
 ## Client configuration
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
+
+With API key authentication:
 
 ```python
 import os
@@ -51,7 +55,7 @@ client = OpenAI(
 
 ---
 
-With Microsoft Entra ID:
+With Microsoft Entra ID authentication:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
@@ -87,11 +91,11 @@ client = OpenAI(
 
 ## Responses API
 
-For Azure OpenAI models, use the Responses API for chat completions:
+Responses API supports only Azure OpenAI in Foundry Models. For Azure OpenAI models, use the Responses API for chat completions:
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
-Azure AI Inference SDK doesn't support the Responses API. Use chat completions instead.
+Azure AI Inference SDK doesn't support the Responses API.  Use chat completions instead.
 
 # [OpenAI v1 SDK](#tab/openai)
 
@@ -203,14 +207,7 @@ embedding = response.data[0].embedding
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```python
-response = client.embeddings.create(
-    input="Your text string goes here",
-    model="text-embedding-3-small"  # Your deployment name
-)
-
-embedding = response.data[0].embedding
-```
+OpenAI v1 SDK doesn't support embeddings models.
 
 ---
 
@@ -218,58 +215,10 @@ embedding = response.data[0].embedding
 
 # [Azure AI Inference SDK](#tab/azure-ai-inference)
 
-Azure AI Inference SDK doesn't support image generation. Use OpenAI SDK instead.
+Azure AI Inference SDK doesn't support image generation models.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-```python
-response = client.images.generate(
-    model="dall-e-3",  # Your deployment name
-    prompt="a happy monkey eating a banana, in watercolor",
-    size="1024x1024",
-    quality="standard",
-    n=1
-)
-
-image_url = response.data[0].url
-print(f"Generated image available at: {image_url}")
-```
-
----
-
-## Error handling
-
-# [Azure AI Inference SDK](#tab/azure-ai-inference)
-
-```python
-from azure.core.exceptions import HttpResponseError
-
-try:
-    response = client.complete(
-        messages=[{"role": "user", "content": "Hello"}],
-        model="gpt-4o-mini"
-    )
-except HttpResponseError as error:
-    print(f"Request failed: {error.status_code}")
-    print(f"Error message: {error.message}")
-```
-
-# [OpenAI v1 SDK](#tab/openai)
-
-```python
-from openai import OpenAIError, RateLimitError, APIError
-
-try:
-    completion = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": "Hello"}]
-    )
-except RateLimitError as e:
-    print(f"Rate limit exceeded: {e}")
-except APIError as e:
-    print(f"API error: {e}")
-except OpenAIError as e:
-    print(f"OpenAI error: {e}")
-```
+OpenAI v1 SDK doesn't support image generation models.
 
 ---
