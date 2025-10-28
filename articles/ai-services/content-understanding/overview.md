@@ -20,7 +20,7 @@ Azure AI Content Understanding is an [**Azure AI Service**](../what-are-ai-servi
 
 As of November 17, 2025, Content Understanding is a Generally Available (GA) service, and is now available in a broader range of regions. Customers now have the ability to create their own deployments to support Content Understanding in a wider range of available regions. See [region and language support]() for more information on using Content Understanding. 
 
-:::image type="content" source="media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/component-overview-updated.png" :::
+:::image type="content" source="media/overview/content-understanding-framework-2025.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="media/overview/content-understanding-framework-2025.png" :::
 
 ## Why use Content Understanding?
 
