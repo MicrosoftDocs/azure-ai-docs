@@ -45,7 +45,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 ## Setup 
 
 > [!NOTE]
-> Grounding with Bing Search only works with agents that are not using VPN or Private Endpoints. The agent must have have normal network access.
+> Grounding with Bing Search only works with agents that are not using VPN or Private Endpoints. The agent must have normal network access.
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md). 
 
