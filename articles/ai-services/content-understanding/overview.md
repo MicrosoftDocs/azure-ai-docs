@@ -32,13 +32,15 @@ As of November 17, 2025, Content Understanding is a Generally Available (GA) ser
 
 * **Confidence scores & grounding**. Content Understanding ensures the accuracy of extracted values while minimizing the cost of human review.
 
-* **Classify content types**. Content Understanding enables you to classify your document types to streamline your ability to process content, now available in a unified approach in the Analyze API.  
+* **Classify content types**. Content Understanding enables you to classify your document types to streamline your ability to process content, now available in a unified approach in the Analyze API.
+
+* **Industry-specific prebuilt analyzers**. The Content Understanding service offers a variety of out-of-box prebuilt analyzers that are built specifically to address industry-specific needs such as invoice analysis, tax document processing, call center analytics, media analysis, and many more.
 
 ## Content Understanding use cases
 
 * **Automation**. Content Understanding supports automation scenarios by converting unstructured content into structured data, which can be integrated into various workflows and applications. Confidence scores minimize human review and lower costs. For example, automate procurement and payment processes by extracting fields from invoices.
 
-* **Search and retrieval-augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into the search index. The structured output representation improves the relevance for RAG scenarios.
+* **Search and retrieval-augmented generation (RAG)**. Content Understanding enables ingestion of content of any modality into a search index, with extensive support for figure description and analysis to make your data more accessible. The Content Understanding service offers multiple prebuilt analyzers that are fine-tuned to give you the best outputs for your RAG search scenarios.
 
 * **Analytics and reporting**: Content Understanding's extracted field outputs enhance analytics and reporting, allowing businesses to gain valuable insights, conduct deeper analysis, and make informed decisions based on accurate reports.
 
@@ -68,7 +70,6 @@ Some common industry-specific applications for Content Understanding include:
 |Field extraction|Field extraction allows users to define the structure and schema of the desired fields to extract from input files. See [service limits](service-limits.md) for a complete list of field types supported. Fields can be generated via one of the following methods:</br></br> &bullet; **Extract**: Directly extract values as they appear in the input content, such as dates from receipts or item details from invoices.</br></br>&bullet; **Classify**: Classify content from a predefined set of categories, such as call sentiment or chart type.</br></br>&bullet; **Generate**: Generate values freely from input data, such as summarizing an audio conversation or creating scene descriptions from videos.|
 |Grounding source| Content Understanding identifies the specific regions in the content where the value was generated from. Source grounding allows users in automation scenarios to quickly verify the correctness of the field values, leading to higher confidence in the extracted data. |
 |Confidence score | Content Understanding provides confidence scores from 0 to 1 to estimate the reliability of the results. High scores indicate accurate data extraction, enabling straight-through processing in automation workflows.|
-| Classifier |  |
 
 ## Content Understanding experiences
 Azure AI Content Understanding is an Azure AI Foundry service that transforms unstructured content- documents, images, audio and video- into structured, searchable data. The Azure AI Foundry experience is complemented by the Content Understanding Studio for customers that need advanced capabilities. For a more detailed breakdown of each service, check out [Feature Comparison: Content Understanding in Azure AI Foundry vs Content Understanding Studio](concepts/foundry-vs-cu-studio.md)
