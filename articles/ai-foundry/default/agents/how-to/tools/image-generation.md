@@ -13,7 +13,7 @@ ms.author: aahi
 ---
 
 
-## Image generation tool (preview) 
+# Image generation tool (preview) 
 
 >[!IMPORTANT] 
 > The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image). 
