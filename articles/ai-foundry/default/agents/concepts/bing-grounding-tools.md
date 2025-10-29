@@ -25,9 +25,10 @@ The grounding process involves several key steps:
 4. **Source attribution**: The agent provides transparency by citing search sources
 
 >[!IMPORTANT]
-> * Grounding with Bing Search and/or Grounding with Bing Custom Search is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).  
+> * Grounding with Bing Search and/or Grounding with Bing Custom Search is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by the [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).  
 > * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside the Azure compliance and Geo boundary. This also means use of Grounding with Bing Search and/or Grounding with Bing Custom Search waives all elevated Government Community Cloud security and compliance commitments, to include data sovereignty and screened/citizenship-based support, as applicable.  
-> * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs; learn more about pricing.  
+> * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs. See pricing for [details](https://www.microsoft.com/en-us/bing/apis/grounding-pricing). 
+> * See the [manage section](#manage-grounding-with-bing-search-and-grounding-with-bing-custom-search) for information about how Azure admins can manage access to use of Grounding with Bing Search and/or Grounding with Bing Custom Search.
 
 ## Available tools
 
@@ -86,10 +87,10 @@ Admins can leverage RBAC role assignments for enabling or disabling use of using
 
 1. The Admin needs to register `Microsoft.Bing` in the Azure Subscription. The Admin needs to have the permissions to do the `/register/action` operation for the resource provider. The permission is included in the Contributor and Owner roles. For more information about how to register, see the [Azure Resource Manager](/azure/azure-resource-manager/management/resource-providers-and-types) documentation.
 
-1. Once the Admin has registered `Microsoft.Bing`, people with permissions can create/delete/retrieve the resource key for a Grounding with Bing and/or Grounding with Bing Custom Search resource. These people need to have the **Contributor** or **Owner** role at the subscription or resource group level 
+1. Once the Admin has registered `Microsoft.Bing`, people with permissions can create/delete/retrieve the resource key for a Grounding with Bing and/or Grounding with Bing Custom Search resource. These people need to have the **Contributor** or **Owner** role at the subscription or resource group level. 
 
 1. Once a Grounding with Bing and/or Grounding with Bing Custom Search resource is created, people with permissions can then create an Azure AI Foundry connection to connect to the resource and use it as a tool in AI Foundry Agent Service. These people need to have at least  the **Azure AI Project Manager** role. 
 
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 
-The Admin needs to have the "Owner" or "Contributor" role in your subscription. They can delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resources in the subscription. And then unregister the `Microsoft.Bing` resource provider in your subscription (you cannot unregister before deleting all resources). Learn more about unregistering here 
+The Admin needs to have "Owner" or "Contributor" role in your description. You can delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resource in the subscription. The Admin can create an Azure policy to disallow the creation of Grounding with Bing Search and/or Grounding with Bing Custom Search resources in their subscription. Afterward, they can unregister the `Microsoft.Bing` resource provider in your subscription (you cannot unregister before deleting all resources). See the [Azure Resource Manager documentation](/azure/azure-resource-manager/management/resource-providers-and-types) for more information about unregistering. 
