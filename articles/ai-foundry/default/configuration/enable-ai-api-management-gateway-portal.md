@@ -58,25 +58,23 @@ Follow these steps in the Azure AI Foundry UI to enable AI Gateway for a resourc
 
 After selection or creation:
 1. Ensure the APIM instance displays as linked in the **AI Gateway** tab.
-1. Verify status indicates Ready or Active. [TO VERIFY: Exact status labels]
-1. Proceed to configure project-level limits.
+1. Proceed to configure token limits.
 
 If association fails, see Troubleshooting.
 
-## Configure project token limits
+## Configure token limits
 
-Apply per-project usage controls for model deployments.
+You can configure token limits for specific model deployments within your projects. 
 
-1. Open the target project under the same resource.
-1. Go to **Settings** > **AI Gateway** (or **Limits**). [TO VERIFY: Exact UI labels]
-1. Set the **Tokens per minute (TPM)** value.
-1. Set the **Total token quota** (time window definition [TO VERIFY]).
-1. Enable or toggle the enforcement switch.
-1. Save your changes.
+1. Select the gateway you want to use from the **AI Gateway** gateway list.
+1. Select **Token management** in the gateway details pane that appears.
+1. Select *+ Add limit** to create a new limit for a model deployment.
+1. Select the project and deployment you want to restrict then, and enter a value for **Limit (Token-per-minute)**.
+1. Select **Create** to save your changes, then.
 
 Expected result: Subsequent requests that exceed the TPM threshold receive rate-limit responses. Requests that exceed the quota produce quota-exceeded responses. [TO VERIFY: Response codes or messages]
 
-:::image type="content" source="[TO VERIFY: project-limits-screenshot]" alt-text="Project settings panel showing input fields for tokens-per-minute and total token quota limits.":::
+:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Project settings panel showing input fields for tokens-per-minute and total token quota limits.":::
 
 ## Verify enforcement
 
@@ -131,12 +129,10 @@ If you created a dedicated APIM instance for this purpose:
 
 ## Related content
 
-- AI Gateway capabilities in Azure API Management (official Learn link) [TO VERIFY]
-- Azure API Management overview (add link) [TO VERIFY]
-- Project governance patterns (internal reference) [TO VERIFY]
+- [AI Gateway capabilities in Azure API Management](/azure/api-management/genai-gateway-capabilities)
+- [Azure API Management overview](/azure/api-management/api-management-key-concepts)
 
 ## TODO placeholders
 
 - Replace [TO VERIFY] items with confirmed links, labels, and wording.
-- Add final screenshots (Admin console tab, APIM selection, project limits).
 - Confirm response behaviors for rate-limit and quota exceed events.
