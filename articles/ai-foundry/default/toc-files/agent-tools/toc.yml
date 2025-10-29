@@ -22,9 +22,7 @@ items:
 - name: Function calling
   href: ../../../agents/how-to/tools/function-calling.md
 - name: Grounding with Bing Search
-  href: ../../../agents/how-to/tools/bing-grounding.md
-- name: Grounding with Bing Custom Search
-  href: ../../../agents/how-to/tools/bing-custom-search.md
+  href: ../../agents/concepts/bing-tools.md
 - name: Logic apps
   href: ../../../agents/how-to/tools/logic-apps.md
 - name: Microsoft Fabric (preview)
