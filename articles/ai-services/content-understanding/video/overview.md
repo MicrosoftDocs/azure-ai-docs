@@ -26,7 +26,7 @@ The **pre-built video analyzer** outputs RAG-ready Markdown that includes:
 
 - **Transcript:** Inline transcripts in standard WEBVTT format
 - **Description:** Natural-language segment descriptions with visual and speech context
-- **Segmentation:** Automatic scene segmentation breaking the video into logical chunks based categories you define
+- **Segmentation:** Automatic scene segmentation breaking the video into logical chunks based on categories you define
 - **Key Frames:** Ordered key-frame thumbnails enabling deeper analysis
 
 This format can drop straight into a vector store to enable an agent or RAG workflow—no post-processing is required.
@@ -37,7 +37,7 @@ For example, customization allows you to:
 
 - **Define custom fields:** to identify what products and brands are seen or mentioned in the video.
 - **Generate custom segments:** to segment a news broadcast into chapters based on the topics or news stories discussed.
-- **Identify prominent people using face description:** enabling a customer to label celebrities in footage with name and title based on the generative models world knowledge, for example, `Satya Nedella`.
+- **Identify prominent people using face description:** enabling a customer to label celebrities in footage with name and title based on the generative model's world knowledge, for example, `Satya Nadella`.
 
 ## Why use Content Understanding for video?
 
@@ -183,7 +183,7 @@ The field extraction capability can optionally be enhanced to provide detailed d
 
 > [!NOTE]
 >
-> Setting segmentation will leverage the generative model consuming tokens even if no fields are defined.
+> Setting segmentation will use the generative model, consuming tokens even if no fields are defined.
 
 
 Content Understanding offers three ways to slice a video, letting you get the output you need for whole videos or short clips. You can use these options by setting the `enableSegment` property on a custom analyzer.

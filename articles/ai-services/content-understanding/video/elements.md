@@ -72,7 +72,7 @@ The following audiovisual elements can be extracted:
 | Element | Audio Support | Video Support | Requires returnDetails |
 |---------|---------------|---------------|------------------------|
 | [**Markdown content**](#markdown-content-elements) | ✓ | ✓ | No |
-| **Contents collection** (#contents-collection)| ✓ | ✓ | No |
+| [**Contents collection**](#contents-collection)| ✓ | ✓ | No |
 | [**Transcript phrases**](#transcript-phrases) | ✓ | ✓ | Yes |
 | [**Timing information**](#timing-information) | ✓ | ✓ | No |
 | [**Key frames**](#key-frames) | ✗ | ✓ | No |
