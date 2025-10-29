@@ -401,9 +401,9 @@ The response includes the full definition of the new object. For more informatio
 
    + Delete `requestLimits`. The `maxRuntimeInSeconds` and `maxOutputSize` properties are now specified on the retrieval request object directly
 
-   + Update knowledgeSources:
+   + Update `knowledgeSources`:
 
-     + Delete `rerankerThreshold`. It no longer exists as a `knowledgeSources` property. Retrieval and ranking is now enforced through `retrievalReasoningEffort`.
+     + Delete `maxSubQueries`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`, and `rerankerThreshold`. These properties are now only specified on the retrieval request itself, through the `retrievalReasoningEffort` settings.
 
    + No changes for `models`.
 
@@ -456,15 +456,15 @@ The response includes the full definition of the new object. For more informatio
 
 The retrieval request is modified for the 2025-11-01-preview. This section explains how to update your code.
 
-<!-- To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
 The retrieve request is modified in the latest preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). 
 
-This variant is the most similar to the default 2025-08-01-preview experience. -->
+This variant is the most similar to the default 2025-08-01-preview experience.
 
 ```http
 ### Send a query to the knowledge base
-POST {{url}}/knowledgebases/corporate-kb/retrieve?api-version=2025-11-01-preview
+POST {{url}}/knowledgebases/earth-at-night-11-01/retrieve?api-version=2025-11-01-preview
 api-key: {{key}}
 Content-Type: application/json
 
@@ -473,32 +473,15 @@ Content-Type: application/json
         {
             "role": "user",
             "content": [
-                { "type": "text", "text": "What companies are in the financial sector?" }
+                { "type": "text", "text": "What are some light sources on the ocean at night" }
             ]
         }
     ],
     "includeActivity": true,
-    "knowledgeSourceParams": [
-        {
-            "knowledgeSourceName": "sec-gics-financials",
-            "kind": "searchIndex",
-            "includeReferences": true,
-            "includeReferenceSourceData": true
-        },
-        {
-            "knowledgeSourceName": "sec-gics-communicationservices",
-            "kind": "searchIndex",
-            "includeReferences": false,
-            "includeReferenceSourceData": false
-        },
-        {
-            "knowledgeSourceName": "sec-gics-healthcare",
-            "kind": "searchIndex",
-            "includeReferences": true,
-            "includeReferenceSourceData": false,
-            "alwaysQuerySource": true
-        }
-    ]
+    "retrievalReasoningEffort": { "kind": "medium" },
+    "outputMode": "answerSynthesis",
+    "maxRuntimeInSeconds": 30,
+    "maxOutputSize": 6000
 }
 ```
 
