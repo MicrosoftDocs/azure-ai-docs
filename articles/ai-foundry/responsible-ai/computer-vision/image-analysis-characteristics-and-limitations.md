@@ -70,8 +70,8 @@ For information see [Image requirements](/azure/ai-services/computer-vision/over
 
 ## Next steps
 
-* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-transparency-note)
-* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-guidance-for-integration)
+* [Transparency Note](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-transparency-note)
+* [Responsible deployment of Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-guidance-for-integration)
 * [Image Analysis Overview](/azure/ai-services/computer-vision/overview-image-analysis)
 * [QuickStart your Image Analysis use case development](/azure/ai-services/computer-vision/quickstarts-sdk/image-analysis-client-library)
-* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/imageanalysis-data-privacy-security)
+* [Data, privacy, and security for Image Analysis](/azure/ai-foundry/responsible-ai/computer-vision/image-analysis-data-privacy-security)

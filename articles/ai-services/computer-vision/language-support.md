@@ -6,9 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
-ms.date: 09/25/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
@@ -37,7 +35,7 @@ The following table lists the OCR supported languages for handwritten text by th
 |German |`de`|Spanish |`es`|
 |Italian |`it`|
 
-### Print text
+### Printed text
 
 The following table lists the OCR supported languages for print text by the most recent `Read` GA model.
 
@@ -128,7 +126,7 @@ The following table lists the OCR supported languages for print text by the most
 
 ## Image Analysis
 
-Some features of the [Analyze - Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API can return results in other languages, specified with the `language` query parameter. Other features return results in English regardless of what language is specified, and others throw an exception for unsupported languages. Features are specified with the `visualFeatures` and `details` query parameters; see the [Overview](overview-image-analysis.md) for a list of all the actions you can do with the [Analyze - Image](/rest/api/computervision/analyze-image?view=rest-computervision-v3.2) API, or follow the [How-to guide](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) to try them out.
+Some features of the [Analyze - Image](/rest/api/computervision/analyze-image) API can return results in other languages, specified with the `language` query parameter. Other features return results in English regardless of what language is specified, and others throw an exception for unsupported languages. Features are specified with the `visualFeatures` and `details` query parameters; see the [Overview](overview-image-analysis.md) for a list of all the actions you can do with the [Analyze - Image](/rest/api/computervision/analyze-image) API, or follow the [How-to guide](/azure/ai-services/computer-vision/how-to/call-analyze-image-40) to try them out.
 
 | Language | Language code | Categories | Tags | Description | Adult, Brands, Color, Faces, ImageType, Objects | Celebrities, Landmarks | Captions, Dense captions|
 |:---|:---:|:----:|:---:|:---:|:---:|:---:|:--:|

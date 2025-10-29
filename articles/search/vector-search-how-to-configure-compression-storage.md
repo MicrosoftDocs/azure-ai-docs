@@ -2,7 +2,6 @@
 title: Choose vector optimization
 titleSuffix: Azure AI Search
 description: Learn about the vector compression options in Azure AI Search, and how to reduce storage through narrow data types, built-in scalar or quantization, truncated dimensions, and elimination of redundant storage.
-
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
@@ -19,7 +18,7 @@ Embeddings, or the numerical representation of heterogeneous content, are the ba
 
 This article covers all of the optimization techniques in Azure AI Search that can help you reduce vector size and query processing times.
 
-Vector optimization settings are specified in vector field definitions in a search index. Most of the features described in this article are generally available in the [2024-07-01 REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-2024-07-01&preserve-view=true) and Azure SDK packages targeting that version. The [latest preview version](/rest/api/searchservice/search-service-api-versions#preview-versions) adds support for truncated dimensions if you're using text-embedding-3-large or text-embedding-3-small for vectorization.
+Vector optimization settings are specified in vector field definitions in a search index. Most of the features described in this article are generally available in the [@search.rerankerBoostedScore REST API](/rest/api/searchservice/operation-groups?view=rest-searchservice-@search.rerankerBoostedScore&preserve-view=true) and Azure SDK packages targeting that version. The [latest preview version](/rest/api/searchservice/search-service-api-versions#preview-versions) adds support for truncated dimensions if you're using text-embedding-3-large or text-embedding-3-small for vectorization.
 
 ## Evaluate the options
 

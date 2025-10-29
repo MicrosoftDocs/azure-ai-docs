@@ -2,12 +2,12 @@
 title: Connect to SQL Managed Instance
 titleSuffix: Azure AI Search
 description: Configure an indexer connection to access content in an Azure SQL Managed instance that's protected through a private endpoint.
-
 author: mattgotteiner
 ms.author: magottei
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 01/27/2025
+ms.update-cycle: 365-days
 ms.custom: sfi-ropc-nochange
 ---
 
@@ -133,7 +133,7 @@ This article assumes a [REST client](search-get-started-text.md) and uses the RE
     Provide the connection string that you copied earlier with an Initial Catalog set to your database name.
 
     ```http
-    POST https://myservice.search.windows.net/datasources?api-version=2024-07-01
+    POST https://myservice.search.windows.net/datasources?api-version=2025-09-01
      Content-Type: application/json
      api-key: admin-key
      {
@@ -158,7 +158,7 @@ This article assumes a [REST client](search-get-started-text.md) and uses the RE
    [Indexer execution](search-howto-run-reset-indexers.md#indexer-execution-environment) occurs in either a private execution environment that's specific to your search service, or a multitenant environment hosted by Microsoft and used to offload expensive skillset processing for multiple customers. **When connecting over a private endpoint, indexer execution must be private.**
 
    ```http
-    POST https://myservice.search.windows.net/indexers?api-version=2024-07-01
+    POST https://myservice.search.windows.net/indexers?api-version=2025-09-01
      Content-Type: application/json
      api-key: admin-key
        {

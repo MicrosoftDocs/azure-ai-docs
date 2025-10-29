@@ -2,7 +2,6 @@
 title: Skill context and input annotation reference language
 titleSuffix: Azure AI Search
 description: Annotation syntax reference for annotation in the context, inputs, and outputs of a skillset in an AI enrichment pipeline in Azure AI Search.
-
 author: BertrandLeRoy
 ms.author: beleroy
 ms.service: azure-ai-search
@@ -11,6 +10,7 @@ ms.custom:
   - build-2024
 ms.topic: reference
 ms.date: 07/14/2025
+ms.update-cycle: 365-days
 ---
 # Skill context and input annotation language
 

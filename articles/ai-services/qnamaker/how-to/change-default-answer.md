@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 
 # Change default answer for a QnA Maker resource
@@ -40,7 +40,7 @@ When you create a new knowledge base, the default answer text is one of the sett
 
 The knowledge base default answer is returned when no answer is returned from the QnA Maker service.
 
-1. Sign in to the [QnA Maker portal](https://www.qnamaker.ai/) and select your knowledge base from the list.
+1. Sign in to the QnA Maker portal and select your knowledge base from the list.
 1. Select **Settings** from the navigation bar.
 1. Change the value of **Default answer text** in the **Manage knowledge base** section.
 

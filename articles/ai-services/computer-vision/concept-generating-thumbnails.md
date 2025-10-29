@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 02/21/2025
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -46,6 +44,6 @@ The following table illustrates thumbnails defined by smart-cropping for the exa
 
 ## Use the API
 
-The generate thumbnail feature is available through the [Get Thumbnail](/rest/api/computervision/generate-thumbnail/generate-thumbnail?view=rest-computervision-v3.2&tabs=HTTP) and [Get Area of Interest](/rest/api/computervision/get-area-of-interest/get-area-of-interest?view=rest-computervision-v3.2&tabs=HTTP) API. You can call this API through a native SDK or through REST calls. 
+The generate thumbnail feature is available through the [Get Thumbnail](/rest/api/computervision/generate-thumbnail/generate-thumbnail) and [Get Area of Interest](/rest/api/computervision/get-area-of-interest/get-area-of-interest) API. You can call this API through a native SDK or through REST calls. 
 
 * [Generate a thumbnail (how-to)](./how-to/generate-thumbnail.md)

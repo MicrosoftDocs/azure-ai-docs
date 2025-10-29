@@ -2,9 +2,10 @@
 title: Safety system message templates 
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: This article contains recommended safety system messages for your generative AI systems, to help reduce the propensity of harm in various concern areas.
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual
-ms.date: 06/30/2025
+ms.date: 09/16/2025
 ms.custom:
 manager: nitinme
 author: PatrickFarley
@@ -14,7 +15,7 @@ ms.author: pafarley
 
 # Safety system message templates
 
-This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](/azure/ai-services/openai/concepts/system-message) to get started.  
+This article contains recommended safety system messages for your generative AI systems to help reduce the propensity of harm in various concern areas. Before you begin evaluating and integrating your safety system messages, visit the [Safety system message conceptual guide](/azure/ai-foundry/openai/concepts/system-message) to get started.  
 
 > [!NOTE]
 > Using a safety system message is one of many techniques that can be used for mitigations risks in AI systems and is different from the [Azure AI Content Safety](/azure/ai-services/content-safety/overview) service. 
@@ -50,4 +51,4 @@ The following steps show how to leverage safety system messages in [Azure AI Fou
 
 ## Evaluation 
 
-We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](/azure/ai-services/openai/concepts/system-message). 
+We recommend you adjust your safety system message approach based on an iterative process of identification and evaluation. Learn more in the [Safety system message conceptual guide](/azure/ai-foundry/openai/concepts/system-message). 

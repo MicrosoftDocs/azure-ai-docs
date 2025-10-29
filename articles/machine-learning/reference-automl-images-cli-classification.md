@@ -18,7 +18,7 @@ ms.reviewer: rasavage
 
 [!INCLUDE [cli v2](includes/machine-learning-cli-v2.md)]
 
-The source JSON schema can be found at https://azuremlsdk2.blob.core.windows.net/preview/0.0.1/autoMLImageClassificationJob.schema.json.
+The source JSON schema can be found at https://azuremlschemasprod.azureedge.net/latest/autoMLImageClassificationJob.schema.json.
 
 
 

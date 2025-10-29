@@ -5,10 +5,10 @@ description: An overview of the features, capabilities, and restrictions for aud
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: hasshah
+ms.date: 08/07/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ms.custom: devx-track-csharp
 ---
 

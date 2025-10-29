@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.date: 01/03/2022
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 ## Create a project

@@ -1,11 +1,65 @@
 ---
-author: eric-urban
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 4/8/2025
-ms.author: eur
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 ---
+### July 2025 release
+
+#### Public preview Personal Voice upgraded to v2.1
+
+Our new “DragonV2.1” model brings improvements to the naturalness of speech, offering more realistic and stable prosody while maintaining better pronunciation accuracy.
+
+### June 2025 release
+
+#### VoiceLive API update 
+- Support more GenAI models: GPT-4.1, GPT-4.1 Mini, Phi-4 mini and Phi-4 Multimodal models are now natively supported.
+- Support more customization capabilities
+- Azure Semantic VAD is extended to support GPT-Realtime and GPT-4o-Mini-Realtime.
+- Availability in more regions
+
+#### Public preview of Voice Conversion feature on selected en-US voices
+
+The following voices are now available for the feature:
+
+| **Locale (BCP-47)** | **Voice name**                                         |
+|---------------------|--------------------------------------------------------|
+| `en-US`             | `en-US-Adam:MultilingualNeural` (Male)            |
+| `en-US`             | `en-US-Amanda:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-Andrew:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-Ava:MultilingualNeural` (Female)               |
+| `en-US`             | `en-US-Brandon:MultilingualNeural` (Male)             |
+| `en-US`             | `en-US-Brian:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Christopher:MultilingualNeural` (Male)         |
+| `en-US`             | `en-US-Cora:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Davis:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Derek:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Dustin:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-EchoTurbo:MultilingualNeural` (Male)         |
+| `en-US`             | `en-US-Emma:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Evelyn:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-FableTurbo:MultilingualNeural` (Neutral)        |
+| `en-US`             | `en-US-Jenny:MultilingualNeural` (Female)             |
+| `en-US`             | `en-US-Lewis:MultilingualNeural` (Male)               |
+| `en-US`             | `en-US-Lola:MultilingualNeural` (Female)              |
+| `en-US`             | `en-US-Nancy:MultilingualNeural` (Female)             |
+| `en-US`             | `en-US-NovaTurbo:MultilingualNeural` (Female)         |
+| `en-US`             | `en-US-OnyxTurbo:MultilingualNeural` (Male)           |
+| `en-US`             | `en-US-Phoebe:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-Ryan:MultilingualNeural` (Male)                |
+| `en-US`             | `en-US-Samuel:MultilingualNeural` (Male)              |
+| `en-US`             | `en-US-Serena:MultilingualNeural` (Female)            |
+| `en-US`             | `en-US-ShimmerTurbo:MultilingualNeural` (Female)      |
+| `en-US`             | `en-US-Steffan:MultilingualNeural` (Male)             |
+
+### May 2025 release
+
+#### Public preview for VoiceLive API
+Azure AI Speech feature offering a single, unified API for building voice agents. This new API, available in public preview starting today, supports low-latency, scalable speech-to-speech interactions using foundation models of your choice.
 
 ### April 2025 release
 
@@ -500,7 +554,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 
 #### Text to speech avatar
 
-- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [How to edit the background](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#how-to-edit-the-background).
+- You can now set a static background image for your avatars. To utilize this feature, simply use the `avatarConfig.backgroundImage` property and specify a URL pointing to the desired image. For details, refer to [batch synthesis avatar properties](../../text-to-speech-avatar/batch-synthesis-avatar-properties.md#edit-the-background).
 
 ### March 2024 release
 
@@ -519,7 +573,7 @@ Personal voice is now generally available. With personal voice, you can get AI g
 #### Text to speech avatar
 
 - Removed dependency on [Azure Communication Services (ACS) TURN](/azure/communication-services/quickstarts/relay-token) for real-time avatar. The [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/browser/avatar) has been updated accordingly to reflect this change.
-- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md#regions) where the feature is available.
+- Published text to speech avatar pricing. For more details, see the [pricing page](https://azure.microsoft.com/pricing/details/cognitive-services/speech-services/). Note that avatar pricing will only be visible for service [regions](../../regions.md?tabs=ttsavatar) where the feature is available.
 
 ### February 2024 release
 
@@ -997,7 +1051,7 @@ For more information, see the [language and voice list](../../language-support.m
 * Support 2 new styles `sports-commentary`, `sports-commentary-excited` in public preview for `zh-CN-YunjianNeural`. See [voice styles and roles](../../language-support.md?tabs=tts).
 * Support 1 new style `advertisement-upbeat` in public preview for `zh-CN-YunhaoNeural`. See [voice styles and roles](../../language-support.md?tabs=tts).
 * The `cheerful` and `sad` styles for `fr-FR-DeniseNeural` are generally available in all regions.
-* SSML updated to support MathML elements for en-US and en-AU voices. Learn more at [speech synthesis markup](../../speech-synthesis-markup-pronunciation.md#pronunciation-with-mathml).
+* SSML updated to support MathML elements for en-US and en-AU voices. Learn more at [speech synthesis markup](../../speech-synthesis-markup-pronunciation.md#mathematical-expressions-reading).
 
 #### Custom neural voice
 

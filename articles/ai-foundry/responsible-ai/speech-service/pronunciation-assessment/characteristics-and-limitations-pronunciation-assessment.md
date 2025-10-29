@@ -2,8 +2,8 @@
 title: Characteristics and limitations of Pronunciation Assessment
 titleSuffix: Azure AI services
 description: This article provides information on the characteristics and limitations of using Pronunciation Assessment and the considerations you should make for it's responsible use.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article

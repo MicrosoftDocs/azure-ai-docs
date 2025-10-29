@@ -5,7 +5,7 @@ description: How to create an aligned document that specifies a list of phrases 
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 05/19/2025
+ms.date: 07/22/2025
 ms.author: lajanuar
 ms.topic: conceptual
 ms.custom: cogserv-non-critical-translator
@@ -32,7 +32,7 @@ The [neural phrase dictionary](../../neural-dictionary.md) extends our [dynamic 
 
 ## Sentence dictionary
 
-A sentence dictionary is case-insensitive. The sentence dictionary allows you to specify an exact target translation for a source sentence. For a sentence dictionary match to occur, the entire submitted sentence must match the source dictionary entry. A source dictionary entry that ends with punctuation is ignored during the match. If only a portion of the sentence matches, the entry isn't matched. When a match is detected, the target entry of the sentence dictionary is returned.
+A sentence dictionary isn't sensitive to letter case. It lets you define an exact target translation for a specific source sentence. For a match to occur, the entire input sentence must exactly match a source entry in the dictionary. If a source entry ends with punctuation, that punctuation is ignored during matching. Partial matches aren't accepted—only full sentence matches count. When a match is found, the dictionary returns the corresponding target translation.
 
 ## Dictionary-only trainings
 

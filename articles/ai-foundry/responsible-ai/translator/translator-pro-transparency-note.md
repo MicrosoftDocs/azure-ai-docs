@@ -2,8 +2,8 @@
 title: Microsoft Translator Pro Transparency Note
 titleSuffix: Azure AI services
 description: Microsoft Translator Pro responsible AI Basics, use cases, terms
-author: PatrickFarley
-ms.author: pafarley
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: article

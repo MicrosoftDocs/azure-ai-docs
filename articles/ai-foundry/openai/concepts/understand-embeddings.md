@@ -3,9 +3,10 @@ title: Azure OpenAI in Azure AI Foundry Models embeddings
 titleSuffix: Azure OpenAI - embeddings and cosine similarity
 description: Learn more about how the Azure OpenAI embeddings API uses cosine similarity for document search and to measure similarity between texts.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 07/02/2025
+ms.date: 09/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false

@@ -40,7 +40,7 @@ No. We do not use customer data to train, retrain or improve the models in Azure
 
 ## Does Azure OpenAI Abuse Monitoring apply to the data that customers send to Azure AI Content Safety? 
 
-No. The Azure OpenAI [Abuse Monitoring process](/azure/ai-services/openai/concepts/abuse-monitoring) does not apply to customer data transmitted to Azure AI Content Safety. User input data sent to Azure AI Content Safety is not stored or made available for human review by Microsoft employees. 
+No. The Azure OpenAI [Abuse Monitoring process](/azure/ai-foundry/openai/concepts/abuse-monitoring) does not apply to customer data transmitted to Azure AI Content Safety. User input data sent to Azure AI Content Safety is not stored or made available for human review by Microsoft employees. 
 
 ## Feedback and Reporting
 

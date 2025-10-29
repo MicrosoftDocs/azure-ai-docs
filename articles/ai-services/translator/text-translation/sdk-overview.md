@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-translator
 ms.custom: devx-track-python
 ms.topic: conceptual
-ms.date: 05/19/2025
+ms.date: 06/19/2025
 ms.author: lajanuar
 recommendations: false
 ---

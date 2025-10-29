@@ -2,8 +2,8 @@
 title: Capabilities and limitations of optical character recognition (OCR) - Azure AI Vision
 titleSuffix: Azure AI services
 description: Characteristics and limitations for optical character recognition (OCR) of images and documents with printed and handwritten text using the Azure AI Vision API.
-author: sanjeev3
-ms.author: sajagtap
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article

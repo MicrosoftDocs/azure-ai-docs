@@ -1,17 +1,17 @@
 ---
 title: Troubleshooting - QnA Maker
-description: The curated list of the most frequently asked questions regarding the QnA Maker service will help you adopt the service faster and with better results.
+description: The curated list of the most frequently asked questions regarding the QnA Maker service helps you adopt the service faster and with better results.
 ms.service: azure-ai-language
 manager: nitinme
 ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: troubleshooting
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ---
 # Troubleshooting for QnA Maker
 
-The curated list of the most frequently asked questions regarding the QnA Maker service will help you adopt the service faster and with better results.
+The curated list of the most frequently asked questions regarding the QnA Maker service helps you adopt the service faster and with better results.
 
 [!INCLUDE [Custom question answering](./includes/new-version.md)]
 
@@ -23,7 +23,7 @@ The curated list of the most frequently asked questions regarding the QnA Maker 
 <summary><b>How can I improve the throughput performance for query predictions?</b></summary>
 
 **Answer**:
-Throughput performance issues indicate you need to scale up for both your App service and your Cognitive Search. Consider adding a replica to your Cognitive Search to improve performance.
+Throughput performance issues indicate you need to scale up for both your App service and your Cognitive Search. Consider adding a replica to your Cognitive Search and improve performance.
 
 Learn more about [pricing tiers](Concepts/azure-resources.md).
 </details>
@@ -54,7 +54,7 @@ QnAMaker service endpoint is useful for debugging purposes when you contact QnAM
 <summary><b>I accidentally deleted a part of my QnA Maker, what should I do?</b></summary>
 
 **Answer**:
-Do not delete any of the Azure services created along with the QnA Maker resource such as Search or Web App. These are necessary for QnA Maker to work, if you delete one, QnA Maker will stop working correctly.
+Don't delete any of the Azure services created along with the QnA Maker resource such as Search or Web App. These services are necessary for QnA Maker to work, if you delete one, QnA Maker stops working correctly.
 
 All deletes are permanent, including question and answer pairs, files, URLs, custom questions and answers, knowledge bases, or Azure resources. Make sure you export your knowledge base from the **Settings** page before deleting any part of your knowledge base.
 
@@ -64,7 +64,7 @@ All deletes are permanent, including question and answer pairs, files, URLs, cus
 <summary><b>Why is my URL(s)/file(s) not extracting question-answer pairs?</b></summary>
 
 **Answer**:
-It's possible that QnA Maker can't auto-extract some question-and-answer (QnA) content from valid FAQ URLs. In such cases, you can paste the QnA content in a .txt file and see if the tool can ingest it. Alternately, you can editorially add content to your knowledge base through the [QnA Maker portal](https://qnamaker.ai).
+It's possible that QnA Maker can't autoextract some question-and-answer (QnA) content from valid FAQ URLs. In such cases, you can paste the QnA content in a .txt file and see if the tool can ingest it. Alternately, you can editorially add content to your knowledge base through the [QnA Maker portal](https://qnamaker.ai).
 
 </details>
 
@@ -80,7 +80,7 @@ The size of the knowledge base depends on the SKU of Azure search you choose whe
 <summary><b>Why can't I see anything in the drop-down when I try to create a new knowledge base?</b></summary>
 
 **Answer**:
-You haven't created any QnA Maker services in Azure yet. Read [here](./how-to/set-up-qnamaker-service-azure.md) to learn how to do that.
+You didn't create any QnA Maker services in Azure yet. Read [here](./how-to/set-up-qnamaker-service-azure.md) to learn how to do that.
 
 </details>
 
@@ -88,7 +88,7 @@ You haven't created any QnA Maker services in Azure yet. Read [here](./how-to/se
 <summary><b>How do I share a knowledge base with others?</b></summary>
 
 **Answer**:
-Sharing works at the level of a QnA Maker service, that is, all knowledge bases in the service will be shared. Read [here](./index.yml) how to collaborate on a knowledge base.
+All knowledge bases in the service are shared. Read [here](./index.yml) how to collaborate on a knowledge base.
 
 </details>
 
@@ -130,7 +130,7 @@ The default message is part of the settings in your App service.
 <summary><b>Why is my SharePoint link not getting extracted?</b></summary>
 
 **Answer**:
-See [Data source locations](./concepts/data-sources-and-content.md#data-source-locations) for more information.
+For more information, *see* [Data source locations](./concepts/data-sources-and-content.md#data-source-locations) for more information.
 
 </details>
 
@@ -147,9 +147,9 @@ Every edit operation, whether in a table update, test, or setting, needs to be s
 
 **Answer**:
 
-#### Multimedia auto-extraction for files and URLs
+#### Multimedia autoextraction for files and URLs
 
-* URLS - limited HTML-to-Markdown conversion capability.
+* `URLS` - limited HTML-to-Markdown conversion capability.
 * Files - not supported
 
 #### Answer text in markdown
@@ -174,7 +174,7 @@ If you have content from multiple languages, be sure to create a separate servic
 <summary><b>When should I restart my app service?</b></summary>
 
 **Answer**:
-Refresh your app service when the caution icon is next to the version value for the knowledge base in the **Endpoint keys** table on the **User Settings** [page](https://www.qnamaker.ai/UserSettings).
+Refresh your app service when the caution icon is next to the version value for the knowledge base in the **Endpoint keys** table on the **User Settings** page.
 
 </details>
 
@@ -182,7 +182,7 @@ Refresh your app service when the caution icon is next to the version value for 
 <summary><b>I deleted my existing Search service. How can I fix this?</b></summary>
 
 **Answer**:
-If you delete an Azure AI Search index, the operation is final and the index cannot be recovered.
+If you delete an Azure AI Search index, the operation is final and the index can't be recovered.
 
 </details>
 
@@ -190,15 +190,15 @@ If you delete an Azure AI Search index, the operation is final and the index can
 <summary><b>I deleted my `testkb` index in my Search service. How can I fix this?</b></summary>
 
 **Answer**:
-In case you deleted the `testkb` index in your Search service, you can restore the data from the last published KB. Please use the recovery tool [RestoreTestKBIndex](https://github.com/pchoudhari/QnAMakerBackupRestore/tree/master/RestoreTestKBFromProd) available on GitHub. 
+In case you deleted the `testkb` index in your Search service, you can restore the data from the last published KB. Use the recovery tool [RestoreTestKBIndex](https://github.com/pchoudhari/QnAMakerBackupRestore/tree/master/RestoreTestKBFromProd) available on GitHub. 
 
 </details>
 
 <details>
-<summary><b>I am receiving the following error: Please check if QnA Maker App service's CORS settings allow https://www.qnamaker.ai or if there are any organization specific network restrictions. How can I resolve this?</b></summary>
+<summary><b>I am receiving the following error: Please check if there are any organization specific network restrictions. How can I resolve this?</b></summary>
 
 **Answer**:
-In the API section of the App service pane, update the CORS setting to * or "https://www.qnamaker.ai". If this doesn't resolve the issue, check for any organization-specific restrictions.
+In the API section of the App service pane, update the CORS setting. If this setting doesn't resolve the issue, check for any organization-specific restrictions.
 
 </details>
 
@@ -206,7 +206,7 @@ In the API section of the App service pane, update the CORS setting to * or "htt
 <summary><b>When should I refresh my endpoint keys?</b></summary>
 
 **Answer**:
-Refresh your endpoint keys if you suspect that they have been compromised.
+Refresh your endpoint keys if you suspect that they're compromised.
 
 </details>
 
@@ -214,7 +214,7 @@ Refresh your endpoint keys if you suspect that they have been compromised.
 <summary><b>Can I use the same Azure AI Search resource for knowledge bases using multiple languages?</b></summary>
 
 **Answer**:
-To use multiple language and multiple knowledge bases, the user has to create a QnA Maker resource for each language. This will create a separate Azure search service per language. Mixing different language knowledge bases in a single Azure search service will result in degraded relevance of results.
+To use multiple language and multiple knowledge bases, the user has to create a QnA Maker resource for each language. This step creates a separate Azure search service per language. Mixing different language knowledge bases in a single Azure search service results in degraded relevance of results.
 
 </details>
 
@@ -222,7 +222,7 @@ To use multiple language and multiple knowledge bases, the user has to create a 
 <summary><b>How can I change the name of the Azure AI Search resource used by QnA Maker?</b></summary>
 
 **Answer**:
-The name of the Azure AI Search resource is the QnA Maker resource name with some random letters appended at the end. This makes it hard to distinguish between multiple Search resources for QnA Maker. Create a separate search service (naming it the way you would like to) and connect it to your QnA Service. The steps are similar to the steps you need to do to [upgrade an Azure search](How-To/set-up-qnamaker-service-azure.md#upgrade-the-azure-ai-search-service).
+The name of the Azure AI Search resource is the QnA Maker resource name with some random letters appended at the end. The naming convention makes it hard to distinguish between multiple Search resources for QnA Maker. Create a separate search service (naming it the way you would like to) and connect it to your QnA Service. The steps are similar to the steps you need to do to [upgrade an Azure search](How-To/set-up-qnamaker-service-azure.md#upgrade-the-azure-ai-search-service).
 
 </details>
 
@@ -233,7 +233,7 @@ The name of the Azure AI Search resource is the QnA Maker resource name with som
 The disk space for your app service might be full. Steps to fix your disk space:
 
 1. In the [Azure portal](https://portal.azure.com), select your QnA Maker's App service, then stop the service.
-1. While still on the App service, select **Development Tools**, then **Advanced Tools**, then **Go**. This opens a new browser window.
+1. While still on the App service, select **Development Tools**, then **Advanced Tools**, then **Go**. This step opens a new browser window.
 1. Select **Debug console**, then **CMD** to open a command-line tool.
 1. Navigate to the _site/wwwroot/Data/QnAMaker/_ directory.
 1. Remove all the folders whose name begins with `rd`.
@@ -252,7 +252,7 @@ The disk space for your app service might be full. Steps to fix your disk space:
 <summary><b>Why is my Application Insights not working?</b></summary>
 
 **Answer**:
-Please cross check and update below steps to fix the issue:
+Cross check and update below steps and fix the issue:
 
 1. In App Service -> Settings group -> Configuration section -> Application Settings -> Name "UserAppInsightsKey" parameters is configured properly and set to the respective application insights Overview tab ("Instrumentation Key") Guid. 
 
@@ -264,13 +264,13 @@ Please cross check and update below steps to fix the issue:
 <summary><b>My Application Insights is enabled but why is it not working properly?</b></summary>
 
 **Answer**:
-Please follow the below given steps: 
+Follow the below given steps: 
 
-1.  Copy the value of '“APPINSIGHTS_INSTRUMENTATIONKEY” name' into 'UserAppInsightsKey' name by overriding if there is some value already present there. 
+1.  Copy the value of '"APPINSIGHTS_INSTRUMENTATIONKEY" name' into 'UserAppInsightsKey' name by overriding if there's some value already present there. 
 
-1.  If the 'UserAppInsightsKey' key does not exist in app settings, please add a new key with that name and copy the value.
+1.  If the 'UserAppInsightsKey' key doesn't exist in app settings, add a new key with that name and copy the value.
 
-1.  Save it and this will automatically restart the app service. This should resolve the issue. 
+1.  Save it and it automatically restarts the app service. This step should resolve the issue. 
 
 </details>
 
@@ -280,7 +280,7 @@ Please follow the below given steps:
 <summary><b>Do I need to use Bot Framework in order to use QnA Maker?</b></summary>
 
 **Answer**:
-No, you do not need to use the [Bot Framework](https://github.com/Microsoft/botbuilder-dotnet) with QnA Maker. However, QnA Maker is offered as one of several templates in [Azure AI Bot Service](/azure/bot-service/). Bot Service enables rapid intelligent bot development through Microsoft Bot Framework, and it runs in a server-less environment.
+No, you don't need to use the [Bot Framework](https://github.com/Microsoft/botbuilder-dotnet) with QnA Maker. However, QnA Maker is offered as one of several templates in [Azure AI Bot Service](/azure/bot-service/). Bot Service enables rapid intelligent bot development through Microsoft Bot Framework, and it runs in a server-less environment.
 
 </details>
 

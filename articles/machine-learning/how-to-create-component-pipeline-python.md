@@ -5,8 +5,8 @@ description: Build a machine learning pipeline for image classification. Focus o
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 07/15/2025
 ms.custom:
@@ -40,7 +40,7 @@ In this article, you complete the following tasks:
 > * Review the output of the components and the trained neural network
 > * (Optional) Register the component for further reuse and sharing within the workspace
 
-If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 ## Prerequisites
 

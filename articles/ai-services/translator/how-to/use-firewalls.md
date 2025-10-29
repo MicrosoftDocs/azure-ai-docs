@@ -6,15 +6,15 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 07/22/2025
 ms.author: lajanuar
 ---
 
 # Use Azure AI Translator behind firewalls
 
-Azure AI Translator can translate behind firewalls using either [Domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the preferred method.
+Azure AI Translator can translate behind firewalls by using either [domain-name](/azure/firewall/dns-settings#dns-proxy-configuration) or [IP filtering](#configure-firewall). Domain-name filtering is the recommended approach.
 
-If you still require IP filtering, you can get the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is under the **CognitiveServicesManagement** service tag.
+If you still require IP filtering, you can obtain the [IP addresses details using service tag](/azure/virtual-network/service-tags-overview#discover-service-tags-by-using-downloadable-json-files). Translator is included under the **CognitiveServicesManagement** service tag.
 
 ## Configure firewall
 

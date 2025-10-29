@@ -13,6 +13,7 @@ ms.custom:
   - devx-track-arm-template
   - ignite-2023
 ms.date: 03/04/2025
+ms.update-cycle: 365-days
 ---
 
 # Quickstart: Deploy Azure AI Search using an Azure Resource Manager template
@@ -29,7 +30,7 @@ Assuming your environment meets the prerequisites and you're familiar with using
 
 ## Prerequisites
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Review the template
 

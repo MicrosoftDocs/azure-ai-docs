@@ -4,9 +4,10 @@ titleSuffix: Azure AI Foundry
 description: Find code samples to enable Azure AI Agents to use Azure Functions.
 services: azure-ai-agent-service
 manager: nitinme
-ms.service: azure-ai-agent-service
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 04/15/2025
+ms.date: 08/07/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents
@@ -14,10 +15,14 @@ ms.custom: azure-ai-agents
 
 # Use Azure Functions with Azure AI Foundry Agent Service
 
-The Azure AI Foundry Agent Service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows. 
- 
-Azure Functions provide support for triggers and bindings, which simplify how your AI Agents interact with external systems and services. Triggers determine when a function executes—such as an HTTP request, message from a queue, or a file upload to Azure Blob Storage and allows agents to act dynamically based on incoming events. 
- 
+The Azure AI Foundry Agent Service integrates with Azure Functions, enabling you to create intelligent, event-driven applications with minimal overhead. This combination allows AI-driven workflows to leverage the scalability and flexibility of serverless computing, making it easier to build and deploy solutions that respond to real-time events or complex workflows.
+
+Currently, direct integration with Azure Functions is only supported for functions triggered by Azure Storage Queues. Other trigger types, such as HTTP or Blob Storage, are not natively supported at this time.
+
+Azure Functions provide support for triggers and bindings, which simplify how your AI Agents interact with external systems and services. Triggers determine when a function executes—such as an HTTP request, message from a queue, or a file upload to Azure Blob Storage—and allow agents to act dynamically based on incoming events.
+
+For HTTP-triggered Azure Functions, integration is possible by describing the function through an OpenAPI specification and registering it as a callable tool in the agent configuration. Alternatively, you can implement a queue-based wrapper function that receives messages from the agent and internally invokes the HTTP logic, enabling the use of the existing queue-based integration.
+
 Meanwhile, bindings facilitate streamlined connections to input or output data sources, such as databases or APIs, without requiring extensive boilerplate code. For instance, you can configure a trigger to execute an Azure Function whenever a customer message is received in a chatbot and use output bindings to send a response via the Azure AI Agent.
 
 ### Supported models
@@ -40,9 +45,9 @@ You can find the template and code used here on [GitHub](https://github.com/Azur
 
 ## Usage support
 
-|Azure AI foundry support  | Python SDK |	C# SDK | REST API | Basic agent setup | Standard agent setup |
-|---------|---------|---------|---------|---------|---------|
-|  | ✔️ |  | ✔️ | | ✔️ |
+|Azure AI foundry support  | Python SDK |	C# SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|
+|  | ✔️ | ✔️ | ✔️ | ✔️ | | ✔️ | 
 
 ### Create Azure resources for local and cloud dev-test
 

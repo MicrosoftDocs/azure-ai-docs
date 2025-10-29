@@ -2,13 +2,13 @@
 title: Pattern Matching overview
 titleSuffix: Azure AI services
 description: Pattern Matching with the IntentRecognizer helps you get started quickly with offline intent matching.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 ms.reviewer: chschrae
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
+ms.date: 08/07/2025
 keywords: intent recognition pattern matching
 #Customer intent: I want to understand what pattern matching is and how to use it.
 ---

@@ -3,11 +3,12 @@ title: 'Use the Azure OpenAI web app'
 titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Use this article to learn about using the available web app to chat with Azure OpenAI models.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 author: aahill
 ms.author: aahi
-ms.date: 05/20/2025
+ms.date: 09/24/2025
 recommendations: false
 ---
 
@@ -166,7 +167,7 @@ This can be accomplished using the Advanced edit or simple Edit options as previ
 
 ### Using Azure AI Foundry portal
 
-Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-foundry/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-services/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
+Follow [this tutorial on integrating Azure AI Search with Azure AI Foundry](/azure/ai-foundry/tutorials/deploy-chat-web-app#add-your-data-and-try-the-chat-model-again) or [quickstart](/azure/ai-foundry/openai/use-your-data-quickstart#add-your-data) and redeploy your application.
 
 ### Using environment variables
 

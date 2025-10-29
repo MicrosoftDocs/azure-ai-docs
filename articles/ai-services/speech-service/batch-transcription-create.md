@@ -3,11 +3,13 @@ title: Create a batch transcription - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Azure AI Speech for batch transcriptions, where you submit audio and then retrieve transcription results asynchronously.
 manager: nitinme
-author: eric-urban
-ms.author: eur
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 6/5/2025
+ms.date: 10/21/2025
 zone_pivot_groups: speech-cli-rest
 ms.custom: devx-track-csharp
 # Customer intent: As a user who implements audio transcription, I want create transcriptions in bulk so that I don't have to submit audio content repeatedly.
@@ -263,7 +265,7 @@ Azure AI Speech supports OpenAI's Whisper model by using the batch transcription
 To use a Whisper model for batch transcription, you need to set the `model` property. Whisper is a display-only model, so the lexical field isn't populated in the response.
 
 > [!IMPORTANT]
-> Batch transcription using Whisper models is available in the following regions: Australia East, East US, Japan East, North Central US, South Central US, Southeast Asia, UK South, and West Europe.
+> Batch transcription using Whisper models is available in a subset of regions that support batch transcription. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt). Note that Whisper model support may be limited to specific regions within those that support batch transcription.
 
 ::: zone pivot="rest-api"
 You can make a [Models - List Base Models](/rest/api/speechtotext/models/list-base-models) request to get available base models for all locales.

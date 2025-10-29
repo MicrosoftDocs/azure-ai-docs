@@ -6,13 +6,14 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.topic: how-to
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: sooryar 
 ms.date: 7/10/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Network isolation in prompt flow 

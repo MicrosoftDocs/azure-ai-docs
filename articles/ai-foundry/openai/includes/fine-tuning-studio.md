@@ -6,7 +6,8 @@ author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
 ms.date: 02/27/2025
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom:
   - build-2025
@@ -194,12 +195,12 @@ The following hyperparameters are available for tuning via the Azure AI Foundry 
 
 ### Enable auto deployment (optional)
 
-To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../how-to/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
+To save time, you can optionally enable auto-deployment for your resulting model. If training completes successfully, the model will be deployed using the selected [deployment type](../../foundry-models/concepts/deployment-types.md). The deployment will be named based on the unique name generated for your custom model and the optional **suffix** you may have provided [earlier](#make-your-model-identifiable-optional).
 
 :::image type="content" source="../media/fine-tuning/studio-create-auto-deploy.png" alt-text="Screenshot of the auto-deployment toggle in the Create custom model wizard in Azure AI Foundry portal.":::
 
 > [!NOTE]
-> Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../how-to/deployment-types.md) documentation for more details.
+> Only Global Standard and Developer deployments are currently supported for auto-deployment. Neither of these options provide [data residency](https://aka.ms/data-residency). Consult the [deployment type](../../foundry-models/concepts/deployment-types.md) documentation for more details.
 
 ### Review your choices and train your model
 
@@ -214,6 +215,20 @@ Your job might be queued behind other jobs on the system. Training your model ca
 ## Checkpoints
 
 When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy.
+
+> [!NOTE]
+> When copying a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure you use this exact name for fine-tuning, deployment, or any other operation in the destination account. This checkpoint will not appear in the UI or in the `list checkpoints` API.
+
+## Pause and resume
+
+You can track progress in both fine-tuning views of the AI Foundry portal. You'll see your job go through the same statuses as normal fine tuning jobs (queued, running, succeeded).
+
+You can also review the results files while training runs, to get a peak at the progress and whether your training is proceeding as expected.
+
+> [!NOTE]
+> During the training you can view the logs and metrics and pause the job as needed. Pausing can be useful, if metrics aren't converging or if you feel model isn't learning at the right pace. Once the training job is paused, a deployable checkpoint will be created once safety evals are complete. This checkpoint available for you to deploy and use for inference or resume the job further to completion. Pause operation is only applicable for jobs which have been trained for at least one step and are in *Running* state.
+
+:::image type="content" source="../media/how-to/reinforcement-fine-tuning/pause.png" alt-text="Screenshot of the reinforcement fine-tuning with a running job." lightbox="../media/how-to/reinforcement-fine-tuning/pause.png":::
 
 ## Analyze your custom model
 

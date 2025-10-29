@@ -2,8 +2,8 @@
 title: Guidance for integration and responsible use with optical character recognition (OCR) - Azure AI Vision
 titleSuffix: Azure AI services
 description: Guidance for how to deploy the OCR service responsibly, based on the knowledge and understanding from the team that created this product.
-author: sanjeev3
-ms.author: sajagtap
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: article

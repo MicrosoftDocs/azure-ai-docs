@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.date: 02/17/2023
 ms.topic: include
-ms.author: eur
+ms.author: pafarley
 ---
 
 Once you have a Language resource created, create a conversational language understanding project in [Language Studio](https://aka.ms/languageStudio). A project is a work area for building your custom ML models based on your data. Your project can only be accessed by you and others who have access to the Language resource being used. 

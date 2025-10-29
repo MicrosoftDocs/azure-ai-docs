@@ -5,8 +5,9 @@ description: Learn how to use global batch with Azure OpenAI
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 06/19/2025
-ms.service: azure-ai-openai
+ms.date: 08/13/2025
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.custom:
   - references_regions
@@ -91,7 +92,7 @@ The following aren't currently supported:
 ### Batch deployment
 
 > [!NOTE]
-> In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../how-to/deployment-types.md).
+> In the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) the batch deployment types will appear as `Global-Batch` and `Data Zone Batch`. To learn more about Azure OpenAI deployment types, see our [deployment types guide](../../foundry-models/concepts/deployment-types.md).
 
 :::image type="content" source="../media/how-to/global-batch/global-batch.png" alt-text="Screenshot that shows the model deployment dialog in Azure AI Foundry portal with Global-Batch deployment type highlighted." lightbox="../media/how-to/global-batch/global-batch.png":::
 
@@ -241,7 +242,9 @@ When a job failure occurs, you'll find details about the failure in the `errors`
 
 - UTF-8-BOM encoded `jsonl` files aren't supported. JSON lines files should be encoded using UTF-8. Use of Byte-Order-Mark (BOM) encoded files isn't officially supported by the JSON RFC spec, and Azure OpenAI will currently treat BOM encoded files as invalid. A UTF-8-BOM encoded file will currently return the generic error message: "Validation failed: A valid model deployment name couldn't be extracted from the input file. Please ensure that each row in the input file has a valid deployment name specified in the 'model' field, and that the deployment name is consistent across all rows."
 
+- When using [your own storage for batch input data](./batch-blob-storage.md), once the batch job is submitted, if the input blob is modified the scoring job will be failed by the service.
+
 ## See also
 
-* Learn more about Azure OpenAI [deployment types](./deployment-types.md)
+* Learn more about Azure OpenAI [deployment types](../../foundry-models/concepts/deployment-types.md)
 * Learn more about Azure OpenAI [quotas and limits](../quotas-limits.md)

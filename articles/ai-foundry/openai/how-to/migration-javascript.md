@@ -4,10 +4,11 @@ titleSuffix: Azure OpenAI in Azure AI Foundry Models
 description: Learn about migrating to the latest release of the OpenAI JavaScript library with Azure OpenAI.
 author: mrbullwinkle 
 ms.author: mbullwin 
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 04/30/2025
+ms.date: 07/31/2025
 manager: nitinme
 ---
 

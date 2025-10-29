@@ -47,7 +47,7 @@ Azure Blob Storage offers three resource types:
 
 To get started, you need the following resources:
 
-* An active [Azure account](https://azure.microsoft.com/free/cognitive-services/). If you don't have one, you can [create a free account](https://azure.microsoft.com/free/).
+* An active [Azure account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn). If you don't have one, you can [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * A [Translator](https://portal.azure.com/#create/Microsoft.CognitiveServicesTextTranslation) resource.
 

@@ -4,13 +4,14 @@ titleSuffix: Azure OpenAI
 description: Get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model.
 services: cognitive-services
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
 ms.custom: references_regions
 ms.date: 10/23/2024
 ---
 
-Use this article to get started using the OpenAI JavaScript SDK to deploy and use the GPT-4 Turbo with Vision model. 
+Use this article to get started using the OpenAI JavaScript SDK to deploy and use a vision-enabled chat model. 
 
 This SDK is provided by OpenAI with Azure specific types provided by Azure. 
 
@@ -18,11 +19,11 @@ This SDK is provided by OpenAI with Azure specific types provided by Azure.
 
 ## Prerequisites
 
-- An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services?azure-portal=true)
+- An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - [LTS versions of Node.js](https://github.com/nodejs/release#release-schedule)
 - [TypeScript](https://www.typescriptlang.org/download/)
 - [Azure CLI](/cli/azure/install-azure-cli) used for passwordless authentication in a local development environment, create the necessary context by signing in with the Azure CLI.
-- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-services/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
+- An Azure OpenAI resource created in a supported region (see [Region availability](/azure/ai-foundry/openai/concepts/models#model-summary-table-and-region-availability)). For more information, see [Create a resource and deploy a model with Azure OpenAI](../how-to/create-resource.md).
 
 > [!NOTE]
 > This library is maintained by OpenAI. Refer to the [release history](https://github.com/openai/openai-node/releases) to track the latest updates to the library.
@@ -79,7 +80,7 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 Select an image from the [azure-samples/cognitive-services-sample-data-files](https://github.com/Azure-Samples/cognitive-services-sample-data-files/tree/master/ComputerVision/Images). Use the image URL in the code below or set the `IMAGE_URL` environment variable to the image URL.
 
 > [!TIP]
-> You can also use a base 64 encoded image data instead of a URL. For more information, see the [GPT-4 Turbo with Vision how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
+> You can also use a base 64 encoded image data instead of a URL. For more information, see the [Vision chats how-to guide](../how-to/gpt-with-vision.md#use-a-local-image).
 
 ## [Microsoft Entra ID](#tab/typescript-keyless)
 
@@ -147,7 +148,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       }
     }
     export async function main() {
-      console.log("== Get GPT-4 Turbo with vision Sample ==");
+      console.log("== Get Vision chat Sample ==");
     
       const client = getClient();
       const messages = createMessages();
@@ -251,7 +252,7 @@ Select an image from the [azure-samples/cognitive-services-sample-data-files](ht
       }
     }
     export async function main() {
-      console.log("== Get GPT-4 Turbo with vision Sample ==");
+      console.log("== Get Vision chat Sample ==");
     
       const client = getClient();
       const messages = createMessages();

@@ -1,12 +1,11 @@
 ---
-title: General purpose evaluators for generative AI
+title: General Purpose Evaluators for Generative AI
 titleSuffix: Azure AI Foundry
 description: Learn about general-purpose evaluators for generative AI, including coherence, fluency, and question-answering composite evaluation.
 author: lgayhardt
 ms.author: lagayhar
-manager: scottpolly
 ms.reviewer: changliu2
-ms.date: 05/19/2025
+ms.date: 10/17/2025
 ms.service: azure-ai-foundry
 ms.topic: reference
 ms.custom:
@@ -16,9 +15,12 @@ ms.custom:
 
 # General purpose evaluators
 
-AI systems might generate textual responses that are incoherent, or lack the general writing quality you might desire beyond minimum grammatical correctness. To address these issues, use [Coherence](#coherence) and [Fluency](#fluency).
+AI systems might generate textual responses that are incoherent, or lack the general writing quality beyond minimum grammatical correctness. To address these issues, Azure AI Foundry supports evaluating:
 
-If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator) a composite evaluator that uses relevant evaluators for judgment.
+- [Coherence](#coherence)
+- [Fluency](#fluency)
+
+If you have a question-answering (QA) scenario with both `context` and `ground truth` data in addition to `query` and `response`, you can also use our [QAEvaluator](#question-answering-composite-evaluator), which is a composite evaluator that uses relevant evaluators for judgment.
 
 ## Model configuration for AI-assisted evaluators
 
@@ -32,18 +34,26 @@ load_dotenv()
 
 model_config = AzureOpenAIModelConfiguration(
     azure_endpoint=os.environ["AZURE_ENDPOINT"],
-    api_key=os.environ.get["AZURE_API_KEY"],
+    api_key=os.environ.get("AZURE_API_KEY"),
     azure_deployment=os.environ.get("AZURE_DEPLOYMENT_NAME"),
     api_version=os.environ.get("AZURE_API_VERSION"),
 )
 ```
 
-> [!TIP]
-> We recommend using `o3-mini` for a balance of reasoning capability and cost efficiency.
+### Evaluator model support
+
+Azure AI Foundry supports  AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the large language model judge (LLM-judge) depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `IntentResolution`, `TaskAdherence`, `ToolCallAccuracy`, `ResponseCompleteness`, `Coherence`, `Fluency`, `Similarity`, `Groundedness`, `Retrieval`, `Relevance`  | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `4.1-mini` with a balance of reasoning performance and cost efficiency.
 
 ## Coherence
 
-`CoherenceEvaluator` measures the logical and orderly presentation of ideas in a response, allowing the reader to easily follow and understand the writer's train of thought. A coherent response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
+`CoherenceEvaluator` measures the logical and orderly presentation of ideas in a response, which allows the reader to easily follow and understand the writer's train of thought. A *coherent* response directly addresses the question with clear connections between sentences and paragraphs, using appropriate transitions and a logical sequence of ideas. Higher scores mean better coherence.
 
 ### Coherence example
 
@@ -59,7 +69,7 @@ coherence(
 
 ### Coherence output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5). A higher score is better. Given a numerical threshold (default to 3), it also outputs *pass* if the score >= threshold, or *fail* otherwise. Use the reason field to understand why the score is high or low.
 
 ```python
 {
@@ -73,7 +83,7 @@ The numerical score on a likert scale (integer 1 to 5) and a higher score is bet
 
 ## Fluency
 
-`FluencyEvaluator`measures the effectiveness and clarity of written communication, focusing on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
+`FluencyEvaluator` measures the effectiveness and clarity of written communication. This measure focuses on grammatical accuracy, vocabulary range, sentence complexity, coherence, and overall readability. It assesses how smoothly ideas are conveyed and how easily the reader can understand the text.
 
 ### Fluency example
 
@@ -88,7 +98,7 @@ fluency(
 
 ### Fluency output
 
-The numerical score on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+The numerical score on a Likert scale (integer 1 to 5). A higher score is better. Given a numerical threshold (default to 3), it also outputs *pass* if the score >= threshold, or *fail* otherwise. Use the reason field to understand why the score is high or low.
 
 ```python
 {
@@ -127,7 +137,7 @@ qa_eval(
 
 ### QA output
 
-While F1 score outputs a numerical score on 0-1 float scale, the other evaluators output numerical scores on a likert scale (integer 1 to 5) and a higher score is better. Given a numerical threshold (default to 3), we also output "pass" if the score >= threshold, or "fail" otherwise. Using the reason field can help you understand why the score is high or low.
+While F1 score outputs a numerical score on 0-1 float scale, the other evaluators output numerical scores on a Likert scale (integer 1 to 5). A higher score is better. Given a numerical threshold (default to 3), it also outputs *pass* if the score >= threshold, or *fail* otherwise. Use the reason field to understand why the score is high or low.
 
 ```python
 {

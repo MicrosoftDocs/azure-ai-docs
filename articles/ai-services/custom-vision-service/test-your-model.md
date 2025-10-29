@@ -15,6 +15,8 @@ ms.custom: sfi-image-nochange
 
 # Test and retrain a Custom Vision model
 
+[!INCLUDE [custom-vision-retirement](includes/custom-vision-retirement.md)]
+
 After you train your Custom Vision model, you can quickly test it using a locally stored image or a URL pointing to a remote image. Test the most recently trained iteration of your model, and then decide whether further training is needed.
 
 ## Test your model

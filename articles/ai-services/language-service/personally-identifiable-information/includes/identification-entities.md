@@ -1762,6 +1762,64 @@ The following entities are listed via country and/or region:
    :::column-end:::
 :::row-end:::
 
+### Sweden
+
+:::row:::
+    :::column span="":::
+        **Entity**
+
+        Sweden National ID
+
+    :::column-end:::
+    :::column span="2":::
+        **Details**
+
+        To get this entity category, add `SENationalID` to the `piiCategories` parameter. `SENationalID` will be returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+      **Supported languages**
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+   :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Sweden Passport Number
+
+    :::column-end:::
+    :::column span="2":::
+
+        To get this entity category, add `SEPassportNumber` to the `piiCategories` parameter. `SEPassportNumber` will be returned in the API response if detected.
+
+        Also returned with `domain=phi`.
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+   :::column-end:::
+:::row-end:::
+:::row:::
+    :::column span="":::
+
+        Sweden Tax Identification Number
+
+    :::column-end:::
+    :::column span="2":::
+
+        To get this entity category, add `SETaxIdentificationNumber` to the `piiCategories` parameter. `SETaxIdentificationNumber` will be returned in the API response if detected.
+
+    :::column-end:::
+    :::column span="":::
+
+      `en`, `es`, `fr`, `de`, `it`, `pt-pt`, `pt-br`, `zh`, `ja`, `ko`, `nl`, `sv`, `tr`, `hi`, `da`, `nl`, `no`, `ro`, `ar`, `bg`, `hr`, `ms`, `ru`, `sl`, `cs`, `et`, `fi`, `he`, `hu`, `lv`, `sk`, `th`, `uk`
+
+   :::column-end:::
+:::row-end:::
+
 ### Switzerland
 
 :::row:::

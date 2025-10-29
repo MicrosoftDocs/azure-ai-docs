@@ -2,14 +2,14 @@
 title: Sovereign Clouds - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Sovereign Clouds
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 3/10/2025
-ms.reviewer: alexeyo
+ms.date: 08/07/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---
 
@@ -35,7 +35,6 @@ Available to US government entities and their partners only. See more informatio
     - Neural voice
   - Speech translation
 - **Unsupported features:**
-  - Custom commands
   - Custom voice
   - Personal voice
   - Text to speech avatar
@@ -123,7 +122,6 @@ Available to organizations with a business presence in China. See more informati
     - Neural voice
   - Speech translator
 - **Unsupported features:**
-  - Custom commands
   - Custom voice
   - Personal voice
   - Text to speech avatar

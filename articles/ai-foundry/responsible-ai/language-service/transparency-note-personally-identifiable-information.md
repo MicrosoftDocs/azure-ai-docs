@@ -2,8 +2,8 @@
 title: Transparency note - Personally Identifiable Information (PII) feature of Azure AI Language
 titleSuffix: Azure AI services
 description: The Azure AI Language Personally Identifiable Information (PII) feature is part of NER and it can identify and redact sensitive entities in text that are associated with an individual person such as phone number, email address, mailing address, passport number.
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

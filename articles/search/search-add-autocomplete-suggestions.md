@@ -2,7 +2,6 @@
 title: Autocomplete or typeahead
 titleSuffix: Azure AI Search
 description: Enable search-as-you-type query actions in Azure AI Search by creating suggesters and queries that autocomplete a search string with finished terms or phrases. You can also return suggested matches.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ---
 
 # Add autocomplete and search suggestions in client apps
@@ -32,7 +32,7 @@ The remainder of this article is focused on queries and client code. It uses Jav
 Elements of a request include one of the search-as-you-type APIs, a partial query, and a suggester. The following script illustrates components of a request, using the Autocomplete REST API as an example.
 
 ```http
-POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2024-07-01
+POST /indexes/myxboxgames/docs/autocomplete?search&api-version=2025-09-01
 {
   "search": "minecraf",
   "suggesterName": "sg"

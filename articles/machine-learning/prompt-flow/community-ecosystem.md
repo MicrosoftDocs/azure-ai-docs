@@ -8,10 +8,11 @@ ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
 ms.topic: concept-article
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: chenlujiao
 ms.date: 09/30/2024
+ms.update-cycle: 365-days
 ---
 
 # Prompt flow ecosystem

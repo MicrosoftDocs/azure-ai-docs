@@ -16,7 +16,7 @@ This quickstart uses fictional hotel data from the [azure-search-sample-data](ht
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](../../search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
@@ -89,7 +89,7 @@ To set up your request file:
     @token = PUT-YOUR-PERSONAL-IDENTITY-TOKEN-HERE
 
     ### List existing indexes by name
-    GET {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    GET {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
         Authorization: Bearer {{token}}
     ```
 
@@ -111,7 +111,7 @@ To create an index:
 
     ```http
     ### Create a new index
-    POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -169,7 +169,7 @@ To upload documents to your index:
 
     ```http
     ### Upload documents
-    POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-quickstart/docs/index?api-version=2025-09-01  HTTP/1.1
         Content-Type: application/json
         Authorization: Bearer {{token}}
     
@@ -275,7 +275,7 @@ To run a full-text query against your index:
 
     ```http
     ### Run a query
-    POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2024-07-01  HTTP/1.1
+    POST {{baseUrl}}/indexes/hotels-quickstart/docs/search?api-version=2025-09-01  HTTP/1.1
       Content-Type: application/json
       Authorization: Bearer {{token}}
     

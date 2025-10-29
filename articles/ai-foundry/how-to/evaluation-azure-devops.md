@@ -2,10 +2,9 @@
 title: How to run an evaluation in Azure DevOps
 titleSuffix: Azure AI Foundry
 description: How to run evaluation in Azure DevOps which enables offline evaluation of AI models within your CI/CD pipelines in Azure DevOps. 
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.topic: how-to
-ms.date: 05/19/2025
+ms.date: 09/19/2025
 ms.reviewer: hanch
 ms.author: lagayhar
 author: lgayhardt
@@ -21,8 +20,7 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
 
 ## Prerequisites
 
-[!INCLUDE [hub-only-prereq](../includes/hub-only-prereq.md)]
-
+- Foundry project or Hubs based project. To learn more, see [Create a project](create-projects.md).
 - Install Azure AI evaluation extension.
   - Go to [Azure DevOps Marketplace](https://marketplace.visualstudio.com/azuredevops).
   - Search for Azure AI evaluation and install the extension into your Azure DevOps organization.
@@ -65,7 +63,51 @@ Similar to the [Azure AI evaluation in GitHub Actions](evaluation-github-action.
 
 A sample YAML file:
 
-```yml
+# [Foundry project](#tab/foundry-project)
+
+```yaml
+
+trigger: 
+- main 
+pool: 
+
+  vmImage: 'windows-latest'  
+
+steps: 
+
+- task: AzureCLI@2 
+  inputs: 
+    addSpnToEnvironment: true 
+    azureSubscription: ${{vars.Service_Connection_Name}}
+    scriptType: bash 
+    scriptLocation: inlineScript     
+
+    inlineScript: | 
+      echo "##vso[task.setvariable variable=ARM_CLIENT_ID]$servicePrincipalId"  
+      echo "##vso[task.setvariable variable=ARM_ID_TOEKN]$idToken" 
+      echo "##vso[task.setvariable variable=ARM_TENANT_ID]$tenantId" 
+
+- bash: | 
+
+   az login --service-principal -u $(ARM_CLIENT_ID) --tenant $(ARM_TENANT_ID) --allow-no-subscriptions --federated-token $(ARM_ID_TOEKN) 
+
+  displayName: 'Login Azure' 
+ 
+- task: UsePythonVersion@0 
+  inputs: 
+    versionSpec: '3.11' 
+- task: AIAgentEvaluation@0 
+  inputs: 
+    azure-ai-project-endpoint: "<your-ai-project-endpoint>"
+    deployment-name: "gpt-4o-mini" 
+    data-path: $(Build.SourcesDirectory)\tests\data\golden-dataset-medium.json 
+agent-ids: "<your-ai-agent-ids> 
+
+```
+
+# [Hub-based project](#tab/hub-project)
+
+```yaml
 
 trigger: 
 - main 
@@ -104,6 +146,8 @@ steps:
 agent-ids: "<your-ai-agent-ids> 
 
 ```
+
+---
 
 ## Set up a new pipeline and trigger an evaluation run
 

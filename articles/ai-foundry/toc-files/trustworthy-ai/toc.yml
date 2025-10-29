@@ -1,0 +1,25 @@
+items:
+- name: Trustworthy AI overview
+  href: ../../responsible-use-of-ai-overview.md
+- name: Content filtering
+  items:
+   - name: Azure AI Content Safety in AI Foundry portal overview
+     href: ../../ai-services/content-safety-overview.md
+   - name: Guardrails + Controls for models deployed with serverless APIs
+     href: ../../concepts/model-catalog-content-safety.md
+   - name: Content filtering
+     href: ../../concepts/content-filtering.md
+   - name: Content filtering for Foundry Models
+     href: ../../foundry-models/concepts/content-filter.md
+   - name: Configure content filtering for Foundry Models
+     href: ../../foundry-models/how-to/configure-content-filters.md
+   - name: Default safety policies for Foundry Models
+     href: ../../foundry-models/concepts/default-safety-policies.md
+   - name: Use blocklists
+     href: ../../foundry-models/how-to/use-blocklists.md
+- name: Transparency notes for Azure AI Services
+  href: ../../../ai-services/responsible-use-of-ai-overview.md?context=/azure/ai-foundry/context/context
+- name: Limited Access features
+  href: ../../../ai-services/cognitive-services-limited-access.md?context=/azure/ai-foundry/context/context
+- name: System message templates
+  href: ../../openai/concepts/system-message.md?context=/azure/ai-foundry/context/context

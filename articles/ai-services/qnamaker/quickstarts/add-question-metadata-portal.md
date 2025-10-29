@@ -7,7 +7,7 @@ ms.author: lajanuar
 author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 06/12/2025
+ms.date: 07/16/2025
 ms.custom: mode-ui
 ---
 
@@ -35,15 +35,15 @@ Once metadata is added to a QnA pair, the client application can:
 
 ## Sign in to the QnA Maker portal
 
-1. Sign in to the [QnA Maker portal](https://www.qnamaker.ai).
+1. Sign in to the QnA Maker portal.
 
 1. Select your existing knowledge base from the [previous quickstart](./create-publish-knowledge-base.md).
 
-## Add additional alternatively-phrased questions
+## Add more alternatively phrased questions
 
 The current knowledge base has the QnA Maker troubleshooting QnA pairs. These pairs were created when the URL was added to the knowledge base during the creation process.
 
-When this URL was imported, only one question with one answer was created. In this procedure, add additional questions.
+When this URL was imported, only one question with one answer was created. In this procedure, add more questions.
 
 1. From the **Edit** page, use the search textbox above the question and answer pairs, to find the question `How large a knowledge base can I create?`
 
@@ -66,11 +66,11 @@ When this URL was imported, only one question with one answer was created. In th
 
     If you select **Inspect** under the returned answer, you can see more answers met the question but not with the same high level of confidence.
 
-    Do not add every possible combination of alternative phrasing. When you turn on QnA Maker's [active learning](../how-to/improve-knowledge-base.md), this finds the alternative phrasings that will best help your knowledge base meet your users' needs.
+    Don't add every possible combination of alternative phrasing. When you turn on QnA Maker's [active learning](../how-to/improve-knowledge-base.md), this feature finds the alternative phrasings that best help your knowledge base meet your users' needs.
 
 1. Select **Test** again to close the test window.
 
-## Add metadata to filter the answers
+## Add metadata and filter the answers
 
 Adding metadata to a question and answer pair allows your client application to request filtered answers. This filter is applied before the [first and second rankers](../concepts/query-knowledge-base.md#ranker-process) are applied.
 
@@ -103,7 +103,7 @@ You edited your knowledge base to support more questions and provided name/value
 
 ## Clean up resources
 
-If you are not continuing to the next quickstart, delete the QnA Maker and Bot framework resources in the Azure portal.
+If you aren't continuing to the next quickstart, delete the QnA Maker and Bot framework resources in the Azure portal.
 
 ## Next steps
 

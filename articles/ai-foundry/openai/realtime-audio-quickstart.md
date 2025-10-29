@@ -1,23 +1,23 @@
 ---
-title: 'How to use GPT-4o Realtime API for speech and audio with Azure OpenAI in Azure AI Foundry Models'
+title: 'How to use GPT Realtime API for speech and audio with Azure OpenAI in Azure AI Foundry Models'
 titleSuffix: Azure OpenAI
-description: Learn how to use GPT-4o Realtime API for speech and audio with Azure OpenAI.
+description: Learn how to use GPT Realtime API for speech and audio with Azure OpenAI.
 manager: nitinme
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
-ms.date: 6/7/2025
-author: eric-urban
-ms.author: eur
+ms.date: 09/16/2025
+author: PatrickFarley
+ms.author: pafarley
 ms.custom: references_regions, ignite-2024
 zone_pivot_groups: openai-portal-js-python-ts
 recommendations: false
 ---
 
-# GPT-4o Realtime API for speech and audio (Preview)
+# GPT Realtime API for speech and audio
 
-[!INCLUDE [Feature preview](includes/preview-feature.md)]
 
-Azure OpenAI GPT-4o Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
+Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
 You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. 
 
@@ -28,11 +28,13 @@ Follow the instructions in this article to get started with the Realtime API via
 
 ## Supported models
 
-The GPT 4o real-time models are available for global deployments.
+The GPT real-time models are available for global deployments.
 - `gpt-4o-realtime-preview` (version `2024-12-17`)
 - `gpt-4o-mini-realtime-preview` (version `2024-12-17`)
+- `gpt-realtime` (version `2025-08-28`)
+- `gpt-realtime-mini` (version `2025-10-06`)
 
-See the [models and versions documentation](./concepts/models.md#audio-models) for more information.
+For more information, see the [models and versions documentation](./concepts/models.md#audio-models).
 
 ## API support
 

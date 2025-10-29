@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 09/29/2022
-ms.author: eur
+ms.author: pafarley
 ---
 
 In this C# quickstart, you perform sentiment analysis and conversation summarization of [call center](../../../call-center-overview.md) transcriptions. The sample will automatically identify, categorize, and redact sensitive information. The quickstart implements a cross-service scenario that uses features of the [Azure Cognitive Speech](../../../index.yml) and [Azure Cognitive Language](../../../../language-service/index.yml) services.

@@ -5,8 +5,8 @@ description: Learn how to use the Execute Python Script model in Azure Machine L
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-author: s-polly
-ms.author: scottpolly
+author: lgayhardt
+ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 06/10/2025
 ms.topic: how-to

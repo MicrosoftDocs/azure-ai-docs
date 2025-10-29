@@ -6,10 +6,9 @@ manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 5/19/2025
-ms.reviewer: eur
-ms.author: eur
-author: eric-urban
+ms.date: 08/07/2025
+ms.author: pafarley
+author: PatrickFarley
 zone_pivot_groups: foundry-speech-studio
 ---
 

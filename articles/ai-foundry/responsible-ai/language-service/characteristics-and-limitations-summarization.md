@@ -2,8 +2,8 @@
 title: Characteristics and limitations for summarization
 titleSuffix: Azure AI services
 description: System characteristics and limitations for summarization 
-author: YLXiong1125
-ms.author: ylxiong
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: article

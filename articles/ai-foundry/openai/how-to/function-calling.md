@@ -4,10 +4,11 @@ titleSuffix: Azure OpenAI
 description: Learn how to use function calling with the GPT-35-Turbo and GPT-4 models 
 author: mrbullwinkle #dereklegenzoff
 ms.author: mbullwin #delegenz
-ms.service: azure-ai-openai
+ms.service: azure-ai-foundry
+ms.subservice: azure-ai-foundry-openai
 ms.custom: devx-track-python
 ms.topic: how-to
-ms.date: 06/17/2025
+ms.date: 10/10/2025
 manager: nitinme
 ---
 
@@ -31,23 +32,24 @@ At a high level you can break down working with functions into three steps:
 
 * `gpt-35-turbo` (`1106`)
 * `gpt-35-turbo` (`0125`)
-* `gpt-4` (`1106-Preview`)
-* `gpt-4` (`0125-Preview`)
-* `gpt-4` (`vision-preview`)
 * `gpt-4` (`2024-04-09`)
 * `gpt-4o` (`2024-05-13`)
 * `gpt-4o` (`2024-08-06`)
 * `gpt-4o` (`2024-11-20`)
 * `gpt-4o-mini` (`2024-07-18`)
-* `gpt-4.5-preview` (`2025-02-27`)
 * `gpt-4.1` (`2025-04-14`)
 * `gpt-4.1-mini` (`2025-04-14`)
+* `gpt-5` (`2025-08-07`)
+* `gpt-5-mini` (`2025-08-07`)
+* `gpt-5-nano` (`2025-08-07`)
+* `gpt-5-codex` (`2025-09-11`)
 
 Support for parallel function was first added in API version [`2023-12-01-preview`](https://github.com/Azure/azure-rest-api-specs/blob/main/specification/cognitiveservices/data-plane/AzureOpenAI/inference/preview/2023-12-01-preview/inference.json)
 
 ### Basic function calling with tools
 
 * All the models that support parallel function calling
+* `gpt-5-pro` (`2025-10-06`)
 * `codex-mini` (`2025-05-16`)
 * `o3-pro` (`2025-06-10`)
 * `o4-mini` (`2025-04-16`)
@@ -55,10 +57,6 @@ Support for parallel function was first added in API version [`2023-12-01-previe
 * `gpt-4.1-nano` (`2025-04-14`)
 * `o3-mini` (`2025-01-31`)
 * `o1` (`2024-12-17`)
-* `gpt-4` (`0613`)
-* `gpt-4-32k` (`0613`)
-* `gpt-35-turbo-16k` (`0613`)
-* `gpt-35-turbo` (`0613`)
 
 > [!NOTE]
 > The `tool_choice` parameter is now supported with `o3-mini` and `o1`. For more information on what parameters are supported with the o-series models see, the [reasoning models guide](./reasoning.md).
@@ -73,15 +71,14 @@ First we will demonstrate a simple toy function call that can check the time in 
 ```python
 import os
 import json
-from openai import AzureOpenAI
+from openai import OpenAI
 from datetime import datetime
 from zoneinfo import ZoneInfo
 
 # Initialize the Azure OpenAI client
-client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-02-01-preview"
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 # Define the deployment you want to use for your chat completions API calls
@@ -252,15 +249,14 @@ Now we will demonstrate another toy function calling example this time with two 
 ```python
 import os
 import json
-from openai import AzureOpenAI
+from openai import OpenAI
 from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 # Initialize the Azure OpenAI client
-client = AzureOpenAI(
-    azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"), 
-    api_key=os.getenv("AZURE_OPENAI_API_KEY"),  
-    api_version="2025-02-01-preview"
+client = OpenAI(
+    base_url="https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    api_key=os.getenv("AZURE_OPENAI_API_KEY")
 )
 
 # Provide the model deployment name you want to use for this example

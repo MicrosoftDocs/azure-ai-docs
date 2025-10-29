@@ -5,8 +5,8 @@ description: Learn how to create a batch prediction pipeline. Deploy the pipelin
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: scottpolly
-author: s-polly
+ms.author: lagayhar
+author: lgayhardt
 ms.reviewer: keli19
 ms.date: 06/16/2025
 ms.topic: how-to

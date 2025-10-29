@@ -6,20 +6,20 @@ author: laujan
 ms.author: lajanuar
 recommendations: false
 ms.topic: overview
-ms.date: 03/24/2025
+ms.date: 07/16/2025
 keywords: "qna maker, low code chat bots, multi-turn conversations"
 ms.custom: language-service-question-answering
 ---
 
 # What is custom question answering?
 
-Custom question answering provides cloud-based Natural Language Processing (NLP) that allows you to create a natural conversational layer over your data. It is used to find appropriate answers from customer input or from a project.
+Custom question answering provides cloud-based Natural Language Processing (NLP) that allows you to create a natural conversational layer over your data. It's used to find appropriate answers from customer input or from a project.
 
 Custom question answering is commonly used to build conversational client applications, which include social media applications, chat bots, and speech-enabled desktop applications. This offering includes features like enhanced relevance using a deep learning ranker, precise answers, and end-to-end region support.
 
 Custom question answering comprises two capabilities:
 
-* Custom question answering: Using this capability users can customize different aspects like edit question and answer pairs extracted from the content source, define synonyms and metadata, accept question suggestions etc.
+* Custom question answering: Using this capability, users can customize different aspects like edit question and answer pairs extracted from the content source, define synonyms, and metadata, accept question suggestions etc.
 * [QnA Maker](./../../qnamaker/Overview/overview.md): This capability allows users to get a response by querying a text passage without having the need to manage knowledge bases.
 
 This documentation contains the following article types:
@@ -31,11 +31,10 @@ This documentation contains the following article types:
 
 ## When to use custom question answering
 
-* **When you have static information** - Use custom question answering when you have static information in your project. This project is custom to your needs, which you've built with documents such as PDFs and URLs.
+* **When you have static information** - Use custom question answering when you have static information in your project. This project is custom to your needs, which you built with documents such as PDFs and URLs.
 * **When you want to provide the same answer to a request, question, or command** - when different users submit the same question, the same answer is returned.
-* **When you want to filter static information based on meta-information** - add [metadata](./tutorials/multiple-domains.md) tags to provide additional filtering options relevant to your client application's users and the information. Common metadata information includes [chit-chat](./how-to/chit-chat.md), content type or format, content purpose, and content freshness. <!--TODO: Fix Link-->
-* **When you want to manage a bot conversation that includes static information** - your project takes a user's conversational text or command and answers it. If the answer is part of a pre-determined conversation flow, represented in your project with [multi-turn context](./tutorials/guided-conversations.md), the bot can easily provide this flow.
-* **When you want to use an agent to get an exact answer** - Use the [exact question answering](https://aka.ms/exact-answer-agent-template) agent template answers high-value predefined questions deterministically to ensure consistent and accurate responses or the [intent routing](https://aka.ms/intent-triage-agent-template) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
+* **When you want to filter static information based on meta-information** - add [metadata](./tutorials/multiple-domains.md) tags to provide added filtering options relevant to your client application's users and the information. Common metadata information includes [chit-chat](./how-to/chit-chat.md), content type or format, content purpose, and content freshness. <!--TODO: Fix Link-->
+* **When you want to manage a bot conversation that includes static information** - your project takes a user's conversational text or command and answers it. If the answer is part of a predetermined conversation flow, represented in your project with [multi-turn context](./tutorials/guided-conversations.md), the bot can easily provide this flow.
 
 ## What is a project?
 
@@ -56,7 +55,7 @@ Once a custom question answering project is published, a client application send
 
 |Step|Action|
 |:--|:--|
-|1|The client application sends the user's _question_ (text in their own words), "How do I programmatically update my project?" to your project endpoint.|
+|1|The client application sends the user's _question_ (text in their own words) to your project endpoint, *How do I programmatically update my project?*|
 |2|Custom question answering uses the trained project to provide the correct answer and any follow-up prompts that can be used to refine the search for the best answer. Custom question answering returns a JSON-formatted response.|
 |3|The client application uses the JSON response to make decisions about how to continue the conversation. These decisions can include showing the top answer and presenting more choices to refine the search for the best answer. |
 |||
@@ -69,7 +68,7 @@ Once your project is edited, publish the project to a working [Azure Web App bot
 
 ## High quality responses with layered ranking
 
-The custom question answering system uses a layered ranking approach. The data is stored in Azure search, which also serves as the first ranking layer. The top results from Azure search are then passed through custom question answering's NLP re-ranking model to produce the final results and confidence score.
+The custom question answering system uses a layered ranking approach. The data is stored in Azure search, which also serves as the first ranking layer. The top results from Azure search are then passed through custom question answering's NLP reranking model to produce the final results and confidence score.
 
 ## Multi-turn conversations
 

@@ -5,10 +5,10 @@ description: An overview of audio processing and capabilities of the Microsoft A
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 3/10/2025
-author: eric-urban
-ms.author: eur
-ms.reviewer: hasshah
+ms.date: 08/06/2025
+author: PatrickFarley
+ms.author: pafarley
+ms.reviewer: jagoerge
 ---
 
 # Audio processing with the Microsoft Audio Stack

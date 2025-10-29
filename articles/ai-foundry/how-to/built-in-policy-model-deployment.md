@@ -6,8 +6,9 @@ ms.author: jburchel
 author: jonburchel 
 ms.service: azure-ai-foundry
 ms.topic: how-to #Don't change
-ms.date: 05/05/2025
-
+ms.date: 07/31/2025
+ms.reviewer: aashishb
+reviewer: aashishb_microsoft
 #customer intent: As an admin, I want control what Managed AI Services (serverless API deployment) and Model-as-a-Platform (MaaP) AI models can be deployed by my developers.
 
 ---
@@ -21,7 +22,7 @@ Azure Policy provides built-in policy definitions that help you govern the deplo
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+- [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
 - Permissions to create and assign policies. To create and assign policies, you must be an [Owner](/azure/role-based-access-control/built-in-roles#owner) or [Resource Policy Contributor](/azure/role-based-access-control/built-in-roles#resource-policy-contributor) at the Azure subscription or resource group level.
 - Familiarity with Azure Policy. To learn more, see [What is Azure Policy?](/azure/governance/policy/overview).
 

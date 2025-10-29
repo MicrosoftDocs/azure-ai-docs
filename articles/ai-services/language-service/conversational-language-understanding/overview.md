@@ -44,10 +44,6 @@ When you integrate a client application with a speech to text component, users c
 
 In a large corporation, an enterprise chat bot may handle various employee affairs. It might handle frequently asked questions served by a custom question answering knowledge base, a calendar specific skill served by conversational language understanding, and an interview feedback skill served by LUIS. Use Orchestration workflow to connect all these skills together and appropriately route the incoming requests to the correct service.
 
-### Agents
-
-CLU is utilized by the [intent routing](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/agent-catalog/msft-agent-samples/foundry-agent-service-sdk/intent-routing-agent) agent template, which detects user intent and provides exact answering. Perfect for deterministically intent routing and exact question answering with human control.
-
 ## Project development lifecycle
 
 Creating a CLU project typically involves several different steps.
@@ -55,7 +51,7 @@ Creating a CLU project typically involves several different steps.
 :::image type="content" source="media/llm-quick-deploy.png" alt-text="Chart of the LLM-powered quick deploy path." lightbox="media/llm-quick-deploy.png":::
 
 > [!NOTE]
-> In the Azure AI Foundry, you’ll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
+> In the Azure AI Foundry, you'll create a fine-tuning task as your workspace for customizing your CLU model. Formerly, a CLU fine-tuning task was called a CLU project. You may see these terms used interchangeably in legacy CLU documentation.
 
 CLU offers two paths for you to get the most out of your implementation.
 
@@ -65,7 +61,7 @@ Option 1 (LLM-powered quick deploy):
 
 2. **Deploy the model**: Deploying a model with the LLM-based training config makes it available for use via the Runtime API.
 
-3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user’s utterances. 
+3. **Predict intents and entities**: Use your custom model deployment to predict custom intents and prebuilt entities from user's utterances. 
 
 Option 2 (Custom machine learned model)
 
@@ -91,14 +87,14 @@ As you use CLU, see the following reference documentation and samples for Azure 
 
 |Development option / language  |Reference documentation |Samples  |
 |---------|---------|---------|
-|REST APIs (Authoring)   | [REST API documentation](https://aka.ms/clu-authoring-apis)        |         |
-|REST APIs (Runtime)    | [REST API documentation](https://aka.ms/clu-apis)        |         |
+|REST APIs (Authoring)   | [REST API documentation](/rest/api/language/analyze-conversations-authoring/operation-groups?view=rest-language-analyze-conversations-authoring-2025-11-01&preserve-view=true)        |         |
+|REST APIs (Runtime)    | [REST API documentation](/rest/api/language/analyze-conversations/analyze-conversations/analyze-conversations?view=rest-language-analyze-conversations-2025-05-15-preview&tabs=HTTP&preserve-view=true)        |         |
 |C# (Runtime)    | [C# documentation](/dotnet/api/overview/azure/ai.language.conversations-readme)        | [C# samples](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/cognitivelanguage/Azure.AI.Language.Conversations/samples)        |
 |Python (Runtime)| [Python documentation](/python/api/overview/azure/ai-language-conversations-readme?view=azure-python-preview&preserve-view=true)        | [Python samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitivelanguage/azure-ai-language-conversations/samples) |
 
 ## Responsible AI 
 
-An AI system includes not only the technology, but also the people who use it, the people who are affected by it, and the environment in which it's deployed. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. You can also see the following articles for more information:
+An AI system includes the technology, the individuals who operate the system, the people who experience its effects, and the broader environment where the system functions all play a role. Read the transparency note for CLU to learn about responsible AI use and deployment in your systems. 
 
 [!INCLUDE [Responsible AI links](../includes/overview-responsible-ai-links.md)]
 

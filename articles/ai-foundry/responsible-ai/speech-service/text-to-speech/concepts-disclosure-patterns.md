@@ -2,13 +2,12 @@
 title: Disclosure Design Patterns
 titleSuffix: Azure AI services
 description: Design patterns and best practices for disclosure.
-services: ai-services
-author: eric-urban
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: article
 ms.date: 12/03/2019
-ms.author: eur
 ---
 
 # Disclosure design patterns for synthetic voices
@@ -101,7 +100,7 @@ Offer choices that have a meaningful and noticeable impact on the synthetic voic
 Recommendations
 
 - Allow users to customize the voice (e.g., select language and voice type)
-- Provide users a way to teach the system to respond to their unique voice (e.g., voice calibration, custom commands) 
+- Provide users a way to teach the system to respond to their unique voice (e.g., voice calibration) 
 - Optimize for user-generated or contextual interactions (e.g., reminders) 
 
 #### Persona Customization
