@@ -13,7 +13,7 @@ ms.author: aahi
 ai-usage: ai-assisted
 ---
 
-# Grounding with Bing Search overview
+# Grounding with Bing Search tools 
 
 Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
 
@@ -96,11 +96,3 @@ Admins can leverage RBAC role assignments for enabling or disabling use of using
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 
 The Admin needs to have the "Owner" or "Contributor" role in your subscription. They can delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resources in the subscription. And then unregister the `Microsoft.Bing` resource provider in your subscription (you cannot unregister before deleting all resources). Learn more about unregistering here 
-
-## Next steps
-
-- Learn about [setting up Grounding with Bing Search](../how-to/tools/bing-grounding.md)
-- Explore [Custom Grounding with Bing Search samples and configuration](../how-to/tools/bing-custom-search-samples.md)
-- Review [comprehensive management guidance for both tools](../how-to/tools/bing-management.md)
-- Understand [Azure AI Foundry Agent Service architecture](../agents-overview.md)
-- Explore [agent tool integration patterns](../how-to/agents-tools.md)
