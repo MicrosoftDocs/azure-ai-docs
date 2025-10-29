@@ -15,16 +15,16 @@ ms.custom: include
 >
 > 🔍 Look for :::image type="icon" source="../default/media/version-banner/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
 >
-> 🔄 Switch to the [Azure AI Foundry (new) documentation](?view=foundry&preserve-view=true) for streamlined access to models, agents, and tools with Foundry projects.
+> 🔄 Switch to the [Azure AI Foundry (new) documentation](?view=foundry&preserve-view=true) if you're using the new portal.
 >
 ::: moniker-end
 
 ::: moniker range="foundry"
 > [!NOTE]
-> This document refers to the [Azure AI Foundry (new)](https://aka.ms/nexgen-canary) portal, which supports only [Foundry projects](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#project-types), providing streamlined access to models, agents, and tools. Code examples, if present, use preview versions of client libraries.
+> This document refers to the [Azure AI Foundry (new)](https://aka.ms/nexgen-canary) portal, which supports only [Foundry projects](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#project-types). Code examples, when present, may use preview versions of client libraries.
 >
 > 🔍 Look for :::image type="icon" source="../default/media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
 >
-> 🔄 Switch to the [Azure AI Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) for hub-based projects and/or the GA client library.
+> 🔄 Switch to the [Azure AI Foundry (classic) documentation](?view=foundry-classic&preserve-view=true) if you're using the classic portal, or to see code using GA versions of the client libraries.
 >
 ::: moniker-end
