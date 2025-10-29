@@ -172,12 +172,13 @@ Shape the output to match your business vocabulary. Use a `fieldSchema` object w
 >
 >  This feature is limited access; customers need to register for access at [Face Recognition](https://aka.ms/facerecognition).
 
-The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the video. This capability includes attributes such as facial hair, emotions, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
+The field extraction capability can optionally be enhanced to provide detailed descriptions of faces in the video. This capability includes attributes such as facial hair, facial expression, and the presence of celebrities, which can be crucial for various analytical and indexing purposes. To enable face description capabilities set `disableFaceBlurring : true` in the analyzer configuration.
 
 **Examples:**
 
-* **Example field: emotionDescription:** Provides a description of the emotional state of the primary person in this clip (for example, `happy`, `sad`, `angry`)
 * **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
+* **Example field: nameOfProminentPerson:** Provides a name if possible of a celebrity in the video (for example, `Satya Nadella)
+* **Example field: faceSmilingFrowning:** Provides a description of whether a person is smiling or frowning
 
 ### Segmentation mode
 
