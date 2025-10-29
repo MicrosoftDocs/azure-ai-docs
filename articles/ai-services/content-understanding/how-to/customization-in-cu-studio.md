@@ -14,7 +14,7 @@ Navigate to the [Content Understanding Studio portal](https://aka.ms/cu-studio) 
 
 1.	**Start with a new project**: To get started with creating your custom analyzer, select “Create project” on the home page. 
 
-2.	**Select your project type**: In this guide, we will select the option to “Extract content and fields with a custom schema”. To learn more about classifying and routing your data, check out [How to classify and route data with Content Understanding]().
+2.	**Select your project type**: In this guide, we will select the option to “Extract content and fields with a custom schema”. To learn more about classifying and routing your data, check out [How to classify and route data with Content Understanding](./classification-cu-studio.md).
 
 3.	**Create your project**: Give your project a friendly name and select “Create”.  
 
@@ -45,8 +45,8 @@ To get started, you will need to upload your training data to a blob storage acc
 12. **Use your analyzer**: Now you have an analyzer endpoint that you can utilize in your own application via the REST API. This has been a walkthrough of how to use Content Understanding Studio to build a custom analyzer. 
 
 ## Next steps:
-* Learn how to [classify and route your data using Content Understanding]()
-* Learn more about [Best practices for Azure AI Content Understanding]() 
+* Learn how to [classify and route your data using Content Understanding](./classification-cu-studio.md)
+* Learn more about [Best practices for Azure AI Content Understanding](../concepts/best-practices.md) 
 
 
 
