@@ -6,12 +6,12 @@ This guide shows you how to utilize  Content Understanding Standard and Pro mode
 
 ::: zone pivot="standard-mode"
 
-[!INCLUDE [Content Understanding Standard mode](../quickstarts/use-ai-foundry.md)]
+[!INCLUDE [Content Understanding Standard mode](../includes/use-ai-foundry.md)]
 
 ::: zone-end
 
 ::: zone pivot="pro-mode"
 
-[!INCLUDE [Content Understanding Pro mode](../quickstart/use-ai-foundry-pro-mode.md)]
+[!INCLUDE [Content Understanding Pro mode](../includes/use-ai-foundry-pro-mode.md)]
 
 ::: zone-end
