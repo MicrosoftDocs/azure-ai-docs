@@ -1,5 +1,5 @@
 ---
-title: Azure AI Content Understanding standard and pro modes
+title: Azure AI Content Understanding standard and pro modes (preview)
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding standard and pro modes.
 author: PatrickFarley 
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding pro and standard modes
+# Azure AI Content Understanding pro and standard modes (preview)
 
 Azure AI Content Understanding is an advanced generative AI service designed to derive structured insights from multi-modal content such as documents, images, videos, and audio. With the introduction of the `2025-05-01-preview` version, the service now offers two distinct modes: `standard` and `pro`.
 

@@ -45,7 +45,7 @@ Transactions with your Grounding with Bing resource are counted by the number of
 ## Setup 
 
 > [!NOTE]
-> You can only use Azure OpenAI models with Grounding with Bing Custom Search.
+> Grounding with Bing Search only works with agents that are not using VPN or Private Endpoints. The agent must have normal network access.
 
 1. Create an Azure AI Agent by following the steps in the [quickstart](../../quickstart.md). 
 

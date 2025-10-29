@@ -147,9 +147,17 @@ Use an existing Azure OpenAI, Azure Storage account, Azure Cosmos DB for NoSQL a
     ```
 
 ### Use an existing Azure Cosmos DB for NoSQL account for thread storage
-**Azure Cosmos DB for NoSQL**
-- Your existing Azure Cosmos DB for NoSQL Account used in standard setup must have at least a total throughput limit of at least 3000 RU/s. Both Provisioned Throughput and Serverless are supported.
-    - 3 containers will be provisioned in your existing Cosmos DB account and each need 1000 RU/s
+
+An Azure Cosmos DB for NoSQL account is created for each Foundry account.
+
+For every project under a Foundry account, three containers are deployed within the same Cosmos DB account. Each container requires a minimum of 1000 RU/s.
+
+For example, if two projects are deployed under the same Foundry account, the Cosmos DB account must be configured with at least 6000 RU/s (3 containers × 1000 RU/s × 2 projects) to ensure sufficient throughput.
+
+Both provisioned throughput and serverless modes are supported.
+
+> [!NOTE]
+> Insufficient RU/s capacity in the Cosmos DB account will result in capability host provisioning failures during deployment.
 
 1. To get your Azure Cosmos DB account resource ID, sign in to the Azure CLI and select the subscription with your account: 
     

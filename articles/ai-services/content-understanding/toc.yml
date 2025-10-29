@@ -38,7 +38,7 @@ items:
         - name: Use Content Understanding with a single file
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
           href: quickstart/use-ai-foundry.md
-        - name: Use Content Understanding with multiple files
+        - name: Use Content Understanding with multiple files (preview)
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
           href: quickstart/use-ai-foundry-pro-mode.md
     - name: Try Content Understanding REST API
@@ -107,7 +107,7 @@ items:
             - name: Markdown
               displayName: audio, video, markdown, formatting
               href: video/markdown.md
-        - name: What is face detection?
+        - name: What is face detection? (preview)
           displayName: recognition, detection, analysis, identification, verification
           href: face/overview.md
   - name: Tutorials
@@ -130,7 +130,7 @@ items:
       - name: Create an Azure AI Foundry resource
         displayName: extract, text, images, OCR, optical character recognition
         href: how-to/create-multi-service-resource.md
-      - name: Build a face-data person directory
+      - name: Build a face-data person directory (preview)
         displayName: person, directory, search, index, vector
         href: tutorial/build-person-directory.md
   - name: Samples

@@ -176,7 +176,9 @@ A `cameraShotTimesMs` element identifies points in the video where camera shots 
 }
 ```
 
-### Field extraction
+### Custom elements
+
+#### Field extraction
 
 Custom field extraction allows you to define and extract specific information from audiovisual content based on your business requirements. Fields are defined in the analyzer configuration. Fields can be populated for the entire content by default or for each segment, for video when segmentation is enabled.
 
