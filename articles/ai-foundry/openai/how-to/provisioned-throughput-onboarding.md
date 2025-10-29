@@ -85,14 +85,14 @@ Customers that require long-term usage of regional provisioned, data zone provis
 > Charges for deployments on a deleted resource will continue until the resource is purged. To prevent unwanted charges, delete a resource's deployment before deleting the resource. However, if you already deleted the resource first, you can recover or purge it. For more information, see [recover or purge deleted Azure OpenAI resources](../../../ai-services/recover-purge-resources.md). 
 
 
-Deleting a deployment does not cancel or change any PTU reservation. Use Azure reservations in the Azure portal to cancel or exchange reservations manually. Reservations don't support delete. Extra fees might apply.
+Deleting a deployment does not cancel or change any PTU reservation. Reservations don't support deletion. You can use the Azure portal to cancel or exchange reservations manually, and these options might incur extra fees.
 
 
 Use these steps to delete a provisioned deployment to avoid unwanted charges.
 
-1. Delete the deployment in the Azure AI Foundry portal.
+1. Delete the deployment in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
-1. In the Azure portal, manage Reservations. Purchase, cancel, or exchange to align with current deployments.
+1. Go to the [Azure portal](https://portal.azure.com) to manage Reservations. In the Azure portal, you can purchase, cancel, or exchange reservations to align with current deployments.
 
 
 ## How much throughput per PTU you get for each model
