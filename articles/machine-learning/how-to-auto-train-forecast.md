@@ -45,7 +45,7 @@ For the following example, assume that your training data is contained in a CSV 
 
 # [Python SDK](#tab/python)
 
-You can create an `MLTable` object by using the [mltable Python SDK](/python/api/mltable/mltable):
+You can create an `MLTable` object by using the [mltable Python SDK member](/python/api/mltable/mltable):
 
 ```python
 import mltable
