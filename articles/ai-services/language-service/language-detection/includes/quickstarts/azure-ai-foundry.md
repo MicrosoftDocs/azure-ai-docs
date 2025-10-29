@@ -11,6 +11,8 @@ ms.author: lajanuar
 
 * [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
 
+### [#tab/Azure AI Foundry (classic)]
+
 ## Navigate to the Azure AI Foundry Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
@@ -42,12 +44,54 @@ In **Configuration** there are the following options:
 
 After your operation is completed, the **Details** section contains the following fields for the most detected language and script:
 
-|Field | Description                |
-|------|----------------------------|
-|Sentence|
-|Iso 639-1 Code| The ISE 639-1 code for the most detected language.|
+|Field | Description|
+|---|---|
+|ISO 639-1 Code| The ISE 639-1 code for the most detected language.|
 |Confidence Score| How confident the model is in the correctness of identification of the most typed language.|
 |Script Name| The name of the most detected script in the text.
 |Iso 15924 Script Code| The ISO 15924 script code for the most detected script.|
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
+
+### [#tab/Azure AI Foundry (new)]
+
+## Navigate to Azure AI Foundry
+
+There are two ways to access the PII interface:
+1. From Discover
+   * Select Discover, which takes you to the Models page.
+   * In the search bar under models, enter **Azure** and press enter.
+   * Select **Azure-Language-detection** from the search results.
+   * Select open in playground.
+
+1. From Build
+   * Select Build from the upper nav bar.
+   * Select Models from the left nav bar.
+   * Select AI services tab.
+   * Select **Azure-Language-detection**.
+   * Select open in playground.
+
+## Use playground: extract PII from text
+
+The **detect language** feature identifies the language used in written content.
+
+1. On the **Playground tab**, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window.
+
+1. Next select the **Configure** button. In the **Configure** side panel you can select from the following options:
+
+   |Option|Description|
+   |---|---
+   |**API version**| Select the API version that you prefer to use.|
+   |**Model version**| Select the model version that you prefer to use.|
+   |**Country hint** (optional)| You can select the origin country/region for the source text.|
+
+After you make your selections, choose the **Detect** button. Then review the text and accompanying details written in formatted text or as a JSON response:
+
+   |Field | Description|
+   |---|---|
+   |**Confidence**| The model's level of certainty regarding whether it has correctly identified language.|
+   |**ISO 639-1 code**| A two letter code for the detected language.|
+   |**Detected script**| The name of the detected script in the text.
+   |**Detected script code**| The ISO 15924 script code for the detected script (writing system).|
+
+You can use the **Edit** button to modify the **Configure** parameters and customize your response as needed.

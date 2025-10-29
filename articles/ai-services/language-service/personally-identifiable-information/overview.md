@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/11/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
@@ -20,16 +20,19 @@ Azure AI Language Personally Identifiable Information (PII) detection is a featu
 
 ## What's new
 
-The 2025-08-01-preview introduces several new entities:
+**2025-08-01-preview** introduces several new entities:
 
 * [**DateOfBirth**](concepts/entity-categories.md#type-date-of-birth-preview) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
 * [**LicensePlate**](concepts/entity-categories.md#type-license-plate-preview) with English language support.
 * [**SortCode**](concepts/entity-categories.md#type-sort-code-preview) with English language support.
 
 
-The Text PII and Conversational PII detection preview API (version `2024-11-15-preview`) now supports the option to mask detected sensitive entities with a label beyond just redaction characters. Customers can specify if personal data content such as names and phone numbers, that is, `"John Doe received a call from 424-878-9192"`, are masked with a redaction character, that is, `"******** received a call from ************"`, or masked with an entity label, that is, `"[PERSON_1] received a call from [PHONENUMBER_1]"`. More on how to specify the redaction policy style for your outputs can be found in our [how-to guides](how-to-call.md). 
+**Text PII and Conversational PII detection preview API (version `2024-11-15-preview`)**supports the following:
 
-The Conversational PII detection models (both version `2024-11-01-preview` and `GA`) are updated to provide enhanced AI quality and accuracy. The numeric identifier entity type now also includes Drivers License and Medicare Beneficiary Identifier.
+ * The option to mask detected sensitive entities with a label beyond just redaction characters. Customers can specify if personal data content such as names and phone numbers, that is, `"John Doe received a call from 424-878-9192"`, are masked with a redaction character, that is, `"******** received a call from ************"`, or masked with an entity label, that is, `"[PERSON_1] received a call from [PHONENUMBER_1]"`. 
+* To learn more about how to specify the redaction policy style for your outputs *see* our [how-to guides](how-to-call.md). 
+
+**Conversational PII detection models (both version `2024-11-01-preview` and `GA`)** are updated to provide enhanced AI quality and accuracy. The numeric identifier entity type now also includes Drivers License and Medicare Beneficiary Identifier.
 
 As of June 2024, we now provide General Availability support for the Conversational PII service (English-language only). Customers can now redact transcripts, chats, and other text written in a conversational style (that is, text with `um`s, `ah`s, multiple speakers, and the spelling out of words for more clarity) with better confidence in AI quality, Azure `SLA` support and production environment support, and enterprise-grade security in mind.
 

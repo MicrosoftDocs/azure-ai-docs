@@ -3,14 +3,16 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 02/16/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects.md)
+
+### [#tab/Azure AI Foundry (classic)]
 
 ## Navigate to the Azure AI Foundry Playground
 
@@ -60,14 +62,14 @@ After your operation is completed, the type of entity is displayed beneath each 
 
 **Extract PII from text** is designed to identify and mask personally identifying information in text.
 
-In **Configuration** there are the following options:
+In **Configuration** you can select from the following options:
 
 |Option              |Description                              |
 |--------------------|-----------------------------------------|
 |Select API version  | Select which version of the API to use.    |
 |Select model version| Select which version of the model to use.|
 |Select text language| Select which language the language is input in.|
-|Select types to include| Select they types of information you want to redact.|
+|Select types to include| Select the types of information you want to redact.|
 |Specify redaction policy| Select the method of redaction.|
 |Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
 
@@ -84,3 +86,52 @@ After your operation is completed, the type of entity is displayed beneath each 
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
 
+### [#tab/Azure AI Foundry (new)]
+
+## Navigate to Azure AI Foundry
+
+First time
+Next time
+
+There are two ways to access the PII interface:
+1. From Discover
+   * Select Discover, which takes you to the Models page
+   * In the search bar under models, enter **Azure** and press enter.
+   * Select **Azure-Language-Text-PII redaction** from the search results.
+   * Select open in playground
+
+1. From Build
+   * Select Build from the upper nav bar
+   * Select Models from the left nav bar
+   * Select AI services tab
+   * Select **Azure-Language-Text-PII redaction**.
+   * Select open in playground
+
+## Use playground: extract PII from text
+
+The **extract PII from text** feature detects and masks personally identifying information within written content.
+
+1. On the **Playground** tab, select the sample tab, use the paperclip icon to upload your text, or enter your own text.
+
+1. Next select the **Configure** button. In the **Configure** side panel you can select from the following options:
+
+| Option | Description |
+|--|--|
+| **API version** | Select the API version that you prefer to use. |
+| **Model version** | Select the model version that you prefer to use. |
+| **Language** | Select the language in which your source text is written. |
+| **Types** | Select the types of information you want to redact. |
+| **Specify redaction policy** | Select the method of redaction. |
+| **Excluded values** | Select the values that you want to exclude. |
+| **Synonyms** | Select a category for your redaction type values to target related synonyms. |
+
+After you make your selections, choose the **Detect** button. Then review the text and accompanying details written in formatted text or as a JSON response:
+
+| Field | Description |
+|--|--|
+| **Type** | The detected type. |
+| **Confidence** | The model's level of certainty regarding whether it has correctly identified an entity's type. |
+| **Offset** | The number of characters that the entity was detected from the beginning of the text. |
+| **Length** | The character length of the entity. |
+
+You can use the **Edit** button to modify the **Configure** parameters and customize your response as needed.
