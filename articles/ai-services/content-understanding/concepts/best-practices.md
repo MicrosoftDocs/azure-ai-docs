@@ -91,15 +91,20 @@ By default, Content Extraction information such as speech transcripts, document 
 
 ## Classifier category names and descriptions
 
+By design, you do not need to define classifiers to distinguish different visual templates if the documents have the same semantic template. For example, if you have invoices with different templates, but want to achieve extracting the same fields, you only need to know the documents are of invoice kind, and should be able to call the same extraction model.
+
 To improve the classifier and segmentation accuracy, it's important to give a good category name and description with context.
 
- ##### &emsp; ***Example 8***
+### Category names
 
-   * For category names, make sure to use common titles (ex. Annual Financial Report, SEC Form 10-K).
+* When defining `contentCategories`, make sure to use common titles (ex. Annual Financial Report, SEC Form 10-K).
+* Do not use non-ASCII characters in category names
+
+### Category description
      
-   * For category descriptions, make sure to give context that distinguishes one category from another.
-
-     * Semantic definition: for example, `receipts for expense reporting`
-     * Key content: any content that can uniquely identify a category, such as  `2025` on tax forms to distinguish from older tax forms
-     * Common layout: layout that is distinguishable from others, such as `two-column form` or filled/unfilled checkbox
+* When defining `descriptions`, make sure to give context that distinguishes one category from another.
+  * Semantic definition: for example, `receipts for expense reporting`
+  * Key content: any content that can uniquely identify a category, such as  `2025` on tax forms to distinguish from older tax forms
+  * Common layout: layout that is distinguishable from others, such as `two-column form` or filled/unfilled checkbox
+* Descriptions can be in English or the language used in the document
 

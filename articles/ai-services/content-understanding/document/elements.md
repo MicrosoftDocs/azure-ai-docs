@@ -66,23 +66,24 @@ The Content Understanding API returns analysis results in a structured JSON form
 
 ## Document elements
 
-You can extract the following document elements through content extraction:
+You can extract the following document elements through document analysis:
 
 * [Markdown](#markdown-content-elements)
-* Content elements
+* Page objects
   * [Words](#words)
   * [Selection marks](#selection-marks)
   * [Barcodes](#barcodes)
   * [Formulas](#formulas)
   * [Figures](#figures)
   * [Hyperlinks](#hyperlinks)
-* Layout elements
+  * [Annotations](#annotations)
+* Document structure
   * [Pages](#pages)
   * [Paragraphs](#paragraphs)
   * [Lines](#lines)
   * [Tables](#tables)
   * [Sections](#sections)
-  * [Annotations](#annotations)
+  
 
 Not all content and layout elements are applicable or currently supported by all document file types.
 
@@ -274,6 +275,42 @@ JSON example:
 }
 ```
 
+#### Annotations
+
+*Annotations* are additional metadata on the document to provide extra information, clarification, or feedback without changing the main content itself. There are many types of annotations that can range specific spans of content, or even refer to specific bounding boxes. Below are the list of annotation types we support. 
+
+> [!NOTE]
+> Note that annotations are currently only supported in digital PDF inputs.
+
+| Annotation type |
+|--------------|
+| `highlight` |
+| `underline` |
+| `strkethrough` |
+| `rectangle` |
+| `circle` |
+| `drawing` |
+| `other` |
+
+JSON example:
+
+```json
+{
+  "annotations": [
+    {
+      "id": "underline-1",
+      "kind": "underline",
+      "spans": [...],
+      "source": "D(pageNumber,l,t,w,h)",
+      "author": "paulhsu",
+      "createdAt": "2023-10-01T12:00:00Z",
+      "lastModifiedAt": "2023-10-02T12:00:00Z",
+      "tags": [ ... ],
+    }
+  ]
+}
+```
+
 ### Layout elements
 
 Document *layout elements* are visual and structural components, such as pages, tables, paragraphs, lines, tables, sections, and overall structure, that help to interpret content. Extracting these elements enables tools to analyze documents efficiently for tasks like information retrieval, semantic understanding, and data structuring.
@@ -432,38 +469,6 @@ JSON example:
 }
 ```
 
-#### Annotations
-
-*Annotations* are additional metadata on the document to provide extra information, clarification, or feedback without changing the main content itself. There are many types of annotations that can range specific spans of content, or even refer to specific bounding boxes. Below are the list of annotation types we support. Note that annotations are currently only supported in digital PDF inputs.
-
-| Annotation type |
-|--------------|
-| `highlight` |
-| `underline` |
-| `strkethrough` |
-| `rectangle` |
-| `circle` |
-| `drawing` |
-| `other` |
-
-JSON example:
-
-```json
-{
-  "annotations": [
-    {
-      "id": "underline-1",
-      "kind": "underline",
-      "spans": [...],
-      "source": "D(pageNumber,l,t,w,h)",
-      "author": "paulhsu",
-      "createdAt": "2023-10-01T12:00:00Z",
-      "lastModifiedAt": "2023-10-02T12:00:00Z",
-      "tags": [ ... ],
-    }
-  ]
-}
-```
 
 ### Element properties
 
