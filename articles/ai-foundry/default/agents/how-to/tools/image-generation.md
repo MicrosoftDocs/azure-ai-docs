@@ -30,7 +30,7 @@ Compared to Azure OpenAI's Image API, the image generation tool in Azure AI Foun
 
 > [!NOTE]
 > * The image generation tool only supported by the `gpt-image-1` model. You can however call this model from the following supported models: gpt-4o, gpt-4o-mini, gpt-4.1, gpt-4.1-mini, gpt-4.1-nano, o3. 
-> * The Image Generation tool can be used with the following tools: [function calling](./function-calling.md), [code interpreter](./code-interpreter.md), [file search](./file-search.md), computer use, and [MCP server](./model-context-protocol.md).
+> * The Image Generation tool can be used with the following tools: [function calling](../../../../agents/how-to/tools/function-calling.md), [code interpreter](../../../../agents/how-to/tools/code-interpreter.md), [file search](../../../../agents/how-to/tools/file-search.md), [computer use](../../../../agents/how-to/tools/computer-use.md), and [MCP server](../../../../agents/how-to/tools/model-context-protocol.md).
 
 Use the Responses API if you want to: 
 
@@ -41,7 +41,7 @@ Use the Responses API if you want to:
 
 Your prompts should describe the content you want to see in the image, and the visual style of image. You can use terms like "draw" or "edit" in your prompt. 
 
-When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filter](../../../openai/concepts/content-filter.md). 
+When you write prompts, consider that the Image APIs come with a content moderation filter. If the service recognizes your prompt as harmful content, it doesn't generate an image. For more information, see [Content filter](../../../../openai/concepts/content-filter.md). 
 
 > [!TIP] 
 > For a thorough look at how you can tweak your text prompts to generate different kinds of images, see [Image prompt engineering techniques](../../../../openai/concepts/gpt-4-v-prompt-engineering.md). 
