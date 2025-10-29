@@ -47,6 +47,8 @@ items:
     href: ../../../ai-services/openai/supported-languages.md?context=/azure/ai-foundry/context/context
   - name: Azure AI Inference SDK
     href: ../../foundry-models/supported-languages.md
+  - name: Migrate from AI Inference SDK to OpenAI v1 
+    href: ../../how-to/model-inference-to-openai-migration.md
   - name: Work with chat models
     items:
     - name: Work with chat models
