@@ -3,6 +3,8 @@ items:
   href: ../../../agents/how-to/tools/overview.md
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
+- name: Enable token limits with API gateways
+  href: ../configuration/enable-ai-api-management-gateway-portal.md
 - name: Azure Functions
   href: ../../../agents/how-to/tools/azure-functions.md
 - name: Browser automation (preview)
@@ -34,5 +36,6 @@ items:
 - name: OpenAPI defined tools
   href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint
-  href: ../../../agents/how-to/tools/sharepoint.md 
+  href: ../../../agents/how-to/tools/sharepoint.md
+
 
