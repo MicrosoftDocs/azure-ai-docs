@@ -38,6 +38,10 @@ Azure AI Content Understanding, built on the same foundational capabilities as D
 * Reasoning: Intelligent document processing typically is a multi-step process with extraction, validation, aggregation, and reviews. Content Understanding is built for IDP, simplifying everything into a single step process. 
 * Post processing & validations: Use the description to define any post processing rules like converting date formats, currency codes, and consistency checks. 
 
+> [!NOTE]
+>
+> Starting with the GA version, Azure AI Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](concepts/models-and-deployments.md) page.
+
 ## Azure-hosted LLMs (Azure OpenAI)
 
 For organizations requiring niche AI workflows, custom solutions built with Azure OpenAI Service or any other Azure-based LLM services offer maximum flexibility. Developers can combine models like GPT-4o, Vision, Whisper, and Embeddings to build highly customized AI solutions, typically integrating Azure Document Intelligence or Azure AI Content Understanding for pre-processing documents into custom workflows. This approach provides the maximum flexibility but requires users to evaluate models, update models as needed, manage the prompts, and optimize for costs. A common challenge with these solutions is the trade-off between cost management and accuracy as this approach lacks adequate tools to trigger reviews only for challenging cases. 

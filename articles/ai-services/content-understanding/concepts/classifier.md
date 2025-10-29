@@ -12,20 +12,20 @@ ms.custom:
   - build-2025
 ---
 
-# Content Understanding classifier
+# Content Understanding classification/segmentation
 
-Azure AI Content Understanding does not have an explicit classifier API. Classifier is now part of the analyzer operation request that you would send in for any analysis, eliminating the need to call two separate APIs to perform content classification and content extraction at once. The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data that you process within your application. This feature within the analyzer can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. Starting with the GA version, document classification and video segmentation design is now unified, allowing for a coherent approach to classify input data regardless of its modality.
+Azure AI Content Understanding does not have an explicit classifier API. Classifier is now part of the analyzer operation request that you would send in for any analysis, eliminating the need to call two separate APIs to perform content classification and content extraction at once. The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data that you process within your application. This feature within the analyzer can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. Starting with the GA version, document classification and video segmentation design is now unified, allowing for a coherent approach to classify input data regardless of its modality. In this documentation, Content Understanding classification refers to the analyze operations needed (`contentCategories` and `enableSegment`) for classifying and splitting input data.
 
 ## Business use cases
 
-Content Understanding classifier can allow for processing complex documents and videos in various formats and templates:
+Content Understanding classification can allow for processing complex documents and videos in various formats and templates:
 
 * **Invoices**: Categorize invoices from multiple vendors to process each category with a different Content Understanding analyzer, if needed.
 * **Tax documents**: Categorize multiple tax documents into different types of tax forms, such as 1040 and 1099.
 * **Contracts**: Categorize long, unstructured contracts to streamline operations to understand different types of agreements and their specific legal implications.
 * **Sports video**: Automatically segment the scenes to break the video into logical chunks such as ads and the actual sports content.
 
-## Content Understanding classifier capabilities
+## Content Understanding classification/segmentation capabilities
 
 Content Understanding classification can analyze single or multifile documents to identify if an input file can be classified into a category as defined. The following scenarios are supported:
 
@@ -34,11 +34,11 @@ Content Understanding classification can analyze single or multifile documents t
 * A single file that contains multiple instances of the same document. An example is a collection of scanned invoices.
 * Starting with GA version,`$OTHER` class is not included as default. To filter out the data, add the `$OTHER` class explicitly.
 
-### Use Content Understanding classifier
+### Use Content Understanding classification/segmentation
 
-Content Understanding classifier doesn't require any training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
+Content Understanding classification does not require any training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
 
-Starting with the GA version, you will need to include the `other` within the `contentCategories` to ensure that the content will not match to any of your intended categories. If this is unspecified, any of your unwanted files will be forced to classify to one of the categories you have set in the classifier analyzer. Each of the category names you define within `contentCategories` can also include `description` to give further information about the category you are defining.
+Starting with the GA version, you will need to include the `other` within the `contentCategories` to ensure that the content will not match to any of your intended categories. If this is unspecified, any of your unwanted files will be forced to classify to one of the categories you have set in the `contentCategories`. Each of the category names you define within `contentCategories` can also include `description` to give further information about the category you are defining.
 
 When you have more than one document in a file, the classifier can identify the different document types that are contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types that are contained within a file. This response can include multiple instances of the same document type.
 
