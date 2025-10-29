@@ -185,7 +185,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 1. Use the sections below to monitor costs.
 
-> [!NOTE].
+> [!NOTE]
 > These are estimated values and do not reflect any discounts or special contracted pricing that may appear on your final bill. 
 
 ### Agent costs
