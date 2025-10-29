@@ -23,8 +23,8 @@ The steps you perform in this tutorial are:
 
 * Create and configure the Azure resources to use DeepSeek-R1 in Azure AI Foundry Models.
 * Configure the model deployment.
-* Use DeepSeek-R1 with the Azure AI Inference SDK or REST APIs.
-* Use DeepSeek-R1 with other SDKs.
+* Use DeepSeek-R1 with the next generation v1 Azure OpenAI APIs to consume the model in code
+
 
 ## Prerequisites
 
@@ -201,6 +201,7 @@ In general, reasoning models don't support the following parameters that you can
 
 ## Related content
 
-* [Use chat reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
-* [Use image embedding models](../../model-inference/how-to/use-image-embeddings.md)
+- [How to generate chat completions with Azure AI Foundry Models](../how-to/use-chat-completions.md)
+- [Use chat reasoning models](../../model-inference/how-to/use-chat-reasoning.md)
+- [Azure OpenAI supported programming languages](../../openai/supported-languages.md)
 
