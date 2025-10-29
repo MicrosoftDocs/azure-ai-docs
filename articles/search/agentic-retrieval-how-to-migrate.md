@@ -46,7 +46,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge
 1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source).
 1. [Update azureBlob knowledge sources](#update-an-azureblob-knowledge-source).
 1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
-1. [Send a query to test the retrieval](#test-the-retrieval-for-2025-11-01-preview-updates).
+1. [Update the retrieval request and send a query to test your updates](#test-the-retrieval-for-2025-11-01-preview-updates).
 1. [Update client code](#update-code-and-clients-for-2025-11-01-preview).
 
 #### Update a searchIndex knowledge source
@@ -163,7 +163,7 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
    Content-Type: application/json
    ```
 
-   The response might look similar to the following example if your workflow includes a model. Notice that a response includes the names of the generated objects.
+   The response might look similar to the following example if your workflow includes a model. Notice that a response includes the names of the generated objects. These objects are fully independent of the knowledge source and remain operational even if you update or delete their knowledge source.
 
    ```json
     {
@@ -192,7 +192,16 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
           "aiServicesVisionParameters": null,
           "amlParameters": null
         },
-        "chatCompletionModel": null,
+        "chatCompletionModel": {
+          "kind": "azureOpenAI",
+          "azureOpenAIParameters": {
+            "resourceUri": "<redacted>",
+            "deploymentId": "gpt-4o-mini",
+            "apiKey": "<redacted>",
+            "modelName": "gpt-4o-mini",
+            "authIdentity": null
+          }
+    },
         "ingestionSchedule": null,
         "createdResources": {
           "datasource": "azure-blob-ks-datasource",
@@ -250,9 +259,9 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
 
    + Change the API version to `2025-11-01-preview`.
 
-   + Add `ingestionParameters` and move the following properties as child properties: `"embeddingModel"`, `"chatCompletionModel"`, `"ingestionSchedule"`.
+   + Add `ingestionParameters` as a container for the following child properties: `"embeddingModel"`, `"chatCompletionModel"`, `"ingestionSchedule"`.
 
-1. Review your updates and then send the request to create the object.
+1. Review your updates and then send the request to create the object. New generated objects are created for the indexer pipeline.
 
     ```http
     PUT {{url}}/knowledge-sources/azure-blob-ks-11-01?api-version=2025-11-01-preview
@@ -292,36 +301,87 @@ The response includes the full definition of the new object. For more informatio
 
 #### Replace knowledge agent with knowledge base
 
-1. Get the current definition of your knowledge agent. The response should look similar to [this example](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicegetknowledgeagent).
+1. Knowledge bases require a knowledge source. Make sure you have a knowledge source that targets 2025-11-01-preview before you start.
+
+1. [Get the current definition](/rest/api/searchservice/agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties. The response should look similar to [this example](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicegetknowledgeagent).
 
    ```http
    ### Get a knowledge agent by name
-   GET {{search-endpoint}}/agents/corporate-ka?api-version=2025-08-01-preview
+   GET {{search-endpoint}}/agents/earth-at-night?api-version=2025-08-01-preview
    api-key: {{api-key}}
    Content-Type: application/json
    ```
 
-1. Set up an update request and paste in the 2025-08-01-preview JSON.
+   The response might look similar to the following example.
+
+    ```json
+    {
+      "name": "earth-at-night",
+      "description": "A sample knowledge agent that retrieves from the earth-at-night knowledge source.",
+      "retrievalInstructions": null,
+      "requestLimits": null,
+      "encryptionKey": null,
+      "knowledgeSources": [
+        {
+          "name": "earth-at-night",
+          "alwaysQuerySource": null,
+          "includeReferences": null,
+          "includeReferenceSourceData": null,
+          "maxSubQueries": null,
+          "rerankerThreshold": 2.5
+        }
+      ],
+      "models": [
+        {
+          "kind": "azureOpenAI",
+          "azureOpenAIParameters": {
+            "resourceUri": "<redacted>",
+            "deploymentId": "gpt-5-mini",
+            "apiKey": "<redacted>",
+            "modelName": "gpt-5-mini",
+            "authIdentity": null
+          }
+        }
+      ],
+      "outputConfiguration": {
+        "modality": "answerSynthesis",
+        "answerInstructions": null,
+        "attemptFastPath": false,
+        "includeActivity": null
+      }
+    }
+    ```
+
+1. Formulate a [Create Knowledge Base](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) request as the basis for your migration.
+
+    Start with the 08-01-preview JSON.
 
     ```http
-    PUT {{url}}/agents/0801-earth-at-night-ka?api-version=2025-08-01-preview  HTTP/1.1
+    PUT {{url}}/knowledgebases/earth-at-night?api-version=2025-08-01-preview  HTTP/1.1
     api-key: {{key}}
     Content-Type: application/json
     
     {
-        "name": "0801-earth-at-night-ka",
+        "name": "earth-at-night",
+        "description": "A sample knowledge agent that retrieves from the earth-at-night knowledge source.",
+        "retrievalInstructions": null,
+        "encryptionKey": null,
         "knowledgeSources": [
             {
-            "name": "0801-earth-at-night-ks",
-            "rerankerThreshold": 2.5
+              "name": "earth-at-night",
+              "alwaysQuerySource": null,
+              "includeReferences": null,
+              "includeReferenceSourceData": null,
+              "maxSubQueries": null,
+              "rerankerThreshold": 2.5
             }
         ],
         "models": [
             {
                 "kind": "azureOpenAI",
                 "azureOpenAIParameters": {
-                    "resourceUri": "{{aoai-endpoint}}",
-                    "apiKey": "{{aoai-key}}",
+                    "resourceUri": "<redacted>",
+                    "apiKey": "<redacted>",
                     "deploymentId": "gpt-5-mini",
                     "modelName": "gpt-5-mini"
                 }
@@ -333,60 +393,74 @@ The response includes the full definition of the new object. For more informatio
     }
     ```
 
-1. Change the API version to `2025-11-01-preview`.
+   Make the following updates for a 2025-11-01-preview migration:
 
-1. Replace the endpoint: `/knowledgebases/{{your-object-name}}`.
+   + Replace the endpoint: `/knowledgebases/{{your-object-name}}`. Give the knowledge base a unique name.
 
-1. Replace `outputConfiguration`, `requestLimits`, and `retrievalInstructions`.
+   + Change the API version to `2025-11-01-preview`.
 
-1. Send the request to update the object. You can't rename an existing object, but you can create a new one that's an updated version of the original agent if you want to change the name. The response should look similar to [this example](/rest/api/searchservice/knowledgebases/get?view=rest-searchservice-2025-11-01-preview&preserve-view=true#searchservicegetknowledgebase).
+   + Delete `requestLimits`. The `maxRuntimeInSeconds` and `maxOutputSize` properties are now specified on the retrieval request object directly
+
+   + Update knowledgeSources:
+
+     + Delete `rerankerThreshold`. It no longer exists as a `knowledgeSources` property. Retrieval and ranking is now enforced through `retrievalReasoningEffort`.
+
+   + No changes for `models`.
+
+   + Replace `outputConfiguration` with `outputMode`.
+
+     + Replace `"modality": "answerSynthesis"` with `"extractiveData"`.
+
+     + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum.
+
+1. Review your updates and then send the request to create the object. New generated objects are created for the indexer pipeline.
 
    ```http
-    PUT {{url}}/knowledgebases/corporate-kb?api-version={{api-version}}
+    PUT {{url}}/knowledgebases/earth-at-night-11-01?api-version={{api-version}}
     api-key: {{key}}
     Content-Type: application/json
     
     {
-      "name": "corporate-kb",
-      "description": "A sample knowledge base with default medium reasoning",
+      "name": "earth-at-night-11-01",
+      "description": "A sample knowledge base at the same functional level as the previous knowledge agent.",
+      "retrievalInstructions": null,
+      "encryptionKey": null,
       "knowledgeSources": [
         {
-            "name": "sec-gics-communicationservices"
-        },
-        {
-            "name": "sec-gics-financials"
-        },
-        {
-            "name": "sec-gics-healthcare"
+            "name": "earth-at-night-ks"
         }
       ],
       "models": [
         {
-            "kind": "azureOpenAI",
-            "azureOpenAIParameters": {
-                "deploymentId": "gpt-5-mini",
-                "modelName": "gpt-5-mini",
-                "resourceUri": "{{aoai-endpoint}}",
-                "apiKey": "{{aoai-key}}"
+          "kind": "azureOpenAI",
+          "azureOpenAIParameters": {
+              "resourceUri": "<redacted>",
+              "apiKey": "<redacted>",
+              "deploymentId": "gpt-5-mini",
+              "modelName": "gpt-5-mini"
             }
         }
       ],
-      "retrievalReasoningEffort": { "kind": "medium" },
+      "retrievalReasoningEffort": null,
       "outputMode": "answerSynthesis",
       "answerInstructions": "Provide a concise and accurate answer based on the retrieved information.",
-      "retrievalInstructions": "Use sec-gics-financials to answer financial questions, never use sec-gis-healthcare for this"
+
     }
    ```
 
-You now have a knowledge base instead of a knowledge agent.
+You now have a knowledge base instead of a knowledge agent, and the object is backwards compatible with the previous version 
 
-#### Test the retrieval for 2025-11-01-preview updates
+The response includes the full definition of the new object. For more information about new properties available to a knowledge base, which you can now do through updates, see [How to create a knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
 
-To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
+#### Update and test the retrieval for 2025-11-01-preview updates
+
+The retrieval request is modified for the 2025-11-01-preview. This section explains how to update your code.
+
+<!-- To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
 The retrieve request is modified in the latest preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). 
 
-This variant is the most similar to the default 2025-08-01-preview experience.
+This variant is the most similar to the default 2025-08-01-preview experience. -->
 
 ```http
 ### Send a query to the knowledge base
@@ -433,6 +507,8 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 #### Update code and clients for 2025-11-01-preview
 
 To complete your migration, follow these cleanup steps:
+
+1. For Azure Blob knowledge sources only, update clients to use the new index. If your code automates indexing, update the indexer, data source, and skillset references.
 
 1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
 
