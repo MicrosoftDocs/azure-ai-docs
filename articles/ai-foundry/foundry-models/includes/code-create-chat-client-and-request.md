@@ -73,7 +73,7 @@ const client = new OpenAI({
 
 const messages = [
     { role: 'system', content: 'You are a helpful assistant.' },
-    { role: 'user', content: 'Tell me about the attention is all you need paper' }
+    { role: 'user', content: 'How many languages are in the world?' }
 ];
 
 // Make the API request with top-level await
@@ -121,7 +121,7 @@ ChatClient client = new(
    }
 );
 
-ChatCompletion completion = client.CompleteChat("Tell me about the attention is all you need paper");
+ChatCompletion completion = client.CompleteChat("How many languages are in the world?");
 
 Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 ```
@@ -183,7 +183,7 @@ public class OpenAITest {
                     .build();
 
            ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
-              .addUserMessage("Explain what the bitter lesson is?")
+              .addUserMessage("How many languages are in the world?")
               .model(modelDeploymentName)
               .build();
            ChatCompletion chatCompletion = client.chat().completions().create(params);
@@ -208,7 +208,7 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completi
       },
       {
         "role": "user",
-        "content": "Explain what the bitter lesson is?"
+        "content": "How many languages are in the world?"
       }
     ]
   }'
