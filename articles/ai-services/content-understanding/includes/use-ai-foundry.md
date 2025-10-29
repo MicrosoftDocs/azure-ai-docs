@@ -12,16 +12,6 @@ ms.custom:
   - build-2025
 ---
 
-# Quickstart: Use Content Understanding with a single file
-
-This quickstart shows you how to use the Content Understanding service in the [**Azure AI Foundry portal**](https://ai.azure.com/explore/aiservices/vision/contentunderstanding) to extract structured information from your data. Azure AI Foundry enables you to build and deploy generative AI applications and APIs responsibly.
- 
-Suppose you have files—such as documents, images, audio, or video—and you want to automatically extract key information from them. With Content Understanding, you can create a task to organize your data processing, define a field schema that specifies the information to extract or generate, and then build an analyzer. The analyzer becomes an API endpoint that you can integrate into your applications or workflows.
- 
-In this guide, you build and test an analyzer for your scenario. You can start from scratch or use suggested templates for common use cases.
-
-:::image type="content" source="../media/overview/component-overview-updated.png" alt-text="Screenshot of Content Understanding overview, process, and workflow." lightbox="../media/overview/component-overview-updated.png" :::
-
 ## Prerequisites
 
 To get started, make sure you have the following resources and permissions:
