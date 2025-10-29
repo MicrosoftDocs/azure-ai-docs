@@ -528,8 +528,11 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
     
     async def write_conversation_log(message: str) -> None:
         """Write a message to the conversation log."""
-        with open(f'logs/{logfilename}', 'a', encoding='utf-8') as conversation_log:
-            conversation_log.write(message + "\n")
+        def _write_to_file():
+            with open(f'logs/{logfilename}', 'a', encoding='utf-8') as conversation_log:
+                conversation_log.write(message + "\n")
+        
+        await asyncio.to_thread(_write_to_file)
     
     def parse_arguments():
         """Parse command line arguments."""
@@ -549,7 +552,7 @@ The sample code in this quickstart uses either Microsoft Entra ID or an API key 
             "--endpoint",
             help="Azure VoiceLive endpoint",
             type=str,
-            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "wss://api.voicelive.com/v1"),
+            default=os.environ.get("AZURE_VOICELIVE_ENDPOINT", "https://your-resource-name.services.ai.azure.com/"),
         )
     
         parser.add_argument(
