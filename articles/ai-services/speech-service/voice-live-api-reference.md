@@ -2080,7 +2080,6 @@ Semantic VAD (default variant).
 | distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
 | require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supported languages |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | eagerness | string | Optional. This is a way to control how eager the model is to interrupt the user, tuning the maximum wait timeout. In transcription mode, even if the model doesn't reply, it affects how the audio is chunked.<br/>The following values are allowed:<br/>- `auto` (default) is equivalent to `medium`,<br/>- `low` will let the user take their time to speak,<br/>- `high` will chunk the audio as soon as possible.<br/><br/>If you want the model to respond more often in conversation mode, or to return transcription events faster in transcription mode, you can set eagerness to `high`.<br/>On the other hand, if you want to let the user speak uninterrupted in conversation mode, or if you would like larger transcript chunks in transcription mode, you can set eagerness to `low`. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
@@ -2103,7 +2102,7 @@ Azure semantic VAD (default variant).
 | distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
 | require_vowel | boolean | Optional. Require vowel in speech |
 | remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supported languages |
+| languages | string[] | Optional. Supports English. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
@@ -2124,8 +2123,8 @@ Azure semantic VAD (default variant).
 | window_size | integer | Optional. Analysis window size |
 | distinct_ci_phones | integer | Optional. Distinct CI phones requirement |
 | require_vowel | boolean | Optional. Require vowel in speech |
-| remove_filler_words | boolean | Optional. Remove filler words (default: false) |
-| languages | string[] | Optional. Supported languages |
+| remove_filler_words | boolean | Optional. Remove filler words (default: false). |
+| languages | string[] | Optional. Supports English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi. Other languages will be ignored. |
 | create_response | boolean | Optional. Enable or disable whether a response is generated. |
 | interrupt_response | boolean | Optional. Enable or disable barge-in interruption (default: false) |
 | auto_truncate | boolean | Optional. Auto-truncate on interruption (default: false) |
@@ -2137,8 +2136,8 @@ Azure End-of-Utterance (EOU) could indicate when the end-user stopped speaking w
 | Field | Type | Description |
 |-------|------|-------------|
 | model | string | Could be `semantic_detection_v1` supporting English or `semantic_detection_v1_multilingual` supporting English, Spanish, French, Italian, German (DE), Japanese, Portuguese, Chinese, Korean, Hindi |
-| threshold_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default is `default` |
-| timeout_ms | number | Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
+| threshold_level | string | Optional. Detection threshold level (`low`, `medium`, `high` and `default`), the default equals `medium` setting. With a lower setting the probability the sentence is complete will be higher. |
+| timeout_ms | number | Optional. Maximum time in milliseconds to wait for more user speech. Defaults to 1000 ms. |
 
 ### Avatar Configuration
 
