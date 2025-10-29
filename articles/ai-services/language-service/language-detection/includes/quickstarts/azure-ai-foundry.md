@@ -83,7 +83,7 @@ The **detect language** feature identifies the language used in written content.
    |---|---
    |**API version**| Select the API version that you prefer to use.|
    |**Model version**| Select the model version that you prefer to use.|
-   |**Country hint** (optional)| You can select the origin country/region for the source text.|
+   |**Country/region hint** (optional)| You can select the origin country/region for the source text.|
 
 After you make your selections, choose the **Detect** button. Then review the text and accompanying details written in formatted text or as a JSON response:
 
