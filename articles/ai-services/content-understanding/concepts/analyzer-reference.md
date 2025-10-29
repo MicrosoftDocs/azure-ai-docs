@@ -1,9 +1,9 @@
 ---
-title: Azure AI Content Understanding analyzer configuration reference
+title: Azure AI Content Understanding - What is an analyzer? Configuration and reference
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding analyzers, how to configure them, and the parameters you can set when creating custom analyzers.
 author: PatrickFarley 
-ms.author: paulhsu
+ms.author: jfilcik
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Analyzer configuration reference
+# Content understanding analyzer
 
 ## What is an analyzer?
 
@@ -83,8 +83,6 @@ Here's a condensed example showing the overall structure of an analyzer configur
 These properties uniquely identify and describe your analyzer:
 
 ### `analyzerId`
-- **Type:** string
-- **Required:** Yes
 - **Description:** Unique identifier for the analyzer. This identifier is how you reference the analyzer in API calls.
 - **Example:** `"prebuilt-invoice"`, `"my-custom-analyzer"`
 - **Guidelines:**
@@ -93,14 +91,10 @@ These properties uniquely identify and describe your analyzer:
   - Use lowercase with hyphens for consistency
 
 ### `name`
-- **Type:** string
-- **Required:** No
 - **Description:** Human-readable display name shown in user interfaces and documentation
 - **Example:** `"Invoice document understanding"`, `"Custom receipt processor"`
 
 ### `description`
-- **Type:** string
-- **Required:** Yes
 - **Description:** Brief explanation of what the analyzer does and what content it processes. This description is used as context by the AI model during field extraction, so clear descriptions improve extraction accuracy.
 - **Example:** `"Analyzes invoice documents to extract line items, totals, vendor information, and payment terms"`
 - **Guidelines:**
@@ -110,8 +104,6 @@ These properties uniquely identify and describe your analyzer:
   - Write clear descriptions as they guide the AI model's understanding
 
 ### `baseAnalyzerId`
-- **Type:** string
-- **Required:** No (required for custom analyzers)
 - **Description:** References a parent analyzer from which this analyzer inherits configuration
 - **Supported base analyzers:**
   - `"prebuilt-document"` - for document-based custom analyzers
@@ -130,8 +122,6 @@ These properties control which AI models the analyzer uses for processing. Under
 > [!TODO]: TBD - We need to fully verify that this is the behavior that's actually implemented in the product and potentially update docs here. 
 
 ### `supportedModels`
-- **Type:** object with arrays
-- **Required:** Yes
 - **Description:** Declares which AI model names this analyzer type is compatible with. It is a capability declaration, not an active configuration.
 - **Properties:**
   - `completion` - Array of completion model names that can be used for text generation and field extraction
@@ -147,8 +137,6 @@ These properties control which AI models the analyzer uses for processing. Under
 - **Limitations:** Can't include arbitrary models; must match service-supported model names
 
 ### `models`
-- **Type:** object with deployment names
-- **Required:** Yes
 - **Description:** Specifies the specific deployment names to use for processing with this analyzer by default. Each deployment name must correspond to one of the model types listed in the corresponding `supportedModels` category.
 - **Properties:**
   - `completion` - Deployment name for completion tasks (content extraction, field generation, classification)
@@ -179,7 +167,6 @@ The `config` object contains all processing options that control how content is 
 #### General options
 
 ##### `returnDetails`
-- **Type:** boolean
 - **Default:** false (varies by analyzer)
 - **Description:** Controls whether to include detailed information in the response (confidence scores, bounding boxes, text spans, metadata)
 - **When to use:**
@@ -192,7 +179,6 @@ The `config` object contains all processing options that control how content is 
 #### Document content extraction options
 
 ##### `enableOcr`
-- **Type:** boolean
 - **Default:** true
 - **Description:** Enables Optical Character Recognition to extract text from images and scanned documents
 - **When to use:**
@@ -201,7 +187,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document analyzers
 
 ##### `enableLayout`
-- **Type:** boolean
 - **Default:** true
 - **Description:** Extracts layout information including paragraphs, lines, words, reading order, and structural elements
 - **When to use:**
@@ -211,7 +196,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 ##### `enableFormula`
-- **Type:** boolean
 - **Default:** true
 - **Description:** Detects and extracts mathematical formulas and equations in LaTeX format
 - **When to use:**
@@ -220,7 +204,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 ##### `enableBarcode`
-- **Type:** boolean
 - **Default:** true
 - **Description:** Detects and extracts barcodes and QR codes, returning the decoded values
 - **When to use:**
@@ -232,7 +215,6 @@ The `config` object contains all processing options that control how content is 
 #### Table and chart options
 
 ##### `tableFormat`
-- **Type:** string
 - **Default:** `"html"`
 - **Supported values:** `"html"`, `"markdown"`
 - **Description:** Specifies the output format for extracted tables
@@ -242,7 +224,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 ##### `chartFormat`
-- **Type:** string
 - **Default:** `"chartjs"`
 - **Supported values:** `"chartjs"`
 - **Description:** Specifies the format for extracted chart and graph data (compatible with Chart.js library)
@@ -254,7 +235,6 @@ The `config` object contains all processing options that control how content is 
 #### Figure and image analysis options
 
 ##### `enableFigureDescription`
-- **Type:** boolean
 - **Default:** false
 - **Description:** Generates natural language text descriptions for figures, diagrams, images, and illustrations
 - **When to use:**
@@ -264,7 +244,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 ##### `enableFigureAnalysis`
-- **Type:** boolean
 - **Default:** false
 - **Description:** Performs deeper analysis of figures including chart data extraction and diagram component identification
 - **When to use:**
@@ -276,7 +255,6 @@ The `config` object contains all processing options that control how content is 
 #### Annotation options
 
 ##### `enableAnnotations`
-- **Type:** boolean
 - **Default:** false
 - **Description:** Extracts annotations, comments, highlights, and markup from documents (for example, PDF comments)
 - **When to use:**
@@ -286,7 +264,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 ##### `annotationFormat`
-- **Type:** string
 - **Default:** `"markdown"`
 - **Supported values:** `"markdown"`
 - **Description:** Specifies the format for returned annotations
@@ -295,7 +272,6 @@ The `config` object contains all processing options that control how content is 
 #### Field extraction options
 
 ##### `estimateFieldSourceAndConfidence`
-- **Type:** boolean
 - **Default:** false (varies by analyzer)
 - **Description:** Returns source location (page number, bounding box) and confidence score for each extracted field value
 - **When to use:**
@@ -308,7 +284,6 @@ The `config` object contains all processing options that control how content is 
 #### Audio and video options
 
 ##### `locales`
-- **Type:** array of strings
 - **Default:** `[]` (empty array)
 - **Description:** List of locale/language codes for language-specific processing (primarily for transcription)
 - **Supported values:** BCP-47 language codes (for example, `["en-US", "es-ES", "fr-FR", "de-DE"]`)
@@ -320,7 +295,6 @@ The `config` object contains all processing options that control how content is 
 - **Note:** For a complete list of supported languages and locales, see [Language and region support](../language-region-support.md).
 
 ##### `disableFaceBlurring`
-- **Type:** boolean
 - **Default:** false
 - **Description:** Controls whether faces in images and videos should be blurred for privacy protection
 - **When to use:**
@@ -331,12 +305,10 @@ The `config` object contains all processing options that control how content is 
 > [!IMPORTANT]
 > The Face capabilities feature in Content Understanding is a Limited Access service and registration is required for access. Face grouping and identification feature in Content Understanding is limited based on eligibility and usage criteria. Face service is only available to Microsoft managed customers and partners. Use the [Face Recognition intake form](https://aka.ms/facerecognition) to apply for access. For more information, see the [Responsible AI investments and safeguards for facial recognition](../../cognitive-services-limited-access.md).
 
-#### Document classification options
+#### Classification options
 
 ##### `contentCategories`
-- **Type:** object
 - **Default:** Not set
-- **Required:** No. Must be set when `enableSegment: true`
 - **Description:** Defines categories or content types for automatic classification and routing to specialized handlers. When used with `enableSegment set to false` is currently only supported for documents. It classifies the entire file. When used with `enableSegment=true`, the file is broken into chunks based on these categories, with each segment classified and optionally processed by a category-specific analyzer. Always selects a single option from the list of available categories. 
 - **Structure:** Each category contains:
   - `description` - Detailed description of the category/document type. This description acts as a prompt that guides the AI model in determining segment boundaries and classification. Include distinguishing characteristics to help identify where one category ends and another begins.
@@ -348,9 +320,7 @@ The `config` object contains all processing options that control how content is 
 - **Category matching:** If an "other" or "default" category isn't defined, content is forced to classify into one of the listed categories. Include an "other" category to handle unmatched content gracefully.
 
 ##### `enableSegment`
-- **Type:** boolean
 - **Default:** false
-- **Required:** No. `contentCategories` must be set when `enableSegment` is `true`
 - **Description:** Enables content segmentation, breaking the file into chunks based on the categories specified in `contentCategories`. Each segment is then classified into one of the defined categories for selective processing.
 - **Segmentation behavior:** The service divides content into logical units by analyzing the content against the category descriptions. Segment boundaries are determined using:
   - **Documents:** Category descriptions combined with content structure (pages, sections, formatting changes)
@@ -370,7 +340,6 @@ The `config` object contains all processing options that control how content is 
 >[TODO]:Validate that the detailed interations between enableSegment and contentCategories are tested in the product
 
 ##### `segmentPerPage`
-- **Type:** boolean
 - **Default:** false
 - **Description:** When segmentation is enabled, force one segment per page instead of using logical content boundaries. Replaces the need for separate "perPage" split modes.
 - **When to use:**
@@ -382,7 +351,6 @@ The `config` object contains all processing options that control how content is 
 - **Supported by:** Document-based analyzers
 
 ##### `omitContent`
-- **Type:** boolean
 - **Default:** false
 - **Description:** When `true`, excludes the original content object from the response, returning only structured field data or content objects from subanalyzers (when using `contentCategories`)
 - **When to use:**
@@ -453,14 +421,10 @@ Field schemas transform unstructured content into structured, queryable data. Th
 ### Field schema properties
 
 #### `name`
-- **Type:** string
-- **Required:** No
 - **Description:** Name of the schema, typically describing the content type or use case
 - **Example:** `"InvoiceAnalysis"`, `"ReceiptExtraction"`, `"ContractFields"`
 
 #### `fields`
-- **Type:** object
-- **Required:** Yes
 - **Description:** Object defining each field to extract, with field names as keys
 - **Hierarchical support:** Supports nested fields through `object` and `array` types for representing complex data structures
 - **Best practice:** Avoid deep nesting (more than 2-3 levels) as it can reduce performance and extraction accuracy
@@ -471,20 +435,14 @@ Field schemas transform unstructured content into structured, queryable data. Th
 Each field in the `fields` object has the following properties:
 
 #### `type`
-- **Type:** string
-- **Required:** Yes
 - **Supported values:** `"string"`, `"number"`, `"boolean"`, `"date"`, `"object"`, `"array"`
 - **Description:** Data type of the field value. Choose the type that best matches your data semantics for optimal extraction.
 
 #### `description`
-- **Type:** string
-- **Required:** Yes
 - **Description:** Clear explanation of what the field contains and where to find it. This description is processed by the AI model as a mini-prompt to guide field extraction, so specificity and clarity directly improve extraction accuracy.
 - **Note:** For information about writing effective field descriptions, see [Best practices for field extraction](best-practices.md).
 
 #### `method`
-- **Type:** string
-- **Required:** No
 - **Supported values:** `"generate"`, `"extract"`, `"classify"`
 - **Description:** Extraction method to use for this field. When not specified, the system automatically determines the best method based on the field type and description.
 - **Method types:**
@@ -493,16 +451,12 @@ Each field in the `fields` object has the following properties:
   - `"classify"` - Values are classified against a predefined set of categories (best when using `enum` with a fixed set of possible values)
 
 #### `items` (for array types)
-- **Type:** object
-- **Required:** Yes (when `type` is `"array"`)
 - **Description:** Defines the structure of items in the array
 - **Properties:**
   - `type` - Type of array items (`"string"`, `"number"`, `"object"`)
   - `properties` - For object items, defines the nested field structure
 
 #### `properties` (for object types)
-- **Type:** object
-- **Required:** Yes (when `type` is `"object"`)
 - **Description:** Defines the structure of nested fields within the object
 - **Example:**
   ```json
@@ -637,7 +591,7 @@ To create a custom analyzer based on the configuration structure described in th
 Use the following curl command to create a custom analyzer by submitting your analyzer configuration from a JSON file:
 
 ```bash
-curl -X PUT "https://{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-05-01-preview" \
+curl -X PUT "https://{endpoint}/contentunderstanding/analyzers/{analyzerId}?api-version=2025-11-01-preview" \
   -H "Content-Type: application/json" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -d @analyzer-definition.json

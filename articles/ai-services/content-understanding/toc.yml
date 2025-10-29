@@ -51,16 +51,19 @@ items:
     items:
     - name: Analyzers
       items:
-        - name: Analyzer templates in Azure AI Foundry
-          displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/analyzer-templates.md
+        - name: What are analyzers?
+          displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+          href: concepts/analyzers-reference.md
         - name: Prebuilt analyzers
           displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
           href: concepts/prebuilt-analyzers.md
         - name: Best practices
           displayName: best practices, analyzers, optimization, fields
           href: concepts/best-practices.md
-        - name: "Modes: standard and pro (Preview)"
+        - name: Analyzer templates in Azure AI Foundry
+          displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
+          href: concepts/analyzer-templates.md
+        - name: Modes: standard and pro (Preview)
           displayName: standard, pro, modes, analyzers, optimization, fields
           href: concepts/standard-pro-modes.md
     - name: What are classifiers?
@@ -90,27 +93,23 @@ items:
         - name: Image
           displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
           href: image/overview.md
-        - name: AudioVideo (TODO)
+        - name: AudioVideo
           items:
-            - name: Video Overview (TODO)
+            - name: Video Overview
               displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
               href: video/overview.md
-            - name: Audio Overview (TODO)
+            - name: Audio Overview
               displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
               href: audio/overview.md
-            - name: Elements (TODO)
+            - name: Elements
               displayName: audio, video, elements, schema, structure
               href: video/elements.md
-            - name: Markdown (TODO)
+            - name: Markdown
               displayName: audio, video, markdown, formatting
               href: video/markdown.md
         - name: What is face detection?
           displayName: recognition, detection, analysis, identification, verification
           href: face/overview.md
-
-  - name: How-to guides
-    items:
-
   - name: Tutorials
     items:
       - name: Create a custom analyzer

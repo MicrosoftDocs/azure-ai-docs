@@ -64,6 +64,8 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 
 - `prebuilt-read` and `prebuilt-layout` analyzers now expose key Document Intelligence capabilities inside Content Understanding.
 - `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting charts, diagrams, and images with their context.
+- Layout for documents adds improvements including identifying hyperlinks and create a single table output for tables that span pages.
+- When analyzing documents, you can now provide an **input range** to only analyze a section of the input document.
 - Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
 - Use the `range` parameter to analyze specific pages or segments and reduce token consumption.
 - Choose HTML or Markdown table output to match downstream processing requirements.
