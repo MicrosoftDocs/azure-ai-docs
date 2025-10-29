@@ -9,13 +9,13 @@ To get started, make sure you have the following resources and permissions:
 
 ## Log in to Content Understanding Studio
 
-Navigate to the [Content Understanding Studio portal]() and sign in using your credentials to get started. You may recognize the classic Azure AI Document Intelligence Studio experience; Content Understanding extends the same content and field extraction that you are familiar with in Document Intelligence across all modalities - document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
+Navigate to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You may recognize the classic Azure AI Document Intelligence Studio experience; Content Understanding extends the same content and field extraction that you are familiar with in Document Intelligence across all modalities - document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
 
 [Insert photo of home page selection]
 
 ## Create your custom categories
 
-Custom categories can allow you to route your data to a specific analyzer to get the best output based on the type of data. In this guide, we will show how to classify documents based on their country of origin. Documents for Australia, Canada, India, etc. may have different variations depending on where they originate, so this classification workflow ensures that the documents are analyzed with the correct context. To successfully route your data, you may want to create custom analyzers to route to depending on your scenario. For more information on building custom analyzers, check out [Create and improve your custom analyzer in Content Understanding Studio](./how-to/customization-in-cu-studio.md).
+Custom categories can allow you to route your data to a specific analyzer to get the best output based on the type of data. In this guide, we will show how to classify documents based on their country of origin. Documents for Australia, Canada, India, etc. may have different variations depending on where they originate, so this classification workflow ensures that the documents are analyzed with the correct context. To successfully route your data, you may want to create custom analyzers to route to depending on your scenario. For more information on building custom analyzers, check out [Create and improve your custom analyzer in Content Understanding Studio](./customization-in-cu-studio.md).
 
 [Insert photo of sample data]
 
@@ -23,7 +23,7 @@ Custom categories can allow you to route your data to a specific analyzer to get
 
 [Insert photo of home page]
 
-2.	**Select your project type**: In this guide, we will select the option to `Classify and route with custom categories`. To learn more about creating custom analyzers for content and field extraction, check out [Create and improve your custom analyzer in Content Understanding Studio](./how-to/customization-in-cu-studio.md).
+2.	**Select your project type**: In this guide, we will select the option to `Classify and route with custom categories`. To learn more about creating custom analyzers for content and field extraction, check out [Create and improve your custom analyzer in Content Understanding Studio](./customization-in-cu-studio.md).
 
 [Insert photo of selection screen]
 
