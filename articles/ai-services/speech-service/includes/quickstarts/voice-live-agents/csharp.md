@@ -856,7 +856,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
                     _playbackBuffer = new BufferedWaveProvider(new WaveFormat(SampleRate, BitsPerSample, Channels))
                     {
-                        BufferDuration = TimeSpan.FromMinutes(5), // 5 second buffer
+                        BufferDuration = TimeSpan.FromSeconds(5), // 5 second buffer
                         DiscardOnBufferOverflow = true
                     };
     
