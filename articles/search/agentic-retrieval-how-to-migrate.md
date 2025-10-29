@@ -46,7 +46,7 @@ If you're migrating from [2025-08-01-preview](#2025-08-01-preview-1), *knowledge
 1. [Update searchIndex knowledge sources](#update-a-searchindex-knowledge-source).
 1. [Update azureBlob knowledge sources](#update-an-azureblob-knowledge-source).
 1. [Replace knowledge agent with knowledge base](#replace-knowledge-agent-with-knowledge-base).
-1. [Update the retrieval request and send a query to test your updates](#test-the-retrieval-for-2025-11-01-preview-updates).
+1. [Update the retrieval request and send a query to test your updates](#update-and-test-the-retrieval-for-2025-11-01-preview-updates).
 1. [Update client code](#update-code-and-clients-for-2025-11-01-preview).
 
 #### Update a searchIndex knowledge source
@@ -303,7 +303,7 @@ The response includes the full definition of the new object. For more informatio
 
 1. Knowledge bases require a knowledge source. Make sure you have a knowledge source that targets 2025-11-01-preview before you start.
 
-1. [Get the current definition](/rest/api/searchservice/agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties. The response should look similar to [this example](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true#searchservicegetknowledgeagent).
+1. [Get the current definition](/rest/api/searchservice/knowledge-agents/get?view=rest-searchservice-2025-08-01-preview&preserve-view=true) to review existing properties.
 
    ```http
    ### Get a knowledge agent by name
