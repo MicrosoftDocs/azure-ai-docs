@@ -193,7 +193,7 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. Select **Operate** in the upper-right navigation.
 1. Select **Overview** in the left pane.
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
-1.The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
+1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
 
 For individual agent estimates:
 
