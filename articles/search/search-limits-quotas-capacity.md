@@ -191,7 +191,7 @@ Each [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) contain
 | Maximum knowledge sources | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
 | Maximum knowledge bases | 3 | 5 or 15 | 50 | 200 | 200 | 0 | 10 | 10 |
 
-<sup>1</sup> Basic services created before December 2017 have lower limits (5 instead of 15) on knowledge sources and knowledge bases.
+<sup>1</sup> Basic services created before April 3, 2024 have lower limits (5 instead of 15) on knowledge sources and knowledge bases.
 
 ## Data limits (AI enrichment)
 
