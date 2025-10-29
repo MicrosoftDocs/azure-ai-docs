@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Grounding with Bing Search overview
 
-Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search allows your agents to incorporate real-time public web data when generating responses, leting you ask questions such as "what is the top AI news today".
+Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
 
@@ -33,7 +33,7 @@ The grounding process involves several key steps:
 |Tool  |Description  |Use-case  |
 |---------|---------|---------|
 |Grounding with Bing Search     | Gives agents standard access to Bing's search capabilities.        | Scenarios requiring broad knowledge access.        |
-|Custom Grounding with Bing Search     | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information governance        |
+|Custom Grounding with Bing Search     | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information management.        |
 
 ## Pricing
 
@@ -85,7 +85,7 @@ Grounding with Bing Custom Search is a powerful tool that allows you to select a
 
 ## Manage Grounding with Bing Search and Grounding with Bing Custom Search
 
-Admins can leverage RBAC role assignments for enabling or disabling use ofusing Grounding with Bing and/or Grounding with Bing Custom Search within the subscription or resource group. 
+Admins can leverage RBAC role assignments for enabling or disabling use of using Grounding with Bing and/or Grounding with Bing Custom Search within the subscription or resource group. 
 
 1. The Admin needs to register `Microsoft.Bing` in the Azure Subscription. The Admin needs to have the permissions to do the `/register/action` operation for the resource provider. The permission is included in the Contributor and Owner roles. For more information about how to register, see the [Azure Resource Manager](/azure/azure-resource-manager/management/resource-providers-and-types) documentation.
 
@@ -95,7 +95,7 @@ Admins can leverage RBAC role assignments for enabling or disabling use ofusing 
 
 ### Disable use of Grounding with Bing Search and Grounding with Bing Custom Search
 
-The Admin needs to have the "Owner" or "Contributoer" role in your subscription. They can delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resources in the subscription. And then unregister the `Microsoft.Bing` resource provider in your subscription (you cannot unregister before deleting all resources). Learn more about unregistering here 
+The Admin needs to have the "Owner" or "Contributor" role in your subscription. They can delete all Grounding with Bing Search and/or Grounding with Bing Custom Search resources in the subscription. And then unregister the `Microsoft.Bing` resource provider in your subscription (you cannot unregister before deleting all resources). Learn more about unregistering here 
 
 ## Next steps
 
