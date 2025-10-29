@@ -259,7 +259,7 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
 
    + Change the API version to `2025-11-01-preview`.
 
-   + Add `ingestionParameters` as a container for the following child properties: `"embeddingModel"`, `"chatCompletionModel"`, `"ingestionSchedule"`.
+   + Add `ingestionParameters` as a container for the following child properties: `"embeddingModel"`, `"chatCompletionModel"`, `"ingestionSchedule"`, `"contentExtractionMode"`.
 
 1. Review your updates and then send the request to create the object. New generated objects are created for the indexer pipeline.
 
@@ -289,7 +289,8 @@ This procedure creates a new 2025-08-01-preview `azureBlob` knowledge source at 
                 },
                 "chatCompletionModel": null,
                 "disableImageVerbalization": false,
-                "ingestionSchedule": null
+                "ingestionSchedule": null,
+                "contentExtractionMode": "minimal"
             }
         }
     }
@@ -413,6 +414,8 @@ The response includes the full definition of the new object. For more informatio
 
      + Delete `attemptFastPath`. It no longer exists. Equivalent behavior is implemented through `retrievalReasoningEffort` set to minimum.
 
+   + Add `ingestionParameters` as a requirement for creating a 2025-11-01-preview azureBlob knowledge source.
+
 1. Review your updates and then send the request to create the object. New generated objects are created for the indexer pipeline.
 
    ```http
@@ -454,13 +457,19 @@ The response includes the full definition of the new object. For more informatio
 
 #### Update and test the retrieval for 2025-11-01-preview updates
 
-The retrieval request is modified for the 2025-11-01-preview. This section explains how to update your code.
+The retrieval request is modified for the 2025-11-01-preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). This section explains how to update your code.
+
+1. Change the `/agents/retrieve` endpoint to `/knowledgebases/retrieve`.
+
+1. Change the API version to `2025-11-01-preview`.
+
+1. No changes to `messages` are required.
+
+1. Modify `knowledgeSourceParams` to include any properties that were removed from the agent: `rerankerThreshold`, `alwaysQuerySource`, `includeReferenceSourceData`, `includeReferences`.
+
+1. Add `retrievalReasoningEffort` set to `minimum` if you were using `attemptFastPath`. If you were using `maxSubQueries`, equivalent behavior is invoked through the `retrievalReasoningEffort` setting.
 
 To test your knowledge base's output with a query, use the 2025-11-01-preview of [Knowledge Retrieval - Retrieve (REST API)](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
-
-The retrieve request is modified in the latest preview to support more shapes, including a simpler request that minimizes LLM processing. For more information about retrieval in this preview, see [Retrieve data using a knowledge base](agentic-retrieval-how-to-retrieve.md). 
-
-This variant is the most similar to the default 2025-08-01-preview experience.
 
 ```http
 ### Send a query to the knowledge base
@@ -491,7 +500,7 @@ If the response has a `200 OK` HTTP code, your knowledge base successfully retri
 
 To complete your migration, follow these cleanup steps:
 
-1. For Azure Blob knowledge sources only, update clients to use the new index. If your code automates indexing, update the indexer, data source, and skillset references.
+1. For Azure Blob knowledge sources only, update clients to use the new index. If your code automates indexing, update the references to the indexer, data source, and skillset.
 
 1. Replace all agent references with `knowledgeBases` in configuration files, code, scripts, and tests.
 
