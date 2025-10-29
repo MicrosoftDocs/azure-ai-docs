@@ -2065,7 +2065,7 @@ Base VAD-based turn detection.
 
 ##### RealtimeSemanticVad
 
-Azure semantic VAD (default variant).
+Semantic VAD (default variant).
 
 | Field | Type | Description |
 |-------|------|-------------|
