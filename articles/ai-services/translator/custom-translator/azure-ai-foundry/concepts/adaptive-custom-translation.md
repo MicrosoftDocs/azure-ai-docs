@@ -20,7 +20,8 @@ ms.topic: reference
 
 Adaptive custom translation (adaptCT) is a translation enhancement feature, designed to adapt and optimize large language model (LLM) outputs—such as GPT-4o deployed in Azure AI Foundry—using a small set of reference sentence pairs.
 
-AdaptCT APIs for dynamic domain adaptations allow you to upload between 5 and 30,000 prealigned bilingual segments. With this capability, you can quickly build a custom language pair dataset index that's ready in minutes. This index can then be used with [Azure AI Translator 2025-05-01-preview APIs](/azure/ai-services/translator/text-translation/preview/overview). Unlike traditional custom models that require large training datasets and separate deployment, AdaptCT uses few-shot learning to dynamically select relevant sentence pairs from the index at runtime. This capability enables on-the-fly adaptation of the LLM's output to match domain-specific terminology, context, and style. `Available via Azure AI Foundry.`
+AdaptCT lets you upload 5–10,000 pre‑aligned bilingual segment pairs (source+target). Each pair can contain up to 512 total characters (combined across both sides). The service builds a custom language‑pair dataset index in minutes, which you can then query with the [Azure AI Translator 2025-05-01-preview APIs](/azure/ai-services/translator/text-translation/preview/overview).
+Unlike traditional custom models that require large training sets and separate deployment, AdaptCT uses few‑shot retrieval at inference time: it selects relevant sentence pairs from your dataset index on the fly to adapt and optimize the LLM’s output toward your domain terminology, context, and style. `Availability: Azure AI Foundry.`
 
 ### Key differences
 *    **Custom translator**: Fine-tunes a dedicated translation model using your dataset; model is trained and deployed within ~48 hours.
@@ -73,7 +74,7 @@ Form more information about Azure resources, *see* [Azure resources for Azure AI
 
 ## API operations
 
-The Adaptive custom translation API is organized into three main operation categories([project operations](#project-operations-1), [document operations](#document-operations-1), and [dataset index operations](#dataset-index-operations-1)):
+The Adaptive custom translation API is organized into three main operation categories ([project operations](#project-operations-1), [document operations](#document-operations-1), and [dataset index operations](#dataset-index-operations-1)):
 
 ### Project operations
 * [Get All Projects](#get-all-projects)
@@ -88,7 +89,7 @@ The Adaptive custom translation API is organized into three main operation categ
 ### Dataset index operations
 * [Create Dataset Index](#create-dataset-index)
 * [Get Dataset Index](#get-dataset-index)
-* [Get All Dataset Indexes](#get-all-dataset-indexes))
+* [Get All Dataset Indexes](#get-all-dataset-indexes)
 * [Delete Dataset Index](#delete-dataset-index)
 
 ## Project operations
