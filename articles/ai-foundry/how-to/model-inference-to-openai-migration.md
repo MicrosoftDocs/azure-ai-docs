@@ -9,7 +9,7 @@ ms.date: 10/27/2025
 ms.author: mopeakande
 author: msakande
 ms.reviewer: achand
-reviewer: 
+reviewer: achandmsft
 ms.custom: migration
 zone_pivot_groups: openai-supported-languages
 ai-usage: ai-assisted
