@@ -25,6 +25,8 @@ items:
   href: ../../../agents/how-to/tools/bing-grounding.md
 - name: Grounding with Bing Custom Search
   href: ../../../agents/how-to/tools/bing-custom-search.md
+- name: Image generation (preview)
+  href: ../../agents/how-to/tools/image-generation.md
 - name: Logic apps
   href: ../../../agents/how-to/tools/logic-apps.md
 - name: Microsoft Fabric (preview)
