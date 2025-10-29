@@ -88,11 +88,16 @@ You can use either the Terraform [AzAPI Provider](/azure/developer/terraform/ove
 
 [!INCLUDE [terraform-apply-plan.md](~/azure-dev-docs-pr/articles/terraform/includes/terraform-apply-plan.md)]
 
-## Customize AI Foundry using Terraform with custom storage and security
+## Customize with security and compliance controls
 
-To help meet security and compliance requirements, AI Foundry lets you customize security configurations and bring your own storage resources. For example, when using the Agent service, you may opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
+To meet security and compliance requirements, you may customize AI Foundry with security configurations and by bringing your own storage resources. For example, when using the Agent service, you may opt to bring your own Azure CosmosDB database, Azure AI Search instance, and Azure Storage Account to store your threads and messages.
 
-See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform) repository with example Terraform configurations for the most common enterprise security configurations.
+Refer to the below repositories for advanced setup samples:
+
+- [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup-terraform) repository contains example Terraform configurations for the most common enterprise security configurations.
+- [Terraform Azure Verified Module (Cognitive Services account)](https://github.com/Azure/terraform-azurerm-avm-res-cognitiveservices-account) is a generic module set to manage the Azure resource type used by Azure AI Foundry, Azure OpenAI, Azure Speech, Azure Language.
+- [Terraform Azure Verified Pattern Module (AI Foundry)](https://registry.terraform.io/modules/Azure/avm-ptn-aiml-ai-foundry/azurerm/latest) is a reference implementation for Azure AI Foundry.
+- [Terraform Azure Verified Pattern Module (Azure AI and ML Landing Zone)](hhttps://registry.terraform.io/modules/Azure/avm-ptn-aiml-landing-zone/azurerm/latest) provides a reference for the set of resources typically created alongside Foundry for an end-to-end sample.
 
 ## Clean up resources
 
@@ -104,9 +109,7 @@ See the [Azure AI Foundry Samples](https://github.com/azure-ai-foundry/foundry-s
 
 ## Next steps
 
-> [!div class="nextstepaction"]
-> [See AzureRM reference docs for Azure AI Foundry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
-> [Terraform Azure Verified Module sample](https://github.com/Azure/terraform-azurerm-avm-res-cognitiveservices-account)
-> [Learn more about AzAPI provider](/azure/developer/terraform/overview-azapi-provider)
+- [See AzureRM reference docs for Azure AI Foundry](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/cognitive_account)
+- [Learn more about AzAPI provider](/azure/developer/terraform/overview-azapi-provider)
 
 
