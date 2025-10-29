@@ -4,7 +4,7 @@ items:
 - name: Azure AI Search
   href: ../../../agents/how-to/tools/azure-ai-search.md
 - name: Enable token limits with API gateways
-  href: ../configuration/enable-ai-api-management-gateway-portal.md
+  href: ../../configuration/enable-ai-api-management-gateway-portal.md
 - name: Azure Functions
   href: ../../../agents/how-to/tools/azure-functions.md
 - name: Browser automation (preview)
