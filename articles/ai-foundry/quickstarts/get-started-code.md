@@ -136,6 +136,7 @@ Follow along below or get the code:
     > The agent samples require the `AZURE_AI_MODEL` environment variable to be set to an OpenAI-compatible model, e.g. `gpt-4.1`, as not all models are supported for agent use cases, including tooling.
 
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your C# scripts.
+
 ::: moniker-end
 
 Follow along below or get the code:
@@ -145,7 +146,7 @@ Follow along below or get the code:
 
 # [TypeScript](#tab/typescript)
 
-:: moniker range="foundry-classic"
+::: moniker range="foundry-classic"
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
@@ -157,7 +158,7 @@ Follow along below or get the code:
     :::code language="plaintext" source="~/foundry-samples-main/samples/microsoft/typescript/mslearn-resources/quickstart/.env.template":::
 
 ::: moniker-end
-:: moniker range="foundry"
+::: moniker range="foundry"
 
 1. [Install Node.js and Azure CLI](../how-to/develop/install-cli-sdk.md?pivots=programming-language-javascript)
 1. Make sure to sign in using the CLI `az login` (or `az login --use-device-code`) command to authenticate before running your TypeScript scripts.
