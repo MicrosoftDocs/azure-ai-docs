@@ -102,16 +102,17 @@ Both SDKs provide similar access patterns to response data, including:
 
 Use this checklist to ensure a smooth migration:
 
-- [ ] Install the OpenAI v1 SDK for your programming language
-- [ ] Update authentication code (API key or Microsoft Entra ID)
-- [ ] Change endpoint URLs from `.services.ai.azure.com/models` to `.openai.azure.com/openai/v1/`
-- [ ] Update client initialization code
-- [ ] Always specify the `model` parameter with your deployment name
-- [ ] Update request method calls (`complete` → `chat.completions.create`)
-- [ ] Update streaming code if applicable
-- [ ] Update error handling to use OpenAI SDK exceptions
-- [ ] Test all functionality thoroughly
-- [ ] Update documentation and code comments
+> [!div class="checklist"]
+> * Install the OpenAI v1 SDK for your programming language
+> * Update authentication code (API key or Microsoft Entra ID)
+> * Change endpoint URLs from `.services.ai.azure.com/models` to `.openai.azure.com/openai/v1/`
+> * Update client initialization code
+> * Always specify the `model` parameter with your deployment name
+> * Update request method calls (`complete` → `chat.completions.create`)
+> * Update streaming code if applicable
+> * Update error handling to use OpenAI SDK exceptions
+> * Test all functionality thoroughly
+> * Update documentation and code comments
 
 ## Troubleshooting
 
