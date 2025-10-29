@@ -4,9 +4,9 @@ titleSuffix: Azure AI Foundry
 description: Learn how to deploy and use DeepSeek-R1 reasoning model in Azure AI Foundry Models with step-by-step guidance and code examples.
 monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 09/25/2025
+ms.date: 10/29/2025
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted

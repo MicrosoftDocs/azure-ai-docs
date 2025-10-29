@@ -1,11 +1,11 @@
 ---
 manager: nitinme
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: azure-ai-foundry-openai
 ms.topic: include
-ms.date: 1/21/2025
-ms.author: fasantia
-author: santiagxf
+ms.date: 10/29/2025
+ms.author: mopeakande
+author: msakande
 ---
 
 # [Python](#tab/python)
