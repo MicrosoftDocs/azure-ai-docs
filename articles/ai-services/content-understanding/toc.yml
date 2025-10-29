@@ -2,7 +2,7 @@ items:
   - name: Azure AI Content Understanding documentation
     href: index.yml
   - name: Overview
-    expanded: true
+    expanded: true       
     items:
       - name: What is Azure AI Content Understanding?
         displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
@@ -12,14 +12,17 @@ items:
       - name: What's new
         displayName: changelog, release, updates, previews
         href: whats-new.md
-      - name: Create an Azure AI Foundry resource
-        displayName: extract, text, images, OCR, optical character recognition
-        href: how-to/create-multi-service-resource.md
       - name: Service quotas and limits
         displayName: quota, tiers, throttle, max, adjustments, requests, support, ocr
         href: service-limits.md
       - name: Language and region support
         href: language-region-support.md
+      - name: CU Studio versus Foundry (TODO)
+        displayName: studio, foundry, differences, comparison, use cases, features
+        href: overview/cu-studio-versus-foundry.md
+      - name: Pricing explainer
+        displayName: pricing, cost, examples, billing
+        href: overview/pricing-explainer.md
       - name: Pricing
         href: https://azure.microsoft.com/pricing/details/content-understanding/
       - name: FAQ
@@ -35,36 +38,18 @@ items:
         - name: Use Content Understanding with a single file
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, standard, mode
           href: quickstart/use-ai-foundry.md
-        - name: Use Content Understanding with multiple files
+        - name: Use Content Understanding with multiple files (preview)
           displayName: quickstart, extract, text, images, OCR, optical character recognition, foundry, pro, mode
           href: quickstart/use-ai-foundry-pro-mode.md
     - name: Try Content Understanding REST API
       displayName: quickstart, extract, text, images, OCR, optical character recognition, rest, standard, mode
       href: quickstart/use-rest-api.md
-  - name: Modalities
-    items:
-      - name: Document
-        items:
-          - name: Overview
-            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-            href: document/overview.md
-          - name: Elements 🆕
-            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-            href: document/elements.md
-          - name: Markdown 🆕
-            displayName: document, text, images, video, audio, visual, structured, content, field, extraction
-            href: document/markdown.md
-          - name: Enrichments
-            href: document/enrichments.md
-      - name: Image
-        displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
-        href: image/overview.md
-      - name: Audio
-        displayName: speech, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
-        href: audio/overview.md
-      - name: Video
-        href: video/overview.md
-        displayName: video, audio, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+    - name: Classifier quickstart (TODO)
+      displayName: classifier, quickstart, API, prerequisites
+      href: quickstart/classifier-quickstart.md
+    - name: Agents with CU via MCP quickstart (TODO)
+      displayName: MCP, agents, tools, quickstart
+      href: quickstart/mcp-cu-agents-quickstart.md
   - name: Concepts
     items:
     - name: Analyzers
@@ -72,32 +57,89 @@ items:
         - name: Analyzer templates in Azure AI Foundry
           displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
           href: concepts/analyzer-templates.md
-        - name: Prebuilt analyzers 🆕
+        - name: Prebuilt analyzers
           displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
           href: concepts/prebuilt-analyzers.md
-        - name: "Modes: standard and pro 🆕"
-          displayName: standard, pro, modes, analyzers, optimization, fields
-          href: concepts/standard-pro-modes.md
         - name: Best practices
           displayName: best practices, analyzers, optimization, fields
           href: concepts/best-practices.md
-    - name: What are classifiers? 🆕
+        - name: "Modes: standard and pro (Preview)"
+          displayName: standard, pro, modes, analyzers, optimization, fields
+          href: concepts/standard-pro-modes.md
+    - name: What are classifiers?
       displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/classifier.md
-    - name: What is face detection?🆕
-      displayName: recognition, detection, analysis, identification, verification
-      href: face/overview.md
+    - name: In-Context Learning (ICL) (TODO)
+      displayName: ICL, in-context learning, few-shot, examples
+      href: concepts/in-context-learning.md
+    - name: Managed Identities and Entra ID (TODO)
+      displayName: managed identity, entra id, authentication, security
+      href: concepts/managed-identities-entra-id.md
+    - name: Modalities
+      items:
+        - name: Document
+          items:
+            - name: Overview
+              displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+              href: document/overview.md
+            - name: Elements
+              displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+              href: document/elements.md
+            - name: Markdown
+              displayName: document, text, images, video, audio, visual, structured, content, field, extraction
+              href: document/markdown.md
+            - name: Enrichments
+              href: document/enrichments.md
+        - name: Image
+          displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
+          href: image/overview.md
+        - name: AudioVideo (TODO)
+          items:
+            - name: Video Overview (TODO)
+              displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+              href: video/overview.md
+            - name: Audio Overview (TODO)
+              displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
+              href: audio/overview.md
+            - name: Elements (TODO)
+              displayName: audio, video, elements, schema, structure
+              href: video/elements.md
+            - name: Markdown (TODO)
+              displayName: audio, video, markdown, formatting
+              href: video/markdown.md
+        - name: What is face detection? (preview)
+          displayName: recognition, detection, analysis, identification, verification
+          href: face/overview.md
+
+  - name: How-to guides
+    items:
+
   - name: Tutorials
     items:
-      - name: Create a custom analyzer 🆕
+      - name: Create a custom analyzer
         displayName: custom, analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
         href: tutorial/create-custom-analyzer.md
-      - name: Build a face-data person directory 🆕
-        displayName: person, directory, search, index, vector
-        href: tutorial/build-person-directory.md
+      - name: Classifier tutorial - Split and route (TODO)
+        displayName: classifier, split, route, perPage, auto, analyzerId
+        href: tutorial/classifier-split-route.md
+      - name: In-Context Learning tutorial (TODO)
+        displayName: ICL, in-context learning, labeled samples, analyzer rebuilding
+        href: tutorial/in-context-learning.md
+      - name: MCP + CU Agents tutorial (TODO)
+        displayName: MCP, agents, workflows, tutorial
+        href: tutorial/mcp-cu-agents.md
+      - name: Migration from CU Preview to GA (TODO)
+        displayName: migration, preview, GA, API changes
+        href: how-to/migration-preview-to-ga.md
       - name: Build a retrieval-augmented solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
+      - name: Create an Azure AI Foundry resource
+        displayName: extract, text, images, OCR, optical character recognition
+        href: how-to/create-multi-service-resource.md
+      - name: Build a face-data person directory (preview)
+        displayName: person, directory, search, index, vector
+        href: tutorial/build-person-directory.md
   - name: Samples
     items:
       - name: Data extraction using Content Understanding

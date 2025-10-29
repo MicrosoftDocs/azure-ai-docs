@@ -1,5 +1,5 @@
 ---
-title: Azure AI Content Understanding face overview
+title: Azure AI Content Understanding face overview (preview)
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding face solutions.
 author: PatrickFarley 
@@ -95,5 +95,5 @@ Azure AI Content Understanding adheres to Microsoft's strict policies on custome
 
 ## Related content
 
-* Learn how to build a [**person directory**](../tutorial/build-person-directory.md).
+* Learn how to build a [**person directory**](../tutorial/build-person-directory.md) (preview).
 * Review code sample: [**person directory**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/build_person_directory.ipynb).

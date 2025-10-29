@@ -5,7 +5,7 @@ description: Learn how to use Azure OpenAI's new stateful Responses API.
 author: mrbullwinkle
 ms.author: mbullwin
 manager: nitinme
-ms.date: 09/19/2025
+ms.date: 10/10/2025
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: include
@@ -29,13 +29,24 @@ The Responses API is a new stateful API from Azure OpenAI. It brings together th
 The responses API is currently available in the following regions:
 
 - australiaeast
+- brazilsouth
+- canadacentral
+- canadaeast  
 - eastus
 - eastus2
 - francecentral
+- germanywestcentral
+- italynorth
 - japaneast
+- koreacentral
+- northcentralus
 - norwayeast
 - polandcentral
+- southafricanorth
+- southcentralus
+- southeastasia
 - southindia
+- spaincentral
 - swedencentral
 - switzerlandnorth
 - uaenorth
@@ -45,6 +56,7 @@ The responses API is currently available in the following regions:
 
 ### Model support
 
+- `gpt-5-pro` (Version: `2025-10-06`)
 - `gpt-5-codex`  (Version: `2025-09-11`)
 - `gpt-5` (Version: `2025-08-07`)
 - `gpt-5-mini` (Version: `2025-08-07`)
@@ -330,7 +342,7 @@ curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses/{res
 
 ## Delete response
 
-By default response data is retained for 30 days. To delete a response, you can use `response.delete"("{response_id})`
+By default response data is retained for 30 days. To delete a response, you can use `response.delete ("{response_id}")`
 
 ```python
 import os

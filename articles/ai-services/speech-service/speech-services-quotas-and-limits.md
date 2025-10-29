@@ -158,9 +158,6 @@ The limits in this table apply per Speech resource when you create a personal vo
 
 <sup>2</sup> The characters of lexicon file aren't charged. Only the lexicon elements in SSML are counted as billable characters. Refer to [billable characters](text-to-speech.md#billable-characters) to learn more.
 
-### Speaker recognition quotas and limits per resource
-
-Speaker recognition is limited to 20 transactions per second (TPS).
 
 ## Detailed description, quota adjustment, and best practices
 

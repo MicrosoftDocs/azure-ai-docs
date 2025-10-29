@@ -208,7 +208,7 @@ To enable face capabilities, you need to configure your analyzer with the approp
 }
 ```
 
-For face identification, you must first create a person directory and reference it in the analyzer. For details on how to create a person directory, see [How to build a person directory](../tutorial/build-person-directory.md).
+For face identification, you must first create a person directory and reference it in the analyzer. For details on how to create a person directory, see [How to build a person directory (preview)](../tutorial/build-person-directory.md).
 
 ##### Person properties
 

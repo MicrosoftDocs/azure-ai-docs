@@ -39,15 +39,39 @@ pip install azure-ai-evaluation
 
 ## Evaluate Azure AI agents
 
-If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents via our converter support for Azure AI agent threads and runs. We support this list of evaluators for Azure AI agent messages from our converter:
-
-### Evaluators supported for evaluation data converter
-
-- Quality: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, `Coherence`, `Fluency`
-- Safety: `CodeVulnerabilities`, `Violence`, `Self-harm`, `Sexual`, `HateUnfairness`, `IndirectAttack`, `ProtectedMaterials`.
+If you use [Foundry Agent Service](../../../ai-services/agents/overview.md), you can seamlessly evaluate your agents using our converter support for Azure AI agents and Semantic Kernel agents. The following evaluators are supported for evaluation data returned by the converter: `IntentResolution`, `ToolCallAccuracy`, `TaskAdherence`, `Relevance`, and `Groundedness`.
 
 > [!NOTE]
-> `ToolCallAccuracyEvaluator` only supports Foundry Agent's Function Tool evaluation (user-defined Python functions), but doesn't support other Tool evaluation. If an agent run invoked a tool other than Function Tool, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported.
+> If you are building other agents that output a different schema, you can convert them into the general openai-style [agent message schema](#agent-message-schema) and use the above evaluators.
+> More generally, if you can parse the agent messages into the [required data formats](./evaluate-sdk.md#data-requirements-for-built-in-evaluators), you can also all of our evaluators.
+
+### Model support for AI-assisted evaluators
+
+We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the LLM-judge depending on the evaluators:
+
+| Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
+|--|--|--|--|
+| `IntentResolution`, `TaskAdherence`, `ToolCallAccuracy`, `ResponseCompleteness`, `Coherence`, `Fluency`, `Similarity`, `Groundedness`, `Retrieval`, `Relevance`  | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| Other evaluators| Not Supported | Supported | -- |
+
+For complex evaluation that requires refined reasoning, we recommend a strong reasoning model like `4.1-mini` with a balance of reasoning performance and cost efficiency.
+
+
+
+#### Tool call evaluation support
+`ToolCallAccuracyEvaluator` supports evaluation in Azure AI Agent for the following tools:
+
+- File Search
+- Azure AI Search
+- Bing Grounding
+- Bing Custom Search
+- SharePoint Grounding
+- Code Interpreter
+- Fabric Data Agent 
+- OpenAPI   
+- Function Tool (user-defined tools)
+
+However, if a non-supported tool is used in the agent run, it outputs a "pass" and a reason that evaluating the invoked tool(s) isn't supported, for ease of filtering out these cases. It is recommended that you wrap non-supported tools as user-defined tools to enable evaluation.
 
 Here's an example that shows you how to seamlessly build and evaluate an Azure AI agent. Separately from evaluation, Azure AI Foundry Agent Service requires `pip install azure-ai-projects azure-identity`, an Azure AI project connection string, and the supported models.
 
@@ -168,12 +192,12 @@ run_id = run.id
 converted_data = converter.convert(thread_id, run_id)
 ```
 
-And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluators-supported-for-evaluation-data-converter). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
+And that's it! `converted_data` contains all inputs required for [these evaluators](#evaluate-azure-ai-agents). You don't need to read the input requirements for each evaluator and do any work to parse the inputs. All you need to do is select your evaluator and call the evaluator on this single run. We support AzureOpenAI or OpenAI [reasoning models](../../../ai-services/openai/how-to/reasoning.md) and non-reasoning models for the judge depending on the evaluators:
 
 | Evaluators | Reasoning Models as Judge (example: o-series models from Azure OpenAI / OpenAI) | Non-reasoning models as Judge (example: gpt-4.1, gpt-4o, etc.) | To enable |
 |--|--|--|--|
-| `Intent Resolution`, `Task Adherence`, `Tool Call Accuracy`, `Response Completeness`| Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
-| Other quality evaluators| Not Supported | Supported | -- |
+| All quality evaluators except for `GroundednessProEvaluator` | Supported | Supported | Set additional parameter `is_reasoning_model=True` in initializing evaluators |
+| `GroundednessProEvaluator` | User does not need to support model | User does not need to support model | -- |
 
 For complex tasks that require refined reasoning for the evaluation, we recommend a strong reasoning model like `o3-mini` or the o-series mini models released afterwards with a balance of reasoning performance and cost efficiency.
 
@@ -197,6 +221,7 @@ model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
+# example config for a reasoning model
 reasoning_model_config = {
     "azure_deployment": "o3-mini",
     "api_key": os.getenv("AZURE_API_KEY"),
@@ -204,10 +229,10 @@ reasoning_model_config = {
     "api_version": os.getenv("AZURE_API_VERSION"),
 }
 
-# Evaluators with reasoning model support
+# Evaluators you might want to use with reasoning models 
 quality_evaluators = {evaluator.__name__: evaluator(model_config=reasoning_model_config, is_reasoning_model=True) for evaluator in [IntentResolutionEvaluator, TaskAdherenceEvaluator, ToolCallAccuracyEvaluator]}
 
-# Other evaluators do not support reasoning models 
+# Other evaluators you might NOT want to use with reasoning models 
 quality_evaluators.update({ evaluator.__name__: evaluator(model_config=model_config) for evaluator in [CoherenceEvaluator, FluencyEvaluator, RelevanceEvaluator]})
 
 ## Using Azure AI Foundry (non-Hub) project endpoint, example: AZURE_AI_PROJECT=https://your-account.services.ai.azure.com/api/projects/your-project
@@ -223,7 +248,6 @@ for name, evaluator in quality_and_safety_evaluators.items():
     print(name)
     print(json.dumps(result, indent=4)) 
 
-
 ```
 
 #### Output format
@@ -233,12 +257,12 @@ AI-assisted quality evaluators provide a result for a query and response pair. T
 - `{metric_name}`: Provides a numerical score, on a Likert scale (integer 1 to 5) or a float between 0 and 1.
 - `{metric_name}_label`: Provides a binary label (if the metric naturally outputs a binary score).
 - `{metric_name}_reason`: Explains why a certain score or label was given for each data point.
+- `details`: Optional output containing debugging information about the quality of a single agent run.
 
 To further improve intelligibility, all evaluators accept a binary threshold (unless their outputs are already binary) and output two new keys. For the binarization threshold, a default is set, which the user can override. The two new keys are:
 
 - `{metric_name}_result`: A "pass" or "fail" string based on a binarization threshold.
 - `{metric_name}_threshold`: A numerical binarization threshold set by default or by the user.
-- `additional_details`: Contains debugging information about the quality of a single agent run.
 
 See the following example output for some evaluators:
 
@@ -316,19 +340,22 @@ If you're using agents outside Azure AI Foundry Agent Service, you can still eva
 
 Agents typically emit messages to interact with a user or other agents. Our built-in evaluators can accept simple data types such as strings in `query`, `response`, and `ground_truth` according to the [single-turn data input requirements](./evaluate-sdk.md#data-requirements-for-built-in-evaluators). However, it can be a challenge to extract these simple data types from agent messages, due to the complex interaction patterns of agents and framework differences. For example, a single user query can trigger a long list of agent messages, typically with multiple tool calls invoked.
 
-As illustrated in the following example, we enable agent message support specifically for the built-in evaluators `IntentResolutionEvaluator`, `ToolCallAccuracyEvaluator`, and `TaskAdherenceEvaluator` to evaluate these aspects of agentic workflow. These evaluators take `tool_calls` or `tool_definitions` as parameters unique to agents.
+As illustrated in the following example, we enable agent message support for the following built-in evaluators to evaluate these aspects of agentic workflow. These evaluators may take `tool_calls` or `tool_definitions` as parameters unique to agents when evaluating agents.
 
 | Evaluator       | `query`      | `response`      | `tool_calls`       | `tool_definitions`  |
 |----------------|---------------|---------------|---------------|---------------|
 | `IntentResolutionEvaluator`   | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | Doesn't apply | Optional: `list[ToolCall]`  |
 | `ToolCallAccuracyEvaluator`   | Required: `Union[str, list[Message]]` | Optional: `Union[str, list[Message]]`  | Optional: `Union[dict, list[ToolCall]]` | Required: `list[ToolDefinition]`  |
 | `TaskAdherenceEvaluator`         | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | Doesn't apply | Optional: `list[ToolCall]`  |
+| `GroundednessEvaluator`         | Required: `Union[str, list[Message]]` | Required: `Union[str, list[Message]]`  | Doesn't apply | Required: `list[ToolCall]`  |
 
 - `Message`: `dict` OpenAI-style message that describes agent interactions with a user, where the `query` must include a system message as the first message.
 - `ToolCall`: `dict` that specifies tool calls invoked during agent interactions with a user.
 - `ToolDefinition`: `dict` that describes the tools available to an agent.
 
 For `ToolCallAccuracyEvaluator`, either `response` or  `tool_calls` must be provided.
+
+`GroundednessEvaluator` requires `tool_definitions` to be provided to evaluate the groundedness of the agent's responses with respect to the tool outputs the agent receives.
 
 Following are examples of the two data formats: simple agent data, and agent messages. However, due to the unique requirements of these evaluators, we recommend referring to the [Sample notebooks](#sample-notebooks), which illustrate the possible input paths for each evaluator.  
 

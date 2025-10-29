@@ -18,7 +18,7 @@ recommendations: false
 
 Azure OpenAI GPT Realtime API for speech and audio is part of the GPT-4o model family that supports low-latency, "speech in, speech out" conversational interactions. 
 
-You can use the Realtime API via WebRTC or WebSocket to send audio input to the model and receive audio responses in real time. 
+You can use the Realtime API via WebRTC, SIP, or WebSocket to send audio input to the model and receive audio responses in real time. 
 
 Follow the instructions in this article to get started with the Realtime API via WebSockets. Use the Realtime API via WebSockets in server-to-server scenarios where low latency isn't a requirement.
 
@@ -28,12 +28,10 @@ Follow the instructions in this article to get started with the Realtime API via
 ## Supported models
 
 The GPT real-time models are available for global deployments in [East US 2 and Sweden Central regions](../concepts/models.md#global-standard-model-availability).
-- `gpt-4o-mini-realtime-preview` (2024-12-17)
-- `gpt-4o-realtime-preview` (2024-12-17)
-- `gpt-realtime` (version 2025-08-28)
-- `gpt-realtime-mini` (version 2025-10-06)
-
-You should use API version `2025-04-01-preview` in the URL for the Realtime API. 
+- `gpt-4o-mini-realtime-preview` (`2024-12-17`)
+- `gpt-4o-realtime-preview` (`2024-12-17`)
+- `gpt-realtime` (`2025-08-28`)
+- `gpt-realtime-mini` (`2025-10-06`)
 
 For more information about supported models, see the [models and versions documentation](../concepts/models.md#audio-models).
 
@@ -56,24 +54,24 @@ You can construct a full request URI by concatenating:
 - The secure WebSocket (`wss://`) protocol.
 - Your Azure OpenAI resource endpoint hostname, for example, `my-aoai-resource.openai.azure.com`
 - The `openai/realtime` API path.
-- An `api-version` query string parameter for a supported API version such as `2024-12-17`
 - A `deployment` query string parameter with the name of your `gpt-4o-realtime-preview`, `gpt-4o-mini-realtime-preview`, or `gpt-realtime` model deployment.
+- - **(Preview version only)** An `api-version` query string parameter for a supported API version such as `2025-04-01-preview`
 
 The following example is a well-constructed `/realtime` request URI:
 
-#### [preview version](#tab/preview)
+#### [GA version](#tab/ga)
+
+```http
+wss://my-eastus2-openai-resource.openai.azure.com/openai/v1/realtime?model=gpt-realtime-deployment-name
+```
+
+#### [Preview version](#tab/preview)
 
 ```http
 wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-04-01-preview&deployment=gpt-4o-mini-realtime-preview-deployment-name
 ```
-#### [GA version](#tab/ga)
-
-```http
-wss://my-eastus2-openai-resource.openai.azure.com/openai/realtime?api-version=2025-08-28&model=gpt-realtime-deployment-name
-```
 
 ---
-
 
 To authenticate:
 - **Microsoft Entra** (recommended): Use token-based authentication with the `/realtime` API for an Azure OpenAI resource with managed identity enabled. Apply a retrieved authentication token using a `Bearer` token with the `Authorization` header.

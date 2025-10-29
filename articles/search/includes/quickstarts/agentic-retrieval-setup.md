@@ -4,7 +4,7 @@ author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 08/26/2025
+ms.date: 10/16/2025
 ---
 
 ## Configure access
@@ -81,24 +81,10 @@ To get the endpoints for this quickstart, select both of the following tabs.
 
 ## Deploy models
 
-To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure AI Foundry resource:
+To use agentic retrieval, you must deploy two Azure OpenAI models to your Azure AI Foundry project:
 
-+ An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any embedding model that supports the `text-embedding` task.
++ An embedding model for text-to-vector conversion. This quickstart uses `text-embedding-3-large`, but you can use any `text-embedding` model.
 
-+ A [supported chat completion model](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models) for query planning and answer generation. This quickstart uses `gpt-5-mini`. Optionally, you can use one model for query planning and another model for answer generation, but this quickstart uses the same model for simplicity.
++ An LLM for query planning and answer generation. This quickstart uses `gpt-5-mini`, but you can use any [supported LLM for agentic retrieval](../../agentic-retrieval-how-to-create-knowledge-base.md#supported-models).
 
-To deploy the Azure OpenAI models:
-
-1. Sign in to the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs) and select your Azure AI Foundry resource.
-
-1. From the left pane, select **Model catalog**.
-
-1. Select **text-embedding-3-large**, and then select **Use this model**.
-
-1. Enter a deployment name. To simplify your code, we recommend **text-embedding-3-large**.
-
-1. Leave the default settings.
-
-1. Select **Deploy**.
-
-1. Repeat the previous steps, but this time, deploy **gpt-5-mini** from the model catalog.
+For deployment instructions, see [Deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).

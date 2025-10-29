@@ -3,7 +3,7 @@ title: Azure OpenAI in Azure AI Foundry Models
 author: mrbullwinkle #ChrisHMSFT
 ms.author: mbullwin #chrhoder#
 manager: nitinme
-ms.date: 09/15/2025
+ms.date: 10/17/2025
 ms.service: azure-ai-foundry
 ms.topic: include
 ---
@@ -38,8 +38,9 @@ ms.topic: include
 | `gpt-5-chat` (2025-08-07) |  See the [models table](#model-summary-table-and-region-availability).|
 | `gpt-5-chat` (2025-10-03) | East US2 (Global Standard) and Sweden Central (Global Standard) |
 | `gpt-5-codex` (2025-09-11) | East US2 (Global Standard) and Sweden Central (Global Standard)  |
+| `gpt-5-pro` (2025-10-06) | East US2 (Global Standard) and Sweden Central (Global Standard)  |
 
-- **[Registration is required for access to the gpt-5 & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
+- **[Registration is required for access to the gpt-5-pro, gpt-5, & gpt-5-codex models](https://aka.ms/oai/gpt5access).**
 
 - `gpt-5-mini`, `gpt-5-nano`, and `gpt-5-chat` do not require registration.
 
@@ -53,6 +54,7 @@ ms.topic: include
 | `gpt-5-chat` (2025-08-07)<br>**Preview** | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
 | `gpt-5-chat` (2025-10-03)<br>**Preview**<sup>1<sup/> | - Chat Completions API. <br> - [Responses API](../how-to/responses.md). <br> - **Input**: Text/Image <br> - **Output**: Text only  | 128,000 | 16,384 | September 30, 2024 |
 | `gpt-5-codex` (2025-09-11) | - [Responses API](../how-to/responses.md) only. <br> - **Input**: Text/Image <br> - **Output**: Text only  <br> - Structured outputs.<br> - Text and image processing. <br> - Functions, tools, and parallel tool calling. <br> - [Full summary of capabilities](../how-to/reasoning.md)<br> - Optimized for [Codex CLI & Codex VS Code extension](../how-to/codex.md)  | 400,000<br><br>Input: 272,000<br>Output: 128,000 | 128,000 | - |
+| `gpt-5-pro` (2025-10-06) | - [Reasoning](../how-to/reasoning.md) <br> - [Responses API](../how-to/responses.md). <br> - Structured outputs.<br> - Text and image processing. <br> - Functions and tools <br> - [Full summary of capabilities](../how-to/reasoning.md).  | 400,000<br><br>Input: 272,000<br>Output: 128,000  | 128,000 | September 30, 2024 |
 
 > [!NOTE]
 > <sup>1</sup> `gpt-5-chat` version `2025-10-03` introduces a significant enhancement focused on emotional intelligence and mental health capabilities. This upgrade integrates specialized datasets and refined response strategies to improve the model’s ability to:
@@ -290,8 +292,8 @@ To request access, go to [`gpt-image-1` limited access model application](https:
 | Model | Region |
 |---|---|
 |`dall-e-3` | East US<br>Australia East<br>Sweden Central|
-|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)|
-|`gpt-image-1-mini` | EastUS (Global Standard) <br> NorthCentralUS (Global Standard) |
+|`gpt-image-1` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard)|
+|`gpt-image-1-mini` | West US 3 (Global Standard) <br> East US 2 (Global Standard) <br> UAE North (Global Standard) <br> Poland Central (Global Standard)<br>Sweden Central (Global Standard) |
 
 
 ## Video generation models
@@ -302,7 +304,9 @@ Sora is an AI model from OpenAI that can create realistic and imaginative video 
 
 | Model | Region |
 |---|---|
-|`sora` | East US 2 (Global Standard)<br>Sweden Central(Global Standard)|
+|`sora` | East US 2 (Global Standard)<br>Sweden Central (Global Standard)  |
+| `sora-2` | East US 2 (Global Standard)<br>Sweden Central (Global Standard) |
+
 
 ## Audio models
 
@@ -340,6 +344,8 @@ The audio models via the `/audio` API can be used for speech to text, translatio
 | `whisper` | General-purpose speech recognition model. | 25 MB |
 | `gpt-4o-transcribe` | Speech-to-text model powered by GPT-4o. | 25 MB|
 | `gpt-4o-mini-transcribe` | Speech-to-text model powered by GPT-4o mini. | 25 MB|
+| `gpt-4o-transcribe-diarize` | Speech-to-text model with automatic speech recognition. | 25 MB|
+
 
 #### Speech translation models
 
