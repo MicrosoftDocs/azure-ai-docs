@@ -1,6 +1,6 @@
 ---
 title: "Quickstart: Detect Personally Identifying Information (PII) in text"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this quickstart to start using the PII detection API.
 author: laujan
 manager: nitinme

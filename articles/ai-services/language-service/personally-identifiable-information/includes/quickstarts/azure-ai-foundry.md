@@ -10,7 +10,7 @@ ms.custom: language-service-pii
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects)
 
 ### [#tab/Azure AI Foundry (classic)]
 

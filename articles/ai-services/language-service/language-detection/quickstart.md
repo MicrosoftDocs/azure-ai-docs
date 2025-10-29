@@ -1,12 +1,12 @@
 ---
 title: "Quickstart: Use the Language Detection client library"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this quickstart to start using Language Detection.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

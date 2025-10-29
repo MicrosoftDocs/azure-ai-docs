@@ -3,13 +3,13 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 02/16/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ---
 
 ## Prerequisites
 
-* [Create a Project in Foundry in the Azure AI Foundry Portal](../../../../../ai-foundry/how-to/create-projects.md)
+* [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects)
 
 ### [#tab/Azure AI Foundry (classic)]
 
