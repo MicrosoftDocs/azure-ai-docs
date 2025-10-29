@@ -39,7 +39,7 @@ Decide whether to:
 
 When you create a new instance from the AI Foundry UI flow, the SKU defaults to Basic v2 (free for the first 30 days). [TO VERIFY: Pricing confirmation and legal wording]
 
-## Enable AI Gateway
+## Create an AI Gateway
 
 Follow these steps in the Azure AI Foundry UI to enable AI Gateway for a resource.
 
@@ -47,20 +47,13 @@ Follow these steps in the Azure AI Foundry UI to enable AI Gateway for a resourc
 1. Go to your Azure AI Foundry resource.
 1. Select **Operate** > **Admin console**.
 1. Open the **AI Gateway** tab.
+1. Select **Add AI Gateway**.
+1. Select the AI Foundry resource you want to connect with the gateway.
 1. Select **Create new** or **Use existing** APIM.
 1. If creating new, review the [Basic v2 SKU limitation and trial cost details](#limitations).
-1. Confirm the APIM instance selection.
-1. Finish setup; provisioning or association completes in the UI.
+1. Name the gateway, and select **Add** to create or associate the APIM instance.
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="AI Gateway tab in the Admin console showing options to create or select an API Management instance.":::
-
-## Associate API Management with resource
-
-After selection or creation:
-1. Ensure the APIM instance displays as linked in the **AI Gateway** tab.
-1. Proceed to configure token limits.
-
-If association fails, see Troubleshooting.
 
 ## Configure token limits
 
@@ -71,6 +64,7 @@ You can configure token limits for specific model deployments within your projec
 1. Select *+ Add limit** to create a new limit for a model deployment.
 1. Select the project and deployment you want to restrict then, and enter a value for **Limit (Token-per-minute)**.
 1. Select **Create** to save your changes, then.
+1. You can 
 
 Expected result: Subsequent requests that exceed the TPM threshold receive rate-limit responses. Requests that exceed the quota produce quota-exceeded responses. [TO VERIFY: Response codes or messages]
 
