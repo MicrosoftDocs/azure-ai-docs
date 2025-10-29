@@ -10,110 +10,216 @@ author: santiagxf
 
 # [Python](#tab/python)
 
-Install the package `azure-ai-inference` using your package manager, like pip:
+Install the package `openai` using your package manager, like pip:
 
 ```bash
-pip install azure-ai-inference
+pip install --upgrade openai
 ```
 
-Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
+The following example shows how to create a client to consume chat completions and then generate and print out the response:
+
 
 ```python
-import os
-from azure.ai.inference import ChatCompletionsClient
-from azure.core.credentials import AzureKeyCredential
 
-client = ChatCompletionsClient(
-    endpoint="https://<resource>.services.ai.azure.com/models",
-    credential=AzureKeyCredential(os.environ["AZURE_INFERENCE_CREDENTIAL"]),
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
 )
-```
 
-Explore our [samples](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/ai/azure-ai-inference/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/python/reference) to get yourself started.
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+response = client.chat.completions.create(
+  model="DeepSeek-R1", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "How many languages are in the world?"}
+  ]
+)
+
+#print(response.choices[0].message)
+print(response.model_dump_json(indent=2))
+```
 
 # [JavaScript](#tab/javascript)
 
-Install the package `@azure-rest/ai-inference` using npm:
+First install the Azure Identity client library before you can use DefaultAzureCredential:
+
+Install the package `@azure/identity` using npm:
 
 ```bash
-npm install @azure-rest/ai-inference
+npm install @azure/identity
 ```
 
-Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
+To authenticate the `OpenAI` client, use the `getBearerTokenProvider` function from the `@azure/identity` package. This function creates a token provider that `OpenAI` uses internally to obtain tokens for each request. 
+
+The following code creates the token provider, creates a client to consume chat completions, and generates the response:
 
 ```javascript
-import ModelClient from "@azure-rest/ai-inference";
-import { isUnexpected } from "@azure-rest/ai-inference";
-import { AzureKeyCredential } from "@azure/core-auth";
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
 
-const client = new ModelClient(
-    "https://<resource>.services.ai.azure.com/models", 
-    new AzureKeyCredential(process.env.AZURE_INFERENCE_CREDENTIAL)
-);
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+
+const client = new OpenAI({
+    baseURL: "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const messages = [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Tell me about the attention is all you need paper' }
+];
+
+// Make the API request with top-level await
+const result = await client.chat.completions.create({ 
+    messages, 
+    model: 'DeepSeek-R1', // Your model deployment name
+    max_tokens: 100 
+});
+
+// Print the full response
+console.log('Full response:', result);
+
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
 ```
-
-Explore our [samples](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/ai/ai-inference-rest/samples) and read the [API reference documentation](/javascript/api/@azure-rest/ai-inference) to get yourself started.
 
 # [C#](#tab/csharp)
 
-Install the Azure AI inference library with the following command:
+First install the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ) before you can use DefaultAzureCredential:
+
 
 ```dotnetcli
-dotnet add package Azure.AI.Inference --prerelease
+dotnet add package Azure.Identity
 ```
 
-Import the following namespaces:
+Use the desired credential type from the library. For example, [`DefaultAzureCredential`](/dotnet/api/azure.identity.defaultazurecredential?view=azure-dotnet&preserve-view=true). Then create the token provider, create a client to consume chat completions, and generate the response.
 
 ```csharp
-using Azure;
 using Azure.Identity;
-using Azure.AI.Inference;
-```
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel.Primitives;
 
-Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
+#pragma warning disable OPENAI001
 
-```csharp
-ChatCompletionsClient client = new ChatCompletionsClient(
-    new Uri("https://<resource>.services.ai.azure.com/models"),
-    new AzureKeyCredential(Environment.GetEnvironmentVariable("AZURE_INFERENCE_CREDENTIAL"))
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "DeepSeek-R1", // Replace with your model deployment name.
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions() { 
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+   }
 );
+
+ChatCompletion completion = client.CompleteChat("Tell me about the attention is all you need paper");
+
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
 ```
 
-Explore our [samples](https://aka.ms/azsdk/azure-ai-inference/csharp/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/csharp/reference) to get yourself started.
 
 # [Java](#tab/java)
 
-Add the package to your project:
+Authentication with Microsoft Entra ID requires some initial setup:
+
+Add the Azure Identity package:
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
-    <artifactId>azure-ai-inference</artifactId>
-    <version>1.0.0-beta.1</version>
+    <artifactId>azure-identity</artifactId>
+    <version>1.18.0</version>
 </dependency>
 ```
 
-Then, you can use the package to consume the model. The following example shows how to create a client to consume chat completions:
+After setup, you can choose which type of credential from `azure.identity` to use. As an example, `DefaultAzureCredential` can be used to authenticate the client.
+
+Authentication is easiest using `DefaultAzureCredential`. It finds the best credential to use in its running environment.
 
 ```java
-ChatCompletionsClient client = new ChatCompletionsClientBuilder()
-    .credential(new AzureKeyCredential("{key}"))
-    .endpoint("https://<resource>.services.ai.azure.com/models")
-    .buildClient();
+Credential tokenCredential = BearerTokenCredential.create(
+        AuthenticationUtil.getBearerTokenSupplier(
+                new DefaultAzureCredentialBuilder().build(),
+                "https://cognitiveservices.azure.com/.default"));
+OpenAIClient client = OpenAIOkHttpClient.builder()
+        .baseUrl("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/")
+        .credential(tokenCredential)
+        .build();
 ```
 
-Explore our [samples](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/ai/azure-ai-inference/src/samples) and read the [API reference documentation](https://aka.ms/azsdk/azure-ai-inference/java/reference) to get yourself started.
+For more information about Azure OpenAI keyless authentication, see [Use Azure OpenAI without keys](/azure/developer/ai/keyless-connections?tabs=java%2Cazure-cli).
 
+**Chat completion**:
+
+```java
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.ChatModel;
+import com.openai.models.chat.completions.ChatCompletion;
+import com.openai.models.chat.completions.ChatCompletionCreateParams;
+
+public class OpenAITest {
+    public static void main(String[] args) {
+        String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+        String modelDeploymentName = "DeepSeek-R1"; //replace with you model deployment name
+
+        try {
+            OpenAIClient client = OpenAIOkHttpClient.builder()
+                    .baseUrl(resourceName)
+                    // Set the Azure Entra ID
+                    .credential(BearerTokenCredential.create(AuthenticationUtil.getBearerTokenSupplier(
+                        new DefaultAzureCredentialBuilder().build(), "https://cognitiveservices.azure.com/.default")))
+                    .build();
+
+           ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
+              .addUserMessage("Explain what the bitter lesson is?")
+              .model(modelDeploymentName)
+              .build();
+           ChatCompletion chatCompletion = client.chat().completions().create(params);
+        }
+    }
+}
+```
 
 # [REST](#tab/rest)
 
-Use the reference section to explore the API design and which parameters are available. For example, the reference section for [Chat completions](../../model-inference/reference/reference-model-inference-chat-completions.md) details how to use the route `/chat/completions` to generate predictions based on chat-formatted instructions. Notice that the path `/models` is included to the root of the URL:
 
-__Request__
-
-```HTTP/1.1
-POST https://<resource>.services.ai.azure.com/models/chat/completions?api-version=2024-05-01-preview
-api-key: <api-key>
-Content-Type: application/json
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "DeepSeek-R1",
+      "messages": [
+      {
+        "role": "system",
+        "content": "You are a helpful assistant."
+      },
+      {
+        "role": "user",
+        "content": "Explain what the bitter lesson is?"
+      }
+    ]
+  }'
 ```
+
+To retrieve a response:
+
+```bash
+curl -X GET https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions/{response_id} \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN"
+```
+
 ---

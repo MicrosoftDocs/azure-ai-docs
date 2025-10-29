@@ -868,15 +868,15 @@ import com.openai.models.chat.completions.ChatCompletionCreateParams;
 
 public class OpenAITest {
     public static void main(String[] args) {
-        // Get API key from environment variable for security
-        String apiKey = System.getenv("OPENAI_API_KEY");
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
         String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
                     .baseUrl(resourceName)
-                    .apiKey(apiKey)
+                    // Set the Azure Entra ID
+                    .credential(BearerTokenCredential.create(AuthenticationUtil.getBearerTokenSupplier(
+                        new DefaultAzureCredentialBuilder().build(), "https://cognitiveservices.azure.com/.default")))
                     .build();
 
            ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
