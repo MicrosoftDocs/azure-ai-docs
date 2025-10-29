@@ -178,7 +178,7 @@ The following table summarizes the different preset styles according to differen
    :::image type="content" source="../../../../media/custom-voice/cnv-train-neural-hd-voice.png" alt-text="Screenshot that shows how to select neural HD voice training.":::
 
    > [!NOTE]
-   > HD voices are only available in regions that support *High performance* type. For information about regions where the *High performance* endpoint type is supported, see the footnotes in the [regions](../../../../regions.md#regions) table.
+   > HD voices are only available in regions that support *High performance* type. For information about regions where the *High performance* endpoint type is supported, see the *Custom voice high performance endpoint* column in the *Text to speech* tab of the [regions](../../../../regions.md#regions) table.
 
 1. Select the data that you want to use for training. Duplicate audio names are removed from the training. Make sure that the data you select doesn't contain the same audio names across multiple *.zip* files.
 
