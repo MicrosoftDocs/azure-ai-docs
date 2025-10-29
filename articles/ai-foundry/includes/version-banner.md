@@ -21,7 +21,7 @@ ms.custom: include
 
 ::: moniker range="foundry"
 > [!NOTE]
-> This document refers to the [Azure AI Foundry (new)](https://aka.ms/nexgen-canary) portal, which supports only [Foundry projects](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#project-types), providing streamlined access to models, agents, and tools. Articles use a preview version of the Azure AI Foundry Projects client library. 
+> This document refers to the [Azure AI Foundry (new)](https://aka.ms/nexgen-canary) portal, which supports only [Foundry projects](../what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#project-types), providing streamlined access to models, agents, and tools. Code examples, if present, use preview versions of client libraries.
 >
 > 🔍 Look for :::image type="icon" source="../default/media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
 >
