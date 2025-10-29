@@ -53,7 +53,7 @@ Follow these steps in the Azure AI Foundry UI to enable AI Gateway for a resourc
 1. If creating new, review the [Basic v2 SKU limitation and trial cost details](#limitations).
 1. Name the gateway, and select **Add** to create or associate the APIM instance.
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="AI Gateway tab in the Admin console showing options to create or select an API Management instance.":::
+:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png":::
 
 ## Configure token limits
 
@@ -68,7 +68,7 @@ You can configure token limits for specific model deployments within your projec
 
 Expected result: Subsequent requests that exceed the TPM threshold receive rate-limit responses. Requests that exceed the quota produce quota-exceeded responses. [TO VERIFY: Response codes or messages]
 
-:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Project settings panel showing input fields for tokens-per-minute and total token quota limits.":::
+:::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Project settings panel showing input fields for tokens-per-minute and total token quota limits." lightbox="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png":::
 
 ## Verify enforcement
 
