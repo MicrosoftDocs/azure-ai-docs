@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
 ms.custom: UpdateFrequency5, deploy, cliv1, sdkv1, FY25Q1-Linter
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: bozhlin
 ms.date: 09/09/2024
 # Customer Intent: As a data scientist, I want to deploy my machine learning model to Azure Kubernetes Service so that I can scale my model to meet production demands.

@@ -1,53 +1,44 @@
----
-title: Create an Azure AI services resource
+﻿---
+title: Create an AI Foundry resource
 titleSuffix: Azure AI services
-description: Create and manage an Azure AI services resource.
-keywords: Cognitive
-author: eric-urban
-manager: nitinme
+description: Create and manage an AI Foundry resource.
+author: jonburchel
+ms.author: jburchel
+ms.date: 10/07/2025
 ms.service: azure-ai-services
-ms.custom: devx-track-azurecli, devx-track-azurepowershell, build-2024, ignite-2024
 ms.topic: quickstart
-ms.date: 2/7/2025
-ms.author: eur
+ms.custom:
+  - devx-track-azurecli
+  - devx-track-azurepowershell
+  - build-2024
+  - ignite-2024
+  - build-2025
+  - ai-assisted
+ai-usage: ai-assisted
 zone_pivot_groups: programming-languages-portal-cli-ps
 ---
 
-# Quickstart: Create an Azure AI services resource
+# Quickstart: Set up your first AI Foundry resource
 
-Learn how to create and manage an Azure AI services resource. An Azure AI services resource allows you to access multiple Azure AI services with a single set of credentials. 
+In this quickstart, you create an Azure AI Foundry resource and verify access.
 
-You can access Azure AI services through two different resource kinds: 
+Learn how to create and manage an Azure AI Foundry resource. It's the [primary Azure resource type](../ai-foundry/concepts/resource-types.md) for building, deploying, and managing generative AI models and applications including agents in Azure.
 
-* Azure AI services multi-service resource:
-    * Access multiple Azure AI services with a single set of credentials.
-    * Consolidates billing from the services you use.
-* Single-service resource such as Face and Vision:
-    * Access a single Azure AI service with a unique set of credentials for each service created. 
-    * Most Azure AI services offer a free tier to try it out.
+An Azure resource is required to use and manage services in Azure. It defines the scope for configuring access, security such as networking, billing, and monitoring. 
 
-Azure AI services are Azure [resources](/azure/azure-resource-manager/management/manage-resources-portal) that you create under your Azure subscription. After you create a resource, you can use the keys and endpoint generated to authenticate your applications.
+Azure AI Foundry resource is the next version and renaming of former "Azure AI Services". It provides the application environment for hosting your agents, model deployments, evaluations, and more.
 
-## Supported services with a multi-service resource
+An Azure AI Foundry resource can organize the work for multiple use cases, and is [typically shared](../ai-foundry/concepts/planning.md) between a team of developers that work on use cases in a similar business or data domain. Projects act as folders to group related work. 
 
-The multi-service resource enables access to the following Azure AI services with a single set of credentials. Some services are available via the multi-service resource and single-service resource.
+:::image type="content" source="../ai-foundry/media/how-to/projects/projects-multi-setup.png" alt-text="Diagram showing Azure AI Foundry resource containing multiple projects, each with deployments and connections.":::
 
-> [!TIP]
-> We recommend whenever possible to use the **Azure AI services** resource (where the API kind is `AIServices`) to access multiple Azure AI services with a single set of credentials. For services not available via the multi-service resource (such as Face and Custom Vision), you can create a single-service resource.
+Looking to configure AI Foundry with advanced security settings? See [advanced AI Foundry creation options](../ai-foundry/how-to/create-resource-template.md)
 
-| Service | Description | Kind (via API) |
-| --- | --- | --- |
-| ![Azure icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure.svg) [Azure AI Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. | `AIServices` |
-| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI model catalog. | `AIServices` |
-| ![Azure OpenAI Service icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](./openai/index.yml) | Perform a wide variety of natural language tasks. | `AIServices`<br/>`OpenAI` |
-| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | `AIServices`<br/>`ContentSafety` |
-| ![Custom Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/custom-vision.svg) [Custom Vision](./custom-vision-service/index.yml) | Customize image recognition for your business. | `CustomVision.Prediction` (Prediction only)<br/>`CustomVision.Training` (Training only) |
-| ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. | `AIServices`<br/>`FormRecognizer` |
-| ![Face icon](~/reusable-content/ce-skilling/azure/media/ai-services/face.svg) [Face](./computer-vision/overview-identity.md) | Detect and identify people and emotions in images. | `Face` |
-| ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. | `AIServices`<br/>`TextAnalytics` |
-| ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. | `AIServices`<br/>`Speech` |
-| ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | `AIServices`<br/>`TextTranslation` |
-| ![Vision icon](~/reusable-content/ce-skilling/azure/media/ai-services/vision.svg) [Vision](./computer-vision/index.yml) | Analyze content in images and videos. | `AIServices` (Training and Prediction)<br/>`ComputerVision` |
+Looking to use [Azure AI Search skills?](../search/tutorial-skillset.md) See [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md).
+
+## Create your first resource
+
+To create your first resource, with basic Azure settings, follow the below steps using either Azure portal, Azure CLI, or PowerShell.
 
 ::: zone pivot="azportal"
 
@@ -67,40 +58,75 @@ The multi-service resource enables access to the following Azure AI services wit
 
 ::: zone-end
 
-## Azure AI services resource for Azure AI Search skills
+## Access your resource
 
-Azure AI Search skills don't support the multi-service resource as described previously in this article. You must create a different kind of Azure AI services resource for Azure AI Search skills. 
+With your first resource created, you can access it via [Foundry Portal for UX prototyping](https://ai.azure.com/), [Foundry SDK for development](), or via [Azure portal for administrative management](https://portal.azure.com).
 
-The multi-service resource that you can use with Azure AI Search skills is listed under **Azure AI services** > **Azure AI services multi-service account** in the portal. Look for the logo as shown here:
+### Verify your setup
 
-:::image type="content" source="./media/cognitive-services-resource-portal.png" alt-text="Screenshot of the Azure AI services multi-service account in the Azure portal." lightbox="./media/cognitive-services-resource-portal.png":::
+You can verify that your resource is set up correctly by using the Azure AI Projects SDK to connect and list projects. This minimal example confirms authentication and access.
+
+```python
+# Install the SDK: pip install azure-ai-projects azure-identity
+from azure.ai.projects import AIProjectClient
+from azure.identity import DefaultAzureCredential
+
+# Replace with your actual values from Azure portal
+client = AIProjectClient(
+    subscription_id="<your-subscription-id>",
+    resource_group_name="<your-resource-group>",
+    project_name="<your-project-name>",
+    credential=DefaultAzureCredential()
+)
+
+# List projects to verify connection
+projects = client.projects.list()
+print(f"Successfully connected. Found {len(list(projects))} projects.")
+```
+
+**Expected output**: `Successfully connected. Found X projects.` where X is the number of projects in your resource.
+
+**References**:
+- [AIProjectClient class](/python/api/azure-ai-projects/azure.ai.projects.aiprojectclient)
+- [DefaultAzureCredential class](/python/api/azure-identity/azure.identity.defaultazurecredential)
+
+## Grant or obtain developer permissions
+
+[Azure Role Based Access Control](/azure/role-based-access-control/resource-provider-operations) (RBAC) differentiates permissions between management and development actions. To build with Foundry, your user account must be assigned developer permissions ("data actions"). You can either use one of the built-in RBAC roles, or use a custom RBAC role.
+
+Built-in Azure RBAC developer roles for Foundry include:
+
+|Role|Description|
+|---|---|
+|Azure AI project manager|Grants development permissions, and project management permissions. Can invite other users to collaborate on a project as 'Azure AI user'.|
+|Azure AI user|Grants development permissions.|
+
+Only authorized users, typically the Azure subscription or resource group owner, can assign a role via either [Azure portal] or [AI Foundry Portal via management center]. [Learn more about role-based access control](../ai-foundry/concepts/rbac-azure-ai-foundry.md).
 
 > [!IMPORTANT]
-> Azure provides more than one resource kinds named Azure AI services. Be sure to select the one that is listed under **Azure AI services** > **Azure AI services multi-service account** with the logo as shown previously.
+> Azure Owner and Contributor roles do only include management permissions, and not development permissions. Development permissions are required to build with all capabilities in Foundry.
 
-To create an Azure AI services resource follow these instructions:
-1. Select this link to create an **Azure AI services multi-service account** resource: [https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne](https://portal.azure.com/#create/Microsoft.CognitiveServicesAllInOne)
+## Start building in your first project
 
-1. On the **Create** page, provide the following information:
+With permissions set up, you're now ready to start building Foundry. In [Azure AI Foundry Portal](https://ai.azure.com/) open or [create your first project](../ai-foundry/how-to/create-projects.md). Projects organize your agent and model customization work in Foundry, and you can [create multiple under the same resource](../ai-foundry/how-to/create-projects.md#create-multiple).
 
-    |Project details| Description   |
-    |--|--|
-    | **Subscription** | Select one of your available Azure subscriptions. |
-    | **Resource group** | The Azure resource group that will contain your Azure AI services multi-service account resource. You can create a new group or add it to a preexisting group. |
-    | **Region** | The location of your Azure AI services multi-service account instance. Different locations may introduce latency, but have no impact on the runtime availability of your resource. |
-    | **Name** | A descriptive name for your Azure AI services multi-service account resource. For example, *MyCognitiveServicesResource*. |
-    | **Pricing tier** | The cost of your Azure AI services multi-service account depends on the options you choose and your usage. For more information, see the API [pricing details](https://azure.microsoft.com/pricing/details/cognitive-services/). |
+Explore some of the services that come bundled with your resource:
 
-1. Configure other settings for your resource as needed, read and accept the conditions (as applicable), and then select **Review + create**.
+| Service | Description | 
+| --- | --- | 
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Foundry Agent Service](./agents/index.yml) | Combine the power of generative AI models with tools that allow agents to access and interact with real-world data sources. |
+| ![Azure AI Foundry icon](~/reusable-content/ce-skilling/azure/media/ai-services/ai-foundry.svg) [Azure AI Model Inference](../ai-foundry/model-inference/index.yml) | Performs model inference for flagship models in the Azure AI Foundry model catalog. |
+| ![Azure OpenAI in Azure AI Foundry Models icon](~/reusable-content/ce-skilling/azure/media/ai-services/azure-openai.svg) [Azure OpenAI](../ai-foundry/openai/index.yml) | Perform a wide variety of natural language tasks. | 
+| ![Content Safety icon](~/reusable-content/ce-skilling/azure/media/ai-services/content-safety.svg) [Content Safety](./content-safety/index.yml) | An AI service that detects unwanted contents. | 
+| ![Document Intelligence icon](~/reusable-content/ce-skilling/azure/media/ai-services/document-intelligence.svg) [Document Intelligence](./document-intelligence/index.yml) | Turn documents into intelligent data-driven solutions. |
+| ![Language icon](~/reusable-content/ce-skilling/azure/media/ai-services/language.svg) [Language](./language-service/index.yml) | Build apps with industry-leading natural language understanding capabilities. |
+| ![Speech icon](~/reusable-content/ce-skilling/azure/media/ai-services/speech.svg) [Speech](./speech-service/index.yml) | Speech to text, text to speech, translation, and speaker recognition. |
+| ![Translator icon](~/reusable-content/ce-skilling/azure/media/ai-services/translator.svg) [Translator](./translator/index.yml) | Use AI-powered translation technology to translate more than 100 in-use, at-risk, and endangered languages and dialects. | 
 
-> [!TIP]
-> If your subscription doesn't allow you to create an Azure AI services resource, you might need to enable the privilege of that [Azure resource provider](/azure/azure-resource-manager/management/resource-providers-and-types#register-resource-provider) using the [Azure portal](/azure/azure-resource-manager/management/resource-providers-and-types#azure-portal), [PowerShell command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-powershell) or an [Azure CLI command](/azure/azure-resource-manager/management/resource-providers-and-types#azure-cli). If you are not the subscription owner, ask someone with the role of *Owner* or *Admin* to complete the registration for you or ask for the **/register/action** privileges to be granted to your account.
+## Next steps
 
-## Pricing
-
-[!INCLUDE [SKUs and pricing](./includes/quickstarts/sku-pricing.md)]
-
-## Related content
-
-- Go to the [Azure AI services hub page](../ai-services/index.yml).
-- Try AI services in the [Azure AI Foundry portal](../ai-services/connect-services-ai-foundry-portal.md).
+- [Create a project](../ai-foundry/how-to/create-projects.md) to organize your work.
+- [Connect tools](../ai-foundry/how-to/connections-add.md) to build more rich applications.
+- Learn about [access control in AI Foundry](../ai-foundry/concepts/rbac-azure-ai-foundry.md) to invite others to your working environment.
+- [Secure your resource using private networking](../ai-foundry/how-to/configure-private-link.md)
+- [Use Azure AI Foundry with Azure AI Search skills](multi-services-resource-search-skills.md)

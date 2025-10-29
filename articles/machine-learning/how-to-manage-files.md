@@ -3,8 +3,8 @@ title: Create and manage files in your workspace
 titleSuffix: Azure Machine Learning
 description: In this article, you learn how create and manage files in your workspace in Azure Machine Learning studio.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: kritifaujdar
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -19,7 +19,7 @@ Learn how to create and manage the files in your Azure Machine Learning workspac
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A Machine Learning workspace. [Create workspace resources](quickstart-create-resources.md).
 
 > [!TIP]

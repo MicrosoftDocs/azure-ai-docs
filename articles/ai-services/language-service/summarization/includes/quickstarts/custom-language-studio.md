@@ -1,17 +1,17 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.custom:
   - build-2024
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ---
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 ## Create a new Azure AI Language resource and Azure storage account
 

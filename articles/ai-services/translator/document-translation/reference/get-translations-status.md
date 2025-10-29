@@ -109,7 +109,7 @@ The following information is returned in a successful response.
 
 |Name|Type|Description|
 |--- |--- |--- |
-|code|string|Enums containing high-level error codes. Possible values:<br/>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
+|code|string|Enums containing high-level error codes. Accepted values:<br/>&bullet; InternalServerError<br>&bullet; InvalidArgument<br>&bullet; InvalidRequest<br>&bullet; RequestRateTooHigh<br>&bullet; ResourceNotFound<br>&bullet; ServiceUnavailable<br>&bullet; Unauthorized|
 |message|string|Gets high-level error message.|
 |target|string|Gets the source of the error. For example, it would be `documents` or `document id` if there was an invalid document.|
 |innerError|InnerTranslationError|New Inner Error format that conforms to Azure AI services API Guidelines. This error message contains required properties ErrorCode, message, and optional properties target, details (key value pair), inner error (it can be nested).|

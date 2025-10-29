@@ -5,7 +5,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 ---
 
@@ -21,7 +21,7 @@ Use the Anomaly Detector multivariate client library for Java to:
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * The current version of the [Java Development Kit(JDK)](https://www.oracle.com/technetwork/java/javase/downloads/index.html)
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesAnomalyDetector"  title="Create an Anomaly Detector resource"  target="_blank">create an Anomaly Detector resource </a> in the Azure portal to get your key and endpoint. Wait for it to deploy and select the **Go to resource** button.

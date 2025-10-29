@@ -2,12 +2,12 @@
 title: LUIS role-based access control
 titleSuffix: Azure AI services
 description: Use this article to learn how to add access control to your LUIS resource
-author: aahill
-ms.author: aahi
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.topic: conceptual
 ---
 

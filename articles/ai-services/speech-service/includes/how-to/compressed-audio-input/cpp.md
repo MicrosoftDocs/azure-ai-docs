@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom: linux-related-content
 ms.topic: include
 ms.date: 03/06/2020
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/cpp.md)]
@@ -43,7 +43,7 @@ using namespace Microsoft::CognitiveServices::Speech::Audio;
 
  auto config =
     SpeechConfig::FromSubscription(
-        "YourSubscriptionKey",
+        "YourSpeechResoureKey",
         "YourServiceRegion"
     );
 

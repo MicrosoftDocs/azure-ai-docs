@@ -2,12 +2,12 @@
 title: Extend app at runtime - LUIS
 description: Learn how to extend an already published prediction endpoint to pass new information.
 ms.service: azure-ai-language
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Extend app at prediction runtime
 

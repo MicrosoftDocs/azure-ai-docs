@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 07/08/2024
 
 ---

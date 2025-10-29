@@ -6,7 +6,7 @@ ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: include
 ms.custom: include file
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 This [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client)-based quickstart walks you through getting an answer from your knowledge base.
@@ -15,7 +15,7 @@ This [Visual Studio Code REST Client extension](https://marketplace.visualstudio
 
 * You must have
     * Latest [Visual Studio Code REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client).
-    * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+    * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 > * A [QnA Maker resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesQnAMaker) created in the Azure portal. Remember your Microsoft Entra ID, Subscription, QnA resource name you selected when you created the resource.
 

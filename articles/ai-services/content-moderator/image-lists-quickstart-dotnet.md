@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: how-to
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp, devx-track-dotnet
 #Customer intent: As a C# developer of content-providing software, I want to check images against a custom list of inappropriate images so that I can handle them more efficiently.
@@ -31,7 +31,7 @@ the [Content Moderator SDK for .NET](https://www.nuget.org/packages/Microsoft.Az
 The console application for this guide simulates some of the tasks you
 can perform with the image list API.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. 
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. 
 
 ## Sign up for Content Moderator services
 

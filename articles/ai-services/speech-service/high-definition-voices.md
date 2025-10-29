@@ -2,13 +2,14 @@
 title: What are neural text to speech HD voices?
 titleSuffix: Azure AI services
 description: Learn about neural text to speech HD voices that you can use with speech synthesis.
-author: eric-urban
-ms.author: eur
-ms.reviewer: eur
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: overview
-ms.date: 4/8/2025
+ms.date: 10/21/2025
 ms.custom: references_regions
 #customer intent: As a user who implements text to speech, I want to understand the options and differences between available neural text to speech HD voices in Azure AI Speech.
 ---
@@ -36,9 +37,9 @@ Here's a comparison of features between Azure AI Speech HD voices, Azure OpenAI 
 
 | Feature | Azure AI Speech HD voices  | Azure OpenAI HD voices | Azure AI Speech voices (not HD) |
 |---------|---------------|------------------------|------------------------|
-| **Region** | East US, Southeast Asia, West Europe | North Central US, Sweden Central | Available in dozens of regions. See the [region list](regions.md#regions).|
-| **Number of voices** | 12 | 6 | More than 500 |
-| **Multilingual**  | No (perform on primary language only) | Yes  | Yes (applicable only to multilingual voices)  |
+| **Region** | See [Speech service regions](regions.md?tabs=tts) | See [Speech service regions](regions.md?tabs=tts) | Available in dozens of regions. See the [Speech service regions](regions.md?tabs=tts).|
+| **Number of voices** | 30 | 6 | More than 500 |
+| **Multilingual**  | Yes | Yes  | Yes (applicable only to multilingual voices)  |
 | **SSML support** | Support for [a subset of SSML elements](#supported-and-unsupported-ssml-elements-for-azure-ai-speech-hd-voices).|  Support for [a subset of SSML elements](openai-voices.md#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech).  | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure AI Speech.  |
 | **Development options** | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  | Speech SDK, Speech CLI, REST API  |
 | **Deployment options**  | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |

@@ -8,6 +8,7 @@ ms.service: azure-ai-document-intelligence
 ms.topic: how-to
 ms.date: 11/19/2024
 ms.author: lajanuar
+ms.custom: sfi-image-nochange
 ---
 
 # Compose custom models
@@ -48,7 +49,7 @@ In this article, you learn how to create and use composed custom models to analy
 
 To get started, you need the following resources:
 
-* **An Azure subscription**. You can [create a free Azure subscription](https://azure.microsoft.com/free/cognitive-services/).
+* **An Azure subscription**. You can [create a free Azure subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * **A Document Intelligence instance**. Once you have your Azure subscription, [create a Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal to get your key and endpoint. If you have an existing Document Intelligence resource, navigate directly to your resource page. You can use the free pricing tier (F0) to try the service, and upgrade later to a paid tier for production.
 
@@ -305,7 +306,7 @@ In this article, learn how to create Document Intelligence custom and composed m
 
 Try extracting data from custom forms using our Sample Labeling tool. You need the following resources:
 
-* An Azure subscription—you can [create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* An Azure subscription—you can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * A [Document Intelligence instance](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal. You can use the free pricing tier (`F0`) to try the service. After your resource deploys, select **Go to resource** to get your key and endpoint.
 

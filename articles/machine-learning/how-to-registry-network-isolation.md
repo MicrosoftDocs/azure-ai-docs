@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.custom: build-2023
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: kritifaujdar
 ms.date: 04/04/2025
 ms.topic: how-to

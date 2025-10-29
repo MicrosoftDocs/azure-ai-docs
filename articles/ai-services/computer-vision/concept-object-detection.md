@@ -9,6 +9,8 @@ ms.service: azure-ai-vision
 ms.topic: conceptual
 ms.date: 03/26/2025
 ms.author: pafarley
+ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
+
 ---
 
 # Object detection

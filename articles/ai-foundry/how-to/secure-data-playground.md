@@ -2,20 +2,23 @@
 title: Securely use playground chat
 titleSuffix: Azure AI Foundry
 description: Learn how to securely use the Azure AI Foundry portal playground chat on your own data. 
-manager: scottpolly
 ms.service: azure-ai-foundry
+ms.custom:
+  - hub-only
 ms.topic: how-to
-ms.date: 02/18/2025
+ms.date: 08/27/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: jburchel 
+author: jonburchel 
 zone_pivot_groups: azure-ai-studio-sdk-cli
 # Customer intent: As an administrator, I want to make sure that my data is handled securely when used in the playground chat.
 ---
 
 # Use your data securely with the Azure AI Foundry portal playground
 
-Use this article to learn how to securely use [Azure AI Foundry](https://ai.azure.com)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
+[!INCLUDE [hub-only-alt](../includes/uses-hub-only-alt.md)]
+
+Use this article to learn how to securely use [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs)'s playground chat on your data. The following sections provide our recommended configuration to protect your data and resources by using Microsoft Entra ID role-based access control, a managed network, and private endpoints. We recommend disabling public network access for Azure OpenAI resources, Azure AI Search resources, and storage accounts. Using selected networks with IP rules isn't supported because the services' IP addresses are dynamic.
 
 > [!NOTE]
 > Azure AI Foundry's managed virtual network settings apply only to Azure AI Foundry's managed compute resources, not platform as a service (PaaS) services like Azure OpenAI or Azure AI Search. When using PaaS services, there's no data exfiltration risk because the services are managed by Microsoft.
@@ -59,7 +62,7 @@ If you have an __existing Azure AI Foundry hub__ that isn't configured to use a 
 
 Depending on your configuration, you might use an Azure AI services resource that also includes Azure OpenAI or a standalone Azure OpenAI resource. The steps in this section configure an AI services resource. The same steps apply to an Azure OpenAI resource.
 
-1. If you don't have an existing Azure AI services resource for your Azure AI Foundry hub, [create one](/azure/ai-services/openai/how-to/create-resource?pivots=web-portal).
+1. If you don't have an existing Azure AI services resource for your Azure AI Foundry hub, [create one](/azure/ai-foundry/openai/how-to/create-resource?pivots=web-portal).
 1. From the Azure portal, select the AI services resource, then select __Resource Management, __Identity__, and __System assigned__. 
 1. To create a managed identity for the AI services resource, set the __Status__ to __On__. Select __Save__ to apply the changes.
 
@@ -165,7 +168,7 @@ Azure AI Foundry uses Azure Key Vault to securely store and manage secrets. To a
 
 ## Configure connections to use Microsoft Entra ID
 
-Connections from Azure AI Foundry to Azure AI services and Azure AI Search should use Microsoft Entra ID for secure access. Connections are created from [Azure AI Foundry](https://ai.azure.com) instead of the Azure portal.
+Connections from Azure AI Foundry to Azure AI services and Azure AI Search should use Microsoft Entra ID for secure access. Connections are created from [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) instead of the Azure portal.
 
 > [!IMPORTANT]
 > Using Microsoft Entra ID with Azure AI Search is currently a preview feature. For more information on connections, visit the [Add connections](connections-add.md#create-a-new-connection) article.
@@ -220,7 +223,7 @@ Now, the data you add to Azure AI Foundry is secured to the isolated network pro
 
 ## Deploy web apps
 
-For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-services/openai/how-to/use-your-data-securely#web-app) article.
+For information on configuring web app deployments, visit the [Use Azure OpenAI on your data securely](/azure/ai-foundry/openai/how-to/on-your-data-configuration#web-app) article.
 
 ## Limitations
 

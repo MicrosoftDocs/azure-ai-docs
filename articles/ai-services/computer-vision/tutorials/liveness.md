@@ -5,64 +5,63 @@ author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.subservice: azure-ai-face
-ms.custom:
-  - ignite-2023
+ms.update-cycle: 90-days
 ms.topic: tutorial
-ms.date: 03/26/2025
+ms.date: 08/21/2025
 feedback_help_link_url: https://learn.microsoft.com/answers/tags/156/azure-face
 ---
 
 # Tutorial: Detect liveness in faces
 
-In this tutorial, you learn how to detect liveness in faces, using a combination of server-side code and a client-side mobile application. 
+Learn how to integrate face liveness detection into your workflow using server-side logic and companion frontend client applications.
 
 > [!TIP]
 > For general information about face liveness detection, see the [conceptual guide](../concept-face-liveness-detection.md).
 
-This tutorial demonstrates how to operate a frontend application and an app server to perform liveness detection, including the optional step of [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
-
+In this tutorial, you’ll learn how to run a frontend application with an app server to perform liveness detection, optionally adding [face verification](#perform-liveness-detection-with-face-verification), across various platforms and languages.
 
 [!INCLUDE [liveness-sdk-gate](../includes/liveness-sdk-gate.md)]
 
-> [!TIP]
-> After you complete the prerequisites, you can try the iOS liveness experience from [TestFlight](https://aka.ms/face/liveness/demo/ios) and the web-liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
-
 ## Prerequisites
 
-- Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+- Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 - Your Azure account must have a **Cognitive Services Contributor** role assigned in order for you to agree to the responsible AI terms and create a resource. To get this role assigned to your account, follow the steps in the [Assign roles](/azure/role-based-access-control/role-assignments-steps) documentation, or contact your administrator. 
 - Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesFace"  title="Create a Face resource"  target="_blank">create a Face resource</a> in the Azure portal to get your key and endpoint. After it deploys, select **Go to resource**. 
     - You need the key and endpoint from the resource you create to connect your application to the Face service.
-    - You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
-- Access to the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the SDK. For more information, see the [Face Limited Access](/legal/cognitive-services/computer-vision/limited-access-identity?context=%2Fazure%2Fcognitive-services%2Fcomputer-vision%2Fcontext%2Fcontext) page.
+- Access to the gated artifacts required for the Azure AI Vision Face Client SDK for Mobile (IOS and Android) and Web. 
+    - To get started, you need to apply for the [Face Recognition Limited Access features](https://customervoice.microsoft.com/Pages/ResponsePage.aspx?id=v4j5cvGGr0GRqy180BHbR7en2Ais5pxKtso_Pz4b1_xUQjA5SkYzNDM4TkcwQzNEOE1NVEdKUUlRRCQlQCN0PWcu) to get access to the gated artifacts. For more information, see the [Face Limited Access](/azure/ai-foundry/responsible-ai/computer-vision/limited-access-identity) page.
 - Familiarity with the Face liveness detection feature. See the [conceptual guide](../concept-face-liveness-detection.md).
 
-## Prepare SDKs
 
-We provide SDKs in different languages to simplify development on frontend applications and app servers:
+> [!TIP]
+> After you complete the prerequisites, you can try the iOS liveness experience from [iOS App Store](https://aka.ms/face/liveness/demo/ios), the Android liveness experience from the [Android Google Play Store](https://aka.ms/face/liveness/demo/android) and the Web liveness experience from [Vision Studio](https://portal.vision.cognitive.azure.com/demo/face-liveness-detection). Moreover, you can also build and run a complete frontend sample (either on iOS, Android, or Web) from the [Samples](https://github.com/Azure-Samples/azure-ai-vision-sdk/tree/main?tab=readme-ov-file#samples) section.
 
-### Download SDK for frontend application
+## Prepare the frontend application
 
-Follow instructions in the [azure-ai-vision-sdk](https://github.com/Azure-Samples/azure-ai-vision-sdk) GitHub repository to integrate the UI and the code into your native mobile application. The liveness SDK supports Java/Kotlin for Android mobile applications, Swift for iOS mobile applications and JavaScript for web applications:
-- For Swift iOS, follow the instructions in the [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
-- For Kotlin/Java Android, follow the instructions in the [Android sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme) 
-- For JavaScript Web, follow the instructions in the [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
-
-Once you've added the code into your application, the SDK handles starting the camera, guiding the end-user in adjusting their position, composing the liveness payload, and calling the Azure AI Face cloud service to process the liveness payload.
-
-You can monitor the [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) of the SDK repo for new SDK version updates.
-
-### Download Azure AI Face client library for app server
-
-The app server/orchestrator is responsible for controlling the lifecycle of a liveness session. The app server has to create a session before performing liveness detection, and then it can query the result and delete the session when the liveness check is finished. We offer a library in various languages for easily implementing your app server. Follow these steps to install the package you want:
-- For C#, follow the instructions in the [dotnet readme](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/face/Azure.AI.Vision.Face/README.md)
-- For Java, follow the instructions in the [Java readme](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/face/azure-ai-vision-face/README.md)
-- For Python, follow the instructions in the [Python readme](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/face/azure-ai-vision-face/README.md)
-- For JavaScript, follow the instructions in the [JavaScript readme](https://github.com/Azure/azure-sdk-for-js/tree/main/sdk/face/ai-vision-face-rest/README.md)
+We provide SDKs in multiple languages to simplify integration with your frontend application. Refer to the README for your chosen SDK below to integrate both the UI and required code.
 
 > [!IMPORTANT]
-> To create environment variables for your Azure Face service key and endpoint, see the [quickstart](../quickstarts-sdk/identity-client-library.md)
+> Each frontend SDK requires access to a gated asset to successfully compile. Instructions on how to set this up are mentioned below.
 
+For Swift iOS:
+- Artifacts: [Azure AI Face UI SDK for iOS](https://github.com/Azure/AzureAIVisionFaceUI)
+- API reference: [AzureAIVisionFaceUI Reference](https://azure.github.io/azure-sdk-for-ios/AzureAIVisionFaceUI/index.html)
+- Sample: [iOS sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-ios-readme) 
+
+For Kotlin/Java Android:
+- Artifacts: Maven Central: [com.azure:azure-ai-vision-face-ui](https://central.sonatype.com/artifact/com.azure/azure-ai-vision-face-ui/overview)
+- API reference: [azure-ai-vision-face-ui Reference](https://azure.github.io/azure-sdk-for-android/azure-ai-vision-face-ui/index.html) 
+- Sample: [Android sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-android-readme)  
+
+For JavaScript Web:
+- Artifacts: [@azure/ai-vision-face-ui - npm](https://www.npmjs.com/package/@azure/ai-vision-face-ui?activeTab=readme)
+- API reference: [AzureAIVisionFaceUI Reference](https://orange-forest-0ea70d510.5.azurestaticapps.net/)
+- Sample: [Web sample](https://aka.ms/azure-ai-vision-face-liveness-client-sdk-web-readme) 
+- Framework Support: Works with popular frameworks such as React (including Next.js), Vue.js, and Angular.
+
+Once integrated into your frontend application, the SDK will start the camera, guide the user to adjust their position, compose the liveness payload, and send it to the Azure AI Face service for processing.
+
+Monitor the repository’s [Releases section](https://github.com/Azure-Samples/azure-ai-vision-sdk/releases) for new SDK version updates and enable automated dependency update alerts—e.g., GitHub Dependabot (for GitHub repos) or Renovate (GitHub, GitLab, Bitbucket, Azure Repos).
 
 ## Perform liveness detection
 
@@ -77,41 +76,61 @@ The high-level steps involved in liveness orchestration are illustrated below:
     #### [C#](#tab/csharp)
     ```csharp
     var endpoint = new Uri(System.Environment.GetEnvironmentVariable("FACE_ENDPOINT"));
-    var credential = new AzureKeyCredential(System.Environment.GetEnvironmentVariable("FACE_APIKEY"));
+    var key = new AzureKeyCredential(System.Environment.GetEnvironmentVariable("FACE_APIKEY"));
 
-    var sessionClient = new FaceSessionClient(endpoint, credential);
-
-    var createContent = new CreateLivenessSessionContent(LivenessOperationMode.Passive)
+    var body = JsonSerializer.Serialize(new
     {
-        DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-        EnableSessionImage = true,
-    };
+        livenessOperationMode = "PassiveActive",
+        deviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        enableSessionImage = true
+    });
 
-    var createResponse = await sessionClient.CreateLivenessSessionAsync(createContent);
-    var sessionId = createResponse.Value.SessionId;
-    Console.WriteLine($"Session created.");
-    Console.WriteLine($"Session id: {sessionId}");
-    Console.WriteLine($"Auth token: {createResponse.Value.AuthToken}");
+    using var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
+
+    var response = await client.PostAsync(
+        $"{endpoint}/face/v1.2/detectLiveness-sessions",
+        new StringContent(body, Encoding.UTF8, "application/json"));
+
+    response.EnsureSuccessStatusCode();
+
+    using var doc  = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    var root       = doc.RootElement;
+
+    Console.WriteLine("Session created");
+    Console.WriteLine($"sessionId : {root.GetProperty("sessionId").GetString()}");
+    Console.WriteLine($"authToken : {root.GetProperty("authToken").GetString()}");
     ```
 
     #### [Java](#tab/java)
     ```java
     String endpoint = System.getenv("FACE_ENDPOINT");
-    String accountKey = System.getenv("FACE_APIKEY");
+    String key = System.getenv("FACE_APIKEY");
 
-    FaceSessionClient sessionClient = new FaceSessionClientBuilder()
-        .endpoint(endpoint)
-        .credential(new AzureKeyCredential(accountKey))
-        .buildClient();
+    String body = """
+    {
+        "livenessOperationMode": "PassiveActive",
+        "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        "enableSessionImage": true,
+    }
+    """;
 
-    CreateLivenessSessionContent parameters = new CreateLivenessSessionContent(LivenessOperationMode.PASSIVE)
-        .setDeviceCorrelationId("723d6d03-ef33-40a8-9682-23a1feb7bccd")
-        .setEnableSessionImage(true);
+    HttpRequest req = HttpRequest.newBuilder()
+            .uri(URI.create(endpoint + "/face/v1.2/detectLiveness-sessions"))
+            .header("Content-Type", "application/json")
+            .header("Ocp-Apim-Subscription-Key", key)
+            .POST(HttpRequest.BodyPublishers.ofString(body))
+            .build();
 
-    CreateLivenessSessionResult creationResult = sessionClient.createLivenessSession(parameters);
-    System.out.println("Session created.");
-    System.out.println("Session id: " + creationResult.getSessionId());
-    System.out.println("Auth token: " + creationResult.getAuthToken());
+    HttpResponse<String> res = HttpClient.newHttpClient()
+            .send(req, HttpResponse.BodyHandlers.ofString());
+
+    if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
+
+    JsonNode json = new ObjectMapper().readTree(res.body());
+    System.out.println("Session created");
+    System.out.println("sessionId : " + json.get("sessionId").asText());
+    System.out.println("authToken : " + json.get("authToken").asText());
     ```
 
     #### [Python](#tab/python)
@@ -119,18 +138,25 @@ The high-level steps involved in liveness orchestration are illustrated below:
     endpoint = os.environ["FACE_ENDPOINT"]
     key = os.environ["FACE_APIKEY"]
 
-    face_session_client = FaceSessionClient(endpoint=endpoint, credential=AzureKeyCredential(key))
+    url  = f"{endpoint}/face/v1.2/detectLiveness-sessions"
+    body = {
+        "livenessOperationMode": "PassiveActive",
+        "deviceCorrelationId":  "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        "enableSessionImage":   True
+    }
 
-    created_session = await face_session_client.create_liveness_session(
-        CreateLivenessSessionContent(
-            liveness_operation_mode=LivenessOperationMode.PASSIVE,
-            device_correlation_id="723d6d03-ef33-40a8-9682-23a1feb7bccd",
-            enable_session_image=True,
-        )
-    )
-    print("Session created.")
-    print(f"Session id: {created_session.session_id}")
-    print(f"Auth token: {created_session.auth_token}")
+    headers = {
+        "Ocp-Apim-Subscription-Key": key,
+        "Content-Type": "application/json"
+    }
+
+    res = requests.post(url, headers=headers, data=json.dumps(body))
+    res.raise_for_status()
+
+    data = res.json()
+    print("Session created")
+    print("sessionId :", data["sessionId"])
+    print("authToken :", data["authToken"])
     ```
 
     #### [JavaScript](#tab/javascript)
@@ -138,24 +164,34 @@ The high-level steps involved in liveness orchestration are illustrated below:
     const endpoint = process.env['FACE_ENDPOINT'];
     const apikey = process.env['FACE_APIKEY'];
 
-    const credential = new AzureKeyCredential(apikey);
-    const client = createFaceClient(endpoint, credential);
+    const url  = `${endpoint}/face/v1.2/detectLiveness-sessions`;
+    const body = {
+        livenessOperationMode: "PassiveActive",
+        deviceCorrelationId:  "723d6d03-ef33-40a8-9682-23a1feb7bccd",
+        enableSessionImage:   true
+    };
 
-    const createLivenessSessionResponse = await client.path('/detectLiveness-sessions').post({
-        body: {
-            livenessOperationMode: 'Passive',
-            deviceCorrelationId: '723d6d03-ef33-40a8-9682-23a1feb7bccd',
-            enableSessionImage: true,
-        },
-    });
+    const headers = {
+        "Ocp-Apim-Subscription-Key": key,
+        "Content-Type": "application/json"
+    };
 
-    if (isUnexpected(createLivenessSessionResponse)) {
-        throw new Error(createLivenessSessionResponse.body.error.message);
+    async function createLivenessSession() {
+        const res = await fetch(url, {
+            method: "POST",
+            headers,
+            body: JSON.stringify(body)
+        });
+
+        if (!res.ok) {
+            throw new Error(`${res.status} ${await res.text()}`);
+        }
+
+        const data = await res.json();
+        console.log("Session created");
+        console.log("sessionId :", data.sessionId);
+        console.log("authToken :", data.authToken);
     }
-
-    console.log('Session created.');
-    console.log(`Session ID: ${createLivenessSessionResponse.body.sessionId}`);
-    console.log(`Auth token: ${createLivenessSessionResponse.body.authToken}`);
     ```
 
     #### [REST API (Windows)](#tab/cmd)
@@ -165,7 +201,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     --header "Content-Type: application/json" ^
     --data ^
     "{ ^
-        ""livenessOperationMode"": ""passive"", ^
+        ""livenessOperationMode"": ""passiveactive"", ^
         ""deviceCorrelationId"": ""723d6d03-ef33-40a8-9682-23a1feb7bccd"", ^
         ""enableSessionImage"": ""true"" ^
     }"
@@ -178,7 +214,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
     --header "Content-Type: application/json" \
     --data \
     '{
-        "livenessOperationMode": "passive",
+        "livenessOperationMode": "passiveactive",
         "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bccd",
         "enableSessionImage": "true"
     }'
@@ -192,7 +228,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
         "sessionId": "a6e7193e-b638-42e9-903f-eaf60d2b40a5",
         "authToken": "<session-authorization-token>",
         "status": "NotStarted",
-        "modelVersion": "2024-11-15",
+        "modelVersion": "2025-05-20",
         "results": {
             "attempts": []
         }
@@ -248,7 +284,7 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
 1. The SDK then starts the camera, guides the user to position correctly, and then prepares the payload to call the liveness detection service endpoint. 
  
-1. The SDK calls the Azure AI Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed.
+1. The SDK calls the Azure AI Vision Face service to perform the liveness detection. Once the service responds, the SDK notifies the frontend application that the liveness check has been completed. Note: the service response will not contain the liveness decision, and this will need to be queried from the app server.
 
 1. The frontend application relays the liveness check completion to the app server. 
 
@@ -256,49 +292,119 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [C#](#tab/csharp)
     ```csharp
-    var getResultResponse = await sessionClient.GetLivenessSessionResultAsync(sessionId);
+    using var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
 
-    var sessionResult = getResultResponse.Value;
-    Console.WriteLine($"Session id: {sessionResult.Id}");
-    Console.WriteLine($"Session status: {sessionResult.Status}");
-    Console.WriteLine($"Liveness detection decision: {sessionResult.Result?.Response.Body.LivenessDecision}");
+    var response = await client.GetAsync(
+        $"{endpoint}/face/v1.2/livenessSessions/{sessionId}/result");
+
+    response.EnsureSuccessStatusCode();
+
+    using var doc = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    var root = doc.RootElement;
+    var attempts = root.GetProperty("results").GetProperty("attempts");
+    var latestAttempt = attempts[attempts.GetArrayLength() - 1];
+    var attemptStatus = latestAttempt.GetProperty("attemptStatus").GetString();
+
+    Console.WriteLine($"Session id: {root.GetProperty("sessionId").GetString()}");
+    Console.WriteLine($"Session status: {root.GetProperty("status").GetString()}");
+    Console.WriteLine($"Latest attempt status: {attemptStatus}");
+
+    if (attemptStatus == "Succeeded")
+        Console.WriteLine($"Liveness detection decision: {latestAttempt.GetProperty("result").GetProperty("livenessDecision").GetString()}");
+    else
+    {
+        var error = latestAttempt.GetProperty("error");
+        Console.WriteLine($"Error: {error.GetProperty("code").GetString()} - {error.GetProperty("message").GetString()}");
+    }
     ```
 
     #### [Java](#tab/java)
     ```java
-    LivenessSession sessionResult = sessionClient.getLivenessSessionResult(creationResult.getSessionId());
-    System.out.println("Session id: " + sessionResult.getId());
-    System.out.println("Session status: " + sessionResult.getStatus());
-    System.out.println("Liveness detection decision: " + sessionResult.getResult().getResponse().getBody().getLivenessDecision());
+    HttpRequest req = HttpRequest.newBuilder()
+        .uri(URI.create(endpoint + "/face/v1.2/livenessSessions/" + sessionId + "/result"))
+        .header("Ocp-Apim-Subscription-Key", key)
+        .GET()
+        .build();
+
+    HttpResponse<String> res = HttpClient.newHttpClient()
+        .send(req, HttpResponse.BodyHandlers.ofString());
+
+    if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
+
+    JsonNode root = new ObjectMapper().readTree(res.body());
+    JsonNode attempts = root.path("results").path("attempts");
+    JsonNode latestAttempt = attempts.get(attempts.size() - 1);
+
+    String attemptStatus = latestAttempt.path("attemptStatus").asText();
+
+    System.out.println("Session id: " + root.path("sessionId").asText());
+    System.out.println("Session status: " + root.path("status").asText());
+    System.out.println("Latest attempt status: " + attemptStatus);
+
+    if ("Succeeded".equals(attemptStatus)) {
+        System.out.println("Liveness detection decision: " +
+            latestAttempt.path("result").path("livenessDecision").asText());
+    } else {
+        JsonNode error = latestAttempt.path("error");
+        System.out.println("Error: " + error.path("code").asText() + " - " +
+            error.path("message").asText());
+    }
     ```
 
     #### [Python](#tab/python)
     ```python
-    liveness_result = await face_session_client.get_liveness_session_result(
-        created_session.session_id
-    )
-    print(f"Session id: {liveness_result.id}")
-    print(f"Session status: {liveness_result.status}")
-    print(f"Liveness detection decision: {liveness_result.result.response.body.liveness_decision}")
+    url = f"{endpoint}/face/v1.2/livenessSessions/{sessionId}/result"
+    headers = { "Ocp-Apim-Subscription-Key": key }
+
+    res = requests.get(url, headers=headers)
+    res.raise_for_status()
+
+    data = res.json()
+    attempts = data["results"]["attempts"]
+    latest_attempt = attempts[-1]
+    attempt_status = latest_attempt.get("attemptStatus")
+
+    print(f"Session id: {data['sessionId']}")
+    print(f"Session status: {data['status']}")
+    print(f"Latest attempt status: {attempt_status}")
+
+    if attempt_status == "Succeeded":
+        print(f"Liveness detection decision: {latest_attempt['result']['livenessDecision']}")
+    else:
+        err = latest_attempt.get("error", {})
+        print(f"Error: {err.get('code')} - {err.get('message')}")
     ```
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const getLivenessSessionResultResponse = await client.path('/detectLiveness/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).get();
+    const url = `${endpoint}/face/v1.2/livenessSessions/${sessionId}/result`;
+    const headers = {
+        "Ocp-Apim-Subscription-Key": apikey
+    };
 
-    if (isUnexpected(getLivenessSessionResultResponse)) {
-        throw new Error(getLivenessSessionResultResponse.body.error.message);
+    async function getLivenessSessionResult() {
+        const res = await fetch(url, { method: "GET", headers });
+        if (!res.ok) {
+            throw new Error(`${res.status} ${await res.text()}`);
+        }
+
+        const data = await res.json();
+        const attempts = data.results.attempts;
+        const latestAttempt = attempts[attempts.length - 1];
+        const attemptStatus = latestAttempt.attemptStatus;
+
+        console.log("Session id :", data.sessionId);
+        console.log("Session status :", data.status);
+        console.log("Latest attempt status :", attemptStatus);
+
+        if (attemptStatus === "Succeeded") {
+            console.log("Liveness detection decision :", latestAttempt.result.livenessDecision);
+        } else {
+                const err = latestAttempt.error || {};
+                console.log(`Error: ${err.code} - ${err.message}`);
+        }
     }
-
-    console.log(`Session id: ${getLivenessSessionResultResponse.body.id}`);
-    console.log(`Session status: ${getLivenessSessionResultResponse.body.status}`);
-    console.log(`Liveness detection request id: ${getLivenessSessionResultResponse.body.result?.requestId}`);
-    console.log(`Liveness detection received datetime: ${getLivenessSessionResultResponse.body.result?.receivedDateTime}`);
-    console.log(`Liveness detection decision: ${getLivenessSessionResultResponse.body.result?.response.body.livenessDecision}`);
-    console.log(`Session created datetime: ${getLivenessSessionResultResponse.body.createdDateTime}`);
-    console.log(`Auth token TTL (seconds): ${getLivenessSessionResultResponse.body.authTokenTimeToLiveInSeconds}`);
-    console.log(`Session expired: ${getLivenessSessionResultResponse.body.sessionExpired}`);
-    console.log(`Device correlation id: ${getLivenessSessionResultResponse.body.deviceCorrelationId}`);
     ```
 
     #### [REST API (Windows)](#tab/cmd)
@@ -318,31 +424,49 @@ The high-level steps involved in liveness orchestration are illustrated below:
     An example of the response body:
     ```json
     {
-        "sessionId": "0acf6dbf-ce43-42a7-937e-705938881d62",
-        "authToken": "",
-        "status": "Succeeded",
+        "sessionId": "b12e033e-bda7-4b83-a211-e721c661f30e",
+        "authToken": "eyJhbGciOiJFUzI1NiIsIm",
+        "status": "NotStarted",
         "modelVersion": "2024-11-15",
         "results": {
             "attempts": [
-            {
-                "attemptId": 1,
-                "attemptStatus": "Succeeded",
-                "result": {
-                "livenessDecision": "realface",
-                "targets": {
-                    "color": {
-                    "faceRectangle": {
-                        "top": 763,
-                        "left": 320,
-                        "width": 739,
-                        "height": 938
-                    }
+                {
+                    "attemptId": 2,
+                    "attemptStatus": "Succeeded",
+                    "result": {
+                    "livenessDecision": "realface",
+                    "targets": {
+                        "color": {
+                        "faceRectangle": {
+                                "top": 669,
+                                "left": 203,
+                                "width": 646,
+                                "height": 724
+                            }
+                        }
+                    },
+                    "digest": "B0A803BB7B26F3C8F29CD36030F8E63ED3FAF955FEEF8E01C88AB8FD89CCF761",
+                    "sessionImageId": "Ae3PVWlXAmVAnXgkAFt1QSjGUWONKzWiSr2iPh9p9G4I"
                     }
                 },
-                "digest": "517A0E700859E42107FA47E957DD12F54211C1A021A969CD391AC38BB88295A2",
-                "sessionImageId": "Ab9tzwpDzqdCk35wWTiIHWJzzPr9fBCNSqBcXnJmDjbI"
+                {
+                    "attemptId": 1,
+                    "attemptStatus": "Failed",
+                    "error": {
+                    "code": "FaceWithMaskDetected",
+                    "message": "Mask detected on face image.",
+                    "targets": {
+                            "color": {
+                            "faceRectangle": {
+                                "top": 669,
+                                "left": 203,
+                                "width": 646,
+                                "height": 724
+                            }
+                            }
+                        }
+                    }
                 }
-            }
             ]
         }
     }
@@ -352,32 +476,37 @@ The high-level steps involved in liveness orchestration are illustrated below:
 
     #### [C#](#tab/csharp)
     ```csharp
-    await sessionClient.DeleteLivenessSessionAsync(sessionId);
-    Console.WriteLine($"The session {sessionId} is deleted.");
+    using var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
+
+    await client.DeleteAsync($"{endpoint}/face/v1.2/livenessSessions/{sessionId}");
+    Console.WriteLine($"Session deleted: {sessionId}");
     ```
 
     #### [Java](#tab/java)
     ```java
-    sessionClient.deleteLivenessSession(creationResult.getSessionId());
-    System.out.println("The session " + creationResult.getSessionId() + " is deleted.");
+    HttpRequest req = HttpRequest.newBuilder()
+        .uri(URI.create(endpoint + "/face/v1.2/livenessSessions/" + sessionId))
+        .header("Ocp-Apim-Subscription-Key", key)
+        .DELETE()
+        .build();
+
+    HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString());
+    System.out.println("Session deleted: " + sessionId);
     ```
 
     #### [Python](#tab/python)
     ```python
-    await face_session_client.delete_liveness_session(
-        created_session.session_id
-    )
-    print(f"The session {created_session.session_id} is deleted.")
-    await face_session_client.close()
+    headers = { "Ocp-Apim-Subscription-Key": key }
+    requests.delete(f"{endpoint}/face/v1.2/livenessSessions/{sessionId}", headers=headers)
+    print(f"Session deleted: {sessionId}")
     ```
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const deleteLivenessSessionResponse = await client.path('/detectLiveness/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
-    if (isUnexpected(deleteLivenessSessionResponse)) {
-        throw new Error(deleteLivenessSessionResponse.body.error.message);
-    }
-    console.log(`The session ${createLivenessSessionResponse.body.sessionId} is deleted.`);
+    const headers = { "Ocp-Apim-Subscription-Key": apikey };
+    await fetch(`${endpoint}/face/v1.2/livenessSessions/${sessionId}`, { method: "DELETE", headers });
+    console.log(`Session deleted: ${sessionId}`);
     ```
 
     #### [REST API (Windows)](#tab/cmd)
@@ -416,126 +545,170 @@ The high-level steps involved in liveness with verification orchestration are il
         #### [C#](#tab/csharp)
         ```csharp
         var endpoint = new Uri(System.Environment.GetEnvironmentVariable("FACE_ENDPOINT"));
-        var credential = new AzureKeyCredential(System.Environment.GetEnvironmentVariable("FACE_APIKEY"));
+        var key      = System.Environment.GetEnvironmentVariable("FACE_APIKEY");
 
-        var sessionClient = new FaceSessionClient(endpoint, credential);
-
-        var createContent = new CreateLivenessWithVerifySessionContent(LivenessOperationMode.Passive)
+        // Create the JSON part
+        var jsonPart = new StringContent(
+            JsonSerializer.Serialize(new
+            {
+                livenessOperationMode = "PassiveActive",
+                deviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bcc",
+                enableSessionImage = true
+            }),
+            Encoding.UTF8,
+            "application/json"
+        );
+        jsonPart.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
         {
-            DeviceCorrelationId = "723d6d03-ef33-40a8-9682-23a1feb7bccd",
-            EnableSessionImage = true,
+            Name = "CreateLivenessWithVerifySessionRequest"
         };
-        using var fileStream = new FileStream("test.png", FileMode.Open, FileAccess.Read);
 
-        var createResponse = await sessionClient.CreateLivenessWithVerifySessionAsync(createContent, fileStream);
+        // Create the file part
+        using var fileStream = File.OpenRead("test.png");
+        var filePart = new StreamContent(fileStream);
+        filePart.Headers.ContentType = new MediaTypeHeaderValue("image/png");
+        filePart.Headers.ContentDisposition = new ContentDispositionHeaderValue("form-data")
+        {
+            Name = "VerifyImage",
+            FileName = "test.png"
+        };
 
-        var sessionId = createResponse.Value.SessionId;
+        // Build multipart form data
+        using var formData = new MultipartFormDataContent();
+        formData.Add(jsonPart);
+        formData.Add(filePart);
+
+        using var client = new HttpClient();
+        client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
+
+        var response = await client.PostAsync($"{endpoint}/face/v1.2/createLivenessWithVerifySession", formData);
+        response.EnsureSuccessStatusCode();
+
+        using var doc = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+        var root = doc.RootElement;
+
         Console.WriteLine("Session created.");
-        Console.WriteLine($"Session id: {sessionId}");
-        Console.WriteLine($"Auth token: {createResponse.Value.AuthToken}");
-        Console.WriteLine("The reference image:");
-        Console.WriteLine($"  Face rectangle: {createResponse.Value.VerifyImage.FaceRectangle.Top}, {createResponse.Value.VerifyImage.FaceRectangle.Left}, {createResponse.Value.VerifyImage.FaceRectangle.Width}, {createResponse.Value.VerifyImage.FaceRectangle.Height}");
-        Console.WriteLine($"  The quality for recognition: {createResponse.Value.VerifyImage.QualityForRecognition}");
+        Console.WriteLine($"Session id: {root.GetProperty("sessionId").GetString()}");
+        Console.WriteLine($"Auth token: {root.GetProperty("authToken").GetString()}");
         ```
 
         #### [Java](#tab/java)
         ```java
         String endpoint = System.getenv("FACE_ENDPOINT");
-        String accountKey = System.getenv("FACE_APIKEY");
+        String key      = System.getenv("FACE_APIKEY");
 
-        FaceSessionClient sessionClient = new FaceSessionClientBuilder()
-            .endpoint(endpoint)
-            .credential(new AzureKeyCredential(accountKey))
-            .buildClient();
+        String json = """
+        {
+        "livenessOperationMode": "PassiveActive",
+        "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bcc",
+        "enableSessionImage": true
+        }
+        """;
 
-        CreateLivenessWithVerifySessionContent parameters = new CreateLivenessWithVerifySessionContent(LivenessOperationMode.PASSIVE)
-            .setDeviceCorrelationId("723d6d03-ef33-40a8-9682-23a1feb7bccd")
-            .setEnableSessionImage(true);
+        byte[] img = Files.readAllBytes(Path.of("test.png"));
+        String boundary = "----faceBoundary" + java.util.UUID.randomUUID();
 
-        Path path = Paths.get("test.png");
-        BinaryData data = BinaryData.fromFile(path);
-        CreateLivenessWithVerifySessionResult creationResult = sessionClient.createLivenessWithVerifySession(parameters, data);
+        var head =
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"CreateLivenessWithVerifySessionRequest\"\r\n" +
+            "Content-Type: application/json\r\n\r\n" +
+            json + "\r\n" +
+            "--" + boundary + "\r\n" +
+            "Content-Disposition: form-data; name=\"VerifyImage\"; filename=\"test.png\"\r\n" +
+            "Content-Type: image/png\r\n\r\n";
 
+        var tail = "\r\n--" + boundary + "--\r\n";
+
+        byte[] body = java.nio.ByteBuffer
+            .allocate(head.getBytes(StandardCharsets.UTF_8).length + img.length + tail.getBytes(StandardCharsets.UTF_8).length)
+            .put(head.getBytes(StandardCharsets.UTF_8))
+            .put(img)
+            .put(tail.getBytes(StandardCharsets.UTF_8))
+            .array();
+
+        HttpRequest req = HttpRequest.newBuilder()
+            .uri(URI.create(endpoint + "/face/v1.2/createLivenessWithVerifySession"))
+            .header("Ocp-Apim-Subscription-Key", key)
+            .header("Content-Type", "multipart/form-data; boundary=" + boundary)
+            .POST(HttpRequest.BodyPublishers.ofByteArray(body))
+            .build();
+
+        HttpResponse<String> res = HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString());
+        if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
+
+        JsonNode root = new ObjectMapper().readTree(res.body());
         System.out.println("Session created.");
-        System.out.println("Session id: " + creationResult.getSessionId());
-        System.out.println("Auth token: " + creationResult.getAuthToken());
-        System.out.println("The reference image:");
-        System.out.println("  Face rectangle: " + creationResult.getVerifyImage().getFaceRectangle().getTop() + " " + creationResult.getVerifyImage().getFaceRectangle().getLeft() + " " + creationResult.getVerifyImage().getFaceRectangle().getWidth() + " " + creationResult.getVerifyImage().getFaceRectangle().getHeight());
-        System.out.println("  The quality for recognition: " + creationResult.getVerifyImage().getQualityForRecognition());        
+        System.out.println("Session id: " + root.get("sessionId").asText());
+        System.out.println("Auth token: " + root.get("authToken").asText());
         ```
 
         #### [Python](#tab/python)
         ```python
         endpoint = os.environ["FACE_ENDPOINT"]
-        key = os.environ["FACE_APIKEY"]
+        key      = os.environ["FACE_APIKEY"]
 
-        face_session_client = FaceSessionClient(endpoint=endpoint, credential=AzureKeyCredential(key))
-
-        reference_image_path = "test.png"
-        with open(reference_image_path, "rb") as fd:
-            reference_image_content = fd.read()
-
-        created_session = await face_session_client.create_liveness_with_verify_session(
-            CreateLivenessWithVerifySessionContent(
-                liveness_operation_mode=LivenessOperationMode.PASSIVE,
-                device_correlation_id="723d6d03-ef33-40a8-9682-23a1feb7bccd",
-                enable_session_image=True,
+        url = f"{endpoint}/face/v1.2/createLivenessWithVerifySession"
+        files = {
+            "CreateLivenessWithVerifySessionRequest": (
+                "request.json",
+                json.dumps({
+                    "livenessOperationMode": "PassiveActive",
+                    "deviceCorrelationId": "723d6d03-ef33-40a8-9682-23a1feb7bcc",
+                    "enableSessionImage": True
+                }),
+                "application/json"
             ),
-            verify_image=reference_image_content,
-        )
+            "VerifyImage": ("test.png", open("test.png", "rb"), "image/png")
+        }
+        headers = { "Ocp-Apim-Subscription-Key": key }
+
+        res = requests.post(url, headers=headers, files=files)
+        res.raise_for_status()
+
+        data = res.json()
         print("Session created.")
-        print(f"Session id: {created_session.session_id}")
-        print(f"Auth token: {created_session.auth_token}")
-        print("The reference image:")
-        print(f"  Face rectangle: {created_session.verify_image.face_rectangle}")
-        print(f"  The quality for recognition: {created_session.verify_image.quality_for_recognition}")
+        print("Session id:", data["sessionId"])
+        print("Auth token:", data["authToken"])
         ```
 
         #### [JavaScript](#tab/javascript)
         ```javascript
-        const endpoint = process.env['FACE_ENDPOINT'];
-        const apikey = process.env['FACE_APIKEY'];
+        const endpoint = process.env["FACE_ENDPOINT"];
+        const apikey   = process.env["FACE_APIKEY"];
 
-        const credential = new AzureKeyCredential(apikey);
-        const client = createFaceClient(endpoint, credential);
+        const form = new FormData();
+        form.append(
+            "CreateLivenessWithVerifySessionRequest",
+            new Blob([JSON.stringify({
+                livenessOperationMode: "PassiveActive",
+                deviceCorrelationId: "723d6d03-ef33-40a8-9682-23a1feb7bcc",
+                enableSessionImage: true
+            })], { type: "application/json" }),
+            "request.json"
+        );
+        // If your runtime doesn't support Blob here, you can use fs.createReadStream instead.
+        form.append("VerifyImage", new Blob([fs.readFileSync("test.png")], { type: "image/png" }), "test.png");
 
-        const createLivenessSessionResponse = await client.path('/detectLivenesswithVerify-sessions').post({
-            contentType: 'multipart/form-data',
-            body: [
-                {
-                    name: 'VerifyImage',
-                    // Note that this utilizes Node.js API.
-                    // In browser environment, please use file input or drag and drop to read files.
-                    body: readFileSync('test.png'),
-                },
-                {
-                    name: 'Parameters',
-                    body: {
-                        livenessOperationMode: 'Passive',
-                        deviceCorrelationId: '723d6d03-ef33-40a8-9682-23a1feb7bccd',
-                        enableSessionImage: true,
-                    },
-                },
-            ],
+        const res = await fetch(`${endpoint}/face/v1.2/createLivenessWithVerifySession`, {
+            method: "POST",
+            headers: { "Ocp-Apim-Subscription-Key": apikey },
+            body: form
         });
-
-        if (isUnexpected(createLivenessSessionResponse)) {
-            throw new Error(createLivenessSessionResponse.body.error.message);
+        if (!res.ok) {
+            throw new Error(`${res.status} ${await res.text()}`);
         }
 
-        console.log('Session created:');
-        console.log(`Session ID: ${createLivenessSessionResponse.body.sessionId}`);
-        console.log(`Auth token: ${createLivenessSessionResponse.body.authToken}`);
-        console.log('The reference image:');
-        console.log(`  Face rectangle: ${createLivenessSessionResponse.body.verifyImage.faceRectangle}`);
-        console.log(`  The quality for recognition: ${createLivenessSessionResponse.body.verifyImage.qualityForRecognition}`)
+        const data = await res.json();
+        console.log("Session created.");
+        console.log("Session id:", data.sessionId);
+        console.log("Auth token:", data.authToken);
         ```
 
         #### [REST API (Windows)](#tab/cmd)
         ```console
         curl --request POST --location "%FACE_ENDPOINT%/face/v1.2/detectLivenesswithVerify-sessions" ^
         --header "Ocp-Apim-Subscription-Key: %FACE_APIKEY%" ^
-        --form "Parameters=""{\\\""livenessOperationMode\\\"": \\\""passive\\\"", \\\""deviceCorrelationId\\\"": \\\""723d6d03-ef33-40a8-9682-23a1feb7bccd\\\"", ""enableSessionImage"": ""true""}""" ^
+        --form "Parameters=""{\\\""livenessOperationMode\\\"": \\\""passiveactive\\\"", \\\""deviceCorrelationId\\\"": \\\""723d6d03-ef33-40a8-9682-23a1feb7bccd\\\"", ""enableSessionImage"": ""true""}""" ^
         --form "VerifyImage=@""test.png"""
         ```
 
@@ -544,7 +717,7 @@ The high-level steps involved in liveness with verification orchestration are il
         curl --request POST --location "${FACE_ENDPOINT}/face/v1.2/detectLivenesswithVerify-sessions" \
         --header "Ocp-Apim-Subscription-Key: ${FACE_APIKEY}" \
         --form 'Parameters="{
-            \"livenessOperationMode\": \"passive\",
+            \"livenessOperationMode\": \"passiveactive\",
             \"deviceCorrelationId\": \"723d6d03-ef33-40a8-9682-23a1feb7bccd\"
         }"' \
         --form 'VerifyImage=@"test.png"'
@@ -577,7 +750,7 @@ The high-level steps involved in liveness with verification orchestration are il
         }
         ```
 
-    - The frontend application provides the reference image when initializing the SDK. This scenario is not supported in the web solution.
+    - The frontend application provides the reference image when initializing the mobile SDKs. This scenario is not supported in the web solution.
 
         #### [Android](#tab/mobile-kotlin)
         ```kotlin
@@ -624,49 +797,127 @@ The high-level steps involved in liveness with verification orchestration are il
 
     #### [C#](#tab/csharp)
     ```csharp
-    var getResultResponse = await sessionClient.GetLivenessWithVerifySessionResultAsync(sessionId);
-    var sessionResult = getResultResponse.Value;
-    Console.WriteLine($"Session id: {sessionResult.Id}");
-    Console.WriteLine($"Session status: {sessionResult.Status}");
-    Console.WriteLine($"Liveness detection decision: {sessionResult.Result?.Response.Body.LivenessDecision}");
-    Console.WriteLine($"Verification result: {sessionResult.Result?.Response.Body.VerifyResult.IsIdentical}");
-    Console.WriteLine($"Verification confidence: {sessionResult.Result?.Response.Body.VerifyResult.MatchConfidence}");
+    using var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
+
+    var response = await client.GetAsync($"{endpoint}/face/v1.2/livenessSessions/{sessionId}/result");
+    response.EnsureSuccessStatusCode();
+
+    using var doc = JsonDocument.Parse(await response.Content.ReadAsStringAsync());
+    var root = doc.RootElement;
+
+    var attempts = root.GetProperty("results").GetProperty("attempts");
+    var latestAttempt = attempts[attempts.GetArrayLength() - 1];
+    var attemptStatus = latestAttempt.GetProperty("attemptStatus").GetString();
+
+    Console.WriteLine($"Session id: {root.GetProperty("sessionId").GetString()}");
+    Console.WriteLine($"Session status: {root.GetProperty("status").GetString()}");
+    Console.WriteLine($"Latest attempt status: {attemptStatus}");
+
+    if (attemptStatus == "Succeeded")
+    {
+        var decision = latestAttempt.GetProperty("result").GetProperty("livenessDecision").GetString();
+        var verify   = latestAttempt.GetProperty("verifyResult");
+        Console.WriteLine($"Liveness detection decision: {decision}");
+        Console.WriteLine($"Verify isIdentical: {verify.GetProperty("isIdentical").GetBoolean()}");
+        Console.WriteLine($"Verify matchConfidence: {verify.GetProperty("matchConfidence").GetDouble()}");
+    }
+    else
+    {
+        var err = latestAttempt.GetProperty("error");
+        Console.WriteLine($"Error: {err.GetProperty("code").GetString()} - {err.GetProperty("message").GetString()}");
+    }
     ```
 
     #### [Java](#tab/java)
     ```java
-    LivenessWithVerifySession sessionResult = sessionClient.getLivenessWithVerifySessionResult(creationResult.getSessionId());
-    System.out.println("Session id: " + sessionResult.getId());
-    System.out.println("Session status: " + sessionResult.getStatus());
-    System.out.println("Liveness detection decision: " + sessionResult.getResult().getResponse().getBody().getLivenessDecision());
-    System.out.println("Verification result: " + sessionResult.getResult().getResponse().getBody().getVerifyResult().isIdentical());
-    System.out.println("Verification confidence: " + sessionResult.getResult().getResponse().getBody().getVerifyResult().getMatchConfidence());
+    HttpRequest req = HttpRequest.newBuilder()
+        .uri(URI.create(endpoint + "/face/v1.2/livenessSessions/" + sessionId + "/result"))
+        .header("Ocp-Apim-Subscription-Key", key)
+        .GET()
+        .build();
+
+    HttpResponse<String> res = HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString());
+    if (res.statusCode() != 200) throw new RuntimeException("HTTP error: " + res.statusCode());
+
+    ObjectMapper om = new ObjectMapper();
+    JsonNode root = om.readTree(res.body());
+
+    JsonNode attempts = root.path("results").path("attempts");
+    JsonNode latest   = attempts.get(attempts.size() - 1);
+    String attemptStatus = latest.path("attemptStatus").asText();
+
+    System.out.println("Session id: " + root.path("sessionId").asText());
+    System.out.println("Session status: " + root.path("status").asText());
+    System.out.println("Latest attempt status: " + attemptStatus);
+
+    if ("Succeeded".equals(attemptStatus)) {
+        String decision = latest.path("result").path("livenessDecision").asText();
+        JsonNode verify = latest.path("verifyResult");
+        System.out.println("Liveness detection decision: " + decision);
+        System.out.println("Verify isIdentical: " + verify.path("isIdentical").asBoolean());
+        System.out.println("Verify matchConfidence: " + verify.path("matchConfidence").asDouble());
+    } else {
+        JsonNode err = latest.path("error");
+        System.out.println("Error: " + err.path("code").asText() + " - " + err.path("message").asText());
+    }
     ```
 
     #### [Python](#tab/python)
     ```python
-    liveness_result = await face_session_client.get_liveness_with_verify_session_result(
-        created_session.session_id
-    )
-    print(f"Session id: {liveness_result.id}")
-    print(f"Session status: {liveness_result.status}")
-    print(f"Liveness detection decision: {liveness_result.result.response.body.liveness_decision}")
-    print(f"Verification result: {liveness_result.result.response.body.verify_result.is_identical}")
-    print(f"Verification confidence: {liveness_result.result.response.body.verify_result.match_confidence}")
+    url = f"{endpoint}/face/v1.2/livenessSessions/{sessionId}/result"
+    headers = {"Ocp-Apim-Subscription-Key": key}
+
+    res = requests.get(url, headers=headers)
+    res.raise_for_status()
+
+    data = res.json()
+    attempts = data["results"]["attempts"]
+    latest = attempts[-1]
+    attempt_status = latest.get("attemptStatus")
+
+    print(f"Session id: {data['sessionId']}")
+    print(f"Session status: {data['status']}")
+    print(f"Latest attempt status: {attempt_status}")
+
+    if attempt_status == "Succeeded":
+        decision = latest["result"]["livenessDecision"]
+        verify   = latest.get("verifyResult", {})
+        print(f"Liveness detection decision: {decision}")
+        print(f"Verify isIdentical: {verify.get('isIdentical')}")
+        print(f"Verify matchConfidence: {verify.get('matchConfidence')}")
+    else:
+        err = latest.get("error", {})
+        print(f"Error: {err.get('code')} - {err.get('message')}")
     ```
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const getLivenessSessionResultResponse = await client.path('/detectLivenesswithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).get();
-    if (isUnexpected(getLivenessSessionResultResponse)) {
-        throw new Error(getLivenessSessionResultResponse.body.error.message);
-    }
+    const url = `${endpoint}/face/v1.2/livenessSessions/${sessionId}/result`;
+    const headers = { "Ocp-Apim-Subscription-Key": apikey };
 
-    console.log(`Session id: ${getLivenessSessionResultResponse.body.id}`);
-    console.log(`Session status: ${getLivenessSessionResultResponse.body.status}`);
-    console.log(`Liveness detection request id: ${getLivenessSessionResultResponse.body.result?.requestId}`);
-    console.log(`Verification result: ${getLivenessSessionResultResponse.body.result?.response.body.verifyResult.isIdentical}`);
-    console.log(`Verification confidence: ${getLivenessSessionResultResponse.body.result?.response.body.verifyResult.matchConfidence}`);
+    async function getLivenessWithVerifyResult() {
+    const res = await fetch(url, { method: "GET", headers });
+    if (!res.ok) throw new Error(`${res.status} ${await res.text()}`);
+
+    const data = await res.json();
+    const attempts = data.results.attempts;
+    const latest = attempts[attempts.length - 1];
+    const attemptStatus = latest.attemptStatus;
+
+    console.log("Session id:", data.sessionId);
+    console.log("Session status:", data.status);
+    console.log("Latest attempt status:", attemptStatus);
+
+    if (attemptStatus === "Succeeded") {
+        console.log("Liveness detection decision:", latest.result.livenessDecision);
+        console.log("Verify isIdentical:", latest.verifyResult?.isIdentical);
+        console.log("Verify matchConfidence:", latest.verifyResult?.matchConfidence);
+    } else {
+        const err = latest.error || {};
+        console.log(`Error: ${err.code} - ${err.message}`);
+    }
+    }
     ```
 
     #### [REST API (Windows)](#tab/cmd)
@@ -686,80 +937,106 @@ The high-level steps involved in liveness with verification orchestration are il
     An example of the response body:
     ```json
     {
-        "sessionId": "93fd6f13-4161-41df-8a22-80a38ef53836",
-        "authToken": "",
-        "status": "Succeeded",
+        "sessionId": "b12e033e-bda7-4b83-a211-e721c661f30e",
+        "authToken": "eyJhbGciOiJFUzI1NiIsIm",
+        "status": "NotStarted",
         "modelVersion": "2024-11-15",
         "results": {
             "attempts": [
-                {
-                    "attemptId": 1,
-                    "attemptStatus": "Succeeded",
-                    "result": {
-                    "livenessDecision": "realface",
+            {
+                "attemptId": 2,
+                "attemptStatus": "Succeeded",
+                "result": {
+                "livenessDecision": "realface",
+                "targets": {
+                    "color": {
+                    "faceRectangle": {
+                        "top": 669,
+                        "left": 203,
+                        "width": 646,
+                        "height": 724
+                    }
+                    }
+                },
+                "verifyResult": {
+                    "matchConfidence": 0.08871888,
+                    "isIdentical": false
+                },
+                "digest": "B0A803BB7B26F3C8F29CD36030F8E63ED3FAF955FEEF8E01C88AB8FD89CCF761",
+                "sessionImageId": "Ae3PVWlXAmVAnXgkAFt1QSjGUWONKzWiSr2iPh9p9G4I",
+                "verifyImageHash": "43B7D8E8769533C3290DBD37A84D821B2C28CB4381DF9C6784DBC4AAF7E45018"
+                }
+            },
+            {
+                "attemptId": 1,
+                "attemptStatus": "Failed",
+                "error": {
+                    "code": "FaceWithMaskDetected",
+                    "message": "Mask detected on face image.",
                     "targets": {
                         "color": {
-                            "faceRectangle": {
+                        "faceRectangle": {
                                 "top": 669,
                                 "left": 203,
                                 "width": 646,
                                 "height": 724
                             }
                         }
-                    },
-                    "digest": "EE664438FDF0535C6344A468181E4DDD4A34AC89582D4FD6E9E8954B843C7AA7",
-                    "verifyResult": {
-                            "matchConfidence": 0.08172279,
-                            "isIdentical": false
-                        }
                     }
                 }
+            }
             ],
             "verifyReferences": [
-            {
-                "faceRectangle": {
-                    "top": 98,
+                {
+                    "referenceType": "image",
+                    "faceRectangle": {
+                    "top": 316,
                     "left": 131,
-                    "width": 233,
-                    "height": 300
+                    "width": 498,
+                    "height": 677
                     },
-                "qualityForRecognition": "high"
-            }
+                    "qualityForRecognition": "high"
+                }
             ]
+            }
         }
-    }
     ```
 
-1. The app server can delete the session if you don't query its result anymore.
+1. The app server can delete the session if you don't need its result anymore.
 
     #### [C#](#tab/csharp)
     ```csharp
-    await sessionClient.DeleteLivenessWithVerifySessionAsync(sessionId);
-    Console.WriteLine($"The session {sessionId} is deleted.");
+    using var client = new HttpClient();
+    client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", key);
+
+    await client.DeleteAsync($"{endpoint}/face/v1.2/livenessWithVerifySessions/{sessionId}");
+    Console.WriteLine($"Liveness-with-Verify session deleted: {sessionId}");
     ```
 
     #### [Java](#tab/java)
     ```java
-    sessionClient.deleteLivenessWithVerifySession(creationResult.getSessionId());
-    System.out.println("The session " + creationResult.getSessionId() + " is deleted.");
+    HttpRequest req = HttpRequest.newBuilder()
+        .uri(URI.create(endpoint + "/face/v1.2/livenessWithVerifySessions/" + sessionId))
+        .header("Ocp-Apim-Subscription-Key", key)
+        .DELETE()
+        .build();
+
+    HttpClient.newHttpClient().send(req, HttpResponse.BodyHandlers.ofString());
+    System.out.println("Liveness-with-Verify session deleted: " + sessionId);
     ```
 
     #### [Python](#tab/python)
     ```python
-    await face_session_client.delete_liveness_with_verify_session(
-        created_session.session_id
-    )
-    print(f"The session {created_session.session_id} is deleted.")
-    await face_session_client.close()
+    headers = { "Ocp-Apim-Subscription-Key": key }
+    requests.delete(f"{endpoint}/face/v1.2/livenessWithVerifySessions/{sessionId}", headers=headers)
+    print(f"Liveness-with-Verify session deleted: {sessionId}")
     ```
 
     #### [JavaScript](#tab/javascript)
     ```javascript
-    const deleteLivenessSessionResponse = await client.path('/detectLivenesswithVerify/singleModal/sessions/{sessionId}', createLivenessSessionResponse.body.sessionId).delete();
-    if (isUnexpected(deleteLivenessSessionResponse)) {
-        throw new Error(deleteLivenessSessionResponse.body.error.message);
-    }
-    console.log(`The session ${createLivenessSessionResponse.body.sessionId} is deleted.`);
+    const headers = { "Ocp-Apim-Subscription-Key": apikey };
+    await fetch(`${endpoint}/face/v1.2/livenessWithVerifySessions/${sessionId}`, { method: "DELETE", headers });
+    console.log(`Liveness-with-Verify session deleted: ${sessionId}`);
     ```
 
     #### [REST API (Windows)](#tab/cmd)

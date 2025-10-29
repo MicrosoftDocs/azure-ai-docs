@@ -6,11 +6,18 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
-ms.date: 07/08/2024
+ms.author: scottpolly
+author: s-polly
+ms.date: 09/10/2025
 ms.topic: how-to
-ms.custom: tracking-python, security, cliv2, sdkv2, engagement-fy23, build-2023
+ms.custom:
+  - tracking-python
+  - security
+  - cliv2
+  - sdkv2
+  - engagement-fy23
+  - build-2023
+  - sfi-image-nochange
 ---
 
 # Secure an Azure Machine Learning workspace with virtual networks

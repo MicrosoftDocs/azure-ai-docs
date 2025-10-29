@@ -144,9 +144,9 @@ Document Intelligence billing is calculated monthly based on the model type and 
 | Adjustable | No | No |
 | **Custom neural model train** | 10 hours per month <sup>5</sup> | no limit (pay by the hour), start with 10 free hours each month |
 | Adjustable | No |Yes <sup>3</sup>|
-| **Max number of pages (Training) * Classifier** | 10,000 | 10,000 (default value) |
+| **Max number of pages (Training) * Classifier** | 25,000 | 25,000 (default value) |
 | Adjustable | No | No |
-| **Max number of document types (classes) * Classifier** | 500 | 500 (default value) |
+| **Max number of document types (classes) * Classifier** | 1000 | 1000 (default value) |
 | Adjustable | No | No |
 | **Training dataset size * Classifier** | 1GB | 2GB (default value) |
 | Adjustable | No | No |
@@ -283,9 +283,9 @@ The next sections describe specific cases of adjusting quotas.
 
 ### Increasing transactions per second request limit
 
-By default the number of transactions per second is limited to 15 transactions per second for a Document Intelligence resource. For the Standard pricing tier, this amount can be increased. Before submitting the request, ensure you're familiar with the material in [this section](#detailed-description-quota-adjustment-and-best-practices) and aware of these [best practices](#example-of-a-workload-pattern-best-practice).
+By default the number of transactions per second is limited to 15 transactions per second for a Document Intelligence resource. For the Standard pricing tier, TPS increase requests can be submitted, but whether they can be approved and at what TPS level adjustment will depend on the daily usage patterns and the best practices that are being followed. Before submitting the request, ensure you're familiar with the material in [this section](#detailed-description-quota-adjustment-and-best-practices) and aware of these [best practices](#example-of-a-workload-pattern-best-practice).
 
-The fist step would be to enable auto scaling. Follow this document to enable auto scaling on your resource * [enable auto scaling](../../ai-services/autoscale.md). With auto scaling enabled your resource can continue to accept requests over the TPS limits configured if there's capacity on the service. It can still result in request throttled. 
+The first step would be to enable auto scaling. Follow this document to enable auto scaling on your resource * [enable auto scaling](../../ai-services/autoscale.md). With auto scaling enabled your resource can continue to accept requests over the TPS limits configured if there's capacity on the service. It can still result in request throttled. 
 
 Increasing the Concurrent Request limit does **not** directly affect your costs. Document Intelligence service uses "Pay only for what you use" model. The limit defines how high the Service can scale before it starts throttle your requests.
 

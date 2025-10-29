@@ -1,13 +1,46 @@
----
-author: eric-urban
+﻿---
+author: goergenj
+reviewer: patrickfarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 5/4/2025
-ms.author: eur
+ms.date: 10/21/2025
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.custom: references_regions
 ---
 
+### October 2025 release
+
+#### Phrase list weight control for Speech SDK
+
+You can now control the influence of phrase lists on speech recognition results when using the Speech SDK with Real-time transcription. The new phrase list weight feature allows you to set a bias level between 0.0 (disabled) and 2.0 (maximum influence) to fine-tune how much priority phrase list terms receive over the default dictionary. For more information, see [Improve recognition accuracy with phrase list](../../improve-accuracy-phrase-list.md).
+
+### August 2025 release
+
+#### New locales supported in Fast Transcription
+Fast transcription now supports additional locales including a few `en-` variants (12 locales), `es-` variants (19 locales), and `ar-` variants (13 locales). For more information, see [speech to text supported languages](../../language-support.md?tabs=stt).
+
+### July 2025 release
+
+#### Improved speech to text models
+
+The English models (all `en-*` models except for `en-IN`) were updated to incorporate a new VAD (voice activity detector) which helps reduce the latency by 100 ms or more. It can affect the accuracy and silence segmentation both positively and negatively, with the aim of reducing latency. Further language expansion is coming in the next few months.
+
+### June 2025 release
+
+#### Improved pronunciation assessment model
+
+We rolled out significant upgrades to the pronunciation assessment models for `ta-IN` and `ms-MY`. You're seeing a noticeable jump in Pearson Correlation Coefficients (PCC), which means more precise and dependable evaluations.
+
+These updated models are ready to use through the API and the Azure AI Foundry playground, just like before.
+
+#### Improved speech to text models
+Accuracy of speech to text models in [fast transcription](../../fast-transcription-create.md) for `de-DE`, `en-US`, `en-GB`, `es-ES`, `es-MX`,  `fr-FR`, `it-IT`, `ja-JP`, `ko-KR`, `pt-BR`, and `zh-CN` locales improving by 10%-25% percent respectively, particularly with improved readability and recognition on entities.
+
 ### May 2025 release
+
+#### Improved speech to text models
+Accuracy of speech to text models for `ta-IN`, `te-IN`, `en-IN`, and `hu-HU` locales improving by 5-10 percent respectively. We also approximate a 20x reduction in ghost words for the `ta-IN` and `te-IN` models.
 
 #### Fast transcription API - Multi-lingual speech transcription
 
@@ -22,7 +55,7 @@ Fast transcription now supports additional locales including fi-FI, he-IL, id-ID
 
 We are excited to announce substantial improvements to our pronunciation assessment models for these locales: `de-DE`, `es-MX`, `it-IT`, `ja-JP`, `ko-KR`, and `pt-BR`. These enhancements bring significant advancements in Pearson Correlation Coefficients (PCC), ensuring more accurate and reliable assessments.
 
-As before, the models are available through the API and Azure AI Foundry playground. 
+As before, the models are available through the API and Azure AI Foundry playground.
 
 ### March 2025 release
 
@@ -175,7 +208,7 @@ The Speech to text REST API version 3.2 is now generally available. For more inf
 > [!NOTE]
 > Preview versions *3.2-preview.1* and *3.2-preview.2* are retired as of September 2024.
 
-[Speech to text REST API](../../rest-speech-to-text.md) v3.1 will be retired on a date to be announced. Speech to text REST API v3.0 will be retired on April 1st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
+[Speech to text REST API](../../rest-speech-to-text.md) v3.1 will be retired on a date to be announced. Speech to text REST API v3.0 will be retired on March 31st, 2026. For more information about upgrading, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
 
 ### May 2024 release
@@ -227,7 +260,7 @@ You can create speech to text applications that use diarization to distinguish b
 
 The Whisper speech to text model with Azure AI Speech is now generally available.
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI in Azure AI Foundry Models.
 
 ### February 2024 release
 
@@ -286,13 +319,13 @@ We encourage you to explore these improvements and consider potential issues for
 Azure AI Speech now supports OpenAI's Whisper model via the batch transcription API. To learn more, check out the [Create a batch transcription](../../batch-transcription-create.md#use-a-whisper-model) guide.
 
 > [!NOTE]
-> Azure OpenAI Service also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../openai/whisper-quickstart.md).
+> Azure OpenAI also supports OpenAI's Whisper model for speech to text with a synchronous REST API. To learn more, check out the [quickstart](../../../../ai-foundry/openai/whisper-quickstart.md).
 
-Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI Service.
+Check out [What is the Whisper model?](../../whisper-overview.md) to learn more about when to use Azure AI Speech vs. Azure OpenAI.
 
 #### Speech to text REST API v3.2 public preview
 
-Speech to text REST API v3.2 is available in preview. [Speech to text REST API](../../rest-speech-to-text.md) v3.1 is generally available. Speech to text REST API v3.0 will be retired on April 1st, 2026. For more information, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
+Speech to text REST API v3.2 is available in preview. [Speech to text REST API](../../rest-speech-to-text.md) v3.1 is generally available. Speech to text REST API v3.0 will be retired on March 31st, 2026. For more information, see the Speech to text REST API [v3.0 to v3.1](../../migrate-v3-0-to-v3-1.md) and [v3.1 to v3.2](../../migrate-v3-1-to-v3-2.md) migration guides.
 
 ### August 2023 release
 
@@ -325,10 +358,10 @@ Speech to text supports two new locales as shown in the following table. Refer t
   - **C#**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/csharp/sharedcontent/console/speech_recognition_samples.cs#:~:text=PronunciationAssessmentWithStream).
   - **C++**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/cpp/windows/console/samples/speech_recognition_samples.cpp#:~:text=PronunciationAssessmentWithStream).
   - **java**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/java/android/sdkdemo/app/src/main/java/com/microsoft/cognitiveservices/speech/samples/sdkdemo/MainActivity.java#L548).
-  - **javascript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/js/node/pronunciationAssessment.js).
+  - **javascript**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/js/node).
   - **Objective-C**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/objective-c/ios/speech-samples/speech-samples/ViewController.m#L831).
   - **Python**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/python/console/speech_sample.py#L915).
-  - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/blob/master/samples/swift/ios/speech-samples/speech-samples/ViewController.swift#L191).
+  - **Swift**: See [sample code](https://github.com/Azure-Samples/cognitive-services-speech-sdk/tree/master/samples/swift/ios).
 
 #### Custom speech
 

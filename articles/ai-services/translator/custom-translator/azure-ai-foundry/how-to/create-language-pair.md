@@ -57,7 +57,7 @@ To modify the language pair name, description, domain description, and add/remov
 
 1. Select the language pair name from the Fine-tuning > AI Service fine-tuning page.
 
-   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields":::
+   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields.":::
 
 1. Select the **`...`** next to the language pair name. The **Edit and Delete** buttons should now be visible.
 

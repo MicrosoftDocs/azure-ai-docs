@@ -3,11 +3,11 @@ title: Application settings - LUIS
 description: Applications settings for Azure AI services language understanding apps are stored in the app and portal.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # App and version settings

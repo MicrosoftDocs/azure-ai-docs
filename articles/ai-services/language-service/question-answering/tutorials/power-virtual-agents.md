@@ -3,9 +3,9 @@ title: "Tutorial: Add your custom question answering project to Power Virtual Ag
 description: In this tutorial, you will learn how to add your custom question answering project to Power Virtual Agents.
 ms.service: azure-ai-language
 ms.topic: tutorial
-author: jboback
-ms.author: jboback
-ms.date: 11/21/2024
+author: laujan
+ms.author: lajanuar
+ms.date: 06/21/2025
 ms.custom: language-service-question-answering
 ---
 
@@ -53,7 +53,7 @@ Although the bot can connect to your project from any topic, this tutorial uses 
 Create a fallback topic by following the steps in [Configure the system fallback topic in Power Virtual Agents](/power-virtual-agents/authoring-system-fallback-topic).
 
 ## Use the authoring canvas to add an action
-Use the Power Virtual Agents authoring canvas to connect the fallback topic to your project. The topic starts with the unrecognized user text. Add an action that passes that text to custom question answering, and then shows the answer as a message. The last step of displaying an answer is handled as a [separate step](../../../QnAMaker/Tutorials/integrate-with-power-virtual-assistant-fallback-topic.md#add-your-solutions-flow-to-power-virtual-agents), later in this tutorial.
+Use the Power Virtual Agents authoring canvas to connect the fallback topic to your project. The topic starts with the unrecognized user text. Add an action that passes that text to custom question answering, and then shows the answer as a message. The last step of displaying an answer is handled as a [separate step](../../../QnAMaker/Tutorials/integrate-with-power-virtual-assistant-fallback-topic.md), later in this tutorial.
 
 This section creates the fallback topic conversation flow.
 

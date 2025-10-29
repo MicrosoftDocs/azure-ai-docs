@@ -3,9 +3,9 @@ title: Move projects - custom question answering
 description: Moving a custom question answering project requires exporting a project from one resource, and then importing into another.
 ms.service: azure-ai-language
 ms.topic: how-to
-author: jboback
-ms.author: jboback
-ms.date: 11/21/2024
+author: laujan
+ms.author: lajanuar
+ms.date: 06/21/2025
 ms.custom: language-service-question-answering
 ---
 # Move projects and question answer pairs
@@ -22,7 +22,7 @@ You might want to create copies of your projects or sources for several reasons:
 
 ## Prerequisites
 
-* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+* If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A [language resource](https://aka.ms/create-language-resource) with the custom question answering feature enabled in the Azure portal. Remember your Microsoft Entra ID, Subscription, and the Language resource name you selected when you created the resource.
 
 ## Export a project

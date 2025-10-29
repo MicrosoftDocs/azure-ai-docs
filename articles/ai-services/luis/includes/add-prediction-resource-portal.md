@@ -1,11 +1,11 @@
 ---
 title: Add a prediction resource
-author: aahill
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include 
-ms.date: 01/19/2024
-ms.author: aahi
+ms.date: 06/12/2025
+ms.author: lajanuar
 ---
 
 1. Go to the **Manage** tab in your application.

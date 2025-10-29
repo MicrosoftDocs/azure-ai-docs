@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: None
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.date: 03/31/2025
 ms.custom: devx-track-azurecli, moe-wsvnet, update-code6
 # customer intent: As a developer, I want to see how to use private endpoints to provide network isolation so that I can improve the security of my Azure Machine Learning managed online endpoints.
@@ -29,7 +29,7 @@ If you prefer to use the legacy method for network isolation, see the following 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * The [Azure CLI](/cli/azure/install-azure-cli) and the Azure CLI `ml` extension, installed and configured. For more information, see [Install and set up the CLI (v2)](how-to-configure-cli.md).
 

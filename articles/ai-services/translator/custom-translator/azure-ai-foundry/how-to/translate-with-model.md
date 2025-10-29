@@ -16,7 +16,7 @@ After you deploy your custom translation model, you can access it with the Azure
 
 ## How to translate
 
-1. Use the **Category ID** when making a custom translation request via Microsoft Translator [Text API V3](../../../text-translation/reference/v4/translate-api.md?tabs=curl). 
+1. Use the **Category ID** when making a custom translation request via Microsoft Translator [Text API V3](../../../text-translation/reference/v3/translate.md?tabs=curl). 
 
 1. To find the model **Category ID**, select **Train model** from the left menu then select the model name.
 
@@ -33,7 +33,7 @@ After you deploy your custom translation model, you can access it with the Azure
 
    ```
 
-   More information about the Translator Text API can be found on the [Translator API Reference](../../../text-translation/reference/v4/translate-api.md) page.
+   More information about the Translator Text API can be found on the [Translator API Reference](../../../text-translation/reference/v3/translate.md) page.
 
 1. You can also use **Azure AI Foundry** > **AI Services** > **Language + Translator** > **Translation** > **Text translation**
 

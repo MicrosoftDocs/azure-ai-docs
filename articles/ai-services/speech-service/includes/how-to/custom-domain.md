@@ -1,10 +1,11 @@
 ---
-author: rhurey
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.custom: devx-track-azurepowershell, devx-track-azurecli
 ms.topic: include
 ms.date: 06/18/2021
-ms.author: rhurey
+ms.author: pafarley
+ms.reviewer: rhurey
 ---
 
 

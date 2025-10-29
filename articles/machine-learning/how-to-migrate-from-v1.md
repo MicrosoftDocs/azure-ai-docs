@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: how-to
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.date: 02/03/2025
 ms.reviewer: paulsh
 ms.custom: devplatv2, devx-track-python

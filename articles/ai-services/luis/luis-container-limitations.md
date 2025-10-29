@@ -2,13 +2,13 @@
 title: Container limitations - LUIS
 titleSuffix: Azure AI services
 description: The LUIS container languages that are supported.
-author: aahill
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
-ms.author: aahi
+ms.date: 06/12/2025
+ms.author: lajanuar
 ---
 
 # Language Understanding (LUIS) container limitations

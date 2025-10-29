@@ -9,7 +9,7 @@ ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: keli19
 ms.date: 09/30/2024
-ms.topic: conceptual
+ms.topic: concept-article
 ---
 # What is an Azure Machine Learning component?
 

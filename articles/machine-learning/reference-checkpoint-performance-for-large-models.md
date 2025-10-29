@@ -5,11 +5,13 @@ description: Learn how Nebula can save time, resources, and money for large mode
 services: machine-learning
 ms.service: azure-machine-learning
 ms.topic: reference
-ms.custom: ----, ----, ----
 
 author: ziqiwang
 ms.author: ziqiwang
 ms.date: 03/28/2023
+ms.custom:
+  - ----
+  - sfi-image-nochange
 ---
 
 # Boost Checkpoint Speed and Reduce Cost with Nebula

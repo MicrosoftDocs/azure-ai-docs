@@ -5,7 +5,7 @@ author: quying
 manager: tonyxin
 ms.service: azure-ai-anomaly-detector
 ms.topic: include
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: yingqunpku
 ---
 

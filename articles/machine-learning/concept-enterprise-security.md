@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.custom: build-2023
 ms.topic: concept-article
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: meerakurup
 ms.date: 09/12/2024
 # Customer Intent: As an admin, I want to understand how to secure Azure Machine Learning resources and workflows so that I can comply with my organization's security policies.

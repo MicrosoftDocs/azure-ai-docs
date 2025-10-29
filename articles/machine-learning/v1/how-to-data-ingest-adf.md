@@ -5,8 +5,8 @@ description: Learn the available options for building a data ingestion pipeline 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 manager: davete
 ms.reviewer: iefedore
 ms.date: 08/19/2024

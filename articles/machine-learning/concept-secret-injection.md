@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: concept-article
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.custom: ignite-2023
 ms.date: 01/10/2024

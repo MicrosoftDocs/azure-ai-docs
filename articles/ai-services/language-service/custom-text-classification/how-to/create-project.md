@@ -3,12 +3,12 @@ title: How to create custom text classification projects
 titleSuffix: Azure AI services
 description: Learn about the steps for using Azure resources with custom text classification.
 #services: cognitive-services
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ms.custom: language-service-custom-classification, references_regions
 ---
 
@@ -20,7 +20,7 @@ Use this article to learn how to set up the requirements for starting with custo
 
 Before you start using custom text classification, you will need:
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services).
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 ## Create a Language resource 
 

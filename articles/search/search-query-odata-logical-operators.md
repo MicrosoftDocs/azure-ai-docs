@@ -2,7 +2,6 @@
 title: OData logical operator reference
 titleSuffix: Azure AI Search
 description: Syntax and reference documentation for using OData logical operators, and, or, and not, in Azure AI Search queries.
-
 manager: nitinme
 author: bevloh
 ms.author: beloh
@@ -11,6 +10,7 @@ ms.custom:
   - ignite-2023
 ms.topic: reference
 ms.date: 09/16/2021
+ms.update-cycle: 365-days
 translation.priority.mt:
   - "de-de"
   - "es-es"

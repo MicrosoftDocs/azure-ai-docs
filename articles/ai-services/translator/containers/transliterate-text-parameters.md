@@ -19,12 +19,12 @@ Convert characters or letters of a source language to the corresponding characte
 
 `POST` request:
 
-```HTTP
+```bash
  POST http://localhost:{port}/transliterate?api-version=3.0&language={language}&fromScript={fromScript}&toScript={toScript}
 
 ```
 
-*See* [**Virtual Network Support**](../text-translation/reference/v3/reference.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
+*See* [**Virtual Network Support**](../text-translation/reference/authentication.md#virtual-network-support) for Translator service selected network and private endpoint configuration and support.
 
 ## Request parameters
 
@@ -44,10 +44,10 @@ Request parameters passed on the query string are:
 
 | Headers | Description |Condition|
 | --- | --- | ---|
-| Authentication headers | *See* [available options for authentication](../text-translation/reference/v3/reference.md#authentication)|*Required request header*|
+| Authentication headers | *See* [available options for authentication](../text-translation/reference/authentication.md)|*Required request header*|
 | Content-Type | Specifies the content type of the payload. Possible value: `application/json` |*Required request header*|
 | Content-Length |The length of the request body. |*Optional*|
-| X-ClientTraceId |A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
+| X-ClientTraceId |A client-generated GUID to uniquely identify the request. You can omit this optional header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |*Optional*|
 
 ## Response body
 
@@ -66,7 +66,7 @@ A successful response is a JSON array with one result for each element in the in
 ### Sample request
 
 ```bash
-curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn"
+curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latin"
 ```
 
 ### Sample request body
@@ -92,11 +92,11 @@ The following limitations apply:
 [
   {
     "text": "Kon'nichiwa​",
-    "script": "Latn"
+    "script": "Latin"
   },
   {
     "text": "sayonara",
-    "script": "Latn"
+    "script": "Latin"
   }
 ]
 ```
@@ -111,7 +111,7 @@ The following limitations apply:
 
 ```bash
 
-  curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latn" -H "Content-Type: application/json" -d "[{'Text':'こんにちは'},{'Text':'さようなら'}]"
+  curl -X POST "http://localhost:5000/transliterate?api-version=3.0&language=ja&fromScript=Jpan&toScript=Latin" -H "Content-Type: application/json" -d "[{'Text':'こんにちは'},{'Text':'さようなら'}]"
 
 ```
 

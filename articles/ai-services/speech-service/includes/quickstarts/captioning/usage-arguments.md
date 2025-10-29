@@ -1,15 +1,15 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 3/10/2025
-ms.author: eur
+ms.author: pafarley
 ---
 
 Connection options include:
 
-- `--key`: Your Speech resource key. 
-- `--region REGION`: Your Speech resource region. Examples: `westus`, `northeurope`
+- `--key`: Your AI Foundry resource key. 
+- `--region REGION`: Your AI Foundry resource region. Examples: `westus`, `northeurope`
 
 Input options include:
 

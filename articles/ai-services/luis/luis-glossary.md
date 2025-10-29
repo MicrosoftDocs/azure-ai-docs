@@ -4,9 +4,9 @@ description: The glossary explains terms that you might encounter as you work wi
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: reference
-ms.date: 01/19/2024
-author: aahill
-ms.author: aahi
+ms.date: 06/12/2025
+author: laujan
+ms.author: lajanuar
 manager: nitinme
 ---
 

@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 08/13/2024
-ms.author: eur
+ms.date: 7/12/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Introduction](intro.md)]

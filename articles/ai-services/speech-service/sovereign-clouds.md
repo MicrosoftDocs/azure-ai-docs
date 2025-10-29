@@ -2,14 +2,14 @@
 title: Sovereign Clouds - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Sovereign Clouds
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: how-to
 ms.custom: references_regions
-ms.date: 3/10/2025
-ms.reviewer: alexeyo
+ms.date: 08/07/2025
+ms.reviewer: jagoerge
 #Customer intent: As a developer, I want to learn how to use Speech service in sovereign clouds.
 ---
 
@@ -35,8 +35,7 @@ Available to US government entities and their partners only. See more informatio
     - Neural voice
   - Speech translation
 - **Unsupported features:**
-  - Custom commands
-  - Custom neural voice
+  - Custom voice
   - Personal voice
   - Text to speech avatar
 - **Supported languages:**
@@ -57,7 +56,7 @@ Speech service REST API endpoints in Azure Government have the following format:
 | [Speech to text REST API for short audio](rest-speech-to-text-short.md) | `https://<REGION_IDENTIFIER>.stt.speech.azure.us/<URL_PATH>` |
 | [Text to speech REST API](rest-text-to-speech.md) | `https://<REGION_IDENTIFIER>.tts.speech.azure.us/<URL_PATH>` |
 
-Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your subscription from this table:
+Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your Speech resource from this table:
 
 |                     | Region identifier |
 |--|--|
@@ -123,8 +122,7 @@ Available to organizations with a business presence in China. See more informati
     - Neural voice
   - Speech translator
 - **Unsupported features:**
-  - Custom commands
-  - Custom neural voice
+  - Custom voice
   - Personal voice
   - Text to speech avatar
 - **Supported languages:**
@@ -145,7 +143,7 @@ Speech service REST API endpoints in Azure operated by 21Vianet have the followi
 | [Speech to text REST API for short audio](rest-speech-to-text-short.md) | `https://<REGION_IDENTIFIER>.stt.speech.azure.cn/<URL_PATH>` |
 | [Text to speech REST API](rest-text-to-speech.md) | `https://<REGION_IDENTIFIER>.tts.speech.azure.cn/<URL_PATH>` |
 
-Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your subscription from this table:
+Replace `<REGION_IDENTIFIER>` with the identifier matching the region of your Speech resource from this table:
 
 |                     | Region identifier |
 |--|--|

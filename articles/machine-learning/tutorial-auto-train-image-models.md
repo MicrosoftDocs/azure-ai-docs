@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: automl
 ms.topic: tutorial
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: swatig
 ms.date: 01/20/2025
 ms.custom: devx-track-python, automl, devx-track-azurecli, update-code, build-2023

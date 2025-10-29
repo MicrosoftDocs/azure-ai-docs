@@ -3,9 +3,9 @@ title: Create projects in multiple languages - custom question answering
 description: In this tutorial, you will learn how to create projects with multiple languages.
 ms.service: azure-ai-language
 ms.topic: tutorial
-author: jboback
-ms.author: jboback
-ms.date: 11/21/2024
+author: laujan
+ms.author: lajanuar
+ms.date: 06/21/2025
 ms.custom: language-service-question-answering
 ---
 

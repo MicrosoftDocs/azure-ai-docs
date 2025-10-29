@@ -9,7 +9,11 @@ ms.service: azure-ai-document-intelligence
 ms.topic: tutorial
 ms.date: 03/19/2025
 ms.author: lajanuar
-ms.custom: VS Code-azure-extension-update-completed, devx-track-python
+ms.custom:
+  - VS Code-azure-extension-update-completed
+  - devx-track-python
+  - sfi-image-nochange
+  - sfi-ropc-nochange
 ---
 
 
@@ -30,7 +34,7 @@ In this tutorial, you learn how to:
 
 ## Prerequisites
 
-* **Azure subscription** - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* **Azure subscription** - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 * **A Document Intelligence resource**. Once you have your Azure subscription, create a [Document Intelligence resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesFormRecognizer) in the Azure portal to get your key and endpoint. You can use the free pricing tier (`F0`) to try the service, and upgrade later to a paid tier for production.
 

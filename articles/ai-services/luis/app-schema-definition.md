@@ -3,11 +3,11 @@ title: App schema definition
 description: The LUIS app is represented in either the `.json` or `.lu` and includes all intents, entities, example utterances, features, and settings.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: reference
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # App schema definition

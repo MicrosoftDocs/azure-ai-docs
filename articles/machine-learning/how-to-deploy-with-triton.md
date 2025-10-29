@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.date: 11/09/2023
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: timanghn
 ms.custom: deploy, devplatv2, devx-track-azurecli, cliv2, sdkv2
 ms.devlang: azurecli
@@ -102,7 +102,7 @@ cd azureml-examples/sdk/python/endpoints/online/triton/single-model/
 
 # [Studio](#tab/azure-studio)
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * An Azure Machine Learning workspace. If you don't have one, use the steps in [Manage Azure Machine Learning workspaces in the portal, or with the Python SDK](how-to-manage-workspace.md) to create one.
 

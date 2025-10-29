@@ -1,8 +1,8 @@
 ---
 title: Manage access to managed feature store
 description: Learn how to access to an Azure Machine Learning managed feature store using Azure role-based access control (Azure RBAC).
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: seramasu
 ms.service: azure-machine-learning
 ms.subservice: mldata 

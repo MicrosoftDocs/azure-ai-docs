@@ -5,10 +5,12 @@ description: Learn how to create a new Immersive Reader resource with a custom s
 author: rwallerms
 manager: nitinme
 ms.service: azure-ai-immersive-reader
-ms.custom: devx-track-azurecli
 ms.topic: how-to
 ms.date: 02/12/2024
 ms.author: rwaller
+ms.custom:
+  - devx-track-azurecli
+  - sfi-image-nochange
 ---
 
 # Create an Immersive Reader resource and configure Microsoft Entra authentication

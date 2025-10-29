@@ -7,13 +7,18 @@ ms.author: haileytapia
 manager: nitinme
 ms.service: azure-ai-search
 ms.topic: quickstart
-ms.date: 03/04/2025
+ms.date: 08/21/2025
+ms.update-cycle: 365-days
 ms.custom:
   - mode-ui
   - ignite-2023
+  - sfi-image-nochange
 ---
 
 # Quickstart: Create a knowledge store in the Azure portal
+
+> [!NOTE]
+> Knowledge stores exist in Azure Storage and contain the outputs of Azure AI Search skillsets. They're separate from knowledge sources and knowledge agents, which are used in [agentic retrieval](agentic-retrieval-overview.md) workflows.
 
 In this quickstart, you create a [knowledge store](knowledge-store-concept-intro.md) that serves as a repository for output generated from an [AI enrichment pipeline](cognitive-search-concept-intro.md) in Azure AI Search. A knowledge store makes generated content available in Azure Storage for workloads other than search.
 
@@ -21,7 +26,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 + An Azure AI Search service. [Create a service](search-create-service-portal.md) or [find an existing service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) in your current subscription. For this quickstart, you can use a free service.
 
@@ -42,7 +47,7 @@ First, you set up sample data in Azure Storage. Next, you run the **Import data*
 
 1. [Find your search service](https://portal.azure.com/#blade/HubsExtension/BrowseResourceBlade/resourceType/Microsoft.Search%2FsearchServices) and on the Overview page, select **Import data** on the command bar to create a knowledge store in four steps.
 
-   :::image type="content" source="media/search-import-data-portal/import-data-cmd.png" alt-text="Screenshot of the Import data command" border="true":::
+   :::image type="content" source="media/search-import-data-portal/import-data-button.png" alt-text="Screenshot of the Import data command" border="true":::
 
 ### Step 1: Create a data source
 
@@ -60,7 +65,7 @@ Because the data is multiple rows in one CSV file, set the *parsing mode* to get
 
    A connection string can be full access, having the following format: `DefaultEndpointsProtocol=https;AccountName=<YOUR-ACCOUNT-NAME>;AccountKey=<YOUR-ACCOUNT-KEY>;EndpointSuffix=core.windows.net`
 
-   Or, a connection string can reference a managed identity, assuming it's [configured and assigned a role](search-howto-managed-identities-data-sources.md) in Azure Storage: `ResourceId=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP-NAME>/providers/Microsoft.Storage/storageAccounts/<YOUR-ACCOUNT-NAME>;`
+   Or, a connection string can reference a managed identity, assuming it's [configured and assigned a role](search-how-to-managed-identities.md) in Azure Storage: `ResourceId=/subscriptions/<YOUR-SUBSCRIPTION-ID>/resourceGroups/<YOUR-RESOURCE-GROUP-NAME>/providers/Microsoft.Storage/storageAccounts/<YOUR-ACCOUNT-NAME>;`
 
 1. In **Containers**, enter the name of the blob container holding the data ("hotel-reviews").
 

@@ -5,9 +5,9 @@ description: This article gives you a high-level understanding of the architectu
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.topic: conceptual
-ms.author: sgilley
-author: sdgilley
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.date: 10/21/2021
 ms.custom: UpdateFrequency5
@@ -234,7 +234,7 @@ When you deploy a trained model in the designer, you can [deploy the model as a 
 
 #### Pipeline endpoints
 
-Pipeline endpoints let you call your [ML Pipelines](#ml-pipelines) programatically via a REST endpoint. Pipeline endpoints let you automate your pipeline workflows.
+Pipeline endpoints let you call your [ML Pipelines](#ml-pipelines) programmatically via a REST endpoint. Pipeline endpoints let you automate your pipeline workflows.
 
 A pipeline endpoint is a collection of published pipelines. This logical organization lets you manage and call multiple pipelines using the same endpoint. Each published pipeline in a pipeline endpoint is versioned. You can select a default pipeline for the endpoint, or specify a version in the REST call.
 

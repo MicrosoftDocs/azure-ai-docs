@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 10/17/2024
 ms.custom: devx-track-java
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -13,9 +13,9 @@ ms.author: eur
 
 ## Create a speech configuration instance
 
-To call the Speech service by using the Speech SDK, you need to create a [SpeechConfig](/java/api/com.microsoft.cognitiveservices.speech.speechconfig) instance. This class includes information about your subscription, like your key and associated region, endpoint, host, or authorization token.
+To call the Speech service by using the Speech SDK, you need to create a [SpeechConfig](/java/api/com.microsoft.cognitiveservices.speech.speechconfig) instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
-1. Create an AI Services resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIServices). Get the Speech resource key and region.
+1. Create an AI Foundry resource for Speech in the [Azure portal](https://portal.azure.com/#create/Microsoft.CognitiveServicesAIFoundry). Get the Speech resource key and region.
 1. Create a `SpeechConfig` instance by using your Speech key and region.
 
 ```java
@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 
 public class Program {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
     }
 }
 ```
@@ -52,7 +52,7 @@ import java.util.concurrent.Future;
 
 public class Program {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
         fromMic(speechConfig);
     }
 
@@ -82,7 +82,7 @@ import java.util.concurrent.Future;
 
 public class Program {
     public static void main(String[] args) throws InterruptedException, ExecutionException {
-        SpeechConfig speechConfig = SpeechConfig.fromSubscription("<paste-your-speech-key>", "<paste-your-region>");
+        SpeechConfig speechConfig = SpeechConfig.fromEndpoint("<paste-your-speech-endpoint>", "<paste-your-speech-key>");
         fromFile(speechConfig);
     }
 

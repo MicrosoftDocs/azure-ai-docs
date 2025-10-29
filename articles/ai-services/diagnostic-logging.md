@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-services
 ms.topic: how-to
-ms.date: 01/10/2025
+ms.date: 5/19/2025
 ms.author: pafarley
 ---
 
@@ -27,18 +27,18 @@ To enable diagnostic logging, you need to select a location to store your log da
 
 ## Enable diagnostic log collection  
 
-Start by enabling diagnostic logging using the Azure portal.
+Start by enabling diagnostic logging using the [Azure portal](https://portal.azure.com).
 
 > [!NOTE]
 > To enable this feature using PowerShell or the Azure CLI, use the instructions provided in [Collect and consume log data from your Azure resources](/azure/azure-monitor/essentials/platform-logs-overview).
 
-1. Navigate to the Azure portal. Then locate and select an Azure AI services resource. For example, your subscription to Speech Services.   
-2. Next, from the left-hand navigation menu, locate **Monitoring**, and select **Diagnostic settings**. This screen contains all previously created diagnostic settings for this resource.
-3. If there is a previously created resource that you'd like to use, you can select it now. Otherwise, select **+ Add diagnostic setting**.
-4. Enter a name for the setting. Then select **Archive to a storage account** and **Send to log Analytics**.
-5. When prompted to configure, select the storage account and OMS workspace that you'd like to use to store you diagnostic logs. **Note**: If you don't have a storage account or OMS workspace, follow the prompts to create one.
-6. Select **Audit**, **RequestResponse**, and **AllMetrics**. Then set the retention period for your diagnostic log data. If a retention policy is set to zero, events for that log category are stored indefinitely.
-7. Select **Save**.
+1. Navigate to the [Azure portal](https://portal.azure.com). Then locate and select an [AI Foundry resource](./multi-service-resource.md). 
+1. Next, from the left-hand navigation menu, locate **Monitoring**, and select **Diagnostic settings**. This screen contains all previously created diagnostic settings for this resource.
+1. If there is a previously created resource that you'd like to use, you can select it now. Otherwise, select **+ Add diagnostic setting**.
+1. Enter a name for the setting. Then select **Archive to a storage account** and **Send to log Analytics**.
+1. When prompted to configure, select the storage account and OMS workspace that you'd like to use to store you diagnostic logs. **Note**: If you don't have a storage account or OMS workspace, follow the prompts to create one.
+1. Select **Audit**, **RequestResponse**, and **AllMetrics**. Then set the retention period for your diagnostic log data. If a retention policy is set to zero, events for that log category are stored indefinitely.
+1. Select **Save**.
 
 It can take up to two hours before logging data is available to query and analyze, so don't worry if you don't see anything right away.
 
@@ -47,9 +47,9 @@ It can take up to two hours before logging data is available to query and analyz
 Azure Storage is a robust object storage solution that is optimized for storing large amounts of unstructured data. In this section, you'll learn to query your storage account for total transactions over a 30-day timeframe and export the data to excel.
 
 1. From the Azure portal, locate the Azure Storage resource that you created in the last section.
-2. From the left-hand navigation menu, locate **Monitoring** and select **Metrics**.
-3. Use the available drop-downs to configure your query. For this example, let's set the time range to **Last 30 days** and the metric to **Transaction**.
-4. When the query is complete, you'll see a visualization of transaction over the last 30 days. To export this data, use the **Export to Excel** button located at the top of the page.
+1. From the left-hand navigation menu, locate **Monitoring** and select **Metrics**.
+1. Use the available drop-downs to configure your query. For this example, let's set the time range to **Last 30 days** and the metric to **Transaction**.
+1. When the query is complete, you'll see a visualization of transaction over the last 30 days. To export this data, use the **Export to Excel** button located at the top of the page.
 
 Learn more about what you can do with diagnostic data in [Azure Storage](/azure/storage/blobs/storage-blobs-introduction).
 
@@ -58,8 +58,8 @@ Learn more about what you can do with diagnostic data in [Azure Storage](/azure/
 Follow these instructions to explore log analytics data for your resource.
 
 1. From the Azure portal, locate and select **Log Analytics** from the left-hand navigation menu.
-2. Locate and select the resource you created when enabling diagnostics.
-3. Under **General**, locate and select **Logs**. From this page, you can run queries against your logs.
+1. Locate and select the resource you created when enabling diagnostics.
+1. Under **General**, locate and select **Logs**. From this page, you can run queries against your logs.
 
 ### Sample queries
 

@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
 ms.custom: update-code4, cliv2
-author: fbsolo-ms1
-ms.author: franksolomon
+author: s-polly
+ms.author: scottpolly
 ms.date: 03/06/2024
 ms.reviewer: lochen
 ---

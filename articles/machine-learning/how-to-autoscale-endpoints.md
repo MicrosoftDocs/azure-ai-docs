@@ -5,8 +5,8 @@ description: Learn how to scale up online endpoints in Azure Machine Learning, a
 ms.service: azure-machine-learning
 ms.subservice: inferencing
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sehan
 ms.custom: devplatv2, cliv2, update-code
 ms.date: 08/07/2024

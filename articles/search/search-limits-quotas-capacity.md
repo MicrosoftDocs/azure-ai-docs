@@ -2,13 +2,13 @@
 title: Service Limits for Tiers and SKUs
 titleSuffix: Azure AI Search
 description: Service limits used for capacity planning and maximum limits on requests and responses for Azure AI Search.
-
 manager: nitinme
-author: HeidiSteen
-ms.author: heidist
+author: haileytap
+ms.author: haileytapia
 ms.service: azure-ai-search
 ms.topic: conceptual
 ms.date: 04/30/2025
+ms.update-cycle: 180-days
 ms.custom:
   - references_regions
   - build-2024
@@ -41,7 +41,7 @@ Maximum limits on storage, workloads, and quantities of indexes and other object
 |----------|------|--------|----|----|----|------------|----|----|
 | Maximum indexes |3 |5 or 15 |50 |200 |200 |1000 per partition or 3000 per service |10 |10 |
 | Maximum simple fields per index&nbsp;<sup>2</sup> |1000 |100 |1000 |1000 |1000 |1000 |1000 |1000 |
-| Maximum dimensions per vector field | 4098|4098|4098|4098|4098|4098|4098|4098|
+| Maximum dimensions per vector field | 4096|4096|4096|4096|4096|4096|4096|4096|
 | Maximum complex collections per index |40 |40 |40 |40 |40 |40 |40 |40 |
 | Maximum elements across all complex collections per document&nbsp;<sup>3</sup> |3000 |3000 |3000 |3000 |3000 |3000 |3000 |3000 |
 | Maximum depth of complex fields |10 |10 |10 |10 |10 |10 |10 |10 |
@@ -156,7 +156,7 @@ Indexers can access other Azure resources [over private endpoints](search-indexe
 | Maximum private endpoints | N/A | 10 or 30 | 100 | 400 | 400 | N/A | 20 | 20 |
 | Maximum distinct resource types <sup>3</sup> | N/A | 4 | 7 | 15 | 15 | N/A | 4 | 4 |
 
-<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On Basic services, private connections to an Azure AI services multi-service resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024.
+<sup>1</sup> AI enrichment and image analysis are computationally intensive and consume disproportionate amounts of available processing power. For this reason, private connections are disabled on lower tiers to ensure the performance and stability of the search service itself. On Basic services, private connections to an Azure AI services multi-service resource are unsupported to preserve service stability. For the S1 tier, make sure the service was created with [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) after April 3, 2024. Indexers with more than 2 Azure OpenAI Embedding or Azure AI Vision multimodal embeddings skills will be restricted from running in private environment, and private connections will not be available.
 
 <sup>2</sup> Private connections to an embedding model are supported on Basic and S1 high-capacity search services created after April 3, 2024, with the [higher limits](search-limits-quotas-capacity.md#partition-storage-gb) for storage and computational processing.
 

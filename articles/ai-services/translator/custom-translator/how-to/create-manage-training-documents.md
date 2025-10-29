@@ -5,7 +5,7 @@ description: How to build and upload parallel documents (two documents where one
 author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
-ms.date: 02/10/2025
+ms.date: 05/19/2025
 ms.author: lajanuar
 ms.topic: how-to
 ---
@@ -59,7 +59,7 @@ Document types are associated with the language pair selected when you create a 
 
    :::image type="content" source="../media/how-to/upload-1.png" alt-text="Screenshot illustrating the document upload link.":::
 
-   >[!Note]
+   >[!NOTE]
    >Choosing **Dictionary set** launches **Choose type of dictionary** dialog.
    >Choose one and select **Next**
 

@@ -2,12 +2,12 @@
 title: "Quickstart: Entity linking using the client library and REST API"
 titleSuffix: Azure AI services
 description: 'Use this quickstart to perform Entity Linking, using C#, Python, Java, JavaScript, and the REST API.'
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 09/26/2025
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-entity-linking, mode-api, devx-track-extended-java, devx-track-js, devx-track-python
@@ -16,6 +16,10 @@ zone_pivot_groups: programming-languages-entity-linking
 ---
 
 # Quickstart: Entity Linking using the client library and REST API
+
+> [!IMPORTANT]
+> Entity Linking is retiring from Azure AI Language effective **September 1, 2028**. After this date, the Entity Linking feature is no longer supported.   During the support window, we recommend that users migrate existing workloads and direct all new projects to Azure AI Language [**Named Entity Recognition**](../named-entity-recognition/overview.md) or consider other alternative solutions.
+
 
 ::: zone pivot="programming-language-csharp"
 

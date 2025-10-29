@@ -1,6 +1,6 @@
 ---
-author: eric-urban 
-ms.author: eur 
+author: HeidiSteen 
+ms.author: heidist 
 ms.service: azure-ai-search
 ms.topic: include
 ms.date: 2/12/2025

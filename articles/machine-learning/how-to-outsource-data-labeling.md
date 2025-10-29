@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.reviewer: None
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.date: 10/21/2021
 ms.topic: how-to
 # Customer intent: As a project manager, I want to hire a company to label the data in my data labeling project

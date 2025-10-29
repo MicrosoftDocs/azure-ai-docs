@@ -3,8 +3,8 @@ title:  Use Azure Machine Learning pipelines with no code to construct RAG pipel
 titleSuffix: Azure Machine Learning
 description: Set up Azure Machine Learning pipelines to run Prompt Flow models (preview)
 services: machine-learning
-ms.author: ssalgado
-author: ssalgadodev
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -24,7 +24,7 @@ This article offers you examples on how to create an RAG pipeline. For advanced 
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * Access to Azure OpenAI. 
 

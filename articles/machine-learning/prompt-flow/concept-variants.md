@@ -7,11 +7,12 @@ ms.service: azure-machine-learning
 ms.subservice: prompt-flow
 ms.custom:
   - ignite-2023
-ms.topic: conceptual
+ms.topic: concept-article
 author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: keli19
 ms.date: 06/28/2024
+ms.update-cycle: 365-days
 ---
 
 # Variants in prompt flow

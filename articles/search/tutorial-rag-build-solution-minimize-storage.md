@@ -1,20 +1,24 @@
 ---
-title: 'RAG tutorial: Minimize storage and costs'
+title: 'Classic RAG tutorial: Minimize storage and costs'
 titleSuffix: Azure AI Search
 description: Compress vectors using narrow data types and scalar quantization. Remove extra copies of stored vectors to further save on space.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 02/05/2025
+ms.date: 10/14/2025
+ms.custom: sfi-ropc-nochange
 
 ---
 
-# Tutorial: Minimize storage and costs (RAG in Azure AI Search)
+# Tutorial: Minimize storage and costs (classic RAG in Azure AI Search)
 
 Azure AI Search offers several approaches for reducing the size of vector indexes. These approaches range from vector compression, to being more selective over what you store on your search service.
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
 
 In this tutorial, you modify the existing search index to use:
 
@@ -332,7 +336,7 @@ Consider revisiting the [queries from the previous tutorial](tutorial-rag-build-
 
 ## Next step
 
-There are code samples in all of the Azure SDKs that provide Azure AI Search programmability. You can also review vector sample code for specific use cases and technology combinations.
+We recommend this accelerator for you next step:
 
 > [!div class="nextstepaction"]
-> [azure-search-vector-samples](https://github.com/Azure/azure-search-vector-samples)
+> [RAG Experiment Accelerator](https://github.com/microsoft/rag-experiment-accelerator)

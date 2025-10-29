@@ -2,13 +2,13 @@
 title: Application Design
 titleSuffix: Azure AI services
 description: Application design concepts
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Plan your LUIS app

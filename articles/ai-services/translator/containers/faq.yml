@@ -6,11 +6,11 @@ metadata:
    manager: nitinme
    ms.service: azure-ai-translator
    ms.topic: faq
-   ms.date: 01/28/2025
+   ms.date: 07/22/2025
    ms.author: lajanuar
 title: Azure AI Translator container FAQ
 summary:  |
-  Find answers to commonly asked questions about concepts related to Azure AI Translator containers.
+  Discover answers to frequently asked questions regarding key concepts associated with Azure AI Translator containers.
 
 sections:
   - name: General questions and concepts

@@ -9,13 +9,14 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2023
 ms.topic: how-to
-ms.date: 01/31/2025
+ms.date: 10/22/2025
+ms.update-cycle: 365-days
 #customer intent: I want to learn how to connect to Azure AI Search using API keys so that I can authenticate inbound requests to my search service.
 ---
 
 # Connect to Azure AI Search using keys
 
-Azure AI Search supports both keyless and key-based authentication for connections to your search service. An API key is a unique string composed of 52 randomly generated numbers and letters. In your source code, you can specify it as an [environment variable](/azure/ai-services/cognitive-services-environment-variables) or as an app setting in your project, and then reference the variable on the request.
+Azure AI Search supports both identity-based and key-based authentication for connections to your search service. An API key is a unique string composed of 52 randomly generated numbers and letters. In your source code, you can specify it in a request header, or as an [environment variable](/azure/ai-services/cognitive-services-environment-variables) or app setting in your project, and then reference the variable on the request.
 
 > [!IMPORTANT]
 > When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with [role-based access](search-security-enable-roles.md).
@@ -44,20 +45,23 @@ Visually, there's no distinction between an admin key or query key. Both keys ar
 API keys are used for data plane (content) requests, such as creating or accessing an index or, any other request that's represented in the [Search REST APIs](/rest/api/searchservice/). 
 
 You can use either an API key or [Azure roles](search-security-rbac.md) for control plane (service) requests. When you use an API key:
-- Admin keys are used for creating, modifying, or deleting objects. Admin keys are also used to GET object definitions and system information.
+
+- Admin keys are used for creating, modifying, or deleting objects. Admin keys are also used to GET object definitions and system information, such as [LIST Indexes](/rest/api/searchservice/indexes/list) or [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics).
+
 - Query keys are typically distributed to client applications that issue queries.
 
 ### [**REST API**](#tab/rest-use)
 
-**How API keys are used in REST calls**:
-
-Set an admin key in the request header. You can't pass admin keys on the URI or in the body of the request. Admin keys are used for create-read-update-delete operation and on requests issued to the search service itself, such as [LIST Indexes](/rest/api/searchservice/indexes/list) or [GET Service Statistics](/rest/api/searchservice/get-service-statistics/get-service-statistics).
+Set an admin key in the request header. You can't pass admin keys on the URI or in the body of the request.
 
 Here's an example of admin API key usage on a create index request:
 
 ```http
+@baseUrl=https://my-demo-search-service.search.windows.net
+@adminApiKey=aaaabbbb-0000-cccc-1111-dddd2222eeee
+
 ### Create an index
-POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
+POST {{baseUrl}}/indexes?api-version=2025-09-01  HTTP/1.1
   Content-Type: application/json
   api-key: {{adminApiKey}}
 
@@ -70,38 +74,81 @@ POST {{baseUrl}}/indexes?api-version=2024-07-01  HTTP/1.1
    }
 ```
 
-Set a query key in a request header for POST, or on the URI for GET. Query keys are used for operations that target the `index/docs` collection: [Search Documents](/rest/api/searchservice/documents/search-get), [Autocomplete](/rest/api/searchservice/documents/autocomplete-get), [Suggest](/rest/api/searchservice/documents/suggest-get), or [GET Document](/rest/api/searchservice/documents/get). 
+Set a query key in a request header for POST, or on the URI for GET. Query keys are used for operations that target the `index/docs` collection: [Search Documents](/rest/api/searchservice/documents/search-get), [Autocomplete](/rest/api/searchservice/documents/autocomplete-get), [Suggest](/rest/api/searchservice/documents/suggest-get), or [GET Document](/rest/api/searchservice/documents/get).
 
 Here's an example of query API key usage on a Search Documents (GET) request:
 
 ```http
 ### Query an index
-GET /indexes/my-new-index/docs?search=*&api-version=2024-07-01&api-key={{queryApiKey}}
+GET /indexes/my-new-index/docs?search=*&api-version=2025-09-01&api-key={{queryApiKey}}
 ```
 
 > [!NOTE]  
 > It's considered a poor security practice to pass sensitive data such as an `api-key` in the request URI. For this reason, Azure AI Search only accepts a query key as an `api-key` in the query string. As a general rule, we recommend passing your `api-key` as a request header.
 
-### [**PowerShell**](#tab/azure-ps-use)
+### [**Python**](#tab/python-use)
 
-**How API keys are used in PowerShell**:
+It's a best practice to set the API key as an environment variable, but for simplicity, this example shows it as a string. The example uses a query API key for a query operation.
+
+```python
+# Import libraries
+from azure.core.credentials import AzureKeyCredential
+from azure.identity import DefaultAzureCredential, AzureAuthorityHosts
+
+# Variables for endpoint, keys, index
+search_endpoint: str = "https://<Put your search service NAME here>.search.windows.net/"
+credential = AzureKeyCredential("Your search service query key")
+index_name: str = "hotels-quickstart-python"
+
+# Set up the client
+search_client = SearchClient(endpoint=search_endpoint,
+                      index_name=index_name,
+                      credential=credential)
+
+# Run the query
+results =  search_client.search(query_type='simple',
+    search_text="*" ,
+    select='HotelName,Description,Tags',
+    include_total_count=True)
+
+print ('Total Documents Matching Query:', results.get_count())
+for result in results:
+    print(result["@search.score"])
+    print(result["HotelName"])
+    print(result["Tags"])
+    print(f"Description: {result['Description']}")
+```
+
+### [**PowerShell**](#tab/azure-ps-use)
 
 Set API keys in the request header using the following syntax:
 
-```azurepowershell
+```powershell
 $headers = @{
 'api-key' = '<YOUR-ADMIN-OR-QUERY-API-KEY>'
 'Content-Type' = 'application/json' 
 'Accept' = 'application/json' }
 ```
 
-A script example showing API key usage for various operations can be found at [Quickstart: Create an Azure AI Search index in PowerShell using REST APIs](search-get-started-powershell.md).
+Use a variable to contain the fully qualified query:
+
+```powershell
+$url = '<YOUR-SEARCH-SERVICE>/indexes/hotels-quickstart/docs?api-version=2025-09-01&search=attached restaurant&searchFields=Description,Tags&$select=HotelId,HotelName,Tags,Description&$count=true'
+```
+
+Send the request to the search service:
+
+```powershell
+Invoke-RestMethod -Uri $url -Headers $headers | ConvertTo-Json
+```
+
+More script examples for other operations can be found at [Quickstart: Create an Azure AI Search index in PowerShell using REST APIs](search-get-started-text.md).
 
 ### [**Portal**](#tab/portal-use)
 
-**How API keys are used in the Azure portal**:
+Recall that key authentication is enabled by default and supports data plane operations such as indexing and queries. 
 
-Key authentication applies to data plane operations such as indexing and queries. It's enabled by default. However, if you [disable API keys](search-security-enable-roles.md#disable-api-key-authentication) and set up role assignments, the Azure portal uses role assignments instead.
+However, if you [disable API keys](search-security-enable-roles.md#disable-api-key-authentication) and set up role assignments, the Azure portal uses role assignments instead.
 
 ---
 
@@ -169,7 +216,7 @@ Use [List Admin Keys](/rest/api/searchmanagement/admin-keys/get) or [List Query 
 You must have a [valid role assignment](#permissions-to-view-or-manage-api-keys) to return or update API keys. See [Manage your Azure AI Search service with REST APIs](search-manage-rest.md) for guidance on meeting role requirements using the REST APIs.
 
 ```rest
-POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2023-11-01
+POST https://management.azure.com/subscriptions/{{subscriptionId}}/resourceGroups/{{resource-group}}/providers//Microsoft.Search/searchServices/{{search-service-name}}/listAdminKeys?api-version=2025-05-01
 ```
 
 ---
@@ -205,7 +252,7 @@ Use [Create Query Keys](/rest/api/searchmanagement/query-keys/create) in the Man
 You must have a [valid role assignment](#permissions-to-view-or-manage-api-keys) to create or manage API keys. See [Manage your Azure AI Search service with REST APIs](search-manage-rest.md) for guidance on meeting role requirements using the REST APIs.
 
 ```rest
-POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/createQueryKey/{name}?api-version=2023-11-01
+POST https://management.azure.com/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Search/searchServices/{searchServiceName}/createQueryKey/{name}?api-version=2025-05-01
 ```
 
 ---
@@ -258,4 +305,4 @@ It's not possible to use [customer-managed key encryption](search-security-manag
 
 + [Security in Azure AI Search](search-security-overview.md)
 + [Azure role-based access control in Azure AI Search](search-security-rbac.md)
-+ [Manage using PowerShell](search-manage-powershell.md) 
++ [Manage using PowerShell](search-manage-powershell.md)

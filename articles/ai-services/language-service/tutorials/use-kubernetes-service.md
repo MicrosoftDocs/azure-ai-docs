@@ -2,12 +2,12 @@
 title: Deploy a key phrase extraction container to Azure Kubernetes Service
 titleSuffix: Azure AI services
 description: Deploy a key phrase extraction container image to Azure Kubernetes Service, and test it in a web browser.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: tutorial
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/21/2025
+ms.author: lajanuar
 ms.custom: cogserv-non-critical-language
 ---
 
@@ -19,7 +19,7 @@ Learn how to deploy a [key phrase extraction Docker container](../key-phrase-ext
 
 This procedure requires several tools that must be installed and run locally. Don't use Azure Cloud Shell. You need the following:
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A text editor, for example, [Visual Studio Code](https://code.visualstudio.com/download).
 * The [Azure CLI](/cli/azure/install-azure-cli) installed.
 * The [Kubernetes CLI](https://kubernetes.io/docs/tasks/tools/install-kubectl/) installed.

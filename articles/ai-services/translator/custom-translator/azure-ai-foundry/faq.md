@@ -12,7 +12,7 @@ ms.topic: faq
 
 # Azure AI Foundry custom translation frequently asked questions
 
-This article contains answers to frequently asked questions about custom translation in [Azure AI Foundry](https://ai.azure.com/).
+This article contains answers to frequently asked questions about custom translation in [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs).
 
 ## What are the current restrictions in custom translation?
 
@@ -35,7 +35,7 @@ The deployment generally takes less than an hour.
 
 ## How do you access a deployed system?
 
-Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v4/translate-api.md) webpage.
+Deployed systems can be accessed via the Azure AI Translator Text API V3 by specifying the Category ID. More information about the Translator Text API can be found in the [API Reference](../../text-translation/reference/v3/translate.md) webpage.
 
 ## How do I skip alignment and sentence breaking if my data is already sentence aligned?
 
@@ -45,7 +45,7 @@ If the number of extracted sentences doesn't match the two files with the same b
 
 ## I tried uploading my Translation Memory Exchange (TMX) file, but it says "document processing failed"
 
-Ensure that the TMX conforms to the [TMX 1.4b Specification](https://www.gala-global.org/tmx-14b).
+Ensure that the TMX conforms to the [TMX 1.4b Specification](https://www.ttt.org/oscarStandards/tmx/tmx14b.html).
 
 ## Next steps
 

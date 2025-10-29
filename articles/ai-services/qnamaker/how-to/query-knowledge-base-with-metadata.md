@@ -3,12 +3,12 @@ title: Contextually filter by using metadata
 titleSuffix: Azure AI services
 description: QnA Maker filters QnA pairs by metadata.
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.service: azure-ai-language
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Filter Responses with Metadata
@@ -100,7 +100,7 @@ This allows your knowledge base to return answers when any filter matches but wo
 ### Metadata examples in quickstarts
 
 Learn more about metadata in the QnA Maker portal quickstart for metadata:
-* [Authoring - add metadata to QnA pair](../quickstarts/add-question-metadata-portal.md#add-metadata-to-filter-the-answers)
+* [Authoring - add metadata to QnA pair](../quickstarts/add-question-metadata-portal.md)
 * [Query prediction - filter answers by metadata](../quickstarts/get-answer-from-knowledge-base-using-url-tool.md)
 
 <a name="keep-context"></a>

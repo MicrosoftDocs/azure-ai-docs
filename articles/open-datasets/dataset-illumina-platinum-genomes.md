@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # Illumina Platinum Genomes
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 Whole-genome sequencing is enabling researchers worldwide to characterize the human genome more fully and accurately. This effort requires a comprehensive, genome-wide catalog of high-confidence variants called in a set of genomes as a benchmark. Illumina generated deep, whole-genome sequence data of 17 individuals in a three-generation pedigree. Illumina called variants in each genome using a range of currently available algorithms.
 
 For more information on the data, see the official [Illumina site](https://www.illumina.com/platinumgenomes.html).
@@ -32,6 +34,8 @@ West US 2: 'https://datasetplatinumgenomes.blob.core.windows.net/dataset'
 
 West Central US: 'https://datasetplatinumgenomes-secondary.blob.core.windows.net/dataset'
 
+[SAS Token](/azure/storage/common/storage-sas-overview): sv=2019-02-02&se=2050-01-01T08%3A00%3A00Z&si=prod&sr=c&sig=FFfZ0QaDcnEPQmWsshtpoYOjbzd4jtwIWeK%2Fc4i9MqM%3D
+
 ## Use Terms
 
 Data is available without restrictions. For more information and citation details, see the [official Illumina site](https://www.illumina.com/platinumgenomes.html).
@@ -51,7 +55,7 @@ For any questions or feedback about the dataset, contact platinumgenomes@illumin
 
 ## Getting the Illumina Platinum Genomes from Azure Open Datasets and Doing Initial Analysis 
 
-Use Jupyter notebooks, GATK, and Picard in analyses such as:
+Use Jupyter notebooks, GATK, and Picard to complete the following tasks:
 
 1. Annotate genotypes using VariantFiltration
 2. Select Specific Variants
@@ -73,7 +77,7 @@ This notebook requires the following libraries:
 
 ## Getting the Genomics data from Azure Open Datasets
 
-Several public genomics data has been uploaded as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Dataset for `Illumina Platinum Genomes` datasets as:
+Several public genomics data are available as an Azure Open Dataset [here](https://azure.microsoft.com/services/open-datasets/catalog/). We create a blob service linked to this open dataset. You can find examples of data calling procedure from Azure Open Dataset for `Illumina Platinum Genomes` datasets as follows:
 
 ### Downloading the specific 'Illumina Platinum Genomes'
 
@@ -106,7 +110,7 @@ There are many different options for selecting subsets of variants from a larger
 Extract one or more samples from a call set based on either a complete sample name or a pattern match.
 Specify criteria for inclusion that place thresholds on annotation values, **for example "DP > 1000" (depth of coverage greater than 1000x), "AF < 0.25" (sites with allele frequency less than 0.25)**. These criteria are written as "JEXL expressions", which are documented in the article about using JEXL expressions.
 Provide concordance or discordance tracks in order to include or exclude variants that are also present in other given call sets.
-Select variants based on criteria like their type (for example, INDELs only), evidence of mendelian violation, filtering status, allelicity, etc.
+Select variants based on criteria like their type (for example, INDELs only), evidence of Mendelian violation, filtering status, allelicity, etc.
 There are also several options for recording the original values of certain annotations, which are recalculated when one subsets the new call set, trims alleles, etc.
 
 Input: A variant call set in VCF format from which a subset can be selected.
@@ -121,7 +125,7 @@ run gatk SelectVariants -R Homo_sapiens_assembly38.fasta -V outputannot.vcf --se
 
 Running SelectVariants with --set-filtered-gt-to-nocall will further transform the flagged genotypes with a null genotype call. 
 
-This conversion is necessary because downstream tools do not parse the FORMAT-level filter field.
+This conversion is necessary because downstream tools don't parse the FORMAT-level filter field.
 
 How can we filter the variants with **'No call'**
 
@@ -160,7 +164,7 @@ Extract fields from a VCF file to a tab-delimited table. This tool extracts spec
 
 INFO/site-level fields:
 
-Use the `-F` argument to extract INFO fields; each field occupies a single column in the output file. The field can be any standard VCF column (for example, CHROM, ID, QUAL) or any annotation name in the INFO field (for example, AC, AF). The tool also supports the following fields:
+Use the `-F` argument to extract INFO fields; each field will occupy a single column in the output file. The field can be any standard VCF column (for example, CHROM, ID, QUAL) or any annotation name in the INFO field (for example, AC, AF). The tool also supports the following fields:
 
 EVENTLENGTH (length of the event)
 TRANSITION (1 for a bi-allelic transition (SNP), 0 for bi-allelic transversion (SNP), -1 for INDELs and multi-allelics)

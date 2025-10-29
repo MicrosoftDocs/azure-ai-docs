@@ -23,7 +23,7 @@ As your needs change or your automation requirements increase, you can manage wo
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 ## Limitations
 
@@ -102,7 +102,7 @@ At hub creation, select between the networking isolation modes: **Public**, **Pr
 
 At hub creation in the Azure portal, creation of associated Azure AI services, Storage account, Key vault, Application insights, and Container registry is given. These resources are found on the Resources tab during creation. 
 
-To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in [Azure AI Foundry portal](https://ai.azure.com/), create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Azure AI services connections, see [Azure AI services and virtual networks](/azure/ai-services/cognitive-services-virtual-networks). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
+To connect to Azure AI services (Azure OpenAI, Azure AI Search, and Azure AI Content Safety) or storage accounts in [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs), create a private endpoint in your virtual network. Ensure the public network access (PNA) flag is disabled when creating the private endpoint connection. For more about Azure AI services connections, see [Azure AI services and virtual networks](/azure/ai-services/cognitive-services-virtual-networks). You can optionally bring your own (BYO) search, but this requires a private endpoint connection from your virtual network.
 
 ### Encryption
 

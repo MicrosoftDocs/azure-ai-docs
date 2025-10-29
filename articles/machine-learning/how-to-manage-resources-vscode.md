@@ -3,8 +3,8 @@ title: Manage Resources with the VS Code Extension
 titleSuffix: Azure Machine Learning
 description: Learn how to create and manage Azure Machine Learning resources using the Azure Machine Learning Visual Studio Code extension.
 services: machine-learning
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: tbombach
 ms.service: azure-machine-learning
 ms.subservice: core
@@ -23,7 +23,7 @@ This article explains how to manage Azure Machine Learning resources by using th
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have one, sign up to try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An Azure subscription. If you don't have one, sign up to try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - Visual Studio Code. If you don't have it, see [Setting up Visual Studio Code](https://code.visualstudio.com/docs/setup/setup-overview).
 - The Azure Machine Learning extension. To learn how to set up the extension, see [Set up Visual Studio Code desktop with the Azure Machine Learning extension](how-to-setup-vs-code.md).
 

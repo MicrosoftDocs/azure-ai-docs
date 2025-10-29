@@ -4,10 +4,11 @@ titleSuffix: Azure AI Search
 description: Understand the .NET SDK Search integration queries used in the Search-enabled website with this cheat sheet.
 manager: nitinme
 author: diberry
-ms.author: diberry
+ms.author: heidist
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 01/21/2025
+ms.date: 09/23/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet

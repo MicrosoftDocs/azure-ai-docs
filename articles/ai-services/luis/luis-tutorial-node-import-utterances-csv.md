@@ -2,15 +2,15 @@
 title: Import utterances using Node.js - LUIS
 titleSuffix: Azure AI services
 description: Learn how to build a LUIS app programmatically from pre-existing data in CSV format using the LUIS Authoring API.
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.devlang: javascript
 ms.custom: devx-track-js
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: tutorial
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 
 # Build a LUIS app programmatically using Node.js
@@ -25,7 +25,7 @@ LUIS provides a programmatic API that does everything that the [LUIS](luis-refer
 ## Prerequisites
 
 * Sign in to the [LUIS](luis-reference-regions.md) website and find your [authoring key](luis-how-to-azure-subscription.md) in Account Settings. You use this key to call the Authoring APIs.
-* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+* If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * This article starts with a CSV for a hypothetical company's log files of user requests. Download it [here](https://github.com/Azure-Samples/cognitive-services-language-understanding/blob/master/examples/build-app-programmatically-csv/IoT.csv).
 * Install the latest Node.js version. Download it from [here](https://nodejs.org/en/download/).
 * **[Recommended]** Visual Studio Code for IntelliSense and debugging, download it from [here](https://code.visualstudio.com/) for free.

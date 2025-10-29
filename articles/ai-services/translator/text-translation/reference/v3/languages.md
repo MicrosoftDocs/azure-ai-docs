@@ -4,10 +4,9 @@ titleSuffix: Azure AI services
 description: The Languages method gets the set of languages currently supported by other operations of the Translator.
 author: laujan
 manager: nitinme
-
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 07/19/2024
+ms.date: 06/19/2025
 ms.author: lajanuar
 ---
 
@@ -185,7 +184,7 @@ The value for each property is as follows.
 
   * `dir`: Directionality, which is `rtl` for right-to-left languages or `ltr` for left-to-right languages.
 
-  * `translations`: List of languages with alterative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
+  * `translations`: List of languages with alternative translations and examples for the query expressed in the source language. Each element of the `translations` list has properties:
 
     * `name`: Display name of the target language in the locale requested via `Accept-Language` header.
 
@@ -237,7 +236,7 @@ The following are the possible HTTP status codes that a request returns.
 |500|An unexpected error occurred. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
 |503|Server temporarily unavailable. Retry the request. If the error persists, report it with: date and time of the failure, request identifier from response header `X-RequestId`, and client identifier from request header `X-ClientTraceId`.|
 
-If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](./reference.md#errors).
+If an error occurs, the request also returns a JSON error response. The error code is a 6-digit number combining the 3-digit HTTP status code followed by a 3-digit number to further categorize the error. Common error codes can be found on the [v3 Translator reference page](../status-response-codes.md).
 
 ## Examples
 

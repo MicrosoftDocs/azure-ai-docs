@@ -1,10 +1,10 @@
 ---
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: jboback
+ms.date: 06/30/2025
+ms.author: lajanuar
 ---
 
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
@@ -13,7 +13,7 @@ Use this quickstart to send Named Entity Recognition (NER) requests using the RE
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 
 
 ## Setting up

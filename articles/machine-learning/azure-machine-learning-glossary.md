@@ -6,8 +6,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023
 ms.topic: overview
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: saoh
 ms.date: 03/06/2025
 monikerRange: 'azureml-api-2'

@@ -12,6 +12,7 @@ author: lgayhardt
 ms.author: lagayhar
 ms.reviewer: CLWAN
 ms.date: 11/02/2023
+ms.update-cycle: 365-days
 ---
 
 # Embedding tool
@@ -27,7 +28,7 @@ Create OpenAI resources:
     - Sign up your account on the [OpenAI website](https://openai.com/).
     - Sign in and [find your personal API key](https://platform.openai.com/account/api-keys).
 
-- **Azure OpenAI Service**:
+- **Azure OpenAI in Azure AI Foundry Models**:
 
     Create Azure OpenAI resources with [these instructions](/azure/ai-services/openai/how-to/create-resource).
 

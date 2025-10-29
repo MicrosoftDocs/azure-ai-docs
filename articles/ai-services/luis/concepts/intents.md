@@ -2,13 +2,13 @@
 title: What are intents in LUIS
 titleSuffix: Azure AI services
 description: Learn about intents and how they're used in LUIS
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: conceptual
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 
 ---
 # Intents 

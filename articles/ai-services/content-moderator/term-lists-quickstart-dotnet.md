@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: how-to
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: pafarley
 ms.custom: devx-track-csharp, devx-track-dotnet
 #Customer intent: As a C# developer of content-providing software, I want to analyze text content for terms that are particular to my product, so that I can categorize and handle it accordingly.
@@ -28,7 +28,7 @@ the Content Moderator SDK for .NET to:
 - Edit list information.
 - Refresh the index so that changes to the list are included in a new scan.
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin. 
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin. 
 
 ## Sign up for Content Moderator services
 

@@ -5,10 +5,10 @@ description: This article explains the available options to access Apache Spark 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mldata
-ms.topic: conceptual
-author: fbsolo-ms1 
-ms.author: franksolomon 
-ms.reviewer: yogipandey
+ms.topic: concept-article
+author: s-polly
+ms.author: scottpolly 
+ms.reviewer: sooryar
 ms.date: 09/06/2024
 ms.custom: cliv2, sdkv2, build-2023
 #Customer intent: As a full-stack machine learning pro, I want to use Apache Spark in Azure Machine Learning.

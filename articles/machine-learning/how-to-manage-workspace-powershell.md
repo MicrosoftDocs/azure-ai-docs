@@ -5,8 +5,8 @@ description: Learn how to use the Azure PowerShell module to create and manage a
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 02/05/2025
 ms.topic: how-to
@@ -21,7 +21,7 @@ You can also manage workspaces [using the Azure CLI](how-to-manage-workspace-cli
 
 ## Prerequisites
 
-- An **Azure subscription**. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- An **Azure subscription**. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 - The [Azure PowerShell module](https://www.powershellgallery.com/packages/Az). To make sure you have the latest version, see [Install the Azure PowerShell module](/powershell/azure/install-azure-powershell).
 
   > [!IMPORTANT]

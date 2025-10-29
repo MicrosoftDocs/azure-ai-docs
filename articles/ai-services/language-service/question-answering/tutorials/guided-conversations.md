@@ -3,9 +3,9 @@ title: Add guided conversations with multi-turn prompts
 description: In this tutorial, learn how to make guided conversations with multi-turn prompts.
 ms.service: azure-ai-language
 ms.topic: tutorial
-author: jboback
-ms.author: jboback
-ms.date: 11/21/2024
+author: laujan
+ms.author: lajanuar
+ms.date: 06/04/2025
 ms.custom: language-service-question-answering
 ---
 
@@ -63,7 +63,7 @@ Using the editor, we add a new QnA pair with a follow-up prompt by clicking on *
     > [!div class="mx-imgBorder"]
     > [ ![Screenshot of UI with "add a follow-up prompt" highlighted in a red box]( ../media/guided-conversations/add-prompts.png) ]( ../media/guided-conversations/add-prompts.png#lightbox)
     
-    We provide **Check Compatibility** as the “Display text” for the prompt and try to link it to a QnA. Since, no related QnA pair is available to link to the prompt, when we search “Check your Surface Pen Compatibility”, we create a new question pair by clicking on **Create link to new pair** and select **Done**. Then select **Save changes**.
+    We provide **Check Compatibility** as the "Display text" for the prompt and try to link it to a QnA. Since, no related QnA pair is available to link to the prompt, when we search “Check your Surface Pen Compatibility”, we create a new question pair by clicking on **Create link to new pair** and select **Done**. Then select **Save changes**.
     
     > [!div class="mx-imgBorder"]
     > [ ![Screenshot of a question and answer about checking your surface pen compatibility]( ../media/guided-conversations/compatability-check.png) ]( ../media/guided-conversations/compatability-check.png#lightbox)

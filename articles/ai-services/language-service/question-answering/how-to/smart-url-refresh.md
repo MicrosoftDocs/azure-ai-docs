@@ -3,10 +3,10 @@ title: Smart URL refresh - custom question answering
 titleSuffix: Azure AI services
 description: Use the custom question answering smart URL refresh feature to keep your project up to date.
 ms.service: azure-ai-language
-author: PatrickFarley
-ms.author: pafarley
+author: laujan
+ms.author: lajanuar
 ms.topic: how-to
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 
 # Use smart URL refresh with a project

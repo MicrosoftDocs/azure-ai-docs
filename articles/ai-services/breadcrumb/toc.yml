@@ -2,6 +2,6 @@
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: Azure AI services
-    tocHref: /azure/ai-services/
-    topicHref: /azure/ai-services/index
+  - name: Azure AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-foundry/index

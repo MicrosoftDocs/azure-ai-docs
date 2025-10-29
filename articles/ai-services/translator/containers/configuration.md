@@ -6,16 +6,16 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: how-to
-ms.date: 01/28/2025
+ms.date: 07/22/2025
 ms.author: lajanuar
 recommendations: false
 ---
 
 # Configure Azure AI Translator Docker containers
 
-Azure AI services provide each container with a common configuration framework. You can easily configure your Translator containers to build Translator application architecture optimized for robust cloud capabilities and edge locality.
+Azure AI services offer a unified configuration framework for all containers. You can easily configure your Translator containers to create a Translator application architecture that is optimized for both robust cloud features and edge locality deployment.
 
-The **Azure AI Translator** container runtime environment is configured using the `docker run` command arguments. This container has both required and optional settings. The required container-specific settings are the billing settings.
+The **Azure AI Translator** container runtime environment is configured using the `docker run` command arguments. This container includes both required and optional settings. The required settings specific to the container are the billing settings.
 
 ## Configuration settings
 

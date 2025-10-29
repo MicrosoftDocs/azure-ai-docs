@@ -2,14 +2,14 @@
 title: How to log audio and transcriptions for speech recognition
 titleSuffix: Azure AI services
 description: Learn how to use audio and transcription logging for speech to text and speech translation.
-author: eric-urban
-ms.author: eur
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.custom: devx-track-extended-java, devx-track-js, devx-track-python
 ms.topic: how-to
-ms.date: 3/10/2025
-ms.reviewer: alexeyo 
+ms.date: 08/07/2025
+ms.reviewer: jagoerge 
 zone_pivot_groups: programming-languages-speech-services-nomore-variant
 #Customer intent: As a developer using speech to text, I want to learn how to log audio and transcriptions for speech recognition.
 ---
@@ -289,10 +289,10 @@ To turn off logging for a custom endpoint, use the [Endpoints_Update](/rest/api/
 
 - Set the `contentLoggingEnabled` property within `properties`. Set this property to `true` to enable logging of the endpoint's traffic. Set this property to `false` to disable logging of the endpoint's traffic. 
 
-Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSubscriptionKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
+Make an HTTP PATCH request using the URI as shown in the following example. Replace `YourSpeechResoureKey` with your Speech resource key, replace `YourServiceRegion` with your Speech resource region, replace `YourEndpointId` with your endpoint ID, and set the request body properties as previously described.
 
 ```azurecli-interactive
-curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSubscriptionKey" -H "Content-Type: application/json" -d '{
+curl -v -X PATCH -H "Ocp-Apim-Subscription-Key: YourSpeechResoureKey" -H "Content-Type: application/json" -d '{
   "properties": {
     "contentLoggingEnabled": false
   },

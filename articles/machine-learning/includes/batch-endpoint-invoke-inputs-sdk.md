@@ -1,9 +1,9 @@
 ---
-author: msakande
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 08/21/2024
-ms.author: mopeakande
+ms.author: scottpolly
 ---
 
 __What's the difference between the `inputs` and `input` parameter when you invoke an endpoint?__

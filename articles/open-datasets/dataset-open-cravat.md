@@ -8,6 +8,8 @@ ms.date: 04/16/2021
 
 # OpenCravat: Open Custom Ranked Analysis of Variants Toolkit
 
+[!INCLUDE [Open Dataset usage notice](./includes/open-datasets-change-notice.md)]
+
 OpenCRAVAT is a Python package that performs genomic variant interpretation including variant impact, annotation, and scoring. OpenCRAVAT has a modular architecture with a wide variety of analysis modules and annotation resources that can be selected and installed/run based on the needs of a given study.
 
 For more information on the data, see the [OpenCravat](https://opencravat.org/).

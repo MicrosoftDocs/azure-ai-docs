@@ -5,6 +5,7 @@ description: Learn how to efficiently index data using Azure AI Search's push AP
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 03/28/2025
 ms.custom:
@@ -29,7 +30,7 @@ In this tutorial, you use C# and the [Azure.Search.Documents library](/dotnet/ap
 
 ## Prerequisites
 
-+ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
++ An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 + [Visual Studio](https://visualstudio.microsoft.com/downloads/).
 
 <a name="get-service-info"></a>
@@ -81,7 +82,7 @@ This tutorial uses key-based authentication. Copy an admin API key to paste into
 
 After you update *appsettings.json*, the sample program in *OptimizeDataIndexing.sln* should be ready to build and run.
 
-This code is derived from the C# section of [Quickstart: Full text search using the Azure SDKs](search-get-started-text.md), which provides detailed information about the basics of working with the .NET SDK.
+This code is derived from the C# section of [Quickstart: Full-text search](search-get-started-text.md), which provides detailed information about the basics of working with the .NET SDK.
 
 This simple C#/.NET console app performs the following tasks:
 

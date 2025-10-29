@@ -2,12 +2,12 @@
 title: "Quickstart: Detect Personally Identifying Information (PII) in text"
 titleSuffix: Azure AI services
 description: Use this quickstart to start using the PII detection API.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 04/29/2025
-ms.author: jboback
+ms.date: 09/15/2025
+ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python
 ms.custom: language-service-pii, mode-other, devx-track-extended-java, devx-track-js, devx-track-python
@@ -57,7 +57,7 @@ zone_pivot_groups: programming-languages-text-analytics
 
 ## Clean up resources
 
-If you want to clean up and remove an Azure AI services subscription, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it.
+To clean up and remove an Azure AI resource, you can delete either the individual resource or the entire resource group. If you delete the resource group, all resources contained within are also deleted.
 
 * [Azure portal](../../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Azure CLI](../../multi-service-resource.md?pivots=azcli#clean-up-resources)

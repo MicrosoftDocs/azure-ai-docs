@@ -2,21 +2,22 @@
 title: "Part 3: Evaluate a chat app with the Azure AI SDK"
 titleSuffix: Azure AI Foundry
 description: Evaluate and deploy a custom chat app with the prompt flow SDK. This tutorial is part 3 of a 3-part tutorial series.
-manager: scottpolly
 ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
+  - hub-only
 ms.topic: tutorial
-ms.date: 11/06/2024
+ms.date: 08/29/2025
 ms.reviewer: lebaro
 ms.author: sgilley
 author: sdgilley
+
 #customer intent: As a developer, I want to learn how to use the prompt flow SDK so that I can evaluate and deploy a chat app.
 ---
 
 # Tutorial: Part 3 - Evaluate a custom chat application with the Azure AI Foundry SDK
 
-In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com) SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
+In this tutorial, you use the [Azure AI Foundry](https://ai.azure.com/?cid=learnDocs) SDK (and other libraries) to  evaluate the chat app you built in [Part 2 of the tutorial series](copilot-sdk-build-rag.md). In this part three, you learn how to:
 
 > [!div class="checklist"]
 > - Create an evaluation dataset
@@ -28,9 +29,13 @@ This tutorial is part three of a three-part tutorial.
 
 ## Prerequisites
 
-- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
-- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
+[!INCLUDE [hub-only-tutorial](../includes/hub-only-tutorial.md)]
 
+- Complete [part 2 of the tutorial series](copilot-sdk-build-rag.md) to build the chat application.
+
+- Use the same **[!INCLUDE [hub](../includes/hub-project-name.md)]** you created in part 1. 
+
+- Make sure you've completed the steps to [add telemetry logging](copilot-sdk-build-rag.md#logging) from part 2.
 
 ## <a name="evaluate"></a> Evaluate the quality of the chat app responses
 
@@ -152,18 +157,14 @@ Once the evaluation run completes, follow the link to view the evaluation result
 
 :::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-overview.png" alt-text="Screenshot shows evaluation overview in Azure AI Foundry portal.":::
 
-You can also look at the individual rows and see metric scores per row, and view the full context/documents that were retrieved. These metrics can be helpful in interpreting and debugging evaluation results.
-
-:::image type="content" source="../media/tutorials/develop-rag-copilot-sdk/eval-studio-rows.png" alt-text="Screenshot shows rows of evaluation results in Azure AI Foundry portal.":::
-
 For more information about evaluation results in Azure AI Foundry portal, see [How to view evaluation results in Azure AI Foundry portal](../how-to/evaluate-results.md).
 
 ## Iterate and improve
 
 Notice that the responses are not well grounded. In many cases, the model replies with a question rather than an answer. This is a result of the prompt template instructions. 
  
-* In your **assets/grounded_chat.prompty** file, find the sentence "If the question is not related to outdoor/camping gear and clothing, just say 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?'"
-* Change the sentence to "If the question is related to outdoor/camping gear and clothing but vague, try to answer based on the reference documents, then ask for clarifying questions."  
+* In your **assets/grounded_chat.prompty** file, Delete the sentence "If the question is not related to outdoor/camping gear and clothing, just say 'Sorry, I only can answer queries related to outdoor/camping gear and clothing. So, how can I help?'"
+* Change the next sentence to "If the question is related to outdoor/camping gear and clothing but vague, try to answer based on the reference documents, then ask for clarifying questions."  
 * Save the file and re-run the evaluation script.
 
 Try other modifications to the prompt template, or try different models, to see how the changes affect the evaluation results.

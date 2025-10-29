@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-moderator
 ms.topic: include
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.custom: devx-track-java
 ms.author: pafarley
 ---
@@ -20,11 +20,11 @@ Use the Content Moderator client library for Java to:
 * Moderate text
 * Moderate images
 
-[Reference documentation](/java/api/overview/azure/cognitiveservices/client/contentmoderator) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-contentmoderator) |[Artifact (Maven)](https://mvnrepository.com/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-contentmoderator) | [Samples](/samples/browse/?products=azure&term=content-moderator)
+[Reference documentation](/java/api/overview/azure/cognitiveservices/client/contentmoderator) | [Library source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices) |[Artifact (Maven)](https://mvnrepository.com/artifact/com.microsoft.azure.cognitiveservices/azure-cognitiveservices-contentmoderator) | [Samples](/samples/browse/?products=azure&term=content-moderator)
 
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * The current version of the [Java Development Kit (JDK)](https://www.microsoft.com/openjdk)
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 * Once you have your Azure subscription, <a href="https://portal.azure.com/#create/Microsoft.CognitiveServicesContentModerator"  title="Create a Content Moderator resource"  target="_blank">create a Content Moderator resource </a> in the Azure portal to get your key and endpoint. Wait for it to deploy and click the **Go to resource** button.

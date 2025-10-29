@@ -8,10 +8,10 @@ ms.topic: include
 ms.date: 04/10/2025
 ms.author: pafarley
 ---
-\
+
 ## Prerequisites
 
-* An Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services/) 
+* An Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) 
 * Once you have your Azure subscription, <a href="https://aka.ms/acs-create"  title="Create a Content Safety resource"  target="_blank">create a Content Safety resource </a> in the Azure portal to get your key and endpoint. Enter a unique name for your resource, select your subscription, and select a resource group, supported region (see [Region availability](/azure/ai-services/content-safety/overview#region-availability)), and supported pricing tier. Then select **Create**.
   * The resource takes a few minutes to deploy. After it finishes, Select **go to resource**. In the left pane, under **Resource Management**, select **Subscription Key and Endpoint**. The endpoint and either of the keys are used to call APIs.
 * [cURL](https://curl.haxx.se/) installed
@@ -79,7 +79,7 @@ The JSON fields in the output are defined here:
 | **documentsAnalysis**  | Contains a list of analysis results for each document provided. | Array of objects |
 | - **attackDetected**   | Indicates whether a Document attack (for example, commands, malicious input) is detected in the document. This is part of the **documentsAnalysis** array. | Boolean          |
 
-A value of `true` for `attackDetected` signifies a detected threat, in which case we recommend review and action to ensure content safety.
+A value of `true` for `attackDetected` signifies a detected threat, in which case we recommend review and action.
 
 ## Clean up resources
 

@@ -1,10 +1,32 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 08/01/2024
-ms.author: eur
+ms.author: pafarley
 ---
+### Speech CLI 1.46.0: 2025-September release
+Updated to use Speech SDK 1.46.0
+#### New features
+* none
+#### Bug fixes
+* none
+
+### Speech CLI 1.45.0: 2025-July release
+Updated to use Speech SDK 1.45.0
+#### New features
+* none
+#### Bug fixes
+* none
+
+### Speech CLI 1.44: 2025-May release
+
+#### New features
+  * Added support for authentication with Microsoft Entra token credentials.
+  * Added support for the Fast transcription API.
+  
+##### Bug fixes
+  * Fixed non-working semicolon-separated input URLs and input file/URL lists from a file.
 
 ### Speech CLI 1.43: 2025-March release
 

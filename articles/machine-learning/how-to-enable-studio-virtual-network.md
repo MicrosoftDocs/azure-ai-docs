@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.reviewer: None
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.date: 03/04/2025
 ms.custom: tracking-python, security
 monikerRange: 'azureml-api-2 || azureml-api-1'

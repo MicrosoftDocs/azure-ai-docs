@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: enterprise-readiness
 ms.topic: how-to
 ms.custom: devx-track-azurepowershell, devx-track-arm-template, devx-track-azurecli
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 09/11/2024
 #Customer intent: As a DevOps person, I need to automate or customize the creation of Azure Machine Learning by using templates.
@@ -22,7 +22,7 @@ For more information, see [Deploy an application with Azure Resource Manager tem
 
 ## Prerequisites
 
-* An __Azure subscription__. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An __Azure subscription__. If you don't have one, try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 * To use a template from a CLI, you need either [Azure PowerShell](/powershell/azure/) or the [Azure CLI](/cli/azure/install-azure-cli).
 

@@ -3,9 +3,9 @@ title: Monitor Azure Machine Learning
 description: Start here to learn how to monitor Azure Machine Learning.
 ms.date: 03/06/2025
 ms.custom: horz-monitor
-ms.topic: conceptual
-ms.author: larryfr
-author: Blackmist
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ---

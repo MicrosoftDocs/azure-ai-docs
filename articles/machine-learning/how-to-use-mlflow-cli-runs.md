@@ -2,8 +2,8 @@
 title: Track experiments and models with MLflow
 titleSuffix: Azure Machine Learning
 description:  Learn how to use MLflow to log metrics and artifacts from machine learning experiments and runs in Azure Machine Learning workspaces.
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: cacrest
 ms.service: azure-machine-learning
 ms.subservice: mlops
@@ -26,7 +26,7 @@ Some methods available in the MLflow API might not be available when connected t
 
 ## Prerequisites
 
-- Have an Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+- Have an Azure subscription with the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - To run Azure CLI and Python commands, install [Azure CLI v2](how-to-configure-cli.md) and the [Azure Machine Learning SDK v2 for Python](/python/api/overview/azure/ai-ml-readme). The `ml` extension for Azure CLI installs automatically the first time you run an Azure Machine Learning CLI command.
 
@@ -204,7 +204,7 @@ mlflow.autolog()
 
 ## View metrics and artifacts in your workspace
 
-The metrics and artifacts from MLflow logging are tracked in your workspace. You can view and access them in Azure Machine Learning studio or access them programatically via the MLflow SDK.
+The metrics and artifacts from MLflow logging are tracked in your workspace. You can view and access them in Azure Machine Learning studio or access them programmatically via the MLflow SDK.
 
 To view metrics and artifacts in the studio:
 
@@ -215,7 +215,7 @@ To view metrics and artifacts in the studio:
 
    :::image type="content" source="media/how-to-log-view-metrics/metrics.png" alt-text="Screenshot of the metrics view that shows the list of metrics and the charts created from the metrics." lightbox="media/how-to-log-view-metrics/metrics.png"::: 
 
-To access or query metrics, parameters, and artifacts programatically via the MLflow SDK, use [mlflow.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.get_run).
+To access or query metrics, parameters, and artifacts programmatically via the MLflow SDK, use [mlflow.get_run()](https://mlflow.org/docs/latest/python_api/mlflow.html#mlflow.get_run).
 
 ```python
 import mlflow

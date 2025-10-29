@@ -3,11 +3,11 @@ title: "How to query for predictions using a browser - LUIS"
 description: In this article, use an available public LUIS app to determine a user's intention from conversational text in a browser.
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 manager: nitinme
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ms.custom: mode-other
 #Customer intent: As a developer familiar with how to use a browser but new to the LUIS service, I want to query the LUIS endpoint of a published model so that I can see the JSON prediction response.
 ---
@@ -24,7 +24,7 @@ To understand what a LUIS prediction endpoint returns, view a prediction result 
 In order to query a public app, you need:
 
 * Your Language Understanding (LUIS) resource information:
-    * **Prediction key** - which can be obtained from [LUIS Portal](https://www.luis.ai/). If you do not already have a subscription to create a key, you can register for a [free account](https://azure.microsoft.com/free/cognitive-services).
+    * **Prediction key** - which can be obtained from [LUIS Portal](https://www.luis.ai/). If you do not already have a subscription to create a key, you can register for a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
     * **Prediction endpoint subdomain** - the subdomain is also the **name** of your LUIS resource.
 * A LUIS app ID - use the public IoT app ID of `df67dcdb-c37d-46af-88e1-8b97951ca1c2`. The user query used in the quickstart code is specific to that app. This app should work with any prediction resource other than the Europe or Australia regions, since it uses "westus" as the authoring region.
 

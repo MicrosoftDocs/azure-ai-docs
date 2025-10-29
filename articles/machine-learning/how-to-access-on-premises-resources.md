@@ -2,13 +2,12 @@
 title: How to access on-premises resources
 titleSuffix: Azure Machine Learning
 description: Learn how to configure an Azure Machine Learning's managed network to securely allow access to your on-premises resources.
-manager: scottpolly
 ms.service: azure-machine-learning
 ms.topic: how-to
 ms.date: 02/27/2025
 ms.reviewer: meerakurup 
-ms.author: larryfr
-author: Blackmist
+ms.author: scottpolly
+author: s-polly
 # Customer intent: As an admin, I want to allow my developers to securely access on-premises resources from Azure Machine Learning.
 ---
 
@@ -78,6 +77,8 @@ Follow the [Quickstart: Direct web traffic using the portal](/azure/application-
     - Resource name: The name of your Application Gateway resource
     - Sub resource: `appGwPrivateFrontendIpIPv4`.
     - FQDNs: These FQDNs are the aliases that you want to use inside the Azure Machine Learning workspace. They're resolved to the managed private endpoint’s private IP address targeting Application Gateway. You might include multiple FQDNs depending on how many resources you would like to connect to with the Application Gateway.
+      - All Added FQDNs will have the same IP address for the targeted Application Gateway.
+      - The IP address is within the managed VNET range, not the customer's VNET range.
 
     > [!NOTE]
     > - If you're using HTTPS listener with certificate uploaded, make sure the FQDN alias matches with the certificate's CN (Common Name) or SAN (Subject Alternative Name) otherwise HTTPS call fails with SNI (Server Name Indication).

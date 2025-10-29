@@ -6,9 +6,9 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.custom: build-2023
-ms.topic: conceptual
-ms.author: sgilley
-author: sdgilley
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 04/03/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'

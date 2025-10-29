@@ -1,9 +1,9 @@
 ---
-author: sdgilley
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 06/24/2022
-ms.author: sgilley
+ms.author: scottpolly
 ---
 
 > [!IMPORTANT]

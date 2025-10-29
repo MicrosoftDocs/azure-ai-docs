@@ -6,11 +6,11 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: mlops
 ms.topic: how-to
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: mesameki
 ms.date: 03/31/2025
-ms.custom: devplatv2, devx-track-azurecli, update-code4
+ms.custom: devplatv2, devx-track-azurecli, update-code5
 # customer intent: As a developer, I want to see how to monitor the models that I deploy to production in Azure Machine Learning so that I can maintain the models and improve their performance.
 ---
 
@@ -41,7 +41,7 @@ In this article, you see how to perform the following tasks:
 
 # [Studio](#tab/azure-studio)
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 * An Azure Machine Learning workspace. For steps for creating a workspace, see [Create the workspace](quickstart-create-resources.md#create-the-workspace).
 

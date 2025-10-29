@@ -3,11 +3,11 @@ title: Export knowledge bases - QnA Maker
 description: Exporting a knowledge base requires exporting from one knowledge base, then importing into another.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Move a knowledge base using export-import
 
@@ -22,7 +22,7 @@ You might want to create a copy of your knowledge base for several reasons:
 
 ## Prerequisites
 
-> * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+> * If you don't have an Azure subscription, [create a free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 > * A [QnA Maker resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesQnAMaker) created in the Azure portal. Remember your Microsoft Entra ID, Subscription, QnA resource name you selected when you created the resource.
 > * Set up a new [QnA Maker service](../how-to/set-up-qnamaker-service-azure.md)
 

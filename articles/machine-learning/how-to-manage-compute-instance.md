@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: compute
 ms.custom: devx-track-azurecli
 ms.topic: how-to
-ms.author: sgilley
-author: sdgilley
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: vijetaj
 ms.date: 05/03/2024
 ---

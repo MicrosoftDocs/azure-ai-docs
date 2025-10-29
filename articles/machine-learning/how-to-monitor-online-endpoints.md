@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.reviewer: jturuk
 reviewer: Jagatjeet
-author: msakande
-ms.author: mopeakande
+author: s-polly
+ms.author: scottpolly
 ms.subservice: mlops
 ms.date: 01/31/2025
 ms.topic: how-to

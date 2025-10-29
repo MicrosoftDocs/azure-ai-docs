@@ -1,11 +1,14 @@
 ---
-author: jboback
+author: laujan
+ms.author: lajanuar
 manager: nitinme
+ms.date: 06/30/2025
 ms.service: azure-ai-language
 ms.topic: include
-ms.date: 12/19/2023
-ms.author: jboback
-ms.custom: language-service-pii, ignite-2024
+ms.custom:
+  - language-service-pii
+  - ignite-2024
+  - build-2025
 ---
 
 [Reference documentation](https://go.microsoft.com/fwlink/?linkid=2239169)
@@ -14,8 +17,8 @@ Use this quickstart to send Personally Identifiable Information (PII) detection 
 
 ## Prerequisites
 
-* Azure subscription - [Create one for free](https://azure.microsoft.com/free/cognitive-services)
-* Once you have your Azure subscription, [create an AI services resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal#create-a-new-azure-ai-services-resource).
+* Azure subscription - [Create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
+* Once you have your Azure subscription, [create an AI Foundry resource](../../../../../ai-services/multi-service-resource.md?pivots=azportal).
 
 ## Setting up
 

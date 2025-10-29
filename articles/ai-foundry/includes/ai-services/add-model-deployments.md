@@ -24,7 +24,7 @@ You can add all the models you need in the endpoint by using [Azure AI Foundry f
    
    :::image type="content" source="../../media/ai-services/add-model-deployments/models-deploy-agree.png" alt-text="A screenshot showing how to agree the terms and conditions of a Mistral-Large model." lightbox="../../media/ai-services/add-model-deployments/models-deploy-agree.png":::
 
-6.  You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This setting allows you to also configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict content safety content filter.
+6.  You can configure the deployment settings at this time. By default, the deployment receives the name of the model you're deploying. The deployment name is used in the `model` parameter for request to route to this particular model deployment. This setting allows you to also configure specific names for your models when you attach specific configurations. For instance, `o1-preview-safe` for a model with a strict  content filter.
 
    > [!TIP]
    > Each model may support different deployments types, providing different data residency or throughput guarantees. See [deployment types](/azure/ai-studio/ai-services/concepts/deployment-types) for more details.

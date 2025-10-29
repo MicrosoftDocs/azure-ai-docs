@@ -1,9 +1,9 @@
 ---
-author: msakande
+author: s-polly
 ms.service: azure-machine-learning
 ms.topic: include
 ms.date: 12/02/2024
-ms.author: mopeakande
+ms.author: scottpolly
 ---
 
 - The `v1_legacy_mode` flag must be set to `false` to turn off v1 legacy mode on your Azure Machine Learning workspace. If this setting is turned on, you can't create a managed online endpoint. For more information, see [Network isolation change with our new API platform on Azure Resource Manager](../how-to-configure-network-isolation-with-v2.md).

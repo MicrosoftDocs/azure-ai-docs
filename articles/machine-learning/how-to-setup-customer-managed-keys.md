@@ -8,9 +8,9 @@ ms.subservice: enterprise-readiness
 ms.custom:
   - engagement-fy23
   - ignite-2023
-ms.topic: conceptual
-ms.author: larryfr
-author: Blackmist
+ms.topic: concept-article
+ms.author: scottpolly
+author: s-polly
 ms.reviewer: deeikele
 ms.date: 02/05/2025
 monikerRange: 'azureml-api-2 || azureml-api-1'

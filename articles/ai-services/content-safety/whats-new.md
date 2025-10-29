@@ -7,13 +7,14 @@ manager: nitinme
 ms.service: azure-ai-content-safety
 ms.custom: build-2023
 ms.topic: overview
-ms.date: 02/21/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 ---
 
 # What's new in Azure AI Content Safety
 
 Learn what's new in the service. These items might be release notes, videos, blog posts, and other types of information. Bookmark this page to stay up to date with new features, enhancements, fixes, and documentation updates.
+
 
 ## October 2024
 

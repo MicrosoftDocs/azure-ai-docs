@@ -7,13 +7,14 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 1/16/2025
+ms.date: 07/31/2025
+ms.update-cycle: 180-days
 #customer intent: As a developer, I want to enable role-based access control for token authentication using Microsoft Entra ID on Azure AI Search so that I can secure my search service.
 ---
 
 # Enable or disable role-based access control in Azure AI Search
 
-Azure AI Search supports both keyless and [key-based authentication](search-security-api-keys.md) for all data plane operations. You can use Microsoft Entra ID authentication and role-based authorization to enable access to operations and content.
+Azure AI Search supports both identity-based and [key-based authentication](search-security-api-keys.md) for all data plane operations. You can use Microsoft Entra ID authentication and role-based authorization to enable identity-based access to operations and content.
 
 > [!IMPORTANT]
 > When you create a search service, key-based authentication is the default, but it's not the most secure option. We recommend that you replace it with role-based access as described in this article.
@@ -116,7 +117,7 @@ All calls to the Management REST API are authenticated through Microsoft Entra I
 1. Get service settings so that you can review the current configuration.
 
    ```http
-   GET https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Search/searchServices?api-version=2023-11-01
+   GET https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Search/searchServices?api-version=2025-05-01
    ```
 
 1. Use PATCH to update service configuration. The following modifications enable both keys and role-based access. If you want a roles-only configuration, see [Disable API keys](#disable-api-key-authentication).
@@ -126,7 +127,7 @@ All calls to the Management REST API are authenticated through Microsoft Entra I
    Optionally, set ["aadAuthFailureMode"](/rest/api/searchmanagement/services/create-or-update#aadauthfailuremode) to specify whether 401 is returned instead of 403 when authentication fails. Valid values are "http401WithBearerChallenge" or "http403".
 
     ```http
-    PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01
+    PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-05-01
     {
         "properties": {
             "disableLocalAuth": false,
@@ -208,13 +209,13 @@ To disable key-based authentication, set "disableLocalAuth" to true.
 1. Get service settings so that you can review the current configuration.
 
    ```http
-   GET https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Search/searchServices?api-version=2023-11-01
+   GET https://management.azure.com/subscriptions/{{subscriptionId}}/providers/Microsoft.Search/searchServices?api-version=2025-05-01
    ```
 
 1. Use PATCH to update service configuration. The following modification sets "authOptions" to null.
 
     ```http
-    PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2023-11-01
+    PATCH https://management.azure.com/subscriptions/{{subscriptionId}}/resourcegroups/{{resource-group}}/providers/Microsoft.Search/searchServices/{{search-service-name}}?api-version=2025-05-01
     {
         "properties": {
             "disableLocalAuth": true

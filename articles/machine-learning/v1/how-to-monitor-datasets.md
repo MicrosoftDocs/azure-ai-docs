@@ -10,7 +10,11 @@ ms.author: xunwan
 author: SturgeonMi
 ms.date: 02/04/2025
 ms.topic: how-to
-ms.custom: UpdateFrequency5, data4ml, sdkv1
+ms.custom:
+  - UpdateFrequency5
+  - data4ml
+  - sdkv1
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to detect data drift in my datasets and set alerts for when drift is large.
 ---
 
@@ -50,7 +54,7 @@ You can view data drift metrics with the Python SDK or in Azure Machine Learning
 ## Prerequisites
 
 To create and work with dataset monitors, you need:
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 * An [Azure Machine Learning workspace](../quickstart-create-resources.md).
 * The [Azure Machine Learning SDK for Python installed](/python/api/overview/azure/ml/install), which includes the azureml-datasets package.
 * Structured (tabular) data with a timestamp specified in the file path, file name, or column in the data.
@@ -194,7 +198,7 @@ As described later, a dataset monitor runs at a set frequency (daily, weekly, mo
 The **backfill** function runs a backfill job, for a specified start and end date range. A backfill job fills in expected missing data points in a data set, as a way to ensure data accuracy and completeness.
 
 > [!NOTE]
-> Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specif time range, you can create another model monitor for that specific time range.
+> Azure Machine Learning model monitoring doesn't support manual **backfill** function, if you want to redo the model monitor for a specific time range, you can create another model monitor for that specific time range.
 
 # [Python SDK](#tab/python)
 <a name="sdk-monitor"></a>

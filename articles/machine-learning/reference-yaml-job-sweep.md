@@ -7,8 +7,8 @@ ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
 ms.custom: cliv2, devx-track-python, update-code6
-ms.author: franksolomon
-author: fbsolo-ms1
+ms.author: scottpolly
+author: s-polly
 ms.date: 12/03/2024
 ms.reviewer: amipatel
 ---

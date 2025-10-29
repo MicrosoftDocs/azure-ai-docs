@@ -2,7 +2,6 @@
 title: Use Azure.Search.Documents in .NET
 titleSuffix: Azure AI Search
 description: Learn how to create and manage search objects in a .NET application using C# and the Azure.Search.Documents client library.
-
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
@@ -10,6 +9,7 @@ ms.devlang: csharp
 ms.service: azure-ai-search
 ms.topic: how-to
 ms.date: 04/14/2025
+ms.update-cycle: 365-days
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet

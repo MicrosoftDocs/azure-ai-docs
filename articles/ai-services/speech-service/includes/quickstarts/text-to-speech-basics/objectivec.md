@@ -1,9 +1,9 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
-ms.date: 2/1/2024
-ms.author: eur
+ms.date: 7/17/2025
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/objectivec.md)]
@@ -73,7 +73,7 @@ Follow these steps to synthesize speech in a macOS application.
    speechConfig.speechSynthesisVoiceName = @"en-US-AvaMultilingualNeural";
    ```
 
-1. To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#prebuilt-neural-voices).
+1. To change the speech synthesis language, replace `en-US-AvaMultilingualNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
 
    All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is *I'm excited to try text to speech* and you set `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent. If the voice doesn't speak the language of the input text, the Speech service doesn't output synthesized audio.
 

@@ -8,8 +8,6 @@ manager: nitinme
 ms.service: azure-ai-vision
 ms.topic: overview
 ms.date: 11/04/2024
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ---
 
@@ -23,7 +21,7 @@ Vision Studio lets you try several service features and sample their returned da
 
 To use Vision Studio, you need an Azure subscription and a resource for Azure AI services for authentication. You can also use this resource to call the services in the try-it-out experiences. Follow these steps to get started.
 
-1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/free/ai/).
+1. Create an Azure subscription if you don't have one already. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 1. Go to the [Vision Studio website](https://portal.vision.cognitive.azure.com). If it's your first visit, a popup window prompts you to sign in to Azure and then choose or create a Vision resource. You can skip this step and do it later.
 
@@ -54,7 +52,7 @@ Each of these features has one or more try-it-out experiences in Vision Studio t
 
 ## Clean up resources
 
-If you want to remove an Azure AI services resource after using Vision Studio, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it. You can't delete your resource directly from Vision Studio, so use one of the following methods:
+If you want to remove an AI Foundry resource after using Vision Studio, you can delete the resource or resource group. Deleting the resource group also deletes any other resources associated with it. You can't delete your resource directly from Vision Studio, so use one of the following methods:
 * [Use the Azure portal](../multi-service-resource.md?pivots=azportal#clean-up-resources)
 * [Use the Azure CLI](../multi-service-resource.md?pivots=azcli#clean-up-resources)
 

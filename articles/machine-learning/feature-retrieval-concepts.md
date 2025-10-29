@@ -5,8 +5,8 @@ description: The feature retrieval specification, and how to use it for training
 ms.service: azure-machine-learning
 ms.subservice: mldata
 ms.topic: how-to
-author: fbsolo-ms1 
-ms.author: franksolomon
+author: s-polly 
+ms.author: scottpolly
 ms.reviewer: franksolomon
 ms.date: 01/22/2025
 ms.custom: template-concept
@@ -96,7 +96,7 @@ serialization_version: 2
 The feature store point-in-time join can create training data in two ways:
 
 - The `get_offline_features()` API function in the feature store SDK in a Spark session/job
-- The Azure Machine Learning build-in feature retrieval (pipeline) component
+- The Azure Machine Learning built-in feature retrieval (pipeline) component
 
 In the first option, the feature retrieval specification itself is optional because the user can provide the list of features on that API. However, if a feature retrieval specification is provided, the `resolve_feature_retrieval_spec()` function in the feature store SDK can load the list of features that the specification defined. That function then passes that list to the `get_offline_features()` API function.
 

@@ -4,8 +4,6 @@ titleSuffix: Azure AI services
 description: Learn how to call the Image Analysis API and configure its behavior.
 manager: nitinme
 author: PatrickFarley
-ms.collection: "ce-skilling-fresh-tier2, ce-skilling-ai-copilot"
-ms.update-cycle: 365-days
 ms.author: pafarley
 ms.service: azure-ai-vision
 ms.topic: how-to
@@ -106,7 +104,7 @@ Specify which visual features you'd like to extract in your analysis. See the [V
 
 #### [Python](#tab/python)
 
-Specify which visual features you'd like to extract in your analysis. See the [VisualFeatureTypes](/python/api/azure-cognitiveservices-vision-computervision/azure.cognitiveservices.vision.computervision.models.visualfeaturetypes?view=azure-python&preserve-view=true) enum for a complete list.
+Specify which visual features you'd like to extract in your analysis. See the [VisualFeatureTypes](/python/api/azure-cognitiveservices-vision-computervision/azure.cognitiveservices.vision.computervision.models.visualfeaturetypes) enum for a complete list.
 
 [!code-python[](~/cognitive-services-quickstart-code/python/ComputerVision/ImageAnalysisQuickstart.py?name=snippet_features_remote)]
 
@@ -218,7 +216,7 @@ This section shows you how to parse the results of the API call. It includes the
 > [!NOTE]
 > **Scoped API calls**
 >
-> Some of the features in Image Analysis can be called either directly or through the Analyze API call. For example, you can do a scoped analysis of only image tags by making a request to `<endpoint>/vision/v3.2/tag` (or to the corresponding method in the SDK). See the [reference documentation](/rest/api/computervision/operation-groups?view=rest-computervision-v3.2&preserve-view=true) for other features that can be called separately.
+> Some of the features in Image Analysis can be called either directly or through the Analyze API call. For example, you can do a scoped analysis of only image tags by making a request to `<endpoint>/vision/v3.2/tag` (or to the corresponding method in the SDK). See the [reference documentation](/rest/api/computervision/operation-groups) for other features that can be called separately.
 
 #### [REST](#tab/rest)
 

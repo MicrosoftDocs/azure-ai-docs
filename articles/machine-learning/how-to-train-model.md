@@ -3,8 +3,8 @@ title: Train ML models
 titleSuffix: Azure Machine Learning
 description: Configure and submit Azure Machine Learning jobs to train your models using the SDK, CLI, etc.
 services: machine-learning
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: balapv
 ms.service: azure-machine-learning
 ms.subservice: training
@@ -29,7 +29,7 @@ Azure Machine Learning provides multiple ways to submit ML training jobs. In thi
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/).
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An Azure Machine Learning workspace. If you don't have one, you can use the steps in the [Create resources to get started](quickstart-create-resources.md) article.
 
 # [Python SDK](#tab/python)
@@ -137,7 +137,7 @@ When you train using the REST API, data and training scripts must be uploaded to
 > [!NOTE]
 > To try [serverless compute](./how-to-use-serverless-compute.md), skip this step and proceed to [ 3. Submit the training job](#3-submit-the-training-job).
 
-An Azure Machine Learning compute cluster is a fully managed compute resource that can be used to run the training job. In the following examples, a compute cluster named `cpu-compute` is created.
+An Azure Machine Learning compute cluster is a fully managed compute resource that can be used to run the training job. In the following examples, a compute cluster named `cpu-cluster` is created.
 
 
 

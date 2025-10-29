@@ -3,11 +3,11 @@ title: How to test a knowledge base - QnA Maker
 description: Testing your QnA Maker knowledge base is an important part of an iterative process to improve the accuracy of the responses being returned. You can test the knowledge base through an enhanced chat interface that also allows you make edits.
 ms.service: azure-ai-language
 manager: nitinme
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.subservice: azure-ai-qna-maker
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 07/16/2025
 ---
 # Test your knowledge base in QnA Maker
 
@@ -78,14 +78,14 @@ Use the batch testing tool when you want to:
 
 ### Prerequisites
 
-* Azure subscription - [create one for free](https://azure.microsoft.com/free/cognitive-services/)
+* Azure subscription - [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn)
 * Either [create a QnA Maker service](../quickstarts/create-publish-knowledge-base.md) or use an existing service, which uses the English language.
 * Download the [multi-turn sample `.docx` file](https://github.com/Azure-Samples/cognitive-services-sample-data-files/blob/master/qna-maker/data-source-formats/multi-turn.docx)
 * Download the [batch testing tool](https://aka.ms/qnamakerbatchtestingtool), extract the executable file from the `.zip` file.
 
 ### Sign into QnA Maker portal
 
-[Sign in](https://www.qnamaker.ai/) to the QnA Maker portal.
+Sign in to the QnA Maker portal.
 
 ### Create a new knowledge base from the multi-turn sample.docx file
 

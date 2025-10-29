@@ -5,8 +5,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: reference
-author: Blackmist
-ms.author: larryfr
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: balapv
 ms.date: 07/26/2024
 ms.custom: UpdateFrequency5, devx-track-azurecli, cliv1
@@ -31,7 +31,7 @@ The CLI isn't a replacement for the Azure Machine Learning SDK. It's a complemen
 
 ## Prerequisites
 
-* To use the CLI, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* To use the CLI, you must have an Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 * To use the CLI commands in this document from your **local environment**, you need the [Azure CLI](/cli/azure/install-azure-cli).
 
@@ -148,7 +148,7 @@ The following commands demonstrate how to use the CLI to manage resources used b
   + User-assigned managed identity
 
     ```azurecli
-    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+    az ml computetarget create amlcompute --name cpu-cluster --vm-size Standard_NC6 --max-nodes 5 --assign-identity '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
     ```
 
   + System-assigned managed identity
@@ -160,7 +160,7 @@ The following commands demonstrate how to use the CLI to manage resources used b
 
     + User-assigned managed identity
         ```azurecli
-        az ml computetarget amlcompute identity assign --name cpu-cluster '/subscriptions/<subcription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
+        az ml computetarget amlcompute identity assign --name cpu-cluster '/subscriptions/<subscription_id>/resourcegroups/<resource_group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/<user_assigned_identity>'
         ```
     + System-assigned managed identity
 

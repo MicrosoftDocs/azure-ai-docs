@@ -6,12 +6,14 @@ manager: nitinme
 author: haileytap
 ms.author: haileytapia
 ms.service: azure-ai-search
+ms.update-cycle: 180-days
 ms.topic: tutorial
 ms.date: 03/28/2025
 ms.custom:
   - devx-track-csharp
   - devx-track-dotnet
   - ignite-2023
+  - sfi-ropc-nochange
 ---
 
 # Tutorial: Index from multiple data sources using the .NET SDK
@@ -39,7 +41,7 @@ A finished version of the code in this tutorial can be found in the following pr
 
 ## Prerequisites
 
-* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/free/?WT.mc_id=A261C142F).
+* An Azure account with an active subscription. [Create an account for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * An [Azure Cosmos DB for NoSQL account](/azure/cosmos-db/create-cosmosdb-resources-portal).
 * An [Azure storage account](/azure/storage/common/storage-account-create).
 * An [Azure AI Search service](search-create-service-portal.md).
@@ -305,7 +307,7 @@ After the data source is created, the program sets up a blob indexer named **hot
 
 The JSON blobs contain a key field named **`Id`** instead of **`HotelId`**. The code uses the `FieldMapping` class to tell the indexer to direct the **`Id`** field value to the **`HotelId`** document key in the index.
 
-Blob storage indexers can use [IndexingParameters](/dotnet/api/azure.search.documents.indexes.models.indexingparameters) to specify a parsing mode. You should set different parsing modes depending on whether blobs represent a single document or multiple documents within the same blob. In this example, each blob represents a single JSON document, so the code uses the `json` parsing mode. For more information about indexer parsing parameters for JSON blobs, see [Index JSON blobs](search-howto-index-json-blobs.md).
+Blob storage indexers can use [IndexingParameters](/dotnet/api/azure.search.documents.indexes.models.indexingparameters) to specify a parsing mode. You should set different parsing modes depending on whether blobs represent a single document or multiple documents within the same blob. In this example, each blob represents a single JSON document, so the code uses the `json` parsing mode. For more information about indexer parsing parameters for JSON blobs, see [Index JSON blobs](search-how-to-index-azure-blob-json.md).
 
 This example defines a schedule for the indexer, so that it runs once per day. You can remove the schedule property from this call if you don't want the indexer to automatically run again in the future.
 
@@ -380,4 +382,4 @@ You can find and manage resources in the Azure portal using the All resources or
 Now that you're familiar with ingesting data from multiple sources, take a closer look at indexer configuration, starting with Azure Cosmos DB:
 
 > [!div class="nextstepaction"]
-> [Configure an Azure Cosmos DB for NoSQL indexer](search-howto-index-cosmosdb.md)
+> [Configure an Azure Cosmos DB for NoSQL indexer](search-how-to-index-cosmosdb-sql.md)

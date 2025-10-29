@@ -1,9 +1,9 @@
 ---
-author: msakande
+author: s-polly
 ms.service: machine-learning
 ms.topic: include
 ms.date: 08/14/2024
-ms.author: mopeakande
+ms.author: scottpolly
 ---
 
 Azure Machine Learning provides a shared quota pool from which users across various regions can access quota to perform testing for a limited time, depending upon availability. 

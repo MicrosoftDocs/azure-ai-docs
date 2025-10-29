@@ -6,7 +6,7 @@ author: mrbullwinkle
 manager: nitinme
 ms.service: azure-ai-anomaly-detector
 ms.topic: how-to
-ms.date: 01/18/2024
+ms.date: 06/12/2025
 ms.author: mbullwin
 keywords: on-premises, Docker, container, streaming, algorithms
 ---
@@ -29,7 +29,7 @@ Anomaly Detector offers a single Docker container for using the API on-premises.
 For detailed information about the API, please see:
 * [Learn more about Anomaly Detector API service](https://go.microsoft.com/fwlink/?linkid=2080698&clcid=0x409)
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 

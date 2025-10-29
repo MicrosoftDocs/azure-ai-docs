@@ -2,10 +2,10 @@
 title: Import document format guidelines - custom question answering
 description: Use these guidelines for importing documents to get the best results for your content with custom question answering.
 ms.service: azure-ai-language
-ms.author: jboback
-author: jboback
+ms.author: lajanuar
+author: laujan
 ms.topic: reference
-ms.date: 11/21/2024
+ms.date: 06/21/2025
 ---
 
 # Format guidelines for custom question answering

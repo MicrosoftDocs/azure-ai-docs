@@ -4,8 +4,8 @@ titleSuffix: Azure Data Science Virtual  Machine
 description: Get a list of the known issues, workarounds, and troubleshooting for Azure Data Science Virtual Machine
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.topic: reference
 ms.reviewer: mimarusa
 ms.date: 04/29/2024

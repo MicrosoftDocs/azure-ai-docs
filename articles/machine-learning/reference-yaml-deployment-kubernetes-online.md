@@ -8,8 +8,8 @@ ms.subservice: mlops
 ms.custom: build-2023
 ms.topic: reference
 
-author: ssalgadodev
-ms.author: ssalgado
+author: s-polly
+ms.author: scottpolly
 ms.date: 08/31/2022
 ms.reviewer: bozhlin
 ---

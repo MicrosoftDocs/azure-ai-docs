@@ -7,7 +7,7 @@ manager: nitinme
 
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 06/06/2024
+ms.date: 06/19/2025
 ms.author: lajanuar
 ---
 <!-- markdownlint-disable MD033 -->
@@ -41,7 +41,7 @@ Request headers include:
 
 | Headers  | Description |
 | ------ | ----------- |
-| Authentication headers | **Required request header**.<br/>See [Authentication](reference.md#authentication).|
+| Authentication headers | **Required request header**.<br/>See [Authentication](../authentication.md).|
 | Content-Type | **Required request header**.<br>Specifies the content type of the payload. Possible values are: `application/json`. |
 | Content-Length   | **Optional**.<br>The length of the request body. |
 | X-ClientTraceId   | **Optional**.<br/>A client-generated GUID to uniquely identify the request. You can omit this header if you include the trace ID in the query string using a query parameter named `ClientTraceId`. |
@@ -107,7 +107,7 @@ A successful response is a JSON array with one result for each string in the inp
   * `frequencyCount`: An integer representing the frequency of this translation pair in the data. The main purpose of this field is to provide a user interface with a means to sort back-translations so the most frequent terms are first.
 
     > [!NOTE]
-    > If the term being looked-up does not exist in the dictionary, the response is 200 (OK) but the `translations` list is an empty list.
+    > If the term being looked-up doesn't exist in the dictionary, the response is 200 (OK) but the `translations` list is an empty list.
 
 ## Examples
 

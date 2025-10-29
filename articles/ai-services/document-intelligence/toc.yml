@@ -274,9 +274,9 @@ items:
 - name: Responsible AI
   items:
   - name: Transparency note
-    href: /legal/cognitive-services/document-intelligence/transparency-note?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
+    href: /azure/ai-foundry/responsible-ai/document-intelligence/transparency-note?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
   - name: Data, privacy, and security
-    href: /legal/cognitive-services/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
+    href: /azure/ai-foundry/responsible-ai/document-intelligence/data-privacy-security?toc=/azure/ai-services/document-intelligence/toc.json&bc=/azure/ai-services/document-intelligence/breadcrumb/toc.json
 - name: Tutorials
   items:
   - name: Create workflows using Azure Logic Apps

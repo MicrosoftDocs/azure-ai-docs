@@ -3,8 +3,8 @@ title: 'Quickstart: Create an Azure Data Science VM - Bicep'
 titleSuffix: Azure Data Science Virtual Machine
 description: In this quickstart, you use Bicep to quickly deploy a Data Science Virtual Machine.
 services: machine-learning
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.reviewer: franksolomon
 ms.date: 04/22/2024
 ms.topic: quickstart
@@ -20,11 +20,11 @@ This quickstart shows how to create an Ubuntu Data Science Virtual Machine using
 
 ## Prerequisites
 
-An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/services/machine-learning/) before you begin.
+An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/products/machine-learning/) before you begin.
 
 ## Review the Bicep file
 
-This quickstart uses the Bicep file from the [Azure Quickstart Templates](https://azure.microsoft.com/resources/templates/vm-ubuntu-DSVM-GPU-or-CPU/).
+This quickstart uses the Bicep file from the Azure Quickstart Templates.
 
 :::code language="bicep" source="~/quickstart-templates/application-workloads/datascience/vm-ubuntu-DSVM-GPU-or-CPU/main.bicep":::
 

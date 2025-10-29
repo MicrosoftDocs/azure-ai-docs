@@ -6,7 +6,7 @@ author: PatrickFarley
 manager: nitinme
 ms.service: azure-ai-content-safety
 ms.topic: overview
-ms.date: 02/27/2025
+ms.date: 09/16/2025
 ms.author: pafarley
 keywords: content safety, Azure AI Content Safety, online content safety, content filtering software, content moderation service, content moderation
 ms.custom: references_regions, build-2023, build-2023-dataai
@@ -90,8 +90,6 @@ For enhanced security, you can use Microsoft Entra ID or Managed Identity (MI) t
 
 ### Encryption of data at rest
 
-### Encryption
-
 Learn how Azure AI Content Safety handles the [encryption and decryption of your data](./how-to/encrypt-data-at-rest.md). Customer-managed keys (CMK), also known as Bring Your Own Key (BYOK), offer greater flexibility to create, rotate, disable, and revoke access controls. You can also audit the encryption keys used to protect your data.
 
 ## Pricing
@@ -153,7 +151,7 @@ For more information, see [Language support](/azure/ai-services/content-safety/l
 
 To use the Content Safety APIs, you must create your Azure AI Content Safety resource in a supported region. Currently, the Content Safety features are available in the following Azure regions with different API versions: 
 
-| Region              | Custom Category    | Groundedness       | Image | Multimodal(Image with Tex) | Incident Response | Prompt Shield | Protected Material (Text) | Protected Material (Code) | Text | 
+| Region              | Custom Category (standard)   | Groundedness       | Image | Multimodal(Image with Tex) | Custom Category (rapid) | Prompt Shield | Protected Material (Text) | Protected Material (Code) | Text | 
 |--------------------|--------------------|--------------------|-------|-----------------------------|-------------------|---------------|---------------------------|---------------------------|------|
 | Australia East     | ✅                  |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | Canada East          |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
@@ -161,8 +159,11 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | East US            | ✅                 |  ✅                 | ✅    |  ✅                        | ✅               | ✅             | ✅                     | ✅                       | ✅    |
 | East US 2           |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | France Central        |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                       | ✅    | 
+| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
+| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
 | Japan East            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |            
+| Korea Central         |                    |                    | ✅    |                            |            | ✅             |                ✅        |                           |  ✅   |
+| North Central US      |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    |
 | Poland Central        |                    |                    | ✅    |                            |                 | ✅             | ✅                     | ✅                        | ✅    | 
 | South Central US     |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | South India           |                    |                    | ✅    |                            | ✅               | ✅              | ✅                     | ✅                        | ✅    | 
@@ -175,10 +176,10 @@ To use the Content Safety APIs, you must create your Azure AI Content Safety res
 | West US              |                    | ✅                 | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 2            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
 | West US 3            |                    |                    | ✅    |                            | ✅               | ✅             | ✅                     | ✅                        | ✅    | 
-| Germany West Central |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
-| Italy North          |                    |                    |      |                            | ✅               | ✅             | ✅                     |                            | ✅    | 
-| FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
+| FairFax - USGovArizona|                   |                   | ✅     |                            |                 | ✅              | ✅                      |  ✅                      | ✅    |
 | FairFax - USGovVirginia|                   |                  | ✅     |                            |                 | ✅              | ✅                      |                           | ✅    | 
+
+
 
 Feel free to [contact us](mailto:contentsafetysupport@microsoft.com) if your business needs other regions to be available.
 

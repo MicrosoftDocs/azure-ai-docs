@@ -2,12 +2,12 @@
 title: Send prediction requests to a conversational language understanding deployment
 titleSuffix: Azure AI services
 description: Learn about sending prediction requests for conversational language understanding.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 11/21/2024
-ms.author: jboback
+ms.date: 06/04/2025
+ms.author: lajanuar
 ms.custom: language-service-clu
 ---
 
@@ -18,7 +18,7 @@ You can query the deployment programmatically through the [prediction API](https
 
 ## Test deployed model
 
-You can use Language Studio to submit an utterance, get predictions and visualize the results.
+You can use Language Studio to submit an utterance, get predictions, and visualize the results.
 
 [!INCLUDE [Test model](../includes/language-studio/test-model.md)]
 
@@ -32,7 +32,7 @@ You can use Language Studio to submit an utterance, get predictions and visualiz
 
 # [REST APIs](#tab/REST-APIs)
 
-First you will need to get your resource key and endpoint:
+First you'll need to get your resource key and endpoint:
 
 [!INCLUDE [Get keys and endpoint Azure Portal](../includes/get-keys-endpoint-azure.md)]
 
@@ -53,7 +53,7 @@ You can also use the client libraries provided by the Azure SDK to send requests
 
 1. Go to your resource overview page in the [Azure portal](https://portal.azure.com/#home)
 
-2. From the menu on the left side, select **Keys and Endpoint**. Use endpoint for the API requests and you will need the key for `Ocp-Apim-Subscription-Key` header.
+2. From the menu on the left side, select **Keys and Endpoint**. Use endpoint for the API requests and you'll need the key for `Ocp-Apim-Subscription-Key` header.
 
     :::image type="content" source="../../custom-text-classification/media/get-endpoint-azure.png" alt-text="A screenshot showing a key and endpoint in the Azure portal." lightbox="../../custom-text-classification/media/get-endpoint-azure.png":::
 

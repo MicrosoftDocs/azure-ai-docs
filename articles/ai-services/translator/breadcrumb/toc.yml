@@ -2,21 +2,21 @@
   tocHref: /azure/
   topicHref: /azure/index
   items:
-  - name: Azure AI services
-    tocHref: /azure/ai-services/
-    topicHref: /azure/ai-services/index
+  - name: Azure AI Foundry
+    tocHref: /azure/ai-foundry/
+    topicHref: /azure/ai-foundry/index
     items:
     - name: Translator
-      tocHref: /azure/ai-services/
+      tocHref: /azure/ai-foundry/
       topicHref: /azure/ai-services/translator/index
 - name: Azure
   tocHref: /legal/
   topicHref: /azure/index
   items:
   - name: Azure AI services                # Original doc set name
-    tocHref: /legal/cognitive-services/translator    # Destination doc set route
+    tocHref: /azure/ai-foundry/responsible-ai/translator    # Destination doc set route
     topicHref: /azure/ai-services/index    # Original doc set route
     items:
     - name: Azure AI Translator                  # Original doc set name
-      tocHref: /legal/cognitive-services/translator    # Destination doc set route
+      tocHref: /azure/ai-foundry/responsible-ai/translator    # Destination doc set route
       topicHref: /azure/ai-services/translator/index      # Original doc set route

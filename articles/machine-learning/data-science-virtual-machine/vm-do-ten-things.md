@@ -4,12 +4,14 @@ titleSuffix: Azure Data Science Virtual Machine
 description: Perform data exploration and modeling tasks on the Windows Data Science Virtual Machine.
 services: machine-learning
 ms.service: azure-data-science-virtual-machines
-ms.custom: devx-track-azurepowershell
-author: fbsolo-ms1 
-ms.author: franksolomon 
+author: s-polly 
+ms.author: scottpolly 
 ms.topic: conceptual
 ms.reviewer: jcioffi
 ms.date: 06/05/2024
+ms.custom:
+  - devx-track-azurepowershell
+  - sfi-ropc-blocked
 ---
 
 # Data science with a Windows Data Science Virtual Machine
@@ -38,7 +40,7 @@ In this article, you learn how to use your DSVM to both handle data science task
 
 ## Prerequisites
 
-- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/services/machine-learning/) before you begin.
+- An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/products/machine-learning/) before you begin.
 - A provisioned DSVM on the Azure portal. For more information, visit the [Creating a virtual machine](https://portal.azure.com/#create/microsoft-dsvm.dsvm-windowsserver-2016) resource.
 
 [!INCLUDE [updated-for-az](~/reusable-content/ce-skilling/azure/includes/updated-for-az.md)]

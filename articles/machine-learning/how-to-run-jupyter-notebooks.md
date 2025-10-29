@@ -3,20 +3,23 @@ title: Run Jupyter notebooks in your workspace
 titleSuffix: Azure Machine Learning
 description: Learn how to run Jupyter notebooks in Azure Machine Learning studio, using Jupyter, JupyterLab, or Visual Studio Code.
 services: machine-learning
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sgilley
 ms.service: azure-machine-learning
 ms.subservice: core
-ms.custom: devx-track-python, FY25Q1-Linter
 ms.topic: how-to
-ms.date: 08/14/2024
+ms.date: 08/13/2025
+ms.custom:
+  - devx-track-python
+  - FY25Q1-Linter
+  - sfi-image-nochange
 #Customer intent: As a data scientist, I want to run Jupyter notebooks in my workspace in Azure Machine Learning studio.
 ---
 
 # Run Jupyter notebooks in your workspace
 
-This article shows how to run your Jupyter notebooks inside your workspace of Azure Machine Learning studio. There are other ways to run the notebook as well: [Jupyter](https://jupyter.org/), [JupyterLab](https://jupyterlab.readthedocs.io), and [Visual Studio Code](./how-to-launch-vs-code-remote.md). VS Code Desktop can be configured to access your compute instance. Or use VS Code for the Web, directly from the browser, and without any required installations or dependencies.
+This article shows how to run your Jupyter notebooks inside your workspace of Azure Machine Learning studio. You can also run notebooks using [Jupyter](https://jupyter.org/), [JupyterLab](https://jupyterlab.readthedocs.io), and [Visual Studio Code](./how-to-launch-vs-code-remote.md). VS Code Desktop can be configured to access your compute instance. Or use VS Code for the Web, directly from the browser, and without any required installations or dependencies.
 
 > [!TIP]
 > We recommend you try VS Code for the Web to take advantage of the easy integration and rich development environment it provides. VS Code for the Web gives you many of the features of VS Code Desktop that you love, including search and syntax highlighting while browsing and editing. For more information about using VS Code Desktop and VS Code for the Web, see [Launch Visual Studio Code integrated with Azure Machine Learning](how-to-launch-vs-code-remote.md) and [Work in VS Code remotely connected to a compute instance](how-to-work-in-vs-code-remote.md).
@@ -31,7 +34,7 @@ This article shows the experience for running the notebook directly in studio.
 
 ## Prerequisites
 
-* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/) before you begin.
+* An Azure subscription. If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 * A Machine Learning workspace. See [Create workspace resources](quickstart-create-resources.md).
 * Your user identity must have access to your workspace's default storage account. Whether you can read, edit, or create notebooks depends on your [access level](how-to-assign-roles.md) to your workspace. For example, a Contributor can edit the notebook, while a Reader could only view it.
 
@@ -69,14 +72,14 @@ Use focus mode to expand your current view so you can focus on your
 * Learn more about the code you're using
 * Keep track of the parameters you're typing
 * Add calls to properties and methods
-<!--
+
 ### Insert code snippets (preview)
 
 Use **Ctrl+Space** to trigger IntelliSense code snippets. Scroll through the suggestions or start typing to find the code you want to insert. Once you insert code, tab through the arguments to customize the code for your own use.
 
 :::image type="content" source="media/how-to-run-jupyter-notebooks/insert-snippet.gif" alt-text="Insert a code snippet":::
 
-These same snippets are available when you open your notebook in VS Code. For a complete list of available snippets, see [Azure Machine Learning VS Code Snippets](https://github.com/Azure/azureml-snippets/blob/main/snippets/snippets.md).
+These same snippets are available when you open your notebook in VS Code.
 
 You can browse and search the list of snippets by using the notebook toolbar to open the snippet panel.
 
@@ -85,7 +88,7 @@ You can browse and search the list of snippets by using the notebook toolbar to 
 From the snippets panel, you can also submit a request to add new snippets.
 
 :::image type="content" source="media/how-to-run-jupyter-notebooks/propose-new-snippet.png" alt-text="Snippet panel allows you to propose a new snippet":::
--->
+
 ## Share a notebook
 
 Your notebooks are stored in your workspace's storage account, and can be shared with others, depending on their [access level](how-to-assign-roles.md) to your workspace. They can open and edit the notebook as long as they have the appropriate access. For example, a Contributor can edit the notebook, while a Reader could only view it.
@@ -175,7 +178,7 @@ To run a notebook or a Python script, you first connect to a running [compute in
     
 Once you're connected to a compute instance, use the toolbar to run all cells in the notebook, or Control + Enter to run a single selected cell. 
 
-Only you can see and use the compute instances you create. Your **User files** are stored separately from the machine and are shared among all compute instances in the workspace.
+Only you can see and use the compute instances you create. Your **User files** are stored separately from the machine and shared among all compute instances in the workspace.
 
 ## Explore variables in the notebook
 
@@ -195,7 +198,7 @@ On the notebook toolbar, use the  **Table of contents** tool to display or hide 
 
 ## Change the notebook environment
 
-The notebook toolbar allows you to change the environment on which your notebook runs. 
+The notebook toolbar lets you change the environment on which your notebook runs. 
 
 These actions don't change the notebook state or the values of any variables in the notebook:
 
@@ -336,7 +339,7 @@ Using the following keystroke shortcuts, you can more easily navigate and run co
 
 * **Expired token**: If you run into an expired token issue, sign out of your Azure Machine Learning studio, sign back in, and then restart the notebook kernel.
 
-* **File upload limit**: When uploading a file through the notebook's file explorer, you're limited files that are smaller than 5 TB. If you need to upload a file larger than this, we recommend that you use the SDK to upload the data to a datastore. For more information, see [Create data assets](how-to-create-data-assets.md?tabs=Python-SDK).
+* **File upload limit**: When uploading a file through the notebook's file explorer, you're limited to files smaller than 5 TB. If you need to upload a file larger than this, we recommend that you use the SDK to upload the data to a datastore. For more information, see [Create data assets](how-to-create-data-assets.md?tabs=Python-SDK).
 
 ## Related content
 

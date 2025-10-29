@@ -2,12 +2,12 @@
 title: Sign in to the LUIS portal and create an app
 description:  Learn how to sign in to LUIS and create application.
 ms.service: azure-ai-language
-ms.author: aahi
-author: aahill
+ms.author: lajanuar
+author: laujan
 ms.manager: nitinme
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 01/19/2024
+ms.date: 06/12/2025
 ---
 # Sign in to the LUIS portal and create an app
 
@@ -18,7 +18,7 @@ Use this article to get started with the LUIS portal, and create an authoring re
 
 ## Access the portal
 
-1. To get started with LUIS, go to the [LUIS Portal](https://www.luis.ai/). If you don't already have a subscription, you'll be prompted to go create a [free account](https://azure.microsoft.com/free/cognitive-services/) and return back to the portal.
+1. To get started with LUIS, go to the [LUIS Portal](https://www.luis.ai/). If you don't already have a subscription, you'll be prompted to go create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) and return back to the portal.
 2. Refresh the page to update it with your newly created subscription
 3. Select your subscription from the dropdown list
 

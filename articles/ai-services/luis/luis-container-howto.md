@@ -2,14 +2,15 @@
 title: Install and run Docker containers for LUIS
 titleSuffix: Azure AI services
 description: Use the LUIS container to load your trained or published app, and gain access to its predictions on-premises.
-author: jboback
+author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.subservice: azure-ai-luis
 ms.topic: how-to
-ms.date: 11/06/2024
-ms.author: jboback
+ms.date: 06/12/2025
+ms.author: lajanuar
 keywords: on-premises, Docker, container
+ms.custom: sfi-image-nochange
 ---
 
 # Install and run Docker containers for LUIS
@@ -27,7 +28,7 @@ The following video demonstrates using this container.
 
 [![Container demonstration for Azure AI services](./media/luis-container-how-to/luis-containers-demo-video-still.png)](https://aka.ms/luis-container-demo)
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/cognitive-services/) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 ## Prerequisites
 

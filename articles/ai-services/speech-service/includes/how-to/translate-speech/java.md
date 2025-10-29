@@ -1,10 +1,10 @@
 ---
-author: eric-urban
+author: PatrickFarley
 ms.service: azure-ai-speech
 ms.topic: include
 ms.date: 1/21/2024
 ms.custom: devx-track-java
-ms.author: eur
+ms.author: pafarley
 ---
 
 [!INCLUDE [Header](../../common/java.md)]
@@ -31,7 +31,7 @@ For more information on environment variables, see [Environment variables and ap
 
 ## Create a speech translation configuration
 
-To call the Speech service by using the Speech SDK, you need to create a [`SpeechTranslationConfig`][speechtranslationconfig] instance. This class includes information about your subscription, like your key and associated region, endpoint, host, or authorization token.
+To call the Speech service by using the Speech SDK, you need to create a [`SpeechTranslationConfig`][speechtranslationconfig] instance. This class includes information about your Speech resource, like your key and associated region, endpoint, host, or authorization token.
 
 > [!TIP]
 > Regardless of whether you're performing speech recognition, speech synthesis, translation, or intent recognition, you'll always create a configuration.

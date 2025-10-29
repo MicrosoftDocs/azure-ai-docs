@@ -6,8 +6,8 @@ services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: core
 ms.topic: quickstart
-author: sdgilley
-ms.author: sgilley
+author: s-polly
+ms.author: scottpolly
 ms.reviewer: sgilley
 ms.date: 12/19/2024
 ms.custom:
@@ -15,6 +15,7 @@ ms.custom:
   - build-2023
   - devx-track-python
   - ignite-2023
+  - sfi-image-nochange
 #Customer intent: As a professional data scientist, I want to know how to build and deploy a model with Azure Machine Learning by using Python in a Jupyter Notebook.
 ---
 

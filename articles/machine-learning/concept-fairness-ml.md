@@ -5,7 +5,7 @@ description: Learn about machine learning fairness and how the Fairlearn Python 
 services: machine-learning
 ms.service: azure-machine-learning
 ms.subservice: responsible-ai
-ms.topic: conceptual
+ms.topic: concept-article
 ms.author: lagayhar
 author: lgayhardt
 ms.reviewer: mesameki

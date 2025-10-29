@@ -20,11 +20,11 @@ Use the Custom Vision client library for Python to:
 * Publish the current iteration
 * Test the prediction endpoint
 
-[Reference documentation](/python/api/overview/azure/cognitiveservices-vision-computervision-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/master/sdk/cognitiveservices/azure-cognitiveservices-vision-customvision/azure/cognitiveservices/vision/customvision) | [Package (PyPI)](https://pypi.org/project/azure-cognitiveservices-vision-customvision/) | [Samples](/samples/browse/?languages=python&products=azure&term=vision&terms=vision)
+[Reference documentation](/python/api/overview/azure/cognitiveservices-vision-computervision-readme) | [Library source code](https://github.com/Azure/azure-sdk-for-python/tree/main/sdk/cognitiveservices/azure-cognitiveservices-vision-customvision) | [Package (PyPI)](https://pypi.org/project/azure-cognitiveservices-vision-customvision/) | [Samples](/samples/browse/?languages=python&products=azure&term=vision&terms=vision)
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * [Python 3.x](https://www.python.org).
   * Your Python installation should include [pip](https://pip.pypa.io/en/stable/). You can check if you have pip installed by running `pip --version` on the command line. Get pip by installing the latest version of Python.
 * Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.

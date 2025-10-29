@@ -18,7 +18,7 @@ Document types are associated with the language pair selected when you create a 
 
 1. Select the language pair **Name** you want to manage.
 
-   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields":::
+   :::image type="content" source="../media/fine-tune-edit-language-pair-1.png" alt-text="Screenshot illustrating edit language pair fields.":::
 
 1. Select **Manage data** and then select **Add data**. 
 

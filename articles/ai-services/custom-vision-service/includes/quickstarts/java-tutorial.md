@@ -22,13 +22,13 @@ Use the Custom Vision client library for Java to:
 * Test the prediction endpoint
 
 [Reference documentation](/java/api/overview/azure/cognitiveservices/client/customvision) | 
-Library source code for [(training)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-training) and [(prediction)](https://github.com/Azure/azure-sdk-for-java/tree/master/sdk/cognitiveservices/ms-azure-cs-customvision-prediction)| 
+Library source code for [(training)](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices) and [(prediction)](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cognitiveservices/azure-resourcemanager-cognitiveservices)| 
 Artifact (Maven) for [(training)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-training/1.1.0-preview.2/jar) and [(prediction)](https://search.maven.org/artifact/com.azure/azure-cognitiveservices-customvision-prediction/1.1.0-preview.2/jar) | 
 [Samples](/samples/browse/?products=azure&terms=custom%20vision)
 
 ## Prerequisites
 
-* An Azure subscription. You can [create one for free](https://azure.microsoft.com/free/cognitive-services/).
+* An Azure subscription. You can [create one for free](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 * The current version of the [Java Development Kit(JDK)](https://www.microsoft.com/openjdk).
 * The [Gradle build tool](https://gradle.org/install/), or another dependency manager.
 * Once you have your Azure subscription, create a [Custom Vision resource](https://portal.azure.com/#create/Microsoft.CognitiveServicesCustomVision) in the Azure portal to create a training and prediction resource.

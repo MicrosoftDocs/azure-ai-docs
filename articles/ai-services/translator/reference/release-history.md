@@ -6,7 +6,7 @@ author: laujan
 manager: nitinme
 ms.service: azure-ai-translator
 ms.topic: reference
-ms.date: 04/14/2025
+ms.date: 04/18/2025
 ms.author: lajanuar
 ---
 
@@ -61,9 +61,9 @@ The Text translation `SDK`s are now available in public preview for C#/.NET, Jav
 * To learn more, see [Text translation SDK overview](../text-translation/sdk-overview.md).
 * To get started, try a [Text translation SDK quickstart](../document-translation/document-sdk-overview.md) using a programming language of your choice.
 
-### Microsoft Translator V3 Connector (preview)
+### Microsoft Translator v3 Connector (preview)
 
-The Translator V3 Connector is now available in public preview. The connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows. To learn more, see the following documentation:
+The Translator v3 Connector is now available in public preview. The connector creates a connection between your Translator Service instance and Microsoft Power Automate enabling you to use one or more prebuilt operations as steps in your apps and workflows. To learn more, see the following documentation:
 
 * [Automate document translation](../solutions/connector/document-translation-flow.md)
 * [Automate text translation](../solutions/connector/text-translator-flow.md)
