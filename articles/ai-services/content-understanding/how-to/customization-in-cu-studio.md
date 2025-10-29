@@ -10,15 +10,11 @@ To get started, make sure you have the following resources and permissions:
 ## Log in to Content Understanding Studio
 Navigate to the [Content Understanding Studio portal](https://aka.ms/cu-studio) and sign in using your credentials to get started. You may recognize the classic Azure AI Document Intelligence Studio experience; Content Understanding extends the same content and field extraction that you are familiar with in Document Intelligence across all modalities - document, image, video, and audio. Select the option to try out the new Content Understanding experience to get all of the multimodal capabilities of the service. 
 
-[Insert photo of home page selection]
-
 ## Create your custom analyzer
 
 1.	**Start with a new project**: To get started with creating your custom analyzer, select “Create project” on the home page. 
 
 2.	**Select your project type**: In this guide, we will select the option to “Extract content and fields with a custom schema”. To learn more about classifying and routing your data, check out [How to classify and route data with Content Understanding]().
-
-[Insert photo of selection screen]
 
 3.	**Create your project**: Give your project a friendly name and select “Create”.  
 
@@ -34,8 +30,6 @@ Navigate to the [Content Understanding Studio portal](https://aka.ms/cu-studio) 
 
 7.	**Define your schema**: Review the schema fields that were suggested or were part of the template. If there are additional fields that you want to add or change, you can utilize the edit features to refine the schema fields. Note that you can easily go back to refine your schema after testing and after you build your initial analyzer. Once you complete your changes, select “Save”.
 
-[Insert photo of schema editing]
-
 8.	**Test your schema**: Once you feel your schema is ready for testing, select “run analysis” to see the output of the schema on your data. You can optionally upload additional pieces of sample data for testing to see how the schema performs. 
 
 9.	**Iterate on your schema**: Repeat steps 6-8 as needed to improve the output of your schema. 
@@ -47,8 +41,6 @@ To get started, you will need to upload your training data to a blob storage acc
 [Insert photo of in-context learning]
 
 11.	**Build your analyzer**: Once you’re satisfied with the output from your analyzer, select the “Build analyzer” button at the top of the page. Give the analyzer a name and select “Save”. 
-
-[Insert photo of Build analyzer button]
 
 12. **Use your analyzer**: Now you have an analyzer endpoint that you can utilize in your own application via the REST API. This has been a walkthrough of how to use Content Understanding Studio to build a custom analyzer. 
 
