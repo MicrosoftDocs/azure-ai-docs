@@ -15,7 +15,7 @@ ai-usage: ai-assisted
 
 # Grounding with Bing Search tools 
 
-Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
+Traditional language models operate with a knowledge cutoff. A fixed point in time beyond which they cannot access new information. Grounding with Bing Search and Grounding with Bing Custom Search allows your agents to incorporate real-time public web data when generating responses, letting you ask questions such as "what is the top AI news today".
 
 The grounding process involves several key steps:
 
@@ -25,8 +25,9 @@ The grounding process involves several key steps:
 4. **Source attribution**: The agent provides transparency by citing search sources
 
 >[!IMPORTANT]
-> 1. By creating and using a Grounding with Bing Search resource through code-first experience, such as Azure CLI, or deploying through deployment template, you agree to be bound by and comply with the terms available at https://www.microsoft.com/en-us/bing/apis/grounding-legal, which might be updated from time to time.
-> 1. When you use Grounding with Bing Search, your customer data is transferred outside of the Azure compliance boundary to the Grounding with Bing Search service. Grounding with Bing Search is not subject to the same data processing terms (including location of processing) and does not have the same compliance standards and certifications as the Azure AI Foundry Agent Service, as described in the [Grounding with Bing Search Terms of Use](https://www.microsoft.com/en-us/bing/apis/grounding-legal). It is your responsibility to assess whether use of Grounding with Bing Search in your agent meets your needs and requirements.
+> * Grounding with Bing Search and/or Grounding with Bing Custom Search is a [First Party Consumption Service](https://www.microsoft.com/licensing/terms/product/ForOnlineServices/EAEAS) governed by these [Grounding with Bing terms of use](https://www.microsoft.com/bing/apis/grounding-legal-enterprise) and the [Microsoft Privacy Statement](https://go.microsoft.com/fwlink/?LinkId=521839&clcid=0x409).  
+> * The Microsoft [Data Protection Addendum](https://aka.ms/dpa) does not apply to data sent to Grounding with Bing Search and/or Grounding with Bing Custom Search. When Customer uses Grounding with Bing Search and/or Grounding with Bing Custom Search, Customer Data will flow outside the Azure compliance and Geo boundary. This also means use of Grounding with Bing Search and/or Grounding with Bing Custom Search waives all elevated Government Community Cloud security and compliance commitments, to include data sovereignty and screened/citizenship-based support, as applicable.  
+> * Use of Grounding with Bing Search and Grounding with Bing Custom Search will incur costs; learn more about pricing.  
 
 ## Available tools
 
@@ -34,10 +35,6 @@ The grounding process involves several key steps:
 |---------|---------|---------|
 |Grounding with Bing Search     | Gives agents standard access to Bing's search capabilities.        | Scenarios requiring broad knowledge access.        |
 |Custom Grounding with Bing Search     | Allows agents to search within a configurable set of public web domains. You define the parts of the web you want to draw from so users only see relevant results from the domains and subdomains of your choosing.        | Scenarios requiring information management.        |
-
-## Pricing
-
-Your usage of Grounding with Bing Search can incur costs. See the [pricing page](https://www.microsoft.com/en-us/bing/apis/grounding-pricing) for details.
 
 ## How it works
 
