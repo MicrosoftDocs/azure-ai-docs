@@ -12,7 +12,7 @@ ms.service: azure-ai-foundry
 ms.topic: how-to
 ---
 
-# Integrations
+# Tracing Integrations
 
 Azure AI Foundry makes it easy to log traces with minimal changes by using our tracing integrations with Microsoft Agent Framework, Semantic Kernel, LangChain, LangGraph, and OpenAI Agent SDK.
 
