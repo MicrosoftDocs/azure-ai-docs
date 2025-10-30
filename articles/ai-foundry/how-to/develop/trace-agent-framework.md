@@ -31,14 +31,11 @@ Learn more about tracing and observability in [Semantic Kernel](/semantic-kernel
 ## LangChain & LangGraph
 
 > [!NOTE]
-> Tracing integration for LangChain and LangGraph described here is currently available only in Python.
-
-You can enable tracing for LangChain that follows OpenTelemetry standards as per [opentelemetry-instrumentation-langchain](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/).
-
-Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
-
-> [!NOTE]
+> Tracing integration for LangChain and LangGraph is currently available only in Python.
 > LangChain and LangGraph "v1" releases are currently under active development. API surface and tracing behavior can change as part of this release. Track updates at the [LangChain v1.0 release notes page](https://docs.langchain.com/oss/python/releases/langchain-v1)
+
+You can enable tracing for LangChain that follows [OpenTelemetry standards](https://opentelemetry.io/docs/specs/semconv/gen-ai/gen-ai-agent-spans/) per [opentelemetry-instrumentation-langchain](https://pypi.org/project/langchain-azure-ai/). Once necessary packages are installed, you can easily begin to [Instrument tracing in your code](https://pypi.org/project/langchain-azure-ai/).
+
 
 ### Sample: LangChain v1 agent with Azure AI tracing
 
