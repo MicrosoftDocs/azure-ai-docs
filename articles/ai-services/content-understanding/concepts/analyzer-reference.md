@@ -110,7 +110,8 @@ These properties uniquely identify and describe your analyzer:
   - `"prebuilt-image"` - for image-based custom analyzers
 - **Example:** `"baseAnalyzerId": "prebuilt-document"`
 
->[!NOTE] When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
+>[!NOTE] 
+>When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
 
 ## Model configuration
 
@@ -293,7 +294,8 @@ The `config` object contains all processing options that control how content is 
   - Processing content in specific regional variants
 - **Supported by:** `prebuilt-audio`, `prebuilt-video`, `prebuilt-callCenter`
 
->[!NOTE] For a complete list of supported languages and locales, see [Language and region support](../language-region-support.md).
+>[!NOTE] 
+>For a complete list of supported languages and locales, see [Language and region support](../language-region-support.md).
 
 ##### `disableFaceBlurring`
 - **Default:** false

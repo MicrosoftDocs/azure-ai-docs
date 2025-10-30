@@ -112,7 +112,8 @@ Using GPT-4o-mini global deployment with the following pricing assumptions:
 Total Cost = $5.00 + $1.00 + $2.08 + $0.29 + $0.00 = $8.37 per 1000 pages
 ```
 
->[!Note] These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+>[!Note] 
+>These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
 
 
 ## Detailed cost components
@@ -281,7 +282,8 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 **Total estimated cost**: $5.00 + $4 + $3.2 + $1.00 = **$13.20**
 
->[!Note] These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+>[!Note] 
+>These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
  
 #### Example 2: Processing invoices with field extraction
  
@@ -313,7 +315,8 @@ Here are detailed examples showing how pricing works across different scenarios:
 > [!NOTE]
 > Using a standard GPT-4.1 global deployment instead of mini would increase the field extraction cost by approximately 5x, bringing the total to approximately $33.
 
->[!Note] These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+>[!Note] 
+>These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
  
 #### Example 3: Analyzing video content with segment-level field extraction
  
@@ -346,9 +349,10 @@ Here are detailed examples showing how pricing works across different scenarios:
 **Total estimated cost**: $1.00 + $0.90 + $0.43 + $1.00 = **$3.33**
  
 > [!NOTE]
-> Actual cost varies based on the specifics of your input and output. This transparent, usage-based billing model ensures you only pay for what you use.
+>Actual cost varies based on the specifics of your input and output. This transparent, usage-based billing model ensures you only pay for what you use.
 
->[!Note] These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+>[!Note] 
+>These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
  
 #### Example 4: Processing audio call center recordings
  
@@ -375,7 +379,8 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 **Total estimated cost**: $0.36 + $0.01 + $0.00 + $0.10 = **$0.47**
  
- >[!Note] These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+ >[!Note] 
+ >These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
 
 #### Example 5: Processing images with captions
  
@@ -402,7 +407,8 @@ Here are detailed examples showing how pricing works across different scenarios:
  
 **Total estimated cost**: $0.00 + $2.09 + $1.36 + $1.00 = **$4.45**
 
->[!Note] These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
+>[!Note] 
+>These prices are for illustration purposes only and are not intended to represent the actual cost. Check [Azure AI Content Understanding Pricing](https://azure.microsoft.com/pricing/details/content-understanding/) and [Azure OpenAI Pricing](https://azure.microsoft.com/pricing/details/cognitive-services/openai-service/) for current rates
 
 ## Next steps
 
