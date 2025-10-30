@@ -510,7 +510,7 @@ items:
             href: how-to-train-keras.md
           - name: Train PyTorch models
             href: how-to-train-pytorch.md
-          - name: Tune Hyperperameters
+          - name: Tune Hyperparameters
             href: how-to-tune-hyperparameters.md
           - name: Train with the Python SDK
             items:
