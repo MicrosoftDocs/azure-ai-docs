@@ -667,12 +667,12 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + Knowledge agent (base) `requestLimits` is removed. Its child properties of `maxRuntimeInSeconds` and `maxOutputSize` are moved onto the retrieval request object directly.
 
-+ Knowledge agent (base) `knowledgeSources` parameters: The following child properties are moved to the `knowledgeSourceParams` properties of the retrieval request object: 
++ Knowledge agent (base) `knowledgeSources` parameters now only list the names of knowledge source used by a knowledge base. Other child properties that used to be under `knowledgeSources` are moved to the `knowledgeSourceParams` properties of the retrieval request object: 
 
   + `rerankerThreshold`
   + `alwaysQuerySource`
   + `includeReferenceSourceData`
-  + `includeReferences`.
+  + `includeReferences`
 
   The `maxSubQueries` property is gone. Its replacement is the new retrieval reasoning effort property.
 
@@ -691,6 +691,8 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 + All knowledge sources that pull from a search index have a `status` operation, which returns the synchronization status of the knowledge source with its data source.
 
 + The `searchIndex` knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieval request.
+
++ The `searchIndex` knowledge source adds `sourceDataFields` and `searchDataFields` to specify which fields are used at query time and also returned in a response.
 
 + Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing.
 
