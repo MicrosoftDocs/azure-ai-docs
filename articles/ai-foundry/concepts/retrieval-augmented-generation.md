@@ -10,6 +10,8 @@ ms.topic: concept-article
 ms.date: 08/05/2025
 ms.reviewer: sgilley
 ms.author: sgilley
+monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 author: sdgilley
 ---
 
@@ -27,6 +29,19 @@ RAG is a pattern that uses your data with an LLM to generate answers specific to
 
 :::image type="content" source="../media/index-retrieve/rag-pattern.png" alt-text="Screenshot of the RAG pattern." lightbox="../media/index-retrieve/rag-pattern.png":::
 
+## Agentic RAG: Modern approach to retrieval
+
+Traditional RAG patterns use a single query to retrieve information from your data. However, modern **agentic retrieval** represents an evolution in RAG architecture that uses large language models to intelligently break down complex user queries into multiple focused subqueries, executes them in parallel, and returns structured responses optimized for chat completion models.
+
+Agentic retrieval provides several advantages over classic RAG:
+
+* **Context-aware query planning** - Uses conversation history to understand context and intent
+* **Parallel execution** - Runs multiple focused subqueries simultaneously for better coverage
+* **Structured responses** - Returns grounding data, citations, and execution metadata along with results
+* **Built-in semantic ranking** - Ensures optimal relevance of results
+* **Optional answer synthesis** - Can include LLM-formulated answers directly in the query response
+
+Agents use [agentic retrieval](/azure/search/agentic-retrieval-overview) to take advantage of improved accuracy and context understanding. 
 
 ## What is an index and why do I need it?
 
