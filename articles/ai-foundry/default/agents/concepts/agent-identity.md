@@ -19,7 +19,7 @@ Agent identities integrate seamlessly with Azure AI Foundry, automatically provi
 
 ## Prerequisites
 
-* Understanding of Microsoft Entra ID and OAuth authentication
+* Understanding of [Microsoft Entra ID and OAuth](/entra/architecture/auth-sync-overview) authentication
 * Familiarity with [Azure role-based access control (RBAC)](/azure/role-based-access-control/overview)
 * Basic knowledge of AI agents and their runtime requirements
 
@@ -37,7 +37,7 @@ Unlike traditional service principals, agent identities don't use passwords, cer
 
 ## Agent identity blueprint
 
-An Agent Identity Blueprint serves as the "parent" of agent identities and fulfills three essential purposes:
+An Agent identity blueprint serves as the "parent" of agent identities and fulfills three essential purposes:
 
 **Type classification**: The blueprint establishes the category of agent identity, such as "Contoso Sales Agent" or "DataDog Cloud Monitoring Agent." This classification enables administrators to manage multiple individual agents of the same type as a collection and apply security policies like "block all requests from all Contoso Sales Agent IDs." The blueprint also stores common attributes, metadata, and settings across all its agent identities, including role definitions.
 
@@ -47,7 +47,7 @@ An Agent Identity Blueprint serves as the "parent" of agent identities and fulfi
 
 ## Azure AI Foundry identity management
 
-Azure AI Foundry automatically integrates with Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default Agent Identity Blueprint and a default Agent Identity for your project.
+Azure AI Foundry automatically integrates with Entra Agent ID by creating and managing identities throughout the agent development lifecycle. When you create your first agent in a Foundry project, the system provisions a default Agent identity blueprint and a default Agent Identity for your project.
 
 ### Shared project identity
 
@@ -58,13 +58,13 @@ All unpublished or in-development agents within the same project share a common 
 * Enables developers to build agents independently once project permissions are established
 * Eliminates the need for new permission requests for each development agent
 
-To find your shared Agent Identity Blueprint and Agent Identity, navigate to your Foundry project in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
+To find your shared Agent identity blueprint and Agent Identity, navigate to your Foundry project in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
 
-:::image type="content" source="../../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in Azure Portal displaying Agent Identity Blueprint and Agent Identity details for a Foundry project." lightbox="../../media/agent-identity/azure-agent-identity-json-view.png":::
+:::image type="content" source="../../media/agent-identity/azure-agent-identity-json-view.png" alt-text="Screenshot of the JSON view in Azure Portal displaying Agent identity blueprint and Agent Identity details for a Foundry project." lightbox="../../media/agent-identity/azure-agent-identity-json-view.png":::
 
 ### Distinct agent identity
 
-When an agent's permissions, auditability, or lifecycle requirements diverge from the project defaults, you should upgrade to a distinct identity. Publishing an agent automatically creates a dedicated Agent Identity Blueprint and Agent Identity, both bound to the Agent Application resource. This distinct identity represents the agent's system authority for accessing its own resources.
+When an agent's permissions, auditability, or lifecycle requirements diverge from the project defaults, you should upgrade to a distinct identity. Publishing an agent automatically creates a dedicated Agent identity blueprint and Agent Identity, both bound to the Agent Application resource. This distinct identity represents the agent's system authority for accessing its own resources.
 
 Common scenarios requiring distinct identities include:
 
@@ -73,7 +73,7 @@ Common scenarios requiring distinct identities include:
 * Agents requiring unique permission sets
 * Agents needing independent audit trails
 
-To find the distinct Agent Identity Blueprint and Agent Identity, navigate to your Agent Application resource in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
+To find the distinct Agent identity blueprint and Agent Identity, navigate to your Agent Application resource in the Azure Portal. On the Overview page, select "Json View" and choose the latest API version to view and copy the identities.
 
 ## Tool authentication
 
