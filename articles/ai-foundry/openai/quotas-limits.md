@@ -265,11 +265,11 @@ During the preview, the rate limits for each `gpt-4o` realtime model deployment 
 
 | Model|Tier| Quota limit in tokens per minute | Requests per minute |
 |---|---|:---:|:---:|
-|`gpt-image-1`|Enterprise and MCA-E | N/A | 20 |
-|`gpt-image-1` |Default | N/A | 6 |
-|`gpt-image-1-mini`|Low | N/A | 12 |
-|`gpt-image-1-mini` |Medium | N/A | 36 |
-|`gpt-image-1-mini` |High | N/A | 120 |
+|`gpt-image-1`|Enterprise and MCA-E | N/A | 60 |
+|`gpt-image-1` |Default | N/A | 18 |
+|`gpt-image-1-mini`|Low | N/A | 36 |
+|`gpt-image-1-mini` |Medium | N/A | 108 |
+|`gpt-image-1-mini` |High | N/A | 360 |
 
 
 ## Usage tiers
