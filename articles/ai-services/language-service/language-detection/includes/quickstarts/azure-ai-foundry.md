@@ -14,7 +14,7 @@ ms.author: lajanuar
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types.Look for :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
 > 
 > → You can switch to the [Azure AI Foundry (new) ](https://ai.azure.com/) portal for streamlined access to models, agents, and tools with Foundry projects.
 >
@@ -26,9 +26,9 @@ You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 > * Deploy a model
 > * Run a chat completion
 > * Create and run an agent
-> * Upload files to the agent
+> * Upload files to your agent
 
-## Navigate to the [Azure AI Foundry (new)](https://ai.azure.com/) Playground
+## Navigate to the [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
 
@@ -71,7 +71,7 @@ After your operation is completed, the **Details** section contains the followin
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Look for :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
 > 
 > → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
 >
@@ -86,21 +86,28 @@ You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 
 ## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
 
-There are two ways to access the PII interface:
-1. From Discover
-   * Select Discover, which takes you to the Models page.
-   * In the search bar under models, enter **Azure** and press enter.
-   * Select **Azure-Language-detection** from the search results.
-   * Select open in playground.
+ The project you are working on appears in the upper-left corner.  
+* You can select to create a new project from the drop-down menu:
+  * Select the provided project name or create a new project name.
+  * Finally, select **Create project**.
 
-1. From Build
-   * Select Build from the upper nav bar.
-   * Select Models from the left nav bar.
-   * Select AI services tab.
-   * Select **Azure-Language-detection**.
-   * Select open in playground.
+   :::image type="content" source="../../../media/new-foundry-homepage.png" alt-text="Screenshot of the AI Foundry (new) homepage":::
+
+There are two ways to access the Language Detection interface:
+
+1. Select the **Discover** tab from the upper right navigation bar to go to the **Models** page.
+   * In the search bar under models, enter **Azure** and press enter.
+   * Next, select **Azure-Language-detection** from the search results.
+   * Finally, select the **Open in Playground** button.
+
+1. Select the **Build** tab from the upper right navigation bar.
+   * From the left navigation bar, select  **Models**.
+   * Select the **AI services** tab.
+   * Next, select  **Azure-Language-detection** to go to the playground.
 
 ## Use playground: extract PII from text
+
+The Azure AI Foundry playground is an interactive environment where you can engage with deployed AI models.
 
 The **detect language** feature identifies the language used in written content.
 
