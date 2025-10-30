@@ -38,7 +38,7 @@ For more information, see the [models and versions documentation](./concepts/mod
 
 ## API support
 
-Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-04-01-preview` to access the latest Realtime API features. 
+Support for the Realtime API was first added in API version `2024-10-01-preview` (retired). Use version `2025-08-28` to access the latest Realtime API features. When possible we recommend selecting generally available API version (without '-preview' suffix).
 
 ::: zone pivot="ai-foundry-portal"
 
