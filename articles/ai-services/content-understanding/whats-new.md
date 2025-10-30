@@ -34,7 +34,7 @@ With the [**`2025-05-01-preview`**](/rest/api/contentunderstanding/content-analy
 
 Content Understanding pro mode adds reasoning, support for multiple input documents, the ability to configure an external knowledge base for linking, enrichment, and validation. These features automate complex tasks by extending field extraction capabilities to cover scenarios that previously required custom code or human effort.
 
-The `pro` mode is currently limited to documents as inputs, with support other types of content types coming soon! Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode](concepts/standard-pro-modes.md).
+The `pro` mode (preview) is currently limited to documents as inputs, with support other types of content types coming soon! Common challenges that the pro mode addresses are aggregating a schema across content from different input files, validating results across documents, and using external knowledge to generate an output schema. Learn more about the [pro mode (preview)](concepts/standard-pro-modes.md).
 
 ### AI Foundry experience
 
@@ -68,7 +68,7 @@ This release introduces a new [classification API](concepts/classifier.md). This
 * Added support for multilingual audio processing. Learn more about [language handling improvements in audio](audio/overview.md#language-handling).
 * Increased maximum supported file-size to ≤ 1 GB and length of ≤ 4 hours. Learn more about [audio service limits](service-limits.md).
 
-### Face API
+### Face API (preview)
 
 This release adds new face detection and recognition capabilities to Content Understanding. You can create a directory of faces and persons. The directory can be used to recognize the faces in the processed content. Learn more about [detecting and recognizing faces](face/overview.md).
 

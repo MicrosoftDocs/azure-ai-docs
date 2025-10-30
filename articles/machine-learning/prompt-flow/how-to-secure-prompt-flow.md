@@ -13,6 +13,7 @@ ms.date: 7/10/2025
 ms.custom:
   - ignite-2023
   - sfi-image-nochange
+ms.update-cycle: 365-days
 ---
 
 # Network isolation in prompt flow 

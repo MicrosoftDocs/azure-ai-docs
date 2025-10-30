@@ -17,7 +17,6 @@ ms.custom: references_regions, build-2025
 
 | Model                     | Version			| Lifecycle<br>Status	| Retirement date                    | Replacement model                    |
 | --------------------------|-------------------|:----------------------|------------------------------------|--------------------------------------|
-| `computer-use-preview`    | 2025-03-11		| Preview               | No earlier than October 10, 2025   |                                      |
 | `gpt-35-turbo`            | 1106				| Generally Available   | November 11, 2025                  | `gpt-4.1-mini`                       |
 | `gpt-35-turbo`            | 0125				| Generally Available   | November 11, 2025                  | `gpt-4.1-mini`                       |
 | `gpt-3.5-turbo-instruct`  | 0914				| Generally Available   | November 11, 2025                  |                                      |
@@ -26,6 +25,7 @@ ms.custom: references_regions, build-2025
 | `o1-mini`                 | 2024-09-12		| Generally Available   | November 17, 2025                  | `o4-mini` or `gpt-5-mini`            |
 | `model-router`            | 2025-05-19		| Preview               | No earlier than November 30, 2025  |                                      |
 | `model-router`            | 2025-08-07        | Preview               | No earlier than November 30, 2025  |                                      |
+| `computer-use-preview`    | 2025-03-11		| Preview               | No earlier than January 14, 2026   |                                      |
 | `o3-mini`                 | 2025-01-31		| Generally Available   | No earlier than February 1, 2026   | `o4-mini`                            |
 | `gpt-4o`                  | 2024-05-13		| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1`                            |
 | `gpt-4o-mini`             | 2024-07-18		| Generally Available   | No earlier than February 27, 2026  | `gpt-4.1-mini`                       |
@@ -50,14 +50,14 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version      | Lifecycle<br>Status | Retirement date                          | Replacement model                    |
 | -------------------------------|--------------|---------------------|------------------------------------------|--------------------------------------|
-| `gpt-4o-realtime-preview`      | 2025-06-03   | Preview             | No earlier than September 1, 2025        |                                      |
-| `gpt-4o-mini-realtime-preview` | 2024-12-17   | Preview             | No earlier than September 17, 2025       |                                      |
-| `gpt-4o-realtime-preview`      | 2024-12-17   | Preview             | No earlier than September 17, 2025       |                                      |
-| `gpt-4o-audio-preview`         | 2024-12-17   | Preview             | No earlier than September 17, 2025       |                                      |
-| `gpt-4o-audio-preview`         | 2024-12-17   | Preview             | No earlier than September 17, 2025       |                                      |
-| `gpt-4o-transcribe`            | 2025-03-20   | Preview             | No earlier than September 17, 2025       |                                      |
-| `gpt-4o-mini-tts`              | 2025-03-20   | Preview             | No earlier than September 17, 2025       |                                      |
-| `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than September 17, 2025       |                                      |
+| `gpt-4o-realtime-preview`      | 2025-06-03   | Preview             | November 13, 2025                        |                                      |
+| `gpt-4o-mini-realtime-preview` | 2024-12-17   | Preview             | November 13, 2025                        |                                      |
+| `gpt-4o-realtime-preview`      | 2024-12-17   | Preview             | November 13, 2025                        |                                      |
+| `gpt-4o-audio-preview`         | 2024-12-17   | Preview             | November 13, 2025                        |                                      |
+| `gpt-4o-transcribe`            | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
+| `gpt-4o-mini-tts`              | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
+| `gpt-4o-mini-transcribe`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
+| `gpt-4o-mini-transcribe-diarize`       | 2025-03-20   | Preview             | No earlier than January 14, 2026         |                                      |
 | `tts`                          | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `tts-hd`                       | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
 | `whisper`                      | 001          | Generally Available | No earlier than February 1, 2026         |                                      |
@@ -68,9 +68,10 @@ ms.custom: references_regions, build-2025
 
 | Model                          | Version      | Lifecycle<br>Status | Retirement date                  | Replacement model                    |
 | -------------------------------|--------------|---------------------|----------------------------------|--------------------------------------|
-| `sora`                         | 2025-05-02   | Preview             | No earlier than October 15, 2025 |                                      |
-| `dalle-3`                      | 3            | Generally Available | No earlier than October 31, 2025 |                                      |
-| `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than October 31, 2025 |                                      |
+| `dalle-3`                      | 3            | Generally Available | No earlier than January 31, 2026 |                                      |
+| `gpt-image-1`                  | 2025-04-15   | Preview             | No earlier than January 31, 2026 |                                      |
+| `gpt-image-1-mini`                  | 2025-10-06   | GA             | No earlier than October 6, 2026 |                                      |
+| `sora`                         | 2025-05-02   | Preview             | No earlier than February 15, 2026|                                      |
 
 # [Embedding](#tab/embedding)
 

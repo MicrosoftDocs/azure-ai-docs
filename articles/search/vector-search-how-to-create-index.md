@@ -378,7 +378,7 @@ If you're familiar with indexers and skillsets:
 
 + If vector data is sourced in files, we recommend a nondefault `parsingMode`, such as `json`, `jsonLines`, or `csv` based on the shape of the data.
 
-+ For data sources, [Azure blob indexers](search-howto-indexing-azure-blob-storage.md) and [Azure Cosmos DB for NoSQL indexers](search-howto-index-cosmosdb.md) with one of the aforementioned parsingModes have been tested and confirmed to work.
++ For data sources, [Azure blob indexers](search-how-to-index-azure-blob-storage.md) and [Azure Cosmos DB for NoSQL indexers](search-how-to-index-cosmosdb-sql.md) with one of the aforementioned parsingModes have been tested and confirmed to work.
 
 + The dimensions of all vectors from the data source must be the same and match their index definition for the field they're mapping to. The indexer throws an error on any documents that don’t match.
 

@@ -6,7 +6,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: conceptual 
-ms.date: 10/01/2025
+ms.date: 10/06/2025
 author: mrbullwinkle
 ms.author: mbullwin
 recommendations: false
@@ -31,6 +31,7 @@ Starting in August 2025, you can now opt in to our next generation v1 Azure Open
 - Faster API release cycle with new features launching more frequently.
 - OpenAI client support with minimal code changes to swap between OpenAI and Azure OpenAI when using key-based authentication.
 - OpenAI client support for token based authentication and automatic token refresh without the need to take a dependency on a separate Azure OpenAI client.
+- Make chat completions calls with models from other providers like DeepSeek and Grok which support the v1 chat completions syntax.
 
 Access to new API calls that are still in preview will be controlled by passing feature specific preview headers allowing you to opt in to the features you want, without having to swap API versions. Alternatively, some features will indicate preview status through their API path and don't require an additional header.
 
@@ -271,68 +272,197 @@ curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/responses \
     }'
 ```
 
-# [Output](#tab/output)
+---
 
-```json
-{
-  "id": "resp_682f7eb5dc408190b491cbbe57be2fbf0f98d661c3dc276d",
-  "created_at": 1747943093.0,
-  "error": null,
-  "incomplete_details": null,
-  "instructions": null,
-  "metadata": {},
-  "model": "gpt-4.1-nano",
-  "object": "response",
-  "output": [
-    {
-      "id": "msg_682f7eb61d908190926a004c15c5ddd00f98d661c3dc276d",
-      "content": [
-        {
-          "annotations": [],
-          "text": "Hello! It looks like you've sent a test message. How can I assist you today?",
-          "type": "output_text"
-        }
-      ],
-      "role": "assistant",
-      "status": "completed",
-      "type": "message"
-    }
-  ],
-  "parallel_tool_calls": true,
-  "temperature": 1.0,
-  "tool_choice": "auto",
-  "tools": [],
-  "top_p": 1.0,
-  "background": null,
-  "max_output_tokens": null,
-  "previous_response_id": null,
-  "reasoning": {
-    "effort": null,
-    "generate_summary": null,
-    "summary": null
-  },
-  "service_tier": "default",
-  "status": "completed",
-  "text": {
-    "format": {
-      "type": "text"
-    }
-  },
-  "truncation": "disabled",
-  "usage": {
-    "input_tokens": 12,
-    "input_tokens_details": {
-      "cached_tokens": 0
-    },
-    "output_tokens": 19,
-    "output_tokens_details": {
-      "reasoning_tokens": 0
-    },
-    "total_tokens": 31
-  },
-  "user": null,
-  "store": true
+## Model support
+
+For Azure OpenAI models we recommend using the [Responses API](./supported-languages.md), however, the v1 API also allows you to make chat completions calls with models from other providers like DeepSeek and Grok which support the OpenAI v1 chat completions syntax.
+
+`base_url` will accept both `https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/` and `https://YOUR-RESOURCE-NAME.services.ai.azure.com/openai/v1/` formats.
+
+# [Python](#tab/python)
+
+```python
+from openai import OpenAI
+from azure.identity import DefaultAzureCredential, get_bearer_token_provider
+
+token_provider = get_bearer_token_provider(
+    DefaultAzureCredential(), "https://cognitiveservices.azure.com/.default"
+)
+
+client = OpenAI(  
+  base_url = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/",  
+  api_key=token_provider,
+)
+completion = client.chat.completions.create(
+  model="grok-3-mini", # Replace with your model deployment name.
+  messages=[
+    {"role": "system", "content": "You are a helpful assistant."},
+    {"role": "user", "content": "Tell me about the attention is all you need paper"}
+  ]
+)
+
+#print(completion.choices[0].message)
+print(completion.model_dump_json(indent=2))
+```
+
+# [C#](#tab/dotnet)
+
+```csharp
+using Azure.Identity;
+using OpenAI;
+using OpenAI.Chat;
+using System.ClientModel.Primitives;
+
+#pragma warning disable OPENAI001
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+ChatClient client = new(
+    model: "grok-3-mini", // Replace with your model deployment name.
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions() { 
+    
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+   }
+);
+
+ChatCompletion completion = client.CompleteChat("Tell me about the attention is all you need paper");
+
+Console.WriteLine($"[ASSISTANT]: {completion.Content[0].Text}");
+```
+
+# [JavaScript](#tab/javascript)
+
+```javascript
+import { DefaultAzureCredential, getBearerTokenProvider } from "@azure/identity";
+import { OpenAI } from "openai";
+
+const tokenProvider = getBearerTokenProvider(
+    new DefaultAzureCredential(),
+    'https://cognitiveservices.azure.com/.default');
+const client = new OpenAI({
+    baseURL: "https://france-central-test-001.openai.azure.com/openai/v1/",
+    apiKey: tokenProvider
+});
+
+const messages = [
+    { role: 'system', content: 'You are a helpful assistant.' },
+    { role: 'user', content: 'Tell me about the attention is all you need paper' }
+];
+
+// Make the API request with top-level await
+const result = await client.chat.completions.create({ 
+    messages, 
+    model: 'grok-3-mini', // model deployment name
+    max_tokens: 100 
+});
+
+// Print the full response
+console.log('Full response:', result);
+
+// Print just the message content from the response
+console.log('Response content:', result.choices[0].message.content);
+```
+
+# [Go](#tab/go)
+
+```go
+package main
+
+import (
+	"context"
+	"fmt"
+
+	"github.com/Azure/azure-sdk-for-go/sdk/azidentity"
+	"github.com/openai/openai-go/v2"
+	"github.com/openai/openai-go/v2/azure"
+	"github.com/openai/openai-go/v2/option"
+)
+
+func main() {
+	// Create an Azure credential
+	tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
+	if err != nil {
+		panic(fmt.Sprintf("Failed to create credential: %v", err))
+	}
+
+	// Create a client with Azure OpenAI endpoint and token credential
+	client := openai.NewClient(
+		option.WithBaseURL("https://YOUR-RESOURCE_NAME.openai.azure.com/openai/v1/"),
+		azure.WithTokenCredential(tokenCredential),
+	)
+
+	// Make a completion request
+	chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCompletionNewParams{
+		Messages: []openai.ChatCompletionMessageParamUnion{
+			openai.UserMessage("Explain what the bitter lesson is?"),
+		},
+		Model: "grok-3-mini", // Use your deployed model name on Azure
+	})
+	if err != nil {
+		panic(err.Error())
+	}
+
+	fmt.Println(chatCompletion.Choices[0].Message.Content)
 }
+```
+
+# [Java](#tab/Java)
+
+```java
+package com.example;
+
+import com.openai.client.OpenAIClient;
+import com.openai.client.okhttp.OpenAIOkHttpClient;
+import com.openai.models.ChatModel;
+import com.openai.models.chat.completions.ChatCompletion;
+import com.openai.models.chat.completions.ChatCompletionCreateParams;
+
+public class OpenAITest {
+    public static void main(String[] args) {
+        // Get API key from environment variable for security
+        String apiKey = System.getenv("OPENAI_API_KEY");
+        String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
+        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
+
+        try {
+            OpenAIClient client = OpenAIOkHttpClient.builder()
+                    .baseUrl(resourceName)
+                    .apiKey(apiKey)
+                    .build();
+
+           ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()
+              .addUserMessage("Explain what the bitter lesson is?")
+              .model(modelDeploymentName)
+              .build();
+           ChatCompletion chatCompletion = client.chat().completions().create(params);
+        }
+    }
+}
+```
+
+# [REST](#tab/rest)
+
+```bash
+curl -X POST https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1/chat/completions \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer $AZURE_OPENAI_AUTH_TOKEN" \
+  -d '{
+      "model": "grok-3-mini",
+      "messages": [
+      {
+        "role": "developer",
+        "content": "You are a helpful assistant."
+      },
+      {
+        "role": "user",
+        "content": "Explain what the bitter lesson is?"
+      }
+    ]
+  }'
 ```
 
 ---

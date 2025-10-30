@@ -57,26 +57,26 @@ The wizards support the following data sources, most of which use [built-in inde
 
 | Data source | Import data wizard | Import data (new) wizard |
 |--|--|--|
-| [ADLS Gen2](search-howto-index-azure-data-lake-storage.md) | ✅ | ✅ |
-| [Azure Blob Storage](search-howto-indexing-azure-blob-storage.md) | ✅ | ✅ |
-| [Azure File Storage](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
-| [Azure Queues](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
-| [Azure Table Storage](search-howto-indexing-azure-tables.md) | ✅ | ✅ |
+| [ADLS Gen2](search-how-to-index-azure-data-lake-storage.md) | ✅ | ✅ |
+| [Azure Blob Storage](search-how-to-index-azure-blob-storage.md) | ✅ | ✅ |
+| [Azure File Storage](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
+| [Azure Queues](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [Azure Table Storage](search-how-to-index-azure-tables.md) | ✅ | ✅ |
 | [Azure SQL Database and Managed Instance](search-how-to-index-sql-database.md) | ✅ | ✅ |
-| [Cosmos DB for NoSQL](search-howto-index-cosmosdb.md) | ✅ | ✅ |
-| [Cosmos DB for MongoDB](search-howto-index-cosmosdb-mongodb.md) | ✅ | ✅ |
-| [Cosmos DB for Apache Gremlin](search-howto-index-cosmosdb-gremlin.md) | ✅ | ✅ |
-| [MySQL](search-howto-index-mysql.md)  | ❌ | ❌ |
-| [OneDrive](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
-| [OneDrive for Business](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [Cosmos DB for NoSQL](search-how-to-index-cosmosdb-sql.md) | ✅ | ✅ |
+| [Cosmos DB for MongoDB](search-how-to-index-cosmosdb-mongodb.md) | ✅ | ✅ |
+| [Cosmos DB for Apache Gremlin](search-how-to-index-cosmosdb-gremlin.md) | ✅ | ✅ |
+| [MySQL](search-how-to-index-mysql.md)  | ❌ | ❌ |
+| [OneDrive](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [OneDrive for Business](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
 | [OneLake](search-how-to-index-onelake-files.md) | ✅ | ✅ |
-| [Service Bus](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
-| [SharePoint Online](search-how-to-index-logic-apps-indexers.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
+| [Service Bus](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1</sup> |
+| [SharePoint Online](search-how-to-index-logic-apps.md#supported-connectors) | ❌ | ✅ <sup>1, 2</sup> |
 | [SQL Server on virtual machines](search-how-to-index-sql-server.md) | ✅ | ✅ |
 
-<sup>1</sup> This data source uses an [Azure Logic Apps connector (preview)](search-how-to-index-logic-apps-indexers.md#supported-connectors) instead of a built-in indexer.
+<sup>1</sup> This data source uses an [Azure Logic Apps connector (preview)](search-how-to-index-logic-apps.md#supported-connectors) instead of a built-in indexer.
 
-<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-howto-index-sharepoint-online.md).
+<sup>2</sup> Instead of using a Logic Apps connector, you can use the Search Service REST APIs to programmatically index data from [Azure File Storage](search-file-storage-integration.md) or [SharePoint Online](search-how-to-index-sharepoint-online.md).
 
 ### Sample data
 

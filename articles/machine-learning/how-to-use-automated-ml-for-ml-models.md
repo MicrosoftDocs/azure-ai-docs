@@ -30,7 +30,7 @@ This article provides a high-level overview of working with Automated ML in the 
 
 ## Prerequisites
 
-- An Azure subscription. You can create a [free or paid account](https://azure.microsoft.com/free/) for Azure Machine Learning.
+- An Azure subscription. You can create a [free or paid account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) for Azure Machine Learning.
 
 - An Azure Machine Learning workspace or compute instance. To prepare these resources, see [Quickstart: Get started with Azure Machine Learning](quickstart-create-resources.md).
 

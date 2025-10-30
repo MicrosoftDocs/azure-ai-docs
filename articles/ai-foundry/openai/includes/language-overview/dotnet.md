@@ -170,8 +170,6 @@ BearerTokenPolicy tokenPolicy = new(
     new DefaultAzureCredential(),
     "https://cognitiveservices.azure.com/.default");
 
-#pragma warning disable OPENAI001
-
 OpenAIResponseClient client = new(
     model: "o4-mini",
     authenticationPolicy: tokenPolicy,
@@ -242,6 +240,45 @@ await foreach (StreamingResponseUpdate update
         Console.Write(delta.Delta);
     }
 }
+```
+
+### MCP Server
+
+```csharp
+using OpenAI;
+using OpenAI.Responses;
+using System.ClientModel.Primitives;
+using Azure.Identity;
+
+#pragma warning disable OPENAI001 //currently required for token based authentication
+
+BearerTokenPolicy tokenPolicy = new(
+    new DefaultAzureCredential(),
+    "https://cognitiveservices.azure.com/.default");
+
+OpenAIResponseClient client = new(
+    model: "o4-mini",
+    authenticationPolicy: tokenPolicy,
+    options: new OpenAIClientOptions()
+    {
+        Endpoint = new Uri("https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1")
+    }
+);
+
+ResponseCreationOptions options = new();
+options.Tools.Add(ResponseTool.CreateMcpTool(
+    serverLabel: "microsoft_learn",
+    serverUri: new Uri("https://learn.microsoft.com/api/mcp"),
+    toolCallApprovalPolicy: new McpToolCallApprovalPolicy(GlobalMcpToolCallApprovalPolicy.NeverRequireApproval)
+));
+
+OpenAIResponse response = (OpenAIResponse)client.CreateResponse([
+    ResponseItem.CreateUserMessageItem([
+        ResponseContentPart.CreateInputTextPart("Search for information about Azure Functions")
+    ])
+], options);
+
+Console.WriteLine(response.GetOutputText());
 ```
 
 ## Error handling

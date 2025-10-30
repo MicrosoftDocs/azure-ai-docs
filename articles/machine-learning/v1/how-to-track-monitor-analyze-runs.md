@@ -47,7 +47,7 @@ This article shows how to do the following tasks:
 
 You'll need the following items:
 
-* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/free/) today.
+* An Azure subscription. If you don't have an Azure subscription, create a free account before you begin. Try the [free or paid version of Azure Machine Learning](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) today.
 
 * An [Azure Machine Learning workspace](../quickstart-create-resources.md).
 

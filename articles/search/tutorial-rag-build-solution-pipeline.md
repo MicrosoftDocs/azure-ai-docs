@@ -1,5 +1,5 @@
 ---
-title: 'RAG tutorial: Build an indexing pipeline'
+title: 'Classic RAG tutorial: Build an indexing pipeline'
 titleSuffix: Azure AI Search
 description: Create an indexer-driven pipeline that loads, chunks, embeds, and ingests content for RAG solutions on Azure AI Search.
 manager: nitinme
@@ -8,15 +8,18 @@ ms.author: heidist
 ms.service: azure-ai-search
 ms.update-cycle: 180-days
 ms.topic: tutorial
-ms.date: 06/11/2025
+ms.date: 10/14/2025
 ms.custom:
   - ignite-2024
   - sfi-ropc-nochange
 ---
 
-# Tutorial: Build an indexing pipeline for RAG on Azure AI Search
+# Tutorial: Build an indexing pipeline for classic RAG on Azure AI Search
 
 Learn how to build an automated indexing pipeline for a RAG solution on Azure AI Search. Indexing automation is through an indexer that drives indexing and skillset execution, providing [integrated data chunking and vectorization](vector-search-integrated-vectorization.md) on a one-time or recurring basis for incremental updates.
+
+> [!NOTE]
+> We now recommend [agentic retrieval](agentic-retrieval-overview.md) for RAG workflows, but classic RAG is simpler. If it meets your application requirements, it's still a good choice.
 
 In this tutorial, you:
 
@@ -27,7 +30,7 @@ In this tutorial, you:
 > - Create a skillset that chunks, vectorizes, and recognizes entities
 > - Run the indexer and check results
 
-If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/free/?WT.mc_id=A261C142F) before you begin.
+If you don't have an Azure subscription, create a [free account](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) before you begin.
 
 > [!TIP]
 > You can use the [**Import data (new)** wizard](search-import-data-portal.md) to create your pipeline. Try some quickstarts [Image search](search-get-started-portal-image-search.md) or [Vector search](search-get-started-portal-import-vectors.md), to learn more about the pipeline and its moving parts.

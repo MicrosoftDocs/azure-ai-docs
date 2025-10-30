@@ -23,7 +23,7 @@ There are many ways to create an Azure Machine Learning online endpoint. You can
 
 ## Prerequisites
 
-- An **Azure subscription** for which you have administrative rights. If you don't have such a subscription, try the [free or paid personal subscription](https://azure.microsoft.com/free/).
+- An **Azure subscription** for which you have administrative rights. If you don't have such a subscription, try the [free or paid personal subscription](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn).
 
 - An [Azure Machine Learning workspace](quickstart-create-resources.md).
 

@@ -64,7 +64,7 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 
 > [!NOTE]
 >
-> [Pro mode](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location. This feature is only available in the preview version.
+> [Pro mode (preview)](concepts/standard-pro-modes.md) currently only supports data zone and global as processing location.
 
 ## Language support
 

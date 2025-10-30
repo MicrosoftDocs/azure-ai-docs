@@ -7,7 +7,7 @@ manager: nitinme
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-agent-service
 ms.topic: how-to
-ms.date: 09/30/2025
+ms.date: 10/10/2025
 author: aahill
 ms.author: aahi
 ---
@@ -73,6 +73,21 @@ For more information on using MCP, see:
 1. If the model tries to invoke a tool in your MCP server with approval required, you get a run status of `requires_action`. In the `requires_action` field, you can get more details on which tool in the MCP server is called, arguments to be passed, and `call_id` value. Review the tool and arguments so that you can make an informed decision for approval.
 
 1. Submit your approval to the agent with `call_id` by setting `approve` to `true`.
+
+## Host a local MCP server
+
+The Azure AI Foundry Agent Service runtime only accepts a remote MCP server endpoint. If you want to add tools from a local MCP server, you'll have to self-host it on [Azure Container Apps](/samples/azure-samples/mcp-container-ts/mcp-container-ts/) or [Azure Functions](https://github.com/Azure-Samples/mcp-sdk-functions-hosting-python/blob/main/ExistingServer.md) to get a remote MCP server endpoint. Pay attention to the following considerations when attempting to host local MCP servers in the cloud:
+
+|Local MCP server setup | Hosting in Azure Container Apps | Hosting in Azure Functions |
+|:---------:|:---------:|:---------:|
+| **Transport** | HTTP POST/GET endpoints required. | HTTP streamable required. | 
+| **Code changes** | Container rebuild required. | Azure Functions-specific configuration files required in the root directory. |
+| **Authentication** | Custom authentication implementation required. | Key-based only. OAuth needs API Management. |
+| **Language** | Any language that runs in Linux containers (Python, Node.js, .NET, TypeScript, Go). | Python, Node.js, Java, .NET only. |
+| **Container Requirements** | Linux (linux/amd64) only. No privileged containers.| Containerized servers are not supported. |
+| **Dependencies** | All dependencies must be in container image. | OS-level dependencies (such as Playwright) are not supported. |
+| **State** | Stateless only. | Stateless only. |
+| **UVX/NPX** | Supported. | Not supported. `npx` start commands not supported. |
 
 ## Related content
 
