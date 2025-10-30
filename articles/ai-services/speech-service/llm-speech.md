@@ -156,12 +156,12 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 }'
 ```
 
-Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of Fast Transcription](fast-transcription-create.md#request-configuration-options). 
+Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of fast transcription](fast-transcription-create.md#request-configuration-options). 
 
 
 #### Sample Response
 
-The response includes `durationMilliseconds`, `offsetMilliseconds`, and more. The `combinedPhrases` property contains the full transcriptions for all speakers, and `phrases` property contains more segment-level and word-level details.
+In the JSON response, the `combinedPhrases` property contains the full transcribed or translated text, and the `phrases` property contains segment-level and word-level details.
 
 ```json
 {
@@ -189,10 +189,10 @@ The response includes `durationMilliseconds`, `offsetMilliseconds`, and more. Th
                 },
 
                 {
-                    "text": "products",
-                    "offsetMilliseconds": 6280,
-                    "durationMilliseconds": 680
-                },
+                    "text": "speech",
+                    "offsetMilliseconds": 720,
+                    "durationMilliseconds": 360
+                },,
 		// More transcription results...
 	    // Redacted for brevity
             ],
@@ -254,7 +254,7 @@ The response includes `durationMilliseconds`, `offsetMilliseconds`, and more. Th
 }
 ```
 
-The response format is consistent with existing speech-to-text outputs, such as fast transcription and batch transcription, and is returned in JSON format. Key differences include: 
+The response format is consistent with other existing speech-to-text outputs, such as fast transcription and batch transcription. Key differences include: 
 - Word-level `durationMilliseconds` and `offsetMilliseconds` are not supported for `translate` task.
 - Diarization is not supported for `translate` task, only the `speaker1` label is returned.
 - `confidence` is not available and always `0`.
