@@ -63,7 +63,7 @@ items:
         - name: Analyzer templates in Azure AI Foundry
           displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
           href: concepts/analyzer-templates.md
-        - name: Modes: standard and pro (Preview)
+        - name: "Modes: standard and pro (Preview)"
           displayName: standard, pro, modes, analyzers, optimization, fields
           href: concepts/standard-pro-modes.md
     - name: What are classifiers?
