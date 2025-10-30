@@ -71,7 +71,7 @@ After your operation is completed, the **Details** section contains the followin
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/what-is-azure-ai-foundry/view=foundry-classic&preserve-view=true#project-types) and provides streamlined access to models, agents, and tools. Look for :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Look for :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
 > 
 > → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
 >
