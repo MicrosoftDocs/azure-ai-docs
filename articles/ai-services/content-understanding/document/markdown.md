@@ -122,6 +122,6 @@ The Content Understanding Markdown elements provide a powerful way to represent 
 
 * Try processing your document content by using [Content Understanding Studio](https://aka.ms/cu-studio).
 * Check out the [Content Understanding Studio quickstart](../quickstart/cu-studio.md).
-* Learn to analyze document content using [analyzer templates](../quickstart/use-ai-foundry.md).
+* Learn to analyze document content using [analyzer templates](../concepts/analyzer-templates.md).
 * Review code samples with [visual document search](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/notebooks/search_with_visual_document.ipynb).
 * Review the code sample [analyzer templates](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
