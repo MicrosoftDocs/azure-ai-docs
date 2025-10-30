@@ -16,7 +16,7 @@ ms.date: 10/30/2025
 
 In Azure AI Search, *agentic retrieval* uses context and user questions to generate a range of subqueries that can execute against your content in a knowledge source. For most knowledge sources, the physical data structure is a *search index*.
 
-Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on the query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
+This article explains which index elements affect agentic retrieval query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
 A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge base*, and is either:
 
@@ -32,10 +32,11 @@ A search index that's used in agentic retrieval is specified as *knowledge sourc
 An index that's used in agentic retrieval must have these elements:
 
 + String fields attributed as `searchable` and `retrievable`.
-+ Vector fields and a vectorizer if you want to include text-to-vector query conversion in the pipeline.
 + A semantic configuration, with a `defaultSemanticConfiguration` or a semantic configuration override in the knowledge source.
 
 It should also have fields that can be used for citations, such as  document or file name, page or chapter name, or at least a chunk ID.
+
+It should have vector fields and a vectorizer if you want to include text-to-vector query conversion in the pipeline.
 
 Optionally, the following index elements increase your opportunities for optimization:
 
@@ -45,7 +46,7 @@ Optionally, the following index elements increase your opportunities for optimiz
 
 ## Example index definition
 
-Here's an example index that works for agentic retrieval. It meets the criteria for required elements.
+Here's an example index that works for agentic retrieval. It meets the criteria for required elements. It includes vector fields as a best practice.
 
 ```json
 {
@@ -155,7 +156,7 @@ A well-designed index that's used for generative AI or retrieval augmented gener
 
 Chunked text is important because LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you want `searchable` fields that provide plain text strings, and are `retrievable` in the response. In Azure AI Search, chunked text can be created using [built-in or third-party solutions](vector-search-how-to-chunk-documents.md).
 
-A built-in assumption for chunked content is that the original source documents have large amounts of verbose content. If your source content is structured data, such as a product database, then your index should forego chunking and instead include fields that map to the original data source (product name, category, description, and so forth). Attribution of `searchable` and `retrievable` applies to structured data as well. Searchable makes the content in-scope for queries, and retrievable adds it to the search results (grounding data).
+A built-in assumption for chunked content is that the original source documents have large amounts of verbose content. If your source content is structured data, such as a product database, then your index should forego chunking and instead include fields that map to the original data source (for example, a product name, category, description, and so forth). Attribution of `searchable` and `retrievable` applies to structured data as well. Searchable makes the content in-scope for queries, and retrievable adds it to the search results (grounding data).
 
 Vector content can be useful because it adds *similarity search* to information retrieval. At query time, when vector fields are present in the index, the agentic retrieval engine executes a vector query in parallel to the text query. Because vector queries look for similar content rather than matching words, a vector query can find a highly relevant result that a text query might miss. Adding vectors can enhance and improve the quality of your  grounding data, but aren't otherwise strictly required. Azure AI Search has a [built-in approach for vectorization](vector-search-overview.md).
 
