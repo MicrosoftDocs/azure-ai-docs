@@ -21,8 +21,8 @@ Azure AI Foundry brings Agents, Azure OpenAI, Speech, and Language services toge
 
 This article shows you how to connect your storage to Azure AI Foundry by using two overarching approaches:
 
-1. Connections + (optional) capability hosts (recommended baseline for most features)
-2. userOwnedStorage field (Speech and Language only)
+- Connections + (optional) capability hosts (recommended baseline for most features)
+- userOwnedStorage field (Speech and Language only)
 
 Connections provide the shared data pointer; capability hosts optionally override/explicitly bind a specific feature (for example, Agents standard setup) to one connection among several. The userOwnedStorage field is a resource-level binding used only by Speech and Language.
 
@@ -97,9 +97,6 @@ You create two capability hosts—one at the resource level and one at the proje
 3. Create (or open) a project under the resource.
 4. Create a project-level capability host referencing the resource-level capability host.
 5. Verify Agents data now writes to the bound storage account.
-
-> [!NOTE]
-> A future UX flow will streamline these steps directly in the portal.
 
 ### Example (Azure CLI) *(illustrative)*
 ```bash
