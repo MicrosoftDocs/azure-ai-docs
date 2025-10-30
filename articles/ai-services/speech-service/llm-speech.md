@@ -158,6 +158,108 @@ curl --location 'https://<YourServiceRegion>.api.cognitive.microsoft.com/speecht
 
 Some configuration options, such as `locales` and `phraseLists`, are either not required or not applicable with LLM speech, and can be omitted from the request. Learn more from [configuration options of Fast Transcription](fast-transcription-create.md#request-configuration-options). 
 
+
+#### Sample Response
+
+The response includes `durationMilliseconds`, `offsetMilliseconds`, and more. The `combinedPhrases` property contains the full transcriptions for all speakers, and `phrases` property contains more segment-level and word-level details.
+
+```json
+{
+    "durationMilliseconds": 57187,
+    "combinedPhrases": [
+        {
+            "text": "With custom speech,you can evaluate and improve the microsoft speech to text accuracy for your applications and products 现成的语音转文本,利用通用语言模型作为一个基本模型,使用microsoft自有数据进行训练,并反映常用的口语。此基础模型使用那些代表各常见领域的方言和发音进行了预先训练。 Quand vous effectuez une demande de reconnaissance vocale, le modèle de base le plus récent pour chaque langue prise en charge est utilisé par défaut. Le modèle de base fonctionne très bien dans la plupart des scénarios de reconnaissance vocale. A custom model can be used to augment the base model to improve recognition of domain specific vocabulary specified to the application by providing text data to train the model. It can also be used to improve recognition based for the specific audio conditions of the application by providing audio data with reference transcriptions."
+        }
+    ],
+    "phrases": [
+        {
+            "offsetMilliseconds": 80,
+            "durationMilliseconds": 6960,
+            "text": "With custom speech,you can evaluate and improve the microsoft speech to text accuracy for your applications and products.",
+            "words": [
+                {
+                    "text": "with",
+                    "offsetMilliseconds": 80,
+                    "durationMilliseconds": 160
+                },
+                {
+                    "text": "custom",
+                    "offsetMilliseconds": 240,
+                    "durationMilliseconds": 480
+                },
+
+                {
+                    "text": "products",
+                    "offsetMilliseconds": 6280,
+                    "durationMilliseconds": 680
+                },
+		// More transcription results...
+	    // Redacted for brevity
+            ],
+            "locale": "en-us",
+            "confidence": 0
+        },
+        {
+            "offsetMilliseconds": 8000,
+            "durationMilliseconds": 8600,
+            "text": "现成的语音转文本,利用通用语言模型作为一个基本模型,使用microsoft自有数据进行训练,并反映常用的口语。此基础模型使用那些代表各常见领域的方言和发音进行了预先训练。",
+            "words": [
+                {
+                    "text": "现",
+                    "offsetMilliseconds": 8000,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "成",
+                    "offsetMilliseconds": 8040,
+                    "durationMilliseconds": 40
+                },
+		// More transcription results...
+	    // Redacted for brevity
+                {
+                    "text": "训",
+                    "offsetMilliseconds": 16400,
+                    "durationMilliseconds": 40
+                },
+                {
+                    "text": "练",
+                    "offsetMilliseconds": 16560,
+                    "durationMilliseconds": 40
+                },
+            ],
+            "locale": "zh-cn",
+            "confidence": 0
+		// More transcription results...
+	    // Redacted for brevity
+                {
+                    "text": "with",
+                    "offsetMilliseconds": 54720,
+                    "durationMilliseconds": 200
+                },
+                {
+                    "text": "reference",
+                    "offsetMilliseconds": 54920,
+                    "durationMilliseconds": 360
+                },
+                {
+                    "text": "transcriptions.",
+                    "offsetMilliseconds": 55280,
+                    "durationMilliseconds": 1200
+                }
+            ],
+            "locale": "en-us",
+            "confidence": 0
+        }
+    ]
+}
+```
+
+The response format is consistent with existing speech-to-text outputs, such as fast transcription and batch transcription, and is returned in JSON format. Key differences include: 
+- Word-level `durationMilliseconds` and `offsetMilliseconds` are not supported for `translate` task.
+- Diarization is not supported for `translate` task, only the `speaker1` label is returned.
+- `confidence` is not available and always `0`.
+
+
 ---
 
 > [!NOTE]
