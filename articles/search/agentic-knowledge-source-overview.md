@@ -7,20 +7,20 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: concept-article
-ms.date: 10/21/2025
+ms.date: 10/30/2025
 ---
 
 # What is a knowledge source?
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A knowledge source wraps a search index with extra properties for agentic retrieval. It's a required definition in a knowledge base. We provide guidance on how to create specific knowledge sources, but generally, you can:
+A knowledge source specifies the content used for agentic retrieval. It can be a wrapper for search index or it can target a remote source such as Bing or SharePoint that queries the external content directly. A knowledge source is a required definition in a knowledge base. We provide guidance on how to create specific knowledge sources, but generally, you can:
 
-+ Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one index, and that index must [meet the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md).
++ Create a knowledge source as a top-level resource on your search service. Each knowledge source points to exactly one physical data structure, either a search index that [meets the criteria for agentic retrieval](agentic-retrieval-how-to-create-index.md) or a supported external resource.
 
 + Reference one or more knowledge sources in a knowledge base. In an agentic retrieval pipeline, it's possible to query against multiple knowledge sources in a single request. Subqueries are generated for each knowledge source. Top results are returned in the retrieval response.
 
-+ Use a knowledge source definition to generate a full indexer pipeline (data source, skillset, indexer, and index) that works for agentic retrieval. Instead of creating multiple objects manually, information in the knowledge source is used to generate all objects, including a populated and searchable index.
++ For certain knowledge sources, you can use a knowledge source definition to generate a full indexer pipeline (data source, skillset, indexer, and index) that works for agentic retrieval. Instead of creating multiple objects manually, information in the knowledge source is used to generate all objects, including a populated, chunked, and searchable index.
 
 Make sure you have at least one knowledge source before creating a knowledge base. The full specification of a knowledge source and a knowledge base is in the [preview REST API reference](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true).
 
@@ -30,20 +30,19 @@ Make sure you have at least one knowledge source before creating a knowledge bas
 
 + Deletion path: update or delete knowledge bases to remove references to a knowledge source, and then delete the knowledge source last.
 
-+ A knowledge source, its index, and the knowledge base must all exist on the same search service.
++ A knowledge source, its index, and the knowledge base must all exist on the same search service. External content is either accessed over the public internet (Bing) or in a Microsoft tenant (remote SharePoint).
 
-+ For each knowledge source, the knowledge base provides extra properties for query execution. [`"knowledgeSources"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties affect query planning. [`"outputConfiguration"`](/rest/api/searchservice/knowledge-agents/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties affect query output.
-
+<!-- Update the REST API links for all knowledge sources -->
 ## Supported knowledge sources
 
 Here are the knowledge sources you can create in this preview:
 
-+ [`"searchIndex"`](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) wraps an existing index.
-+ [`"azureBlob"`](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container.
-+ "indexedOneLake" generates an indexer pipeline that pulls from a lakehouse.
-+ `WebKnowledgeSource` (also referred to as `WebParameters` in REST APIs) retrieves real-time grounding data from Microsoft Bing.
++ [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) wraps an existing index.
++ [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container.
++ ["indexedOneLake" API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a lakehouse.
++ [`WebKnowledgeSource` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (also referred to as `WebParameters` in REST APIs) retrieves real-time grounding data from Microsoft Bing.
 
-A platform-specific knowledge source like the blob knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
+A platform-specific knowledge source like the blob knowledge source or OneLake knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
 
 ## Creating knowledge sources
 
@@ -53,6 +52,8 @@ You must use the REST API or an Azure SDK preview package to create a knowledge 
 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
++ [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
++ [How to create a Web knowledge source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
 After the knowledge source is created, you can reference it in a knowledge base.
 
@@ -60,7 +61,7 @@ After the knowledge source is created, you can reference it in a knowledge base.
 
 Properties on the [*knowledge base*](agentic-retrieval-how-to-create-knowledge-base.md) determine whether and how the knowledge source is used.
 
-+ [`"knowledgeSources"`](/rest/api/searchservice/knowledgebases/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-11-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge base and informs the query logic.
++ [`"knowledgeSources"`](/rest/api/searchservice/knowledgebases/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-11-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge base.
 
 + [`"outputConfiguration"`](/rest/api/searchservice/knowledgebases/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties affect query output.
 
@@ -77,9 +78,16 @@ Retrieval instructions are sent as a user-defined prompt to the large language m
 
 The `alwaysQuerySource` property overrides `retrievalInstructions`. Set `alwaysQuerySource` to false when providing retrieval instructions.
 
-### Attempt fast path processing
+### Use a retrieval reasoning effort to control LLM usage
 
-Fast path is opportunistic query processing that approaches the millisecond query performance of regular search. If you enable it, the search engine attempts fast path under the following conditions:
+Not all solutions benefit from LLM query planning and execution. If simplicity and speed outweigh the benefits the LLM query planning and context engineering provide, you can omit the LLM from your pipeline.
+
+The retrieval reasoning effort determines the level of processing that goes into a retrieval action.
+
+> [!NOTE]
+> If you used `attemptFastPath` in the previous preview, that approach is now replaced with `retrievalReasoningEffort` set to `minimal`.
+
+<!-- Fast path is opportunistic query processing that approaches the millisecond query performance of regular search. If you enable it, the search engine attempts fast path under the following conditions:
 
 + `attemptFastPath` is set to true in `outputConfiguration`.
 
@@ -112,3 +120,4 @@ To achieve the fastest possible response times, follow these best practices:
    + Set `knowledgeSources.includeReferenceSourceData` to false if you don't need the verbatim content from the index. Omitting this information simplifies the response and makes it more readable.
 
 1. In the [retrieve action](agentic-retrieval-how-to-retrieve.md), provide a single message query that's fewer than 512 characters.
+ -->
