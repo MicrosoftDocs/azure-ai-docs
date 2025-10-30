@@ -40,7 +40,7 @@ Follow these steps to create a custom task in the Azure AI Foundry. Use this tas
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-1. In this guide, you create a `Single-file task` utilizing Content Understanding Standard mode, but if you're interested in creating a multi-file task utilizing Pro mode, refer to [Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal (preview)](./use-ai-foundry-pro-mode.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
+1. Select to create a `Single-file task` utilizing Content Understanding Standard mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
@@ -96,7 +96,7 @@ Follow these steps to create a custom task in the Azure AI Foundry. This task is
 1. Select your hub based project. You might need to select **View all resources** to see your project.
 1. Select **Content Understanding** from the left navigation pane.
 1. Select **+ Create**.
-2. In this guide, we use a `multi-file task` utilizing Content Understanding Pro mode, but if you're interested in creating a single-file task utilizing Standard mode, refer to [Create an Azure AI Content Understanding single-file task in the Azure AI Foundry portal](./use-ai-foundry.md). For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
+2. Select to create a `Multi-file task` utilizing Content Understanding Pro mode. For more information on which mode is right for your scenario, check out [Azure AI Content Understanding pro and standard modes (preview)](../concepts/standard-pro-modes.md).
 1. Enter a name for your task. Optionally, enter a description and change other settings.
 1. Select **Create**.
 
