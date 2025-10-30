@@ -31,14 +31,14 @@ Content extraction analyzers focus on optical character recognition and layout a
 * Extracts text from documents and images
 * Provides basic optical character recognition (OCR) capabilities
 
-Note: This prebuilt doesn't require a large language model (LLM) or Embeddings model
+This prebuilt doesn't require a large language model (LLM) or Embeddings model
 
 #### `prebuilt-layout`
 
 * Extracts text with detailed layout information
 * Identifies document structure including tables, sections, and formatting
 
-Note: This prebuilt doesn't require a large language model (LLM) or Embeddings model
+This prebuilt doesn't require a large language model (LLM) or Embeddings model
 
 #### `prebuilt-layoutWithFigures`
 
@@ -56,7 +56,7 @@ Base analyzers provide fundamental content processing capabilities specific to a
 * `prebuilt-callCenter` - Base call center audio processing
 
 > [!NOTE]
-> Currently, you can only derive custom analyzers from base analyzers. Support for deriving from other prebuilt analyzers is planned for future releases.
+> Currently, you can only derive custom analyzers from this set of five base analyzers.
 
 ### Retrieval-augmented generation (RAG) analyzers
 

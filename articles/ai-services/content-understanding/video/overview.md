@@ -177,7 +177,7 @@ The field extraction capability can optionally be enhanced to provide detailed d
 **Examples:**
 
 * **Example field: facialHairDescription:** Describes the type of facial hair (for example, `beard`, `mustache`, `clean-shaven`)
-* **Example field: nameOfProminentPerson:** Provides a name if possible of a celebrity in the video (for example, `Satya Nadella)
+* **Example field: nameOfProminentPerson:** Provides a name if possible of a celebrity in the video (for example, `Satya Nadella`)
 * **Example field: faceSmilingFrowning:** Provides a description of whether a person is smiling or frowning
 
 ### Segmentation mode

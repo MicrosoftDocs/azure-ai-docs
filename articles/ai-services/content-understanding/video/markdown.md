@@ -86,7 +86,7 @@ Speakers are identified using the `<v Speaker N>` or `<Speaker N>` format within
 > [!NOTE]
 > Segmentation is only available for video inputs when segmentation is enabled in the analyzer configuration.
 
-Video content can be segmented based on categories tht you define into logical temporal units. You can define what fields are extracted from each segment. Segments are output as multiple markdown files, one for each segment. 
+Video content can be segmented based on categories that you define into logical temporal units. You can define what fields are extracted from each segment. Segments are output as multiple markdown files, one for each segment. 
 
 **Segment example:**
 ````markdown

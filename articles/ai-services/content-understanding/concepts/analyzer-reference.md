@@ -12,9 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Content understanding analyzer
-
-## What is an analyzer?
+# What is a Content understanding analyzer?
 
 An **analyzer** in Azure AI Content Understanding is a configurable processing unit that defines how your content should be analyzed and what information should be extracted. Think of an analyzer as a recipe that tells the service:
 - What type of content to process (documents, images, audio, or video)
@@ -111,22 +109,22 @@ These properties uniquely identify and describe your analyzer:
   - `"prebuilt-video"` - for video-based custom analyzers
   - `"prebuilt-image"` - for image-based custom analyzers
 - **Example:** `"baseAnalyzerId": "prebuilt-document"`
-- **Note:** When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
+
+>[!NOTE] When you specify a base analyzer, your custom analyzer inherits all default configurations and can override specific settings.
 
 ## Model configuration
 
 These properties control which AI models the analyzer uses for processing. Understanding the distinction between `supportedModels` and `models` is key to working effectively with Content Understanding.
 
-**Key concept:** `supportedModels` declares model **types/names** that are compatible with this analyzer (what models can be used), while `models` specifies the specific **deployment names** to use by default when processing with this analyzer (which deployed resources to actually invoke). The deployments specified must match one of the model types listed in the corresponding `supportedModels` category.
-
-> [!TODO]: TBD - We need to fully verify that this is the behavior that's actually implemented in the product and potentially update docs here. 
+**Key concept:** Both `supportedModels` and `models` reference **Azure AI Foundry catalog model names** (such as `gpt-4o`, `gpt-4.1`, `text-embedding-3-large`), not deployment names. `supportedModels` declares which model names from the Azure AI Foundry catalog are compatible with this analyzer, while `models` specifies which model names to use by default. At runtime, the service maps these model names to actual deployments that you configure at the resource level in Azure.
 
 ### `supportedModels`
-- **Description:** Declares which AI model names this analyzer type is compatible with. It is a capability declaration, not an active configuration.
+- **Description:** Declares which Azure AI Foundry catalog model names this analyzer type is compatible with. Lists the model names that are supported for use with this analyzer.
 - **Properties:**
-  - `completion` - Array of completion model names that can be used for text generation and field extraction
-  - `embedding` - Array of embedding model names that can be used for semantic search and similarity
-- **Purpose:** Use this list to validate what you types of model deployment you can set in the `models` property
+  - `completion` - Array of completion model names from Azure AI Foundry catalog that can be used for text generation and field extraction
+  - `embedding` - Array of embedding model names from Azure AI Foundry catalog that can be used for semantic search and similarity
+- **Purpose:** Use this list to validate which model names you can specify in the `models` property
+- **Important:** These are model names (for example, `gpt-4o`), not deployment names. The actual deployments are configured separately at the resource level.
 - **Example:**
   ```json
   {
@@ -134,29 +132,31 @@ These properties control which AI models the analyzer uses for processing. Under
     "embedding": ["text-embedding-3-large", "text-embedding-3-small"]
   }
   ```
-- **Limitations:** Can't include arbitrary models; must match service-supported model names
+- **Limitations:** Can only include model names from the Azure AI Foundry catalog that the service supports
 
 ### `models`
-- **Description:** Specifies the specific deployment names to use for processing with this analyzer by default. Each deployment name must correspond to one of the model types listed in the corresponding `supportedModels` category.
+- **Description:** Specifies which Azure AI Foundry catalog model names to use by default when processing with this analyzer. These are the default model names (not deployment names) that the service uses.
 - **Properties:**
-  - `completion` - Deployment name for completion tasks (content extraction, field generation, classification)
-  - `embedding` - Deployment name for embedding tasks (semantic search, vector indexing)
-- **Validation:** The deployment specified must match one of the model types in the corresponding `supportedModels` category (for example, if `supportedModels.completion` includes `"gpt-4.1"`, then a deployment running GPT-4.1 can be specified in `models.completion`)
+  - `completion` - Model name for completion tasks (content extraction, field generation, classification)
+  - `embedding` - Model name for embedding tasks (semantic search, vector indexing)
+- **Validation:** Each model name must be one of the model names listed in the corresponding `supportedModels` category (for example, if `supportedModels.completion` includes `"gpt-4.1"`, then `"gpt-4.1"` can be specified in `models.completion`)
+- **Important:** These are model names from the Azure AI Foundry catalog, not deployment names. At runtime, the service maps these model names to the actual model deployments you configure at the resource level.
 - **Example:**
   ```json
   {
-    "completion": "my-deployment-gpt-4o",
-    "embedding": "my-deployment-text-embedding-3-large"
+    "completion": "gpt-4o",
+    "embedding": "text-embedding-3-large"
   }
   ```
 - **Runtime behavior:** 
-  - Service maps model names to deployments using resource-level defaults
-  - Can be overridden per analyze request for testing or routing
+  - The service maps these model names to actual deployments configured at your resource level
+  - You configure the mapping between model names and deployments separately in your Azure AI resource settings
+  - Model names can be overridden per analyze request for testing or routing
 - **Best practices:**
   - Use consistent model names across analyzers for easier management
-  - Configure resource-level deployment defaults before using prebuilt analyzers
-  - Choose larger models (like GPT-4.1) for complex extraction; smaller models for simple classification
-- **Performance and cost:** Larger models (for example, GPT-4.1) result in higher latency and cost compared to smaller variants
+  - Configure resource-level model deployment mappings before using analyzers
+  - Choose larger models (such as `gpt-4.1`) for complex extraction; smaller models (such as `gpt-4o-mini`) for simple classification
+- **Performance and cost:** Larger models (for example, `gpt-4.1`) result in higher latency and cost compared to smaller variants
 
 ## Processing configuration
 
@@ -292,7 +292,8 @@ The `config` object contains all processing options that control how content is 
   - Specifying expected language for better accuracy
   - Processing content in specific regional variants
 - **Supported by:** `prebuilt-audio`, `prebuilt-video`, `prebuilt-callCenter`
-- **Note:** For a complete list of supported languages and locales, see [Language and region support](../language-region-support.md).
+
+>[!NOTE] For a complete list of supported languages and locales, see [Language and region support](../language-region-support.md).
 
 ##### `disableFaceBlurring`
 - **Default:** false
@@ -336,8 +337,6 @@ The `config` object contains all processing options that control how content is 
 - **Hierarchical segmentation:** If a category's analyzer also has `enableSegment: true`, segments can be recursively split, enabling multi-level content breakdown
 - **Performance impact:** Increases processing time for large files, especially with many segments
 - **Supported by:** Document and video analyzers
-
->[TODO]:Validate that the detailed interations between enableSegment and contentCategories are tested in the product
 
 ##### `segmentPerPage`
 - **Default:** false
@@ -425,10 +424,10 @@ Field schemas transform unstructured content into structured, queryable data. Th
 - **Example:** `"InvoiceAnalysis"`, `"ReceiptExtraction"`, `"ContractFields"`
 
 #### `fields`
-- **Description:** Object defining each field to extract, with field names as keys
+- **Description:** Object defining each field to extract, with field names as keys. Empty object `{}` indicates no structured fields are extracted (for example, layout-only analyzers).
 - **Hierarchical support:** Supports nested fields through `object` and `array` types for representing complex data structures
 - **Best practice:** Avoid deep nesting (more than 2-3 levels) as it can reduce performance and extraction accuracy
-- **Note:** Empty object `{}` indicates no structured fields are extracted (for example, layout-only analyzers)
+
 
 ### Field definition properties
 
@@ -440,7 +439,8 @@ Each field in the `fields` object has the following properties:
 
 #### `description`
 - **Description:** Clear explanation of what the field contains and where to find it. This description is processed by the AI model as a mini-prompt to guide field extraction, so specificity and clarity directly improve extraction accuracy.
-- **Note:** For information about writing effective field descriptions, see [Best practices for field extraction](best-practices.md).
+
+For information about writing effective field descriptions, see [Best practices for field extraction](best-practices.md).
 
 #### `method`
 - **Supported values:** `"generate"`, `"extract"`, `"classify"`

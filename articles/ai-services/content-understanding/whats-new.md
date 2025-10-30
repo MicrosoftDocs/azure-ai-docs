@@ -74,7 +74,7 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 ### Region expansion and availability
 
 - Content Understanding is now supported in 14 regions worldwide, providing greater geographic coverage and improved data residency options. See the [language and region support documentation](language-region-support.md) for the detailed list of available regions.
-- Content Understanding is available in both [Azure AI Foundry portal](https://ai.azure.com) (coming soon) for integrated AI workflows and Content Understanding Studio for more advanced scenarios, as well as through the REST API for programmatic access.
+- Content Understanding is available in [Content Understanding Studio](https://aka.ms/cu-studio), as well as through the REST API for programmatic access.
 
 ### Breaking changes
 
@@ -87,7 +87,7 @@ Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt anal
 Azure AI Content Understanding preview version introduces the following updates:
 
 * Azure AI Content Understanding now has increased field count support (1,000) for all modalities.
-* The API response body now inclues input, output, and contextualization tokens consumed as part of the tokens object. Check out the quickstart article for more information.
+* The API response body now includes input, output, and contextualization tokens consumed as part of the tokens object. Check out the quickstart article for more information.
 
 ## May 2025
 
