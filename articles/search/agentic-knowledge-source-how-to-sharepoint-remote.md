@@ -14,17 +14,39 @@ ms.date: 10/30/2025
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *remote SharePoint knowledge source* specifies a connection to a SharePoint site and pulls textual and image content directly from SharePoint, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There is no search index used by this knowledge source.
+A *remote SharePoint knowledge source* specifies a connection to a SharePoint site and uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There's no search index used by this knowledge source, and only textual content is queried.
+
+SharePoint permissions and Purview labels are honored in requests for content. Usage is billed through Microsoft 365 and a Copilot license.
 
 Like any other knowledge source, you specify a remote SharePoint knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and use the results as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
 ## Prerequisites
 
-+ Azure AI Search in an Azure tenant.
++ Azure AI Search in an Azure tenant, configured for Microsoft Entra ID authentication.
 
-+ SharePoint Online in an M365 tenant.
++ SharePoint Online in a Microsoft 365 tenant. 
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
+
+You must provide a personal access token on your requests to Azure AI Search. The agentic retrieval engine uses your Microsoft Entra identity to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
+
+## Limitations
+
+The following limitations in the Copilot Retrieval API apply to remote SharePoint knowledge sources.
+
++ Limit of 200 requests per user per hour.
+
++ Query character limit of 1,500 characters.
+
++ Hybrid queries are only supported for the following file extensions: .doc, .docx, .pptx, .pdf, .aspx, and .one.
+
++ Multimodal retrieval (nontextual content, including tables, images, and charts) isn't supported/
+
++ Maximum of 25 results from a query.
+
++ Results are returned by Copilot Retrieval API as unordered.
+
++ Invalid filter expressions (Keyword Query Language KQL) are ignored and the query continues to execute without the filter.
 
 ## Check for existing knowledge sources
 
@@ -93,9 +115,12 @@ You can pass the following properties to create a remote SharePoint knowledge so
 | `description` | A description of the knowledge source. | String | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
 | `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No |
-| `filterExpression` | XXX| String | No |
+| `filterExpression` | An expression written in the SharePoint in Keyword Query Language. Used to specify sites and paths to content. | String | No |
 | `resourceMetadata` | XXX | Array | No |
-| `containerTypeId` | XXX | String| No |
+| `containerTypeId` | Ignored for now. | String| No |
+
+<!-- Filter expressions are complicated. Add examples. -->
+<!-- SharePoint embedded is containers. Many moving parts. Defer for now. -->
 
 ## Assign to a knowledge base
 
@@ -103,8 +128,8 @@ If you're satisfied with the index, continue to the next step: specifying the kn
 
 Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
 
-<!-- Deviating from pattern here. Is there anything special in the KB definition for remote SharePoint? -->
-Here's an example of a knowledge base that specifies a remote SharePoint knowledge source.
+<!-- Deviating from pattern here. SharePoint remote needs answerSynthesis-->
+Here's an example of a knowledge base that specifies a remote SharePoint knowledge source. Make sure you set `outputMode` to `answerSynthesis`. Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 ```json
 {
@@ -123,9 +148,9 @@ Here's an example of a knowledge base that specifies a remote SharePoint knowled
       "kind": "azureOpenAI",
       "azureOpenAIParameters": {
         "resourceUri": "<redacted>",
-        "deploymentId": "gpt-5-mini",
+        "deploymentId": "gpt-4.1-mini",
         "apiKey": "<redacted>",
-        "modelName": "gpt-5-mini",
+        "modelName": "gpt-4.1-mini",
         "authIdentity": null
       }
     }

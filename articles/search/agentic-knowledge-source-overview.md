@@ -40,6 +40,7 @@ Here are the knowledge sources you can create in this preview:
 + [`"searchIndex"` API](/rest/api/searchservice/knowledge-sources/create-or-update#searchindexknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) wraps an existing index.
 + [`"azureBlob"` API](/rest/api/searchservice/knowledge-sources/create-or-update#azureblobknowledgesource?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a blob container.
 + ["indexedOneLake" API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) generates an indexer pipeline that pulls from a lakehouse.
++ ["remoteSharePoint" API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) retrieves content directly from SharePoint.
 + [`WebKnowledgeSource` API](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) (also referred to as `WebParameters` in REST APIs) retrieves real-time grounding data from Microsoft Bing.
 
 A platform-specific knowledge source like the blob knowledge source or OneLake knowledge source includes specifications for generating an entire indexing pipeline that provides extraction, skillset processing, and a viable index. You can modify the pipeline and rerun the indexer, but you can't rename the objects.
@@ -53,6 +54,7 @@ You must use the REST API or an Azure SDK preview package to create a knowledge 
 + [How to create a search index knowledge source (wraps an existing index)](agentic-knowledge-source-how-to-search-index.md)
 + [How to create a blob knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-blob.md)
 + [How to create a OneLake knowledge source (generates an indexer pipeline)](agentic-knowledge-source-how-to-onelake.md)
++ [How to create a SharePoint (remote) knowledge source (queries SharePoint directly)](agentic-knowledge-source-how-to-sharepoint-remote.md)
 + [How to create a Web knowledge source (connects to Bing's public endpoint)](agentic-knowledge-source-how-to-web.md)
 
 After the knowledge source is created, you can reference it in a knowledge base.
