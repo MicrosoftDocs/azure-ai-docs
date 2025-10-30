@@ -80,9 +80,9 @@ POST /myReceipt:analyze
 ```
 
 > [!NOTE]
-> [Prebuilt analyzers](./concepts/analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
+> [Prebuilt analyzers](./concepts/prebuilt-analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
 
-For a detailed description of how to define the models and deployments for use with your analyzers, see [supported models and deployments](concepts/models-and-deployments.md).
+For a detailed description of how to define the models and deployments for use with your analyzers, see [supported models and deployments](concepts/models-deployments.md).
 
 2. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and analyze.
 
@@ -208,14 +208,9 @@ The `2024-12-01-preview` API version is the earliest preview version and migrati
 
 [Common migration issues and solutions]
 
-## Next steps
-
-- [Related documentation links]
-
-
 
 ## Next steps
 
-* [Learn more about Content Understanding pricing](../pricing-explainer.md)
+* [Learn more about Content Understanding pricing](../overview/pricing-explainer.md)
 
 * [Learn more Content Understanding analyzers](analyzer-reference.md)

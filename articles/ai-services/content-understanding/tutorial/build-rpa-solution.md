@@ -2,8 +2,8 @@
 title: Build a robotic process automation (RPA) solution with Azure AI Content Understanding
 titleSuffix: Azure AI services
 description: Learn to build a robotic process automation solution with Content Understanding
-author: PatrickFaVinodrley 
-ms.author: vkurpad
+author: PatrickFarley
+ms.author: pafarley
 manager: nitinme
 ms.date: 10/19/2025
 ms.service: azure-ai-content-understanding
