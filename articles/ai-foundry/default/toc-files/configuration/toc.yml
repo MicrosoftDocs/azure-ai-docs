@@ -37,5 +37,7 @@ items:
     href:
   - name: Batch deployment offer
     href:
+- name: Manage quotas for AI Foundry resources
+  href: ../../../how-to/quota.md
 - name: Foundry Models quotas and limits
   href: ../../../foundry-models/quotas-limits.md
