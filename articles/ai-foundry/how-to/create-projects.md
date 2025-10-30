@@ -256,7 +256,8 @@ az cognitiveservices account connection show --name <my_project_name> --resource
 
 ::: moniker range="foundry-classic"
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] and open your project.
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
+1. Open your project.
 1. Select **Management center**.
 1. Under **Resource**, select **Overview**.
 1. Select any projects you no longer want to keep.
@@ -271,6 +272,7 @@ To delete the AI Foundry resource and all its projects:
 
 ::: moniker range="foundry"
 
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)] 
 1. In the upper-right navigation, select **Operate**.
 1. In the left pane, select **Admin Console**.
 1. Select your project.
