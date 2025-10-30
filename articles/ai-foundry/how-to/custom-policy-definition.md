@@ -73,5 +73,5 @@ This library includes JSON templates for common scenarios.
 
 ## Next steps
 
-- Review [Azure Policy for AI Foundry](/azure/ai-studio/how-to/azure-policy) for built-in and custom policies for comprehensive compliance.
+- Review [Built-in Policies for AI Foundry](../../ai-services/policy-reference.md) for built-in and custom policies for comprehensive compliance.
 - Test policies in a non-production environment before enforcing them broadly.
