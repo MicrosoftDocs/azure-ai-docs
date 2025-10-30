@@ -7,7 +7,7 @@ ms.author: pafarley
 manager: nitinme
 ms.date: 10/30/2025
 ms.service: azure-ai-content-understanding
-ms.topic: concept
+ms.topic: overview
 ms.custom:
   - ignite-2024-understanding-release
   - references_regions
