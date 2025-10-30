@@ -40,7 +40,7 @@ Agent memory typically falls into two categories:
 
 - **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
 
-Azure AI Foundry memory is designed as a long-term memory solution. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
+Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
 
 ## Create a memory store
 
@@ -111,12 +111,25 @@ Attach the memory store to your agent to enable memory capabilities. Start with 
 
 ```python
 # Attach memory store to agent
-agent = client.agents.update_agent(
-    agent_id="<your-agent-id>",
-    memory_store_id=memory_store.id
+
+updated_agent = client.agents.update(
+   agent_name="my_agent",
+   description="Agent with updated memory configuration"
+   definition=PromptAgentDefinition(
+   model="gpt-4o-mini",
+   instructions="You are a helpful assistant with memory capabilities.",
+   tools=[
+         MemorySearchTool(
+            memory_store_id="<your_memory_store_id>",
+            scope="user_456", # User-specific scope you can define.
+            search_options=MemorySearchOptions(max_memories=10),
+            update_delay=60 # Optional: delay before updating memories (in seconds)
+         )
+      ]
+   )
 )
 
-print(f"Attached memory store to agent: {agent.id}")
+print(f"Attached memory store to agent: {updated_agent.id}")
 ```
 
 # [REST API](#tab/rest)
@@ -139,30 +152,57 @@ After you attach it, the agent can access and update memories within the memory 
 
 Add memories by providing conversation content to the memory store. The system performs preprocessing and postprocessing, including memory extraction and consolidation, to optimize the agent's memory. This long-running operation might take about one minute to complete.
 
+There are three methods to update a memory store. You can add an array of conversation items, reference an existing conversation ID, or use a previous update ID for incremental updates.
+
 # [Python](#tab/python)
 
 ```python
 from azure.ai.projects.models import ResponsesUserMessageItemParam
 
-# Create conversation content
 user_message = ResponsesUserMessageItemParam(
     content="I prefer dark roast coffee and usually drink it in the morning"
 )
 
-# Add memories (this is a long-running operation)
+# METHOD 1: Using items (conversation messages) directly
+
 update_poller = client.memory_stores.begin_update_memories(
-    memory_store_id=memory_store.id,
-    scope="user_123",  # User identifier for memory isolation
-    items=[user_message],
-    update_delay=0  # Process immediately
+    name="my_memory_store",
+    scope="user_123",
+    items=[user_message],  # Pass conversation items that you want to add to memory
+    update_delay=0  # Process immediately (default is 300 seconds)
 )
 
-# Wait for completion
-update_result = update_poller.result()
-print(f"Memory update completed")
-print(f"Operations performed: {len(update_result.memory_operations)}")
-print(f"Token usage: {update_result.usage}")
-```
+result = update_poller.result()
+print(f"✓ Updated with {len(result.memory_operations)} memory operations")
+
+# METHOD 2: Using an existing conversation_id
+
+update_poller = client.memory_stores.begin_update_memories(
+    name="my_memory_store",
+    scope="user_123",
+    conversation_id="conv_id_456",  # Reference an existing conversation
+    update_delay=60  # Wait 60 seconds before processing
+)
+
+result = update_poller.result()
+print(f"✓ Updated from conversation: {result.conversation_id}")
+
+# METHOD 3: Using previous_update_id for incremental updates
+
+new_message = ResponsesUserMessageItemParam(
+    content="I also like cappuccinos in the afternoon"
+)
+
+incremental_update = client.memory_stores.begin_update_memories(
+    name="my_memory_store",
+    scope="user_123",
+    items=[new_message],
+    previous_update_id=result.update_id,  # Continue from previous update
+    update_delay=0
+)
+
+incremental_result = incremental_update.result()
+print(f"✓ Incremental update completed")```
 
 # [REST API](#tab/rest)
 
@@ -198,27 +238,26 @@ from azure.ai.projects.models import MemorySearchOptions
 
 # Search memories by conversation
 search_response = client.memory_stores.search_memories(
-    memory_store_id=memory_store.id,
-    scope="user_123",  # User namespace
-    conversation_id="conv_456",  # Specific conversation to search
-    options=MemorySearchOptions(limit=5)
+    name=memory_store.name,
+    scope="user_123",
+    conversation_id="conv_id_456",  # Search based on a conversation
+    options=MemorySearchOptions(max_memories=5)
 )
 
-print(f"Search completed (ID: {search_response.search_id})")
-print(f"Found {len(search_response.memories)} memories")
+# Search based on a specific query message
+query_message = ResponsesUserMessageItemParam(
+    content="What are my coffee preferences?"
+)
 
-for memory in search_response.memories:
-    print(f"- {memory.content}")
-
-# Perform incremental search using previous search ID
-if search_response.search_id:
-    incremental_search = client.memory_stores.search_memories(
-        memory_store_id=memory_store.id,
-        scope="user_123",
-        previous_search_id=search_response.search_id,
-        options=MemorySearchOptions(limit=3)
-    )
-    print(f"Incremental search: {len(incremental_search.memories)} more memories")
+search_response = client.memory_stores.search_memories(
+    name=memory_store.name,
+    scope="user_123",
+    items=[query_message],  # Your search query as a message
+    options=MemorySearchOptions(max_memories=10)
+)
+    
+print(f"✓ Search completed (ID: {search_response.search_id})")
+print(f"  Found {len(search_response.memories)} memories")
 ```
 
 # [REST API](#tab/rest)
