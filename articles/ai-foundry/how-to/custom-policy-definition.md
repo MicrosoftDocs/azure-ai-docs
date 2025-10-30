@@ -67,11 +67,11 @@ n more, see /azure/governance/policy/overview.
 ## Sample library
 
 Explore ready-to-use templates and examples in the GitHub repository:  
-[Custom policy definitions](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructurenitions
+[Custom policy definitions](https://github.com/azure-ai-foundry/foundry-samples/tree/main/samples/microsoft/infrastructure-setup/05-custom-policy-definitions)
 
 This library includes JSON templates for common scenarios.
 
 ## Next steps
 
-- Review [Azure Policy for AI Foundry](https://learn.microsoft.com/azure/ai-studio/how-to/azure-policy) for built-in and custom policies for comprehensive compliance.
+- Review [Azure Policy for AI Foundry](/azure/ai-studio/how-to/azure-policy) for built-in and custom policies for comprehensive compliance.
 - Test policies in a non-production environment before enforcing them broadly.
