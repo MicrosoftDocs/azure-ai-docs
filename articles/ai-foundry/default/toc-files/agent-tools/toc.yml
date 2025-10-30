@@ -23,6 +23,8 @@ items:
   href: ../../../agents/how-to/tools/function-calling.md
 - name: Grounding with Bing Search
   href: ../../agents/concepts/bing-tools.md
+- name: Image generation (preview)
+  href: ../../agents/how-to/tools/image-generation.md
 - name: Logic apps
   href: ../../../agents/how-to/tools/logic-apps.md
 - name: Microsoft Fabric (preview)
