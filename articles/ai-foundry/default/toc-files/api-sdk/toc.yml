@@ -15,9 +15,9 @@ items:
       href: /rest/api/aifoundry/aiprojects/
   - name: Azure OpenAI
     items:
-    - name: v1 API
+    - name: v1 API 
       items:
-      - name: v1 API
+      - name: v1 API 
         href: ../../../openai/latest.md 
       - name: Chat
         href: ../../../openai/latest.md#create-chat-completion
