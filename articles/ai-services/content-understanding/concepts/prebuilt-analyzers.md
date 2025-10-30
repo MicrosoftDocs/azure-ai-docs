@@ -14,7 +14,9 @@ ms.custom:
 
 # Prebuilt analyzers in Azure AI Content Understanding
 
-Azure AI Content Understanding prebuilt analyzers provide a rich set domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas—they’re powered by rich knowledge bases of thousands of real-world document examples. This means they don’t just extract data, they understand how information is structured and used, adapting to the nuances of each content type. Prebuilt analyzers are ready-to-use tools designed to streamline common content processing tasks, from content ingestion for search and retrieval-augmented generation (RAG) workflows to intelligent document processing (IDP) for extracting data from invoices or analyzing call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract additional fields or refine outputs to better fit your specific workflow requirements.
+Azure AI Content Understanding prebuilt analyzers provide a rich set of domain specific extraction capabilities. These prebuilt analyzers go beyond predefined schemas. They're powered by rich knowledge bases of thousands of real-world document examples. This means they don't just extract data. They understand how information is structured and used, adapting to the nuances of each content type.
+
+Prebuilt analyzers are ready-to-use tools that streamline common content processing tasks. You can use them for content ingestion in search and retrieval-augmented generation (RAG) workflows. You can also use them for intelligent document processing (IDP) to extract data from invoices or analyze call center recordings. These analyzers can also be used in agentic flows as tools for extracting structured representations from input files. You can also [customize these analyzers](../tutorial/create-custom-analyzer.md) to extract other fields or refine outputs to better fit your specific workflow requirements.
 
 ## Analyzer types
 
@@ -27,16 +29,16 @@ Content extraction analyzers focus on optical character recognition and layout a
 #### `prebuilt-read`
 
 * Extracts text from documents and images
-* Provides basic OCR capabilities
+* Provides basic optical character recognition (OCR) capabilities
 
-Note: This prebuilt does not require an LLM or Embeddings model
+Note: This prebuilt doesn't require a large language model (LLM) or Embeddings model
 
 #### `prebuilt-layout`
 
 * Extracts text with detailed layout information
 * Identifies document structure including tables, sections, and formatting
 
-Note: This prebuilt does not require an LLM or Embeddings model
+Note: This prebuilt doesn't require a large language model (LLM) or Embeddings model
 
 #### `prebuilt-layoutWithFigures`
 
@@ -45,7 +47,7 @@ Note: This prebuilt does not require an LLM or Embeddings model
 
 ### Base analyzers
 
-Base analyzers provide fundamental content processing capabilities specific to a content type and are intended primarily for use as a parent to inherit from when [creating custom analyzers](../tutorial/create-custom-analyzer.md). When creating a custom analyzer you include one of these as a base analyzer using the baseAnalyzerId property. 
+Base analyzers provide fundamental content processing capabilities specific to a content type. They're intended primarily as a parent to inherit from when [creating custom analyzers](../tutorial/create-custom-analyzer.md). When creating a custom analyzer, you include one of these base analyzers using the baseAnalyzerId property. 
 
 * `prebuilt-audio` - Base audio processing
 * `prebuilt-document` - Base document processing
@@ -62,8 +64,8 @@ Content understanding provides a set of analyzers optimized for retrieval-augmen
 
 #### `prebuilt-documentAnalyzer`
 
-* Extracts various content and layout elements such as paragraphs, and tables, figure descriptions from documents
-* Enables figure description to add textual descriptions of images, charts and diagrams
+* Extracts various content and layout elements such as paragraphs, tables, and figure descriptions from documents
+* Enables figure description to add textual descriptions of images, charts, and diagrams
 * Enabled annotation so that hand-written markup on the document file is captured
 * Generates a one-paragraph description of the document content
 * Supports a wide range of file formats including PDF, images, Office documents, and text files
@@ -149,7 +151,7 @@ Include your modified analyzer definition in the request body. See [Create a cus
 
 ### Lock analyzer behavior
 
-The definition of Prebuilt analyzers may change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that won't change with API updates leverage the Copy operations by calling it as follows:
+The definition of Prebuilt analyzers may change in the next API version of Content Understanding. To create a stable copy of a prebuilt analyzer that doesn't change with API updates, use the Copy operations by calling it as follows:
 
 ```http
 POST /analyzers/myIdDocument:copy
@@ -158,7 +160,7 @@ POST /analyzers/myIdDocument:copy
 }
 ```
 
-This creates a new analyzer with a fixed definition copied from the prebuilt analyzer at the time of the copy operation.
+This operation creates a new analyzer with a fixed definition copied from the prebuilt analyzer at the time of the copy operation.
 
 ## Vertical analyzer reference
 
@@ -179,7 +181,7 @@ For information about supported file formats and input requirements, see [Servic
 
 ### Identity documents
 
-* `prebuilt-idDocument` - Driver licenses, identification cards, residency permits, passports (worldwide), Social Security cards (US), military IDs (US), PAN cards (India), Aadhaar cards (India)
+* `prebuilt-idDocument` - Driver licenses, identification cards (IDs), residency permits, passports (worldwide), Social Security cards (US), military IDs (US), PAN cards (India), Aadhaar cards (India)
 * `prebuilt-idDocument.generic` - Generic identification documents from various regions
 * `prebuilt-idDocument.passport` - Passport books and passport cards (worldwide)
 * `prebuilt-healthInsuranceCard.us` - US health insurance cards
@@ -230,7 +232,7 @@ For information about supported file formats and input requirements, see [Servic
 * `prebuilt-tax.us.1099QA` - Distributions from ABLE Accounts
 * `prebuilt-tax.us.1099R` - Distributions from Pensions and Annuities
 * `prebuilt-tax.us.1099S` - Proceeds from Real Estate Transactions
-* `prebuilt-tax.us.1099SA` - Distributions from HSA or MSA
+* `prebuilt-tax.us.1099SA` - Distributions from Health Savings Account (HSA) or Medical Savings Account (MSA)
 * `prebuilt-tax.us.1099SB` - Seller's Investment in Life Insurance Contract
 * `prebuilt-tax.us.1099SSA` - Social Security Benefit Statement
 
