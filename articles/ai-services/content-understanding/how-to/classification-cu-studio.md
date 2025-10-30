@@ -39,7 +39,7 @@ Custom categories can allow you to route your data to a specific analyzer to get
 
 [Insert photo of home page]
 
-2.	**Select your project type**: In this guide, we will select the option to `Classify and route with custom categories`. To learn more about creating custom analyzers for content and field extraction, check out [Create and improve your custom analyzer in Content Understanding Studio](./customization-in-cu-studio.md).
+2.	**Select your project type**: In this guide, we will select the option to `Classify and route with custom categories`. To learn more about creating custom analyzers for content and field extraction, check out [Create and improve your custom analyzer in Content Understanding Studio](./customize-analyzer-cu-studio.md).
 
 [Insert photo of selection screen]
 
