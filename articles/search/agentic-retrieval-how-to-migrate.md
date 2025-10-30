@@ -692,7 +692,7 @@ To review the [REST API reference documentation](/rest/api/searchservice/operati
 
 + The `searchIndex` knowledge source adds `semanticConfigurationName` that overrides the default semantic configuration used by the retrieval request.
 
-+ The `searchIndex` knowledge source adds `sourceDataFields` and s`earchDataFields` to specify which fields are used at query time and also returned in a response.
++ The `searchIndex` knowledge source adds `sourceDataFields` and `searchDataFields` to specify which fields are used at query time and also returned in a response.
 
 + Knowledge agent (base) retrieval responses now return HTTP 206 status codes for partial success. Retrieval requests now take an optional `retrievalReasoningEffort` property that specifies levels of LLM processing.
 
