@@ -130,7 +130,12 @@ As you use Azure AI Foundry, you incur costs. Azure resource usage unit costs va
 
 When you use cost analysis, you view costs in graphs and tables for different time intervals. Some examples are by day, current and prior month, and year. You also view costs against budgets and forecasted costs. Switching to longer views over time can help you identify spending trends so you can see where overspending might occur. If you create budgets, you can also easily see where they're exceeded.
 
+:::moniker range="foundry-classic"
+You can access cost information from either the [!INCLUDE [classic-link](../includes/classic-link.md)] portal or the [Azure portal](https://portal.azure.com/).
+:::moniker-end
+:::moniker range="foundry"
 You can access cost information from either the [!INCLUDE [foundry-link](../default/includes/foundry-link.md)] portal or the [Azure portal](https://portal.azure.com/).
+:::moniker-end
 
 > [!IMPORTANT]
 > Your Azure AI Foundry costs are only a subset of your overall application or solution costs. You need to monitor costs for all Azure resources used in your application or solution.
