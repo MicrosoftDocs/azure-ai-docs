@@ -58,7 +58,7 @@ An effective RPA pipeline for content processing typically includes:
 ---
 
 ## Architecture Flow
-:::image type="content" source="../media/concepts/rpa.png" alt-text="The workflow of a typical RPA process.":::
+:::image type="content" source="../media/concepts/robotic-process-automation.png" alt-text="The workflow of a typical RPA process.":::
 
 ## Building your RPA solution with Content Understanding
 

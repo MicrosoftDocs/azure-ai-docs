@@ -80,11 +80,11 @@ POST /myReceipt:analyze
 ```
 
 > [!NOTE]
-> [Prebuilt analyzers](./concepts/prebuilt-analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
+> [Prebuilt analyzers](../concepts/prebuilt-analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
 
-For a detailed description of how to define the models and deployments for use with your analyzers, see [supported models and deployments](concepts/models-deployments.md).
+For a detailed description of how to define the models and deployments for use with your analyzers, see [supported models and deployments](../concepts/models-deployments.md).
 
-2. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and analyze.
+2. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/robotic-process-automation.md) for guidance on how to classify or classify and analyze.
 
 3. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`. This is unchanged from the `2025-05-01-preview` API, it's documented here for completeness.
 
@@ -145,7 +145,7 @@ The Analyze operation schema is being updated to potentially support multiple in
 The `2024-12-01-preview` API version is the earliest preview version and migrating from this version of the API to the GA API will require a few more updates to your analyzer definitions. Follow the updates described above, with these other changes.
 
 1. Defining a custom analyzer requires a `baseAnalyzerId` property. See [Analyzer configuration reference](concept/analyzer-reference.md) for a list of base analyzers that can be used to derive a custom analyzer.
-3. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and analyze.
+3. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/robotic-process-automation.md) for guidance on how to classify or classify and analyze.
 4. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`.
 5. The `method` property in `fieldSchema` now supports a new default method of `auto`. This is the recommended option for the field method to support both extractive and generative scenarios with confidence and grounding. 1Code has comments. Press enter to view.
 
