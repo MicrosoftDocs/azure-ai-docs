@@ -27,7 +27,7 @@ This article also explains the three components of the retrieval response:
 The retrieve request can include instructions for query processing that override the defaults set on the knowledge agent.
 
 > [!NOTE]
-> By default, there's no model-generated "answer" in the response and you should pass the extracted response to an LLM so that it can ground its answer based on the search results. For an end-to-end example that includes this step, see [Build an agent-to-agent retrieval solution ](agentic-retrieval-how-to-create-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
+> By default, there's no model-generated "answer" in the response and you should pass the extracted response to an LLM so that it can ground its answer based on the search results. For an end-to-end example that includes this step, see [Tutorial: Build an agent-to-agent retrieval solution ](agentic-retrieval-how-to-create-pipeline.md) or [Azure OpenAI Demo](https://github.com/Azure-Samples/azure-search-openai-demo).
 >
 >Alternatively, you can use [answer synthesis](agentic-retrieval-how-to-answer-synthesis.md) to bring answer formulation into the agentic pipeline. In this workflow, the retriever response consists of LLM-formulated answers instead of the raw search results.
 

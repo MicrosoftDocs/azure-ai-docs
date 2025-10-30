@@ -19,7 +19,11 @@ Use this quickstart to create an AI Foundry resource using [Azure PowerShell](/p
 ## Prerequisites
 
 * A valid Azure subscription - [Create one](https://azure.microsoft.com/pricing/purchase-options/azure-account?cid=msft_learn) for free.
-* [Azure PowerShell](/powershell/azure/install-azure-powershell).
+* [Azure PowerShell](/powershell/azure/install-azure-powershell) version 5.0 or later.
+* Azure RBAC role to create resources. You need one of the following roles assigned on your Azure subscription or resource group:
+  * Contributor
+  * Owner
+  * Custom role with `Microsoft.CognitiveServices/accounts/write` permission
 
 ## Install Azure PowerShell and sign in
 
