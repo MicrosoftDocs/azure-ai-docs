@@ -55,8 +55,14 @@ Use the following tabs to select the method you'll use to create a Foundry proje
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
 - [!INCLUDE [azure-subscription](../includes/azure-subscription.md)]
+- 
+:::moniker range="foundry-classic"
 - You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator [create an AI Foundry resource](../../ai-services/multi-service-resource.md) for you to use. Then skip to [Create multiple projects on the same resource](#create-multiple) to create your project.
+:::moniker-end
 
+:::moniker range="foundry"
+- You must be **Owner** of the subscription to have the appropriate access control necessary to create the Azure AI Foundry resource that's the parent of the project. If you don't have this access, have your administrator create a project for you.
+:::moniker-end
 
 # [Python SDK](#tab/python)
 
@@ -205,15 +211,17 @@ CLI commands not currently available for creating a Foundry project.
 
 ---
 
+::: moniker range="foundry-classic"
 ## <a name="create-multiple"></a> Create multiple projects on the same resource
 
 [!INCLUDE [create-second-fdp-project](../includes/create-second-fdp-project.md)]
+
+::: moniker-end
 
 ## View project settings
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
-::: moniker range="foundry-classic"
 
 On the project **Home** page, you find information about the project.
 

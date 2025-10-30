@@ -46,7 +46,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
     # [Azure AI Foundry portal](#tab/ai-foundry)
     
-    ::: moniker range="foundry-classic"
+    <!-- ::: moniker range="foundry-classic" -->
     
     [!INCLUDE [tip-left-pane](tip-left-pane.md)]
     
@@ -57,7 +57,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     
         :::image type="content" source="../media/how-to/projects/second-project.png" alt-text="Screenshot shows how to create a second project on an existing resource.":::
     
-    ::: moniker-end
+    <!-- ::: moniker-end
     
     ::: moniker range="foundry"
     
@@ -66,7 +66,7 @@ While not all Foundry capabilities support organizing work in projects yet, your
     1. Select the Parent resource you want to add a project to.
     1. Select **Add project**.
     
-    ::: moniker-end
+    ::: moniker-end -->
     
     # [Python SDK](#tab/python)
     
