@@ -59,13 +59,13 @@ After the knowledge source is created, you can reference it in a knowledge base.
 
 ## Using knowledge sources
 
-Properties on the [*knowledge base*](agentic-retrieval-how-to-create-knowledge-base.md) determine whether and how the knowledge source is used.
+Properties on the [*knowledge base*](agentic-retrieval-how-to-create-knowledge-base.md) determine which knowledge sources are used.
 
 + [`"knowledgeSources"`](/rest/api/searchservice/knowledgebases/create-or-update#knowledgesourcereference?view=rest-searchservice-2025-11-01-preview&preserve-view=true) array specifies the knowledge sources available to the knowledge base.
 
 + [`"outputConfiguration"`](/rest/api/searchservice/knowledgebases/create-or-update#knowledgeagentoutputconfiguration?view=rest-searchservice-2025-11-01-preview&preserve-view=true) properties affect query output.
 
-The knowledge base uses the [retrieve action](agentic-retrieval-how-to-retrieve.md) to send queries to the index specified in the knowledge source.
+The knowledge base uses the [retrieve action](agentic-retrieval-how-to-retrieve.md) to send queries to the index specified in the knowledge source. The retrieve action includes knowledge source override properties if you need specific behaviors at query time.
 
 ### Use multiple knowledge sources simultaneously
 
