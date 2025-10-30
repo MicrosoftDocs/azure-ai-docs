@@ -1,7 +1,7 @@
 ---
-title: Chunk documents in vector search
+title: Chunk documents
 titleSuffix: Azure AI Search
-description: Learn strategies for chunking PDFs, HTML files, and other large documents for vectors and search indexing and query workloads.
+description: Learn strategies for chunking PDFs, HTML files, and other large documents for agentic retrieval and vector search.
 author: gmndrg
 ms.author: gimondra
 ms.service: azure-ai-search
@@ -9,18 +9,23 @@ ms.update-cycle: 180-days
 ms.custom:
   - ignite-2023
 ms.topic: conceptual
-ms.date: 10/17/2025
+ms.date: 10/30/2025
 ---
 
-# Chunk large documents for vector search solutions in Azure AI Search
+# Chunk large documents for agentic retrieval and vector search in Azure AI Search
 
-Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-ada-002 model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. Partitioning your content into chunks helps you meet embedding model requirements and prevents data loss due to truncation.
+Partitioning large documents into smaller chunks can help you stay under the maximum token input limits of chat completion and  embedding models. For example, the maximum length of input text for the [Azure OpenAI](/azure/ai-services/openai/how-to/embeddings) text-embedding-3-small model is 8,191 tokens. Given that each token is around four characters of text for common OpenAI models, this maximum limit is equivalent to around 6,000 words of text. If you're using these models to generate embeddings, it's critical that the input text stays under the limit. 
 
-We recommend [integrated vectorization](vector-search-integrated-vectorization.md) for built-in data chunking and embedding. Integrated vectorization takes a dependency on [built-in indexers](search-indexer-overview.md) and [skillsets](cognitive-search-working-with-skillsets.md) that enable text splitting and embeddings generation. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
+Chat completion models have the same input token restrictions, so chunking is helpful for retrieval augmented generation (RAG) or agentic retrieval as well. Partitioning your content into chunks helps you meet input token requirements and prevents data loss due to truncation.
+
+Azure AI Search has built-in solutions for chunking content, and also for vectorizing chunked content if you're using vector search. The built-in approach takes a dependency on [built-in indexers](search-indexer-overview.md) and [skillsets](vector-search-integrated-vectorization.md) that enable text splitting and embeddings generation. If you can't use integrated vectorization, this article describes some alternative approaches for chunking your content.
+
+> [!TIP]
+> If you're chunking content for agentic retrieval, several knowledge sources can generate a full indexer pipeline that chunks and optionally vectorizes your content. The indexer, data source definition, skillset, and are created for you based on information in your knowledge source definition. Knowledge sources with this capability include [Azure blob](agentic-knowledge-source-how-to-blob.md) and [OneLake](agentic-knowledge-source-how-to-onelake.md).
 
 ## Common chunking techniques
 
-Chunking is only required if the source documents are too large for the maximum input size imposed by models, but it's also beneficial if content is poorly represented as a single vector. Consider a wiki page that covers a lot of varied sub-topics. The entire page might be small enough to meet model input requirements, but you might get better results if you chunk at a finer grain.
+Chunking is only required if the source documents are too large for the maximum input size imposed by models, but it's also beneficial if content is poorly represented as a single vector. Consider a wiki page that covers numerous varied sub-topics. The entire page might be small enough to meet model input requirements, but you might get better results if you chunk at a finer grain.
 
 Here are some common chunking techniques, associated with built-in features if you use [indexers](search-indexer-overview.md) and [skills](cognitive-search-working-with-skillsets.md).
 

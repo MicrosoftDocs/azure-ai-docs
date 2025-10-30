@@ -7,16 +7,16 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 10/30/2025
 ---
 
 # Create an index for agentic retrieval in Azure AI Search
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-In Azure AI Search, *agentic retrieval* is a new parallel query architecture that uses a chat completion model for query planning, generating subqueries that broaden the scope of what's searchable and relevant.
+In Azure AI Search, *agentic retrieval* uses context and user questions to generate a range of subqueries that can execute against your content in a knowledge source. For most knowledge sources, the physical data structure is a *search index*.
 
-Subqueries are created internally. Certain aspects of the subqueries are determined by your search index. This article explains which index elements have an effect on the query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
+This article explains which index elements affect agentic retrieval query logic. None of the required elements are new or specific to agentic retrieval, which means you can use an existing index if it meets the criteria identified in this article, even if it was created using earlier API versions.
 
 A search index that's used in agentic retrieval is specified as *knowledge source* on a *knowledge base*, and is either:
 
@@ -32,10 +32,11 @@ A search index that's used in agentic retrieval is specified as *knowledge sourc
 An index that's used in agentic retrieval must have these elements:
 
 + String fields attributed as `searchable` and `retrievable`.
-+ Vector fields and a vectorizer if you want to include text-to-vector query conversion in the pipeline.
 + A semantic configuration, with a `defaultSemanticConfiguration` or a semantic configuration override in the knowledge source.
 
 It should also have fields that can be used for citations, such as  document or file name, page or chapter name, or at least a chunk ID.
+
+It should have vector fields and a vectorizer if you want to include text-to-vector query conversion in the pipeline.
 
 Optionally, the following index elements increase your opportunities for optimization:
 
@@ -45,7 +46,7 @@ Optionally, the following index elements increase your opportunities for optimiz
 
 ## Example index definition
 
-Here's an example index that works for agentic retrieval. It meets the criteria for required elements.
+Here's an example index that works for agentic retrieval. It meets the criteria for required elements. It includes vector fields as a best practice.
 
 ```json
 {
@@ -143,15 +144,27 @@ Here's an example index that works for agentic retrieval. It meets the criteria 
 
 **Key points**:
 
-In agentic retrieval, a large language model (LLM) is used twice. First, it's used to create a query plan. After the query plan is executed and search results are generated, those results are passed to the LLM again, this time as grounding data that's used to formulate an answer. 
+A well-designed index that's used for generative AI or retrieval augmented generation (RAG) structure has these components:
 
-LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you must have `searchable` fields that provide plain text strings, and are `retrievable` in the response. Vector fields and vector search are also important because they add similarity search to information retrieval. Vectors enhance and improve the quality of search that produces grounding data, but aren't otherwise strictly required. Azure AI Search has built-in capabilities that [simplify and automate vectorization](vector-search-overview.md).
++ A description that an LLM or agent can use to determine whether an index should be used or skipped.
 
-The previous example index includes a vector field that's used at query time. You don't need the vector in results because it isn't human or LLM readable, but notice that its `searchable` for vector search. Since you don't need vectors in the response, both `retrievable` and `stored` are false. 
++ Chunks of human readable text that can be passed as input tokens to an LLM for answer formulation.
 
-The vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes string subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
++ A semantic ranker configuration because agentic retrieval uses level 2 (L2) semantic ranking to identify the most relevant chunks.
 
-All `searchable` fields are included in query execution. There's no support for a `select` statement that explicitly states which fields to query.
++ Optionally, vector-equivalent versions of the human readable chunks of text for complementary vector search.
+
+Chunked text is important because LLMs consume and emit tokenized strings of human readable plain text content. For this reason, you want `searchable` fields that provide plain text strings, and are `retrievable` in the response. In Azure AI Search, chunked text can be created using [built-in or third-party solutions](vector-search-how-to-chunk-documents.md).
+
+A built-in assumption for chunked content is that the original source documents have large amounts of verbose content. If your source content is structured data, such as a product database, then your index should forego chunking and instead include fields that map to the original data source (for example, a product name, category, description, and so forth). Attribution of `searchable` and `retrievable` applies to structured data as well. Searchable makes the content in-scope for queries, and retrievable adds it to the search results (grounding data).
+
+Vector content can be useful because it adds *similarity search* to information retrieval. At query time, when vector fields are present in the index, the agentic retrieval engine executes a vector query in parallel to the text query. Because vector queries look for similar content rather than matching words, a vector query can find a highly relevant result that a text query might miss. Adding vectors can enhance and improve the quality of your  grounding data, but aren't otherwise strictly required. Azure AI Search has a [built-in approach for vectorization](vector-search-overview.md).
+
+Vector fields are used only for query execution on Azure AI Search. You don't need the vector in results because it isn't human or LLM readable. We recommend that you set `retrievable` and `stored` to false to minimize space requirements. 
+
+If you use vectors, having a vectorizer defined in the vector search configuration is critical. It determines whether your vector field is used during query execution. The vectorizer encodes string subqueries into vectors at query time for similarity search over the vectors. The vectorizer must be the same embedding model used to create the vectors in the index.
+
+By default, all `searchable` fields are included in query execution, and all `retrievable` fields are returned in results. You can choose which fields to use for each action in the [search index knowledge source definition](agentic-knowledge-source-how-to-search-index.md).
 
 ## Add a description
 
@@ -277,9 +290,11 @@ Here's an example of a vectorizer that works for agentic retrieval, as it appear
 
 ## Add a scoring profile
 
-[Scoring profiles](index-add-scoring-profiles.md) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated during query execution, although the precise behavior depends on the API version used to create the index.
+[Scoring profiles](index-add-scoring-profiles.md) are criteria for relevance boosting. They're applied to non-vector fields (text and numbers) and are evaluated during query execution, although the precise behavior depends on the API version used to create the index. 
 
-If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking.
+A scoring profile is more likely to add value to your solution if your index is based on structured data. Structured data is indexed into multiple discrete fields, which means your scoring profile can have criteria that target the content or characteristics of a specific field.
+
+If you create the index using 2025-05-01-preview or later, the scoring profile executes last. If the index is created using an earlier API version, scoring profiles are evaluated before semantic reranking. Because agentic retrieval is available in newer preview APIs, the scoring profile executes last.
 
 You can use any scoring profile that makes sense for your index. Here's an example of one that boosts the search score of a match if the match is found in a specific field. Fields are weighted by boosting multipliers. For example if a match was found in the "Category" field, the boosted score is multiplied by 5.
 
@@ -301,7 +316,7 @@ You can use any scoring profile that makes sense for your index. Here's an examp
 
 [Analyzers](search-analyzers.md) apply to text fields and can be language analyzers or custom analyzers that control tokenization in the index, such as preserving special characters or whitespace.
 
-Analyzers are defined within a search index and assigned to fields. The [fields collection example](#example-index-definition) includes an analyzer reference on the text chunks. In this example, the default analyzer (standard Lucene) is replaced with a Microsoft language analyzer.
+Analyzers are defined within a search index and assigned to fields. The [fields collection example](#example-index-definition) includes an analyzer reference on the text chunks. In this example, the default analyzer (standard Lucene) is replaced with a Microsoft language analyzer for the English language.
 
 ```json
 {
