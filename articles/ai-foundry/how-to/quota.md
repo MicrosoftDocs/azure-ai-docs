@@ -88,13 +88,14 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 1. Select **Operate** from the upper-right navigation.
 
-1. Select **Quota** from the left pane to land on the **Quota** pane. Here, you can view your quota on the **Token per minute** tab view and provisioned models on the **Provisioned throughput unit** tab. 
-
-1. Select the **Request quota** button in the upper-right corner to request increases in quota for the standard deployment type.
+1. Select **Quota** from the left pane to land on the **Quota** pane. Here, you can view your quota on the **Token per minute** tab and view provisioned models on the **Provisioned throughput unit** tab. 
 
 1. Select any of the deployments in the list to open a details pane on the right side. 
 
 1. In the **Affiliated deployments using shared quota** section, select the pencil icon in the **Actions** column of the table to edit quota allocation for the deployment and free up unused quota or increase allocation as needed.
+
+1. Select the **Request quota** button in the upper-right corner to request increases in quota for the standard deployment type.
+
 
 ::: moniker-end
 
