@@ -6,10 +6,12 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 10/30/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
+
+[!INCLUDE [Header](../../common/voicelive-csharp.md)]
 
 [!INCLUDE [Introduction](intro.md)]
 
@@ -41,10 +43,12 @@ Follow these steps to create a console application and install the Speech SDK.
 
    This command creates the *Program.cs* file in your project directory.
 
-1. Install the Voice Live SDK in your new project with the .NET CLI.
+1. Install the Voice Live SDK, Azure Identity and NAudio in your new project with the .NET CLI.
 
     ```dotnetcli
     dotnet add package Azure.AI.VoiceLive
+    dotnet add package Azure.Identity
+    dotnet add package NAudio
     ```
 
 1. Create a new file named `appsettings.json` in the folder where you want to run the code. In that file, add the following JSON content:

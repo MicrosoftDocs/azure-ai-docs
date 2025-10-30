@@ -6,10 +6,12 @@ reviewer: patrickfarley
 ms.reviewer: pafarley
 ms.service: azure-ai-openai
 ms.topic: include
-ms.date: 10/28/2025
+ms.date: 10/30/2025
 ---
 
 In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry models](/azure/ai-foundry/concepts/foundry-models-overview) using the VoiceLive SDK for Python.
+
+[!INCLUDE [Header](../../common/voicelive-python.md)]
 
 [!INCLUDE [Introduction](intro.md)]
 
