@@ -1,3 +1,19 @@
+---
+title: Classify and route your data using Content Understanding Studio
+titleSuffix: Azure AI services
+description: Learn about how to classify and route your data using Content Understanding Studio
+author: PatrickFarley 
+ms.author: pafarley
+manager: nitinme
+ms.date: 10/30/2025
+ms.service: azure-ai-content-understanding
+ms.topic: how-to
+ms.custom:
+  - ignite-2024-understanding-release
+  - references_regions
+  - ignite-2025
+---
+
 # Classify and route your data using Content Understanding Studio
 
 Content Understanding Studio offers the ability to create custom classification workflows that enable you to route your data to the proper custom analyzer. Routing allows you to input multiple different data streams into the same pipeline and ensures your data is always routed to the best analyzer. 
