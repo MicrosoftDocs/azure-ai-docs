@@ -57,7 +57,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 ::: moniker range="foundry-classic"
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)].
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
 
 1. Select **Management center** from the bottom of the left pane.
 
@@ -82,7 +82,7 @@ Use quotas to manage model quota allocation between multiple [!INCLUDE [fdp](../
 
 ::: moniker range="foundry"
 
-1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)].
+1. [!INCLUDE [version-sign-in](../includes/version-sign-in.md)]
  
 1. Projects help organize your work. The project you're working on appears in the upper-left corner. If you want to create a new project, select the project name, then **Create new project**.
 
