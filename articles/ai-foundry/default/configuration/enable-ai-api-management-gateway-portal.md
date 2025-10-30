@@ -14,13 +14,12 @@ ai-usage: ai-assisted
 
 # Enforce token limits with AI Gateway
 
-Use AI Gateway in Azure AI Foundry to apply governance controls, such as tokens-per-minute (TPM) rate limits and total token quotas, on model deployments. This integration uses Azure API Management behind the scenes and applies limits at the project scope so you prevent runaway token consumption and align usage with organizational guardrails. Only token rate limiting and quota enforcement are in scope for this release. You configure all settings in the UI; no CLI or API support exists yet. [TO VERIFY: Confirm scope]
+Use AI Gateway in Azure AI Foundry to apply governance controls, such as tokens-per-minute (TPM) rate limits and total token quotas, on model deployments. This integration uses Azure API Management behind the scenes and applies limits at the project scope so you prevent runaway token consumption and align usage with organizational guardrails. Only token rate limiting and quota enforcement are in scope for this release. You configure all settings in the UI.
 
 ## Prerequisites
 
 - Azure subscription with permission to create or reuse an Azure API Management (APIM) instance.
 - Access to the **Admin console** for the target Azure AI Foundry resource.
-- Ability to configure a project in the resource.
 - Reference material for [AI Gateway capabilities in APIM](/azure/api-management/genai-gateway-capabilities).
 - Decision on whether to create a dedicated APIM instance or reuse an existing one.
 
@@ -32,19 +31,15 @@ AI Gateway sits between clients and model deployments. All requests flow through
 
 ## Choose API Management usage model
 
-Decide whether to:
-1. Create a new APIM instance (isolated governance, predictable usage boundary).
-1. Reuse an existing APIM instance (centralized management, shared cost).
-[TO VERIFY: Any constraints on shared instances]
+When you create a new AI Gateway, you need to decide whether to create a new APIM instance (isolated governance, predictable usage boundary), or reuse an existing APIM instance (centralized management, shared cost). You can use any existing APIM instance in the same Azure region as the AI Foundry resource.
 
-When you create a new instance from the AI Foundry UI flow, the SKU defaults to Basic v2 (free for the first 30 days). [TO VERIFY: Pricing confirmation and legal wording]
+When you create a new instance from the AI Foundry UI flow, the SKU defaults to Basic v2. Refer to [API Management Pricing](https://azure.microsoft.com/pricing/details/api-management/) to learn more about associated costs and pricing for the API Management service.
 
 ## Create an AI Gateway
 
 Follow these steps in the Azure AI Foundry UI to enable AI Gateway for a resource.
 
 1. Sign in to <https://ai.azure.com>.
-1. Go to your Azure AI Foundry resource.
 1. Select **Operate** > **Admin console**.
 1. Open the **AI Gateway** tab.
 1. Select **Add AI Gateway**.
@@ -52,6 +47,7 @@ Follow these steps in the Azure AI Foundry UI to enable AI Gateway for a resourc
 1. Select **Create new** or **Use existing** APIM.
 1. If creating new, review the [Basic v2 SKU limitation and trial cost details](#limitations).
 1. Name the gateway, and select **Add** to create or associate the APIM instance.
+1. Validate that the Gateway status shows **Enabled** once provisioning completes.
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png" alt-text="AI Gateway tab in the Admin console showing options to create or select an API Management instance." lightbox="..\media\enable-ai-api-management-gateway-portal\create-ai-gateway-portal.png":::
 
@@ -61,21 +57,21 @@ You can configure token limits for specific model deployments within your projec
 
 1. Select the gateway you want to use from the **AI Gateway** gateway list.
 1. Select **Token management** in the gateway details pane that appears.
-1. Select *+ Add limit** to create a new limit for a model deployment.
+1. Select **+ Add limit** to create a new limit for a model deployment.
 1. Select the project and deployment you want to restrict then, and enter a value for **Limit (Token-per-minute)**.
-1. Select **Create** to save your changes, then.
-1. You can 
+1. Select **Create** to save your changes.
 
-Expected result: Subsequent requests that exceed the TPM threshold receive rate-limit responses. Requests that exceed the quota produce quota-exceeded responses. [TO VERIFY: Response codes or messages]
+Expected result: Subsequent requests that exceed the TPM threshold receive rate-limit responses. Requests that exceed the quota produce quota-exceeded responses indicating `429 Too Many Requests`, if the rate limit is exceeded, or `403 Forbidden`, if the total token quota is exhausted.
 
 :::image type="content" source="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png" alt-text="Project settings panel showing input fields for tokens-per-minute and total token quota limits." lightbox="..\media\enable-ai-api-management-gateway-portal\set-token-limits.png":::
 
 ## Verify enforcement
 
-1. Send test requests to a model deployment endpoint by using the project’s gateway URL and key. [TO VERIFY: Gateway URL format]
+1. Send test requests to a model deployment endpoint by using the project’s gateway URL and key.
 1. Gradually increase request frequency until the TPM limit triggers.
 1. Track cumulative tokens until the quota triggers.
-1. Review logs or metrics surface (if available in UI). [TO VERIFY: Location of logs]
+1. Validate that rate-limited errors are returned once the TPM is exceeded, and quota error appears once the total token allocation is exhausted.
+
 
 Success criteria:
 - Rate-limited responses appear once TPM exceeded.
@@ -85,7 +81,7 @@ Success criteria:
 
 1. Return to project **AI Gateway** settings.
 1. Modify TPM or quota values.
-1. Save; new limits apply immediately to subsequent requests. [TO VERIFY: Propagation time]
+1. Save; new limits apply immediately to subsequent requests.
 
 ## Governance scenarios
 
@@ -108,18 +104,19 @@ If the Admin console is slow, retry after a brief interval. [TO VERIFY: Official
 
 ## Limitations
 
-- The current release supports only TPM rate limits and token quotas.
 - You can configure settings only through the UI; no support yet for CLI, ARM, or API.
-- Basic v2 APIM SKU is free for the first 30 days (confirm official pricing and legal text). [TO VERIFY]
+- Basic v2 APIM SKU is free for the first 30 days (confirm official pricing and legal text). After that, [standard charges](https://azure.microsoft.com/pricing/details/api-management/) apply.
 - Dedicated APIM isolates governance, while shared APIM centralizes operations.
 - Enforcement is project-scoped; resource-level global limits aren't in scope. [TO VERIFY]
 
 ## Clean up resources
 
 If you created a dedicated APIM instance for this purpose:
+
 1. Confirm that no other workloads depend on it.
-1. Delete the APIM instance from the Azure portal. [TO VERIFY: Required role]
-1. Remove AI Gateway association in Admin console (if supported). [TO VERIFY]
+1. Disable the AI Gateway for all projects in the Foundry resource it's associated with.
+1. Remove linked resources in Azure portal - TO VERIFY WILL BE CLARIFIED.
+1. Delete the APIM instance with the same name as the AI gateway in Azure portal (if it's not used for any other purpose).
 
 ## Related content
 
@@ -129,4 +126,3 @@ If you created a dedicated APIM instance for this purpose:
 ## TODO placeholders
 
 - Replace [TO VERIFY] items with confirmed links, labels, and wording.
-- Confirm response behaviors for rate-limit and quota exceed events.
