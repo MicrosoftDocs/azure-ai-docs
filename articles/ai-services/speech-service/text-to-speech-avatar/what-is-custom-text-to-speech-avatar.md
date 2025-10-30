@@ -15,11 +15,15 @@ ms.custom: references_regions
 
 # What is custom text to speech avatar?
 
-Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand by providing video recording data of your selected actors. The avatar is even more realistic if you also use a [professional voice or voice sync for avatar](#custom-voice-and-custom-text-to-speech-avatar) for the same actor.
+Custom text to speech avatar allows you to create a customized, one-of-a-kind synthetic talking avatar for your application. With custom text to speech avatar, you can build a unique and natural-looking avatar for your product or brand. Custom video avatar is created by your provided video recording data of your selected actors, and custom photo avatar is created by your provided image. The avatar is even more realistic if you also use a [professional voice or voice sync for avatar](#custom-voice-and-custom-text-to-speech-avatar) for the same actor.
 
 > [!IMPORTANT]
 > Custom text to speech avatar access is [limited](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/limited-access) based on eligibility and usage criteria. Request access on the [intake form](https://aka.ms/customneural).
 
+
+> [!Note]
+> Custom photo avatar training is not yet available as a self-service option and currently requires a manual offline process.
+> 
 ## How does it work?
 
 Creating a custom text to speech avatar requires at least 10 minutes of video recording of the avatar talent as training data, and you must first get consent from the actor talent.
