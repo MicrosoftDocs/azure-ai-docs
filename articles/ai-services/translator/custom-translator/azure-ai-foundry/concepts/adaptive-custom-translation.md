@@ -72,7 +72,7 @@ Form more information about Azure resources, *see* [Azure resources for Azure AI
 | `Ocp-Apim-Subscription-Region` | Your resource region | **True** | Azure resource region (for example, "eastus2") |
 | `Authorization` | `Bearer <your-token>` | **True** | OAuth Bearer token for enhanced authentication |
 
-## How to create and use a adaptive dataset index
+## How to create and use a dataset index
 1. You must use an Azure AI Foundry resource. To learn how to create and manage an AI Foundry resource see [Create your first AI Foundry resource](../../../how-to/create-translator-resource.md)
 2. [Create Project](#create-project)
 3. [Import Adaptive Documents (TMX/TSV)](#import-documents-tsv-tmx)
