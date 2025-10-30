@@ -6,7 +6,7 @@ monikerRange: 'foundry-classic || foundry'
 ms.service: azure-ai-foundry
 ms.subservice: azure-ai-foundry-openai
 ms.topic: tutorial
-ms.date: 10/29/2025
+ms.date: 10/30/2025
 ms.author: mopeakande
 author: msakande
 ai-usage: ai-assisted
@@ -156,7 +156,7 @@ Use the Foundry Models endpoint and credentials to connect to the model:
 
 Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ).
 
-[!INCLUDE [code-create-chat-client-and-request](../../foundry-models/includes/code-create-chat-client-and-request.md)]
+[!INCLUDE [code-create-chat-client-request](../../foundry-models/includes/code-create-chat-client-request.md)]
 
 Reasoning might generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
