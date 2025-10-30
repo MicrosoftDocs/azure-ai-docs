@@ -75,7 +75,7 @@ Now you successfully built your first Content Understanding analyzer, and are re
 
    :::image type="content" source="../media/quickstarts/view-code.png" alt-text="Screenshot of sample code." lightbox="../media/quickstarts/view-code.png":::
 
-Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
+Check out [Quickstart: Azure AI Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
 
 
 ## Sharing your project
@@ -91,4 +91,4 @@ You can manage the users and their individual roles here:
 
 ## Next steps
 
- * Learn how to call the REST API at [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md)
+ * Learn how to call the REST API at [Quickstart: Azure AI Content Understanding REST APIs](../quickstart/use-rest-api.md)
