@@ -92,7 +92,7 @@ Use these steps to delete a provisioned deployment to avoid unwanted charges.
 
 1. Delete the deployment in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs).
 1. If you plan to remove the Azure AI resource, delete deployments first, then delete the resource. Purge the resource to stop charges.
-1. Go to the [Reservations page in the Azure portal]([https://portal.azure.com](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to manage Reservations. In the Azure portal, you can purchase, cancel, or exchange reservations to align with current deployments.
+1. Go to the [Reservations page in the Azure portal](https://portal.azure.com/#view/Microsoft_Azure_Reservations/ReservationsBrowseBlade/productType/Reservations) to manage reservations. In the Azure portal, you can purchase, cancel, or exchange reservations to align with current deployments.
 
 
 ## How much throughput per PTU you get for each model
