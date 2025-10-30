@@ -100,11 +100,11 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 ::: moniker range="foundry"
 
-1. Now add a model to your project.  Select **Build** in the middle of the page, then **Model**.
+1. Add a model to your project.  Select **Build** in the middle of the page, then **Model**.
 1. Select **Deploy base model** to open the model catalog.
 1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults or select **Customize deployment** to see and change the deployment settings.
 
-Once the deployment is complete, you land on its playground, where you can begin to interact with the deployment.
+When the deployment completes, you land on its playground, where you can begin to interact with the deployment.
 
 ::: moniker-end
 
@@ -149,8 +149,8 @@ Use the Foundry Models endpoint and credentials to connect to the model:
 
 ::: moniker range="foundry"
 
-1. Select the **Details** pane from the upper pane to see the deployment's details. Here, you can find the deployment's URI and API key. 
-1. Get your resource name from the deployment's URI to use for inferencing the model. 
+1. Select the **Details** pane from the upper pane of the Playgrounds to see the deployment's details. Here, you can find the deployment's URI and API key. 
+1. Get your resource name from the deployment's URI to use for inferencing the model via code. 
 
 ::: moniker-end
 
