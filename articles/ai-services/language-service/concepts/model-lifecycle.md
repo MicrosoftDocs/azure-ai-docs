@@ -33,6 +33,8 @@ By default, API and SDK requests use the latest Generally Available model. To us
 > [!NOTE]
 > If you're using a model version that isn't listed in the table, then it was subjected to the expiration policy.
 
+## Model versions
+
 Use the following table to find which model versions support each feature:
 
 | Feature | Supported generally available (GA) version | Latest supported preview versions | Other supported verision |
