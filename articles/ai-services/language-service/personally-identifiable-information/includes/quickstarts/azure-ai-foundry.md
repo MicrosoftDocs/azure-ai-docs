@@ -14,6 +14,22 @@ ms.custom: language-service-pii
 
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
+> [!NOTE]
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types.Look for :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
+> 
+> → You can switch to the [Azure AI Foundry (new) ](https://ai.azure.com/) portal for streamlined access to models, agents, and tools with Foundry projects.
+>
+
+You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Run a chat completion
+> * Create and run an agent
+> * Upload files to the agent
+
+
 ## Navigate to the Azure AI Foundry Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
@@ -88,10 +104,23 @@ After your operation is completed, the type of entity is displayed beneath each 
 
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
+> [!NOTE]
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/what-is-azure-ai-foundry/view=foundry-classic&preserve-view=true#project-types) and provides streamlined access to models, agents, and tools. Look for :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+> 
+> → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
+>
+
+You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Create and run an agent
+> * Upload files to the agent
+
+
 ## Navigate to Azure AI Foundry
 
-First time
-Next time
 
 There are two ways to access the PII interface:
 1. From Discover
