@@ -59,6 +59,6 @@ Azure AI provides an index asset to use with RAG pattern. The index asset contai
 
 The Azure AI index uses [Azure AI Search](/azure/search/search-what-is-azure-search) as the primary and recommended index store. Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes.
 
-## Next steps
+## Related content
 
-- [Create a vector index](../how-to/index-add.md)
+- [Azure AI Foundry Agent Service file search tool](../agents/how-to/tools/file-search.md)
