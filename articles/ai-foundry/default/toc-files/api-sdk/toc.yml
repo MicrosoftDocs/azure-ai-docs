@@ -16,25 +16,7 @@ items:
   - name: Azure OpenAI
     items:
     - name: v1 API 
-      items:
-      - name: v1 API 
-        href: ../../../openai/latest.md 
-      - name: Chat
-        href: ../../../openai/latest.md#create-chat-completion
-      - name: Embeddings
-        href: ../../../openai/latest.md#create-embedding
-      - name: Evals (preview)
-        href: ../../../openai/latest.md#list-evals
-      - name: Files
-        href: ../../../openai/latest.md#create-file
-      - name: Fine-tuning
-        href: ../../../openai/latest.md#create-fine-tuning-job
-      - name: Models
-        href: ../../../openai/latest.md#list-models
-      - name: Responses
-        href: ../../../openai/latest.md#create-response
-      - name: Vector stores
-        href: ../../../openai/latest.md#list-vector-stores
+      href: ../../../openai/latest.md  
     - name: Inference SDK language support
       href: ../../../openai/supported-languages.md
     - name: Go
