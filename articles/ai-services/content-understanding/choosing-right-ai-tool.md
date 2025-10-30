@@ -4,7 +4,7 @@ title: Choose the right Azure AI tool for document processing
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
-ms.author: admaheshwari
+ms.author: jppark
 manager: nitinme
 ms.date: 07/16/2025
 ms.service: azure-ai-content-understanding
