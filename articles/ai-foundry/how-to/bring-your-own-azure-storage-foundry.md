@@ -135,7 +135,7 @@ Set up [capability hosts](/azure/ai-foundry/agents/concepts/capability-hosts) to
 
 ### Create resource-level capability host
 
-1. Use the [Azure CLI](/azure/ml/capability-host) or [Azure REST API](/rest/api/azureml/capability-hosts/create-or-update) to create a resource-level capability host.
+1. Use the [Azure CLI](/cli/azure/ml/capability-host) or [Azure REST API](/rest/api/azureml/capability-hosts/create-or-update) to create a resource-level capability host.
 
 1. Reference your previously created storage connection in the capability host configuration.
 
