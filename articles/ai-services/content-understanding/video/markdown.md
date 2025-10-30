@@ -154,7 +154,8 @@ WEBVTT
 
 ## Next steps
 
-* Try processing your audiovisual content using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze audiovisual content [**analyzer templates**](../quickstart/use-ai-foundry.md).
-* Review code samples: [**video analysis with segments**](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
-* Review the complete [**audiovisual elements documentation**](elements.md) for detailed information about all supported elements.
+* Try out analyzing videos in the [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/cu-studio.md).
+* Learn more about analyzing video content using [analyzer templates](../concepts/analyzer-templates.md).
+* Review code samples: [video analysis with segments](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
+* Review the complete [audiovisual elements documentation](elements.md) for detailed information about all supported elements.
