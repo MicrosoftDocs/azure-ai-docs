@@ -3,8 +3,6 @@ items:
     href: ../../../how-to/develop/sdk-overview.md
   - name: Endpoints for Foundry Models
     href: ../../../foundry-models/concepts/endpoints.md
-  - name: Inference SDK language support
-    href: ../../../openai/supported-languages.md
   - name: Azure AI Projects
     items:
     - name: C#
@@ -15,14 +13,6 @@ items:
       href: /python/api/overview/azure/ai-projects-readme?view=azure-python-preview&preserve-view=true
     - name: REST API
       href: /rest/api/aifoundry/aiprojects/
-  - name: Azure AI Evaluation SDK
-    href: /python/api/overview/azure/ai-evaluation-readme
-  - name: Azure AI services SDKs
-    displayName: client library libraries development kit
-    href: ../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
-  - name: Azure AI services REST APIs
-    displayName: swagger http
-    href: ../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
   - name: Azure OpenAI
     items:
     - name: v1 API
@@ -45,6 +35,8 @@ items:
           href: ../../../openai/latest.md#create-response
         - name: Vector stores
           href: ../../../openai/latest.md#list-vector-stores
+    - name: Inference SDK language support
+      href: ../../../openai/supported-languages.md
     - name: Go
       href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
     - name: Java
@@ -61,6 +53,14 @@ items:
       href: ../../../openai/monitor-openai-reference.md
     - name: Audio events reference
       href: ../../../openai/realtime-audio-reference.md
+  - name: Azure AI Evaluation SDK
+    href: /python/api/overview/azure/ai-evaluation-readme
+  - name: Azure AI services SDKs
+    displayName: client library libraries development kit
+    href: ../../../../ai-services/reference/sdk-package-resources.md?context=/azure/ai-foundry/context/context
+  - name: Azure AI services REST APIs
+    displayName: swagger http
+    href: ../../../../ai-services/reference/rest-api-resources.md?context=/azure/ai-foundry/context/context
   - name: Resource Management
     items:
       - name: Azure Resource Manager/Bicep/Terraform
