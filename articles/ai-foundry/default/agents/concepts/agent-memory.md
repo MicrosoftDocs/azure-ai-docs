@@ -32,16 +32,6 @@ Memory in Azure AI Foundry Agent Service is a managed, long-term memory solution
 - [Embedding model deployment](../../../openai/tutorials/embeddings.md) (for example, `text-embedding-ada-002`) in your project.
 - Python 3.8 or later with the Azure AI Agent SDK installed, or access to the REST API.
 
-## Understand memory types
-
-Agent memory typically falls into two categories:
-
-- **Short-term memory** tracks the current session's conversation, maintaining immediate context for ongoing interactions. Agent orchestration frameworks like [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) typically manage this memory as part of the session context.
-
-- **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
-
-Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
-
 ## Create a memory store
 
 Create a dedicated memory store for each agent to establish clear boundaries for memory access and optimization. When you create a memory store, specify the chat model and embedding model deployments that process and store memory content.
@@ -401,6 +391,16 @@ Authorization: Bearer <your-token>
 ---
 
 Before you delete a memory store, consider the impact on dependent agents. Agents with attached memory stores might lose access to historical context.
+
+## Understand memory types
+
+Agent memory typically falls into two categories:
+
+- **Short-term memory** tracks the current session's conversation, maintaining immediate context for ongoing interactions. Agent orchestration frameworks like [Microsoft Agent Framework](/agent-framework/overview/agent-framework-overview) typically manage this memory as part of the session context.
+
+- **Long-term memory** retains distilled knowledge across sessions, enabling the model to recall and build on previous user interactions over time. This memory type requires integration with a persistent system that supports extraction, consolidation, and management of knowledge.
+
+Azure AI Foundry memory is designed for long-term memory. It extracts meaningful information from conversations, consolidates it into durable knowledge, and makes it available across sessions and agents.
 
 ## Best practices
 
