@@ -30,14 +30,12 @@ The steps you perform in this tutorial are:
 
 To complete this article, you need:
 
-
 - An Azure subscription. If you're using [GitHub Models](https://docs.github.com/en/github-models/), you can upgrade your experience and create an Azure subscription in the process. Read [Upgrade from GitHub Models to Azure AI Foundry Models](../../model-inference/how-to/quickstart-github-models.md), if that applies to you.
+
 
 [!INCLUDE [about-reasoning](../../foundry-models/includes/use-chat-reasoning/about-reasoning.md)]
 
 ## Create the resources
-
-Foundry Models is a capability in Azure AI Foundry resources in Azure. You can create model deployments under the resource to consume their predictions. You can also connect the resource to Azure AI hubs and projects in Azure AI Foundry to create intelligent applications if needed.
 
 To create an Azure AI project that supports deployment for DeepSeek-R1, follow these steps. You can also create the resources by using [Azure CLI](../how-to/quickstart-create-resources.md?pivots=programming-language-cli) or [infrastructure as code, with Bicep](../how-to/quickstart-create-resources.md?pivots=programming-language-bicep).
 
@@ -76,8 +74,9 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 ::: moniker range="foundry"
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-
-1. Insert NextGen content
+1. The project you are working on appears in the upper-left corner.  
+1. To create a new project, select the project name, then  **Create new project**.
+1. Give your project a name and select **Create project**.
 
 ::: moniker-end
 
@@ -101,7 +100,11 @@ To create an Azure AI project that supports deployment for DeepSeek-R1, follow t
 
 ::: moniker range="foundry"
 
-Insert NextGen content
+1. Now add a model to your project.  Select **Build** in the middle of the page, then **Model**.
+1. Select **Deploy base model** to open the model catalog.
+1. Find and select the **DeepSeek-R1** model tile to open its model card and select **Deploy**. You can select **Quick deploy** to use the defaults or select **Customize deployment** to see and change the deployment settings.
+
+Once the deployment is complete, you land on its playground, where you can begin to interact with the deployment.
 
 ::: moniker-end
 
@@ -128,7 +131,7 @@ You can get started by using the model in the playground to get an idea of the m
 
 ::: moniker range="foundry"
 
-Insert NextGen content
+1. Insert your prompts, such as "How many languages are in the world?" in the playground.
 
 ::: moniker-end
 
@@ -146,7 +149,8 @@ Use the Foundry Models endpoint and credentials to connect to the model:
 
 ::: moniker range="foundry"
 
-Insert NextGen content
+1. Select the **Details** pane from the upper pane to see the deployment's details. Here, you can find the deployment's URI and API key. 
+1. Get your resource name from the deployment's URI to use for inferencing the model. 
 
 ::: moniker-end
 
