@@ -1,3 +1,19 @@
+---
+title: Create and improve your custom analyzer in Content Understanding Studio
+titleSuffix: Azure AI services
+description: Create custom analyzers and apply in context learning to improve them using Content Understanding Studio
+author: PatrickFarley 
+ms.author: pafarley
+manager: nitinme
+ms.date: 10/30/2025
+ms.service: azure-ai-content-understanding
+ms.topic: how-to
+ms.custom:
+  - ignite-2024-understanding-release
+  - references_regions
+  - ignite-2025
+---
+
 # Create and improve your custom analyzer in Content Understanding Studio
 
 Content Understanding Studio enables you to build powerful content analyzers that extract content and fields tailored to the specific needs of your scenario. Follow the steps below to create your own custom analyzer in Content Understanding Studio.
