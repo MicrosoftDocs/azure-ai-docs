@@ -23,6 +23,8 @@ items:
   - name: Built-in policy definitions
     displayName: samples, policies, definitions, Azure Policy
     href: ../../../../ai-services/policy-reference.md?context=/azure/ai-foundry/context/context&view=foundry&preserve-view=true
+  - name: Create custom policy definitions
+    href: ../../../how-to/custom-policy-definition.md
 - name: Disaster recovery
   href: ../../../how-to/disaster-recovery.md
 - name: Security baseline
