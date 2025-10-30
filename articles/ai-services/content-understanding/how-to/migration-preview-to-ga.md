@@ -15,20 +15,20 @@ ms.custom:
 
 # Migration from Content Understanding Preview to GA
 
-The Content Understanding GA API introduces seveal new capabilities and updates to features launced in earlier preview API versions. The [what's new](../whats-new.md) page provides an overview of all the changes in the GA API version. This document highlights the changes needed to analyzers built with  one of the preview API version to use with the GA API version.
+The Content Understanding GA API introduces several new capabilities and updates to features launched in earlier preview API versions. The [what's new](../whats-new.md) page provides an overview of all the changes in the GA API version. This document highlights the changes needed to analyzers built with  one of the preview API versions to use with the GA API version.
 
 To update your analyzer, the recommended approach is to create an updated analyzer:
-1. GET the analyzer definiton
-2. Make the changes to the analyzer to target the GA API. The changes needed will depend on the API version the analyzer was created with.
-3. Create a new analyzer using the GA API PUT operation. You will need to delete the existing analyzer to reuse the name.
+1. GET the analyzer definition
+2. Make the changes to the analyzer to target the GA API. The changes that are needed depend on the API version the analyzer was created with.
+3. Create a new analyzer using the GA API PUT operation. You'll need to delete the existing analyzer to reuse the name.
 
-#### [from 2025-05-01 preview](#tab/2025-05-01)
+#### [from `2025-05-01 preview`](#tab/2025-05-01)
 
-## Migrating from the 2025-05-01 preview
+## Migrating from `2025-05-01 preview`
 
-The `2025-05-01-preview` API version is the latest preview version and migrating from this version of the API to the GA API will require a few updates to your analyzer defintions. 1Code has comments. Press enter to view.
+The `2025-05-01-preview` API version is the latest preview version and migrating from this version of the API to the GA API requires a few updates to your analyzer definitions. 1Code has comments. Press enter to view.
 
-1. Connect to an Azure Foundry model deployment. The GA API requires a deployment of a LLM that will be used by your analyzer. Thsi is a 3 step process. 1Code has comments. Press enter to view.
+1. Connect to an Azure Foundry model deployment. The GA API requires a deployment of an LLM to be used by your analyzer. This is a three step process. 1Code has comments. Press enter to view.
 
 * **Step 1** You can specify the deployments to use on the resource via a ```PATCH``` request. 
 
@@ -80,19 +80,20 @@ POST /myReceipt:analyze
 ```
 
 > [!NOTE]
-> [Prebuilt analyzers](./concepts/analyzers.md) require a specific model. Please see the models catalog for the models each prebuilt works with.
+> [Prebuilt analyzers](./concepts/analyzers.md) require a specific model. See the models catalog for the models each prebuilt works with.
 
-For a detailed description of how to define the models and and deplouyments for use with your analyzers, see [supported models and deployments](concepts/models-and-deployments.md).
+For a detailed description of how to define the models and deployments for use with your analyzers, see [supported models and deployments](concepts/models-and-deployments.md).
 
-2. Content classifiers are now merged into content analyzers. To classify content use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and analyze.
+2. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and analyze.
 
-3. Confidence and grounding are now optional properties for fields. The default field definiton does not return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`. This is unchanged from the `2025-05-01-preview` API, it is documented here for completeness.
+3. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`. This is unchanged from the `2025-05-01-preview` API, it's documented here for completeness.
 
-4. Simplified the request to GET specific components of the analyze result. GET the embedded images or content with the API call.
+4. Simplified the request to GET specific components of the Analyze result. GET the embedded images or content with the API call.
 ``` JSON
 GET /analyzerResults/{operationId}/files/{path}
 ```
-where ```path``` can include
+
+Here, ```path``` can include:
 
 
 * contents/{contentIndex}/pages/{pageNumber} - DocumentContent.pages[*].pageNumber
@@ -100,7 +101,7 @@ where ```path``` can include
 
 5. New **analyzeBinary** operation to support file upload scenarios. The analyzeBiunary enables files to be uploaded as part of the request body. 1Code has comments. Press enter to view.
 
-6. The **analyze** operation JSON payload schema is updated to adda inputs array that contains the information on the files to be analyzed. Each input can contain the URL or base64 encoded data. Learn more about the [analyze operation](Link to reference).
+6. The **Analyze** operation JSON payload schema is updated to add an inputs array that contains the information on the files to be analyzed. Each input can contain the URL or base64 encoded data. Learn more about the [Analyze operation](Link to reference).
 
 7. If you used in-context learning or labeled data, the API payload to define the labeled dataset is now updated to specify the labeled data as a type of ```knowledgeSources```. See [knowledgeSources]() for more details on how to define an analyzer to use labeled data.
 
@@ -108,7 +109,7 @@ where ```path``` can include
 
 ### Analyze operation
 
-The analyze operation schema is being updated to potentially support multiple input files. Add the new ```inputs``` property to the request.
+The Analyze operation schema is being updated to potentially support multiple input files. Add the new ```inputs``` property to the request.
 
 ``` JSON
 
@@ -124,26 +125,28 @@ The analyze operation schema is being updated to potentially support multiple in
  
 ### New features
 
-1. Field extraction method is now optional. When not set the analyzer determines the approach (extract or generate). The best practice is to not add the method property to the analyzer and only set the method to extract if you need the value to be extracted verbatim.
+1. Field extraction method is now optional. When not set, the analyzer determines the approach (extract or generate). The best practice is to not add the method property to the analyzer and only set the method to extract if you need the value to be extracted verbatim.
 2. Added support for confidence scores and grounding (source) for generate type fields.
-3. Increased field limits to 1000 fields per analyzer.
-4. Field extraction results are now included in the markdown resplone in YAML front matter format. [Learn more](). 
+3. Increased field limits to 1,000 fields per analyzer.
+4. Field extraction results are now included in the markdown response in YAML front matter format. [Learn more](). 
 5. Classification/segmentation supports up to 200 distinct types.
 
 ### Deprecated features
 
-1. Pro mode is not a part of the GA API.This feature is still experimental. As a result, `AnalysisMode` is being depreacted and standard is the only mode supported in the GA API.
-2. Person directory and Face API are not carried forward from the preview APIs. This includes the video analyzer features to detect and recognize faces in videos.
-3. `TrainingData` is being depreacted and replaced with `knowledgeSources`.
+1. Pro mode isn't a part of the GA API.This feature is still experimental. As a result, `AnalysisMode` is being deprecated and standard is the only mode supported in the GA API.
+2. Person directory and Face API aren't carried forward from the preview APIs. This includes the video analyzer features to detect and recognize faces in videos.
+3. `TrainingData` is being deprecated and replaced with `knowledgeSources`.
 
 
-#### [from 2024-12-01 preview](#tab/2024-12-01)
+#### [from `2024-12-01 preview`](#tab/2024-12-01)
 
-The `2024-12-01-preview` API version is the earliest preview version and migrating from this version of the API to the GA API will require a few more updates to your analyzer defintions. Please follow the updates described above, with these additional changes.
+## Migrating from `2024-12-01 preview`
+
+The `2024-12-01-preview` API version is the earliest preview version and migrating from this version of the API to the GA API will require a few more updates to your analyzer definitions. Follow the updates described above, with these other changes.
 
 1. Defining a custom analyzer requires a `baseAnalyzerId` property. See [Analyzer configuration reference](concept/analyzer-reference.md) for a list of base analyzers that can be used to derive a custom analyzer.
-3. Content classifiers are now merged into content analyzers. To classify content use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and anlyze.
-4. Confidence and grounding are now optional properties for fields. The default field definiton does not return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`.
+3. Content classifiers are now merged into content analyzers. To classify content, use the `contentCategories` properties of the analyzer. See [build a RPA solution](../tutorial/build-rpa-solution.md) for guidance on how to classify or classify and analyze.
+4. Confidence and grounding are now optional properties for fields. The default field definition doesn't return confidence and grounding, to add confidence and grounding, set the `estimateFieldSourceAndConfidence`  to `true`.
 5. The `method` property in `fieldSchema` now supports a new default method of `auto`. This is the recommended option for the field method to support both extractive and generative scenarios with confidence and grounding. 1Code has comments. Press enter to view.
 
 ### Deprecated features
