@@ -12,7 +12,7 @@ ms.custom: language-service-pii
 
 * [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects)
 
-### [#tab/Azure AI Foundry (classic)]
+### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 ## Navigate to the Azure AI Foundry Playground
 
@@ -86,7 +86,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/text-pii.png" alt-text="A screenshot of an example of extract PII from text in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/text-pii.png":::
 
-### [#tab/Azure AI Foundry (new)]
+### [Azure AI Foundry (new)](#tab/foundry-new)
 
 ## Navigate to Azure AI Foundry
 

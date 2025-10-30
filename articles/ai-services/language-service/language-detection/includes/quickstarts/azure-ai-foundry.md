@@ -11,9 +11,24 @@ ms.author: lajanuar
 
 * [Create a Project in Foundry in the Azure AI Foundry Portal](/azure/ai-foundry/how-to/create-projects)
 
-### [#tab/Azure AI Foundry (classic)]
+### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
-## Navigate to the Azure AI Foundry Playground
+ [!NOTE]
+> This content refers to the [Azure AI Foundry (classic)](hhttps://ai.azure.com/) portal, which supports hub-based projects and other resource types.Look for :::image type="icon" source="../default/media/version-banner/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
+> 
+> → You can switch to the [Azure AI Foundry (new) ](?https://ai.azure.com/e) portal for streamlined access to models, agents, and tools with Foundry projects.
+>
+
+You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Run a chat completion
+> * Create and run an agent
+> * Upload files to the agent
+
+## Navigate to the [Azure AI Foundry (new)](https://ai.azure.com/) Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
 
@@ -53,9 +68,23 @@ After your operation is completed, the **Details** section contains the followin
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
-### [#tab/Azure AI Foundry (new)]
+### [Azure AI Foundry (new)](#tab/foundry-new)
 
-## Navigate to Azure AI Foundry
+> [!NOTE]
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/what-is-azure-ai-foundry.md?view=foundry-classic&preserve-view=true#project-types) and provides streamlined access to models, agents, and tools. Look for :::image type="icon" source="../default/media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+> 
+> → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
+>
+
+You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
+
+> [!div class="checklist"]
+> * Create a project
+> * Deploy a model
+> * Create and run an agent
+> * Upload files to the agent
+
+## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
 
 There are two ways to access the PII interface:
 1. From Discover

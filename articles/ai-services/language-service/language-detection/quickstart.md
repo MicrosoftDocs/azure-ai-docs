@@ -15,7 +15,7 @@ keywords: text mining, language detection
 zone_pivot_groups: programming-languages-text-analytics
 ---
 
-# Quickstart: using the Language Detection client library and REST API
+# Quickstart: Detect language from written content
 
 ::: zone pivot="programming-language-csharp"
 
