@@ -1,99 +1,19 @@
 ---
 title: Migration from Content Understanding Preview to GA
 titleSuffix: Azure AI services
-description: Tutorial for migrating from Content Understanding Preview to GA, including API changes and best practices.
+description: Migrate from Content Understanding Preview to GA, including API changes and best practices.
 author: PatrickFarley
 ms.author: pafarley
 ms.service: azure-ai-content-understanding
 ms.topic: how-to
-ms.date: 10/03/2025
----
-
-# Migration from Content Understanding Preview to GA
-
-[PLACEHOLDER - Content to be added]
-
-This tutorial guides you through migrating from Content Understanding Preview to GA, including API changes and best practices.
-
-## Overview
-
-[Migration overview and timeline]
-
-## Breaking changes
-
-[List of breaking changes from Preview to GA]
-
-## API changes
-
-[Detailed API changes]
-
-### Endpoint changes
-
-[URL and endpoint modifications]
-
-### Request/response format changes
-
-[Schema and format updates]
-
-### Authentication changes
-
-[Authentication method updates]
-
-## Migration steps
-
-[Step-by-step migration process]
-
-### Step 1: Update endpoints
-
-[Endpoint migration instructions]
-
-### Step 2: Update authentication
-
-[Authentication migration instructions]
-
-### Step 3: Update request formats
-
-[Request format updates]
-
-### Step 4: Update response handling
-
-[Response handling updates]
-
-### Step 5: Test and validate
-
-[Testing and validation steps]
-
-## Best practices
-
-[Migration best practices]
-
-## Troubleshooting
-
-[Common migration issues and solutions]
-
-## Next steps
-
-- [Related documentation links]
-
-<!-- combine with: -->
-
----
-title: Migrate analyzers from the preview API to the GA API
-titleSuffix: Azure AI services
-description: Update analyxers created with a preview API to the latest GA API
-author: PatrickFarley 
-ms.author: vkurpad
-manager: nitinme
-ms.date: 10/26/2025
-ms.service: azure-ai-content-understanding
-ms.topic: how-to
+ms.date: 10/30/2025
 ms.custom:
-  - ignite-2024-understanding-release
   - references_regions
   - ignite-2025
 ---
 
-# Migrate to the GA API version
+
+# Migration from Content Understanding Preview to GA
 
 The Content Understanding GA API introduces seveal new capabilities and updates to features launced in earlier preview API versions. The [what's new](../whats-new.md) page provides an overview of all the changes in the GA API version. This document highlights the changes needed to analyzers built with  one of the preview API version to use with the GA API version.
 
@@ -101,6 +21,8 @@ To update your analyzer, the recommended approach is to create an updated analyz
 1. GET the analyzer definiton
 2. Make the changes to the analyzer to target the GA API. The changes needed will depend on the API version the analyzer was created with.
 3. Create a new analyzer using the GA API PUT operation. You will need to delete the existing analyzer to reuse the name.
+
+#### [from 2025-05-01 preview](#tab/2025-05-01)
 
 ## Migrating from the 2025-05-01 preview
 
@@ -215,9 +137,7 @@ The analyze operation schema is being updated to potentially support multiple in
 3. `TrainingData` is being depreacted and replaced with `knowledgeSources`.
 
 
-
- 
-## Migrating from the 2024-12-01 preview
+#### [from 2024-12-01 preview](#tab/2024-12-01)
 
 The `2024-12-01-preview` API version is the earliest preview version and migrating from this version of the API to the GA API will require a few more updates to your analyzer defintions. Please follow the updates described above, with these additional changes.
 
@@ -229,6 +149,66 @@ The `2024-12-01-preview` API version is the earliest preview version and migrati
 ### Deprecated features
 
 1. `Scenario` is being deprecated and replaced by `baseAnalyzerId`.
+
+---
+
+
+## Breaking changes
+
+[List of breaking changes from Preview to GA]
+
+## API changes
+
+[Detailed API changes]
+
+### Endpoint changes
+
+[URL and endpoint modifications]
+
+### Request/response format changes
+
+[Schema and format updates]
+
+### Authentication changes
+
+[Authentication method updates]
+
+## Migration steps
+
+[Step-by-step migration process]
+
+### Step 1: Update endpoints
+
+[Endpoint migration instructions]
+
+### Step 2: Update authentication
+
+[Authentication migration instructions]
+
+### Step 3: Update request formats
+
+[Request format updates]
+
+### Step 4: Update response handling
+
+[Response handling updates]
+
+### Step 5: Test and validate
+
+[Testing and validation steps]
+
+## Best practices
+
+[Migration best practices]
+
+## Troubleshooting
+
+[Common migration issues and solutions]
+
+## Next steps
+
+- [Related documentation links]
+
 
 
 ## Next steps
