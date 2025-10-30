@@ -1,3 +1,19 @@
+---
+title: Quickstart Try out Content Understanding Studio
+titleSuffix: Azure AI services
+description: Try out the new features of the Content Understanding Studio
+author: PatrickFarley 
+ms.author: pafarley
+manager: nitinme
+ms.date: 10/30/2025
+ms.service: azure-ai-content-understanding
+ms.topic: quickstart
+ms.custom:
+  - ignite-2024-understanding-release
+  - references_regions
+  - ignite-2025
+---
+
 # Quickstart: Try out Content Understanding Studio
 
 Content Understanding Studio is designed to help you quickly try out prebuilt analyzers, build and test your custom analyzers, and improve analyzer performance over time quickly and easily. This quickstart guide will walk you through the basic steps to get started so you can begin exploring all of the ways Content Understanding can improve your data-heavy workflows.
