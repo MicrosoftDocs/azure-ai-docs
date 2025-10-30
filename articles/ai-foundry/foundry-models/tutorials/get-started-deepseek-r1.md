@@ -152,7 +152,7 @@ Insert NextGen content
 
 Use the next generation v1 Azure OpenAI APIs to consume the model in your code. These code examples use a secure, keyless authentication approach, Microsoft Entra ID, via the [Azure Identity library](/dotnet/api/overview/azure/identity-readme?view=azure-dotnet&preserve-view=true ).
 
-[!INCLUDE [code-create-chat-client-and-request](../../foundry-models/includes/code-create-chat-client.md)]
+[!INCLUDE [code-create-chat-client-and-request](../../foundry-models/includes/code-create-chat-client-and-request.md)]
 
 Reasoning might generate longer responses and consume a larger number of tokens. You can see the [rate limits](../../model-inference/quotas-limits.md) that apply to DeepSeek-R1 models. Consider having a retry strategy to handle rate limits. You can also [request increases to the default limits](../quotas-limits.md#request-increases-to-the-default-limits).
 
