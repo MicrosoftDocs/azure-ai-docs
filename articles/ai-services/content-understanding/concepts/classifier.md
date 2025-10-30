@@ -79,5 +79,5 @@ Developers who use Content Understanding should review Microsoft policies on cus
 
 ## Related content
 
-* Try processing your document content by using Content Understanding in [Azure AI Foundry](https://aka.ms/cu-landing).
-* Learn to analyze document content [analyzer templates](../quickstart/use-ai-foundry.md).
+* Try processing your document content in [Content Understanding Studio](../quickstart/cu-studio.md)
+* Learn about how to process document content using [analyzer templates](../concepts/analyzer-templates.md).
