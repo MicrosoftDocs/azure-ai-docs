@@ -96,7 +96,7 @@ Considering the large number of machine learning frameworks available, MLflow in
 
 Because each model flavor indicates how to persist and load the model for a given framework, the MLmodel format doesn't enforce a single serialization mechanism that all models must support. Therefore, each flavor can use the methods that provide the best performance or best support according to their best practices, without compromising compatibility with the MLmodel standard.
 
-The following example shows the `flavors` section for an `fastai` model.
+The following example shows the `flavors` section for a `fastai` model.
 
 ```yaml
 flavors:
@@ -112,7 +112,7 @@ flavors:
 
 ### Model signature
 
-An MLflow [model signature](https://www.mlflow.org/docs/latest/models.html#model-signature) is an important part of the model specification because it serves as a data contract between the model and the server running the model. A model signature is also important for parsing and enforcing a model's input types at deployment time. If a signature is available, MLflow enforces the input types when you submit data to your model. For more information, see [MLflow signature enforcement](https://www.mlflow.org/docs/latest/models.html#signature-enforcement).
+An MLflow [model signature](https://www.mlflow.org/docs/latest/models.html#model-signature) is an important part of the model specification because it serves as a data contract between the model and the server running the model. A model signature is also important for parsing and enforcing a model's input types at deployment time. If a signature is available, MLflow enforces the input types when data is submitted to your model. For more information, see [MLflow signature enforcement](https://www.mlflow.org/docs/latest/models.html#signature-enforcement).
 
 You indicate signatures when you log models, and MLflow persists them in the `signature` section of the *MLmodel* file. The **Autolog** feature in MLflow automatically makes a best effort to infer signatures. However, you can log models manually if the inferred signatures aren't the ones you need. For more information, see [How to log models with signatures](https://www.mlflow.org/docs/latest/models.html#how-to-log-models-with-signatures). 
 
@@ -140,7 +140,7 @@ signature:
 
 ### Model environment
 
-Specify requirements for the model to run in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries that MLflow included in your environment aren't the ones you intended to use.
+Specify the requirements for the model to run in the *conda.yaml* file. MLflow can automatically detect dependencies, or you can manually indicate them by calling the `mlflow.<flavor>.log_model()` method. Calling the method can be useful if the libraries that MLflow included in your environment aren't the ones you intended to use.
 
 The following *conda.yaml* example shows an environment for a model created with the `fastai` framework:
 
