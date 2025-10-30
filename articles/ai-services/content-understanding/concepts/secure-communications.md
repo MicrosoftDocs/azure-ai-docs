@@ -3,13 +3,14 @@ title: Secure your Content Understanding analyzers and data
 titleSuffix: Azure AI services
 description: Configure security features like customer managed keys and managed identities to secure your data and applications
 author: PatrickFarley 
-ms.author: vkurpad
+ms.author: pafarley
 manager: nitinme
 ms.date: 10/26/2025
 ms.service: azure-ai-content-understanding
-ms.topic: concept
+ms.topic: conceptual
 ms.custom:
   - ignite-2025
+ai-usage: ai-assisted
 ---
 
 # Security features in Content Understanding
@@ -26,7 +27,7 @@ Data is encrypted and decrypted using FIPS 140-2-compliant 256-bit AES encryptio
 About encryption key management
 By default, your subscription uses Microsoft-managed encryption keys. You can also manage your subscription with your own keys, which are called customer-managed keys. When you use customer-managed keys, you have greater flexibility in the way you create, rotate, disable, and revoke access controls. You can also audit the encryption keys that you use to protect your data. If customer-managed keys are configured for your subscription, double encryption is provided. With this second layer of protection, you can control the encryption key through your Azure Key Vault. This model enables you to secure your Azure AI services accounts to a specific subset of networks. When network rules are configured, only applications that request data over the specified set of networks can access the account. You can limit access to your resources with request filtering, which allows requests that originate only from specified IP addresses, IP ranges, or from a list of subnets in Azure Virtual Networks.
 
-To learn more about configuring network security for your Foundry resource, [see Azure security baseline for Azure AI Foundry](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+To learn more about configuring network security for your Foundry resource, [see Azure security baseline for Azure AI Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 ## Managed identity
 
@@ -37,7 +38,7 @@ Managed identities grant access to any resource that supports Microsoft Entra au
 
 You can grant access to an Azure resource and assign an Azure role to a managed identity using Azure role-based access control (Azure RBAC). There's no added cost to use managed identities in Azure.
 
-To learn more about configuring managed idietites for your Foundry resource, [see Azure security baseline for Azure AI Foundry](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline#identity-management)
+To learn more about configuring managed identities for your Foundry resource, [see Azure security baseline for Azure AI Foundry](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline#identity-management)
 
 ## Customer managed keys
 
@@ -47,10 +48,10 @@ Data is encrypted and decrypted using FIPS 140-2-compliant 256-bit AES encryptio
 
 By default, your subscription uses Microsoft-managed encryption keys. You can also manage your subscription with your own keys, which are called customer-managed keys. When you use customer-managed keys, you have greater flexibility in the way you create, rotate, disable, and revoke access controls. You can also audit the encryption keys that you use to protect your data. If customer-managed keys are configured for your resource, double encryption is provided. With this second layer of protection, you can control the encryption key through your Azure Key Vault.
 
-Learn more about configuring [customer managed keys for your resource](https://learn.microsoft.com/en-us/azure/ai-foundry/concepts/encryption-keys-portal)
+Learn more about configuring [customer managed keys for your resource](/azure/ai-foundry/concepts/encryption-keys-portal)
 
 ## Next steps
 
-* [Learn more about AI Foundry security](https://learn.microsoft.com/en-us/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
+* [Learn more about AI Foundry security](/security/benchmark/azure/baselines/azure-ai-foundry-security-baseline)
 
 * [Learn more Content Understanding analyzers](analyzer-reference.md)
