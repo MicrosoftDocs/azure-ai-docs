@@ -52,19 +52,19 @@ items:
         displayName: ARM, ARM template, template 
       - name: Azure CLI
         href: /cli/azure/cognitiveservices?view=azure-cli-latest&preserve-view=true
-      - name: Go
-        href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
-      - name: Java
-        href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
-      - name: JavaScript
-        href: /azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
-      - name: .NET 
-        href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
-      - name: REST API (fine-tuning)
-        href: /rest/api/azureopenai/fine-tuning?view=rest-azureopenai-2024-03-01-preview&preserve-view=true 
-      - name: REST API (resource creation & deployment)
-        href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
-      - name: Azure OpenAI monitoring data reference
-        href: ../../openai/monitor-openai-reference.md
-      - name: Audio events reference
-        href: ../../openai/realtime-audio-reference.md
+  - name: Go
+    href: https://pkg.go.dev/github.com/Azure/azure-sdk-for-go/sdk/ai/azopenai
+  - name: Java
+    href: /java/api/com.azure.ai.openai?view=azure-java-preview&preserve-view=true
+  - name: JavaScript
+    href: /azure/ai-foundry/openai/supported-languages?tabs=dotnet-secure%2Csecure%2Cpython-secure%2Ccommand&pivots=programming-language-javascript
+  - name: .NET 
+    href: /dotnet/api/azure.ai.openai?view=azure-dotnet-preview&preserve-view=true
+  - name: REST API (fine-tuning)
+    href: /rest/api/azureopenai/fine-tuning?view=rest-azureopenai-2024-03-01-preview&preserve-view=true 
+  - name: REST API (resource creation & deployment)
+    href: /rest/api/aiservices/accountmanagement/deployments/create-or-update?tabs=HTTP
+  - name: Azure OpenAI monitoring data reference
+    href: ../../../openai/monitor-openai-reference.md
+  - name: Audio events reference
+    href: ../../../openai/realtime-audio-reference.md
