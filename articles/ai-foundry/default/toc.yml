@@ -30,9 +30,6 @@ items:
 - name: Developer environment 
   href: toc-files/developer-environment/toc.yml
 
-- name: Resource Management
-  href: toc-files/resource-management/toc.yml
-
 - name: API & SDK
   href: toc-files/api-sdk/toc.yml
 
