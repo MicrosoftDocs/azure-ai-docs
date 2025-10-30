@@ -3,18 +3,18 @@ title: Connect your Content Understanding resource with Foundry models
 titleSuffix: Azure AI services
 description: Describes the requirements and flexibility of specifying Gen AI model and deployment information for Content Understanding analyzers 
 author: PatrickFarley 
-ms.author: vkurpad
+ms.author: pafarley
 manager: nitinme
 ms.date: 10/26/2025
 ms.service: azure-ai-content-understanding
-ms.topic: concept
+ms.topic: conceptual
 ms.custom:
   - ignite-2025
 ---
 
 # Connect your Content Understanding analyzer to Foundry model deployments
 
-Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. This enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario the best for price and latency. You will be billed for all tokens, input and output on the deployment connected and Content Understanding will only bill you for the Content Understanding specific meters. See [pricing explainer](pricing-explainer.md) to learn more about the billing model.
+Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. This enables you to maximize your use of the capacity provisioned and aggregate capacity into fewer deployments if needed. You can also pick the model that fits your scenario the best for price and latency. You will be billed for all tokens, input and output on the deployment connected and Content Understanding will only bill you for the Content Understanding specific meters. See [pricing explainer](../overview/pricing-explainer.md) to learn more about the billing model.
 
 The service requires a `chat completion` model and `embeddings` model and supports a few differet options for each. Some analyzers also have a dependency on a specifc model.
 
@@ -88,7 +88,7 @@ POST /myReceipt:analyze
 ```
 
 > [!NOTE]
-> [Prebuilt analyzers](./concepts/analyzers.md) require a specific model. Please see the models catalog for the models each prebuilt works with.
+> [Prebuilt analyzers](../concepts/prebuilt-analyzers.md) require a specific model. Please see the models catalog for the models each prebuilt works with.
 
 You have now connected your Content Understanding analyzer with a Foundry model deployment to use. 
 
@@ -112,6 +112,6 @@ Submit an analyze request for the analyzer and validate that the response is acc
 
 ## Next steps
 
-* [Learn more about Content Understanding pricing](../pricing-explainer.md)
+* [Learn more about Content Understanding pricing](../overview/pricing-explainer.md)
 
 * [Learn more Content Understanding analyzers](analyzer-reference.md)
