@@ -193,6 +193,8 @@ incremental_update = client.memory_stores.begin_update_memories(
 
 incremental_result = incremental_update.result()
 print(f"✓ Incremental update completed")```
+```
+
 
 # [REST API](#tab/rest)
 
