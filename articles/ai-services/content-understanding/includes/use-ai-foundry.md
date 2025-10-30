@@ -74,7 +74,7 @@ When you create a single-file Content Understanding task, you start by uploading
 
    :::image type="content" source="../media/quickstarts/build-invoice-analyzer.png" alt-text="Screenshot of built analyzer.":::
 
-You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](./use-rest-api.md) to utilize the REST API to call your analyzer.
+You've successfully built your first Content Understanding analyzer and are ready to start extracting insights from your data. Check out [Quickstart: Azure AI Content Understanding REST APIs](../quickstart/use-rest-api.md) to utilize the REST API to call your analyzer.
 
 ## Sharing your project
 
