@@ -41,9 +41,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. Update the `type` to `module` in `package.json` with the following command:
 
-  ```bash
-  npm pkg set type=module
-  ```
+    ```bash
+    npm pkg set type=module
+    ```
   
 1. Install the OpenAI client library for JavaScript with:
 
@@ -53,9 +53,9 @@ For the recommended keyless authentication with Microsoft Entra ID, you need to:
 
 1. Install the dependent packages used by the OpenAI client library for JavaScript with:
 
-  ```bash
-  npm install ws
-  ```
+    ```bash
+    npm install ws
+    ```
   
 1. For the **recommended** keyless authentication with Microsoft Entra ID, install the `@azure/identity` package with:
 
