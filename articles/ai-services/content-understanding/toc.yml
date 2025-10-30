@@ -53,7 +53,7 @@ items:
       items:
         - name: What are analyzers?
           displayName: analyzer, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
-          href: concepts/analyzers-reference.md
+          href: concepts/analyzer-reference.md
         - name: Prebuilt analyzers
           displayName: analyzer, templates, document, text, images, video, audio, multimodal, visual, structured, content, field, extraction
           href: concepts/prebuilt-analyzers.md

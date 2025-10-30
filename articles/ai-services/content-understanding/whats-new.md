@@ -122,10 +122,10 @@ This release introduces a new [classification API](concepts/classifier.md). This
 
 ### Improvements to video processing
 
-* Added support for whole video fields. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
-* Added support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
+* Added support for whole video fields. Learn more about [video processing improvements](video/overview.md#Segmentation-mode).
+* Added support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#Segmentation-mode).
 * Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval. Learn more about [face detection in videos](video/overview.md#content-extraction---grouping-and-identification)
-* Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#field-extraction--face-description).
+* Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#Face-description-fields).
 
 * ### Improvements to audio processing
 
