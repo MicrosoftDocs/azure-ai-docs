@@ -5,9 +5,11 @@ description: Learn how to use the Voice live API for real-time voice agents.
 manager: nitinme
 author: goergenj
 ms.author: jagoerge
+reviewer: patrickfarley
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 9/29/2025
+ms.date: 10/30/2025
 ms.custom: references_regions
 # Customer intent: As a developer, I want to learn how to use the Voice live API for real-time voice agents.
 ---
