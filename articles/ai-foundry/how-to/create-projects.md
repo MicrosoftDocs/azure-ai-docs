@@ -222,6 +222,7 @@ CLI commands not currently available for creating a Foundry project.
 
 # [Azure AI Foundry portal](#tab/ai-foundry)
 
+::: moniker range="foundry-classic"
 
 On the project **Home** page, you find information about the project.
 
