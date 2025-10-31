@@ -18,7 +18,7 @@ As a part of the Azure Speech in Foundry Tools service, pronunciation assessment
 
 ## How accurate is Pronunciation Assessment?
 
-Pronunciation Assessment feature provides objective scores, like pronunciation accuracy and fluency degree, for language learners in [computer-assisted language learning](https://en.wikipedia.org/wiki/Computer-assisted_language_learning). The performance of pronunciation assessment depends on Azure Speech-To-Text transcription accuracy with the use of a submitted transcription as reference, and [inter-rater agreement](https://en.wikipedia.org/wiki/Inter-rater_reliability) between the system and human judges. For a definition of Speech-To-Text accuracy, see [Characteristics and limitations for using speech to text](https://aka.ms/STT-characteristics-limitation).
+Pronunciation Assessment feature provides objective scores, like pronunciation accuracy and fluency degree, for language learners in [computer-assisted language learning](https://en.wikipedia.org/wiki/Computer-assisted_language_learning). The performance of pronunciation assessment depends on Azure AI Speech-To-Text transcription accuracy with the use of a submitted transcription as reference, and [inter-rater agreement](https://en.wikipedia.org/wiki/Inter-rater_reliability) between the system and human judges. For a definition of Speech-To-Text accuracy, see [Characteristics and limitations for using speech to text](https://aka.ms/STT-characteristics-limitation).
 
 The following sections are designed to help you understand key concepts about accuracy as they apply to using Pronunciation Assessment.
 

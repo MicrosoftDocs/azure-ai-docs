@@ -51,7 +51,7 @@ Microsoft is committed to designing AI responsibly. We hope this note will foste
 
 **Examples of how Microsoft uses it**:  
 - **Prebuilt text to speech avatar** is a feature of Azure Speech in Foundry Tools text to speech that offers "off-the-shelf" text to speech avatar models for customer use.
-- **Custom text to speech avatar** is a feature of Azure Speech text to speech that enables the creation of one-of-a-kind custom synthetic text to speech avatar models.
+- **Custom text to speech avatar** is a feature of Azure AI Speech text to speech that enables the creation of one-of-a-kind custom synthetic text to speech avatar models.
 
 
 **What to expect when recording**: You will need to contribute at least 10 minutes of video recording for a proof-of-concept custom avatar model and about 20 minutes of video recording to produce a complete custom avatar model for production use. 
@@ -81,7 +81,7 @@ Similar to text to speech voices, avatars now offer realistic appearances, movem
 
 Every day, people find new ways to apply text to speech technology, and not all are for the good of individuals or society. If misused, believably human-sounding text to speech voices or realistic speaking avatars could cause harm. For example, a misinformation campaign could become much more potent if it used the voice and image of a well-known public figure.
 
-We recognize that there's no perfect way to prevent media from being modified or to unequivocally prove where it came from. Therefore, our approach to responsible use has focused on being transparent about Azure Speech text to speech features by limiting permitted uses of custom versions of these features and demonstrating our values through action.
+We recognize that there's no perfect way to prevent media from being modified or to unequivocally prove where it came from. Therefore, our approach to responsible use has focused on being transparent about Azure AI Speech text to speech features by limiting permitted uses of custom versions of these features and demonstrating our values through action.
 
 ## Requirements and tips for meaningful consent from voice and avatar talent 
 
@@ -121,7 +121,7 @@ We also recommend that you do the following:
 
 Customers must obtain permission from voice talent to use their voice to create custom voice models for a synthetic voice. This technical safeguard is intended to help prevent misuse of our service by, for example, preventing someone from training voice models with audio recordings and using the models to spoof a voice without the speaker's knowledge or consent.
 
-In [Speech Studio](https://speech.microsoft.com/customvoice), you must upload an audio file with a recorded acknowledgement statement from the voice talent. Microsoft reserves the right to use Microsoft's speaker recognition technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices came from the same speaker, or as otherwise necessary to investigate misuse of Azure Speech.
+In [Speech Studio](https://speech.microsoft.com/customvoice), you must upload an audio file with a recorded acknowledgement statement from the voice talent. Microsoft reserves the right to use Microsoft's speaker recognition technology on this recorded acknowledgement statement and verify it against the training audio data to confirm that the voices came from the same speaker, or as otherwise necessary to investigate misuse of Azure AI Speech.
 
 The speaker's voice signatures created from the recorded acknowledgement statement files and training audio data are used by Microsoft solely for the purposes stated above. Microsoft will retain the recorded statement file for as long as necessary to preserve the security and integrity of Microsoft's Azure AI services. Learn more about how we process, use, and retain data in the [Data, privacy, and security doc](/azure/ai-foundry/responsible-ai/speech-service/text-to-speech/data-privacy-security). 
 
