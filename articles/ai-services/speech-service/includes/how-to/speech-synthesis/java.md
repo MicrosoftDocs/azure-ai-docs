@@ -238,7 +238,7 @@ public class SpeechSynthesis {
         // Required for WordBoundary event sentences.
         speechConfig.setProperty(PropertyId.SpeechServiceResponse_RequestSentenceBoundary, "true");
 
-        String speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural"; 
+        String speechSynthesisVoiceName = "en-US-AvaMultilingualNeural"; 
         
         String ssml = String.format("<speak version='1.0' xml:lang='en-US' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts'>"
             .concat(String.format("<voice name='%s'>", speechSynthesisVoiceName))
