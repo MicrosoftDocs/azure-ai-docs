@@ -14,7 +14,7 @@ ms.custom:
 
 # Quickstart: Use Azure AI Content Understanding REST API
 
-* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
+* This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-11-01&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 
 * Try [Content Understanding with no code on Azure AI Foundry](https://ai.azure.com/explore/aiservices/vision/contentunderstanding)
 
@@ -62,7 +62,7 @@ Before running the following cURL command, make the following changes to the HTT
 #### POST request
 
 ```bash
-curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-05-01-preview" \
+curl -i -X POST "{endpoint}/contentunderstanding/analyzers/{analyzerId}:analyze?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}" \
   -H "Content-Type: application/json" \
   -d "{\"url\":\"{fileUrl}\"}"
@@ -77,13 +77,15 @@ Transfer-Encoding: chunked
 Content-Type: application/json
 request-id: aaa-bbb-ccc-ddd
 x-ms-request-id: aaa-bbb-ccc-ddd
-Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview
-api-supported-versions: 2024-12-01-preview,2025-05-01-preview,2025-10-01
+Operation-Location: {endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01
+api-supported-versions: 2024-12-01-preview,2025-05-01-preview,2025-11-01
 x-envoy-upstream-service-time: 800
 apim-request-id: {request-id}
 Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
 x-content-type-options: nosniff
 x-ms-region: West US
+Date: Fri, 31 Oct 2025 05:30:17 GMT
+Connection: close
 ```
 
 ### Get analyze result
@@ -95,7 +97,7 @@ Use the `request-id` from the [`POST` response](#post-response) and retrieve the
 
 #### GET request
 ```bash
-curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-05-01-preview" \
+curl -i -X GET "{endpoint}/contentunderstanding/analyzerResults/{request-id}?api-version=2025-11-01" \
   -H "Ocp-Apim-Subscription-Key: {key}"
 ```
 
@@ -111,7 +113,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-documentAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
@@ -213,7 +215,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-imageAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
@@ -256,7 +258,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-audioAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "stringEncoding": "utf8",
     "warnings": [],
@@ -308,7 +310,7 @@ The 200 (`OK`) JSON response includes a `status` field indicating the status of 
   "status": "Succeeded",
   "result": {
     "analyzerId": "prebuilt-videoAnalyzer",
-    "apiVersion": "2025-05-01-preview",
+    "apiVersion": "2025-11-01",
     "createdAt": "YYYY-MM-DDTHH:MM:SSZ",
     "warnings": [],
     "contents": [
