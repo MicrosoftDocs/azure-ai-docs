@@ -20,7 +20,7 @@ Azure Content Understanding in Foundry Tools provides multilingual support in mu
 
 ## Region support
 
-To use Azure AI Content Understanding, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
+To use Azure Content Understanding, create your Azure AI Service resource in a supported region. All data at rest is stored in the selected region. For lower latency or increased capacity, you can specify the processing location where analysis occurs. Content Understanding is available in the following regions. When the processing location is set to `geography` or `data zone`, the corresponding locations are shown.
 
 | Identifier      | Region         | Geography       | Data Zone        |
 |-----------------|----------------|-----------------|------------------|
@@ -36,7 +36,7 @@ To use Azure AI Content Understanding, create your Azure AI Service resource in 
 
 ## Language support
 
-Azure AI Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
+Azure Content Understanding enables you to process data in multiple languages simultaneously. Our language support capabilities enable users to communicate with your applications in natural ways and empower global outreach.
 
 Content Understanding applies [Azure OpenAI models](../../ai-foundry/openai/overview.md) which support a wide array of languages. While there's no definitive list of supported languages, users can expect robust language capabilities across most common languages. For specific language support related to `OCR` and speech transcription, refer to the respective sections detailing the supported languages for these modalities.
 

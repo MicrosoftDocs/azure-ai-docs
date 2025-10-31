@@ -74,7 +74,7 @@ There are multiple additional alternative services that can support the remainin
 * **Features**: Content Understanding supports processing unstructured image data, as well as documents, audio, and video. It enables you to extract structured insights based on pre-defined or user-defined formats.
 * **Learn more** about Content Understanding:
     * [What is Azure Content Understanding in Foundry Tools?](../content-understanding/overview.md)
-    * [Azure AI Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
+    * [Azure Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
     * [Content Understanding classifier](../content-understanding/concepts/classifier.md)
 
 ## Next steps and required actions

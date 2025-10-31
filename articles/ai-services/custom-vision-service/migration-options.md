@@ -51,8 +51,8 @@ Microsoft is also investing in Generative AI-based solutions that increase accur
 * **Best for**: Customers who want a managed generative solution for image classification
 * **Features**: Content Understanding offers the ability to create custom classification workflows. It also supports processing unstructured data of any type (image, documents, audio, video) and extracting structured insights based on pre-defined or user-defined formats.
 * **Learn more** about Content Understanding:
-    * [What is Azure AI Content Understanding?](../content-understanding/overview.md)
-    * [Azure AI Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
+    * [What is Azure Content Understanding?](../content-understanding/overview.md)
+    * [Azure Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
     * [Content Understanding classifier](../content-understanding/concepts/classifier.md)
 
 ## Data migration guidance

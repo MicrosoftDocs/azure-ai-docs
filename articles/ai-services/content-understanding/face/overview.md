@@ -21,7 +21,7 @@ ms.custom:
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, see [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding provides a cloud-based solution for face detection, enrollment, and recognition, enabling secure and intelligent applications. Developers can apply these capabilities to detect faces, organize them into a structured directory, and perform recognition tasks for identity verification and content management.
+Azure Content Understanding provides a cloud-based solution for face detection, enrollment, and recognition, enabling secure and intelligent applications. Developers can apply these capabilities to detect faces, organize them into a structured directory, and perform recognition tasks for identity verification and content management.
 
 This service is ideal for building secure access systems, streamlining photo management, or implementing intelligent attendance and check-in solutions. It supports both standalone face records and structured person identity management, providing flexibility for various real-world scenarios.
 
@@ -91,7 +91,7 @@ The person directory enables powerful search and matching functionalities:
 
 ## Data, privacy, and security
 
-Azure AI Content Understanding adheres to Microsoft's strict policies on customer data protection and privacy. Developers should review these policies to ensure compliance and understand how data is handled. For more details, visit the [Data, privacy, and security](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy) page.
+Azure Content Understanding adheres to Microsoft's strict policies on customer data protection and privacy. Developers should review these policies to ensure compliance and understand how data is handled. For more details, visit the [Data, privacy, and security](/azure/ai-foundry/responsible-ai/content-understanding/data-privacy) page.
 
 ## Related content
 

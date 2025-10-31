@@ -13,7 +13,7 @@ metadata:
 title: Frequently asked questions
 summary: |
 
- Find answers to commonly asked questions about Azure AI Content Understanding
+ Find answers to commonly asked questions about Azure Content Understanding
 sections:
   - name: Overview
     questions:
@@ -62,7 +62,7 @@ sections:
         answer: |
          Azure AI Services, including Content Understanding, adheres to strict security and compliance standards to ensure data protection. These measures include data encryption, secure access controls, and compliance with industry regulations such as GDPR and HIPAA. The service also adheres to Microsoft’s responsible use of AI.
       - question: |
-         What base models does Azure AI Content Understanding use?
+         What base models does Azure Content Understanding use?
         answer: |
           Content Understanding uses various models and capabilities from Azure OpenAI, Azure Speech in Foundry Tools, Vision, and Language to support single- modality and multi-modal scenarios. The service determines the selection of base models appropriate for each scenario.
       - question: |

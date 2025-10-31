@@ -16,9 +16,9 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
+> Azure Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before General Availability (GA). For more information, see **[Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms)**.
 
-Azure AI Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
+Azure Content Understanding allows you to generate a standard set of video metadata and create custom fields for your specific use case using generative models. Content Understanding helps you manage, categorize, retrieve, and build workflows for video assets. It enhances your media asset library, supports features such as highlight generation, categorizes content, and facilitates applications like retrieval-augmented generation (RAG).
 
 :::image type="content" source="../media/video/video-processing-flow.png" alt-text="Illustration of the Content Understanding video processing flow.":::
 
@@ -103,7 +103,7 @@ With the prebuilt video analyzer (prebuilt-videoAnalyzer), you can upload a vide
 
 See the following walkthrough for RAG on Video using Content Understanding:
 
-[RAG on Video using Azure AI Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
+[RAG on Video using Azure Content Understanding](https://www.youtube.com/watch?v=fafneWnT2kw&lc=Ugy2XXFsSlm7PgIsWQt4AaABAg)
 
 ## Capabilities
 

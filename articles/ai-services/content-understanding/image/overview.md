@@ -20,7 +20,7 @@ ms.custom:
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
-Azure AI Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured image data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schemas to specify the fields, descriptions, and output types for extraction. The service then analyzes your images and provides structured data that can be applied in various use cases, such as:
+Azure Content Understanding standardizes the extraction of data from images, making it easier to analyze large volumes of unstructured image data. Standardized extraction speeds up time-to-value and simplifies integration into downstream analytical workflows. With the Content Understanding APIs, you can define schemas to specify the fields, descriptions, and output types for extraction. The service then analyzes your images and provides structured data that can be applied in various use cases, such as:
 
 * **Retrieval-augmented generation (RAG) applications:** Extract key details from your images to build a robust index that powers user-facing chat experiences. This index enables users to ask questions and receive accurate answers based on the content of your images.
 

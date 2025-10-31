@@ -22,7 +22,7 @@ ms.custom:
 
 ## Overview
 
-Azure AI Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
+Azure Content Understanding's multimodal analysis capabilities help you transform unstructured audio and video data into structured, machine-readable information. By precisely identifying and extracting audiovisual elements while preserving their temporal relationships, you can build powerful media processing workflows for a wide range of applications.
 
 The `contents` object with `kind: "audioVisual"` supports both audio-only and video inputs, with different capabilities available depending on the input type.
 
