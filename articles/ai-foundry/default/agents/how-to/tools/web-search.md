@@ -55,7 +55,7 @@ agent = project_client.agents.create_version(
         model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
         instructions="You are a helpful assistant that can search the web",
         tools=[
-            WebSearchPreviewTool(user_location=ApproximateLocation(country="GB", city="London", region="London"))
+            WebSearchPreviewTool()
         ],
     ),
     description="Agent for web search.",
