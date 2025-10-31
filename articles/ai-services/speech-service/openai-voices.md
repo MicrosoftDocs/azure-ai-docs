@@ -105,5 +105,5 @@ The following table outlines the Speech Synthesis Markup Language (SSML) element
 
 ## Related content
 
-- [Try the text to speech quickstart in Azure Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-speech)
+- [Try the text to speech quickstart in Azure Speech](get-started-text-to-speech.md)
 - [Try the text to speech via Azure OpenAI](../../ai-foundry/openai/text-to-speech-quickstart.md)
