@@ -225,7 +225,8 @@ To get the values for the `cmk_keyvault` (the ID of the key vault) and the `reso
   This command returns a value similar to `https://mykeyvault.vault.azure.net/keys/mykey/{guid}`.    
 
 > [!IMPORTANT]    
-> After a workspace is created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
+> - After a workspace is created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
+> - The key vault must have both soft delete and purge protection enabled.
 
 To enable the use of customer-managed keys, set the following parameters when deploying the template:
 
