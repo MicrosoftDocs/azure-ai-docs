@@ -28,14 +28,15 @@ A **prompt-based agent** is a declaratively defined single agent that combines m
 
 If you want to develop a more advanced agentic workflow, for example you want to trigger an action on certain criteria, or orchestrate multiple agents together, you can do so with **Workflows**. **Workflows** have their own development interface in the portal, but the same lifecycle applies. <!--Learn more about developing workflows [here](workflows-doc-page).-->
 
-**Hosted agents** are containerized agents created and deployed in code, that are hosted by Foundry. They can't be edited in the agent building interface, but they can be viewed, tested, evaluated, monitored and published just like prompt-based agents and workflows. <!--Learn more about developing hosted agents [here](hosted-agents-doc-page).-->
+**Hosted agents** are containerized agents created and deployed in code that are hosted by Foundry. They can't be edited in the agent building interface, but they can be viewed, tested, evaluated, monitored and published just like prompt-based agents and workflows. <!--Learn more about developing hosted agents [here](hosted-agents-doc-page).-->
 
 
 ## Creating a prompt-based agent
 
 If you already know what kind of agent you want to create, you can name it and then quickly start configuring your model instructions and tools. If you don't already have a model deployed, an available model will be deployed for you. If you'd like to start with some examples, pick a manifest (a pre-defined agent definition to help you get started) from the agent catalog that most closely matches your use case, and expand your agent capabilities from there. <!--See more details about agent manifests [here](agent-manifest-doc).-->
 
-> **Note**: Once you name your agent, the name cannot be changed. In code, you will refer to your agent by `<agent_name>:<version>`. You will be able to set the display name of your agent in your published application scenarios.
+> [!NOTE]
+> Once you name your agent, the name cannot be changed. In code, you will refer to your agent by `<agent_name>:<version>`. You will be able to set the display name of your agent in your published application scenarios.
 
 ## Developing in code
 
@@ -54,5 +55,5 @@ You can make your agent more powerful by giving it knowledge (specific files or 
 
 ### Publishing your agent or workflow
 
-Once you have an agent or workflow version you are happy with, publish it to get a stable endpoint that you can easily see in action in a web app, share, manage, or embed in your existing applications. You and your collaborators can validate performance, and identify what needs refinement. You can make any necessary updates, and re-publish a new version at any time. The Foundry portal also offers a streamlined way to publish your agent or workflow to Microsoft 365 Copilot and Microsoft Teams. <!--Learn more about publishing [here](publishing-agent-doc-page).-->
+Once you have an agent or workflow version you're happy with, publish it to get a stable endpoint that you can easily see in action in a web app, share, manage, or embed in your existing applications. You and your collaborators can validate performance, and identify what needs refinement. You can make any necessary updates, and re-publish a new version at any time. The Foundry portal also offers a streamlined way to publish your agent or workflow to Microsoft 365 Copilot and Microsoft Teams. <!--Learn more about publishing [here](publishing-agent-doc-page).-->
 
