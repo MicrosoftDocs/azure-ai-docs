@@ -70,7 +70,7 @@ Follow these steps to synthesize speech in a macOS application.
 1. Optionally in *AppDelegate.m*, include a speech synthesis voice name as shown here:
 
    ```ObjectiveC
-   speechConfig.speechSynthesisVoiceName = @"en-US-AvaMultilingualNeural";
+   speechConfig.speechSynthesisVoiceName = @"en-US-Ava:DragonHDLatestNeural";
    ```
 
 1. To change the speech synthesis language, replace `en-US-Ava:DragonHDLatestNeural` with another [supported voice](~/articles/ai-services/speech-service/language-support.md#standard-voices).
