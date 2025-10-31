@@ -16,14 +16,14 @@ ms.topic: how-to
 # View Conversation results
 
 
-A **Conversation" is the persistent context of an end-to-end dialogue history between a user and an agent. In the Azure AI Foundry portal, you can view **Conversation** results for your agent run along with agent run and trace in Traces page. 
+A **Conversation" is the persistent context of an end-to-end dialogue history between a user and an agent. In the Azure AI Foundry portal, you can view **Conversation** results for your agent run along with traces in **Traces** page. 
 
-You can search a known Conversation ID or search a Response ID/Trace ID which this response is part of a conversation and click **Conversation ID** to review:
+You can search for a known Conversation ID, or search by a Response ID or Trace ID which maps to this conversation, then click **Conversation ID** to review the conversation:
 
-- Conversation details
-- Response information in a run
+- Conversation history details
+- Response information and tokens in a run
 - Ordered actions, run steps and tool calls
-- Inputs and outputs between a user and an agent in a response
+- Inputs and outputs between a user and an agent
   
 
 :::image type="content" source="../../agents/media/thread-trace.png" alt-text="A screenshot of a trace." lightbox="../../agents/media/thread-trace.png":::
