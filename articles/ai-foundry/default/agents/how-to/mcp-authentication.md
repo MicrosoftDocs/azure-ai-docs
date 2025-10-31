@@ -1,7 +1,7 @@
 ---
-title: Connect to a Model Context Protocol Server Endpoint in Azure AI Foundry Agent Service (Preview)
+title: MCP server authentication
 titleSuffix: Azure AI Foundry
-description: Learn how to add MCP servers to Azure AI Foundry Agent Service.
+description: Learn about ways of adding authentication to the MCP server tool in the Azure AI Foundry Agent Service.
 services: cognitive-services
 manager: nitinme
 ms.service: azure-ai-foundry
@@ -92,9 +92,11 @@ AI Foundry Agent Service supports two OAuth options: **managed OAuth** and **cus
 
 This is supported if the MCP server doesn’t require authentication.  
 
-## Setup
+## Prerequisites
 
-1. Create an Azure AI Foundry agent by following the steps in the [quickstart](../../quickstart.md).
+* A configured agents
+
+## Setup
 
 1. Find the remote MCP server that you want to connect to, such as the GitHub MCP server. Create or update an Azure AI Foundry agent with an `mcp` tool with the following information:
 
