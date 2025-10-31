@@ -9,7 +9,7 @@ ms.topic: concept-article
 ms.author: scottpolly
 author: s-polly
 ms.reviewer: zhanxia
-ms.date: 07/16/2024
+ms.date: 10/31/2025
 ms.custom: cliv2, sdkv2
 ---
 
