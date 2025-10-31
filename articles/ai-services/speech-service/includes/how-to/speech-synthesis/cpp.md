@@ -22,11 +22,11 @@ void synthesizeSpeech()
     auto speechConfig = SpeechConfig::FromSubscription("YourSpeechKey", "YourSpeechRegion");
     // Set either the `SpeechSynthesisVoiceName` or `SpeechSynthesisLanguage`.
     speechConfig->SetSpeechSynthesisLanguage("en-US"); 
-    speechConfig->SetSpeechSynthesisVoiceName("en-US-AvaMultilingualNeural");
+    speechConfig->SetSpeechSynthesisVoiceName("en-US-Ava:DragonHDLatestNeural");
 }
 ```
 
-All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is, "I'm excited to try text to speech," and you select `es-ES-ElviraNeural`, the text is spoken in English with a Spanish accent.
+All neural voices are multilingual and fluent in their own language and English. For example, if the input text in English is, "I'm excited to try text to speech," and you select `es-ES-Ximena:DragonHDLatestNeural`, the text is spoken in English with a Spanish accent.
 
 If the voice doesn't speak the language of the input text, the Speech service doesn't create synthesized audio. For a full list of supported neural voices, see [Language and voice support for the Speech service](../../../language-support.md?tabs=tts).
 
@@ -159,7 +159,7 @@ To start using SSML for customization, make a minor change that switches the voi
 
    ```xml
    <speak version="1.0" xmlns="https://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-     <voice name="en-US-AvaMultilingualNeural">
+     <voice name="en-US-Ava:DragonHDLatestNeural">
        When you're on the freeway, it's a good idea to use a GPS.
      </voice>
    </speak>
@@ -233,7 +233,7 @@ int main()
     speechConfig->SetProperty(PropertyId::SpeechServiceResponse_RequestSentenceBoundary, "true");
 
     const auto ssml = R"(<speak version='1.0' xml:lang='en-US' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts'>
-        <voice name = 'en-US-AvaMultilingualNeural'>
+        <voice name = 'en-US-Ava:DragonHDLatestNeural'>
             <mstts:viseme type = 'redlips_front' />
             The rainbow has seven colors : <bookmark mark = 'colors_list_begin' />Red, orange, yellow, green, blue, indigo, and violet.<bookmark mark = 'colors_list_end' />.
         </voice>
