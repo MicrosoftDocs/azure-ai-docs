@@ -7,7 +7,7 @@ reviewer: patrickfarley
 manager: nitinme
 ms.service: azure-ai-speech
 ms.topic: conceptual
-ms.date: 10/24/2025
+ms.date: 10/31/2025
 ms.author: jagoerge
 ms.reviewer: pafarley
 ms.custom: references_regions
@@ -205,7 +205,7 @@ The regions in these tables support most of the core features of the Speech serv
 
 # [Voice live](#tab/voice-live)
 
-| **Region** | **gpt-realtime** | **gpt-4o-mini-realtime-preview** (Preview) | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5** (Preview) | **gpt-5-mini** (Preview) | **gpt-5-nano** (Preview) | **gpt-5-chat** (Preview) | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) |
+| **Region** | **gpt-realtime** | **gpt-realtime-mini** | **gpt-4o** | **gpt-4o-mini**  | **gpt-4.1** | **gpt-4.1-mini** | **gpt-5** (Preview) | **gpt-5-mini** (Preview) | **gpt-5-nano** (Preview) | **gpt-5-chat** (Preview) | **phi4-mm-realtime** (Preview) | **phi4-mini** (Preview) |
 |-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|
 | centralindia   | Cross-region<sup>1</sup> | Cross-region<sup>1</sup> | Global standard | Global standard | Global standard | Global standard | - | - | - | - | - | - |
 | eastus2   | Global standard | Global standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Data zone standard | Global standard | Regional | Regional |
