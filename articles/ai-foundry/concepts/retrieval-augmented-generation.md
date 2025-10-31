@@ -57,7 +57,7 @@ Azure AI provides an index asset to use with RAG pattern. The index asset contai
 * Does your index have vectors?
 * What is the embedding model used for vectors?
 
-The Azure AI index uses [Azure AI Search](/azure/search/search-what-is-azure-search) as the primary and recommended index store. Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes.
+The Azure AI index uses [Azure AI Search](/azure/search/search-what-is-azure-search) as the primary and recommended index store. Azure AI Search is an Azure resource that supports information retrieval over your vector and textual data stored in search indexes and other query targets if you use agentic retrieval.
 
 ## Related content
 
