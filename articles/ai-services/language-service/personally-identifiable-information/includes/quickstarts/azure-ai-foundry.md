@@ -25,7 +25,7 @@ ms.custom: language-service-pii
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::.
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::
 
 
 You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
@@ -113,7 +113,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::.
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position. :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::
 
 
 You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
