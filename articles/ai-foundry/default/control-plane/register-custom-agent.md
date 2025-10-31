@@ -12,7 +12,7 @@ ms.subservice: azure-ai-foundry-agent-service
 
 # Register and manage custom agents
 
-Azure AI Foundry Control Hub can operate agents across multiple platforms, including custom agents running in compute services in Azure or even on a different cloud.
+Azure AI Foundry can operate agents across multiple platforms, including custom agents running in compute services in Azure or even on a different cloud.
 
 In this article, you learn how to register a custom agent in Azure AI Foundry Control Hub to gain management and observability capabilities on it.
 
@@ -21,7 +21,7 @@ In this article, you learn how to register a custom agent in Azure AI Foundry Co
 Before getting started, make sure:
 
 * An Azure AI Foundry resource and project.
-* The Next
+* The **New AI Foundry** feature enabled.
 * Azure AI Foundry uses Azure API Management to register custom APIs as agents. [Configure AI Gateway in your Azure AI Foundry resource]().
 * To use observability capabilities, [configure Azure Application Insights]() in your project. Review the section [Enable telemetry for your agent](#enable-telemetry-for-your-agent) for more details and requirements.
 
@@ -54,25 +54,29 @@ To register the agent, follow these steps:
 
 1. From the **Overview** page, select the option **Register agent**.
 
+    :::image type="content" source="../media/register-custom-agent/register-custom-agent.png" alt-text="A screenshot showing the option to register an asset." lightbox="../media/register-custom-agent/register-custom-agent.png":::
+
 1. The registration wizard shows up. First, complete the details about the agent you want to register. The following properties describe the agent as it is running on its platform:
+
+    :::image type="content" source="../media/register-custom-agent/register-custom-agent-wizard.png" alt-text="A screenshot showing the registration wizard for an agent." lightbox="../media/register-custom-agent/register-custom-agent-wizard.png":::
 
     | Property  | Description | Required |
     |-----------|-------------|----------|
-    | **Agent URL** | It represents the endpoint (URL) where you agent is running and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent talks OpenAI Chat Completions API, you indicate `https://<host>/v1/` - without `/chat/completions` as it's generally added by your clients. | Yes |
+    | **Agent URL** | It represents the endpoint (URL) where your agent is running and receives requests. In general, but depending on your protocol, you indicate the base URL that your clients use. For example, if your agent talks OpenAI Chat Completions API, you indicate `https://<host>/v1/` - without `/chat/completions` as clients generally add it. | Yes |
     | **Protocol**  | The communication protocol supported by your agent. Use HTTP in general, or if your agent supports more specifically A2A, indicate that one | Yes |
     | **A2A agent card URL** | Path to the agent card JSON specification. If not indicated, the default `/.well-known/agent-card.json` is used. | No |
-    | **OpenTelemetry Agent ID** | The Agent ID used to emit traces according to OpenTelemetry Generative AI semantic conventions. On generated traces, it's indicated in the attribute `gen_ai.agents.id` for spans with operation name `create_agent`. If not indicated, **Agent name** value is used to find traces and logs reported by this new agent. | No |
-    | **Admin portal URL** | The administration portal URL where further administration operations can be performed for this agent. Azure AI Foundry can store this value so it's easily accesible from the portal. Azure AI Foundry won't have any access to perform operations directly to such management portal. | No |
+    | **OpenTelemetry Agent ID** | The Agent ID used to emit traces according to OpenTelemetry Generative AI semantic conventions. Traces indicate it in attribute `gen_ai.agents.id` for spans with operation name `create_agent`. If not indicated, **Agent name** value is used to find traces and logs reported by this new agent. | No |
+    | **Admin portal URL** | The administration portal URL where further administration operations can be performed for this agent. Azure AI Foundry can store this value for easy access convenience. Azure AI Foundry doesn't have any access to perform operations directly to such management portal. | No |
 
 1. Then, configure how you want the agent to show up in Azure AI Foundry Control Hub:
 
     | Property  | Description | Required |
     |-----------|-------------|----------|
-    | **Project** | The project where the agent gets registered. Azure AI Foundry uses the AI Gateway configured in the resource where the project lives to configure the inbound endpoint to the agent. Only projects with AI Gateway enabled in their resourses are availabile for selection. It's also advisable to configure Azure Application Insights in the selected project. Azure AI Foundry uses the project's Azure Application Insights resource to sink traces and logs. | Yes |
-    | **Agent name** | The name of the agent as you want it to show up in Azure AI Foundry. This name may also be used to find relevant traces and logs in Azure Application Insights if you have not indicated a different value in the field **OpenTelemetry Agent ID**. | Yes |
+    | **Project** | The project where the agent gets registered. Azure AI Foundry uses the AI Gateway configured in the resource where the project lives to configure the inbound endpoint to the agent. Only projects with AI Gateway enabled in their resources are available for selection. It's also advisable to configure Azure Application Insights in the selected project. Azure AI Foundry uses the project's Azure Application Insights resource to sink traces and logs. | Yes |
+    | **Agent name** | The name of the agent as you want it to show up in Azure AI Foundry. This name may also be used to find relevant traces and logs in Azure Application Insights if you didn't indicate a different value in the field **OpenTelemetry Agent ID**. | Yes |
     | **Description** | A clear description about this agent. | No |
 
-1. Once all the properties have been filled in, the field **new agent URL** displays the new URL that clients.
+1. Once all the properties were filled in, the field **new agent URL** displays the new URL that clients.
 
 1. Save the changes.
 
@@ -80,14 +84,14 @@ To register the agent, follow these steps:
 
 ### Use the agent
 
-Once your agent is registed in Azure AI Foundry, a new URL is generated for your clients to use. Azure AI Foundry acts as a proxy for communications to your agent so it can control its access and monitor activity.
+Once your agent is registered in Azure AI Foundry, a new URL is generated for your clients to use. Azure AI Foundry acts as a proxy for communications to your agent so it can control its access and monitor activity.
 
 Use the new generated URL to distribute to your clients.
 
 > [!NOTE]
 > Azure AI Foundry acts as a proxy for incoming requests for your agent. However, the original authorization and authentication schema in the original endpoint still applies. When consuming the new endpoint, provide the same authentication mechanism as if you were using the original endpoint.
 
-In this example, we have deployed a LangGraph agent and clients are using the LangGraph SDK to consume it. Notice how the URL used of the client is using the **new agent URL** value mentioned above.
+In this example, we deployed a LangGraph agent and clients are using the LangGraph SDK to consume it. Notice how the URL used of the client is using the **new agent URL** value mentioned in the previous section.
 
 ```python
 from langgraph_sdk import get_client
@@ -102,7 +106,7 @@ async def stream_run():
        print(chunk)
 ```
 
-## Control the custom agent
+## Control the agent
 
 Azure AI Foundry allows developers to monitor and control the agents across different platform. The actions available for each agent depend on the platform running the agent and in some cases the type of agent.
 
@@ -116,7 +120,7 @@ To block incoming requests to your agent:
 
 1. On the left navigation, select **Assets**.
 
-1. Select the agent you want to block. The information panel shows up on the right.
+1. Select the agent you want to block. The information panel shows up.
 
 1. Select **Update status** and then select **Block**.
 
@@ -138,12 +142,12 @@ Traces should be sent to the Azure Applications Insights resource of your projec
 
 ### Instrumenting custom code agents
 
-If your agent is built using custom code you control, you need to instrument your solution to emit traces and logging information according to the OpenTelemetry standard and sink them to Azure Applications Insights.
+If your agent is built using custom code, you need to instrument your solution to emit traces according to the OpenTelemetry standard and sink them to Azure Applications Insights.
 
 > [!TIP]
-> Learn how to instrument specific solutions with OpenTelemetry depending on the programming language and the framework used in your solution at [Language APIs & SDKs](https://opentelemetry.io/docs/languages/).
+> Learn how to instrument specific solutions with OpenTelemetry depending on the programming language and the framework used in your solution at [Language APIs & SDKs.](https://opentelemetry.io/docs/languages/)
 
-In this tutorial, we demostrate how you can configure an agent developed with LangGraph to emit traces in OpenTelemetry standard for LangGraph:
+In this tutorial, we demonstrate how you can configure an agent developed with LangGraph to emit traces in OpenTelemetry standard for LangGraph:
 
 ```python
 from langchain.agents import create_agent
@@ -151,7 +155,7 @@ from langchain_azure_ai.callbacks.tracers import AzureAIOpenTelemetryTracer
 
 application_insights_connection_string = 'InstrumentationKey="12345678...'
 
-azure_tracer = AzureAIOpenTelemetryTracer(
+tracer = AzureAIOpenTelemetryTracer(
     connection_string=application_insights_connection_string,
     enable_content_recording=True,
 )
@@ -164,10 +168,13 @@ agent = create_agent(
     model="openai:gpt-5.1",
     tools=[get_weather],
     system_prompt="You are a helpful assistant",
-).with_config({ "tracer": azure_tracer })
+).with_config({ "callbacks": [tracer] })
 ```
 
-### Instumenting platform solutions
+> [!TIP]
+> You can pass the connection string to Azure Application Insights using the environment variable `APPLICATIONINSIGHTS_CONNECTION_STRING`. 
+
+### Instrumenting platform solutions
 
 If your agent runs on a platform solution that supports OpenTelemetry, but it doesn't support Azure Applications Insights, you need to deploy an OpenTelemetry Collector and configure your software to send OTLP data to the Collector (standard OpenTelemetry configuration).
 
@@ -194,7 +201,7 @@ You can view traces and logs sent to Azure AI Foundry. To view them:
 
 ### Troubleshooting
 
-If you don't see traces, check the following:
+If you don't see traces, check the following checklist:
 
 > [!div class="checklist"]
 > * The project where your agent was registered has Azure Application Insights configured.
