@@ -33,8 +33,8 @@ This article describes how to create a Foundry project in [Azure AI Foundry](htt
 
     * Agents 
     * Foundry SDK and API to build agents and switch easily between models
-    * Models sold directly by Azure—Azure OpenAI, Mistral, xAI, DeepSeek, and others
-    * Partner and Community Models sold through Marketplace—Stability, Bria, Cohere, and others
+    * Models sold directly by Azure - Azure OpenAI, Mistral, xAI, DeepSeek, etc.
+    * Partner & Community Models sold through Marketplace - Stability, Cohere, etc. 
     * Content understanding 
     * Evaluations
     * Fine-tuning

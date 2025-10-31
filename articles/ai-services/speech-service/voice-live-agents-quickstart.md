@@ -5,11 +5,12 @@ description: Learn how to use voice live with agents for real-time voice agents 
 manager: nitinme
 ms.service: azure-ai-openai
 ms.topic: how-to
-ms.date: 7/31/2025
-author: PatrickFarley
-ms.author: pafarley
+ms.date: 10/28/2025
+author: goergenj
+reviewer: PatrickFarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 zone_pivot_groups: voice-live-quickstart-agents
-ms.custom: build-2025
 recommendations: false
 
 ---
@@ -26,7 +27,9 @@ recommendations: false
 [!INCLUDE [Python quickstart](./includes/quickstarts/voice-live-agents/python.md)]
 ::: zone-end
 
-
+::: zone pivot="programming-language-csharp"
+[!INCLUDE [Csharp quickstart](./includes/quickstarts/voice-live-agents/csharp.md)]
+::: zone-end
 
 ## Related content
 
