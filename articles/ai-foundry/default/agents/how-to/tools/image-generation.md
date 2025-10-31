@@ -10,7 +10,9 @@ ms.topic: how-to
 ms.date: 10/29/2025
 author: aahill
 ms.author: aahi
+zone_pivot_groups: selection-image-generation
 ---
+
 
 
 # Image generation tool (preview) 
@@ -19,6 +21,113 @@ ms.author: aahi
 > The Image Generation tool is powered by the `gpt-image-1` model.  Learn more about intended uses, capabilities, limitations, risks, and considerations when choosing a use case model in the [Azure OpenAI transparency note](/azure/ai-foundry/responsible-ai/openai/transparency-note?tabs=image). 
 
 The Azure AI Foundry Agent Service enables image generation as part of conversations and multi-step workflows. It supports image inputs and outputs within context and includes built-in tools for generating and editing images. 
+
+## Usage support
+
+|Azure AI foundry support  | Python SDK |	C# SDK | JavaScript SDK | Java SDK | REST API | Basic agent setup | Standard agent setup |
+|---------|---------|---------|---------|---------|---------|---------|---------|
+| ✔️  | ✔️ | - | - | - |  ✔️ | ✔️ | ✔️ | 
+
+:::zone pivot="python"
+Before you start, make sure you have run `pip install "azure-ai-projects>=2.0.0" azure-identity load_dotenv`
+
+## Create an agent with the image generation tool
+```python
+with project_client:
+    agent = project_client.agents.create_version(
+        agent_name="MyAgent",
+        definition=PromptAgentDefinition(
+            model=os.environ["AZURE_AI_MODEL_DEPLOYMENT_NAME"],
+            instructions="Generate images based on user prompts",
+            tools=[ImageGenTool(quality="low", size="1024x1024")],
+        ),
+        description="Agent for image generation.",
+    )
+    print(f"Agent created (id: {agent.id}, name: {agent.name}, version: {agent.version})")
+```
+## Create a response 
+```python
+    response = openai_client.responses.create(
+        input="Generate an image of Microsoft logo.",
+        extra_headers={
+            "x-ms-oai-image-generation-deployment": "gpt-image-1"
+        },  # this is required at the moment for image generation
+        extra_body={"agent": {"name": agent.name, "type": "agent_reference"}},
+    )
+    print(f"Response created: {response.id}")
+```
+
+## Save the image
+```python
+    # Save the image to a file
+    image_data = [output.result for output in response.output if output.type == "image_generation_call"]
+
+    if image_data and image_data[0]:
+        print("Downloading generated image...")
+        filename = "microsoft.png"
+        file_path = os.path.abspath(filename)
+
+        with open(file_path, "wb") as f:
+            f.write(base64.b64decode(image_data[0]))
+
+        print(f"Image downloaded and saved to: {file_path}")
+```
+:::zone end
+
+:::zone pivot="rest"
+## Create an agent with the image generation tool
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "description": "Test agent for image generation capabilities",
+  "definition": {
+  "kind": "prompt",
+  "model": "{{model}}",
+  "tools": [
+    {
+      "type": "image_generation"
+    }
+  ],
+    "instructions": "You are a creative assistant that generates images when requested. Please respond to image generation requests clearly and concisely."
+  }
+}'
+```
+## Create a response
+```bash
+curl --request POST \
+  --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/openai/responses?api-version=$API_VERSION \
+  -H "Authorization: Bearer $AGENT_TOKEN" \
+  -H 'Content-Type: applicat ion/json' \
+  -H 'x-ms-oai-image-generation-deployment: gpt-image-1' \
+  -d '{
+  "agent": {
+    "type": "agent_reference",
+    "name": "{{agentVersion.name}}",
+    "version": "{{agentVersion.version}}"
+  },
+  "metadata": {
+    "test_response": "image_generation_enabled",
+    "test_scenario": "basic_imagegen"
+  },
+  "input": [{
+    "type": "message",
+    "role": "user",
+    "content": [
+      {
+        "type": "input_text",
+        "text": "Please generate small image of a sunset over a mountain lake."
+      }
+    ]
+  }],
+  "background": true,
+  "stream": false
+}'
+```
+
+:::zone end
 
 ## When to use the image generation tool
 

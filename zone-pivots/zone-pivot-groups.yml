@@ -1254,6 +1254,15 @@ groups:
     title: Python 
   - id: rest-api
     title: REST API
+# owner: aahi
+- id: selection-image-generation
+  title: Selections
+  prompt: What would you like to see?
+  pivots:
+  - id: python
+    title: Python 
+  - id: rest-api
+    title: REST API
 - id: selection-deep-research
   title: Selections
   prompt: What would you like to see?

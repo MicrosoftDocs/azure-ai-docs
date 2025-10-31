@@ -11,6 +11,7 @@ ms.date: 11/18/2025
 author: aahill
 ms.author: aahi
 ms.custom: azure-ai-agents, references_regions
+zone_pivot_groups: selection-web-search
 ---
 
 # Web search tool (preview)
