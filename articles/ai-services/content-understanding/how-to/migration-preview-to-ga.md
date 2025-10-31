@@ -155,6 +155,7 @@ The `2024-12-01-preview` API version is the earliest preview version and migrati
 
 ---
 
+<!--
 
 ## Breaking changes
 
@@ -208,6 +209,7 @@ The `2024-12-01-preview` API version is the earliest preview version and migrati
 
 [Common migration issues and solutions]
 
+-->
 
 ## Next steps
 

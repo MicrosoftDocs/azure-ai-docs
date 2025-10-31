@@ -12,7 +12,7 @@ ms.custom:
   - ignite-2025
 ---
 
-# Tutorial: Using Azure AI Content Understanding in a Robotic Process Automation (RPA) Solution
+# Tutorial: Use Azure AI Content Understanding in a robotic process automation (RPA) solution
 
 ## Overview
 Robotic Process Automation (RPA) enables organizations to automate repetitive tasks by orchestrating workflows across systems. When combined with **Azure AI Content Understanding**, RPA can handle complex content ingestion scenarios across documents, images, audio, and video.
