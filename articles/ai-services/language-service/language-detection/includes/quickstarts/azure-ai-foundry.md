@@ -14,7 +14,7 @@ ms.author: lajanuar
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (classic).
 > 
 > → You can switch to the [Azure AI Foundry (new) ](https://ai.azure.com/) portal for streamlined access to models, agents, and tools with Foundry projects.
 >
@@ -28,7 +28,7 @@ You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 > * Create and run an agent
 > * Upload files to your agent
 
-## Navigate to the [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
+## [Azure AI Foundry (classic)](https://ai.azure.com/) Playground
 
 Using the left side pane, select **Playgrounds**. Then select the **Try the Language Playground** button.
 
@@ -61,17 +61,17 @@ After your operation is completed, the **Details** section contains the followin
 
 |Field | Description|
 |---|---|
-|ISO 639-1 Code| The ISE 639-1 code for the most detected language.|
+|ISO 639-1 Code| The ISO 639-1 code for the most detected language.|
 |Confidence Score| How confident the model is in the correctness of identification of the most typed language.|
 |Script Name| The name of the most detected script in the text.
-|Iso 15924 Script Code| The ISO 15924 script code for the most detected script.|
+|ISO 15924 Script Code| The ISO 15924 script code for the most detected script.|
 
 :::image type="content" source="../../media/quickstarts/azure-ai-foundry/language-detection.png" alt-text="A screenshot of an example of detect language in Azure AI Foundry portal." lightbox="../../media/quickstarts/azure-ai-foundry/language-detection.png":::
 
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (new).
 > 
 > → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
 >
@@ -86,7 +86,7 @@ You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 
 ## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
 
- The project you are working on appears in the upper-left corner.  
+ The project you're working on appears in the upper-left corner.  
 * You can select to create a new project from the drop-down menu:
   * Select the provided project name or create a new project name.
   * Finally, select **Create project**.
@@ -105,15 +105,15 @@ There are two ways to access the Language Detection interface:
    * Select the **AI services** tab.
    * Next, select  **Azure-Language-detection** to go to the playground.
 
-## Use playground: extract PII from text
+## Use playground: extract `PII` from text
 
 The Azure AI Foundry playground is an interactive environment where you can engage with deployed AI models.
 
-The **detect language** feature identifies the language used in written content.
+The **Detect Language** feature identifies the language used in written content.
 
 1. On the **Playground tab**, you can choose a text sample from the drop-down menu, choose the paperclip icon to upload your own text, or type your text directly into the sample window.
 
-1. Next select the **Configure** button. In the **Configure** side panel you can select from the following options:
+1. Next select the **Configure** button. In the **Configure** side panel, you can select from the following options:
 
    |Option|Description|
    |---|---
@@ -125,7 +125,7 @@ After you make your selections, choose the **Detect** button. Then review the te
 
    |Field | Description|
    |---|---|
-   |**Confidence**| The model's level of certainty regarding whether it has correctly identified language.|
+   |**Confidence**| The model's level of certainty regarding whether it correctly identified a language.|
    |**ISO 639-1 code**| A two letter code for the detected language.|
    |**Detected script**| The name of the detected script in the text.
    |**Detected script code**| The ISO 15924 script code for the detected script (writing system).|

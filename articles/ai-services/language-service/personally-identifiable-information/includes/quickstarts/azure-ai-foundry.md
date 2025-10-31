@@ -25,7 +25,7 @@ ms.custom: language-service-pii
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (classic).
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (classic).
 >
 > → You can switch to the [Azure AI Foundry (new) ](https://ai.azure.com/) portal for streamlined access to models, agents, and tools with Foundry projects.
 >
@@ -72,12 +72,12 @@ In **Configuration** there are the following options:
 |Specify redaction policy| Select the method of redaction.|
 |Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for each entity:
+After your operation is completed, the type of entity is displayed beneath each entity in the center pane. The **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
 |Entity|The detected entity.|
-|Category| The type of entity that was detected.|
+|Category| The entity type that was detected.|
 |Offset| The number of characters that the entity was detected from the beginning of the line.|
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
@@ -99,12 +99,12 @@ In **Configuration** you can select from the following options:
 |Specify redaction policy| Select the method of redaction.|
 |Specify redaction character| Select which character is used for redaction. Only available with the **CharacterMask** redaction policy.|
 
-After your operation is completed, the type of entity is displayed beneath each entity in the center pane and the **Details** section contains the following fields for each entity:
+After your operation is completed, the type of entity is displayed beneath each entity in the center pane. The **Details** section contains the following fields for each entity:
 
 |Field | Description                |
 |------|----------------------------|
 |Entity|The detected entity.|
-|Category| The type of entity that was detected.|
+|Category| The entity type that was detected.|
 |Offset| The number of characters that the entity was detected from the beginning of the line.|
 |Length| The character length of the entity.|
 |Confidence| How confident the model is in the correctness of identification of entity's type.|
@@ -115,7 +115,7 @@ After your operation is completed, the type of entity is displayed beneath each 
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (new).
 >
 > → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
 >
@@ -131,7 +131,7 @@ You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 
 ## Navigate to [Azure AI Foundry (new)](https://ai.azure.com/)
 
-* The project you are working on appears in the upper-left corner.  
+* The project you're working on appears in the upper-left corner.  
 * You can select to create a new project from the drop-down menu:
   * Select the provided project name or create a new project name.
   * Finally, select **Create project**.
@@ -160,7 +160,7 @@ The **extract PII from text** feature detects and masks personally identifying i
 
 1. On the **Playground** tab, select the sample tab, use the paperclip icon to upload your text, or enter your own text.
 
-1. Next select the **Configure** button. In the **Configure** side panel you can select from the following options:
+1. Next select the **Configure** button. In the **Configure** side panel, you can select from the following options:
 
 | Option | Description |
 |--|--|
@@ -177,7 +177,7 @@ After you make your selections, choose the **Detect** button. Then review the te
 | Field | Description |
 |--|--|
 | **Type** | The detected type. |
-| **Confidence** | The model's level of certainty regarding whether it has correctly identified an entity's type. |
+| **Confidence** | The model's level of certainty regarding whether it correctly identified an entity type. |
 | **Offset** | The number of characters that the entity was detected from the beginning of the text. |
 | **Length** | The character length of the entity. |
 

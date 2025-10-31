@@ -17,7 +17,7 @@ zone_pivot_groups: programming-languages-text-analytics
 # Quickstart: Detect Personally Identifiable Information (PII)
 
 > [!NOTE]
-> This quickstart only covers PII detection in documents. To learn more about detecting PII in conversations, see [How to detect and redact PII in conversations](how-to-call-for-conversations.md).
+> This quickstart guides you through the process of identifying personally identifiable information (PII) in documents. To learn about detecting PII in conversations, see [How to detect and redact PII in conversations](how-to/redact-conversation-pii.md). To learn about detecting PII in text, see [How to detect and redact PII in text](how-to/redact-text-pii.md).
 
 ::: zone pivot="programming-language-csharp"
 
