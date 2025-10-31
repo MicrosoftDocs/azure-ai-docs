@@ -294,7 +294,7 @@ To start using SSML for customization, you make a minor change that switches the
 
    ```xml
    <speak version="1.0" xmlns="https://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-     <voice name="en-US-Ava:DragonHDLatestNeural">
+     <voice name="en-US-DragonHDLatestNeural">
        When you're on the freeway, it's a good idea to use a GPS.
      </voice>
    </speak>
@@ -340,7 +340,7 @@ To start using SSML for customization, you make a minor change that switches the
    ```
 
 > [!NOTE]
-> To change the voice without using SSML, you can set the property on `SpeechConfig` by using `SpeechConfig.speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural";`.
+> To change the voice without using SSML, you can set the property on `SpeechConfig` by using `SpeechConfig.speechSynthesisVoiceName = "en-US-DragonHDLatestNeural";`.
 
 ## Subscribe to synthesizer events
 
@@ -368,7 +368,7 @@ You can follow the instructions in the [quickstart](../../../get-started-text-to
     const speechConfig = sdk.SpeechConfig.fromSubscription(process.env.SPEECH_KEY, process.env.SPEECH_REGION);
     const audioConfig = sdk.AudioConfig.fromAudioFileOutput(audioFile);
 
-    var speechSynthesisVoiceName  = "en-US-Ava:DragonHDLatestNeural";  
+    var speechSynthesisVoiceName  = "en-US-AvaMultilingualNeural";  
     var ssml = `<speak version='1.0' xml:lang='en-US' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts'> \r\n \
         <voice name='${speechSynthesisVoiceName}'> \r\n \
             <mstts:viseme type='redlips_front'/> \r\n \
