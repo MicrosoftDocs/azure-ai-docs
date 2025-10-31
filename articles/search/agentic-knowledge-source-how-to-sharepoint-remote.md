@@ -7,16 +7,22 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/30/2025
+ms.date: 10/31/2025
 ---
 
 # Create a remote SharePoint knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *remote SharePoint knowledge source* specifies a connection to a SharePoint site and uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There's no search index used by this knowledge source, and only textual content is queried.
+A *remote SharePoint knowledge source* uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint and OneDrive, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There's no search index used by this knowledge source, and only textual content is queried.
 
-SharePoint permissions and Purview labels are honored in requests for content. Usage is billed through Microsoft 365 and a Copilot license.
+At query time, the knowledge source uses the identity of the caller to retrieve content from Microsoft 365. There's no SharePoint endpoint in the knowledge source, but your Azure tenant and the Microsoft 365 tenant must use the same Microsoft Entra ID tenant, and the caller's identity must be recognized by both tenants.
+
++ You can use filters to scope search by URLs, date ranges, file types, and other metadata.
+
++ SharePoint permissions and Purview labels are honored in requests for content.
+
++ Usage is billed through Microsoft 365 and a Copilot license.
 
 Like any other knowledge source, you specify a remote SharePoint knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md), and use the results as grounding data when an agent or chatbot calls a [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action at query time.
 
@@ -24,11 +30,11 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + Azure AI Search in an Azure tenant, configured for Microsoft Entra ID authentication.
 
-+ SharePoint Online in a Microsoft 365 tenant. You need the tenant ID to set up the connection string.
++ SharePoint Online in a Microsoft 365 tenant, under the same Microsoft Entra ID tenant as Azure.
 
-+ An application registration in the Azure AI Search tenant used for Microsoft Entra ID authentication to SharePoint.
++ A personal access token for local development or a user's identity from a client application. 
 
-+ A personal access token for local development. The agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
+For local developement, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
@@ -36,81 +42,21 @@ To try the examples in this article, we recommend [Visual Studio Code](https://c
 
 The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) apply to remote SharePoint knowledge sources.
 
++ There's no support for Copilot connectors. Content is retrieved from OneDrive and SharePoint.
+
 + Limit of 200 requests per user per hour.
 
 + Query character limit of 1,500 characters.
 
 + Hybrid queries are only supported for the following file extensions: .doc, .docx, .pptx, .pdf, .aspx, and .one.
 
-+ Multimodal retrieval (nontextual content, including tables, images, and charts) isn't supported/
++ Multimodal retrieval (nontextual content, including tables, images, and charts) isn't supported.
 
 + Maximum of 25 results from a query.
 
 + Results are returned by Copilot Retrieval API as unordered.
 
 + Invalid filter expressions (Keyword Query Language KQL) are ignored and the query continues to execute without the filter.
-
-## Register an application with Microsoft Entra ID
-
-To create a SharePoint Online connection string with a tenant ID, application ID, and application secret, you must register a new application in the Microsoft Entra admin center and grant it permissions. Using an app registration is recommended for application-only authentication to SharePoint Online. 
-
-### Step 1: Register an application in Microsoft Entra ID
-
-1. Navigate to the Microsoft Entra admin center by going to https://entra.microsoft.com/. You must have an account with permissions to register applications.
-
-1. Select **Microsoft Entra ID** from the left-hand menu.
-
-1. Choose **App registrations** and then select **New registration**.
-
-1. Fill in the registration details:
-
-   + Name: Enter a descriptive name for your application (for example, "SharePoint Connection App").
-   + Supported account types: Select Accounts in this organizational directory only.
-   + Redirect URI (optional): This isn't needed for a client secret flow, but you can enter https://localhost.
-
-1. Select **Register**.
-
-### Step 2: Record the application and tenant IDs
-
-After the app is registered, you'll be taken to its Overview page. Copy and save the following values for your connection string: 
-
-+ Application (client) ID: The unique identifier for your app.
-
-+ Directory (tenant) ID: The unique ID for your organization's Microsoft Entra instance. 
-
-### Step 3: Create a client secret
-
-1. On the app's management page, select **Certificates & secrets** from the menu.
-
-1. Select **New client secret**.
-
-1. Add a **Description** and select an **Expires** duration for the secret. Microsoft recommends a shorter expiry for better security.
-
-1. Select **Add**.
-
-1. Immediately copy the **Value** of the client secret. *This is your only chance to save this value*. Once you leave the page, it can't be retrieved again. 
-
-### Step 4: Grant API permissions to SharePoint
-
-1. On the app's management page, select **API permissions**.
-
-1. Select **Add a permission**.
-
-1. Select the SharePoint API.
-
-1. Choose **Application permissions**, then select the required permissions for your application, such as `Sites.FullControl.All` for full access or `Sites.Read.All` for read-only.
-
-1. Select **Add permissions**.
-
-1. Select **Grant admin consent for [Your Organization]** and confirm the consent. 
-
-### Step 5: Form the connection string
-
-With your Tenant ID, Application ID (Client ID), and Application Secret (Client Secret), you can now construct your connection string. The format expected by Azure AI Search is:
-
-```
-SharePointOnlineEndpoint=https://YOUR-ACCOUNT-NAME.sharepoint.com/;ApplicationId=YOUR-APPLICATION-ID;ApplicationSecret=YOUR-APPLICATION-SECRET;TenantId=YOUR-TENANT-ID
-```
 
 ## Check for existing knowledge sources
 
@@ -147,10 +93,9 @@ To create a remote SharePoint knowledge source:
     @aoai-endpoint = <YOUR AZURE OPENAI RESOURCE PROVIDING A CHAT COMPLETION MODEL>
     @aoai-key = <YOUR AZURE OPENAI KEY>
     @access-token = <YOUR PERSONAL ACCESS TOKEN USED FOR RETRIEVING PERMITTED CONTENT ON SHAREPOINT>
-    @sharepoint-connection-string = <YOUR SHAREPOINT CONNECTION STRING>
     ```
 
-    API keys are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint Online on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md). You can also use your personal access token to access Azure AI Search and Azure OpenAI if you set up role assignments on each resource. Using keys allows you to omit this step.
+    API keys are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint Online on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md). You can also use your personal access token to access Azure AI Search and Azure OpenAI if you [set up role assignments on each resource](search-security-rbac.md). Using keys allows you to omit this step.
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
@@ -187,7 +132,7 @@ You can pass the following properties to create a remote SharePoint knowledge so
 | `description` | A description of the knowledge source. | String | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
 | `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No |
-| `filterExpression` | An expression written in the SharePoint in Keyword Query Language. Used to specify sites and paths to content. | String | No |
+| `filterExpression` | An expression written in the SharePoint in Keyword Query Language (KQL), used to specify sites and paths to content. | String | No |
 | `resourceMetadata` | A comma-delimited list of the standard metadata fields: author, file name, creation date, content type, and file type. | Array | No |
 | `containerTypeId` | Ignored for now. | String| No |
 
@@ -197,17 +142,17 @@ You can pass the following properties to create a remote SharePoint knowledge so
 
 Learn more about the full [Keyword Query Language (KQL)](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) syntax reference.
 
-+ Filter to a single site by ID: `"filterExpression": "SiteID:\"e2cf7e40-d689-41de-99ee-a423811a253c\""`
++ Filter to a single site by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\""`
 
-+ Filter to multiple sites by ID: `"filterExpression": "SiteID:\"e2cf7e40-d689-41de-99ee-a423811a253c\" OR SiteID:\"523fcf40-d689-41de-99ee-a423811a253c\""` 
++ Filter to multiple sites by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\" OR SiteID:\"11bb11bb-cc22-dd33-ee44-55ff55ff55ff\""`
 
-+ Filter to files under a specific path: `"filterExpression": "Path:\"https://azuresearchdev4.sharepoint.com/sites/miml/Shared Documents/en/mydocs\""` 
++ Filter to files under a specific path: `"filterExpression": "Path:\"https://my-demo.sharepoint.com/sites/miml/Shared Documents/en/mydocs\""`
 
-+ Filter to a specific date range: `"filterExpression": "LastModifiedTime >= 2024-07-22 AND LastModifiedTime <= 2025-01-08"` 
++ Filter to a specific date range: `"filterExpression": "LastModifiedTime >= 2024-07-22 AND LastModifiedTime <= 2025-01-08"`
 
-+ Filter to files of a specific file type: `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""` 
++ Filter to files of a specific file type: `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""`
 
-+ Filter to files of a specific information protection label: `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""` 
++ Filter to files of a specific information protection label: `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""`
 
 ## Assign to a knowledge base
 
@@ -216,12 +161,17 @@ If you're satisfied with the index, continue to the next step: specifying the kn
 Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
 
 <!-- Deviating from pattern here. SharePoint remote needs answerSynthesis-->
-Here's an example of a knowledge base that specifies a remote SharePoint knowledge source. Make sure you set `outputMode` to `answerSynthesis`. Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
+Here's an example of a knowledge base that specifies a remote SharePoint knowledge source, with some key points:
+
++ Make sure you set `outputMode` to `answerSynthesis`.
++ Answer synthesis requires that you set the `retrievalReasoningEffort` to `low`.
+
+Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 ```json
 {
   "name": "remote-sp-kb",
-  "description": "A sample federated SharePoint knowledge base",
+  "description": "Retrieves SharePoint and OneDrive content from a trusted Microsoft 365 tenant.",
   "retrievalInstructions": null,
   "answerInstructions": null,
   "outputMode": "answerSynthesis",
@@ -247,6 +197,60 @@ Here's an example of a knowledge base that specifies a remote SharePoint knowled
     "kind": "low"
   }
 }
+```
+
+## Retrieve content
+
+The retrieve action provides the user identity that authorizes access to content in Microsoft 365. For local development, set the `x-ms-query-source-authorization` header to provide the access token you previously set as a variable.
+
+```http
+POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
+api-key: {{api-key}}
+Content-Type: application/json
+x-ms-query-source-authorization: {{access-token}}
+
+{
+    "messages": [
+        {
+            "role": "user",
+            "content": [
+                { "type": "text", "text": "what was covered in the keynote doc for Ignite 2024" }
+            ]
+        }
+    ],
+    "includeActivity": true,
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "remote-sp-kb",
+            "kind": "remoteSharePoint",
+            "includeReferences": true,
+            "includeReferenceSourceData": true
+        }
+    ]
+}
+```
+
+Queries asking questions about the content itself are more effective then questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location queries.
+
+However, if you ask "what is the keynote doc for Ignite 2024", the response includes the synthesized answer, plus the URL and other metadata.
+
+```json
+{
+    "resourceMetadata": {
+        "Author": "Nuwan Amarathunga;Nurul Izzati",
+        "Title": "Ignite 2024 Keynote Address"
+    }
+},
+"rerankerScore": 2.489522,
+"webUrl": "https://contoso-my.sharepoint.com/keynotes/nuamarth_contoso_com/Documents/Keynote-Ignite-2024.docx",
+"searchSensitivityLabelInfo": {
+        "displayName": "Confidential\\Contoso Extended",
+        "sensitivityLabelId": "aaaaaaaa-0b0b-1c1c-2d2d-333333333333",
+        "tooltip": "Data is classified and protected. Contoso Full Time Employees (FTE) and non-employees can edit, reply, forward and print. Recipient can unprotect content with the right justification.",
+        "priority": 5,
+        "color": "#FF8C00",
+        "isEncrypted": true
+    }
 ```
 
 ## Delete a knowledge source
