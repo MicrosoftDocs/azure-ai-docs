@@ -30,7 +30,7 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + Azure AI Search in an Azure tenant, configured for Microsoft Entra ID authentication.
 
-+ SharePoint Online in a Microsoft 365 tenant, under the same Microsoft Entra ID tenant as Azure.
++ SharePoint in a Microsoft 365 tenant, under the same Microsoft Entra ID tenant as Azure.
 
 + A personal access token for local development or a user's identity from a client application. 
 
@@ -95,7 +95,7 @@ To create a remote SharePoint knowledge source:
     @access-token = <YOUR PERSONAL ACCESS TOKEN USED FOR RETRIEVING PERMITTED CONTENT ON SHAREPOINT>
     ```
 
-    [API keys](search-security-api-keys.md) are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint Online on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md).
+    [API keys](search-security-api-keys.md) are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint in Microsoft 365 on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md).
 
     > [!NOTE]
     > You can also use your personal access token to access Azure AI Search and Azure OpenAI if you [set up role assignments on each resource](search-security-rbac.md). Using API keys allows you to omit this step in this example.
@@ -153,18 +153,6 @@ Learn more about the full [Keyword Query Language (KQL)](/microsoft-365-copilot/
 | Filter to a specific date range | `"filterExpression": "LastModifiedTime >= 2024-07-22 AND LastModifiedTime <= 2025-01-08"` |
 | Filter to files of a specific file type | `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""` |
 | Filter to files of a specific information protection label | `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""` |
-
-<!-- + Filter to a single site by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\""`
-
-+ Filter to multiple sites by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\" OR SiteID:\"11bb11bb-cc22-dd33-ee44-55ff55ff55ff\""`
-
-+ Filter to files under a specific path: `"filterExpression": "Path:\"https://my-demo.sharepoint.com/sites/miml/Shared Documents/en/mydocs\""`
-
-+ Filter to a specific date range: `"filterExpression": "LastModifiedTime >= 2024-07-22 AND LastModifiedTime <= 2025-01-08"`
-
-+ Filter to files of a specific file type: `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""`
-
-+ Filter to files of a specific information protection label: `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""` -->
 
 ## Assign to a knowledge base
 
