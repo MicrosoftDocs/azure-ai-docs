@@ -451,7 +451,7 @@ func main() {
     speechSynthesizer.VisemeReceived(visemeReceivedHandler)
     speechSynthesizer.WordBoundary(wordBoundaryHandler)
 
-    speechSynthesisVoiceName := "en-US-Ava:DragonHDLatestNeural"
+    speechSynthesisVoiceName := "en-US-AvaMultilingualNeural"
 
     ssml := fmt.Sprintf(`<speak version='1.0' xml:lang='en-US' xmlns='http://www.w3.org/2001/10/synthesis' xmlns:mstts='http://www.w3.org/2001/mstts'>
             <voice name='%s'>
