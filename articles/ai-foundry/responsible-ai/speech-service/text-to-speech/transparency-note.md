@@ -24,7 +24,7 @@ Microsoft’s Transparency Notes are part of a broader effort at Microsoft to pu
 
 ### Introduction 
 
-[Text to speech](/azure/ai-services/speech-service/text-to-speech), part of Azure Speech in Foundry Tools, is a versatile tool that can convert written text into natural-sounding speech audio. The feature takes input in the form of text and generates high-quality speech audio output that can be played on devices. For the speech audio output, text to speech offers a range of prebuilt neural voices or, for Limited Access customers, the option to create a custom neural voice for your product or brand.
+[Text to speech](/azure/ai-services/speech-service/text-to-speech), part of Azure AI Speech, is a versatile tool that can convert written text into natural-sounding speech audio. The feature takes input in the form of text and generates high-quality speech audio output that can be played on devices. For the speech audio output, text to speech offers a range of prebuilt neural voices or, for Limited Access customers, the option to create a custom neural voice for your product or brand.
 
 Text to speech also has visual capabilities. Using text to speech avatar, customers can input text and create a synthetic video of an avatar speaking. Both prebuilt text to speech avatars and custom text to speech avatars are available, which can be used with both prebuilt neural voice and custom neural voice, though some features are only available for Limited Access customers.
 

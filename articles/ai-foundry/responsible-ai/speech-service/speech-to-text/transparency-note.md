@@ -22,7 +22,7 @@ Microsoft's Transparency Notes are part of a broader effort at Microsoft to put 
 
 ## The basics of speech to text
 
-Speech to text, also known as automatic speech recognition (ASR), is a feature under the Azure Speech in Foundry Tools service, which is a part of Azure AI services. [Speech to text](/azure/cognitive-services/speech-service/Speech-to-Text) converts spoken audio into text. Speech to text in Azure supports more than 140 locales for input. For the latest list of supported locales, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
+Speech to text, also known as automatic speech recognition (ASR), is a feature under the Azure AI Speech service, which is a part of Azure AI services. [Speech to text](/azure/cognitive-services/speech-service/Speech-to-Text) converts spoken audio into text. Speech to text in Azure supports more than 140 locales for input. For the latest list of supported locales, see [Language and voice support for the Speech service](/azure/ai-services/speech-service/language-support).
 
 ### Key terms
 

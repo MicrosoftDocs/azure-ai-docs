@@ -32,7 +32,7 @@ Speaker Recognition processes the following types of data:
 
 **Enrolled voice signature:** This is the numeric vector that represents an individual speaker’s voice characteristics, extracted from audio recordings. 
 
-**Passphrase signature:** This is a pre-defined phrase, for example, ‘My voice is my profile’.  During enrollment of a speaker, enrollment audio will be processed through Azure Speech in Foundry Tools service in order to confirm that the text from that audio matches the passphrase required. 
+**Passphrase signature:** This is a pre-defined phrase, for example, ‘My voice is my profile’.  During enrollment of a speaker, enrollment audio will be processed through Azure AI Speech service in order to confirm that the text from that audio matches the passphrase required. 
 
 
 **Recognition audio:** After the enrollment of the customer’s speaker(s), the customer sends audio input along with the relevant GUIDs to be processed to the Speaker Recognition feature and voice signatures are processed to determine if the audio matches the enrolled speaker’(s) voice signatures. If using text-dependent speaker verification, the passphrase signature is also transcribed by speech recognition to determine if there is a passphrase match.
