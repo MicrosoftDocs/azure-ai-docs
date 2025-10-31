@@ -23,7 +23,7 @@ Upgrading your Azure OpenAI resource to an Azure AI Foundry resource unlocks the
 |Feature|Azure OpenAI|Azure AI Foundry|
 |---|---|---|
 | Models sold directly by Azure | Azure OpenAI only | Azure OpenAI, Black Forest Labs, DeepSeek, Meta, xAI, Mistral, Microsoft  |
-| Partner & Community Models sold through Marketplace - Stability, Bria, Cohere, etc.|  | ✅ |
+| Partner & Community Models sold through Marketplace - Stability, Cohere, etc.|  | ✅ |
 | Azure OpenAI API (batch, stored completions, fine-tuning, evaluation, etc.) | ✅ | ✅ |
 | Agent service | | ✅ |
 | Azure Foundry API |  | ✅ |
@@ -109,7 +109,7 @@ Run the template using [Azure Bicep CLI](/azure/azure-resource-manager/bicep/bic
 
 ## UX navigation differences after upgrading
 
-After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to the portal’s navigation and feature access:
+After upgrading from Azure OpenAI to Azure AI Foundry, you'll notice updates to the portal's navigation and feature access:
 
 1. **Updated left-side navigation**
    
