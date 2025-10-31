@@ -253,8 +253,9 @@ As with all Azure AI services, review Microsoft's [Data, protection, and privacy
 
 ## Related content
 
-* Process videos in the [Azure AI Foundry portal](https://aka.ms/cu-landing).
-* Quickstart: [Analyze video content with analyzer templates](../quickstart/use-ai-foundry.md).
+* Try out analyzing videos in the [Content Understanding Studio](https://aka.ms/cu-studio).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
+* Learn more about analyzing video content using [analyzer templates](../concepts/analyzer-templates.md).
 * Samples:
 
   * [Video content extraction notebook](https://github.com/Azure-Samples/azure-ai-content-understanding-python/blob/main/notebooks/content_extraction.ipynb)

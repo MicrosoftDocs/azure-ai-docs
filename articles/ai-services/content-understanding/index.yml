@@ -24,20 +24,17 @@ highlightedContent:
     - title: Try the REST API
       itemType: quickstart
       url: quickstart/use-rest-api.md
-    - title: Try Azure AI Foundry
+    - title: Try Content Understanding Studio
       itemType: quickstart
-      url: quickstart/use-ai-foundry.md
+      url: quickstart/content-understanding-studio.md
 
 conceptualContent:
   items:
-    - title: Azure AI Foundry
+    - title: Azure AI Foundry Classic
       links:
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with a single file"
-          url: quickstart/use-ai-foundry.md
-        - itemType: quickstart
-          text: "Quickstart: Content Understanding with multiple files (preview)"
-          url: quickstart/use-ai-foundry-pro-mode.md  
+        - itemType: how-to-guide
+          text: "Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal"
+          url: how-to/content-understanding-foundry-classic.md
         - itemType: concept
           text: Analyzer templates
           url: concepts/analyzer-templates.md
