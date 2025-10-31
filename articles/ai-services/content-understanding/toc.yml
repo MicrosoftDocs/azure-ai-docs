@@ -58,6 +58,10 @@ items:
         - name: "Modes: standard and pro (Preview)"
           displayName: standard, pro, modes, analyzers, optimization, fields
           href: concepts/standard-pro-modes.md
+        - name: Foundry model deployments
+          href: concepts/models-deployments.md
+        - name: Security features
+          href: concepts/secure-communications.md
     - name: What are classifiers?
       displayName: classifier, text, images, video, audio, multimodal, visual, structured, content, field, extraction
       href: concepts/classifier.md
@@ -125,6 +129,8 @@ items:
       - name: Build a face-data person directory (preview)
         displayName: person, directory, search, index, vector
         href: tutorial/build-person-directory.md
+      - name: Build a Build a robotic process automation solution
+        href: tutorial/robotic-process-automation.md
   - name: Samples
     items:
       - name: Data extraction using Content Understanding
