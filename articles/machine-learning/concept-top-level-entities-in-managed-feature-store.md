@@ -18,12 +18,12 @@ This article describes the top level entities in the managed feature store.
 
 :::image type="content" source="media/concept-managed-feature-store/concepts.png" alt-text="Diagram depicting the main components of managed feature store.":::
 
-For more information on the managed feature store, see [What is managed feature store?](./concept-what-is-managed-managed-feature-store.md).
+For more information on the managed feature store, see [What is managed feature store?](concept-what-is-managed-feature-store.md).
 
 ## Feature store
 You can create and manage feature sets through a feature store. A feature set is a collection of features. You can optionally associate a materialization store (offline store connection) with a feature store, to precompute and persist the features regularly. This approach can make feature retrieval during training or inference faster and more reliable.
 
-For more information about the configuration, see the [CLI (v2) feature store YAML schema](./reference-yaml-feature-store.md) resource.
+For more information about the configuration, see the [CLI (v2) feature store YAML schema](reference-yaml-feature-store.md) resource.
 
 ## Entities
 An entity encapsulates the index columns for logical entities in an enterprise. Examples of entities include account entity, customer entity, and so on. Entities help enforce, as a best practice, the use of the same index column definitions across the feature sets that use the same logical entities.
