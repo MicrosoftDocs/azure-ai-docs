@@ -75,10 +75,6 @@ Explore ready-to-use templates and examples in the GitHub repository:
 
 This library includes JSON templates for common scenarios.
 
-## Azure AI Foundry portal considerations
-
-Currently, creating and assigning Azure Policy definitions for Azure AI Foundry resources is performed in the Azure portal and does not require version-specific (classic vs NextGen) instructions. No Azure AI Foundry portal (ai.azure.com) steps are present in this article. When portal-specific procedures are added in the future, they must be wrapped in `foundry-classic` and `foundry` moniker ranges with a corresponding placeholder for NextGen content when not yet available. (Source: .vscode/settings.json)
-
 ## Next steps
 
 - Review [Built-in Policies for AI Foundry](../../ai-services/policy-reference.md) for built-in and custom policies for comprehensive compliance.

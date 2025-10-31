@@ -9,7 +9,7 @@ ms.topic: include
 ms.date: 10/30/2025
 ---
 
-In this article, you learn how to use Azure AI Speech voice live with Azure AI Foundry models using the VoiceLive SDK for C#.
+In this article, you learn how to use Azure AI Speech voice live with [Azure AI Foundry Agent Service](/azure/ai-foundry/agents/overview) using the VoiceLive SDK for C#.
 
 [!INCLUDE [Header](../../common/voice-live-csharp.md)]
 
@@ -19,6 +19,7 @@ In this article, you learn how to use Azure AI Speech voice live with Azure AI F
 
 - An Azure subscription. <a href="https://azure.microsoft.com/free/ai-services" target="_blank">Create one for free</a>.
 - An [Azure AI Foundry resource](../../../../multi-service-resource.md) created in one of the supported regions. For more information about region availability, see the [voice live overview documentation](../../../voice-live.md).
+- An Azure AI Foundry agent created in the [Azure AI Foundry portal](https://ai.azure.com/?cid=learnDocs). For more information about creating an agent, see the [Create an agent quickstart](/azure/ai-foundry/agents/quickstart).
 - [.NET SDK](https://dotnet.microsoft.com/download) version 6.0 or later installed.
 
 <!--
@@ -57,10 +58,12 @@ Follow these steps to create a console application and install the Speech SDK.
       "VoiceLive": {
         "ApiKey": "your-api-key-here",
         "Endpoint": "https://your-resource-name.services.ai.azure.com/",
-        "Model": "gpt-realtime",
-        "Voice": "en-US-Ava:DragonHDLatestNeural",
-        "Instructions": "You are a helpful AI assistant. Respond naturally and conversationally. Keep your responses concise but engaging."
+        "Voice": "en-US-Ava:DragonHDLatestNeural"
       },
+      "Agent": {
+        "Id": "your-agent-id",
+        "ProjectName": "your-agent-project-name"
+      },  
       "Logging": {
         "LogLevel": {
           "Default": "Information",
@@ -85,7 +88,9 @@ Follow these steps to create a console application and install the Speech SDK.
     
     using System;
     using System.CommandLine;
+    using System.CommandLine.Invocation;
     using System.Threading;
+    using System.Web;
     using System.Threading.Tasks;
     using System.Threading.Channels;
     using System.Collections.Generic;
@@ -100,23 +105,27 @@ Follow these steps to create a console application and install the Speech SDK.
     namespace Azure.AI.VoiceLive.Samples
     {
         /// <summary>
-        /// FILE: Program.cs (Consolidated)
+        /// FILE: Program.cs (Agent Quickstart - Consolidated)
         /// </summary>
         /// <remarks>
         /// DESCRIPTION:
-        ///     This consolidated sample demonstrates the fundamental capabilities of the VoiceLive SDK by creating
-        ///     a basic voice assistant that can engage in natural conversation with proper interruption
-        ///     handling. This serves as the foundational example that showcases the core value
-        ///     proposition of unified speech-to-speech interaction.
+        ///     This consolidated sample demonstrates connecting to an Azure AI Foundry agent via the VoiceLive SDK,
+        ///     creating a voice assistant that can engage in natural conversation with proper interruption
+        ///     handling. Instead of using a direct model, this connects to a deployed agent in Azure AI Foundry.
         ///     
         ///     All necessary code has been consolidated into this single file for easy distribution and execution.
         ///
         /// USAGE:
-        ///     dotnet run
+        ///     dotnet run --agent-id <agent-id> --agent-project-name <project-name>
         ///
         ///     Set the environment variables with your own values before running the sample:
-        ///     1) AZURE_VOICELIVE_API_KEY - The Azure VoiceLive API key
-        ///     2) AZURE_VOICELIVE_ENDPOINT - The Azure VoiceLive endpoint
+        ///     1) AZURE_AGENT_ID - The Azure AI Foundry agent ID
+        ///     2) AZURE_AGENT_PROJECT_NAME - The Azure AI Foundry agent project name  
+        ///     3) AZURE_VOICELIVE_API_KEY - The Azure VoiceLive API key (still needed for VoiceLive service)
+        ///     4) AZURE_VOICELIVE_ENDPOINT - The Azure VoiceLive endpoint
+        ///
+        ///     Note: Agent access token is generated automatically using DefaultAzureCredential.
+        ///     Ensure you are authenticated with Azure CLI or have appropriate credentials configured.
         ///
         ///     Or update appsettings.json with your values.
         ///
@@ -144,7 +153,7 @@ Follow these steps to create a console application and install the Speech SDK.
     
             private static RootCommand CreateRootCommand()
             {
-                var rootCommand = new RootCommand("Basic Voice Assistant using Azure VoiceLive SDK");
+                var rootCommand = new RootCommand("Voice Assistant connecting to Azure AI Foundry Agent via VoiceLive SDK");
     
                 var apiKeyOption = new Option<string?>(
                     "--api-key",
@@ -155,20 +164,18 @@ Follow these steps to create a console application and install the Speech SDK.
                     () => "wss://api.voicelive.com/v1",
                     "Azure VoiceLive endpoint");
     
-                var modelOption = new Option<string>(
-                    "--model",
-                    () => "gpt-4o",
-                    "VoiceLive model to use");
+                var agentIdOption = new Option<string>(
+                    "--agent-id",
+                    "Azure AI Foundry agent ID");
+    
+                var agentProjectNameOption = new Option<string>(
+                    "--agent-project-name", 
+                    "Azure AI Foundry agent project name");
     
                 var voiceOption = new Option<string>(
                     "--voice",
                     () => "en-US-AvaNeural",
                     "Voice to use for the assistant");
-    
-                var instructionsOption = new Option<string>(
-                    "--instructions",
-                    () => "You are a helpful AI assistant. Respond naturally and conversationally. Keep your responses concise but engaging.",
-                    "System instructions for the AI assistant");
     
                 var useTokenCredentialOption = new Option<bool>(
                     "--use-token-credential",
@@ -180,28 +187,28 @@ Follow these steps to create a console application and install the Speech SDK.
     
                 rootCommand.AddOption(apiKeyOption);
                 rootCommand.AddOption(endpointOption);
-                rootCommand.AddOption(modelOption);
+                rootCommand.AddOption(agentIdOption);
+                rootCommand.AddOption(agentProjectNameOption);
                 rootCommand.AddOption(voiceOption);
-                rootCommand.AddOption(instructionsOption);
                 rootCommand.AddOption(useTokenCredentialOption);
                 rootCommand.AddOption(verboseOption);
     
                 rootCommand.SetHandler(async (
                     string? apiKey,
                     string endpoint,
-                    string model,
+                    string? agentId,
+                    string? agentProjectName,
                     string voice,
-                    string instructions,
                     bool useTokenCredential,
                     bool verbose) =>
                 {
-                    await RunVoiceAssistantAsync(apiKey, endpoint, model, voice, instructions, useTokenCredential, verbose).ConfigureAwait(false);
+                    await RunVoiceAssistantAsync(apiKey, endpoint, agentId, agentProjectName, voice, useTokenCredential, verbose).ConfigureAwait(false);
                 },
                 apiKeyOption,
                 endpointOption,
-                modelOption,
+                agentIdOption,
+                agentProjectNameOption,
                 voiceOption,
-                instructionsOption,
                 useTokenCredentialOption,
                 verboseOption);
     
@@ -211,9 +218,9 @@ Follow these steps to create a console application and install the Speech SDK.
             private static async Task RunVoiceAssistantAsync(
                 string? apiKey,
                 string endpoint,
-                string model,
+                string? agentId,
+                string? agentProjectName,
                 string voice,
-                string instructions,
                 bool useTokenCredential,
                 bool verbose)
             {
@@ -226,9 +233,9 @@ Follow these steps to create a console application and install the Speech SDK.
                 // Override with command line values if provided
                 apiKey ??= configuration["VoiceLive:ApiKey"] ?? Environment.GetEnvironmentVariable("AZURE_VOICELIVE_API_KEY");
                 endpoint = configuration["VoiceLive:Endpoint"] ?? endpoint;
-                model = configuration["VoiceLive:Model"] ?? model;
+                agentId ??= configuration["Agent:Id"] ?? Environment.GetEnvironmentVariable("AZURE_AGENT_ID");
+                agentProjectName ??= configuration["Agent:ProjectName"] ?? Environment.GetEnvironmentVariable("AZURE_AGENT_PROJECT_NAME");
                 voice = configuration["VoiceLive:Voice"] ?? voice;
-                instructions = configuration["VoiceLive:Instructions"] ?? instructions;
     
                 // Setup logging
                 using var loggerFactory = LoggerFactory.Create(builder =>
@@ -246,12 +253,41 @@ Follow these steps to create a console application and install the Speech SDK.
     
                 var logger = loggerFactory.CreateLogger<Program>();
     
-                // Validate credentials
+                // Validate agent credentials
+                if (string.IsNullOrEmpty(agentId) || string.IsNullOrEmpty(agentProjectName))
+                {
+                    Console.WriteLine("❌ Error: Agent parameters missing");
+                    Console.WriteLine("Please provide agent parameters:");
+                    Console.WriteLine("  --agent-id (or AZURE_AGENT_ID environment variable)");
+                    Console.WriteLine("  --agent-project-name (or AZURE_AGENT_PROJECT_NAME environment variable)");
+                    Console.WriteLine("Note: Agent access token will be generated automatically using Azure credentials");
+                    return;
+                }
+    
+                // Validate VoiceLive credentials (still needed for the VoiceLive service)
                 if (string.IsNullOrEmpty(apiKey) && !useTokenCredential)
                 {
-                    Console.WriteLine("❌ Error: No authentication provided");
+                    Console.WriteLine("❌ Error: No VoiceLive authentication provided");
                     Console.WriteLine("Please provide an API key using --api-key or set AZURE_VOICELIVE_API_KEY environment variable,");
                     Console.WriteLine("or use --use-token-credential for Azure authentication.");
+                    return;
+                }
+    
+                // Generate agent access token using Azure credentials
+                string agentAccessToken;
+                try
+                {
+                    logger.LogInformation("Generating agent access token using DefaultAzureCredential...");
+                    var credential = new DefaultAzureCredential();
+                    var tokenRequestContext = new TokenRequestContext(new[] { "https://ai.azure.com/.default" });
+                    var accessToken = await credential.GetTokenAsync(tokenRequestContext, default).ConfigureAwait(false);
+                    agentAccessToken = accessToken.Token;
+                    logger.LogInformation("Obtained agent access token successfully");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"❌ Error generating agent access token: {ex.Message}");
+                    Console.WriteLine("Please ensure you are authenticated with Azure CLI or have appropriate Azure credentials configured.");
                     return;
                 }
     
@@ -263,27 +299,38 @@ Follow these steps to create a console application and install the Speech SDK.
     
                 try
                 {
-                    // Create client with appropriate credential
+                    // Append agent parameters to the endpoint URL
+                    var uriBuilder = new UriBuilder(endpoint);
+                    var query = HttpUtility.ParseQueryString(uriBuilder.Query);
+                    query["agent-id"] = agentId!;
+                    query["agent-project-name"] = agentProjectName!;
+                    query["agent-access-token"] = agentAccessToken;
+                    uriBuilder.Query = query.ToString();
+                    endpoint = uriBuilder.ToString();
+                    logger.LogInformation("Agent parameters added as query parameters: agent-id={AgentId}, agent-project-name={ProjectName}", agentId, agentProjectName);
+                    
                     VoiceLiveClient client;
+                    var endpointUri = new Uri(endpoint);
                     if (useTokenCredential)
                     {
                         var tokenCredential = new DefaultAzureCredential();
-                        client = new VoiceLiveClient(new Uri(endpoint), tokenCredential, new VoiceLiveClientOptions());
-                        logger.LogInformation("Using Azure token credential");
+                        client = new VoiceLiveClient(endpointUri, tokenCredential, new VoiceLiveClientOptions());
+                        logger.LogInformation("Using Azure token credential with agent headers");
                     }
                     else
                     {
                         var keyCredential = new Azure.AzureKeyCredential(apiKey!);
-                        client = new VoiceLiveClient(new Uri(endpoint), keyCredential, new VoiceLiveClientOptions());
-                        logger.LogInformation("Using API key credential");
+                        client = new VoiceLiveClient(endpointUri, keyCredential, new VoiceLiveClientOptions());
+                        logger.LogInformation("Using API key credential with agent headers");
                     }
     
                     // Create and start voice assistant
                     using var assistant = new BasicVoiceAssistant(
                         client,
-                        model,
+                        agentId!,
+                        agentProjectName!,
+                        agentAccessToken,
                         voice,
-                        instructions,
                         loggerFactory);
     
                     // Setup cancellation token for graceful shutdown
@@ -371,9 +418,10 @@ Follow these steps to create a console application and install the Speech SDK.
         public class BasicVoiceAssistant : IDisposable
         {
             private readonly VoiceLiveClient _client;
-            private readonly string _model;
+            private readonly string _agentId;
+            private readonly string _agentProjectName;
+            private readonly string _agentAccessToken;
             private readonly string _voice;
-            private readonly string _instructions;
             private readonly ILogger<BasicVoiceAssistant> _logger;
             private readonly ILoggerFactory _loggerFactory;
     
@@ -385,21 +433,24 @@ Follow these steps to create a console application and install the Speech SDK.
             /// Initializes a new instance of the BasicVoiceAssistant class.
             /// </summary>
             /// <param name="client">The VoiceLive client.</param>
-            /// <param name="model">The model to use.</param>
+            /// <param name="agentId">The Azure AI Foundry agent ID.</param>
+            /// <param name="agentProjectName">The Azure AI Foundry agent project name.</param>
+            /// <param name="agentAccessToken">The Azure AI Foundry agent access token.</param>
             /// <param name="voice">The voice to use.</param>
-            /// <param name="instructions">The system instructions.</param>
             /// <param name="loggerFactory">Logger factory for creating loggers.</param>
             public BasicVoiceAssistant(
                 VoiceLiveClient client,
-                string model,
+                string agentId,
+                string agentProjectName,
+                string agentAccessToken,
                 string voice,
-                string instructions,
                 ILoggerFactory loggerFactory)
             {
                 _client = client ?? throw new ArgumentNullException(nameof(client));
-                _model = model ?? throw new ArgumentNullException(nameof(model));
+                _agentId = agentId ?? throw new ArgumentNullException(nameof(agentId));
+                _agentProjectName = agentProjectName ?? throw new ArgumentNullException(nameof(agentProjectName));
+                _agentAccessToken = agentAccessToken ?? throw new ArgumentNullException(nameof(agentAccessToken));
                 _voice = voice ?? throw new ArgumentNullException(nameof(voice));
-                _instructions = instructions ?? throw new ArgumentNullException(nameof(instructions));
                 _loggerFactory = loggerFactory ?? throw new ArgumentNullException(nameof(loggerFactory));
                 _logger = loggerFactory.CreateLogger<BasicVoiceAssistant>();
             }
@@ -412,16 +463,16 @@ Follow these steps to create a console application and install the Speech SDK.
             {
                 try
                 {
-                    _logger.LogInformation("Connecting to VoiceLive API with model {Model}", _model);
+                    _logger.LogInformation("Connecting to VoiceLive API with agent {AgentId} from project {ProjectName}", _agentId, _agentProjectName);
     
-                    // Start VoiceLive session
-                    _session = await _client.StartSessionAsync(_model, cancellationToken).ConfigureAwait(false);
+                    // Create session options for agent connection (no model or instructions specified)
+                    var sessionOptions = await CreateSessionOptionsAsync(cancellationToken).ConfigureAwait(false);
+                    
+                    // Start VoiceLive session with agent parameters passed via headers in client
+                    _session = await _client.StartSessionAsync(sessionOptions, cancellationToken).ConfigureAwait(false);
     
                     // Initialize audio processor
                     _audioProcessor = new AudioProcessor(_session, _loggerFactory.CreateLogger<AudioProcessor>());
-    
-                    // Configure session for voice conversation
-                    await SetupSessionAsync(cancellationToken).ConfigureAwait(false);
     
                     // Start audio systems
                     await _audioProcessor.StartPlaybackAsync().ConfigureAwait(false);
@@ -459,11 +510,11 @@ Follow these steps to create a console application and install the Speech SDK.
             }
     
             /// <summary>
-            /// Configure the VoiceLive session for audio conversation.
+            /// Create session options for agent-based voice conversation.
             /// </summary>
-            private async Task SetupSessionAsync(CancellationToken cancellationToken)
+            private Task<VoiceLiveSessionOptions> CreateSessionOptionsAsync(CancellationToken cancellationToken)
             {
-                _logger.LogInformation("Setting up voice conversation session...");
+                _logger.LogInformation("Creating voice conversation session options for agent...");
     
                 // Azure voice
                 var azureVoice = new AzureStandardVoice(_voice);
@@ -476,12 +527,14 @@ Follow these steps to create a console application and install the Speech SDK.
                     SilenceDuration = TimeSpan.FromMilliseconds(500)
                 };
     
-                // Create conversation session options
+                // Create conversation session options for agent - no Model or Instructions specified
+                // Agent parameters are passed via URI query parameters during WebSocket connection:
+                // - agent-id: Agent identifier
+                // - agent-project-name: Project containing the agent  
+                // - agent-access-token: Generated access token for agent authentication
                 var sessionOptions = new VoiceLiveSessionOptions
                 {
                     InputAudioEchoCancellation = new AudioEchoCancellation(),
-                    Model = _model,
-                    Instructions = _instructions,
                     Voice = azureVoice,
                     InputAudioFormat = InputAudioFormat.Pcm16,
                     OutputAudioFormat = OutputAudioFormat.Pcm16,
@@ -493,9 +546,8 @@ Follow these steps to create a console application and install the Speech SDK.
                 sessionOptions.Modalities.Add(InteractionModality.Text);
                 sessionOptions.Modalities.Add(InteractionModality.Audio);
     
-                await _session!.ConfigureSessionAsync(sessionOptions, cancellationToken).ConfigureAwait(false);
-    
-                _logger.LogInformation("Session configuration sent");
+                _logger.LogInformation("Session options created for agent connection");
+                return Task.FromResult(sessionOptions);
             }
     
             /// <summary>
@@ -1042,17 +1094,23 @@ The output of the script is printed to the console. You see messages indicating 
 
 ```console
 info: Azure.AI.VoiceLive.Samples.Program[0]
+      Generating agent access token using DefaultAzureCredential...
+info: Azure.AI.VoiceLive.Samples.Program[0]
+      Obtained agent access token successfully
+info: Azure.AI.VoiceLive.Samples.Program[0]
       Audio system check passed (default input/output initialized).
 info: Azure.AI.VoiceLive.Samples.Program[0]
-      Using Azure token credential
+      Agent parameters added as query parameters: agent-id=asst_my-agent, agent-project-name=my-ai-project
+info: Azure.AI.VoiceLive.Samples.Program[0]
+      Using Azure token credential with agent headers
 info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
-      Connecting to VoiceLive API with model gpt-realtime
+      Connecting to VoiceLive API with agent asst_my-agent from project my-ai-project
+info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
+      Creating voice conversation session options for agent...
+info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
+      Session options created for agent connection
 info: Azure.AI.VoiceLive.Samples.AudioProcessor[0]
       AudioProcessor initialized with 24000Hz PCM16 mono audio
-info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
-      Setting up voice conversation session...
-info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
-      Session configuration sent
 info: Azure.AI.VoiceLive.Samples.AudioProcessor[0]
       Audio playback system ready
 info: Azure.AI.VoiceLive.Samples.AudioProcessor[0]
@@ -1067,7 +1125,7 @@ Press Ctrl+C to exit
 ============================================================
 
 info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
-      Session ready: sess_CVnpwfxxxxxACIzrrr7
+      Session ready: sess_QNwzS5xxxxQjftd
 info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
       Session updated successfully
 🎤 Listening...
@@ -1077,6 +1135,11 @@ info: Azure.AI.VoiceLive.Samples.AudioProcessor[0]
       Stopped audio playback
 info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
       ✨ Used ClearStreamingAudioAsync convenience method
+🎤 Ready for next input...
+info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
+      🤖 Assistant finished speaking
+info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
+      ✅ Response complete
 🤔 Processing...
 info: Azure.AI.VoiceLive.Samples.BasicVoiceAssistant[0]
       🎤 User stopped speaking
