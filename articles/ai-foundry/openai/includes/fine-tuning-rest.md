@@ -249,8 +249,9 @@ curl --request GET \
   --header 'api-key: <api-key>' \
   --header 'aoai-copy-ft-checkpoints: preview' 
 ```
+
 > [!NOTE]
-> When copying a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure you use this exact name for fine-tuning, deployment, or any other operation in the destination account. This checkpoint will not appear in the UI or in the `list checkpoints` API.
+> When you copy a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure that you use the exact name for fine-tuning, deployment, or for any other operation in the destination account. This checkpoint doesn't appear in the UI or in the `list checkpoints` API.
 
 ## Checkpoints
 
