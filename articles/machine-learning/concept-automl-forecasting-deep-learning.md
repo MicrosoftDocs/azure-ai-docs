@@ -135,11 +135,7 @@ The model search has two phases:
 1. AutoML performs a search over 12 "landmark" models. The landmark models are static and chosen to reasonably span the hyperparameter space.
 1. AutoML continues searching through the hyperparameter space by using a random search.
   
-<<<<<<< HEAD
-The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-the-experiment), but some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
-=======
-The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-experiment). Some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
->>>>>>> a571247c34fa107e3c6765a6649eb6272efd1cb7
+The search terminates when stopping criteria are met. The stopping criteria depend on the [forecast training job configuration](./how-to-auto-train-forecast.md#configure-the-experiment). Some examples include time limits, limits on number of search trials to perform, and early stopping logic when the validation metric isn't improving.
  
 ## Next steps
 
