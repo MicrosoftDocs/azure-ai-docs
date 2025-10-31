@@ -120,6 +120,8 @@ items:
       - name: Migration from CU Preview to GA (TODO)
         displayName: migration, preview, GA, API changes
         href: how-to/migration-preview-to-ga.md
+      - name: Copy and back up analyzers
+        href: how-to/copy-analyzers.md
       - name: Build a retrieval-augmented solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
