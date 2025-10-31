@@ -270,7 +270,7 @@ Forecasting tasks have many settings that are specific to forecasting. The most 
 Use the [ForecastingJob](/python/api/azure-ai-ml/azure.ai.ml.automl.forecastingjob#azure-ai-ml-automl-forecastingjob-set-forecast-settings) methods to configure these settings:
 
 ```python
-# Forecasting-specific configuration
+# Forecasting-specific configuration.
 forecasting_job.set_forecast_settings(
     time_column_name=time_column_name,
     forecast_horizon=24
@@ -343,7 +343,7 @@ forecasting:
 
 AutoML tries to automatically detect time series ID columns in your data if none is specified.
 
-Other settings are optional and reviewed in the following section.
+Other settings are optional and described in the following section.
 
 ### Optional forecasting job settings
 
@@ -528,7 +528,7 @@ forecasting_job.set_forecast_settings(
 
 ```yml
 # Forecasting-specific settings.
-# Auto configure lags and rolling-window features
+# Auto configure lags and rolling-window features.
 forecasting:
     short_series_handling_config: pad
     # Other settings.
@@ -578,7 +578,7 @@ forecasting_job.set_forecast_settings(
 
 ```yml
 # Forecasting-specific settings.
-# Auto-configure lags and rolling window features.
+# Auto-configure lags and rolling-window features.
 forecasting:
     frequency: H
     target_aggregate_function: sum
@@ -1090,7 +1090,7 @@ partition_column_names: ["state", "store"]
 allow_multi_partitions: false
 ```
 
-In subsequent examples, the configuration is stored at the path *./automl_settings_mm.yml*`.
+In subsequent examples, the configuration is stored at the path *./automl_settings_mm.yml*.
 
 ### Many-models pipeline
 
