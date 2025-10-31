@@ -20,7 +20,7 @@ ms.custom: sfi-ropc-nochange
 
 **This content applies to:** ![checkmark](../media/yes-icon.png) **v3.0 (GA)** ![checkmark](../media/yes-icon.png) **v3.1 (GA)** ![checkmark](../media/yes-icon.png) **v4.0 (GA)**
 
-Azure Document Intelligence in Foundry Tools is an Azure AI Foundry Tools that lets you build automated data processing software using machine-learning technology. Document Intelligence enables you to identify and extract text, key/value pairs, selection marks, table data, and more from your documents. The results are delivered as structured data that ../includes the relationships in the original file. Containers process only the data provided to them and solely utilize the resources they're permitted to access. Containers can't process data from other regions.
+Azure Document Intelligence in Foundry Tools is an AI Services that lets you build automated data processing software using machine-learning technology. Document Intelligence enables you to identify and extract text, key/value pairs, selection marks, table data, and more from your documents. The results are delivered as structured data that ../includes the relationships in the original file. Containers process only the data provided to them and solely utilize the resources they're permitted to access. Containers can't process data from other regions.
 
 In this article you can learn how to download, install, and run Document Intelligence containers. Containers enable you to run the Document Intelligence service in your own environment. Containers are great for specific security and data governance requirements.
 
@@ -1191,8 +1191,8 @@ The [**docker-compose up**](https://docs.docker.com/engine/reference/commandline
 
 | Option | Description |
 |--------|-------------|
-| `ApiKey` | The key of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
-| `Billing` | The endpoint of the Azure AI Foundry resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
+| `ApiKey` | The key of the AI Services resource used to track billing information.<br/>The value of this option must be set to a key for the provisioned resource specified in `Billing`. |
+| `Billing` | The endpoint of the AI Services resource used to track billing information.<br/>The value of this option must be set to the endpoint URI of a provisioned Azure resource.|
 | `Eula` | Indicates that you accepted the license for the container.<br/>The value of this option must be set to **accept**. |
 
 For more information about these options, see [Configure containers](configuration.md).
