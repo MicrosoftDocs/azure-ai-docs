@@ -15,6 +15,8 @@ ms.date: 10/03/2025
 
 This article explains the differences between CU Studio and Foundry, including use cases and feature distinctions for generative AI document, image, video, and audio processing.
 
+[!INCLUDE [ux-experiences-note](../includes/ux-experiences-note.md)]
+
 ## Overview
 
 [Content describing the key differences]
