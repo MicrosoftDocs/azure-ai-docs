@@ -26,7 +26,7 @@ highlightedContent:
       url: quickstart/use-rest-api.md
     - title: Try Content Understanding Studio
       itemType: quickstart
-      url: quickstart/cu-studio.md
+      url: quickstart/content-understanding-studio.md
 
 conceptualContent:
   items:
@@ -34,7 +34,7 @@ conceptualContent:
       links:
         - itemType: how-to-guide
           text: "Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal"
-          url: how-to/cu-foundry-classic.md
+          url: how-to/content-understanding-foundry-classic.md
         - itemType: concept
           text: Analyzer templates
           url: concepts/analyzer-templates.md

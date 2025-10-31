@@ -51,9 +51,9 @@ Get started by trying out the prebuilt analyzers offered through the Content Und
 
 <!---[Include screenshot of deployment selection]--->
 
-5.	**Need to make changes to the schema to best fit your scenario?** Content Understanding offers customization on all prebuilt analyzers. Learn more about customizing in [How to build a custom analyzer in Content Understanding Studio](../how-to/custom-analyzer-content-understanding-studio.md).
+5.	**Need to make changes to the schema to best fit your scenario?** Content Understanding offers customization on all prebuilt analyzers. Learn more about customizing in [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md).
 
-6.	**Don’t see an analyzer that suits your needs?** Learn more about building custom analyzers from scratch using AI-assisted suggestions in [How to build a custom analyzer in Content Understanding Studio](../how-to/custom-analyzer-content-understanding-studio.md).
+6.	**Don’t see an analyzer that suits your needs?** Learn more about building custom analyzers from scratch using AI-assisted suggestions in [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md).
 
 7.	**Have data to classify?** Learn more about classification in [How to classify and route with custom categories in Content Understanding Studio](../how-to/classification-content-understanding-studio.md).
 
@@ -61,6 +61,6 @@ Get started by trying out the prebuilt analyzers offered through the Content Und
 ## Next Steps
 Once you’ve completed these steps, you’re ready to dive deeper into the advanced features offered by Content Understanding Studio, including custom analyzer building & improvement, and creating custom classifiers.
 
-1.	Build and improve a custom analyzer using [How to build a custom analyzer in Content Understanding Studio](../how-to/custom-analyzer-content-understanding-studio.md)
+1.	Build and improve a custom analyzer using [How to build a custom analyzer in Content Understanding Studio](../how-to/customize-analyzer-content-understanding-studio.md)
 2.	Learn more about classification in [How to classify and route with custom categories in Content Understanding Studio](../how-to/classification-content-understanding-studio.md)
 

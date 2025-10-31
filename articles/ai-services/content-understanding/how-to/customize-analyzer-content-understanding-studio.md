@@ -61,7 +61,7 @@ To get started, you will need to upload your training data to a blob storage acc
 12. **Use your analyzer**: Now you have an analyzer endpoint that you can utilize in your own application via the REST API. This has been a walkthrough of how to use Content Understanding Studio to build a custom analyzer. 
 
 ## Next steps
-* Learn how to [classify and route your data using Content Understanding Studio](./classification-content-understsanding-studio.md)
+* Learn how to [classify and route your data using Content Understanding Studio](./classification-content-understanding-studio.md)
 * Learn more about [Best practices for Azure AI Content Understanding](../concepts/best-practices.md) 
 
 

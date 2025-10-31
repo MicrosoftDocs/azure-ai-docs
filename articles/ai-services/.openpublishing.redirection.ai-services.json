@@ -2857,12 +2857,12 @@
     },
     {
       "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry.md",
-      "redirect_url": "/azure/ai-services/content-understanding/how-to/cu-foundry-classic",
+      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
       "redirect_document_id": true
     },
     {
       "source_path_from_root": "/articles/ai-services/content-understanding/quickstart/use-ai-foundry-pro-mode.md",
-      "redirect_url": "/azure/ai-services/content-understanding/how-to/cu-foundry-classic",
+      "redirect_url": "/azure/ai-services/content-understanding/how-to/content-understanding-foundry-classic",
       "redirect_document_id": false
     }
   ]

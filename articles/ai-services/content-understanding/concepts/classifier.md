@@ -79,5 +79,5 @@ Developers who use Content Understanding should review Microsoft policies on cus
 
 ## Related content
 
-* Try processing your document content in [Content Understanding Studio](../quickstart/cu-studio.md)
+* Try processing your document content in [Content Understanding Studio](../quickstart/content-understanding-studio.md)
 * Learn about how to process document content using [analyzer templates](../concepts/analyzer-templates.md).

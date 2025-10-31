@@ -155,7 +155,7 @@ WEBVTT
 ## Next steps
 
 * Try out analyzing videos in the [Content Understanding Studio](https://aka.ms/cu-studio).
-* Check out the [Content Understanding Studio quickstart](../quickstart/cu-studio.md).
+* Check out the [Content Understanding Studio quickstart](../quickstart/content-understanding-studio.md).
 * Learn more about analyzing video content using [analyzer templates](../concepts/analyzer-templates.md).
 * Review code samples: [video analysis with segments](https://github.com/Azure-Samples/azure-ai-content-understanding-python/tree/main/analyzer_templates).
 * Review the complete [audiovisual elements documentation](elements.md) for detailed information about all supported elements.
