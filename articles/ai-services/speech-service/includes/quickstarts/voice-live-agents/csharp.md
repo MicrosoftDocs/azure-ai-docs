@@ -43,7 +43,7 @@ Follow these steps to create a console application and install the Speech SDK.
 
    This command creates the *Program.cs* file in your project directory.
 
-1. Install the Voice Live SDK, Azure Identity and NAudio in your new project with the .NET CLI.
+1. Install the Voice Live SDK, Azure Identity, and NAudio in your new project with the .NET CLI.
 
     ```dotnetcli
     dotnet add package Azure.AI.VoiceLive
@@ -74,13 +74,13 @@ Follow these steps to create a console application and install the Speech SDK.
     ```
     
     The sample code in this quickstart uses either Microsoft Entra ID or an API key for authentication. You can set the script argument to be either your API key or your access token. 
-    We recommend using EntraId authentication instead of setting the `ApiKey` value and running the quickstart with the `--use-token-credential` argument.
+    We recommend using Microsoft Entra ID authentication instead of setting the `ApiKey` value and running the quickstart with the `--use-token-credential` argument.
 
     Replace the `ApiKey` value (optional) with your AI Foundry API key, and replace the `Endpoint` value with your resource endpoint. You can also change the Model, Voice, and Instructions values as needed.
   
     Learn more about [keyless authentication](/azure/ai-services/authentication) and [setting environment variables](/azure/ai-services/cognitive-services-environment-variables).
 
-1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the build-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
+1. Replace the contents of `Program.cs` with the following code. This code creates a basic voice agent using one of the built-in models. For a more detailed version, see sample on [GitHub](https://github.com/Azure/azure-sdk-for-net/tree/main/sdk/ai/Azure.AI.VoiceLive/samples/BasicVoiceAssistant).
 
     ```csharp
     // Copyright (c) Microsoft Corporation. All rights reserved.

@@ -854,9 +854,9 @@ Both logs are complementary - conversation logs for conversation analysis and te
 
 The quickstart uses AI Foundry projects instead of hub-based projects. If you have a hub-based project, you can still use the quickstart with some modifications.
 
-To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the ```foundry_project_name```. You can find the connection string in the Azure portal under your AI Foundry project > 
+To use the quickstart with a hub-based project, you need to retrieve the connection string for your agent and use it instead of the ```foundry_project_name```. You can find the connection string in the Azure portal under your AI Foundry project.
 
-**Overview**.
+### Overview
 
 For hub-based projects, use the connection string instead of the project name to connect your agent.
 
@@ -867,24 +867,25 @@ Make the following changes to the quickstart code:
 1. Replace the all instances of `foundry_project_name` with `agent-connection-string` following lines in the code to change the authentication:
 
 1. Replace the authentication token scope in line `307`:
-```python
-# Get agent access token
-agent_access_token = (await DefaultAzureCredential().get_token("https://ml.azure.com/.default")).token
-logger.info("Obtained agent access token")
-```
+    ```python
+    # Get agent access token
+    agent_access_token = (await DefaultAzureCredential().get_token("https://ml.azure.com/.default")).token
+    logger.info("Obtained agent access token")
+    ```
 
 1. Replace the query parameter in line `316`:
-```python
-# Connect to VoiceLive WebSocket API
-async with connect(
-    endpoint=self.endpoint,
-    credential=self.credential,
-    query={
-        "agent-id": self.agent_id,
-        "agent-connection-string": self.agent-connection-string,
-        "agent-access-token": agent_access_token
-    },
-) as connection:
-    conn = connection
-    self.connection = conn
-```
+    ```python
+    # Connect to VoiceLive WebSocket API
+    async with connect(
+        endpoint=self.endpoint,
+        credential=self.credential,
+        query={
+            "agent-id": self.agent_id,
+            "agent-connection-string": self.agent-connection-string,
+            "agent-access-token": agent_access_token
+        },
+    ) as connection:
+        conn = connection
+        self.connection = conn
+    ```
+    
