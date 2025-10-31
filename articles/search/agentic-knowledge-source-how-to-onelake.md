@@ -9,7 +9,7 @@ ms.service: azure-ai-search
 ms.custom:
   - ignite-2025
 ms.topic: how-to
-ms.date: 10/17/2025
+ms.date: 10/31/2025
 ---
 
 # Create a OneLake knowledge source
@@ -81,10 +81,19 @@ The following JSON is an example response for a OneLake knowledge source.
         "uri": "<REDACTED>",
         "apiKey": "<REDACTED>"
       }
+    },
+    "createdResources": {
+    "datasource": "my-onelake-ks-datasource",
+    "indexer": "my-onelake-ks-indexer",
+    "skillset": "my-onelake-ks-skillset",
+    "index": "my-onelake-ks-index"
     }
   }
 }
 ```
+
+> [!NOTE]
+> Sensitive information is redacted. The generated resources appear at the end of the response.
 
 ## Create a knowledge source
 
@@ -131,16 +140,16 @@ To create a OneLake knowledge source:
 
 You can pass the following properties to create a OneLake knowledge source.
 
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | Yes |
-| `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
-| `indexedOneLakeParameters` | Parameters specific to OneLake knowledge sources: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object | Yes |
-| `fabricWorkspaceId` | The GUID of the workspace that contains the lakehouse. | String | Yes |
-| `lakehouseId` | The GUID of the lakehouse. | String | Yes |
-| `targetPath` | A folder or shortcut within the lakehouse. When unspecified, the entire lakehouse is indexed. | String | No |
+| Name | Description | Type | Mutable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `kind` | The kind of knowledge source, which is `indexedOneLake` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `indexedOneLakeParameters` | Parameters specific to OneLake knowledge sources: `fabricWorkspaceId`, `lakehouseId`, and `targetPath`. | Object |  | Yes |
+| `fabricWorkspaceId` | The GUID of the workspace that contains the lakehouse. | String | No | Yes |
+| `lakehouseId` | The GUID of the lakehouse. | String | No | Yes |
+| `targetPath` | A folder or shortcut within the lakehouse. When unspecified, the entire lakehouse is indexed. | String | No | No |
 
 ### `ingestionParameters` properties
 
@@ -148,7 +157,7 @@ You can pass the following properties to create a OneLake knowledge source.
 
 ## Review the created objects
 
-When you create a OneLake knowledge source, your search service also creates an indexer, data source, skillset, and index. Exercise caution when you edit these objects, as introducing an error or incompatibility can break the pipeline.
+When you create a OneLake knowledge source, your search service also creates an indexer, index, skillset, and data source. We don't recommend that you edit these objects, as introducing an error or incompatibility can break the pipeline.
 
 After you create a knowledge source, the response lists the created objects. These objects are created according to a fixed template, and their names are based on the name of the knowledge source. You can't change the object names.
 
@@ -157,7 +166,7 @@ We recommend using the Azure portal to validate output creation. The workflow is
 1. Check the indexer for success or failure messages. Connection or quota errors appear here.
 1. Check the index for searchable content. Use Search Explorer to run queries.
 1. Check the skillset to learn how your content is chunked and optionally vectorized.
-1. Modify the data source if you want to change connection details, such as authentication and authorization. Our example uses API keys for simplicity, but you can use Microsoft Entra ID authentication and role-based access.
+1. Check the data source for connection details. Our example uses API keys for simplicity, but you can use Microsoft Entra ID for authentication and role-based access control for authorization.
 
 ## Assign to a knowledge base
 

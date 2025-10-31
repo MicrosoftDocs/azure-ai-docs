@@ -1,5 +1,5 @@
 ---
-title: Create a blob knowledge source
+title: Create a Blob Knowledge Source for Agentic Retrieval
 titleSuffix: Azure AI Search
 description: A blob knowledge source specifies a blob container that you want to read from. It also includes models and properties for creating an indexer, data source, skillset, and index used for agentic retrieval workloads.
 manager: nitinme
@@ -7,7 +7,7 @@ author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/21/2025
+ms.date: 10/31/2025
 ---
 
 # Create a blob knowledge source
@@ -143,17 +143,17 @@ To create a blob knowledge source:
 
 You can pass the following properties to create a blob knowledge source.
 
-| Name | Description | Type | Required |
-|--|--|--|--|
-| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
-| `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | Yes |
-| `description` | A description of the knowledge source. | String | No |
-| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
-| `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object | No |
-| `connectionString` | A key-based connection string or, if you're using a managed identity, the resource ID. | String | Yes |
-| `containerName` | The name of the blob storage container. | String | Yes |
-| `folderPath` | A folder within the container. | String | No |
-| `isADLSGen2` | The default is `false`. Set to `true` if you're using an ADLS Gen2 storage account. | Boolean | No |
+| Name | Description | Type | Mutable | Required |
+|--|--|--|--|--|
+| `name` | The name of the knowledge source, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes | Yes |
+| `kind` | The kind of knowledge source, which is `azureBlob` in this case. | String | No | Yes |
+| `description` | A description of the knowledge source. | String | Yes | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | Yes | No |
+| `azureBlobParameters` | Parameters specific to blob knowledge sources: `connectionString`, `containerName`, `folderPath`, and `isADLSGen2`. | Object |  | No |
+| `connectionString` | A key-based [connection string](search-how-to-index-azure-blob-storage.md#supported-credentials-and-connection-strings) or, if you're using a managed identity, the resource ID. | String | No | Yes |
+| `containerName` | The name of the blob storage container. | String | No | Yes |
+| `folderPath` | A folder within the container. | String | No | No |
+| `isADLSGen2` | The default is `false`. Set to `true` if you're using an ADLS Gen2 storage account. | Boolean | No | No |
 
 ### `ingestionParameters` properties
 
@@ -161,7 +161,7 @@ You can pass the following properties to create a blob knowledge source.
 
 ## Review the created objects
 
-When you create a blob knowledge source, your search service also creates an indexer, data source, skillset, and index. Exercise caution when you edit these objects, as introducing an error or incompatibility can break the pipeline.
+When you create a blob knowledge source, your search service also creates an indexer, index, skillset, and data source. We don't recommend that you edit these objects, as introducing an error or incompatibility can break the pipeline.
 
 After you create a knowledge source, the response lists the created objects. These objects are created according to a fixed template, and their names are based on the name of the knowledge source. You can't change the object names.
 
@@ -170,7 +170,7 @@ We recommend using the Azure portal to validate output creation. The workflow is
 1. Check the indexer for success or failure messages. Connection or quota errors appear here.
 1. Check the index for searchable content. Use Search Explorer to run queries.
 1. Check the skillset to learn how your content is chunked and optionally vectorized.
-1. Modify the data source if you want to change connection details, such as authentication and authorization. Our example uses API keys for simplicity, but you can use Microsoft Entra ID authentication and role-based access.
+1. Check the data source for connection details. Our example uses API keys for simplicity, but you can use Microsoft Entra ID for authentication and role-based access control for authorization.
 
 ## Assign to a knowledge base
 
