@@ -68,7 +68,7 @@ For more information, see [Manage and increase quotas for resources](../how-to/q
 
 ## Switch projects
 
-In the Azure AI Foundry portal, the project you're working with appears in the upper-left corner.  
+In the Azure AI Foundry (new) portal, the project you're working with appears in the upper-left corner.  
 1. [!INCLUDE [foundry-sign-in](../default/includes/foundry-sign-in.md)]
 1. To switch to another recently used project, select the project name in the upper-left corner, then select the other project. 
 1. To see all of your Foundry projects, select **View all projects**. Then select one of them to switch to that project.
