@@ -10,7 +10,7 @@ ms.custom: language-service-pii
 
 ## Prerequisites
 
-> [!NOTE]
+> [!TIP]
 >
 > * If you already have an Azure AI Language or multi-service resource—whether used on its own or through Language Studio—you can continue to use those existing Language resources within the Azure AI Foundry portal. 
 > * For more information, see [How to use Azure AI services in the Azure AI Foundry portal](/azure/ai-services/connect-services-ai-foundry-portal).
@@ -25,10 +25,8 @@ ms.custom: language-service-pii
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (classic).
->
-> → You can switch to the [Azure AI Foundry (new) ](https://ai.azure.com/) portal for streamlined access to models, agents, and tools with Foundry projects.
->
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::.
+
 
 You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 
@@ -115,10 +113,8 @@ After your operation is completed, the type of entity is displayed beneath each 
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (new).
->
-> → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
->
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::.
+
 
 You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 

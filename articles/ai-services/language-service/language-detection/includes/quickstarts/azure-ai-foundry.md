@@ -14,10 +14,7 @@ ms.author: lajanuar
 ### [Azure AI Foundry (classic)](#tab/foundry-classic)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. Make sure this toggle is in the off position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (classic).
-> 
-> → You can switch to the [Azure AI Foundry (new) ](https://ai.azure.com/) portal for streamlined access to models, agents, and tools with Foundry projects.
->
+> This content refers to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal, which supports hub-based projects and other resource types. To confirm that you're using Azure AI Foundry (classic), make sure the version toggle in the portal banner is in the **off** position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/classic-foundry.png" border="false":::.
 
 You can use [Azure AI Foundry (classic)](https://ai.azure.com/) to:
 
@@ -71,10 +68,7 @@ After your operation is completed, the **Details** section contains the followin
 ### [Azure AI Foundry (new)](#tab/foundry-new)
 
 > [!NOTE]
-> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. Make sure this toggle is in the on position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false"::: in the portal banner and confirm you're using Azure AI Foundry (new).
-> 
-> → You can switch to the [Azure AI Foundry (classic)](https://ai.azure.com/) portal to use other resource types, such as hub-based projects.
->
+> This content refers to the [Azure AI Foundry (new)](https://ai.azure.com/) portal, which supports only [Foundry projects](/azure/ai-foundry/what-is-azure-ai-foundry) and provides streamlined access to models, agents, and tools. To confirm that you're using Azure AI Foundry (new), make sure the version toggle in the portal banner is in the **on** position :::image type="icon" source="../../media/quickstarts/azure-ai-foundry/new-foundry.png" border="false":::.
 
 You can use [Azure AI Foundry (new)](https://ai.azure.com/) to:
 
@@ -105,7 +99,7 @@ There are two ways to access the Language Detection interface:
    * Select the **AI services** tab.
    * Next, select  **Azure-Language-detection** to go to the playground.
 
-## Use playground: extract `PII` from text
+## Use playground: detect language in text
 
 The Azure AI Foundry playground is an interactive environment where you can engage with deployed AI models.
 
