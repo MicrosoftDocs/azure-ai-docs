@@ -48,7 +48,7 @@ Use the following table to find which model versions support each feature:
 | Question answering | `latest` |  |  |
 | Text Analytics for health | `latest` | `2023-04-15-preview` |  |
 | Key phrase extraction | `latest` |  |  |
-| Summarization | `latest`: `2025-06-10` (only available for `issue` and `resolution` aspects in conversation summarization)  | |  |
+| Summarization | `latest`; `2025-06-10` (only available for `issue` and `resolution` aspects in conversation summarization)  | |  |
 
 
 ## Custom features
