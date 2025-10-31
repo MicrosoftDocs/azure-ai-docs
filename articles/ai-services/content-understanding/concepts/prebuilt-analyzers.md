@@ -3,7 +3,7 @@ title: Azure Content Understanding in Foundry Tools Prebuilt analyzers
 titleSuffix: Azure AI services
 description: Learn about prebuilt analyzers, their scenarios, customization options, billing, roadmap in Azure Content Understanding in Foundry Tools.
 author: PatrickFarley 
-ms.author: admaheshwari
+ms.author: pafarley
 manager: nitinme
 ms.date: 05/19/2025
 ms.service: azure-ai-content-understanding

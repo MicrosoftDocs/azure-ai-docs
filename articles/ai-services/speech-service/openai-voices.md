@@ -39,7 +39,7 @@ You can choose from the following text to speech voices in Azure AI services:
 
 ## OpenAI text to speech voices via Azure OpenAI or via Azure Speech?
 
-If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../../ai-foundry/openai/text-to-speech-quickstart.md) or via [Azure Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
+If you want to use OpenAI text to speech voices, you can choose whether to use them via [Azure OpenAI](../../ai-foundry/openai/text-to-speech-quickstart.md) or via [Azure Speech](./get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-speech). You can visit the [Voice Gallery](https://speech.microsoft.com/portal/voicegallery) to listen to samples of Azure OpenAI voices or synthesize speech with your own text using the [Audio Content Creation](https://speech.microsoft.com/portal/audiocontentcreation). The audio output is identical in both cases, with only a few feature differences between the two services. See the table below for details.
 
 Here's a comparison of features between OpenAI text to speech voices in Azure OpenAI and OpenAI text to speech voices in Azure Speech. 
 
@@ -49,7 +49,7 @@ Here's a comparison of features between OpenAI text to speech voices in Azure Op
 | **Voice variety** | 6 | 12 | More than 500 |
 | **Multilingual voice number** | 6 | 12 | 49 |
 | **Max multilingual language coverage** | 57 | 57 | 77 |
-| **Speech Synthesis Markup Language (SSML) support** | Not supported | Support for [a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure Speech. |
+| **Speech Synthesis Markup Language (SSML) support** | Not supported | Support for [a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-speech). | Support for the [full set of SSML](speech-synthesis-markup-structure.md) in Azure Speech. |
 | **Development options** | REST API | Speech SDK, Speech CLI, REST API | Speech SDK, Speech CLI, REST API |
 | **Deployment option** | Cloud only | Cloud only | Cloud, embedded, hybrid, and containers. |
 | **Real-time or batch synthesis** |  Real-time | Real-time | Real-time and batch synthesis |
@@ -58,7 +58,7 @@ Here's a comparison of features between OpenAI text to speech voices in Azure Op
 | **Speech output audio format** | opus, mp3, aac, flac | opus, mp3, pcm, truesilk | opus, mp3, pcm, truesilk |
 
 There are additional features and capabilities available in Azure Speech that aren't available with OpenAI voices. For example:
-- OpenAI text to speech voices in Azure Speech [only support a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-ai-speech). Azure Speech voices support the full set of SSML elements.
+- OpenAI text to speech voices in Azure Speech [only support a subset of SSML elements](#ssml-elements-supported-by-openai-text-to-speech-voices-in-azure-speech). Azure Speech voices support the full set of SSML elements.
 - Azure Speech supports [word boundary events](./how-to-speech-synthesis.md#subscribe-to-synthesizer-events). OpenAI voices don't support word boundary events. 
 
 ### Available OpenAI text to speech voices
@@ -105,5 +105,5 @@ The following table outlines the Speech Synthesis Markup Language (SSML) element
 
 ## Related content
 
-- [Try the text to speech quickstart in Azure Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-ai-speech)
+- [Try the text to speech quickstart in Azure Speech](get-started-text-to-speech.md#openai-text-to-speech-voices-in-azure-speech)
 - [Try the text to speech via Azure OpenAI](../../ai-foundry/openai/text-to-speech-quickstart.md)

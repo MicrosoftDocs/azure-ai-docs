@@ -3,7 +3,7 @@ title: "Document analysis with confidence, grounding, and in-context learning"
 titleSuffix: Azure AI services
 description: Learn about Azure Content Understanding in Foundry Tools's value add-ons that improve model extraction quality and performance
 author: PatrickFarley 
-ms.author: admaheshwari
+ms.author: pafarley
 manager: nitinme
 ms.date: 08/11/2025
 ms.service: azure-ai-content-understanding
