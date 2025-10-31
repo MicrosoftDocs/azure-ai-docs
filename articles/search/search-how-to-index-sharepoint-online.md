@@ -13,7 +13,7 @@ ms.custom:
   - sfi-ropc-nochange
 ---
 
-# Index data from SharePoint in Microsoft 365 document libraries
+# Index data from SharePoint document libraries
 
 > [!IMPORTANT]
 > SharePoint in Microsoft 365 indexer support is in public preview. It's offered "as-is", under [Supplemental Terms of Use](https://azure.microsoft.com/support/legal/preview-supplemental-terms/) and supported on best effort only. Preview features aren't recommended for production workloads and aren't guaranteed to become generally available.
