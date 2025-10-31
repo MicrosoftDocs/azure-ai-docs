@@ -115,7 +115,7 @@ You can enable or disable the web search tool in Foundry Agent Service at the su
 ### Prerequisites 
 
 Before running the following commands, ensure: 
-1. [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli ) is installed.
+1. [Azure CLI](/cli/azure/install-azure-cli) is installed.
 1. You are signed in to Azure using `az login`. 
 1. You have Owner or Contributor access to the subscription. 
 
