@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding audio overview
+title: Azure Content Understanding in Foundry Tools audio overview
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding audio solutions
+description: Learn about Azure Content Understanding in Foundry Tools audio solutions
 author: PatrickFarley 
 ms.author: jagoerge
 manager: nitinme
@@ -12,10 +12,10 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding audio solutions (preview)
+# Azure Content Understanding in Foundry Tools audio solutions (preview)
 
 > [!IMPORTANT]
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
@@ -277,7 +277,7 @@ You can also customize prebuilt analyzers for more fine-grained control of the o
 ## Conversational Knowledge Mining Solution Accelerator
 For an end-2-end quickstart for Speech Analytics solutions, refer to the [Conversation knowledge mining solution accelerator](https://aka.ms/Conversational-Knowledge-Mining).
 
-Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure AI Content Understanding, Azure OpenAI in Azure AI Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
+Gain actionable insights from large volumes of conversational data by identifying key themes, patterns, and relationships. By using Azure AI Foundry, Azure Content Understanding in Foundry Tools, Azure OpenAI in Azure AI Foundry Models, and Azure AI Search, this solution analyzes unstructured dialogue and maps it to meaningful, structured insights.
 
 Capabilities such as topic modeling, key phrase extraction, speech-to-text transcription, and interactive chat enable users to explore data naturally and make faster, more informed decisions.
 

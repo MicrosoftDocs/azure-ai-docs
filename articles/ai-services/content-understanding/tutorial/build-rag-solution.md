@@ -1,5 +1,5 @@
 ﻿---
-title: Build a retrieval-augmented generation solution with Azure AI Content Understanding
+title: Build a retrieval-augmented generation solution with Azure Content Understanding in Foundry Tools
 titleSuffix: Azure AI services
 description: Learn to build a retrieval-augmented generation solution with Content Understanding
 author: PatrickFarley 
@@ -14,7 +14,7 @@ ms.custom:
 
 # Tutorial: Build a retrieval-augmented generation solution 
 
-This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure AI Content Understanding. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you can use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
+This tutorial explains how to create a retrieval-augmented generation (RAG) solution using Azure Content Understanding in Foundry Tools. It covers the key steps to build a strong RAG system, offers tips to improve relevance and accuracy, and shows how to connect with other Azure services. By the end, you can use Content Understanding to handle multimodal data, improve retrieval, and help AI models provide accurate and meaningful responses.
 
 ## Exercises included in this tutorial
 
@@ -41,7 +41,7 @@ To get started, you need **An active Azure subscription**. If you don't have an 
 * **API Version:** This tutorial uses the latest preview [API version](/rest/api/contentunderstanding/operation-groups?preserve-view=true).
 * **Python Environment:** Install [Python 3.11](https://www.python.org/downloads/) to execute the provided code samples and scripts.
 * This tutorial follows this sample code can be found in our [Python notebook](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python#samples). Follow the [README](https://github.com/Azure-Samples/azure-ai-search-with-content-understanding-python/blob/main/README.md) to create essential resources, grant resources the right Access control(IAM) roles and install all packages needed for this tutorial.
-* The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure AI Content Understanding.
+* The multimodal data used in this tutorial consists of documents, images, audio, and video. They're designed to guide you through the process of building a robust RAG solution with Azure Content Understanding in Foundry Tools.
 
 ## Extract data
 

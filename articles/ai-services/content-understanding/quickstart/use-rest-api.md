@@ -1,5 +1,5 @@
 ---
-title: "Quickstart: Azure AI Content Understanding REST APIs"
+title: "Quickstart: Azure Content Understanding in Foundry Tools REST APIs"
 titleSuffix: Azure AI services
 description: Learn about Content Understanding REST APIs
 author: PatrickFarley 
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Quickstart: Use Azure AI Content Understanding REST API
+# Quickstart: Use Azure Content Understanding in Foundry Tools REST API
 
 * This quickstart shows you how to use the [Content Understanding REST API](/rest/api/contentunderstanding/content-analyzers?view=rest-contentunderstanding-2025-05-01-preview&preserve-view=true) to get structured data from multimodal content in document, image, audio, and video files.
 

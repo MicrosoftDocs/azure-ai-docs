@@ -1,7 +1,7 @@
 ---
-title: "Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal"
+title: "Create an Azure Content Understanding in Foundry Tools multi-file task in the Azure AI Foundry portal"
 titleSuffix: Azure AI services
-description: Create an Azure AI Content Understanding multi-file task in the Azure AI Foundry portal
+description: Create an Azure Content Understanding in Foundry Tools multi-file task in the Azure AI Foundry portal
 author: PatrickFarley 
 ms.author: kabrow
 manager: nitinme

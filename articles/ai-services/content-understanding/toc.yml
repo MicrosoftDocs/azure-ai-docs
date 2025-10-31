@@ -1,10 +1,10 @@
 items:
-  - name: Azure AI Content Understanding documentation
+  - name: Azure Content Understanding in Foundry Tools documentation
     href: index.yml
   - name: Overview
     expanded: true
     items:
-      - name: What is Azure AI Content Understanding?
+      - name: What is Azure Content Understanding in Foundry Tools?
         displayName: document, text, images, video, audio, multimodal, visual, structured, content, field, extraction, content filtering, filter
         href: overview.md
       - name: Choose the right tool for document processing

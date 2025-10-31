@@ -1,7 +1,7 @@
 ---
 title: "Document analysis with confidence, grounding, and in-context learning"
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding's value add-ons that improve model extraction quality and performance
+description: Learn about Azure Content Understanding in Foundry Tools's value add-ons that improve model extraction quality and performance
 author: PatrickFarley 
 ms.author: admaheshwari
 manager: nitinme
@@ -22,7 +22,7 @@ Most enterprises face the following challenges when handling a variety of docume
 - Need to **automate workflows**, but only when the extraction is meeting an accuracy threshold that is critical for the business application. You need to know how confident/accurate the model is in its predictions.
 - Need a way to **correct the model without retraining  from scratch** (ideally by providing a few labeled examples) when it gets something wrong or encounters a new format.
 
-To address these needs, Azure AI Content Understanding supports the following features for post-processing your extracted output.
+To address these needs, Azure Content Understanding in Foundry Tools supports the following features for post-processing your extracted output.
 
 | Feature | Purpose | Value |
 |--------|---------|-------|

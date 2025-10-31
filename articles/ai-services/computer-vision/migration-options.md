@@ -69,11 +69,11 @@ There are multiple additional alternative services that can support the remainin
     *	[Explore Azure AI Foundry Models](../../ai-foundry/concepts/foundry-models-overview.md)
     *	[Azure OpenAI in Azure AI Foundry models](../../ai-foundry/foundry-models/concepts/models-sold-directly-by-azure.md)
 
-#### Azure AI Content Understanding (preview)
+#### Azure Content Understanding in Foundry Tools (preview)
 * **Best for**: Customers wanting a managed generative solution for image analysis scenarios.
 * **Features**: Content Understanding supports processing unstructured image data, as well as documents, audio, and video. It enables you to extract structured insights based on pre-defined or user-defined formats.
 * **Learn more** about Content Understanding:
-    * [What is Azure AI Content Understanding?](../content-understanding/overview.md)
+    * [What is Azure Content Understanding in Foundry Tools?](../content-understanding/overview.md)
     * [Azure AI Content Understanding image solutions (preview)](../content-understanding/image/overview.md)
     * [Content Understanding classifier](../content-understanding/concepts/classifier.md)
 

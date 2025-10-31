@@ -13,9 +13,9 @@ ms.custom:
   - build-2025
 ---
 
-# What's new in Azure AI Content Understanding?
+# What's new in Azure Content Understanding in Foundry Tools?
 
-Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
+Azure Content Understanding in Foundry Tools service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
 ## October 2025
 

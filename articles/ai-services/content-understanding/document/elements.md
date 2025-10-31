@@ -1,7 +1,7 @@
 ---
-title: 'Document Analysis: Extract Structured Content with Azure AI Content Understanding'
+title: 'Document Analysis: Extract Structured Content with Azure Content Understanding in Foundry Tools'
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding document layout analysis and data extraction capabilities.
+description: Learn about Azure Content Understanding in Foundry Tools document layout analysis and data extraction capabilities.
 author: PatrickFarley 
 ms.author: paulhsu
 manager: nitinme
@@ -16,7 +16,7 @@ ms.custom:
 
 > [!IMPORTANT]
 >
-> Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
+> Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development. Features, approaches, and processes can change or have limited capabilities before general availability. For more information, see [Supplemental Terms of Use for Microsoft Azure Previews](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
 ## Overview
 

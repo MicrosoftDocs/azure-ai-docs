@@ -1,7 +1,7 @@
 ﻿---
-title: What is Azure AI Content Understanding?
+title: What is Azure Content Understanding in Foundry Tools?
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding solutions, processes, workflows, use-cases, and field extractions.
+description: Learn about Azure Content Understanding in Foundry Tools solutions, processes, workflows, use-cases, and field extractions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,11 +14,11 @@ ms.custom:
 # customer intent: As a user, I want to learn more about Content Understanding solutions.
 ---
 
-# What is Azure AI Content Understanding (preview)?
+# What is Azure Content Understanding in Foundry Tools (preview)?
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 

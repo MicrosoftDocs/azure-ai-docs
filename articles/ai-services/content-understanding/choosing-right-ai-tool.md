@@ -2,7 +2,7 @@
 
 title: Choose the right Azure AI tool for document processing
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
+description: Learn about Azure Content Understanding in Foundry Tools, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
 ms.author: admaheshwari
 manager: nitinme
@@ -28,7 +28,7 @@ Azure AI Document Intelligence is the trusted choice for many document-centric s
 * Document field extraction with [prebuilt models](/azure/ai-services/document-intelligence/model-overview) for predefined schema extraction from standard document types like tax, mortgage, bank checks, forms with higher variations like invoices, receipts, and ID, and [custom models](/azure/ai-services/document-intelligence/train/custom-model) to label and train your own model. 
 
 
-## Azure AI Content Understanding 
+## Azure Content Understanding in Foundry Tools 
 
 Azure AI Content Understanding, built on the same foundational capabilities as Document Intelligence, extends document scenarios to images and embedded content, expanding to multimodal scenarios with audio and video. Content Understanding is built for content processing with Generative AI, improving your ability to generate the specific output you need with inferred fields, enrichments, validations, and reasoning. Content Understanding simplifies the process of building an effective document processing solution, packaging these capabilities into a simple and easy to use analyzer building process with zero-shot output and no labeling, all while providing a rich schema that includes confidence scores and grounding, wherever applicable. Content Understanding provides a rich set of tools among others that can be configured to solve most document processing challenges.
 

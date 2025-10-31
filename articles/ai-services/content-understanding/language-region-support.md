@@ -1,7 +1,7 @@
 ﻿---
 title: Content Understanding region and language support
 titleSuffix: Azure AI services
-description: Azure AI Content Understanding region and language support
+description: Azure Content Understanding in Foundry Tools region and language support
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -14,9 +14,9 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding region and language support
+# Azure Content Understanding in Foundry Tools region and language support
 
-Azure AI Content Understanding provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
+Azure Content Understanding in Foundry Tools provides multilingual support in multiple geographic regions to enable users to communicate with Content Understanding applications in natural ways and empower global outreach. The following sections describe the available regions and supported languages/locales.
 
 ## Region support
 

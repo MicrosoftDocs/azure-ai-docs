@@ -1,7 +1,7 @@
 ---
 title: Best practices for using Content Understanding
 titleSuffix: Azure AI services
-description: Learn how to best use Azure AI Content Understanding for document, image, video, and audio file content and field extractions.
+description: Learn how to best use Azure Content Understanding in Foundry Tools for document, image, video, and audio file content and field extractions.
 author: PatrickFarley 
 ms.author: jfilcik
 manager: nitinme
@@ -12,9 +12,9 @@ ms.custom:
   - build-2025
 ---
 
-# Best practices for Azure AI Content Understanding
+# Best practices for Azure Content Understanding in Foundry Tools
 
-Azure AI Content Understanding is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
+Azure Content Understanding in Foundry Tools is an innovative Generative AI service designed to facilitate the precise and accurate analysis of extensive data sets. The service processes various content modalities, including documents, images, videos, and audio, transforming them into user-specified output formats.
 
 This document provides guidance and best practices to effectively utilize Content Understanding for your data processing and analysis requirements.
 

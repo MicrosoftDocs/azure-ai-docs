@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding terminology
+# Azure Content Understanding in Foundry Tools terminology
 
 | Term | Description |
 |:---------|:----------|

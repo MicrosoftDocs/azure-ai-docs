@@ -14,7 +14,7 @@ ms.custom:
 
 # AudioVisual analysis: Markdown representation
 
-Azure AI Content Understanding converts unstructured audio and video content into richly formatted [GitHub Flavored Markdown](https://github.github.com/gfm), while preserving temporal relationships and content structure for accurate downstream use. This document describes how each audiovisual content element is represented in markdown for both audio and video inputs.
+Azure Content Understanding in Foundry Tools converts unstructured audio and video content into richly formatted [GitHub Flavored Markdown](https://github.github.com/gfm), while preserving temporal relationships and content structure for accurate downstream use. This document describes how each audiovisual content element is represented in markdown for both audio and video inputs.
 
 > [!IMPORTANT]
 >

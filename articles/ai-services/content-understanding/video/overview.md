@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding video overview
+title: Azure Content Understanding in Foundry Tools video overview
 titleSuffix: Azure AI services
-description: Learn about Azure AI Content Understanding video solutions.
+description: Learn about Azure Content Understanding in Foundry Tools video solutions.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -12,7 +12,7 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding video solutions (preview)
+# Azure Content Understanding in Foundry Tools video solutions (preview)
 
 > [!IMPORTANT]
 >

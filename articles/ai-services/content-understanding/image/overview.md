@@ -1,7 +1,7 @@
 ---
-title: Azure AI Content Understanding image overview
+title: Azure Content Understanding in Foundry Tools image overview
 titleSuffix: Azure AI services
-description: Learn how to use Azure AI Content Understanding image solutions
+description: Learn how to use Azure Content Understanding in Foundry Tools image solutions
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
@@ -12,11 +12,11 @@ ms.custom:
   - build-2025
 ---
 
-# Azure AI Content Understanding image solutions (preview)
+# Azure Content Understanding in Foundry Tools image solutions (preview)
 
 > [!IMPORTANT]
 >
-> * Azure AI Content Understanding is available in preview. Public preview releases provide early access to features that are in active development.
+> * Azure Content Understanding in Foundry Tools is available in preview. Public preview releases provide early access to features that are in active development.
 > * Features, approaches, and processes can change or have limited capabilities, before General Availability (GA).
 > * For more information, *see* [**Supplemental Terms of Use for Microsoft Azure Previews**](https://azure.microsoft.com/support/legal/preview-supplemental-terms).
 
