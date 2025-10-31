@@ -398,7 +398,7 @@ llm = AzureChatOpenAI(
 
 Attach `callbacks=[azure_tracer]` to your chains, tools, or agents to ensure LangChain 0.3 operations are traced and visible in Azure AI Foundry Observability.
 
-### OpenAI Agents SDK
+## OpenAI Agents SDK
 
 Use this snippet to configure OpenTelemetry tracing for the OpenAI Agents SDK and instrument the framework. It exports to Azure Monitor if `APPLICATION_INSIGHTS_CONNECTION_STRING` is set; otherwise, it falls back to the console.
 
