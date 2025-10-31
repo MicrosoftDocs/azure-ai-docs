@@ -185,6 +185,7 @@ For more information, see [Customer-managed keys](concept-customer-managed-keys.
 > * You must have an existing Azure key vault that contains an encryption key.
 > * The key vault must be in the same region where you plan to create the Azure Machine Learning workspace.
 > * You must specify the ID of the key vault and the URI of the encryption key.
+> * The key vault must have both soft delete and purge protection enabled.
 > 
 > For information about creating the vault and key, see [Configure customer-managed keys](how-to-setup-customer-managed-keys.md).
 
@@ -225,8 +226,7 @@ To get the values for the `cmk_keyvault` (the ID of the key vault) and the `reso
   This command returns a value similar to `https://mykeyvault.vault.azure.net/keys/mykey/{guid}`.    
 
 > [!IMPORTANT]    
-> - After a workspace is created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
-> - The key vault must have both soft delete and purge protection enabled.
+> After a workspace is created, you can't change the settings for confidential data, encryption, key vault ID, or key identifiers. To change these values, you must create a new workspace that uses the new values.
 
 To enable the use of customer-managed keys, set the following parameters when deploying the template:
 
@@ -482,7 +482,7 @@ To deploy a workspace with existing resources, you have to set the `vnetOption` 
    * Resource group: Select or create the resource group to contain the services.
    * Region: Select the Azure region to create the resources in.
    * Workspace name: Enter a name for the Azure Machine Learning workspace. The workspace name must be between 3 and 33 characters. It can contain only alphanumeric characters and the `-` character.
-   * Location: Select the location where the resources are to be created.
+   * Location: Select the location for the deployment metadata. This location can be the same as the region location, or it can be different. 
    * Vnet Name: Enter a virtual network name. 
 1. Select __Review + create__.
 1. Select __Create__.
