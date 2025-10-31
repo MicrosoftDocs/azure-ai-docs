@@ -95,7 +95,10 @@ To create a remote SharePoint knowledge source:
     @access-token = <YOUR PERSONAL ACCESS TOKEN USED FOR RETRIEVING PERMITTED CONTENT ON SHAREPOINT>
     ```
 
-    API keys are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint Online on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md). You can also use your personal access token to access Azure AI Search and Azure OpenAI if you [set up role assignments on each resource](search-security-rbac.md). Using keys allows you to omit this step.
+    [API keys](search-security-api-keys.md) are used for your client connection to Azure AI Search and Azure OpenAI. Your access token is used by Azure AI Search to connect to SharePoint Online on your behalf. You can only retrieve content that you're permitted to access. For more information about getting a personal access token and other values, see [Connect to Azure AI Search](search-get-started-rbac.md).
+
+    > [!NOTE]
+    > You can also use your personal access token to access Azure AI Search and Azure OpenAI if you [set up role assignments on each resource](search-security-rbac.md). Using API keys allows you to omit this step in this example.
 
 1. Use the 2025-11-01-preview of [Knowledge Sources - Create or Update (REST API)](/rest/api/searchservice/knowledge-sources/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
 
@@ -107,7 +110,7 @@ To create a remote SharePoint knowledge source:
     {
         "name": "my-remote-sharepoint-ks",
         "kind": "remoteSharePoint",
-        "description": "This knowledge source queries a remote SharePoint site for text and images.",
+        "description": "This knowledge source queries .docx files in a trusted Microsoft 365 tenant.",
         "encryptionKey": null,
         "remoteSharePointParameters": {
             "filterExpression": "filetype:docx",
@@ -142,7 +145,16 @@ You can pass the following properties to create a remote SharePoint knowledge so
 
 Learn more about the full [Keyword Query Language (KQL)](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) syntax reference.
 
-+ Filter to a single site by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\""`
+| Example | Filter expression |
+|---------|-------------------|
+| Filter to a single site by ID | `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\""` |
+| Filter to multiple sites by ID | `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\" OR SiteID:\"11bb11bb-cc22-dd33-ee44-55ff55ff55ff\""` |
+| Filter to files under a specific path | `"filterExpression": "Path:\"https://my-demo.sharepoint.com/sites/miml/Shared Documents/en/mydocs\""` |
+| Filter to a specific date range | `"filterExpression": "LastModifiedTime >= 2024-07-22 AND LastModifiedTime <= 2025-01-08"` |
+| Filter to files of a specific file type | `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""` |
+| Filter to files of a specific information protection label | `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""` |
+
+<!-- + Filter to a single site by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\""`
 
 + Filter to multiple sites by ID: `"filterExpression": "SiteID:\"00aa00aa-bb11-cc22-dd33-44ee44ee44ee\" OR SiteID:\"11bb11bb-cc22-dd33-ee44-55ff55ff55ff\""`
 
@@ -152,7 +164,7 @@ Learn more about the full [Keyword Query Language (KQL)](/microsoft-365-copilot/
 
 + Filter to files of a specific file type: `"filterExpression": "FileExtension:\"docx\" OR FileExtension:\"pdf\" OR FileExtension:\"pptx\""`
 
-+ Filter to files of a specific information protection label: `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""`
++ Filter to files of a specific information protection label: `"filterExpression": "InformationProtectionLabelId:\"f0ddcc93-d3c0-4993-b5cc-76b0a283e252\""` -->
 
 ## Assign to a knowledge base
 
@@ -163,8 +175,8 @@ Within the knowledge base, there are more properties to set on the knowledge sou
 <!-- Deviating from pattern here. SharePoint remote needs answerSynthesis-->
 Here's an example of a knowledge base that specifies a remote SharePoint knowledge source, with some key points:
 
-+ Make sure you set `outputMode` to `answerSynthesis`.
-+ Answer synthesis requires that you set the `retrievalReasoningEffort` to `low`.
++ Make sure you set `outputMode` to `answerSynthesis`. It's a requirement.
++ Answer synthesis stipulates that you set the `retrievalReasoningEffort` to `low`.
 
 Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
@@ -201,7 +213,7 @@ Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 ## Retrieve content
 
-The retrieve action provides the user identity that authorizes access to content in Microsoft 365. For local development, set the `x-ms-query-source-authorization` header to provide the access token you previously set as a variable.
+The retrieve action on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. For local development, set the `x-ms-query-source-authorization` header to provide the access token you previously set as a variable.
 
 ```http
 POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
@@ -230,9 +242,9 @@ x-ms-query-source-authorization: {{access-token}}
 }
 ```
 
-Queries asking questions about the content itself are more effective then questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location queries.
+Queries asking questions about the content itself are more effective then questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
 
-However, if you ask "what is the keynote doc for Ignite 2024", the response includes the synthesized answer, plus the URL and other metadata.
+A better question to ask is "what is the keynote doc for Ignite 2024". The response includes the synthesized answer, query activity and token counts, plus the URL and other metadata.
 
 ```json
 {

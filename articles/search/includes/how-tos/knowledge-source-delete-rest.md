@@ -4,12 +4,12 @@ author: heidisteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: include
-ms.date: 10/20/2025
+ms.date: 10/31/2025
 ---
 
 If you no longer need the knowledge source or need to rebuild it on your search service, use this request to delete the object.
 
-Before you can delete a knowledge source, you must delete any knowledge base that references it or remove the references in an update action. However, the associated index and any indexer pipeline objects created from the knowledge source are standalone objects and don't need to be deleted or updated with the knowledge source.
+Before you can delete a knowledge source, you must delete any knowledge base that references it or remove the references in an update action. For knowledge sources that generate an indexer pipeline and an index, those are standalone objects and don't need to be deleted or updated with the knowledge source.
 
 If you try to delete a knowledge source that's in use, the action fails, and a list of affected knowledge bases is returned.
 
@@ -19,7 +19,7 @@ To delete a knowledge source:
 
     ```http
     ### Get knowledge bases
-    GET {{search-endpoint}}/agents?api-version=2025-11-01-preview&$select=name
+    GET {{search-endpoint}}/knowledgebases?api-version=2025-11-01-preview&$select=name
     api-key: {{api-key}}
     Content-Type: application/json
     ```
@@ -31,10 +31,10 @@ To delete a knowledge source:
         "@odata.context": "https://my-demo-search-service.search.windows.net/$metadata#agents(name)",
         "value": [
         {
-            "name": "earth-blob-ka"
+            "name": "earth-blob-kb"
         },
         {
-            "name": "hotels-sample-ka"
+            "name": "hotels-sample-kb"
         }
         ]
     }
@@ -56,20 +56,18 @@ To delete a knowledge source:
       "name": "hotels-sample-kb",
       "description": null,
       "retrievalInstructions": null,
+      "answerInstructions": null,
+      "outputMode": "answerSynthesis",
       "knowledgeSources": [
         {
           "name": "hotels-sample-ks",
-          "alwaysQuerySource": false,
-          "includeReferences": true,
-          "includeReferenceSourceData": false,
-          "maxSubQueries": null,
-          "rerankerThreshold": null
         }
       ],
       "models": [ TRIMMED FOR BREVITY ],
-      "outputConfiguration": { TRIMMED FOR BREVITY },
-      "requestLimits": { TRIMMED FOR BREVITY },
-      "encryptionKey": null
+      "encryptionKey": null,
+      "retrievalReasoningEffort": {
+        "kind": "low"
+      }
     }
    ```
 
@@ -77,7 +75,7 @@ To delete a knowledge source:
 
     ```http
     ### Delete a knowledge base
-    DELETE {{search-endpoint}}/knowledgebases/hotels-sample-ka?api-version=2025-11-01-preview
+    DELETE {{search-endpoint}}/knowledgebases/hotels-sample-kb?api-version=2025-11-01-preview
     api-key: {{api-key}}
     Content-Type: application/json
     ```
