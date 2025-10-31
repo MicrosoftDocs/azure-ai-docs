@@ -1,12 +1,12 @@
 ---
 title: How to perform sentiment analysis and opinion mining
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This article shows you how to detect sentiment, and mine for opinions in text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 07/17/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---

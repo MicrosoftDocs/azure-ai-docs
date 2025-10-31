@@ -68,7 +68,7 @@ Once the container is on the host computer, use the [docker run](https://docs.do
 > * The `Eula`, `Billing`, and `ApiKey` options must be specified to run the container; otherwise, the container won't start.  For more information, see [Billing](#billing).
 > * The sentiment analysis and language detection containers use v3 of the API, and are generally available. The Key Phrase Extraction container uses v2 of the API, and is in preview.
 
-To run the *Key Phrase Extraction* container, execute the following `docker run` command. Replace the placeholders below with your own values:
+To run the *Key Phrase Extraction* container, execute the following `docker run` command. Replace the placeholders with your own values:
 
 | Placeholder | Value | Format or example |
 |-------------|-------|---|

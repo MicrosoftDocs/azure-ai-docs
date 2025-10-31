@@ -1,12 +1,12 @@
 ---
 title: Identify and extract Personally Identifying Information (PII) from text
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: This article shows you how to identify, extract, and redact Personally Identifying Information (PII) from text.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: how-to
-ms.date: 09/27/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-pii
 ---

@@ -3,11 +3,13 @@ title: Use the fast transcription API - Speech service
 titleSuffix: Azure AI services
 description: Learn how to use Azure Speech in Foundry Tools for fast transcriptions, where you submit audio get the transcription results faster than real-time.
 manager: nitinme
-author: PatrickFarley
-ms.author: pafarley
+author: goergenj
+reviewer: patrickfarley
+ms.author: jagoerge
+ms.reviewer: pafarley
 ms.service: azure-ai-speech
 ms.topic: how-to
-ms.date: 5/25/2025
+ms.date: 10/21/2025
 # Customer intent: As a user who implements audio transcription, I want create transcriptions as quickly as possible.
 ---
 
@@ -22,7 +24,7 @@ Unlike the batch transcription API, fast transcription API only produces transcr
 
 ## Prerequisites
 
-- An Azure Speech resource in one of the regions where the fast transcription API is available. The supported regions are: **Australia East**, **Brazil South**, **Central India**, **East US**, **East US 2**, **French Central**, **Japan East**, **North Central US**, **North Europe**, **South Central US**, **Southeast Asia**, **Sweden Central**, **UK South**, **West Europe**, **West US**, **West US 2**, **West US 3**. For more information about regions supported for other Speech service features, see [Speech service regions](./regions.md).
+- An Azure Speech resource in one of the regions where the fast transcription API is available. For the current list of supported regions, see the [Speech service regions table](./regions.md?tabs=stt).
   
 - An audio file (less than 2 hours long and less than 300 MB in size) in one of the formats and codecs supported by the batch transcription API: WAV, MP3, OPUS/OGG, FLAC, WMA, AAC, ALAW in WAV container, MULAW in WAV container, AMR, WebM, and SPEEX. For more information about supported audio formats, see [supported audio formats](./batch-transcription-audio-data.md#supported-audio-formats-and-codecs).
 
@@ -607,7 +609,7 @@ Construct the form definition according to the following instructions:
 
 - You can either leave the `locales` property empty (as shown in the previous example) or omit it.
 
-- The supported audio input locale with current multi-lingual model are: **de-DE**, **en-AU**, **en-CA**, **en-GB**, **en-IN**, **en-US**, **es-ES**, **es-MX**, **fr-CA**, **fr-FR**, **hi-IN**, **it-IT**, **ja-JP**, **ko-KR**, and **zh-CN**.
+- The supported audio input locales with current multi-lingual model are: **de-DE**, **en-AU**, **en-CA**, **en-GB**, **en-IN**, **en-US**, **es-ES**, **es-MX**, **fr-CA**, **fr-FR**, **it-IT**, **ja-JP**, **ko-KR**, and **zh-CN**.
 
 - The transcription result is distinguished at the language level and will follow the "major locale of this language" (e.g., it will always output "en-US" locale code even if the audio has a British English or Indian English accent).
 

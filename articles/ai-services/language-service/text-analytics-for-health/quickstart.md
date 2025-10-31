@@ -1,13 +1,13 @@
 ---
 title: "Quickstart: Use the Text Analytics for health REST API and client library"
-titleSuffix: Azure AI services
+titleSuffix: Azure AI Foundry Tools
 description: Use this quickstart to start using Text Analytics for health.
 #services: cognitive-services
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: quickstart
-ms.date: 09/15/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.devlang: csharp
 # ms.devlang: csharp, java, javascript, python

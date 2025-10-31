@@ -5,7 +5,7 @@ ms.service: azure-ai-language
 author: laujan
 ms.author: lajanuar
 ms.topic: conceptual
-ms.date: 07/22/2025
+ms.date: 11/05/2025
 ---
 
 # Project limits and boundaries

@@ -49,7 +49,7 @@ items:
     href: ../../foundry-models/supported-languages.md
   - name: Work with chat models
     items:
-    - name: Work with chat completion models
+    - name: Work with chat models
       href: ../../foundry-models/how-to/use-chat-completions.md
     - name: Work with reasoning models
       href: ../../foundry-models/how-to/use-chat-reasoning.md
@@ -153,6 +153,8 @@ items:
           href: ../../openai/how-to/realtime-audio.md
         - name: Realtime API via WebRTC
           href: ../../openai/how-to/realtime-audio-webrtc.md
+        - name: Realtime API via SIP
+          href: ../../openai/how-to/realtime-audio-sip.md
         - name: Realtime API via WebSockets
           href: ../../openai/how-to/realtime-audio-websockets.md
   - name: Batch
@@ -216,6 +218,8 @@ items:
       href: ../../openai/concepts/video-generation.md
   - name: Stored completions
     href: ../../openai/how-to/stored-completions.md
+  - name: Webhooks
+    href: ../../openai/how-to/webhooks.md
   - name: Concepts
     items:
       - name: Assistants

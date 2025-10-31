@@ -69,13 +69,19 @@ items:
   href: ../../concepts/ai-foundry-consolidated-view.md
 - name: Status dashboard
   href: ../../azure-ai-foundry-status-dashboard-documentation.md  
-- name: Connect other services
+- name: Connect to other services
   items:
   - name: Create a connection
     href: ../../how-to/connections-add.md
     displayName: code
   - name: Create a Key Vault
     href: ../../how-to/set-up-key-vault-connection.md
+  - name: Connect to your own storage
+    items:
+    - name: Overview
+      href: ../../how-to/bring-your-own-azure-storage-foundry.md
+    - name: For Speech/Language
+      href: ../../how-to/bring-your-own-azure-storage-speech-language-services.md
 - name: Costs and quotas
   items:
   - name: Managing quotas and limits
@@ -90,11 +96,9 @@ items:
       href: ../../foundry-models/quotas-limits.md
     - name: Cost management
       items:
-      - name: Manage costs for AI Foundry resources
+      - name: Manage costs
         href: ../../concepts/manage-costs.md
         displayName: pricing, budget, estimate
-      - name: Manage costs for Foundry Models
-        href: ../../foundry-models/how-to/manage-costs.md
       - name: What is the Provisioned Throughput offering (PTU)?
         href: ../../openai/concepts/provisioned-throughput.md?context=/azure/ai-foundry/context/context
         displayName: PTU, provisioned, provisioned throughput units

@@ -20,7 +20,7 @@ The Voice live API is a solution enabling low-latency, high-quality speech to sp
 
 ## Understanding speech to speech experiences
 
-Speech to speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech to text, intent recognition, dialog management, text to speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
+Speech to speech technology is revolutionizing how humans interact with systems, offering intuitive voice-based solutions. Traditional implementations involved combining disparate modules such as speech to text, dialog management, text to speech, and more. Such chaining can lead to increased engineering complexity and end-user perceived latency.
 
 With advancements in Large Language Models (LLMs) and multimodal AI, the Voice live API consolidates these functionalities, simplifying workflows for developers. This approach enhances real-time interactions and ensures high-quality, natural communication, making it suitable for industries requiring instant, voice-enabled solutions.
 
@@ -38,7 +38,7 @@ Azure AI Voice live API is ideal for scenarios where voice-driven interactions i
 
 The Voice live API includes a comprehensive set of features to support diverse use cases and ensure superior voice interactions:
 
-- **Broad locale coverage**: Supports over 15 locales for speech to text and offers over 600 standard voices across 140+ locales for text to speech, ensuring global accessibility.
+- **Broad locale coverage**: Supports over 140 locales for speech to text and offers over 600 standard voices across 150+ locales for text to speech, ensuring global accessibility.
 - **Customizable input and output**: Use phrase list for lightweight just-in-time customization on audio input or custom speech models for advanced speech recognition fine-tuning. Use custom voice to create unique, brand-aligned voices for audio output. See [How to customize voice live input and output](./voice-live-how-to-customize.md) to learn more.
 - **Flexible generative AI model options**: [Choose from multiple models](#supported-models-and-regions), including GPT-5, GPT-4.1, GPT-4o, Phi, and more tailored to conversational requirements.
 - **Advanced conversational features**:

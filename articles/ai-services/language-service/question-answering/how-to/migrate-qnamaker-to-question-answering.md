@@ -6,7 +6,7 @@ ms.author: lajanuar
 author: laujan
 ms.manager: nitinme
 ms.topic: how-to
-ms.date: 06/04/2025
+ms.date: 11/05/2025
 ms.custom: language-service-question-answering
 ---
 # Migrate from QnA Maker to Custom question answering 

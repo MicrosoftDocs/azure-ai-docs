@@ -88,7 +88,7 @@ Usage of the `lexicon` element's attributes are described in the following table
 
 | Attribute | Description | Required or optional |
 | --------- | ---------- | ---------- |
-| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
+| `uri`     | The URI of the publicly accessible custom lexicon XML file with either the `.xml` or `.pls` file extension. Using [Azure Blob Storage](/azure/storage/blobs/storage-quickstart-blobs-portal) is recommended but not required, GitHub URIs and other publicly accessible links are also supported. For more information about the custom lexicon file, see [Pronunciation Lexicon Specification (PLS) Version 1.0](https://www.w3.org/TR/pronunciation-lexicon/).| Required |
 
 ### Custom lexicon examples
 
@@ -190,7 +190,7 @@ You could also directly provide your expected `alias` for the acronym or abbrevi
 
 The preceding custom lexicon XML file examples use the IPA alphabet, which is also known as the IPA phone set. We suggest that you use the IPA because it's the international standard. For some IPA characters, they're the "precomposed" and "decomposed" version when they're being represented with Unicode. The custom lexicon only supports the decomposed Unicode.
 
-The Speech service defines a phonetic set for these locales: `en-US`, `fr-FR`, `de-DE`, `es-ES`, `ja-JP`, `zh-CN`, `zh-HK`, and `zh-TW`. For more information on the detailed Speech service phonetic alphabet, see the [Speech service phonetic sets](speech-ssml-phonetic-sets.md).
+The Speech service defines a phonetic set for these locales: `en-US`, `en-CA`, `fr-FR`, `fr-CA`,`fr-BE`, `fr-CH`, `de-DE`, `de-AT`, `de-CH`, `es-ES`, `ja-JP`, `zh-CN`, `zh-HK`, `yue-CN`, and `zh-TW`. For more information on the detailed Speech service phonetic alphabet, see the [Speech service phonetic sets](speech-ssml-phonetic-sets.md).
 
 You can use the `x-microsoft-sapi` as the value for the `alphabet` attribute with custom lexicons as demonstrated here:
 

@@ -1,12 +1,12 @@
 ---
 title: What is sentiment analysis and opinion mining in the Language service?
-titleSuffix: Azure AI services
-description: An overview of the sentiment analysis feature in Azure AI services, which helps you find out what people think of a topic by mining text for clues.
+titleSuffix: Azure AI Foundry Tools
+description: An overview of the sentiment analysis feature in Azure Language, which helps you find out what people think of a topic by mining text for clues.
 author: laujan
 manager: nitinme
 ms.service: azure-ai-language
 ms.topic: overview
-ms.date: 08/19/2025
+ms.date: 11/05/2025
 ms.author: lajanuar
 ms.custom: language-service-sentiment-opinion-mining
 ---
