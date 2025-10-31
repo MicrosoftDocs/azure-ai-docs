@@ -105,7 +105,7 @@ The `pro` mode (preview) is currently limited to documents as inputs, with suppo
 
 With this release, the following updates are now available to the Content Understanding experience in Azure AI Foundry:
 
-* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Use Azure AI Content Understanding in the Azure AI Foundry](./quickstart/use-ai-foundry.md).
+* Added support for creating both `standard` mode and `pro` mode tasks in the existing Content Understanding experience. Now with pro mode, you have the ability to bring in your own reference data and create a task that executes multi-step reasoning on your data. Read more about the two different task types in [Create Content Understanding Standard and Pro tasks in the Azure AI Foundry Classic portal](./how-to/content-understanding-foundry-classic.md).
 * Try-out experiences are now available for general document analysis and invoice analysis. Try out these prebuilt features on your own data and start getting insights without having to create a custom task. 
 
 ### Document classification and splitting
