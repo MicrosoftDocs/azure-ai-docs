@@ -294,7 +294,7 @@ To start using SSML for customization, you make a minor change that switches the
 
    ```xml
    <speak version="1.0" xmlns="https://www.w3.org/2001/10/synthesis" xml:lang="en-US">
-     <voice name="en-US-DragonHDLatestNeural">
+     <voice name="en-US-Ava:DragonHDLatestNeural">
        When you're on the freeway, it's a good idea to use a GPS.
      </voice>
    </speak>
@@ -340,7 +340,7 @@ To start using SSML for customization, you make a minor change that switches the
    ```
 
 > [!NOTE]
-> To change the voice without using SSML, you can set the property on `SpeechConfig` by using `SpeechConfig.speechSynthesisVoiceName = "en-US-DragonHDLatestNeural";`.
+> To change the voice without using SSML, you can set the property on `SpeechConfig` by using `SpeechConfig.speechSynthesisVoiceName = "en-US-Ava:DragonHDLatestNeural";`.
 
 ## Subscribe to synthesizer events
 
