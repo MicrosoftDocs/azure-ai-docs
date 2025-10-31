@@ -557,7 +557,7 @@ AutoML applies aggregation for the following columns:
 | Column | Aggregation method |
 | --- | --- |
 | Numerical predictors    | AutoML uses the `sum`, `mean`, `min`, and `max` functions. It generates new columns. Each column name includes a suffix that identifies the name of the aggregation function applied to the column values. |
-| Categorical predictors  | AutoML uses the value of the `forecast_mode` parameter to aggregate the data. It's the most prominent category in the window. For more information, see the descriptions of the parameter in the [Many models pipeline](#many-models-pipeline) and [HTS pipeline](#hts-pipeline) sections. |
+| Categorical predictors  | AutoML uses the value of the `forecast_mode` parameter to aggregate the data. It's the most prominent category in the window. For more information, see the descriptions of the parameter in the [Many-models pipeline](#many-models-pipeline) and [HTS pipeline](#hts-pipeline) sections. |
 | Data predictors         | AutoML uses the minimum target value (`min`), maximum target value (`max`), and `forecast_mode` parameter settings to aggregate the data. |
 | Target                  | AutoML aggregates the values according to the specified operation. Typically, the `sum` function is appropriate for most scenarios. |
 
@@ -1322,7 +1322,7 @@ For a more detailed example, see the [Demand Forecasting by Using Many Models no
 
 - Deploying individual models isn't scalable, but you can use `PipelineComponentBatchDeployment` to make the deployment process easier. For an example, see the [Demand Forecasting by Using Many Models notebook](https://github.com/Azure/azureml-examples/blob/main/sdk/python/jobs/pipelines/1k_demand_forecast_pipeline/aml-demand-forecast-mm-pipeline/aml-demand-forecast-mm-pipeline.ipynb). 
 
-- During inference, appropriate models (the latest version) are automatically selected based on the partition sent in the inference data. By default, when you use `training_experiment_name`, the latest model is used, but you can override this behaviour to select models from a particular training run by also providing `train_run_id`.
+- During inference, appropriate models (the latest version) are automatically selected based on the partition sent in the inference data. By default, when you use `training_experiment_name`, the latest model is used, but you can override this behavior to select models from a particular training run by also providing `train_run_id`.
 
 > [!NOTE]
 > The default parallelism limit for a many-models run in a subscription is 320. If your workload requires a higher limit, you can contact Microsoft support.
