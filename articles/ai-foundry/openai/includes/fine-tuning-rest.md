@@ -251,7 +251,7 @@ curl --request GET \
 ```
 
 > [!NOTE]
-> When you copy a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure that you use the exact name for fine-tuning, deployment, or for any other operation in the destination account. This checkpoint doesn't appear in the UI or in the `list checkpoints` API.
+> When you copy a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure that you use this exact same name for fine-tuning, deployment, or for any other operation in the destination account. This checkpoint doesn't appear in the UI or in the `list checkpoints` API.
 
 ## Checkpoints
 
