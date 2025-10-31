@@ -5,7 +5,7 @@ description: Learn the latest updates to the Content Understanding API.
 author: PatrickFarley 
 ms.author: pafarley
 manager: nitinme
-ms.date: 09/16/2025
+ms.date: 11/01/2025
 ms.service: azure-ai-content-understanding
 ms.topic: whats-new
 ms.custom:
@@ -17,12 +17,77 @@ ms.custom:
 
 Azure AI Content Understanding service is updated on an ongoing basis. Bookmark this page to stay up to date with release notes, feature enhancements, and our newest documentation.
 
-## October 2025
+## November 2025
 
+Azure AI Content Understanding is now Generally Available with API version `2025-11-01`. The release brings production readiness plus customer-driven enhancements across model choice, management, and security.
+
+### Choose the right generative model for every workload
+
+- Connect Content Understanding to an Azure AI Foundry deployment for large language models and embeddings so you control quality, latency, and cost.
+- Initial support includes GPT-4.1, GPT-4o family models, and embeddings such as `text-embedding-3-large`. Learn how to [configure your LLM deployment](quickstart/use-ai-foundry.md).
+- Select a deployment type—Global, DataZone, or Regional—or use Provisioned Throughput Units (PTUs) to reserve capacity for predictable, high-volume workloads. For Global and DataZone, data at rest remains in your customer-designated geography; only the processing location differs.
+
+### Manage analyzers with more precision
+
+- **Optimize performance and reduce costs** with granular control over field extraction. Enable confidence scores and source grounding only for the fields where you need validation and traceability using the `estimateFieldSourceAndConfidence` setting. This selective approach reduces response payload sizes and lowers processing costs by computing confidence metrics only when required. Confidence scores are now consistently available across all extraction methods—whether using extract, generative, or classify—giving you uniform quality metrics regardless of how fields are processed. Learn how to [enable confidence scores for field extraction](document/overview.md#field-extraction).
+- **Simplify analyzer development** with intelligent defaults and streamlined workflows. The extraction method is now optional. Content Understanding automatically selects the best approach for each field, reducing configuration complexity. This intelligent behavior makes it easier to build and maintain analyzers without deep knowledge of extraction techniques.
+- **Categorization expands support** with `categorization` property now supports up to 200 categories up from 50, enabling precise classification and routing of diverse document types within a single analyzer—no separate classifier required. 
+- **Analyzer lifecycle APIs** extend to support copy, delete, replace, and explicit result deletion give you complete control over analyzer versions and data retention for compliance and privacy requirements. See [Migrate projects from preview to GA](how-to/migration-preview-to-ga.md) for guidance.
+
+### RAG analyzers
+
+RAG analyzers are optimized for retrieval-augmented generation scenarios, extracting content with layout as markdown and performing semantic analysis to enhance retrieval quality for downstream applications.
+
+- **Documents**: `prebuilt-documentAnalyzer` extracts paragraphs, tables, and figure descriptions from documents, enables textual descriptions of images, charts, and diagrams, captures hand-written annotations, generates content summaries, and supports a wide range of file formats including PDF, images, Office documents, and text files.
+- **Multimodal support**: Extends to video, image, and audio with `prebuilt-videoAnalyzer` for transcript extraction and segment-based summaries with automatic scene detection, `prebuilt-imageAnalyzer` for visual content descriptions and insights, and `prebuilt-audioAnalyzer` for conversation transcription with speaker diarization and multilingual support.
+
+Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
+
+### Domain-specific prebuilt analyzers for industry workloads
+
+Domain-specific prebuilt analyzers are tailored for industry scenarios, enabling automated extraction of structured data from specialized document types without custom training.
+
+- **Finance and tax**: Extract key data from financial statements, tax forms, W-2s, 1099s, and other tax documents with tuned schemas that capture amounts, dates, tax identifiers, and financial entities.
+- **Procurement and contracts**: Process purchase orders, contracts, and procurement documents to extract vendor information, line items, pricing, terms, and contractual obligations.
+- **Mortgage and lending**: Automate extraction from mortgage applications, loan documents, and lending forms, capturing borrower details, property information, loan terms, and financial disclosures.
+- **Identity verification**: Process passports, driver's licenses, ID cards, and other identity documents with `prebuilt-idDocument`, extracting personal information, document numbers, and verification details. Categorization lets you send specific sections—such as passport pages—to purpose-built analyzers during a single run.
+- **Utilities, billing, and more**: Extract structured data from utility bills, invoices, and billing statements across industries, capturing account information, usage details, and payment data.
+
+Explore the domain-specific analyzer lineup and usage guidance in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md#vertical-analyzers).
+
+### Enterprise security and governance
+
+- General availability includes Microsoft Entra ID, managed identities, customer-managed keys, virtual networks, and private endpoints.
+- These controls keep sensitive content in your Azure boundary and help you meet compliance requirements. Learn more in [Secure access to Content Understanding](concepts/managed-identities-entra-id.md).
+
+### Other improvements
+
+- `prebuilt-read` and `prebuilt-layout` analyzers now expose key Document Intelligence capabilities inside Content Understanding.
+- `prebuilt-layoutWithFigures` extends layout extraction with figure detection and analysis, extracting charts, diagrams, and images with their context.
+- Layout for documents adds improvements including identifying hyperlinks and create a single table output for tables that span pages.
+- When analyzing documents, you can now provide an **input range** to only analyze a section of the input document.
+- Review the full analyzer catalog in [Prebuilt analyzers in Azure AI Content Understanding](concepts/prebuilt-analyzers.md).
+- Use the `range` parameter to analyze specific pages or segments and reduce token consumption.
+- Choose HTML or Markdown table output to match downstream processing requirements.
+- Categorization lets you send sections—such as passport pages within `prebuilt-idDocument`—to purpose-built analyzers during a single run.
+
+### Region expansion and availability
+
+- Content Understanding is now supported in 14 regions worldwide, providing greater geographic coverage and improved data residency options. See the [language and region support documentation](language-region-support.md) for the detailed list of available regions.
+- Content Understanding is available in [Content Understanding Studio](https://aka.ms/cu-studio), as well as through the REST API for programmatic access.
+
+### Breaking changes
+
+- Managed capacity for the preview generative models is retired. Now to use Content Understand you always bring your own Foundry large language model and embedding deployments.
+- Dedicated classifier APIs are deprecated because classification now lives inside the analyzer API as the categorization feature.
+- Video segmentation can now be done using the categorization capability unifying the API for splitting files across document and video analyzers.
+- The preview API (`2025-05-01-preview`) doesn't carry forward Pro mode for cross-file analysis or the person directory with Face API integration.
+
+## October 2025
 Azure AI Content Understanding preview version introduces the following updates:
 
-* Azure AI Content Understanding now has increased field count support (1,000) for all modalities. 
-* The API response body now inclues input, output, and contextualization tokens consumed as part of the `tokens` object. Check out the [quickstart](quickstart/use-rest-api.md) article for more information.
+* Azure AI Content Understanding now has increased field count support (1,000) for all modalities.
+* The API response body now includes input, output, and contextualization tokens consumed as part of the tokens object. Check out the quickstart article for more information.
 
 ## May 2025
 
@@ -59,8 +124,8 @@ This release introduces a new [classification API](concepts/classifier.md). This
 
 * Added support for whole video fields. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
 * Added support for video chapters via segmentation. Learn more about [video processing improvements](video/overview.md#segmentation-mode).
-* Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval. Learn more about [face detection in videos](video/overview.md#content-extraction---grouping-and-identification)
-* Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#field-extraction--face-description).
+* Added support for face identification on extracted face thumbnails. The identity enhances the description and downstream tasks like search and retrieval.
+* Added support for disabling face blurring in analyzer configuration. Learn more about [video processing improvements](video/overview.md#face-description-fields).
 
 * ### Improvements to audio processing
 

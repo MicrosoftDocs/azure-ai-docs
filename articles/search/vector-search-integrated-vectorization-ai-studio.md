@@ -33,15 +33,11 @@ After the model is deployed, you can use it for [integrated vectorization](vecto
 
 ## Supported embedding models
 
-Integrated vectorization and the [**Import data (new)** wizard](search-import-data-portal.md) support the following embedding models in the model catalog:
+Supported embedding models from the Azure AI Foundry model catalog vary by usage method:
 
-| Embedding type | Supported models |
-|--|--|
-| Text | Cohere-embed-v3-english<br>Cohere-embed-v3-multilingual |
-| Image | Facebook-DinoV2-Image-Embeddings-ViT-Base<br>Facebook-DinoV2-Image-Embeddings-ViT-Giant |
-| Text and image (multimodal) | Cohere-embed-v4 <sup>1</sup> |
++ For the latest list of models supported programmatically, see the [AML skill](cognitive-search-aml-skill.md) and [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md) references.
 
-<sup>1</sup> At this time, you can only specify `embed-v-4-0` programmatically through the [AML skill](cognitive-search-aml-skill.md) or [Azure AI Foundry model catalog vectorizer](vector-search-vectorizer-azure-machine-learning-ai-studio-catalog.md), not through the Azure portal. However, you can use the portal to manage the skillset or vectorizer afterward.
++ For the latest list of models supported in the Azure portal, see [Quickstart: Vector search in the Azure portal](search-get-started-portal-import-vectors.md) and [Quickstart: Multimodal search in the Azure portal](search-get-started-portal-image-search.md).
 
 ## Deploy an embedding model from the Azure AI Foundry model catalog
 
@@ -75,9 +71,9 @@ Integrated vectorization and the [**Import data (new)** wizard](search-import-da
 
 ## Sample AML skill payloads
 
-When you deploy embedding models from the [Azure AI Foundry model catalog](https://ai.azure.com/explore/models) you connect to them using the [AML skill](cognitive-search-aml-skill.md) in Azure AI Search for indexing workloads.
+When you deploy embedding models from the Azure AI Foundry model catalog, you connect to them using the [AML skill](cognitive-search-aml-skill.md) in Azure AI Search for indexing workloads.
 
-This section describes the AML skill definition and index mappings. It includes sample payloads that are already configured to work with their corresponding deployed endpoints. For more technical details on how these payloads work, read about the [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
+This section describes the AML skill definition and index mappings. It includes sample payloads that are already configured to work with their corresponding deployed endpoints. For more technical details on how these payloads work, see the [Skill context and input annotation language](cognitive-search-skill-annotation-language.md).
 
 <!-- ### [**Text Input for "Inference" API**](#tab/inference-text)
 
@@ -124,6 +120,7 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 }
 ``` -->
 
+<!--
 ### [**Facebook embedding models**](#tab/inference-image)
 
 This AML skill payload works with the following image embedding models from Azure AI Foundry:
@@ -171,8 +168,11 @@ The URI and key are generated when you deploy the model from the catalog. For mo
 ```
 
 ### [**Cohere embedding models**](#tab/cohere)
+-->
 
-This AML skill payload works with the following embedding models from Azure AI Foundry:
+### Cohere embedding models
+
+This AML skill payload works with the following embedding models:
 
 + Cohere-embed-v3-english
 + Cohere-embed-v3-multilingual
@@ -239,8 +239,6 @@ If you selected a different `embedding_types` in your skill definition, change `
   "parameters": {}
 }
 ```
-
----
 
 ## Sample Azure AI Foundry vectorizer payload
 
