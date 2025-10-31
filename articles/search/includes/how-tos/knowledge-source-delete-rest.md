@@ -28,7 +28,7 @@ To delete a knowledge source:
 
    ```json
     {
-        "@odata.context": "https://my-demo-search-service.search.windows.net/$metadata#agents(name)",
+        "@odata.context": "https://my-demo-search-service.search.windows.net/$metadata#knowledgebases(name)",
         "value": [
         {
             "name": "earth-blob-kb"
