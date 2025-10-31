@@ -39,7 +39,7 @@ The **Azure AI Foundry NextGen portal** (coming soon) will offer the ability to:
 * Test custom analyzers on your own data
 
 ## Quick comparison 
-AI Foundry portal and Content Understanding Studio have parity in most all features. See the chart below to understsand the key differences.
+AI Foundry portal and Content Understanding Studio have parity in most all features. See the chart below to understand the key differences.
 
 | Feature Category | Azure AI Foundry NextGen (Coming soon) | Azure AI Foundry Classic |	Content Understanding Studio |
 |------------------|-----------------|-----------------|-----------------|
