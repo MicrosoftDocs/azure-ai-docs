@@ -72,9 +72,9 @@ with project_client:
 
         print(f"Image downloaded and saved to: {file_path}")
 ```
-:::zone end
+:::zone-end
 
-:::zone pivot="rest"
+:::zone pivot="rest-api"
 ## Create an agent with the image generation tool
 ```bash
 curl --request POST \
@@ -127,7 +127,7 @@ curl --request POST \
 }'
 ```
 
-:::zone end
+:::zone-end
 
 ## When to use the image generation tool
 

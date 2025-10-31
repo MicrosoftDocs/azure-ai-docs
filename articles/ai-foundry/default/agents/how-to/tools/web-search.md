@@ -61,9 +61,9 @@ agent = project_client.agents.create_version(
     description="Agent for web search.",
 )
 ```
-:::zone end
+:::zone-end
 
-:::zone pivot="rest"
+:::zone pivot="rest-api"
 ### Create an agent with the web search tool
 ```bash
 curl --request POST \
@@ -84,7 +84,7 @@ curl --request POST \
   }
 }'
 ```
-:::zone end
+:::zone-end
 
 
 ## Options to use web search 
