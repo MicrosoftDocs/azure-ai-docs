@@ -11,6 +11,7 @@ ms.date: 09/29/2025
 ms.service: azure-ai-foundry
 ms.topic: how-to
 ms.custom: references_regions
+monikerRange: 'foundry-classic || foundry'
 ---
 
 # Trace and Observe AI Agents in Azure AI Foundry (preview)
