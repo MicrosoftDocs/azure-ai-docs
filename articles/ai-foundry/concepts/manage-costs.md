@@ -200,11 +200,15 @@ Replace `<subscriptionId>`, `<resourceGroupName>`, and `<foundryResourceName>` w
 1. At the top of the page, select the subscription, one or more projects, and a date range. 
 1. The **Estimated cost** tile shows estimates of all the agents for the selected project(s) for the selected dates.  These estimates do not currently include prompt agent and non-Foundry agent costs.
 
+:::image type="content" source="../default/media/manage-costs/agent-costs.png" alt-text="Screenshot of the Agents tab under Assets, showing the Estimated costs column with monthly cost estimates for each agent based on configuration and usage." lightbox="../default/media/manage-costs/agent-costs.png":::
+
 For individual agent estimates:
 
 1. Select **Assets** in the left pane
 1. Select the **Agents** tab.
 1. The **Estimated costs** column shows monthly estimates based on the agent configuration and usage patterns.
+
+:::image type="content" source="../default/media/manage-costs/agent-list.png" alt-text="Screenshot of the Agents tab showing a list of agents with columns for Name, Status, and Estimated costs. The Estimated costs column displays monthly values." lightbox="../default/media/manage-costs/agent-list.png":::
 
 For more details of an individual agent:
 
@@ -215,6 +219,8 @@ For more details of an individual agent:
 1. Set the date range in the upper-right corner.
 1. Operational metrics show the token cost and usage for the given range.
 
+:::image type="content" source="../default/media/manage-costs/agent-build-cost.png" alt-text="Screenshot of the Build page showing the Models pane with a selected model highlighted." lightbox="../default/media/manage-costs/agent-build-cost.png":::
+
 ### Model deployment costs
 
 1. Select **Build** in the upper-right navigation.
@@ -224,6 +230,7 @@ For more details of an individual agent:
 1. Select the date range in the upper right corner.
 You  see the total cost along with an estimated cost chart for the given range. 
 
+:::image type="content" source="../default/media/manage-costs/model-costs.png" alt-text="Screenshot of Azure portal showing the Monitor tab with total cost and estimated cost chart for a selected model and date range." lightbox="../default/media/manage-costs/model-costs.png":::
 
 ## Monitor in Azure portal
 
