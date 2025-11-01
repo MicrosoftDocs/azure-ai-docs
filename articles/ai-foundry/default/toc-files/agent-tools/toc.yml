@@ -37,6 +37,8 @@ items:
       href: ../../agents/how-to/private-tool-catalog.md
     - name: MCP tool
       href: ../../../agents/how-to/tools/model-context-protocol.md
+    - name: MCP authentication
+      href: ../../agents/how-to/mcp-authentication.md
 - name: OpenAPI defined tools
   href: ../../../agents/how-to/tools/openapi-spec.md
 - name: SharePoint
