@@ -77,7 +77,7 @@ There are usually two tokens involved in OAuth flow: refresh token and access to
 - Purpose: limit the damage if stolen.
 - When it expires, the OAuth App can use a refresh token (if available) to get a new one. 
 
-**Refresh token**
+**Refresh token**:
 - Used only to get new access tokens.
 - Longer-lived - can last hours, days, weeks, or even "until revoked" depending on server settings.
 - Can often be revoked by the user (for example via account settings).
