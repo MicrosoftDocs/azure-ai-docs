@@ -1,22 +1,22 @@
 ---
 title: Create a SharePoint (Remote) Knowledge Source
 titleSuffix: Azure AI Search
-description: A remote Sharepoint knowledge source tells the agentic retrieval engine to query SharePoint sites directly.
+description: A remote SharePoint knowledge source tells the agentic retrieval engine to query SharePoint sites directly.
 manager: nitinme
 author: HeidiSteen
 ms.author: heidist
 ms.service: azure-ai-search
 ms.topic: how-to
-ms.date: 10/31/2025
+ms.date: 11/01/2025
 ---
 
 # Create a remote SharePoint knowledge source
 
 [!INCLUDE [Feature preview](./includes/previews/preview-generic.md)]
 
-A *remote SharePoint knowledge source* uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint and OneDrive, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There's no search index used by this knowledge source, and only textual content is queried.
+A *remote SharePoint knowledge source* uses the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) to query textual content directly from SharePoint in Microsoft 365, returning results to the agentic retrieval engine for merging, ranking, and response formulation. There's no search index used by this knowledge source, and only textual content is queried.
 
-At query time, the knowledge source uses the identity of the caller to retrieve content from Microsoft 365. There's no SharePoint endpoint in the knowledge source, but your Azure tenant and the Microsoft 365 tenant must use the same Microsoft Entra ID tenant, and the caller's identity must be recognized by both tenants.
+At query time, the remote SharePoint knowledge source calls the Copilot Retrieval API on behalf of the user identity, so no connection strings are needed in the knowledge source definition. All content to which a user has access is in-scope for knowledge retrieval. To limit sites or constrain search, set a filter expression. Your Azure tenant and the Microsoft 365 tenant must use the same Microsoft Entra ID tenant, and the caller's identity must be recognized by both tenants.
 
 + You can use filters to scope search by URLs, date ranges, file types, and other metadata.
 
@@ -34,15 +34,16 @@ Like any other knowledge source, you specify a remote SharePoint knowledge sourc
 
 + A personal access token for local development or a user's identity from a client application. 
 
-For local developement, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
+For local development, the agentic retrieval engine uses your access token to call SharePoint on your behalf. For more information about using a personal access token on requests, see [Connect to Azure AI Search](search-get-started-rbac.md).
 
 To try the examples in this article, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with the [REST Client extension](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search. Currently, there's no portal support.
 
+<!-- invalid filter expression will return a 400 soon, so we should be able to remove this limitation -->
 ## Limitations
 
 The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/overview) apply to remote SharePoint knowledge sources.
 
-+ There's no support for Copilot connectors. Content is retrieved from OneDrive and SharePoint.
++ There's no support for Copilot connectors or OneDrive content. Content is retrieved from SharePoint sites only.
 
 + Limit of 200 requests per user per hour.
 
@@ -56,7 +57,7 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 
 + Results are returned by Copilot Retrieval API as unordered.
 
-+ Invalid filter expressions (Keyword Query Language KQL) are ignored and the query continues to execute without the filter.
++ Invalid filter expressions ([Keyword Query Language KQL](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference)) are ignored and the query continues to execute without the filter.
 
 ## Check for existing knowledge sources
 
@@ -135,15 +136,18 @@ You can pass the following properties to create a remote SharePoint knowledge so
 | `description` | A description of the knowledge source. | String | No |
 | `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
 | `remoteSharePointParameters` | Parameters specific to remote SharePoint knowledge sources: `filterExpression`, `resourceMetadata`, and `containerTypeId`. | Object | No |
-| `filterExpression` | An expression written in the SharePoint in Keyword Query Language (KQL), used to specify sites and paths to content. | String | No |
+| `filterExpression` | An expression written in the SharePoint in [Keyword Query Language (KQL)](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference), used to specify sites and paths to content. | String | No |
 | `resourceMetadata` | A comma-delimited list of the standard metadata fields: author, file name, creation date, content type, and file type. | Array | No |
 | `containerTypeId` | Ignored for now. | String| No |
 
 <!-- SharePoint embedded is containers. Many moving parts. Defer for now. -->
+<!-- containerTypeId is used to configure a remoteSharePoint that uses the SharePoint team's new "SharePointEmbedded" container. It's being actively validated so we're not ready to support it yet. -->
 
 ### Filter expression examples
 
-Learn more about the full [Keyword Query Language (KQL)](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) syntax reference.
+Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval).
+
+Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) in the syntax reference.
 
 | Example | Filter expression |
 |---------|-------------------|
@@ -156,7 +160,7 @@ Learn more about the full [Keyword Query Language (KQL)](/microsoft-365-copilot/
 
 ## Assign to a knowledge base
 
-If you're satisfied with the index, continue to the next step: specifying the knowledge source in a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md).
+If you're satisfied with the knowledge source, continue to the next step: specifying a [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that references the knowledge source you created.
 
 Within the knowledge base, there are more properties to set on the knowledge source that are specific to query operations.
 
@@ -171,7 +175,7 @@ Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 ```json
 {
   "name": "remote-sp-kb",
-  "description": "Retrieves SharePoint and OneDrive content from a trusted Microsoft 365 tenant.",
+  "description": "Retrieves SharePoint in a trusted Microsoft 365 tenant.",
   "retrievalInstructions": null,
   "answerInstructions": null,
   "outputMode": "answerSynthesis",
@@ -201,7 +205,11 @@ Currently, GPT 4 series is recommended for chat completion in agentic retrieval.
 
 ## Retrieve content
 
-The retrieve action on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. For local development, set the `x-ms-query-source-authorization` header to provide the access token you previously set as a variable.
+The retrieve action on the knowledge base provides the user identity that authorizes access to content in Microsoft 365. 
+
+Azure AI Search uses the Microsoft Graph API to exchange the access token for an on-behalf of (OBO) token, which is then used to call the Copilot Retrieval API on behalf of the user identity. The access token is provided in the retrieve endpoint as an HTTP header `x-ms-query-source-authorization`.
+
+Make sure that you [generate the access token](search-get-started-rbac.md?pivots=rest#get-token) for the Azure tenant, not the Microsoft 365 tenant.
 
 ```http
 POST {{search-url}}/knowledgebases/remote-sp-kb/retrieve?api-version={{api-version}}
@@ -221,6 +229,7 @@ x-ms-query-source-authorization: {{access-token}}
     "includeActivity": true,
     "knowledgeSourceParams": [
         {
+            "filterAddOn": null,
             "knowledgeSourceName": "remote-sp-kb",
             "kind": "remoteSharePoint",
             "includeReferences": true,
@@ -230,7 +239,9 @@ x-ms-query-source-authorization: {{access-token}}
 }
 ```
 
-Queries asking questions about the content itself are more effective then questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
+The retrieve request also takes a filter. If you specify filters for both Copilot retrieval and agentic retrieval, the filters are AND'd together. The filter for agentic retrieval is applied after data is retrieved from SharePoint, and before ranking and scoring begins.
+
+Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
 
 A better question to ask is "what is the keynote doc for Ignite 2024". The response includes the synthesized answer, query activity and token counts, plus the URL and other metadata.
 
