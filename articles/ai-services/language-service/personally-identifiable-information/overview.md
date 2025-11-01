@@ -20,7 +20,16 @@ Azure AI Language Personally Identifiable Information (PII) detection is a featu
 
 ## What's new
 
-The 2025-08-01-preview introduces several new entities:
+**The 2025-11-15-preview version introduces the following new PII task parameters**:
+
+* [**Multiple redaction policies**](how-to/redact-text-pii.md#redaction-policies) offer the ability to apply various redaction approaches within a single request, including the option for synthetic replacement.
+
+* [**Configurable confidence threshold**](how-to/redact-text-pii.md#confidencescorethreshold-) enables you to set a minimum confidence score. Entities are only included in the output if their confidence score meets or exceeds the specified threshold.
+
+* [**Disable type validation enforcement**](how-to/redact-text-pii.md#disableentityvalidation) enables you to bypass the entity type validation. By default, the service enforces validation across multiple entity types to ensure data integrity and minimize false positives. Disabling this enforcement can enhance operational efficiency in cases where strict validation isn't required.
+
+
+**The 2025-08-01-preview version introduces several new entities**:
 
 * [**DateOfBirth**](concepts/entity-categories.md#type-date-of-birth-preview) with English, French, German, Italian, Spanish, Portuguese, Brazilian Portuguese, and Dutch language support.
 * [**LicensePlate**](concepts/entity-categories.md#type-license-plate-preview) with English language support.
