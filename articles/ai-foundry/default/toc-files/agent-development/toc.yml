@@ -10,7 +10,7 @@ items:
 - name: Development lifecycle
   href: ../../agents/concepts/development-lifecycle.md
 - name: Agent runtime components
-  href: ../../../agents/concepts/threads-runs-messages.md
+  href: ../../agents/concepts/runtime-components.md
 - name: Use the Visual Studio Code extension
   href: ../../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
 - name: Use MCP Tools in the Visual Studio Code extension
