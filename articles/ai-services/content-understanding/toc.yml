@@ -131,7 +131,7 @@ items:
       - name: Build a face-data person directory (preview)
         displayName: person, directory, search, index, vector
         href: tutorial/build-person-directory.md
-      - name: Build a Build a robotic process automation solution
+      - name: Build a robotic process automation solution
         href: tutorial/robotic-process-automation.md
   - name: Samples
     items:
