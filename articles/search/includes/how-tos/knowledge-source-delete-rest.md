@@ -9,7 +9,7 @@ ms.date: 10/31/2025
 
 If you no longer need the knowledge source or need to rebuild it on your search service, use this request to delete the object.
 
-Before you can delete a knowledge source, you must delete any knowledge base that references it or remove the references in an update action. For knowledge sources that generate an indexer pipeline and an index, those are standalone objects and don't need to be deleted or updated with the knowledge source.
+Before you can delete a knowledge source, you must delete any knowledge base that references it or remove the references in an update action. For knowledge sources that generate an indexer pipeline and an index, all *generated objects* are also deleted. In contrast, if you created a knowledge source using an existing index, your index isn't deleted.
 
 If you try to delete a knowledge source that's in use, the action fails, and a list of affected knowledge bases is returned.
 
