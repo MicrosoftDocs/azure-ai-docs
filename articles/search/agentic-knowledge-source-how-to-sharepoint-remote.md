@@ -57,7 +57,7 @@ The following limitations in the [Copilot Retrieval API](/microsoft-365-copilot/
 
 + Results are returned by Copilot Retrieval API as unordered.
 
-+ Invalid filter expressions ([Keyword Query Language KQL](/sharepoint/dev/general-development/keyword-query-language-kql-syntax-reference)) are ignored and the query continues to execute without the filter.
++ Invalid Keyword Query Language (KQL) filter expressions are ignored and the query continues to execute without the filter.
 
 ## Check for existing knowledge sources
 
@@ -145,7 +145,7 @@ You can pass the following properties to create a remote SharePoint knowledge so
 
 ### Filter expression examples
 
-Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval).
+Not all SharePoint properties are supported in the `filterExpression`. For a list of supported properties, see the [API reference](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval). Here's some more information about queryable properties that you can use in filter: [queryable properties](/graph/connecting-external-content-manage-schema#queryable).
 
 Learn more about [KQL filters](/microsoft-365-copilot/extensibility/api/ai-services/retrieval/copilotroot-retrieval?pivots=graph-v1#example-7-use-filter-expressions) in the syntax reference.
 
@@ -229,7 +229,7 @@ x-ms-query-source-authorization: {{access-token}}
     "includeActivity": true,
     "knowledgeSourceParams": [
         {
-            "filterAddOn": null,
+            "filterExpressionAddOn": "ModifiedBy:\"Adele Vance\"",
             "knowledgeSourceName": "remote-sp-kb",
             "kind": "remoteSharePoint",
             "includeReferences": true,
@@ -239,7 +239,7 @@ x-ms-query-source-authorization: {{access-token}}
 }
 ```
 
-The retrieve request also takes a filter. If you specify filters for both Copilot retrieval and agentic retrieval, the filters are AND'd together. The filter for agentic retrieval is applied after data is retrieved from SharePoint, and before ranking and scoring begins.
+The retrieve request also takes a KQL filter (`filterExpressionAddOn`) in case you want to apply constraints at query time. If you specify filters for both Copilot retrieval and agentic retrieval, the filters are AND'd together.
 
 Queries asking questions about the content itself are more effective than questions about where a file is located or when it was last updated. For example, if you ask, "where is the keynote doc for Ignite 2024", you might get "No relevant content was found for your query" because the content itself doesn't disclose its location. A filter on metadata is a better solution for file location or date-specific queries.
 
