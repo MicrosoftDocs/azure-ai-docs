@@ -47,7 +47,7 @@ This article describes how to create a Foundry project in [Azure AI Foundry](htt
 
 ::: moniker-end
 
-If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](../../../ai-foundry/how-to/create-resource-template.md) to comply with your organization's Azure Policy requirements.
+If your organization requires customized Azure configurations like alternative names, security controls or cost tags, you might need to use the [Azure portal](https://portal.azure.com) or [template options](create-resource-template.md) to comply with your organization's Azure Policy requirements.
 
 ## Prerequisites
 
