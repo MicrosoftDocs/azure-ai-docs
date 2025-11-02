@@ -15,7 +15,7 @@ ms.custom: include
 Install the OpenAI SDK:
 
 ```bash
-go get github.com/openai/openai-go/v2
+go get github.com/openai/openai-go/v3
 ```
 
 For Microsoft Entra ID authentication, also install:
