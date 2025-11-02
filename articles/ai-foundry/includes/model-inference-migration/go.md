@@ -15,7 +15,7 @@ ms.custom: include
 Install the OpenAI SDK:
 
 ```bash
-go get github.com/openai/openai-go/v2
+go get github.com/openai/openai-go/v3
 ```
 
 For Microsoft Entra ID authentication, also install:
@@ -36,8 +36,8 @@ Azure AI Inference SDK for Go uses Azure SDK patterns.
 
 ```go
 import (
-    "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/option"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/option"
 )
 
 client := openai.NewClient(
