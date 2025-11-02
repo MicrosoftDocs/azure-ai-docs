@@ -59,9 +59,9 @@ Azure AI Inference SDK for Go supports Microsoft Entra ID through Azure SDK.
 ```go
 import (
     "github.com/Azure/azure-sdk-for-go/sdk/azidentity"
-    "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/azure"
-    "github.com/openai/openai-go/v2/option"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/azure"
+    "github.com/openai/openai-go/v3/option"
 )
 
 tokenCredential, err := azidentity.NewDefaultAzureCredential(nil)
@@ -91,8 +91,8 @@ Azure AI Inference SDK doesn't support the Responses API. Use chat completions i
 import (
     "context"
     "fmt"
-    "github.com/openai/openai-go/v2"
-    "github.com/openai/openai-go/v2/responses"
+    "github.com/openai/openai-go/v3"
+    "github.com/openai/openai-go/v3/responses"
 )
 
 question := "This is a test"
@@ -123,7 +123,7 @@ Azure AI Inference SDK for Go uses Azure SDK patterns for chat completions.
 import (
     "context"
     "fmt"
-    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v3"
 )
 
 chatCompletion, err := client.Chat.Completions.New(context.TODO(), openai.ChatCompletionNewParams{
@@ -155,7 +155,7 @@ Azure AI Inference SDK for Go supports streaming through Azure SDK patterns.
 import (
     "context"
     "fmt"
-    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v3"
 )
 
 stream := client.Chat.Completions.NewStreaming(context.TODO(), openai.ChatCompletionNewParams{
