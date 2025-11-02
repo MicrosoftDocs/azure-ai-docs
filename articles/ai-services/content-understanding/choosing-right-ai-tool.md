@@ -40,7 +40,7 @@ Azure AI Content Understanding, built on the same foundational capabilities as D
 
 > [!NOTE]
 >
-> Starting with the GA version, Azure AI Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](concepts/models-deployments.md) page.
+> Starting with the GA version, Azure AI Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](./concepts/models-deployments.md) page.
 
 ## Azure-hosted LLMs (Azure OpenAI)
 
