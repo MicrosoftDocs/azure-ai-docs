@@ -23,7 +23,7 @@ This article provides guidance on migrating your applications from the Azure AI 
 
 Migrating to the OpenAI v1 SDK provides several advantages:
 
-- **Unified API**: Use the same SDK for both OpenAI and Azure OpenAI endpoints
+- **Unified API**: Use the same SDK libraries and clients for both OpenAI and Azure OpenAI endpoints
 - **Latest features**: Access to the newest OpenAI features without waiting for Azure-specific updates
 - **Simplified authentication**: Built-in support for both API key and Microsoft Entra ID authentication
 - **No API versioning**: The v1 API eliminates the need to frequently update `api-version` parameters
