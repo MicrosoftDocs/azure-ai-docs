@@ -9,7 +9,7 @@ content_well_notification:
 ai-usage: ai-assisted
 ms.topic: how-to
 zone_pivot_groups: ai-foundry-vsc-extension-languages
-ms.date: 10/16/2025
+ms.date: 10/22/2025
 ms.reviewer: erichen
 ms.author: johalexander
 author: ms-johnalex

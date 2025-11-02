@@ -6,10 +6,11 @@ ms.service: azure-ai-foundry
 ms.custom:
   - ignite-2024
 ms.topic: how-to
-ms.date: 09/15/2025
+ms.date: 10/28/2025
 ms.reviewer: varundua
 ms.author: sgilley
 author: sdgilley
+ai-usage: ai-assisted
 monikerRange: foundry-classic || foundry
 #customer intent: As a developer, I want to jump start my journey with an AI template.
 ---
@@ -18,7 +19,13 @@ monikerRange: foundry-classic || foundry
 
 [!INCLUDE [version-banner](../../includes/version-banner.md)]
 
-Streamline your code-first development with prebuilt, task-specific Azure AI templates. Benefit from using the latest features and best practices from Microsoft Azure AI, with popular frameworks like LangChain, prompt flow, and Semantic Kernel in multiple languages.
+Streamline your code-first development with prebuilt, task-specific Azure AI templates. These ready-to-use, customizable templates help you skip setup, reduce friction, and deliver value faster with trusted, scalable infrastructure. Built on insights from over 2,000 customer engagements, AI solution templates significantly reduce time from concept to production at scale.
+
+AI solution templates include customizable code samples, pre-integrated Azure services, and GitHub-hosted quick-start guides. Development teams can focus on outcomes instead of setup, building solutions for popular use cases like live voice agents, release management, and data unification.
+
+These templates harness the power of multi-agent, agentic AI, enabling you to automate workflows, optimize operations, reduce costs, and make faster, data-driven decisions.
+
+::: moniker range="foundry-classic"
 
 Available templates include:
 
@@ -32,6 +39,29 @@ Available templates include:
 * [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator)
 * [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator)
 
+::: moniker-end
+
+::: moniker range="foundry"
+
+Available templates:
+
+| Template | Popular customer use cases |
+|----------|---------------------------|
+| [Get started with AI chat](https://github.com/Azure-Samples/get-started-with-ai-chat) | Build interactive chat applications |
+| [Get started with AI agents](https://github.com/Azure-Samples/get-started-with-ai-agents) | Create autonomous AI agents |
+| [Build agentic apps to unify data](https://github.com/[TO VERIFY]) | Embed analytics across applications with instant data visualization for:<br>• Sales performance analysis<br>• Customer insights and reporting<br>• Natural language analysis on structured data |
+| [Create a multi-agent release manager assistant](https://github.com/[TO VERIFY]) | Enable AI-powered release planning for:<br>• Cross-system release coordination<br>• Real-time dependency mapping and release health assessment<br>• Advanced visualization for retrieved insights<br>• Safe update mechanisms built into AI agents |
+| [Create a call center voice agent](https://github.com/[TO VERIFY]) | Develop interactive voice agents for:<br>• Customer support<br>• Product catalog navigation<br>• Self-service solutions |
+| [Unlock insights from conversational data](https://github.com/microsoft/Conversation-Knowledge-Mining-Solution-Accelerator) | Extract knowledge from conversations |
+| [Multi-agent workflow automation](https://github.com/microsoft/Multi-Agent-Custom-Automation-Engine-Solution-Accelerator) | Automate complex workflows |
+| [Multi-modal content processing](https://github.com/microsoft/content-processing-solution-accelerator) | Process diverse content types |
+| [Generate documents from your data](https://github.com/microsoft/document-generation-solution-accelerator) | Create documents automatically |
+| [Improve client meetings with agents](https://github.com/microsoft/Build-your-own-copilot-Solution-Accelerator) | Enhance meeting productivity |
+| [Modernize your code with agents](https://github.com/microsoft/Modernize-your-code-solution-accelerator) | Update legacy code |
+| [Build your conversational agent](https://github.com/Azure-Samples/Azure-Language-OpenAI-Conversational-Agent-Accelerator) | Create conversational experiences |
+
+::: moniker-end
+
 ## Prerequisites
 
 - [!INCLUDE [azure-subscription](../../includes/azure-subscription.md)]
@@ -41,6 +71,16 @@ Available templates include:
 ::: moniker range="foundry"
 - A [Foundry project](../create-projects.md).
 ::: moniker-end
+
+## Benefits of AI solution templates
+
+AI templates in Azure AI Foundry provide:
+
+* **Faster time-to-value**: Skip boilerplate code and infrastructure setup to move from concept to production quickly
+* **Reduced engineering overhead**: Pre-integrated Azure services eliminate deployment friction
+* **Trusted infrastructure**: Build with confidence on Microsoft's secure, scalable AI platform
+* **Modular and interoperable foundation**: Scale solutions efficiently across your organization
+* **Best practices built-in**: Leverage proven patterns and frameworks from thousands of customer engagements
 
 ## Start with a sample application
 
@@ -59,9 +99,8 @@ Available templates include:
 ::: moniker range="foundry"
 
 1. [!INCLUDE [version-sign-in](../../includes/version-sign-in.md)]
-1. Select your project.
 1. Select **Discover** from the upper-right navigation.
-1. Select **Templates** from the left pane.
+1. Select **Solution templates** from the left pane.
 1. Select **Open in Github** to view the entire sample application.
 1. In some cases, you can also view a step-by-step tutorial that explains the AI code.
 
@@ -78,9 +117,13 @@ Instructions vary by sample, but most include how to:
   * VS Code Dev Containers
   * Your local IDE
 * Deploy the application to Azure
-* How to test the app
+* Test the application
 
 The README also includes information about the application, such as the use case, architecture, and pricing information.
+
+## Deploy templates quickly
+
+With quick-deploy options, you can launch any Azure AI Foundry template in minutes. These architectures and implementations are customizable while staying Well-Architected Framework (WAF) aligned using Azure Verified Modules. Use tools such as PSRule and TFlint to test that your modified implementation is production-ready.
 
 ## Next step
 

@@ -3,7 +3,7 @@ title: How to use chat completions with Azure AI Foundry Models
 titleSuffix: Azure AI Foundry
 description: Learn how to generate chat completions with Azure AI Foundry Models
 ms.service: azure-ai-foundry
-ms.subservice: azure-ai-foundry-model-inference
+ms.subservice: azure-ai-foundry-openai
 ms.topic: how-to
 ms.date: 10/15/2025
 ms.author: mopeakande
@@ -222,7 +222,7 @@ const client = new OpenAI({
 // Make the API request with top-level await
 const result = await client.responses
     .stream({
-      model: 'grok-3-mini', // Your model deployment name
+      model: 'gpt-4.1-nano', // Your model deployment name
       input: 'solve 8x + 31 = 2',
     }).finalResponse()
 
@@ -266,7 +266,7 @@ const client = new OpenAI({
 // Make the API request with top-level await
 const result = await client.responses
     .stream({
-      model: 'grok-3-mini', // Your model deployment name
+      model: 'gpt-4.1-nano', // Your model deployment name
       input: 'solve 8x + 31 = 2',
     }).finalResponse()
 
@@ -303,7 +303,7 @@ question := "Write me a haiku about computers"
 
 resp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
         Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(question)},
-        Model: "grok-3-mini", // Use your deployed model name on Azure
+        Model: "gpt-4.1-nano", // Use your deployed model name on Azure
     })
 
 
@@ -361,7 +361,7 @@ question := "Write me a haiku about computers"
 
 resp, err := client.Responses.New(context.Background(), responses.ResponseNewParams{
         Input: responses.ResponseNewParamsInputUnion{OfString: openai.String(question)},
-        Model: "grok-3-mini", // Use your deployed model name on Azure
+        Model: "gpt-4.1-nano", // Use your deployed model name on Azure
     })
 
 
@@ -420,7 +420,7 @@ public class OpenAITest {
         // Get API key from environment variable for security
         String apiKey = System.getenv("OPENAI_API_KEY");
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
+        String modelDeploymentName = "gpt-4.1-nano"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -477,7 +477,7 @@ public class OpenAITest {
     public static void main(String[] args) {
 
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
-        String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
+        String modelDeploymentName = "gpt-4.1-nano"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
@@ -868,15 +868,15 @@ import com.openai.models.chat.completions.ChatCompletionCreateParams;
 
 public class OpenAITest {
     public static void main(String[] args) {
-        // Get API key from environment variable for security
-        String apiKey = System.getenv("OPENAI_API_KEY");
         String resourceName = "https://YOUR-RESOURCE-NAME.openai.azure.com/openai/v1";
         String modelDeploymentName = "grok-3-mini"; //replace with you model deployment name
 
         try {
             OpenAIClient client = OpenAIOkHttpClient.builder()
                     .baseUrl(resourceName)
-                    .apiKey(apiKey)
+                    // Set the Azure Entra ID
+                    .credential(BearerTokenCredential.create(AuthenticationUtil.getBearerTokenSupplier(
+                        new DefaultAzureCredentialBuilder().build(), "https://cognitiveservices.azure.com/.default")))
                     .build();
 
            ChatCompletionCreateParams params = ChatCompletionCreateParams.builder()

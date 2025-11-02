@@ -10,4 +10,4 @@ ms.date: 06/30/2025
 ms.custom: include
 ---
 
-Sign in to the [Azure AI Foundry portal](https://aka.ms/nextgen-canary/?cid=learnDocs).
+Sign in to the [Azure AI Foundry (new) portal](https://aka.ms/nextgen-canary/?cid=learnDocs).

@@ -1,6 +1,8 @@
 items:
   - name: Deployment types
     href: ../../../foundry-models/concepts/deployment-types.md
+  - name: Azure OpenAI in Foundry Models
+    href: ../../../openai/supported-languages.md
   - name: Quickstarts
     items:
       - name: Audio generation
@@ -22,5 +24,7 @@ items:
         href: ../../../../ai-services/speech-service/video-translation-get-started.md?context=/azure/ai-foundry/context/context
       - name: Image prompt engineering techniques
         href: ../../../openai/concepts/gpt-4-v-prompt-engineering.md
+  - name: Codex
+    href: ../../../openai/how-to/codex.md
 
 

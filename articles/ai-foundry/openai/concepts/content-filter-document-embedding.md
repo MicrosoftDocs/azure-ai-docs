@@ -42,14 +42,15 @@ This is an example message array:
 
 ## Embedding documents in your prompt  
 
-In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via [Prompt Shields – Indirect Prompt Attack Detection](./content-filter-prompt-shields.md). You should identify the parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.
+In addition to detection on last user content, Azure OpenAI also supports the detection of specific risks inside context documents via [Prompt Shields – Indirect Prompt Attack Detection](./content-filter-prompt-shields.md) and [Groundedness detection](/azure/ai-foundry/openai/concepts/content-filter-groundedness). You should identify the parts of the input that are a document (for example, retrieved website, email, etc.) with the following document delimiter.
 
 ```
 \"\"\" <documents> *insert your document content here* </documents> \"\"\" 
 ```
 
 When you do this, the following options are available for detection on tagged documents: 
-- Indirect attacks (optional) 
+- Indirect attacks (optional)
+- Groundedness detection
 
 Here's an example chat completion messages array: 
 
