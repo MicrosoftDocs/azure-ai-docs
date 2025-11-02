@@ -258,7 +258,7 @@ JSON example:
 
 #### Hyperlinks
 
-A *hyperlink* is a content element that represents an embedded link that connects to another resrouce such as web page in the document. Content Understanding represents hyperlinks by using its embedded link.
+A *hyperlink* is a content element that represents an embedded link that connects to another resource such as web page in the document. Content Understanding represents hyperlinks by using its embedded link.
 
 JSON example:
 

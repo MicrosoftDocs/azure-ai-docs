@@ -135,7 +135,7 @@ Content Understanding supports both basic field value types and nested structure
 | --- | --- |
 | Category name | Can't start with a dollar sign (`$`)|
 | Category name and description | Maximum 120 characters for combined name and description in each category |
-| Number of categories | 200 per analayzer |
+| Number of categories | 200 per analyzer |
 
 ### Input file limits
 
