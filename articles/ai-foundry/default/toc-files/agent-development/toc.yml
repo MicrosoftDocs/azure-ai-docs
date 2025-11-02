@@ -12,9 +12,9 @@ items:
 - name: Agent runtime components
   href: ../../agents/concepts/runtime-components.md
 - name: Use the Visual Studio Code extension
-  href: ../../../how-to/develop/vs-code-agents.md?context=/azure/ai-services/agents/context/context
+  href: ../../../how-to/develop/vs-code-agents.md
 - name: Use MCP Tools in the Visual Studio Code extension
-  href: ../../../how-to/develop/vs-code-agents-mcp.md?context=/azure/ai-services/agents/context/context
+  href: ../../../how-to/develop/vs-code-agents-mcp.md
 - name: Setup and configuration
   items:
   - name: Set up your development environment
