@@ -190,7 +190,6 @@ Azure AI Inference SDK for Go uses Azure SDK patterns for embeddings.
 
 OpenAI v1 SDK doesn't support embeddings models.
 
-
 ---
 
 ## Image generation
