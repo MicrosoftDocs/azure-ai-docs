@@ -31,15 +31,15 @@ After you create a knowledge base, you can update its properties at any time. If
 
 + Familiarity with [agentic retrieval concepts and use cases](agentic-retrieval-overview.md).
 
-+ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
++ Azure AI Search, in any [region that provides semantic ranker](search-region-support.md), on the basic pricing tier or higher for managed identity support. Your search service must have a [managed identity](search-how-to-managed-identities.md) for role-based access to the model.
 
 + A [supported chat completion model](#supported-models) on Azure OpenAI.
 
 + Permission requirements. **Search Service Contributor** can create and manage a knowledge base. **Search Index Data Reader** can run queries. Instructions are provided in this article. [Quickstart: Connect to a search service](/azure/search/search-get-started-rbac?pivots=rest) explains how to configure roles and get a personal access token for REST calls.
 
-+ Content requirements. A [knowledge source](agentic-knowledge-source-overview.md) that identifies searchable content used by the knowledge base. It can be either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md)
++ Content requirements. A [knowledge source](agentic-knowledge-source-overview.md#supported-knowledge-sources) that identifies searchable content used by the knowledge base.
 
-+ API requirements. To create or use a knowledge base, use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge base APIs: [Azure SDK for Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [Azure SDK for .NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Azure SDK for Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support for 2025-11-01-preview knowledge bases at this time**.
++ API requirements. To create or use a knowledge base, use the [2025-11-01-preview](/rest/api/searchservice/operation-groups?view=rest-searchservice-2025-11-01-preview&preserve-view=true) data plane REST API. Or, use a preview package of an Azure SDK that provides knowledge base APIs: [Python](https://github.com/Azure/azure-sdk-for-python/blob/main/sdk/search/azure-search-documents/CHANGELOG.md), [.NET](https://github.com/Azure/azure-sdk-for-net/blob/main/sdk/search/Azure.Search.Documents/CHANGELOG.md#1170-beta3-2025-03-25), [Java](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/search/azure-search-documents/CHANGELOG.md). **There's no Azure portal support for 2025-11-01-preview knowledge bases at this time**.
 
 To follow the steps in this guide, we recommend [Visual Studio Code](https://code.visualstudio.com/download) with a [REST client](https://marketplace.visualstudio.com/items?itemName=humao.rest-client) for sending preview REST API calls to Azure AI Search or the [Python extension](https://marketplace.visualstudio.com/items?itemName=ms-python.python) and [Jupyter package](https://pypi.org/project/jupyter/).
 
@@ -89,7 +89,7 @@ In Azure, you must have **Owner** or **User Access Administrator** permissions o
     @accessToken=<YOUR PERSONAL ID>
     
     # List Indexes
-    GET https://{{search-url}}/indexes?api-version=2025-08-01-preview
+    GET https://{{search-url}}/indexes?api-version=2025-11-01-preview
     Authorization: Bearer {{accessToken}}
     ```
 
@@ -109,7 +109,7 @@ You can use API keys if you don't have permission to create role assignments.
     @search-api-key=<YOUR SEARCH SERVICE ADMIN API KEY>
 
    # List Indexes
-   GET {{search-url}}/indexes?api-version=2025-08-01-preview
+   GET {{search-url}}/indexes?api-version=2025-11-01-preview
       Content-Type: application/json
       @api-key: {{search-api-key}}
    ```
@@ -208,7 +208,7 @@ except Exception as e:
 
 ```http
 # List knowledge bases
-GET {{search-url}}/knowledgebases?api-version=2025-11-01-preview
+GET {{search-url}}/knowledgebases?api-version=2025-11-01-preview&$select=name
    Content-Type: application/json
    Authorization: Bearer {{accessToken}}
 ```
@@ -230,7 +230,7 @@ A knowledge base drives the agentic retrieval pipeline. In application code, it'
 
 Its composition consists of connections between *knowledge sources* (searchable content) and chat completion models that you've deployed in Azure OpenAI. Properties on the model establish the connection. Properties on the knowledge source establish defaults that inform query execution and the response.
 
-To create a knowledge base, use the 2025-``08``-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
+To create a knowledge base, use the 2025-11-01-preview data plane REST API or an Azure SDK preview package that provides equivalent functionality.
 
 Recall that you must have an existing [knowledge source](agentic-knowledge-source-overview.md) to assign to the knowledge base.
 
@@ -272,105 +272,75 @@ print(f"Knowledge agent '{knowledge_agent_name}' created or updated successfully
 
 ### [**REST**](#tab/rest-create-kb)
 
-```http
-@search-url=<YOUR SEARCH SERVICE URL>
-@knowledge-base-name=<YOUR KNOWLEDGE BASE NAME>
-@index-name=<YOUR INDEX NAME>
-@model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
-@model-api-key=<YOUR AZURE OPENAI API KEY>
-@accessToken = <a long GUID>
+To create a knowledge base:
 
-# Create knowledge base
-PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
-   Content-Type: application/json
-   Authorization: Bearer {{accessToken}}
+1. Set environment variables at the top of your file.
 
-{
-    "name" : "{{knowledge-base-name}}",
-    "description": "This knowledge base handles questions directed at two unrelated sample indexes."
-    "retrievalInstructions": "Use the hotels knowledge source only for queries about hotels or where to stay, otherwise use the earth at night knowledge source.",
-    "knowledgeSources": [
-        {
-            "name": "earth-at-night-blob-ks",
-            "alwaysQuerySource": false,
-            "includeReferences": true,
-            "includeReferenceSourceData": true,
-            "maxSubQueries": 30,
-            "rerankerThreshold": null
-        },
-        {
-            "name": "hotels-index-ks",
-            "alwaysQuerySource": false,
-            "includeReferences": true,
-            "includeReferenceSourceData": true,
-            "maxSubQueries": 5,
-            "rerankerThreshold": null
-        }
-    ],
-    "models" : [ 
-        {
-            "kind": "azureOpenAI",
-            "azureOpenAIParameters": {
-                "resourceUri": "{{model-provider-url}}",
-                "apiKey": "{{model-api-key}}",
-                "deploymentId": "gpt-5-mini",
-                "modelName": "gpt-5-mini"
+    ```http
+    @search-url=<YOUR SEARCH SERVICE URL>
+    @knowledge-base-name=<YOUR KNOWLEDGE BASE NAME>
+    @model-provider-url=<YOUR AZURE OPENAI RESOURCE URI>
+    @model-api-key=<YOUR AZURE OPENAI API KEY>
+    @accessToken = <a long GUID>
+    ```
+
+1. Use the 2025-11-01-preview of [Knowledge Bases - Create or Update (REST API)](/rest/api/searchservice/knowledgebases/create-or-update?view=rest-searchservice-2025-11-01-preview&preserve-view=true) or an Azure SDK preview package that provides equivalent functionality to formulate the request.
+
+    ```http
+    # Create knowledge base
+    PUT {{search-url}}/knowledgebases/{{knowledge-base-name}}?api-version=2025-11-01-preview
+       Content-Type: application/json
+       Authorization: Bearer {{accessToken}}
+    
+    {
+        "name" : "{{knowledge-base-name}}",
+        "description": "This knowledge base handles questions directed at two unrelated sample indexes."
+        "retrievalInstructions": "Use the hotels knowledge source for queries about where to stay, otherwise use the earth at night knowledge source.",
+        "answerInstructions": null,
+        "outputMode": "answerSynthesis",
+        "knowledgeSources": [
+            {
+                "name": "earth-at-night-blob-ks"
+            },
+            {
+                "name": "hotels-index-ks"
             }
+        ],
+        "models" : [ 
+            {
+                "kind": "azureOpenAI",
+                "azureOpenAIParameters": {
+                    "resourceUri": "{{model-provider-url}}",
+                    "apiKey": "{{model-api-key}}",
+                    "deploymentId": "gpt-4.1-mini",
+                    "modelName": "gpt-4.1-mini"
+                }
+            }
+        ],
+        "encryptionKey": null,
+        "retrievalReasoningEffort": {
+            "kind": "low"
         }
-    ],
-    "outputConfiguration": {
-        "modality": "extractiveData",
-        "answerInstructions": "Provide a concise answer to the question.",
-        "attemptFastPath": false,
-        "includeActivity": true
-    },
-    "requestLimits": {
-        "maxOutputSize": 5000,
-        "maxRuntimeInSeconds": 60
     }
-}
-```
+    ```
 
-**Key points**:
+1. Select **Send Request**.
 
-+ `name` must be unique within the knowledge bases collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects on Azure AI Search.
+### Source-specific properties
 
-+ `description` is recommended for query planning. The LLM uses the description to inform query planning. 
+You can pass the following properties to create a knowledge base.
 
-+ `retrievalInstructions` is recommended for query planning when you have multiple knowledge sources. The instructions are passed as a prompt to the LLM to determine whether a knowledge source should be in scope for a query. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). If you set `retrievalInstructions`, make sure `alwaysQuerySource` is set to false.
-
-+ `knowledgeSources` is required for knowledge base creation. It specifies the search indexes or Azure blobs used by the knowledge base. New in this preview release, the `knowledgeSources` is an array, and it replaces the previous `targetIndexes` array. 
-
-    + `name` is a reference to either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md) or a [blob knowledge source](agentic-knowledge-source-how-to-blob.md).
-    
-    + `alwaysQuerySource` is a boolean that specifies whether a knowledge source must always be used (true), or only used if the query planning step determines it's useful. The default is false, which means source selection can skip this source if the model doesn’t think the query needs it. Source descriptions and retrieval instructions are used in this assessment. If you're using `attemptFastPath` on a specific knowledge source, `alwaysQuerySource` must be set to true.
-    
-    + `includeReferences` is a boolean that determines whether the reference portion of the response includes source data. We recommend starting with this value set to true if you want to shape your own response using output from the search engine. Otherwise, if you want to use the output in the response `content` string, you can set it to false.
-    
-    + `maxSubQueries` is the maximum number of queries the query planning step will generate. Each query can return up to 50 documents, which are reranked by semantic ranker. The `maxSubQueries` property must be between 2 and 40.
-
-    + `rerankerThreshold` is the minimum semantic reranker score that's acceptable for inclusion in a response. [Reranker scores](semantic-search-overview.md#how-results-are-scored) range from 1 to 4. Plan on revising this value based on testing and what works for your content.
-
-+ `models` specifies a connection to a [supported chat completion model](#supported-models). In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai).
-
-+ `outputConfiguration` gives you control over query execution logic and output.
-
-  + `modality` determines the shape of the results. Valid values are `extractiveData` (default) or `answerSynthesis` (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)).
-
-  + `answerInstructions` is used for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null.
-
-<!--   + `attemptFastPath` is a boolean that can be used to enable a fast path to query execution. If `true`, the search engine skips query planning if the query is less than 512 characters and the semantic ranker score on the small query is above 1.9, indicating sufficient relevance. If the query is larger or the score is lower, query planning is invoked. You must have at least one knowledge source that has `alwaysQuerySource` enabled. If there are multiple knowledge sources, they must all have `alwaysQuerySource` enabled to be considered for fast path. The small query runs on all of them. The default is `false`. -->
-
-  + `includeActivity` indicates whether retrieval results should include the query plan. The default is `true`.
-
-<!--  Check minimum 10k  -->
-+ `requestLimits` sets numeric limits over query processing.
-
-  + `maxOutputSize` is the maximum number of tokens in the response `content` string, with 5,000 tokens as the minimum and recommended value, and no explicit maximum. The most relevant matches are preserved but the overall response is truncated at the last complete document to fit your token budget. 
-
-  + `maxRuntimeInSeconds` sets the maximum amount of processing time for the entire request, inclusive of both Azure OpenAI and Azure AI Search.
-
-+ `encryptionKey` is optional. Include an encryption key definition if you're supplementing with [customer-managed keys](search-security-manage-encryption-keys.md).
+| Name | Description | Type | Required |
+|--|--|--|--|
+| `name` | The name of the knowledge base, which must be unique within the knowledge sources collection and follow the [naming guidelines](/rest/api/searchservice/naming-rules) for objects in Azure AI Search. | String | Yes |
+| `description` | A description of the knowledge base. The LLM uses the description to inform query planning. | String | No |
+| `retrievalInstructions` | A prompt to the LLM to determine whether a knowledge source should be in scope for a query, recommended for query planning when you have multiple knowledge sources. This field influences both knowledge source selection and query formulation. For example, instructions could append information or prioritize a knowledge source. Instructions are passed directly to the LLM, which means it's possible to provide instructions that break query planning (for example, if instructions resulted in bypassing an essential knowledge source). If you set `retrievalInstructions`, make sure `alwaysQuerySource` is set to false on the [retrieve](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview&preserve-view=true) action, otherwise instructions are ignored. | String | Yes |
+| `answerInstructions` | Use for shaping answers (see [Use answer synthesis for citation-backed responses](agentic-retrieval-how-to-answer-synthesis.md)). The default is null. | String | Yes |
+| `outputMode` | Valid values are `answerSynthesis` for an LLM-formulated answer, or `extractedData` if you want full search results that you can pass to an LLM as a downstream step. | String | Yes |
+| `knowledgeSources` | One or more [supported knowledge sources](agentic-knowledge-source-overview.md#supported-knowledge-sources). | Array | Yes |
+| `models` | A connection to a [supported chat completion model](#supported-models) used for answer formulation or query planning. In this preview, `models` can contain just one model, and the model provider must be Azure OpenAI. Obtain model information from the Azure AI Foundry portal or from a command line request. You can use role-based access control instead of API keys for the Azure AI Search connection to the model. For more information, see [How to deploy Azure OpenAI models with Azure AI Foundry](/azure/ai-foundry/how-to/deploy-models-openai). | Object | No |
+| `encryptionKey` | A [customer-managed key](search-security-manage-encryption-keys.md) to encrypt sensitive information in both the knowledge source and the generated objects. | Object | No |
+| `retrievalReasoningEffort.kind` | Determines the level of LLM-related query processing. Valid values are `minimal` (none), `low` (allows answer synthesis), and `medium`. | Object | No |
 
 ---
 
@@ -443,7 +413,7 @@ POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=
    Authorization: Bearer {{accessToken}}
 
 {
-  "messages" : [
+    "messages" : [
         { "role" : "assistant",
                 "content" : [
                   { "type" : "text", "text" : "Use the earth at night index to answer the question. If you can't find relevant content, say you don't know." }
@@ -459,21 +429,22 @@ POST {{search-url}}/knowledgebases/{{knowledge-base-name}}/retrieve?api-version=
             ]
         }
     ],
-  "knowledgeSourceParams": [
-    {
-      "filterAddOn": null,
-      "knowledgeSourceName": "earth-at-night-blob-ks",
-      "kind": "searchIndex"
-    }
+    "includeActivity": true,
+    "knowledgeSourceParams": [
+        {
+            "knowledgeSourceName": "earth-at-night-blob-ks",
+            "kind": "searchIndex"
+            "includeReferences": true,
+            "includeReferenceSourceData": true,
+            "alwaysQuerySource": false
+        }
   ]
 }
 ```
 
-[messages](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just "user" role that provides the query.
+[messages](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#knowledgeagentmessage&preserve-view=true) is required, but you can run this example using just the "user" role that provides the query.
 
-[`knowledgeSourceParams`](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-08-01-preview#searchindexknowledgesourceparams&preserve-view=true) is optional. Specify a knowledge source if the knowledge base is configured for multiple sources and you want to focus the retrieve action on just one of them.
-
-A knowledge source specification on the retrieve action describes the target search index on the search service. So even if the knowledge source "kind" is Azure blob, the valid value here is `searchIndex`. In this first public preview release, `knowledgeSourceParams.kind` is always `searchIndex`.
+[knowledgeSourceParams](/rest/api/searchservice/knowledge-retrieval/retrieve?view=rest-searchservice-2025-11-01-preview#searchindexknowledgesourceparams&preserve-view=true) specifies one or more query targets. For each knowledge source, you can specify how much information to include in the output.
 
 The response to the previous query might look like this:
 
