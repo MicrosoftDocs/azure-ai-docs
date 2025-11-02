@@ -83,7 +83,7 @@ The following table shows the main differences between the two SDKs:
 ### Endpoint URL format
 
 - **Azure AI Inference SDK**: Uses `https://<resource>.services.ai.azure.com/models`
-- **OpenAI v1 SDK**: Uses `https://<resource>.openai.azure.com/openai/v1/`
+- **OpenAI v1 SDK**: Uses `https://<resource>.openai.azure.com/openai/v1`
 
 ### Response structure
 
