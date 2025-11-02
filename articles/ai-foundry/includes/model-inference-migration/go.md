@@ -36,7 +36,7 @@ Azure AI Inference SDK for Go uses Azure SDK patterns.
 
 ```go
 import (
-    "github.com/openai/openai-go/v2"
+    "github.com/openai/openai-go/v3"
     "github.com/openai/openai-go/v2/option"
 )
 
