@@ -14,7 +14,7 @@ ms.custom:
 
 # Content Understanding classification/segmentation
 
-Azure AI Content Understanding does not have an explicit classifier API. Classifier is now part of the analyzer operation request that you would send in for any analysis, eliminating the need to call two separate APIs to perform content classification and content extraction at once. The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data that you process within your application. This feature within the analyzer can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. Starting with the GA version, document classification and video segmentation design is now unified, allowing for a coherent approach to classify input data regardless of its modality. In this documentation, Content Understanding classification refers to the analyze operations needed (`contentCategories` and `enableSegment`) for classifying and splitting input data.
+Azure AI Content Understanding doesn't have an explicit classifier API. Classifier is now part of the analyzer operation request that you would send in for any analysis, eliminating the need to call two separate APIs to perform content classification and content extraction at once. The global concept of `analyzer` now includes the concept of `contentCategories` and `enableSegment` to classify and split the input data that you process within your application. This feature within the analyzer can perform classification of an input file as a whole. It can also identify multiple documents or multiple instances of a single document within an input file. Starting with the GA version, document classification and video segmentation design is now unified, allowing for a coherent approach to classify input data regardless of its modality. In this documentation, Content Understanding classification refers to analyze operations needed (`contentCategories` and `enableSegment`) for classifying and splitting input data.
 
 ## Business use cases
 
@@ -32,19 +32,19 @@ Content Understanding classification can analyze single or multifile documents t
 * A single file that contains one document type, such as a loan application form.
 * A single file that contains multiple document types. An example is a loan application package that contains a loan application form, pay slip, and bank statement.
 * A single file that contains multiple instances of the same document. An example is a collection of scanned invoices.
-* Starting with GA version,`$OTHER` class is not included as default. To filter out the data, add the `$OTHER` class explicitly.
+* Starting with GA version,`$OTHER` class isn't included as default. To filter out the data, add the `$OTHER` class explicitly.
 
 ### Use Content Understanding classification/segmentation
 
-Content Understanding classification does not require any training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
+Content Understanding classification doesn't require any training dataset. You can define up to 200 category names and descriptions within the analyze operation. By default, the entire file is treated as a single content object, which means the file will be associated to a single category.
 
-Starting with the GA version, you will need to include the `other` within the `contentCategories` to ensure that the content will not match to any of your intended categories. If this is unspecified, any of your unwanted files will be forced to classify to one of the categories you have set in the `contentCategories`. Each of the category names you define within `contentCategories` can also include `description` to give further information about the category you are defining.
+Starting with the GA version, you need to include the `other` within the `contentCategories` to ensure that the content can't be matched to any of your defined categories. If the `other` category is unincluded, all of the files is forced to be classified  into one of the categories you have set in the `contentCategories`. Each of the category names you define within `contentCategories` can also include `description` to give further information about the category you're defining.
 
 When you have more than one document in a file, the classifier can identify the different document types that are contained within the input file with splitting capability. The classifier response contains the page ranges for each of the identified document types that are contained within a file. This response can include multiple instances of the same document type.
 
 When you run the `analyze` operation, it now includes a `enableSegment` property that gives you granular control over the splitting behavior. You can also specify the page numbers to analyze only certain pages of the input document:
 
-* To treat the entire input file as multiple documents combined together for classification, set `enableSegment` to `true`. When you do so, the service returns categories for the segments within the input file automatically. Likewise for any videos, it will categorize each segment with respect to its included classfied category.
+* To treat the entire input file as multiple documents combined together for classification, set `enableSegment` to `true`. When you do so, the service returns categories for the segments within the input file automatically. Likewise for any videos, it categorizes each segment with respect to its included classified category.
 * To treat the entire input file as a single document or a video, set `enableSegment` to `false`.
 
 
@@ -60,7 +60,7 @@ On the top layer, you can also specify `omitContent` as true to ensure that orig
 
 #### Hierarchical classifier
 
-The newly designed analyzer operation allows for hierarchical splitting and classification. For example, within the base analyzer operation, you can set the `analyzerID` for the content categories you defined with your custom analyzer that will do additional classification or splitting, depending on the need. This will allow for scenarios such as categorizing for example, different types of documents like invoices, contracts, and receipts, but the analyzerID for each of these categories can also be an analyze operation with additional classification enabled for different types of files within invoices, contracts, and receipts. 
+The newly designed analyzer operation allows for hierarchical splitting and classification. For example, within the base analyzer operation, you can set the `analyzerID` for the content categories you defined with your custom analyzer that performs additional classification or splitting, depending on the need. Defining herarchical analyzers allow for scenarios such as categorizing different types of documents like invoices, contracts, and receipts, with the analyzerID for each of these categories can also be an analyze operation with additional classification enabled for different types of files within invoices, contracts, and receipts. 
 
 ## Classifier limits
 
