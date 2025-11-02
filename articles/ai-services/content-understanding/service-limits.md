@@ -124,18 +124,18 @@ Content Understanding supports both basic field value types and nested structure
 
 ---
 
-## Classifier
+## Segmentation/Classification
 
 ### General limits
 
    > [!NOTE]
-   > This limit is for [Content Understanding classifier](concepts/classifier.md) itself, not classify fields within the extraction capability.
+   > This limit is for [Content Understanding segmentation/classification](concepts/classifier.md) itself, not classify fields within the extraction capability.
 
 | Property | Limit |
 | --- | --- |
 | Category name | Can't start with a dollar sign (`$`)|
 | Category name and description | Maximum 120 characters for combined name and description in each category |
-| Number of categories | 1 to 50 per classifier |
+| Number of categories | 200 per analyzer |
 
 ### Input file limits
 

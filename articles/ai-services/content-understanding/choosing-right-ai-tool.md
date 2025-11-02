@@ -4,7 +4,7 @@ title: Choose the right Azure AI tool for document processing
 titleSuffix: Azure AI services
 description: Learn about Azure AI Content Understanding, Azure AI Document Intelligence and Azure large language model (LLM) solutions, processes, workflows, use-cases, and field extractions for document processing.
 author: PatrickFarley
-ms.author: admaheshwari
+ms.author: jppark
 manager: nitinme
 ms.date: 07/16/2025
 ms.service: azure-ai-content-understanding
@@ -37,6 +37,10 @@ Azure AI Content Understanding, built on the same foundational capabilities as D
 * Classification & Splitting: Parse large files into individual documents for routing and schema extraction. 
 * Reasoning: Intelligent document processing typically is a multi-step process with extraction, validation, aggregation, and reviews. Content Understanding is built for IDP, simplifying everything into a single step process. 
 * Post processing & validations: Use the description to define any post processing rules like converting date formats, currency codes, and consistency checks. 
+
+> [!NOTE]
+>
+> Starting with the GA version, Azure AI Content Understanding uses your Foundry model deployments for all operations that require a Gen AI model. To learn more about which models to deploy and use, please refer to the [Models and deployments](./concepts/models-deployments.md) page.
 
 ## Azure-hosted LLMs (Azure OpenAI)
 
