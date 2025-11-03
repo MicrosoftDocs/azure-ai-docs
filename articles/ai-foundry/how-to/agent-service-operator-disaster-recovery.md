@@ -170,6 +170,7 @@ The following sections describe recovery strategies for incidents that are local
    - Restore it to the *exact same* resource group and account name it was before
    - Choose the latest restore point.
    - Azure Cosmos DB charges a nominal fee for this restoration action.
+   - Ensure Azure Diagnostics configuration is restored.
 
    > [!TIP]
    > Your account name was released to the public the moment your account was deleted, you need to be expeditious in this restoration because if your account name is taken by another customer before you restore, you'll experience complete data loss as you'll need to [perform a destructive reset of the Azure AI Agent Service capability host](#perform-a-destructive-reset-of-the-azure-ai-agent-service-capability-host).
