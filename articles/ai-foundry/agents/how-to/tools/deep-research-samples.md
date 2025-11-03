@@ -574,7 +574,8 @@ with project_client:
 :::zone-end 
 
 > [!NOTE]
-> Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
+> * Limitation: The Deep Research tool is currently recommended only in nonstreaming scenarios. Using it with streaming can work, but it might occasionally time out and is therefore not recommended.
+> * Currently, Azure AI Foundry Agent Playground UI only supports starting runs in streaming mode, and as a result, users might expect connection drops and timeouts. Use the supported methods above through code which uses runs in non-streaming mode.
 
 ## Next steps
 
