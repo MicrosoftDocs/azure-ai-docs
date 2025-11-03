@@ -88,69 +88,6 @@ Authorization: Bearer <your-token>
 
 The memory store creation returns an ID that you use in subsequent operations. Store this ID securely for reference.
 
-## Attach a memory store to an agent
-
-Attach the memory store to your agent to enable memory capabilities. Start with one memory store per agent to maximize memory protection and ensure optimization for your specific use case.
-
-# [Python](#tab/python)
-
-```python
-# Attach memory store to agent
-
-updated_agent = client.agents.update(
-   agent_name="my_agent",
-   description="Agent with updated memory configuration"
-   definition=PromptAgentDefinition(
-   model="gpt-4.1",
-   instructions="You are a helpful assistant with memory capabilities.",
-   tools=[
-         MemorySearchTool(
-            memory_store_id="<your_memory_store_id>",
-            scope="user_456", # User-specific scope you can define.
-            search_options=MemorySearchOptions(max_memories=10),
-            update_delay=60 # Optional: delay before updating memories (in seconds)
-         )
-      ]
-   )
-)
-
-print(f"Attached memory store to agent: {updated_agent.id}")
-```
-
-# [REST API](#tab/rest)
-
-```bash
-echo -e "\n\n6. Creating Agent with Memory Store Tool..."
-curl -X POST "${ENDPOINT}/agents?api-version=${API_VERSION}"
--H "Authorization: Bearer ${ACCESS_TOKEN}"
--H "Content-Type: application/json"
--d '{
-"model": "gpt-4.1",
-"name": "customer-support-agent",
-"description": "Customer support agent with memory capabilities",
-"instructions": "You are a helpful customer support agent. Use your memory to recall user preferences and past interactions.",
-"tools": [
-{
-"type": "memory",
-"memory": {
-"memory_store_name": "user-conversation-memory"
-}
-},
-{
-"type": "code_interpreter"
-}
-],
-"tool_resources": {
-"memory": {
-"memory_store_name": "user-conversation-memory"
-}
-}
-}'
-```
-
----
-
-After you attach it, the agent can access and update memories within the memory store according to the scope permissions you configure.
 
 ## Add memories to a memory store
 
