@@ -11,13 +11,13 @@ ms.date: 09/30/2025
 author: mrbullwinkle
 ms.author: mbullwin
 zone_pivot_groups: openai-fine-tuning
-ai-usage: ai-assisted
 monikerRange: 'foundry-classic || foundry'
+ai-usage: ai-assisted
 ---
 
 # Customize a model with fine-tuning
 
-Learn how to fine-tune Azure OpenAI models in Azure AI Foundry for your datasets and use cases. Fine-tuning enables:
+Learn how to fine-tune models in Azure AI Foundry for your datasets and use cases. Fine-tuning enables:
 
 - Higher quality results than what you can get just from [prompt engineering](../concepts/prompt-engineering.md)
 - The ability to train on more examples than can fit into a model's max request context limit.
@@ -36,11 +36,24 @@ In this article, you learn how to:
 - Deploy and evaluate a tuned model.
 - Iterate based on evaluation feedback.
 
+::: moniker range="foundry"
+
+::: zone pivot="programming-language-studio"
+
+
+::: zone-end
+
+::: moniker-end
+
+::: moniker range="foundry-classic"
+
 ::: zone pivot="programming-language-studio"
 
 [!INCLUDE [Azure AI Foundry portal fine-tuning](../includes/fine-tuning-unified.md)]
 
 ::: zone-end
+
+::: moniker-end
 
 ::: zone pivot="programming-language-python"
 
