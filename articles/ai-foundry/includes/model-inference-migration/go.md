@@ -200,7 +200,7 @@ Azure AI Inference SDK doesn't support image generation models.
 
 # [OpenAI v1 SDK](#tab/openai)
 
-OpenAI v1 SDK doesn't support image generation models.
+OpenAI v1 operations don't yet fully support image generation models.
 
 ---
 
