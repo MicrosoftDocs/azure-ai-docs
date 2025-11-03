@@ -214,10 +214,7 @@ Your job might be queued behind other jobs on the system. Training your model ca
 
 ## Checkpoints
 
-When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy.
-
-> [!NOTE]
-> When copying a checkpoint from a source account, the same checkpoint name is retained in the destination account. Ensure you use this exact name for fine-tuning, deployment, or any other operation in the destination account. This checkpoint will not appear in the UI or in the `list checkpoints` API.
+When each training epoch completes a checkpoint is generated. A checkpoint is a fully functional version of a model which can both be deployed and used as the target model for subsequent fine-tuning jobs. Checkpoints can be particularly useful, as they may provide snapshots prior to overfitting. When a fine-tuning job completes you will have the three most recent versions of the model available to deploy. You can copy checkpoints between resources and subscriptions through REST API.
 
 ## Pause and resume
 
