@@ -69,7 +69,7 @@ agent = project_client.agents.create_version(
 curl --request POST \
   --url $AZURE_AI_FOUNDRY_PROJECT_ENDPOINT/agents/$AGENTVERSION_NAME/versions?api-version=$API_VERSION \
   -H "Authorization: Bearer $AGENT_TOKEN" \
-  -H 'Content-Type: application/json' \
+  -H "Content-Type: application/json" \
   -d '{
   "description": "Test agent version description",
   "definition": {
