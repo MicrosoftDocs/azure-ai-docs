@@ -24,7 +24,7 @@ Learn how Azure AI Foundry Control Plane helps you manage the compliance and sec
 
 - This capability is available only in the Azure AI Foundry (new) portal. Look for :::image type="icon" source="../media/version-banner/new-foundry.png" border="false"::: in the portal banner to confirm you're using Azure AI Foundry (new).
 
-- If you use agents, you need Agents v2 or later for full compliance feature support. <!--need to verify this and expand>
+- If you use agents, you need Agents v2 or later for full compliance feature support. 
 
 - Appropriate permissions based on the tasks you want to perform:
   - To **view** compliance status and guardrail policies: No special permissions required beyond project access.
