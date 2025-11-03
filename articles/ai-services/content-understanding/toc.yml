@@ -89,7 +89,7 @@ items:
         - name: Image
           displayName: image, OCR, optical character recognition, text, extraction, analysis, detection, recognition, model
           href: image/overview.md
-        - name: AudioVideo
+        - name: Audio/Video
           items:
             - name: Video Overview
               displayName: audio, video, speech, voice, recognition, synthesis, speaker, identification, verification, diarization, transcription, translation, language, understanding, sentiment, analysis, emotion, detection, pronunciation, model
@@ -103,9 +103,9 @@ items:
             - name: Markdown
               displayName: audio, video, markdown, formatting
               href: video/markdown.md
-        - name: What is face detection? (preview)
-          displayName: recognition, detection, analysis, identification, verification
-          href: face/overview.md
+    - name: Face detection? (preview)
+      displayName: recognition, detection, analysis, identification, verification
+      href: face/overview.md
   - name: Tutorials
     items:
       - name: Create a custom analyzer
@@ -122,7 +122,7 @@ items:
         href: how-to/migration-preview-to-ga.md
       - name: Copy and back up analyzers
         href: how-to/copy-analyzers.md
-      - name: Build a retrieval-augmented solution
+      - name: Build a retrieval-augmented generation solution
         displayName: RAG, retrieval, augmented, generation, knowledge, base, search, index, vector
         href: tutorial/build-rag-solution.md
       - name: Create an Azure AI Foundry resource
