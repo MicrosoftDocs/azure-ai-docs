@@ -36,8 +36,7 @@ Use asynchronous document processing to translate multiple documents and large f
   | ---------| -------------|
   |**Translate large files**| Translate whole documents asynchronously.|
   |**Translate numerous files**|Translate multiple files across all supported languages and dialects while preserving document structure and data format.|
-  | **Translate text embedded within image (`.jpg`, `.png`, `.bmp`, `.webp`) and document files (`.docx`)** 🆕 |(how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-)
-  | &bullet; This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API.<br>&bullet; For pricing information, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)  |
+  | **Translate text embedded within image (`.jpg`, `.png`, `.bmp`, `.webp`) and document files (`.docx`)** 🆕 | &bullet; This feature is available with the [batch document translation](how-to-guides/use-rest-api-programmatically.md#translate-text-embedded-within-images-in-documents-) API.<br>&bullet; For pricing information, *see* [Azure Translator pricing](https://azure.microsoft.com/pricing/details/cognitive-services/translator/)  |
   |**Preserve source file presentation**| Translate files while preserving the original layout and format.|
   |**Apply custom translation**| Translate documents using general and [custom translation](../custom-translator/concepts/customization.md#azure-ai-custom-translator) models.|
   |**Apply custom glossaries**|Translate documents using custom glossaries.|
