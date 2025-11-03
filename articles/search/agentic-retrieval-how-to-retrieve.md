@@ -33,7 +33,7 @@ The retrieve request can include instructions for query processing that override
 
 ## Prerequisites
 
-+ A *knowledge source* that wraps a searchable index or an external source for native data retrievlal. It's either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md), [blob knowledge source](agentic-knowledge-source-how-to-blob.md), [OneLake knowledge source](agentic-knowledge-source-how-to-onelake.md), or a [Web knowledge source](agentic-knowledge-source-how-to-web.md) that queries the Bing indexes.
++ A *knowledge source* that wraps a searchable index or an external source for native data retrieval. It's either a [search index knowledge source](agentic-knowledge-source-how-to-search-index.md), [blob knowledge source](agentic-knowledge-source-how-to-blob.md), [OneLake knowledge source](agentic-knowledge-source-how-to-onelake.md), or a [Web knowledge source](agentic-knowledge-source-how-to-web.md) that queries the Bing indexes.
 
 + A [knowledge base](agentic-retrieval-how-to-create-knowledge-base.md) that represents the chat completion model and one or more knowledge sources.
 
